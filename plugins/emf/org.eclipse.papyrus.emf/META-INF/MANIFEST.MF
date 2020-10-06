@@ -7,9 +7,13 @@ Bundle-Activator: org.eclipse.papyrus.emf.Activator
 Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.core.resources;bundle-version="[3.13.0,4.0.0)",
  org.eclipse.core.runtime;bundle-version="[3.18.0,4.0.0)",
- org.eclipse.emf.ecore.xmi;bundle-version="[2.16.0,3.0.0)"
+ org.eclipse.emf.ecore.xmi;bundle-version="[2.16.0,3.0.0)",
+ org.eclipse.papyrus.infra.core.log;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.pde.core;bundle-version="[3.13.0,4.0.0)"
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.emf.resources
+Export-Package: org.eclipse.papyrus.emf.helpers,
+ org.eclipse.papyrus.emf.resources,
+ org.eclipse.papyrus.emf.validation
 Bundle-Description: %pluginDescription
 Automatic-Module-Name: org.eclipse.papyrus.emf

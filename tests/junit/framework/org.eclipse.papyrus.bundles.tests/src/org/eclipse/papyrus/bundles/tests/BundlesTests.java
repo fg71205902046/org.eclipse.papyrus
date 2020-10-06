@@ -498,6 +498,8 @@ public class BundlesTests extends AbstractPapyrusTest {
 		dependencies.put("org.eclipse.core.resources", undefinedVersion); //$NON-NLS-1$
 		dependencies.put("org.eclipse.core.runtime", undefinedVersion); //$NON-NLS-1$
 		dependencies.put("org.eclipse.emf.ecore.xmi", undefinedVersion); //$NON-NLS-1$
+		dependencies.put("org.eclipse.papyrus.infra.core.log", undefinedVersion); //$NON-NLS-1$
+		dependencies.put("org.eclipse.pde.core", undefinedVersion); //$NON-NLS-1$
 		strictCheckOfDependenciesList(bundleIDToCheck, dependencies, Collections.emptySet(), Collections.emptySet(), Collections.emptySet());
 	}
 

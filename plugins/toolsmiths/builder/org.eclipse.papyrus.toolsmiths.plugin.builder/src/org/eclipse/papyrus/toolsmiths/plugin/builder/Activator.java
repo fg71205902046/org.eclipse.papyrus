@@ -1,45 +1,53 @@
 /*****************************************************************************
- * Copyright (c) 2018 - 2020 CEA LIST, EclipseSource and others.
+ * Copyright (c) 2020 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/
+ * http://www.eclipse.org/legal/epl-2.0/
  *
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   Vincent LORENZO (CEA LIST) - Initial API and implementation
- *   Camille Letavernier (EclipseSource) - Bug 558024
+ *   Vincent Lorenzo (CEA LIST) <vincent.lorenzo@cea.fr> - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.emf;
 
-import org.eclipse.core.runtime.Plugin;
+package org.eclipse.papyrus.toolsmiths.plugin.builder;
+
 import org.eclipse.papyrus.infra.core.log.LogHelper;
+import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
-/**
- * The activator class controls the plug-in life cycle
- */
-public class Activator extends Plugin {
+public class Activator extends AbstractUIPlugin {
 
-	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.emf"; //$NON-NLS-1$
+	/**
+	 * The plug-in ID
+	 */
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.toolsmiths.plugin.builder"; //$NON-NLS-1$
 
-	// The shared instance
+	/**
+	 * The path of the papyrus icon in the project
+	 */
+	public static final String PAPYRUS_ICON_PATH = "/icons/papyrus.png";
+
+	/**
+	 * The log
+	 */
+	public static LogHelper log;
+
+	/**
+	 * The shared instance
+	 */
 	private static Activator plugin;
 
-	public static LogHelper log;
 	/**
 	 * The constructor
 	 */
 	public Activator() {
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
+	/**
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
 	 */
 	@Override
@@ -47,11 +55,18 @@ public class Activator extends Plugin {
 		super.start(context);
 		plugin = this;
 		log = new LogHelper(this);
+
+		// model builder
+		PapyrusPluginBuilder.addModelBuilder(new GenericEMFModelBuilder());
+		PapyrusPluginBuilder.addModelBuilder(new ArchitectureModelBuilder());
+		PapyrusPluginBuilder.addModelBuilder(new ElementTypesConfigurationBuilder());
+		PapyrusPluginBuilder.addModelBuilder(new XWTModelBuilder());
+
+		// manifest builder
+		PapyrusPluginBuilder.addManifestBuilder(new ManifestBuilder());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
+	/**
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
 	 */
 	@Override

@@ -54,5 +54,7 @@
 		<module>org.eclipse.papyrus.uml.m2m.qvto.tests.tools</module>
 		<module>org.eclipse.papyrus.architectureview</module>
 		<module>validation</module>
+		<module>builder</module>
+
 	</modules>
 </project>
