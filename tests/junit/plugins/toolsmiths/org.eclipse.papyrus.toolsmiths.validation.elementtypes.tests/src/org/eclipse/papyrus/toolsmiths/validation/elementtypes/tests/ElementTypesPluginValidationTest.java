@@ -84,12 +84,12 @@ public class ElementTypesPluginValidationTest extends AbstractPapyrusTest {
 
 		// Now check the markers
 		Assert.assertNotNull("The markers have to be found", markers); //$NON-NLS-1$
-		Assert.assertEquals("The number of markers is not correct", 10, markers.size()); //$NON-NLS-1$
+		Assert.assertEquals("The number of markers is not correct", 11, markers.size()); //$NON-NLS-1$
 
 		// Check the elementtypesconfigurations file markers
 		final List<IMarker> elementtypesFileMarkers = markers.stream().filter(marker -> marker.getResource().getFullPath().toString().endsWith("BookStore.elementtypesconfigurations")).collect(Collectors.toList()); //$NON-NLS-1$
 		Assert.assertNotNull("Elementtypesconfigurations file markers are not found", elementtypesFileMarkers); //$NON-NLS-1$
-		Assert.assertEquals("The number of markers for elementtypesconfigurations file is not correct", 1, elementtypesFileMarkers.size()); //$NON-NLS-1$
+		Assert.assertEquals("The number of markers for elementtypesconfigurations file is not correct", 2, elementtypesFileMarkers.size()); //$NON-NLS-1$
 		Assert.assertTrue("The severity of elementtypesconfigurations marker is not correct", isMarkerSeverity(elementtypesFileMarkers.get(0), IMarker.SEVERITY_ERROR)); //$NON-NLS-1$
 
 		// Check the dependencies markers

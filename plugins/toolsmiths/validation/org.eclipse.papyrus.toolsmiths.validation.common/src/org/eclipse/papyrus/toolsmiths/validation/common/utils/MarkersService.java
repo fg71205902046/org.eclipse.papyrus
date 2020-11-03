@@ -43,6 +43,19 @@ public class MarkersService {
 	}
 
 	/**
+	 * This allows to create a marker for a resource.
+	 *
+	 * @param resource
+	 *            The resource where create the marker.
+	 * @param type
+	 *            The type of the marker validation.
+	 * @return The created marker or <code>null</code> if there is an error.
+	 */
+	public static IMarker createMarker(final IResource resource, final String type) {
+		return MarkersManagementUtils.createMarker(resource, type);
+	}
+
+	/**
 	 * This allows to delete markers of a resource.
 	 *
 	 * @param resource
