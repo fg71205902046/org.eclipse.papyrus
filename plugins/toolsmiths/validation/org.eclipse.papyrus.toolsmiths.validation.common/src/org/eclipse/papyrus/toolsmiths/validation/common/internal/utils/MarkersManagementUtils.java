@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2019 CEA LIST and others.
+ * Copyright (c) 2019, 2020 CEA LIST, EclipseSource and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
+ *   Remi Schnekenburger (EclipseSource) -  Bug 568495
  *
  *****************************************************************************/
 
@@ -39,11 +40,32 @@ public class MarkersManagementUtils {
 	 * @return The created marker or <code>null</code> if there is an error.
 	 */
 	public static IMarker createMarker(final IResource resource, final String type, final String message, final int severity) {
+		IMarker createdMarker = createMarker(resource, type);
+		if (createdMarker != null) {
+			try {
+				createdMarker.setAttribute(IMarker.MESSAGE, message);
+				createdMarker.setAttribute(IMarker.SEVERITY, severity);
+			} catch (CoreException e) {
+				Activator.log.error("Error while setting marker attributes", e); //$NON-NLS-1$
+			}
+		}
+
+		return createdMarker;
+	}
+
+	/**
+	 * This allows to create a marker for a resource.
+	 *
+	 * @param resource
+	 *            The resource where create the marker.
+	 * @param type
+	 *            The type of the marker validation.
+	 * @return The created marker or <code>null</code> if there is an error.
+	 */
+	public static IMarker createMarker(final IResource resource, final String type) {
 		IMarker createdMarker = null;
 		try {
 			createdMarker = resource.createMarker(type);
-			createdMarker.setAttribute(IMarker.MESSAGE, message);
-			createdMarker.setAttribute(IMarker.SEVERITY, severity);
 		} catch (CoreException e) {
 			Activator.log.error("Error while creating marker", e); //$NON-NLS-1$
 		}

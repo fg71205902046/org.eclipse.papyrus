@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 CEA LIST and others.
+ * Copyright (c) 2020 CEA LIST, EclipseSource and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *   Vincent Lorenzo (CEA LIST) <vincent.lorenzo@cea.fr> - Initial API and implementation
+ *   Remi Schnekenburger (EclipseSource) - Bug 568495
  *
  *****************************************************************************/
 
@@ -64,6 +65,10 @@ public class Activator extends AbstractUIPlugin {
 
 		// manifest builder
 		PapyrusPluginBuilder.addManifestBuilder(new ManifestBuilder());
+		PapyrusPluginBuilder.addManifestBuilder(new StaticProfileManifestBuilder());
+
+		// extension builder
+		PapyrusPluginBuilder.addPluginBuilder(new StaticProfileExtensionsBuilder());
 	}
 
 	/**

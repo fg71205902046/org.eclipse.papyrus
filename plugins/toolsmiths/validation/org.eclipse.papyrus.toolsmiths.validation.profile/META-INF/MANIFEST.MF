@@ -6,12 +6,18 @@ Require-Bundle: org.eclipse.core.expressions;bundle-version="[3.6.0,4.0.0)",
  org.eclipse.papyrus.infra.core.log;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.toolsmiths.validation.common;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.uml.tools;bundle-version="[5.0.0,6.0.0)",
- org.eclipse.pde.core;bundle-version="[3.13.0,4.0.0)",
+ org.eclipse.pde.core;bundle-version="[3.13.0,3.15.0)",
  org.eclipse.ui.views.properties.tabbed;bundle-version="[3.8.0,4.0.0)",
- org.eclipse.uml2.uml;bundle-version="[5.5.0,6.0.0)"
+ org.eclipse.uml2.uml;bundle-version="[5.5.0,6.0.0)",
+ org.eclipse.papyrus.infra.internationalization;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.jface.text;bundle-version="[3.16.300,4.0.0)",
+ org.eclipse.core.filebuffers;bundle-version="[3.6.1000,4.0.0)",
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="[4.0.0,5.0.0)",
+ org.eclipse.emf.codegen.ecore;bundle-version="[2.22.0,3.0.0)"
 Export-Package: org.eclipse.papyrus.toolsmiths.validation.profile,
  org.eclipse.papyrus.toolsmiths.validation.profile.checkers,
- org.eclipse.papyrus.toolsmiths.validation.profile.constants
+ org.eclipse.papyrus.toolsmiths.validation.profile.constants,
+ org.eclipse.papyrus.toolsmiths.validation.profile.internal.checkers;x-friends:="org.eclipse.papyrus.toolsmiths.plugin.builder"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
