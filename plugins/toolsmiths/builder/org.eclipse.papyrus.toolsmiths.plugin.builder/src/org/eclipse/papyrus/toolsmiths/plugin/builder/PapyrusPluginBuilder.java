@@ -109,6 +109,27 @@ public class PapyrusPluginBuilder extends IncrementalProjectBuilder {
 		return wantedDeltaProjects.toArray(new IProject[wantedDeltaProjects.size()]);
 	}
 
+	@Override
+	protected void clean(IProgressMonitor monitor) throws CoreException {
+		super.clean(monitor);
+		if (isPapyrusModelBuilderActivated()) {
+			for (final AbstractPapyrusBuilder builder : PapyrusPluginBuilder.modelBuilders) {
+				builder.clean(monitor, getProject());
+			}
+		}
+
+		if (isPapyrusManifestBuilderActivated()) {
+			for (final AbstractPapyrusBuilder builder : PapyrusPluginBuilder.manifestBuilders) {
+				builder.clean(monitor, getProject());
+			}
+		}
+
+		for (final AbstractPapyrusBuilder builder : PapyrusPluginBuilder.pluginBuilders) {
+			builder.clean(monitor, getProject());
+		}
+
+	}
+
 	/**
 	 *
 	 * @return

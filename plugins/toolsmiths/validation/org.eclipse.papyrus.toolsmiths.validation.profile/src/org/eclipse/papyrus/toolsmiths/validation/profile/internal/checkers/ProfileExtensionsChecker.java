@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2019 CEA LIST and others.
+ * Copyright (c) 2019, 2020 CEA LIST, EclipseSource and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,33 +10,28 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
+ *   Remi Schnekenburger (EclipseSource) - Bug 568495
  *
  *****************************************************************************/
-
 package org.eclipse.papyrus.toolsmiths.validation.profile.internal.checkers;
 
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.IPluginChecker;
-import org.eclipse.papyrus.toolsmiths.validation.common.utils.MarkersService;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.ProjectManagementService;
-import org.eclipse.papyrus.toolsmiths.validation.profile.constants.ProfilePluginValidationConstants;
-import org.eclipse.pde.core.plugin.IPluginAttribute;
-import org.eclipse.pde.core.plugin.IPluginElement;
-import org.eclipse.pde.core.plugin.IPluginExtension;
-import org.eclipse.pde.core.plugin.IPluginObject;
+import org.eclipse.papyrus.toolsmiths.validation.profile.internal.messages.Messages;
+import org.eclipse.pde.internal.core.builders.DefaultSAXParser;
+import org.eclipse.pde.internal.core.builders.PDEMarkerFactory;
 import org.eclipse.uml2.uml.Profile;
 
 /**
  * This class allows to check the extensions of the 'plugin.xml' needed for the profiles.
  */
+@SuppressWarnings("restriction")
 public class ProfileExtensionsChecker implements IPluginChecker {
 
 	/**
@@ -79,84 +74,22 @@ public class ProfileExtensionsChecker implements IPluginChecker {
 	@Override
 	public void check(final IProgressMonitor monitor) {
 
-		if (null != monitor) {
-			monitor.subTask("Validate 'plugin.xml' file for profile '" + profileFile.getName() + "'."); //$NON-NLS-1$ //$NON-NLS-2$
+		if (monitor != null && monitor.isCanceled()) {
+			return;
 		}
 
-		// Create the conditions:
-		// - Copy of existing profiles (that will be removed if there are found in uml generated package extension points)
-		// - Boolean to check if the UMLProfile is defined for the profile
-		final Collection<Profile> profiles = new HashSet<>(existingProfiles);
-		boolean foundExtensionUMLProfile = false;
+		final IFile pluginXML = ProjectManagementService.getPluginXMLFile(project);
 
-		// Get all the extensions of the plug-in to check
-		final Iterator<IPluginExtension> extensions = ProjectManagementService.getPluginExtensions(project).iterator();
-		while (extensions.hasNext()) {
-			final IPluginExtension extension = extensions.next();
-			// Check if the UML profile extension point is managed (warning because this one can be managed outside of this plug-in)
-			if (!foundExtensionUMLProfile && ProfilePluginValidationConstants.UMLPROFILE_EXTENSION_POINT.equals(extension.getPoint())) {
-				for (final IPluginObject pluginObject : extension.getChildren()) {
-					if (pluginObject instanceof IPluginElement && "profile".equals(pluginObject.getName())) { //$NON-NLS-1$
-						for (final IPluginAttribute pluginAtttribute : ((IPluginElement) pluginObject).getAttributes()) {
-							if ("path".equals(pluginAtttribute.getName())) { //$NON-NLS-1$
-								final String locationValue = pluginAtttribute.getValue();
-								if (locationValue.endsWith(profileFile.getName())) {
-									foundExtensionUMLProfile = true;
-								}
-							}
-						}
-					}
-				}
-			}
-
-			// Manage the uml profile registration (check only if
-			if (!profiles.isEmpty() && ProfilePluginValidationConstants.UML_GENERATED_PACKAGE_EXTENSION_POINT.equals(extension.getPoint())) {
-				for (final IPluginObject pluginObject : extension.getChildren()) {
-					if (pluginObject instanceof IPluginElement && "profile".equals(pluginObject.getName())) { //$NON-NLS-1$
-						for (final IPluginAttribute pluginAtttribute : ((IPluginElement) pluginObject).getAttributes()) {
-							if ("location".equals(pluginAtttribute.getName())) { //$NON-NLS-1$
-								final String locationValue = pluginAtttribute.getValue();
-
-								final Iterator<Profile> profilesIt = profiles.iterator();
-								while (profilesIt.hasNext()) {
-									final Profile currentProfile = profilesIt.next();
-									final String profileId = ((XMIResource) currentProfile.eResource()).getID(currentProfile);
-									if (locationValue.endsWith(profileFile.getName() + "#" + profileId)) { //$NON-NLS-1$
-										profilesIt.remove();
-										break;
-									}
-								}
-							}
-						}
-					}
-				}
-			}
+		if (pluginXML == null) {
+			MarkersService.createMarker(profileFile, PDEMarkerFactory.MARKER_ID, "No extensions are declared for this static profile", IMarker.SEVERITY_ERROR);
+			return;
 		}
-
-		// If there is a problem, get the plugin.xml file to mark the correct file for problems
-		if (!foundExtensionUMLProfile || !profiles.isEmpty()) {
-			final IFile pluginXMLFile = ProjectManagementService.getPluginXMLFile(project);
-
-			// Create marker for UMLProfile extension point if needed
-			if (!foundExtensionUMLProfile) {
-				MarkersService.createMarker(
-						pluginXMLFile,
-						ProfilePluginValidationConstants.PROFILE_PLUGIN_VALIDATION_TYPE,
-						"The extension point '" + ProfilePluginValidationConstants.UMLPROFILE_EXTENSION_POINT + "' should be created for profile '" + profileFile.getName() + "'", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						IMarker.SEVERITY_WARNING);
-			}
-			// Create markers (one by missing profile) for uml generated package extension point if needed
-			if (!profiles.isEmpty()) {
-				for (final Profile profile : profiles) {
-					MarkersService.createMarker(
-							pluginXMLFile,
-							ProfilePluginValidationConstants.PROFILE_PLUGIN_VALIDATION_TYPE,
-							"There is no extension point '" + ProfilePluginValidationConstants.UML_GENERATED_PACKAGE_EXTENSION_POINT + "' for profile '" + profile.getName() + "'.", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-							IMarker.SEVERITY_ERROR);
-				}
-			}
+		monitor.subTask(NLS.bind(Messages.StaticProfileExtensionsBuilder_subTask_checkingFile, profileFile));
+		for (Profile profile : existingProfiles) {
+			StaticProfilePluginErrorReporter reporter = new StaticProfilePluginErrorReporter(pluginXML, profile, profileFile);
+			DefaultSAXParser.parse(pluginXML, reporter);
+			reporter.validateContent(monitor);
 		}
-
 		if (null != monitor) {
 			monitor.worked(1);
 		}

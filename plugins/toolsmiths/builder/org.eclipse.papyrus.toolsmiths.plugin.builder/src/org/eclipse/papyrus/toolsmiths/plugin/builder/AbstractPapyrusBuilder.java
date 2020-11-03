@@ -34,6 +34,7 @@ public abstract class AbstractPapyrusBuilder {
 	private ProjectDependencyHelper DEPENDENCY_HELPER = ProjectDependencyHelper.INSTANCE;
 
 	/**
+	 * Run the build on the specified project.
 	 *
 	 * @param builtProject
 	 *            the current build project
@@ -50,6 +51,17 @@ public abstract class AbstractPapyrusBuilder {
 	 * @throws CoreException
 	 */
 	public abstract IProject[] build(IProject builtProject, final PapyrusPluginBuilder papyrusBuilder, int kind, Map<String, String> args, IProgressMonitor monitor) throws CoreException;
+
+	/**
+	 * see {@link IncrementalProjectBuilder#clean(IProgressMonitor)}
+	 *
+	 * @param monitor
+	 * @param iProject
+	 * @throws CoreException
+	 */
+	public void clean(IProgressMonitor monitor, IProject iProject) throws CoreException {
+		// default implementation does nothing
+	}
 
 	/**
 	 *
