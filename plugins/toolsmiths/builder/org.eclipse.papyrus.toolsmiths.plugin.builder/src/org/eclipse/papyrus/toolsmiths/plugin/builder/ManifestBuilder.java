@@ -36,9 +36,9 @@ import org.osgi.framework.Version;
  */
 public class ManifestBuilder extends AbstractPapyrusBuilder {
 
-	public static final String DEPENDENCY_MARKER_ATTRIBUTE = "dependency";
+	public static final String DEPENDENCY_MARKER_ATTRIBUTE = "dependency"; //$NON-NLS-1$
 
-	public static final String KIND_MARKER_ATTRIBUTE = "kind";
+	public static final String KIND_MARKER_ATTRIBUTE = "kind"; //$NON-NLS-1$
 
 	public static final int REEXPORT_KIND = 0;
 

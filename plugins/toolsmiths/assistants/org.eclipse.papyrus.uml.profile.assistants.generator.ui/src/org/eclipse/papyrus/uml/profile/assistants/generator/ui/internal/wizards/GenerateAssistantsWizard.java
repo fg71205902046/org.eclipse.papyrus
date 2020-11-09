@@ -42,12 +42,12 @@ public class GenerateAssistantsWizard extends GeneratorWizard {
 
 		setDialogSettings(DialogSettings.getOrCreateSection(Activator.getInstance().getDialogSettings(), GenerateAssistantsWizard.class.getName()));
 
-		setWindowTitle("Generate Diagram Assistants");
+		setWindowTitle("Generate Diagram Assistants"); //$NON-NLS-1$
 	}
 
 	@Override
 	protected IGeneratorWizardPage createMainPage(GeneratorWizardModel model) {
-		return new GeneratorMainPage(model, "Diagram Assistant Model", "Enter details of the diagram assistant model to generate.", AssistantResource.FILE_EXTENSION);
+		return new GeneratorMainPage(model, "Diagram Assistant Model", "Enter details of the diagram assistant model to generate.", AssistantResource.FILE_EXTENSION); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	@Override
@@ -60,7 +60,7 @@ public class GenerateAssistantsWizard extends GeneratorWizard {
 	@Override
 	protected URI getOutputURI(AbstractGenerator<Profile, ?> generator, Identifiers identifiers, GeneratorWizardModel wizardModel) {
 		if (generator instanceof ElementTypesGenerator) {
-			return wizardModel.getOutputModelURI().trimFileExtension().appendFileExtension("typesconfigurations");
+			return wizardModel.getOutputModelURI().trimFileExtension().appendFileExtension("typesconfigurations"); //$NON-NLS-1$
 		}
 
 		return super.getOutputURI(generator, identifiers, wizardModel);

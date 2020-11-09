@@ -29,7 +29,7 @@ public class Activator extends AbstractUIPlugin {
 	/**
 	 * The path of the papyrus icon in the project
 	 */
-	public static final String PAPYRUS_ICON_PATH = "/icons/papyrus.png";
+	public static final String PAPYRUS_ICON_PATH = "/icons/papyrus.png"; //$NON-NLS-1$
 
 	/**
 	 * The log
