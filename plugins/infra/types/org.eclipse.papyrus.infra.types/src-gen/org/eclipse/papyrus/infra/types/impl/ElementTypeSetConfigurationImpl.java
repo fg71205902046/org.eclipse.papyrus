@@ -158,6 +158,7 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getIdentifier() {
 		return identifier;
 	}
@@ -167,6 +168,7 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIdentifier(String newIdentifier) {
 		String oldIdentifier = identifier;
 		identifier = newIdentifier;
@@ -179,6 +181,7 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -188,6 +191,7 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -200,6 +204,7 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ElementTypeConfiguration> getElementTypeConfigurations() {
 		if (elementTypeConfigurations == null) {
 			elementTypeConfigurations = new EObjectContainmentEList<ElementTypeConfiguration>(ElementTypeConfiguration.class, this, ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS);
@@ -212,6 +217,7 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<AbstractAdviceBindingConfiguration> getAdviceBindingsConfigurations() {
 		if (adviceBindingsConfigurations == null) {
 			adviceBindingsConfigurations = new EObjectContainmentEList<AbstractAdviceBindingConfiguration>(AbstractAdviceBindingConfiguration.class, this, ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS);
@@ -224,6 +230,7 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getMetamodelNsURI() {
 		return metamodelNsURI;
 	}
@@ -233,6 +240,7 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMetamodelNsURI(String newMetamodelNsURI) {
 		String oldMetamodelNsURI = metamodelNsURI;
 		metamodelNsURI = newMetamodelNsURI;
@@ -410,7 +418,7 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (identifier: ");
 		result.append(identifier);
 		result.append(", name: ");

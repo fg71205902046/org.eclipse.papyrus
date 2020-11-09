@@ -175,6 +175,7 @@ public class ElementTypesConfigurationsActionBarContributor
 	 */
 	@Override
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
+		super.contributeToToolBar(toolBarManager);
 		toolBarManager.add(new Separator("elementtypesconfigurations-settings"));
 		toolBarManager.add(new Separator("elementtypesconfigurations-additions"));
 	}
@@ -211,6 +212,7 @@ public class ElementTypesConfigurationsActionBarContributor
 		//
 		submenuManager.addMenuListener
 			(new IMenuListener() {
+				 @Override
 				 public void menuAboutToShow(IMenuManager menuManager) {
 					 menuManager.updateAll(true);
 				 }
@@ -258,6 +260,7 @@ public class ElementTypesConfigurationsActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void selectionChanged(SelectionChangedEvent event) {
 		// Remove any menu items for old selection.
 		//

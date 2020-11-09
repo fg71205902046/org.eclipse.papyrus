@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/uml2/2.2.0/GenModel" copyrightText="Copyright (c) 2014 CEA LIST.&#xA;&#xA; All rights reserved. This program and the accompanying materials&#xA; are made available under the terms of the Eclipse Public License 2.0&#xA; which accompanies this distribution, and is available at&#xA; https://www.eclipse.org/legal/epl-2.0/&#xA;&#xA; SPDX-License-Identifier: EPL-2.0&#xA;&#xA; Contributors:&#xA; CEA LIST - Initial API and implementation"
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/uml2/2.2.0/GenModel"
+    copyrightText="Copyright (c) 2014 CEA LIST.&#xA;&#xA; All rights reserved. This program and the accompanying materials&#xA; are made available under the terms of the Eclipse Public License 2.0&#xA; which accompanies this distribution, and is available at&#xA; https://www.eclipse.org/legal/epl-2.0/&#xA;&#xA; SPDX-License-Identifier: EPL-2.0&#xA;&#xA; Contributors:&#xA; CEA LIST - Initial API and implementation"
     modelDirectory="/org.eclipse.papyrus.infra.types/src-gen" editDirectory="/org.eclipse.papyrus.infra.types.edit/src-gen"
     editorDirectory="/org.eclipse.papyrus.infra.types.editor/src-gen" modelPluginID="org.eclipse.papyrus.infra.types"
     modelName="ElementTypesConfigurations" editPluginClass="org.eclipse.papyrus.infra.types.provider.TypesConfigurationsEditPlugin"
@@ -36,76 +37,92 @@
     <details key="VALIDATION_DELEGATES" value="IGNORE"/>
   </genAnnotations>
   <foreignModel>ElementTypesConfigurations.uml</foreignModel>
-  <genPackages prefix="ElementTypesConfigurations" basePackage="org.eclipse.papyrus.infra"
-      disposableProviderFactory="true" extensibleProviderFactory="true" contentTypeIdentifier="org.eclipse.papyrus.infra.types"
-      fileExtensions="elementtypesconfigurations" ecorePackage="ElementTypesConfigurations.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="ElementTypesConfigurations.ecore#//InheritanceKind">
-      <genEnumLiterals ecoreEnumLiteral="ElementTypesConfigurations.ecore#//InheritanceKind/none"/>
-      <genEnumLiterals ecoreEnumLiteral="ElementTypesConfigurations.ecore#//InheritanceKind/all"/>
+  <genPackages xsi:type="genmodel:GenPackage" prefix="ElementTypesConfigurations"
+      basePackage="org.eclipse.papyrus.infra" disposableProviderFactory="true" extensibleProviderFactory="true"
+      contentTypeIdentifier="org.eclipse.papyrus.infra.types" fileExtensions="elementtypesconfigurations"
+      ecorePackage="ElementTypesConfigurations.ecore#/">
+    <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="ElementTypesConfigurations.ecore#//InheritanceKind">
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ElementTypesConfigurations.ecore#//InheritanceKind/none"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ElementTypesConfigurations.ecore#//InheritanceKind/all"/>
     </genEnums>
-    <genClasses ecoreClass="ElementTypesConfigurations.ecore#//ElementTypeSetConfiguration">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//ElementTypeSetConfiguration/elementTypeConfigurations"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//ElementTypeSetConfiguration/adviceBindingsConfigurations"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//ElementTypeSetConfiguration/metamodelNsURI"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="ElementTypesConfigurations.ecore#//ElementTypeSetConfiguration">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//ElementTypeSetConfiguration/elementTypeConfigurations"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//ElementTypeSetConfiguration/adviceBindingsConfigurations"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//ElementTypeSetConfiguration/metamodelNsURI"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="ElementTypesConfigurations.ecore#//ConfigurationElement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//ConfigurationElement/description"/>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="ElementTypesConfigurations.ecore#//ConfigurationElement">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//ConfigurationElement/description"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="ElementTypesConfigurations.ecore#//ElementTypeConfiguration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//ElementTypeConfiguration/hint"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//ElementTypeConfiguration/kind"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//ElementTypeConfiguration/iconEntry"/>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="ElementTypesConfigurations.ecore#//ElementTypeConfiguration">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//ElementTypeConfiguration/hint"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//ElementTypeConfiguration/kind"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//ElementTypeConfiguration/iconEntry"/>
     </genClasses>
-    <genClasses ecoreClass="ElementTypesConfigurations.ecore#//IconEntry">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//IconEntry/iconPath"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//IconEntry/bundleId"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="ElementTypesConfigurations.ecore#//IconEntry">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//IconEntry/iconPath"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//IconEntry/bundleId"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="ElementTypesConfigurations.ecore#//IdentifiedConfiguration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//IdentifiedConfiguration/identifier"/>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="ElementTypesConfigurations.ecore#//IdentifiedConfiguration">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//IdentifiedConfiguration/identifier"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="ElementTypesConfigurations.ecore#//NamedConfiguration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//NamedConfiguration/name"/>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="ElementTypesConfigurations.ecore#//NamedConfiguration">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//NamedConfiguration/name"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="ElementTypesConfigurations.ecore#//AbstractAdviceBindingConfiguration"
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="ElementTypesConfigurations.ecore#//AbstractAdviceBindingConfiguration"
         labelFeature="#//types/IdentifiedConfiguration/identifier">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//AbstractAdviceBindingConfiguration/target"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//AbstractAdviceBindingConfiguration/containerConfiguration"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//AbstractAdviceBindingConfiguration/matcherConfiguration"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//AbstractAdviceBindingConfiguration/inheritance"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//AbstractAdviceBindingConfiguration/target"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//AbstractAdviceBindingConfiguration/containerConfiguration"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//AbstractAdviceBindingConfiguration/matcherConfiguration"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//AbstractAdviceBindingConfiguration/inheritance"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//AbstractAdviceBindingConfiguration/applyToAllTypes"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="ElementTypesConfigurations.ecore#//AdviceConfiguration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//AdviceConfiguration/before"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//AdviceConfiguration/after"/>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="ElementTypesConfigurations.ecore#//AdviceConfiguration">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//AdviceConfiguration/before"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//AdviceConfiguration/after"/>
     </genClasses>
-    <genClasses ecoreClass="ElementTypesConfigurations.ecore#//ContainerConfiguration">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//ContainerConfiguration/containerMatcherConfiguration"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//ContainerConfiguration/eContainmentFeatures"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="ElementTypesConfigurations.ecore#//ContainerConfiguration">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//ContainerConfiguration/containerMatcherConfiguration"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//ContainerConfiguration/eContainmentFeatures"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="ElementTypesConfigurations.ecore#//AbstractMatcherConfiguration"/>
-    <genClasses ecoreClass="ElementTypesConfigurations.ecore#//SpecializationTypeConfiguration">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//SpecializationTypeConfiguration/editHelperAdviceConfiguration"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//SpecializationTypeConfiguration/containerConfiguration"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//SpecializationTypeConfiguration/matcherConfiguration"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//SpecializationTypeConfiguration/specializedTypes"/>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="ElementTypesConfigurations.ecore#//AbstractMatcherConfiguration"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="ElementTypesConfigurations.ecore#//SpecializationTypeConfiguration">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//SpecializationTypeConfiguration/editHelperAdviceConfiguration"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//SpecializationTypeConfiguration/containerConfiguration"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//SpecializationTypeConfiguration/matcherConfiguration"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//SpecializationTypeConfiguration/specializedTypes"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="ElementTypesConfigurations.ecore#//AbstractEditHelperAdviceConfiguration">
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//AbstractEditHelperAdviceConfiguration/target"/>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="ElementTypesConfigurations.ecore#//AbstractEditHelperAdviceConfiguration">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
+          ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//AbstractEditHelperAdviceConfiguration/target"/>
     </genClasses>
-    <genClasses ecoreClass="ElementTypesConfigurations.ecore#//MetamodelTypeConfiguration">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//MetamodelTypeConfiguration/eClass"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//MetamodelTypeConfiguration/editHelperClassName"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="ElementTypesConfigurations.ecore#//MetamodelTypeConfiguration">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//MetamodelTypeConfiguration/eClass"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//MetamodelTypeConfiguration/editHelperClassName"/>
     </genClasses>
-    <genClasses ecoreClass="ElementTypesConfigurations.ecore#//EditHelperAdviceConfiguration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//EditHelperAdviceConfiguration/editHelperAdviceClassName"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="ElementTypesConfigurations.ecore#//EditHelperAdviceConfiguration">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//EditHelperAdviceConfiguration/editHelperAdviceClassName"/>
     </genClasses>
-    <genClasses ecoreClass="ElementTypesConfigurations.ecore#//AdviceBindingConfiguration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//AdviceBindingConfiguration/editHelperAdviceClassName"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="ElementTypesConfigurations.ecore#//AdviceBindingConfiguration">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//AdviceBindingConfiguration/editHelperAdviceClassName"/>
     </genClasses>
-    <genClasses ecoreClass="ElementTypesConfigurations.ecore#//MatcherConfiguration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//MatcherConfiguration/matcherClassName"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="ElementTypesConfigurations.ecore#//MatcherConfiguration">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//MatcherConfiguration/matcherClassName"/>
     </genClasses>
-    <genClasses ecoreClass="ElementTypesConfigurations.ecore#//ExternallyRegisteredType"/>
-    <genClasses ecoreClass="ElementTypesConfigurations.ecore#//ExternallyRegisteredAdvice"
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="ElementTypesConfigurations.ecore#//ExternallyRegisteredType"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="ElementTypesConfigurations.ecore#//ExternallyRegisteredAdvice"
         labelFeature="#//types/IdentifiedConfiguration/identifier"/>
   </genPackages>
 </genmodel:GenModel>

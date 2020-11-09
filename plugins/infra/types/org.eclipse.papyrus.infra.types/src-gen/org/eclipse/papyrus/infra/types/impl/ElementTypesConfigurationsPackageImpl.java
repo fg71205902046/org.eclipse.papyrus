@@ -213,7 +213,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link ElementTypesConfigurationsPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -227,7 +227,8 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 		if (isInited) return (ElementTypesConfigurationsPackage)EPackage.Registry.INSTANCE.getEPackage(ElementTypesConfigurationsPackage.eNS_URI);
 
 		// Obtain or create and register package
-		ElementTypesConfigurationsPackageImpl theElementTypesConfigurationsPackage = (ElementTypesConfigurationsPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ElementTypesConfigurationsPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ElementTypesConfigurationsPackageImpl());
+		Object registeredElementTypesConfigurationsPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		ElementTypesConfigurationsPackageImpl theElementTypesConfigurationsPackage = registeredElementTypesConfigurationsPackage instanceof ElementTypesConfigurationsPackageImpl ? (ElementTypesConfigurationsPackageImpl)registeredElementTypesConfigurationsPackage : new ElementTypesConfigurationsPackageImpl();
 
 		isInited = true;
 
@@ -243,7 +244,6 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 		// Mark meta-data to indicate it can't be changed
 		theElementTypesConfigurationsPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(ElementTypesConfigurationsPackage.eNS_URI, theElementTypesConfigurationsPackage);
 		return theElementTypesConfigurationsPackage;
@@ -254,6 +254,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getElementTypeSetConfiguration() {
 		return elementTypeSetConfigurationEClass;
 	}
@@ -263,6 +264,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getElementTypeSetConfiguration_ElementTypeConfigurations() {
 		return (EReference)elementTypeSetConfigurationEClass.getEStructuralFeatures().get(0);
 	}
@@ -272,6 +274,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getElementTypeSetConfiguration_AdviceBindingsConfigurations() {
 		return (EReference)elementTypeSetConfigurationEClass.getEStructuralFeatures().get(1);
 	}
@@ -281,6 +284,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getElementTypeSetConfiguration_MetamodelNsURI() {
 		return (EAttribute)elementTypeSetConfigurationEClass.getEStructuralFeatures().get(2);
 	}
@@ -290,6 +294,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getConfigurationElement() {
 		return configurationElementEClass;
 	}
@@ -299,6 +304,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConfigurationElement_Description() {
 		return (EAttribute)configurationElementEClass.getEStructuralFeatures().get(0);
 	}
@@ -308,6 +314,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getElementTypeConfiguration() {
 		return elementTypeConfigurationEClass;
 	}
@@ -317,6 +324,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getElementTypeConfiguration_Hint() {
 		return (EAttribute)elementTypeConfigurationEClass.getEStructuralFeatures().get(0);
 	}
@@ -326,6 +334,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getElementTypeConfiguration_Kind() {
 		return (EAttribute)elementTypeConfigurationEClass.getEStructuralFeatures().get(1);
 	}
@@ -335,6 +344,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getElementTypeConfiguration_IconEntry() {
 		return (EReference)elementTypeConfigurationEClass.getEStructuralFeatures().get(2);
 	}
@@ -344,6 +354,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIconEntry() {
 		return iconEntryEClass;
 	}
@@ -353,6 +364,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIconEntry_IconPath() {
 		return (EAttribute)iconEntryEClass.getEStructuralFeatures().get(0);
 	}
@@ -362,6 +374,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIconEntry_BundleId() {
 		return (EAttribute)iconEntryEClass.getEStructuralFeatures().get(1);
 	}
@@ -371,6 +384,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIdentifiedConfiguration() {
 		return identifiedConfigurationEClass;
 	}
@@ -380,6 +394,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIdentifiedConfiguration_Identifier() {
 		return (EAttribute)identifiedConfigurationEClass.getEStructuralFeatures().get(0);
 	}
@@ -389,6 +404,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNamedConfiguration() {
 		return namedConfigurationEClass;
 	}
@@ -398,6 +414,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getNamedConfiguration_Name() {
 		return (EAttribute)namedConfigurationEClass.getEStructuralFeatures().get(0);
 	}
@@ -407,6 +424,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAbstractAdviceBindingConfiguration() {
 		return abstractAdviceBindingConfigurationEClass;
 	}
@@ -416,6 +434,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAbstractAdviceBindingConfiguration_Target() {
 		return (EReference)abstractAdviceBindingConfigurationEClass.getEStructuralFeatures().get(0);
 	}
@@ -425,6 +444,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAbstractAdviceBindingConfiguration_ContainerConfiguration() {
 		return (EReference)abstractAdviceBindingConfigurationEClass.getEStructuralFeatures().get(1);
 	}
@@ -434,6 +454,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAbstractAdviceBindingConfiguration_MatcherConfiguration() {
 		return (EReference)abstractAdviceBindingConfigurationEClass.getEStructuralFeatures().get(2);
 	}
@@ -443,6 +464,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAbstractAdviceBindingConfiguration_Inheritance() {
 		return (EAttribute)abstractAdviceBindingConfigurationEClass.getEStructuralFeatures().get(3);
 	}
@@ -452,6 +474,17 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public EAttribute getAbstractAdviceBindingConfiguration_ApplyToAllTypes() {
+		return (EAttribute)abstractAdviceBindingConfigurationEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getAdviceConfiguration() {
 		return adviceConfigurationEClass;
 	}
@@ -461,6 +494,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAdviceConfiguration_Before() {
 		return (EReference)adviceConfigurationEClass.getEStructuralFeatures().get(0);
 	}
@@ -470,6 +504,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAdviceConfiguration_After() {
 		return (EReference)adviceConfigurationEClass.getEStructuralFeatures().get(1);
 	}
@@ -479,6 +514,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getContainerConfiguration() {
 		return containerConfigurationEClass;
 	}
@@ -488,6 +524,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getContainerConfiguration_ContainerMatcherConfiguration() {
 		return (EReference)containerConfigurationEClass.getEStructuralFeatures().get(0);
 	}
@@ -497,6 +534,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getContainerConfiguration_EContainmentFeatures() {
 		return (EReference)containerConfigurationEClass.getEStructuralFeatures().get(1);
 	}
@@ -506,6 +544,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAbstractMatcherConfiguration() {
 		return abstractMatcherConfigurationEClass;
 	}
@@ -515,6 +554,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSpecializationTypeConfiguration() {
 		return specializationTypeConfigurationEClass;
 	}
@@ -524,6 +564,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSpecializationTypeConfiguration_EditHelperAdviceConfiguration() {
 		return (EReference)specializationTypeConfigurationEClass.getEStructuralFeatures().get(0);
 	}
@@ -533,6 +574,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSpecializationTypeConfiguration_ContainerConfiguration() {
 		return (EReference)specializationTypeConfigurationEClass.getEStructuralFeatures().get(1);
 	}
@@ -542,6 +584,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSpecializationTypeConfiguration_MatcherConfiguration() {
 		return (EReference)specializationTypeConfigurationEClass.getEStructuralFeatures().get(2);
 	}
@@ -551,6 +594,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSpecializationTypeConfiguration_SpecializedTypes() {
 		return (EReference)specializationTypeConfigurationEClass.getEStructuralFeatures().get(3);
 	}
@@ -560,6 +604,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAbstractEditHelperAdviceConfiguration() {
 		return abstractEditHelperAdviceConfigurationEClass;
 	}
@@ -569,6 +614,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAbstractEditHelperAdviceConfiguration_Target() {
 		return (EReference)abstractEditHelperAdviceConfigurationEClass.getEStructuralFeatures().get(0);
 	}
@@ -578,6 +624,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMetamodelTypeConfiguration() {
 		return metamodelTypeConfigurationEClass;
 	}
@@ -587,6 +634,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMetamodelTypeConfiguration_EClass() {
 		return (EReference)metamodelTypeConfigurationEClass.getEStructuralFeatures().get(0);
 	}
@@ -596,6 +644,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getMetamodelTypeConfiguration_EditHelperClassName() {
 		return (EAttribute)metamodelTypeConfigurationEClass.getEStructuralFeatures().get(1);
 	}
@@ -605,6 +654,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getEditHelperAdviceConfiguration() {
 		return editHelperAdviceConfigurationEClass;
 	}
@@ -614,6 +664,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getEditHelperAdviceConfiguration_EditHelperAdviceClassName() {
 		return (EAttribute)editHelperAdviceConfigurationEClass.getEStructuralFeatures().get(0);
 	}
@@ -623,6 +674,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAdviceBindingConfiguration() {
 		return adviceBindingConfigurationEClass;
 	}
@@ -632,6 +684,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAdviceBindingConfiguration_EditHelperAdviceClassName() {
 		return (EAttribute)adviceBindingConfigurationEClass.getEStructuralFeatures().get(0);
 	}
@@ -641,6 +694,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMatcherConfiguration() {
 		return matcherConfigurationEClass;
 	}
@@ -650,6 +704,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getMatcherConfiguration_MatcherClassName() {
 		return (EAttribute)matcherConfigurationEClass.getEStructuralFeatures().get(0);
 	}
@@ -659,6 +714,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getExternallyRegisteredType() {
 		return externallyRegisteredTypeEClass;
 	}
@@ -668,6 +724,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getExternallyRegisteredAdvice() {
 		return externallyRegisteredAdviceEClass;
 	}
@@ -677,6 +734,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getInheritanceKind() {
 		return inheritanceKindEEnum;
 	}
@@ -686,6 +744,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ElementTypesConfigurationsFactory getElementTypesConfigurationsFactory() {
 		return (ElementTypesConfigurationsFactory)getEFactoryInstance();
 	}
@@ -737,6 +796,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 		createEReference(abstractAdviceBindingConfigurationEClass, ABSTRACT_ADVICE_BINDING_CONFIGURATION__CONTAINER_CONFIGURATION);
 		createEReference(abstractAdviceBindingConfigurationEClass, ABSTRACT_ADVICE_BINDING_CONFIGURATION__MATCHER_CONFIGURATION);
 		createEAttribute(abstractAdviceBindingConfigurationEClass, ABSTRACT_ADVICE_BINDING_CONFIGURATION__INHERITANCE);
+		createEAttribute(abstractAdviceBindingConfigurationEClass, ABSTRACT_ADVICE_BINDING_CONFIGURATION__APPLY_TO_ALL_TYPES);
 
 		adviceConfigurationEClass = createEClass(ADVICE_CONFIGURATION);
 		createEReference(adviceConfigurationEClass, ADVICE_CONFIGURATION__BEFORE);
@@ -856,6 +916,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 		initEReference(getAbstractAdviceBindingConfiguration_ContainerConfiguration(), this.getContainerConfiguration(), null, "containerConfiguration", null, 0, 1, AbstractAdviceBindingConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractAdviceBindingConfiguration_MatcherConfiguration(), this.getAbstractMatcherConfiguration(), null, "matcherConfiguration", null, 0, 1, AbstractAdviceBindingConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractAdviceBindingConfiguration_Inheritance(), this.getInheritanceKind(), "inheritance", null, 1, 1, AbstractAdviceBindingConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractAdviceBindingConfiguration_ApplyToAllTypes(), ecorePackage.getEBoolean(), "applyToAllTypes", null, 1, 1, AbstractAdviceBindingConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(adviceConfigurationEClass, AdviceConfiguration.class, "AdviceConfiguration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAdviceConfiguration_Before(), this.getAdviceConfiguration(), null, "before", null, 0, -1, AdviceConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -536,13 +536,22 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int ABSTRACT_ADVICE_BINDING_CONFIGURATION__INHERITANCE = ADVICE_CONFIGURATION_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Apply To All Types</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_ADVICE_BINDING_CONFIGURATION__APPLY_TO_ALL_TYPES = ADVICE_CONFIGURATION_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Abstract Advice Binding Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_ADVICE_BINDING_CONFIGURATION_FEATURE_COUNT = ADVICE_CONFIGURATION_FEATURE_COUNT + 5;
+	int ABSTRACT_ADVICE_BINDING_CONFIGURATION_FEATURE_COUNT = ADVICE_CONFIGURATION_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Abstract Advice Binding Configuration</em>' class.
@@ -1065,6 +1074,15 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int ADVICE_BINDING_CONFIGURATION__INHERITANCE = ABSTRACT_ADVICE_BINDING_CONFIGURATION__INHERITANCE;
 
 	/**
+	 * The feature id for the '<em><b>Apply To All Types</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADVICE_BINDING_CONFIGURATION__APPLY_TO_ALL_TYPES = ABSTRACT_ADVICE_BINDING_CONFIGURATION__APPLY_TO_ALL_TYPES;
+
+	/**
 	 * The feature id for the '<em><b>Edit Helper Advice Class Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1291,6 +1309,15 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTERNALLY_REGISTERED_ADVICE__INHERITANCE = ADVICE_BINDING_CONFIGURATION__INHERITANCE;
+
+	/**
+	 * The feature id for the '<em><b>Apply To All Types</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNALLY_REGISTERED_ADVICE__APPLY_TO_ALL_TYPES = ADVICE_BINDING_CONFIGURATION__APPLY_TO_ALL_TYPES;
 
 	/**
 	 * The feature id for the '<em><b>Edit Helper Advice Class Name</b></em>' attribute.
@@ -1564,6 +1591,17 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getAbstractAdviceBindingConfiguration_Inheritance();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration#isApplyToAllTypes <em>Apply To All Types</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Apply To All Types</em>'.
+	 * @see org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration#isApplyToAllTypes()
+	 * @see #getAbstractAdviceBindingConfiguration()
+	 * @generated
+	 */
+	EAttribute getAbstractAdviceBindingConfiguration_ApplyToAllTypes();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.types.AdviceConfiguration <em>Advice Configuration</em>}'.
@@ -2051,6 +2089,14 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ABSTRACT_ADVICE_BINDING_CONFIGURATION__INHERITANCE = eINSTANCE.getAbstractAdviceBindingConfiguration_Inheritance();
+
+		/**
+		 * The meta object literal for the '<em><b>Apply To All Types</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ABSTRACT_ADVICE_BINDING_CONFIGURATION__APPLY_TO_ALL_TYPES = eINSTANCE.getAbstractAdviceBindingConfiguration_ApplyToAllTypes();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.types.impl.AdviceConfigurationImpl <em>Advice Configuration</em>}' class.
