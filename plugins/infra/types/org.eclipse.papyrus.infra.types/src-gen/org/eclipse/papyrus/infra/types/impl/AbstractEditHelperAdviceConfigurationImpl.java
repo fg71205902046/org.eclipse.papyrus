@@ -66,6 +66,7 @@ public abstract class AbstractEditHelperAdviceConfigurationImpl extends AdviceCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SpecializationTypeConfiguration getTarget() {
 		if (eContainerFeatureID() != ElementTypesConfigurationsPackage.ABSTRACT_EDIT_HELPER_ADVICE_CONFIGURATION__TARGET) return null;
 		return (SpecializationTypeConfiguration)eInternalContainer();
@@ -86,6 +87,7 @@ public abstract class AbstractEditHelperAdviceConfigurationImpl extends AdviceCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTarget(SpecializationTypeConfiguration newTarget) {
 		if (newTarget != eInternalContainer() || (eContainerFeatureID() != ElementTypesConfigurationsPackage.ABSTRACT_EDIT_HELPER_ADVICE_CONFIGURATION__TARGET && newTarget != null)) {
 			if (EcoreUtil.isAncestor(this, newTarget))

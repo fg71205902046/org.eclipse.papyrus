@@ -103,6 +103,7 @@ public class IconEntryImpl extends MinimalEObjectImpl.Container implements IconE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getIconPath() {
 		return iconPath;
 	}
@@ -112,6 +113,7 @@ public class IconEntryImpl extends MinimalEObjectImpl.Container implements IconE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIconPath(String newIconPath) {
 		String oldIconPath = iconPath;
 		iconPath = newIconPath;
@@ -124,6 +126,7 @@ public class IconEntryImpl extends MinimalEObjectImpl.Container implements IconE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getBundleId() {
 		return bundleId;
 	}
@@ -133,6 +136,7 @@ public class IconEntryImpl extends MinimalEObjectImpl.Container implements IconE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBundleId(String newBundleId) {
 		String oldBundleId = bundleId;
 		bundleId = newBundleId;
@@ -217,7 +221,7 @@ public class IconEntryImpl extends MinimalEObjectImpl.Container implements IconE
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (iconPath: ");
 		result.append(iconPath);
 		result.append(", bundleId: ");

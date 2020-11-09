@@ -28,6 +28,7 @@ package org.eclipse.papyrus.infra.types;
  *   <li>{@link org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration#getContainerConfiguration <em>Container Configuration</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration#getMatcherConfiguration <em>Matcher Configuration</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration#getInheritance <em>Inheritance</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration#isApplyToAllTypes <em>Apply To All Types</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage#getAbstractAdviceBindingConfiguration()
@@ -141,5 +142,31 @@ public interface AbstractAdviceBindingConfiguration extends AdviceConfiguration,
 	 * @generated
 	 */
 	void setInheritance(InheritanceKind value);
+
+	/**
+	 * Returns the value of the '<em><b>Apply To All Types</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Apply To All Types</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Apply To All Types</em>' attribute.
+	 * @see #setApplyToAllTypes(boolean)
+	 * @see org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage#getAbstractAdviceBindingConfiguration_ApplyToAllTypes()
+	 * @model required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isApplyToAllTypes();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration#isApplyToAllTypes <em>Apply To All Types</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Apply To All Types</em>' attribute.
+	 * @see #isApplyToAllTypes()
+	 * @generated
+	 */
+	void setApplyToAllTypes(boolean value);
 
 } // AbstractAdviceBindingConfiguration

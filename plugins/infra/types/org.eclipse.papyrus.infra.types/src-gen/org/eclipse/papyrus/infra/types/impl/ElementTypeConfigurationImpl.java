@@ -160,6 +160,7 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getIdentifier() {
 		return identifier;
 	}
@@ -169,6 +170,7 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIdentifier(String newIdentifier) {
 		String oldIdentifier = identifier;
 		identifier = newIdentifier;
@@ -181,6 +183,7 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -190,6 +193,7 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -202,6 +206,7 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getHint() {
 		return hint;
 	}
@@ -211,6 +216,7 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setHint(String newHint) {
 		String oldHint = hint;
 		hint = newHint;
@@ -223,6 +229,7 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getKind() {
 		return kind;
 	}
@@ -232,6 +239,7 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setKind(String newKind) {
 		String oldKind = kind;
 		kind = newKind;
@@ -244,6 +252,7 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IconEntry getIconEntry() {
 		return iconEntry;
 	}
@@ -268,6 +277,7 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIconEntry(IconEntry newIconEntry) {
 		if (newIconEntry != iconEntry) {
 			NotificationChain msgs = null;
@@ -447,7 +457,7 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (identifier: ");
 		result.append(identifier);
 		result.append(", name: ");

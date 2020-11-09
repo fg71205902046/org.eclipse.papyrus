@@ -81,6 +81,7 @@ public class EditHelperAdviceConfigurationImpl extends AbstractEditHelperAdviceC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getEditHelperAdviceClassName() {
 		return editHelperAdviceClassName;
 	}
@@ -90,6 +91,7 @@ public class EditHelperAdviceConfigurationImpl extends AbstractEditHelperAdviceC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEditHelperAdviceClassName(String newEditHelperAdviceClassName) {
 		String oldEditHelperAdviceClassName = editHelperAdviceClassName;
 		editHelperAdviceClassName = newEditHelperAdviceClassName;
@@ -164,7 +166,7 @@ public class EditHelperAdviceConfigurationImpl extends AbstractEditHelperAdviceC
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (editHelperAdviceClassName: ");
 		result.append(editHelperAdviceClassName);
 		result.append(')');

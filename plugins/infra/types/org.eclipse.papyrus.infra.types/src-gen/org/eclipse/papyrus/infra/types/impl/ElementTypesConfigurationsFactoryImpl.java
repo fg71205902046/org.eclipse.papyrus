@@ -119,6 +119,7 @@ public class ElementTypesConfigurationsFactoryImpl extends EFactoryImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ElementTypeSetConfiguration createElementTypeSetConfiguration() {
 		ElementTypeSetConfigurationImpl elementTypeSetConfiguration = new ElementTypeSetConfigurationImpl();
 		return elementTypeSetConfiguration;
@@ -129,6 +130,7 @@ public class ElementTypesConfigurationsFactoryImpl extends EFactoryImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IconEntry createIconEntry() {
 		IconEntryImpl iconEntry = new IconEntryImpl();
 		return iconEntry;
@@ -139,6 +141,7 @@ public class ElementTypesConfigurationsFactoryImpl extends EFactoryImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ContainerConfiguration createContainerConfiguration() {
 		ContainerConfigurationImpl containerConfiguration = new ContainerConfigurationImpl();
 		return containerConfiguration;
@@ -149,6 +152,7 @@ public class ElementTypesConfigurationsFactoryImpl extends EFactoryImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SpecializationTypeConfiguration createSpecializationTypeConfiguration() {
 		SpecializationTypeConfigurationImpl specializationTypeConfiguration = new SpecializationTypeConfigurationImpl();
 		return specializationTypeConfiguration;
@@ -159,6 +163,7 @@ public class ElementTypesConfigurationsFactoryImpl extends EFactoryImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public MetamodelTypeConfiguration createMetamodelTypeConfiguration() {
 		MetamodelTypeConfigurationImpl metamodelTypeConfiguration = new MetamodelTypeConfigurationImpl();
 		return metamodelTypeConfiguration;
@@ -169,6 +174,7 @@ public class ElementTypesConfigurationsFactoryImpl extends EFactoryImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EditHelperAdviceConfiguration createEditHelperAdviceConfiguration() {
 		EditHelperAdviceConfigurationImpl editHelperAdviceConfiguration = new EditHelperAdviceConfigurationImpl();
 		return editHelperAdviceConfiguration;
@@ -179,6 +185,7 @@ public class ElementTypesConfigurationsFactoryImpl extends EFactoryImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public AdviceBindingConfiguration createAdviceBindingConfiguration() {
 		AdviceBindingConfigurationImpl adviceBindingConfiguration = new AdviceBindingConfigurationImpl();
 		return adviceBindingConfiguration;
@@ -189,6 +196,7 @@ public class ElementTypesConfigurationsFactoryImpl extends EFactoryImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public MatcherConfiguration createMatcherConfiguration() {
 		MatcherConfigurationImpl matcherConfiguration = new MatcherConfigurationImpl();
 		return matcherConfiguration;
@@ -199,6 +207,7 @@ public class ElementTypesConfigurationsFactoryImpl extends EFactoryImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExternallyRegisteredType createExternallyRegisteredType() {
 		ExternallyRegisteredTypeImpl externallyRegisteredType = new ExternallyRegisteredTypeImpl();
 		return externallyRegisteredType;
@@ -209,6 +218,7 @@ public class ElementTypesConfigurationsFactoryImpl extends EFactoryImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExternallyRegisteredAdvice createExternallyRegisteredAdvice() {
 		ExternallyRegisteredAdviceImpl externallyRegisteredAdvice = new ExternallyRegisteredAdviceImpl();
 		return externallyRegisteredAdvice;
@@ -239,6 +249,7 @@ public class ElementTypesConfigurationsFactoryImpl extends EFactoryImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ElementTypesConfigurationsPackage getElementTypesConfigurationsPackage() {
 		return (ElementTypesConfigurationsPackage)getEPackage();
 	}
