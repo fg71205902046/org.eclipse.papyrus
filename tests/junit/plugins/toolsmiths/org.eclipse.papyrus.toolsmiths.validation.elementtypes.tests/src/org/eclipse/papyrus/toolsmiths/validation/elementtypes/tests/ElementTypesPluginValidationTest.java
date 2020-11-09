@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.ProjectFixture;
 import org.eclipse.papyrus.toolsmiths.validation.elementtypes.checkers.ElementTypesPluginCheckerService;
@@ -71,7 +72,7 @@ public class ElementTypesPluginValidationTest extends AbstractPapyrusTest {
 	@Test
 	public void testProfilePluginValidation() {
 		// First, run the validation
-		ElementTypesPluginCheckerService.checkElementTypesPlugin(fixture.getProject());
+		ElementTypesPluginCheckerService.checkElementTypesPlugin(fixture.getProject(), new NullProgressMonitor());
 
 		// Get the markers
 		List<IMarker> markers = null;

@@ -42,6 +42,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -480,6 +481,15 @@ public class GenericEMFModelBuilder extends AbstractPapyrusBuilder {
 	protected void createMarkerErrorFromDiagnostic(final IResource iResource, final Diagnostic diagnostic) {
 		if (Diagnostic.ERROR == diagnostic.getSeverity()) {
 			final IMarker marker = createErrorMarker(iResource, diagnostic.getMessage());
+
+			try {
+				System.err.println("Msg: " + diagnostic.getMessage());
+				marker.setAttribute(EValidator.URI_ATTRIBUTE, EcoreUtil.getURI((EObject) diagnostic.getData().get(0)).toString());
+			} catch (CoreException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
 			int index = diagnostic.getData().indexOf(DependencyValidationUtils.MISSING_DEPENDENCIES);
 			if (index > 0) {
 				final String missingDependencies = (String) diagnostic.getData().get(index);

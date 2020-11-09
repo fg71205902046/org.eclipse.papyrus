@@ -15,13 +15,19 @@
 
 package org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.handlers;
 
+import java.lang.reflect.InvocationTargetException;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.toolsmiths.validation.elementtypes.Activator;
 import org.eclipse.papyrus.toolsmiths.validation.elementtypes.checkers.ElementTypesPluginCheckerService;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 /**
@@ -42,12 +48,27 @@ public class ValidateElementTypesPluginHandler extends AbstractHandler {
 			return null;
 		}
 
-		final StructuredSelection structuredSelection = (StructuredSelection) selection;
-		for (final Object selectedElement : structuredSelection.toList()) {
-			if (selectedElement instanceof IProject) {
-				final IProject project = (IProject) selectedElement;
-				ElementTypesPluginCheckerService.checkElementTypesPlugin(project);
-			}
+		// Get the shell to manage the validation in an UI
+		final Shell shell = HandlerUtil.getActiveShell(event);
+
+		try {
+			new ProgressMonitorDialog(shell).run(true, true, monitor -> {
+				final StructuredSelection structuredSelection = (StructuredSelection) selection;
+				monitor.beginTask("Validate Element Types", structuredSelection.size());
+				for (final Object selectedElement : structuredSelection.toList()) {
+					if (monitor.isCanceled()) {
+						return;
+					}
+					if (selectedElement instanceof IProject) {
+						final IProject project = (IProject) selectedElement;
+						ElementTypesPluginCheckerService.checkElementTypesPlugin(project, SubMonitor.convert(monitor));
+					}
+				}
+			});
+		} catch (InvocationTargetException e) {
+			Activator.log.error(e);
+		} catch (InterruptedException e) {
+			// Do nothing, just cancelled by user
 		}
 
 		return null;

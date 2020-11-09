@@ -19,9 +19,11 @@ import java.util.Collection;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.emf.helpers.BundleResourceURIHelper;
+import org.eclipse.papyrus.toolsmiths.validation.elementtypes.checkers.ElementTypesPluginCheckerService;
 
 /**
  *
@@ -45,8 +47,7 @@ public class ElementTypesConfigurationBuilder extends GenericEMFModelBuilder {
 				// TODO this call will create Diagnotic but we won't convert them into Papyrus build error
 				// TODO we should transform this call into a real buidler
 
-				// FIXME we can't call it, because all is done using a shell, then a ProgressMonitorDialog
-				// ElementTypesPluginCheckerService.checkElementTypesPlugin(project);
+				ElementTypesPluginCheckerService.checkElementTypesPlugin(project, new NullProgressMonitor());
 			}
 		}
 		return super.validateResource(resource);

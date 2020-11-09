@@ -76,6 +76,10 @@ public class PluginValidation {
 	 *            The progress monitor for the action (can be <code>null</code>).
 	 */
 	public void validate(final IProgressMonitor monitor) {
-		this.pluginCheckers.stream().forEach(checker -> checker.check(monitor));
+		this.pluginCheckers.stream().forEach(checker -> {
+			if (!monitor.isCanceled()) {
+				checker.check(monitor);
+			}
+		});
 	}
 }

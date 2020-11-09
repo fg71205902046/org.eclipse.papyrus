@@ -15,22 +15,18 @@
 
 package org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.checkers;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.MarkersService;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.PluginValidationService;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.ProjectManagementService;
-import org.eclipse.papyrus.toolsmiths.validation.elementtypes.Activator;
 import org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.ElementTypesPluginValidationConstants;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
 
 /**
  * This allows to check an element types plug-in (extensions, builds, dependencies, ...).
@@ -42,56 +38,48 @@ public class ElementTypesPluginChecker {
 	 *
 	 * @param project
 	 *            The current project to check.
+	 * @param A
+	 *            monitor to report progress
 	 */
-	public static void checkElementTypesPlugin(final IProject project) {
+	public static void checkElementTypesPlugin(final IProject project, IProgressMonitor monitor) {
+		// Open the progress monitor dialog
+		final Collection<IFile> elementTypesFiles = ProjectManagementService.getFilesFromProject(project, "elementtypesconfigurations", true); //$NON-NLS-1$
+		monitor.beginTask("Validate Element Types plug-in", 1 + (elementTypesFiles.size() * 3)); // $NON-NLS-1$
 
-		// Get the shell to manage the validation in an UI
-		final Shell shell = Display.getCurrent().getActiveShell();
+		monitor.subTask("Prepare plug-in validation"); //$NON-NLS-1$
+		// First of all, delete the existing markers for project
+		MarkersService.deleteMarkers(project, ElementTypesPluginValidationConstants.ELEMENTTYPES_PLUGIN_VALIDATION_TYPE);
 
-		try {
-			// Open the progress monitor dialog
-			new ProgressMonitorDialog(shell).run(true, true, monitor -> {
-				final Collection<IFile> elementTypesFiles = ProjectManagementService.getFilesFromProject(project, "elementtypesconfigurations", true); //$NON-NLS-1$
-				monitor.beginTask("Validate Element Types plug-in", 1 + (elementTypesFiles.size() * 3)); // $NON-NLS-1$
+		// Create the plug-in validation service
+		final PluginValidationService pluginValidationService = new PluginValidationService();
 
-				monitor.subTask("Prepare plug-in validation"); //$NON-NLS-1$
-				// First of all, delete the existing markers for project
-				MarkersService.deleteMarkers(project, ElementTypesPluginValidationConstants.ELEMENTTYPES_PLUGIN_VALIDATION_TYPE);
+		// First, check the dependencies needed
+		pluginValidationService.addPluginChecker(new ElementTypesDependenciesChecker(project));
 
-				// Create the plug-in validation service
-				final PluginValidationService pluginValidationService = new PluginValidationService();
+		// For all element types files in the plug-in
+		for (final IFile elementTypesFile : elementTypesFiles) {
+			if (monitor.isCanceled()) {
+				return;
+			}
 
-				// First, check the dependencies needed
-				pluginValidationService.addPluginChecker(new ElementTypesDependenciesChecker(project));
+			// Get the resource
+			final URI elementTypesFileURI = URI.createPlatformResourceURI(elementTypesFile.getFullPath().toOSString(), true);
+			final Resource resource = new ResourceSetImpl().getResource(elementTypesFileURI, true);
 
-				// For all element types files in the plug-in
-				for (final IFile elementTypesFile : elementTypesFiles) {
+			// Check the validation of the element types file
+			pluginValidationService.addPluginChecker(new ElementTypesFileChecker(elementTypesFile, resource));
 
-					// Get the resource
-					final URI elementTypesFileURI = URI.createPlatformResourceURI(elementTypesFile.getFullPath().toOSString(), true);
-					final Resource resource = new ResourceSetImpl().getResource(elementTypesFileURI, true);
+			// Check the extension point
+			pluginValidationService.addPluginChecker(new ElementTypesExtensionsChecker(project, elementTypesFile));
 
-					// Check the validation of the element types file
-					pluginValidationService.addPluginChecker(new ElementTypesFileChecker(elementTypesFile, resource));
-
-					// Check the extension point
-					pluginValidationService.addPluginChecker(new ElementTypesExtensionsChecker(project, elementTypesFile));
-
-					// Check the external dependencies needed
-					pluginValidationService.addPluginChecker(new ElementTypesExternalDependenciesChecker(project, elementTypesFile, resource));
-				}
-
-				monitor.worked(1);
-
-				// Call the validate
-				pluginValidationService.validate(monitor);
-
-			});
-		} catch (InvocationTargetException e) {
-			Activator.log.error(e);
-		} catch (InterruptedException e) {
-			// Do nothing, just cancelled by user
+			// Check the external dependencies needed
+			pluginValidationService.addPluginChecker(new ElementTypesExternalDependenciesChecker(project, elementTypesFile, resource));
 		}
+
+		monitor.worked(1);
+
+		// Call the validate
+		pluginValidationService.validate(monitor);
 	}
 
 }

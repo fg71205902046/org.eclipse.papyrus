@@ -16,6 +16,8 @@
 package org.eclipse.papyrus.toolsmiths.validation.elementtypes.checkers;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.checkers.ElementTypesPluginChecker;
 
 /**
@@ -28,9 +30,11 @@ public class ElementTypesPluginCheckerService {
 	 *
 	 * @param project
 	 *            The current project to check.
+	 * @param monitor
+	 *            An {@link IProgressMonitor}, or <code>null</code>
 	 */
-	public static void checkElementTypesPlugin(final IProject project) {
-		ElementTypesPluginChecker.checkElementTypesPlugin(project);
+	public static void checkElementTypesPlugin(final IProject project, IProgressMonitor monitor) {
+		ElementTypesPluginChecker.checkElementTypesPlugin(project, monitor == null ? new NullProgressMonitor() : monitor);
 	}
 
 }
