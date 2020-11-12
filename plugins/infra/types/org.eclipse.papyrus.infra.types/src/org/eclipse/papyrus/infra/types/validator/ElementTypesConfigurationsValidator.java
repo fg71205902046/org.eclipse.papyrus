@@ -18,12 +18,16 @@ package org.eclipse.papyrus.infra.types.validator;
 import java.util.Collections;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.papyrus.emf.validation.AbstractEObjectDependencyValidator;
+import org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 
@@ -58,11 +62,13 @@ public class ElementTypesConfigurationsValidator extends AbstractEObjectDependen
 	 */
 	@Override
 	protected boolean validate(int classifierID, Object object, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// strangely, I never entered in this method
 		boolean result = super.validate(classifierID, object, diagnostics, context);
 		switch (classifierID) {
 		case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION:
 			result = result && validateElementTypeSetConfiguration((ElementTypeSetConfiguration) object, diagnostics, context);
+			break;
+		case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION:
+			result = result & validateTypeReference((AbstractAdviceBindingConfiguration) object, diagnostics, context);
 			break;
 		default:
 			// nothing to do
@@ -70,6 +76,41 @@ public class ElementTypesConfigurationsValidator extends AbstractEObjectDependen
 		return result;
 	}
 
+	/**
+	 * @see org.eclipse.emf.ecore.util.EObjectValidator#getEPackage()
+	 *
+	 * @return
+	 */
+	@Override
+	protected EPackage getEPackage() {
+		return ElementTypesConfigurationsPackage.eINSTANCE;
+	}
+
+
+	/**
+	 * @param object
+	 * @param diagnostics
+	 * @param context
+	 * @return
+	 */
+	protected boolean validateTypeReference(AbstractAdviceBindingConfiguration object, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (object.isApplyToAllTypes() && object.getTarget() != null) {
+			// Target will be ignored and should be null
+			String message = "applyToAllTypes is true, but the AdviceConfiguration has an ElementType target";
+			BasicDiagnostic diag = new BasicDiagnostic(Diagnostic.ERROR, EObjectValidator.DIAGNOSTIC_SOURCE, 2, message,
+					new Object[] { object });
+			diagnostics.add(diag);
+			return false;
+		} else if (!object.isApplyToAllTypes() && object.getTarget() == null) {
+			// Target was accidentally unset
+			String message = "applyToAllTypes is false, but the AdviceConfiguration doesn't have an ElementType target.";
+			BasicDiagnostic diag = new BasicDiagnostic(Diagnostic.ERROR, EObjectValidator.DIAGNOSTIC_SOURCE, 3, message,
+					new Object[] { object });
+			diagnostics.add(diag);
+			return false;
+		}
+		return true;
+	}
 
 	/**
 	 *
