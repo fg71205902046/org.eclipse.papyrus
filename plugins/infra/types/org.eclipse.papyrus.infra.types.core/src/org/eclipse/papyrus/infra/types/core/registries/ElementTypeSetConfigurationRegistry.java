@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2017 CEA LIST, Christian W. Damus, Esterel Technologies SAS and others.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, Esterel Technologies SAS and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,8 +10,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Christian W. Damus - bug 459174
- *  Christian W. Damus - bug 467207
+ *  Christian W. Damus - bugs 459174, 467207, 568782
  *  Sebastien Gabel (Esterel Technologies SAS) - bug 517914, bug 521383
  *
  *****************************************************************************/
@@ -75,8 +74,11 @@ public class ElementTypeSetConfigurationRegistry {
 
 	private static volatile ElementTypeSetConfigurationRegistry elementTypeSetConfigurationRegistry;
 
-	/** Set of registered client contexts 
-	 * @since 3.0*/
+	/**
+	 * Set of registered client contexts
+	 *
+	 * @since 3.0
+	 */
 	protected Set<IClientContext> clientContexts = null;
 
 	/** Map of retrieved elementType sets, key is their identifier */
@@ -140,7 +142,7 @@ public class ElementTypeSetConfigurationRegistry {
 		for (String contextId : elementTypeSetConfigurations.keySet()) {
 			ClientContext context = (ClientContext) ClientContextManager.getInstance().getClientContext(contextId);
 			for (ElementTypeSetConfiguration elementTypeSet : elementTypeSetConfigurations.get(contextId).values()) {
-				for (AbstractAdviceBindingConfiguration adviceBindingConfiguration : elementTypeSet.getAdviceBindingsConfigurations()) {
+				for (AbstractAdviceBindingConfiguration adviceBindingConfiguration : elementTypeSet.getAllAdviceBindings()) {
 					if (adviceBindingConfiguration instanceof ExternallyRegisteredAdvice) {
 						context.unbindId(adviceBindingConfiguration.getIdentifier());
 					} else {
@@ -173,14 +175,14 @@ public class ElementTypeSetConfigurationRegistry {
 			}
 		}
 		ElementTypeUtil.deregisterElementTypes(elementTypes, ElementTypeUtil.SPECIALIZATIONS | ElementTypeUtil.CLIENT_CONTEXTS);
-		
-		//unregister our dynamic client contexts
+
+		// unregister our dynamic client contexts
 		for (IClientContext clientContext : clientContexts) {
 			ClientContextManager.getInstance().deregisterClientContext(clientContext);
 		}
-		
+
 		// unload all resources we loaded
-		for (Resource resource : new ArrayList<Resource>(elementTypeSetConfigurationResourceSet.getResources())) {
+		for (Resource resource : new ArrayList<>(elementTypeSetConfigurationResourceSet.getResources())) {
 			resource.unload();
 			elementTypeSetConfigurationResourceSet.getResources().remove(resource);
 		}
@@ -206,7 +208,7 @@ public class ElementTypeSetConfigurationRegistry {
 		}
 		URI localURI = URI.createPlatformResourceURI(path, true);
 		Resource resource = elementTypeSetConfigurationResourceSet.createResource(localURI);
-		
+
 		boolean registration = true;
 		try {
 			resource.load(null);
@@ -256,8 +258,8 @@ public class ElementTypeSetConfigurationRegistry {
 				if (ElementTypeRegistryUtils.getType(context, elementTypeID) == null) {
 					// The elementType is already existing but not bound yet
 					context.bindId(elementTypeID);
-					//Now that Papyrus can have multiple contexts, it is not significant to log that an element type is registered but not bound to a new context 
-					//Activator.log.info(elementTypeID + " is already registred elementtype but it is not bound yet. It has been bound to Papyrus context. ");
+					// Now that Papyrus can have multiple contexts, it is not significant to log that an element type is registered but not bound to a new context
+					// Activator.log.info(elementTypeID + " is already registred elementtype but it is not bound yet. It has been bound to Papyrus context. ");
 				}
 			}
 			return true;
@@ -441,7 +443,7 @@ public class ElementTypeSetConfigurationRegistry {
 
 		// Register adviceBindings
 		for (ElementTypeSetConfiguration elementTypeSetConfiguration : registrableElementTypeSetConfiguration) {
-			List<AbstractAdviceBindingConfiguration> adviceBindingConfigurations = elementTypeSetConfiguration.getAdviceBindingsConfigurations();
+			List<AbstractAdviceBindingConfiguration> adviceBindingConfigurations = elementTypeSetConfiguration.getAllAdviceBindings();
 			for (AbstractAdviceBindingConfiguration adviceBindingConfiguration : adviceBindingConfigurations) {
 				if (adviceBindingConfiguration instanceof ExternallyRegisteredAdvice) {
 					context.bindId(adviceBindingConfiguration.getIdentifier());
@@ -489,7 +491,7 @@ public class ElementTypeSetConfigurationRegistry {
 		ElementTypeUtil.deregisterElementTypes(elementTypes, ElementTypeUtil.ALL_DEPENDENTS);
 
 		// Remove adviceBindings
-		List<AbstractAdviceBindingConfiguration> adviceBindingConfigurations = elementTypeSet.getAdviceBindingsConfigurations();
+		List<AbstractAdviceBindingConfiguration> adviceBindingConfigurations = elementTypeSet.getAllAdviceBindings();
 		for (AbstractAdviceBindingConfiguration adviceBindingConfiguration : adviceBindingConfigurations) {
 			IAdviceBindingDescriptor advice = AdviceConfigurationTypeRegistry.getInstance().getEditHelperAdviceDecriptor(adviceBindingConfiguration);
 			if (advice != null) {
@@ -575,8 +577,9 @@ public class ElementTypeSetConfigurationRegistry {
 		for (MergedArchitectureDomain domain : merger.getDomains()) {
 			for (MergedArchitectureContext context : domain.getContexts()) {
 				Set<ElementTypeSetConfiguration> set = map.get(context.getId());
-				if (set == null)
+				if (set == null) {
 					map.put(context.getId(), set = new HashSet<>());
+				}
 				set.addAll(context.getElementTypes());
 			}
 		}
@@ -595,7 +598,7 @@ public class ElementTypeSetConfigurationRegistry {
 			}
 		});
 	}
-	
+
 	protected boolean containsElementTypeSet(Set<ElementTypeSetConfiguration> elementTypeSets, String elementTypeSetConfigurationId) {
 		if (elementTypeSets == null) {
 			return false;
