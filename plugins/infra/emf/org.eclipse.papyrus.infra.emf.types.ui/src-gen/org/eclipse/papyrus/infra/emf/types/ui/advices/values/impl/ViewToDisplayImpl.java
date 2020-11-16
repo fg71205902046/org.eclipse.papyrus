@@ -1,5 +1,19 @@
 /**
+ * Copyright (c) 2016, 2020 CEA LIST, Christian W. Damus, and others.
+ * 
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ * 
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568782
  */
+ 
 package org.eclipse.papyrus.infra.emf.types.ui.advices.values.impl;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -63,6 +77,7 @@ public class ViewToDisplayImpl extends MinimalEObjectImpl.Container implements V
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public View getView() {
 		if (view != null && view.eIsProxy()) {
 			InternalEObject oldView = (InternalEObject)view;
@@ -89,6 +104,7 @@ public class ViewToDisplayImpl extends MinimalEObjectImpl.Container implements V
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setView(View newView) {
 		View oldView = view;
 		view = newView;

@@ -1,5 +1,19 @@
 /**
+ * Copyright (c) 2017, 2020 CEA LIST, Christian W. Damus, and others.
+ *
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568782
  */
+
 package org.eclipse.papyrus.uml.types.core.advices.stereotypepropertyreferenceedgeadvice.provider;
 
 import java.util.ArrayList;
@@ -9,15 +23,10 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.edit.command.CommandParameter;
-
 import org.eclipse.emf.edit.domain.EditingDomain;
-
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -30,14 +39,11 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
+import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
-
 import org.eclipse.papyrus.infra.types.util.ElementTypesConfigurationsSwitch;
-
 import org.eclipse.papyrus.uml.types.core.advices.stereotypepropertyreferenceedgeadvice.StereotypePropertyReferenceEdgeAdviceFactory;
-
 import org.eclipse.papyrus.uml.types.core.advices.stereotypepropertyreferenceedgeadvice.util.StereotypePropertyReferenceEdgeAdviceAdapterFactory;
 
 /**
@@ -117,6 +123,7 @@ public class StereotypePropertyReferenceEdgeAdviceItemProviderAdapterFactory ext
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ComposeableAdapterFactory getRootAdapterFactory() {
 		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
 	}
@@ -127,6 +134,7 @@ public class StereotypePropertyReferenceEdgeAdviceItemProviderAdapterFactory ext
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
 		this.parentAdapterFactory = parentAdapterFactory;
 	}
@@ -175,6 +183,7 @@ public class StereotypePropertyReferenceEdgeAdviceItemProviderAdapterFactory ext
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void addListener(INotifyChangedListener notifyChangedListener) {
 		changeNotifier.addListener(notifyChangedListener);
 	}
@@ -185,6 +194,7 @@ public class StereotypePropertyReferenceEdgeAdviceItemProviderAdapterFactory ext
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
 		changeNotifier.removeListener(notifyChangedListener);
 	}
@@ -195,6 +205,7 @@ public class StereotypePropertyReferenceEdgeAdviceItemProviderAdapterFactory ext
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void fireNotifyChanged(Notification notification) {
 		changeNotifier.fireNotifyChanged(notification);
 
@@ -209,6 +220,7 @@ public class StereotypePropertyReferenceEdgeAdviceItemProviderAdapterFactory ext
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void dispose() {
 		if (stereotypePropertyReferenceEdgeAdviceConfigurationItemProvider != null) stereotypePropertyReferenceEdgeAdviceConfigurationItemProvider.dispose();
 	}
@@ -253,6 +265,7 @@ public class StereotypePropertyReferenceEdgeAdviceItemProviderAdapterFactory ext
 				this.newChildDescriptors = newChildDescriptors;
 				this.editingDomain = editingDomain;
 			}
+
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->
@@ -267,7 +280,22 @@ public class StereotypePropertyReferenceEdgeAdviceItemProviderAdapterFactory ext
 
 				return null;
 			}
- 
+
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseElementTypeConfiguration(ElementTypeConfiguration object) {
+				newChildDescriptors.add
+					(createChildParameter
+						(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_CONFIGURATION__OWNED_ADVICE,
+						 StereotypePropertyReferenceEdgeAdviceFactory.eINSTANCE.createStereotypePropertyReferenceEdgeAdviceConfiguration()));
+
+				return null;
+			}
+
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->
@@ -284,6 +312,7 @@ public class StereotypePropertyReferenceEdgeAdviceItemProviderAdapterFactory ext
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Override
 		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
 			ArrayList<Object> result = new ArrayList<Object>();
 			new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
@@ -295,6 +324,7 @@ public class StereotypePropertyReferenceEdgeAdviceItemProviderAdapterFactory ext
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Override
 		public ResourceLocator getResourceLocator() {
 			return StereotypePropertyReferenceEdgeAdviceEditPlugin.INSTANCE;
 		}

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568782
  */
 package org.eclipse.papyrus.infra.emf.types.advices.values.impl;
 
@@ -78,6 +79,7 @@ public class ListValueImpl extends FeatureValueImpl implements ListValue {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<FeatureValue> getValues() {
 		if (values == null) {
 			values = new EObjectContainmentEList<FeatureValue>(FeatureValue.class, this, SetValuesAdvicePackage.LIST_VALUE__VALUES);

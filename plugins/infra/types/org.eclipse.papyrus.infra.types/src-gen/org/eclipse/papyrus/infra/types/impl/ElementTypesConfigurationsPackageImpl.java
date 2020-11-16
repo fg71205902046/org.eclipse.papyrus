@@ -1121,7 +1121,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 		  (getElementTypeSetConfiguration__GetAllAdviceBindings(),
 		   source,
 		   new String[] {
-			   "body", "adviceBindingsConfigurations->union(elementTypeConfigurations.ownedAdvice)->asSet()->asSequence()"
+			   "body", "adviceBindingsConfigurations->union(elementTypeConfigurations.ownedAdvice)->asSet()"
 		   });
 		addAnnotation
 		  (abstractAdviceBindingConfigurationEClass,

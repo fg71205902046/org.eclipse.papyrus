@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568782
  */
 package org.eclipse.papyrus.uml.types.core.advices.applystereotype.impl;
 
@@ -75,6 +76,7 @@ public class ConstantValueImpl extends FeatureValueImpl implements ConstantValue
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ValueSpecification getValueInstance() {
 		return valueInstance;
 	}
@@ -99,6 +101,7 @@ public class ConstantValueImpl extends FeatureValueImpl implements ConstantValue
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValueInstance(ValueSpecification newValueInstance) {
 		if (newValueInstance != valueInstance) {
 			NotificationChain msgs = null;
