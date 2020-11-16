@@ -6,7 +6,7 @@
     editorDirectory="/org.eclipse.papyrus.infra.types.editor/src-gen" modelPluginID="org.eclipse.papyrus.infra.types"
     modelName="ElementTypesConfigurations" editPluginClass="org.eclipse.papyrus.infra.types.provider.TypesConfigurationsEditPlugin"
     editorPluginClass="org.eclipse.papyrus.infra.types.presentation.TypesConfigurationsEditorPlugin"
-    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" testsDirectory="/org.eclipse.papyrus.infra.types.tests/src"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" testsDirectory="/org.eclipse.papyrus.infra.types.tests/src-gen"
     testSuiteClass="org.eclipse.papyrus.infra.types.tests.TypesConfigurationsAllTests"
     importerID="org.eclipse.uml2.uml.ecore.importer" complianceLevel="11.0" copyrightFields="false"
     editPluginID="org.eclipse.papyrus.infra.types.edit" editorPluginID="org.eclipse.papyrus.infra.types.editor"
