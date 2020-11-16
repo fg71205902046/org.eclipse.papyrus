@@ -1,13 +1,29 @@
 /**
+ * Copyright (c) 2016, 2020 CEA LIST, Christian W. Damus, and others.
+ * 
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ * 
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568782
  */
+ 
 package org.eclipse.papyrus.infra.emf.types.ui.advices.values.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.eclipse.papyrus.infra.constraints.ConstraintsPackage;
 import org.eclipse.papyrus.infra.emf.types.ui.advices.values.RuntimeValuesAdviceConfiguration;
 import org.eclipse.papyrus.infra.emf.types.ui.advices.values.RuntimeValuesAdviceFactory;
 import org.eclipse.papyrus.infra.emf.types.ui.advices.values.RuntimeValuesAdvicePackage;
@@ -70,7 +86,7 @@ public class RuntimeValuesAdvicePackageImpl extends EPackageImpl implements Runt
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link RuntimeValuesAdvicePackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -84,11 +100,14 @@ public class RuntimeValuesAdvicePackageImpl extends EPackageImpl implements Runt
 		if (isInited) return (RuntimeValuesAdvicePackage)EPackage.Registry.INSTANCE.getEPackage(RuntimeValuesAdvicePackage.eNS_URI);
 
 		// Obtain or create and register package
-		RuntimeValuesAdvicePackageImpl theRuntimeValuesAdvicePackage = (RuntimeValuesAdvicePackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof RuntimeValuesAdvicePackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new RuntimeValuesAdvicePackageImpl());
+		Object registeredRuntimeValuesAdvicePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		RuntimeValuesAdvicePackageImpl theRuntimeValuesAdvicePackage = registeredRuntimeValuesAdvicePackage instanceof RuntimeValuesAdvicePackageImpl ? (RuntimeValuesAdvicePackageImpl)registeredRuntimeValuesAdvicePackage : new RuntimeValuesAdvicePackageImpl();
 
 		isInited = true;
 
 		// Initialize simple dependencies
+		ConstraintsPackage.eINSTANCE.eClass();
+		EcorePackage.eINSTANCE.eClass();
 		ElementTypesConfigurationsPackage.eINSTANCE.eClass();
 		EnvironmentPackage.eINSTANCE.eClass();
 		ContextsPackage.eINSTANCE.eClass();
@@ -103,7 +122,6 @@ public class RuntimeValuesAdvicePackageImpl extends EPackageImpl implements Runt
 		// Mark meta-data to indicate it can't be changed
 		theRuntimeValuesAdvicePackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(RuntimeValuesAdvicePackage.eNS_URI, theRuntimeValuesAdvicePackage);
 		return theRuntimeValuesAdvicePackage;
@@ -114,6 +132,7 @@ public class RuntimeValuesAdvicePackageImpl extends EPackageImpl implements Runt
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getRuntimeValuesAdviceConfiguration() {
 		return runtimeValuesAdviceConfigurationEClass;
 	}
@@ -123,6 +142,7 @@ public class RuntimeValuesAdvicePackageImpl extends EPackageImpl implements Runt
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRuntimeValuesAdviceConfiguration_ViewsToDisplay() {
 		return (EReference)runtimeValuesAdviceConfigurationEClass.getEStructuralFeatures().get(0);
 	}
@@ -132,6 +152,7 @@ public class RuntimeValuesAdvicePackageImpl extends EPackageImpl implements Runt
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getViewToDisplay() {
 		return viewToDisplayEClass;
 	}
@@ -141,6 +162,7 @@ public class RuntimeValuesAdvicePackageImpl extends EPackageImpl implements Runt
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getViewToDisplay_View() {
 		return (EReference)viewToDisplayEClass.getEStructuralFeatures().get(0);
 	}
@@ -150,6 +172,7 @@ public class RuntimeValuesAdvicePackageImpl extends EPackageImpl implements Runt
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public RuntimeValuesAdviceFactory getRuntimeValuesAdviceFactory() {
 		return (RuntimeValuesAdviceFactory)getEFactoryInstance();
 	}

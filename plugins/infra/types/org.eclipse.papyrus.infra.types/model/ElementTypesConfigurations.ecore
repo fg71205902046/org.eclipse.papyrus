@@ -15,7 +15,7 @@
         <details key="suppressedVisibility" value="true"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-        <details key="body" value="adviceBindingsConfigurations->union(elementTypeConfigurations.ownedAdvice)->asSet()->asSequence()"/>
+        <details key="body" value="adviceBindingsConfigurations->union(elementTypeConfigurations.ownedAdvice)->asSet()"/>
       </eAnnotations>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elementTypeConfigurations"

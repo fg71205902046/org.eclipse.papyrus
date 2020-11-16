@@ -1,16 +1,29 @@
 /**
+ * Copyright (c) 2017, 2020 CEA LIST, Christian W. Damus, and others.
+ *
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568782
  */
+
 package org.eclipse.papyrus.uml.types.core.advices.stereotypepropertyreferenceedgeadvice.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.uml.types.core.advices.stereotypepropertyreferenceedgeadvice.*;
+import org.eclipse.papyrus.uml.types.core.advices.stereotypepropertyreferenceedgeadvice.StereotypePropertyReferenceEdgeAdviceConfiguration;
+import org.eclipse.papyrus.uml.types.core.advices.stereotypepropertyreferenceedgeadvice.StereotypePropertyReferenceEdgeAdviceFactory;
+import org.eclipse.papyrus.uml.types.core.advices.stereotypepropertyreferenceedgeadvice.StereotypePropertyReferenceEdgeAdvicePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -67,6 +80,7 @@ public class StereotypePropertyReferenceEdgeAdviceFactoryImpl extends EFactoryIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public StereotypePropertyReferenceEdgeAdviceConfiguration createStereotypePropertyReferenceEdgeAdviceConfiguration() {
 		StereotypePropertyReferenceEdgeAdviceConfigurationImpl stereotypePropertyReferenceEdgeAdviceConfiguration = new StereotypePropertyReferenceEdgeAdviceConfigurationImpl();
 		return stereotypePropertyReferenceEdgeAdviceConfiguration;
@@ -77,6 +91,7 @@ public class StereotypePropertyReferenceEdgeAdviceFactoryImpl extends EFactoryIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public StereotypePropertyReferenceEdgeAdvicePackage getStereotypePropertyReferenceEdgeAdvicePackage() {
 		return (StereotypePropertyReferenceEdgeAdvicePackage)getEPackage();
 	}
@@ -92,4 +107,4 @@ public class StereotypePropertyReferenceEdgeAdviceFactoryImpl extends EFactoryIm
 		return StereotypePropertyReferenceEdgeAdvicePackage.eINSTANCE;
 	}
 
-} //StereotypePropertyReferenceEdgeAdviceFactoryImpl
+} // StereotypePropertyReferenceEdgeAdviceFactoryImpl

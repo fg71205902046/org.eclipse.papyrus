@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568782
  */
 package org.eclipse.papyrus.uml.types.core.advices.applystereotype.provider;
 
@@ -43,6 +44,7 @@ import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
+import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 
@@ -244,6 +246,7 @@ public class ApplyStereotypeAdviceItemProviderAdapterFactory extends ApplyStereo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ComposeableAdapterFactory getRootAdapterFactory() {
 		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
 	}
@@ -254,6 +257,7 @@ public class ApplyStereotypeAdviceItemProviderAdapterFactory extends ApplyStereo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
 		this.parentAdapterFactory = parentAdapterFactory;
 	}
@@ -302,6 +306,7 @@ public class ApplyStereotypeAdviceItemProviderAdapterFactory extends ApplyStereo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void addListener(INotifyChangedListener notifyChangedListener) {
 		changeNotifier.addListener(notifyChangedListener);
 	}
@@ -312,6 +317,7 @@ public class ApplyStereotypeAdviceItemProviderAdapterFactory extends ApplyStereo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
 		changeNotifier.removeListener(notifyChangedListener);
 	}
@@ -322,6 +328,7 @@ public class ApplyStereotypeAdviceItemProviderAdapterFactory extends ApplyStereo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void fireNotifyChanged(Notification notification) {
 		changeNotifier.fireNotifyChanged(notification);
 
@@ -336,6 +343,7 @@ public class ApplyStereotypeAdviceItemProviderAdapterFactory extends ApplyStereo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void dispose() {
 		if (applyStereotypeAdviceConfigurationItemProvider != null) applyStereotypeAdviceConfigurationItemProvider.dispose();
 		if (stereotypeToApplyItemProvider != null) stereotypeToApplyItemProvider.dispose();
@@ -400,6 +408,20 @@ public class ApplyStereotypeAdviceItemProviderAdapterFactory extends ApplyStereo
 				return null;
 			}
  
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseElementTypeConfiguration(ElementTypeConfiguration object) {
+				newChildDescriptors.add
+					(createChildParameter
+						(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_CONFIGURATION__OWNED_ADVICE,
+						 ApplyStereotypeAdviceFactory.eINSTANCE.createApplyStereotypeAdviceConfiguration()));
+
+				return null;
+			}
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->

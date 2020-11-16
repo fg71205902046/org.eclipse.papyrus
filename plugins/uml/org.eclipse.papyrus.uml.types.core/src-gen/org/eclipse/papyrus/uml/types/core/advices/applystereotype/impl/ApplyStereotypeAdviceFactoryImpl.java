@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568782
  */
 package org.eclipse.papyrus.uml.types.core.advices.applystereotype.impl;
 
@@ -84,6 +85,7 @@ public class ApplyStereotypeAdviceFactoryImpl extends EFactoryImpl implements Ap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ApplyStereotypeAdviceConfiguration createApplyStereotypeAdviceConfiguration() {
 		ApplyStereotypeAdviceConfigurationImpl applyStereotypeAdviceConfiguration = new ApplyStereotypeAdviceConfigurationImpl();
 		return applyStereotypeAdviceConfiguration;
@@ -94,6 +96,7 @@ public class ApplyStereotypeAdviceFactoryImpl extends EFactoryImpl implements Ap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public StereotypeToApply createStereotypeToApply() {
 		StereotypeToApplyImpl stereotypeToApply = new StereotypeToApplyImpl();
 		return stereotypeToApply;
@@ -104,6 +107,7 @@ public class ApplyStereotypeAdviceFactoryImpl extends EFactoryImpl implements Ap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public FeatureToSet createFeatureToSet() {
 		FeatureToSetImpl featureToSet = new FeatureToSetImpl();
 		return featureToSet;
@@ -114,6 +118,7 @@ public class ApplyStereotypeAdviceFactoryImpl extends EFactoryImpl implements Ap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ListValue createListValue() {
 		ListValueImpl listValue = new ListValueImpl();
 		return listValue;
@@ -124,6 +129,7 @@ public class ApplyStereotypeAdviceFactoryImpl extends EFactoryImpl implements Ap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ConstantValue createConstantValue() {
 		ConstantValueImpl constantValue = new ConstantValueImpl();
 		return constantValue;
@@ -134,6 +140,7 @@ public class ApplyStereotypeAdviceFactoryImpl extends EFactoryImpl implements Ap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public QueryExecutionValue createQueryExecutionValue() {
 		QueryExecutionValueImpl queryExecutionValue = new QueryExecutionValueImpl();
 		return queryExecutionValue;
@@ -144,6 +151,7 @@ public class ApplyStereotypeAdviceFactoryImpl extends EFactoryImpl implements Ap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ApplyStereotypeAdvicePackage getApplyStereotypeAdvicePackage() {
 		return (ApplyStereotypeAdvicePackage)getEPackage();
 	}

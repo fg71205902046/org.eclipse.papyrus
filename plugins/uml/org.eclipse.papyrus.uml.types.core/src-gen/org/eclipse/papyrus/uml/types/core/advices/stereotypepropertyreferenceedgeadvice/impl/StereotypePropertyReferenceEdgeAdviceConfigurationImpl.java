@@ -1,5 +1,19 @@
 /**
+ * Copyright (c) 2017, 2020 CEA LIST, Christian W. Damus, and others.
+ * 
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ * 
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568782
  */
+  
 package org.eclipse.papyrus.uml.types.core.advices.stereotypepropertyreferenceedgeadvice.impl;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -113,6 +127,7 @@ public class StereotypePropertyReferenceEdgeAdviceConfigurationImpl extends Abst
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getFeatureToSet() {
 		return featureToSet;
 	}
@@ -122,6 +137,7 @@ public class StereotypePropertyReferenceEdgeAdviceConfigurationImpl extends Abst
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFeatureToSet(String newFeatureToSet) {
 		String oldFeatureToSet = featureToSet;
 		featureToSet = newFeatureToSet;
@@ -134,6 +150,7 @@ public class StereotypePropertyReferenceEdgeAdviceConfigurationImpl extends Abst
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getStereotypeQualifiedName() {
 		return stereotypeQualifiedName;
 	}
@@ -143,6 +160,7 @@ public class StereotypePropertyReferenceEdgeAdviceConfigurationImpl extends Abst
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStereotypeQualifiedName(String newStereotypeQualifiedName) {
 		String oldStereotypeQualifiedName = stereotypeQualifiedName;
 		stereotypeQualifiedName = newStereotypeQualifiedName;
@@ -155,6 +173,7 @@ public class StereotypePropertyReferenceEdgeAdviceConfigurationImpl extends Abst
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getEdgeLabel() {
 		return edgeLabel;
 	}
@@ -164,6 +183,7 @@ public class StereotypePropertyReferenceEdgeAdviceConfigurationImpl extends Abst
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEdgeLabel(String newEdgeLabel) {
 		String oldEdgeLabel = edgeLabel;
 		edgeLabel = newEdgeLabel;
@@ -258,7 +278,7 @@ public class StereotypePropertyReferenceEdgeAdviceConfigurationImpl extends Abst
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (featureToSet: ");
 		result.append(featureToSet);
 		result.append(", stereotypeQualifiedName: ");

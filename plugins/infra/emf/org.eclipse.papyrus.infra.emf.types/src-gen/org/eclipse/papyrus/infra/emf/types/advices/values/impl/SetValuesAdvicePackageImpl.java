@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568782
  */
 package org.eclipse.papyrus.infra.emf.types.advices.values.impl;
 
@@ -34,6 +35,7 @@ import org.eclipse.papyrus.infra.emf.types.advices.values.SetValuesAdvicePackage
 
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 
+import org.eclipse.uml2.types.TypesPackage;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -120,7 +122,7 @@ public class SetValuesAdvicePackageImpl extends EPackageImpl implements SetValue
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link SetValuesAdvicePackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -134,13 +136,16 @@ public class SetValuesAdvicePackageImpl extends EPackageImpl implements SetValue
 		if (isInited) return (SetValuesAdvicePackage)EPackage.Registry.INSTANCE.getEPackage(SetValuesAdvicePackage.eNS_URI);
 
 		// Obtain or create and register package
-		SetValuesAdvicePackageImpl theSetValuesAdvicePackage = (SetValuesAdvicePackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof SetValuesAdvicePackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new SetValuesAdvicePackageImpl());
+		Object registeredSetValuesAdvicePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		SetValuesAdvicePackageImpl theSetValuesAdvicePackage = registeredSetValuesAdvicePackage instanceof SetValuesAdvicePackageImpl ? (SetValuesAdvicePackageImpl)registeredSetValuesAdvicePackage : new SetValuesAdvicePackageImpl();
 
 		isInited = true;
 
 		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
 		ElementTypesConfigurationsPackage.eINSTANCE.eClass();
 		UMLPackage.eINSTANCE.eClass();
+		TypesPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theSetValuesAdvicePackage.createPackageContents();
@@ -151,7 +156,6 @@ public class SetValuesAdvicePackageImpl extends EPackageImpl implements SetValue
 		// Mark meta-data to indicate it can't be changed
 		theSetValuesAdvicePackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(SetValuesAdvicePackage.eNS_URI, theSetValuesAdvicePackage);
 		return theSetValuesAdvicePackage;
@@ -162,6 +166,7 @@ public class SetValuesAdvicePackageImpl extends EPackageImpl implements SetValue
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSetValuesAdviceConfiguration() {
 		return setValuesAdviceConfigurationEClass;
 	}
@@ -171,6 +176,7 @@ public class SetValuesAdvicePackageImpl extends EPackageImpl implements SetValue
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSetValuesAdviceConfiguration_FeaturesToSet() {
 		return (EReference)setValuesAdviceConfigurationEClass.getEStructuralFeatures().get(0);
 	}
@@ -180,6 +186,7 @@ public class SetValuesAdvicePackageImpl extends EPackageImpl implements SetValue
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFeatureToSet() {
 		return featureToSetEClass;
 	}
@@ -189,6 +196,7 @@ public class SetValuesAdvicePackageImpl extends EPackageImpl implements SetValue
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFeatureToSet_FeatureName() {
 		return (EAttribute)featureToSetEClass.getEStructuralFeatures().get(0);
 	}
@@ -198,6 +206,7 @@ public class SetValuesAdvicePackageImpl extends EPackageImpl implements SetValue
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFeatureToSet_Value() {
 		return (EReference)featureToSetEClass.getEStructuralFeatures().get(1);
 	}
@@ -207,6 +216,7 @@ public class SetValuesAdvicePackageImpl extends EPackageImpl implements SetValue
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFeatureValue() {
 		return featureValueEClass;
 	}
@@ -216,6 +226,7 @@ public class SetValuesAdvicePackageImpl extends EPackageImpl implements SetValue
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDynamicValue() {
 		return dynamicValueEClass;
 	}
@@ -225,6 +236,7 @@ public class SetValuesAdvicePackageImpl extends EPackageImpl implements SetValue
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getConstantValue() {
 		return constantValueEClass;
 	}
@@ -234,6 +246,7 @@ public class SetValuesAdvicePackageImpl extends EPackageImpl implements SetValue
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConstantValue_ValueInstance() {
 		return (EReference)constantValueEClass.getEStructuralFeatures().get(0);
 	}
@@ -243,6 +256,7 @@ public class SetValuesAdvicePackageImpl extends EPackageImpl implements SetValue
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getListValue() {
 		return listValueEClass;
 	}
@@ -252,6 +266,7 @@ public class SetValuesAdvicePackageImpl extends EPackageImpl implements SetValue
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getListValue_Values() {
 		return (EReference)listValueEClass.getEStructuralFeatures().get(0);
 	}
@@ -261,6 +276,7 @@ public class SetValuesAdvicePackageImpl extends EPackageImpl implements SetValue
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getQueryExecutionValue() {
 		return queryExecutionValueEClass;
 	}
@@ -270,6 +286,7 @@ public class SetValuesAdvicePackageImpl extends EPackageImpl implements SetValue
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SetValuesAdviceFactory getSetValuesAdviceFactory() {
 		return (SetValuesAdviceFactory)getEFactoryInstance();
 	}

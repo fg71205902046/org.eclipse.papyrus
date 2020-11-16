@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568782
  */
 package org.eclipse.papyrus.uml.types.core.advices.applystereotype.impl;
 
@@ -80,6 +81,7 @@ public class ApplyStereotypeAdviceConfigurationImpl extends AbstractAdviceBindin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<StereotypeToApply> getStereotypesToApply() {
 		if (stereotypesToApply == null) {
 			stereotypesToApply = new EObjectContainmentEList<StereotypeToApply>(StereotypeToApply.class, this, ApplyStereotypeAdvicePackage.APPLY_STEREOTYPE_ADVICE_CONFIGURATION__STEREOTYPES_TO_APPLY);

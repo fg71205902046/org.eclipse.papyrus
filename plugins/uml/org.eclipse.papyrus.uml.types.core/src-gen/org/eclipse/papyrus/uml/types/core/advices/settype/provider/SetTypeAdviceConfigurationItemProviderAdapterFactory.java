@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568782
  */
 package org.eclipse.papyrus.uml.types.core.advices.settype.provider;
 
@@ -43,6 +44,7 @@ import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
+import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 
@@ -129,6 +131,7 @@ public class SetTypeAdviceConfigurationItemProviderAdapterFactory extends SetTyp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ComposeableAdapterFactory getRootAdapterFactory() {
 		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
 	}
@@ -139,6 +142,7 @@ public class SetTypeAdviceConfigurationItemProviderAdapterFactory extends SetTyp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
 		this.parentAdapterFactory = parentAdapterFactory;
 	}
@@ -187,6 +191,7 @@ public class SetTypeAdviceConfigurationItemProviderAdapterFactory extends SetTyp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void addListener(INotifyChangedListener notifyChangedListener) {
 		changeNotifier.addListener(notifyChangedListener);
 	}
@@ -197,6 +202,7 @@ public class SetTypeAdviceConfigurationItemProviderAdapterFactory extends SetTyp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
 		changeNotifier.removeListener(notifyChangedListener);
 	}
@@ -207,6 +213,7 @@ public class SetTypeAdviceConfigurationItemProviderAdapterFactory extends SetTyp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void fireNotifyChanged(Notification notification) {
 		changeNotifier.fireNotifyChanged(notification);
 
@@ -221,6 +228,7 @@ public class SetTypeAdviceConfigurationItemProviderAdapterFactory extends SetTyp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void dispose() {
 		if (setTypeAdviceConfigurationItemProvider != null) setTypeAdviceConfigurationItemProvider.dispose();
 	}
@@ -280,6 +288,20 @@ public class SetTypeAdviceConfigurationItemProviderAdapterFactory extends SetTyp
 				return null;
 			}
  
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseElementTypeConfiguration(ElementTypeConfiguration object) {
+				newChildDescriptors.add
+					(createChildParameter
+						(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_CONFIGURATION__OWNED_ADVICE,
+						 SetTypeAdviceConfigurationFactory.eINSTANCE.createSetTypeAdviceConfiguration()));
+
+				return null;
+			}
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->

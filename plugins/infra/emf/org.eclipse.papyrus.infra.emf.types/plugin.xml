@@ -97,7 +97,7 @@
    <extension point="org.eclipse.emf.edit.childCreationExtenders">
       <!-- @generated SetValuesAdvice -->
       <extender
-            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.1"
+            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2"
             class="org.eclipse.papyrus.infra.emf.types.advices.values.provider.SetValuesAdviceItemProviderAdapterFactory$ElementTypesConfigurationsChildCreationExtender"/>
    </extension>
    <extension
