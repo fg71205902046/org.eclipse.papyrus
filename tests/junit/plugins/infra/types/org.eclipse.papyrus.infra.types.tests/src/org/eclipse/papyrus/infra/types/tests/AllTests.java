@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- * 
+ * Copyright (c) 2010, 2020 CEA LIST, Christian W. Damus, and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,11 +10,12 @@
  *
  * Contributors:
  *  Francois Le Fevre (CEA LIST) francois.le-fevre@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 568782
  *****************************************************************************/
 package org.eclipse.papyrus.infra.types.tests;
 
-import org.junit.runner.RunWith;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
+import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 
 
@@ -22,7 +23,11 @@ import org.junit.runners.Suite.SuiteClasses;
  * All tests for this fragment
  */
 @RunWith(ClassificationSuite.class)
-@SuiteClasses({ ElementTypesRegistryTests.class, ElementEditHelperAdviceTests.class })
+@SuiteClasses({
+		ElementTypesRegistryTests.class,
+		ElementEditHelperAdviceTests.class,
+		TypesConfigurationsAllTests.class,
+})
 public class AllTests {
 
 }
