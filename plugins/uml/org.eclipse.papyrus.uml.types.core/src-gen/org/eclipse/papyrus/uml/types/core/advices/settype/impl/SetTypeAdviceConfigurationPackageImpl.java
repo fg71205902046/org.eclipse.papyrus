@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568782
  */
 package org.eclipse.papyrus.uml.types.core.advices.settype.impl;
 
@@ -69,7 +70,7 @@ public class SetTypeAdviceConfigurationPackageImpl extends EPackageImpl implemen
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link SetTypeAdviceConfigurationPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -83,7 +84,8 @@ public class SetTypeAdviceConfigurationPackageImpl extends EPackageImpl implemen
 		if (isInited) return (SetTypeAdviceConfigurationPackage)EPackage.Registry.INSTANCE.getEPackage(SetTypeAdviceConfigurationPackage.eNS_URI);
 
 		// Obtain or create and register package
-		SetTypeAdviceConfigurationPackageImpl theSetTypeAdviceConfigurationPackage = (SetTypeAdviceConfigurationPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof SetTypeAdviceConfigurationPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new SetTypeAdviceConfigurationPackageImpl());
+		Object registeredSetTypeAdviceConfigurationPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		SetTypeAdviceConfigurationPackageImpl theSetTypeAdviceConfigurationPackage = registeredSetTypeAdviceConfigurationPackage instanceof SetTypeAdviceConfigurationPackageImpl ? (SetTypeAdviceConfigurationPackageImpl)registeredSetTypeAdviceConfigurationPackage : new SetTypeAdviceConfigurationPackageImpl();
 
 		isInited = true;
 
@@ -100,7 +102,6 @@ public class SetTypeAdviceConfigurationPackageImpl extends EPackageImpl implemen
 		// Mark meta-data to indicate it can't be changed
 		theSetTypeAdviceConfigurationPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(SetTypeAdviceConfigurationPackage.eNS_URI, theSetTypeAdviceConfigurationPackage);
 		return theSetTypeAdviceConfigurationPackage;
@@ -111,6 +112,7 @@ public class SetTypeAdviceConfigurationPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSetTypeAdviceConfiguration() {
 		return setTypeAdviceConfigurationEClass;
 	}
@@ -120,6 +122,7 @@ public class SetTypeAdviceConfigurationPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSetTypeAdviceConfiguration_ValidTypes() {
 		return (EAttribute)setTypeAdviceConfigurationEClass.getEStructuralFeatures().get(0);
 	}
@@ -129,6 +132,7 @@ public class SetTypeAdviceConfigurationPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSetTypeAdviceConfiguration_CreationTypes() {
 		return (EAttribute)setTypeAdviceConfigurationEClass.getEStructuralFeatures().get(1);
 	}
@@ -138,6 +142,7 @@ public class SetTypeAdviceConfigurationPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SetTypeAdviceConfigurationFactory getSetTypeAdviceConfigurationFactory() {
 		return (SetTypeAdviceConfigurationFactory)getEFactoryInstance();
 	}

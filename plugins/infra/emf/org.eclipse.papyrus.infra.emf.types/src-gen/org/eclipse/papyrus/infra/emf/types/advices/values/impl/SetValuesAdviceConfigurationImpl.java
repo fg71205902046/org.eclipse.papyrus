@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568782
  */
 package org.eclipse.papyrus.infra.emf.types.advices.values.impl;
 
@@ -80,6 +81,7 @@ public class SetValuesAdviceConfigurationImpl extends AbstractAdviceBindingConfi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<FeatureToSet> getFeaturesToSet() {
 		if (featuresToSet == null) {
 			featuresToSet = new EObjectContainmentEList<FeatureToSet>(FeatureToSet.class, this, SetValuesAdvicePackage.SET_VALUES_ADVICE_CONFIGURATION__FEATURES_TO_SET);

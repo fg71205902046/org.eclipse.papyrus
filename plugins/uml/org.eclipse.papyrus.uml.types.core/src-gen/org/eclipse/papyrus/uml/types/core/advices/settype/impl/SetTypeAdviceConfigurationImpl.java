@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568782
  */
 package org.eclipse.papyrus.uml.types.core.advices.settype.impl;
 
@@ -86,6 +87,7 @@ public class SetTypeAdviceConfigurationImpl extends AbstractAdviceBindingConfigu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<String> getValidTypes() {
 		if (validTypes == null) {
 			validTypes = new EDataTypeUniqueEList<String>(String.class, this, SetTypeAdviceConfigurationPackage.SET_TYPE_ADVICE_CONFIGURATION__VALID_TYPES);
@@ -98,6 +100,7 @@ public class SetTypeAdviceConfigurationImpl extends AbstractAdviceBindingConfigu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<String> getCreationTypes() {
 		if (creationTypes == null) {
 			creationTypes = new EDataTypeUniqueEList<String>(String.class, this, SetTypeAdviceConfigurationPackage.SET_TYPE_ADVICE_CONFIGURATION__CREATION_TYPES);
@@ -185,7 +188,7 @@ public class SetTypeAdviceConfigurationImpl extends AbstractAdviceBindingConfigu
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (validTypes: ");
 		result.append(validTypes);
 		result.append(", creationTypes: ");

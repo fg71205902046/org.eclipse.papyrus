@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568782
  */
 package org.eclipse.papyrus.uml.types.core.advices.applystereotype.impl;
 
@@ -35,6 +36,7 @@ import org.eclipse.papyrus.uml.types.core.advices.applystereotype.ListValue;
 import org.eclipse.papyrus.uml.types.core.advices.applystereotype.QueryExecutionValue;
 import org.eclipse.papyrus.uml.types.core.advices.applystereotype.StereotypeToApply;
 
+import org.eclipse.uml2.types.TypesPackage;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -128,7 +130,7 @@ public class ApplyStereotypeAdvicePackageImpl extends EPackageImpl implements Ap
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link ApplyStereotypeAdvicePackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -142,12 +144,15 @@ public class ApplyStereotypeAdvicePackageImpl extends EPackageImpl implements Ap
 		if (isInited) return (ApplyStereotypeAdvicePackage)EPackage.Registry.INSTANCE.getEPackage(ApplyStereotypeAdvicePackage.eNS_URI);
 
 		// Obtain or create and register package
-		ApplyStereotypeAdvicePackageImpl theApplyStereotypeAdvicePackage = (ApplyStereotypeAdvicePackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ApplyStereotypeAdvicePackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ApplyStereotypeAdvicePackageImpl());
+		Object registeredApplyStereotypeAdvicePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		ApplyStereotypeAdvicePackageImpl theApplyStereotypeAdvicePackage = registeredApplyStereotypeAdvicePackage instanceof ApplyStereotypeAdvicePackageImpl ? (ApplyStereotypeAdvicePackageImpl)registeredApplyStereotypeAdvicePackage : new ApplyStereotypeAdvicePackageImpl();
 
 		isInited = true;
 
 		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
 		ElementTypesConfigurationsPackage.eINSTANCE.eClass();
+		TypesPackage.eINSTANCE.eClass();
 		UMLPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
@@ -159,7 +164,6 @@ public class ApplyStereotypeAdvicePackageImpl extends EPackageImpl implements Ap
 		// Mark meta-data to indicate it can't be changed
 		theApplyStereotypeAdvicePackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(ApplyStereotypeAdvicePackage.eNS_URI, theApplyStereotypeAdvicePackage);
 		return theApplyStereotypeAdvicePackage;
@@ -170,6 +174,7 @@ public class ApplyStereotypeAdvicePackageImpl extends EPackageImpl implements Ap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getApplyStereotypeAdviceConfiguration() {
 		return applyStereotypeAdviceConfigurationEClass;
 	}
@@ -179,6 +184,7 @@ public class ApplyStereotypeAdvicePackageImpl extends EPackageImpl implements Ap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getApplyStereotypeAdviceConfiguration_StereotypesToApply() {
 		return (EReference)applyStereotypeAdviceConfigurationEClass.getEStructuralFeatures().get(0);
 	}
@@ -188,6 +194,7 @@ public class ApplyStereotypeAdvicePackageImpl extends EPackageImpl implements Ap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getStereotypeToApply() {
 		return stereotypeToApplyEClass;
 	}
@@ -197,6 +204,7 @@ public class ApplyStereotypeAdvicePackageImpl extends EPackageImpl implements Ap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getStereotypeToApply_StereotypeQualifiedName() {
 		return (EAttribute)stereotypeToApplyEClass.getEStructuralFeatures().get(0);
 	}
@@ -206,6 +214,7 @@ public class ApplyStereotypeAdvicePackageImpl extends EPackageImpl implements Ap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getStereotypeToApply_UpdateName() {
 		return (EAttribute)stereotypeToApplyEClass.getEStructuralFeatures().get(1);
 	}
@@ -215,6 +224,7 @@ public class ApplyStereotypeAdvicePackageImpl extends EPackageImpl implements Ap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getStereotypeToApply_RequiredProfiles() {
 		return (EAttribute)stereotypeToApplyEClass.getEStructuralFeatures().get(2);
 	}
@@ -224,6 +234,7 @@ public class ApplyStereotypeAdvicePackageImpl extends EPackageImpl implements Ap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getStereotypeToApply_FeaturesToSet() {
 		return (EReference)stereotypeToApplyEClass.getEStructuralFeatures().get(3);
 	}
@@ -233,6 +244,7 @@ public class ApplyStereotypeAdvicePackageImpl extends EPackageImpl implements Ap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFeatureToSet() {
 		return featureToSetEClass;
 	}
@@ -242,6 +254,7 @@ public class ApplyStereotypeAdvicePackageImpl extends EPackageImpl implements Ap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFeatureToSet_FeatureName() {
 		return (EAttribute)featureToSetEClass.getEStructuralFeatures().get(0);
 	}
@@ -251,6 +264,7 @@ public class ApplyStereotypeAdvicePackageImpl extends EPackageImpl implements Ap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFeatureToSet_Value() {
 		return (EReference)featureToSetEClass.getEStructuralFeatures().get(1);
 	}
@@ -260,6 +274,7 @@ public class ApplyStereotypeAdvicePackageImpl extends EPackageImpl implements Ap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFeatureValue() {
 		return featureValueEClass;
 	}
@@ -269,6 +284,7 @@ public class ApplyStereotypeAdvicePackageImpl extends EPackageImpl implements Ap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getListValue() {
 		return listValueEClass;
 	}
@@ -278,6 +294,7 @@ public class ApplyStereotypeAdvicePackageImpl extends EPackageImpl implements Ap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getListValue_Values() {
 		return (EReference)listValueEClass.getEStructuralFeatures().get(0);
 	}
@@ -287,6 +304,7 @@ public class ApplyStereotypeAdvicePackageImpl extends EPackageImpl implements Ap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getConstantValue() {
 		return constantValueEClass;
 	}
@@ -296,6 +314,7 @@ public class ApplyStereotypeAdvicePackageImpl extends EPackageImpl implements Ap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConstantValue_ValueInstance() {
 		return (EReference)constantValueEClass.getEStructuralFeatures().get(0);
 	}
@@ -305,6 +324,7 @@ public class ApplyStereotypeAdvicePackageImpl extends EPackageImpl implements Ap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDynamicValue() {
 		return dynamicValueEClass;
 	}
@@ -314,6 +334,7 @@ public class ApplyStereotypeAdvicePackageImpl extends EPackageImpl implements Ap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getQueryExecutionValue() {
 		return queryExecutionValueEClass;
 	}
@@ -323,6 +344,7 @@ public class ApplyStereotypeAdvicePackageImpl extends EPackageImpl implements Ap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ApplyStereotypeAdviceFactory getApplyStereotypeAdviceFactory() {
 		return (ApplyStereotypeAdviceFactory)getEFactoryInstance();
 	}

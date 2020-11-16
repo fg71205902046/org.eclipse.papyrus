@@ -1,16 +1,27 @@
 /**
+ * Copyright (c) 2017, 2020 CEA LIST, Christian W. Damus, and others.
+ *
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568782
  */
+
 package org.eclipse.papyrus.uml.types.core.advices.stereotypepropertyreferenceedgeadvice.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
-
 import org.eclipse.papyrus.uml.types.core.advices.stereotypepropertyreferenceedgeadvice.StereotypePropertyReferenceEdgeAdviceConfiguration;
 import org.eclipse.papyrus.uml.types.core.advices.stereotypepropertyreferenceedgeadvice.StereotypePropertyReferenceEdgeAdviceFactory;
 import org.eclipse.papyrus.uml.types.core.advices.stereotypepropertyreferenceedgeadvice.StereotypePropertyReferenceEdgeAdvicePackage;
@@ -57,7 +68,7 @@ public class StereotypePropertyReferenceEdgeAdvicePackageImpl extends EPackageIm
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link StereotypePropertyReferenceEdgeAdvicePackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -71,7 +82,8 @@ public class StereotypePropertyReferenceEdgeAdvicePackageImpl extends EPackageIm
 		if (isInited) return (StereotypePropertyReferenceEdgeAdvicePackage)EPackage.Registry.INSTANCE.getEPackage(StereotypePropertyReferenceEdgeAdvicePackage.eNS_URI);
 
 		// Obtain or create and register package
-		StereotypePropertyReferenceEdgeAdvicePackageImpl theStereotypePropertyReferenceEdgeAdvicePackage = (StereotypePropertyReferenceEdgeAdvicePackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof StereotypePropertyReferenceEdgeAdvicePackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new StereotypePropertyReferenceEdgeAdvicePackageImpl());
+		Object registeredStereotypePropertyReferenceEdgeAdvicePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		StereotypePropertyReferenceEdgeAdvicePackageImpl theStereotypePropertyReferenceEdgeAdvicePackage = registeredStereotypePropertyReferenceEdgeAdvicePackage instanceof StereotypePropertyReferenceEdgeAdvicePackageImpl ? (StereotypePropertyReferenceEdgeAdvicePackageImpl)registeredStereotypePropertyReferenceEdgeAdvicePackage : new StereotypePropertyReferenceEdgeAdvicePackageImpl();
 
 		isInited = true;
 
@@ -88,7 +100,6 @@ public class StereotypePropertyReferenceEdgeAdvicePackageImpl extends EPackageIm
 		// Mark meta-data to indicate it can't be changed
 		theStereotypePropertyReferenceEdgeAdvicePackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(StereotypePropertyReferenceEdgeAdvicePackage.eNS_URI, theStereotypePropertyReferenceEdgeAdvicePackage);
 		return theStereotypePropertyReferenceEdgeAdvicePackage;
@@ -99,6 +110,7 @@ public class StereotypePropertyReferenceEdgeAdvicePackageImpl extends EPackageIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getStereotypePropertyReferenceEdgeAdviceConfiguration() {
 		return stereotypePropertyReferenceEdgeAdviceConfigurationEClass;
 	}
@@ -108,6 +120,7 @@ public class StereotypePropertyReferenceEdgeAdvicePackageImpl extends EPackageIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getStereotypePropertyReferenceEdgeAdviceConfiguration_FeatureToSet() {
 		return (EAttribute)stereotypePropertyReferenceEdgeAdviceConfigurationEClass.getEStructuralFeatures().get(0);
 	}
@@ -117,6 +130,7 @@ public class StereotypePropertyReferenceEdgeAdvicePackageImpl extends EPackageIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getStereotypePropertyReferenceEdgeAdviceConfiguration_StereotypeQualifiedName() {
 		return (EAttribute)stereotypePropertyReferenceEdgeAdviceConfigurationEClass.getEStructuralFeatures().get(1);
 	}
@@ -126,6 +140,7 @@ public class StereotypePropertyReferenceEdgeAdvicePackageImpl extends EPackageIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getStereotypePropertyReferenceEdgeAdviceConfiguration_EdgeLabel() {
 		return (EAttribute)stereotypePropertyReferenceEdgeAdviceConfigurationEClass.getEStructuralFeatures().get(2);
 	}
@@ -135,6 +150,7 @@ public class StereotypePropertyReferenceEdgeAdvicePackageImpl extends EPackageIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public StereotypePropertyReferenceEdgeAdviceFactory getStereotypePropertyReferenceEdgeAdviceFactory() {
 		return (StereotypePropertyReferenceEdgeAdviceFactory)getEFactoryInstance();
 	}
@@ -208,4 +224,4 @@ public class StereotypePropertyReferenceEdgeAdvicePackageImpl extends EPackageIm
 		createResource(eNS_URI);
 	}
 
-} //StereotypePropertyReferenceEdgeAdvicePackageImpl
+} // StereotypePropertyReferenceEdgeAdvicePackageImpl

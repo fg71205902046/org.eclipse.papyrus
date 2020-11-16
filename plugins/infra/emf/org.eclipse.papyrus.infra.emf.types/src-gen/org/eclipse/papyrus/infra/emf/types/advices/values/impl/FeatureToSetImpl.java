@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568782
  */
 package org.eclipse.papyrus.infra.emf.types.advices.values.impl;
 
@@ -96,6 +97,7 @@ public class FeatureToSetImpl extends EObjectImpl implements FeatureToSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getFeatureName() {
 		return featureName;
 	}
@@ -105,6 +107,7 @@ public class FeatureToSetImpl extends EObjectImpl implements FeatureToSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFeatureName(String newFeatureName) {
 		String oldFeatureName = featureName;
 		featureName = newFeatureName;
@@ -117,6 +120,7 @@ public class FeatureToSetImpl extends EObjectImpl implements FeatureToSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public FeatureValue getValue() {
 		return value;
 	}
@@ -141,6 +145,7 @@ public class FeatureToSetImpl extends EObjectImpl implements FeatureToSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValue(FeatureValue newValue) {
 		if (newValue != value) {
 			NotificationChain msgs = null;
@@ -246,7 +251,7 @@ public class FeatureToSetImpl extends EObjectImpl implements FeatureToSet {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (featureName: ");
 		result.append(featureName);
 		result.append(')');

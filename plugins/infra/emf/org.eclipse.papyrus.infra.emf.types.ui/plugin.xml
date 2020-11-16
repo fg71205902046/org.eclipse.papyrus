@@ -52,7 +52,7 @@
    <extension point="org.eclipse.emf.edit.childCreationExtenders">
       <!-- @generated RuntimeValuesAdvice -->
       <extender
-            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.1"
+            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2"
             class="org.eclipse.papyrus.infra.emf.types.ui.advices.values.provider.RuntimeValuesAdviceItemProviderAdapterFactory$ElementTypesConfigurationsChildCreationExtender"/>
    </extension>
 

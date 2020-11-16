@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568782
  */
 package org.eclipse.papyrus.uml.types.core.advices.applystereotype.impl;
 
@@ -136,6 +137,7 @@ public class StereotypeToApplyImpl extends EObjectImpl implements StereotypeToAp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getStereotypeQualifiedName() {
 		return stereotypeQualifiedName;
 	}
@@ -145,6 +147,7 @@ public class StereotypeToApplyImpl extends EObjectImpl implements StereotypeToAp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStereotypeQualifiedName(String newStereotypeQualifiedName) {
 		String oldStereotypeQualifiedName = stereotypeQualifiedName;
 		stereotypeQualifiedName = newStereotypeQualifiedName;
@@ -157,6 +160,7 @@ public class StereotypeToApplyImpl extends EObjectImpl implements StereotypeToAp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isUpdateName() {
 		return updateName;
 	}
@@ -166,6 +170,7 @@ public class StereotypeToApplyImpl extends EObjectImpl implements StereotypeToAp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUpdateName(boolean newUpdateName) {
 		boolean oldUpdateName = updateName;
 		updateName = newUpdateName;
@@ -178,6 +183,7 @@ public class StereotypeToApplyImpl extends EObjectImpl implements StereotypeToAp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<String> getRequiredProfiles() {
 		if (requiredProfiles == null) {
 			requiredProfiles = new EDataTypeUniqueEList<String>(String.class, this, ApplyStereotypeAdvicePackage.STEREOTYPE_TO_APPLY__REQUIRED_PROFILES);
@@ -190,6 +196,7 @@ public class StereotypeToApplyImpl extends EObjectImpl implements StereotypeToAp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<FeatureToSet> getFeaturesToSet() {
 		if (featuresToSet == null) {
 			featuresToSet = new EObjectContainmentEList<FeatureToSet>(FeatureToSet.class, this, ApplyStereotypeAdvicePackage.STEREOTYPE_TO_APPLY__FEATURES_TO_SET);
@@ -311,7 +318,7 @@ public class StereotypeToApplyImpl extends EObjectImpl implements StereotypeToAp
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (stereotypeQualifiedName: ");
 		result.append(stereotypeQualifiedName);
 		result.append(", updateName: ");
