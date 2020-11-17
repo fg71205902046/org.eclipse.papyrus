@@ -15,19 +15,21 @@
         <details key="originalName" value="allAdviceBindings"/>
       </eAnnotations>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="elementTypeConfigurations"
-        upperBound="-1" eType="#//ElementTypeConfiguration" containment="true" eOpposite="#//ElementTypeConfiguration/owningSet"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="adviceBindingsConfigurations"
         upperBound="-1" eType="#//AbstractAdviceBindingConfiguration" containment="true"
         eOpposite="#//AbstractAdviceBindingConfiguration/owningSet"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="allAdviceBindings" ordered="false"
         upperBound="-1" eType="#//AbstractAdviceBindingConfiguration" changeable="false"
         volatile="true" transient="true" derived="true" eOpposite="#//AbstractAdviceBindingConfiguration/elementTypeSet"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elementTypeConfigurations"
+        upperBound="-1" eType="#//ElementTypeConfiguration" containment="true" eOpposite="#//ElementTypeConfiguration/owningSet"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="metamodelNsURI" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConfigurationElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningType" ordered="false"
+        eType="#//ElementTypeConfiguration" eOpposite="#//ElementTypeConfiguration/ownedConfigurations"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ElementTypeConfiguration" abstract="true"
       eSuperTypes="#//ConfigurationElement #//IdentifiedConfiguration #//NamedConfiguration">
@@ -38,10 +40,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="iconEntry" eType="#//IconEntry"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAdvice" ordered="false"
-        upperBound="-1" eType="#//AbstractAdviceBindingConfiguration" containment="true"
-        eOpposite="#//AbstractAdviceBindingConfiguration/owningTarget"/>
+        upperBound="-1" eType="#//AbstractAdviceBindingConfiguration" volatile="true"
+        transient="true" derived="true" eOpposite="#//AbstractAdviceBindingConfiguration/owningTarget">
+      <eAnnotations source="subsets" references="#//ElementTypeConfiguration/ownedConfigurations"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningSet" ordered="false"
         lowerBound="1" eType="#//ElementTypeSetConfiguration" eOpposite="#//ElementTypeSetConfiguration/elementTypeConfigurations"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedConfigurations" ordered="false"
+        upperBound="-1" eType="#//ConfigurationElement" containment="true" eOpposite="#//ConfigurationElement/owningType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IconEntry">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="iconPath" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -82,8 +88,9 @@
         lowerBound="1" eType="#//ElementTypeSetConfiguration" changeable="false" volatile="true"
         transient="true" derived="true" eOpposite="#//ElementTypeSetConfiguration/allAdviceBindings"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningTarget" ordered="false"
-        eType="#//ElementTypeConfiguration" eOpposite="#//ElementTypeConfiguration/ownedAdvice">
-      <eAnnotations source="subsets" references="#//AbstractAdviceBindingConfiguration/target"/>
+        eType="#//ElementTypeConfiguration" volatile="true" transient="true" derived="true"
+        eOpposite="#//ElementTypeConfiguration/ownedAdvice">
+      <eAnnotations source="subsets" references="#//AbstractAdviceBindingConfiguration/target #//ConfigurationElement/owningType"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AdviceConfiguration" abstract="true"
@@ -93,13 +100,46 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="after" upperBound="-1"
         eType="#//AdviceConfiguration"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ContainerConfiguration">
+  <eClassifiers xsi:type="ecore:EClass" name="ContainerConfiguration" eSuperTypes="#//ConfigurationElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="containerMatcherConfiguration"
         eType="#//AbstractMatcherConfiguration" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="containedType" ordered="false"
+        eType="#//SpecializationTypeConfiguration" eOpposite="#//SpecializationTypeConfiguration/containerConfiguration">
+      <eAnnotations source="subsets" references="#//ConfigurationElement/owningType"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="eContainmentFeatures" upperBound="-1"
         eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EReference"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AbstractMatcherConfiguration" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractMatcherConfiguration" abstract="true"
+      eSuperTypes="#//ConfigurationElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="matchedType" ordered="false"
+        eType="#//SpecializationTypeConfiguration" eOpposite="#//SpecializationTypeConfiguration/matcherConfiguration">
+      <eAnnotations source="subsets" references="#//ConfigurationElement/owningType"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SpecializationTypeConfiguration" eSuperTypes="#//ElementTypeConfiguration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="editHelperAdviceConfiguration"
+        eType="#//AbstractEditHelperAdviceConfiguration" eOpposite="#//AbstractEditHelperAdviceConfiguration/target">
+      <eAnnotations source="subsets" references="#//ElementTypeConfiguration/ownedConfigurations"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="containerConfiguration"
+        eType="#//ContainerConfiguration" eOpposite="#//ContainerConfiguration/containedType">
+      <eAnnotations source="subsets" references="#//ElementTypeConfiguration/ownedConfigurations"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="specializedTypes" upperBound="-1"
+        eType="#//ElementTypeConfiguration"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="matcherConfiguration" eType="#//AbstractMatcherConfiguration"
+        eOpposite="#//AbstractMatcherConfiguration/matchedType">
+      <eAnnotations source="subsets" references="#//ElementTypeConfiguration/ownedConfigurations"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractEditHelperAdviceConfiguration"
+      abstract="true" eSuperTypes="#//AdviceConfiguration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//SpecializationTypeConfiguration" eOpposite="#//SpecializationTypeConfiguration/editHelperAdviceConfiguration">
+      <eAnnotations source="subsets" references="#//ConfigurationElement/owningType"/>
+    </eStructuralFeatures>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="InheritanceKind">
     <eLiterals name="none" literal="none"/>
     <eLiterals name="all" value="1" literal="all"/>
@@ -112,21 +152,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="NamedConfiguration" abstract="true"
       interface="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SpecializationTypeConfiguration" eSuperTypes="#//ElementTypeConfiguration">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="editHelperAdviceConfiguration"
-        eType="#//AbstractEditHelperAdviceConfiguration" containment="true" eOpposite="#//AbstractEditHelperAdviceConfiguration/target"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="containerConfiguration"
-        eType="#//ContainerConfiguration" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="matcherConfiguration" eType="#//AbstractMatcherConfiguration"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="specializedTypes" upperBound="-1"
-        eType="#//ElementTypeConfiguration"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AbstractEditHelperAdviceConfiguration"
-      abstract="true" eSuperTypes="#//AdviceConfiguration">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
-        eType="#//SpecializationTypeConfiguration" eOpposite="#//SpecializationTypeConfiguration/editHelperAdviceConfiguration"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MetamodelTypeConfiguration" eSuperTypes="#//ElementTypeConfiguration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="eClass" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>

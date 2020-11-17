@@ -11,7 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Christian W. Damus - bug 568782
+ *  Christian W. Damus - bugs 568782, 568853
  */
 package org.eclipse.papyrus.infra.types.impl;
 
@@ -45,9 +45,9 @@ import org.eclipse.papyrus.infra.types.operations.ElementTypeSetConfigurationOpe
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.ElementTypeSetConfigurationImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.ElementTypeSetConfigurationImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.types.impl.ElementTypeSetConfigurationImpl#getElementTypeConfigurations <em>Element Type Configurations</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.ElementTypeSetConfigurationImpl#getAdviceBindingsConfigurations <em>Advice Bindings Configurations</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.ElementTypeSetConfigurationImpl#getAllAdviceBindings <em>All Advice Bindings</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.types.impl.ElementTypeSetConfigurationImpl#getElementTypeConfigurations <em>Element Type Configurations</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.ElementTypeSetConfigurationImpl#getMetamodelNsURI <em>Metamodel Ns URI</em>}</li>
  * </ul>
  *
@@ -95,16 +95,6 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getElementTypeConfigurations() <em>Element Type Configurations</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getElementTypeConfigurations()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ElementTypeConfiguration> elementTypeConfigurations;
-
-	/**
 	 * The cached value of the '{@link #getAdviceBindingsConfigurations() <em>Advice Bindings Configurations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -113,6 +103,16 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 	 * @ordered
 	 */
 	protected EList<AbstractAdviceBindingConfiguration> adviceBindingsConfigurations;
+
+	/**
+	 * The cached value of the '{@link #getElementTypeConfigurations() <em>Element Type Configurations</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getElementTypeConfigurations()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ElementTypeConfiguration> elementTypeConfigurations;
 
 	/**
 	 * The default value of the '{@link #getMetamodelNsURI() <em>Metamodel Ns URI</em>}' attribute.
@@ -267,10 +267,10 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getElementTypeConfigurations()).basicAdd(otherEnd, msgs);
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAdviceBindingsConfigurations()).basicAdd(otherEnd, msgs);
+			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getElementTypeConfigurations()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -283,10 +283,10 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS:
-				return ((InternalEList<?>)getElementTypeConfigurations()).basicRemove(otherEnd, msgs);
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS:
 				return ((InternalEList<?>)getAdviceBindingsConfigurations()).basicRemove(otherEnd, msgs);
+			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS:
+				return ((InternalEList<?>)getElementTypeConfigurations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -303,12 +303,12 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 				return getIdentifier();
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__NAME:
 				return getName();
-			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS:
-				return getElementTypeConfigurations();
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS:
 				return getAdviceBindingsConfigurations();
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ALL_ADVICE_BINDINGS:
 				return getAllAdviceBindings();
+			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS:
+				return getElementTypeConfigurations();
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__METAMODEL_NS_URI:
 				return getMetamodelNsURI();
 		}
@@ -330,13 +330,13 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__NAME:
 				setName((String)newValue);
 				return;
-			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS:
-				getElementTypeConfigurations().clear();
-				getElementTypeConfigurations().addAll((Collection<? extends ElementTypeConfiguration>)newValue);
-				return;
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS:
 				getAdviceBindingsConfigurations().clear();
 				getAdviceBindingsConfigurations().addAll((Collection<? extends AbstractAdviceBindingConfiguration>)newValue);
+				return;
+			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS:
+				getElementTypeConfigurations().clear();
+				getElementTypeConfigurations().addAll((Collection<? extends ElementTypeConfiguration>)newValue);
 				return;
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__METAMODEL_NS_URI:
 				setMetamodelNsURI((String)newValue);
@@ -359,11 +359,11 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS:
-				getElementTypeConfigurations().clear();
-				return;
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS:
 				getAdviceBindingsConfigurations().clear();
+				return;
+			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS:
+				getElementTypeConfigurations().clear();
 				return;
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__METAMODEL_NS_URI:
 				setMetamodelNsURI(METAMODEL_NS_URI_EDEFAULT);
@@ -384,12 +384,12 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 				return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS:
-				return elementTypeConfigurations != null && !elementTypeConfigurations.isEmpty();
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS:
 				return adviceBindingsConfigurations != null && !adviceBindingsConfigurations.isEmpty();
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ALL_ADVICE_BINDINGS:
 				return !getAllAdviceBindings().isEmpty();
+			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS:
+				return elementTypeConfigurations != null && !elementTypeConfigurations.isEmpty();
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__METAMODEL_NS_URI:
 				return METAMODEL_NS_URI_EDEFAULT == null ? metamodelNsURI != null : !METAMODEL_NS_URI_EDEFAULT.equals(metamodelNsURI);
 		}

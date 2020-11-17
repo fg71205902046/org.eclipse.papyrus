@@ -13,8 +13,6 @@
  */
 package org.eclipse.papyrus.infra.types.tests;
 
-import junit.framework.TestCase;
-
 import org.eclipse.papyrus.infra.types.AbstractMatcherConfiguration;
 
 /**
@@ -23,15 +21,7 @@ import org.eclipse.papyrus.infra.types.AbstractMatcherConfiguration;
  * <!-- end-user-doc -->
  * @generated
  */
-public abstract class AbstractMatcherConfigurationTest extends TestCase {
-
-	/**
-	 * The fixture for this Abstract Matcher Configuration test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected AbstractMatcherConfiguration fixture = null;
+public abstract class AbstractMatcherConfigurationTest extends ConfigurationElementTest {
 
 	/**
 	 * Constructs a new Abstract Matcher Configuration test case with the given name.
@@ -44,23 +34,14 @@ public abstract class AbstractMatcherConfigurationTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Abstract Matcher Configuration test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void setFixture(AbstractMatcherConfiguration fixture) {
-		this.fixture = fixture;
-	}
-
-	/**
 	 * Returns the fixture for this Abstract Matcher Configuration test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected AbstractMatcherConfiguration getFixture() {
-		return fixture;
+		return (AbstractMatcherConfiguration)fixture;
 	}
 
 } //AbstractMatcherConfigurationTest

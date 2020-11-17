@@ -121,14 +121,14 @@ public class ElementTypesConfigurationsValidator extends EObjectValidator {
 				return validateContainerConfiguration((ContainerConfiguration)value, diagnostics, context);
 			case ElementTypesConfigurationsPackage.ABSTRACT_MATCHER_CONFIGURATION:
 				return validateAbstractMatcherConfiguration((AbstractMatcherConfiguration)value, diagnostics, context);
-			case ElementTypesConfigurationsPackage.IDENTIFIED_CONFIGURATION:
-				return validateIdentifiedConfiguration((IdentifiedConfiguration)value, diagnostics, context);
-			case ElementTypesConfigurationsPackage.NAMED_CONFIGURATION:
-				return validateNamedConfiguration((NamedConfiguration)value, diagnostics, context);
 			case ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION:
 				return validateSpecializationTypeConfiguration((SpecializationTypeConfiguration)value, diagnostics, context);
 			case ElementTypesConfigurationsPackage.ABSTRACT_EDIT_HELPER_ADVICE_CONFIGURATION:
 				return validateAbstractEditHelperAdviceConfiguration((AbstractEditHelperAdviceConfiguration)value, diagnostics, context);
+			case ElementTypesConfigurationsPackage.IDENTIFIED_CONFIGURATION:
+				return validateIdentifiedConfiguration((IdentifiedConfiguration)value, diagnostics, context);
+			case ElementTypesConfigurationsPackage.NAMED_CONFIGURATION:
+				return validateNamedConfiguration((NamedConfiguration)value, diagnostics, context);
 			case ElementTypesConfigurationsPackage.METAMODEL_TYPE_CONFIGURATION:
 				return validateMetamodelTypeConfiguration((MetamodelTypeConfiguration)value, diagnostics, context);
 			case ElementTypesConfigurationsPackage.EDIT_HELPER_ADVICE_CONFIGURATION:

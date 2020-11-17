@@ -11,7 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Christian W. Damus - bug 568782
+ *  Christian W. Damus - bugs 568782, 568853
  */
 package org.eclipse.papyrus.infra.types;
 
@@ -32,6 +32,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.papyrus.infra.types.ElementTypeConfiguration#getIconEntry <em>Icon Entry</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.ElementTypeConfiguration#getOwnedAdvice <em>Owned Advice</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.ElementTypeConfiguration#getOwningSet <em>Owning Set</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.types.ElementTypeConfiguration#getOwnedConfigurations <em>Owned Configurations</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage#getElementTypeConfiguration()
@@ -120,19 +121,26 @@ public interface ElementTypeConfiguration extends ConfigurationElement, Identifi
 	void setIconEntry(IconEntry value);
 
 	/**
-	 * Returns the value of the '<em><b>Owned Advice</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Advice</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration}.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration#getOwningTarget <em>Owning Target</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.eclipse.papyrus.infra.types.ElementTypeConfiguration#getOwnedConfigurations() <em>Owned Configurations</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Advice</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Advice</em>' containment reference list.
+	 * @return the value of the '<em>Owned Advice</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage#getElementTypeConfiguration_OwnedAdvice()
 	 * @see org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration#getOwningTarget
-	 * @model opposite="owningTarget" containment="true" ordered="false"
+	 * @model opposite="owningTarget" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<AbstractAdviceBindingConfiguration> getOwnedAdvice();
@@ -164,5 +172,23 @@ public interface ElementTypeConfiguration extends ConfigurationElement, Identifi
 	 * @generated
 	 */
 	void setOwningSet(ElementTypeSetConfiguration value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Configurations</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.infra.types.ConfigurationElement}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.infra.types.ConfigurationElement#getOwningType <em>Owning Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Configurations</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Configurations</em>' containment reference list.
+	 * @see org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage#getElementTypeConfiguration_OwnedConfigurations()
+	 * @see org.eclipse.papyrus.infra.types.ConfigurationElement#getOwningType
+	 * @model opposite="owningType" containment="true" ordered="false"
+	 * @generated
+	 */
+	EList<ConfigurationElement> getOwnedConfigurations();
 
 } // ElementTypeConfiguration

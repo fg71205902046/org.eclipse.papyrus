@@ -43,7 +43,10 @@ public class ElementTypesConfigurationsTests extends TestSuite {
 	public static Test suite() {
 		TestSuite suite = new ElementTypesConfigurationsTests("types Tests");
 		suite.addTestSuite(ElementTypeSetConfigurationTest.class);
+		suite.addTestSuite(SpecializationTypeConfigurationTest.class);
+		suite.addTestSuite(MetamodelTypeConfigurationTest.class);
 		suite.addTestSuite(AdviceBindingConfigurationTest.class);
+		suite.addTestSuite(ExternallyRegisteredTypeTest.class);
 		suite.addTestSuite(ExternallyRegisteredAdviceTest.class);
 		return suite;
 	}

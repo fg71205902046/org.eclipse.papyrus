@@ -11,7 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Christian W. Damus - bug 568782
+ *  Christian W. Damus - bugs 568782, 568853
  */
 package org.eclipse.papyrus.infra.types.util;
 
@@ -113,20 +113,20 @@ public class ElementTypesConfigurationsAdapterFactory extends AdapterFactoryImpl
 				return createAbstractMatcherConfigurationAdapter();
 			}
 			@Override
-			public Adapter caseIdentifiedConfiguration(IdentifiedConfiguration object) {
-				return createIdentifiedConfigurationAdapter();
-			}
-			@Override
-			public Adapter caseNamedConfiguration(NamedConfiguration object) {
-				return createNamedConfigurationAdapter();
-			}
-			@Override
 			public Adapter caseSpecializationTypeConfiguration(SpecializationTypeConfiguration object) {
 				return createSpecializationTypeConfigurationAdapter();
 			}
 			@Override
 			public Adapter caseAbstractEditHelperAdviceConfiguration(AbstractEditHelperAdviceConfiguration object) {
 				return createAbstractEditHelperAdviceConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseIdentifiedConfiguration(IdentifiedConfiguration object) {
+				return createIdentifiedConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseNamedConfiguration(NamedConfiguration object) {
+				return createNamedConfigurationAdapter();
 			}
 			@Override
 			public Adapter caseMetamodelTypeConfiguration(MetamodelTypeConfiguration object) {
