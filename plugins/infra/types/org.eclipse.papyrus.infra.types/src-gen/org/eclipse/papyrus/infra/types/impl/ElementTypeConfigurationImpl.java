@@ -11,7 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Christian W. Damus - bug 568782
+ *  Christian W. Damus - bugs 568782, 568853
  */
 package org.eclipse.papyrus.infra.types.impl;
 
@@ -24,17 +24,18 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration;
+import org.eclipse.papyrus.infra.types.ConfigurationElement;
 import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 import org.eclipse.papyrus.infra.types.IconEntry;
 import org.eclipse.papyrus.infra.types.IdentifiedConfiguration;
 import org.eclipse.papyrus.infra.types.NamedConfiguration;
+import org.eclipse.uml2.common.util.DerivedSubsetEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -46,6 +47,7 @@ import org.eclipse.papyrus.infra.types.NamedConfiguration;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.ElementTypeConfigurationImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.ElementTypeConfigurationImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.types.impl.ElementTypeConfigurationImpl#getOwnedConfigurations <em>Owned Configurations</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.ElementTypeConfigurationImpl#getHint <em>Hint</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.ElementTypeConfigurationImpl#getKind <em>Kind</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.ElementTypeConfigurationImpl#getIconEntry <em>Icon Entry</em>}</li>
@@ -97,6 +99,16 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	protected String name = NAME_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getOwnedConfigurations() <em>Owned Configurations</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedConfigurations()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ConfigurationElement> ownedConfigurations;
+
+	/**
 	 * The default value of the '{@link #getHint() <em>Hint</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -145,16 +157,6 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	 * @ordered
 	 */
 	protected IconEntry iconEntry;
-
-	/**
-	 * The cached value of the '{@link #getOwnedAdvice() <em>Owned Advice</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedAdvice()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<AbstractAdviceBindingConfiguration> ownedAdvice;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -219,6 +221,19 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 		name = newName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<ConfigurationElement> getOwnedConfigurations() {
+		if (ownedConfigurations == null) {
+			ownedConfigurations = new EObjectContainmentWithInverseEList<ConfigurationElement>(ConfigurationElement.class, this, ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNED_CONFIGURATIONS, ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__OWNING_TYPE);
+		}
+		return ownedConfigurations;
 	}
 
 	/**
@@ -315,15 +330,23 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<AbstractAdviceBindingConfiguration> getOwnedAdvice() {
-		if (ownedAdvice == null) {
-			ownedAdvice = new EObjectContainmentWithInverseEList<AbstractAdviceBindingConfiguration>(AbstractAdviceBindingConfiguration.class, this, ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNED_ADVICE, ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TARGET);
-		}
-		return ownedAdvice;
+		return new DerivedSubsetEObjectEList<AbstractAdviceBindingConfiguration>(AbstractAdviceBindingConfiguration.class, this,
+			ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNED_CONFIGURATIONS, OWNED_ADVICE_ESUPERSETS);
 	}
+
+	/**
+	 * The array of superset feature identifiers for the '{@link #getOwnedAdvice() <em>Owned Advice</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedAdvice()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] OWNED_ADVICE_ESUPERSETS = new int[] {ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNED_CONFIGURATIONS};
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -377,8 +400,8 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNED_ADVICE:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedAdvice()).basicAdd(otherEnd, msgs);
+			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNED_CONFIGURATIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedConfigurations()).basicAdd(otherEnd, msgs);
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNING_SET:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -395,10 +418,10 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNED_CONFIGURATIONS:
+				return ((InternalEList<?>)getOwnedConfigurations()).basicRemove(otherEnd, msgs);
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__ICON_ENTRY:
 				return basicSetIconEntry(null, msgs);
-			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNED_ADVICE:
-				return ((InternalEList<?>)getOwnedAdvice()).basicRemove(otherEnd, msgs);
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNING_SET:
 				return basicSetOwningSet(null, msgs);
 		}
@@ -431,6 +454,8 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 				return getIdentifier();
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__NAME:
 				return getName();
+			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNED_CONFIGURATIONS:
+				return getOwnedConfigurations();
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__HINT:
 				return getHint();
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__KIND:
@@ -459,6 +484,10 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 				return;
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__NAME:
 				setName((String)newValue);
+				return;
+			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNED_CONFIGURATIONS:
+				getOwnedConfigurations().clear();
+				getOwnedConfigurations().addAll((Collection<? extends ConfigurationElement>)newValue);
 				return;
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__HINT:
 				setHint((String)newValue);
@@ -494,6 +523,9 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNED_CONFIGURATIONS:
+				getOwnedConfigurations().clear();
+				return;
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__HINT:
 				setHint(HINT_EDEFAULT);
 				return;
@@ -525,6 +557,8 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 				return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNED_CONFIGURATIONS:
+				return ownedConfigurations != null && !ownedConfigurations.isEmpty();
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__HINT:
 				return HINT_EDEFAULT == null ? hint != null : !HINT_EDEFAULT.equals(hint);
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__KIND:
@@ -532,7 +566,7 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__ICON_ENTRY:
 				return iconEntry != null;
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNED_ADVICE:
-				return ownedAdvice != null && !ownedAdvice.isEmpty();
+				return !getOwnedAdvice().isEmpty();
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNING_SET:
 				return getOwningSet() != null;
 		}

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,12 +11,11 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568853
  */
 package org.eclipse.papyrus.infra.types;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
 /**
@@ -29,6 +28,7 @@ import org.eclipse.emf.ecore.EReference;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.types.ContainerConfiguration#getContainerMatcherConfiguration <em>Container Matcher Configuration</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.types.ContainerConfiguration#getContainedType <em>Contained Type</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.ContainerConfiguration#getEContainmentFeatures <em>EContainment Features</em>}</li>
  * </ul>
  *
@@ -36,7 +36,7 @@ import org.eclipse.emf.ecore.EReference;
  * @model
  * @generated
  */
-public interface ContainerConfiguration extends EObject {
+public interface ContainerConfiguration extends ConfigurationElement {
 	/**
 	 * Returns the value of the '<em><b>Container Matcher Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -62,6 +62,41 @@ public interface ContainerConfiguration extends EObject {
 	 * @generated
 	 */
 	void setContainerMatcherConfiguration(AbstractMatcherConfiguration value);
+
+	/**
+	 * Returns the value of the '<em><b>Contained Type</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration#getContainerConfiguration <em>Container Configuration</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.eclipse.papyrus.infra.types.ConfigurationElement#getOwningType() <em>Owning Type</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Contained Type</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Contained Type</em>' reference.
+	 * @see #setContainedType(SpecializationTypeConfiguration)
+	 * @see org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage#getContainerConfiguration_ContainedType()
+	 * @see org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration#getContainerConfiguration
+	 * @model opposite="containerConfiguration" ordered="false"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	SpecializationTypeConfiguration getContainedType();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.types.ContainerConfiguration#getContainedType <em>Contained Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Contained Type</em>' reference.
+	 * @see #getContainedType()
+	 * @generated
+	 */
+	void setContainedType(SpecializationTypeConfiguration value);
 
 	/**
 	 * Returns the value of the '<em><b>EContainment Features</b></em>' reference list.

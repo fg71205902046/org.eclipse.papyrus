@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,17 +11,22 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568853
  */
 package org.eclipse.papyrus.infra.types.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.types.ConfigurationElement;
+import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 
 /**
@@ -33,6 +38,7 @@ import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.ConfigurationElementImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.types.impl.ConfigurationElementImpl#getOwningType <em>Owning Type</em>}</li>
  * </ul>
  *
  * @generated
@@ -106,10 +112,99 @@ public abstract class ConfigurationElementImpl extends MinimalEObjectImpl.Contai
 	 * @generated
 	 */
 	@Override
+	public ElementTypeConfiguration getOwningType() {
+		if (eContainerFeatureID() != ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__OWNING_TYPE) return null;
+		return (ElementTypeConfiguration)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwningType(ElementTypeConfiguration newOwningType, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newOwningType, ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__OWNING_TYPE, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwningType(ElementTypeConfiguration newOwningType) {
+		if (newOwningType != eInternalContainer() || (eContainerFeatureID() != ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__OWNING_TYPE && newOwningType != null)) {
+			if (EcoreUtil.isAncestor(this, newOwningType))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwningType != null)
+				msgs = ((InternalEObject)newOwningType).eInverseAdd(this, ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNED_CONFIGURATIONS, ElementTypeConfiguration.class, msgs);
+			msgs = basicSetOwningType(newOwningType, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__OWNING_TYPE, newOwningType, newOwningType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__OWNING_TYPE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwningType((ElementTypeConfiguration)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__OWNING_TYPE:
+				return basicSetOwningType(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__OWNING_TYPE:
+				return eInternalContainer().eInverseRemove(this, ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNED_CONFIGURATIONS, ElementTypeConfiguration.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__DESCRIPTION:
 				return getDescription();
+			case ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__OWNING_TYPE:
+				return getOwningType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -124,6 +219,9 @@ public abstract class ConfigurationElementImpl extends MinimalEObjectImpl.Contai
 		switch (featureID) {
 			case ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__DESCRIPTION:
 				setDescription((String)newValue);
+				return;
+			case ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__OWNING_TYPE:
+				setOwningType((ElementTypeConfiguration)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -140,6 +238,9 @@ public abstract class ConfigurationElementImpl extends MinimalEObjectImpl.Contai
 			case ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
+			case ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__OWNING_TYPE:
+				setOwningType((ElementTypeConfiguration)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -154,6 +255,8 @@ public abstract class ConfigurationElementImpl extends MinimalEObjectImpl.Contai
 		switch (featureID) {
 			case ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+			case ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__OWNING_TYPE:
+				return getOwningType() != null;
 		}
 		return super.eIsSet(featureID);
 	}

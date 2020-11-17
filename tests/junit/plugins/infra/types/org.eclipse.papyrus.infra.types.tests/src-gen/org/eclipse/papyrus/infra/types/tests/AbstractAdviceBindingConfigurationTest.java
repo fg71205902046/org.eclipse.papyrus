@@ -34,6 +34,7 @@ import org.eclipse.papyrus.infra.types.util.ElementTypesConfigurationsValidator;
  * The following features are tested:
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration#getElementTypeSet() <em>Element Type Set</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration#getOwningTarget() <em>Owning Target</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -66,7 +67,7 @@ public abstract class AbstractAdviceBindingConfigurationTest extends AdviceConfi
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration#getElementTypeSet()
-	 * @generated not
+	 * @generated NOT
 	 */
 	public void testGetElementTypeSet() {
 		assertThat(getFixture().getElementTypeSet(), nullValue());
@@ -81,6 +82,56 @@ public abstract class AbstractAdviceBindingConfigurationTest extends AdviceConfi
 		type1.getOwnedAdvice().add(getFixture());
 		
 		assertThat(getFixture().getElementTypeSet(), is(set));
+	}
+	
+	/**
+	 * Tests the '{@link org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration#getOwningTarget() <em>Owning Target</em>}' feature getter.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration#getOwningTarget()
+	 * @generated NOT
+	 */
+	public void testGetOwningTarget() {
+		ElementTypeSetConfiguration set = ElementTypesConfigurationsFactory.eINSTANCE.createElementTypeSetConfiguration();
+		ElementTypeConfiguration type = ElementTypesConfigurationsFactory.eINSTANCE.createSpecializationTypeConfiguration();
+		set.getElementTypeConfigurations().add(type);
+		
+		assertThat(getFixture().getOwningTarget(), nullValue());
+		
+		type.getOwnedConfigurations().add(getFixture());
+		
+		assertThat(getFixture().getOwningTarget(), is(type));
+		assertThat(getFixture().getTarget(), is(type)); // The superset must get the subset value
+		
+		set.getAdviceBindingsConfigurations().add(getFixture());
+		
+		assertThat(getFixture().getOwningTarget(), nullValue());
+		assertThat(getFixture().getTarget(), is(type)); // The superset is not affected by the subset being cleared
+	}
+
+	/**
+	 * Tests the '{@link org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration#setOwningTarget(org.eclipse.papyrus.infra.types.ElementTypeConfiguration) <em>Owning Target</em>}' feature setter.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration#setOwningTarget(org.eclipse.papyrus.infra.types.ElementTypeConfiguration)
+	 * @generated NOT
+	 */
+	public void testSetOwningTarget() {
+		ElementTypeSetConfiguration set = ElementTypesConfigurationsFactory.eINSTANCE.createElementTypeSetConfiguration();
+		ElementTypeConfiguration type = ElementTypesConfigurationsFactory.eINSTANCE.createSpecializationTypeConfiguration();
+		set.getElementTypeConfigurations().add(type);
+		
+		assertThat(getFixture().getOwningTarget(), nullValue());
+		
+		getFixture().setOwningTarget(type);
+		
+		assertThat(getFixture().getOwningTarget(), is(type));
+		assertThat(getFixture().getTarget(), is(type)); // The superset must get the subset value
+		
+		getFixture().setOwningTarget(null);
+		
+		assertThat(getFixture().getOwningTarget(), nullValue());
+		assertThat(getFixture().getTarget(), is(type)); // The superset is not affected by the subset being cleared
 	}
 	
 	public void testValidateAbstractAdviceBindingConfiguration_apply_to_all_types() {

@@ -11,7 +11,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Christian W. Damus - bug 568782
+ *  Christian W. Damus - bugs 568782, 568853
  */
 package org.eclipse.papyrus.infra.types.provider;
 
@@ -23,10 +23,10 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -36,7 +36,6 @@ import org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsFactory;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
-import org.eclipse.uml2.common.edit.command.SubsetSupersetSetCommand;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration} object.
@@ -302,58 +301,6 @@ public class AbstractAdviceBindingConfigurationItemProvider extends AdviceConfig
 				 ElementTypesConfigurationsFactory.eINSTANCE.createMatcherConfiguration()));
 	}
 
-	/**
-	 * @see org.eclipse.emf.edit.provider.ItemProviderAdapter#createSetCommand(org.eclipse.emf.edit.domain.EditingDomain, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EStructuralFeature, java.lang.Object)
-	 *      <!-- begin-user-doc -->
-	 *      <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected Command createSetCommandGen(EditingDomain domain, EObject owner, EStructuralFeature feature, Object value) {
-		if (feature == ElementTypesConfigurationsPackage.Literals.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TARGET) {
-			return new SubsetSupersetSetCommand(domain, owner, feature, new EStructuralFeature[] {ElementTypesConfigurationsPackage.Literals.ABSTRACT_ADVICE_BINDING_CONFIGURATION__TARGET}, null, value);
-		}
-		if (feature == ElementTypesConfigurationsPackage.Literals.ABSTRACT_ADVICE_BINDING_CONFIGURATION__TARGET) {
-			return new SubsetSupersetSetCommand(domain, owner, feature, null, new EStructuralFeature[] {ElementTypesConfigurationsPackage.Literals.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TARGET}, value);
-		}
-		return super.createSetCommand(domain, owner, feature, value);
-	}
-
-	@Override
-	protected Command createSetCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Object value) {
-		boolean isInverseAdd = InverseAddWrapper.isInverseAdd(value);
-		value = InverseAddWrapper.unwrap(value);
-		
-		Command result = createSetCommandGen(domain, owner, feature, value);
-
-		if (result != null && feature == ElementTypesConfigurationsPackage.Literals.ABSTRACT_ADVICE_BINDING_CONFIGURATION__TARGET) {
-			AbstractAdviceBindingConfiguration advice = (AbstractAdviceBindingConfiguration) owner;
-			if (value != advice.getOwningTarget()) {
-				// This command will unset the container. Follow up with placement of the advice binding configuration into the element types set
-				ElementTypeSetConfiguration typeSet = advice.getElementTypeSet();
-				if (typeSet != null) {
-					Command add = AddCommand.create(domain, typeSet, ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS, advice);
-					result = result.chain(add);
-				}
-			} // Otherwise, this command will not change the target, so don't worry about it
-		} else if (result != null && feature == ElementTypesConfigurationsPackage.Literals.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TARGET) {
-			AbstractAdviceBindingConfiguration advice = (AbstractAdviceBindingConfiguration) owner;
-			ElementTypeSetConfiguration typeSet = advice.getElementTypeSet();
-			if (!isInverseAdd && typeSet != null && value != advice.getOwningTarget()) {
-				// User is changing the container. Remove from current container, first so that it's undoable
-				result = RemoveCommand.create(domain, owner).chain(result);
-
-				// If clearing the container, re-home the advice in the set. Note that if the user wants to
-				// delete the advice from the model, then that is done by a RemoveCommand, not by this means
-				if (value == null) {
-					Command add = AddCommand.create(domain, typeSet, ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS, advice);
-					result = result.chain(add);
-				}
-			}
-		}
-
-		return result;
-	}
-
 	@Override
 	protected ItemPropertyDescriptor createItemPropertyDescriptor(AdapterFactory adapterFactory, ResourceLocator resourceLocator, String displayName, String description, EStructuralFeature feature, boolean isSettable, boolean multiLine, boolean sortChoices,
 			Object staticImage, String category, String[] filterFlags, Object propertyEditorFactory) {
@@ -364,11 +311,42 @@ public class AbstractAdviceBindingConfigurationItemProvider extends AdviceConfig
 			result = new ItemPropertyDescriptor(adapterFactory, resourceLocator, displayName, description, feature, isSettable, multiLine, sortChoices, staticImage, category, filterFlags, propertyEditorFactory) {
 				@Override
 				public void setPropertyValue(Object object, Object value) {
-					EObject eObject = (EObject) object;
+					AbstractAdviceBindingConfiguration advice = (AbstractAdviceBindingConfiguration) object;
 					EditingDomain editingDomain = getEditingDomain(object);
 
-					// Create our set command; don't add on the other side
-					editingDomain.getCommandStack().execute(createSetCommand(editingDomain, (EObject) getCommandOwner(eObject), feature, value));
+					if (value == null) {
+						// Remove from current container and add to the configuration set
+						ElementTypeSetConfiguration set = advice.getElementTypeSet();
+						
+						Command remove = RemoveCommand.create(editingDomain, advice);
+						Command add = AddCommand.create(editingDomain, set, ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS, object);
+						editingDomain.getCommandStack().execute(remove.chain(add));
+					} else {
+						// Default behaviour is to add it to new type's owned advice, which is what we want
+						super.setPropertyValue(advice, value);
+					}
+				}
+			};
+		} else if (feature == ElementTypesConfigurationsPackage.Literals.ABSTRACT_ADVICE_BINDING_CONFIGURATION__TARGET) {
+			result = new ItemPropertyDescriptor(adapterFactory, resourceLocator, displayName, description, feature, isSettable, multiLine, sortChoices, staticImage, category, filterFlags, propertyEditorFactory) {
+				@Override
+				public void setPropertyValue(Object object, Object value) {
+					AbstractAdviceBindingConfiguration advice = (AbstractAdviceBindingConfiguration) object;
+					EditingDomain editingDomain = getEditingDomain(object);
+
+					
+					if (advice.getOwningTarget() != null && value != advice.getOwningTarget()) {
+						// Remove from current container and add to the configuration set before setting the target
+						ElementTypeSetConfiguration set = advice.getElementTypeSet();
+						
+						Command remove = RemoveCommand.create(editingDomain, advice);
+						Command add = AddCommand.create(editingDomain, set, ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS, object);
+						Command setTarget = SetCommand.create(editingDomain, getCommandOwner(advice), feature, value);
+						editingDomain.getCommandStack().execute(remove.chain(add).chain(setTarget));
+					} else {
+						// Default behaviour is to just set the target, which is what we want
+						super.setPropertyValue(advice, value);
+					}
 				}
 			};
 		} else {

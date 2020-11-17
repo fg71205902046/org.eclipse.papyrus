@@ -11,7 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Christian W. Damus - bug 568782
+ *  Christian W. Damus - bugs 568782, 568853
  */
 package org.eclipse.papyrus.infra.types;
 
@@ -225,13 +225,14 @@ public interface AbstractAdviceBindingConfiguration extends AdviceConfiguration,
 	ElementTypeSetConfiguration getElementTypeSet();
 
 	/**
-	 * Returns the value of the '<em><b>Owning Target</b></em>' container reference.
+	 * Returns the value of the '<em><b>Owning Target</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.infra.types.ElementTypeConfiguration#getOwnedAdvice <em>Owned Advice</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration#getTarget() <em>Target</em>}'</li>
+	 *   <li>'{@link org.eclipse.papyrus.infra.types.ConfigurationElement#getOwningType() <em>Owning Type</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -239,21 +240,21 @@ public interface AbstractAdviceBindingConfiguration extends AdviceConfiguration,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owning Target</em>' container reference.
+	 * @return the value of the '<em>Owning Target</em>' reference.
 	 * @see #setOwningTarget(ElementTypeConfiguration)
 	 * @see org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage#getAbstractAdviceBindingConfiguration_OwningTarget()
 	 * @see org.eclipse.papyrus.infra.types.ElementTypeConfiguration#getOwnedAdvice
-	 * @model opposite="ownedAdvice" transient="false" ordered="false"
+	 * @model opposite="ownedAdvice" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
 	 * @generated
 	 */
 	ElementTypeConfiguration getOwningTarget();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration#getOwningTarget <em>Owning Target</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration#getOwningTarget <em>Owning Target</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Target</em>' container reference.
+	 * @param value the new value of the '<em>Owning Target</em>' reference.
 	 * @see #getOwningTarget()
 	 * @generated
 	 */

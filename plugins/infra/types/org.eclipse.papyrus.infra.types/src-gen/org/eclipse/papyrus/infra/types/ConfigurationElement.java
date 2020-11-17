@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568853
  */
 package org.eclipse.papyrus.infra.types;
 
@@ -26,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.types.ConfigurationElement#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.types.ConfigurationElement#getOwningType <em>Owning Type</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage#getConfigurationElement()
@@ -58,5 +60,33 @@ public interface ConfigurationElement extends EObject {
 	 * @generated
 	 */
 	void setDescription(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Owning Type</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.infra.types.ElementTypeConfiguration#getOwnedConfigurations <em>Owned Configurations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owning Type</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owning Type</em>' container reference.
+	 * @see #setOwningType(ElementTypeConfiguration)
+	 * @see org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage#getConfigurationElement_OwningType()
+	 * @see org.eclipse.papyrus.infra.types.ElementTypeConfiguration#getOwnedConfigurations
+	 * @model opposite="ownedConfigurations" transient="false" ordered="false"
+	 * @generated
+	 */
+	ElementTypeConfiguration getOwningType();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.types.ConfigurationElement#getOwningType <em>Owning Type</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owning Type</em>' container reference.
+	 * @see #getOwningType()
+	 * @generated
+	 */
+	void setOwningType(ElementTypeConfiguration value);
 
 } // ConfigurationElement
