@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568853
  */
 package org.eclipse.papyrus.infra.emf.types.rules.container.impl;
 
@@ -124,6 +125,7 @@ public class HierarchyPermissionImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getContainerType() {
 		return containerType;
 	}
@@ -133,6 +135,7 @@ public class HierarchyPermissionImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setContainerType(String newContainerType) {
 		String oldContainerType = containerType;
 		containerType = newContainerType;
@@ -145,6 +148,7 @@ public class HierarchyPermissionImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isPermitted() {
 		return permitted;
 	}
@@ -154,6 +158,7 @@ public class HierarchyPermissionImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPermitted(boolean newPermitted) {
 		boolean oldPermitted = permitted;
 		permitted = newPermitted;
@@ -166,6 +171,7 @@ public class HierarchyPermissionImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isStrict() {
 		return strict;
 	}
@@ -175,6 +181,7 @@ public class HierarchyPermissionImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStrict(boolean newStrict) {
 		boolean oldStrict = strict;
 		strict = newStrict;
@@ -269,7 +276,7 @@ public class HierarchyPermissionImpl extends MinimalEObjectImpl.Container implem
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (containerType: ");
 		result.append(containerType);
 		result.append(", permitted: ");

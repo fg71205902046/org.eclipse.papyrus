@@ -11,7 +11,8 @@
   <genPackages prefix="StereotypeApplicationMatcher" basePackage="org.eclipse.papyrus.uml.types.core.matchers"
       resource="XML" disposableProviderFactory="true" childCreationExtenders="true"
       ecorePackage="StereotypeMatcher.ecore#/">
-    <genClasses ecoreClass="StereotypeMatcher.ecore#//StereotypeApplicationMatcherConfiguration">
+    <genClasses ecoreClass="StereotypeMatcher.ecore#//StereotypeApplicationMatcherConfiguration"
+        labelFeature="#//stereotype/StereotypeApplicationMatcherConfiguration/profileUri">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StereotypeMatcher.ecore#//StereotypeApplicationMatcherConfiguration/stereotypesQualifiedNames"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StereotypeMatcher.ecore#//StereotypeApplicationMatcherConfiguration/profileUri"/>
     </genClasses>

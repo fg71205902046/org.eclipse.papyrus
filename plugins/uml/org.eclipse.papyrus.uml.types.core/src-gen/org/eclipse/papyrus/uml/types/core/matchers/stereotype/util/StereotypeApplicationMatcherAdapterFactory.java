@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568853
  */
 package org.eclipse.papyrus.uml.types.core.matchers.stereotype.util;
 
@@ -23,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.papyrus.infra.types.AbstractMatcherConfiguration;
 
+import org.eclipse.papyrus.infra.types.ConfigurationElement;
 import org.eclipse.papyrus.uml.types.core.matchers.stereotype.*;
 
 /**
@@ -86,6 +88,10 @@ public class StereotypeApplicationMatcherAdapterFactory extends AdapterFactoryIm
 				return createStereotypeApplicationMatcherConfigurationAdapter();
 			}
 			@Override
+			public Adapter caseConfigurationElement(ConfigurationElement object) {
+				return createConfigurationElementAdapter();
+			}
+			@Override
 			public Adapter caseAbstractMatcherConfiguration(AbstractMatcherConfiguration object) {
 				return createAbstractMatcherConfigurationAdapter();
 			}
@@ -120,6 +126,20 @@ public class StereotypeApplicationMatcherAdapterFactory extends AdapterFactoryIm
 	 * @generated
 	 */
 	public Adapter createStereotypeApplicationMatcherConfigurationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.types.ConfigurationElement <em>Configuration Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.types.ConfigurationElement
+	 * @generated
+	 */
+	public Adapter createConfigurationElementAdapter() {
 		return null;
 	}
 

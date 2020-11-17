@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568853
  */
 package org.eclipse.papyrus.uml.types.core.rules.invariantstereotype.impl;
 
@@ -79,6 +80,7 @@ public class InvariantStereotypeRuleConfigurationFactoryImpl extends EFactoryImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public InvariantStereotypeRuleConfiguration createInvariantStereotypeRuleConfiguration() {
 		InvariantStereotypeRuleConfigurationImpl invariantStereotypeRuleConfiguration = new InvariantStereotypeRuleConfigurationImpl();
 		return invariantStereotypeRuleConfiguration;
@@ -89,6 +91,7 @@ public class InvariantStereotypeRuleConfigurationFactoryImpl extends EFactoryImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public InvariantStereotypeRuleConfigurationPackage getInvariantStereotypeRuleConfigurationPackage() {
 		return (InvariantStereotypeRuleConfigurationPackage) getEPackage();
 	}

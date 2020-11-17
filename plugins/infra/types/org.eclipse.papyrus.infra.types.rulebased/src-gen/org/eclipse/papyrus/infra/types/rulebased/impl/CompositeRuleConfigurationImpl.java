@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568853
  */
 package org.eclipse.papyrus.infra.types.rulebased.impl;
 
@@ -78,6 +79,7 @@ public abstract class CompositeRuleConfigurationImpl extends RuleConfigurationIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<RuleConfiguration> getComposedRules() {
 		if (composedRules == null) {
 			composedRules = new EObjectContainmentEList<RuleConfiguration>(RuleConfiguration.class, this, RuleBasedPackage.COMPOSITE_RULE_CONFIGURATION__COMPOSED_RULES);
