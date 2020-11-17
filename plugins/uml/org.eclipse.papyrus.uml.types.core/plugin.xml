@@ -80,7 +80,7 @@
    <extension point="org.eclipse.emf.edit.childCreationExtenders">
       <!-- @generated InvariantStereotypeRule -->
       <extender
-            uri="http://www.eclipse.org/papyrus/infra/types/rulebased/1.2"
+            uri="http://www.eclipse.org/papyrus/infra/types/rulebased/1.1"
             class="org.eclipse.papyrus.uml.types.core.rules.invariantstereotype.provider.InvariantStereotypeRuleConfigurationItemProviderAdapterFactory$RuleBasedChildCreationExtender"/>
    </extension>
 

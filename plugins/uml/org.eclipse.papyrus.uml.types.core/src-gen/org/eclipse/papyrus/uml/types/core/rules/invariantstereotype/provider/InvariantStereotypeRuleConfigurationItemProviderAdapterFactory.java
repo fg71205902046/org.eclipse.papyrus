@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568853
  */
 package org.eclipse.papyrus.uml.types.core.rules.invariantstereotype.provider;
 
@@ -43,6 +44,7 @@ import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
+import org.eclipse.papyrus.infra.types.rulebased.CompositeRuleConfiguration;
 import org.eclipse.papyrus.infra.types.rulebased.RuleBasedPackage;
 import org.eclipse.papyrus.infra.types.rulebased.RuleBasedTypeConfiguration;
 import org.eclipse.papyrus.infra.types.rulebased.util.RuleBasedSwitch;
@@ -127,6 +129,7 @@ public class InvariantStereotypeRuleConfigurationItemProviderAdapterFactory exte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ComposeableAdapterFactory getRootAdapterFactory() {
 		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
 	}
@@ -137,6 +140,7 @@ public class InvariantStereotypeRuleConfigurationItemProviderAdapterFactory exte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
 		this.parentAdapterFactory = parentAdapterFactory;
 	}
@@ -185,6 +189,7 @@ public class InvariantStereotypeRuleConfigurationItemProviderAdapterFactory exte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void addListener(INotifyChangedListener notifyChangedListener) {
 		changeNotifier.addListener(notifyChangedListener);
 	}
@@ -195,6 +200,7 @@ public class InvariantStereotypeRuleConfigurationItemProviderAdapterFactory exte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
 		changeNotifier.removeListener(notifyChangedListener);
 	}
@@ -205,6 +211,7 @@ public class InvariantStereotypeRuleConfigurationItemProviderAdapterFactory exte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void fireNotifyChanged(Notification notification) {
 		changeNotifier.fireNotifyChanged(notification);
 
@@ -219,6 +226,7 @@ public class InvariantStereotypeRuleConfigurationItemProviderAdapterFactory exte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void dispose() {
 		if (invariantStereotypeRuleConfigurationItemProvider != null)
 			invariantStereotypeRuleConfigurationItemProvider.dispose();
@@ -284,7 +292,7 @@ public class InvariantStereotypeRuleConfigurationItemProviderAdapterFactory exte
 			 * @generated
 			 */
 			@Override
-			public Object caseCompositeRuleConfiguration(org.eclipse.papyrus.infra.types.rulebased.CompositeRuleConfiguration object) {
+			public Object caseCompositeRuleConfiguration(CompositeRuleConfiguration object) {
 				newChildDescriptors.add(createChildParameter(RuleBasedPackage.Literals.COMPOSITE_RULE_CONFIGURATION__COMPOSED_RULES,
 						InvariantStereotypeRuleConfigurationFactory.eINSTANCE.createInvariantStereotypeRuleConfiguration()));
 

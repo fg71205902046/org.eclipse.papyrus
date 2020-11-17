@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568853
  */
 package org.eclipse.papyrus.uml.types.core.rules.invariantstereotype.provider;
 
@@ -27,6 +28,7 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.eclipse.papyrus.infra.types.rulebased.provider.RuleConfigurationItemProvider;
 import org.eclipse.papyrus.uml.types.core.rules.invariantstereotype.InvariantStereotypeRuleConfiguration;
 import org.eclipse.papyrus.uml.types.core.rules.invariantstereotype.InvariantStereotypeRuleConfigurationPackage;
 
@@ -36,7 +38,7 @@ import org.eclipse.papyrus.uml.types.core.rules.invariantstereotype.InvariantSte
  * <!-- end-user-doc -->
  * @generated
  */
-public class InvariantStereotypeRuleConfigurationItemProvider extends org.eclipse.papyrus.infra.types.rulebased.provider.RuleConfigurationItemProvider {
+public class InvariantStereotypeRuleConfigurationItemProvider extends RuleConfigurationItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

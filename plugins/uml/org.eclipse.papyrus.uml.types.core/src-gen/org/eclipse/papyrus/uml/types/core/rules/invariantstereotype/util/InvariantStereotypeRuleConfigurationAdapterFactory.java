@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568853
  */
 package org.eclipse.papyrus.uml.types.core.rules.invariantstereotype.util;
 
@@ -20,6 +21,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.infra.types.rulebased.RuleConfiguration;
 import org.eclipse.papyrus.uml.types.core.rules.invariantstereotype.*;
 
 /**
@@ -83,7 +85,7 @@ public class InvariantStereotypeRuleConfigurationAdapterFactory extends AdapterF
 		}
 
 		@Override
-		public Adapter caseRuleConfiguration(org.eclipse.papyrus.infra.types.rulebased.RuleConfiguration object) {
+		public Adapter caseRuleConfiguration(RuleConfiguration object) {
 			return createRuleConfigurationAdapter();
 		}
 

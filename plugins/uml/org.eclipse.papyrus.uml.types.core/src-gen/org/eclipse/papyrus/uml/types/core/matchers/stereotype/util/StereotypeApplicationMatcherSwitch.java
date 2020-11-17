@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568853
  */
 package org.eclipse.papyrus.uml.types.core.matchers.stereotype.util;
 
@@ -21,6 +22,7 @@ import org.eclipse.emf.ecore.util.Switch;
 
 import org.eclipse.papyrus.infra.types.AbstractMatcherConfiguration;
 
+import org.eclipse.papyrus.infra.types.ConfigurationElement;
 import org.eclipse.papyrus.uml.types.core.matchers.stereotype.*;
 
 /**
@@ -84,6 +86,7 @@ public class StereotypeApplicationMatcherSwitch<T> extends Switch<T> {
 				StereotypeApplicationMatcherConfiguration stereotypeApplicationMatcherConfiguration = (StereotypeApplicationMatcherConfiguration)theEObject;
 				T result = caseStereotypeApplicationMatcherConfiguration(stereotypeApplicationMatcherConfiguration);
 				if (result == null) result = caseAbstractMatcherConfiguration(stereotypeApplicationMatcherConfiguration);
+				if (result == null) result = caseConfigurationElement(stereotypeApplicationMatcherConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -103,6 +106,21 @@ public class StereotypeApplicationMatcherSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseStereotypeApplicationMatcherConfiguration(StereotypeApplicationMatcherConfiguration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Configuration Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Configuration Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConfigurationElement(ConfigurationElement object) {
 		return null;
 	}
 

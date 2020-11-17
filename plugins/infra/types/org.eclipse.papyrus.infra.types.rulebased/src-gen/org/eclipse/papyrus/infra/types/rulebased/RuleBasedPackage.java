@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568853
  */
 package org.eclipse.papyrus.infra.types.rulebased;
 
@@ -89,6 +90,15 @@ public interface RuleBasedPackage extends EPackage {
 	int RULE_BASED_TYPE_CONFIGURATION__DESCRIPTION = ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__DESCRIPTION;
 
 	/**
+	 * The feature id for the '<em><b>Owning Type</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RULE_BASED_TYPE_CONFIGURATION__OWNING_TYPE = ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__OWNING_TYPE;
+
+	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -134,7 +144,34 @@ public interface RuleBasedPackage extends EPackage {
 	int RULE_BASED_TYPE_CONFIGURATION__ICON_ENTRY = ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__ICON_ENTRY;
 
 	/**
-	 * The feature id for the '<em><b>Edit Helper Advice Configuration</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Advice</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RULE_BASED_TYPE_CONFIGURATION__OWNED_ADVICE = ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__OWNED_ADVICE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Set</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RULE_BASED_TYPE_CONFIGURATION__OWNING_SET = ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__OWNING_SET;
+
+	/**
+	 * The feature id for the '<em><b>Owned Configurations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RULE_BASED_TYPE_CONFIGURATION__OWNED_CONFIGURATIONS = ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__OWNED_CONFIGURATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Edit Helper Advice Configuration</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -143,22 +180,13 @@ public interface RuleBasedPackage extends EPackage {
 	int RULE_BASED_TYPE_CONFIGURATION__EDIT_HELPER_ADVICE_CONFIGURATION = ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__EDIT_HELPER_ADVICE_CONFIGURATION;
 
 	/**
-	 * The feature id for the '<em><b>Container Configuration</b></em>' containment reference.
+	 * The feature id for the '<em><b>Container Configuration</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int RULE_BASED_TYPE_CONFIGURATION__CONTAINER_CONFIGURATION = ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__CONTAINER_CONFIGURATION;
-
-	/**
-	 * The feature id for the '<em><b>Matcher Configuration</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RULE_BASED_TYPE_CONFIGURATION__MATCHER_CONFIGURATION = ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__MATCHER_CONFIGURATION;
 
 	/**
 	 * The feature id for the '<em><b>Specialized Types</b></em>' reference list.
@@ -168,6 +196,15 @@ public interface RuleBasedPackage extends EPackage {
 	 * @ordered
 	 */
 	int RULE_BASED_TYPE_CONFIGURATION__SPECIALIZED_TYPES = ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__SPECIALIZED_TYPES;
+
+	/**
+	 * The feature id for the '<em><b>Matcher Configuration</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RULE_BASED_TYPE_CONFIGURATION__MATCHER_CONFIGURATION = ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__MATCHER_CONFIGURATION;
 
 	/**
 	 * The feature id for the '<em><b>Rule Configuration</b></em>' containment reference.

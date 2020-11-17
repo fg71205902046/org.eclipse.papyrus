@@ -11,7 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Christian W. Damus - bug 568782
+ *  Christian W. Damus - bugs 568782, 568853
  */
 package org.eclipse.papyrus.uml.types.core.advices.settype;
 
@@ -88,6 +88,15 @@ public interface SetTypeAdviceConfigurationPackage extends EPackage {
 	 * @ordered
 	 */
 	int SET_TYPE_ADVICE_CONFIGURATION__DESCRIPTION = ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Owning Type</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_TYPE_ADVICE_CONFIGURATION__OWNING_TYPE = ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Before</b></em>' reference list.
@@ -180,7 +189,7 @@ public interface SetTypeAdviceConfigurationPackage extends EPackage {
 	int SET_TYPE_ADVICE_CONFIGURATION__ELEMENT_TYPE_SET = ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__ELEMENT_TYPE_SET;
 
 	/**
-	 * The feature id for the '<em><b>Owning Target</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

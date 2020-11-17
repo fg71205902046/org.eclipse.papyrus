@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,8 +11,11 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568853
  */
 package org.eclipse.papyrus.uml.types.core.rules.invariantstereotype;
+
+import org.eclipse.papyrus.infra.types.rulebased.RuleConfiguration;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,7 +35,7 @@ package org.eclipse.papyrus.uml.types.core.rules.invariantstereotype;
  * @model
  * @generated
  */
-public interface InvariantStereotypeRuleConfiguration extends org.eclipse.papyrus.infra.types.rulebased.RuleConfiguration {
+public interface InvariantStereotypeRuleConfiguration extends RuleConfiguration {
 	/**
 	 * Returns the value of the '<em><b>Stereotype Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

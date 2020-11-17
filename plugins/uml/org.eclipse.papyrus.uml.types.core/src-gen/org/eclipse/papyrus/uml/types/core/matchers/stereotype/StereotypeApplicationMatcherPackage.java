@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568853
  */
 package org.eclipse.papyrus.uml.types.core.matchers.stereotype;
 
@@ -78,6 +79,33 @@ public interface StereotypeApplicationMatcherPackage extends EPackage {
 	 * @generated
 	 */
 	int STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION = 0;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION__DESCRIPTION = ElementTypesConfigurationsPackage.ABSTRACT_MATCHER_CONFIGURATION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Owning Type</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION__OWNING_TYPE = ElementTypesConfigurationsPackage.ABSTRACT_MATCHER_CONFIGURATION__OWNING_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Matched Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION__MATCHED_TYPE = ElementTypesConfigurationsPackage.ABSTRACT_MATCHER_CONFIGURATION__MATCHED_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Stereotypes Qualified Names</b></em>' attribute list.

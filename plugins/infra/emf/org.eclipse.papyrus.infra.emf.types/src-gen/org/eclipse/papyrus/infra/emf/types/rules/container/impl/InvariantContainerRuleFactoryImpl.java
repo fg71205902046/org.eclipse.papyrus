@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568853
  */
 package org.eclipse.papyrus.infra.emf.types.rules.container.impl;
 
@@ -80,6 +81,7 @@ public class InvariantContainerRuleFactoryImpl extends EFactoryImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public InvariantContainerRuleConfiguration createInvariantContainerRuleConfiguration() {
 		InvariantContainerRuleConfigurationImpl invariantContainerRuleConfiguration = new InvariantContainerRuleConfigurationImpl();
 		return invariantContainerRuleConfiguration;
@@ -90,6 +92,7 @@ public class InvariantContainerRuleFactoryImpl extends EFactoryImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public HierarchyPermission createHierarchyPermission() {
 		HierarchyPermissionImpl hierarchyPermission = new HierarchyPermissionImpl();
 		return hierarchyPermission;
@@ -100,6 +103,7 @@ public class InvariantContainerRuleFactoryImpl extends EFactoryImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public InvariantContainerRulePackage getInvariantContainerRulePackage() {
 		return (InvariantContainerRulePackage)getEPackage();
 	}

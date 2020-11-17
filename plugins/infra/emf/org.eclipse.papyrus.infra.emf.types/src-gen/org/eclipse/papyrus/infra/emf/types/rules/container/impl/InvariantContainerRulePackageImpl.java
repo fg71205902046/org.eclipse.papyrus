@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568853
  */
 package org.eclipse.papyrus.infra.emf.types.rules.container.impl;
 
@@ -27,6 +28,7 @@ import org.eclipse.papyrus.infra.emf.types.rules.container.InvariantContainerRul
 import org.eclipse.papyrus.infra.emf.types.rules.container.InvariantContainerRuleFactory;
 import org.eclipse.papyrus.infra.emf.types.rules.container.InvariantContainerRulePackage;
 
+import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 import org.eclipse.papyrus.infra.types.rulebased.RuleBasedPackage;
 
 /**
@@ -78,7 +80,7 @@ public class InvariantContainerRulePackageImpl extends EPackageImpl implements I
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link InvariantContainerRulePackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -92,11 +94,14 @@ public class InvariantContainerRulePackageImpl extends EPackageImpl implements I
 		if (isInited) return (InvariantContainerRulePackage)EPackage.Registry.INSTANCE.getEPackage(InvariantContainerRulePackage.eNS_URI);
 
 		// Obtain or create and register package
-		InvariantContainerRulePackageImpl theInvariantContainerRulePackage = (InvariantContainerRulePackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof InvariantContainerRulePackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new InvariantContainerRulePackageImpl());
+		Object registeredInvariantContainerRulePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		InvariantContainerRulePackageImpl theInvariantContainerRulePackage = registeredInvariantContainerRulePackage instanceof InvariantContainerRulePackageImpl ? (InvariantContainerRulePackageImpl)registeredInvariantContainerRulePackage : new InvariantContainerRulePackageImpl();
 
 		isInited = true;
 
 		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
+		ElementTypesConfigurationsPackage.eINSTANCE.eClass();
 		RuleBasedPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
@@ -108,7 +113,6 @@ public class InvariantContainerRulePackageImpl extends EPackageImpl implements I
 		// Mark meta-data to indicate it can't be changed
 		theInvariantContainerRulePackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(InvariantContainerRulePackage.eNS_URI, theInvariantContainerRulePackage);
 		return theInvariantContainerRulePackage;
@@ -119,6 +123,7 @@ public class InvariantContainerRulePackageImpl extends EPackageImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getInvariantContainerRuleConfiguration() {
 		return invariantContainerRuleConfigurationEClass;
 	}
@@ -128,6 +133,7 @@ public class InvariantContainerRulePackageImpl extends EPackageImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getInvariantContainerRuleConfiguration_Permissions() {
 		return (EReference)invariantContainerRuleConfigurationEClass.getEStructuralFeatures().get(0);
 	}
@@ -137,6 +143,7 @@ public class InvariantContainerRulePackageImpl extends EPackageImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getHierarchyPermission() {
 		return hierarchyPermissionEClass;
 	}
@@ -146,6 +153,7 @@ public class InvariantContainerRulePackageImpl extends EPackageImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getHierarchyPermission_ContainerType() {
 		return (EAttribute)hierarchyPermissionEClass.getEStructuralFeatures().get(0);
 	}
@@ -155,6 +163,7 @@ public class InvariantContainerRulePackageImpl extends EPackageImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getHierarchyPermission_Permitted() {
 		return (EAttribute)hierarchyPermissionEClass.getEStructuralFeatures().get(1);
 	}
@@ -164,6 +173,7 @@ public class InvariantContainerRulePackageImpl extends EPackageImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getHierarchyPermission_Strict() {
 		return (EAttribute)hierarchyPermissionEClass.getEStructuralFeatures().get(2);
 	}
@@ -173,6 +183,7 @@ public class InvariantContainerRulePackageImpl extends EPackageImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public InvariantContainerRuleFactory getInvariantContainerRuleFactory() {
 		return (InvariantContainerRuleFactory)getEFactoryInstance();
 	}

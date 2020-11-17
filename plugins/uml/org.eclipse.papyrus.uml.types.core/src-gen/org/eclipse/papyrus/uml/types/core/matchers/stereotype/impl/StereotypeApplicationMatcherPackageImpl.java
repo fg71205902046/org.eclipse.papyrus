@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568853
  */
 package org.eclipse.papyrus.uml.types.core.matchers.stereotype.impl;
 
@@ -69,7 +70,7 @@ public class StereotypeApplicationMatcherPackageImpl extends EPackageImpl implem
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link StereotypeApplicationMatcherPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -83,7 +84,8 @@ public class StereotypeApplicationMatcherPackageImpl extends EPackageImpl implem
 		if (isInited) return (StereotypeApplicationMatcherPackage)EPackage.Registry.INSTANCE.getEPackage(StereotypeApplicationMatcherPackage.eNS_URI);
 
 		// Obtain or create and register package
-		StereotypeApplicationMatcherPackageImpl theStereotypeApplicationMatcherPackage = (StereotypeApplicationMatcherPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof StereotypeApplicationMatcherPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new StereotypeApplicationMatcherPackageImpl());
+		Object registeredStereotypeApplicationMatcherPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		StereotypeApplicationMatcherPackageImpl theStereotypeApplicationMatcherPackage = registeredStereotypeApplicationMatcherPackage instanceof StereotypeApplicationMatcherPackageImpl ? (StereotypeApplicationMatcherPackageImpl)registeredStereotypeApplicationMatcherPackage : new StereotypeApplicationMatcherPackageImpl();
 
 		isInited = true;
 
@@ -100,7 +102,6 @@ public class StereotypeApplicationMatcherPackageImpl extends EPackageImpl implem
 		// Mark meta-data to indicate it can't be changed
 		theStereotypeApplicationMatcherPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(StereotypeApplicationMatcherPackage.eNS_URI, theStereotypeApplicationMatcherPackage);
 		return theStereotypeApplicationMatcherPackage;
@@ -111,6 +112,7 @@ public class StereotypeApplicationMatcherPackageImpl extends EPackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getStereotypeApplicationMatcherConfiguration() {
 		return stereotypeApplicationMatcherConfigurationEClass;
 	}
@@ -120,6 +122,7 @@ public class StereotypeApplicationMatcherPackageImpl extends EPackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getStereotypeApplicationMatcherConfiguration_StereotypesQualifiedNames() {
 		return (EAttribute)stereotypeApplicationMatcherConfigurationEClass.getEStructuralFeatures().get(0);
 	}
@@ -129,6 +132,7 @@ public class StereotypeApplicationMatcherPackageImpl extends EPackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getStereotypeApplicationMatcherConfiguration_ProfileUri() {
 		return (EAttribute)stereotypeApplicationMatcherConfigurationEClass.getEStructuralFeatures().get(1);
 	}
@@ -138,6 +142,7 @@ public class StereotypeApplicationMatcherPackageImpl extends EPackageImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public StereotypeApplicationMatcherFactory getStereotypeApplicationMatcherFactory() {
 		return (StereotypeApplicationMatcherFactory)getEFactoryInstance();
 	}

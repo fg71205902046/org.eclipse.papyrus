@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568853
  */
 package org.eclipse.papyrus.uml.types.core.matchers.stereotype.impl;
 
@@ -100,6 +101,7 @@ public class StereotypeApplicationMatcherConfigurationImpl extends AbstractMatch
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<String> getStereotypesQualifiedNames() {
 		if (stereotypesQualifiedNames == null) {
 			stereotypesQualifiedNames = new EDataTypeUniqueEList<String>(String.class, this, StereotypeApplicationMatcherPackage.STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION__STEREOTYPES_QUALIFIED_NAMES);
@@ -112,6 +114,7 @@ public class StereotypeApplicationMatcherConfigurationImpl extends AbstractMatch
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getProfileUri() {
 		return profileUri;
 	}
@@ -121,6 +124,7 @@ public class StereotypeApplicationMatcherConfigurationImpl extends AbstractMatch
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProfileUri(String newProfileUri) {
 		String oldProfileUri = profileUri;
 		profileUri = newProfileUri;
@@ -207,7 +211,7 @@ public class StereotypeApplicationMatcherConfigurationImpl extends AbstractMatch
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (stereotypesQualifiedNames: ");
 		result.append(stereotypesQualifiedNames);
 		result.append(", profileUri: ");

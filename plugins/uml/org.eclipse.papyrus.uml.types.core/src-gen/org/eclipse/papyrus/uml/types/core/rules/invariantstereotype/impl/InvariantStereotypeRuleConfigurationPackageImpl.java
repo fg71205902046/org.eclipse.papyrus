@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568853
  */
 package org.eclipse.papyrus.uml.types.core.rules.invariantstereotype.impl;
 
@@ -21,6 +22,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 import org.eclipse.papyrus.infra.types.rulebased.RuleBasedPackage;
 import org.eclipse.papyrus.uml.types.core.rules.invariantstereotype.InvariantStereotypeRuleConfiguration;
 import org.eclipse.papyrus.uml.types.core.rules.invariantstereotype.InvariantStereotypeRuleConfigurationFactory;
@@ -68,7 +70,7 @@ public class InvariantStereotypeRuleConfigurationPackageImpl extends EPackageImp
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link InvariantStereotypeRuleConfigurationPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -83,12 +85,16 @@ public class InvariantStereotypeRuleConfigurationPackageImpl extends EPackageImp
 			return (InvariantStereotypeRuleConfigurationPackage) EPackage.Registry.INSTANCE.getEPackage(InvariantStereotypeRuleConfigurationPackage.eNS_URI);
 
 		// Obtain or create and register package
-		InvariantStereotypeRuleConfigurationPackageImpl theInvariantStereotypeRuleConfigurationPackage = (InvariantStereotypeRuleConfigurationPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof InvariantStereotypeRuleConfigurationPackageImpl
-				? EPackage.Registry.INSTANCE.get(eNS_URI) : new InvariantStereotypeRuleConfigurationPackageImpl());
+		Object registeredInvariantStereotypeRuleConfigurationPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		InvariantStereotypeRuleConfigurationPackageImpl theInvariantStereotypeRuleConfigurationPackage = registeredInvariantStereotypeRuleConfigurationPackage instanceof InvariantStereotypeRuleConfigurationPackageImpl
+				? (InvariantStereotypeRuleConfigurationPackageImpl) registeredInvariantStereotypeRuleConfigurationPackage
+				: new InvariantStereotypeRuleConfigurationPackageImpl();
 
 		isInited = true;
 
 		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
+		ElementTypesConfigurationsPackage.eINSTANCE.eClass();
 		RuleBasedPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
@@ -100,7 +106,6 @@ public class InvariantStereotypeRuleConfigurationPackageImpl extends EPackageImp
 		// Mark meta-data to indicate it can't be changed
 		theInvariantStereotypeRuleConfigurationPackage.freeze();
 
-
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(InvariantStereotypeRuleConfigurationPackage.eNS_URI, theInvariantStereotypeRuleConfigurationPackage);
 		return theInvariantStereotypeRuleConfigurationPackage;
@@ -111,6 +116,7 @@ public class InvariantStereotypeRuleConfigurationPackageImpl extends EPackageImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getInvariantStereotypeRuleConfiguration() {
 		return invariantStereotypeRuleConfigurationEClass;
 	}
@@ -120,6 +126,7 @@ public class InvariantStereotypeRuleConfigurationPackageImpl extends EPackageImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getInvariantStereotypeRuleConfiguration_StereotypeQualifiedName() {
 		return (EAttribute) invariantStereotypeRuleConfigurationEClass.getEStructuralFeatures().get(0);
 	}
@@ -129,6 +136,7 @@ public class InvariantStereotypeRuleConfigurationPackageImpl extends EPackageImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getInvariantStereotypeRuleConfiguration_RequiredProfile() {
 		return (EAttribute) invariantStereotypeRuleConfigurationEClass.getEStructuralFeatures().get(1);
 	}
@@ -138,6 +146,7 @@ public class InvariantStereotypeRuleConfigurationPackageImpl extends EPackageImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getInvariantStereotypeRuleConfiguration_Strict() {
 		return (EAttribute) invariantStereotypeRuleConfigurationEClass.getEStructuralFeatures().get(2);
 	}
@@ -147,6 +156,7 @@ public class InvariantStereotypeRuleConfigurationPackageImpl extends EPackageImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public InvariantStereotypeRuleConfigurationFactory getInvariantStereotypeRuleConfigurationFactory() {
 		return (InvariantStereotypeRuleConfigurationFactory) getEFactoryInstance();
 	}
