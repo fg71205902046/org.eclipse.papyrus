@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568853
  */
 package org.eclipse.papyrus.uml.types.core.matchers.stereotype.util;
 
@@ -19,6 +20,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 
 /**
  * <!-- begin-user-doc -->
@@ -46,7 +48,7 @@ public class StereotypeApplicationMatcherResourceFactoryImpl extends ResourceFac
 	 */
 	@Override
 	public Resource createResource(URI uri) {
-		Resource result = new StereotypeApplicationMatcherResourceImpl(uri);
+		XMLResource result = new StereotypeApplicationMatcherResourceImpl(uri);
 		return result;
 	}
 
