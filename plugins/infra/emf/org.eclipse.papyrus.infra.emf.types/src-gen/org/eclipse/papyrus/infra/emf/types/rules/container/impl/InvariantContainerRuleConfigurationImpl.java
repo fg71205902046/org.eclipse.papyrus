@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568853
  */
 package org.eclipse.papyrus.infra.emf.types.rules.container.impl;
 
@@ -80,6 +81,7 @@ public class InvariantContainerRuleConfigurationImpl extends RuleConfigurationIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<HierarchyPermission> getPermissions() {
 		if (permissions == null) {
 			permissions = new EObjectContainmentEList<HierarchyPermission>(HierarchyPermission.class, this, InvariantContainerRulePackage.INVARIANT_CONTAINER_RULE_CONFIGURATION__PERMISSIONS);

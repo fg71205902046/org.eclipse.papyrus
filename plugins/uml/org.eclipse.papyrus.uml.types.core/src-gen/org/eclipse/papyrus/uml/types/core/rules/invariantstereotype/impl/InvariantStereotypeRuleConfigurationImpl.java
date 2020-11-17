@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568853
  */
 package org.eclipse.papyrus.uml.types.core.rules.invariantstereotype.impl;
 
@@ -19,6 +20,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.papyrus.infra.types.rulebased.impl.RuleConfigurationImpl;
 import org.eclipse.papyrus.uml.types.core.rules.invariantstereotype.InvariantStereotypeRuleConfiguration;
 import org.eclipse.papyrus.uml.types.core.rules.invariantstereotype.InvariantStereotypeRuleConfigurationPackage;
 
@@ -37,7 +39,7 @@ import org.eclipse.papyrus.uml.types.core.rules.invariantstereotype.InvariantSte
  *
  * @generated
  */
-public class InvariantStereotypeRuleConfigurationImpl extends org.eclipse.papyrus.infra.types.rulebased.impl.RuleConfigurationImpl implements InvariantStereotypeRuleConfiguration {
+public class InvariantStereotypeRuleConfigurationImpl extends RuleConfigurationImpl implements InvariantStereotypeRuleConfiguration {
 	/**
 	 * The default value of the '{@link #getStereotypeQualifiedName() <em>Stereotype Qualified Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -122,6 +124,7 @@ public class InvariantStereotypeRuleConfigurationImpl extends org.eclipse.papyru
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getStereotypeQualifiedName() {
 		return stereotypeQualifiedName;
 	}
@@ -131,6 +134,7 @@ public class InvariantStereotypeRuleConfigurationImpl extends org.eclipse.papyru
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStereotypeQualifiedName(String newStereotypeQualifiedName) {
 		String oldStereotypeQualifiedName = stereotypeQualifiedName;
 		stereotypeQualifiedName = newStereotypeQualifiedName;
@@ -143,6 +147,7 @@ public class InvariantStereotypeRuleConfigurationImpl extends org.eclipse.papyru
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getRequiredProfile() {
 		return requiredProfile;
 	}
@@ -152,6 +157,7 @@ public class InvariantStereotypeRuleConfigurationImpl extends org.eclipse.papyru
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRequiredProfile(String newRequiredProfile) {
 		String oldRequiredProfile = requiredProfile;
 		requiredProfile = newRequiredProfile;
@@ -164,6 +170,7 @@ public class InvariantStereotypeRuleConfigurationImpl extends org.eclipse.papyru
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isStrict() {
 		return strict;
 	}
@@ -173,6 +180,7 @@ public class InvariantStereotypeRuleConfigurationImpl extends org.eclipse.papyru
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStrict(boolean newStrict) {
 		boolean oldStrict = strict;
 		strict = newStrict;
@@ -268,7 +276,7 @@ public class InvariantStereotypeRuleConfigurationImpl extends org.eclipse.papyru
 		if (eIsProxy())
 			return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (stereotypeQualifiedName: ");
 		result.append(stereotypeQualifiedName);
 		result.append(", requiredProfile: ");

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568853
  */
 package org.eclipse.papyrus.infra.types.rulebased.impl;
 
@@ -109,7 +110,7 @@ public class RuleBasedPackageImpl extends EPackageImpl implements RuleBasedPacka
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link RuleBasedPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -123,7 +124,8 @@ public class RuleBasedPackageImpl extends EPackageImpl implements RuleBasedPacka
 		if (isInited) return (RuleBasedPackage)EPackage.Registry.INSTANCE.getEPackage(RuleBasedPackage.eNS_URI);
 
 		// Obtain or create and register package
-		RuleBasedPackageImpl theRuleBasedPackage = (RuleBasedPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof RuleBasedPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new RuleBasedPackageImpl());
+		Object registeredRuleBasedPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		RuleBasedPackageImpl theRuleBasedPackage = registeredRuleBasedPackage instanceof RuleBasedPackageImpl ? (RuleBasedPackageImpl)registeredRuleBasedPackage : new RuleBasedPackageImpl();
 
 		isInited = true;
 
@@ -140,7 +142,6 @@ public class RuleBasedPackageImpl extends EPackageImpl implements RuleBasedPacka
 		// Mark meta-data to indicate it can't be changed
 		theRuleBasedPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(RuleBasedPackage.eNS_URI, theRuleBasedPackage);
 		return theRuleBasedPackage;
@@ -151,6 +152,7 @@ public class RuleBasedPackageImpl extends EPackageImpl implements RuleBasedPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getRuleBasedTypeConfiguration() {
 		return ruleBasedTypeConfigurationEClass;
 	}
@@ -160,6 +162,7 @@ public class RuleBasedPackageImpl extends EPackageImpl implements RuleBasedPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRuleBasedTypeConfiguration_RuleConfiguration() {
 		return (EReference)ruleBasedTypeConfigurationEClass.getEStructuralFeatures().get(0);
 	}
@@ -169,6 +172,7 @@ public class RuleBasedPackageImpl extends EPackageImpl implements RuleBasedPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getRuleConfiguration() {
 		return ruleConfigurationEClass;
 	}
@@ -178,6 +182,7 @@ public class RuleBasedPackageImpl extends EPackageImpl implements RuleBasedPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCompositeRuleConfiguration() {
 		return compositeRuleConfigurationEClass;
 	}
@@ -187,6 +192,7 @@ public class RuleBasedPackageImpl extends EPackageImpl implements RuleBasedPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCompositeRuleConfiguration_ComposedRules() {
 		return (EReference)compositeRuleConfigurationEClass.getEStructuralFeatures().get(0);
 	}
@@ -196,6 +202,7 @@ public class RuleBasedPackageImpl extends EPackageImpl implements RuleBasedPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNotRuleConfiguration() {
 		return notRuleConfigurationEClass;
 	}
@@ -205,6 +212,7 @@ public class RuleBasedPackageImpl extends EPackageImpl implements RuleBasedPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getNotRuleConfiguration_ComposedRule() {
 		return (EReference)notRuleConfigurationEClass.getEStructuralFeatures().get(0);
 	}
@@ -214,6 +222,7 @@ public class RuleBasedPackageImpl extends EPackageImpl implements RuleBasedPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAndRuleConfiguration() {
 		return andRuleConfigurationEClass;
 	}
@@ -223,6 +232,7 @@ public class RuleBasedPackageImpl extends EPackageImpl implements RuleBasedPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getOrRuleConfiguration() {
 		return orRuleConfigurationEClass;
 	}
@@ -232,6 +242,7 @@ public class RuleBasedPackageImpl extends EPackageImpl implements RuleBasedPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public RuleBasedFactory getRuleBasedFactory() {
 		return (RuleBasedFactory)getEFactoryInstance();
 	}

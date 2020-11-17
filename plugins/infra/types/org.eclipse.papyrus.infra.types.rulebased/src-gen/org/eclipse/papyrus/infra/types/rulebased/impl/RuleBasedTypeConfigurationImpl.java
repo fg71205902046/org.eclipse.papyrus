@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568853
  */
 package org.eclipse.papyrus.infra.types.rulebased.impl;
 
@@ -76,6 +77,7 @@ public class RuleBasedTypeConfigurationImpl extends SpecializationTypeConfigurat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public RuleConfiguration getRuleConfiguration() {
 		return ruleConfiguration;
 	}
@@ -100,6 +102,7 @@ public class RuleBasedTypeConfigurationImpl extends SpecializationTypeConfigurat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRuleConfiguration(RuleConfiguration newRuleConfiguration) {
 		if (newRuleConfiguration != ruleConfiguration) {
 			NotificationChain msgs = null;

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568853
  */
 package org.eclipse.papyrus.infra.types.rulebased.impl;
 
@@ -82,6 +83,7 @@ public class RuleBasedFactoryImpl extends EFactoryImpl implements RuleBasedFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public RuleBasedTypeConfiguration createRuleBasedTypeConfiguration() {
 		RuleBasedTypeConfigurationImpl ruleBasedTypeConfiguration = new RuleBasedTypeConfigurationImpl();
 		return ruleBasedTypeConfiguration;
@@ -92,6 +94,7 @@ public class RuleBasedFactoryImpl extends EFactoryImpl implements RuleBasedFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotRuleConfiguration createNotRuleConfiguration() {
 		NotRuleConfigurationImpl notRuleConfiguration = new NotRuleConfigurationImpl();
 		return notRuleConfiguration;
@@ -102,6 +105,7 @@ public class RuleBasedFactoryImpl extends EFactoryImpl implements RuleBasedFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public AndRuleConfiguration createAndRuleConfiguration() {
 		AndRuleConfigurationImpl andRuleConfiguration = new AndRuleConfigurationImpl();
 		return andRuleConfiguration;
@@ -112,6 +116,7 @@ public class RuleBasedFactoryImpl extends EFactoryImpl implements RuleBasedFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OrRuleConfiguration createOrRuleConfiguration() {
 		OrRuleConfigurationImpl orRuleConfiguration = new OrRuleConfigurationImpl();
 		return orRuleConfiguration;
@@ -122,6 +127,7 @@ public class RuleBasedFactoryImpl extends EFactoryImpl implements RuleBasedFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public RuleBasedPackage getRuleBasedPackage() {
 		return (RuleBasedPackage)getEPackage();
 	}
