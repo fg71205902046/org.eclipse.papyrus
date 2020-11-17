@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2017 CEA LIST, Christian W. Damus, and others.
- * 
+ * Copyright (c) 2012, 2020 CEA LIST, Christian W. Damus, and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   Christian W. Damus - bugs 458685, 468071, 465899, 478314, 485220
+ *   Christian W. Damus - bugs 458685, 468071, 465899, 478314, 485220, 568853
  *   Vincent Lorenzo - bug 492522
  *   Martin Fleck - bug 510268
  *   Francois Le Fevre - bug 477724
@@ -34,6 +34,7 @@ import org.eclipse.papyrus.uml.service.types.tests.deletion.DeleteDependentWithS
 import org.eclipse.papyrus.uml.service.types.tests.deletion.DeletePureUMLElementTest;
 import org.eclipse.papyrus.uml.service.types.tests.deletion.DeleteTransitionsWithVertexTest;
 import org.eclipse.papyrus.uml.service.types.tests.deletion.InteractionDeletionTest;
+import org.eclipse.papyrus.uml.service.types.tests.registry.StereotypeMatcherAdviceTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 
@@ -58,6 +59,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		CreateAssociationSharedTest.class,
 		CreateAssociationSharedDirectedTest.class,
 		InteractionDeletionTest.class,
+		StereotypeMatcherAdviceTest.class,
 })
 public class AllTests {
 	// JUnit 4 Test Suite
