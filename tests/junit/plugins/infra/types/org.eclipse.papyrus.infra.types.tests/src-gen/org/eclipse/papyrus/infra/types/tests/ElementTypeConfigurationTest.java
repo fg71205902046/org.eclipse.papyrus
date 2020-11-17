@@ -13,12 +13,25 @@
  */
 package org.eclipse.papyrus.infra.types.tests;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+
+import java.util.List;
+
+import org.eclipse.papyrus.infra.types.AdviceBindingConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
+import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsFactory;
 
 /**
  * <!-- begin-user-doc -->
  * A test case for the model object '<em><b>Element Type Configuration</b></em>'.
  * <!-- end-user-doc -->
+ * <p>
+ * The following features are tested:
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.types.ElementTypeConfiguration#getOwnedAdvice() <em>Owned Advice</em>}</li>
+ * </ul>
+ * </p>
  * @generated
  */
 public abstract class ElementTypeConfigurationTest extends ConfigurationElementTest {
@@ -42,6 +55,30 @@ public abstract class ElementTypeConfigurationTest extends ConfigurationElementT
 	@Override
 	protected ElementTypeConfiguration getFixture() {
 		return (ElementTypeConfiguration)fixture;
+	}
+
+	/**
+	 * Tests the '{@link org.eclipse.papyrus.infra.types.ElementTypeConfiguration#getOwnedAdvice() <em>Owned Advice</em>}' feature getter.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.infra.types.ElementTypeConfiguration#getOwnedAdvice()
+	 * @generated
+	 */
+	public void testGetOwnedAdvice() {
+		AdviceBindingConfiguration advice1 = ElementTypesConfigurationsFactory.eINSTANCE.createAdviceBindingConfiguration();
+		AdviceBindingConfiguration advice2 = ElementTypesConfigurationsFactory.eINSTANCE.createAdviceBindingConfiguration();
+		
+		assertThat(getFixture().getOwnedAdvice().size(), is(0));
+		
+		// Add to the superset
+		getFixture().getOwnedConfigurations().add(advice1);
+		
+		assertThat(getFixture().getOwnedAdvice(), is(List.of(advice1)));
+		
+		// Add to the subset
+		getFixture().getOwnedAdvice().add(advice2);
+		
+		assertThat(getFixture().getOwnedAdvice(), is(List.of(advice1, advice2)));
 	}
 
 } //ElementTypeConfigurationTest

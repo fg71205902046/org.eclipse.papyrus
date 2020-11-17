@@ -11,7 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Christian W. Damus - bug 568782
+ *  Christian W. Damus - bugs 568782, 568853
  */
 package org.eclipse.papyrus.infra.types;
 
@@ -26,9 +26,9 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration#getElementTypeConfigurations <em>Element Type Configurations</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration#getAdviceBindingsConfigurations <em>Advice Bindings Configurations</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration#getAllAdviceBindings <em>All Advice Bindings</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration#getElementTypeConfigurations <em>Element Type Configurations</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration#getMetamodelNsURI <em>Metamodel Ns URI</em>}</li>
  * </ul>
  *

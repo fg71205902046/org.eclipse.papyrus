@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568853
  */
 package org.eclipse.papyrus.infra.types.provider;
 
@@ -18,12 +19,18 @@ package org.eclipse.papyrus.infra.types.provider;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 import org.eclipse.papyrus.infra.types.AbstractEditHelperAdviceConfiguration;
+import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
+import org.eclipse.uml2.common.edit.command.SubsetSupersetSetCommand;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.types.AbstractEditHelperAdviceConfiguration} object.
@@ -95,6 +102,23 @@ public class AbstractEditHelperAdviceConfigurationItemProvider extends AdviceCon
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+
+	/**
+	 * @see org.eclipse.emf.edit.provider.ItemProviderAdapter#createSetCommand(org.eclipse.emf.edit.domain.EditingDomain, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EStructuralFeature, java.lang.Object)
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected Command createSetCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Object value) {
+		if (feature == ElementTypesConfigurationsPackage.Literals.ABSTRACT_EDIT_HELPER_ADVICE_CONFIGURATION__TARGET) {
+			return new SubsetSupersetSetCommand(domain, owner, feature, new EStructuralFeature[] {ElementTypesConfigurationsPackage.Literals.CONFIGURATION_ELEMENT__OWNING_TYPE}, null, value);
+		}
+		if (feature == ElementTypesConfigurationsPackage.Literals.CONFIGURATION_ELEMENT__OWNING_TYPE) {
+			return new SubsetSupersetSetCommand(domain, owner, feature, null, new EStructuralFeature[] {ElementTypesConfigurationsPackage.Literals.ABSTRACT_EDIT_HELPER_ADVICE_CONFIGURATION__TARGET}, value);
+		}
+		return super.createSetCommand(domain, owner, feature, value);
 	}
 
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568853
  */
 package org.eclipse.papyrus.infra.types;
 
@@ -33,28 +34,35 @@ package org.eclipse.papyrus.infra.types;
  */
 public interface AbstractEditHelperAdviceConfiguration extends AdviceConfiguration {
 	/**
-	 * Returns the value of the '<em><b>Target</b></em>' container reference.
+	 * Returns the value of the '<em><b>Target</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration#getEditHelperAdviceConfiguration <em>Edit Helper Advice Configuration</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.eclipse.papyrus.infra.types.ConfigurationElement#getOwningType() <em>Owning Type</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Target</em>' container reference.
+	 * @return the value of the '<em>Target</em>' reference.
 	 * @see #setTarget(SpecializationTypeConfiguration)
 	 * @see org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage#getAbstractEditHelperAdviceConfiguration_Target()
 	 * @see org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration#getEditHelperAdviceConfiguration
-	 * @model opposite="editHelperAdviceConfiguration" required="true" transient="false"
+	 * @model opposite="editHelperAdviceConfiguration" required="true"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	SpecializationTypeConfiguration getTarget();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.types.AbstractEditHelperAdviceConfiguration#getTarget <em>Target</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.types.AbstractEditHelperAdviceConfiguration#getTarget <em>Target</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Target</em>' container reference.
+	 * @param value the new value of the '<em>Target</em>' reference.
 	 * @see #getTarget()
 	 * @generated
 	 */

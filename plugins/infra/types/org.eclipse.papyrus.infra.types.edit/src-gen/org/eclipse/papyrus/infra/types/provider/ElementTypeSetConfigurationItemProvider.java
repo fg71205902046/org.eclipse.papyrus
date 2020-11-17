@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,11 +11,13 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568853
  */
 package org.eclipse.papyrus.infra.types.provider;
 
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -141,13 +143,28 @@ public class ElementTypeSetConfigurationItemProvider extends ConfigurationElemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeaturesGen(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS);
 			childrenFeatures.add(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS);
+			childrenFeatures.add(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS);
 		}
+		return childrenFeatures;
+	}
+	
+	@Override
+	protected Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			getChildrenFeaturesGen(object);
+
+			// Ensure that types come before advice
+			int typesIndex = childrenFeatures.indexOf(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS);
+			int adviceIndex = childrenFeatures.indexOf(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS);
+			if (typesIndex > adviceIndex) {
+				Collections.swap(childrenFeatures, typesIndex, adviceIndex);
+			}
+		}
+
 		return childrenFeatures;
 	}
 
@@ -207,8 +224,8 @@ public class ElementTypeSetConfigurationItemProvider extends ConfigurationElemen
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__METAMODEL_NS_URI:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS:
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS:
+			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -228,6 +245,16 @@ public class ElementTypeSetConfigurationItemProvider extends ConfigurationElemen
 
 		newChildDescriptors.add
 			(createChildParameter
+				(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS,
+				 ElementTypesConfigurationsFactory.eINSTANCE.createAdviceBindingConfiguration()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS,
+				 ElementTypesConfigurationsFactory.eINSTANCE.createExternallyRegisteredAdvice()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS,
 				 ElementTypesConfigurationsFactory.eINSTANCE.createSpecializationTypeConfiguration()));
 
@@ -240,16 +267,6 @@ public class ElementTypeSetConfigurationItemProvider extends ConfigurationElemen
 			(createChildParameter
 				(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS,
 				 ElementTypesConfigurationsFactory.eINSTANCE.createExternallyRegisteredType()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS,
-				 ElementTypesConfigurationsFactory.eINSTANCE.createAdviceBindingConfiguration()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS,
-				 ElementTypesConfigurationsFactory.eINSTANCE.createExternallyRegisteredAdvice()));
 	}
 
 }

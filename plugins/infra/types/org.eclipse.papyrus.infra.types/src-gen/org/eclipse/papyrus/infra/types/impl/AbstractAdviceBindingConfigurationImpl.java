@@ -11,7 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Christian W. Damus - bug 568782
+ *  Christian W. Damus - bugs 568782, 568853
  */
 package org.eclipse.papyrus.infra.types.impl;
 
@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration;
 import org.eclipse.papyrus.infra.types.AbstractMatcherConfiguration;
@@ -45,6 +44,7 @@ import org.eclipse.papyrus.infra.types.operations.AbstractAdviceBindingConfigura
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.AbstractAdviceBindingConfigurationImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.AbstractAdviceBindingConfigurationImpl#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.types.impl.AbstractAdviceBindingConfigurationImpl#getOwningType <em>Owning Type</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.AbstractAdviceBindingConfigurationImpl#getContainerConfiguration <em>Container Configuration</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.AbstractAdviceBindingConfigurationImpl#getMatcherConfiguration <em>Matcher Configuration</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.AbstractAdviceBindingConfigurationImpl#getInheritance <em>Inheritance</em>}</li>
@@ -226,25 +226,69 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends AdviceConfi
 		target = newTarget;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__TARGET, oldTarget, target));
-		Resource.Internal eInternalResource = eInternalResource();
-		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			ElementTypeConfiguration owningTarget = getOwningTarget();
-			if (owningTarget != null && owningTarget != newTarget) {
-				setOwningTarget(null);
-			}
-		}
 	}
 	
 	@Override
 	public void setTarget(ElementTypeConfiguration value) {
-		ElementTypeSetConfiguration typeSet = getElementTypeSet();
 		ElementTypeConfiguration owningTarget = getOwningTarget();
-		Resource.Internal eInternalResource = eInternalResource();
 		setTargetGen(value);
-		if (typeSet != null && owningTarget != null && eInternalContainer() == null && eInternalResource != null && !eInternalResource.isLoading()) {
-			// We unset the owning target and so need to be re-homed in set. But not while loading the resource!
-			typeSet.getAdviceBindingsConfigurations().add(this);
+		if (owningTarget != null && owningTarget != value) {
+			// Maintain the subset constraint
+			setOwningTarget(null);
 		}
+	}
+
+	public NotificationChain basicSetTarget(ElementTypeConfiguration newTarget, NotificationChain msgs) {
+		ElementTypeConfiguration oldTarget = target;
+		target = newTarget;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__TARGET, oldTarget, newTarget);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ElementTypeConfiguration getOwningType() {
+		if (eContainerFeatureID() != ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TYPE) return null;
+		return (ElementTypeConfiguration)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwningType(ElementTypeConfiguration newOwningType, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newOwningType, ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TYPE, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwningType(ElementTypeConfiguration newOwningType) {
+		if (newOwningType != eInternalContainer() || (eContainerFeatureID() != ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TYPE && newOwningType != null)) {
+			if (EcoreUtil.isAncestor(this, newOwningType))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwningType != null)
+				msgs = ((InternalEObject)newOwningType).eInverseAdd(this, ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNED_CONFIGURATIONS, ElementTypeConfiguration.class, msgs);
+			msgs = basicSetOwningType(newOwningType, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TYPE, newOwningType, newOwningType));
 	}
 
 	/**
@@ -453,48 +497,38 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends AdviceConfi
 	 */
 	@Override
 	public ElementTypeConfiguration getOwningTarget() {
-		if (eContainerFeatureID() != ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TARGET) return null;
-		return (ElementTypeConfiguration)eInternalContainer();
+		ElementTypeConfiguration owningTarget = basicGetOwningTarget();
+		return owningTarget != null && owningTarget.eIsProxy() ? (ElementTypeConfiguration)eResolveProxy((InternalEObject)owningTarget) : owningTarget;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public NotificationChain basicSetOwningTarget(ElementTypeConfiguration newOwningTarget, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newOwningTarget, ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TARGET, msgs);
-		Resource.Internal eInternalResource = eInternalResource();
-		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			if (newOwningTarget != null) {
-				if (newOwningTarget != target) {
-					setTarget(newOwningTarget);
-				}
-			}
-		}
-		return msgs;
+	public ElementTypeConfiguration basicGetOwningTarget() {
+		InternalEObject result = eInternalContainer();
+		return result instanceof ElementTypeConfiguration
+			? (ElementTypeConfiguration) result
+			: null;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setOwningTarget(ElementTypeConfiguration newOwningTarget) {
-		if (newOwningTarget != eInternalContainer() || (eContainerFeatureID() != ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TARGET && newOwningTarget != null)) {
-			if (EcoreUtil.isAncestor(this, newOwningTarget))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newOwningTarget != null)
-				msgs = ((InternalEObject)newOwningTarget).eInverseAdd(this, ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNED_ADVICE, ElementTypeConfiguration.class, msgs);
-			msgs = basicSetOwningTarget(newOwningTarget, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TARGET, newOwningTarget, newOwningTarget));
+		if (newOwningTarget != eInternalContainer()) {
+			setOwningType(newOwningTarget);
+			if (newOwningTarget != null) {
+				// Maintain the subset constraint
+				setTarget(newOwningTarget);
+			}
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TARGET, newOwningTarget, newOwningTarget));
 	}
 
 	/**
@@ -502,19 +536,34 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends AdviceConfi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAddGen(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TYPE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwningType((ElementTypeConfiguration)otherEnd, msgs);
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_SET:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwningSet((ElementTypeSetConfiguration)otherEnd, msgs);
-			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TARGET:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetOwningTarget((ElementTypeConfiguration)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+	
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		NotificationChain result = eInverseAddGen(otherEnd, featureID, msgs);
+
+		switch (featureID) {
+		case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TYPE:
+			if (otherEnd != null) {
+				// Maintain the subset constraint
+				result = basicSetTarget((ElementTypeConfiguration) otherEnd, result);
+			}
+			break;
+		}
+
+		return result;
 	}
 
 	/**
@@ -525,14 +574,14 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends AdviceConfi
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TYPE:
+				return basicSetOwningType(null, msgs);
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__CONTAINER_CONFIGURATION:
 				return basicSetContainerConfiguration(null, msgs);
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__MATCHER_CONFIGURATION:
 				return basicSetMatcherConfiguration(null, msgs);
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_SET:
 				return basicSetOwningSet(null, msgs);
-			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TARGET:
-				return basicSetOwningTarget(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -545,10 +594,10 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends AdviceConfi
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
+			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TYPE:
+				return eInternalContainer().eInverseRemove(this, ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNED_CONFIGURATIONS, ElementTypeConfiguration.class, msgs);
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_SET:
 				return eInternalContainer().eInverseRemove(this, ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS, ElementTypeSetConfiguration.class, msgs);
-			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TARGET:
-				return eInternalContainer().eInverseRemove(this, ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNED_ADVICE, ElementTypeConfiguration.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -580,7 +629,8 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends AdviceConfi
 				if (resolve) return getElementTypeSet();
 				return basicGetElementTypeSet();
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TARGET:
-				return getOwningTarget();
+				if (resolve) return getOwningTarget();
+				return basicGetOwningTarget();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -669,6 +719,8 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends AdviceConfi
 				return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__TARGET:
 				return target != null;
+			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TYPE:
+				return getOwningType() != null;
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__CONTAINER_CONFIGURATION:
 				return containerConfiguration != null;
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__MATCHER_CONFIGURATION:
@@ -682,7 +734,7 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends AdviceConfi
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__ELEMENT_TYPE_SET:
 				return basicGetElementTypeSet() != null;
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TARGET:
-				return getOwningTarget() != null;
+				return basicGetOwningTarget() != null;
 		}
 		return super.eIsSet(featureID);
 	}

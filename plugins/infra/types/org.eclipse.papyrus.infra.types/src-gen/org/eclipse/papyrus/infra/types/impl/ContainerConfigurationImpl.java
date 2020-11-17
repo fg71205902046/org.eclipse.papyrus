@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568853
  */
 package org.eclipse.papyrus.infra.types.impl;
 
@@ -26,13 +27,15 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.types.AbstractMatcherConfiguration;
 import org.eclipse.papyrus.infra.types.ContainerConfiguration;
+import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
+import org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,13 +45,15 @@ import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.types.impl.ContainerConfigurationImpl#getOwningType <em>Owning Type</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.ContainerConfigurationImpl#getContainerMatcherConfiguration <em>Container Matcher Configuration</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.types.impl.ContainerConfigurationImpl#getContainedType <em>Contained Type</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.ContainerConfigurationImpl#getEContainmentFeatures <em>EContainment Features</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ContainerConfigurationImpl extends MinimalEObjectImpl.Container implements ContainerConfiguration {
+public class ContainerConfigurationImpl extends ConfigurationElementImpl implements ContainerConfiguration {
 	/**
 	 * The cached value of the '{@link #getContainerMatcherConfiguration() <em>Container Matcher Configuration</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -58,6 +63,16 @@ public class ContainerConfigurationImpl extends MinimalEObjectImpl.Container imp
 	 * @ordered
 	 */
 	protected AbstractMatcherConfiguration containerMatcherConfiguration;
+
+	/**
+	 * The cached value of the '{@link #getContainedType() <em>Contained Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getContainedType()
+	 * @generated
+	 * @ordered
+	 */
+	protected SpecializationTypeConfiguration containedType;
 
 	/**
 	 * The cached value of the '{@link #getEContainmentFeatures() <em>EContainment Features</em>}' reference list.
@@ -86,6 +101,55 @@ public class ContainerConfigurationImpl extends MinimalEObjectImpl.Container imp
 	@Override
 	protected EClass eStaticClass() {
 		return ElementTypesConfigurationsPackage.Literals.CONTAINER_CONFIGURATION;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ElementTypeConfiguration getOwningType() {
+		if (eContainerFeatureID() != ElementTypesConfigurationsPackage.CONTAINER_CONFIGURATION__OWNING_TYPE) return null;
+		return (ElementTypeConfiguration)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwningType(ElementTypeConfiguration newOwningType, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newOwningType, ElementTypesConfigurationsPackage.CONTAINER_CONFIGURATION__OWNING_TYPE, msgs);
+		Resource.Internal eInternalResource = eInternalResource();
+		if (eInternalResource == null || !eInternalResource.isLoading()) {
+			if (containedType != null && containedType != newOwningType) {
+				setContainedType(null);
+			}
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwningType(ElementTypeConfiguration newOwningType) {
+		if (newOwningType != eInternalContainer() || (eContainerFeatureID() != ElementTypesConfigurationsPackage.CONTAINER_CONFIGURATION__OWNING_TYPE && newOwningType != null)) {
+			if (EcoreUtil.isAncestor(this, newOwningType))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwningType != null)
+				msgs = ((InternalEObject)newOwningType).eInverseAdd(this, ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNED_CONFIGURATIONS, ElementTypeConfiguration.class, msgs);
+			msgs = basicSetOwningType(newOwningType, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ElementTypesConfigurationsPackage.CONTAINER_CONFIGURATION__OWNING_TYPE, newOwningType, newOwningType));
 	}
 
 	/**
@@ -139,6 +203,77 @@ public class ContainerConfigurationImpl extends MinimalEObjectImpl.Container imp
 	 * @generated
 	 */
 	@Override
+	public SpecializationTypeConfiguration getContainedType() {
+		if (containedType != null && containedType.eIsProxy()) {
+			InternalEObject oldContainedType = (InternalEObject)containedType;
+			containedType = (SpecializationTypeConfiguration)eResolveProxy(oldContainedType);
+			if (containedType != oldContainedType) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ElementTypesConfigurationsPackage.CONTAINER_CONFIGURATION__CONTAINED_TYPE, oldContainedType, containedType));
+			}
+		}
+		return containedType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SpecializationTypeConfiguration basicGetContainedType() {
+		return containedType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetContainedType(SpecializationTypeConfiguration newContainedType, NotificationChain msgs) {
+		SpecializationTypeConfiguration oldContainedType = containedType;
+		containedType = newContainedType;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ElementTypesConfigurationsPackage.CONTAINER_CONFIGURATION__CONTAINED_TYPE, oldContainedType, newContainedType);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		Resource.Internal eInternalResource = eInternalResource();
+		if (eInternalResource == null || !eInternalResource.isLoading()) {
+			if (newContainedType != null) {
+				ElementTypeConfiguration owningType = getOwningType();
+				if (newContainedType != owningType) {
+					setOwningType(newContainedType);
+				}
+			}
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setContainedType(SpecializationTypeConfiguration newContainedType) {
+		if (newContainedType != containedType) {
+			NotificationChain msgs = null;
+			if (containedType != null)
+				msgs = ((InternalEObject)containedType).eInverseRemove(this, ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__CONTAINER_CONFIGURATION, SpecializationTypeConfiguration.class, msgs);
+			if (newContainedType != null)
+				msgs = ((InternalEObject)newContainedType).eInverseAdd(this, ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__CONTAINER_CONFIGURATION, SpecializationTypeConfiguration.class, msgs);
+			msgs = basicSetContainedType(newContainedType, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ElementTypesConfigurationsPackage.CONTAINER_CONFIGURATION__CONTAINED_TYPE, newContainedType, newContainedType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EList<EReference> getEContainmentFeatures() {
 		if (eContainmentFeatures == null) {
 			eContainmentFeatures = new EObjectResolvingEList<EReference>(EReference.class, this, ElementTypesConfigurationsPackage.CONTAINER_CONFIGURATION__ECONTAINMENT_FEATURES);
@@ -152,12 +287,50 @@ public class ContainerConfigurationImpl extends MinimalEObjectImpl.Container imp
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ElementTypesConfigurationsPackage.CONTAINER_CONFIGURATION__OWNING_TYPE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwningType((ElementTypeConfiguration)otherEnd, msgs);
+			case ElementTypesConfigurationsPackage.CONTAINER_CONFIGURATION__CONTAINED_TYPE:
+				if (containedType != null)
+					msgs = ((InternalEObject)containedType).eInverseRemove(this, ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__CONTAINER_CONFIGURATION, SpecializationTypeConfiguration.class, msgs);
+				return basicSetContainedType((SpecializationTypeConfiguration)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case ElementTypesConfigurationsPackage.CONTAINER_CONFIGURATION__OWNING_TYPE:
+				return basicSetOwningType(null, msgs);
 			case ElementTypesConfigurationsPackage.CONTAINER_CONFIGURATION__CONTAINER_MATCHER_CONFIGURATION:
 				return basicSetContainerMatcherConfiguration(null, msgs);
+			case ElementTypesConfigurationsPackage.CONTAINER_CONFIGURATION__CONTAINED_TYPE:
+				return basicSetContainedType(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case ElementTypesConfigurationsPackage.CONTAINER_CONFIGURATION__OWNING_TYPE:
+				return eInternalContainer().eInverseRemove(this, ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNED_CONFIGURATIONS, ElementTypeConfiguration.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -170,6 +343,9 @@ public class ContainerConfigurationImpl extends MinimalEObjectImpl.Container imp
 		switch (featureID) {
 			case ElementTypesConfigurationsPackage.CONTAINER_CONFIGURATION__CONTAINER_MATCHER_CONFIGURATION:
 				return getContainerMatcherConfiguration();
+			case ElementTypesConfigurationsPackage.CONTAINER_CONFIGURATION__CONTAINED_TYPE:
+				if (resolve) return getContainedType();
+				return basicGetContainedType();
 			case ElementTypesConfigurationsPackage.CONTAINER_CONFIGURATION__ECONTAINMENT_FEATURES:
 				return getEContainmentFeatures();
 		}
@@ -187,6 +363,9 @@ public class ContainerConfigurationImpl extends MinimalEObjectImpl.Container imp
 		switch (featureID) {
 			case ElementTypesConfigurationsPackage.CONTAINER_CONFIGURATION__CONTAINER_MATCHER_CONFIGURATION:
 				setContainerMatcherConfiguration((AbstractMatcherConfiguration)newValue);
+				return;
+			case ElementTypesConfigurationsPackage.CONTAINER_CONFIGURATION__CONTAINED_TYPE:
+				setContainedType((SpecializationTypeConfiguration)newValue);
 				return;
 			case ElementTypesConfigurationsPackage.CONTAINER_CONFIGURATION__ECONTAINMENT_FEATURES:
 				getEContainmentFeatures().clear();
@@ -207,6 +386,9 @@ public class ContainerConfigurationImpl extends MinimalEObjectImpl.Container imp
 			case ElementTypesConfigurationsPackage.CONTAINER_CONFIGURATION__CONTAINER_MATCHER_CONFIGURATION:
 				setContainerMatcherConfiguration((AbstractMatcherConfiguration)null);
 				return;
+			case ElementTypesConfigurationsPackage.CONTAINER_CONFIGURATION__CONTAINED_TYPE:
+				setContainedType((SpecializationTypeConfiguration)null);
+				return;
 			case ElementTypesConfigurationsPackage.CONTAINER_CONFIGURATION__ECONTAINMENT_FEATURES:
 				getEContainmentFeatures().clear();
 				return;
@@ -222,8 +404,12 @@ public class ContainerConfigurationImpl extends MinimalEObjectImpl.Container imp
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case ElementTypesConfigurationsPackage.CONTAINER_CONFIGURATION__OWNING_TYPE:
+				return getOwningType() != null;
 			case ElementTypesConfigurationsPackage.CONTAINER_CONFIGURATION__CONTAINER_MATCHER_CONFIGURATION:
 				return containerMatcherConfiguration != null;
+			case ElementTypesConfigurationsPackage.CONTAINER_CONFIGURATION__CONTAINED_TYPE:
+				return containedType != null;
 			case ElementTypesConfigurationsPackage.CONTAINER_CONFIGURATION__ECONTAINMENT_FEATURES:
 				return eContainmentFeatures != null && !eContainmentFeatures.isEmpty();
 		}

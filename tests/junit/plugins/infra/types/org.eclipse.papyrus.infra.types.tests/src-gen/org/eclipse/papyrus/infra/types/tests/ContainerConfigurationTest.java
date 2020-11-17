@@ -13,8 +13,6 @@
  */
 package org.eclipse.papyrus.infra.types.tests;
 
-import junit.framework.TestCase;
-
 import junit.textui.TestRunner;
 
 import org.eclipse.papyrus.infra.types.ContainerConfiguration;
@@ -26,15 +24,7 @@ import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ContainerConfigurationTest extends TestCase {
-
-	/**
-	 * The fixture for this Container Configuration test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ContainerConfiguration fixture = null;
+public class ContainerConfigurationTest extends ConfigurationElementTest {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -56,23 +46,14 @@ public class ContainerConfigurationTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Container Configuration test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void setFixture(ContainerConfiguration fixture) {
-		this.fixture = fixture;
-	}
-
-	/**
 	 * Returns the fixture for this Container Configuration test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected ContainerConfiguration getFixture() {
-		return fixture;
+		return (ContainerConfiguration)fixture;
 	}
 
 	/**

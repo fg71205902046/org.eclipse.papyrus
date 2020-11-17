@@ -11,7 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Christian W. Damus - bug 568782
+ *  Christian W. Damus - bugs 568782, 568853
  */
 package org.eclipse.papyrus.infra.types.util;
 
@@ -128,24 +128,14 @@ public class ElementTypesConfigurationsSwitch<T> extends Switch<T> {
 			case ElementTypesConfigurationsPackage.CONTAINER_CONFIGURATION: {
 				ContainerConfiguration containerConfiguration = (ContainerConfiguration)theEObject;
 				T result = caseContainerConfiguration(containerConfiguration);
+				if (result == null) result = caseConfigurationElement(containerConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ElementTypesConfigurationsPackage.ABSTRACT_MATCHER_CONFIGURATION: {
 				AbstractMatcherConfiguration abstractMatcherConfiguration = (AbstractMatcherConfiguration)theEObject;
 				T result = caseAbstractMatcherConfiguration(abstractMatcherConfiguration);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ElementTypesConfigurationsPackage.IDENTIFIED_CONFIGURATION: {
-				IdentifiedConfiguration identifiedConfiguration = (IdentifiedConfiguration)theEObject;
-				T result = caseIdentifiedConfiguration(identifiedConfiguration);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ElementTypesConfigurationsPackage.NAMED_CONFIGURATION: {
-				NamedConfiguration namedConfiguration = (NamedConfiguration)theEObject;
-				T result = caseNamedConfiguration(namedConfiguration);
+				if (result == null) result = caseConfigurationElement(abstractMatcherConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -164,6 +154,18 @@ public class ElementTypesConfigurationsSwitch<T> extends Switch<T> {
 				T result = caseAbstractEditHelperAdviceConfiguration(abstractEditHelperAdviceConfiguration);
 				if (result == null) result = caseAdviceConfiguration(abstractEditHelperAdviceConfiguration);
 				if (result == null) result = caseConfigurationElement(abstractEditHelperAdviceConfiguration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ElementTypesConfigurationsPackage.IDENTIFIED_CONFIGURATION: {
+				IdentifiedConfiguration identifiedConfiguration = (IdentifiedConfiguration)theEObject;
+				T result = caseIdentifiedConfiguration(identifiedConfiguration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ElementTypesConfigurationsPackage.NAMED_CONFIGURATION: {
+				NamedConfiguration namedConfiguration = (NamedConfiguration)theEObject;
+				T result = caseNamedConfiguration(namedConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -200,6 +202,7 @@ public class ElementTypesConfigurationsSwitch<T> extends Switch<T> {
 				MatcherConfiguration matcherConfiguration = (MatcherConfiguration)theEObject;
 				T result = caseMatcherConfiguration(matcherConfiguration);
 				if (result == null) result = caseAbstractMatcherConfiguration(matcherConfiguration);
+				if (result == null) result = caseConfigurationElement(matcherConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
