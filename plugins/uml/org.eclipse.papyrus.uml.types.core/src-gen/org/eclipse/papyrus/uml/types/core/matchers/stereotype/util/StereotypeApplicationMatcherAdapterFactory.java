@@ -22,9 +22,12 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration;
 import org.eclipse.papyrus.infra.types.AbstractMatcherConfiguration;
 
+import org.eclipse.papyrus.infra.types.AdviceConfiguration;
 import org.eclipse.papyrus.infra.types.ConfigurationElement;
+import org.eclipse.papyrus.infra.types.IdentifiedConfiguration;
 import org.eclipse.papyrus.uml.types.core.matchers.stereotype.*;
 
 /**
@@ -88,12 +91,28 @@ public class StereotypeApplicationMatcherAdapterFactory extends AdapterFactoryIm
 				return createStereotypeApplicationMatcherConfigurationAdapter();
 			}
 			@Override
+			public Adapter caseStereotypeMatcherAdviceConfiguration(StereotypeMatcherAdviceConfiguration object) {
+				return createStereotypeMatcherAdviceConfigurationAdapter();
+			}
+			@Override
 			public Adapter caseConfigurationElement(ConfigurationElement object) {
 				return createConfigurationElementAdapter();
 			}
 			@Override
 			public Adapter caseAbstractMatcherConfiguration(AbstractMatcherConfiguration object) {
 				return createAbstractMatcherConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseAdviceConfiguration(AdviceConfiguration object) {
+				return createAdviceConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseIdentifiedConfiguration(IdentifiedConfiguration object) {
+				return createIdentifiedConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseAbstractAdviceBindingConfiguration(AbstractAdviceBindingConfiguration object) {
+				return createAbstractAdviceBindingConfigurationAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -130,6 +149,20 @@ public class StereotypeApplicationMatcherAdapterFactory extends AdapterFactoryIm
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeMatcherAdviceConfiguration <em>Stereotype Matcher Advice Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeMatcherAdviceConfiguration
+	 * @generated
+	 */
+	public Adapter createStereotypeMatcherAdviceConfigurationAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.types.ConfigurationElement <em>Configuration Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -154,6 +187,48 @@ public class StereotypeApplicationMatcherAdapterFactory extends AdapterFactoryIm
 	 * @generated
 	 */
 	public Adapter createAbstractMatcherConfigurationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.types.AdviceConfiguration <em>Advice Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.types.AdviceConfiguration
+	 * @generated
+	 */
+	public Adapter createAdviceConfigurationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.types.IdentifiedConfiguration <em>Identified Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.types.IdentifiedConfiguration
+	 * @generated
+	 */
+	public Adapter createIdentifiedConfigurationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration <em>Abstract Advice Binding Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration
+	 * @generated
+	 */
+	public Adapter createAbstractAdviceBindingConfigurationAdapter() {
 		return null;
 	}
 

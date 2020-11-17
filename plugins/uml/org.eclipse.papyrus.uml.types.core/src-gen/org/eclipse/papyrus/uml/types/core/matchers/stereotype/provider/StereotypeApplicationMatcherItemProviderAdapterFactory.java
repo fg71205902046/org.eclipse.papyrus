@@ -46,6 +46,8 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 import org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration;
 import org.eclipse.papyrus.infra.types.ContainerConfiguration;
+import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
+import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 import org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration;
 import org.eclipse.papyrus.infra.types.util.ElementTypesConfigurationsSwitch;
@@ -123,6 +125,29 @@ public class StereotypeApplicationMatcherItemProviderAdapterFactory extends Ster
 		}
 
 		return stereotypeApplicationMatcherConfigurationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeMatcherAdviceConfiguration} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StereotypeMatcherAdviceConfigurationItemProvider stereotypeMatcherAdviceConfigurationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeMatcherAdviceConfiguration}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStereotypeMatcherAdviceConfigurationAdapter() {
+		if (stereotypeMatcherAdviceConfigurationItemProvider == null) {
+			stereotypeMatcherAdviceConfigurationItemProvider = new StereotypeMatcherAdviceConfigurationItemProvider(this);
+		}
+
+		return stereotypeMatcherAdviceConfigurationItemProvider;
 	}
 
 	/**
@@ -231,6 +256,7 @@ public class StereotypeApplicationMatcherItemProviderAdapterFactory extends Ster
 	@Override
 	public void dispose() {
 		if (stereotypeApplicationMatcherConfigurationItemProvider != null) stereotypeApplicationMatcherConfigurationItemProvider.dispose();
+		if (stereotypeMatcherAdviceConfigurationItemProvider != null) stereotypeMatcherAdviceConfigurationItemProvider.dispose();
 	}
 
 	/**
@@ -279,11 +305,44 @@ public class StereotypeApplicationMatcherItemProviderAdapterFactory extends Ster
 			 * @generated
 			 */
 			@Override
+			public Object caseElementTypeSetConfiguration(ElementTypeSetConfiguration object) {
+				newChildDescriptors.add
+					(createChildParameter
+						(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS,
+						 StereotypeApplicationMatcherFactory.eINSTANCE.createStereotypeMatcherAdviceConfiguration()));
+
+				return null;
+			}
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseElementTypeConfiguration(ElementTypeConfiguration object) {
+				newChildDescriptors.add
+					(createChildParameter
+						(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_CONFIGURATION__OWNED_ADVICE,
+						 StereotypeApplicationMatcherFactory.eINSTANCE.createStereotypeMatcherAdviceConfiguration()));
+
+				return null;
+			}
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
 			public Object caseAbstractAdviceBindingConfiguration(AbstractAdviceBindingConfiguration object) {
 				newChildDescriptors.add
 					(createChildParameter
 						(ElementTypesConfigurationsPackage.Literals.ABSTRACT_ADVICE_BINDING_CONFIGURATION__MATCHER_CONFIGURATION,
 						 StereotypeApplicationMatcherFactory.eINSTANCE.createStereotypeApplicationMatcherConfiguration()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ElementTypesConfigurationsPackage.Literals.ABSTRACT_ADVICE_BINDING_CONFIGURATION__MATCHER_CONFIGURATION,
+						 StereotypeApplicationMatcherFactory.eINSTANCE.createStereotypeMatcherAdviceConfiguration()));
 
 				return null;
 			}
@@ -300,6 +359,11 @@ public class StereotypeApplicationMatcherItemProviderAdapterFactory extends Ster
 						(ElementTypesConfigurationsPackage.Literals.CONTAINER_CONFIGURATION__CONTAINER_MATCHER_CONFIGURATION,
 						 StereotypeApplicationMatcherFactory.eINSTANCE.createStereotypeApplicationMatcherConfiguration()));
 
+				newChildDescriptors.add
+					(createChildParameter
+						(ElementTypesConfigurationsPackage.Literals.CONTAINER_CONFIGURATION__CONTAINER_MATCHER_CONFIGURATION,
+						 StereotypeApplicationMatcherFactory.eINSTANCE.createStereotypeMatcherAdviceConfiguration()));
+
 				return null;
 			}
  
@@ -314,6 +378,11 @@ public class StereotypeApplicationMatcherItemProviderAdapterFactory extends Ster
 					(createChildParameter
 						(ElementTypesConfigurationsPackage.Literals.SPECIALIZATION_TYPE_CONFIGURATION__MATCHER_CONFIGURATION,
 						 StereotypeApplicationMatcherFactory.eINSTANCE.createStereotypeApplicationMatcherConfiguration()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ElementTypesConfigurationsPackage.Literals.SPECIALIZATION_TYPE_CONFIGURATION__MATCHER_CONFIGURATION,
+						 StereotypeApplicationMatcherFactory.eINSTANCE.createStereotypeMatcherAdviceConfiguration()));
 
 				return null;
 			}

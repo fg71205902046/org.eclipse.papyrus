@@ -70,6 +70,7 @@ public class StereotypeApplicationMatcherFactoryImpl extends EFactoryImpl implem
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case StereotypeApplicationMatcherPackage.STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION: return createStereotypeApplicationMatcherConfiguration();
+			case StereotypeApplicationMatcherPackage.STEREOTYPE_MATCHER_ADVICE_CONFIGURATION: return createStereotypeMatcherAdviceConfiguration();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -84,6 +85,17 @@ public class StereotypeApplicationMatcherFactoryImpl extends EFactoryImpl implem
 	public StereotypeApplicationMatcherConfiguration createStereotypeApplicationMatcherConfiguration() {
 		StereotypeApplicationMatcherConfigurationImpl stereotypeApplicationMatcherConfiguration = new StereotypeApplicationMatcherConfigurationImpl();
 		return stereotypeApplicationMatcherConfiguration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public StereotypeMatcherAdviceConfiguration createStereotypeMatcherAdviceConfiguration() {
+		StereotypeMatcherAdviceConfigurationImpl stereotypeMatcherAdviceConfiguration = new StereotypeMatcherAdviceConfigurationImpl();
+		return stereotypeMatcherAdviceConfiguration;
 	}
 
 	/**
