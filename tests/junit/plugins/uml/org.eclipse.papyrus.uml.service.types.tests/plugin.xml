@@ -29,5 +29,34 @@
             path="pathmap://bug465899/library.uml">
       </library>
    </extension>
+   <extension
+         point="org.eclipse.emf.ecore.dynamic_package">
+      <resource
+            location="resource/UnitTest.profile.uml#_bPTI4CkMEeuEo8scjf0hcw"
+            uri="http://www.eclipse.org/Papyrus/2020/test/UnitTest">
+      </resource>
+   </extension>
+   <extension
+         point="org.eclipse.uml2.uml.dynamic_package">
+      <profile
+            location="resource/UnitTest.profile.uml#_9GF5oCkLEeuEo8scjf0hcw"
+            uri="http://www.eclipse.org/Papyrus/2020/test/UnitTest">
+      </profile>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
+      <elementTypeSet
+            clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
+            path="resource/UnitTest.elementtypesconfigurations">
+      </elementTypeSet>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+      <profile
+            description="Unit Test profile for UML Service Types tests"
+            name="Unit Test Profile"
+            path="resource/UnitTest.profile.uml">
+      </profile>
+   </extension>
 
 </fragment>
