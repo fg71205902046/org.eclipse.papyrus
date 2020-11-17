@@ -27,6 +27,7 @@ import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 import org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeApplicationMatcherConfiguration;
 import org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeApplicationMatcherFactory;
 import org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeApplicationMatcherPackage;
+import org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeMatcherAdviceConfiguration;
 
 /**
  * <!-- begin-user-doc -->
@@ -41,6 +42,13 @@ public class StereotypeApplicationMatcherPackageImpl extends EPackageImpl implem
 	 * @generated
 	 */
 	private EClass stereotypeApplicationMatcherConfigurationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass stereotypeMatcherAdviceConfigurationEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -143,6 +151,16 @@ public class StereotypeApplicationMatcherPackageImpl extends EPackageImpl implem
 	 * @generated
 	 */
 	@Override
+	public EClass getStereotypeMatcherAdviceConfiguration() {
+		return stereotypeMatcherAdviceConfigurationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public StereotypeApplicationMatcherFactory getStereotypeApplicationMatcherFactory() {
 		return (StereotypeApplicationMatcherFactory)getEFactoryInstance();
 	}
@@ -169,6 +187,8 @@ public class StereotypeApplicationMatcherPackageImpl extends EPackageImpl implem
 		stereotypeApplicationMatcherConfigurationEClass = createEClass(STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION);
 		createEAttribute(stereotypeApplicationMatcherConfigurationEClass, STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION__STEREOTYPES_QUALIFIED_NAMES);
 		createEAttribute(stereotypeApplicationMatcherConfigurationEClass, STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION__PROFILE_URI);
+
+		stereotypeMatcherAdviceConfigurationEClass = createEClass(STEREOTYPE_MATCHER_ADVICE_CONFIGURATION);
 	}
 
 	/**
@@ -196,7 +216,6 @@ public class StereotypeApplicationMatcherPackageImpl extends EPackageImpl implem
 
 		// Obtain other dependent packages
 		ElementTypesConfigurationsPackage theElementTypesConfigurationsPackage = (ElementTypesConfigurationsPackage)EPackage.Registry.INSTANCE.getEPackage(ElementTypesConfigurationsPackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -204,11 +223,15 @@ public class StereotypeApplicationMatcherPackageImpl extends EPackageImpl implem
 
 		// Add supertypes to classes
 		stereotypeApplicationMatcherConfigurationEClass.getESuperTypes().add(theElementTypesConfigurationsPackage.getAbstractMatcherConfiguration());
+		stereotypeMatcherAdviceConfigurationEClass.getESuperTypes().add(theElementTypesConfigurationsPackage.getAbstractAdviceBindingConfiguration());
+		stereotypeMatcherAdviceConfigurationEClass.getESuperTypes().add(this.getStereotypeApplicationMatcherConfiguration());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(stereotypeApplicationMatcherConfigurationEClass, StereotypeApplicationMatcherConfiguration.class, "StereotypeApplicationMatcherConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getStereotypeApplicationMatcherConfiguration_StereotypesQualifiedNames(), theEcorePackage.getEString(), "stereotypesQualifiedNames", null, 1, -1, StereotypeApplicationMatcherConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getStereotypeApplicationMatcherConfiguration_StereotypesQualifiedNames(), ecorePackage.getEString(), "stereotypesQualifiedNames", null, 1, -1, StereotypeApplicationMatcherConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getStereotypeApplicationMatcherConfiguration_ProfileUri(), ecorePackage.getEString(), "profileUri", null, 0, 1, StereotypeApplicationMatcherConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(stereotypeMatcherAdviceConfigurationEClass, StereotypeMatcherAdviceConfiguration.class, "StereotypeMatcherAdviceConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

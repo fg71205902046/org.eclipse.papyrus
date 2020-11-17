@@ -145,6 +145,188 @@ public interface StereotypeApplicationMatcherPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.uml.types.core.matchers.stereotype.impl.StereotypeMatcherAdviceConfigurationImpl <em>Stereotype Matcher Advice Configuration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.uml.types.core.matchers.stereotype.impl.StereotypeMatcherAdviceConfigurationImpl
+	 * @see org.eclipse.papyrus.uml.types.core.matchers.stereotype.impl.StereotypeApplicationMatcherPackageImpl#getStereotypeMatcherAdviceConfiguration()
+	 * @generated
+	 */
+	int STEREOTYPE_MATCHER_ADVICE_CONFIGURATION = 1;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_MATCHER_ADVICE_CONFIGURATION__DESCRIPTION = ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Owning Type</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_MATCHER_ADVICE_CONFIGURATION__OWNING_TYPE = ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Before</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_MATCHER_ADVICE_CONFIGURATION__BEFORE = ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__BEFORE;
+
+	/**
+	 * The feature id for the '<em><b>After</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_MATCHER_ADVICE_CONFIGURATION__AFTER = ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__AFTER;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_MATCHER_ADVICE_CONFIGURATION__IDENTIFIER = ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_MATCHER_ADVICE_CONFIGURATION__TARGET = ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Container Configuration</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_MATCHER_ADVICE_CONFIGURATION__CONTAINER_CONFIGURATION = ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__CONTAINER_CONFIGURATION;
+
+	/**
+	 * The feature id for the '<em><b>Matcher Configuration</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_MATCHER_ADVICE_CONFIGURATION__MATCHER_CONFIGURATION = ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__MATCHER_CONFIGURATION;
+
+	/**
+	 * The feature id for the '<em><b>Inheritance</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_MATCHER_ADVICE_CONFIGURATION__INHERITANCE = ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__INHERITANCE;
+
+	/**
+	 * The feature id for the '<em><b>Apply To All Types</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_MATCHER_ADVICE_CONFIGURATION__APPLY_TO_ALL_TYPES = ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__APPLY_TO_ALL_TYPES;
+
+	/**
+	 * The feature id for the '<em><b>Owning Set</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_MATCHER_ADVICE_CONFIGURATION__OWNING_SET = ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_SET;
+
+	/**
+	 * The feature id for the '<em><b>Element Type Set</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_MATCHER_ADVICE_CONFIGURATION__ELEMENT_TYPE_SET = ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__ELEMENT_TYPE_SET;
+
+	/**
+	 * The feature id for the '<em><b>Owning Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_MATCHER_ADVICE_CONFIGURATION__OWNING_TARGET = ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Matched Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_MATCHER_ADVICE_CONFIGURATION__MATCHED_TYPE = ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Stereotypes Qualified Names</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_MATCHER_ADVICE_CONFIGURATION__STEREOTYPES_QUALIFIED_NAMES = ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Profile Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_MATCHER_ADVICE_CONFIGURATION__PROFILE_URI = ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Stereotype Matcher Advice Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_MATCHER_ADVICE_CONFIGURATION_FEATURE_COUNT = ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION_FEATURE_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Get Element Type Set</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_MATCHER_ADVICE_CONFIGURATION___GET_ELEMENT_TYPE_SET = ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION___GET_ELEMENT_TYPE_SET;
+
+	/**
+	 * The number of operations of the '<em>Stereotype Matcher Advice Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_MATCHER_ADVICE_CONFIGURATION_OPERATION_COUNT = ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION_OPERATION_COUNT + 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeApplicationMatcherConfiguration <em>Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -175,6 +357,16 @@ public interface StereotypeApplicationMatcherPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getStereotypeApplicationMatcherConfiguration_ProfileUri();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeMatcherAdviceConfiguration <em>Stereotype Matcher Advice Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Stereotype Matcher Advice Configuration</em>'.
+	 * @see org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeMatcherAdviceConfiguration
+	 * @generated
+	 */
+	EClass getStereotypeMatcherAdviceConfiguration();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -224,6 +416,16 @@ public interface StereotypeApplicationMatcherPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION__PROFILE_URI = eINSTANCE.getStereotypeApplicationMatcherConfiguration_ProfileUri();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.uml.types.core.matchers.stereotype.impl.StereotypeMatcherAdviceConfigurationImpl <em>Stereotype Matcher Advice Configuration</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.uml.types.core.matchers.stereotype.impl.StereotypeMatcherAdviceConfigurationImpl
+		 * @see org.eclipse.papyrus.uml.types.core.matchers.stereotype.impl.StereotypeApplicationMatcherPackageImpl#getStereotypeMatcherAdviceConfiguration()
+		 * @generated
+		 */
+		EClass STEREOTYPE_MATCHER_ADVICE_CONFIGURATION = eINSTANCE.getStereotypeMatcherAdviceConfiguration();
 
 	}
 

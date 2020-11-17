@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,17 +10,18 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568853
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.types.core.matchers.stereotype;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Profile;
 
 
@@ -38,12 +39,18 @@ public class StereotypeApplicationMatcher implements IElementMatcher {
 	}
 
 
+	@Override
 	public boolean matches(EObject eObject) {
 		if (!(eObject instanceof Element)) {
 			return false;
 		}
 
 		Element element = (Element) eObject;
+
+		if (profileUri != null && !isProfileApplied(element, profileUri)) {
+			return false;
+		}
+
 		if (element.getAppliedStereotypes().isEmpty()) {
 			return false;
 		}
@@ -54,22 +61,6 @@ public class StereotypeApplicationMatcher implements IElementMatcher {
 			}
 		}
 
-		if (profileUri != null) {
-			Model model = element.getModel();
-			if (model == null) {
-				return false;
-			}
-
-			List<String> appliedProfileByUri = new ArrayList<String>();
-			for (Profile appliedProfile : model.getAllAppliedProfiles()) {
-				appliedProfileByUri.add(appliedProfile.getURI());
-			}
-
-			if (!appliedProfileByUri.contains(profileUri)) {
-				return false;
-			}
-
-		}
 		return true;
 	}
 
@@ -80,6 +71,20 @@ public class StereotypeApplicationMatcher implements IElementMatcher {
 
 	public void setStereotypesQualifiedNames(List<String> stereotypeQualifiedName) {
 		this.stereotypesQualifiedNames = stereotypeQualifiedName;
+	}
+
+	public static boolean isProfileApplied(Element element, String profileURI) {
+		org.eclipse.uml2.uml.Package package_ = element.getNearestPackage();
+		if (package_ == null) {
+			return false;
+		}
+
+		Set<String> appliedProfileByURI = new HashSet<>();
+		for (Profile appliedProfile : package_.getAllAppliedProfiles()) {
+			appliedProfileByURI.add(appliedProfile.getURI());
+		}
+
+		return appliedProfileByURI.contains(profileURI);
 	}
 
 }

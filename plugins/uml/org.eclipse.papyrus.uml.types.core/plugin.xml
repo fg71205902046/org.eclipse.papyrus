@@ -2,25 +2,6 @@
 <?eclipse version="3.0"?>
 
 <plugin>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated SetTypeAdvice -->
       <package
@@ -177,6 +158,13 @@
       </adviceConfigurationKind>
    </extension>
    <extension
+         point="org.eclipse.papyrus.infra.types.core.adviceConfigurationKind">
+      <adviceConfigurationKind
+            configurationClass="org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeMatcherAdviceConfiguration"
+            factoryClass="org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeMatcherAdviceAdviceFactory">
+      </adviceConfigurationKind>
+   </extension>
+   <extension
          point="org.eclipse.papyrus.infra.types.rulebased.ruleKind">
       <ruleKind
             configurationClass="org.eclipse.papyrus.uml.types.core.rules.invariantstereotype.InvariantStereotypeRuleConfiguration"
@@ -187,6 +175,13 @@
          point="org.eclipse.papyrus.infra.types.core.matcherConfigurationKind">
       <matcherConfigurationKind
             configurationClass="org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeApplicationMatcherConfiguration"
+            factoryClass="org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeApplicationMatcherConfigurationFactory">
+      </matcherConfigurationKind>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.types.core.matcherConfigurationKind">
+      <matcherConfigurationKind
+            configurationClass="org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeMatcherAdviceConfiguration"
             factoryClass="org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeApplicationMatcherConfigurationFactory">
       </matcherConfigurationKind>
    </extension>
