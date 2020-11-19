@@ -17,6 +17,9 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import java.util.HashMap;
+
+import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
@@ -63,7 +66,7 @@ public abstract class AbstractAdviceBindingConfigurationTest extends AdviceConfi
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration#getElementTypeSet()
-	 * @generated
+	 * @generated not
 	 */
 	public void testGetElementTypeSet() {
 		assertThat(getFixture().getElementTypeSet(), nullValue());
@@ -80,11 +83,13 @@ public abstract class AbstractAdviceBindingConfigurationTest extends AdviceConfi
 		assertThat(getFixture().getElementTypeSet(), is(set));
 	}
 	
-	public void validateAbstractAdviceBindingConfiguration_apply_to_all_types() {
+	public void testValidateAbstractAdviceBindingConfiguration_apply_to_all_types() {
 		ElementTypesConfigurationsValidator validator = new ElementTypesConfigurationsValidator();
 		ElementTypeConfiguration type1 = ElementTypesConfigurationsFactory.eINSTANCE.createMetamodelTypeConfiguration();
 		
-		assertFalse(validator.validateAbstractAdviceBindingConfiguration_apply_to_all_types(getFixture(), null, null));
+		BasicDiagnostic diagnostics = new BasicDiagnostic();
+		assertFalse(validator.validateAbstractAdviceBindingConfiguration_apply_to_all_types(getFixture(), diagnostics, new HashMap<>()));
+		assertThat(diagnostics, isError());
 		
 		getFixture().setApplyToAllTypes(true);
 		
@@ -92,7 +97,9 @@ public abstract class AbstractAdviceBindingConfigurationTest extends AdviceConfi
 		
 		getFixture().setTarget(type1);
 		
-		assertFalse(validator.validateAbstractAdviceBindingConfiguration_apply_to_all_types(getFixture(), null, null));
+		diagnostics = new BasicDiagnostic();
+		assertFalse(validator.validateAbstractAdviceBindingConfiguration_apply_to_all_types(getFixture(), diagnostics, new HashMap<>()));
+		assertThat(diagnostics, isError());
 		
 		getFixture().setApplyToAllTypes(false);
 		
