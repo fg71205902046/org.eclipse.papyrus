@@ -13,6 +13,9 @@
  */
 package org.eclipse.papyrus.infra.types.tests;
 
+import org.eclipse.emf.common.EMFPlugin;
+import org.eclipse.emf.ecore.plugin.EcorePlugin.ExtensionProcessor;
+
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
@@ -26,6 +29,12 @@ import junit.textui.TestRunner;
  */
 public class TypesConfigurationsAllTests extends TestSuite {
 
+	static {
+		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
+			ExtensionProcessor.process(TypesConfigurationsAllTests.class.getClassLoader());
+		}
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

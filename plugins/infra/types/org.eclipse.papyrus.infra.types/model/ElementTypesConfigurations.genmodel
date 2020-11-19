@@ -12,7 +12,7 @@
     editPluginID="org.eclipse.papyrus.infra.types.edit" editorPluginID="org.eclipse.papyrus.infra.types.editor"
     testsPluginID="org.eclipse.papyrus.infra.types.tests" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"
     operationReflection="true" importOrganizing="true" pluginKey="ElementTypesConfigurations"
-    operationsFolder="src-gen/">
+    decoration="Live" operationsFolder="src-gen/">
   <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
     <details key="OPPOSITE_ROLE_NAMES" value="IGNORE"/>
     <details key="DUPLICATE_FEATURES" value="DISCARD"/>

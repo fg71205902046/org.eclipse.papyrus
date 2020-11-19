@@ -36,6 +36,12 @@ import org.eclipse.papyrus.infra.types.*;
  */
 public class ElementTypesConfigurationsValidator extends EObjectValidator {
 	/**
+	 * A validation context key set {@code true} to indicate that validation is happening in the loading
+	 * of the Element Types Registry.
+	 */
+	public static final String CONTEXT_REGISTRY_LOADING = "org.eclipse.papyrus.infra.types.registry_loading"; //$NON-NLS-1$
+	
+	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -380,7 +386,7 @@ public class ElementTypesConfigurationsValidator extends EObjectValidator {
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return Activator.INSTANCE.getPluginResourceLocator();
+		return Activator.INSTANCE;
 	}
 	
 	@Override
@@ -389,16 +395,22 @@ public class ElementTypesConfigurationsValidator extends EObjectValidator {
 		case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION:
 			switch (constraint) {
 			case "apply_to_all_types": //$NON-NLS-1$
-				// Prefer warning to error severity. And how exactly did the constraint fail?
+				// The constraint will fail for all existing models that haven't been edited since the constraint
+				// was added. So, don't prevent the registry loading them, but still warn about the problem
+				if (context != null && Boolean.TRUE.equals(context.get(CONTEXT_REGISTRY_LOADING))) {
+					severity = Diagnostic.WARNING;
+				}
+				
+				// How exactly did the constraint fail?
 				AbstractAdviceBindingConfiguration advice = (AbstractAdviceBindingConfiguration) eObject;
 				if (advice.isApplyToAllTypes()) {
-					diagnostics.add(new BasicDiagnostic(Diagnostic.WARNING,
+					diagnostics.add(new BasicDiagnostic(severity,
 							source,
 							code,
 							getString("_UI_apply_to_all_types_diagnostic", new Object[] { getObjectLabel(eObject, context) }), //$NON-NLS-1$
 							new Object[] { eObject, ElementTypesConfigurationsPackage.Literals.ABSTRACT_ADVICE_BINDING_CONFIGURATION__APPLY_TO_ALL_TYPES }));
 				} else {
-					diagnostics.add(new BasicDiagnostic(Diagnostic.WARNING,
+					diagnostics.add(new BasicDiagnostic(severity,
 							source,
 							code,
 							getString("_UI_no_target_diagnostic", new Object[] { getObjectLabel(eObject, context) }), //$NON-NLS-1$

@@ -65,6 +65,7 @@ import org.eclipse.papyrus.infra.types.core.extensionpoints.IElementTypeSetExten
 import org.eclipse.papyrus.infra.types.core.utils.ElementTypeRegistryUtils;
 import org.eclipse.papyrus.infra.types.core.utils.OrientedGraph;
 import org.eclipse.papyrus.infra.types.core.utils.TypesConfigurationsCycleUtil;
+import org.eclipse.papyrus.infra.types.util.ElementTypesConfigurationsValidator;
 import org.osgi.framework.Bundle;
 
 /**
@@ -348,8 +349,10 @@ public class ElementTypeSetConfigurationRegistry {
 				return false;
 			}
 
-			Diagnostic diagnostic = Diagnostician.INSTANCE.validate(elementTypeSetConfiguration);
-			if (diagnostic.getSeverity() != Diagnostic.ERROR) {
+			Diagnostic diagnostic = Diagnostician.INSTANCE.validate(elementTypeSetConfiguration,
+					Map.of(ElementTypesConfigurationsValidator.CONTEXT_REGISTRY_LOADING, true));
+
+			if (diagnostic.getSeverity() < Diagnostic.ERROR) {
 				// Check if not already registered
 				if (elementTypeSetConfigurations.containsKey(elementTypeSetConfiguration.getIdentifier())) {
 					Activator.log.warn("The following ElementTypesSetConfiguration has been ignored because the same ID already registreted: " + elementTypeSetConfiguration.getIdentifier());
@@ -359,16 +362,26 @@ public class ElementTypeSetConfigurationRegistry {
 						elementTypeConfigurationsDefinitions.put(elementTypeConfiguration.getIdentifier(), elementTypeConfiguration);
 					}
 				}
-			} else {
-				Activator.log.warn(diagnostic.getMessage());
+			}
+
+			if (diagnostic.getSeverity() >= Diagnostic.WARNING) {
+				StringBuilder logMessage = new StringBuilder(diagnostic.getMessage());
 				Iterator<Diagnostic> it = diagnostic.getChildren().iterator();
 				while (it.hasNext()) {
 					Diagnostic childDiagnostic = it.next();
 					switch (childDiagnostic.getSeverity()) {
 					case Diagnostic.ERROR:
 					case Diagnostic.WARNING:
-						Activator.log.warn("\t" + childDiagnostic.getMessage());
+						logMessage.append(System.lineSeparator()).append("\t");
+						logMessage.append(childDiagnostic.getSeverity() == Diagnostic.WARNING ? "Warning: " : "Error  : ");
+						logMessage.append(childDiagnostic.getMessage());
+						break;
 					}
+				}
+				if (diagnostic.getSeverity() == Diagnostic.WARNING) {
+					Activator.log.warn(logMessage.toString());
+				} else {
+					Activator.log.error(logMessage.toString(), null);
 				}
 			}
 		}
