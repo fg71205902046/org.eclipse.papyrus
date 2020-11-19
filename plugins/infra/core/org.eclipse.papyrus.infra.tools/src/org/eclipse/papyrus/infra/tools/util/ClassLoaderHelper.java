@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2019 CEA LIST, EclipseSource and others.
+ * Copyright (c) 2010, 2020 CEA LIST, EclipseSource, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,6 +12,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  EclipseSource - Bug 543723
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - bug 553247
+ *  Christian W. Damus - bug 568782
  *****************************************************************************/
 package org.eclipse.papyrus.infra.tools.util;
 
@@ -480,7 +481,8 @@ public class ClassLoaderHelper {
 	 *         or <code>null</code> if the URI doesn't reference a bundle
 	 */
 	private static final String getPluginId(URI uri) {
-		if (uri != null && (uri.isPlatformPlugin() || "ppe".equals(uri.scheme()))) { // ppe is a custom URI scheme used for properties view //$NON-NLS-1$
+		// EMF maps platform:/resource/ to platform:/plugin/ for second segments that are bundle source projects
+		if (uri != null && (uri.isPlatformPlugin() || uri.isPlatformResource() || "ppe".equals(uri.scheme()))) { // ppe is a custom URI scheme used for properties view //$NON-NLS-1$
 			String[] segments = uri.segments();
 			if (segments.length > 2) {
 				return segments[1];
