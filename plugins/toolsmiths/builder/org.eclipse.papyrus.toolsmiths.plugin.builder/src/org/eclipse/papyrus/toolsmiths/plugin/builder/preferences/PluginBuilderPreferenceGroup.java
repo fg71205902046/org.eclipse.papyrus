@@ -21,6 +21,7 @@ import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.papyrus.infra.ui.preferences.AbstractPreferenceGroup;
+import org.eclipse.papyrus.toolsmiths.plugin.builder.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -102,12 +103,12 @@ public class PluginBuilderPreferenceGroup extends AbstractPreferenceGroup implem
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 2;
 		fieldGroup.setLayout(layout);
-		fieldGroup.setText("Papyrus Plugin Builder");
+		fieldGroup.setText(Messages.PluginBuilderPreferenceGroup_PapyrusPluginBuilder);
 
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(fieldGroup);
 
 		// the editor to activate Papyrus Plugin Builder
-		globalPapyrusPluginEditor = new BooleanFieldEditor(PluginBuilderPreferencesConstants.ACTIVATE_MAIN_PAPYRUS_BUILDER, "Activate the Papyrus Plugin Builder", fieldGroup);
+		globalPapyrusPluginEditor = new BooleanFieldEditor(PluginBuilderPreferencesConstants.ACTIVATE_MAIN_PAPYRUS_BUILDER, Messages.PluginBuilderPreferenceGroup_activateBuilder, fieldGroup);
 		globalPapyrusPluginEditor.setPage(dialogPage);
 		addFieldEditor(globalPapyrusPluginEditor);
 		globalPapyrusPluginEditor.setPropertyChangeListener(this);
@@ -127,17 +128,17 @@ public class PluginBuilderPreferenceGroup extends AbstractPreferenceGroup implem
 	protected void createModelPreferenceEditors(final Composite parent) {
 		// model group
 		modelGroup = new Group(parent, SWT.NONE);
-		modelGroup.setText("Model Validation");
+		modelGroup.setText(Messages.PluginBuilderPreferenceGroup_modelValidation);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(modelGroup);
 
-		mainModelCheckEditor = new BooleanFieldEditor(PluginBuilderPreferencesConstants.ACTIVATE_PAPYRUS_MODEL_BUILDER, "Activate Papyrus Build Model", modelGroup);
+		mainModelCheckEditor = new BooleanFieldEditor(PluginBuilderPreferencesConstants.ACTIVATE_PAPYRUS_MODEL_BUILDER, Messages.PluginBuilderPreferenceGroup_activateBuildModel, modelGroup);
 		addFieldEditor(mainModelCheckEditor);
 
 		compositeInModelGroup = new Composite(modelGroup, SWT.NONE);
 
-		modelDependenciesEditor = new BooleanFieldEditor(PluginBuilderPreferencesConstants.PAPYRUS_MODEL_BUILDER_CHECK_MODEL_DEPENDENCIES, "Check model dependencies are included into the manifest file.", compositeInModelGroup);
+		modelDependenciesEditor = new BooleanFieldEditor(PluginBuilderPreferencesConstants.PAPYRUS_MODEL_BUILDER_CHECK_MODEL_DEPENDENCIES, Messages.PluginBuilderPreferenceGroup_checkModelDependencies, compositeInModelGroup);
 		addFieldEditor(modelDependenciesEditor);
-		modelValidationEditor = new BooleanFieldEditor(PluginBuilderPreferencesConstants.PAPYRUS_MODEL_BUILDER_VALIDATE_MODEL, "Validate models", compositeInModelGroup);
+		modelValidationEditor = new BooleanFieldEditor(PluginBuilderPreferencesConstants.PAPYRUS_MODEL_BUILDER_VALIDATE_MODEL, Messages.PluginBuilderPreferenceGroup_validateModels, compositeInModelGroup);
 		addFieldEditor(modelValidationEditor);
 
 		// must be set after the creation of the editor
@@ -153,17 +154,17 @@ public class PluginBuilderPreferenceGroup extends AbstractPreferenceGroup implem
 	protected void createManifestPreferenceEditors(final Composite parent) {
 		// manifest group
 		manifestGroup = new Group(parent, SWT.NONE);
-		manifestGroup.setText("Manifest Validation");
+		manifestGroup.setText(Messages.PluginBuilderPreferenceGroup_manifestValidation);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(manifestGroup);
 
-		mainManifestCheckEditor = new BooleanFieldEditor(PluginBuilderPreferencesConstants.ACTIVATE_PAPYRUS_MANIFEST_BUILDER, "Validate Manifest", manifestGroup);
+		mainManifestCheckEditor = new BooleanFieldEditor(PluginBuilderPreferencesConstants.ACTIVATE_PAPYRUS_MANIFEST_BUILDER, Messages.PluginBuilderPreferenceGroup_validateManifest, manifestGroup);
 		addFieldEditor(mainManifestCheckEditor);
 
 		compositeInManifestGroup = new Composite(manifestGroup, SWT.NONE);
 
-		manifestDependencyReexportEditor = new BooleanFieldEditor(PluginBuilderPreferencesConstants.PAPYRUS_MANIFEST_BUILDER_CHECK_NO_REEXPORT, "Check there is no reexported dependencies", compositeInManifestGroup);
+		manifestDependencyReexportEditor = new BooleanFieldEditor(PluginBuilderPreferencesConstants.PAPYRUS_MANIFEST_BUILDER_CHECK_NO_REEXPORT, Messages.PluginBuilderPreferenceGroup_checkNoReexportedDependencies, compositeInManifestGroup);
 		addFieldEditor(manifestDependencyReexportEditor);
-		manifestDependencyRangeEditor = new BooleanFieldEditor(PluginBuilderPreferencesConstants.PAPYRUS_MANIFEST_BUILDER_CHECK_DEPENDENCY_RANGE, "Check dependencies range", compositeInManifestGroup);
+		manifestDependencyRangeEditor = new BooleanFieldEditor(PluginBuilderPreferencesConstants.PAPYRUS_MANIFEST_BUILDER_CHECK_DEPENDENCY_RANGE, Messages.PluginBuilderPreferenceGroup_checkDependenciesRange, compositeInManifestGroup);
 		addFieldEditor(manifestDependencyRangeEditor);
 
 		// must be set after the creation of the editor

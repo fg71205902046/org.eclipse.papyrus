@@ -33,13 +33,13 @@ public class XWTModelBuilder extends GenericEMFModelBuilder {
 
 	static final String XWT_EXTENSION = "xwt";//$NON-NLS-1$
 
-	static final String ENVIRONMENT_XMI_EXTENSION = "xmi";
+	static final String ENVIRONMENT_XMI_EXTENSION = "xmi"; //$NON-NLS-1$
 
-	static final String CTX_EXTENSION = "ctx";
+	static final String CTX_EXTENSION = "ctx"; //$NON-NLS-1$
 
-	private static final String XWT_URI = "http://www.eclipse.org/xwt";
+	private static final String XWT_URI = "http://www.eclipse.org/xwt"; //$NON-NLS-1$
 
-	private static final String XWT_PRESENTATION_URI = "http://www.eclipse.org/xwt/presentation";
+	private static final String XWT_PRESENTATION_URI = "http://www.eclipse.org/xwt/presentation"; //$NON-NLS-1$
 
 	/**
 	 * @see org.eclipse.papyrus.toolsmiths.plugin.builder.GenericEMFModelBuilder#getModelBundleDependenciesFromXML(org.eclipse.emf.ecore.resource.Resource)
@@ -57,13 +57,13 @@ public class XWTModelBuilder extends GenericEMFModelBuilder {
 				// we ignore this one
 				continue;
 			}
-			if (current.startsWith("clr-namespace:")) {
-				String substring = current.replaceAll("clr-namespace:", "");
+			if (current.startsWith("clr-namespace:")) { //$NON-NLS-1$
+				String substring = current.replaceAll("clr-namespace:", ""); //$NON-NLS-1$ //$NON-NLS-2$
 
 				// assuming the path contains the bundle name
 				IPluginModelBase pluginModelBase = PluginRegistry.findModel(substring);
 
-				while (pluginModelBase == null && substring.contains(".")) {
+				while (pluginModelBase == null && substring.contains(".")) { //$NON-NLS-1$
 					int lastIndex = substring.lastIndexOf('.');
 					substring = substring.substring(0, lastIndex);
 					pluginModelBase = PluginRegistry.findModel(substring);
@@ -73,12 +73,12 @@ public class XWTModelBuilder extends GenericEMFModelBuilder {
 					bundleFound = pluginModelBase.getBundleDescription().getName();
 				}
 			} else if (XWT_URI.equals(current) || XWT_PRESENTATION_URI.equals(current)) {
-				bundleFound = "org.eclipse.xwt";
+				bundleFound = "org.eclipse.xwt"; //$NON-NLS-1$
 			} else {
 				bundleFound = getBundleNameFromNS_URI(current);
 			}
 			if (bundleFound == null) {
-				Activator.log.warn(NLS.bind("Papyrus Builder: We are not able to find the bundle providing the URI", current));
+				Activator.log.warn(NLS.bind(Messages.XWTModelBuilder_noBundleWithUri, current));
 			}
 		}
 
@@ -104,7 +104,7 @@ public class XWTModelBuilder extends GenericEMFModelBuilder {
 				dependencies.add(bundleName);
 
 			} else {
-				Activator.log.warn(NLS.bind("We can't find the bundle providing the resource uri {0}", resource.getURI()));
+				Activator.log.warn(NLS.bind(Messages.XWTModelBuilder_noBundleProvidingResourceUri, resource.getURI()));
 			}
 			dependencies.addAll(getModelBundleDependenciesFromXML(resource));
 
@@ -123,7 +123,7 @@ public class XWTModelBuilder extends GenericEMFModelBuilder {
 		String str = super.getBundleNameFromResource(resource);
 		if (str == null) {
 			org.eclipse.emf.common.util.URI uri = resource.getURI();
-			if (uri.scheme().equals("ppe") && uri.segments()[0].equals("environment")) {
+			if (uri.scheme().equals("ppe") && uri.segments()[0].equals("environment")) { //$NON-NLS-1$ //$NON-NLS-2$
 				str = uri.segments()[1];
 			}
 		}
@@ -149,6 +149,6 @@ public class XWTModelBuilder extends GenericEMFModelBuilder {
 	 */
 	@Override
 	protected boolean isIgnoredNS_URI(String ns_URI) {
-		return super.isIgnoredNS_URI(ns_URI) || "clr-namespace:java.lang".equals(ns_URI);
+		return super.isIgnoredNS_URI(ns_URI) || "clr-namespace:java.lang".equals(ns_URI); //$NON-NLS-1$
 	}
 }

@@ -24,6 +24,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.papyrus.eclipse.project.editors.file.ManifestEditor;
 import org.eclipse.papyrus.emf.validation.DependencyValidationUtils;
 import org.eclipse.papyrus.toolsmiths.plugin.builder.Activator;
+import org.eclipse.papyrus.toolsmiths.plugin.builder.Messages;
 import org.eclipse.papyrus.toolsmiths.plugin.builder.helper.BundleVersionHelper;
 
 /**
@@ -38,7 +39,7 @@ public class MissingDependenciesMarkerResolution extends AbstractPapyrusMarkerRe
 	 */
 	@Override
 	public String getLabel() {
-		return "Add missing dependencies, with a calculated range"; //$NON-NLS-1$
+		return Messages.MissingDependenciesMarkerResolution_label;
 	}
 
 	/**
@@ -83,7 +84,7 @@ public class MissingDependenciesMarkerResolution extends AbstractPapyrusMarkerRe
 	 */
 	@Override
 	public String getDescription() {
-		return "Add the missing dependencies in the manifest, with a calculated range."; //$NON-NLS-1$
+		return Messages.MissingDependenciesMarkerResolution_description;
 	}
 
 }

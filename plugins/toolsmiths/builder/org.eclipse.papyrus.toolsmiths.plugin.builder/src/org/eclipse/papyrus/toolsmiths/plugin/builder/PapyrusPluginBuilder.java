@@ -69,12 +69,13 @@ public class PapyrusPluginBuilder extends IncrementalProjectBuilder {
 		if (getProject() == null) {
 			return null;
 		}
-		// remove all previously created marker
-		clean(monitor);
 
 		if (!isPapyrusPluginBuilderActivated()) {
 			return null;
 		}
+
+		// remove all previously created marker
+		clean(monitor);
 
 		// TODO : we also remove all java marker
 		// getProject().deleteMarkers(IJavaModelMarker.JAVA_MODEL_PROBLEM_MARKER, true, -1);

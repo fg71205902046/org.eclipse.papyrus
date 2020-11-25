@@ -33,6 +33,7 @@ import org.eclipse.papyrus.toolsmiths.validation.common.utils.PluginValidationSe
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.ProjectManagementService;
 import org.eclipse.papyrus.toolsmiths.validation.profile.Activator;
 import org.eclipse.papyrus.toolsmiths.validation.profile.constants.ProfilePluginValidationConstants;
+import org.eclipse.papyrus.toolsmiths.validation.profile.internal.messages.Messages;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Profile;
@@ -57,7 +58,7 @@ public class ProfilePluginChecker {
 			// Open the progress monitor dialog
 			new ProgressMonitorDialog(shell).run(true, true, monitor -> {
 				final Collection<IFile> profileFiles = ProjectManagementService.getFilesFromProject(project, "profile.uml", true); //$NON-NLS-1$
-				monitor.beginTask("Validate Profile plug-in.", 1 + (profileFiles.size() * 4)); // $NON-NLS-1$
+				monitor.beginTask(Messages.ProfilePluginChecker_validateProfilePluginTask, 1 + (profileFiles.size() * 4)); // $NON-NLS-1$
 
 				monitor.subTask("Prepare validation."); //$NON-NLS-1$
 				// First of all, delete the existing markers for project

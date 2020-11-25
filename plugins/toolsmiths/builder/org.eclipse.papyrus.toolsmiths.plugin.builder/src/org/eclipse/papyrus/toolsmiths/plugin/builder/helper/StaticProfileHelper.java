@@ -78,7 +78,7 @@ public class StaticProfileHelper {
 
 	private static class StaticProfileResourceVisitor implements IResourceVisitor {
 
-		private static final String GENMODEL_EXTENSION = "genmodel";
+		private static final String GENMODEL_EXTENSION = "genmodel"; //$NON-NLS-1$
 		private Map<IFile, List<Profile>> foundProfiles = new HashMap<>();
 
 		private final boolean includeSubProfiles;
