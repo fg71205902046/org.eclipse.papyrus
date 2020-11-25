@@ -55,6 +55,7 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.emf.helpers.BundleResourceURIHelper;
 import org.eclipse.papyrus.emf.validation.DependencyValidationUtils;
 import org.eclipse.papyrus.toolsmiths.plugin.builder.preferences.PluginBuilderPreferencesConstants;
+import org.eclipse.uml2.uml.resource.UMLResource;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
@@ -415,7 +416,7 @@ public class GenericEMFModelBuilder extends AbstractPapyrusBuilder {
 				if (bundleName != null) {
 					result.add(bundleName);
 				} else {
-					Activator.log.warn(NLS.bind("Papyrus Builder: We don't found bundle for nsURI {0}", currentNS_URI)); //$NON-NLS-1$
+					Activator.log.warn(NLS.bind(Messages.GenericEMFModelBuilder_noBundleFoundForNsUri, currentNS_URI));
 				}
 			}
 		}
@@ -431,8 +432,8 @@ public class GenericEMFModelBuilder extends AbstractPapyrusBuilder {
 	 */
 	protected String getBundleNameFromNS_URI(final String nsURI) {
 		// TODO : find a generic way for that!
-		if (nsURI.equals("http://www.eclipse.org/uml2/schemas/UML2/2") || nsURI.equals("http://www.eclipse.org/uml2/schemas/Ecore/5")) {
-			return "org.eclipse.uml2.uml.resources";
+		if (nsURI.equals(UMLResource.UML2_PROFILE_NS_URI) || nsURI.equals(UMLResource.ECORE_PROFILE_NS_URI)) {
+			return "org.eclipse.uml2.uml.resources"; //$NON-NLS-1$
 		}
 		return RESOURCE_HELPER.getBundleNameFromNS_URI(nsURI);
 	}

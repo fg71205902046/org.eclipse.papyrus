@@ -62,7 +62,7 @@ public class DependencyRangeMarkerResolution extends AbstractPapyrusMarkerResolu
 				ManifestEditor me = new ManifestEditor(project);
 				me.init();
 
-				String version = "";
+				String version = ""; //$NON-NLS-1$
 				BundleSpecification bundle = null;
 				switch (marker.getAttribute(ManifestBuilder.KIND_MARKER_ATTRIBUTE, 0)) {
 				case ManifestBuilder.EXCLUDE_MINIMUM_RANGE_KIND:
