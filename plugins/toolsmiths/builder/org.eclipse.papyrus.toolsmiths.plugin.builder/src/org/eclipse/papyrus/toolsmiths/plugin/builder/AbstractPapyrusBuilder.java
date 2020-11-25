@@ -79,7 +79,7 @@ public abstract class AbstractPapyrusBuilder {
 		try {
 			marker = res.createMarker(IJavaModelMarker.JAVA_MODEL_PROBLEM_MARKER);
 
-			marker.setAttribute(IMarker.MESSAGE, "Papyrus Builder: " + message); //$NON-NLS-1$
+			marker.setAttribute(IMarker.MESSAGE, Messages.AbstractPapyrusBuilder_PapyrusBuilder + message); //$NON-NLS-1$
 			marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_ERROR);
 			marker.setAttribute("code", 10000); //$NON-NLS-1$
 			marker.setAttribute(IMarker.SOURCE_ID, Activator.PLUGIN_ID);

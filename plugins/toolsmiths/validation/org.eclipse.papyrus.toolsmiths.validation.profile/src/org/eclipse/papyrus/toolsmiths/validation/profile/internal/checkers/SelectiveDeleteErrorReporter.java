@@ -37,7 +37,7 @@ import org.eclipse.pde.internal.core.builders.PDEMarkerFactory;
 @SuppressWarnings("restriction")
 public class SelectiveDeleteErrorReporter extends IncrementalErrorReporter {
 
-	public static final String SOURCE_ID = "source_id";
+	public static final String SOURCE_ID = "source_id"; //$NON-NLS-1$
 	private final IResource fResource;
 	private final Collection<VirtualMarker> fReportedMarkers = new ArrayList<>();
 	private int fErrorCount;

@@ -16,6 +16,7 @@ package org.eclipse.papyrus.toolsmiths.plugin.builder.preferences;
 
 import org.eclipse.papyrus.infra.ui.preferences.AbstractPapyrusPreferencePage;
 import org.eclipse.papyrus.toolsmiths.plugin.builder.Activator;
+import org.eclipse.papyrus.toolsmiths.plugin.builder.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
@@ -33,7 +34,7 @@ public class PluginBuilderPreferencePage extends AbstractPapyrusPreferencePage {
 	@Override
 	protected void createPageContents(Composite parent) {
 		final Label label = new Label(parent, SWT.NONE);
-		label.setText("Papyrus Plugin Builder add validation steps for plugin declared with the Papyrus Plugin nature.");
+		label.setText(Messages.PluginBuilderPreferencePage_builderPreferenceGroupDescription);
 		final PluginBuilderPreferenceGroup builderGroup = new PluginBuilderPreferenceGroup(parent, getTitle(), this);
 		addPreferenceGroup(builderGroup);
 	}

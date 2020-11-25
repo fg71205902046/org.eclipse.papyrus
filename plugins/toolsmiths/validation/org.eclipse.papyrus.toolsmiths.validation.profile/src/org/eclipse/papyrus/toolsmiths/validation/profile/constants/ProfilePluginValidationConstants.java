@@ -34,4 +34,14 @@ public class ProfilePluginValidationConstants {
 	 * The uml generated package extension point identifier.
 	 */
 	public static final String UML_GENERATED_PACKAGE_EXTENSION_POINT = "org.eclipse.uml2.uml.generated_package"; //$NON-NLS-1$
+
+	/**
+	 * The EMF Ecore generated package extension point identifier.
+	 */
+	public static final String ECORE_GENERATED_PACKAGE_EXTENSION_POINT = "org.eclipse.emf.ecore.generated_package"; //$NON-NLS-1$
+
+	/**
+	 * The EMF Ecore URI mapping extension point identifier.
+	 */
+	public static final String ECORE_URI_MAPPING_EXTENSION_POINT = "org.eclipse.emf.ecore.uri_mapping"; //$NON-NLS-1$
 }

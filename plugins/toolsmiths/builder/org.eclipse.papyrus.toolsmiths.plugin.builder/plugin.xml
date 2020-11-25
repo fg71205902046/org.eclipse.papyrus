@@ -85,6 +85,10 @@
                class="org.eclipse.papyrus.toolsmiths.plugin.builder.quickfix.ManifestResolutionGenerator"
                markerType="org.eclipse.jdt.core.problem">
          </markerResolutionGenerator>
+         <markerResolutionGenerator
+               class="org.eclipse.papyrus.toolsmiths.plugin.builder.quickfix.StaticProfileMarkerResolutionGenerator"
+               markerType="org.eclipse.pde.core.problem">
+         </markerResolutionGenerator>
       </extension>
       <extension
             point="org.eclipse.ui.preferencePages">
