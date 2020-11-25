@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2017, 2019 CEA LIST.
+ * Copyright (c) 2010, 2017, 2019, 2020 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -14,6 +14,7 @@
  *  Fanch BONNABESSE (ALL4TEC)     fanch.bonnabesse@all4tec.net  - bug 502533
  *  Vincent LORENZO (CEA LIST)     vincent.lorenzo@cea.fr        - bug 551377
  *  Ansgar Radermacher (CEA LIST)  ansgar.radermacher@cea.fr     - bug 551377
+ *  Asma Smaoui (CEA LIST)  	   asma.smaoui@cea.fr    		 - bug 551377
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.properties.modelelement;
@@ -35,6 +36,8 @@ import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.EObjectStructuredValueFactory;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.ILabeledModelElement;
+import org.eclipse.papyrus.infra.services.edit.ui.databinding.PapyrusObservableList;
+import org.eclipse.papyrus.infra.services.edit.ui.databinding.PapyrusObservableValue;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.uml.properties.Activator;
@@ -103,7 +106,12 @@ public class StereotypeModelElement extends EMFModelElement implements ILabeledM
 		if (feature.getEType() instanceof EClass) {
 			if (DataTypeUtil.isDataTypeDefinition((EClass) feature.getEType(), getSource(featurePath))) {
 				// TODO : shall we create an observable to manage SetStereotypeValueRequest ?
-				return new org.eclipse.papyrus.infra.services.edit.ui.databinding.PapyrusObservableValue(getSource(featurePath), feature, domain, GMFtoEMFCommandWrapper::wrap);
+				if (feature.getUpperBound() != 1) {
+					List<?> wrappedList = (List<?>) source.eGet(feature);
+					return new PapyrusObservableList(wrappedList, domain, source, feature, GMFtoEMFCommandWrapper::wrap);
+				}
+				return new PapyrusObservableValue(getSource(featurePath), feature, domain, GMFtoEMFCommandWrapper::wrap);
+
 			}
 		}
 
