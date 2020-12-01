@@ -7,7 +7,7 @@
     <specializedTypes xmi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Class"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_J-V3ECkPEeuJrqjC0cczBw" identifier="org.eclipse.papyrus.uml.service.types.tests.UnitTest.TestCase" name="TestCase" hint="" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" matcherConfiguration="_lMmisCkQEeu6KZ0YXhH7Eg">
-    <ownedConfigurations xmi:type="stereotypematcher:StereotypeMatcherAdviceConfiguration" xmi:id="_lMmisCkQEeu6KZ0YXhH7Eg" description="«TestCase» &lt;Operation>" identifier="org.eclipse.papyrus.uml.service.types.tests.matcher.UnitTest.TestCase" target="_J-V3ECkPEeuJrqjC0cczBw" matchedType="_J-V3ECkPEeuJrqjC0cczBw" profileUri="http://www.eclipse.org/Papyrus/2020/test/UnitTest">
+    <ownedConfigurations xmi:type="stereotypematcher:StereotypeMatcherAdviceConfiguration" xmi:id="_lMmisCkQEeu6KZ0YXhH7Eg" description="«TestCase» &lt;Operation>" identifier="org.eclipse.papyrus.uml.service.types.tests.matcher.UnitTest.TestCase" target="_J-V3ECkPEeuJrqjC0cczBw" matchedType="_J-V3ECkPEeuJrqjC0cczBw">
       <stereotypesQualifiedNames>UnitTest::TestCase</stereotypesQualifiedNames>
     </ownedConfigurations>
     <specializedTypes xmi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Operation"/>
