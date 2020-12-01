@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2015, 2017 Christian W. Damus and others.
+ * Copyright (c) 2014, 2015, 2017, 2020 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,6 +12,7 @@
  * Christian W. Damus - Initial API and implementation
  * Benoit Maggi       - Bug 474408: order by identifier the generated file
  * Ansgar Radermacher - Bug 526155: set element type name from profile
+ * Camille Letavernier - Bug 569354: remove StereotypeAdvice; use StereotypeMatcherAdvice instead
  * 
  *****************************************************************************/
 package org.eclipse.papyrus.uml.profile.types.generator
@@ -38,7 +39,6 @@ class ConfigurationSetRule {
 	@Inject extension UML
 	@Inject extension UMLElementTypes
 	@Inject extension ElementTypeRule
-	@Inject extension ApplyStereotypeAdviceRule
 
 	static var List<ElementTypeConfiguration> elementTypeConfigurationList
 	var List<AbstractAdviceBindingConfiguration> adviceBindingConfigurationList
@@ -69,13 +69,6 @@ class ConfigurationSetRule {
 			for (element : ext.metaclass.diagramSpecificElementTypes) {
 				val elementtype = ext.toElementType(element)
 				elementTypeConfigurationList.add(elementtype);
-			}
-
-			// We only need to generate advice bindings for element types that won't inherit the from a parent semantic type
-			val typesNeedingAdvice = ext.metaclass.diagramSpecificElementTypes.filter[!hasSemanticSupertype]
-			for (element : typesNeedingAdvice) {
-				val advice = ext.stereotype.toAdviceConfiguration(ext, element)
-				adviceBindingConfigurationList.add(advice)
 			}
 		}
 

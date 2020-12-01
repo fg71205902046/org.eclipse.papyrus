@@ -18,13 +18,10 @@ package org.eclipse.papyrus.uml.profile.types.generator.ui.internal.wizards;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.Callable;
 
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -36,8 +33,8 @@ import org.eclipse.jface.dialogs.DialogSettings;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.eclipse.project.editors.project.PluginEditor;
 import org.eclipse.papyrus.infra.ui.util.UIUtil;
+import org.eclipse.papyrus.toolsmiths.types.generator.TypesPluginGenerator;
 import org.eclipse.papyrus.uml.profile.types.generator.AbstractGenerator;
 import org.eclipse.papyrus.uml.profile.types.generator.ElementTypesGenerator;
 import org.eclipse.papyrus.uml.profile.types.generator.Identifiers;
@@ -47,11 +44,9 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.statushandlers.StatusManager;
 import org.eclipse.uml2.uml.Profile;
-import org.w3c.dom.Element;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
 import com.google.common.util.concurrent.Futures;
 
 /**
@@ -64,10 +59,6 @@ public class GeneratorWizard extends Wizard {
 	 */
 	// FIXME : should be provided by an element type plugin
 	private static final String ELEMENTTYPESCONFIGURATIONS = "elementtypesconfigurations"; //$NON-NLS-1$
-
-	public static final String TYPES_CORE_PLUGIN = "org.eclipse.papyrus.infra.types.core";
-	public static final String TYPES_CORE_PLUGIN_MIN = "5.0.0";
-	public static final String TYPES_CORE_PLUGIN_MAX = "6.0.0";
 
 	private final IWorkbenchPage page;
 	private final GeneratorWizardModel model;
@@ -216,118 +207,8 @@ public class GeneratorWizard extends Wizard {
 			return new Status(IStatus.WARNING, getClass(), "The target model is not located in a workspace project; impossible to configure the plug-in.");
 		}
 
-		String projectName = outputModelURI.segment(1);
-		IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
-		if (!project.exists()) {
-			return new Status(IStatus.WARNING, getClass(), "The target model is not located in a workspace project; impossible to configure the plug-in.");
-		}
-
-		if (!project.isOpen()) {
-			try {
-				project.open(null);
-			} catch (CoreException e) {
-				Activator.log.error(e);
-				return new Status(IStatus.WARNING, getClass(), "The target model is located in a workspace project that couldn't be opened; impossible to configure the plug-in.");
-			}
-		}
-
-		try {
-			PluginEditor editor = new PluginEditor(project);
-			editor.init();
-
-			if (!editor.exists()) {
-				return new Status(IStatus.WARNING, getClass(), "The target model is not located in an Eclipse Plug-in Project; impossible to configure the plug-in.");
-			}
-
-			Set<String> files = Sets.newHashSet(PluginEditor.BUILD_PROPERTIES_FILE, PluginEditor.PLUGIN_XML_FILE);
-			addDependencies(editor);
-			addExtensions(editor, outputModelURI, identifiers);
-			addBuildProperties(editor, outputModelURI);
-
-			editor.save();
-		} catch (Exception ex) {
-			return new Status(IStatus.WARNING, getClass(), "The target model is not located in an Eclipse Plug-in Project; impossible to configure the plug-in.", ex);
-		}
-
-		return Status.OK_STATUS;
-	}
-
-	/**
-	 * Add required plug-in dependencies to the target plug-in
-	 *
-	 * @param editor
-	 *            The plug-in to configure
-	 */
-	protected void addDependencies(PluginEditor editor) {
-		if (!editor.hasDependency(TYPES_CORE_PLUGIN)) {
-			editor.addDependency(TYPES_CORE_PLUGIN, String.format("[%s, %s)", TYPES_CORE_PLUGIN_MIN, TYPES_CORE_PLUGIN_MAX));
-		}
-		// TODO Find and Add dependencies to plug-ins contributing the referenced models (e.g. UML, extended profiles)
-	}
-
-	/**
-	 * Add required contributions to extension points in the target plug-in,
-	 * for the given element types model.
-	 *
-	 * @param editor
-	 *            The plug-in to configure
-	 * @param outputModelURI
-	 *            The generated model being contributed
-	 */
-	protected void addExtensions(PluginEditor editor, URI outputModelURI, Identifiers identifiers) {
-		if (!editor.pluginManifestExists()) {
-			editor.getPluginEditor().create();
-		}
-		editor.addToBuild("plugin.xml");
-
-		Element ext = editor.addExtension("org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration");
-		Element elementTypeSet = editor.addChild(ext, "elementTypeSet");
-		elementTypeSet.setAttribute("path", toLocalProjectPath(outputModelURI).toString());
-		elementTypeSet.setAttribute("clientContextID", identifiers.getContextId());
-	}
-
-	/**
-	 * Add required build.properties entries in the target plug-in, for the
-	 * model being generated.
-	 *
-	 * @param editor
-	 *            The plug-in to configure
-	 * @param outputModelURI
-	 *            The generated model
-	 */
-	protected void addBuildProperties(PluginEditor editor, URI outputModelURI) {
-		IPath path = toLocalProjectPath(outputModelURI);
-
-		// Trim one segment to exclude the file name (we always export the parent folder),
-		// and convert to a workspace-relative path
-		path = path.removeLastSegments(1);
-
-		// Add trailing / because we export a folder
-		editor.addToBuild(path.toString() + "/");
-	}
-
-	/**
-	 * <p>
-	 * Converts a platform:/resource/ {@link URI} to a path relative
-	 * to the current project.
-	 * </p>
-	 * <p>
-	 * The <code>platform:/resource/projectName/folderName/fileName.fileExtension</code> {@link URI}
-	 * becomes a <code>folderName/fileName.fileExtension</code> {@link IPath}.
-	 * </p>
-	 *
-	 * @param outputModelURI
-	 *            The URI to convert to a local project path
-	 * @return
-	 *         The {@link IPath} relative to the Project Root, corresponding to this URI
-	 */
-	protected IPath toLocalProjectPath(URI outputModelURI) {
-		IPath path = new Path(outputModelURI.toPlatformString(true));
-
-		// Remove the project name, as we export paths relative to the project folder
-		path = path.removeFirstSegments(1);
-
-		return path;
+		IPath modelPath = new Path(outputModelURI.toPlatformString(true));
+		return new TypesPluginGenerator().generate(Collections.singleton(modelPath), identifiers.getContextId());
 	}
 
 	protected void addGenerators(List<? super AbstractGenerator<Profile, ?>> generators, Identifiers identifiers, GeneratorWizardModel wizardModel) {

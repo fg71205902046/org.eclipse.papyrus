@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2015 Christian W. Damus and others.
- * 
+ * Copyright (c) 2014, 2015, 2020 Christian W. Damus and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -79,7 +79,7 @@ class BaseElementTypeSetBlock {
 		super();
 
 		this.model = model;
-		
+
 		String clientContextId = "";
 		try {
 			clientContextId = TypeContext.getDefaultContext().getId();
@@ -117,18 +117,17 @@ class BaseElementTypeSetBlock {
 		suppressSemanticSuperElementTypes.setLayoutData(new GridData(SWT.FILL, SWT.DEFAULT, false, false, 2, 1));
 		suppressSemanticSuperElementTypes.setText("Suppress semantic parent in diagram-specific element types");
 		suppressSemanticSuperElementTypes.setSelection(model.getDialogSettings().getBoolean(SUPPRESS_SEMANTIC_SUPERTYPES));
-		
+
 		final Button addDiPostfix = new Button(parent, SWT.CHECK);
 		addDiPostfix.setLayoutData(new GridData(SWT.FILL, SWT.DEFAULT, false, false, 2, 1));
 		addDiPostfix.setText("Add .di postfix to identifier in diagram-specific element types");
 		if (model.getDialogSettings().get(ADD_DI_POSTFIX) != null) {
 			addDiPostfix.setSelection(model.getDialogSettings().getBoolean(ADD_DI_POSTFIX));
-		}
-		else {
+		} else {
 			// set by default
 			addDiPostfix.setSelection(true);
 		}
-		
+
 		ElementTypeSetConfiguration initialSelection = getInitialSelection();
 		if (initialSelection != null) {
 			combo.setSelection(new StructuredSelection(initialSelection));
@@ -156,7 +155,7 @@ class BaseElementTypeSetBlock {
 				setSuppressSemanticSupertypes(suppressSemanticSuperElementTypes.getSelection());
 			}
 		});
-		
+
 		addDiPostfix.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -216,7 +215,7 @@ class BaseElementTypeSetBlock {
 	}
 
 	private static Function<ElementTypeSetConfiguration, String> getNameFunction() {
-		return new Function<ElementTypeSetConfiguration, String>() {
+		return new Function<>() {
 			@Override
 			public String apply(ElementTypeSetConfiguration input) {
 				return getName(input);
@@ -225,7 +224,10 @@ class BaseElementTypeSetBlock {
 	}
 
 	static String getLocation(ElementTypeSetConfiguration elementTypeSet) {
-		URI uri = elementTypeSet.eResource().getURI();
+		URI uri = elementTypeSet == null || elementTypeSet.eResource() == null ? null : elementTypeSet.eResource().getURI();
+		if (uri == null) {
+			return null;
+		}
 		String result;
 
 		if (uri.isPlatformResource()) {
@@ -240,7 +242,7 @@ class BaseElementTypeSetBlock {
 	}
 
 	private static Function<ElementTypeSetConfiguration, String> getLocationFunction() {
-		return new Function<ElementTypeSetConfiguration, String>() {
+		return new Function<>() {
 			@Override
 			public String apply(ElementTypeSetConfiguration input) {
 				return getLocation(input);
@@ -306,28 +308,28 @@ class BaseElementTypeSetBlock {
 	 * private static class DiagramTableLabelProvider extends LabelProvider implements IStyledLabelProvider, ITableLabelProvider, ITableColorProvider {
 	 * private static final int COLUMN_NAME = 0;
 	 * private static final int COLUMN_LOCATION = 1;
-	 * 
+	 *
 	 * private ResourceManager images;
-	 * 
+	 *
 	 * DiagramTableLabelProvider(Control owner) {
 	 * super();
-	 * 
+	 *
 	 * // Because we specify an owner, the owner will take care of clean-up, so we
 	 * // don't need a dispose() method of our own
 	 * images = new LocalResourceManager(JFaceResources.getResources(), owner);
 	 * }
-	 * 
+	 *
 	 * @Override
 	 * public StyledString getStyledText(Object element) {
 	 * return new StyledString(getColumnText(element, COLUMN_NAME)) //
 	 * .append(NLS.bind(" - {0}", getColumnText(element, COLUMN_LOCATION)), StyledString.QUALIFIER_STYLER); //$NON-NLS-1$
 	 * }
-	 * 
+	 *
 	 * @Override
 	 * public String getColumnText(Object element, int column) {
 	 * ElementTypeSetConfiguration elementTypeSet = (ElementTypeSetConfiguration) element;
 	 * String result;
-	 * 
+	 *
 	 * switch (column) {
 	 * case COLUMN_NAME:
 	 * result = getName(elementTypeSet);
@@ -338,39 +340,39 @@ class BaseElementTypeSetBlock {
 	 * default:
 	 * throw new IllegalArgumentException("no such column: " + column); //$NON-NLS-1$
 	 * }
-	 * 
+	 *
 	 * return result;
 	 * }
-	 * 
+	 *
 	 * @Override
 	 * public Image getColumnImage(Object element, int column) {
 	 * Image result = null;
-	 * 
+	 *
 	 * if (column == COLUMN_NAME) {
 	 * ElementTypeSetConfiguration set = (ElementTypeSetConfiguration) element;
 	 * URI uri = set.eResource().getURI();
-	 * 
+	 *
 	 * if (uri.isPlatformPlugin()) {
 	 * result = (Image) images.get(Activator.getInstance().getIcon("obj16/plugin.gif")); //$NON-NLS-1$
 	 * } else if (uri.isPlatformResource()) {
 	 * result = (Image) images.get(Activator.getInstance().getIcon("obj16/project.png")); //$NON-NLS-1$
 	 * }
 	 * }
-	 * 
+	 *
 	 * return result;
 	 * }
-	 * 
+	 *
 	 * @Override
 	 * public Color getForeground(Object element, int column) {
 	 * Color result = null;
-	 * 
+	 *
 	 * if (column == COLUMN_LOCATION) {
 	 * result = JFaceResources.getColorRegistry().get(JFacePreferences.QUALIFIER_COLOR);
 	 * }
-	 * 
+	 *
 	 * return result;
 	 * }
-	 * 
+	 *
 	 * @Override
 	 * public Color getBackground(Object element, int columnIndex) {
 	 * return null;

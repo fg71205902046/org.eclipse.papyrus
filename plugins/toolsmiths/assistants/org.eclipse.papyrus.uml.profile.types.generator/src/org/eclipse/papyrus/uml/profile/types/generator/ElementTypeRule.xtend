@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2015, 2018 Christian W. Damus and others.
+ * Copyright (c) 2014, 2015, 2018, 2020 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,6 +12,7 @@
  * Christian W. Damus - Initial API and implementation
  * Ansgar Radermacher - Bug 526155, enable re-generation from profile: copy existing advices
  * Ansgar Radermacher - Bug 526156, reference semantic base element type
+ * Camille Letavernier - Bug 569354: remove StereotypeAdvice; use StereotypeMatcherAdvice instead
  * 
  *****************************************************************************/
 package org.eclipse.papyrus.uml.profile.types.generator
@@ -99,10 +100,13 @@ class ElementTypeRule {
 		}
 	}
 
-    private def create createStereotypeApplicationMatcherConfiguration toMatcherConfiguration(ImpliedExtension umlExtension,
+    private def create createStereotypeMatcherAdviceConfiguration toMatcherConfiguration(ImpliedExtension umlExtension,
         ElementTypeConfiguration supertype) {
             
-        stereotypesQualifiedNames.add(umlExtension.stereotype.qualifiedName)
+        val umlStereotype = umlExtension.stereotype
+        identifier = umlStereotype.name.toFirstLower.qualified + supertype.hintSuffix;
+        stereotypesQualifiedNames.add(umlStereotype.qualifiedName)
+        description = "Apply Stereotype "+umlStereotype.name
     }
 
     private def getIconEntry(Stereotype stereotype) {
