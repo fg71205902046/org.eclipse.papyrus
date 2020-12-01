@@ -12,7 +12,8 @@ Require-Bundle: org.eclipse.emf.databinding;bundle-version="[1.5.0,2.0.0)",
  org.eclipse.papyrus.uml.profile.types.generator;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.uml2.uml.editor;bundle-version="[5.5.0,6.0.0)",
  org.eclipse.xtend.lib;bundle-version="[2.22.0,3.0.0)",
- org.eclipse.papyrus.eclipse.project.editors;bundle-version="[3.0.0,4.0.0)"
+ org.eclipse.papyrus.eclipse.project.editors;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.papyrus.toolsmiths;bundle-version="[2.0.0,3.0.0)"
 Export-Package: org.eclipse.papyrus.uml.profile.types.generator.ui.internal,
  org.eclipse.papyrus.uml.profile.types.generator.ui.internal.handlers,
  org.eclipse.papyrus.uml.profile.types.generator.ui.internal.wizards;x-friends:="org.eclipse.papyrus.uml.profile.assistants.generator.ui"
