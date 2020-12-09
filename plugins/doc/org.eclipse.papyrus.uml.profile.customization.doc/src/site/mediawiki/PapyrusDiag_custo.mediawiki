@@ -11,12 +11,13 @@
   Christophe Aussagues (christophe.aussagues@cea.fr) - Initial documentation
 -->
 == Pre-requisite ==
-We define a static profile, to do so see 
+Create a plug-in project and we define a static profile, to do so see 
 [https://help.eclipse.org/latest/index.jsp?nav=%2F73_0_1_8 Help>Help Contents>Papyrus Guide>User Guide>Using UML Profiles sub-menu].
 As an example, we suppose that a static profile with 2 stereotyped classes 
-named Stereotype_A and Stereotype_B has been defined.
-We want to extend the Palette of a Class diagram to be able to create 
-directly stereotyped elements from the Palette.
+named Stereotype_A , Stereotype_Band a "Metacalss" has been defined.
+We want to extend the Palette of a Class diagram to be able to create directly stereotyped elements from the Palette.
+
+[[File:images/Papyrus_diagcusto_00.png|400px|frame]]
 
 == Generating ElementTypes from the profile ==
 === Creating ElementTypes ===
@@ -31,10 +32,10 @@ With the ElementTypes Configuration framework, we will intercept the
 creation of the class and we will apply automatically the stereotype.
 
 First, we need the Papyrus-development related software packages as shown 
-in Figure 1 (we suppose that Papyrus 2019-12 has been installed, for further 
+in Figure 1 (we suppose that Papyrus 2020-12 has been installed, for further 
 versions, see [https://www.eclipse.org/papyrus/download.html the list of update sites].
 
-[[File:images/Papyrus_diagcusto_01.png|frame|Figure 1. Needed Papyrus developer software]]
+[[File:images/Papyrus_diagcusto_01.png|1000px|frame|Figure 1. Needed Papyrus developer software]]
 
 We select the profile model’s root and right-click on it. We select the 
 "Generate Tooling Model">"Element Types..." sub-menu as shown in Figure 2.
@@ -62,7 +63,7 @@ We add the following dependencies to the profile plugin (from
 
 [[File:images/Papyrus_diagcusto_05.png]]
 
-We add the extension point ''org.eclipse.papyrus.infra.core.elementTypeSetConfiguration''
+We add the extension point ''org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration''
 in the Extensions of the plugin:
 
 [[File:images/Papyrus_diagcusto_07.png]]
@@ -198,17 +199,20 @@ In the Available Palette buttons, we click on the Create a new local palette one
 We set its name to an arbitrary one, like my_palette, and we add my_profile_test as Required 
 profiles:
 
-[[File:images/Papyrus_diagcusto_20.png]]
+[[File:images/Papyrus_diagcusto_20.png|frame]]
 
 We click on Next and select Default in the Palette preview to rename it MyPalette. 
 From UML tools, we add Class to the Palette preview and modify it. We click on Class in the 
 Palette Preview and change its name to Stereotype_A. We select all associated ElementTypes, 
 remove them and add the my_profile_extensions/Stereotype_A (Class Shape) ElementType. We then 
 click on Finish.
-3 files are created: 
+to create the 3 files:
 * my_palette_Semantic.elementtypesconfigurations
 * my_palette_UI.elementtypesconfigurations
 * my_palette.paletteconfiguration
+We have to specify the export file option when we create the new palette
+[[File:images/Papyrus_diagcusto_20b.png|frame]]
+
 We double-click on the last file, select the Stereotype_A element and add the 4 missing 
 ElementTypes shown in Figure 8 until obtaining Figure 16.
 
@@ -229,3 +233,20 @@ We then add the Class Diagram that will use this Palette as shown below:
 
 [[File:images/Papyrus_diagcusto_23.png]]
 
+We add the Architecture extension 'org.eclipse.papyrus.infra.architecture.models' and its path (by browsing the file 
+named 'my_test.architecture' that has been previously created).
+
+[[File:images/Papyrus_diagcusto_24.png|800px|frame]]
+
+In order to add the customized diagram in the "new diagram" list, a configuration of the architecture file is mandatory.
+to do this we can use the "org.eclipse.papyrus.infra.architecture" plug-in as a model.
+
+[[File:images/Papyrus_diagcusto_25.png|800px|frame]]
+
+We have also to add the profile to the diagram created on the the Eclipse runtime
+
+[[File:images/Papyrus_diagcusto_26.png|800px|frame]]
+
+After applying all the steps we have the following result
+
+[[File:images/Papyrus_diagcusto_27.png|800px|frame]]
