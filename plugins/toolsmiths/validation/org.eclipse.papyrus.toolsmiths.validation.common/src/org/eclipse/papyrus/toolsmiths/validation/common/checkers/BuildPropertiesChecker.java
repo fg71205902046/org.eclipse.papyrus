@@ -75,6 +75,8 @@ public class BuildPropertiesChecker extends AbstractPluginChecker {
 
 	private static final String GENMODEL_EXTENSION = "genmodel"; //$NON-NLS-1$
 	private static final String ECORE_EXTENSION = "ecore"; //$NON-NLS-1$
+	public static final int MISSING_FROM_BINARY_BUILD_MARKER_ID = 0xff1009;
+	public static final String BINARY_BUILD_PATH = "binaryBuildPath"; //$NON-NLS-1$
 
 	private final Resource modelResource;
 
@@ -226,7 +228,7 @@ public class BuildPropertiesChecker extends AbstractPluginChecker {
 				// Create marker for every required resource that wasn't matched
 				List<BuildError> errors = new ArrayList<>(requiredResources.size());
 				for (IResource next : requiredResources) {
-					errors.add(new BuildError(getMarkerType(), NLS.bind(Messages.BuildPropertiesChecker_3, next.getProjectRelativePath()), Diagnostic.ERROR, IBuildEntry.BIN_INCLUDES));
+					errors.add(new BuildError(getMarkerType(), NLS.bind(Messages.BuildPropertiesChecker_3, next.getProjectRelativePath()), Diagnostic.ERROR, IBuildEntry.BIN_INCLUDES, next.getProjectRelativePath().toString()));
 				}
 				reportErrors(diagnostics, errors);
 			}
@@ -365,7 +367,7 @@ public class BuildPropertiesChecker extends AbstractPluginChecker {
 		BuildModel textBuildModel = prepareTextBuildModel(buildPropertiesFile);
 
 		errors.stream().forEach(error -> {
-			reportBuildError(diagnostics, buildPropertiesFile, textBuildModel, error.type, error.message, error.severity, error.entry);
+			reportBuildError(diagnostics, buildPropertiesFile, textBuildModel, error.type, error.message, error.severity, error.entry, error.missingValue);
 		});
 	}
 
@@ -385,13 +387,15 @@ public class BuildPropertiesChecker extends AbstractPluginChecker {
 	 * @param header
 	 *            the header entry of the build file on which marker is created.
 	 */
-	private void reportBuildError(DiagnosticChain diagnostics, IFile buildFile, BuildModel textBuildModel, String type, String message, int severity, String entry) {
+	private void reportBuildError(DiagnosticChain diagnostics, IFile buildFile, BuildModel textBuildModel, String type, String message, int severity, String entry, String missingValue) {
 		Diagnostic diagnostic;
 
 		if (textBuildModel != null) {
 			diagnostic = createDiagnostic(buildFile, severity, 0, message,
 					IPluginChecker2.markerType(type),
-					IPluginChecker2.lineNumber(getLineNumber(textBuildModel.getBuild().getEntry(entry))));
+					IPluginChecker2.lineNumber(getLineNumber(textBuildModel.getBuild().getEntry(entry))),
+					IPluginChecker2.problem(MISSING_FROM_BINARY_BUILD_MARKER_ID),
+					IPluginChecker2.missingBinInclude(missingValue));
 		} else {
 			diagnostic = createDiagnostic(buildFile, severity, 0, message,
 					IPluginChecker2.markerType(type));
@@ -484,12 +488,14 @@ public class BuildPropertiesChecker extends AbstractPluginChecker {
 		public final int severity;
 		public final String message;
 		public final String type;
+		public final String missingValue;
 
-		public BuildError(String type, String message, int severity, String entry) {
+		public BuildError(String type, String message, int severity, String entry, String missingValue) {
 			this.type = type;
 			this.message = message;
 			this.severity = severity;
 			this.entry = entry;
+			this.missingValue = missingValue;
 		}
 	}
 }

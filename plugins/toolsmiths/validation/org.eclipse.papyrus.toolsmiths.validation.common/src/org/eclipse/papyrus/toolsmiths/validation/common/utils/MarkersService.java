@@ -108,6 +108,13 @@ public class MarkersService {
 					related.append(URI.encodeFragment(uri, false));
 				}
 				break;
+			} else if (next instanceof IPluginChecker2.MarkerAttribute) {
+				IPluginChecker2.MarkerAttribute attr = (IPluginChecker2.MarkerAttribute) next;
+				try {
+					result.setAttribute(attr.getName(), attr.getValue());
+				} catch (CoreException e) {
+					Activator.log.error("Failed to set attribute " + attr.getName() + " of problem marker.", e); //$NON-NLS-1$ //$NON-NLS-2$
+				}
 			}
 		}
 
