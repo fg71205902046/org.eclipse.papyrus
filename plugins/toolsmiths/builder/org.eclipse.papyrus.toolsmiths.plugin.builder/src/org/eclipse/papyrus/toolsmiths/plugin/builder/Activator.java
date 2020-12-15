@@ -19,11 +19,13 @@ package org.eclipse.papyrus.toolsmiths.plugin.builder;
 
 import static org.eclipse.papyrus.toolsmiths.validation.architecture.constants.ArchitecturePluginValidationConstants.ARCHITECTURE_PLUGIN_VALIDATION_MARKER_TYPE;
 import static org.eclipse.papyrus.toolsmiths.validation.architecture.internal.checkers.ArchitecturePluginChecker.ARCHITECTURE_EXTENSION;
+import static org.eclipse.papyrus.toolsmiths.validation.common.utils.ModelResourceMapper.allElementsOfType;
 import static org.eclipse.papyrus.toolsmiths.validation.common.utils.ModelResourceMapper.byExtension;
 import static org.eclipse.papyrus.toolsmiths.validation.common.utils.ModelResourceMapper.resourceSets;
 import static org.eclipse.papyrus.toolsmiths.validation.common.utils.ModelResourceMapper.rootsOfType;
 import static org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.ElementTypesPluginValidationConstants.ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE;
 import static org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.checkers.ElementTypesPluginChecker.ELEMENT_TYPES_CONFIGURATION_EXTENSION;
+import static org.eclipse.papyrus.toolsmiths.validation.profile.constants.ProfilePluginValidationConstants.PROFILE_PLUGIN_VALIDATION_MARKER_TYPE;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -31,10 +33,13 @@ import org.eclipse.papyrus.infra.core.architecture.ArchitectureDomain;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.papyrus.infra.emf.utils.ResourceUtils;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
+import org.eclipse.papyrus.toolsmiths.plugin.builder.helper.StaticProfileHelper;
 import org.eclipse.papyrus.toolsmiths.validation.architecture.internal.checkers.ArchitecturePluginChecker;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.ModelResourceMapper;
 import org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.checkers.ElementTypesPluginChecker;
+import org.eclipse.papyrus.toolsmiths.validation.profile.internal.checkers.ProfilePluginChecker;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.uml2.uml.Profile;
 import org.osgi.framework.BundleContext;
 
 import com.google.common.collect.ListMultimap;
@@ -85,7 +90,9 @@ public class Activator extends AbstractUIPlugin {
 
 		// manifest builder
 		PapyrusPluginBuilder.addManifestBuilder(new ManifestBuilder());
-		PapyrusPluginBuilder.addManifestBuilder(new StaticProfileManifestBuilder());
+		PapyrusPluginBuilder.addManifestBuilder(new PluginCheckerBuilder(PROFILE_PLUGIN_VALIDATION_MARKER_TYPE, this::mapProfilesResources)
+				.withChecker(ProfilePluginChecker.modelDependenciesCheckerFactory())
+				.withChecker(ProfilePluginChecker.buildPropertiesCheckerFactory()));
 		PapyrusPluginBuilder.addManifestBuilder(new PluginCheckerBuilder(ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE, this::mapElementTypesResources)
 				.withChecker(ElementTypesPluginChecker.modelDependenciesCheckerFactory())
 				.withChecker(ElementTypesPluginChecker.buildPropertiesCheckerFactory()));
@@ -94,7 +101,8 @@ public class Activator extends AbstractUIPlugin {
 				.withChecker(ArchitecturePluginChecker.modelDependenciesCheckerFactory()));
 
 		// extension builder
-		PapyrusPluginBuilder.addPluginBuilder(new StaticProfileExtensionsBuilder());
+		PapyrusPluginBuilder.addManifestBuilder(new PluginCheckerBuilder(PROFILE_PLUGIN_VALIDATION_MARKER_TYPE, this::mapAllProfilesResources)
+				.withChecker(ProfilePluginChecker.extensionsCheckerFactory()));
 		PapyrusPluginBuilder.addPluginBuilder(new PluginCheckerBuilder(ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE, this::mapElementTypesResources)
 				.withChecker(ElementTypesPluginChecker.extensionsCheckerFactory()));
 		PapyrusPluginBuilder.addPluginBuilder(new PluginCheckerBuilder(ARCHITECTURE_PLUGIN_VALIDATION_MARKER_TYPE, this::mapArchitectureResources)
@@ -119,6 +127,16 @@ public class Activator extends AbstractUIPlugin {
 	private ListMultimap<IFile, ElementTypeSetConfiguration> mapElementTypesResources(IProject project) {
 		ModelResourceMapper<ElementTypeSetConfiguration> mapper = new ModelResourceMapper<>(project);
 		return mapper.map(byExtension(ELEMENT_TYPES_CONFIGURATION_EXTENSION), resourceSets(), rootsOfType(ElementTypeSetConfiguration.class));
+	}
+
+	private ListMultimap<IFile, Profile> mapProfilesResources(IProject project) {
+		ModelResourceMapper<Profile> mapper = new ModelResourceMapper<>(project);
+		return mapper.map(StaticProfileHelper.umlWithGenmodel(), resourceSets(), rootsOfType(Profile.class));
+	}
+
+	private ListMultimap<IFile, Profile> mapAllProfilesResources(IProject project) {
+		ModelResourceMapper<Profile> mapper = new ModelResourceMapper<>(project);
+		return mapper.map(StaticProfileHelper.umlWithGenmodel(), resourceSets(), allElementsOfType(Profile.class));
 	}
 
 	private ListMultimap<IFile, ArchitectureDomain> mapArchitectureResources(IProject project) {

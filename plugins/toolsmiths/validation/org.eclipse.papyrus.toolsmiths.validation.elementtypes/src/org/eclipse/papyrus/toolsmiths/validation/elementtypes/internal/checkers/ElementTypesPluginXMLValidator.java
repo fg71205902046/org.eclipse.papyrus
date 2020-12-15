@@ -80,7 +80,7 @@ final class ElementTypesPluginXMLValidator {
 		case ELEMENT_TYPE_SET:
 			String clientContextID = element.getAttribute(CLIENT_CONTEXT_ID);
 			if (clientContextID == null || clientContextID.isBlank()) {
-				problems.reportProblem(Diagnostic.ERROR, element, Messages.ElementTypesPluginXMLValidator_0, CATEGORY);
+				problems.reportProblem(Diagnostic.ERROR, element, Messages.ElementTypesPluginXMLValidator_0, CATEGORY, null);
 			}
 			break;
 		default:
