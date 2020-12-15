@@ -268,6 +268,7 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 				// All source names for the same dependency are collected and dynamically injected into the diagnostic message
 				data.add(IPluginChecker2.collatedMessageArgument(0, sourceName));
 				data.add(IPluginChecker2.messageArgument(1, dependency));
+				data.add(IPluginChecker2.missingDependency(dependency));
 			}
 
 			diagnostic = createDiagnostic(manifestFile, severity, 0, message, data.toArray());

@@ -35,8 +35,10 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.emf.validation.DependencyValidationUtils;
 import org.eclipse.papyrus.infra.emf.utils.ResourceUtils;
 import org.eclipse.papyrus.toolsmiths.validation.common.Activator;
+import org.eclipse.pde.internal.core.builders.PDEMarkerFactory;
 
 /**
  * <p>
@@ -61,6 +63,7 @@ import org.eclipse.papyrus.toolsmiths.validation.common.Activator;
  * Any of these parameters that are missing from a diagnostic may be inferred by the client as necessary.
  * </p>
  */
+@SuppressWarnings("restriction")
 public interface IPluginChecker2 {
 
 	/**
@@ -146,6 +149,22 @@ public interface IPluginChecker2 {
 	 */
 	static MarkerAttribute lineNumber(int line) {
 		return new MarkerAttribute(IMarker.LINE_NUMBER, line);
+	}
+
+	static MarkerAttribute missingDependency(String missingDependency) {
+		return new MarkerAttribute(DependencyValidationUtils.MISSING_DEPENDENCIES, missingDependency);
+	}
+
+	static MarkerAttribute missingBinInclude(String missingEntry) {
+		return new MarkerAttribute(BuildPropertiesChecker.BINARY_BUILD_PATH, missingEntry);
+	}
+
+	/**
+	 * Create a token to put in the {@linkplain Diagnostic#getData() data list} of a {@link Diagnostic} to indicate the problem id to
+	 * set in the resource marker for further resolutions.
+	 */
+	static MarkerAttribute problem(int problemID) {
+		return new MarkerAttribute(PDEMarkerFactory.PROBLEM_ID, problemID);
 	}
 
 	/**
@@ -674,5 +693,7 @@ public interface IPluginChecker2 {
 		}
 
 	}
+
+
 
 }

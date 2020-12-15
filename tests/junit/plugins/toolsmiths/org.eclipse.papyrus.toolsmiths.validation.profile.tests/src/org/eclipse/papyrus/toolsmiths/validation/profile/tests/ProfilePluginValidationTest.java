@@ -71,37 +71,35 @@ public class ProfilePluginValidationTest extends AbstractPapyrusTest {
 	@Test
 	public void testProfilePluginValidation() {
 		// First, run the validation
-		ProfilePluginCheckerService.checkProfilePlugin(fixture.getProject());
+		ProfilePluginCheckerService.checkProfilePlugin(fixture.getProject(), null);
 
 		// Get the markers
 		List<IMarker> markers = null;
 		try {
-			markers = Arrays.asList(fixture.getProject().findMarkers(ProfilePluginValidationConstants.PROFILE_PLUGIN_VALIDATION_TYPE, true, IResource.DEPTH_INFINITE));
+			markers = Arrays.asList(fixture.getProject().findMarkers(ProfilePluginValidationConstants.PROFILE_PLUGIN_VALIDATION_MARKER_TYPE, true, IResource.DEPTH_INFINITE));
 		} catch (CoreException e) {
 			Assert.fail("Error with resource"); //$NON-NLS-1$
 		}
 
 		// Now check the markers
 		Assert.assertNotNull("The markers have to be found", markers); //$NON-NLS-1$
-		Assert.assertEquals("The number of markers is not correct", 5, markers.size()); //$NON-NLS-1$
+		Assert.assertEquals("The number of markers is not correct", 6, markers.size()); //$NON-NLS-1$
 
 		// Check the profile.uml markers
 		final List<IMarker> profileFileMarkers = markers.stream().filter(marker -> marker.getResource().getFullPath().toString().endsWith("bookstore.profile.uml")).collect(Collectors.toList()); //$NON-NLS-1$
 		Assert.assertNotNull("Profile file markers are not found", profileFileMarkers); //$NON-NLS-1$
-		Assert.assertEquals("The number of markers for profile file is not correct", 1, profileFileMarkers.size()); //$NON-NLS-1$
-		Assert.assertTrue("The severity of profile marker is not correct", isMarkerSeverity(profileFileMarkers.get(0), IMarker.SEVERITY_ERROR)); //$NON-NLS-1$
+		Assert.assertEquals("The number of markers for profile file is not correct", 0, profileFileMarkers.size()); //$NON-NLS-1$
 
 		// Check the dependencies markers
 		final List<IMarker> manifestMarkers = markers.stream().filter(marker -> marker.getResource().getFullPath().toString().endsWith("MANIFEST.MF")).collect(Collectors.toList()); //$NON-NLS-1$
 		Assert.assertNotNull("Dependencies markers are not found", manifestMarkers); //$NON-NLS-1$
-		Assert.assertEquals("The number of markers for dependencies is not correct", 1, manifestMarkers.size()); //$NON-NLS-1$
+		Assert.assertEquals("The number of markers for dependencies is not correct", 4, manifestMarkers.size()); //$NON-NLS-1$
 		Assert.assertTrue("The severity of profile marker is not correct", isMarkerSeverity(manifestMarkers.get(0), IMarker.SEVERITY_WARNING)); //$NON-NLS-1$
 
 		// Check the build markers
 		final List<IMarker> buildMarkers = markers.stream().filter(marker -> marker.getResource().getFullPath().toString().endsWith("build.properties")).collect(Collectors.toList()); //$NON-NLS-1$
 		Assert.assertNotNull("Build markers are not found", buildMarkers); //$NON-NLS-1$
-		Assert.assertEquals("The number of markers for build is not correct", 1, buildMarkers.size()); //$NON-NLS-1$
-		Assert.assertTrue("The severity of profile marker is not correct", isMarkerSeverity(buildMarkers.get(0), IMarker.SEVERITY_ERROR)); //$NON-NLS-1$
+		Assert.assertEquals("The number of markers for build is not correct", 0, buildMarkers.size()); //$NON-NLS-1$
 
 		// Check the extensions markers
 		final List<IMarker> extensionsMarkers = markers.stream().filter(marker -> marker.getResource().getFullPath().toString().endsWith("plugin.xml")).collect(Collectors.toList()); //$NON-NLS-1$
