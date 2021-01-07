@@ -40,10 +40,8 @@ import org.eclipse.papyrus.infra.tools.Activator;
 /**
  * Optional support for a JDT workspace, to find development-time classes such as may be referenced for commands
  * in <em>Architecture Models</em>.
- *
- * @since 4.1
  */
-public class ClasspathHelper {
+public abstract class ClasspathHelper {
 
 	public static final ClasspathHelper INSTANCE;
 
@@ -54,7 +52,7 @@ public class ClasspathHelper {
 			instance = new JDTHelper();
 		} catch (Exception e) {
 			// JDT is not available
-			instance = new ClasspathHelper();
+			instance = new InstallHelper();
 		}
 
 		INSTANCE = instance;
@@ -73,15 +71,25 @@ public class ClasspathHelper {
 	 * @return the class, or {@code null} if the class doesn't exist or is invalid (such as not conforming to the {@code constraint}).
 	 *         The result may be a Java {@link Class} or a JDT {@link IType}, depending whether JDT is available
 	 */
-	public Object findClass(String name, URI context, Class<?> constraint) {
-		return constraint == null
-				? ClassLoaderHelper.loadClass(name, context)
-				: ClassLoaderHelper.loadClass(name, constraint, context);
-	}
+	public abstract Object findClass(String name, URI context, Class<?> constraint);
 
 	//
 	// Nested types
 	//
+
+	/**
+	 * The install helper instance looks for classes in the current installation.
+	 */
+	private static final class InstallHelper extends ClasspathHelper {
+
+		@Override
+		public Object findClass(String name, URI context, Class<?> constraint) {
+			return constraint == null
+					? ClassLoaderHelper.loadClass(name, context)
+					: ClassLoaderHelper.loadClass(name, constraint, context);
+		}
+
+	}
 
 	/**
 	 * The JDT helper instance looks for classes in the Java workspace (and typically in the current PDE target platform).
@@ -90,20 +98,16 @@ public class ClasspathHelper {
 
 		@Override
 		public Object findClass(String name, URI context, Class<?> constraint) {
-			Object result = null;
+			IType result = null;
 
 			IJavaProject project = getJavaProject(context);
-			if (project == null) {
-				// This search is not in a Java project context. So, it's a run-time environment
-				// and we need to search the classpath.
-				result = super.findClass(name, context, constraint);
-			} else {
+			if (project != null) {
 				result = findType(project, name, constraint);
+			}
 
-				if (result == null) {
-					// Search the workspace index
-					result = searchType(name, constraint);
-				}
+			if (result == null) {
+				// Search the workspace index
+				result = searchType(name, constraint);
 			}
 
 			return result;
@@ -200,3 +204,4 @@ public class ClasspathHelper {
 	}
 
 }
+
