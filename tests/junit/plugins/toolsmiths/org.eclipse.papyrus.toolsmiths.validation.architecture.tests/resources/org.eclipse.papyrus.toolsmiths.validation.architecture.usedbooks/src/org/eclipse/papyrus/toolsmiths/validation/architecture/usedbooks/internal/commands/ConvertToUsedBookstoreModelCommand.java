@@ -12,17 +12,16 @@
  *   Christian W. Damus - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.toolsmiths.validation.architecture.example.internal.commands;
+package org.eclipse.papyrus.toolsmiths.validation.architecture.usedbooks.internal.commands;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.uml.diagram.common.commands.ModelCreationCommandBase;
-import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.uml.diagram.common.commands.AbstractModelConversionCommand;
 
-public class CreateBookstoreModelCommand extends ModelCreationCommandBase {
+public class ConvertToUsedBookstoreModelCommand extends AbstractModelConversionCommand {
 
 	@Override
-	protected EObject createRootElement() {
-		return UMLFactory.eINSTANCE.createModel();
+	public void doConvertModel(ModelSet modelSet) {
+		// Convert the book store to a used book store
 	}
 
 }

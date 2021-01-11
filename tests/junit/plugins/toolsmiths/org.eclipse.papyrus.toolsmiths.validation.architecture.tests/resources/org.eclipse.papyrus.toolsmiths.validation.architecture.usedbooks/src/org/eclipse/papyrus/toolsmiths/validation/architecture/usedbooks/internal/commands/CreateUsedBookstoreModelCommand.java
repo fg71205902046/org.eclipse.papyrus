@@ -12,13 +12,13 @@
  *   Christian W. Damus - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.toolsmiths.validation.architecture.example.internal.commands;
+package org.eclipse.papyrus.toolsmiths.validation.architecture.usedbooks.internal.commands;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.uml.diagram.common.commands.ModelCreationCommandBase;
 import org.eclipse.uml2.uml.UMLFactory;
 
-public class CreateBookstoreModelCommand extends ModelCreationCommandBase {
+public class CreateUsedBookstoreModelCommand extends ModelCreationCommandBase {
 
 	@Override
 	protected EObject createRootElement() {

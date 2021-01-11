@@ -27,14 +27,19 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.papyrus.infra.core.architecture.ADElement;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureContext;
+import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
+import org.eclipse.papyrus.infra.core.architecture.ArchitectureViewpoint;
 import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.infra.types.core.extensionpoints.IElementTypeSetExtensionPoint;
 import org.eclipse.papyrus.toolsmiths.validation.architecture.internal.messages.Messages;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.CustomModelChecker;
+import org.eclipse.papyrus.toolsmiths.validation.common.internal.utils.ArchitectureIndex;
 import org.eclipse.pde.core.plugin.IPluginElement;
 
 /**
@@ -54,6 +59,7 @@ public class ArchitectureCustomValidator extends CustomModelChecker.SwitchValida
 
 	public void validate(RepresentationKind representation, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		validateIcon(representation, representation.getGrayedIcon(), diagnostics, context);
+		validateRepresentationKindUsed(representation, diagnostics, context);
 	}
 
 	private void validateIcon(EObject owner, String iconURI, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -94,4 +100,49 @@ public class ArchitectureCustomValidator extends CustomModelChecker.SwitchValida
 		}
 	}
 
+	private void validateRepresentationKindUsed(RepresentationKind representation, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!findArchitectureContextReference(representation)) {
+			diagnostics.add(createDiagnostic(Diagnostic.WARNING, representation, format("No viewpoint includes ''{0}'', so it is not accessible.", context, representation)));
+		}
+	}
+
+	/**
+	 * Search the registered architecture context models to find any {@link ArchitectureViewpoint viewpoint} that
+	 * references the given {@code representation}.
+	 *
+	 * @param representation
+	 *            a representation kind
+	 * @return whether any viewpoint references it
+	 */
+	protected boolean findArchitectureContextReference(RepresentationKind representation) {
+		// The simplest case is a reference within the same architecture model
+		boolean result = !requireCrossReferenceAdapter(representation)
+				.getInverseReferences(representation, ArchitecturePackage.Literals.ARCHITECTURE_VIEWPOINT__REPRESENTATION_KINDS, false).isEmpty();
+
+		if (!result) {
+			// Look for references from other registered architecture models (including from the workspace)
+			result = ArchitectureIndex.getInstance().isReferenced(representation, ArchitecturePackage.Literals.ARCHITECTURE_VIEWPOINT__REPRESENTATION_KINDS);
+		}
+
+		return result;
+	}
+
+	private ECrossReferenceAdapter requireCrossReferenceAdapter(EObject object) {
+		ECrossReferenceAdapter result = ECrossReferenceAdapter.getCrossReferenceAdapter(object);
+
+		if (result == null) {
+			result = new ECrossReferenceAdapter();
+			Resource resource = object.eResource();
+			ResourceSet rset = (resource != null) ? resource.getResourceSet() : null;
+			if (rset != null) {
+				rset.eAdapters().add(result);
+			} else if (resource != null) {
+				resource.eAdapters().add(result);
+			} else {
+				object.eAdapters().add(result);
+			}
+		}
+
+		return result;
+	}
 }

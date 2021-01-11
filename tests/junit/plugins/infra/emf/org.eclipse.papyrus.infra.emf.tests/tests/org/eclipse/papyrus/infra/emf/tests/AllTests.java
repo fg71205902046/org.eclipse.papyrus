@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 2014, 2016 CEA, Christian W. Damus, and others.
- * 
+ * Copyright (c) 2014, 2021 CEA, Christian W. Damus, and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
- *   Christian W. Damus - bugs 399859, 465416, 485220, 496299
+ *   Christian W. Damus - bugs 399859, 465416, 485220, 496299, 551740
  *
  */
 package org.eclipse.papyrus.infra.emf.tests;
@@ -21,6 +21,7 @@ import org.eclipse.papyrus.infra.emf.resource.CrossReferenceIndexTest;
 import org.eclipse.papyrus.infra.emf.resource.ShardResourceHelperTest;
 import org.eclipse.papyrus.infra.emf.resource.ShardResourceLocatorTest;
 import org.eclipse.papyrus.infra.emf.resource.index.WorkspaceModelIndexTest;
+import org.eclipse.papyrus.infra.emf.utils.InternalCrossReferencerTest;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceTest;
 import org.eclipse.papyrus.infra.types.core.registries.ElementTypeSetConfigurationRegistry;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
@@ -43,6 +44,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		// oep.infra.emf.edit.domain
 		PapyrusTransactionalEditingDomainTest.class,
 		// oep.infra.emf.utils
+		InternalCrossReferencerTest.class,
 		ServiceUtilsForResourceTest.class,
 		// oep.infra.emf.resource
 		ShardResourceHelperTest.class, ShardResourceLocatorTest.class, CrossReferenceIndexTest.class,

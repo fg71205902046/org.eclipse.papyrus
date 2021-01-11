@@ -162,6 +162,35 @@ public class ArchitectureModelBuilderTest extends AbstractPapyrusTest {
 
 			assertThat(modelMarkers, not(hasItem(isMarkerMessage(containsString("is registered to a different context"))))); //$NON-NLS-1$
 		}
+
+		/**
+		 * Test the reporting of an unused representation kind (not referenced by any viewpoint).
+		 *
+		 * @see <a href="http://eclip.se/551740">bug 551740</a>
+		 */
+		@Test
+		@OverlayFile(value = "bug551740-models/BookStore-unusedRepresentationKind.architecture", path = "resources/BookStore.architecture")
+		public void unusedRepresentationKind() {
+			final List<IMarker> modelMarkers = fixture.getMarkers("resources/BookStore.architecture"); //$NON-NLS-1$
+
+			assertThat(modelMarkers, hasItem(both(isMarkerSeverity(IMarker.SEVERITY_WARNING)).and(isMarkerMessage(containsString("No viewpoint includes"))))); //$NON-NLS-1$
+		}
+
+		/**
+		 * Test that a representation kind is not unused if a viewpoint in some other registered architecture model references it.
+		 *
+		 * @see <a href="http://eclip.se/551740">bug 551740</a>
+		 */
+		@Test
+		@OverlayFile(value = "bug551740-models/BookStore-unusedRepresentationKind.architecture", path = "resources/BookStore.architecture")
+		// Import the Used Book Store architecture model project that references the representation kind in its viewpoint
+		@AuxProject("org.eclipse.papyrus.toolsmiths.validation.architecture.usedbooks")
+		public void representationKindReferenced() {
+			final List<IMarker> modelMarkers = fixture.getMarkers("resources/BookStore.architecture"); //$NON-NLS-1$
+
+			assertThat(modelMarkers, not(hasItem(isMarkerMessage(containsString("No viewpoint includes"))))); //$NON-NLS-1$
+		}
+
 	}
 
 }

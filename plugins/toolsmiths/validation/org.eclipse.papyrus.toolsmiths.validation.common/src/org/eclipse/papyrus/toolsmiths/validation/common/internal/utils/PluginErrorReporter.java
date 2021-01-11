@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Remi Schnekenburger (EclipseSource) - Initial API and implementation
- *   Christian W. Damus - bugs 569357, 570097
+ *   Christian W. Damus - bugs 569357, 570097, 551740
  *
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.validation.common.internal.utils;
@@ -23,7 +23,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
-import java.util.concurrent.ExecutionException;
 import java.util.function.Function;
 
 import org.eclipse.core.resources.IFile;
@@ -32,10 +31,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.URIMappingRegistryImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.toolsmiths.validation.common.Activator;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.IPluginChecker2;
@@ -482,28 +478,9 @@ public class PluginErrorReporter<T extends EObject> extends ManifestErrorReporte
 	 * @return whether a cross-reference is found in any architecture context
 	 */
 	protected boolean findArchitectureContextReference() {
-		boolean result = false;
-
 		// We do not need extensions on the set registration point if some architecture context includes the set
-		URIConverter converter = getModel().eResource().getResourceSet().getURIConverter();
-		URI myModelURI = converter.normalize(EcoreUtil.getURI(getModel()));
-
-		try {
-			Multimap<EObject, EStructuralFeature.Setting> xrefs = ArchitectureIndex.getInstance().getExternalCrossReferences().get();
-
-			// The architecture models are loaded in their own resource set, so look for our model by URI
-			result = xrefs.keySet().stream()
-					.map(EcoreUtil::getURI)
-					.map(converter::normalize)
-					.filter(myModelURI::equals)
-					.anyMatch(myModelURI::equals);
-		} catch (ExecutionException | InterruptedException e) {
-			// Cannot access the architecture index? Then we didn't find anything
-			Activator.log.error("Error querying Architecture Context models.", e); //$NON-NLS-1$
+		return ArchitectureIndex.getInstance().isReferenced(getModel());
 		}
-
-		return result;
-	}
 
 	//
 	// Nested types
