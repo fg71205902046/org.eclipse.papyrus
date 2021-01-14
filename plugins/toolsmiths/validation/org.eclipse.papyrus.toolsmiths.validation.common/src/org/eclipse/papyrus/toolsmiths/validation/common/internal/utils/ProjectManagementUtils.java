@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2019 CEA LIST, and others.
+ * Copyright (c) 2019, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
+ *   Christian W. Damus - bug 542945
  *
  *****************************************************************************/
 
@@ -21,15 +22,22 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.osgi.service.resolver.BundleSpecification;
 import org.eclipse.papyrus.toolsmiths.validation.common.Activator;
 import org.eclipse.pde.core.build.IBuildModel;
+import org.eclipse.pde.core.plugin.IExtensions;
+import org.eclipse.pde.core.plugin.IPluginAttribute;
+import org.eclipse.pde.core.plugin.IPluginElement;
 import org.eclipse.pde.core.plugin.IPluginExtension;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.PluginRegistry;
@@ -206,4 +214,131 @@ public class ProjectManagementUtils {
 	private static boolean isCorrespondingFile(final IFile file, final String foundFile, final boolean isExtensionCheck) {
 		return isExtensionCheck ? file.getName().endsWith("." + foundFile) : file.getName().equals(foundFile); //$NON-NLS-1$
 	}
+
+	/**
+	 * Find an extension element from the current PDE target overlaid with workspace plug-in models.
+	 *
+	 * @param extensionPoint
+	 *            the point on which to search extension elements
+	 * @param elementName
+	 *            the extension element name to search
+	 * @param attributes
+	 *            optional attributes by which to filter the search, as name/value pairs
+	 *
+	 * @return the found extension element
+	 *
+	 * @throws ArrayIndexOutOfBoundsException
+	 *             if the {@code attributes} array has a name without a following value
+	 */
+	public static Optional<IPluginElement> findExtensionElement(String extensionPoint, String elementName, String... attributes) {
+		return getExtensionElements(extensionPoint, elementName, attributes).findAny();
+	}
+
+	/**
+	 * Get extension elements from the current PDE target overlaid with workspace plug-in models.
+	 *
+	 * @param extensionPoint
+	 *            the point on which to search extension elements
+	 * @param elementName
+	 *            the extension element name to search
+	 * @param attributes
+	 *            optional attributes by which to filter the search, as name/value pairs
+	 *
+	 * @return the matching extension elements
+	 *
+	 * @throws ArrayIndexOutOfBoundsException
+	 *             if the {@code attributes} array has a name without a following value
+	 */
+	public static Stream<IPluginElement> getExtensionElements(String extensionPoint, String elementName, String... attributes) {
+		Predicate<IPluginElement> elementFilter = element -> elementName.equals(element.getName());
+
+		if (attributes.length > 0) {
+			elementFilter = elementFilter.and(hasAttributes(attributes));
+		}
+
+		return Stream.of(PluginRegistry.getActiveModels())
+				.map(IPluginModelBase::getExtensions)
+				.map(IExtensions::getExtensions).flatMap(Stream::of)
+				.filter(ext -> extensionPoint.equals(ext.getPoint()))
+				.map(IPluginExtension::getChildren).flatMap(Stream::of)
+				.filter(IPluginElement.class::isInstance).map(IPluginElement.class::cast)
+				.filter(elementFilter);
+	}
+
+	/**
+	 * Create a predicate that matches <tt>plugin.xml</tt> elements having the given {@code attributes}.
+	 * In the unhelpful case of an empty array of {@code attributes}, the result is an always-{@code true}
+	 * predicate.
+	 *
+	 * @param attributes
+	 *            attributes by which to filter the search, as name/value pairs
+	 *
+	 * @return a filter matching extension elements that have these {@code attributes}
+	 *
+	 * @throws ArrayIndexOutOfBoundsException
+	 *             if the {@code attributes} array has a name without a following value
+	 */
+	public static Predicate<IPluginElement> hasAttributes(String... attributes) {
+		Predicate<IPluginElement> result = __ -> true;
+
+		for (int i = 0; i < attributes.length; i = i + 2) {
+			String name = attributes[i];
+			String value = attributes[i + 1];
+
+			Predicate<IPluginElement> next = element -> value.equals(element.getAttribute(name).getValue());
+			result = i > 0 ? result.and(next) : next;
+		}
+
+		return result;
+	}
+
+	/**
+	 * Create a predicate that matches <tt>plugin.xml</tt> elements having an {@code attribute} matching the given {@code predicate}.
+	 *
+	 * @param attribute
+	 *            the attribute name to test
+	 * @param predicate
+	 *            a predicate to match the {@code attribute} value
+	 *
+	 * @return a filter matching extension elements that have an {@code attribute} matching the given {@code predicate}
+	 */
+	public static Predicate<IPluginElement> hasAttribute(String attribute, Predicate<? super String> predicate) {
+		return element -> Optional.ofNullable(element.getAttribute(attribute)).map(IPluginAttribute::getValue).filter(predicate).isPresent();
+	}
+
+	/**
+	 * Obtain a predicate matching a <tt>plugin.xml</tt> element whose resource path matches a given URI.
+	 * The path attribute is assumed to be either a relative path within the bundle that defines the extension
+	 * or else a <tt>platform:/plugin</tt> URI.
+	 *
+	 * @param pathAttribute
+	 *            the attribute name that indicates the resource path
+	 * @param uri
+	 *            the resource location to match against the path specification
+	 *
+	 * @return the element predicate
+	 */
+	public static Predicate<IPluginElement> resourcePathIs(String pathAttribute, URI uri) {
+		return element -> Optional.ofNullable(element.getAttribute(pathAttribute)).map(attr -> resourcePathMatches(attr, uri)).orElse(false);
+	}
+
+	private static boolean resourcePathMatches(IPluginAttribute attribute, URI uri) {
+		String path = attribute.getValue();
+		if (path == null || path.isBlank()) {
+			return false;
+		}
+
+		try {
+			URI pathURI = URI.createURI(path, true);
+			if (pathURI.isRelative()) {
+				pathURI = URI.createPlatformPluginURI(String.format("%s/%s", attribute.getPluginBase().getId(), pathURI), false); //$NON-NLS-1$
+			}
+
+			return pathURI.equals(uri) || (pathURI.isPlatform() && uri.isPlatform() && pathURI.toPlatformString(false).equals(uri.toPlatformString(false)));
+		} catch (Exception e) {
+			// Cannot parse it as an URI? Then it cannot be matched against a valid URI
+			return false;
+		}
+	}
+
 }
