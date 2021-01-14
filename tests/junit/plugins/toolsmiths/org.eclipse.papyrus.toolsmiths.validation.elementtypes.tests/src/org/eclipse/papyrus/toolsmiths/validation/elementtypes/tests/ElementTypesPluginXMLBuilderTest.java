@@ -83,7 +83,7 @@ public class ElementTypesPluginXMLBuilderTest extends AbstractPapyrusTest {
 	public void noClientContext() {
 		final List<IMarker> modelMarkers = fixture.getMarkers("plugin.xml"); //$NON-NLS-1$
 
-		assertThat(modelMarkers, hasItem(both(isMarkerSeverity(IMarker.SEVERITY_ERROR)).and(isMarkerMessage(containsString("client context ID"))))); //$NON-NLS-1$
+		assertThat(modelMarkers, hasItem(both(isMarkerSeverity(IMarker.SEVERITY_ERROR)).and(isMarkerMessage(containsString("Missing client context ID"))))); //$NON-NLS-1$
 	}
 
 	/**
@@ -93,6 +93,47 @@ public class ElementTypesPluginXMLBuilderTest extends AbstractPapyrusTest {
 	@Test
 	@OverlayFile(value = "bug569357-extensions/plugin-wrongPath.xml", path = "plugin.xml")
 	public void noSuchModelFile() {
+		final List<IMarker> modelMarkers = fixture.getMarkers("plugin.xml"); //$NON-NLS-1$
+
+		assertThat(modelMarkers, not(hasItem(anything())));
+	}
+
+	/**
+	 * Test the reporting of a client-context ID that is not known either in GMF nor in any Architecture Context.
+	 *
+	 * @see <a href="http://eclip.se/542945">bug 542945</a>
+	 */
+	@Test
+	@OverlayFile(value = "bug542945/plugin-customClientContext.xml", path = "plugin.xml")
+	public void unknownClientContextID() {
+		final List<IMarker> modelMarkers = fixture.getMarkers("plugin.xml"); //$NON-NLS-1$
+
+		assertThat(modelMarkers, hasItem(both(isMarkerSeverity(IMarker.SEVERITY_WARNING)).and(
+				isMarkerMessage(containsString("Unknown architecture context or GMF client context")))));
+	}
+
+	/**
+	 * Test that a client context is matched against a registered Architecture Context.
+	 *
+	 * @see <a href="http://eclip.se/542945">bug 542945</a>
+	 */
+	@Test
+	@OverlayFile(value = "bug542945/plugin-customClientContext.xml", path = "plugin.xml")
+	@OverlayFile(value = "bug542945/BookStore.architecture", path = "resources/BookStore.architecture")
+	public void clientContextIDViaArchitectureCongtext() {
+		final List<IMarker> modelMarkers = fixture.getMarkers("plugin.xml"); //$NON-NLS-1$
+
+		assertThat(modelMarkers, not(hasItem(anything())));
+	}
+
+	/**
+	 * Test that a client context is matched against a registration of the ID in GMF.
+	 *
+	 * @see <a href="http://eclip.se/542945">bug 542945</a>
+	 */
+	@Test
+	@OverlayFile(value = "bug542945/plugin-customClientContextGMF.xml", path = "plugin.xml")
+	public void clientContextIDViaGMF() {
 		final List<IMarker> modelMarkers = fixture.getMarkers("plugin.xml"); //$NON-NLS-1$
 
 		assertThat(modelMarkers, not(hasItem(anything())));

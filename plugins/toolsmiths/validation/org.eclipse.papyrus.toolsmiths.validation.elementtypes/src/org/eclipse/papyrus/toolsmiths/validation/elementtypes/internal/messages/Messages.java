@@ -33,6 +33,7 @@ public class Messages extends NLS {
 	public static String ElementTypesPluginChecker_0;
 	public static String ElementTypesPluginChecker_1;
 	public static String ElementTypesPluginXMLValidator_0;
+	public static String ElementTypesPluginXMLValidator_1;
 	public static String StereotypeApplicationMatcherCustomValidator_0;
 	public static String StereotypeApplicationMatcherCustomValidator_1;
 	public static String StereotypePropertyReferenceEdgeAdviceCustomValidator_0;
