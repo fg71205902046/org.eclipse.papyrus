@@ -29,7 +29,8 @@ Require-Bundle: ca.odell.glazedlists;bundle-version="[1.9.0,2.0.0)",
  org.eclipse.ui.navigator;bundle-version="[3.9.0,4.0.0)",
  org.eclipse.uml2.uml.editor;bundle-version="[5.5.0,6.0.0)",
  org.eclipse.xtext.ui;bundle-version="[2.22.0,3.0.0)",
- org.junit;bundle-version="[4.13.0,5.0.0)"
+ org.junit;bundle-version="[4.13.0,5.0.0)",
+ org.eclipse.papyrus.uml.dynamic.profile.tests;bundle-version="[2.0.0,3.0.0)"
 Export-Package: org.eclipse.papyrus.uml.nattable.clazz.config.tests,
  org.eclipse.papyrus.uml.nattable.clazz.config.tests.tests
 Bundle-Vendor: %Bundle-Vendor

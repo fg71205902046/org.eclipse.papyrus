@@ -65,7 +65,7 @@ public class ContentsAndExpandWithCategories_0_1_2_Tests extends AbstractOpenTab
 		testOpenExistingTable("classTreeTable", "openTest"); //$NON-NLS-1$ //$NON-NLS-2$
 		IEditorPart tableEditor = editor.getActiveEditor();
 		Assert.assertTrue(tableEditor instanceof NatTableEditor);
-		INattableModelManager manager = (INattableModelManager) tableEditor.getAdapter(INattableModelManager.class);
+		INattableModelManager manager = tableEditor.getAdapter(INattableModelManager.class);
 		Assert.assertTrue(manager instanceof ITreeNattableModelManager);
 		ITreeNattableModelManager treeTableManager = (ITreeNattableModelManager) manager;
 		List<?> rowElements = manager.getRowElementsList();
@@ -80,8 +80,12 @@ public class ContentsAndExpandWithCategories_0_1_2_Tests extends AbstractOpenTab
 		Assert.assertEquals(6, axis.getChildren().size());
 
 		// the elements have no children because nothing has been expanded
-		for (ITreeItemAxis child : axis.getChildren()) {
-			Assert.assertEquals(0, child.getChildren().size());
+		for (int i = 0; i < axis.getChildren().size(); i++) {
+			if (i == 0) {
+				Assert.assertEquals("We expected children of children", 3, axis.getChildren().get(i).getChildren().size()); //$NON-NLS-1$
+			} else {
+				Assert.assertEquals("We expected children of children", 0, axis.getChildren().get(i).getChildren().size()); //$NON-NLS-1$
+			}
 		}
 
 		// we expand the first class owned by the root package
@@ -156,7 +160,7 @@ public class ContentsAndExpandWithCategories_0_1_2_Tests extends AbstractOpenTab
 		testOpenExistingTable("classTreeTable", "openTest"); //$NON-NLS-1$ //$NON-NLS-2$
 		IEditorPart tableEditor = editor.getActiveEditor();
 		Assert.assertTrue(tableEditor instanceof NatTableEditor);
-		INattableModelManager manager = (INattableModelManager) tableEditor.getAdapter(INattableModelManager.class);
+		INattableModelManager manager = tableEditor.getAdapter(INattableModelManager.class);
 		Assert.assertTrue(manager instanceof ITreeNattableModelManager);
 		ITreeNattableModelManager treeTableManager = (ITreeNattableModelManager) manager;
 		List<?> rowElements = manager.getRowElementsList();

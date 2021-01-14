@@ -10,7 +10,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *  Patrick Tessier (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.dynamic.profile.tests;

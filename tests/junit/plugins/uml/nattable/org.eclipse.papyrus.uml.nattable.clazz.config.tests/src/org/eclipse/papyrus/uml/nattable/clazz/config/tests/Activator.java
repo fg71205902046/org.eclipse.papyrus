@@ -17,6 +17,10 @@ public class Activator extends AbstractUIPlugin {
 
 	public static LogHelper log;
 
+	// juste here to explicit implicit dependency
+	@SuppressWarnings("unused")
+	private org.eclipse.papyrus.uml.dynamic.profile.tests.Activator activator = org.eclipse.papyrus.uml.dynamic.profile.tests.Activator.getDefault();
+
 	/**
 	 * The constructor
 	 */
