@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2021 Christian W. Damus, CEA LIST, and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.toolsmiths.validation.architecture.internal.messages;
@@ -25,6 +25,7 @@ public class Messages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.toolsmiths.validation.architecture.internal.messages.messages"; //$NON-NLS-1$
 	public static String ArchitectureCustomValidator_0;
 	public static String ArchitectureCustomValidator_1;
+	public static String ArchitectureCustomValidator_2;
 	public static String ArchitecturePluginChecker_0;
 	public static String ArchitecturePluginChecker_1;
 	static {

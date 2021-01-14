@@ -22,9 +22,13 @@ import java.util.Optional;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.toolsmiths.validation.common.internal.utils.PluginErrorReporter;
+import org.eclipse.papyrus.toolsmiths.validation.common.internal.utils.ProjectManagementUtils;
 import org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.messages.Messages;
+import org.eclipse.pde.core.plugin.IPluginElement;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
@@ -37,6 +41,10 @@ final class ElementTypesPluginXMLValidator {
 	static final String ELEMENT_TYPE_SET = "elementTypeSet"; //$NON-NLS-1$
 	static final String CLIENT_CONTEXT_ID = "clientContextID"; //$NON-NLS-1$
 	static final String PATH = "path"; //$NON-NLS-1$
+
+	private static final String EXTPT_ELEMENT_TYPE_BINDINGS = "org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings"; //$NON-NLS-1$
+	private static final String ELEM_CLIENT_CONTEXT = "clientContext"; //$NON-NLS-1$
+	private static final String ATT_ID = "id"; //$NON-NLS-1$
 
 	private final IFile modelFile;
 
@@ -81,11 +89,34 @@ final class ElementTypesPluginXMLValidator {
 			String clientContextID = element.getAttribute(CLIENT_CONTEXT_ID);
 			if (clientContextID == null || clientContextID.isBlank()) {
 				problems.reportProblem(Diagnostic.ERROR, element, Messages.ElementTypesPluginXMLValidator_0, CATEGORY, null);
+			} else if (!findArchitectureContext(clientContextID) && !findGMFClientContext(clientContextID)) {
+				problems.reportProblem(Diagnostic.WARNING, element, NLS.bind(Messages.ElementTypesPluginXMLValidator_1, clientContextID), CATEGORY, null);
 			}
 			break;
 		default:
 			break;
 		}
+	}
+
+	private boolean findArchitectureContext(String id) {
+		return ArchitectureDomainManager.getInstance().getArchitectureContextById(id) != null;
+		}
+
+	private boolean findGMFClientContext(String id) {
+		return getClientContextRegistration(id).isPresent();
+	}
+
+	/**
+	 * Find the registration of the given client context on the GMF extension point.
+	 *
+	 * @param clientContextID
+	 *            a client context ID
+	 * @return the registration of it on the GMF extension point
+	 */
+	public static Optional<IPluginElement> getClientContextRegistration(String clientContextID) {
+		return ProjectManagementUtils.findExtensionElement(EXTPT_ELEMENT_TYPE_BINDINGS,
+				ELEM_CLIENT_CONTEXT,
+				ATT_ID, clientContextID);
 	}
 
 }

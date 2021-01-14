@@ -135,6 +135,30 @@ public class ArchitectureModelBuilderTest extends AbstractPapyrusTest {
 
 			assertThat(modelMarkers, hasItem(both(isMarkerSeverity(IMarker.SEVERITY_ERROR)).and(isMarkerMessage(containsString("Invalid icon URI"))))); //$NON-NLS-1$
 		}
+
+		/**
+		 * Test the reporting of an Architecture Context ID that doesn't match the registration of one of its element type sets.
+		 */
+		@Test
+		@OverlayFile(value = "bug542945/plugin-typesWrongContextID.xml", path = "plugin.xml")
+		public void clientContextIDMismatch() {
+			final List<IMarker> modelMarkers = fixture.getMarkers("resources/BookStore.architecture"); //$NON-NLS-1$
+
+			assertThat(modelMarkers, hasItem(both(isMarkerSeverity(IMarker.SEVERITY_WARNING)).and(
+					isMarkerMessage(containsString("is registered to a different context"))))); //$NON-NLS-1$
+		}
+
+		/**
+		 * Test that no problem is reported for an element types configuration set that is registered to another
+		 * client context ID but is also registered explicitly to our Architecture Context.
+		 */
+		@Test
+		@OverlayFile(value = "bug542945/plugin-typesMultiContextIDs.xml", path = "plugin.xml")
+		public void multipleClientContexts() {
+			final List<IMarker> modelMarkers = fixture.getMarkers("resources/BookStore.architecture"); //$NON-NLS-1$
+
+			assertThat(modelMarkers, not(hasItem(isMarkerMessage(containsString("is registered to a different context"))))); //$NON-NLS-1$
+		}
 	}
 
 }

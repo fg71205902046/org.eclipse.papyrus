@@ -19,13 +19,13 @@
 	<extension
 			point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
 		<elementTypeSet
-				clientContextID="org.eclipse.papyrus.infra.types.context"
+				clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
 				path="resources/BookStore.elementtypesconfigurations"/>
 	</extension>
 	<extension
 			point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
 		<elementTypeSet
-				clientContextID="org.eclipse.papyrus.infra.types.context"
+				clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
 				path="resources/NoSuchFile.elementtypesconfigurations"/>
 	</extension>
 </plugin>
