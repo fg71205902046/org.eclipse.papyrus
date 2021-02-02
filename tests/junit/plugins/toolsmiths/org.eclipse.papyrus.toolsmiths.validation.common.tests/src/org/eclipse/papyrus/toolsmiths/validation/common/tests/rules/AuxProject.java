@@ -23,7 +23,9 @@ import java.lang.annotation.Target;
 
 /**
  * Annotates a test or test class with an auxiliary project to import after importing
- * the text project (thus it may depend on the test project).
+ * the test project (thus it may depend on the test project). This is useful for tests
+ * that verify validation rules that apply to project dependencies, class paths, or
+ * other scenarios that cannot be tested in just a single project.
  *
  * @see TestProjectFixture
  * @see TestProject
