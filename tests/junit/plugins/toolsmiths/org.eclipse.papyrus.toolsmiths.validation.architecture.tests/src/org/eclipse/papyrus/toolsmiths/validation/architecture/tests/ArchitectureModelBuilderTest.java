@@ -14,6 +14,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.validation.architecture.tests;
 
+import static org.eclipse.papyrus.junit.matchers.MoreMatchers.regexContains;
 import static org.eclipse.papyrus.junit.matchers.WorkspaceMatchers.isMarkerMessage;
 import static org.eclipse.papyrus.junit.matchers.WorkspaceMatchers.isMarkerSeverity;
 import static org.eclipse.papyrus.toolsmiths.validation.architecture.constants.ArchitecturePluginValidationConstants.ARCHITECTURE_PLUGIN_VALIDATION_MARKER_TYPE;
@@ -63,7 +64,8 @@ public class ArchitectureModelBuilderTest extends AbstractPapyrusTest {
 		public void unresolvedCreationCommandClass() {
 			final List<IMarker> modelMarkers = fixture.getMarkers("resources/BookStore.architecture"); //$NON-NLS-1$
 
-			assertThat(modelMarkers, hasItem(both(isMarkerSeverity(IMarker.SEVERITY_ERROR)).and(isMarkerMessage(containsString("ceationCommandClassExists")/* sic */)))); //$NON-NLS-1$
+			assertThat(modelMarkers, hasItem(both(isMarkerSeverity(IMarker.SEVERITY_ERROR)).and(isMarkerMessage(
+					regexContains("Model creation command .* not found in the Java classpath"))))); //$NON-NLS-1$
 		}
 
 		/**
@@ -74,7 +76,8 @@ public class ArchitectureModelBuilderTest extends AbstractPapyrusTest {
 		public void invalidCreationCommandClass() {
 			final List<IMarker> modelMarkers = fixture.getMarkers("resources/BookStore.architecture"); //$NON-NLS-1$
 
-			assertThat(modelMarkers, hasItem(both(isMarkerSeverity(IMarker.SEVERITY_ERROR)).and(isMarkerMessage(containsString("conversionCommandClassExists"))))); //$NON-NLS-1$
+			assertThat(modelMarkers, hasItem(both(isMarkerSeverity(IMarker.SEVERITY_ERROR)).and(isMarkerMessage(
+					regexContains("Model conversion command .* the IModelConversionCommand interface"))))); //$NON-NLS-1$
 		}
 
 		/**
@@ -89,7 +92,7 @@ public class ArchitectureModelBuilderTest extends AbstractPapyrusTest {
 		public void creationCommandClassBinaryTypeResolved() {
 			final List<IMarker> modelMarkers = fixture.getMarkers("META-INF/MANIFEST.MF"); //$NON-NLS-1$
 
-			assertThat(modelMarkers, not(hasItem(isMarkerMessage(containsString("ceationCommandClassExists")/* sic */)))); //$NON-NLS-1$
+			assertThat(modelMarkers, not(hasItem(isMarkerMessage(containsString("creation command"))))); //$NON-NLS-1$
 		}
 	}
 

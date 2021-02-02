@@ -22,8 +22,15 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
+ * <p>
  * Annotates a test or test class with a file to overlay on the {@link TestProject project content}
- * after that has initially been populated.
+ * after that has initially been populated. The file may already exist in the base project template,
+ * in which case it is replaced with new content, or it may be added as a new file in the project.
+ * </p>
+ * <p>
+ * Note that, currently, only the main test project may
+ * have files added or replaced by this mechanism
+ * </p>
  *
  * @see TestProjectFixture
  */

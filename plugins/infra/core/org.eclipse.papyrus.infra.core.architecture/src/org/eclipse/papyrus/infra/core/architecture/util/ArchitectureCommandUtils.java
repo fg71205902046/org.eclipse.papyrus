@@ -90,7 +90,8 @@ public class ArchitectureCommandUtils {
 	}
 
 	/**
-	 * Get the command class referenced by the given feature of an architecture model object.
+	 * Get the command class referenced by the given feature of an architecture model object, if it
+	 * conforms to constraints (if any) declared in the Ecore model.
 	 *
 	 * @param modelObject
 	 *            the architecture model object for which to load a command class
@@ -103,9 +104,17 @@ public class ArchitectureCommandUtils {
 	 *         {@code IType}, depending whether JDT is available
 	 */
 	public static Object getCommandClass(EObject modelObject, EStructuralFeature commandClassFeature) {
+		return getCommandClass(modelObject, commandClassFeature, getCommandType(commandClassFeature));
+	}
+
+	private static Object getCommandClass(EObject modelObject, EStructuralFeature commandClassFeature, Optional<Class<?>> registeredType) {
 		if (commandClassFeature.getEType().getInstanceClass() == Class.class) {
 			// Easy
-			return modelObject.eGet(commandClassFeature);
+			Class<?> result = (Class<?>) modelObject.eGet(commandClassFeature);
+			if (result != null && registeredType.isPresent() && !registeredType.get().isAssignableFrom(result)) {
+				result = null;
+			}
+			return result;
 		}
 
 		String className = Optional.ofNullable(modelObject.eGet(commandClassFeature)).map(String::valueOf).orElse(null);
@@ -114,10 +123,25 @@ public class ArchitectureCommandUtils {
 			return null;
 		}
 
-		Optional<Class<?>> registeredType = getCommandType(commandClassFeature);
 		URI context = EcoreUtil.getURI(modelObject).trimFragment();
 
 		return ClasspathHelper.INSTANCE.findClass(className, context, registeredType.orElse(null));
+	}
+
+	/**
+	 * Get the command class referenced by the given feature of an architecture model object, not considering
+	 * any constraints imposed on it by the Ecore model.
+	 *
+	 * @param modelObject
+	 *            the architecture model object for which to load a command class
+	 * @param commandClassFeature
+	 *            the model feature that names the command class
+	 * @return
+	 *         the referenced class, or {@code null} if the class doesn't exist. The result may be a Java
+	 *         {@link Class} or a JDT {@code IType}, depending whether JDT is available
+	 */
+	public static Object getCommandClassUnconstrained(EObject modelObject, EStructuralFeature commandClassFeature) {
+		return getCommandClass(modelObject, commandClassFeature, Optional.empty());
 	}
 
 }
