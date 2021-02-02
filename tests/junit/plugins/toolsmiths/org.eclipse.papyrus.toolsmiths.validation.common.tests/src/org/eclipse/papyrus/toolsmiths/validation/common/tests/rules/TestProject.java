@@ -21,7 +21,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Annotates a test or test class with a path to the content to copy into the project.
+ * Annotates a test or test class with a path to content to copy into the main
+ * test project. That project is created by the {@link TestProjectFixture} with
+ * a name based on the test name, so this annotation does not set the name of
+ * the test project. It just specifies a folder in the bundle resources from
+ * which to copy files into the test project.
  *
  * @see TestProjectFixture
  */

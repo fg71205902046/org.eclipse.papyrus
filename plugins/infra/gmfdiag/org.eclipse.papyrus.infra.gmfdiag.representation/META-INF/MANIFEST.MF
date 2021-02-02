@@ -4,6 +4,7 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.representation;singleton:=true
 Bundle-Version: 3.0.0.qualifier
 Bundle-ClassPath: .
+Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.representation.impl.RepresentationPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-11

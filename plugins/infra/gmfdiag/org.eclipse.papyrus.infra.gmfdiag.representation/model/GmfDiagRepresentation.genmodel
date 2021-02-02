@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2017 CEA LIST.&#xA;&#xA; All rights reserved. This program and the accompanying materials&#xA; are made available under the terms of the Eclipse Public License 2.0&#xA; which accompanies this distribution, and is available at&#xA; https://www.eclipse.org/legal/epl-2.0/&#xA;&#xA; SPDX-License-Identifier: EPL-2.0&#xA;&#xA; Contributors:&#xA; Maged Elaasar - Initial API and implementation"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2017, 2021 CEA LIST.&#xA;&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License 2.0&#xA;which accompanies this distribution, and is available at&#xA;https://www.eclipse.org/legal/epl-2.0/&#xA;&#xA;SPDX-License-Identifier: EPL-2.0&#xA;&#xA;Contributors:&#xA;Maged Elaasar - Initial API and implementation"
     modelDirectory="/org.eclipse.papyrus.infra.gmfdiag.representation/src-gen" editDirectory="/org.eclipse.papyrus.infra.gmfdiag.representation.edit/src-gen"
     editorDirectory="/org.eclipse.papyrus.infra.gmfdiag.representation.editor/src-gen"
     modelPluginID="org.eclipse.papyrus.infra.gmfdiag.representation" modelName="Representation"
+    modelPluginClass="org.eclipse.papyrus.infra.gmfdiag.representation.impl.RepresentationPlugin"
     nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     testsDirectory="/org.eclipse.papyrus.infra.gmfdiag.representation.tests/src-gen"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="11.0" copyrightFields="false"
     editPluginID="org.eclipse.papyrus.infra.gmfdiag.representation.edit" editorPluginID="org.eclipse.papyrus.infra.gmfdiag.representation.editor"
     usedGenPackages="../../org.eclipse.papyrus.infra.core.architecture/model/Architecture.genmodel#//architecture ../../org.eclipse.papyrus.infra.constraints/Model/Constraints.genmodel#//constraints ../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.genmodel#//types ../../org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration/model/PaletteConfiguration.genmodel#//paletteconfiguration ../../org.eclipse.papyrus.infra.architecture.representation/model/Representation.genmodel#//representation ../../org.eclipse.papyrus.infra.filters/model/filters.genmodel#//filters ../../org.eclipse.uml2.types/model/Types.genmodel#//types"
     operationReflection="true" importOrganizing="true">

@@ -10,7 +10,7 @@
  *  
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
- *  Christian W. Damus - bug 539694
+ *  Christian W. Damus - bugs 539694, 570856
  *  
  * 
  */
@@ -29,7 +29,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectValidator;
@@ -261,13 +260,19 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 			
 			if (!exists) {
 				if (diagnostics != null) {
+					// Further narrow the problem
+					String problem = ArchitectureCommandUtils.getCommandClassUnconstrained(this, RepresentationPackage.Literals.PAPYRUS_DIAGRAM__CREATION_COMMAND_CLASS) == null
+							? "_UI_creationCommandClassExists_diagnostic" : "_UI_creationCommandClassConforms_diagnostic"; //$NON-NLS-1$//$NON-NLS-2$
+					String expectedInterface = ArchitectureCommandUtils.getCommandType( RepresentationPackage.Literals.PAPYRUS_DIAGRAM__CREATION_COMMAND_CLASS)
+							.map(Class::getSimpleName).orElse(RepresentationPlugin.INSTANCE.getString("_UI_genericRequiredInterface_name")); //$NON-NLS-1$
+					
 					diagnostics.add
 						(new BasicDiagnostic
 							(Diagnostic.ERROR,
 							 RepresentationValidator.DIAGNOSTIC_SOURCE,
 							 RepresentationValidator.PAPYRUS_DIAGRAM__CEATION_COMMAND_CLASS_EXISTS,
-							 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "ceationCommandClassExists", EObjectValidator.getObjectLabel(this, context) }), //$NON-NLS-1$ //$NON-NLS-2$
-							 new Object [] { this }));
+							 RepresentationPlugin.INSTANCE.getString(problem, new Object[] { EObjectValidator.getObjectLabel(this, context), expectedInterface }),
+							 new Object [] { this, RepresentationPackage.Literals.PAPYRUS_DIAGRAM__CREATION_COMMAND_CLASS }));
 				}
 				return false;
 			}
