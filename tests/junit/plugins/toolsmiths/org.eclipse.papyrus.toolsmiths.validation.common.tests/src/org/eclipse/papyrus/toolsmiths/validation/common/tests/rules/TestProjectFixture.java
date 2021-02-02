@@ -64,8 +64,23 @@ import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
 /**
+ * <p>
  * A project fixture that copies initial content into the project and ensures that the project name
- * matches the bundle symbolic name if the project is a bundle project.
+ * matches the bundle symbolic name if the project is a bundle project. The base contents of the
+ * test project are specified by the {@link TestProject @TestProject} annotation. Additional contents
+ * may overlaid* to replace or add files via one or more {@link OverlayFile @OverlayFile} annotations.
+ * Additional projects may be created for the duration of the test via {@link AuxProject @AuxProject}
+ * annotations.
+ * </p>
+ * <p>
+ * The fixture may be configured to build the project before running the test, to prepare problem
+ * markers for verification. Use the {@link Build @Build} annotation for this.
+ * </p>
+ *
+ * @see TestProject
+ * @see OverlayFile
+ * @see AuxProject
+ * @see Build
  */
 public class TestProjectFixture extends ProjectFixture {
 

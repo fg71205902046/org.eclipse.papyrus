@@ -1,5 +1,5 @@
 /**
-* Copyright (c) 2017, 2021 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2017, 2021 CEA LIST, Christian W. Damus, and others.
  * 
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License 2.0
@@ -10,8 +10,7 @@
  *  
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
- *  Christian W. Damus - bug, 539694
- *  
+ *  Christian W. Damus - bugs 539694, 570856
  * 
  */
 package org.eclipse.papyrus.infra.core.architecture.impl;
@@ -29,7 +28,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectValidator;
@@ -294,13 +292,19 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 			
 			if (!exists) {
 				if (diagnostics != null) {
+					// Further narrow the problem
+					String problem = ArchitectureCommandUtils.getCommandClassUnconstrained(this, ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS) == null
+							? "_UI_creationCommandClassExists_diagnostic" : "_UI_creationCommandClassConforms_diagnostic"; //$NON-NLS-1$//$NON-NLS-2$
+					String expectedInterface = ArchitectureCommandUtils.getCommandType( ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS)
+							.map(Class::getSimpleName).orElse(ArchitecturePlugin.INSTANCE.getString("_UI_genericRequiredInterface_name")); //$NON-NLS-1$
+					
 					diagnostics.add
 						(new BasicDiagnostic
 							(Diagnostic.ERROR,
 							 ArchitectureValidator.DIAGNOSTIC_SOURCE,
 							 ArchitectureValidator.ARCHITECTURE_CONTEXT__CEATION_COMMAND_CLASS_EXISTS,
-							 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "ceationCommandClassExists", EObjectValidator.getObjectLabel(this, context) }), //$NON-NLS-1$ //$NON-NLS-2$
-							 new Object [] { this }));
+							 ArchitecturePlugin.INSTANCE.getString(problem, new Object[] { EObjectValidator.getObjectLabel(this, context), expectedInterface }),
+							 new Object [] { this, ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS }));
 				}
 				return false;
 			}
@@ -322,13 +326,19 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 			
 			if (!exists) {
 				if (diagnostics != null) {
+					// Further narrow the problem
+					String problem = ArchitectureCommandUtils.getCommandClassUnconstrained(this, ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS) == null
+							? "_UI_conversionCommandClassExists_diagnostic" : "_UI_conversionCommandClassConforms_diagnostic"; //$NON-NLS-1$//$NON-NLS-2$
+					String expectedInterface = ArchitectureCommandUtils.getCommandType( ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS)
+							.map(Class::getSimpleName).orElse(ArchitecturePlugin.INSTANCE.getString("_UI_genericRequiredInterface_name")); //$NON-NLS-1$
+					
 					diagnostics.add
 						(new BasicDiagnostic
 							(Diagnostic.ERROR,
 							 ArchitectureValidator.DIAGNOSTIC_SOURCE,
 							 ArchitectureValidator.ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS_EXISTS,
-							 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "conversionCommandClassExists", EObjectValidator.getObjectLabel(this, context) }), //$NON-NLS-1$ //$NON-NLS-2$
-							 new Object [] { this }));
+							 ArchitecturePlugin.INSTANCE.getString(problem, new Object[] { EObjectValidator.getObjectLabel(this, context), expectedInterface }),
+							 new Object [] { this, ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS }));
 				}
 				return false;
 			}
