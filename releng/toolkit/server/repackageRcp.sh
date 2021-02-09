@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #--------------------------------------------------------------------------------
 # Copyright (c) 2015 CEA LIST.
 #
@@ -27,7 +29,7 @@ cd $rcpProductDir
 for f in *win32*; do
 	echo "Repackaging $f"
 
-	if [[ $f == *x86_64* ]]; then
+	if [[ "$f" == *x86_64* ]]; then
 		bitness=64
 	else
 		bitness=32
@@ -58,7 +60,7 @@ cd $rcpProductDir
 for f in *linux*; do
 	echo "Repackaging $f"
 
-	if [[ $f == *x86_64* ]]; then
+	if [[ "$f" == *x86_64* ]]; then
 		bitness=64
 	else
 		bitness=32
@@ -72,7 +74,7 @@ cd $rcpProductDir
 for f in *macosx*; do
 	echo "Repackaging $f"
 
-	if [[ $f == *x86_64* ]]; then
+	if [[ "$f" == *x86_64* ]]; then
 		bitness=64
 	else
 		bitness=32
