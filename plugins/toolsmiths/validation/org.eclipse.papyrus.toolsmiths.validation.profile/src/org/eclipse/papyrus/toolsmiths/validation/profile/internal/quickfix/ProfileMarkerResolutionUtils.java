@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 CEA LIST, EclipseSource and others.
+ * Copyright (c) 2020, 2021 CEA LIST, EclipseSource, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,10 +10,13 @@
  *
  * Contributors:
  *   Alexandra Buzila (EclipseSource) - Initial API and implementation
+ *   Christian W. Damus - bug 570097
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.toolsmiths.plugin.builder.quickfix;
+package org.eclipse.papyrus.toolsmiths.validation.profile.internal.quickfix;
+
+import static org.eclipse.papyrus.toolsmiths.validation.common.quickfix.CommonMarkerResolutionUtils.getModelName;
 
 import java.util.List;
 import java.util.Map;
@@ -27,8 +30,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.papyrus.toolsmiths.plugin.builder.helper.StaticProfileHelper;
-import org.eclipse.papyrus.toolsmiths.validation.profile.constants.ProfilePluginValidationConstants;
+import org.eclipse.papyrus.toolsmiths.validation.common.quickfix.CommonMarkerResolutionUtils;
 import org.eclipse.papyrus.uml.tools.utils.StaticProfileUtil;
 import org.eclipse.ui.IMarkerResolution;
 import org.eclipse.uml2.uml.Profile;
@@ -36,7 +38,7 @@ import org.eclipse.uml2.uml.Profile;
 /**
  * Helper class with utility methods used by {@link IMarkerResolution marker resolutions}.
  */
-public final class MarkerResolutionUtils {
+public final class ProfileMarkerResolutionUtils {
 
 	/**
 	 * Returns the genmodel file for the profile for which the given marker was created.
@@ -54,7 +56,7 @@ public final class MarkerResolutionUtils {
 
 	/** Returns the UML model file of the profile for which this marker was created. */
 	public static IFile getUMLModelFile(IMarker marker) throws CoreException {
-		Optional<Profile> profileOptional = MarkerResolutionUtils.getProfile(marker);
+		Optional<Profile> profileOptional = ProfileMarkerResolutionUtils.getProfile(marker);
 		if (profileOptional.isEmpty()) {
 			return null;
 		}
@@ -66,7 +68,7 @@ public final class MarkerResolutionUtils {
 	/**
 	 * Returns the stereotype URI of the profile for which the given marker was created.
 	 *
-	 * @see MarkerResolutionUtils#getProfile(IMarker)
+	 * @see ProfileMarkerResolutionUtils#getProfile(IMarker)
 	 */
 	public static String getStereotypeUri(IMarker marker) {
 		Optional<Profile> profile = getProfile(marker);
@@ -82,23 +84,16 @@ public final class MarkerResolutionUtils {
 		return new StaticProfileUtil(profile).getDefinition().getNsURI();
 	}
 
-	/** Returns the profile name stored in the marker attribute {@link StaticProfilePluginErrorReporter#STATIC_PROFILE_MARKER_ATTRIBUTE} or <code>null</code> if the attribute does not exist. */
-	public static String getProfileName(IMarker marker) {
-		return marker.getAttribute(ProfilePluginValidationConstants.STATIC_PROFILE_MARKER_ATTRIBUTE, null);
-	}
-
 	/**
 	 * Returns the {@link Profile} for which this marker was created.
 	 *
-	 * @see MarkerResolutionUtils#getProfileName(IMarker)
+	 * @see CommonMarkerResolutionUtils#getModelName(IMarker)
 	 */
 	public static Optional<Profile> getProfile(IMarker marker) {
-		String profileName = getProfileName(marker);
-		if (profileName == null || profileName.isBlank()) {
-			return Optional.empty();
-		}
-		Map<IFile, List<Profile>> profiles = StaticProfileHelper.findStaticProfiles(marker.getResource().getProject(), true);
-		return profiles.values().stream().flatMap(List::stream).filter(profile -> Objects.equals(profile.getName(), profileName)).findFirst();
+		return getModelName(marker).flatMap(profileName -> {
+			Map<IFile, List<Profile>> profiles = StaticProfileHelper.findStaticProfiles(marker.getResource().getProject(), true);
+			return profiles.values().stream().flatMap(List::stream).filter(profile -> Objects.equals(profile.getName(), profileName)).findFirst();
+		});
 	}
 
 }

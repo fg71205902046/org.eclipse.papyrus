@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 CEA LIST, EclipseSource and others.
+ * Copyright (c) 2020, 2021 CEA LIST, EclipseSource, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,19 +10,23 @@
  *
  * Contributors:
  *   Alexandra Buzila (EclipseSource) - Initial API and implementation
+ *   Christian W. Damus - bug 570097
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.toolsmiths.plugin.builder.quickfix;
+package org.eclipse.papyrus.toolsmiths.validation.profile.internal.quickfix;
 
 import java.util.Optional;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.infra.emf.utils.ResourceUtils;
-import org.eclipse.papyrus.toolsmiths.plugin.builder.Activator;
-import org.eclipse.papyrus.toolsmiths.plugin.builder.Messages;
+import org.eclipse.papyrus.toolsmiths.validation.common.quickfix.AbstractMissingAttributeMarkerResolution;
+import org.eclipse.papyrus.toolsmiths.validation.profile.Activator;
+import org.eclipse.papyrus.toolsmiths.validation.profile.constants.ProfilePluginValidationConstants;
+import org.eclipse.papyrus.toolsmiths.validation.profile.internal.messages.Messages;
 import org.eclipse.uml2.uml.Profile;
 
 /**
@@ -33,7 +37,7 @@ public class NoLocationUMLGenPackageMarkerResolution
 		extends AbstractMissingAttributeMarkerResolution {
 
 	NoLocationUMLGenPackageMarkerResolution() {
-		super("location"); //$NON-NLS-1$
+		super(ProfilePluginValidationConstants.NO_UML2_GEN_PACKAGE_LOCATION_MARKER_ID, "location"); //$NON-NLS-1$
 	}
 
 	@Override
@@ -47,8 +51,8 @@ public class NoLocationUMLGenPackageMarkerResolution
 	}
 
 	@Override
-	protected String getAttributeValue() {
-		Optional<Profile> profileOptional = MarkerResolutionUtils.getProfile(getMarker());
+	protected String getAttributeValue(IMarker marker) {
+		Optional<Profile> profileOptional = ProfileMarkerResolutionUtils.getProfile(marker);
 		if (profileOptional.isEmpty()) {
 			return null;
 		}
@@ -57,7 +61,7 @@ public class NoLocationUMLGenPackageMarkerResolution
 		String uriFragment = resource.getURIFragment(profile);
 
 		try {
-			IFile umlModelFile = MarkerResolutionUtils.getUMLModelFile(getMarker());
+			IFile umlModelFile = ProfileMarkerResolutionUtils.getUMLModelFile(marker);
 			if (umlModelFile == null) {
 				return null;
 			}

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 CEA LIST, EclipseSource and others.
+ * Copyright (c) 2020, 2021 CEA LIST, EclipseSource, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,28 +10,30 @@
  *
  * Contributors:
  *   Alexandra Buzila (EclipseSource) - Initial API and implementation
+ *   Christian W. Damus - bug 570097
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.toolsmiths.plugin.builder.quickfix;
+package org.eclipse.papyrus.toolsmiths.validation.profile.internal.quickfix;
 
 import org.eclipse.core.resources.IMarker;
+import org.eclipse.papyrus.toolsmiths.validation.common.quickfix.CommonMarkerResolutionGenerator;
 import org.eclipse.papyrus.toolsmiths.validation.profile.constants.ProfilePluginValidationConstants;
-import org.eclipse.pde.internal.core.builders.PDEMarkerFactory;
 import org.eclipse.ui.IMarkerResolution;
-import org.eclipse.ui.IMarkerResolutionGenerator;
 
 /**
  * Resolution generator for markers created by the validation of static profiles.
  *
  */
-@SuppressWarnings("restriction")
-public class StaticProfileMarkerResolutionGenerator implements IMarkerResolutionGenerator {
-	private static IMarkerResolution[] NO_RESOLUTIONS = new IMarkerResolution[0];
+public class StaticProfileMarkerResolutionGenerator extends CommonMarkerResolutionGenerator {
 
 	@Override
 	public IMarkerResolution[] getResolutions(IMarker marker) {
-		int problemId = marker.getAttribute(PDEMarkerFactory.PROBLEM_ID, PDEMarkerFactory.NO_RESOLUTION);
+		if (hasCommonResolutions(marker)) {
+			return super.getResolutions(marker);
+		}
+
+		int problemId = getProblemID(marker);
 		switch (problemId) {
 		case ProfilePluginValidationConstants.NO_GENMODEL_MARKER_ID:
 			return new IMarkerResolution[] { new MissingGenModelAttributeMarkerResolution() };
@@ -47,11 +49,15 @@ public class StaticProfileMarkerResolutionGenerator implements IMarkerResolution
 			return new IMarkerResolution[] { new PapyrusProfileExtensionMissingNameMarkerResolution() };
 		case ProfilePluginValidationConstants.NO_PAPYRUS_PROFILE_MARKER_ID:
 			return new IMarkerResolution[] { new NoPapyrusProfileExtensionMarkerResolution() };
-		case ProfilePluginValidationConstants.MISSING_FROM_BINARY_BUILD_MARKER_ID:
-			return new IMarkerResolution[] { new ResourceMissingFromBinaryBuildMarkerResolution() };
 		default:
-			return NO_RESOLUTIONS;
+			return noResolutions();
 		}
+	}
+
+	@Override
+	public boolean hasResolutions(IMarker marker) {
+		return super.hasResolutions(marker)
+				|| matchProblemID(marker, ProfilePluginValidationConstants.PROBLEM_ID_BASE, ProfilePluginValidationConstants.MAX_PROBLEM_ID);
 	}
 
 }

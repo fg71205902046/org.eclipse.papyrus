@@ -13,7 +13,7 @@
  *   Christian W. Damus - bug 569357
  *
  *****************************************************************************/
-package org.eclipse.papyrus.toolsmiths.plugin.builder.helper;
+package org.eclipse.papyrus.toolsmiths.validation.profile.internal.quickfix;
 
 import static org.eclipse.papyrus.toolsmiths.validation.common.utils.ModelResourceMapper.byExtension;
 import static org.eclipse.papyrus.toolsmiths.validation.common.utils.ModelResourceMapper.modelSets;

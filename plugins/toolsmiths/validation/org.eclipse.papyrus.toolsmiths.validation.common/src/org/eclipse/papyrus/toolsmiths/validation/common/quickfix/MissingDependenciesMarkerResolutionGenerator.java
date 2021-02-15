@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 CEA LIST and others.
+ * Copyright (c) 2020, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,14 +10,15 @@
  *
  * Contributors:
  *   Vincent Lorenzo (CEA LIST) <vincent.lorenzo@cea.fr> - Initial API and implementation
+ *   Christian W. Damus - bug 570097
  *
  *****************************************************************************/
-package org.eclipse.papyrus.toolsmiths.plugin.builder.quickfix;
+package org.eclipse.papyrus.toolsmiths.validation.common.quickfix;
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.papyrus.emf.validation.DependencyValidationUtils;
-import org.eclipse.papyrus.toolsmiths.plugin.builder.Activator;
+import org.eclipse.papyrus.toolsmiths.validation.common.checkers.CommonProblemConstants;
 import org.eclipse.ui.IMarkerResolution;
 import org.eclipse.ui.IMarkerResolutionGenerator2;
 
@@ -26,42 +27,32 @@ import org.eclipse.ui.IMarkerResolutionGenerator2;
  */
 public class MissingDependenciesMarkerResolutionGenerator implements IMarkerResolutionGenerator2 {
 
-	/**
-	 * @see org.eclipse.ui.IMarkerResolutionGenerator#getResolutions(org.eclipse.core.resources.IMarker)
-	 *
-	 * @param marker
-	 * @return
-	 */
 	@Override
 	public IMarkerResolution[] getResolutions(IMarker marker) {
-		String value;
-		try {
-			value = (String) marker.getAttribute(DependencyValidationUtils.MISSING_DEPENDENCIES);
-			if (value != null && !value.isEmpty()) {
-				return new IMarkerResolution[] { new MissingDependenciesMarkerResolution() };
-			}
-		} catch (CoreException e) {
-			Activator.log.error(e);
+		if (isMissingDependencyProblem(marker)) {
+			return new IMarkerResolution[] { new MissingDependenciesMarkerResolution() };
 		}
 
 		return new IMarkerResolution[] {};
 	}
 
-	/**
-	 * @see org.eclipse.ui.IMarkerResolutionGenerator2#hasResolutions(org.eclipse.core.resources.IMarker)
-	 *
-	 * @param marker
-	 * @return
-	 */
 	@Override
 	public boolean hasResolutions(IMarker marker) {
-		try {
-			final String value = (String) marker.getAttribute(DependencyValidationUtils.MISSING_DEPENDENCIES);
-			return value != null && !value.isEmpty();
-		} catch (CoreException e) {
-			// nothing to do
+		return isMissingDependencyProblem(marker);
+	}
+
+	static boolean isMissingDependencyProblem(IMarker marker) {
+		boolean result = CommonMarkerResolutionGenerator.getProblemID(marker) == CommonProblemConstants.MISSING_DEPENDENCIES_MARKER_ID;
+		if (!result) {
+			try {
+				final String value = (String) marker.getAttribute(DependencyValidationUtils.MISSING_DEPENDENCIES);
+				result = value != null && !value.isEmpty();
+			} catch (CoreException e) {
+				// nothing to do
+			}
 		}
-		return false;
+
+		return result;
 	}
 
 }

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2021 Christian W. Damus, CEA LIST, and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.toolsmiths.validation.common.internal.messages;
@@ -32,6 +32,12 @@ public class Messages extends NLS {
 	public static String ModelDependenciesChecker_1;
 	public static String ModelDependenciesChecker_2;
 	public static String PluginErrorReporter_0;
+	public static String MissingDependenciesMarkerResolution_description;
+	public static String MissingDependenciesMarkerResolution_label;
+	public static String ResourceMissingFromBinaryBuildMarkerResolution_description;
+	public static String ResourceMissingFromBinaryBuildMarkerResolution_label;
+	public static String ResourceMissingFromBinaryBuildMarkerResolution_folder;
+	public static String ResourceMissingFromBinaryBuildMarkerResolution_file;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

@@ -156,7 +156,7 @@ public interface IPluginChecker2 {
 	}
 
 	static MarkerAttribute missingBinInclude(String missingEntry) {
-		return new MarkerAttribute(BuildPropertiesChecker.BINARY_BUILD_PATH, missingEntry);
+		return new MarkerAttribute(CommonProblemConstants.BINARY_BUILD_PATH, missingEntry);
 	}
 
 	/**

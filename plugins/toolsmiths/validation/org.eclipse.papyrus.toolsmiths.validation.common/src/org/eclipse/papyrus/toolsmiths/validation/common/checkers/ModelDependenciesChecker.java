@@ -265,6 +265,9 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 					IPluginChecker2.lineNumber(getLineNumber(textBundleModel.getBundle().getManifestHeader(header)))));
 
 			if (dependency != null) {
+				data.add(IPluginChecker2.problem(CommonProblemConstants.MISSING_DEPENDENCIES_MARKER_ID));
+				data.add(IPluginChecker2.missingDependency(dependency));
+
 				// All source names for the same dependency are collected and dynamically injected into the diagnostic message
 				data.add(IPluginChecker2.collatedMessageArgument(0, sourceName));
 				data.add(IPluginChecker2.messageArgument(1, dependency));

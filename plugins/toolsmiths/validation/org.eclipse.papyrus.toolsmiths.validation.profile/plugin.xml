@@ -76,6 +76,13 @@
       </persistent>
    </extension>
    
+   <extension
+         point="org.eclipse.ui.ide.markerResolution">
+      <markerResolutionGenerator
+            class="org.eclipse.papyrus.toolsmiths.validation.profile.internal.quickfix.StaticProfileMarkerResolutionGenerator"
+            markerType="org.eclipse.papyrus.toolsmiths.validation.profile.diagnostic">
+      </markerResolutionGenerator>
+   </extension>
 
 
 </plugin>

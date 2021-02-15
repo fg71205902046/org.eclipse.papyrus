@@ -15,7 +15,10 @@
 
 package org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.checkers;
 
+import static org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.ElementTypesPluginValidationConstants.ATTR_CLIENT_CONTEXT_ID;
+import static org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.ElementTypesPluginValidationConstants.ATTR_PATH;
 import static org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.ElementTypesPluginValidationConstants.ELEMENTTYPES_EXTENSION_POINT_IDENTIFIER;
+import static org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.ElementTypesPluginValidationConstants.ELEM_ELEMENT_TYPE_SET;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -27,6 +30,7 @@ import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.toolsmiths.validation.common.internal.utils.PluginErrorReporter;
 import org.eclipse.papyrus.toolsmiths.validation.common.internal.utils.ProjectManagementUtils;
+import org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.ElementTypesPluginValidationConstants;
 import org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.messages.Messages;
 import org.eclipse.pde.core.plugin.IPluginElement;
 import org.w3c.dom.Element;
@@ -38,9 +42,6 @@ import org.w3c.dom.NodeList;
 final class ElementTypesPluginXMLValidator {
 
 	static final String CATEGORY = "element_types"; //$NON-NLS-1$
-	static final String ELEMENT_TYPE_SET = "elementTypeSet"; //$NON-NLS-1$
-	static final String CLIENT_CONTEXT_ID = "clientContextID"; //$NON-NLS-1$
-	static final String PATH = "path"; //$NON-NLS-1$
 
 	private static final String EXTPT_ELEMENT_TYPE_BINDINGS = "org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings"; //$NON-NLS-1$
 	private static final String ELEM_CLIENT_CONTEXT = "clientContext"; //$NON-NLS-1$
@@ -63,7 +64,7 @@ final class ElementTypesPluginXMLValidator {
 	Optional<Element> matchExtension(Element element, String point, ElementTypeSetConfiguration model) {
 		switch (point) {
 		case ELEMENTTYPES_EXTENSION_POINT_IDENTIFIER:
-			NodeList children = element.getElementsByTagName(ELEMENT_TYPE_SET);
+			NodeList children = element.getElementsByTagName(ELEM_ELEMENT_TYPE_SET);
 			for (int i = 0; i < children.getLength(); i++) {
 				Element typeSet = (Element) children.item(i);
 				if (matchElementTypeSet(typeSet, model)) {
@@ -79,18 +80,22 @@ final class ElementTypesPluginXMLValidator {
 	}
 
 	boolean matchElementTypeSet(Element element, ElementTypeSetConfiguration model) {
-		String path = element.getAttribute(PATH);
+		String path = element.getAttribute(ATTR_PATH);
 		return Objects.equals(path, modelFile.getProjectRelativePath().toString());
 	}
 
 	void checkExtension(Element element, String point, ElementTypeSetConfiguration model, PluginErrorReporter.ProblemReport problems) {
 		switch (element.getTagName()) {
-		case ELEMENT_TYPE_SET:
-			String clientContextID = element.getAttribute(CLIENT_CONTEXT_ID);
+		case ELEM_ELEMENT_TYPE_SET:
+			String clientContextID = element.getAttribute(ATTR_CLIENT_CONTEXT_ID);
 			if (clientContextID == null || clientContextID.isBlank()) {
-				problems.reportProblem(Diagnostic.ERROR, element, Messages.ElementTypesPluginXMLValidator_0, CATEGORY, null);
+				problems.reportProblem(Diagnostic.ERROR, element, Messages.ElementTypesPluginXMLValidator_0,
+						ElementTypesPluginValidationConstants.MISSING_ELEMENT_TYPES_CONFIGURATIONS_MODEL_CLIENT_CONTEXT_ID,
+						CATEGORY, null);
 			} else if (!findArchitectureContext(clientContextID) && !findGMFClientContext(clientContextID)) {
-				problems.reportProblem(Diagnostic.WARNING, element, NLS.bind(Messages.ElementTypesPluginXMLValidator_1, clientContextID), CATEGORY, null);
+				problems.reportProblem(Diagnostic.WARNING, element, NLS.bind(Messages.ElementTypesPluginXMLValidator_1, clientContextID),
+						ElementTypesPluginValidationConstants.UNKNOWN_ELEMENT_TYPES_CONFIGURATIONS_MODEL_CLIENT_CONTEXT_ID,
+						CATEGORY, null);
 			}
 			break;
 		default:
@@ -117,6 +122,15 @@ final class ElementTypesPluginXMLValidator {
 		return ProjectManagementUtils.findExtensionElement(EXTPT_ELEMENT_TYPE_BINDINGS,
 				ELEM_CLIENT_CONTEXT,
 				ATT_ID, clientContextID);
+	}
+
+	int problemID(String point, ElementTypeSetConfiguration typesSet) {
+		switch (point) {
+		case ELEMENTTYPES_EXTENSION_POINT_IDENTIFIER:
+			return ElementTypesPluginValidationConstants.MISSING_ELEMENT_TYPES_CONFIGURATIONS_MODEL_EXTENSION_ID;
+		default:
+			return -1;
+		}
 	}
 
 }

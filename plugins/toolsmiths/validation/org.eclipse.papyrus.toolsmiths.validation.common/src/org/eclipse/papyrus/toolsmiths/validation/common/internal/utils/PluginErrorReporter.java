@@ -34,7 +34,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.impl.URIMappingRegistryImpl;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.toolsmiths.validation.common.Activator;
+import org.eclipse.papyrus.toolsmiths.validation.common.checkers.CommonProblemConstants;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.IPluginChecker2;
+import org.eclipse.papyrus.toolsmiths.validation.common.internal.messages.Messages;
 import org.eclipse.pde.internal.core.builders.CompilerFlags;
 import org.eclipse.pde.internal.core.builders.IncrementalErrorReporter.VirtualMarker;
 import org.eclipse.pde.internal.core.builders.ManifestErrorReporter;
@@ -290,9 +292,10 @@ public class PluginErrorReporter<T extends EObject> extends ManifestErrorReporte
 			severity = CompilerFlags.WARNING;
 		}
 
-		VirtualMarker marker = reportProblem(NLS.bind("Missing extension on point ''{0}'' for ''{2}'' [{1}].", new Object[] { point, getModelFile().getProjectRelativePath(), nameFunction.apply(model) }),
+		VirtualMarker marker = reportProblem(NLS.bind(Messages.PluginErrorReporter_0, new Object[] { point, getModelFile().getProjectRelativePath(), nameFunction.apply(model) }),
 				1, severity, extensionFixProviders.get(point) != null ? extensionFixProviders.get(point).problemID(point, model) : 0, null, null, "missing_extensions"); //$NON-NLS-1$
-		marker.setAttribute("staticProfile", nameFunction.apply(model));
+		marker.setAttribute(CommonProblemConstants.MODEL_NAME, nameFunction.apply(model));
+		marker.setAttribute(CommonProblemConstants.MODEL_PATH, modelFile.getProjectRelativePath().toPortableString());
 	}
 
 	protected void validateElement(Element element) {

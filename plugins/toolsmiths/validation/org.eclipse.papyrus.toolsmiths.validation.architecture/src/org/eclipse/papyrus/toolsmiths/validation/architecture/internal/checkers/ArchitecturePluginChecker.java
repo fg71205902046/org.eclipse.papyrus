@@ -192,7 +192,7 @@ public class ArchitecturePluginChecker {
 		ArchitecturePluginXMLValidator validator = new ArchitecturePluginXMLValidator(modelFile);
 
 		return new PluginErrorReporter<>(pluginXML, modelFile, model, ARCHITECTURE_PLUGIN_VALIDATION_MARKER_TYPE, domain -> domain.getId())
-				.requireExtensionPoint(ARCHITECTURE_EXTENSION_POINT_IDENTIFIER, validator::matchExtension, null, null);
+				.requireExtensionPoint(ARCHITECTURE_EXTENSION_POINT_IDENTIFIER, validator::matchExtension, null, validator::problemID);
 	}
 
 	/**

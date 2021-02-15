@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 CEA LIST, EclipseSource and others.
+ * Copyright (c) 2020, 2021 CEA LIST, EclipseSource, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,10 +10,11 @@
  *
  * Contributors:
  *   Alexandra Buzila (EclipseSource) - Initial API and implementation
+ *   Christian W. Damus - bug 570097
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.toolsmiths.plugin.builder.quickfix;
+package org.eclipse.papyrus.toolsmiths.validation.common.quickfix;
 
 import java.util.StringTokenizer;
 
@@ -21,7 +22,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.papyrus.toolsmiths.plugin.builder.Activator;
+import org.eclipse.papyrus.toolsmiths.validation.common.Activator;
 import org.eclipse.pde.core.IBaseModel;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.internal.core.builders.PDEMarkerFactory;
@@ -34,27 +35,26 @@ import org.eclipse.pde.internal.ui.util.PDEModelUtility;
  * Marker Resolution that adds a missing attribute to the {@link IDocumentElementNode} referenced by the marker.
  */
 @SuppressWarnings("restriction")
-public abstract class AbstractMissingAttributeMarkerResolution extends AbstractPapyrusMarkerResolution {
-	private IMarker marker;
+public abstract class AbstractMissingAttributeMarkerResolution extends AbstractPapyrusWorkbenchMarkerResolution {
+
 	private String attribute;
 
 	/**
 	 * Marker Resolution for the missing attribute with the given name.
 	 *
+	 * @param problemID
+	 *            the problem that I fix
 	 * @param attribute
 	 *            the name of the missing attribute
 	 */
-	public AbstractMissingAttributeMarkerResolution(String attribute) {
-		this.attribute = attribute;
-	}
+	public AbstractMissingAttributeMarkerResolution(int problemID, String attribute) {
+		super(problemID);
 
-	protected IMarker getMarker() {
-		return marker;
+		this.attribute = attribute;
 	}
 
 	@Override
 	public void run(IMarker marker) {
-		this.marker = marker;
 		if (!(marker.getResource() instanceof IFile)) {
 			return;
 		}
@@ -62,21 +62,21 @@ public abstract class AbstractMissingAttributeMarkerResolution extends AbstractP
 			@Override
 			protected void modifyModel(IBaseModel model, IProgressMonitor monitor) throws CoreException {
 				if (model instanceof IPluginModelBase) {
-					addMissingAttribute((IPluginModelBase) model);
+					addMissingAttribute((IPluginModelBase) model, marker);
 				}
 			}
 		};
 		PDEModelUtility.modifyModel(modification, null);
 	}
 
-	protected abstract String getAttributeValue();
+	protected abstract String getAttributeValue(IMarker marker);
 
-	protected void addMissingAttribute(IPluginModelBase model) {
+	protected void addMissingAttribute(IPluginModelBase model, IMarker marker) {
 		try {
 			String locationPath = (String) marker.getAttribute(PDEMarkerFactory.MPK_LOCATION_PATH);
 			IDocumentElementNode node = getNodeWithMarker(model, locationPath);
 
-			String value = getAttributeValue();
+			String value = getAttributeValue(marker);
 			if (value != null) {
 				node.setXMLAttribute(attribute, value);
 			}

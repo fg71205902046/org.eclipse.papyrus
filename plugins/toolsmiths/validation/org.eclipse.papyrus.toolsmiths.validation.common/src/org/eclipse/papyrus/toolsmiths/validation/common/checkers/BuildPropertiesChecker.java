@@ -75,8 +75,6 @@ public class BuildPropertiesChecker extends AbstractPluginChecker {
 
 	private static final String GENMODEL_EXTENSION = "genmodel"; //$NON-NLS-1$
 	private static final String ECORE_EXTENSION = "ecore"; //$NON-NLS-1$
-	public static final int MISSING_FROM_BINARY_BUILD_MARKER_ID = 0xff1009;
-	public static final String BINARY_BUILD_PATH = "binaryBuildPath"; //$NON-NLS-1$
 
 	private final Resource modelResource;
 
@@ -394,7 +392,7 @@ public class BuildPropertiesChecker extends AbstractPluginChecker {
 			diagnostic = createDiagnostic(buildFile, severity, 0, message,
 					IPluginChecker2.markerType(type),
 					IPluginChecker2.lineNumber(getLineNumber(textBuildModel.getBuild().getEntry(entry))),
-					IPluginChecker2.problem(MISSING_FROM_BINARY_BUILD_MARKER_ID),
+					IPluginChecker2.problem(CommonProblemConstants.MISSING_FROM_BINARY_BUILD_MARKER_ID),
 					IPluginChecker2.missingBinInclude(missingValue));
 		} else {
 			diagnostic = createDiagnostic(buildFile, severity, 0, message,

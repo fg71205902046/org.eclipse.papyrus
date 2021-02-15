@@ -188,7 +188,7 @@ public class ElementTypesPluginChecker {
 		ElementTypesPluginXMLValidator validator = new ElementTypesPluginXMLValidator(modelFile);
 
 		return new PluginErrorReporter<>(pluginXML, modelFile, model, ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE, set -> set.getIdentifier())
-				.softRequireExtensionPoint(ELEMENTTYPES_EXTENSION_POINT_IDENTIFIER, validator::matchExtension, validator::checkExtension, null);
+				.softRequireExtensionPoint(ELEMENTTYPES_EXTENSION_POINT_IDENTIFIER, validator::matchExtension, validator::checkExtension, validator::problemID);
 	}
 
 	/**

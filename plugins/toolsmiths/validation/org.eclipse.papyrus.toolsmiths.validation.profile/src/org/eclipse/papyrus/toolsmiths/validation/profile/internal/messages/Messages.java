@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 CEA LIST, EclipseSource and others.
+ * Copyright (c) 2020, 2021 CEA LIST, EclipseSource, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *   Remi Schnekenburger (EclipseSource) - Initial API and implementation
+ *   Christian W. Damus - bug 570097
  *
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.validation.profile.internal.messages;
@@ -33,6 +34,20 @@ public class Messages extends NLS {
 	public static String StaticProfilePluginErrorReporter_uiLabelIsNull;
 	public static String StaticProfilePluginErrorReporter_wrongLocationForProfile;
 	public static String StaticProfilePluginErrorReporter_stereotypeMismatch;
+	public static String MissingGenModelAttributeMarkerResolution_description;
+	public static String MissingGenModelAttributeMarkerResolution_label;
+	public static String MissingUriAttributeMarkerResolution_description;
+	public static String MissingUriAttributeMarkerResolution_label;
+	public static String NoEcoreGenPackageMarkerResolution_description;
+	public static String NoEcoreGenPackageMarkerResolution_label;
+	public static String NoLocationUMLGenPackageMarkerResolution_description;
+	public static String NoLocationUMLGenPackageMarkerResolution_label;
+	public static String NoPapyrusProfileExtensionMarkerResolution_description;
+	public static String NoPapyrusProfileExtensionMarkerResolution_label;
+	public static String NoUMLGenPackageMarkerResolution_description;
+	public static String NoUMLGenPackageMarkerResolution_label;
+	public static String PapyrusProfileExtensionMissingNameMarkerResolution_description;
+	public static String PapyrusProfileExtensionMissingNameMarkerResolution_label;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

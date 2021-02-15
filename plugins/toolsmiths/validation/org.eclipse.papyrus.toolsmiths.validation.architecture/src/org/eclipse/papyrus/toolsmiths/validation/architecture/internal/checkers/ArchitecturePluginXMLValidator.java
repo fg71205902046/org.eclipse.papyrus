@@ -22,6 +22,7 @@ import java.util.Optional;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureDomain;
+import org.eclipse.papyrus.toolsmiths.validation.architecture.constants.ArchitecturePluginValidationConstants;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
@@ -69,6 +70,15 @@ final class ArchitecturePluginXMLValidator {
 	boolean matchArchitectureDomain(Element element, ArchitectureDomain model) {
 		String path = element.getAttribute(PATH);
 		return Objects.equals(path, modelFile.getProjectRelativePath().toString());
+	}
+
+	int problemID(String point, ArchitectureDomain architectureDomain) {
+		switch (point) {
+		case ARCHITECTURE_EXTENSION_POINT_IDENTIFIER:
+			return ArchitecturePluginValidationConstants.MISSING_ARCHITECTURE_MODEL_EXTENSION_ID;
+		default:
+			return -1;
+		}
 	}
 
 }

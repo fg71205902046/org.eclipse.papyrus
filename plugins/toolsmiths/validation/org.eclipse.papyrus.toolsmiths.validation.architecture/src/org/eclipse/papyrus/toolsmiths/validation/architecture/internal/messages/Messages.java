@@ -28,6 +28,8 @@ public class Messages extends NLS {
 	public static String ArchitectureCustomValidator_2;
 	public static String ArchitecturePluginChecker_0;
 	public static String ArchitecturePluginChecker_1;
+	public static String MissingArchitectureExtension_0;
+	public static String MissingArchitectureExtension_1;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
