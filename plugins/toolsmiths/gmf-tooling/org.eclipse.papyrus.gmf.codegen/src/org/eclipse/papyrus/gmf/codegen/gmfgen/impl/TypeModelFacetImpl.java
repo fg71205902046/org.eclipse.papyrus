@@ -34,6 +34,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeModelFacet;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.TypeModelFacetImpl#getMetaClass <em>Meta Class</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.TypeModelFacetImpl#getContainmentMetaFeature <em>Containment Meta Feature</em>}</li>
@@ -41,7 +42,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeModelFacet;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.TypeModelFacetImpl#getModelElementSelector <em>Model Element Selector</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.TypeModelFacetImpl#getModelElementInitializer <em>Model Element Initializer</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -120,6 +120,7 @@ public class TypeModelFacetImpl extends EObjectImpl implements TypeModelFacet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenClass getMetaClass() {
 		if (metaClass != null && metaClass.eIsProxy()) {
 			InternalEObject oldMetaClass = (InternalEObject)metaClass;
@@ -146,6 +147,7 @@ public class TypeModelFacetImpl extends EObjectImpl implements TypeModelFacet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMetaClass(GenClass newMetaClass) {
 		GenClass oldMetaClass = metaClass;
 		metaClass = newMetaClass;
@@ -158,6 +160,7 @@ public class TypeModelFacetImpl extends EObjectImpl implements TypeModelFacet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenFeature getContainmentMetaFeature() {
 		if (containmentMetaFeature != null && containmentMetaFeature.eIsProxy()) {
 			InternalEObject oldContainmentMetaFeature = (InternalEObject)containmentMetaFeature;
@@ -184,6 +187,7 @@ public class TypeModelFacetImpl extends EObjectImpl implements TypeModelFacet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setContainmentMetaFeature(GenFeature newContainmentMetaFeature) {
 		GenFeature oldContainmentMetaFeature = containmentMetaFeature;
 		containmentMetaFeature = newContainmentMetaFeature;
@@ -230,6 +234,7 @@ public class TypeModelFacetImpl extends EObjectImpl implements TypeModelFacet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setChildMetaFeature(GenFeature newChildMetaFeature) {
 		GenFeature oldChildMetaFeature = childMetaFeature;
 		childMetaFeature = newChildMetaFeature;
@@ -242,6 +247,7 @@ public class TypeModelFacetImpl extends EObjectImpl implements TypeModelFacet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenConstraint getModelElementSelector() {
 		if (modelElementSelector != null && modelElementSelector.eIsProxy()) {
 			InternalEObject oldModelElementSelector = (InternalEObject)modelElementSelector;
@@ -268,6 +274,7 @@ public class TypeModelFacetImpl extends EObjectImpl implements TypeModelFacet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setModelElementSelector(GenConstraint newModelElementSelector) {
 		GenConstraint oldModelElementSelector = modelElementSelector;
 		modelElementSelector = newModelElementSelector;
@@ -280,6 +287,7 @@ public class TypeModelFacetImpl extends EObjectImpl implements TypeModelFacet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenElementInitializer getModelElementInitializer() {
 		return modelElementInitializer;
 	}
@@ -304,6 +312,7 @@ public class TypeModelFacetImpl extends EObjectImpl implements TypeModelFacet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setModelElementInitializer(GenElementInitializer newModelElementInitializer) {
 		if (newModelElementInitializer != modelElementInitializer) {
 			NotificationChain msgs = null;

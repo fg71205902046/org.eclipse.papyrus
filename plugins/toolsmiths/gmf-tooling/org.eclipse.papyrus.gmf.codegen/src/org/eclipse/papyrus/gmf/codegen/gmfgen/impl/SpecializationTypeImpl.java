@@ -40,11 +40,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.SpecializationType;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.SpecializationTypeImpl#getMetamodelType <em>Metamodel Type</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.SpecializationTypeImpl#getEditHelperAdviceClassName <em>Edit Helper Advice Class Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -103,6 +103,7 @@ public class SpecializationTypeImpl extends ElementTypeImpl implements Specializ
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public MetamodelType getMetamodelType() {
 		if (metamodelType != null && metamodelType.eIsProxy()) {
 			InternalEObject oldMetamodelType = (InternalEObject)metamodelType;
@@ -129,6 +130,7 @@ public class SpecializationTypeImpl extends ElementTypeImpl implements Specializ
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMetamodelType(MetamodelType newMetamodelType) {
 		MetamodelType oldMetamodelType = metamodelType;
 		metamodelType = newMetamodelType;
@@ -141,6 +143,7 @@ public class SpecializationTypeImpl extends ElementTypeImpl implements Specializ
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getEditHelperAdviceClassName() {
 		return editHelperAdviceClassName;
 	}
@@ -150,6 +153,7 @@ public class SpecializationTypeImpl extends ElementTypeImpl implements Specializ
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEditHelperAdviceClassName(String newEditHelperAdviceClassName) {
 		String oldEditHelperAdviceClassName = editHelperAdviceClassName;
 		editHelperAdviceClassName = newEditHelperAdviceClassName;
@@ -264,7 +268,7 @@ public class SpecializationTypeImpl extends ElementTypeImpl implements Specializ
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (editHelperAdviceClassName: ");
 		result.append(editHelperAdviceClassName);
 		result.append(')');

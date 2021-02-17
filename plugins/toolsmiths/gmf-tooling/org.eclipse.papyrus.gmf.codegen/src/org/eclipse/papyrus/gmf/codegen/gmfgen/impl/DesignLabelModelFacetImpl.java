@@ -28,8 +28,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Design Label Model Facet</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

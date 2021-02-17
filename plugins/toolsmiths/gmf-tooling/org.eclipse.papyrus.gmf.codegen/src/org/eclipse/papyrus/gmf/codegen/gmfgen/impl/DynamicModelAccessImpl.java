@@ -36,12 +36,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.DynamicModelAccessImpl#getEditorGen <em>Editor Gen</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.DynamicModelAccessImpl#getPackageName <em>Package Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.DynamicModelAccessImpl#getClassName <em>Class Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -110,6 +110,7 @@ public class DynamicModelAccessImpl extends EObjectImpl implements DynamicModelA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenEditorGenerator getEditorGen() {
 		if (eContainerFeatureID() != GMFGenPackage.DYNAMIC_MODEL_ACCESS__EDITOR_GEN) return null;
 		return (GenEditorGenerator)eInternalContainer();
@@ -137,6 +138,7 @@ public class DynamicModelAccessImpl extends EObjectImpl implements DynamicModelA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPackageName(String newPackageName) {
 		String oldPackageName = packageName;
 		packageName = newPackageName;
@@ -149,6 +151,7 @@ public class DynamicModelAccessImpl extends EObjectImpl implements DynamicModelA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getClassName() {
 		return className;
 	}
@@ -158,6 +161,7 @@ public class DynamicModelAccessImpl extends EObjectImpl implements DynamicModelA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setClassName(String newClassName) {
 		String oldClassName = className;
 		className = newClassName;
@@ -299,7 +303,7 @@ public class DynamicModelAccessImpl extends EObjectImpl implements DynamicModelA
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (packageName: ");
 		result.append(packageName);
 		result.append(", className: ");

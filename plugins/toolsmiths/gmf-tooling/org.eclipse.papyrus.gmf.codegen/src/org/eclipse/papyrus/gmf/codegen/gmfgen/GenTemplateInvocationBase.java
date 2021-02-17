@@ -26,12 +26,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCustomGeneratorExtension;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenTemplateInvocationBase#getExtension <em>Extension</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenTemplateInvocationBase#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenTemplateInvocationBase#getTemplateFqn <em>Template Fqn</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenTemplateInvocationBase()
  * @model abstract="true"

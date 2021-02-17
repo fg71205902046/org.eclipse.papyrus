@@ -34,10 +34,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNodeLabel;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenNodeLabelImpl#getNode <em>Node</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -66,6 +66,7 @@ public class GenNodeLabelImpl extends GenLabelImpl implements GenNodeLabel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenNode getNode() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_NODE_LABEL__NODE) return null;
 		return (GenNode)eInternalContainer();

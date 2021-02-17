@@ -20,7 +20,7 @@ import com.google.inject.Inject
 import com.google.inject.Singleton
 import org.eclipse.papyrus.gmf.codegen.gmfgen.CustomBehaviour
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLinkLabel
-import org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference
+import org.eclipse.papyrus.gmf.codegen.genextension.LabelVisibilityPreference
 import xpt.Common
 
 @Singleton class LinkLabelEditPart extends diagram.editparts.LinkLabelEditPart{

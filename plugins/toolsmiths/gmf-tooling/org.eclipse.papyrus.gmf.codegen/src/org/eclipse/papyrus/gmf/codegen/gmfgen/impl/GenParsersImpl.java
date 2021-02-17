@@ -43,6 +43,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ProviderPriority;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenParsersImpl#getEditorGen <em>Editor Gen</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenParsersImpl#getPackageName <em>Package Name</em>}</li>
@@ -52,7 +53,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ProviderPriority;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenParsersImpl#getImplementations <em>Implementations</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenParsersImpl#getImplPackageName <em>Impl Package Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -191,6 +191,7 @@ public class GenParsersImpl extends EObjectImpl implements GenParsers {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenEditorGenerator getEditorGen() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_PARSERS__EDITOR_GEN) return null;
 		return (GenEditorGenerator)eInternalContainer();
@@ -217,6 +218,7 @@ public class GenParsersImpl extends EObjectImpl implements GenParsers {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPackageName(String newPackageName) {
 		String oldPackageName = packageName;
 		packageName = newPackageName;
@@ -245,6 +247,7 @@ public class GenParsersImpl extends EObjectImpl implements GenParsers {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setClassName(String newClassName) {
 		String oldClassName = className;
 		className = newClassName;
@@ -257,6 +260,7 @@ public class GenParsersImpl extends EObjectImpl implements GenParsers {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isExtensibleViaService() {
 		return extensibleViaService;
 	}
@@ -266,6 +270,7 @@ public class GenParsersImpl extends EObjectImpl implements GenParsers {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setExtensibleViaService(boolean newExtensibleViaService) {
 		boolean oldExtensibleViaService = extensibleViaService;
 		extensibleViaService = newExtensibleViaService;
@@ -294,6 +299,7 @@ public class GenParsersImpl extends EObjectImpl implements GenParsers {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProviderPriority(ProviderPriority newProviderPriority) {
 		ProviderPriority oldProviderPriority = providerPriority;
 		providerPriority = newProviderPriority == null ? PROVIDER_PRIORITY_EDEFAULT : newProviderPriority;
@@ -306,6 +312,7 @@ public class GenParsersImpl extends EObjectImpl implements GenParsers {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenParserImplementation> getImplementations() {
 		if (implementations == null) {
 			implementations = new EObjectContainmentWithInverseEList<GenParserImplementation>(GenParserImplementation.class, this, GMFGenPackage.GEN_PARSERS__IMPLEMENTATIONS, GMFGenPackage.GEN_PARSER_IMPLEMENTATION__HOLDER);
@@ -342,6 +349,7 @@ public class GenParsersImpl extends EObjectImpl implements GenParsers {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setImplPackageName(String newImplPackageName) {
 		String oldImplPackageName = implPackageName;
 		implPackageName = newImplPackageName;
@@ -530,7 +538,7 @@ public class GenParsersImpl extends EObjectImpl implements GenParsers {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (packageName: ");
 		result.append(packageName);
 		result.append(", className: ");

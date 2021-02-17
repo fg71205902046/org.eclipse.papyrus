@@ -45,13 +45,13 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenAuditRootImpl#getEditorGen <em>Editor Gen</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenAuditRootImpl#getCategories <em>Categories</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenAuditRootImpl#getRules <em>Rules</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenAuditRootImpl#getClientContexts <em>Client Contexts</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -110,6 +110,7 @@ public class GenAuditRootImpl extends EObjectImpl implements GenAuditRoot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenEditorGenerator getEditorGen() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_AUDIT_ROOT__EDITOR_GEN) return null;
 		return (GenEditorGenerator)eInternalContainer();
@@ -120,6 +121,7 @@ public class GenAuditRootImpl extends EObjectImpl implements GenAuditRoot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenAuditContainer> getCategories() {
 		if (categories == null) {
 			categories = new EObjectContainmentWithInverseEList<GenAuditContainer>(GenAuditContainer.class, this, GMFGenPackage.GEN_AUDIT_ROOT__CATEGORIES, GMFGenPackage.GEN_AUDIT_CONTAINER__ROOT);
@@ -132,6 +134,7 @@ public class GenAuditRootImpl extends EObjectImpl implements GenAuditRoot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenAuditRule> getRules() {
 		if (rules == null) {
 			rules = new EObjectContainmentWithInverseEList<GenAuditRule>(GenAuditRule.class, this, GMFGenPackage.GEN_AUDIT_ROOT__RULES, GMFGenPackage.GEN_AUDIT_RULE__ROOT);
@@ -144,6 +147,7 @@ public class GenAuditRootImpl extends EObjectImpl implements GenAuditRoot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenAuditContext> getClientContexts() {
 		if (clientContexts == null) {
 			clientContexts = new EObjectContainmentWithInverseEList<GenAuditContext>(GenAuditContext.class, this, GMFGenPackage.GEN_AUDIT_ROOT__CLIENT_CONTEXTS, GMFGenPackage.GEN_AUDIT_CONTEXT__ROOT);

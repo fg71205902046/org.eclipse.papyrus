@@ -36,11 +36,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDomainAttributeTarget;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenDomainAttributeTargetImpl#getAttribute <em>Attribute</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenDomainAttributeTargetImpl#isNullAsError <em>Null As Error</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -99,6 +99,7 @@ public class GenDomainAttributeTargetImpl extends GenAuditableImpl implements Ge
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenFeature getAttribute() {
 		if (attribute != null && attribute.eIsProxy()) {
 			InternalEObject oldAttribute = (InternalEObject)attribute;
@@ -125,6 +126,7 @@ public class GenDomainAttributeTargetImpl extends GenAuditableImpl implements Ge
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAttribute(GenFeature newAttribute) {
 		GenFeature oldAttribute = attribute;
 		attribute = newAttribute;
@@ -162,6 +164,7 @@ public class GenDomainAttributeTargetImpl extends GenAuditableImpl implements Ge
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isNullAsError() {
 		return nullAsError;
 	}
@@ -171,6 +174,7 @@ public class GenDomainAttributeTargetImpl extends GenAuditableImpl implements Ge
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNullAsError(boolean newNullAsError) {
 		boolean oldNullAsError = nullAsError;
 		nullAsError = newNullAsError;
@@ -256,7 +260,7 @@ public class GenDomainAttributeTargetImpl extends GenAuditableImpl implements Ge
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (nullAsError: ");
 		result.append(nullAsError);
 		result.append(')');

@@ -39,6 +39,7 @@ import org.eclipse.papyrus.gmf.internal.xpand.util.ParserException;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenVisualEffectImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenVisualEffectImpl#getPinKind <em>Pin Kind</em>}</li>
@@ -46,7 +47,6 @@ import org.eclipse.papyrus.gmf.internal.xpand.util.ParserException;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenVisualEffectImpl#getOperationType <em>Operation Type</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenVisualEffectImpl#getOclExpression <em>Ocl Expression</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -175,6 +175,7 @@ public class GenVisualEffectImpl extends CustomBehaviourImpl implements GenVisua
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -184,6 +185,7 @@ public class GenVisualEffectImpl extends CustomBehaviourImpl implements GenVisua
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -196,6 +198,7 @@ public class GenVisualEffectImpl extends CustomBehaviourImpl implements GenVisua
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getPinKind() {
 		return pinKind;
 	}
@@ -205,6 +208,7 @@ public class GenVisualEffectImpl extends CustomBehaviourImpl implements GenVisua
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPinKind(String newPinKind) {
 		String oldPinKind = pinKind;
 		pinKind = newPinKind;
@@ -217,6 +221,7 @@ public class GenVisualEffectImpl extends CustomBehaviourImpl implements GenVisua
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getOperationName() {
 		return operationName;
 	}
@@ -226,6 +231,7 @@ public class GenVisualEffectImpl extends CustomBehaviourImpl implements GenVisua
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOperationName(String newOperationName) {
 		String oldOperationName = operationName;
 		operationName = newOperationName;
@@ -238,6 +244,7 @@ public class GenVisualEffectImpl extends CustomBehaviourImpl implements GenVisua
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getOperationType() {
 		return operationType;
 	}
@@ -247,6 +254,7 @@ public class GenVisualEffectImpl extends CustomBehaviourImpl implements GenVisua
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOperationType(String newOperationType) {
 		String oldOperationType = operationType;
 		operationType = newOperationType;
@@ -259,6 +267,7 @@ public class GenVisualEffectImpl extends CustomBehaviourImpl implements GenVisua
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getOclExpression() {
 		return oclExpression;
 	}
@@ -268,6 +277,7 @@ public class GenVisualEffectImpl extends CustomBehaviourImpl implements GenVisua
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOclExpression(String newOclExpression) {
 		String oldOclExpression = oclExpression;
 		oclExpression = newOclExpression;
@@ -428,7 +438,7 @@ public class GenVisualEffectImpl extends CustomBehaviourImpl implements GenVisua
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
 		result.append(", pinKind: ");

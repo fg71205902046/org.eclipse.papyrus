@@ -37,12 +37,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenPropertyTabFilter;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCustomPropertyTabImpl#getClassName <em>Class Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCustomPropertyTabImpl#getFilter <em>Filter</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCustomPropertyTabImpl#isGenerateBoilerplate <em>Generate Boilerplate</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -143,6 +143,7 @@ public class GenCustomPropertyTabImpl extends GenPropertyTabImpl implements GenC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setClassName(String newClassName) {
 		String oldClassName = className;
 		className = newClassName;
@@ -155,6 +156,7 @@ public class GenCustomPropertyTabImpl extends GenPropertyTabImpl implements GenC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenPropertyTabFilter getFilter() {
 		return filter;
 	}
@@ -179,6 +181,7 @@ public class GenCustomPropertyTabImpl extends GenPropertyTabImpl implements GenC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFilter(GenPropertyTabFilter newFilter) {
 		if (newFilter != filter) {
 			NotificationChain msgs = null;
@@ -198,6 +201,7 @@ public class GenCustomPropertyTabImpl extends GenPropertyTabImpl implements GenC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isGenerateBoilerplate() {
 		return generateBoilerplate;
 	}
@@ -207,6 +211,7 @@ public class GenCustomPropertyTabImpl extends GenPropertyTabImpl implements GenC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGenerateBoilerplate(boolean newGenerateBoilerplate) {
 		boolean oldGenerateBoilerplate = generateBoilerplate;
 		generateBoilerplate = newGenerateBoilerplate;
@@ -344,7 +349,7 @@ public class GenCustomPropertyTabImpl extends GenPropertyTabImpl implements GenC
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (className: ");
 		result.append(className);
 		result.append(", generateBoilerplate: ");

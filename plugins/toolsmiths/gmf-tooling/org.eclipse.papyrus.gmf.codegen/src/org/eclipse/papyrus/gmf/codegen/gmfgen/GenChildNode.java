@@ -33,11 +33,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenChildNode#getDiagram <em>Diagram</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenChildNode#getContainers <em>Containers</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenChildNode()
  * @model annotation="http://www.eclipse.org/gmf/2005/constraints ocl='not modelFacet.oclIsUndefined() implies not modelFacet.containmentMetaFeature.oclIsUndefined()' description='Child node must specify \'Containment Meta Feature\''"
@@ -75,7 +75,7 @@ public interface GenChildNode extends GenNode {
 	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenChildNode_Containers()
 	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GenChildContainer#getChildNodes
 	 * @model opposite="childNodes" changeable="false"
-	 *        annotation="http://www.eclipse.org/gmf/2005/constraints ocl='let cmps:OrderedSet(GenChildContainer)=containers->select(oclIsKindOf(GenCompartment)) in cmps->exists(oclAsType(GenCompartment).listLayout) implies not cmps->exists(not oclAsType(GenCompartment).listLayout)' description='Node is referenced from multiple containers with different \'List Layout\' value'"
+	 *        annotation="http://www.eclipse.org/gmf/2005/constraints ocl='let cmps:OrderedSet(GenChildContainer)=containers-&gt;select(oclIsKindOf(GenCompartment)) in cmps-&gt;exists(oclAsType(GenCompartment).listLayout) implies not cmps-&gt;exists(not oclAsType(GenCompartment).listLayout)' description='Node is referenced from multiple containers with different \'List Layout\' value'"
 	 * @generated
 	 */
 	EList<GenChildContainer> getContainers();

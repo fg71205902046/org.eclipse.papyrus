@@ -37,10 +37,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenMeasurable;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagramElementTarget#getElement <em>Element</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenDiagramElementTarget()
  * @model
@@ -62,7 +62,7 @@ public interface GenDiagramElementTarget extends GenAuditable, GenMeasurable {
 	 * @return the value of the '<em>Element</em>' reference list.
 	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenDiagramElementTarget_Element()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/gmf/2005/constraints ocl='element <> null and element->size() > 1 implies element->forAll(oclIsKindOf(GenNode))' description='Multiple diagram elements must be GenNode type conformant'"
+	 *        annotation="http://www.eclipse.org/gmf/2005/constraints ocl='element &lt;&gt; null and element-&gt;size() &gt; 1 implies element-&gt;forAll(oclIsKindOf(GenNode))' description='Multiple diagram elements must be GenNode type conformant'"
 	 * @generated
 	 */
 	EList<GenCommonBase> getElement();

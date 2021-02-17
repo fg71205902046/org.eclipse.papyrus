@@ -41,13 +41,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenConstraint;
  * @generated
  */
 public class GenConstraintItemProvider
-	extends ValueExpressionItemProvider
-	implements	
-		IEditingDomainItemProvider,	
-		IStructuredItemContentProvider,	
-		ITreeItemContentProvider,	
-		IItemLabelProvider,	
-		IItemPropertySource {
+	extends ValueExpressionItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

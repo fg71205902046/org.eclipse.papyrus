@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EClassifier;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenVisualEffect#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenVisualEffect#getPinKind <em>Pin Kind</em>}</li>
@@ -36,7 +37,6 @@ import org.eclipse.emf.ecore.EClassifier;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenVisualEffect#getOperationType <em>Operation Type</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenVisualEffect#getOclExpression <em>Ocl Expression</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenVisualEffect()
  * @model

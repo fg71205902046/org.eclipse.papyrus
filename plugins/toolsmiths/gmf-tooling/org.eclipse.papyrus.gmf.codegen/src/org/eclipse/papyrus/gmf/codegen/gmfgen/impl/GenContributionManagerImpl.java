@@ -42,12 +42,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenContributionManagerImpl#getID <em>ID</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenContributionManagerImpl#getItems <em>Items</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenContributionManagerImpl#getEditorGen <em>Editor Gen</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -106,6 +106,7 @@ public abstract class GenContributionManagerImpl extends EObjectImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getID() {
 		return iD;
 	}
@@ -115,6 +116,7 @@ public abstract class GenContributionManagerImpl extends EObjectImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setID(String newID) {
 		String oldID = iD;
 		iD = newID;
@@ -127,6 +129,7 @@ public abstract class GenContributionManagerImpl extends EObjectImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenContributionItem> getItems() {
 		if (items == null) {
 			items = new EObjectContainmentWithInverseEList<GenContributionItem>(GenContributionItem.class, this, GMFGenPackage.GEN_CONTRIBUTION_MANAGER__ITEMS, GMFGenPackage.GEN_CONTRIBUTION_ITEM__OWNER);
@@ -253,7 +256,7 @@ public abstract class GenContributionManagerImpl extends EObjectImpl implements 
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (iD: ");
 		result.append(iD);
 		result.append(')');

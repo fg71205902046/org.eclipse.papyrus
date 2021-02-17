@@ -32,11 +32,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.CustomParserImpl#getQualifiedName <em>Qualified Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.CustomParserImpl#isGenerateBoilerplate <em>Generate Boilerplate</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -105,6 +105,7 @@ public class CustomParserImpl extends GenParserImplementationImpl implements Cus
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getQualifiedName() {
 		return qualifiedName;
 	}
@@ -114,6 +115,7 @@ public class CustomParserImpl extends GenParserImplementationImpl implements Cus
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setQualifiedName(String newQualifiedName) {
 		String oldQualifiedName = qualifiedName;
 		qualifiedName = newQualifiedName;
@@ -126,6 +128,7 @@ public class CustomParserImpl extends GenParserImplementationImpl implements Cus
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isGenerateBoilerplate() {
 		return generateBoilerplate;
 	}
@@ -135,6 +138,7 @@ public class CustomParserImpl extends GenParserImplementationImpl implements Cus
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGenerateBoilerplate(boolean newGenerateBoilerplate) {
 		boolean oldGenerateBoilerplate = generateBoilerplate;
 		generateBoilerplate = newGenerateBoilerplate;
@@ -219,7 +223,7 @@ public class CustomParserImpl extends GenParserImplementationImpl implements Cus
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (qualifiedName: ");
 		result.append(qualifiedName);
 		result.append(", generateBoilerplate: ");

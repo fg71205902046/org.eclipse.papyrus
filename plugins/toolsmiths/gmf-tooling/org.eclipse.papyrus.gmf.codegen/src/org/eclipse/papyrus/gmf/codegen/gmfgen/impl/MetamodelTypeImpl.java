@@ -38,10 +38,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeModelFacet;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.MetamodelTypeImpl#getEditHelperClassName <em>Edit Helper Class Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -103,6 +103,7 @@ public class MetamodelTypeImpl extends ElementTypeImpl implements MetamodelType 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEditHelperClassName(String newEditHelperClassName) {
 		String oldEditHelperClassName = editHelperClassName;
 		editHelperClassName = newEditHelperClassName;
@@ -205,7 +206,7 @@ public class MetamodelTypeImpl extends ElementTypeImpl implements MetamodelType 
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (editHelperClassName: ");
 		result.append(editHelperClassName);
 		result.append(')');

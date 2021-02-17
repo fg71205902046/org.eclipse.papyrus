@@ -42,13 +42,13 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ToolGroupItem;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.AbstractToolEntryImpl#getGroup <em>Group</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.AbstractToolEntryImpl#isDefault <em>Default</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.AbstractToolEntryImpl#getQualifiedToolName <em>Qualified Tool Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.AbstractToolEntryImpl#getProperties <em>Properties</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -127,6 +127,7 @@ public abstract class AbstractToolEntryImpl extends EntryBaseImpl implements Abs
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ToolGroup getGroup() {
 		if (eContainerFeatureID() != GMFGenPackage.ABSTRACT_TOOL_ENTRY__GROUP) return null;
 		return (ToolGroup)eInternalContainer();
@@ -137,6 +138,7 @@ public abstract class AbstractToolEntryImpl extends EntryBaseImpl implements Abs
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isDefault() {
 		return default_;
 	}
@@ -146,6 +148,7 @@ public abstract class AbstractToolEntryImpl extends EntryBaseImpl implements Abs
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDefault(boolean newDefault) {
 		boolean oldDefault = default_;
 		default_ = newDefault;
@@ -158,6 +161,7 @@ public abstract class AbstractToolEntryImpl extends EntryBaseImpl implements Abs
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getQualifiedToolName() {
 		return qualifiedToolName;
 	}
@@ -167,6 +171,7 @@ public abstract class AbstractToolEntryImpl extends EntryBaseImpl implements Abs
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setQualifiedToolName(String newQualifiedToolName) {
 		String oldQualifiedToolName = qualifiedToolName;
 		qualifiedToolName = newQualifiedToolName;
@@ -179,6 +184,7 @@ public abstract class AbstractToolEntryImpl extends EntryBaseImpl implements Abs
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EMap<String, String> getProperties() {
 		if (properties == null) {
 			properties = new EcoreEMap<String,String>(EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY, EStringToStringMapEntryImpl.class, this, GMFGenPackage.ABSTRACT_TOOL_ENTRY__PROPERTIES);
@@ -356,7 +362,7 @@ public abstract class AbstractToolEntryImpl extends EntryBaseImpl implements Abs
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (default: ");
 		result.append(default_);
 		result.append(", qualifiedToolName: ");

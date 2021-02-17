@@ -36,10 +36,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNotationElementTarget;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenNotationElementTargetImpl#getElement <em>Element</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -78,6 +78,7 @@ public class GenNotationElementTargetImpl extends GenAuditableImpl implements Ge
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenClass getElement() {
 		if (element != null && element.eIsProxy()) {
 			InternalEObject oldElement = (InternalEObject)element;
@@ -104,6 +105,7 @@ public class GenNotationElementTargetImpl extends GenAuditableImpl implements Ge
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setElement(GenClass newElement) {
 		GenClass oldElement = element;
 		element = newElement;

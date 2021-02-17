@@ -40,12 +40,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.LabelModelFacet;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenLabelImpl#isReadOnly <em>Read Only</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenLabelImpl#isElementIcon <em>Element Icon</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenLabelImpl#getModelFacet <em>Model Facet</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -124,6 +124,7 @@ public abstract class GenLabelImpl extends GenCommonBaseImpl implements GenLabel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isReadOnly() {
 		return readOnly;
 	}
@@ -133,6 +134,7 @@ public abstract class GenLabelImpl extends GenCommonBaseImpl implements GenLabel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReadOnly(boolean newReadOnly) {
 		boolean oldReadOnly = readOnly;
 		readOnly = newReadOnly;
@@ -145,6 +147,7 @@ public abstract class GenLabelImpl extends GenCommonBaseImpl implements GenLabel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isElementIcon() {
 		return elementIcon;
 	}
@@ -154,6 +157,7 @@ public abstract class GenLabelImpl extends GenCommonBaseImpl implements GenLabel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setElementIcon(boolean newElementIcon) {
 		boolean oldElementIcon = elementIcon;
 		elementIcon = newElementIcon;
@@ -166,6 +170,7 @@ public abstract class GenLabelImpl extends GenCommonBaseImpl implements GenLabel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LabelModelFacet getModelFacet() {
 		return modelFacet;
 	}
@@ -190,6 +195,7 @@ public abstract class GenLabelImpl extends GenCommonBaseImpl implements GenLabel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setModelFacet(LabelModelFacet newModelFacet) {
 		if (newModelFacet != modelFacet) {
 			NotificationChain msgs = null;
@@ -322,7 +328,7 @@ public abstract class GenLabelImpl extends GenCommonBaseImpl implements GenLabel
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (readOnly: ");
 		result.append(readOnly);
 		result.append(", elementIcon: ");

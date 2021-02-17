@@ -58,6 +58,7 @@ import org.eclipse.papyrus.gmf.internal.codegen.util.Extras;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenLinkImpl#getGenOutgoingLinks <em>Gen Outgoing Links</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenLinkImpl#getGenIncomingLinks <em>Gen Incoming Links</em>}</li>
@@ -76,7 +77,6 @@ import org.eclipse.papyrus.gmf.internal.codegen.util.Extras;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenLinkImpl#getSources <em>Sources</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenLinkImpl#getTargets <em>Targets</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -315,6 +315,7 @@ public class GenLinkImpl extends GenCommonBaseImpl implements GenLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenDiagram getDiagram() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_LINK__DIAGRAM) return null;
 		return (GenDiagram)eInternalContainer();
@@ -325,6 +326,7 @@ public class GenLinkImpl extends GenCommonBaseImpl implements GenLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LinkModelFacet getModelFacet() {
 		return modelFacet;
 	}
@@ -349,6 +351,7 @@ public class GenLinkImpl extends GenCommonBaseImpl implements GenLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setModelFacet(LinkModelFacet newModelFacet) {
 		if (newModelFacet != modelFacet) {
 			NotificationChain msgs = null;
@@ -368,6 +371,7 @@ public class GenLinkImpl extends GenCommonBaseImpl implements GenLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenLinkLabel> getLabels() {
 		if (labels == null) {
 			labels = new EObjectContainmentWithInverseEList<GenLinkLabel>(GenLinkLabel.class, this, GMFGenPackage.GEN_LINK__LABELS, GMFGenPackage.GEN_LINK_LABEL__LINK);
@@ -380,6 +384,7 @@ public class GenLinkImpl extends GenCommonBaseImpl implements GenLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isOutgoingCreationAllowed() {
 		return outgoingCreationAllowed;
 	}
@@ -389,6 +394,7 @@ public class GenLinkImpl extends GenCommonBaseImpl implements GenLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOutgoingCreationAllowed(boolean newOutgoingCreationAllowed) {
 		boolean oldOutgoingCreationAllowed = outgoingCreationAllowed;
 		outgoingCreationAllowed = newOutgoingCreationAllowed;
@@ -401,6 +407,7 @@ public class GenLinkImpl extends GenCommonBaseImpl implements GenLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIncomingCreationAllowed() {
 		return incomingCreationAllowed;
 	}
@@ -410,6 +417,7 @@ public class GenLinkImpl extends GenCommonBaseImpl implements GenLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIncomingCreationAllowed(boolean newIncomingCreationAllowed) {
 		boolean oldIncomingCreationAllowed = incomingCreationAllowed;
 		incomingCreationAllowed = newIncomingCreationAllowed;
@@ -422,6 +430,7 @@ public class GenLinkImpl extends GenCommonBaseImpl implements GenLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isViewDirectionAlignedWithModel() {
 		return viewDirectionAlignedWithModel;
 	}
@@ -431,6 +440,7 @@ public class GenLinkImpl extends GenCommonBaseImpl implements GenLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setViewDirectionAlignedWithModel(boolean newViewDirectionAlignedWithModel) {
 		boolean oldViewDirectionAlignedWithModel = viewDirectionAlignedWithModel;
 		viewDirectionAlignedWithModel = newViewDirectionAlignedWithModel;
@@ -443,6 +453,7 @@ public class GenLinkImpl extends GenCommonBaseImpl implements GenLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenLinkConstraints getCreationConstraints() {
 		return creationConstraints;
 	}
@@ -467,6 +478,7 @@ public class GenLinkImpl extends GenCommonBaseImpl implements GenLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCreationConstraints(GenLinkConstraints newCreationConstraints) {
 		if (newCreationConstraints != creationConstraints) {
 			NotificationChain msgs = null;
@@ -486,6 +498,7 @@ public class GenLinkImpl extends GenCommonBaseImpl implements GenLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isTargetReorientingAllowed() {
 		return targetReorientingAllowed;
 	}
@@ -495,6 +508,7 @@ public class GenLinkImpl extends GenCommonBaseImpl implements GenLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTargetReorientingAllowed(boolean newTargetReorientingAllowed) {
 		boolean oldTargetReorientingAllowed = targetReorientingAllowed;
 		targetReorientingAllowed = newTargetReorientingAllowed;
@@ -507,6 +521,7 @@ public class GenLinkImpl extends GenCommonBaseImpl implements GenLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSourceReorientingAllowed() {
 		return sourceReorientingAllowed;
 	}
@@ -516,6 +531,7 @@ public class GenLinkImpl extends GenCommonBaseImpl implements GenLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSourceReorientingAllowed(boolean newSourceReorientingAllowed) {
 		boolean oldSourceReorientingAllowed = sourceReorientingAllowed;
 		sourceReorientingAllowed = newSourceReorientingAllowed;
@@ -541,6 +557,7 @@ public class GenLinkImpl extends GenCommonBaseImpl implements GenLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCreateCommandClassName(String newCreateCommandClassName) {
 		String oldCreateCommandClassName = createCommandClassName;
 		createCommandClassName = newCreateCommandClassName;
@@ -566,6 +583,7 @@ public class GenLinkImpl extends GenCommonBaseImpl implements GenLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReorientCommandClassName(String newReorientCommandClassName) {
 		String oldReorientCommandClassName = reorientCommandClassName;
 		reorientCommandClassName = newReorientCommandClassName;
@@ -578,6 +596,7 @@ public class GenLinkImpl extends GenCommonBaseImpl implements GenLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isTreeBranch() {
 		return treeBranch;
 	}
@@ -587,6 +606,7 @@ public class GenLinkImpl extends GenCommonBaseImpl implements GenLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTreeBranch(boolean newTreeBranch) {
 		boolean oldTreeBranch = treeBranch;
 		treeBranch = newTreeBranch;
@@ -994,7 +1014,7 @@ public class GenLinkImpl extends GenCommonBaseImpl implements GenLink {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (outgoingCreationAllowed: ");
 		result.append(outgoingCreationAllowed);
 		result.append(", incomingCreationAllowed: ");

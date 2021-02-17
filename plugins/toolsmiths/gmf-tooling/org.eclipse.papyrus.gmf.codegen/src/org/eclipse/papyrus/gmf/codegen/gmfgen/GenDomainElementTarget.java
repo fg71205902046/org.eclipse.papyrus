@@ -35,10 +35,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenMeasurable;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenDomainElementTarget#getElement <em>Element</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenDomainElementTarget()
  * @model

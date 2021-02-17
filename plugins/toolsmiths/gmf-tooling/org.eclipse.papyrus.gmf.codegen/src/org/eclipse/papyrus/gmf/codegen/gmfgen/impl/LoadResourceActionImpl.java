@@ -29,8 +29,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.LoadResourceAction;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Load Resource Action</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

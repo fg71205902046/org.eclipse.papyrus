@@ -38,10 +38,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.LabelModelFacet;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.LabelModelFacetImpl#getParser <em>Parser</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -80,6 +80,7 @@ public class LabelModelFacetImpl extends EObjectImpl implements LabelModelFacet 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenParserImplementation getParser() {
 		if (parser != null && parser.eIsProxy()) {
 			InternalEObject oldParser = (InternalEObject)parser;
@@ -121,6 +122,7 @@ public class LabelModelFacetImpl extends EObjectImpl implements LabelModelFacet 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setParser(GenParserImplementation newParser) {
 		if (newParser != parser) {
 			NotificationChain msgs = null;

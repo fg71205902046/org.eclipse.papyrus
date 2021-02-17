@@ -29,10 +29,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenContributionItem;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenGroupMarker#getGroupName <em>Group Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenGroupMarker()
  * @model

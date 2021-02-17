@@ -32,12 +32,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenTemplateInvocationBase;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenTemplateInvocationBaseImpl#getExtension <em>Extension</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenTemplateInvocationBaseImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenTemplateInvocationBaseImpl#getTemplateFqn <em>Template Fqn</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -106,6 +106,7 @@ public abstract class GenTemplateInvocationBaseImpl extends EObjectImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenCustomGeneratorExtension getExtension() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_TEMPLATE_INVOCATION_BASE__EXTENSION) return null;
 		return (GenCustomGeneratorExtension)eInternalContainer();
@@ -116,6 +117,7 @@ public abstract class GenTemplateInvocationBaseImpl extends EObjectImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDescription() {
 		return description;
 	}
@@ -125,6 +127,7 @@ public abstract class GenTemplateInvocationBaseImpl extends EObjectImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDescription(String newDescription) {
 		String oldDescription = description;
 		description = newDescription;
@@ -137,6 +140,7 @@ public abstract class GenTemplateInvocationBaseImpl extends EObjectImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getTemplateFqn() {
 		return templateFqn;
 	}
@@ -146,6 +150,7 @@ public abstract class GenTemplateInvocationBaseImpl extends EObjectImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTemplateFqn(String newTemplateFqn) {
 		String oldTemplateFqn = templateFqn;
 		templateFqn = newTemplateFqn;
@@ -278,7 +283,7 @@ public abstract class GenTemplateInvocationBaseImpl extends EObjectImpl implemen
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (description: ");
 		result.append(description);
 		result.append(", templateFqn: ");

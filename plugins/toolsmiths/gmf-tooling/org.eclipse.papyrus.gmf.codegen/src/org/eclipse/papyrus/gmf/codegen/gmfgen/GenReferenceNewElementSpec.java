@@ -29,13 +29,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenReferenceNewElementSpec#getNewElementInitializers <em>New Element Initializers</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenReferenceNewElementSpec()
- * @model annotation="http://www.eclipse.org/gmf/2005/constraints ocl='feature <> null implies feature.ecoreFeature.oclIsKindOf(ecore::EReference)' description='\'feature\' of \'GenReferenceNewElementSpec\' must refer to ecore::EReference'"
+ * @model annotation="http://www.eclipse.org/gmf/2005/constraints ocl='feature &lt;&gt; null implies feature.ecoreFeature.oclIsKindOf(ecore::EReference)' description='\'feature\' of \'GenReferenceNewElementSpec\' must refer to ecore::EReference'"
  * @generated
  */
 public interface GenReferenceNewElementSpec extends GenFeatureInitializer {

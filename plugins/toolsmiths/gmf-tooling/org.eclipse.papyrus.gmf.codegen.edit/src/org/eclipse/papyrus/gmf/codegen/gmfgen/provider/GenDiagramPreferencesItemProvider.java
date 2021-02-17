@@ -41,6 +41,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenFactory;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagramPreferences;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.Routing;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagramPreferences} object.

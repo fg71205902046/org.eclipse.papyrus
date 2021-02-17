@@ -37,6 +37,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ModelFacet;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.TypeModelFacet#getMetaClass <em>Meta Class</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.TypeModelFacet#getContainmentMetaFeature <em>Containment Meta Feature</em>}</li>
@@ -44,7 +45,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ModelFacet;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.TypeModelFacet#getModelElementSelector <em>Model Element Selector</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.TypeModelFacet#getModelElementInitializer <em>Model Element Initializer</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getTypeModelFacet()
  * @model

@@ -32,12 +32,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ParentAssignedViewmap;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.ParentAssignedViewmapImpl#getGetterName <em>Getter Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.ParentAssignedViewmapImpl#getSetterName <em>Setter Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.ParentAssignedViewmapImpl#getFigureQualifiedClassName <em>Figure Qualified Class Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -126,6 +126,7 @@ public class ParentAssignedViewmapImpl extends ViewmapImpl implements ParentAssi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getGetterName() {
 		return getterName;
 	}
@@ -135,6 +136,7 @@ public class ParentAssignedViewmapImpl extends ViewmapImpl implements ParentAssi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGetterName(String newGetterName) {
 		String oldGetterName = getterName;
 		getterName = newGetterName;
@@ -147,6 +149,7 @@ public class ParentAssignedViewmapImpl extends ViewmapImpl implements ParentAssi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getSetterName() {
 		return setterName;
 	}
@@ -156,6 +159,7 @@ public class ParentAssignedViewmapImpl extends ViewmapImpl implements ParentAssi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSetterName(String newSetterName) {
 		String oldSetterName = setterName;
 		setterName = newSetterName;
@@ -168,6 +172,7 @@ public class ParentAssignedViewmapImpl extends ViewmapImpl implements ParentAssi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getFigureQualifiedClassName() {
 		return figureQualifiedClassName;
 	}
@@ -177,6 +182,7 @@ public class ParentAssignedViewmapImpl extends ViewmapImpl implements ParentAssi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFigureQualifiedClassName(String newFigureQualifiedClassName) {
 		String oldFigureQualifiedClassName = figureQualifiedClassName;
 		figureQualifiedClassName = newFigureQualifiedClassName;
@@ -271,7 +277,7 @@ public class ParentAssignedViewmapImpl extends ViewmapImpl implements ParentAssi
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (getterName: ");
 		result.append(getterName);
 		result.append(", setterName: ");

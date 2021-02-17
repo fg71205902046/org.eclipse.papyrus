@@ -31,11 +31,11 @@ package org.eclipse.papyrus.gmf.codegen.gmfgen;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.ColorAttributes#getForegroundColor <em>Foreground Color</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.ColorAttributes#getBackgroundColor <em>Background Color</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getColorAttributes()
  * @model

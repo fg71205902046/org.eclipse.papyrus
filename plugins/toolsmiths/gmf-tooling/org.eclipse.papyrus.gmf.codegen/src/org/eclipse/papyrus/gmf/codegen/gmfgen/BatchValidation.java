@@ -30,6 +30,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ProviderPriority;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.BatchValidation#getValidationProviderClassName <em>Validation Provider Class Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.BatchValidation#getValidationProviderPriority <em>Validation Provider Priority</em>}</li>
@@ -43,7 +44,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ProviderPriority;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.BatchValidation#getValidationDecoratorProviderPriority <em>Validation Decorator Provider Priority</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.BatchValidation#isLiveValidationUIFeedback <em>Live Validation UI Feedback</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getBatchValidation()
  * @model interface="true" abstract="true"

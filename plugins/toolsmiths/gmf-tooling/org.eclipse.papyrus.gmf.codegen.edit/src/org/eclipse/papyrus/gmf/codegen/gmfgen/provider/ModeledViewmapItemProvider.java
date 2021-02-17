@@ -38,6 +38,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.ModeledViewmap;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.ViewmapLayoutType;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.gmf.codegen.gmfgen.ModeledViewmap} object.
@@ -46,13 +47,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ModeledViewmap;
  * @generated
  */
 public class ModeledViewmapItemProvider
-	extends ViewmapItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends ViewmapItemProvider {
 	
 	private final AdapterFactoryItemDelegator myReflectiveItemDelegator = new AdapterFactoryItemDelegator(new ReflectiveItemProviderAdapterFactory());
 	

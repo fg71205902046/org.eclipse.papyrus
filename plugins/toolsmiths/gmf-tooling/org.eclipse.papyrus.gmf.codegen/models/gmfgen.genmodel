@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.gmf.codegen/src" creationIcons="false"
-    editorDirectory="/org.eclipse.papyrus.gmf.codegen.edit/src" modelPluginID="org.eclipse.papyrus.gmf.codegen"
-    modelName="GMFGen" editPluginClass="org.eclipse.papyrus.gmf.codegen.gmfgen.presentation.EditorPlugin"
-    editorPluginClass="org.eclipse.papyrus.gmf.codegen.gmfgen.presentation.EditorPlugin" rootImplementsInterface=""
-    featureMapWrapperInterface="" booleanFlagsField="" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="5.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.emf.codegen.ecore/model/GenModel.genmodel#//genmodel">
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2006, 2015, 2020, 2021 Borland Software Corporation, CEA LIST, ARTAL&#xA;&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License 2.0&#xA;which accompanies this distribution, and is available at&#xA;https://www.eclipse.org/legal/epl-2.0/&#xA;&#xA;SPDX-License-Identifier: EPL-2.0&#xA;&#xA;Contributors:&#xA;  Borland - Initial API and implementation for code duplicated from gmf tooling repository&#xA;  CEA LIST - Initial API and implementation for code from Papyrus gmfgenextension&#xA;  Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174"
+    modelDirectory="/org.eclipse.papyrus.gmf.codegen/src" creationIcons="false" editorDirectory="/org.eclipse.papyrus.gmf.codegen.edit/src"
+    modelPluginID="org.eclipse.papyrus.gmf.codegen" modelName="GMFGen" editPluginClass="org.eclipse.papyrus.gmf.codegen.gmfgen.presentation.EditorPlugin"
+    editorPluginClass="org.eclipse.papyrus.gmf.codegen.gmfgen.presentation.EditorPlugin"
+    rootImplementsInterface="" featureMapWrapperInterface="" booleanFlagsField=""
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="11.0" copyrightFields="false"
+    usedGenPackages="platform:/plugin/org.eclipse.emf.codegen.ecore/model/GenModel.genmodel#//genmodel platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
   <foreignModel>gmfgen.ecore</foreignModel>
   <genPackages prefix="GMFGen" basePackage="org.eclipse.papyrus.gmf.codegen" disposableProviderFactory="true"
       loadInitialization="true" literalsInterface="false" extensibleProviderFactory="true"
@@ -838,8 +839,16 @@
       <genOperations ecoreOperation="gmfgen.ecore#//GenExpressionProviderBase/getLanguage"/>
     </genClasses>
     <genClasses ecoreClass="gmfgen.ecore#//GenJavaExpressionProvider">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//GenJavaExpressionProvider/throwException"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//GenJavaExpressionProvider/injectExpressionBody"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//GenJavaExpressionProvider/throwException">
+        <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentaion" value="Whether to generate default implementation that rises RuntimeException to signal unimplemented method"/>
+        </genAnnotations>
+      </genFeatures>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//GenJavaExpressionProvider/injectExpressionBody">
+        <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentaion" value="When 'true', body of associated ValueExpression would get injected into Java code as-is, thus allowing to provide method implementations right within the model. Note, if body is empty, default implementation would be generated instead."/>
+        </genAnnotations>
+      </genFeatures>
     </genClasses>
     <genClasses ecoreClass="gmfgen.ecore#//GenExpressionInterpreter">
       <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//GenExpressionInterpreter/language"/>
@@ -1087,5 +1096,138 @@
     <genClasses ecoreClass="gmfgen.ecore#//GenFixedInputsTemplateInvocation">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gmfgen.ecore#//GenFixedInputsTemplateInvocation/fixedInputs"/>
     </genClasses>
+    <nestedGenPackages prefix="GenExtension" basePackage="org.eclipse.papyrus.gmf.codegen"
+        multipleEditorPages="false" generateModelWizard="false" ecorePackage="gmfgen.ecore#//genextension">
+      <genClasses ecoreClass="gmfgen.ecore#//genextension/ExtendedGenView">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference gmfgen.ecore#//genextension/ExtendedGenView/genView"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//genextension/ExtendedGenView/isAbstract"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference gmfgen.ecore#//genextension/ExtendedGenView/superGenViews"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gmfgen.ecore#//genextension/ExtendedGenView/propRefreshHook"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//genextension/ExtendedGenView/name"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//genextension/ExtendedGenView/superOwnedEditPart"/>
+      </genClasses>
+      <genClasses ecoreClass="gmfgen.ecore#//genextension/CommentedElement">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//genextension/CommentedElement/comment"/>
+      </genClasses>
+      <genClasses ecoreClass="gmfgen.ecore#//genextension/PropertyRefreshHook">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//genextension/PropertyRefreshHook/triggeringCondition"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//genextension/PropertyRefreshHook/action"/>
+      </genClasses>
+      <genClasses ecoreClass="gmfgen.ecore#//genextension/ExternalHook">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//genextension/ExternalHook/classpath"/>
+      </genClasses>
+      <genClasses ecoreClass="gmfgen.ecore#//genextension/SpecificLocator">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference gmfgen.ecore#//genextension/SpecificLocator/genChildSideAffixedNode"/>
+      </genClasses>
+      <genClasses ecoreClass="gmfgen.ecore#//genextension/PapyrusExtensionRootNode">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gmfgen.ecore#//genextension/PapyrusExtensionRootNode/extensionNodes"/>
+      </genClasses>
+      <genClasses ecoreClass="gmfgen.ecore#//genextension/AlternateCanvas">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference gmfgen.ecore#//genextension/AlternateCanvas/domainDiagramElement"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gmfgen.ecore#//genextension/AlternateCanvas/alternateTopLevelNodes"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gmfgen.ecore#//genextension/AlternateCanvas/alternateLinkNodes"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference gmfgen.ecore#//genextension/AlternateCanvas/diagram"/>
+      </genClasses>
+      <genClasses ecoreClass="gmfgen.ecore#//genextension/AlternateGenTopLevelNode">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference gmfgen.ecore#//genextension/AlternateGenTopLevelNode/genTopLevelNode"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gmfgen.ecore#//genextension/AlternateGenTopLevelNode/typeModelFacet"/>
+      </genClasses>
+      <genClasses ecoreClass="gmfgen.ecore#//genextension/AlternateGenLink">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference gmfgen.ecore#//genextension/AlternateGenLink/genLinkNode"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gmfgen.ecore#//genextension/AlternateGenLink/typeModelFacet"/>
+      </genClasses>
+      <genClasses ecoreClass="gmfgen.ecore#//genextension/MutatingCanvas">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gmfgen.ecore#//genextension/MutatingCanvas/alternateCanvases"/>
+      </genClasses>
+      <genClasses ecoreClass="gmfgen.ecore#//genextension/OwnedEditpart">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//genextension/OwnedEditpart/name"/>
+      </genClasses>
+      <genClasses ecoreClass="gmfgen.ecore#//genextension/SpecificDiagramUpdater">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference gmfgen.ecore#//genextension/SpecificDiagramUpdater/genNode"/>
+      </genClasses>
+      <genClasses ecoreClass="gmfgen.ecore#//genextension/GenNodeConstraint">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference gmfgen.ecore#//genextension/GenNodeConstraint/genNode"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference gmfgen.ecore#//genextension/GenNodeConstraint/genConstraint"/>
+      </genClasses>
+      <genClasses ecoreClass="gmfgen.ecore#//genextension/SpecificLocatorExternalLabel">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference gmfgen.ecore#//genextension/SpecificLocatorExternalLabel/genExternalNodeLabel"/>
+      </genClasses>
+      <genClasses ecoreClass="gmfgen.ecore#//genextension/AdditionalEditPartCandies">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//genextension/AdditionalEditPartCandies/baseEditHelperPackage"/>
+      </genClasses>
+      <genClasses ecoreClass="gmfgen.ecore#//genextension/EditPartUsingDeleteService">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//genextension/EditPartUsingDeleteService/name"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference gmfgen.ecore#//genextension/EditPartUsingDeleteService/genView"/>
+      </genClasses>
+      <genClasses ecoreClass="gmfgen.ecore#//genextension/EditPartUsingReorientService">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//genextension/EditPartUsingReorientService/name"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference gmfgen.ecore#//genextension/EditPartUsingReorientService/genView"/>
+      </genClasses>
+      <genClasses ecoreClass="gmfgen.ecore#//genextension/LabelVisibilityPreference">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//genextension/LabelVisibilityPreference/role"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//genextension/LabelVisibilityPreference/iconPathRole"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference gmfgen.ecore#//genextension/LabelVisibilityPreference/linkLabels"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference gmfgen.ecore#//genextension/LabelVisibilityPreference/externalNodeLabels"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//genextension/LabelVisibilityPreference/visibleByDefault"/>
+      </genClasses>
+      <genClasses ecoreClass="gmfgen.ecore#//genextension/CompartmentVisibilityPreference">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//genextension/CompartmentVisibilityPreference/visibleByDefault"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference gmfgen.ecore#//genextension/CompartmentVisibilityPreference/compartments"/>
+      </genClasses>
+      <genClasses ecoreClass="gmfgen.ecore#//genextension/CompartmentTitleVisibilityPreference">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//genextension/CompartmentTitleVisibilityPreference/visibleByDefault"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference gmfgen.ecore#//genextension/CompartmentTitleVisibilityPreference/compartments"/>
+      </genClasses>
+      <genClasses ecoreClass="gmfgen.ecore#//genextension/ConstrainedByReferenceCompartmentItemSemanticEditPolicy">
+        <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="Documentation" value="Add constraint on Compartment Item Semantic Policy in order to prevent move into compartment of elements which can be contained. This constraint used the child node define in the GMF Model in order to define the correspoding EReference. When a move is executed the item semantic policy will fisrt check that the element can be conatined/referenced by this EReference?"/>
+        </genAnnotations>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference gmfgen.ecore#//genextension/ConstrainedByReferenceCompartmentItemSemanticEditPolicy/genView"/>
+      </genClasses>
+      <genClasses ecoreClass="gmfgen.ecore#//genextension/GenerateUsingElementTypeCreationCommand">
+        <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="Documentation" value="flag that indicated if the code generation should rely on the creation command generated by gmf tooling of the creation commands based on UML.edit framework"/>
+        </genAnnotations>
+      </genClasses>
+      <genClasses ecoreClass="gmfgen.ecore#//genextension/CustomDiagramUpdaterSingleton">
+        <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="Documentation" value="This object is used to register the diagram updater instance to use in the code. &#xD;&#xA;The class must extends the generated diagram updater.&#xD;&#xA;&#xD;&#xA;"/>
+        </genAnnotations>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//genextension/CustomDiagramUpdaterSingleton/singletonPath"/>
+      </genClasses>
+      <genClasses ecoreClass="gmfgen.ecore#//genextension/SpecificNodePlate">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference gmfgen.ecore#//genextension/SpecificNodePlate/editParts"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//genextension/SpecificNodePlate/name"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//genextension/SpecificNodePlate/nodePlateQualifiedName"/>
+      </genClasses>
+      <genClasses ecoreClass="gmfgen.ecore#//genextension/GenVisualTypeProvider">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//genextension/GenVisualTypeProvider/className"/>
+      </genClasses>
+      <genClasses ecoreClass="gmfgen.ecore#//genextension/VisualIDOverride">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference gmfgen.ecore#//genextension/VisualIDOverride/genView"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//genextension/VisualIDOverride/visualID"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gmfgen.ecore#//genextension/VisualIDOverride/child"/>
+      </genClasses>
+    </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>

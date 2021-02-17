@@ -35,11 +35,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.LabelOffsetAttributes;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.LabelOffsetAttributesImpl#getX <em>X</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.LabelOffsetAttributesImpl#getY <em>Y</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -108,6 +108,7 @@ public class LabelOffsetAttributesImpl extends EObjectImpl implements LabelOffse
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getX() {
 		return x;
 	}
@@ -117,6 +118,7 @@ public class LabelOffsetAttributesImpl extends EObjectImpl implements LabelOffse
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setX(int newX) {
 		int oldX = x;
 		x = newX;
@@ -129,6 +131,7 @@ public class LabelOffsetAttributesImpl extends EObjectImpl implements LabelOffse
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getY() {
 		return y;
 	}
@@ -138,6 +141,7 @@ public class LabelOffsetAttributesImpl extends EObjectImpl implements LabelOffse
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setY(int newY) {
 		int oldY = y;
 		y = newY;
@@ -222,7 +226,7 @@ public class LabelOffsetAttributesImpl extends EObjectImpl implements LabelOffse
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (x: ");
 		result.append(x);
 		result.append(", y: ");

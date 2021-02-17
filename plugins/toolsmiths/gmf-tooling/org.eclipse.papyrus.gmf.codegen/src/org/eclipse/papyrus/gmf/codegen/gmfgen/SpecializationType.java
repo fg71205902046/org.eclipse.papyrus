@@ -34,11 +34,11 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenClass;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.SpecializationType#getMetamodelType <em>Metamodel Type</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.SpecializationType#getEditHelperAdviceClassName <em>Edit Helper Advice Class Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getSpecializationType()
  * @model

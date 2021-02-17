@@ -55,6 +55,7 @@ import org.eclipse.papyrus.gmf.common.codegen.ImportAssistant;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram#getEditorGen <em>Editor Gen</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram#getDomainDiagramElement <em>Domain Diagram Element</em>}</li>
@@ -67,10 +68,9 @@ import org.eclipse.papyrus.gmf.common.codegen.ImportAssistant;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram#getPreferences <em>Preferences</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram#getPreferencePages <em>Preference Pages</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenDiagram()
- * @model annotation="http://www.eclipse.org/gmf/2005/constraints ocl='diagramRunTimeClass.ecoreClass.eAllSuperTypes->including(diagramRunTimeClass.ecoreClass)->one(ePackage.name = \'notation\' and name = \'Diagram\')' description='\'Diagram Runtime Class\' must be a notation::Diagram or sub-class'"
+ * @model annotation="http://www.eclipse.org/gmf/2005/constraints ocl='diagramRunTimeClass.ecoreClass.eAllSuperTypes-&gt;including(diagramRunTimeClass.ecoreClass)-&gt;one(ePackage.name = \'notation\' and name = \'Diagram\')' description='\'Diagram Runtime Class\' must be a notation::Diagram or sub-class'"
  * @generated
  */
 public interface GenDiagram extends GenContainerBase, PackageNames, ProviderClassNames, LinkConstraints, EditPartCandies, EditorCandies, Shortcuts, BatchValidation, MeasurementUnit {

@@ -41,13 +41,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenExternalNodeLabel;
  * @generated
  */
 public class GenExternalNodeLabelItemProvider
-	extends GenNodeLabelItemProvider
-	implements	
-		IEditingDomainItemProvider,	
-		IStructuredItemContentProvider,	
-		ITreeItemContentProvider,	
-		IItemLabelProvider,	
-		IItemPropertySource {
+	extends GenNodeLabelItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

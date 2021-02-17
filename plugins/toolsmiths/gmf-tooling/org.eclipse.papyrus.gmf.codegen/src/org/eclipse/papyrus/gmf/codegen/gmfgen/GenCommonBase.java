@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase#getDiagramRunTimeClass <em>Diagram Run Time Class</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase#getVisualID <em>Visual ID</em>}</li>
@@ -49,11 +50,10 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase#getBehaviour <em>Behaviour</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase#isSansDomain <em>Sans Domain</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenCommonBase()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/gmf/2005/constraints ocl='styles->forAll(style|style.ecoreClass.eAllSuperTypes->including(style.ecoreClass)->one(ePackage.name = \'notation\' and name = \'Style\'))' description='Each style must be a notation::Style or sub-class'"
+ *        annotation="http://www.eclipse.org/gmf/2005/constraints ocl='styles-&gt;forAll(style|style.ecoreClass.eAllSuperTypes-&gt;including(style.ecoreClass)-&gt;one(ePackage.name = \'notation\' and name = \'Style\'))' description='Each style must be a notation::Style or sub-class'"
  * @generated
  */
 public interface GenCommonBase extends EObject {
@@ -94,7 +94,7 @@ public interface GenCommonBase extends EObject {
 	 * @see #setVisualID(int)
 	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenCommonBase_VisualID()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/gmf/2005/constraints ocl='visualID >= 0' description='Visual ID must be a non-negative integer'"
+	 *        annotation="http://www.eclipse.org/gmf/2005/constraints ocl='visualID &gt;= 0' description='Visual ID must be a non-negative integer'"
 	 * @generated
 	 */
 	int getVisualID();

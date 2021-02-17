@@ -30,6 +30,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenTemplateInvocationBase;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenCustomGeneratorExtension#getGenerator <em>Generator</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenCustomGeneratorExtension#getName <em>Name</em>}</li>
@@ -37,7 +38,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenTemplateInvocationBase;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenCustomGeneratorExtension#getRootInput <em>Root Input</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenCustomGeneratorExtension#getInvocations <em>Invocations</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenCustomGeneratorExtension()
  * @model

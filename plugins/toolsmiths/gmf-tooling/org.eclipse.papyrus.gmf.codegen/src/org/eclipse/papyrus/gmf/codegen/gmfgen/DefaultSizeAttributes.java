@@ -29,11 +29,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.Attributes;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.DefaultSizeAttributes#getWidth <em>Width</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.DefaultSizeAttributes#getHeight <em>Height</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getDefaultSizeAttributes()
  * @model

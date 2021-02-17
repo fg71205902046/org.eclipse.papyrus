@@ -47,13 +47,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCustomPreferencePage;
  * @generated
  */
 public class GenCustomPreferencePageItemProvider
-	extends GenPreferencePageItemProvider
-	implements	
-		IEditingDomainItemProvider,	
-		IStructuredItemContentProvider,	
-		ITreeItemContentProvider,	
-		IItemLabelProvider,	
-		IItemPropertySource {
+	extends GenPreferencePageItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

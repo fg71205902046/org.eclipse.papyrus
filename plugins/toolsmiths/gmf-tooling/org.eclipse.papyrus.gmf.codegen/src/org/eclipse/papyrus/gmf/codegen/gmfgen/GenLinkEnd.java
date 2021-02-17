@@ -31,11 +31,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenLinkEnd#getGenOutgoingLinks <em>Gen Outgoing Links</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenLinkEnd#getGenIncomingLinks <em>Gen Incoming Links</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenLinkEnd()
  * @model interface="true" abstract="true"

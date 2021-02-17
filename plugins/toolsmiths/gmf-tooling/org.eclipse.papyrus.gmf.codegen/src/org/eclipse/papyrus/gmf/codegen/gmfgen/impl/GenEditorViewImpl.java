@@ -37,6 +37,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorView;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenEditorViewImpl#getEditorGen <em>Editor Gen</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenEditorViewImpl#getPackageName <em>Package Name</em>}</li>
@@ -48,7 +49,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorView;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenEditorViewImpl#isEclipseEditor <em>Eclipse Editor</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenEditorViewImpl#getContextID <em>Context ID</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -227,6 +227,7 @@ public class GenEditorViewImpl extends EObjectImpl implements GenEditorView {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenEditorGenerator getEditorGen() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_EDITOR_VIEW__EDITOR_GEN) return null;
 		return (GenEditorGenerator)eInternalContainer();
@@ -254,6 +255,7 @@ public class GenEditorViewImpl extends EObjectImpl implements GenEditorView {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPackageName(String newPackageName) {
 		String oldPackageName = packageName;
 		packageName = newPackageName;
@@ -284,6 +286,7 @@ public class GenEditorViewImpl extends EObjectImpl implements GenEditorView {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setActionBarContributorClassName(String newActionBarContributorClassName) {
 		String oldActionBarContributorClassName = actionBarContributorClassName;
 		actionBarContributorClassName = newActionBarContributorClassName;
@@ -313,6 +316,7 @@ public class GenEditorViewImpl extends EObjectImpl implements GenEditorView {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setClassName(String newClassName) {
 		String oldClassName = className;
 		className = newClassName;
@@ -364,6 +368,7 @@ public class GenEditorViewImpl extends EObjectImpl implements GenEditorView {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIconPath(String newIconPath) {
 		String oldIconPath = iconPath;
 		iconPath = newIconPath;
@@ -393,6 +398,7 @@ public class GenEditorViewImpl extends EObjectImpl implements GenEditorView {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setID(String newID) {
 		String oldID = iD;
 		iD = newID;
@@ -405,6 +411,7 @@ public class GenEditorViewImpl extends EObjectImpl implements GenEditorView {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isEclipseEditor() {
 		return eclipseEditor;
 	}
@@ -414,6 +421,7 @@ public class GenEditorViewImpl extends EObjectImpl implements GenEditorView {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEclipseEditor(boolean newEclipseEditor) {
 		boolean oldEclipseEditor = eclipseEditor;
 		eclipseEditor = newEclipseEditor;
@@ -443,6 +451,7 @@ public class GenEditorViewImpl extends EObjectImpl implements GenEditorView {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setContextID(String newContextID) {
 		String oldContextID = contextID;
 		contextID = newContextID;
@@ -647,7 +656,7 @@ public class GenEditorViewImpl extends EObjectImpl implements GenEditorView {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (packageName: ");
 		result.append(packageName);
 		result.append(", actionBarContributorClassName: ");

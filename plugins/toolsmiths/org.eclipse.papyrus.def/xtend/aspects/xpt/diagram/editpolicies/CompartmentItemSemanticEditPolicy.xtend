@@ -23,7 +23,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenChildNode
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCompartment
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
 import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeModelFacet
-import org.eclipse.papyrus.papyrusgmfgenextension.ConstrainedByReferenceCompartmentItemSemanticEditPolicy
+import org.eclipse.papyrus.gmf.codegen.genextension.ConstrainedByReferenceCompartmentItemSemanticEditPolicy
 import xpt.Common
 import xpt.diagram.editpolicies.childContainerCreateCommand
 

@@ -38,10 +38,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.FeatureLinkModelFacetImpl#getMetaFeature <em>Meta Feature</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -80,6 +80,7 @@ public class FeatureLinkModelFacetImpl extends EObjectImpl implements FeatureLin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenFeature getMetaFeature() {
 		if (metaFeature != null && metaFeature.eIsProxy()) {
 			InternalEObject oldMetaFeature = (InternalEObject)metaFeature;
@@ -106,6 +107,7 @@ public class FeatureLinkModelFacetImpl extends EObjectImpl implements FeatureLin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMetaFeature(GenFeature newMetaFeature) {
 		GenFeature oldMetaFeature = metaFeature;
 		metaFeature = newMetaFeature;

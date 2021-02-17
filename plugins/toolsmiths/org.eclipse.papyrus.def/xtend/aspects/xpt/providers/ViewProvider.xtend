@@ -37,7 +37,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenTopLevelNode
 import org.eclipse.papyrus.gmf.codegen.gmfgen.MetamodelType
 import org.eclipse.papyrus.gmf.codegen.gmfgen.NotationType
 import org.eclipse.papyrus.gmf.codegen.gmfgen.SpecializationType
-import org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference
+import org.eclipse.papyrus.gmf.codegen.genextension.LabelVisibilityPreference
 import xpt.Common_qvto
 import xpt.diagram.Utils_qvto
 import xpt.diagram.ViewmapAttributesUtils_qvto

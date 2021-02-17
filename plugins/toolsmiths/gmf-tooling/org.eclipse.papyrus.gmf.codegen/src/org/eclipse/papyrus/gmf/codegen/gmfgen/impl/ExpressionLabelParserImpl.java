@@ -39,6 +39,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ValueExpression;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.ExpressionLabelParserImpl#getClassName <em>Class Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.ExpressionLabelParserImpl#getExpressionContext <em>Expression Context</em>}</li>
@@ -46,7 +47,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ValueExpression;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.ExpressionLabelParserImpl#getEditExpression <em>Edit Expression</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.ExpressionLabelParserImpl#getValidateExpression <em>Validate Expression</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -162,6 +162,7 @@ public class ExpressionLabelParserImpl extends GenParserImplementationImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setClassName(String newClassName) {
 		String oldClassName = className;
 		className = newClassName;
@@ -174,6 +175,7 @@ public class ExpressionLabelParserImpl extends GenParserImplementationImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenClass getExpressionContext() {
 		if (expressionContext != null && expressionContext.eIsProxy()) {
 			InternalEObject oldExpressionContext = (InternalEObject)expressionContext;
@@ -200,6 +202,7 @@ public class ExpressionLabelParserImpl extends GenParserImplementationImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setExpressionContext(GenClass newExpressionContext) {
 		GenClass oldExpressionContext = expressionContext;
 		expressionContext = newExpressionContext;
@@ -212,6 +215,7 @@ public class ExpressionLabelParserImpl extends GenParserImplementationImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ValueExpression getViewExpression() {
 		if (viewExpression != null && viewExpression.eIsProxy()) {
 			InternalEObject oldViewExpression = (InternalEObject)viewExpression;
@@ -238,6 +242,7 @@ public class ExpressionLabelParserImpl extends GenParserImplementationImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setViewExpression(ValueExpression newViewExpression) {
 		ValueExpression oldViewExpression = viewExpression;
 		viewExpression = newViewExpression;
@@ -250,6 +255,7 @@ public class ExpressionLabelParserImpl extends GenParserImplementationImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ValueExpression getEditExpression() {
 		if (editExpression != null && editExpression.eIsProxy()) {
 			InternalEObject oldEditExpression = (InternalEObject)editExpression;
@@ -276,6 +282,7 @@ public class ExpressionLabelParserImpl extends GenParserImplementationImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEditExpression(ValueExpression newEditExpression) {
 		ValueExpression oldEditExpression = editExpression;
 		editExpression = newEditExpression;
@@ -288,6 +295,7 @@ public class ExpressionLabelParserImpl extends GenParserImplementationImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenConstraint getValidateExpression() {
 		if (validateExpression != null && validateExpression.eIsProxy()) {
 			InternalEObject oldValidateExpression = (InternalEObject)validateExpression;
@@ -314,6 +322,7 @@ public class ExpressionLabelParserImpl extends GenParserImplementationImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValidateExpression(GenConstraint newValidateExpression) {
 		GenConstraint oldValidateExpression = validateExpression;
 		validateExpression = newValidateExpression;
@@ -445,7 +454,7 @@ public class ExpressionLabelParserImpl extends GenParserImplementationImpl imple
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (className: ");
 		result.append(className);
 		result.append(')');

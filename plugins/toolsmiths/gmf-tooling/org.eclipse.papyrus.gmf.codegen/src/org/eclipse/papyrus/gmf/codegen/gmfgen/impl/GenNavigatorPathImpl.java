@@ -39,10 +39,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorPathSegment;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenNavigatorPathImpl#getSegments <em>Segments</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -81,6 +81,7 @@ public class GenNavigatorPathImpl extends EObjectImpl implements GenNavigatorPat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenNavigatorPathSegment> getSegments() {
 		if (segments == null) {
 			segments = new EObjectContainmentWithInverseEList<GenNavigatorPathSegment>(GenNavigatorPathSegment.class, this, GMFGenPackage.GEN_NAVIGATOR_PATH__SEGMENTS, GMFGenPackage.GEN_NAVIGATOR_PATH_SEGMENT__PATH);

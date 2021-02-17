@@ -46,13 +46,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenMetricRule;
  * @generated
  */
 public class GenMetricRuleItemProvider
-	extends GenRuleBaseItemProvider
-	implements	
-		IEditingDomainItemProvider,	
-		IStructuredItemContentProvider,	
-		ITreeItemContentProvider,	
-		IItemLabelProvider,	
-		IItemPropertySource {
+	extends GenRuleBaseItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

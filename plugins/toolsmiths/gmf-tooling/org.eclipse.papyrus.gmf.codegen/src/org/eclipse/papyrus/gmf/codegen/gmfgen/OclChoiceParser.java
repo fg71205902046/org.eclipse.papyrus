@@ -26,11 +26,11 @@ package org.eclipse.papyrus.gmf.codegen.gmfgen;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.OclChoiceParser#getItemsExpression <em>Items Expression</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.OclChoiceParser#getShowExpression <em>Show Expression</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getOclChoiceParser()
  * @model

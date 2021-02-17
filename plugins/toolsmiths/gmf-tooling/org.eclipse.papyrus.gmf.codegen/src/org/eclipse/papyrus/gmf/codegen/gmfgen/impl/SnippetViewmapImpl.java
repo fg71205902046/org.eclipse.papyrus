@@ -32,10 +32,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.SnippetViewmap;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.SnippetViewmapImpl#getBody <em>Body</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -84,6 +84,7 @@ public class SnippetViewmapImpl extends ViewmapImpl implements SnippetViewmap {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getBody() {
 		return body;
 	}
@@ -93,6 +94,7 @@ public class SnippetViewmapImpl extends ViewmapImpl implements SnippetViewmap {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBody(String newBody) {
 		String oldBody = body;
 		body = newBody;
@@ -167,7 +169,7 @@ public class SnippetViewmapImpl extends ViewmapImpl implements SnippetViewmap {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (body: ");
 		result.append(body);
 		result.append(')');

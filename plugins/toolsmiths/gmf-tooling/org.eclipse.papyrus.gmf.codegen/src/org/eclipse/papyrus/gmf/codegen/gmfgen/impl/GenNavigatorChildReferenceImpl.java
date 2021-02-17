@@ -48,6 +48,7 @@ import org.eclipse.papyrus.gmf.internal.codegen.util.GenModelGraphAnalyzer;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenNavigatorChildReferenceImpl#getNavigator <em>Navigator</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenNavigatorChildReferenceImpl#getParent <em>Parent</em>}</li>
@@ -57,7 +58,6 @@ import org.eclipse.papyrus.gmf.internal.codegen.util.GenModelGraphAnalyzer;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenNavigatorChildReferenceImpl#getGroupIcon <em>Group Icon</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenNavigatorChildReferenceImpl#isHideIfEmpty <em>Hide If Empty</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -186,6 +186,7 @@ public class GenNavigatorChildReferenceImpl extends EObjectImpl implements GenNa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenNavigator getNavigator() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_NAVIGATOR_CHILD_REFERENCE__NAVIGATOR) return null;
 		return (GenNavigator)eInternalContainer();
@@ -196,6 +197,7 @@ public class GenNavigatorChildReferenceImpl extends EObjectImpl implements GenNa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenCommonBase getParent() {
 		if (parent != null && parent.eIsProxy()) {
 			InternalEObject oldParent = (InternalEObject)parent;
@@ -222,6 +224,7 @@ public class GenNavigatorChildReferenceImpl extends EObjectImpl implements GenNa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setParent(GenCommonBase newParent) {
 		GenCommonBase oldParent = parent;
 		parent = newParent;
@@ -234,6 +237,7 @@ public class GenNavigatorChildReferenceImpl extends EObjectImpl implements GenNa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenCommonBase getChild() {
 		if (child != null && child.eIsProxy()) {
 			InternalEObject oldChild = (InternalEObject)child;
@@ -260,6 +264,7 @@ public class GenNavigatorChildReferenceImpl extends EObjectImpl implements GenNa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setChild(GenCommonBase newChild) {
 		GenCommonBase oldChild = child;
 		child = newChild;
@@ -272,6 +277,7 @@ public class GenNavigatorChildReferenceImpl extends EObjectImpl implements GenNa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenNavigatorReferenceType getReferenceType() {
 		return referenceType;
 	}
@@ -281,6 +287,7 @@ public class GenNavigatorChildReferenceImpl extends EObjectImpl implements GenNa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferenceType(GenNavigatorReferenceType newReferenceType) {
 		GenNavigatorReferenceType oldReferenceType = referenceType;
 		referenceType = newReferenceType == null ? REFERENCE_TYPE_EDEFAULT : newReferenceType;
@@ -293,6 +300,7 @@ public class GenNavigatorChildReferenceImpl extends EObjectImpl implements GenNa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getGroupName() {
 		return groupName;
 	}
@@ -321,6 +329,7 @@ public class GenNavigatorChildReferenceImpl extends EObjectImpl implements GenNa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getGroupIcon() {
 		return groupIcon;
 	}
@@ -349,6 +358,7 @@ public class GenNavigatorChildReferenceImpl extends EObjectImpl implements GenNa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isHideIfEmpty() {
 		return hideIfEmpty;
 	}
@@ -358,6 +368,7 @@ public class GenNavigatorChildReferenceImpl extends EObjectImpl implements GenNa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setHideIfEmpty(boolean newHideIfEmpty) {
 		boolean oldHideIfEmpty = hideIfEmpty;
 		hideIfEmpty = newHideIfEmpty;
@@ -561,7 +572,7 @@ public class GenNavigatorChildReferenceImpl extends EObjectImpl implements GenNa
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (referenceType: ");
 		result.append(referenceType);
 		result.append(", groupName: ");

@@ -34,13 +34,13 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.Attributes;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.ResizeConstraints#getResizeHandles <em>Resize Handles</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.ResizeConstraints#getNonResizeHandles <em>Non Resize Handles</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.ResizeConstraints#getResizeHandleNames <em>Resize Handle Names</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.ResizeConstraints#getNonResizeHandleNames <em>Non Resize Handle Names</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getResizeConstraints()
  * @model

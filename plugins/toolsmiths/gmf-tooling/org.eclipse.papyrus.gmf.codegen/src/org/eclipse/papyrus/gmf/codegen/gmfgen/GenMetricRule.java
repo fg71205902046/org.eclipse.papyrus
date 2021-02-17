@@ -27,6 +27,7 @@ package org.eclipse.papyrus.gmf.codegen.gmfgen;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenMetricRule#getKey <em>Key</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenMetricRule#getRule <em>Rule</em>}</li>
@@ -35,10 +36,9 @@ package org.eclipse.papyrus.gmf.codegen.gmfgen;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenMetricRule#getHighLimit <em>High Limit</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenMetricRule#getContainer <em>Container</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenMetricRule()
- * @model annotation="http://www.eclipse.org/gmf/2005/constraints ocl='not lowLimit.oclIsUndefined() and not highLimit.oclIsUndefined()  implies lowLimit < highLimit' description='Metric value \'lowLimit\' must be smaller then \'highLimit\''"
+ * @model annotation="http://www.eclipse.org/gmf/2005/constraints ocl='not lowLimit.oclIsUndefined() and not highLimit.oclIsUndefined()  implies lowLimit &lt; highLimit' description='Metric value \'lowLimit\' must be smaller then \'highLimit\''"
  * @generated
  */
 public interface GenMetricRule extends GenRuleBase {
@@ -53,7 +53,7 @@ public interface GenMetricRule extends GenRuleBase {
 	 * @see #setKey(String)
 	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenMetricRule_Key()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/gmf/2005/constraints ocl='not key.oclIsUndefined() implies container.metrics->one(i | i.key = self.key)' description='Metric rule with the same \'key\' already exists'"
+	 *        annotation="http://www.eclipse.org/gmf/2005/constraints ocl='not key.oclIsUndefined() implies container.metrics-&gt;one(i | i.key = self.key)' description='Metric rule with the same \'key\' already exists'"
 	 * @generated
 	 */
 	String getKey();

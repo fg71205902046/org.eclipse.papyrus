@@ -32,6 +32,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorChildReference;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigator#getEditorGen <em>Editor Gen</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigator#getContentExtensionID <em>Content Extension ID</em>}</li>
@@ -52,7 +53,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorChildReference;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigator#getPackageName <em>Package Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigator#getChildReferences <em>Child References</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenNavigator()
  * @model

@@ -30,10 +30,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenTopLevelNode#getDiagram <em>Diagram</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenTopLevelNode()
  * @model annotation="http://www.eclipse.org/gmf/2005/constraints ocl='not modelFacet.containmentMetaFeature.oclIsUndefined() implies modelFacet.containmentMetaFeature.genClass.ecoreClass.isSuperTypeOf(diagram.domainDiagramElement.ecoreClass)' description='Top level node \'Containment Feature\' must be available in the diagram \'Domain Element\' or its super-class'"

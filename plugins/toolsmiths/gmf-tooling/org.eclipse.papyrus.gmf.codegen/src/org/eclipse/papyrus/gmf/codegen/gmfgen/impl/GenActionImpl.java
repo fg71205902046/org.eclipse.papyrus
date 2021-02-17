@@ -38,12 +38,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenContributionManager;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenActionImpl#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenActionImpl#getQualifiedClassName <em>Qualified Class Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenActionImpl#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -112,6 +112,7 @@ public abstract class GenActionImpl extends EObjectImpl implements GenAction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenContributionManager getOwner() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_ACTION__OWNER) return null;
 		return (GenContributionManager)eInternalContainer();
@@ -131,6 +132,7 @@ public abstract class GenActionImpl extends EObjectImpl implements GenAction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setQualifiedClassName(String newQualifiedClassName) {
 		String oldQualifiedClassName = qualifiedClassName;
 		qualifiedClassName = newQualifiedClassName;
@@ -152,6 +154,7 @@ public abstract class GenActionImpl extends EObjectImpl implements GenAction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -284,7 +287,7 @@ public abstract class GenActionImpl extends EObjectImpl implements GenAction {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (qualifiedClassName: ");
 		result.append(qualifiedClassName);
 		result.append(", name: ");

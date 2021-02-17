@@ -41,11 +41,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ValueExpression;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenExpressionProviderBaseImpl#getExpressions <em>Expressions</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenExpressionProviderBaseImpl#getContainer <em>Container</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -91,6 +91,7 @@ public abstract class GenExpressionProviderBaseImpl extends EObjectImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ValueExpression> getExpressions() {
 		if (expressions == null) {
 			expressions = new EObjectContainmentWithInverseEList<ValueExpression>(ValueExpression.class, this, GMFGenPackage.GEN_EXPRESSION_PROVIDER_BASE__EXPRESSIONS, GMFGenPackage.VALUE_EXPRESSION__PROVIDER);
@@ -103,6 +104,7 @@ public abstract class GenExpressionProviderBaseImpl extends EObjectImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenExpressionProviderContainer getContainer() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_EXPRESSION_PROVIDER_BASE__CONTAINER) return null;
 		return (GenExpressionProviderContainer)eInternalContainer();

@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenDomainModelNavigator#isGenerateDomainModelNavigator <em>Generate Domain Model Navigator</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenDomainModelNavigator#getDomainContentExtensionID <em>Domain Content Extension ID</em>}</li>
@@ -39,7 +40,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenDomainModelNavigator#getDomainModelElementTesterClassName <em>Domain Model Element Tester Class Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenDomainModelNavigator#getDomainNavigatorItemClassName <em>Domain Navigator Item Class Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenDomainModelNavigator()
  * @model interface="true" abstract="true"

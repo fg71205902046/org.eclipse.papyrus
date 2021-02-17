@@ -46,13 +46,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage;
  * @generated
  */
 public class FeatureLabelModelFacetItemProvider
-	extends LabelModelFacetItemProvider
-	implements	
-		IEditingDomainItemProvider,	
-		IStructuredItemContentProvider,	
-		ITreeItemContentProvider,	
-		IItemLabelProvider,	
-		IItemPropertySource {
+	extends LabelModelFacetItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

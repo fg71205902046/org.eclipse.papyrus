@@ -37,11 +37,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenChildNodeImpl#getDiagram <em>Diagram</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenChildNodeImpl#getContainers <em>Containers</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -80,6 +80,7 @@ public class GenChildNodeImpl extends GenNodeImpl implements GenChildNode {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenDiagram getDiagram() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_CHILD_NODE__DIAGRAM) return null;
 		return (GenDiagram)eInternalContainer();
@@ -90,6 +91,7 @@ public class GenChildNodeImpl extends GenNodeImpl implements GenChildNode {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenChildContainer> getContainers() {
 		if (containers == null) {
 			containers = new EObjectWithInverseResolvingEList.ManyInverse<GenChildContainer>(GenChildContainer.class, this, GMFGenPackage.GEN_CHILD_NODE__CONTAINERS, GMFGenPackage.GEN_CHILD_CONTAINER__CHILD_NODES);

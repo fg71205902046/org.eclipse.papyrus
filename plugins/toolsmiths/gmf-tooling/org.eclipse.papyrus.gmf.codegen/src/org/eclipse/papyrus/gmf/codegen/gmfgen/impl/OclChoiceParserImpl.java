@@ -36,11 +36,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ValueExpression;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.OclChoiceParserImpl#getItemsExpression <em>Items Expression</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.OclChoiceParserImpl#getShowExpression <em>Show Expression</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -89,6 +89,7 @@ public class OclChoiceParserImpl extends GenParserImplementationImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ValueExpression getItemsExpression() {
 		if (itemsExpression != null && itemsExpression.eIsProxy()) {
 			InternalEObject oldItemsExpression = (InternalEObject)itemsExpression;
@@ -115,6 +116,7 @@ public class OclChoiceParserImpl extends GenParserImplementationImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setItemsExpression(ValueExpression newItemsExpression) {
 		ValueExpression oldItemsExpression = itemsExpression;
 		itemsExpression = newItemsExpression;
@@ -127,6 +129,7 @@ public class OclChoiceParserImpl extends GenParserImplementationImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ValueExpression getShowExpression() {
 		if (showExpression != null && showExpression.eIsProxy()) {
 			InternalEObject oldShowExpression = (InternalEObject)showExpression;
@@ -153,6 +156,7 @@ public class OclChoiceParserImpl extends GenParserImplementationImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setShowExpression(ValueExpression newShowExpression) {
 		ValueExpression oldShowExpression = showExpression;
 		showExpression = newShowExpression;

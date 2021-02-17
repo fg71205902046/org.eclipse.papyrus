@@ -42,12 +42,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenPreference;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCustomPreferencePageImpl#getQualifiedClassName <em>Qualified Class Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCustomPreferencePageImpl#isGenerateBoilerplate <em>Generate Boilerplate</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCustomPreferencePageImpl#getPreferences <em>Preferences</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -126,6 +126,7 @@ public class GenCustomPreferencePageImpl extends GenPreferencePageImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getQualifiedClassName() {
 		return qualifiedClassName;
 	}
@@ -135,6 +136,7 @@ public class GenCustomPreferencePageImpl extends GenPreferencePageImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setQualifiedClassName(String newQualifiedClassName) {
 		String oldQualifiedClassName = qualifiedClassName;
 		qualifiedClassName = newQualifiedClassName;
@@ -147,6 +149,7 @@ public class GenCustomPreferencePageImpl extends GenPreferencePageImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isGenerateBoilerplate() {
 		return generateBoilerplate;
 	}
@@ -156,6 +159,7 @@ public class GenCustomPreferencePageImpl extends GenPreferencePageImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGenerateBoilerplate(boolean newGenerateBoilerplate) {
 		boolean oldGenerateBoilerplate = generateBoilerplate;
 		generateBoilerplate = newGenerateBoilerplate;
@@ -168,6 +172,7 @@ public class GenCustomPreferencePageImpl extends GenPreferencePageImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenPreference> getPreferences() {
 		if (preferences == null) {
 			preferences = new EObjectContainmentWithInverseEList<GenPreference>(GenPreference.class, this, GMFGenPackage.GEN_CUSTOM_PREFERENCE_PAGE__PREFERENCES, GMFGenPackage.GEN_PREFERENCE__PAGE);
@@ -301,7 +306,7 @@ public class GenCustomPreferencePageImpl extends GenPreferencePageImpl implement
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (qualifiedClassName: ");
 		result.append(qualifiedClassName);
 		result.append(", generateBoilerplate: ");

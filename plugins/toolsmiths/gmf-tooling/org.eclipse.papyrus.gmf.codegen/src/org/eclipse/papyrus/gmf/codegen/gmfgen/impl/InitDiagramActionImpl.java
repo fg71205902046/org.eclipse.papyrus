@@ -29,8 +29,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.InitDiagramAction;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Init Diagram Action</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

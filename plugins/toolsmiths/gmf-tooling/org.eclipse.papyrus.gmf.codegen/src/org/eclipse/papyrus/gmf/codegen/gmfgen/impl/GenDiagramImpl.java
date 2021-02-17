@@ -74,6 +74,7 @@ import org.eclipse.papyrus.gmf.common.codegen.ImportAssistant;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenDiagramImpl#getContainedNodes <em>Contained Nodes</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenDiagramImpl#getCanonicalEditPolicyClassName <em>Canonical Edit Policy Class Name</em>}</li>
@@ -150,7 +151,6 @@ import org.eclipse.papyrus.gmf.common.codegen.ImportAssistant;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenDiagramImpl#getPreferences <em>Preferences</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenDiagramImpl#getPreferencePages <em>Preference Pages</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -1520,6 +1520,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenClass getDomainDiagramElement() {
 		if (domainDiagramElement != null && domainDiagramElement.eIsProxy()) {
 			InternalEObject oldDomainDiagramElement = (InternalEObject)domainDiagramElement;
@@ -1546,6 +1547,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDomainDiagramElement(GenClass newDomainDiagramElement) {
 		GenClass oldDomainDiagramElement = domainDiagramElement;
 		domainDiagramElement = newDomainDiagramElement;
@@ -1558,6 +1560,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenChildNode> getChildNodes() {
 		if (childNodes == null) {
 			childNodes = new EObjectContainmentWithInverseEList<GenChildNode>(GenChildNode.class, this, GMFGenPackage.GEN_DIAGRAM__CHILD_NODES, GMFGenPackage.GEN_CHILD_NODE__DIAGRAM);
@@ -1570,6 +1573,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenTopLevelNode> getTopLevelNodes() {
 		if (topLevelNodes == null) {
 			topLevelNodes = new EObjectContainmentWithInverseEList<GenTopLevelNode>(GenTopLevelNode.class, this, GMFGenPackage.GEN_DIAGRAM__TOP_LEVEL_NODES, GMFGenPackage.GEN_TOP_LEVEL_NODE__DIAGRAM);
@@ -1582,6 +1586,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenLink> getLinks() {
 		if (links == null) {
 			links = new EObjectContainmentWithInverseEList<GenLink>(GenLink.class, this, GMFGenPackage.GEN_DIAGRAM__LINKS, GMFGenPackage.GEN_LINK__DIAGRAM);
@@ -1594,6 +1599,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenCompartment> getCompartments() {
 		if (compartments == null) {
 			compartments = new EObjectContainmentWithInverseEList<GenCompartment>(GenCompartment.class, this, GMFGenPackage.GEN_DIAGRAM__COMPARTMENTS, GMFGenPackage.GEN_COMPARTMENT__DIAGRAM);
@@ -1606,6 +1612,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Palette getPalette() {
 		return palette;
 	}
@@ -1630,6 +1637,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPalette(Palette newPalette) {
 		if (newPalette != palette) {
 			NotificationChain msgs = null;
@@ -1649,6 +1657,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSynchronized() {
 		return synchronized_;
 	}
@@ -1658,6 +1667,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSynchronized(boolean newSynchronized) {
 		boolean oldSynchronized = synchronized_;
 		synchronized_ = newSynchronized;
@@ -1670,6 +1680,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenDiagramPreferences getPreferences() {
 		return preferences;
 	}
@@ -1694,6 +1705,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPreferences(GenDiagramPreferences newPreferences) {
 		if (newPreferences != preferences) {
 			NotificationChain msgs = null;
@@ -1713,6 +1725,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenPreferencePage> getPreferencePages() {
 		if (preferencePages == null) {
 			preferencePages = new EObjectContainmentEList<GenPreferencePage>(GenPreferencePage.class, this, GMFGenPackage.GEN_DIAGRAM__PREFERENCE_PAGES);
@@ -1742,6 +1755,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEditCommandsPackageName(String newEditCommandsPackageName) {
 		String oldEditCommandsPackageName = editCommandsPackageName;
 		editCommandsPackageName = newEditCommandsPackageName;
@@ -1771,6 +1785,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEditHelpersPackageName(String newEditHelpersPackageName) {
 		String oldEditHelpersPackageName = editHelpersPackageName;
 		editHelpersPackageName = newEditHelpersPackageName;
@@ -1800,6 +1815,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEditPartsPackageName(String newEditPartsPackageName) {
 		String oldEditPartsPackageName = editPartsPackageName;
 		editPartsPackageName = newEditPartsPackageName;
@@ -1829,6 +1845,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEditPoliciesPackageName(String newEditPoliciesPackageName) {
 		String oldEditPoliciesPackageName = editPoliciesPackageName;
 		editPoliciesPackageName = newEditPoliciesPackageName;
@@ -1858,6 +1875,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPreferencesPackageName(String newPreferencesPackageName) {
 		String oldPreferencesPackageName = preferencesPackageName;
 		preferencesPackageName = newPreferencesPackageName;
@@ -1902,6 +1920,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVisualIDRegistryClassName(String newVisualIDRegistryClassName) {
 		String oldVisualIDRegistryClassName = visualIDRegistryClassName;
 		visualIDRegistryClassName = newVisualIDRegistryClassName;
@@ -1931,6 +1950,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCreateShortcutActionClassName(String newCreateShortcutActionClassName) {
 		String oldCreateShortcutActionClassName = createShortcutActionClassName;
 		createShortcutActionClassName = newCreateShortcutActionClassName;
@@ -1960,6 +1980,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCreateShortcutDecorationsCommandClassName(String newCreateShortcutDecorationsCommandClassName) {
 		String oldCreateShortcutDecorationsCommandClassName = createShortcutDecorationsCommandClassName;
 		createShortcutDecorationsCommandClassName = newCreateShortcutDecorationsCommandClassName;
@@ -1989,6 +2010,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setShortcutPropertyTesterClassName(String newShortcutPropertyTesterClassName) {
 		String oldShortcutPropertyTesterClassName = shortcutPropertyTesterClassName;
 		shortcutPropertyTesterClassName = newShortcutPropertyTesterClassName;
@@ -2018,6 +2040,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setElementChooserClassName(String newElementChooserClassName) {
 		String oldElementChooserClassName = elementChooserClassName;
 		elementChooserClassName = newElementChooserClassName;
@@ -2047,6 +2070,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLoadResourceActionClassName(String newLoadResourceActionClassName) {
 		String oldLoadResourceActionClassName = loadResourceActionClassName;
 		loadResourceActionClassName = newLoadResourceActionClassName;
@@ -2076,6 +2100,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEditingDomainID(String newEditingDomainID) {
 		String oldEditingDomainID = editingDomainID;
 		editingDomainID = newEditingDomainID;
@@ -2105,6 +2130,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setShortcutsDecoratorProviderClassName(String newShortcutsDecoratorProviderClassName) {
 		String oldShortcutsDecoratorProviderClassName = shortcutsDecoratorProviderClassName;
 		shortcutsDecoratorProviderClassName = newShortcutsDecoratorProviderClassName;
@@ -2117,6 +2143,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ProviderPriority getShortcutsDecoratorProviderPriority() {
 		return shortcutsDecoratorProviderPriority;
 	}
@@ -2126,6 +2153,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setShortcutsDecoratorProviderPriority(ProviderPriority newShortcutsDecoratorProviderPriority) {
 		ProviderPriority oldShortcutsDecoratorProviderPriority = shortcutsDecoratorProviderPriority;
 		shortcutsDecoratorProviderPriority = newShortcutsDecoratorProviderPriority == null ? SHORTCUTS_DECORATOR_PROVIDER_PRIORITY_EDEFAULT : newShortcutsDecoratorProviderPriority;
@@ -2160,6 +2188,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValidationProviderClassName(String newValidationProviderClassName) {
 		String oldValidationProviderClassName = validationProviderClassName;
 		validationProviderClassName = newValidationProviderClassName;
@@ -2172,6 +2201,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ProviderPriority getValidationProviderPriority() {
 		return validationProviderPriority;
 	}
@@ -2181,6 +2211,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValidationProviderPriority(ProviderPriority newValidationProviderPriority) {
 		ProviderPriority oldValidationProviderPriority = validationProviderPriority;
 		validationProviderPriority = newValidationProviderPriority == null ? VALIDATION_PROVIDER_PRIORITY_EDEFAULT : newValidationProviderPriority;
@@ -2251,6 +2282,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<String> getContainsShortcutsTo() {
 		if (containsShortcutsTo == null) {
 			containsShortcutsTo = new EDataTypeUniqueEList<String>(String.class, this, GMFGenPackage.GEN_DIAGRAM__CONTAINS_SHORTCUTS_TO);
@@ -2263,6 +2295,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<String> getShortcutsProvidedFor() {
 		if (shortcutsProvidedFor == null) {
 			shortcutsProvidedFor = new EDataTypeUniqueEList<String>(String.class, this, GMFGenPackage.GEN_DIAGRAM__SHORTCUTS_PROVIDED_FOR);
@@ -2275,6 +2308,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isValidationEnabled() {
 		return validationEnabled;
 	}
@@ -2284,6 +2318,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValidationEnabled(boolean newValidationEnabled) {
 		boolean oldValidationEnabled = validationEnabled;
 		validationEnabled = newValidationEnabled;
@@ -2318,6 +2353,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMetricProviderClassName(String newMetricProviderClassName) {
 		String oldMetricProviderClassName = metricProviderClassName;
 		metricProviderClassName = newMetricProviderClassName;
@@ -2330,6 +2366,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ProviderPriority getMetricProviderPriority() {
 		return metricProviderPriority;
 	}
@@ -2339,6 +2376,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMetricProviderPriority(ProviderPriority newMetricProviderPriority) {
 		ProviderPriority oldMetricProviderPriority = metricProviderPriority;
 		metricProviderPriority = newMetricProviderPriority == null ? METRIC_PROVIDER_PRIORITY_EDEFAULT : newMetricProviderPriority;
@@ -2374,6 +2412,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValidationDecoratorProviderClassName(String newValidationDecoratorProviderClassName) {
 		String oldValidationDecoratorProviderClassName = validationDecoratorProviderClassName;
 		validationDecoratorProviderClassName = newValidationDecoratorProviderClassName;
@@ -2386,6 +2425,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isValidationDecorators() {
 		return validationDecorators;
 	}
@@ -2395,6 +2435,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValidationDecorators(boolean newValidationDecorators) {
 		boolean oldValidationDecorators = validationDecorators;
 		validationDecorators = newValidationDecorators;
@@ -2407,6 +2448,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ProviderPriority getValidationDecoratorProviderPriority() {
 		return validationDecoratorProviderPriority;
 	}
@@ -2416,6 +2458,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValidationDecoratorProviderPriority(ProviderPriority newValidationDecoratorProviderPriority) {
 		ProviderPriority oldValidationDecoratorProviderPriority = validationDecoratorProviderPriority;
 		validationDecoratorProviderPriority = newValidationDecoratorProviderPriority == null ? VALIDATION_DECORATOR_PROVIDER_PRIORITY_EDEFAULT : newValidationDecoratorProviderPriority;
@@ -2428,6 +2471,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isLiveValidationUIFeedback() {
 		return liveValidationUIFeedback;
 	}
@@ -2437,6 +2481,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLiveValidationUIFeedback(boolean newLiveValidationUIFeedback) {
 		boolean oldLiveValidationUIFeedback = liveValidationUIFeedback;
 		liveValidationUIFeedback = newLiveValidationUIFeedback;
@@ -2449,6 +2494,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getUnits() {
 		return units;
 	}
@@ -2458,6 +2504,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUnits(String newUnits) {
 		String oldUnits = units;
 		units = newUnits;
@@ -2470,6 +2517,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenEditorGenerator getEditorGen() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_DIAGRAM__EDITOR_GEN) return null;
 		return (GenEditorGenerator)eInternalContainer();
@@ -2497,6 +2545,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProvidersPackageName(String newProvidersPackageName) {
 		String oldProvidersPackageName = providersPackageName;
 		providersPackageName = newProvidersPackageName;
@@ -2526,6 +2575,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setParsersPackageName(String newParsersPackageName) {
 		String oldParsersPackageName = parsersPackageName;
 		parsersPackageName = newParsersPackageName;
@@ -2555,6 +2605,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNotationViewFactoriesPackageName(String newNotationViewFactoriesPackageName) {
 		String oldNotationViewFactoriesPackageName = notationViewFactoriesPackageName;
 		notationViewFactoriesPackageName = newNotationViewFactoriesPackageName;
@@ -2584,6 +2635,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDocumentProviderClassName(String newDocumentProviderClassName) {
 		String oldDocumentProviderClassName = documentProviderClassName;
 		documentProviderClassName = newDocumentProviderClassName;
@@ -2613,6 +2665,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEditPartFactoryClassName(String newEditPartFactoryClassName) {
 		String oldEditPartFactoryClassName = editPartFactoryClassName;
 		editPartFactoryClassName = newEditPartFactoryClassName;
@@ -2642,6 +2695,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBaseExternalNodeLabelEditPartClassName(String newBaseExternalNodeLabelEditPartClassName) {
 		String oldBaseExternalNodeLabelEditPartClassName = baseExternalNodeLabelEditPartClassName;
 		baseExternalNodeLabelEditPartClassName = newBaseExternalNodeLabelEditPartClassName;
@@ -2671,6 +2725,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBaseItemSemanticEditPolicyClassName(String newBaseItemSemanticEditPolicyClassName) {
 		String oldBaseItemSemanticEditPolicyClassName = baseItemSemanticEditPolicyClassName;
 		baseItemSemanticEditPolicyClassName = newBaseItemSemanticEditPolicyClassName;
@@ -2700,6 +2755,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBaseGraphicalNodeEditPolicyClassName(String newBaseGraphicalNodeEditPolicyClassName) {
 		String oldBaseGraphicalNodeEditPolicyClassName = baseGraphicalNodeEditPolicyClassName;
 		baseGraphicalNodeEditPolicyClassName = newBaseGraphicalNodeEditPolicyClassName;
@@ -2725,6 +2781,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCanonicalEditPolicyClassName(String newCanonicalEditPolicyClassName) {
 		String oldCanonicalEditPolicyClassName = canonicalEditPolicyClassName;
 		canonicalEditPolicyClassName = newCanonicalEditPolicyClassName;
@@ -2754,6 +2811,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTextSelectionEditPolicyClassName(String newTextSelectionEditPolicyClassName) {
 		String oldTextSelectionEditPolicyClassName = textSelectionEditPolicyClassName;
 		textSelectionEditPolicyClassName = newTextSelectionEditPolicyClassName;
@@ -2783,6 +2841,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTextNonResizableEditPolicyClassName(String newTextNonResizableEditPolicyClassName) {
 		String oldTextNonResizableEditPolicyClassName = textNonResizableEditPolicyClassName;
 		textNonResizableEditPolicyClassName = newTextNonResizableEditPolicyClassName;
@@ -2812,6 +2871,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setElementTypesClassName(String newElementTypesClassName) {
 		String oldElementTypesClassName = elementTypesClassName;
 		elementTypesClassName = newElementTypesClassName;
@@ -2841,6 +2901,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNotationViewProviderClassName(String newNotationViewProviderClassName) {
 		String oldNotationViewProviderClassName = notationViewProviderClassName;
 		notationViewProviderClassName = newNotationViewProviderClassName;
@@ -2853,6 +2914,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ProviderPriority getNotationViewProviderPriority() {
 		return notationViewProviderPriority;
 	}
@@ -2862,6 +2924,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNotationViewProviderPriority(ProviderPriority newNotationViewProviderPriority) {
 		ProviderPriority oldNotationViewProviderPriority = notationViewProviderPriority;
 		notationViewProviderPriority = newNotationViewProviderPriority == null ? NOTATION_VIEW_PROVIDER_PRIORITY_EDEFAULT : newNotationViewProviderPriority;
@@ -2891,6 +2954,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReorientConnectionViewCommandClassName(String newReorientConnectionViewCommandClassName) {
 		String oldReorientConnectionViewCommandClassName = reorientConnectionViewCommandClassName;
 		reorientConnectionViewCommandClassName = newReorientConnectionViewCommandClassName;
@@ -2920,6 +2984,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBaseEditHelperClassName(String newBaseEditHelperClassName) {
 		String oldBaseEditHelperClassName = baseEditHelperClassName;
 		baseEditHelperClassName = newBaseEditHelperClassName;
@@ -2949,6 +3014,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setInitDiagramFileActionClassName(String newInitDiagramFileActionClassName) {
 		String oldInitDiagramFileActionClassName = initDiagramFileActionClassName;
 		initDiagramFileActionClassName = newInitDiagramFileActionClassName;
@@ -2978,6 +3044,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNewDiagramFileWizardClassName(String newNewDiagramFileWizardClassName) {
 		String oldNewDiagramFileWizardClassName = newDiagramFileWizardClassName;
 		newDiagramFileWizardClassName = newNewDiagramFileWizardClassName;
@@ -3007,6 +3074,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDiagramContentInitializerClassName(String newDiagramContentInitializerClassName) {
 		String oldDiagramContentInitializerClassName = diagramContentInitializerClassName;
 		diagramContentInitializerClassName = newDiagramContentInitializerClassName;
@@ -3036,6 +3104,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCreationWizardClassName(String newCreationWizardClassName) {
 		String oldCreationWizardClassName = creationWizardClassName;
 		creationWizardClassName = newCreationWizardClassName;
@@ -3065,6 +3134,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCreationWizardPageClassName(String newCreationWizardPageClassName) {
 		String oldCreationWizardPageClassName = creationWizardPageClassName;
 		creationWizardPageClassName = newCreationWizardPageClassName;
@@ -3111,6 +3181,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCreationWizardIconPath(String newCreationWizardIconPath) {
 		String oldCreationWizardIconPath = creationWizardIconPath;
 		creationWizardIconPath = newCreationWizardIconPath;
@@ -3141,6 +3212,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCreationWizardCategoryID(String newCreationWizardCategoryID) {
 		String oldCreationWizardCategoryID = creationWizardCategoryID;
 		creationWizardCategoryID = newCreationWizardCategoryID;
@@ -3170,6 +3242,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDiagramEditorUtilClassName(String newDiagramEditorUtilClassName) {
 		String oldDiagramEditorUtilClassName = diagramEditorUtilClassName;
 		diagramEditorUtilClassName = newDiagramEditorUtilClassName;
@@ -3199,6 +3272,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMatchingStrategyClassName(String newMatchingStrategyClassName) {
 		String oldMatchingStrategyClassName = matchingStrategyClassName;
 		matchingStrategyClassName = newMatchingStrategyClassName;
@@ -3228,6 +3302,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEditPartProviderClassName(String newEditPartProviderClassName) {
 		String oldEditPartProviderClassName = editPartProviderClassName;
 		editPartProviderClassName = newEditPartProviderClassName;
@@ -3240,6 +3315,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ProviderPriority getEditPartProviderPriority() {
 		return editPartProviderPriority;
 	}
@@ -3249,6 +3325,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEditPartProviderPriority(ProviderPriority newEditPartProviderPriority) {
 		ProviderPriority oldEditPartProviderPriority = editPartProviderPriority;
 		editPartProviderPriority = newEditPartProviderPriority == null ? EDIT_PART_PROVIDER_PRIORITY_EDEFAULT : newEditPartProviderPriority;
@@ -3278,6 +3355,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setModelingAssistantProviderClassName(String newModelingAssistantProviderClassName) {
 		String oldModelingAssistantProviderClassName = modelingAssistantProviderClassName;
 		modelingAssistantProviderClassName = newModelingAssistantProviderClassName;
@@ -3290,6 +3368,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ProviderPriority getModelingAssistantProviderPriority() {
 		return modelingAssistantProviderPriority;
 	}
@@ -3299,6 +3378,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setModelingAssistantProviderPriority(ProviderPriority newModelingAssistantProviderPriority) {
 		ProviderPriority oldModelingAssistantProviderPriority = modelingAssistantProviderPriority;
 		modelingAssistantProviderPriority = newModelingAssistantProviderPriority == null ? MODELING_ASSISTANT_PROVIDER_PRIORITY_EDEFAULT : newModelingAssistantProviderPriority;
@@ -3328,6 +3408,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIconProviderClassName(String newIconProviderClassName) {
 		String oldIconProviderClassName = iconProviderClassName;
 		iconProviderClassName = newIconProviderClassName;
@@ -3340,6 +3421,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ProviderPriority getIconProviderPriority() {
 		return iconProviderPriority;
 	}
@@ -3349,6 +3431,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIconProviderPriority(ProviderPriority newIconProviderPriority) {
 		ProviderPriority oldIconProviderPriority = iconProviderPriority;
 		iconProviderPriority = newIconProviderPriority == null ? ICON_PROVIDER_PRIORITY_EDEFAULT : newIconProviderPriority;
@@ -3378,6 +3461,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setParserProviderClassName(String newParserProviderClassName) {
 		String oldParserProviderClassName = parserProviderClassName;
 		parserProviderClassName = newParserProviderClassName;
@@ -3390,6 +3474,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ProviderPriority getParserProviderPriority() {
 		return parserProviderPriority;
 	}
@@ -3399,6 +3484,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setParserProviderPriority(ProviderPriority newParserProviderPriority) {
 		ProviderPriority oldParserProviderPriority = parserProviderPriority;
 		parserProviderPriority = newParserProviderPriority == null ? PARSER_PROVIDER_PRIORITY_EDEFAULT : newParserProviderPriority;
@@ -3428,6 +3514,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setContributionItemProviderClassName(String newContributionItemProviderClassName) {
 		String oldContributionItemProviderClassName = contributionItemProviderClassName;
 		contributionItemProviderClassName = newContributionItemProviderClassName;
@@ -3595,6 +3682,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMarkerNavigationProviderClassName(String newMarkerNavigationProviderClassName) {
 		String oldMarkerNavigationProviderClassName = markerNavigationProviderClassName;
 		markerNavigationProviderClassName = newMarkerNavigationProviderClassName;
@@ -3607,6 +3695,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ProviderPriority getMarkerNavigationProviderPriority() {
 		return markerNavigationProviderPriority;
 	}
@@ -3616,6 +3705,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMarkerNavigationProviderPriority(ProviderPriority newMarkerNavigationProviderPriority) {
 		ProviderPriority oldMarkerNavigationProviderPriority = markerNavigationProviderPriority;
 		markerNavigationProviderPriority = newMarkerNavigationProviderPriority == null ? MARKER_NAVIGATION_PROVIDER_PRIORITY_EDEFAULT : newMarkerNavigationProviderPriority;
@@ -4985,7 +5075,7 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (canonicalEditPolicyClassName: ");
 		result.append(canonicalEditPolicyClassName);
 		result.append(", editCommandsPackageName: ");

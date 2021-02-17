@@ -34,13 +34,13 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenNodeLabel#getNode <em>Node</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenNodeLabel()
- * @model annotation="http://www.eclipse.org/gmf/2005/constraints ocl='getMetaFeatures()->forAll(f|f.ecoreFeature.eContainingClass.isSuperTypeOf(node.getDomainMetaClass().ecoreClass))' description='Node label meta features must be owned by the node \'Meta Class\' or its super-classes'"
+ * @model annotation="http://www.eclipse.org/gmf/2005/constraints ocl='getMetaFeatures()-&gt;forAll(f|f.ecoreFeature.eContainingClass.isSuperTypeOf(node.getDomainMetaClass().ecoreClass))' description='Node label meta features must be owned by the node \'Meta Class\' or its super-classes'"
  * @generated
  */
 public interface GenNodeLabel extends GenLabel {

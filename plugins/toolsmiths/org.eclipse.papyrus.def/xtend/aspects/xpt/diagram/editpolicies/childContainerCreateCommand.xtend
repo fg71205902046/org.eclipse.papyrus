@@ -20,7 +20,7 @@ import com.google.inject.Singleton
 import metamodel.MetaModel
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
 import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeModelFacet
-import org.eclipse.papyrus.papyrusgmfgenextension.GenerateUsingElementTypeCreationCommand
+import org.eclipse.papyrus.gmf.codegen.genextension.GenerateUsingElementTypeCreationCommand
 import xpt.Common
 import xpt.providers.ElementTypes
 

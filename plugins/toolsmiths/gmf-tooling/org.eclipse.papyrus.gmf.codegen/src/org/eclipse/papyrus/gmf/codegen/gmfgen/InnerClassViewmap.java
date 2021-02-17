@@ -29,11 +29,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.Viewmap;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.InnerClassViewmap#getClassName <em>Class Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.InnerClassViewmap#getClassBody <em>Class Body</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getInnerClassViewmap()
  * @model

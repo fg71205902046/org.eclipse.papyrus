@@ -18,8 +18,16 @@
     <package 
        uri = "http://www.eclipse.org/papyrus/gmf/2020/GenModel"
        class = "org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage"
-       genModel = "models/gmfgen.genmodel" />       
+       genModel = "models/gmfgen.genmodel" />
   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated gmfgen -->
+      <package
+            uri="http://www.eclipse.org/papyrus/gmf/2020/GenExtension"
+            class="org.eclipse.papyrus.gmf.codegen.genextension.GenExtensionPackage"
+            genModel="models/gmfgen.genmodel"/>
+   </extension>
 
   <extension
         point="org.eclipse.emf.ecore.dynamic_package">

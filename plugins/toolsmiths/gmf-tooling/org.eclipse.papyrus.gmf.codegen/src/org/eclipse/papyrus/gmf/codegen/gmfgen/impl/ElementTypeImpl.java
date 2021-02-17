@@ -42,13 +42,13 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeLinkModelFacet;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.ElementTypeImpl#getDiagramElement <em>Diagram Element</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.ElementTypeImpl#getUniqueIdentifier <em>Unique Identifier</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.ElementTypeImpl#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.ElementTypeImpl#isDefinedExternally <em>Defined Externally</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -137,6 +137,7 @@ public abstract class ElementTypeImpl extends EObjectImpl implements ElementType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenCommonBase getDiagramElement() {
 		if (eContainerFeatureID() != GMFGenPackage.ELEMENT_TYPE__DIAGRAM_ELEMENT) return null;
 		return (GenCommonBase)eInternalContainer();
@@ -157,6 +158,7 @@ public abstract class ElementTypeImpl extends EObjectImpl implements ElementType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDiagramElement(GenCommonBase newDiagramElement) {
 		if (newDiagramElement != eInternalContainer() || (eContainerFeatureID() != GMFGenPackage.ELEMENT_TYPE__DIAGRAM_ELEMENT && newDiagramElement != null)) {
 			if (EcoreUtil.isAncestor(this, newDiagramElement))
@@ -201,6 +203,7 @@ public abstract class ElementTypeImpl extends EObjectImpl implements ElementType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUniqueIdentifier(String newUniqueIdentifier) {
 		String oldUniqueIdentifier = uniqueIdentifier;
 		uniqueIdentifier = newUniqueIdentifier;
@@ -244,6 +247,7 @@ public abstract class ElementTypeImpl extends EObjectImpl implements ElementType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDisplayName(String newDisplayName) {
 		String oldDisplayName = displayName;
 		displayName = newDisplayName;
@@ -256,6 +260,7 @@ public abstract class ElementTypeImpl extends EObjectImpl implements ElementType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isDefinedExternally() {
 		return definedExternally;
 	}
@@ -265,6 +270,7 @@ public abstract class ElementTypeImpl extends EObjectImpl implements ElementType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDefinedExternally(boolean newDefinedExternally) {
 		boolean oldDefinedExternally = definedExternally;
 		definedExternally = newDefinedExternally;
@@ -413,7 +419,7 @@ public abstract class ElementTypeImpl extends EObjectImpl implements ElementType
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (uniqueIdentifier: ");
 		result.append(uniqueIdentifier);
 		result.append(", displayName: ");

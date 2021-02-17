@@ -32,11 +32,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.LabelModelFacet;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenParserImplementation#getHolder <em>Holder</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenParserImplementation#getUses <em>Uses</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenParserImplementation()
  * @model abstract="true"

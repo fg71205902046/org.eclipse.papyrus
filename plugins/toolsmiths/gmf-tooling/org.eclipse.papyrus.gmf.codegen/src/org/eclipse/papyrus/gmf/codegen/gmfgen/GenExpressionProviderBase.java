@@ -33,11 +33,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ValueExpression;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenExpressionProviderBase#getExpressions <em>Expressions</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenExpressionProviderBase#getContainer <em>Container</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenExpressionProviderBase()
  * @model abstract="true"

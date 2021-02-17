@@ -37,11 +37,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenMetricRule;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenAuditedMetricTargetImpl#getMetric <em>Metric</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenAuditedMetricTargetImpl#getMetricValueContext <em>Metric Value Context</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -112,6 +112,7 @@ public class GenAuditedMetricTargetImpl extends GenAuditableImpl implements GenA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenMetricRule getMetric() {
 		if (metric != null && metric.eIsProxy()) {
 			InternalEObject oldMetric = (InternalEObject)metric;
@@ -138,6 +139,7 @@ public class GenAuditedMetricTargetImpl extends GenAuditableImpl implements GenA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMetric(GenMetricRule newMetric) {
 		GenMetricRule oldMetric = metric;
 		metric = newMetric;
@@ -150,6 +152,7 @@ public class GenAuditedMetricTargetImpl extends GenAuditableImpl implements GenA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenDataType getMetricValueContext() {
 		if (metricValueContext != null && metricValueContext.eIsProxy()) {
 			InternalEObject oldMetricValueContext = (InternalEObject)metricValueContext;
@@ -176,6 +179,7 @@ public class GenAuditedMetricTargetImpl extends GenAuditableImpl implements GenA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMetricValueContext(GenDataType newMetricValueContext) {
 		GenDataType oldMetricValueContext = metricValueContext;
 		metricValueContext = newMetricValueContext;

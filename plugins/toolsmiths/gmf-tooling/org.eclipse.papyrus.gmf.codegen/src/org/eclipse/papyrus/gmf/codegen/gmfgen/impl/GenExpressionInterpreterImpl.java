@@ -35,11 +35,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ValueExpression;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenExpressionInterpreterImpl#getLanguage <em>Language</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenExpressionInterpreterImpl#getClassName <em>Class Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -131,6 +131,7 @@ public class GenExpressionInterpreterImpl extends GenExpressionProviderBaseImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setClassName(String newClassName) {
 		String oldClassName = className;
 		className = newClassName;
@@ -143,6 +144,7 @@ public class GenExpressionInterpreterImpl extends GenExpressionProviderBaseImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenLanguage getLanguage() {
 		return language;
 	}
@@ -152,6 +154,7 @@ public class GenExpressionInterpreterImpl extends GenExpressionProviderBaseImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLanguage(GenLanguage newLanguage) {
 		GenLanguage oldLanguage = language;
 		language = newLanguage == null ? LANGUAGE_EDEFAULT : newLanguage;
@@ -254,7 +257,7 @@ public class GenExpressionInterpreterImpl extends GenExpressionProviderBaseImpl 
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (language: ");
 		result.append(language);
 		result.append(", className: ");

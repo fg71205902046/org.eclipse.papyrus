@@ -44,6 +44,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenToolBarManager;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenApplicationImpl#getEditorGen <em>Editor Gen</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenApplicationImpl#getID <em>ID</em>}</li>
@@ -60,7 +61,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenToolBarManager;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenApplicationImpl#getMainMenu <em>Main Menu</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenApplicationImpl#getMainToolBar <em>Main Tool Bar</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -279,6 +279,7 @@ public class GenApplicationImpl extends EObjectImpl implements GenApplication {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenEditorGenerator getEditorGen() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_APPLICATION__EDITOR_GEN) return null;
 		return (GenEditorGenerator)eInternalContainer();
@@ -307,6 +308,7 @@ public class GenApplicationImpl extends EObjectImpl implements GenApplication {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setID(String newID) {
 		String oldID = iD;
 		iD = newID;
@@ -336,6 +338,7 @@ public class GenApplicationImpl extends EObjectImpl implements GenApplication {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTitle(String newTitle) {
 		String oldTitle = title;
 		title = newTitle;
@@ -365,6 +368,7 @@ public class GenApplicationImpl extends EObjectImpl implements GenApplication {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPackageName(String newPackageName) {
 		String oldPackageName = packageName;
 		packageName = newPackageName;
@@ -394,6 +398,7 @@ public class GenApplicationImpl extends EObjectImpl implements GenApplication {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setClassName(String newClassName) {
 		String oldClassName = className;
 		className = newClassName;
@@ -459,6 +464,7 @@ public class GenApplicationImpl extends EObjectImpl implements GenApplication {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPerspectiveId(String newPerspectiveId) {
 		String oldPerspectiveId = perspectiveId;
 		perspectiveId = newPerspectiveId;
@@ -471,6 +477,7 @@ public class GenApplicationImpl extends EObjectImpl implements GenApplication {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSupportFiles() {
 		return supportFiles;
 	}
@@ -480,6 +487,7 @@ public class GenApplicationImpl extends EObjectImpl implements GenApplication {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSupportFiles(boolean newSupportFiles) {
 		boolean oldSupportFiles = supportFiles;
 		supportFiles = newSupportFiles;
@@ -492,6 +500,7 @@ public class GenApplicationImpl extends EObjectImpl implements GenApplication {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenContributionItem> getSharedContributionItems() {
 		if (sharedContributionItems == null) {
 			sharedContributionItems = new EObjectContainmentEList<GenContributionItem>(GenContributionItem.class, this, GMFGenPackage.GEN_APPLICATION__SHARED_CONTRIBUTION_ITEMS);
@@ -504,6 +513,7 @@ public class GenApplicationImpl extends EObjectImpl implements GenApplication {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenMenuManager getMainMenu() {
 		return mainMenu;
 	}
@@ -528,6 +538,7 @@ public class GenApplicationImpl extends EObjectImpl implements GenApplication {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMainMenu(GenMenuManager newMainMenu) {
 		if (newMainMenu != mainMenu) {
 			NotificationChain msgs = null;
@@ -547,6 +558,7 @@ public class GenApplicationImpl extends EObjectImpl implements GenApplication {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenToolBarManager getMainToolBar() {
 		return mainToolBar;
 	}
@@ -571,6 +583,7 @@ public class GenApplicationImpl extends EObjectImpl implements GenApplication {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMainToolBar(GenToolBarManager newMainToolBar) {
 		if (newMainToolBar != mainToolBar) {
 			NotificationChain msgs = null;
@@ -849,7 +862,7 @@ public class GenApplicationImpl extends EObjectImpl implements GenApplication {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (iD: ");
 		result.append(iD);
 		result.append(", title: ");

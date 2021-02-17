@@ -28,8 +28,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenExternalNodeLabel;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Gen External Node Label</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

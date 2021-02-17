@@ -47,13 +47,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenAuditRule;
  * @generated
  */
 public class GenAuditRuleItemProvider
-	extends GenRuleBaseItemProvider
-	implements	
-		IEditingDomainItemProvider,	
-		IStructuredItemContentProvider,	
-		ITreeItemContentProvider,	
-		IItemLabelProvider,	
-		IItemPropertySource {
+	extends GenRuleBaseItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

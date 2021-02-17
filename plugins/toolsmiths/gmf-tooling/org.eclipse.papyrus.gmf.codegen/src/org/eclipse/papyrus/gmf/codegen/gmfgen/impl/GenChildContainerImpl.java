@@ -43,12 +43,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenChildContainerImpl#getContainedNodes <em>Contained Nodes</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenChildContainerImpl#getCanonicalEditPolicyClassName <em>Canonical Edit Policy Class Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenChildContainerImpl#getChildNodes <em>Child Nodes</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -117,6 +117,7 @@ public abstract class GenChildContainerImpl extends GenCommonBaseImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenChildNode> getChildNodes() {
 		if (childNodes == null) {
 			childNodes = new EObjectWithInverseResolvingEList.ManyInverse<GenChildNode>(GenChildNode.class, this, GMFGenPackage.GEN_CHILD_CONTAINER__CHILD_NODES, GMFGenPackage.GEN_CHILD_NODE__CONTAINERS);
@@ -166,6 +167,7 @@ public abstract class GenChildContainerImpl extends GenCommonBaseImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCanonicalEditPolicyClassName(String newCanonicalEditPolicyClassName) {
 		String oldCanonicalEditPolicyClassName = canonicalEditPolicyClassName;
 		canonicalEditPolicyClassName = newCanonicalEditPolicyClassName;
@@ -294,7 +296,7 @@ public abstract class GenChildContainerImpl extends GenCommonBaseImpl implements
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (canonicalEditPolicyClassName: ");
 		result.append(canonicalEditPolicyClassName);
 		result.append(')');

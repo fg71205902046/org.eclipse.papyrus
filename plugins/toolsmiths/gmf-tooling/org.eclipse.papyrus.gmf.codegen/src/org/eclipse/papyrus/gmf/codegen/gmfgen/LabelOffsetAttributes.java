@@ -29,11 +29,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.Attributes;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.LabelOffsetAttributes#getX <em>X</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.LabelOffsetAttributes#getY <em>Y</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getLabelOffsetAttributes()
  * @model

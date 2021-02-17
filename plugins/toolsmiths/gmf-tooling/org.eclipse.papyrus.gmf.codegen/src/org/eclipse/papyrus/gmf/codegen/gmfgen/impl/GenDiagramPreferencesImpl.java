@@ -42,6 +42,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.RulerUnits;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenDiagramPreferencesImpl#getLineStyle <em>Line Style</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenDiagramPreferencesImpl#getDefaultFont <em>Default Font</em>}</li>
@@ -67,7 +68,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.RulerUnits;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenDiagramPreferencesImpl#getGridLineColor <em>Grid Line Color</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenDiagramPreferencesImpl#getGridLineStyle <em>Grid Line Style</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -486,6 +486,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Routing getLineStyle() {
 		return lineStyle;
 	}
@@ -495,6 +496,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLineStyle(Routing newLineStyle) {
 		Routing oldLineStyle = lineStyle;
 		lineStyle = newLineStyle == null ? LINE_STYLE_EDEFAULT : newLineStyle;
@@ -507,6 +509,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenFont getDefaultFont() {
 		return defaultFont;
 	}
@@ -531,6 +534,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDefaultFont(GenFont newDefaultFont) {
 		if (newDefaultFont != defaultFont) {
 			NotificationChain msgs = null;
@@ -550,6 +554,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenColor getFontColor() {
 		return fontColor;
 	}
@@ -574,6 +579,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFontColor(GenColor newFontColor) {
 		if (newFontColor != fontColor) {
 			NotificationChain msgs = null;
@@ -593,6 +599,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenColor getFillColor() {
 		return fillColor;
 	}
@@ -617,6 +624,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFillColor(GenColor newFillColor) {
 		if (newFillColor != fillColor) {
 			NotificationChain msgs = null;
@@ -636,6 +644,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenColor getLineColor() {
 		return lineColor;
 	}
@@ -660,6 +669,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLineColor(GenColor newLineColor) {
 		if (newLineColor != lineColor) {
 			NotificationChain msgs = null;
@@ -679,6 +689,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenColor getNoteFillColor() {
 		return noteFillColor;
 	}
@@ -703,6 +714,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNoteFillColor(GenColor newNoteFillColor) {
 		if (newNoteFillColor != noteFillColor) {
 			NotificationChain msgs = null;
@@ -722,6 +734,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenColor getNoteLineColor() {
 		return noteLineColor;
 	}
@@ -746,6 +759,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNoteLineColor(GenColor newNoteLineColor) {
 		if (newNoteLineColor != noteLineColor) {
 			NotificationChain msgs = null;
@@ -765,6 +779,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isShowConnectionHandles() {
 		return showConnectionHandles;
 	}
@@ -774,6 +789,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setShowConnectionHandles(boolean newShowConnectionHandles) {
 		boolean oldShowConnectionHandles = showConnectionHandles;
 		showConnectionHandles = newShowConnectionHandles;
@@ -786,6 +802,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isShowPopupBars() {
 		return showPopupBars;
 	}
@@ -795,6 +812,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setShowPopupBars(boolean newShowPopupBars) {
 		boolean oldShowPopupBars = showPopupBars;
 		showPopupBars = newShowPopupBars;
@@ -807,6 +825,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isPromptOnDelFromModel() {
 		return promptOnDelFromModel;
 	}
@@ -816,6 +835,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPromptOnDelFromModel(boolean newPromptOnDelFromModel) {
 		boolean oldPromptOnDelFromModel = promptOnDelFromModel;
 		promptOnDelFromModel = newPromptOnDelFromModel;
@@ -828,6 +848,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isPromptOnDelFromDiagram() {
 		return promptOnDelFromDiagram;
 	}
@@ -837,6 +858,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPromptOnDelFromDiagram(boolean newPromptOnDelFromDiagram) {
 		boolean oldPromptOnDelFromDiagram = promptOnDelFromDiagram;
 		promptOnDelFromDiagram = newPromptOnDelFromDiagram;
@@ -849,6 +871,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isEnableAnimatedLayout() {
 		return enableAnimatedLayout;
 	}
@@ -858,6 +881,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEnableAnimatedLayout(boolean newEnableAnimatedLayout) {
 		boolean oldEnableAnimatedLayout = enableAnimatedLayout;
 		enableAnimatedLayout = newEnableAnimatedLayout;
@@ -870,6 +894,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isEnableAnimatedZoom() {
 		return enableAnimatedZoom;
 	}
@@ -879,6 +904,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEnableAnimatedZoom(boolean newEnableAnimatedZoom) {
 		boolean oldEnableAnimatedZoom = enableAnimatedZoom;
 		enableAnimatedZoom = newEnableAnimatedZoom;
@@ -891,6 +917,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isEnableAntiAlias() {
 		return enableAntiAlias;
 	}
@@ -900,6 +927,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEnableAntiAlias(boolean newEnableAntiAlias) {
 		boolean oldEnableAntiAlias = enableAntiAlias;
 		enableAntiAlias = newEnableAntiAlias;
@@ -912,6 +940,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isShowGrid() {
 		return showGrid;
 	}
@@ -921,6 +950,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setShowGrid(boolean newShowGrid) {
 		boolean oldShowGrid = showGrid;
 		showGrid = newShowGrid;
@@ -933,6 +963,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isShowRulers() {
 		return showRulers;
 	}
@@ -942,6 +973,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setShowRulers(boolean newShowRulers) {
 		boolean oldShowRulers = showRulers;
 		showRulers = newShowRulers;
@@ -954,6 +986,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSnapToGrid() {
 		return snapToGrid;
 	}
@@ -963,6 +996,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSnapToGrid(boolean newSnapToGrid) {
 		boolean oldSnapToGrid = snapToGrid;
 		snapToGrid = newSnapToGrid;
@@ -975,6 +1009,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSnapToGeometry() {
 		return snapToGeometry;
 	}
@@ -984,6 +1019,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSnapToGeometry(boolean newSnapToGeometry) {
 		boolean oldSnapToGeometry = snapToGeometry;
 		snapToGeometry = newSnapToGeometry;
@@ -996,6 +1032,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isGridInFront() {
 		return gridInFront;
 	}
@@ -1005,6 +1042,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGridInFront(boolean newGridInFront) {
 		boolean oldGridInFront = gridInFront;
 		gridInFront = newGridInFront;
@@ -1017,6 +1055,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public RulerUnits getRulerUnits() {
 		return rulerUnits;
 	}
@@ -1026,6 +1065,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRulerUnits(RulerUnits newRulerUnits) {
 		RulerUnits oldRulerUnits = rulerUnits;
 		rulerUnits = newRulerUnits == null ? RULER_UNITS_EDEFAULT : newRulerUnits;
@@ -1038,6 +1078,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getGridSpacing() {
 		return gridSpacing;
 	}
@@ -1047,6 +1088,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGridSpacing(double newGridSpacing) {
 		double oldGridSpacing = gridSpacing;
 		gridSpacing = newGridSpacing;
@@ -1059,6 +1101,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenColor getGridLineColor() {
 		return gridLineColor;
 	}
@@ -1083,6 +1126,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGridLineColor(GenColor newGridLineColor) {
 		if (newGridLineColor != gridLineColor) {
 			NotificationChain msgs = null;
@@ -1102,6 +1146,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LineStyle getGridLineStyle() {
 		return gridLineStyle;
 	}
@@ -1111,6 +1156,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGridLineStyle(LineStyle newGridLineStyle) {
 		LineStyle oldGridLineStyle = gridLineStyle;
 		gridLineStyle = newGridLineStyle == null ? GRID_LINE_STYLE_EDEFAULT : newGridLineStyle;
@@ -1431,7 +1477,7 @@ public class GenDiagramPreferencesImpl extends EObjectImpl implements GenDiagram
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (lineStyle: ");
 		result.append(lineStyle);
 		result.append(", showConnectionHandles: ");

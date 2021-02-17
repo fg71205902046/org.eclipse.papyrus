@@ -32,12 +32,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ViewmapLayoutType;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.Viewmap#getAttributes <em>Attributes</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.Viewmap#getRequiredPluginIDs <em>Required Plugin IDs</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.Viewmap#getLayoutType <em>Layout Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getViewmap()
  * @model abstract="true"

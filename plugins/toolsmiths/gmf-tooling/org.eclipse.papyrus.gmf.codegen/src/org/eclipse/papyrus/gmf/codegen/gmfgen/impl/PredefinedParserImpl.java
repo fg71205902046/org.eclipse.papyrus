@@ -33,12 +33,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.PredefinedParser;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.PredefinedParserImpl#getViewMethod <em>View Method</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.PredefinedParserImpl#getEditMethod <em>Edit Method</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.PredefinedParserImpl#getClassName <em>Class Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -127,6 +127,7 @@ public class PredefinedParserImpl extends GenParserImplementationImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LabelTextAccessMethod getViewMethod() {
 		return viewMethod;
 	}
@@ -136,6 +137,7 @@ public class PredefinedParserImpl extends GenParserImplementationImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setViewMethod(LabelTextAccessMethod newViewMethod) {
 		LabelTextAccessMethod oldViewMethod = viewMethod;
 		viewMethod = newViewMethod == null ? VIEW_METHOD_EDEFAULT : newViewMethod;
@@ -148,6 +150,7 @@ public class PredefinedParserImpl extends GenParserImplementationImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LabelTextAccessMethod getEditMethod() {
 		return editMethod;
 	}
@@ -157,6 +160,7 @@ public class PredefinedParserImpl extends GenParserImplementationImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEditMethod(LabelTextAccessMethod newEditMethod) {
 		LabelTextAccessMethod oldEditMethod = editMethod;
 		editMethod = newEditMethod == null ? EDIT_METHOD_EDEFAULT : newEditMethod;
@@ -200,6 +204,7 @@ public class PredefinedParserImpl extends GenParserImplementationImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setClassName(String newClassName) {
 		String oldClassName = className;
 		className = newClassName;
@@ -307,7 +312,7 @@ public class PredefinedParserImpl extends GenParserImplementationImpl implements
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (viewMethod: ");
 		result.append(viewMethod);
 		result.append(", editMethod: ");

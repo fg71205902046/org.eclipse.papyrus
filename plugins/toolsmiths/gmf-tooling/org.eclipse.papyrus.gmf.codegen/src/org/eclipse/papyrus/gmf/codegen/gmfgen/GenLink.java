@@ -35,6 +35,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.LinkModelFacet;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink#getDiagram <em>Diagram</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink#getModelFacet <em>Model Facet</em>}</li>
@@ -51,10 +52,9 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.LinkModelFacet;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink#getSources <em>Sources</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink#getTargets <em>Targets</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenLink()
- * @model annotation="http://www.eclipse.org/gmf/2005/constraints ocl='diagramRunTimeClass.ecoreClass.eAllSuperTypes->including(diagramRunTimeClass.ecoreClass)->one(ePackage.name = \'notation\' and name = \'Edge\')' description='Link \'Diagram Runtime Class\' must be a notation::Edge or sub-class'"
+ * @model annotation="http://www.eclipse.org/gmf/2005/constraints ocl='diagramRunTimeClass.ecoreClass.eAllSuperTypes-&gt;including(diagramRunTimeClass.ecoreClass)-&gt;one(ePackage.name = \'notation\' and name = \'Edge\')' description='Link \'Diagram Runtime Class\' must be a notation::Edge or sub-class'"
  * @generated
  */
 public interface GenLink extends GenCommonBase, GenLinkEnd {

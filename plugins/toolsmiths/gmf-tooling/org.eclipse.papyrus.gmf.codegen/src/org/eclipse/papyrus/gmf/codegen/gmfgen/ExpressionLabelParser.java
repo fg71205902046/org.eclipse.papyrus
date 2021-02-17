@@ -37,6 +37,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ValueExpression;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.ExpressionLabelParser#getClassName <em>Class Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.ExpressionLabelParser#getExpressionContext <em>Expression Context</em>}</li>
@@ -44,7 +45,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ValueExpression;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.ExpressionLabelParser#getEditExpression <em>Edit Expression</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.ExpressionLabelParser#getValidateExpression <em>Validate Expression</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getExpressionLabelParser()
  * @model

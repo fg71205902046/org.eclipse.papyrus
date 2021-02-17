@@ -32,10 +32,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenChildSideAffixedNode;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenChildSideAffixedNodeImpl#getPreferredSideName <em>Preferred Side Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -84,6 +84,7 @@ public class GenChildSideAffixedNodeImpl extends GenChildNodeImpl implements Gen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getPreferredSideName() {
 		return preferredSideName;
 	}
@@ -93,6 +94,7 @@ public class GenChildSideAffixedNodeImpl extends GenChildNodeImpl implements Gen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPreferredSideName(String newPreferredSideName) {
 		String oldPreferredSideName = preferredSideName;
 		preferredSideName = newPreferredSideName;
@@ -167,7 +169,7 @@ public class GenChildSideAffixedNodeImpl extends GenChildNodeImpl implements Gen
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (preferredSideName: ");
 		result.append(preferredSideName);
 		result.append(')');

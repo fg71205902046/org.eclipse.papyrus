@@ -29,8 +29,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLiteralExpressionProvider;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Gen Literal Expression Provider</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

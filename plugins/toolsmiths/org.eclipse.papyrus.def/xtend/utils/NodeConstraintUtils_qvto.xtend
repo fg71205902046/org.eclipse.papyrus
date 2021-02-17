@@ -17,7 +17,7 @@ package utils
 import com.google.inject.Singleton
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
 import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeModelFacet
-import org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint
+import org.eclipse.papyrus.gmf.codegen.genextension.GenNodeConstraint
 
 @Singleton class NodeConstraintUtils_qvto {
 

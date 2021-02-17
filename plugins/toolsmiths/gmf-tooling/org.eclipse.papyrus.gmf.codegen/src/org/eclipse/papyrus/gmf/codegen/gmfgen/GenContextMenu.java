@@ -31,10 +31,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenContributionManager;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenContextMenu#getContext <em>Context</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenContextMenu()
  * @model

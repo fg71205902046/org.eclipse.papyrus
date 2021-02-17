@@ -30,10 +30,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.StandardEntryKind;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.StandardEntry#getKind <em>Kind</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getStandardEntry()
  * @model

@@ -31,11 +31,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ValueExpression;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenExpressionInterpreter#getLanguage <em>Language</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenExpressionInterpreter#getClassName <em>Class Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenExpressionInterpreter()
  * @model

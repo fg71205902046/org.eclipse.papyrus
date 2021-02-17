@@ -33,11 +33,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.DefaultSizeAttributesImpl#getWidth <em>Width</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.DefaultSizeAttributesImpl#getHeight <em>Height</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -106,6 +106,7 @@ public class DefaultSizeAttributesImpl extends EObjectImpl implements DefaultSiz
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getWidth() {
 		return width;
 	}
@@ -115,6 +116,7 @@ public class DefaultSizeAttributesImpl extends EObjectImpl implements DefaultSiz
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setWidth(int newWidth) {
 		int oldWidth = width;
 		width = newWidth;
@@ -127,6 +129,7 @@ public class DefaultSizeAttributesImpl extends EObjectImpl implements DefaultSiz
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getHeight() {
 		return height;
 	}
@@ -136,6 +139,7 @@ public class DefaultSizeAttributesImpl extends EObjectImpl implements DefaultSiz
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setHeight(int newHeight) {
 		int oldHeight = height;
 		height = newHeight;
@@ -220,7 +224,7 @@ public class DefaultSizeAttributesImpl extends EObjectImpl implements DefaultSiz
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (width: ");
 		result.append(width);
 		result.append(", height: ");

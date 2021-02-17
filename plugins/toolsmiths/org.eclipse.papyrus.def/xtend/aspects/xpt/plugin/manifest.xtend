@@ -20,8 +20,8 @@ package aspects.xpt.plugin
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenPlugin
-import org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingDeleteService
-import org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingReorientService
+import org.eclipse.papyrus.gmf.codegen.genextension.EditPartUsingDeleteService
+import org.eclipse.papyrus.gmf.codegen.genextension.EditPartUsingReorientService
 import xpt.Common
 
 @Singleton class manifest extends xpt.plugin.manifest{

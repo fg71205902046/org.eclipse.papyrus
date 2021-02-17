@@ -33,12 +33,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.ValueExpression#getBody <em>Body</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.ValueExpression#getLangName <em>Lang Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.ValueExpression#getProvider <em>Provider</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getValueExpression()
  * @model annotation="http://www.eclipse.org/gmf/2005/constraints/meta def='ValueSpec'"

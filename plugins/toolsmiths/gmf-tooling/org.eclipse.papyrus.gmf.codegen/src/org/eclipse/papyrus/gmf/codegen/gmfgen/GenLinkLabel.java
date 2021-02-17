@@ -35,15 +35,15 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.LinkLabelAlignment;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenLinkLabel#getLink <em>Link</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenLinkLabel#getAlignment <em>Alignment</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenLinkLabel()
  * @model annotation="http://www.eclipse.org/gmf/2005/constraints ocl='modelFacet.oclIsTypeOf(FeatureLabelModelFacet)=true implies link.modelFacet.oclIsTypeOf(TypeLinkModelFacet)' description='Feature based link labels can only be used on link with class (TypeLinkModelFacet)'"
- *        annotation="http://www.eclipse.org/gmf/2005/constraints ocl='let tl: TypeLinkModelFacet = link.modelFacet.oclAsType(TypeLinkModelFacet) in not tl.oclIsUndefined() implies self.getMetaFeatures()->forAll(f|f.ecoreFeature.eContainingClass.isSuperTypeOf(tl.metaClass.ecoreClass))' description='Link label meta features must be owned by the node \'Meta Class\' or its super-classes'"
+ *        annotation="http://www.eclipse.org/gmf/2005/constraints ocl='let tl: TypeLinkModelFacet = link.modelFacet.oclAsType(TypeLinkModelFacet) in not tl.oclIsUndefined() implies self.getMetaFeatures()-&gt;forAll(f|f.ecoreFeature.eContainingClass.isSuperTypeOf(tl.metaClass.ecoreClass))' description='Link label meta features must be owned by the node \'Meta Class\' or its super-classes'"
  * @generated
  */
 public interface GenLinkLabel extends GenLabel {

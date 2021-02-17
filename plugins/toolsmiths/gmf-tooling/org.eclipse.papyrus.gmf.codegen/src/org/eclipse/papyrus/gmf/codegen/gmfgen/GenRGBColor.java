@@ -29,12 +29,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenColor;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenRGBColor#getRed <em>Red</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenRGBColor#getGreen <em>Green</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenRGBColor#getBlue <em>Blue</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenRGBColor()
  * @model

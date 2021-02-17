@@ -43,11 +43,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenMetricRule;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenMetricContainerImpl#getEditorGen <em>Editor Gen</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenMetricContainerImpl#getMetrics <em>Metrics</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -86,6 +86,7 @@ public class GenMetricContainerImpl extends EObjectImpl implements GenMetricCont
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenEditorGenerator getEditorGen() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_METRIC_CONTAINER__EDITOR_GEN) return null;
 		return (GenEditorGenerator)eInternalContainer();
@@ -96,6 +97,7 @@ public class GenMetricContainerImpl extends EObjectImpl implements GenMetricCont
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenMetricRule> getMetrics() {
 		if (metrics == null) {
 			metrics = new EObjectContainmentWithInverseEList<GenMetricRule>(GenMetricRule.class, this, GMFGenPackage.GEN_METRIC_CONTAINER__METRICS, GMFGenPackage.GEN_METRIC_RULE__CONTAINER);

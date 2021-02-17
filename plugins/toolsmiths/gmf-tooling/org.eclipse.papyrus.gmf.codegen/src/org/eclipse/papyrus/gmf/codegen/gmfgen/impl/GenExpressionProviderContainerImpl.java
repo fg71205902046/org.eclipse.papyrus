@@ -42,13 +42,13 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenExpressionProviderContainer;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenExpressionProviderContainerImpl#getExpressionsPackageName <em>Expressions Package Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenExpressionProviderContainerImpl#getAbstractExpressionClassName <em>Abstract Expression Class Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenExpressionProviderContainerImpl#getProviders <em>Providers</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenExpressionProviderContainerImpl#getEditorGen <em>Editor Gen</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -149,6 +149,7 @@ public class GenExpressionProviderContainerImpl extends EObjectImpl implements G
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setExpressionsPackageName(String newExpressionsPackageName) {
 		String oldExpressionsPackageName = expressionsPackageName;
 		expressionsPackageName = newExpressionsPackageName;
@@ -185,6 +186,7 @@ public class GenExpressionProviderContainerImpl extends EObjectImpl implements G
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAbstractExpressionClassName(String newAbstractExpressionClassName) {
 		String oldAbstractExpressionClassName = abstractExpressionClassName;
 		abstractExpressionClassName = newAbstractExpressionClassName;
@@ -197,6 +199,7 @@ public class GenExpressionProviderContainerImpl extends EObjectImpl implements G
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenExpressionProviderBase> getProviders() {
 		if (providers == null) {
 			providers = new EObjectContainmentWithInverseEList<GenExpressionProviderBase>(GenExpressionProviderBase.class, this, GMFGenPackage.GEN_EXPRESSION_PROVIDER_CONTAINER__PROVIDERS, GMFGenPackage.GEN_EXPRESSION_PROVIDER_BASE__CONTAINER);
@@ -209,6 +212,7 @@ public class GenExpressionProviderContainerImpl extends EObjectImpl implements G
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenEditorGenerator getEditorGen() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_EXPRESSION_PROVIDER_CONTAINER__EDITOR_GEN) return null;
 		return (GenEditorGenerator)eInternalContainer();
@@ -365,7 +369,7 @@ public class GenExpressionProviderContainerImpl extends EObjectImpl implements G
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (expressionsPackageName: ");
 		result.append(expressionsPackageName);
 		result.append(", abstractExpressionClassName: ");

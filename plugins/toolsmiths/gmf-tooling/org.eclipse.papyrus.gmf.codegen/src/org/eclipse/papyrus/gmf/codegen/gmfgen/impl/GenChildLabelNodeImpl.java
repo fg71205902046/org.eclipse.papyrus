@@ -37,12 +37,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.LabelModelFacet;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenChildLabelNodeImpl#isLabelReadOnly <em>Label Read Only</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenChildLabelNodeImpl#isLabelElementIcon <em>Label Element Icon</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenChildLabelNodeImpl#getLabelModelFacet <em>Label Model Facet</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -121,6 +121,7 @@ public class GenChildLabelNodeImpl extends GenChildNodeImpl implements GenChildL
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isLabelReadOnly() {
 		return labelReadOnly;
 	}
@@ -130,6 +131,7 @@ public class GenChildLabelNodeImpl extends GenChildNodeImpl implements GenChildL
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLabelReadOnly(boolean newLabelReadOnly) {
 		boolean oldLabelReadOnly = labelReadOnly;
 		labelReadOnly = newLabelReadOnly;
@@ -142,6 +144,7 @@ public class GenChildLabelNodeImpl extends GenChildNodeImpl implements GenChildL
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isLabelElementIcon() {
 		return labelElementIcon;
 	}
@@ -151,6 +154,7 @@ public class GenChildLabelNodeImpl extends GenChildNodeImpl implements GenChildL
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLabelElementIcon(boolean newLabelElementIcon) {
 		boolean oldLabelElementIcon = labelElementIcon;
 		labelElementIcon = newLabelElementIcon;
@@ -163,6 +167,7 @@ public class GenChildLabelNodeImpl extends GenChildNodeImpl implements GenChildL
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LabelModelFacet getLabelModelFacet() {
 		return labelModelFacet;
 	}
@@ -187,6 +192,7 @@ public class GenChildLabelNodeImpl extends GenChildNodeImpl implements GenChildL
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLabelModelFacet(LabelModelFacet newLabelModelFacet) {
 		if (newLabelModelFacet != labelModelFacet) {
 			NotificationChain msgs = null;
@@ -311,7 +317,7 @@ public class GenChildLabelNodeImpl extends GenChildNodeImpl implements GenChildL
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (labelReadOnly: ");
 		result.append(labelReadOnly);
 		result.append(", labelElementIcon: ");

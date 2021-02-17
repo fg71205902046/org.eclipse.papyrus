@@ -37,12 +37,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorPathSegment;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenNavigatorPathSegmentImpl#getPath <em>Path</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenNavigatorPathSegmentImpl#getFrom <em>From</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenNavigatorPathSegmentImpl#getTo <em>To</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -91,6 +91,7 @@ public class GenNavigatorPathSegmentImpl extends EObjectImpl implements GenNavig
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenNavigatorPath getPath() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_NAVIGATOR_PATH_SEGMENT__PATH) return null;
 		return (GenNavigatorPath)eInternalContainer();
@@ -101,6 +102,7 @@ public class GenNavigatorPathSegmentImpl extends EObjectImpl implements GenNavig
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenCommonBase getFrom() {
 		if (from != null && from.eIsProxy()) {
 			InternalEObject oldFrom = (InternalEObject)from;
@@ -127,6 +129,7 @@ public class GenNavigatorPathSegmentImpl extends EObjectImpl implements GenNavig
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFrom(GenCommonBase newFrom) {
 		GenCommonBase oldFrom = from;
 		from = newFrom;
@@ -139,6 +142,7 @@ public class GenNavigatorPathSegmentImpl extends EObjectImpl implements GenNavig
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenCommonBase getTo() {
 		if (to != null && to.eIsProxy()) {
 			InternalEObject oldTo = (InternalEObject)to;
@@ -165,6 +169,7 @@ public class GenNavigatorPathSegmentImpl extends EObjectImpl implements GenNavig
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTo(GenCommonBase newTo) {
 		GenCommonBase oldTo = to;
 		to = newTo;

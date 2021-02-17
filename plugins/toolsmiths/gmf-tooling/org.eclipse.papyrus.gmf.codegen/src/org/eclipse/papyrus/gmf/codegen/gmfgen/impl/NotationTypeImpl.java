@@ -28,8 +28,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.NotationType;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Notation Type</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

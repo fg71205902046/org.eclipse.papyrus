@@ -16,7 +16,7 @@ package utils
 
 import com.google.inject.Singleton
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
-import org.eclipse.papyrus.papyrusgmfgenextension.AdditionalEditPartCandies
+import org.eclipse.papyrus.gmf.codegen.genextension.AdditionalEditPartCandies
 
 @Singleton class EditHelperUtils_qvto {
 

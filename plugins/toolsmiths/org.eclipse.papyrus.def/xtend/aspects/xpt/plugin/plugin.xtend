@@ -31,8 +31,8 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLinkLabel
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenPlugin
 import org.eclipse.papyrus.gmf.codegen.gmfgen.ToolEntry
 import org.eclipse.papyrus.gmf.codegen.gmfgen.ToolGroup
-import org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView
-import org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference
+import org.eclipse.papyrus.gmf.codegen.genextension.ExtendedGenView
+import org.eclipse.papyrus.gmf.codegen.genextension.LabelVisibilityPreference
 import xpt.editor.extensions
 import xpt.plugin.pluginUtils
 import java.io.File

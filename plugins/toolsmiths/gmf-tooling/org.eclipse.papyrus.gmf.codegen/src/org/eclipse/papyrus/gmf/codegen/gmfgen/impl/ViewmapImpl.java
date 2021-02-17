@@ -43,12 +43,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ViewmapLayoutType;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.ViewmapImpl#getAttributes <em>Attributes</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.ViewmapImpl#getRequiredPluginIDs <em>Required Plugin IDs</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.ViewmapImpl#getLayoutType <em>Layout Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -117,6 +117,7 @@ public abstract class ViewmapImpl extends EObjectImpl implements Viewmap {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<String> getRequiredPluginIDs() {
 		if (requiredPluginIDs == null) {
 			requiredPluginIDs = new EDataTypeUniqueEList<String>(String.class, this, GMFGenPackage.VIEWMAP__REQUIRED_PLUGIN_IDS);
@@ -129,6 +130,7 @@ public abstract class ViewmapImpl extends EObjectImpl implements Viewmap {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ViewmapLayoutType getLayoutType() {
 		return layoutType;
 	}
@@ -138,6 +140,7 @@ public abstract class ViewmapImpl extends EObjectImpl implements Viewmap {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLayoutType(ViewmapLayoutType newLayoutType) {
 		ViewmapLayoutType oldLayoutType = layoutType;
 		layoutType = newLayoutType == null ? LAYOUT_TYPE_EDEFAULT : newLayoutType;
@@ -150,6 +153,7 @@ public abstract class ViewmapImpl extends EObjectImpl implements Viewmap {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Attributes> getAttributes() {
 		if (attributes == null) {
 			attributes = new EObjectContainmentEList<Attributes>(Attributes.class, this, GMFGenPackage.VIEWMAP__ATTRIBUTES);
@@ -275,7 +279,7 @@ public abstract class ViewmapImpl extends EObjectImpl implements Viewmap {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (requiredPluginIDs: ");
 		result.append(requiredPluginIDs);
 		result.append(", layoutType: ");

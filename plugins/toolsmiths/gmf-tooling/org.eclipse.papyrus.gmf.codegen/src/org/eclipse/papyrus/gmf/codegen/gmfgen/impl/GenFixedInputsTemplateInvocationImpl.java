@@ -34,11 +34,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenFixedInputsTemplateInvocation;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenFixedInputsTemplateInvocationImpl#getOclType <em>Ocl Type</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenFixedInputsTemplateInvocationImpl#getFixedInputs <em>Fixed Inputs</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -97,6 +97,7 @@ public class GenFixedInputsTemplateInvocationImpl extends GenTemplateInvocationB
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getOclType() {
 		return oclType;
 	}
@@ -106,6 +107,7 @@ public class GenFixedInputsTemplateInvocationImpl extends GenTemplateInvocationB
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOclType(String newOclType) {
 		String oldOclType = oclType;
 		oclType = newOclType;
@@ -118,6 +120,7 @@ public class GenFixedInputsTemplateInvocationImpl extends GenTemplateInvocationB
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<EObject> getFixedInputs() {
 		if (fixedInputs == null) {
 			fixedInputs = new EObjectResolvingEList<EObject>(EObject.class, this, GMFGenPackage.GEN_FIXED_INPUTS_TEMPLATE_INVOCATION__FIXED_INPUTS);
@@ -236,7 +239,7 @@ public class GenFixedInputsTemplateInvocationImpl extends GenTemplateInvocationB
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (oclType: ");
 		result.append(oclType);
 		result.append(')');
