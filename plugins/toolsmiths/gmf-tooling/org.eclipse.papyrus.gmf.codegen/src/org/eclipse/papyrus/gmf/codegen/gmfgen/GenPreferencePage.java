@@ -33,6 +33,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenPreferencePage;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenPreferencePage#getID <em>ID</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenPreferencePage#getName <em>Name</em>}</li>
@@ -40,7 +41,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenPreferencePage;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenPreferencePage#getParent <em>Parent</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenPreferencePage#getParentCategory <em>Parent Category</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenPreferencePage()
  * @model abstract="true"

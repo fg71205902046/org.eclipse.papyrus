@@ -30,6 +30,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorView#getEditorGen <em>Editor Gen</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorView#getPackageName <em>Package Name</em>}</li>
@@ -41,7 +42,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorView#isEclipseEditor <em>Eclipse Editor</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorView#getContextID <em>Context ID</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenEditorView()
  * @model

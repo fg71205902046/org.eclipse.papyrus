@@ -41,12 +41,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenReferenceNewElementSpec;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenReferenceNewElementSpecImpl#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenReferenceNewElementSpecImpl#getFeatureSeqInitializer <em>Feature Seq Initializer</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenReferenceNewElementSpecImpl#getNewElementInitializers <em>New Element Initializers</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -91,6 +91,7 @@ public class GenReferenceNewElementSpecImpl extends EObjectImpl implements GenRe
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenFeature getFeature() {
 		if (feature != null && feature.eIsProxy()) {
 			InternalEObject oldFeature = (InternalEObject)feature;
@@ -115,6 +116,7 @@ public class GenReferenceNewElementSpecImpl extends EObjectImpl implements GenRe
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFeature(GenFeature newFeature) {
 		GenFeature oldFeature = feature;
 		feature = newFeature;
@@ -126,6 +128,7 @@ public class GenReferenceNewElementSpecImpl extends EObjectImpl implements GenRe
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenFeatureSeqInitializer getFeatureSeqInitializer() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_REFERENCE_NEW_ELEMENT_SPEC__FEATURE_SEQ_INITIALIZER) return null;
 		return (GenFeatureSeqInitializer)eInternalContainer();
@@ -135,6 +138,7 @@ public class GenReferenceNewElementSpecImpl extends EObjectImpl implements GenRe
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenFeatureSeqInitializer> getNewElementInitializers() {
 		if (newElementInitializers == null) {
 			newElementInitializers = new EObjectContainmentWithInverseEList<GenFeatureSeqInitializer>(GenFeatureSeqInitializer.class, this, GMFGenPackage.GEN_REFERENCE_NEW_ELEMENT_SPEC__NEW_ELEMENT_INITIALIZERS, GMFGenPackage.GEN_FEATURE_SEQ_INITIALIZER__CREATING_INITIALIZER);

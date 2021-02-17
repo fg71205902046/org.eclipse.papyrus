@@ -30,12 +30,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenPropertyTabFilter;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenCustomPropertyTab#getClassName <em>Class Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenCustomPropertyTab#getFilter <em>Filter</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenCustomPropertyTab#isGenerateBoilerplate <em>Generate Boilerplate</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenCustomPropertyTab()
  * @model

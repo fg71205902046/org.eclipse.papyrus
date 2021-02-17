@@ -31,12 +31,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorPath;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorPathSegment#getPath <em>Path</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorPathSegment#getFrom <em>From</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorPathSegment#getTo <em>To</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenNavigatorPathSegment()
  * @model

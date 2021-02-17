@@ -43,6 +43,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenTemplateInvocationBase;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCustomGeneratorExtensionImpl#getOclType <em>Ocl Type</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCustomGeneratorExtensionImpl#getGenerator <em>Generator</em>}</li>
@@ -51,7 +52,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenTemplateInvocationBase;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCustomGeneratorExtensionImpl#getRootInput <em>Root Input</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCustomGeneratorExtensionImpl#getInvocations <em>Invocations</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -160,6 +160,7 @@ public class GenCustomGeneratorExtensionImpl extends EObjectImpl implements GenC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getOclType() {
 		return oclType;
 	}
@@ -169,6 +170,7 @@ public class GenCustomGeneratorExtensionImpl extends EObjectImpl implements GenC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOclType(String newOclType) {
 		String oldOclType = oclType;
 		oclType = newOclType;
@@ -181,6 +183,7 @@ public class GenCustomGeneratorExtensionImpl extends EObjectImpl implements GenC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenEditorGenerator getGenerator() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_CUSTOM_GENERATOR_EXTENSION__GENERATOR) return null;
 		return (GenEditorGenerator)eInternalContainer();
@@ -191,6 +194,7 @@ public class GenCustomGeneratorExtensionImpl extends EObjectImpl implements GenC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -200,6 +204,7 @@ public class GenCustomGeneratorExtensionImpl extends EObjectImpl implements GenC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -212,6 +217,7 @@ public class GenCustomGeneratorExtensionImpl extends EObjectImpl implements GenC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isFromCustomBridge() {
 		return fromCustomBridge;
 	}
@@ -221,6 +227,7 @@ public class GenCustomGeneratorExtensionImpl extends EObjectImpl implements GenC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFromCustomBridge(boolean newFromCustomBridge) {
 		boolean oldFromCustomBridge = fromCustomBridge;
 		fromCustomBridge = newFromCustomBridge;
@@ -233,6 +240,7 @@ public class GenCustomGeneratorExtensionImpl extends EObjectImpl implements GenC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EObject getRootInput() {
 		if (rootInput != null && rootInput.eIsProxy()) {
 			InternalEObject oldRootInput = (InternalEObject)rootInput;
@@ -259,6 +267,7 @@ public class GenCustomGeneratorExtensionImpl extends EObjectImpl implements GenC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRootInput(EObject newRootInput) {
 		EObject oldRootInput = rootInput;
 		rootInput = newRootInput;
@@ -271,6 +280,7 @@ public class GenCustomGeneratorExtensionImpl extends EObjectImpl implements GenC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenTemplateInvocationBase> getInvocations() {
 		if (invocations == null) {
 			invocations = new EObjectContainmentWithInverseEList<GenTemplateInvocationBase>(GenTemplateInvocationBase.class, this, GMFGenPackage.GEN_CUSTOM_GENERATOR_EXTENSION__INVOCATIONS, GMFGenPackage.GEN_TEMPLATE_INVOCATION_BASE__EXTENSION);
@@ -441,7 +451,7 @@ public class GenCustomGeneratorExtensionImpl extends EObjectImpl implements GenC
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (oclType: ");
 		result.append(oclType);
 		result.append(", name: ");

@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenAuditContainer#getRoot <em>Root</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenAuditContainer#getId <em>Id</em>}</li>
@@ -42,7 +43,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenAuditContainer#getPath <em>Path</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenAuditContainer#getAudits <em>Audits</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenAuditContainer()
  * @model

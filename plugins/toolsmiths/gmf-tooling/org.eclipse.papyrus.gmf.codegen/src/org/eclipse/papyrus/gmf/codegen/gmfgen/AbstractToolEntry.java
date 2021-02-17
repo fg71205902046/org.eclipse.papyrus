@@ -29,12 +29,12 @@ import org.eclipse.emf.common.util.EMap;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.AbstractToolEntry#isDefault <em>Default</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.AbstractToolEntry#getQualifiedToolName <em>Qualified Tool Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.AbstractToolEntry#getProperties <em>Properties</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getAbstractToolEntry()
  * @model abstract="true"
@@ -105,7 +105,7 @@ public interface AbstractToolEntry extends EntryBase, ToolGroupItem {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Properties</em>' map.
 	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getAbstractToolEntry_Properties()
-	 * @model mapType="org.eclipse.emf.ecore.EStringToStringMapEntry<org.eclipse.emf.ecore.EString, org.eclipse.emf.ecore.EString>"
+	 * @model mapType="org.eclipse.emf.ecore.EStringToStringMapEntry&lt;org.eclipse.emf.ecore.EString, org.eclipse.emf.ecore.EString&gt;"
 	 * @generated
 	 */
 	EMap<String, String> getProperties();

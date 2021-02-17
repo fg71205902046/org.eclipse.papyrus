@@ -18,7 +18,7 @@ import com.google.inject.Singleton
 import java.util.List
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenExternalNodeLabel
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
-import org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocatorExternalLabel
+import org.eclipse.papyrus.gmf.codegen.genextension.SpecificLocatorExternalLabel
 
 @Singleton class EditPartsUtils_qvto {
 

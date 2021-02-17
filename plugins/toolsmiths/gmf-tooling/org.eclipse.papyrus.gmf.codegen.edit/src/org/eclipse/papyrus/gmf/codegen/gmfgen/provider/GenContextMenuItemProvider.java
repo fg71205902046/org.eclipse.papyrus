@@ -43,13 +43,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenContextMenu;
  * @generated
  */
 public class GenContextMenuItemProvider
-	extends GenContributionManagerItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends GenContributionManagerItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

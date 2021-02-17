@@ -33,6 +33,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ToolGroupItem;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.ToolGroup#getPalette <em>Palette</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.ToolGroup#isStack <em>Stack</em>}</li>
@@ -40,7 +41,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ToolGroupItem;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.ToolGroup#getEntries <em>Entries</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.ToolGroup#isToolsOnly <em>Tools Only</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getToolGroup()
  * @model

@@ -56,6 +56,7 @@ import org.eclipse.papyrus.gmf.internal.codegen.util.Extras;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenNodeImpl#getGenOutgoingLinks <em>Gen Outgoing Links</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenNodeImpl#getGenIncomingLinks <em>Gen Incoming Links</em>}</li>
@@ -67,7 +68,6 @@ import org.eclipse.papyrus.gmf.internal.codegen.util.Extras;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenNodeImpl#getCreateCommandClassName <em>Create Command Class Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenNodeImpl#getReorientedIncomingLinks <em>Reoriented Incoming Links</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -425,6 +425,7 @@ public abstract class GenNodeImpl extends GenChildContainerImpl implements GenNo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenNodeLabel> getLabels() {
 		if (labels == null) {
 			labels = new EObjectContainmentWithInverseEList<GenNodeLabel>(GenNodeLabel.class, this, GMFGenPackage.GEN_NODE__LABELS, GMFGenPackage.GEN_NODE_LABEL__NODE);
@@ -437,6 +438,7 @@ public abstract class GenNodeImpl extends GenChildContainerImpl implements GenNo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenCompartment> getCompartments() {
 		if (compartments == null) {
 			compartments = new EObjectWithInverseResolvingEList<GenCompartment>(GenCompartment.class, this, GMFGenPackage.GEN_NODE__COMPARTMENTS, GMFGenPackage.GEN_COMPARTMENT__NODE);
@@ -449,6 +451,7 @@ public abstract class GenNodeImpl extends GenChildContainerImpl implements GenNo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getPrimaryDragEditPolicyQualifiedClassName() {
 		return primaryDragEditPolicyQualifiedClassName;
 	}
@@ -458,6 +461,7 @@ public abstract class GenNodeImpl extends GenChildContainerImpl implements GenNo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPrimaryDragEditPolicyQualifiedClassName(String newPrimaryDragEditPolicyQualifiedClassName) {
 		String oldPrimaryDragEditPolicyQualifiedClassName = primaryDragEditPolicyQualifiedClassName;
 		primaryDragEditPolicyQualifiedClassName = newPrimaryDragEditPolicyQualifiedClassName;
@@ -483,6 +487,7 @@ public abstract class GenNodeImpl extends GenChildContainerImpl implements GenNo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGraphicalNodeEditPolicyClassName(String newGraphicalNodeEditPolicyClassName) {
 		String oldGraphicalNodeEditPolicyClassName = graphicalNodeEditPolicyClassName;
 		graphicalNodeEditPolicyClassName = newGraphicalNodeEditPolicyClassName;
@@ -508,6 +513,7 @@ public abstract class GenNodeImpl extends GenChildContainerImpl implements GenNo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCreateCommandClassName(String newCreateCommandClassName) {
 		String oldCreateCommandClassName = createCommandClassName;
 		createCommandClassName = newCreateCommandClassName;
@@ -520,6 +526,7 @@ public abstract class GenNodeImpl extends GenChildContainerImpl implements GenNo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypeModelFacet getModelFacet() {
 		return modelFacet;
 	}
@@ -544,6 +551,7 @@ public abstract class GenNodeImpl extends GenChildContainerImpl implements GenNo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setModelFacet(TypeModelFacet newModelFacet) {
 		if (newModelFacet != modelFacet) {
 			NotificationChain msgs = null;
@@ -567,7 +575,7 @@ public abstract class GenNodeImpl extends GenChildContainerImpl implements GenNo
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (primaryDragEditPolicyQualifiedClassName: ");
 		result.append(primaryDragEditPolicyQualifiedClassName);
 		result.append(", graphicalNodeEditPolicyClassName: ");

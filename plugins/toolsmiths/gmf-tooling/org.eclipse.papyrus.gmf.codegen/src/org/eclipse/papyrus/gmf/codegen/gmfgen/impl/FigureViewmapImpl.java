@@ -32,10 +32,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.FigureViewmapImpl#getFigureQualifiedClassName <em>Figure Qualified Class Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -84,6 +84,7 @@ public class FigureViewmapImpl extends ViewmapImpl implements FigureViewmap {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getFigureQualifiedClassName() {
 		return figureQualifiedClassName;
 	}
@@ -93,6 +94,7 @@ public class FigureViewmapImpl extends ViewmapImpl implements FigureViewmap {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFigureQualifiedClassName(String newFigureQualifiedClassName) {
 		String oldFigureQualifiedClassName = figureQualifiedClassName;
 		figureQualifiedClassName = newFigureQualifiedClassName;
@@ -167,7 +169,7 @@ public class FigureViewmapImpl extends ViewmapImpl implements FigureViewmap {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (figureQualifiedClassName: ");
 		result.append(figureQualifiedClassName);
 		result.append(')');

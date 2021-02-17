@@ -38,6 +38,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.LabelTextAccessMethod;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.FeatureLabelModelFacetImpl#getMetaFeatures <em>Meta Features</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.FeatureLabelModelFacetImpl#getEditableMetaFeatures <em>Editable Meta Features</em>}</li>
@@ -47,7 +48,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.LabelTextAccessMethod;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.FeatureLabelModelFacetImpl#getViewMethod <em>View Method</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.FeatureLabelModelFacetImpl#getEditMethod <em>Edit Method</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -196,6 +196,7 @@ public class FeatureLabelModelFacetImpl extends LabelModelFacetImpl implements F
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenFeature> getMetaFeatures() {
 		if (metaFeatures == null) {
 			metaFeatures = new EObjectResolvingEList<GenFeature>(GenFeature.class, this, GMFGenPackage.FEATURE_LABEL_MODEL_FACET__META_FEATURES);
@@ -208,6 +209,7 @@ public class FeatureLabelModelFacetImpl extends LabelModelFacetImpl implements F
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenFeature> getEditableMetaFeatures() {
 		if (editableMetaFeatures == null) {
 			editableMetaFeatures = new EObjectResolvingEList<GenFeature>(GenFeature.class, this, GMFGenPackage.FEATURE_LABEL_MODEL_FACET__EDITABLE_META_FEATURES);
@@ -220,6 +222,7 @@ public class FeatureLabelModelFacetImpl extends LabelModelFacetImpl implements F
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getViewPattern() {
 		return viewPattern;
 	}
@@ -229,6 +232,7 @@ public class FeatureLabelModelFacetImpl extends LabelModelFacetImpl implements F
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setViewPattern(String newViewPattern) {
 		String oldViewPattern = viewPattern;
 		viewPattern = newViewPattern;
@@ -241,6 +245,7 @@ public class FeatureLabelModelFacetImpl extends LabelModelFacetImpl implements F
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getEditorPattern() {
 		return editorPattern;
 	}
@@ -250,6 +255,7 @@ public class FeatureLabelModelFacetImpl extends LabelModelFacetImpl implements F
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEditorPattern(String newEditorPattern) {
 		String oldEditorPattern = editorPattern;
 		editorPattern = newEditorPattern;
@@ -262,6 +268,7 @@ public class FeatureLabelModelFacetImpl extends LabelModelFacetImpl implements F
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LabelTextAccessMethod getViewMethod() {
 		return viewMethod;
 	}
@@ -271,6 +278,7 @@ public class FeatureLabelModelFacetImpl extends LabelModelFacetImpl implements F
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setViewMethod(LabelTextAccessMethod newViewMethod) {
 		LabelTextAccessMethod oldViewMethod = viewMethod;
 		viewMethod = newViewMethod == null ? VIEW_METHOD_EDEFAULT : newViewMethod;
@@ -283,6 +291,7 @@ public class FeatureLabelModelFacetImpl extends LabelModelFacetImpl implements F
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getEditPattern() {
 		return editPattern;
 	}
@@ -292,6 +301,7 @@ public class FeatureLabelModelFacetImpl extends LabelModelFacetImpl implements F
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEditPattern(String newEditPattern) {
 		String oldEditPattern = editPattern;
 		editPattern = newEditPattern;
@@ -304,6 +314,7 @@ public class FeatureLabelModelFacetImpl extends LabelModelFacetImpl implements F
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LabelTextAccessMethod getEditMethod() {
 		return editMethod;
 	}
@@ -313,6 +324,7 @@ public class FeatureLabelModelFacetImpl extends LabelModelFacetImpl implements F
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEditMethod(LabelTextAccessMethod newEditMethod) {
 		LabelTextAccessMethod oldEditMethod = editMethod;
 		editMethod = newEditMethod == null ? EDIT_METHOD_EDEFAULT : newEditMethod;
@@ -450,7 +462,7 @@ public class FeatureLabelModelFacetImpl extends LabelModelFacetImpl implements F
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (viewPattern: ");
 		result.append(viewPattern);
 		result.append(", editorPattern: ");

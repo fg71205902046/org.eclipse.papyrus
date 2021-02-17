@@ -33,11 +33,11 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenFeature;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.TypeLinkModelFacet#getSourceMetaFeature <em>Source Meta Feature</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.TypeLinkModelFacet#getTargetMetaFeature <em>Target Meta Feature</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getTypeLinkModelFacet()
  * @model annotation="http://www.eclipse.org/gmf/2005/constraints ocl='not containmentMetaFeature.oclIsUndefined()' description='Link \'Containment Meta Feature\' must be specified'"

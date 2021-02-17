@@ -36,10 +36,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenMeasurable;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenNotationElementTarget#getElement <em>Element</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenNotationElementTarget()
  * @model
@@ -61,7 +61,7 @@ public interface GenNotationElementTarget extends GenAuditable, GenMeasurable {
 	 * @see #setElement(GenClass)
 	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenNotationElementTarget_Element()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/gmf/2005/constraints ocl='element.ecoreClass.eAllSuperTypes->including(element.ecoreClass)->one(ePackage.name = \'notation\' and name = \'View\')' description='\'notation::View\' or its sub-class must be set to NotationElement target'"
+	 *        annotation="http://www.eclipse.org/gmf/2005/constraints ocl='element.ecoreClass.eAllSuperTypes-&gt;including(element.ecoreClass)-&gt;one(ePackage.name = \'notation\' and name = \'View\')' description='\'notation::View\' or its sub-class must be set to NotationElement target'"
 	 * @generated
 	 */
 	GenClass getElement();

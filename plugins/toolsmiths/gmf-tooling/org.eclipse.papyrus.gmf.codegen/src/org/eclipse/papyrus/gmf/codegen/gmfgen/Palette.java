@@ -34,6 +34,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ToolGroup;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.Palette#getDiagram <em>Diagram</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.Palette#isFlyout <em>Flyout</em>}</li>
@@ -41,7 +42,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ToolGroup;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.Palette#getPackageName <em>Package Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.Palette#getFactoryClassName <em>Factory Class Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getPalette()
  * @model

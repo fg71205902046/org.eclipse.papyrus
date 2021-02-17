@@ -41,13 +41,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenToolBarManager;
  * @generated
  */
 public class GenToolBarManagerItemProvider
-	extends GenContributionManagerItemProvider
-	implements	
-		IEditingDomainItemProvider,	
-		IStructuredItemContentProvider,	
-		ITreeItemContentProvider,	
-		IItemLabelProvider,	
-		IItemPropertySource {
+	extends GenContributionManagerItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

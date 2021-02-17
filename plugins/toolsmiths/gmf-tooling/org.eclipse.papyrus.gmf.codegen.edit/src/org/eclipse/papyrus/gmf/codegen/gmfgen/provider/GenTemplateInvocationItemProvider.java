@@ -41,13 +41,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenTemplateInvocation;
  * @generated
  */
 public class GenTemplateInvocationItemProvider
-	extends GenTemplateInvocationBaseItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends GenTemplateInvocationBaseItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

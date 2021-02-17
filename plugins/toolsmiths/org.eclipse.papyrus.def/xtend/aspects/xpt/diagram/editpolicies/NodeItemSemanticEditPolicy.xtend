@@ -23,7 +23,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.FeatureLinkModelFacet
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenChildNode
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
 import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeLinkModelFacet
-import org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingDeleteService
+import org.eclipse.papyrus.gmf.codegen.genextension.EditPartUsingDeleteService
 import utils.UtilsItemSemanticEditPolicy
 import xpt.Common
 import xpt.diagram.editpolicies.childContainerCreateCommand

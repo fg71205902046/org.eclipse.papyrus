@@ -36,11 +36,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCustomPropertyTab;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.CustomTabFilterImpl#getTab <em>Tab</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.CustomTabFilterImpl#getClassName <em>Class Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -89,6 +89,7 @@ public class CustomTabFilterImpl extends EObjectImpl implements CustomTabFilter 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenCustomPropertyTab getTab() {
 		if (eContainerFeatureID() != GMFGenPackage.CUSTOM_TAB_FILTER__TAB) return null;
 		return (GenCustomPropertyTab)eInternalContainer();
@@ -99,6 +100,7 @@ public class CustomTabFilterImpl extends EObjectImpl implements CustomTabFilter 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getClassName() {
 		return className;
 	}
@@ -108,6 +110,7 @@ public class CustomTabFilterImpl extends EObjectImpl implements CustomTabFilter 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setClassName(String newClassName) {
 		String oldClassName = className;
 		className = newClassName;
@@ -249,7 +252,7 @@ public class CustomTabFilterImpl extends EObjectImpl implements CustomTabFilter 
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (className: ");
 		result.append(className);
 		result.append(')');

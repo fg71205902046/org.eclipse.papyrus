@@ -33,11 +33,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.ColorAttributesImpl#getForegroundColor <em>Foreground Color</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.ColorAttributesImpl#getBackgroundColor <em>Background Color</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -106,6 +106,7 @@ public class ColorAttributesImpl extends EObjectImpl implements ColorAttributes 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getForegroundColor() {
 		return foregroundColor;
 	}
@@ -115,6 +116,7 @@ public class ColorAttributesImpl extends EObjectImpl implements ColorAttributes 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setForegroundColor(String newForegroundColor) {
 		String oldForegroundColor = foregroundColor;
 		foregroundColor = newForegroundColor;
@@ -127,6 +129,7 @@ public class ColorAttributesImpl extends EObjectImpl implements ColorAttributes 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getBackgroundColor() {
 		return backgroundColor;
 	}
@@ -136,6 +139,7 @@ public class ColorAttributesImpl extends EObjectImpl implements ColorAttributes 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBackgroundColor(String newBackgroundColor) {
 		String oldBackgroundColor = backgroundColor;
 		backgroundColor = newBackgroundColor;
@@ -220,7 +224,7 @@ public class ColorAttributesImpl extends EObjectImpl implements ColorAttributes 
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (foregroundColor: ");
 		result.append(foregroundColor);
 		result.append(", backgroundColor: ");

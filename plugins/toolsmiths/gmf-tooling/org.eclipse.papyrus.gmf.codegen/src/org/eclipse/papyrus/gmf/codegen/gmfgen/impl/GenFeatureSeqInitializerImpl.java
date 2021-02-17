@@ -46,13 +46,13 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeModelFacet;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenFeatureSeqInitializerImpl#getTypeModelFacet <em>Type Model Facet</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenFeatureSeqInitializerImpl#getInitializers <em>Initializers</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenFeatureSeqInitializerImpl#getElementClass <em>Element Class</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenFeatureSeqInitializerImpl#getCreatingInitializer <em>Creating Initializer</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -101,6 +101,7 @@ public class GenFeatureSeqInitializerImpl extends EObjectImpl implements GenFeat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypeModelFacet getTypeModelFacet() {
 		TypeModelFacet typeModelFacet = basicGetTypeModelFacet();
 		return typeModelFacet != null && typeModelFacet.eIsProxy() ? (TypeModelFacet)eResolveProxy((InternalEObject)typeModelFacet) : typeModelFacet;
@@ -111,6 +112,7 @@ public class GenFeatureSeqInitializerImpl extends EObjectImpl implements GenFeat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenFeatureInitializer> getInitializers() {
 		if (initializers == null) {
 			initializers = new EObjectContainmentWithInverseEList<GenFeatureInitializer>(GenFeatureInitializer.class, this, GMFGenPackage.GEN_FEATURE_SEQ_INITIALIZER__INITIALIZERS, GMFGenPackage.GEN_FEATURE_INITIALIZER__FEATURE_SEQ_INITIALIZER);
@@ -331,6 +333,7 @@ public class GenFeatureSeqInitializerImpl extends EObjectImpl implements GenFeat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenReferenceNewElementSpec getCreatingInitializer() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_FEATURE_SEQ_INITIALIZER__CREATING_INITIALIZER) return null;
 		return (GenReferenceNewElementSpec)eInternalContainer();

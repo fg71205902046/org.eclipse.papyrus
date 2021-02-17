@@ -36,12 +36,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenContributionManager#getID <em>ID</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenContributionManager#getItems <em>Items</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenContributionManager#getEditorGen <em>Editor Gen</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenContributionManager()
  * @model abstract="true"

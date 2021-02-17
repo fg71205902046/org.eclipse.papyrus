@@ -29,10 +29,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.Behaviour;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.SharedBehaviour#getDelegate <em>Delegate</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getSharedBehaviour()
  * @model

@@ -35,6 +35,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.EntryBaseImpl#getTitle <em>Title</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.EntryBaseImpl#getDescription <em>Description</em>}</li>
@@ -43,7 +44,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.EntryBaseImpl#getCreateMethodName <em>Create Method Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.EntryBaseImpl#getId <em>Id</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -192,6 +192,7 @@ public abstract class EntryBaseImpl extends EObjectImpl implements EntryBase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getTitle() {
 		return title;
 	}
@@ -201,6 +202,7 @@ public abstract class EntryBaseImpl extends EObjectImpl implements EntryBase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTitle(String newTitle) {
 		String oldTitle = title;
 		title = newTitle;
@@ -213,6 +215,7 @@ public abstract class EntryBaseImpl extends EObjectImpl implements EntryBase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDescription() {
 		return description;
 	}
@@ -222,6 +225,7 @@ public abstract class EntryBaseImpl extends EObjectImpl implements EntryBase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDescription(String newDescription) {
 		String oldDescription = description;
 		description = newDescription;
@@ -234,6 +238,7 @@ public abstract class EntryBaseImpl extends EObjectImpl implements EntryBase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLargeIconPath() {
 		return largeIconPath;
 	}
@@ -243,6 +248,7 @@ public abstract class EntryBaseImpl extends EObjectImpl implements EntryBase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLargeIconPath(String newLargeIconPath) {
 		String oldLargeIconPath = largeIconPath;
 		largeIconPath = newLargeIconPath;
@@ -255,6 +261,7 @@ public abstract class EntryBaseImpl extends EObjectImpl implements EntryBase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getSmallIconPath() {
 		return smallIconPath;
 	}
@@ -264,6 +271,7 @@ public abstract class EntryBaseImpl extends EObjectImpl implements EntryBase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSmallIconPath(String newSmallIconPath) {
 		String oldSmallIconPath = smallIconPath;
 		smallIconPath = newSmallIconPath;
@@ -285,6 +293,7 @@ public abstract class EntryBaseImpl extends EObjectImpl implements EntryBase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCreateMethodName(String newCreateMethodName) {
 		String oldCreateMethodName = createMethodName;
 		createMethodName = newCreateMethodName;
@@ -313,6 +322,7 @@ public abstract class EntryBaseImpl extends EObjectImpl implements EntryBase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setId(String newId) {
 		String oldId = id;
 		id = newId;
@@ -437,7 +447,7 @@ public abstract class EntryBaseImpl extends EObjectImpl implements EntryBase {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (title: ");
 		result.append(title);
 		result.append(", description: ");

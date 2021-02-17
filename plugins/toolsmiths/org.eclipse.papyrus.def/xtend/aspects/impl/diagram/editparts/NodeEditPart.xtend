@@ -30,16 +30,16 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorChildReference
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
 import org.eclipse.papyrus.gmf.codegen.gmfgen.ParentAssignedViewmap
 import org.eclipse.papyrus.gmf.codegen.gmfgen.ToolEntry
-import org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView
-import org.eclipse.papyrus.papyrusgmfgenextension.PropertyRefreshHook
-import org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocator
+import org.eclipse.papyrus.gmf.codegen.genextension.ExtendedGenView
+import org.eclipse.papyrus.gmf.codegen.genextension.PropertyRefreshHook
+import org.eclipse.papyrus.gmf.codegen.genextension.SpecificLocator
 import utils.EditPartsUtils_qvto
 import xpt.Common
 import xpt.diagram.editparts.EditPartFactory
 import xpt.diagram.editparts.Utils_qvto
 import xpt.CodeStyle
 import xpt.diagram.ViewmapAttributesUtils_qvto
-import org.eclipse.papyrus.papyrusgmfgenextension.SpecificNodePlate
+import org.eclipse.papyrus.gmf.codegen.genextension.SpecificNodePlate
 import xpt.providers.ElementTypes
 
 @Singleton class NodeEditPart extends impl.diagram.editparts.NodeEditPart {

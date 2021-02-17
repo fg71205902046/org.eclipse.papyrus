@@ -38,11 +38,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenMenuManager;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenMenuManagerImpl#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenMenuManagerImpl#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -91,6 +91,7 @@ public class GenMenuManagerImpl extends GenContributionManagerImpl implements Ge
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenContributionManager getOwner() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_MENU_MANAGER__OWNER) return null;
 		return (GenContributionManager)eInternalContainer();
@@ -101,6 +102,7 @@ public class GenMenuManagerImpl extends GenContributionManagerImpl implements Ge
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -110,6 +112,7 @@ public class GenMenuManagerImpl extends GenContributionManagerImpl implements Ge
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -278,7 +281,7 @@ public class GenMenuManagerImpl extends GenContributionManagerImpl implements Ge
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
 		result.append(')');

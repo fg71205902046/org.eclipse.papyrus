@@ -62,6 +62,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenPropertySheet;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenEditorGeneratorImpl#getAudits <em>Audits</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenEditorGeneratorImpl#getMetrics <em>Metrics</em>}</li>
@@ -88,7 +89,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenPropertySheet;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenEditorGeneratorImpl#getPluginDirectory <em>Plugin Directory</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenEditorGeneratorImpl#getExtensions <em>Extensions</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -447,6 +447,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenAuditRoot getAudits() {
 		return audits;
 	}
@@ -471,6 +472,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAudits(GenAuditRoot newAudits) {
 		if (newAudits != audits) {
 			NotificationChain msgs = null;
@@ -490,6 +492,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenMetricContainer getMetrics() {
 		return metrics;
 	}
@@ -514,6 +517,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMetrics(GenMetricContainer newMetrics) {
 		if (newMetrics != metrics) {
 			NotificationChain msgs = null;
@@ -533,6 +537,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenDiagram getDiagram() {
 		return diagram;
 	}
@@ -557,6 +562,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDiagram(GenDiagram newDiagram) {
 		if (newDiagram != diagram) {
 			NotificationChain msgs = null;
@@ -576,6 +582,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenPlugin getPlugin() {
 		return plugin;
 	}
@@ -600,6 +607,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPlugin(GenPlugin newPlugin) {
 		if (newPlugin != plugin) {
 			NotificationChain msgs = null;
@@ -619,6 +627,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenEditorView getEditor() {
 		return editor;
 	}
@@ -643,6 +652,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEditor(GenEditorView newEditor) {
 		if (newEditor != editor) {
 			NotificationChain msgs = null;
@@ -662,6 +672,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenNavigator getNavigator() {
 		return navigator;
 	}
@@ -686,6 +697,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNavigator(GenNavigator newNavigator) {
 		if (newNavigator != navigator) {
 			NotificationChain msgs = null;
@@ -705,6 +717,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenDiagramUpdater getDiagramUpdater() {
 		return diagramUpdater;
 	}
@@ -729,6 +742,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDiagramUpdater(GenDiagramUpdater newDiagramUpdater) {
 		if (newDiagramUpdater != diagramUpdater) {
 			NotificationChain msgs = null;
@@ -748,6 +762,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenPropertySheet getPropertySheet() {
 		return propertySheet;
 	}
@@ -772,6 +787,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPropertySheet(GenPropertySheet newPropertySheet) {
 		if (newPropertySheet != propertySheet) {
 			NotificationChain msgs = null;
@@ -791,6 +807,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenApplication getApplication() {
 		return application;
 	}
@@ -815,6 +832,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setApplication(GenApplication newApplication) {
 		if (newApplication != application) {
 			NotificationChain msgs = null;
@@ -834,6 +852,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenModel getDomainGenModel() {
 		if (domainGenModel != null && domainGenModel.eIsProxy()) {
 			InternalEObject oldDomainGenModel = (InternalEObject)domainGenModel;
@@ -860,6 +879,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDomainGenModel(GenModel newDomainGenModel) {
 		GenModel oldDomainGenModel = domainGenModel;
 		domainGenModel = newDomainGenModel;
@@ -903,6 +923,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPackageNamePrefix(String newPackageNamePrefix) {
 		String oldPackageNamePrefix = packageNamePrefix;
 		packageNamePrefix = newPackageNamePrefix;
@@ -935,6 +956,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setModelID(String newModelID) {
 		String oldModelID = modelID;
 		modelID = newModelID;
@@ -947,6 +969,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSameFileForDiagramAndModel() {
 		return sameFileForDiagramAndModel;
 	}
@@ -956,6 +979,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSameFileForDiagramAndModel(boolean newSameFileForDiagramAndModel) {
 		boolean oldSameFileForDiagramAndModel = sameFileForDiagramAndModel;
 		sameFileForDiagramAndModel = newSameFileForDiagramAndModel;
@@ -989,6 +1013,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDiagramFileExtension(String newDiagramFileExtension) {
 		String oldDiagramFileExtension = diagramFileExtension;
 		diagramFileExtension = newDiagramFileExtension;
@@ -1021,6 +1046,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDomainFileExtension(String newDomainFileExtension) {
 		String oldDomainFileExtension = domainFileExtension;
 		domainFileExtension = newDomainFileExtension;
@@ -1033,6 +1059,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isDynamicTemplates() {
 		return dynamicTemplates;
 	}
@@ -1042,6 +1069,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDynamicTemplates(boolean newDynamicTemplates) {
 		boolean oldDynamicTemplates = dynamicTemplates;
 		dynamicTemplates = newDynamicTemplates;
@@ -1054,6 +1082,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getTemplateDirectory() {
 		return templateDirectory;
 	}
@@ -1063,6 +1092,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTemplateDirectory(String newTemplateDirectory) {
 		String oldTemplateDirectory = templateDirectory;
 		templateDirectory = newTemplateDirectory;
@@ -1075,6 +1105,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getCopyrightText() {
 		return copyrightText;
 	}
@@ -1084,6 +1115,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCopyrightText(String newCopyrightText) {
 		String oldCopyrightText = copyrightText;
 		copyrightText = newCopyrightText;
@@ -1096,6 +1128,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenExpressionProviderContainer getExpressionProviders() {
 		return expressionProviders;
 	}
@@ -1120,6 +1153,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setExpressionProviders(GenExpressionProviderContainer newExpressionProviders) {
 		if (newExpressionProviders != expressionProviders) {
 			NotificationChain msgs = null;
@@ -1139,6 +1173,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DynamicModelAccess getModelAccess() {
 		return modelAccess;
 	}
@@ -1163,6 +1198,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setModelAccess(DynamicModelAccess newModelAccess) {
 		if (newModelAccess != modelAccess) {
 			NotificationChain msgs = null;
@@ -1182,6 +1218,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenParsers getLabelParsers() {
 		return labelParsers;
 	}
@@ -1206,6 +1243,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLabelParsers(GenParsers newLabelParsers) {
 		if (newLabelParsers != labelParsers) {
 			NotificationChain msgs = null;
@@ -1225,6 +1263,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenContextMenu> getContextMenus() {
 		if (contextMenus == null) {
 			contextMenus = new EObjectContainmentEList<GenContextMenu>(GenContextMenu.class, this, GMFGenPackage.GEN_EDITOR_GENERATOR__CONTEXT_MENUS);
@@ -1246,6 +1285,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPluginDirectory(String newPluginDirectory) {
 		String oldPluginDirectory = pluginDirectory;
 		pluginDirectory = newPluginDirectory;
@@ -1258,6 +1298,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenCustomGeneratorExtension> getExtensions() {
 		if (extensions == null) {
 			extensions = new EObjectContainmentWithInverseEList<GenCustomGeneratorExtension>(GenCustomGeneratorExtension.class, this, GMFGenPackage.GEN_EDITOR_GENERATOR__EXTENSIONS, GMFGenPackage.GEN_CUSTOM_GENERATOR_EXTENSION__GENERATOR);
@@ -1718,7 +1759,7 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (packageNamePrefix: ");
 		result.append(packageNamePrefix);
 		result.append(", modelID: ");

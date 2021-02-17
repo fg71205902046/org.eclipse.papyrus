@@ -34,12 +34,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.LabelTextAccessMethod;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.PredefinedParser#getViewMethod <em>View Method</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.PredefinedParser#getEditMethod <em>Edit Method</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.PredefinedParser#getClassName <em>Class Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getPredefinedParser()
  * @model

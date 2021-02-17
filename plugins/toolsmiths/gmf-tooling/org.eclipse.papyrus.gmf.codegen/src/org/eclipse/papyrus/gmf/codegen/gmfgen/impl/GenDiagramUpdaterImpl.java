@@ -36,6 +36,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenDiagramUpdaterImpl#getEditorGen <em>Editor Gen</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenDiagramUpdaterImpl#getDiagramUpdaterClassName <em>Diagram Updater Class Name</em>}</li>
@@ -44,7 +45,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenDiagramUpdaterImpl#getUpdateCommandClassName <em>Update Command Class Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenDiagramUpdaterImpl#getUpdateCommandID <em>Update Command ID</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -173,6 +173,7 @@ public class GenDiagramUpdaterImpl extends EObjectImpl implements GenDiagramUpda
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenEditorGenerator getEditorGen() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_DIAGRAM_UPDATER__EDITOR_GEN) return null;
 		return (GenEditorGenerator)eInternalContainer();
@@ -200,6 +201,7 @@ public class GenDiagramUpdaterImpl extends EObjectImpl implements GenDiagramUpda
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDiagramUpdaterClassName(String newDiagramUpdaterClassName) {
 		String oldDiagramUpdaterClassName = diagramUpdaterClassName;
 		diagramUpdaterClassName = newDiagramUpdaterClassName;
@@ -229,6 +231,7 @@ public class GenDiagramUpdaterImpl extends EObjectImpl implements GenDiagramUpda
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNodeDescriptorClassName(String newNodeDescriptorClassName) {
 		String oldNodeDescriptorClassName = nodeDescriptorClassName;
 		nodeDescriptorClassName = newNodeDescriptorClassName;
@@ -258,6 +261,7 @@ public class GenDiagramUpdaterImpl extends EObjectImpl implements GenDiagramUpda
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLinkDescriptorClassName(String newLinkDescriptorClassName) {
 		String oldLinkDescriptorClassName = linkDescriptorClassName;
 		linkDescriptorClassName = newLinkDescriptorClassName;
@@ -287,6 +291,7 @@ public class GenDiagramUpdaterImpl extends EObjectImpl implements GenDiagramUpda
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUpdateCommandClassName(String newUpdateCommandClassName) {
 		String oldUpdateCommandClassName = updateCommandClassName;
 		updateCommandClassName = newUpdateCommandClassName;
@@ -316,6 +321,7 @@ public class GenDiagramUpdaterImpl extends EObjectImpl implements GenDiagramUpda
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUpdateCommandID(String newUpdateCommandID) {
 		String oldUpdateCommandID = updateCommandID;
 		updateCommandID = newUpdateCommandID;
@@ -514,7 +520,7 @@ public class GenDiagramUpdaterImpl extends EObjectImpl implements GenDiagramUpda
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (diagramUpdaterClassName: ");
 		result.append(diagramUpdaterClassName);
 		result.append(", nodeDescriptorClassName: ");

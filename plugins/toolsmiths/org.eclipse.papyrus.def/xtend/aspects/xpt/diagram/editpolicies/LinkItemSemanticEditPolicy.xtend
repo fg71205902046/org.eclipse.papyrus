@@ -22,7 +22,7 @@ import com.google.inject.Singleton
 import impl.diagram.commands.DeleteLinkCommand
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink
 import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeLinkModelFacet
-import org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingDeleteService
+import org.eclipse.papyrus.gmf.codegen.genextension.EditPartUsingDeleteService
 import utils.UtilsItemSemanticEditPolicy
 import xpt.Common
 

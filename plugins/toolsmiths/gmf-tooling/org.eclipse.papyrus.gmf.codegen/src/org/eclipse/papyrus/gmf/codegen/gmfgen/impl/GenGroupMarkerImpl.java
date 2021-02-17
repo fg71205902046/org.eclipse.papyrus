@@ -39,11 +39,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenGroupMarker;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenGroupMarkerImpl#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenGroupMarkerImpl#getGroupName <em>Group Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -92,6 +92,7 @@ public class GenGroupMarkerImpl extends EObjectImpl implements GenGroupMarker {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenContributionManager getOwner() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_GROUP_MARKER__OWNER) return null;
 		return (GenContributionManager)eInternalContainer();
@@ -102,6 +103,7 @@ public class GenGroupMarkerImpl extends EObjectImpl implements GenGroupMarker {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getGroupName() {
 		return groupName;
 	}
@@ -111,6 +113,7 @@ public class GenGroupMarkerImpl extends EObjectImpl implements GenGroupMarker {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGroupName(String newGroupName) {
 		String oldGroupName = groupName;
 		groupName = newGroupName;
@@ -233,7 +236,7 @@ public class GenGroupMarkerImpl extends EObjectImpl implements GenGroupMarker {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (groupName: ");
 		result.append(groupName);
 		result.append(')');

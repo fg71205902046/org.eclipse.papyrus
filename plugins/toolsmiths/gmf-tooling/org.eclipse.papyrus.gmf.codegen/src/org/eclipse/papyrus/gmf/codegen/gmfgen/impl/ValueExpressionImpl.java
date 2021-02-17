@@ -38,12 +38,12 @@ import org.eclipse.papyrus.gmf.internal.common.codegen.Conversions;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.ValueExpressionImpl#getBody <em>Body</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.ValueExpressionImpl#getLangName <em>Lang Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.ValueExpressionImpl#getProvider <em>Provider</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -102,6 +102,7 @@ public class ValueExpressionImpl extends EObjectImpl implements ValueExpression 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getBody() {
 		return body;
 	}
@@ -111,6 +112,7 @@ public class ValueExpressionImpl extends EObjectImpl implements ValueExpression 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBody(String newBody) {
 		String oldBody = body;
 		body = newBody;
@@ -133,6 +135,7 @@ public class ValueExpressionImpl extends EObjectImpl implements ValueExpression 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenExpressionProviderBase getProvider() {
 		if (eContainerFeatureID() != GMFGenPackage.VALUE_EXPRESSION__PROVIDER) return null;
 		return (GenExpressionProviderBase)eInternalContainer();
@@ -266,7 +269,7 @@ public class ValueExpressionImpl extends EObjectImpl implements ValueExpression 
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (body: ");
 		result.append(body);
 		result.append(')');

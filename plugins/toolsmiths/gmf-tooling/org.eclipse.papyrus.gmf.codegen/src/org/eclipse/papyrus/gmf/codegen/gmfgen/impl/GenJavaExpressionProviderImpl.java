@@ -33,11 +33,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLanguage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenJavaExpressionProviderImpl#isThrowException <em>Throw Exception</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenJavaExpressionProviderImpl#isInjectExpressionBody <em>Inject Expression Body</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -103,6 +103,7 @@ public class GenJavaExpressionProviderImpl extends GenExpressionProviderBaseImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isThrowException() {
 		return throwException;
 	}
@@ -112,6 +113,7 @@ public class GenJavaExpressionProviderImpl extends GenExpressionProviderBaseImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setThrowException(boolean newThrowException) {
 		boolean oldThrowException = throwException;
 		throwException = newThrowException;
@@ -124,6 +126,7 @@ public class GenJavaExpressionProviderImpl extends GenExpressionProviderBaseImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isInjectExpressionBody() {
 		return injectExpressionBody;
 	}
@@ -133,6 +136,7 @@ public class GenJavaExpressionProviderImpl extends GenExpressionProviderBaseImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setInjectExpressionBody(boolean newInjectExpressionBody) {
 		boolean oldInjectExpressionBody = injectExpressionBody;
 		injectExpressionBody = newInjectExpressionBody;
@@ -217,7 +221,7 @@ public class GenJavaExpressionProviderImpl extends GenExpressionProviderBaseImpl
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (throwException: ");
 		result.append(throwException);
 		result.append(", injectExpressionBody: ");

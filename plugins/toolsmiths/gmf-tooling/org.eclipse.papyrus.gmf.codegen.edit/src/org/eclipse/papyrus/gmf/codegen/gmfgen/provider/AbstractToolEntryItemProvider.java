@@ -48,13 +48,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage;
  * @generated
  */
 public class AbstractToolEntryItemProvider
-	extends EntryBaseItemProvider
-	implements	
-		IEditingDomainItemProvider,	
-		IStructuredItemContentProvider,	
-		ITreeItemContentProvider,	
-		IItemLabelProvider,	
-		IItemPropertySource {
+	extends EntryBaseItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

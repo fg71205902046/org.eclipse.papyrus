@@ -33,12 +33,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.StyleAttributes;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.StyleAttributesImpl#isFixedFont <em>Fixed Font</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.StyleAttributesImpl#isFixedForeground <em>Fixed Foreground</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.StyleAttributesImpl#isFixedBackground <em>Fixed Background</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -127,6 +127,7 @@ public class StyleAttributesImpl extends EObjectImpl implements StyleAttributes 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isFixedFont() {
 		return fixedFont;
 	}
@@ -136,6 +137,7 @@ public class StyleAttributesImpl extends EObjectImpl implements StyleAttributes 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFixedFont(boolean newFixedFont) {
 		boolean oldFixedFont = fixedFont;
 		fixedFont = newFixedFont;
@@ -148,6 +150,7 @@ public class StyleAttributesImpl extends EObjectImpl implements StyleAttributes 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isFixedForeground() {
 		return fixedForeground;
 	}
@@ -157,6 +160,7 @@ public class StyleAttributesImpl extends EObjectImpl implements StyleAttributes 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFixedForeground(boolean newFixedForeground) {
 		boolean oldFixedForeground = fixedForeground;
 		fixedForeground = newFixedForeground;
@@ -169,6 +173,7 @@ public class StyleAttributesImpl extends EObjectImpl implements StyleAttributes 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isFixedBackground() {
 		return fixedBackground;
 	}
@@ -178,6 +183,7 @@ public class StyleAttributesImpl extends EObjectImpl implements StyleAttributes 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFixedBackground(boolean newFixedBackground) {
 		boolean oldFixedBackground = fixedBackground;
 		fixedBackground = newFixedBackground;
@@ -272,7 +278,7 @@ public class StyleAttributesImpl extends EObjectImpl implements StyleAttributes 
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (fixedFont: ");
 		result.append(fixedFont);
 		result.append(", fixedForeground: ");

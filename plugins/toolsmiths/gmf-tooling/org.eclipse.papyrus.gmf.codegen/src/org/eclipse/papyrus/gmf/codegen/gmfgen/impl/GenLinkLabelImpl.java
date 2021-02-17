@@ -38,11 +38,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.LinkLabelAlignment;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenLinkLabelImpl#getLink <em>Link</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenLinkLabelImpl#getAlignment <em>Alignment</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -91,6 +91,7 @@ public class GenLinkLabelImpl extends GenLabelImpl implements GenLinkLabel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenLink getLink() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_LINK_LABEL__LINK) return null;
 		return (GenLink)eInternalContainer();
@@ -111,6 +112,7 @@ public class GenLinkLabelImpl extends GenLabelImpl implements GenLinkLabel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLink(GenLink newLink) {
 		if (newLink != eInternalContainer() || (eContainerFeatureID() != GMFGenPackage.GEN_LINK_LABEL__LINK && newLink != null)) {
 			if (EcoreUtil.isAncestor(this, newLink))
@@ -132,6 +134,7 @@ public class GenLinkLabelImpl extends GenLabelImpl implements GenLinkLabel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LinkLabelAlignment getAlignment() {
 		return alignment;
 	}
@@ -141,6 +144,7 @@ public class GenLinkLabelImpl extends GenLabelImpl implements GenLinkLabel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAlignment(LinkLabelAlignment newAlignment) {
 		LinkLabelAlignment oldAlignment = alignment;
 		alignment = newAlignment == null ? ALIGNMENT_EDEFAULT : newAlignment;
@@ -269,7 +273,7 @@ public class GenLinkLabelImpl extends GenLabelImpl implements GenLinkLabel {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (alignment: ");
 		result.append(alignment);
 		result.append(')');

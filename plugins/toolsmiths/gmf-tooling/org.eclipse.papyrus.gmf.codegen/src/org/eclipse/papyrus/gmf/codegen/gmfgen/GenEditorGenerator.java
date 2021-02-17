@@ -47,6 +47,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenPropertySheet;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator#getAudits <em>Audits</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator#getMetrics <em>Metrics</em>}</li>
@@ -73,7 +74,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenPropertySheet;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator#getPluginDirectory <em>Plugin Directory</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator#getExtensions <em>Extensions</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenEditorGenerator()
  * @model
@@ -633,7 +633,7 @@ public interface GenEditorGenerator extends EObject {
 	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenEditorGenerator_LabelParsers()
 	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GenParsers#getEditorGen
 	 * @model opposite="editorGen" containment="true"
-	 *        annotation="http://www.eclipse.org/gmf/2005/constraints ocl='labelParsers.oclIsUndefined() implies (diagram.getAllNodes()->forAll(labels->size()=0) and diagram.links->forAll(labels->size()=0) and not diagram.childNodes->exists(oclIsKindOf(GenChildLabelNode)))' description='No label may be declared without a parser'"
+	 *        annotation="http://www.eclipse.org/gmf/2005/constraints ocl='labelParsers.oclIsUndefined() implies (diagram.getAllNodes()-&gt;forAll(labels-&gt;size()=0) and diagram.links-&gt;forAll(labels-&gt;size()=0) and not diagram.childNodes-&gt;exists(oclIsKindOf(GenChildLabelNode)))' description='No label may be declared without a parser'"
 	 * @generated
 	 */
 	GenParsers getLabelParsers();

@@ -43,12 +43,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeLinkModelFacet;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenLinkConstraintsImpl#getLink <em>Link</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenLinkConstraintsImpl#getSourceEnd <em>Source End</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenLinkConstraintsImpl#getTargetEnd <em>Target End</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -97,6 +97,7 @@ public class GenLinkConstraintsImpl extends EObjectImpl implements GenLinkConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenLink getLink() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_LINK_CONSTRAINTS__LINK) return null;
 		return (GenLink)eInternalContainer();
@@ -117,6 +118,7 @@ public class GenLinkConstraintsImpl extends EObjectImpl implements GenLinkConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLink(GenLink newLink) {
 		if (newLink != eInternalContainer() || (eContainerFeatureID() != GMFGenPackage.GEN_LINK_CONSTRAINTS__LINK && newLink != null)) {
 			if (EcoreUtil.isAncestor(this, newLink))
@@ -138,6 +140,7 @@ public class GenLinkConstraintsImpl extends EObjectImpl implements GenLinkConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenConstraint getSourceEnd() {
 		if (sourceEnd != null && sourceEnd.eIsProxy()) {
 			InternalEObject oldSourceEnd = (InternalEObject)sourceEnd;
@@ -164,6 +167,7 @@ public class GenLinkConstraintsImpl extends EObjectImpl implements GenLinkConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSourceEnd(GenConstraint newSourceEnd) {
 		GenConstraint oldSourceEnd = sourceEnd;
 		sourceEnd = newSourceEnd;
@@ -176,6 +180,7 @@ public class GenLinkConstraintsImpl extends EObjectImpl implements GenLinkConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenConstraint getTargetEnd() {
 		if (targetEnd != null && targetEnd.eIsProxy()) {
 			InternalEObject oldTargetEnd = (InternalEObject)targetEnd;
@@ -202,6 +207,7 @@ public class GenLinkConstraintsImpl extends EObjectImpl implements GenLinkConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTargetEnd(GenConstraint newTargetEnd) {
 		GenConstraint oldTargetEnd = targetEnd;
 		targetEnd = newTargetEnd;

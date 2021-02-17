@@ -45,13 +45,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.SpecializationType;
  * @generated
  */
 public class SpecializationTypeItemProvider
-	extends ElementTypeItemProvider
-	implements	
-		IEditingDomainItemProvider,	
-		IStructuredItemContentProvider,	
-		ITreeItemContentProvider,	
-		IItemLabelProvider,	
-		IItemPropertySource {
+	extends ElementTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

@@ -32,10 +32,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.ExternalParserImpl#getHint <em>Hint</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -84,6 +84,7 @@ public class ExternalParserImpl extends GenParserImplementationImpl implements E
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getHint() {
 		return hint;
 	}
@@ -93,6 +94,7 @@ public class ExternalParserImpl extends GenParserImplementationImpl implements E
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setHint(String newHint) {
 		String oldHint = hint;
 		hint = newHint;
@@ -167,7 +169,7 @@ public class ExternalParserImpl extends GenParserImplementationImpl implements E
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (hint: ");
 		result.append(hint);
 		result.append(')');

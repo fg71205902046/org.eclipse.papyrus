@@ -38,10 +38,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenContextMenuImpl#getContext <em>Context</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -80,6 +80,7 @@ public class GenContextMenuImpl extends GenContributionManagerImpl implements Ge
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenCommonBase> getContext() {
 		if (context == null) {
 			context = new EObjectResolvingEList<GenCommonBase>(GenCommonBase.class, this, GMFGenPackage.GEN_CONTEXT_MENU__CONTEXT);

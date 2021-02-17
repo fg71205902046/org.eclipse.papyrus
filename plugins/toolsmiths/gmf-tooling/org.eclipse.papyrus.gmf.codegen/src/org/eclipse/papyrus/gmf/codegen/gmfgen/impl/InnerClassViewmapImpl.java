@@ -32,11 +32,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.InnerClassViewmap;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.InnerClassViewmapImpl#getClassName <em>Class Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.InnerClassViewmapImpl#getClassBody <em>Class Body</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -105,6 +105,7 @@ public class InnerClassViewmapImpl extends ViewmapImpl implements InnerClassView
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getClassName() {
 		return className;
 	}
@@ -114,6 +115,7 @@ public class InnerClassViewmapImpl extends ViewmapImpl implements InnerClassView
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setClassName(String newClassName) {
 		String oldClassName = className;
 		className = newClassName;
@@ -126,6 +128,7 @@ public class InnerClassViewmapImpl extends ViewmapImpl implements InnerClassView
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getClassBody() {
 		return classBody;
 	}
@@ -135,6 +138,7 @@ public class InnerClassViewmapImpl extends ViewmapImpl implements InnerClassView
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setClassBody(String newClassBody) {
 		String oldClassBody = classBody;
 		classBody = newClassBody;
@@ -219,7 +223,7 @@ public class InnerClassViewmapImpl extends ViewmapImpl implements InnerClassView
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (className: ");
 		result.append(className);
 		result.append(", classBody: ");

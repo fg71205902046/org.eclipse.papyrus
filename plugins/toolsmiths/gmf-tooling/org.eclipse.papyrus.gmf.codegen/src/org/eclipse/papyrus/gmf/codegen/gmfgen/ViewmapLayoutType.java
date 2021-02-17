@@ -160,6 +160,8 @@ public enum ViewmapLayoutType implements Enumerator
 	 * Returns the '<em><b>Viewmap Layout Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static ViewmapLayoutType get(String literal) {
@@ -176,6 +178,8 @@ public enum ViewmapLayoutType implements Enumerator
 	 * Returns the '<em><b>Viewmap Layout Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static ViewmapLayoutType getByName(String name) {
@@ -192,6 +196,8 @@ public enum ViewmapLayoutType implements Enumerator
 	 * Returns the '<em><b>Viewmap Layout Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static ViewmapLayoutType get(int value) {
@@ -242,6 +248,7 @@ public enum ViewmapLayoutType implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getValue() {
 	  return value;
 	}
@@ -251,6 +258,7 @@ public enum ViewmapLayoutType implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 	  return name;
 	}
@@ -260,6 +268,7 @@ public enum ViewmapLayoutType implements Enumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLiteral() {
 	  return literal;
 	}

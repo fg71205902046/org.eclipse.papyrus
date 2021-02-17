@@ -43,6 +43,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ToolGroupItem;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.ToolGroupImpl#getGroup <em>Group</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.ToolGroupImpl#getPalette <em>Palette</em>}</li>
@@ -51,7 +52,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ToolGroupItem;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.ToolGroupImpl#getEntries <em>Entries</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.ToolGroupImpl#isToolsOnly <em>Tools Only</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -140,6 +140,7 @@ public class ToolGroupImpl extends EntryBaseImpl implements ToolGroup {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ToolGroup getGroup() {
 		if (eContainerFeatureID() != GMFGenPackage.TOOL_GROUP__GROUP) return null;
 		return (ToolGroup)eInternalContainer();
@@ -178,6 +179,7 @@ public class ToolGroupImpl extends EntryBaseImpl implements ToolGroup {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPalette(Palette newPalette) {
 		if (newPalette != eInternalContainer() || (eContainerFeatureID() != GMFGenPackage.TOOL_GROUP__PALETTE && newPalette != null)) {
 			if (EcoreUtil.isAncestor(this, newPalette))
@@ -199,6 +201,7 @@ public class ToolGroupImpl extends EntryBaseImpl implements ToolGroup {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ToolGroupItem> getEntries() {
 		if (entries == null) {
 			entries = new EObjectContainmentWithInverseEList<ToolGroupItem>(ToolGroupItem.class, this, GMFGenPackage.TOOL_GROUP__ENTRIES, GMFGenPackage.TOOL_GROUP_ITEM__GROUP);
@@ -248,6 +251,7 @@ public class ToolGroupImpl extends EntryBaseImpl implements ToolGroup {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isStack() {
 		return stack;
 	}
@@ -257,6 +261,7 @@ public class ToolGroupImpl extends EntryBaseImpl implements ToolGroup {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStack(boolean newStack) {
 		boolean oldStack = stack;
 		stack = newStack;
@@ -269,6 +274,7 @@ public class ToolGroupImpl extends EntryBaseImpl implements ToolGroup {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isCollapse() {
 		return collapse;
 	}
@@ -278,6 +284,7 @@ public class ToolGroupImpl extends EntryBaseImpl implements ToolGroup {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCollapse(boolean newCollapse) {
 		boolean oldCollapse = collapse;
 		collapse = newCollapse;
@@ -458,7 +465,7 @@ public class ToolGroupImpl extends EntryBaseImpl implements ToolGroup {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (stack: ");
 		result.append(stack);
 		result.append(", collapse: ");

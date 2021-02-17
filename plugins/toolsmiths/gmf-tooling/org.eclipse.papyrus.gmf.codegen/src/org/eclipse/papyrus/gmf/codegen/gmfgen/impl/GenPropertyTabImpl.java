@@ -37,12 +37,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenPropertyTab;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenPropertyTabImpl#getSheet <em>Sheet</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenPropertyTabImpl#getID <em>ID</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenPropertyTabImpl#getLabel <em>Label</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -111,6 +111,7 @@ public abstract class GenPropertyTabImpl extends EObjectImpl implements GenPrope
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenPropertySheet getSheet() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_PROPERTY_TAB__SHEET) return null;
 		return (GenPropertySheet)eInternalContainer();
@@ -121,6 +122,7 @@ public abstract class GenPropertyTabImpl extends EObjectImpl implements GenPrope
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getID() {
 		return iD;
 	}
@@ -130,6 +132,7 @@ public abstract class GenPropertyTabImpl extends EObjectImpl implements GenPrope
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setID(String newID) {
 		String oldID = iD;
 		iD = newID;
@@ -159,6 +162,7 @@ public abstract class GenPropertyTabImpl extends EObjectImpl implements GenPrope
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLabel(String newLabel) {
 		String oldLabel = label;
 		label = newLabel;
@@ -291,7 +295,7 @@ public abstract class GenPropertyTabImpl extends EObjectImpl implements GenPrope
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (iD: ");
 		result.append(iD);
 		result.append(", label: ");

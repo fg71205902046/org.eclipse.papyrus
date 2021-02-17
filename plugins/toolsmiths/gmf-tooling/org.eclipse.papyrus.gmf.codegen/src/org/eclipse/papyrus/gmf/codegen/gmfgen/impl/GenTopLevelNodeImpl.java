@@ -33,10 +33,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenTopLevelNode;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenTopLevelNodeImpl#getDiagram <em>Diagram</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -65,6 +65,7 @@ public class GenTopLevelNodeImpl extends GenNodeImpl implements GenTopLevelNode 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenDiagram getDiagram() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_TOP_LEVEL_NODE__DIAGRAM) return null;
 		return (GenDiagram)eInternalContainer();

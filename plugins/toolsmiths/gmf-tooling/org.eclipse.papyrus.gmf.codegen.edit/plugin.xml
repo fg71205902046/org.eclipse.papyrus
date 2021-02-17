@@ -13,7 +13,62 @@
           org.eclipse.emf.edit.provider.IItemLabelProvider
           org.eclipse.emf.edit.provider.IItemPropertySource" />
   </extension>
-  
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated gmfgen -->
+      <factory
+            uri="http://www.eclipse.org/papyrus/gmf/2020/GenExtension"
+            class="org.eclipse.papyrus.gmf.codegen.genextension.provider.GenExtensionItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
+
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated gmfgen -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.papyrus.gmf.codegen.gmfgen.presentation.GMFGenModelWizardID"
+            name="%_UI_GMFGenModelWizard_label"
+            class="org.eclipse.papyrus.gmf.codegen.gmfgen.presentation.GMFGenModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/GMFGenModelFile.gif">
+         <description>%_UI_GMFGenModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated gmfgen -->
+      <editor
+            id="org.eclipse.papyrus.gmf.codegen.gmfgen.presentation.GMFGenEditorID"
+            name="%_UI_GMFGenEditor_label"
+            icon="icons/full/obj16/GMFGenModelFile.gif"
+            extensions="gmfgen"
+            class="org.eclipse.papyrus.gmf.codegen.gmfgen.presentation.GMFGenEditor"
+            contributorClass="org.eclipse.papyrus.gmf.codegen.gmfgen.presentation.GMFGenActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated gmfgen -->
+      <editor
+            id="org.eclipse.papyrus.gmf.codegen.genextension.presentation.GenExtensionEditorID"
+            name="%_UI_GenExtensionEditor_label"
+            icon="icons/full/obj16/GenExtensionModelFile.gif"
+            extensions="genextension"
+            class="org.eclipse.papyrus.gmf.codegen.genextension.presentation.GenExtensionEditor"
+            contributorClass="org.eclipse.papyrus.gmf.codegen.genextension.presentation.GenExtensionActionBarContributor">
+      </editor>
+   </extension>
+
 
   <extension
     point = "org.eclipse.ui.newWizards">

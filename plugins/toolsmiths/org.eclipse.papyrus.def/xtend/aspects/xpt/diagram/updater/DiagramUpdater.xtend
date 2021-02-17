@@ -30,8 +30,8 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagramUpdater
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
 import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeLinkModelFacet
-import org.eclipse.papyrus.papyrusgmfgenextension.CustomDiagramUpdaterSingleton
-import org.eclipse.papyrus.papyrusgmfgenextension.SpecificDiagramUpdater
+import org.eclipse.papyrus.gmf.codegen.genextension.CustomDiagramUpdaterSingleton
+import org.eclipse.papyrus.gmf.codegen.genextension.SpecificDiagramUpdater
 import xpt.Common_qvto
 import xpt.GenModelUtils_qvto
 import xpt.diagram.updater.UpdaterLinkType

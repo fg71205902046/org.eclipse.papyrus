@@ -40,6 +40,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeModelFacet;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode#getModelFacet <em>Model Facet</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode#getLabels <em>Labels</em>}</li>
@@ -49,11 +50,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeModelFacet;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode#getCreateCommandClassName <em>Create Command Class Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode#getReorientedIncomingLinks <em>Reoriented Incoming Links</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenNode()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/gmf/2005/constraints ocl='diagramRunTimeClass.ecoreClass.eAllSuperTypes->including(diagramRunTimeClass.ecoreClass)->one(ePackage.name = \'notation\' and name = \'Node\')' description='Node \'Diagram Runtime Class\' must be a notation::Node or sub-class'"
+ *        annotation="http://www.eclipse.org/gmf/2005/constraints ocl='diagramRunTimeClass.ecoreClass.eAllSuperTypes-&gt;including(diagramRunTimeClass.ecoreClass)-&gt;one(ePackage.name = \'notation\' and name = \'Node\')' description='Node \'Diagram Runtime Class\' must be a notation::Node or sub-class'"
  * @generated
  */
 public interface GenNode extends GenChildContainer, GenLinkEnd {

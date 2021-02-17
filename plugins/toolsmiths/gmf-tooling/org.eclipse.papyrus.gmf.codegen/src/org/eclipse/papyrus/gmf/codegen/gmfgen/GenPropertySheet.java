@@ -37,6 +37,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenPropertyTab;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenPropertySheet#getEditorGen <em>Editor Gen</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenPropertySheet#getTabs <em>Tabs</em>}</li>
@@ -45,7 +46,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenPropertyTab;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenPropertySheet#isNeedsCaption <em>Needs Caption</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenPropertySheet#getLabelProviderClassName <em>Label Provider Class Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenPropertySheet()
  * @model

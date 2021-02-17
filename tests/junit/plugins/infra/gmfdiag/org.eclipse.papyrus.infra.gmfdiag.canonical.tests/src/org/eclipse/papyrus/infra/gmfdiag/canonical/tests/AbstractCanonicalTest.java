@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2015, 2016 Christian W. Damus and others.
- * 
+ * Copyright (c) 2015, 2016, 2021 Christian W. Damus and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *   Vincent LORENZO (CEA LIST) - vincent.lorenzo@cea.fr - bug 569174
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.canonical.tests;
@@ -56,11 +56,6 @@ import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.requests.GroupRequest;
-import org.eclipse.papyrus.gmf.codegen.gmfgen.GenChildNode;
-import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase;
-import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram;
-import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink;
-import org.eclipse.papyrus.gmf.codegen.gmfgen.GenTopLevelNode;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
@@ -81,8 +76,16 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.gmf.codegen.genextension.GenExtensionPackage;
+import org.eclipse.papyrus.gmf.codegen.genextension.VisualIDOverride;
+import org.eclipse.papyrus.gmf.codegen.genextension.util.PapyrusgmfgenextensionSwitch;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenChildNode;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenTopLevelNode;
 import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.TreeIterators;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.SetCanonicalCommand;
@@ -95,9 +98,6 @@ import org.eclipse.papyrus.junit.utils.JUnitUtils;
 import org.eclipse.papyrus.junit.utils.rules.AnnotationRule;
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
 import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
-import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
-import org.eclipse.papyrus.papyrusgmfgenextension.VisualIDOverride;
-import org.eclipse.papyrus.papyrusgmfgenextension.util.PapyrusgmfgenextensionSwitch;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassAttributeCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassNestedClassifierCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassOperationCompartmentEditPart;
@@ -482,7 +482,7 @@ public class AbstractCanonicalTest extends AbstractPapyrusTest {
 	}
 
 	private Iterator<Command> leafCommands(Command command) {
-		return new AbstractTreeIterator<Command>(command, true) {
+		return new AbstractTreeIterator<>(command, true) {
 			private static final long serialVersionUID = 1L;
 
 			@SuppressWarnings("unchecked")
@@ -761,23 +761,25 @@ public class AbstractCanonicalTest extends AbstractPapyrusTest {
 
 		try {
 			URI classdiagram = URI.createPlatformPluginURI(String.format("/%s/model/classdiagram.gmfgen", UMLDiagramEditorPlugin.ID), true);
-			VisualIDOverride ov = UML2Util.load(rset, classdiagram, PapyrusgmfgenextensionPackage.eINSTANCE.getVisualIDOverride());
-			PapyrusgmfgenextensionSwitch<Class<? extends View>> typeSwitch = new PapyrusgmfgenextensionSwitch<Class<? extends View>>() {
+			VisualIDOverride ov = UML2Util.load(rset, classdiagram, GenExtensionPackage.eINSTANCE.getVisualIDOverride());
+			PapyrusgmfgenextensionSwitch<Class<? extends View>> typeSwitch = new PapyrusgmfgenextensionSwitch<>() {
 
 				@Override
 				public Class<? extends View> caseVisualIDOverride(VisualIDOverride object) {
 					Class<? extends View> result = null;
 					GenCommonBase base = object.getGenView();
-					if (base instanceof GenDiagram)
+					if (base instanceof GenDiagram) {
 						result = Diagram.class;
-					else if (base instanceof GenTopLevelNode)
+					} else if (base instanceof GenTopLevelNode) {
 						result = Node.class;
-					else if (base instanceof GenChildNode)
+					} else if (base instanceof GenChildNode) {
 						result = Node.class;
-					else if (base instanceof GenLink)
+					} else if (base instanceof GenLink) {
 						result = Edge.class;
-					if (result != null)
+					}
+					if (result != null) {
 						map.put(object.getVisualID(), result);
+					}
 					return result;
 				}
 			};

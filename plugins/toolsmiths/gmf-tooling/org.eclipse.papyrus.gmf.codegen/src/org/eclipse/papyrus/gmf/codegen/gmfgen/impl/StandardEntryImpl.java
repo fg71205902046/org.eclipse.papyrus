@@ -36,10 +36,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.StandardEntryKind;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.StandardEntryImpl#getKind <em>Kind</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -88,6 +88,7 @@ public class StandardEntryImpl extends AbstractToolEntryImpl implements Standard
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public StandardEntryKind getKind() {
 		return kind;
 	}
@@ -97,6 +98,7 @@ public class StandardEntryImpl extends AbstractToolEntryImpl implements Standard
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setKind(StandardEntryKind newKind) {
 		StandardEntryKind oldKind = kind;
 		kind = newKind == null ? KIND_EDEFAULT : newKind;
@@ -171,7 +173,7 @@ public class StandardEntryImpl extends AbstractToolEntryImpl implements Standard
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (kind: ");
 		result.append(kind);
 		result.append(')');

@@ -42,6 +42,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenPropertyTab;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenPropertySheetImpl#getEditorGen <em>Editor Gen</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenPropertySheetImpl#getTabs <em>Tabs</em>}</li>
@@ -50,7 +51,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenPropertyTab;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenPropertySheetImpl#isNeedsCaption <em>Needs Caption</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenPropertySheetImpl#getLabelProviderClassName <em>Label Provider Class Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -169,6 +169,7 @@ public class GenPropertySheetImpl extends EObjectImpl implements GenPropertyShee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenEditorGenerator getEditorGen() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_PROPERTY_SHEET__EDITOR_GEN) return null;
 		return (GenEditorGenerator)eInternalContainer();
@@ -179,6 +180,7 @@ public class GenPropertySheetImpl extends EObjectImpl implements GenPropertyShee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenPropertyTab> getTabs() {
 		if (tabs == null) {
 			tabs = new EObjectContainmentWithInverseEList<GenPropertyTab>(GenPropertyTab.class, this, GMFGenPackage.GEN_PROPERTY_SHEET__TABS, GMFGenPackage.GEN_PROPERTY_TAB__SHEET);
@@ -208,6 +210,7 @@ public class GenPropertySheetImpl extends EObjectImpl implements GenPropertyShee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPackageName(String newPackageName) {
 		String oldPackageName = packageName;
 		packageName = newPackageName;
@@ -220,6 +223,7 @@ public class GenPropertySheetImpl extends EObjectImpl implements GenPropertyShee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isReadOnly() {
 		return readOnly;
 	}
@@ -229,6 +233,7 @@ public class GenPropertySheetImpl extends EObjectImpl implements GenPropertyShee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReadOnly(boolean newReadOnly) {
 		boolean oldReadOnly = readOnly;
 		readOnly = newReadOnly;
@@ -241,6 +246,7 @@ public class GenPropertySheetImpl extends EObjectImpl implements GenPropertyShee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isNeedsCaption() {
 		return needsCaption;
 	}
@@ -250,6 +256,7 @@ public class GenPropertySheetImpl extends EObjectImpl implements GenPropertyShee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNeedsCaption(boolean newNeedsCaption) {
 		boolean oldNeedsCaption = needsCaption;
 		needsCaption = newNeedsCaption;
@@ -279,6 +286,7 @@ public class GenPropertySheetImpl extends EObjectImpl implements GenPropertyShee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLabelProviderClassName(String newLabelProviderClassName) {
 		String oldLabelProviderClassName = labelProviderClassName;
 		labelProviderClassName = newLabelProviderClassName;
@@ -457,7 +465,7 @@ public class GenPropertySheetImpl extends EObjectImpl implements GenPropertyShee
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (packageName: ");
 		result.append(packageName);
 		result.append(", readOnly: ");

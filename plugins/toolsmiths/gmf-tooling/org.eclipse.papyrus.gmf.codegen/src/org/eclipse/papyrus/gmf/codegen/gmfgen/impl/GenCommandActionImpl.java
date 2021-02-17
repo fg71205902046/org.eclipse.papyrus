@@ -36,12 +36,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenContributionManager;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCommandActionImpl#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCommandActionImpl#getCommandIdentifier <em>Command Identifier</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCommandActionImpl#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -110,6 +110,7 @@ public class GenCommandActionImpl extends EObjectImpl implements GenCommandActio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenContributionManager getOwner() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_COMMAND_ACTION__OWNER) return null;
 		return (GenContributionManager)eInternalContainer();
@@ -120,6 +121,7 @@ public class GenCommandActionImpl extends EObjectImpl implements GenCommandActio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getCommandIdentifier() {
 		return commandIdentifier;
 	}
@@ -129,6 +131,7 @@ public class GenCommandActionImpl extends EObjectImpl implements GenCommandActio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCommandIdentifier(String newCommandIdentifier) {
 		String oldCommandIdentifier = commandIdentifier;
 		commandIdentifier = newCommandIdentifier;
@@ -141,6 +144,7 @@ public class GenCommandActionImpl extends EObjectImpl implements GenCommandActio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -150,6 +154,7 @@ public class GenCommandActionImpl extends EObjectImpl implements GenCommandActio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -282,7 +287,7 @@ public class GenCommandActionImpl extends EObjectImpl implements GenCommandActio
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (commandIdentifier: ");
 		result.append(commandIdentifier);
 		result.append(", name: ");

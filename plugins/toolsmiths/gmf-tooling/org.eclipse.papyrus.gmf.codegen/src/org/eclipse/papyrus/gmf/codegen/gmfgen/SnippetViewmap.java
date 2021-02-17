@@ -29,10 +29,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.Viewmap;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.SnippetViewmap#getBody <em>Body</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getSnippetViewmap()
  * @model

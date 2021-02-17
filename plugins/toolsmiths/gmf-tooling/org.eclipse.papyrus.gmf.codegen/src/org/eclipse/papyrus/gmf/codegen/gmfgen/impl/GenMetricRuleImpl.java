@@ -41,6 +41,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ValueExpression;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenMetricRuleImpl#getKey <em>Key</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenMetricRuleImpl#getRule <em>Rule</em>}</li>
@@ -49,7 +50,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ValueExpression;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenMetricRuleImpl#getHighLimit <em>High Limit</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenMetricRuleImpl#getContainer <em>Container</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -158,6 +158,7 @@ public class GenMetricRuleImpl extends GenRuleBaseImpl implements GenMetricRule 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getKey() {
 		return key;
 	}
@@ -167,6 +168,7 @@ public class GenMetricRuleImpl extends GenRuleBaseImpl implements GenMetricRule 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setKey(String newKey) {
 		String oldKey = key;
 		key = newKey;
@@ -179,6 +181,7 @@ public class GenMetricRuleImpl extends GenRuleBaseImpl implements GenMetricRule 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ValueExpression getRule() {
 		if (rule != null && rule.eIsProxy()) {
 			InternalEObject oldRule = (InternalEObject)rule;
@@ -205,6 +208,7 @@ public class GenMetricRuleImpl extends GenRuleBaseImpl implements GenMetricRule 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRule(ValueExpression newRule) {
 		ValueExpression oldRule = rule;
 		rule = newRule;
@@ -217,6 +221,7 @@ public class GenMetricRuleImpl extends GenRuleBaseImpl implements GenMetricRule 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenMeasurable getTarget() {
 		return target;
 	}
@@ -241,6 +246,7 @@ public class GenMetricRuleImpl extends GenRuleBaseImpl implements GenMetricRule 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTarget(GenMeasurable newTarget) {
 		if (newTarget != target) {
 			NotificationChain msgs = null;
@@ -260,6 +266,7 @@ public class GenMetricRuleImpl extends GenRuleBaseImpl implements GenMetricRule 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenMetricContainer getContainer() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_METRIC_RULE__CONTAINER) return null;
 		return (GenMetricContainer)eInternalContainer();
@@ -280,6 +287,7 @@ public class GenMetricRuleImpl extends GenRuleBaseImpl implements GenMetricRule 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setContainer(GenMetricContainer newContainer) {
 		if (newContainer != eInternalContainer() || (eContainerFeatureID() != GMFGenPackage.GEN_METRIC_RULE__CONTAINER && newContainer != null)) {
 			if (EcoreUtil.isAncestor(this, newContainer))
@@ -301,6 +309,7 @@ public class GenMetricRuleImpl extends GenRuleBaseImpl implements GenMetricRule 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Double getLowLimit() {
 		return lowLimit;
 	}
@@ -310,6 +319,7 @@ public class GenMetricRuleImpl extends GenRuleBaseImpl implements GenMetricRule 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLowLimit(Double newLowLimit) {
 		Double oldLowLimit = lowLimit;
 		lowLimit = newLowLimit;
@@ -322,6 +332,7 @@ public class GenMetricRuleImpl extends GenRuleBaseImpl implements GenMetricRule 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Double getHighLimit() {
 		return highLimit;
 	}
@@ -331,6 +342,7 @@ public class GenMetricRuleImpl extends GenRuleBaseImpl implements GenMetricRule 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setHighLimit(Double newHighLimit) {
 		Double oldHighLimit = highLimit;
 		highLimit = newHighLimit;
@@ -502,7 +514,7 @@ public class GenMetricRuleImpl extends GenRuleBaseImpl implements GenMetricRule 
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (key: ");
 		result.append(key);
 		result.append(", lowLimit: ");

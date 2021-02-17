@@ -38,13 +38,13 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenPreference;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenPreferenceImpl#getPage <em>Page</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenPreferenceImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenPreferenceImpl#getKey <em>Key</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenPreferenceImpl#getDefaultValue <em>Default Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -133,6 +133,7 @@ public class GenPreferenceImpl extends EObjectImpl implements GenPreference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenCustomPreferencePage getPage() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_PREFERENCE__PAGE) return null;
 		return (GenCustomPreferencePage)eInternalContainer();
@@ -143,6 +144,7 @@ public class GenPreferenceImpl extends EObjectImpl implements GenPreference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -152,6 +154,7 @@ public class GenPreferenceImpl extends EObjectImpl implements GenPreference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -200,6 +203,7 @@ public class GenPreferenceImpl extends EObjectImpl implements GenPreference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setKey(String newKey) {
 		String oldKey = key;
 		key = newKey;
@@ -212,6 +216,7 @@ public class GenPreferenceImpl extends EObjectImpl implements GenPreference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDefaultValue() {
 		return defaultValue;
 	}
@@ -221,6 +226,7 @@ public class GenPreferenceImpl extends EObjectImpl implements GenPreference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDefaultValue(String newDefaultValue) {
 		String oldDefaultValue = defaultValue;
 		defaultValue = newDefaultValue;
@@ -363,7 +369,7 @@ public class GenPreferenceImpl extends EObjectImpl implements GenPreference {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
 		result.append(", key: ");

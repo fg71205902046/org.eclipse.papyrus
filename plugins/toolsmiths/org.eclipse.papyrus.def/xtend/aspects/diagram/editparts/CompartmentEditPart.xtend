@@ -19,7 +19,7 @@ package aspects.diagram.editparts
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCompartment
-import org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView
+import org.eclipse.papyrus.gmf.codegen.genextension.ExtendedGenView
 import xpt.Common
 
 @Singleton class CompartmentEditPart extends diagram.editparts.CompartmentEditPart {

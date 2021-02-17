@@ -36,12 +36,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.LabelModelFacet;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenLabel#isReadOnly <em>Read Only</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenLabel#isElementIcon <em>Element Icon</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenLabel#getModelFacet <em>Model Facet</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenLabel()
  * @model abstract="true"

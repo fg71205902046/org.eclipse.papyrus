@@ -38,12 +38,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ValueExpression;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenFeatureValueSpecImpl#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenFeatureValueSpecImpl#getFeatureSeqInitializer <em>Feature Seq Initializer</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenFeatureValueSpecImpl#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -92,6 +92,7 @@ public class GenFeatureValueSpecImpl extends EObjectImpl implements GenFeatureVa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenFeature getFeature() {
 		if (feature != null && feature.eIsProxy()) {
 			InternalEObject oldFeature = (InternalEObject)feature;
@@ -118,6 +119,7 @@ public class GenFeatureValueSpecImpl extends EObjectImpl implements GenFeatureVa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFeature(GenFeature newFeature) {
 		GenFeature oldFeature = feature;
 		feature = newFeature;
@@ -130,6 +132,7 @@ public class GenFeatureValueSpecImpl extends EObjectImpl implements GenFeatureVa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenFeatureSeqInitializer getFeatureSeqInitializer() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_FEATURE_VALUE_SPEC__FEATURE_SEQ_INITIALIZER) return null;
 		return (GenFeatureSeqInitializer)eInternalContainer();
@@ -140,6 +143,7 @@ public class GenFeatureValueSpecImpl extends EObjectImpl implements GenFeatureVa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ValueExpression getValue() {
 		if (value != null && value.eIsProxy()) {
 			InternalEObject oldValue = (InternalEObject)value;
@@ -166,6 +170,7 @@ public class GenFeatureValueSpecImpl extends EObjectImpl implements GenFeatureVa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValue(ValueExpression newValue) {
 		ValueExpression oldValue = value;
 		value = newValue;

@@ -30,11 +30,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.StandardPreferencePages;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenStandardPreferencePage#getKind <em>Kind</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenStandardPreferencePage#getClassName <em>Class Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenStandardPreferencePage()
  * @model

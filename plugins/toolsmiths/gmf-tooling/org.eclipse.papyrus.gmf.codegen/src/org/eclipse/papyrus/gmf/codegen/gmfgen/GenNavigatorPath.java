@@ -32,10 +32,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorPathSegment;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorPath#getSegments <em>Segments</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenNavigatorPath()
  * @model

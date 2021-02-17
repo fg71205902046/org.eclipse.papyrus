@@ -57,6 +57,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.Viewmap;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenPluginImpl#getEditorGen <em>Editor Gen</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenPluginImpl#getID <em>ID</em>}</li>
@@ -67,7 +68,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.Viewmap;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenPluginImpl#getRequiredPlugins <em>Required Plugins</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenPluginImpl#getActivatorClassName <em>Activator Class Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -226,6 +226,7 @@ public class GenPluginImpl extends EObjectImpl implements GenPlugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenEditorGenerator getEditorGen() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_PLUGIN__EDITOR_GEN) return null;
 		return (GenEditorGenerator)eInternalContainer();
@@ -262,6 +263,7 @@ public class GenPluginImpl extends EObjectImpl implements GenPlugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setID(String newID) {
 		String oldID = iD;
 		iD = newID;
@@ -302,6 +304,7 @@ public class GenPluginImpl extends EObjectImpl implements GenPlugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -314,6 +317,7 @@ public class GenPluginImpl extends EObjectImpl implements GenPlugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getProvider() {
 		return provider;
 	}
@@ -323,6 +327,7 @@ public class GenPluginImpl extends EObjectImpl implements GenPlugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProvider(String newProvider) {
 		String oldProvider = provider;
 		provider = newProvider;
@@ -335,6 +340,7 @@ public class GenPluginImpl extends EObjectImpl implements GenPlugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getVersion() {
 		return version;
 	}
@@ -344,6 +350,7 @@ public class GenPluginImpl extends EObjectImpl implements GenPlugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVersion(String newVersion) {
 		String oldVersion = version;
 		version = newVersion;
@@ -356,6 +363,7 @@ public class GenPluginImpl extends EObjectImpl implements GenPlugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isPrintingEnabled() {
 		return printingEnabled;
 	}
@@ -365,6 +373,7 @@ public class GenPluginImpl extends EObjectImpl implements GenPlugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPrintingEnabled(boolean newPrintingEnabled) {
 		boolean oldPrintingEnabled = printingEnabled;
 		printingEnabled = newPrintingEnabled;
@@ -377,6 +386,7 @@ public class GenPluginImpl extends EObjectImpl implements GenPlugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<String> getRequiredPlugins() {
 		if (requiredPlugins == null) {
 			requiredPlugins = new EDataTypeUniqueEList<String>(String.class, this, GMFGenPackage.GEN_PLUGIN__REQUIRED_PLUGINS);
@@ -407,6 +417,7 @@ public class GenPluginImpl extends EObjectImpl implements GenPlugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setActivatorClassName(String newActivatorClassName) {
 		String oldActivatorClassName = activatorClassName;
 		activatorClassName = newActivatorClassName;
@@ -699,7 +710,7 @@ public class GenPluginImpl extends EObjectImpl implements GenPlugin {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (iD: ");
 		result.append(iD);
 		result.append(", name: ");

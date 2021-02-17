@@ -41,13 +41,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.InitDiagramAction;
  * @generated
  */
 public class InitDiagramActionItemProvider
-	extends GenActionItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends GenActionItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

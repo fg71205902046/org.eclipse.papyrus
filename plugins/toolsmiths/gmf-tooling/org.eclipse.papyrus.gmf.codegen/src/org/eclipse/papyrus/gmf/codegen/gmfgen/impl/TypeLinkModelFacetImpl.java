@@ -37,11 +37,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeLinkModelFacet;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.TypeLinkModelFacetImpl#getSourceMetaFeature <em>Source Meta Feature</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.TypeLinkModelFacetImpl#getTargetMetaFeature <em>Target Meta Feature</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -90,6 +90,7 @@ public class TypeLinkModelFacetImpl extends TypeModelFacetImpl implements TypeLi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenFeature getSourceMetaFeature() {
 		if (sourceMetaFeature != null && sourceMetaFeature.eIsProxy()) {
 			InternalEObject oldSourceMetaFeature = (InternalEObject)sourceMetaFeature;
@@ -116,6 +117,7 @@ public class TypeLinkModelFacetImpl extends TypeModelFacetImpl implements TypeLi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSourceMetaFeature(GenFeature newSourceMetaFeature) {
 		GenFeature oldSourceMetaFeature = sourceMetaFeature;
 		sourceMetaFeature = newSourceMetaFeature;
@@ -128,6 +130,7 @@ public class TypeLinkModelFacetImpl extends TypeModelFacetImpl implements TypeLi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenFeature getTargetMetaFeature() {
 		if (targetMetaFeature != null && targetMetaFeature.eIsProxy()) {
 			InternalEObject oldTargetMetaFeature = (InternalEObject)targetMetaFeature;
@@ -154,6 +157,7 @@ public class TypeLinkModelFacetImpl extends TypeModelFacetImpl implements TypeLi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTargetMetaFeature(GenFeature newTargetMetaFeature) {
 		GenFeature oldTargetMetaFeature = targetMetaFeature;
 		targetMetaFeature = newTargetMetaFeature;

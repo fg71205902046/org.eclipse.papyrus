@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="ASCII"?>
 <uriMap:MappingContainer xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:uriMap="http:///www.eclipse.org/m2m/qvt/oml/MModelUriMap/1.0.0">
-  <mapping sourceURI="http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension" targetURI="platform:/resource/org.eclipse.papyrus.gmfgenextension/model/papyrusGmfgenExtension.ecore"/>
+  <mapping sourceURI="http://www.eclipse.org/papyrus/gmf/2020/GenExtension" targetURI="platform:/resource/org.eclipse.papyrus.gmfgenextension/model/papyrusGmfgenExtension.ecore"/>
 </uriMap:MappingContainer>

@@ -27,11 +27,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenTemplateInvocationBase;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenTemplateInvocation#getInputs <em>Inputs</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenTemplateInvocation#getOclExpression <em>Ocl Expression</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenTemplateInvocation()
  * @model

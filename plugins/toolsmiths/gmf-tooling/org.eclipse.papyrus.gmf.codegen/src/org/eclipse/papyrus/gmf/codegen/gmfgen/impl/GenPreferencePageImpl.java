@@ -41,6 +41,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenPreferencePage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenPreferencePageImpl#getID <em>ID</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenPreferencePageImpl#getName <em>Name</em>}</li>
@@ -48,7 +49,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenPreferencePage;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenPreferencePageImpl#getParent <em>Parent</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenPreferencePageImpl#getParentCategory <em>Parent Category</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -147,6 +147,7 @@ public abstract class GenPreferencePageImpl extends EObjectImpl implements GenPr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getID() {
 		return iD;
 	}
@@ -156,6 +157,7 @@ public abstract class GenPreferencePageImpl extends EObjectImpl implements GenPr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setID(String newID) {
 		String oldID = iD;
 		iD = newID;
@@ -168,6 +170,7 @@ public abstract class GenPreferencePageImpl extends EObjectImpl implements GenPr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -177,6 +180,7 @@ public abstract class GenPreferencePageImpl extends EObjectImpl implements GenPr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -189,6 +193,7 @@ public abstract class GenPreferencePageImpl extends EObjectImpl implements GenPr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenPreferencePage> getChildren() {
 		if (children == null) {
 			children = new EObjectContainmentWithInverseEList<GenPreferencePage>(GenPreferencePage.class, this, GMFGenPackage.GEN_PREFERENCE_PAGE__CHILDREN, GMFGenPackage.GEN_PREFERENCE_PAGE__PARENT);
@@ -201,6 +206,7 @@ public abstract class GenPreferencePageImpl extends EObjectImpl implements GenPr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenPreferencePage getParent() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_PREFERENCE_PAGE__PARENT) return null;
 		return (GenPreferencePage)eInternalContainer();
@@ -211,6 +217,7 @@ public abstract class GenPreferencePageImpl extends EObjectImpl implements GenPr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getParentCategory() {
 		return parentCategory;
 	}
@@ -220,6 +227,7 @@ public abstract class GenPreferencePageImpl extends EObjectImpl implements GenPr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setParentCategory(String newParentCategory) {
 		String oldParentCategory = parentCategory;
 		parentCategory = newParentCategory;
@@ -408,7 +416,7 @@ public abstract class GenPreferencePageImpl extends EObjectImpl implements GenPr
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (iD: ");
 		result.append(iD);
 		result.append(", name: ");

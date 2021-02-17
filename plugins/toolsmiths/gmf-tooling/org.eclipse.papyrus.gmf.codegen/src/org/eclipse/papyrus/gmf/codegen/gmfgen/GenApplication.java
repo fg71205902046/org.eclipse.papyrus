@@ -35,6 +35,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenToolBarManager;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenApplication#getEditorGen <em>Editor Gen</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenApplication#getID <em>ID</em>}</li>
@@ -51,7 +52,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenToolBarManager;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenApplication#getMainMenu <em>Main Menu</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenApplication#getMainToolBar <em>Main Tool Bar</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenApplication()
  * @model

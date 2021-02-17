@@ -41,10 +41,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenAuditable;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenAuditableImpl#getContextSelector <em>Context Selector</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -83,6 +83,7 @@ public abstract class GenAuditableImpl extends EObjectImpl implements GenAuditab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenAuditContext getContextSelector() {
 		if (contextSelector != null && contextSelector.eIsProxy()) {
 			InternalEObject oldContextSelector = (InternalEObject)contextSelector;
@@ -124,6 +125,7 @@ public abstract class GenAuditableImpl extends EObjectImpl implements GenAuditab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setContextSelector(GenAuditContext newContextSelector) {
 		if (newContextSelector != contextSelector) {
 			NotificationChain msgs = null;

@@ -34,13 +34,13 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.ElementType#getDiagramElement <em>Diagram Element</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.ElementType#getUniqueIdentifier <em>Unique Identifier</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.ElementType#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.ElementType#isDefinedExternally <em>Defined Externally</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getElementType()
  * @model abstract="true"

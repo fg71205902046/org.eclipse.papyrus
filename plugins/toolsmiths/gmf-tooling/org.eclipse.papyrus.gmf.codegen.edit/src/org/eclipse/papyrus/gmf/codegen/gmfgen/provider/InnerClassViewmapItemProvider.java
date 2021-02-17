@@ -45,13 +45,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.InnerClassViewmap;
  * @generated
  */
 public class InnerClassViewmapItemProvider
-	extends ViewmapItemProvider
-	implements	
-		IEditingDomainItemProvider,	
-		IStructuredItemContentProvider,	
-		ITreeItemContentProvider,	
-		IItemLabelProvider,	
-		IItemPropertySource {
+	extends ViewmapItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

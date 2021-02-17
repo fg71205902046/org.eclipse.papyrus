@@ -43,6 +43,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenAuditRule;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenAuditContainerImpl#getRoot <em>Root</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenAuditContainerImpl#getId <em>Id</em>}</li>
@@ -51,7 +52,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenAuditRule;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenAuditContainerImpl#getPath <em>Path</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenAuditContainerImpl#getAudits <em>Audits</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -160,6 +160,7 @@ public class GenAuditContainerImpl extends EObjectImpl implements GenAuditContai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenAuditRoot getRoot() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_AUDIT_CONTAINER__ROOT) return null;
 		return (GenAuditRoot)eInternalContainer();
@@ -170,6 +171,7 @@ public class GenAuditContainerImpl extends EObjectImpl implements GenAuditContai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getId() {
 		return id;
 	}
@@ -179,6 +181,7 @@ public class GenAuditContainerImpl extends EObjectImpl implements GenAuditContai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setId(String newId) {
 		String oldId = id;
 		id = newId;
@@ -191,6 +194,7 @@ public class GenAuditContainerImpl extends EObjectImpl implements GenAuditContai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -200,6 +204,7 @@ public class GenAuditContainerImpl extends EObjectImpl implements GenAuditContai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -212,6 +217,7 @@ public class GenAuditContainerImpl extends EObjectImpl implements GenAuditContai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDescription() {
 		return description;
 	}
@@ -221,6 +227,7 @@ public class GenAuditContainerImpl extends EObjectImpl implements GenAuditContai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDescription(String newDescription) {
 		String oldDescription = description;
 		description = newDescription;
@@ -233,6 +240,7 @@ public class GenAuditContainerImpl extends EObjectImpl implements GenAuditContai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenAuditContainer> getPath() {
 		if (path == null) {
 			path = new EObjectResolvingEList<GenAuditContainer>(GenAuditContainer.class, this, GMFGenPackage.GEN_AUDIT_CONTAINER__PATH);
@@ -245,6 +253,7 @@ public class GenAuditContainerImpl extends EObjectImpl implements GenAuditContai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenAuditRule> getAudits() {
 		if (audits == null) {
 			audits = new EObjectWithInverseResolvingEList<GenAuditRule>(GenAuditRule.class, this, GMFGenPackage.GEN_AUDIT_CONTAINER__AUDITS, GMFGenPackage.GEN_AUDIT_RULE__CATEGORY);
@@ -415,7 +424,7 @@ public class GenAuditContainerImpl extends EObjectImpl implements GenAuditContai
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (id: ");
 		result.append(id);
 		result.append(", name: ");

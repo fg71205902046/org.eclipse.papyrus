@@ -36,10 +36,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenConstantColor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenConstantColorImpl#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -88,6 +88,7 @@ public class GenConstantColorImpl extends EObjectImpl implements GenConstantColo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DiagramColors getName() {
 		return name;
 	}
@@ -97,6 +98,7 @@ public class GenConstantColorImpl extends EObjectImpl implements GenConstantColo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(DiagramColors newName) {
 		DiagramColors oldName = name;
 		name = newName == null ? NAME_EDEFAULT : newName;
@@ -171,7 +173,7 @@ public class GenConstantColorImpl extends EObjectImpl implements GenConstantColo
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
 		result.append(')');

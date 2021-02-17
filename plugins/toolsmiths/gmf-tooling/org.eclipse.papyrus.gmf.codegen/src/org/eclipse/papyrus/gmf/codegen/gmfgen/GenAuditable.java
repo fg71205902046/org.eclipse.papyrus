@@ -36,10 +36,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenRuleTarget;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenAuditable#getContextSelector <em>Context Selector</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenAuditable()
  * @model abstract="true"

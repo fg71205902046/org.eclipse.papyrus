@@ -37,12 +37,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenLinkConstraints#getLink <em>Link</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenLinkConstraints#getSourceEnd <em>Source End</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenLinkConstraints#getTargetEnd <em>Target End</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenLinkConstraints()
  * @model annotation="http://www.eclipse.org/gmf/2005/constraints ocl='not sourceEnd.oclIsUndefined() or not targetEnd.oclIsUndefined()' description='Either \'sourceEnd\' or \'targetEnd\' constraint must be specified'"

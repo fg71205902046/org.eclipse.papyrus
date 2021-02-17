@@ -36,6 +36,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.OpenDiagramBehaviour;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.OpenDiagramBehaviourImpl#getSubject <em>Subject</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.OpenDiagramBehaviourImpl#getEditPolicyClassName <em>Edit Policy Class Name</em>}</li>
@@ -43,7 +44,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.OpenDiagramBehaviour;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.OpenDiagramBehaviourImpl#getEditorID <em>Editor ID</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.OpenDiagramBehaviourImpl#isOpenAsEclipseEditor <em>Open As Eclipse Editor</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -153,6 +153,7 @@ public class OpenDiagramBehaviourImpl extends EObjectImpl implements OpenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenCommonBase getSubject() {
 		if (eContainerFeatureID() != GMFGenPackage.OPEN_DIAGRAM_BEHAVIOUR__SUBJECT) return null;
 		return (GenCommonBase)eInternalContainer();
@@ -179,6 +180,7 @@ public class OpenDiagramBehaviourImpl extends EObjectImpl implements OpenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEditPolicyClassName(String newEditPolicyClassName) {
 		String oldEditPolicyClassName = editPolicyClassName;
 		editPolicyClassName = newEditPolicyClassName;
@@ -191,6 +193,7 @@ public class OpenDiagramBehaviourImpl extends EObjectImpl implements OpenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDiagramKind() {
 		return diagramKind;
 	}
@@ -200,6 +203,7 @@ public class OpenDiagramBehaviourImpl extends EObjectImpl implements OpenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDiagramKind(String newDiagramKind) {
 		String oldDiagramKind = diagramKind;
 		diagramKind = newDiagramKind;
@@ -212,6 +216,7 @@ public class OpenDiagramBehaviourImpl extends EObjectImpl implements OpenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getEditorID() {
 		return editorID;
 	}
@@ -221,6 +226,7 @@ public class OpenDiagramBehaviourImpl extends EObjectImpl implements OpenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEditorID(String newEditorID) {
 		String oldEditorID = editorID;
 		editorID = newEditorID;
@@ -233,6 +239,7 @@ public class OpenDiagramBehaviourImpl extends EObjectImpl implements OpenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isOpenAsEclipseEditor() {
 		return openAsEclipseEditor;
 	}
@@ -242,6 +249,7 @@ public class OpenDiagramBehaviourImpl extends EObjectImpl implements OpenDiagram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOpenAsEclipseEditor(boolean newOpenAsEclipseEditor) {
 		boolean oldOpenAsEclipseEditor = openAsEclipseEditor;
 		openAsEclipseEditor = newOpenAsEclipseEditor;
@@ -403,7 +411,7 @@ public class OpenDiagramBehaviourImpl extends EObjectImpl implements OpenDiagram
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (editPolicyClassName: ");
 		result.append(editPolicyClassName);
 		result.append(", diagramKind: ");

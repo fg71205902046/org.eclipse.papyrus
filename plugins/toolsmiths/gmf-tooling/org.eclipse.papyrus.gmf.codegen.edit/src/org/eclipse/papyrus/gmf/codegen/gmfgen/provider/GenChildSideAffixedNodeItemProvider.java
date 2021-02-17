@@ -45,13 +45,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenChildSideAffixedNode;
  * @generated
  */
 public class GenChildSideAffixedNodeItemProvider
-	extends GenChildNodeItemProvider
-	implements	
-		IEditingDomainItemProvider,	
-		IStructuredItemContentProvider,	
-		ITreeItemContentProvider,	
-		IItemLabelProvider,	
-		IItemPropertySource {
+	extends GenChildNodeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

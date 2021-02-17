@@ -18,7 +18,7 @@ package aspects.diagram.editparts
 
 import com.google.inject.Singleton
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenChildLabelNode
-import org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView
+import org.eclipse.papyrus.gmf.codegen.genextension.ExtendedGenView
 
 @Singleton class ChildNodeLabelEditPart extends diagram.editparts.ChildNodeLabelEditPart {
 

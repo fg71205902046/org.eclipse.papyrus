@@ -34,10 +34,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ToolGroup;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.SeparatorImpl#getGroup <em>Group</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -66,6 +66,7 @@ public class SeparatorImpl extends EObjectImpl implements Separator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ToolGroup getGroup() {
 		if (eContainerFeatureID() != GMFGenPackage.SEPARATOR__GROUP) return null;
 		return (ToolGroup)eInternalContainer();

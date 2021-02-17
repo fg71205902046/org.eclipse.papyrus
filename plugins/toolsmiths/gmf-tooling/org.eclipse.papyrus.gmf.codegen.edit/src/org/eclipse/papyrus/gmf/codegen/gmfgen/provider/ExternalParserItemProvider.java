@@ -44,13 +44,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage;
  * @generated
  */
 public class ExternalParserItemProvider
-	extends GenParserImplementationItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends GenParserImplementationItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

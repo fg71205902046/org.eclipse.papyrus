@@ -33,12 +33,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.ToolEntry#getGenNodes <em>Gen Nodes</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.ToolEntry#getGenLinks <em>Gen Links</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.ToolEntry#getElements <em>Elements</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getToolEntry()
  * @model

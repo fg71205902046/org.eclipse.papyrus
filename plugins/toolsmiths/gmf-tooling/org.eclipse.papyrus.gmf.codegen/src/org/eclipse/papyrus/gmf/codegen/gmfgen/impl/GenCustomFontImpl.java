@@ -36,12 +36,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCustomFont;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCustomFontImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCustomFontImpl#getHeight <em>Height</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCustomFontImpl#getStyle <em>Style</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -130,6 +130,7 @@ public class GenCustomFontImpl extends EObjectImpl implements GenCustomFont {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -139,6 +140,7 @@ public class GenCustomFontImpl extends EObjectImpl implements GenCustomFont {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -151,6 +153,7 @@ public class GenCustomFontImpl extends EObjectImpl implements GenCustomFont {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getHeight() {
 		return height;
 	}
@@ -160,6 +163,7 @@ public class GenCustomFontImpl extends EObjectImpl implements GenCustomFont {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setHeight(int newHeight) {
 		int oldHeight = height;
 		height = newHeight;
@@ -172,6 +176,7 @@ public class GenCustomFontImpl extends EObjectImpl implements GenCustomFont {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public FontStyle getStyle() {
 		return style;
 	}
@@ -181,6 +186,7 @@ public class GenCustomFontImpl extends EObjectImpl implements GenCustomFont {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStyle(FontStyle newStyle) {
 		FontStyle oldStyle = style;
 		style = newStyle == null ? STYLE_EDEFAULT : newStyle;
@@ -275,7 +281,7 @@ public class GenCustomFontImpl extends EObjectImpl implements GenCustomFont {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
 		result.append(", height: ");

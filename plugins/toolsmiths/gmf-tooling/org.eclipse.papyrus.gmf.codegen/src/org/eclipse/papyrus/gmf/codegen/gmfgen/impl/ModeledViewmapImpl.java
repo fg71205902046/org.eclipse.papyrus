@@ -36,10 +36,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ModeledViewmap;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.ModeledViewmapImpl#getFigureModel <em>Figure Model</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -78,6 +78,7 @@ public class ModeledViewmapImpl extends ViewmapImpl implements ModeledViewmap {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EObject getFigureModel() {
 		if (figureModel != null && figureModel.eIsProxy()) {
 			InternalEObject oldFigureModel = (InternalEObject)figureModel;
@@ -104,6 +105,7 @@ public class ModeledViewmapImpl extends ViewmapImpl implements ModeledViewmap {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFigureModel(EObject newFigureModel) {
 		EObject oldFigureModel = figureModel;
 		figureModel = newFigureModel;

@@ -53,6 +53,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ViewmapLayoutType;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCommonBaseImpl#getDiagramRunTimeClass <em>Diagram Run Time Class</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCommonBaseImpl#getVisualID <em>Visual ID</em>}</li>
@@ -65,7 +66,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ViewmapLayoutType;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCommonBaseImpl#getBehaviour <em>Behaviour</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCommonBaseImpl#isSansDomain <em>Sans Domain</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -234,6 +234,7 @@ public abstract class GenCommonBaseImpl extends EObjectImpl implements GenCommon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenClass getDiagramRunTimeClass() {
 		if (diagramRunTimeClass != null && diagramRunTimeClass.eIsProxy()) {
 			InternalEObject oldDiagramRunTimeClass = (InternalEObject)diagramRunTimeClass;
@@ -260,6 +261,7 @@ public abstract class GenCommonBaseImpl extends EObjectImpl implements GenCommon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDiagramRunTimeClass(GenClass newDiagramRunTimeClass) {
 		GenClass oldDiagramRunTimeClass = diagramRunTimeClass;
 		diagramRunTimeClass = newDiagramRunTimeClass;
@@ -272,6 +274,7 @@ public abstract class GenCommonBaseImpl extends EObjectImpl implements GenCommon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getVisualID() {
 		return visualID;
 	}
@@ -281,6 +284,7 @@ public abstract class GenCommonBaseImpl extends EObjectImpl implements GenCommon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVisualID(int newVisualID) {
 		int oldVisualID = visualID;
 		visualID = newVisualID;
@@ -293,6 +297,7 @@ public abstract class GenCommonBaseImpl extends EObjectImpl implements GenCommon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ElementType getElementType() {
 		return elementType;
 	}
@@ -317,6 +322,7 @@ public abstract class GenCommonBaseImpl extends EObjectImpl implements GenCommon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setElementType(ElementType newElementType) {
 		if (newElementType != elementType) {
 			NotificationChain msgs = null;
@@ -349,6 +355,7 @@ public abstract class GenCommonBaseImpl extends EObjectImpl implements GenCommon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEditPartClassName(String newEditPartClassName) {
 		String oldEditPartClassName = editPartClassName;
 		editPartClassName = newEditPartClassName;
@@ -374,6 +381,7 @@ public abstract class GenCommonBaseImpl extends EObjectImpl implements GenCommon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setItemSemanticEditPolicyClassName(String newItemSemanticEditPolicyClassName) {
 		String oldItemSemanticEditPolicyClassName = itemSemanticEditPolicyClassName;
 		itemSemanticEditPolicyClassName = newItemSemanticEditPolicyClassName;
@@ -399,6 +407,7 @@ public abstract class GenCommonBaseImpl extends EObjectImpl implements GenCommon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNotationViewFactoryClassName(String newNotationViewFactoryClassName) {
 		String oldNotationViewFactoryClassName = notationViewFactoryClassName;
 		notationViewFactoryClassName = newNotationViewFactoryClassName;
@@ -411,6 +420,7 @@ public abstract class GenCommonBaseImpl extends EObjectImpl implements GenCommon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Viewmap getViewmap() {
 		return viewmap;
 	}
@@ -435,6 +445,7 @@ public abstract class GenCommonBaseImpl extends EObjectImpl implements GenCommon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setViewmap(Viewmap newViewmap) {
 		if (newViewmap != viewmap) {
 			NotificationChain msgs = null;
@@ -454,6 +465,7 @@ public abstract class GenCommonBaseImpl extends EObjectImpl implements GenCommon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenClass> getStyles() {
 		if (styles == null) {
 			styles = new EObjectResolvingEList<GenClass>(GenClass.class, this, GMFGenPackage.GEN_COMMON_BASE__STYLES);
@@ -466,6 +478,7 @@ public abstract class GenCommonBaseImpl extends EObjectImpl implements GenCommon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Behaviour> getBehaviour() {
 		if (behaviour == null) {
 			behaviour = new EObjectContainmentWithInverseEList<Behaviour>(Behaviour.class, this, GMFGenPackage.GEN_COMMON_BASE__BEHAVIOUR, GMFGenPackage.BEHAVIOUR__SUBJECT);
@@ -763,7 +776,7 @@ public abstract class GenCommonBaseImpl extends EObjectImpl implements GenCommon
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (visualID: ");
 		result.append(visualID);
 		result.append(", editPartClassName: ");

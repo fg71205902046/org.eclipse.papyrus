@@ -36,13 +36,13 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ResizeConstraints;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.ResizeConstraintsImpl#getResizeHandles <em>Resize Handles</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.ResizeConstraintsImpl#getNonResizeHandles <em>Non Resize Handles</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.ResizeConstraintsImpl#getResizeHandleNames <em>Resize Handle Names</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.ResizeConstraintsImpl#getNonResizeHandleNames <em>Non Resize Handle Names</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -111,6 +111,7 @@ public class ResizeConstraintsImpl extends EObjectImpl implements ResizeConstrai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getResizeHandles() {
 		return resizeHandles;
 	}
@@ -120,6 +121,7 @@ public class ResizeConstraintsImpl extends EObjectImpl implements ResizeConstrai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setResizeHandles(int newResizeHandles) {
 		int oldResizeHandles = resizeHandles;
 		resizeHandles = newResizeHandles;
@@ -132,6 +134,7 @@ public class ResizeConstraintsImpl extends EObjectImpl implements ResizeConstrai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getNonResizeHandles() {
 		return nonResizeHandles;
 	}
@@ -141,6 +144,7 @@ public class ResizeConstraintsImpl extends EObjectImpl implements ResizeConstrai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNonResizeHandles(int newNonResizeHandles) {
 		int oldNonResizeHandles = nonResizeHandles;
 		nonResizeHandles = newNonResizeHandles;
@@ -270,7 +274,7 @@ public class ResizeConstraintsImpl extends EObjectImpl implements ResizeConstrai
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (resizeHandles: ");
 		result.append(resizeHandles);
 		result.append(", nonResizeHandles: ");

@@ -29,10 +29,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenTemplateInvocationBase;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenFixedInputsTemplateInvocation#getFixedInputs <em>Fixed Inputs</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenFixedInputsTemplateInvocation()
  * @model

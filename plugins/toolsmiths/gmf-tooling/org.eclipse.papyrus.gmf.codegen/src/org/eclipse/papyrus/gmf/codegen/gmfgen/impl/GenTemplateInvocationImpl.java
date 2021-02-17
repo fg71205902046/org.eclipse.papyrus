@@ -37,11 +37,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenTemplateInvocation;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenTemplateInvocationImpl#getInputs <em>Inputs</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenTemplateInvocationImpl#getOclExpression <em>Ocl Expression</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -100,6 +100,7 @@ public class GenTemplateInvocationImpl extends GenTemplateInvocationBaseImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenCustomTemplateInput> getInputs() {
 		if (inputs == null) {
 			inputs = new EObjectResolvingEList<GenCustomTemplateInput>(GenCustomTemplateInput.class, this, GMFGenPackage.GEN_TEMPLATE_INVOCATION__INPUTS);
@@ -112,6 +113,7 @@ public class GenTemplateInvocationImpl extends GenTemplateInvocationBaseImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getOclExpression() {
 		return oclExpression;
 	}
@@ -121,6 +123,7 @@ public class GenTemplateInvocationImpl extends GenTemplateInvocationBaseImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOclExpression(String newOclExpression) {
 		String oldOclExpression = oclExpression;
 		oclExpression = newOclExpression;
@@ -207,7 +210,7 @@ public class GenTemplateInvocationImpl extends GenTemplateInvocationBaseImpl imp
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (oclExpression: ");
 		result.append(oclExpression);
 		result.append(')');

@@ -14,7 +14,7 @@
 modeltype UML uses "http://www.eclipse.org/uml2/4.0.0/UML";
 modeltype ElementTypes uses "http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.1";
 modeltype GMFGen uses 'http://www.eclipse.org/papyrus/gmf/2020/GenModel';
-modeltype PapyrusExtension uses 'http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension';
+modeltype PapyrusExtension uses 'http://www.eclipse.org/papyrus/gmf/2020/GenExtension';
 
 transformation PrintVisualID(in gmf : GMFGen);
 

@@ -39,13 +39,13 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCustomAction;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCustomActionImpl#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCustomActionImpl#getQualifiedClassName <em>Qualified Class Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCustomActionImpl#isGenerateBoilerplate <em>Generate Boilerplate</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCustomActionImpl#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -134,6 +134,7 @@ public class GenCustomActionImpl extends EObjectImpl implements GenCustomAction 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenContributionManager getOwner() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_CUSTOM_ACTION__OWNER) return null;
 		return (GenContributionManager)eInternalContainer();
@@ -144,6 +145,7 @@ public class GenCustomActionImpl extends EObjectImpl implements GenCustomAction 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getQualifiedClassName() {
 		return qualifiedClassName;
 	}
@@ -153,6 +155,7 @@ public class GenCustomActionImpl extends EObjectImpl implements GenCustomAction 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setQualifiedClassName(String newQualifiedClassName) {
 		String oldQualifiedClassName = qualifiedClassName;
 		qualifiedClassName = newQualifiedClassName;
@@ -165,6 +168,7 @@ public class GenCustomActionImpl extends EObjectImpl implements GenCustomAction 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isGenerateBoilerplate() {
 		return generateBoilerplate;
 	}
@@ -174,6 +178,7 @@ public class GenCustomActionImpl extends EObjectImpl implements GenCustomAction 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGenerateBoilerplate(boolean newGenerateBoilerplate) {
 		boolean oldGenerateBoilerplate = generateBoilerplate;
 		generateBoilerplate = newGenerateBoilerplate;
@@ -186,6 +191,7 @@ public class GenCustomActionImpl extends EObjectImpl implements GenCustomAction 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -195,6 +201,7 @@ public class GenCustomActionImpl extends EObjectImpl implements GenCustomAction 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -337,7 +344,7 @@ public class GenCustomActionImpl extends EObjectImpl implements GenCustomAction 
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (qualifiedClassName: ");
 		result.append(qualifiedClassName);
 		result.append(", generateBoilerplate: ");

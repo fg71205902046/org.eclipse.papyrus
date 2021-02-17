@@ -10,12 +10,6 @@
 
 <plugin>
 
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <package
-            uri="http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension"
-            class="org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage"
-            genModel="model/papyrusGmfgenExtension.genmodel"/>
-   </extension>
    <extension
          point="org.eclipse.ui.popupMenus">
 

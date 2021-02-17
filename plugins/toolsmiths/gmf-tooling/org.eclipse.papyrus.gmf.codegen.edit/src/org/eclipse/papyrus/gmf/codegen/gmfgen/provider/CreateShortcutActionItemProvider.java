@@ -41,13 +41,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.CreateShortcutAction;
  * @generated
  */
 public class CreateShortcutActionItemProvider
-	extends GenActionItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends GenActionItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

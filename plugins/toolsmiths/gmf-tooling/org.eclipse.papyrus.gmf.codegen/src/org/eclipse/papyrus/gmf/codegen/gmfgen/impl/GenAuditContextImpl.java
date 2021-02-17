@@ -44,13 +44,13 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenAuditContextImpl#getRoot <em>Root</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenAuditContextImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenAuditContextImpl#getClassName <em>Class Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenAuditContextImpl#getRuleTargets <em>Rule Targets</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -129,6 +129,7 @@ public class GenAuditContextImpl extends EObjectImpl implements GenAuditContext 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenAuditRoot getRoot() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_AUDIT_CONTEXT__ROOT) return null;
 		return (GenAuditRoot)eInternalContainer();
@@ -149,6 +150,7 @@ public class GenAuditContextImpl extends EObjectImpl implements GenAuditContext 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRoot(GenAuditRoot newRoot) {
 		if (newRoot != eInternalContainer() || (eContainerFeatureID() != GMFGenPackage.GEN_AUDIT_CONTEXT__ROOT && newRoot != null)) {
 			if (EcoreUtil.isAncestor(this, newRoot))
@@ -170,6 +172,7 @@ public class GenAuditContextImpl extends EObjectImpl implements GenAuditContext 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getId() {
 		return id;
 	}
@@ -179,6 +182,7 @@ public class GenAuditContextImpl extends EObjectImpl implements GenAuditContext 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setId(String newId) {
 		String oldId = id;
 		id = newId;
@@ -210,6 +214,7 @@ public class GenAuditContextImpl extends EObjectImpl implements GenAuditContext 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setClassName(String newClassName) {
 		String oldClassName = className;
 		className = newClassName;
@@ -222,6 +227,7 @@ public class GenAuditContextImpl extends EObjectImpl implements GenAuditContext 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenAuditable> getRuleTargets() {
 		if (ruleTargets == null) {
 			ruleTargets = new EObjectWithInverseResolvingEList<GenAuditable>(GenAuditable.class, this, GMFGenPackage.GEN_AUDIT_CONTEXT__RULE_TARGETS, GMFGenPackage.GEN_AUDITABLE__CONTEXT_SELECTOR);
@@ -389,7 +395,7 @@ public class GenAuditContextImpl extends EObjectImpl implements GenAuditContext 
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (id: ");
 		result.append(id);
 		result.append(", className: ");

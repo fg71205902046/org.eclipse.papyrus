@@ -44,6 +44,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ToolGroup;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.PaletteImpl#getDiagram <em>Diagram</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.PaletteImpl#isFlyout <em>Flyout</em>}</li>
@@ -51,7 +52,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ToolGroup;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.PaletteImpl#getPackageName <em>Package Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.PaletteImpl#getFactoryClassName <em>Factory Class Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -150,6 +150,7 @@ public class PaletteImpl extends EObjectImpl implements Palette {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenDiagram getDiagram() {
 		if (eContainerFeatureID() != GMFGenPackage.PALETTE__DIAGRAM) return null;
 		return (GenDiagram)eInternalContainer();
@@ -160,6 +161,7 @@ public class PaletteImpl extends EObjectImpl implements Palette {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isFlyout() {
 		return flyout;
 	}
@@ -169,6 +171,7 @@ public class PaletteImpl extends EObjectImpl implements Palette {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFlyout(boolean newFlyout) {
 		boolean oldFlyout = flyout;
 		flyout = newFlyout;
@@ -181,6 +184,7 @@ public class PaletteImpl extends EObjectImpl implements Palette {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ToolGroup> getGroups() {
 		if (groups == null) {
 			groups = new EObjectContainmentWithInverseEList<ToolGroup>(ToolGroup.class, this, GMFGenPackage.PALETTE__GROUPS, GMFGenPackage.TOOL_GROUP__PALETTE);
@@ -210,6 +214,7 @@ public class PaletteImpl extends EObjectImpl implements Palette {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPackageName(String newPackageName) {
 		String oldPackageName = packageName;
 		packageName = newPackageName;
@@ -239,6 +244,7 @@ public class PaletteImpl extends EObjectImpl implements Palette {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFactoryClassName(String newFactoryClassName) {
 		String oldFactoryClassName = factoryClassName;
 		factoryClassName = newFactoryClassName;
@@ -416,7 +422,7 @@ public class PaletteImpl extends EObjectImpl implements Palette {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (flyout: ");
 		result.append(flyout);
 		result.append(", packageName: ");

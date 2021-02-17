@@ -42,6 +42,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenSeverity;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenAuditRuleImpl#getRoot <em>Root</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenAuditRuleImpl#getId <em>Id</em>}</li>
@@ -53,7 +54,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenSeverity;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenAuditRuleImpl#isRequiresConstraintAdapter <em>Requires Constraint Adapter</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenAuditRuleImpl#getCategory <em>Category</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -202,6 +202,7 @@ public class GenAuditRuleImpl extends GenRuleBaseImpl implements GenAuditRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenAuditRoot getRoot() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_AUDIT_RULE__ROOT) return null;
 		return (GenAuditRoot)eInternalContainer();
@@ -212,6 +213,7 @@ public class GenAuditRuleImpl extends GenRuleBaseImpl implements GenAuditRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenAuditable getTarget() {
 		return target;
 	}
@@ -236,6 +238,7 @@ public class GenAuditRuleImpl extends GenRuleBaseImpl implements GenAuditRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTarget(GenAuditable newTarget) {
 		if (newTarget != target) {
 			NotificationChain msgs = null;
@@ -255,6 +258,7 @@ public class GenAuditRuleImpl extends GenRuleBaseImpl implements GenAuditRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getId() {
 		return id;
 	}
@@ -264,6 +268,7 @@ public class GenAuditRuleImpl extends GenRuleBaseImpl implements GenAuditRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setId(String newId) {
 		String oldId = id;
 		id = newId;
@@ -276,6 +281,7 @@ public class GenAuditRuleImpl extends GenRuleBaseImpl implements GenAuditRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getMessage() {
 		return message;
 	}
@@ -285,6 +291,7 @@ public class GenAuditRuleImpl extends GenRuleBaseImpl implements GenAuditRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMessage(String newMessage) {
 		String oldMessage = message;
 		message = newMessage;
@@ -297,6 +304,7 @@ public class GenAuditRuleImpl extends GenRuleBaseImpl implements GenAuditRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenConstraint getRule() {
 		if (rule != null && rule.eIsProxy()) {
 			InternalEObject oldRule = (InternalEObject)rule;
@@ -323,6 +331,7 @@ public class GenAuditRuleImpl extends GenRuleBaseImpl implements GenAuditRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRule(GenConstraint newRule) {
 		GenConstraint oldRule = rule;
 		rule = newRule;
@@ -335,6 +344,7 @@ public class GenAuditRuleImpl extends GenRuleBaseImpl implements GenAuditRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenSeverity getSeverity() {
 		return severity;
 	}
@@ -344,6 +354,7 @@ public class GenAuditRuleImpl extends GenRuleBaseImpl implements GenAuditRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSeverity(GenSeverity newSeverity) {
 		GenSeverity oldSeverity = severity;
 		severity = newSeverity == null ? SEVERITY_EDEFAULT : newSeverity;
@@ -356,6 +367,7 @@ public class GenAuditRuleImpl extends GenRuleBaseImpl implements GenAuditRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isUseInLiveMode() {
 		return useInLiveMode;
 	}
@@ -365,6 +377,7 @@ public class GenAuditRuleImpl extends GenRuleBaseImpl implements GenAuditRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUseInLiveMode(boolean newUseInLiveMode) {
 		boolean oldUseInLiveMode = useInLiveMode;
 		useInLiveMode = newUseInLiveMode;
@@ -433,6 +446,7 @@ public class GenAuditRuleImpl extends GenRuleBaseImpl implements GenAuditRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenAuditContainer getCategory() {
 		if (category != null && category.eIsProxy()) {
 			InternalEObject oldCategory = (InternalEObject)category;
@@ -474,6 +488,7 @@ public class GenAuditRuleImpl extends GenRuleBaseImpl implements GenAuditRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCategory(GenAuditContainer newCategory) {
 		if (newCategory != category) {
 			NotificationChain msgs = null;
@@ -677,7 +692,7 @@ public class GenAuditRuleImpl extends GenRuleBaseImpl implements GenAuditRule {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (id: ");
 		result.append(id);
 		result.append(", message: ");

@@ -34,10 +34,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.JFaceFont;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenStandardFontImpl#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -86,6 +86,7 @@ public class GenStandardFontImpl extends EObjectImpl implements GenStandardFont 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public JFaceFont getName() {
 		return name;
 	}
@@ -95,6 +96,7 @@ public class GenStandardFontImpl extends EObjectImpl implements GenStandardFont 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(JFaceFont newName) {
 		JFaceFont oldName = name;
 		name = newName == null ? NAME_EDEFAULT : newName;
@@ -169,7 +171,7 @@ public class GenStandardFontImpl extends EObjectImpl implements GenStandardFont 
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
 		result.append(')');

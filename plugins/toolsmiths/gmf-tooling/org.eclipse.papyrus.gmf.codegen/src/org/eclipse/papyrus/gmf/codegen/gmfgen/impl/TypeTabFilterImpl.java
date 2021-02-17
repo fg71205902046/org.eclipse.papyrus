@@ -42,12 +42,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeTabFilter;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.TypeTabFilterImpl#getTab <em>Tab</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.TypeTabFilterImpl#getTypes <em>Types</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.TypeTabFilterImpl#getGeneratedTypes <em>Generated Types</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -96,6 +96,7 @@ public class TypeTabFilterImpl extends EObjectImpl implements TypeTabFilter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenCustomPropertyTab getTab() {
 		if (eContainerFeatureID() != GMFGenPackage.TYPE_TAB_FILTER__TAB) return null;
 		return (GenCustomPropertyTab)eInternalContainer();
@@ -106,6 +107,7 @@ public class TypeTabFilterImpl extends EObjectImpl implements TypeTabFilter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<String> getTypes() {
 		if (types == null) {
 			types = new EDataTypeUniqueEList<String>(String.class, this, GMFGenPackage.TYPE_TAB_FILTER__TYPES);
@@ -118,6 +120,7 @@ public class TypeTabFilterImpl extends EObjectImpl implements TypeTabFilter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GeneratedType> getGeneratedTypes() {
 		if (generatedTypes == null) {
 			generatedTypes = new EDataTypeUniqueEList<GeneratedType>(GeneratedType.class, this, GMFGenPackage.TYPE_TAB_FILTER__GENERATED_TYPES);
@@ -275,7 +278,7 @@ public class TypeTabFilterImpl extends EObjectImpl implements TypeTabFilter {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (types: ");
 		result.append(types);
 		result.append(", generatedTypes: ");

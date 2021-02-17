@@ -19,8 +19,8 @@ package aspects.diagram.editparts
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenExternalNodeLabel
-import org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView
-import org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference
+import org.eclipse.papyrus.gmf.codegen.genextension.ExtendedGenView
+import org.eclipse.papyrus.gmf.codegen.genextension.LabelVisibilityPreference
 import xpt.Common
 
 @Singleton class ExternalNodeLabelEditPart extends diagram.editparts.ExternalNodeLabelEditPart {

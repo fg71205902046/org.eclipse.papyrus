@@ -39,12 +39,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ToolEntry;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.ToolEntryImpl#getGenNodes <em>Gen Nodes</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.ToolEntryImpl#getGenLinks <em>Gen Links</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.ToolEntryImpl#getElements <em>Elements</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -93,6 +93,7 @@ public class ToolEntryImpl extends AbstractToolEntryImpl implements ToolEntry {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenNode> getGenNodes() {
 		if (genNodes == null) {
 			genNodes = new EObjectResolvingEList<GenNode>(GenNode.class, this, GMFGenPackage.TOOL_ENTRY__GEN_NODES);
@@ -105,6 +106,7 @@ public class ToolEntryImpl extends AbstractToolEntryImpl implements ToolEntry {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenLink> getGenLinks() {
 		if (genLinks == null) {
 			genLinks = new EObjectResolvingEList<GenLink>(GenLink.class, this, GMFGenPackage.TOOL_ENTRY__GEN_LINKS);

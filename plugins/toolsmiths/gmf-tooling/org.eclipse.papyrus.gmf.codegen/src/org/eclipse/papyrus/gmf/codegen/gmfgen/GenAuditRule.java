@@ -38,6 +38,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenSeverity;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenAuditRule#getRoot <em>Root</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenAuditRule#getId <em>Id</em>}</li>
@@ -49,7 +50,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenSeverity;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenAuditRule#isRequiresConstraintAdapter <em>Requires Constraint Adapter</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenAuditRule#getCategory <em>Category</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenAuditRule()
  * @model
@@ -88,7 +88,7 @@ public interface GenAuditRule extends GenRuleBase {
 	 * @see #setId(String)
 	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenAuditRule_Id()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/gmf/2005/constraints ocl='not id.oclIsUndefined() implies root.rules->one(i | i.id = self.id)' description='Audit rule with the same ID already exists'"
+	 *        annotation="http://www.eclipse.org/gmf/2005/constraints ocl='not id.oclIsUndefined() implies root.rules-&gt;one(i | i.id = self.id)' description='Audit rule with the same ID already exists'"
 	 * @generated
 	 */
 	String getId();

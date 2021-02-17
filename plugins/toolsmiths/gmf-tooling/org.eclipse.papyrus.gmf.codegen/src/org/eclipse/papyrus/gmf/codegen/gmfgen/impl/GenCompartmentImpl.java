@@ -38,6 +38,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCompartmentImpl#getTitle <em>Title</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCompartmentImpl#isCanCollapse <em>Can Collapse</em>}</li>
@@ -47,7 +48,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCompartmentImpl#getNode <em>Node</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCompartmentImpl#isListLayout <em>List Layout</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -186,6 +186,7 @@ public class GenCompartmentImpl extends GenChildContainerImpl implements GenComp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getTitle() {
 		return title;
 	}
@@ -195,6 +196,7 @@ public class GenCompartmentImpl extends GenChildContainerImpl implements GenComp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTitle(String newTitle) {
 		String oldTitle = title;
 		title = newTitle;
@@ -207,6 +209,7 @@ public class GenCompartmentImpl extends GenChildContainerImpl implements GenComp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isCanCollapse() {
 		return canCollapse;
 	}
@@ -216,6 +219,7 @@ public class GenCompartmentImpl extends GenChildContainerImpl implements GenComp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCanCollapse(boolean newCanCollapse) {
 		boolean oldCanCollapse = canCollapse;
 		canCollapse = newCanCollapse;
@@ -228,6 +232,7 @@ public class GenCompartmentImpl extends GenChildContainerImpl implements GenComp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isHideIfEmpty() {
 		return hideIfEmpty;
 	}
@@ -237,6 +242,7 @@ public class GenCompartmentImpl extends GenChildContainerImpl implements GenComp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setHideIfEmpty(boolean newHideIfEmpty) {
 		boolean oldHideIfEmpty = hideIfEmpty;
 		hideIfEmpty = newHideIfEmpty;
@@ -249,6 +255,7 @@ public class GenCompartmentImpl extends GenChildContainerImpl implements GenComp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isNeedsTitle() {
 		return needsTitle;
 	}
@@ -258,6 +265,7 @@ public class GenCompartmentImpl extends GenChildContainerImpl implements GenComp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNeedsTitle(boolean newNeedsTitle) {
 		boolean oldNeedsTitle = needsTitle;
 		needsTitle = newNeedsTitle;
@@ -270,6 +278,7 @@ public class GenCompartmentImpl extends GenChildContainerImpl implements GenComp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenDiagram getDiagram() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_COMPARTMENT__DIAGRAM) return null;
 		return (GenDiagram)eInternalContainer();
@@ -280,6 +289,7 @@ public class GenCompartmentImpl extends GenChildContainerImpl implements GenComp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenNode getNode() {
 		if (node != null && node.eIsProxy()) {
 			InternalEObject oldNode = (InternalEObject)node;
@@ -321,6 +331,7 @@ public class GenCompartmentImpl extends GenChildContainerImpl implements GenComp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNode(GenNode newNode) {
 		if (newNode != node) {
 			NotificationChain msgs = null;
@@ -340,6 +351,7 @@ public class GenCompartmentImpl extends GenChildContainerImpl implements GenComp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isListLayout() {
 		return listLayout;
 	}
@@ -349,6 +361,7 @@ public class GenCompartmentImpl extends GenChildContainerImpl implements GenComp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setListLayout(boolean newListLayout) {
 		boolean oldListLayout = listLayout;
 		listLayout = newListLayout;
@@ -528,7 +541,7 @@ public class GenCompartmentImpl extends GenChildContainerImpl implements GenComp
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (title: ");
 		result.append(title);
 		result.append(", canCollapse: ");

@@ -42,6 +42,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorChildReference;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenNavigatorImpl#isGenerateDomainModelNavigator <em>Generate Domain Model Navigator</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenNavigatorImpl#getDomainContentExtensionID <em>Domain Content Extension ID</em>}</li>
@@ -70,7 +71,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorChildReference;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenNavigatorImpl#getPackageName <em>Package Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenNavigatorImpl#getChildReferences <em>Child References</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -589,6 +589,7 @@ public class GenNavigatorImpl extends EObjectImpl implements GenNavigator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenEditorGenerator getEditorGen() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_NAVIGATOR__EDITOR_GEN) return null;
 		return (GenEditorGenerator)eInternalContainer();
@@ -617,6 +618,7 @@ public class GenNavigatorImpl extends EObjectImpl implements GenNavigator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setContentExtensionID(String newContentExtensionID) {
 		String oldContentExtensionID = contentExtensionID;
 		contentExtensionID = newContentExtensionID;
@@ -646,6 +648,7 @@ public class GenNavigatorImpl extends EObjectImpl implements GenNavigator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setContentExtensionName(String newContentExtensionName) {
 		String oldContentExtensionName = contentExtensionName;
 		contentExtensionName = newContentExtensionName;
@@ -675,6 +678,7 @@ public class GenNavigatorImpl extends EObjectImpl implements GenNavigator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setContentExtensionPriority(String newContentExtensionPriority) {
 		String oldContentExtensionPriority = contentExtensionPriority;
 		contentExtensionPriority = newContentExtensionPriority;
@@ -705,6 +709,7 @@ public class GenNavigatorImpl extends EObjectImpl implements GenNavigator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLinkHelperExtensionID(String newLinkHelperExtensionID) {
 		String oldLinkHelperExtensionID = linkHelperExtensionID;
 		linkHelperExtensionID = newLinkHelperExtensionID;
@@ -734,6 +739,7 @@ public class GenNavigatorImpl extends EObjectImpl implements GenNavigator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSorterExtensionID(String newSorterExtensionID) {
 		String oldSorterExtensionID = sorterExtensionID;
 		sorterExtensionID = newSorterExtensionID;
@@ -763,6 +769,7 @@ public class GenNavigatorImpl extends EObjectImpl implements GenNavigator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setActionProviderID(String newActionProviderID) {
 		String oldActionProviderID = actionProviderID;
 		actionProviderID = newActionProviderID;
@@ -792,6 +799,7 @@ public class GenNavigatorImpl extends EObjectImpl implements GenNavigator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setContentProviderClassName(String newContentProviderClassName) {
 		String oldContentProviderClassName = contentProviderClassName;
 		contentProviderClassName = newContentProviderClassName;
@@ -821,6 +829,7 @@ public class GenNavigatorImpl extends EObjectImpl implements GenNavigator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLabelProviderClassName(String newLabelProviderClassName) {
 		String oldLabelProviderClassName = labelProviderClassName;
 		labelProviderClassName = newLabelProviderClassName;
@@ -850,6 +859,7 @@ public class GenNavigatorImpl extends EObjectImpl implements GenNavigator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLinkHelperClassName(String newLinkHelperClassName) {
 		String oldLinkHelperClassName = linkHelperClassName;
 		linkHelperClassName = newLinkHelperClassName;
@@ -879,6 +889,7 @@ public class GenNavigatorImpl extends EObjectImpl implements GenNavigator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSorterClassName(String newSorterClassName) {
 		String oldSorterClassName = sorterClassName;
 		sorterClassName = newSorterClassName;
@@ -908,6 +919,7 @@ public class GenNavigatorImpl extends EObjectImpl implements GenNavigator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setActionProviderClassName(String newActionProviderClassName) {
 		String oldActionProviderClassName = actionProviderClassName;
 		actionProviderClassName = newActionProviderClassName;
@@ -938,6 +950,7 @@ public class GenNavigatorImpl extends EObjectImpl implements GenNavigator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAbstractNavigatorItemClassName(String newAbstractNavigatorItemClassName) {
 		String oldAbstractNavigatorItemClassName = abstractNavigatorItemClassName;
 		abstractNavigatorItemClassName = newAbstractNavigatorItemClassName;
@@ -966,6 +979,7 @@ public class GenNavigatorImpl extends EObjectImpl implements GenNavigator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNavigatorGroupClassName(String newNavigatorGroupClassName) {
 		String oldNavigatorGroupClassName = navigatorGroupClassName;
 		navigatorGroupClassName = newNavigatorGroupClassName;
@@ -995,6 +1009,7 @@ public class GenNavigatorImpl extends EObjectImpl implements GenNavigator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNavigatorItemClassName(String newNavigatorItemClassName) {
 		String oldNavigatorItemClassName = navigatorItemClassName;
 		navigatorItemClassName = newNavigatorItemClassName;
@@ -1024,6 +1039,7 @@ public class GenNavigatorImpl extends EObjectImpl implements GenNavigator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUriInputTesterClassName(String newUriInputTesterClassName) {
 		String oldUriInputTesterClassName = uriInputTesterClassName;
 		uriInputTesterClassName = newUriInputTesterClassName;
@@ -1053,6 +1069,7 @@ public class GenNavigatorImpl extends EObjectImpl implements GenNavigator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPackageName(String newPackageName) {
 		String oldPackageName = packageName;
 		packageName = newPackageName;
@@ -1065,6 +1082,7 @@ public class GenNavigatorImpl extends EObjectImpl implements GenNavigator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isGenerateDomainModelNavigator() {
 		return generateDomainModelNavigator;
 	}
@@ -1074,6 +1092,7 @@ public class GenNavigatorImpl extends EObjectImpl implements GenNavigator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGenerateDomainModelNavigator(boolean newGenerateDomainModelNavigator) {
 		boolean oldGenerateDomainModelNavigator = generateDomainModelNavigator;
 		generateDomainModelNavigator = newGenerateDomainModelNavigator;
@@ -1103,6 +1122,7 @@ public class GenNavigatorImpl extends EObjectImpl implements GenNavigator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDomainContentExtensionID(String newDomainContentExtensionID) {
 		String oldDomainContentExtensionID = domainContentExtensionID;
 		domainContentExtensionID = newDomainContentExtensionID;
@@ -1132,6 +1152,7 @@ public class GenNavigatorImpl extends EObjectImpl implements GenNavigator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDomainContentExtensionName(String newDomainContentExtensionName) {
 		String oldDomainContentExtensionName = domainContentExtensionName;
 		domainContentExtensionName = newDomainContentExtensionName;
@@ -1161,6 +1182,7 @@ public class GenNavigatorImpl extends EObjectImpl implements GenNavigator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDomainContentExtensionPriority(String newDomainContentExtensionPriority) {
 		String oldDomainContentExtensionPriority = domainContentExtensionPriority;
 		domainContentExtensionPriority = newDomainContentExtensionPriority;
@@ -1190,6 +1212,7 @@ public class GenNavigatorImpl extends EObjectImpl implements GenNavigator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDomainContentProviderClassName(String newDomainContentProviderClassName) {
 		String oldDomainContentProviderClassName = domainContentProviderClassName;
 		domainContentProviderClassName = newDomainContentProviderClassName;
@@ -1219,6 +1242,7 @@ public class GenNavigatorImpl extends EObjectImpl implements GenNavigator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDomainLabelProviderClassName(String newDomainLabelProviderClassName) {
 		String oldDomainLabelProviderClassName = domainLabelProviderClassName;
 		domainLabelProviderClassName = newDomainLabelProviderClassName;
@@ -1248,6 +1272,7 @@ public class GenNavigatorImpl extends EObjectImpl implements GenNavigator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDomainModelElementTesterClassName(String newDomainModelElementTesterClassName) {
 		String oldDomainModelElementTesterClassName = domainModelElementTesterClassName;
 		domainModelElementTesterClassName = newDomainModelElementTesterClassName;
@@ -1277,6 +1302,7 @@ public class GenNavigatorImpl extends EObjectImpl implements GenNavigator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDomainNavigatorItemClassName(String newDomainNavigatorItemClassName) {
 		String oldDomainNavigatorItemClassName = domainNavigatorItemClassName;
 		domainNavigatorItemClassName = newDomainNavigatorItemClassName;
@@ -1289,6 +1315,7 @@ public class GenNavigatorImpl extends EObjectImpl implements GenNavigator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenNavigatorChildReference> getChildReferences() {
 		if (childReferences == null) {
 			childReferences = new EObjectContainmentWithInverseEList<GenNavigatorChildReference>(GenNavigatorChildReference.class, this, GMFGenPackage.GEN_NAVIGATOR__CHILD_REFERENCES, GMFGenPackage.GEN_NAVIGATOR_CHILD_REFERENCE__NAVIGATOR);
@@ -1775,7 +1802,7 @@ public class GenNavigatorImpl extends EObjectImpl implements GenNavigator {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (generateDomainModelNavigator: ");
 		result.append(generateDomainModelNavigator);
 		result.append(", domainContentExtensionID: ");

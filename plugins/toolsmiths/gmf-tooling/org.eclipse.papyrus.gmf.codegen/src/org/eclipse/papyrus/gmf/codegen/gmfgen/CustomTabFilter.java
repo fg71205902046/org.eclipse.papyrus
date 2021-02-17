@@ -29,10 +29,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenPropertyTabFilter;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.CustomTabFilter#getClassName <em>Class Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getCustomTabFilter()
  * @model

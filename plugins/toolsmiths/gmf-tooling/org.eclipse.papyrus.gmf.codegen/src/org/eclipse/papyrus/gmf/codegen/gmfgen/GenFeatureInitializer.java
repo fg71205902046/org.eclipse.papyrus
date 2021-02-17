@@ -31,11 +31,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenFeatureSeqInitializer;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenFeatureInitializer#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenFeatureInitializer#getFeatureSeqInitializer <em>Feature Seq Initializer</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenFeatureInitializer()
  * @model interface="true" abstract="true"
@@ -53,8 +53,8 @@ public interface GenFeatureInitializer extends EObject {
 	 * @see #setFeature(GenFeature)
 	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenFeatureInitializer_Feature()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/gmf/2005/constraints ocl='feature <> null implies not featureSeqInitializer.initializers->exists(i| i <> self and i.feature = self.feature)' description='The feature is already initialized by another \'GenFeatureInitializer\' in the sequence'"
-	 *        annotation="http://www.eclipse.org/gmf/2005/constraints ocl='feature <> null implies feature.ecoreFeature.eContainingClass.isSuperTypeOf(featureSeqInitializer.elementClass.ecoreClass)' description='The \'feature\' of \'GenFeatureInitializer\' must be available in \'Meta Class\' of the initialized element'"
+	 *        annotation="http://www.eclipse.org/gmf/2005/constraints ocl='feature &lt;&gt; null implies not featureSeqInitializer.initializers-&gt;exists(i| i &lt;&gt; self and i.feature = self.feature)' description='The feature is already initialized by another \'GenFeatureInitializer\' in the sequence'"
+	 *        annotation="http://www.eclipse.org/gmf/2005/constraints ocl='feature &lt;&gt; null implies feature.ecoreFeature.eContainingClass.isSuperTypeOf(featureSeqInitializer.elementClass.ecoreClass)' description='The \'feature\' of \'GenFeatureInitializer\' must be available in \'Meta Class\' of the initialized element'"
 	 * @generated
 	 */
 	GenFeature getFeature();

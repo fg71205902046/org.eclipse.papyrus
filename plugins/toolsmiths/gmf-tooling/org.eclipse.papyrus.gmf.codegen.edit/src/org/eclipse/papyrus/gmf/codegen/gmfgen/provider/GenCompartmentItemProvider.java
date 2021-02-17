@@ -45,13 +45,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCompartment;
  * @generated
  */
 public class GenCompartmentItemProvider
-	extends GenChildContainerItemProvider
-	implements	
-		IEditingDomainItemProvider,	
-		IStructuredItemContentProvider,	
-		ITreeItemContentProvider,	
-		IItemLabelProvider,	
-		IItemPropertySource {
+	extends GenChildContainerItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

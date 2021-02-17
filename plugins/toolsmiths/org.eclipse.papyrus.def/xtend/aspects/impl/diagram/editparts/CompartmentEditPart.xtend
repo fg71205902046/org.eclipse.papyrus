@@ -20,7 +20,7 @@ import com.google.inject.Inject
 import com.google.inject.Singleton
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCompartment
 import xpt.diagram.editparts.Common
-import org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView
+import org.eclipse.papyrus.gmf.codegen.genextension.ExtendedGenView
 
 //DOCUMENTATION: PapyrusGenCode
 //Overload only the creation of editPolicies in order to add the paste edit policy

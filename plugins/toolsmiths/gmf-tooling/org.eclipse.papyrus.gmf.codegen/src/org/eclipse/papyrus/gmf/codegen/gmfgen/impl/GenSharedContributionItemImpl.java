@@ -37,11 +37,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenSharedContributionItem;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenSharedContributionItemImpl#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenSharedContributionItemImpl#getActualItem <em>Actual Item</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -80,6 +80,7 @@ public class GenSharedContributionItemImpl extends EObjectImpl implements GenSha
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenContributionManager getOwner() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_SHARED_CONTRIBUTION_ITEM__OWNER) return null;
 		return (GenContributionManager)eInternalContainer();
@@ -90,6 +91,7 @@ public class GenSharedContributionItemImpl extends EObjectImpl implements GenSha
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenContributionItem getActualItem() {
 		if (actualItem != null && actualItem.eIsProxy()) {
 			InternalEObject oldActualItem = (InternalEObject)actualItem;
@@ -116,6 +118,7 @@ public class GenSharedContributionItemImpl extends EObjectImpl implements GenSha
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setActualItem(GenContributionItem newActualItem) {
 		GenContributionItem oldActualItem = actualItem;
 		actualItem = newActualItem;

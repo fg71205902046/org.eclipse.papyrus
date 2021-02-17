@@ -280,6 +280,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenEditorGenerator createGenEditorGenerator() {
 		GenEditorGeneratorImpl genEditorGenerator = new GenEditorGeneratorImpl();
 		return genEditorGenerator;
@@ -290,6 +291,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenDiagram createGenDiagram() {
 		GenDiagramImpl genDiagram = new GenDiagramImpl();
 		return genDiagram;
@@ -300,6 +302,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenEditorView createGenEditorView() {
 		GenEditorViewImpl genEditorView = new GenEditorViewImpl();
 		return genEditorView;
@@ -310,6 +313,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenCustomPreferencePage createGenCustomPreferencePage() {
 		GenCustomPreferencePageImpl genCustomPreferencePage = new GenCustomPreferencePageImpl();
 		return genCustomPreferencePage;
@@ -320,6 +324,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenStandardPreferencePage createGenStandardPreferencePage() {
 		GenStandardPreferencePageImpl genStandardPreferencePage = new GenStandardPreferencePageImpl();
 		return genStandardPreferencePage;
@@ -330,6 +335,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenDiagramPreferences createGenDiagramPreferences() {
 		GenDiagramPreferencesImpl genDiagramPreferences = new GenDiagramPreferencesImpl();
 		return genDiagramPreferences;
@@ -340,6 +346,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenStandardFont createGenStandardFont() {
 		GenStandardFontImpl genStandardFont = new GenStandardFontImpl();
 		return genStandardFont;
@@ -350,6 +357,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenCustomFont createGenCustomFont() {
 		GenCustomFontImpl genCustomFont = new GenCustomFontImpl();
 		return genCustomFont;
@@ -360,6 +368,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenRGBColor createGenRGBColor() {
 		GenRGBColorImpl genRGBColor = new GenRGBColorImpl();
 		return genRGBColor;
@@ -370,6 +379,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenConstantColor createGenConstantColor() {
 		GenConstantColorImpl genConstantColor = new GenConstantColorImpl();
 		return genConstantColor;
@@ -380,6 +390,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenPreference createGenPreference() {
 		GenPreferenceImpl genPreference = new GenPreferenceImpl();
 		return genPreference;
@@ -390,6 +401,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenDiagramUpdater createGenDiagramUpdater() {
 		GenDiagramUpdaterImpl genDiagramUpdater = new GenDiagramUpdaterImpl();
 		return genDiagramUpdater;
@@ -400,6 +412,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenPlugin createGenPlugin() {
 		GenPluginImpl genPlugin = new GenPluginImpl();
 		return genPlugin;
@@ -410,6 +423,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DynamicModelAccess createDynamicModelAccess() {
 		DynamicModelAccessImpl dynamicModelAccess = new DynamicModelAccessImpl();
 		return dynamicModelAccess;
@@ -420,6 +434,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CustomBehaviour createCustomBehaviour() {
 		CustomBehaviourImpl customBehaviour = new CustomBehaviourImpl();
 		return customBehaviour;
@@ -430,6 +445,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SharedBehaviour createSharedBehaviour() {
 		SharedBehaviourImpl sharedBehaviour = new SharedBehaviourImpl();
 		return sharedBehaviour;
@@ -440,6 +456,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OpenDiagramBehaviour createOpenDiagramBehaviour() {
 		OpenDiagramBehaviourImpl openDiagramBehaviour = new OpenDiagramBehaviourImpl();
 		return openDiagramBehaviour;
@@ -450,6 +467,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenTopLevelNode createGenTopLevelNode() {
 		GenTopLevelNodeImpl genTopLevelNode = new GenTopLevelNodeImpl();
 		return genTopLevelNode;
@@ -460,6 +478,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenChildNode createGenChildNode() {
 		GenChildNodeImpl genChildNode = new GenChildNodeImpl();
 		return genChildNode;
@@ -470,6 +489,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenChildSideAffixedNode createGenChildSideAffixedNode() {
 		GenChildSideAffixedNodeImpl genChildSideAffixedNode = new GenChildSideAffixedNodeImpl();
 		return genChildSideAffixedNode;
@@ -480,6 +500,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenChildLabelNode createGenChildLabelNode() {
 		GenChildLabelNodeImpl genChildLabelNode = new GenChildLabelNodeImpl();
 		return genChildLabelNode;
@@ -490,6 +511,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenCompartment createGenCompartment() {
 		GenCompartmentImpl genCompartment = new GenCompartmentImpl();
 		return genCompartment;
@@ -500,6 +522,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenLink createGenLink() {
 		GenLinkImpl genLink = new GenLinkImpl();
 		return genLink;
@@ -510,6 +533,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenNodeLabel createGenNodeLabel() {
 		GenNodeLabelImpl genNodeLabel = new GenNodeLabelImpl();
 		return genNodeLabel;
@@ -520,6 +544,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenExternalNodeLabel createGenExternalNodeLabel() {
 		GenExternalNodeLabelImpl genExternalNodeLabel = new GenExternalNodeLabelImpl();
 		return genExternalNodeLabel;
@@ -530,6 +555,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenLinkLabel createGenLinkLabel() {
 		GenLinkLabelImpl genLinkLabel = new GenLinkLabelImpl();
 		return genLinkLabel;
@@ -540,6 +566,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public MetamodelType createMetamodelType() {
 		MetamodelTypeImpl metamodelType = new MetamodelTypeImpl();
 		return metamodelType;
@@ -550,6 +577,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SpecializationType createSpecializationType() {
 		SpecializationTypeImpl specializationType = new SpecializationTypeImpl();
 		return specializationType;
@@ -560,6 +588,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotationType createNotationType() {
 		NotationTypeImpl notationType = new NotationTypeImpl();
 		return notationType;
@@ -570,6 +599,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LabelModelFacet createLabelModelFacet() {
 		LabelModelFacetImpl labelModelFacet = new LabelModelFacetImpl();
 		return labelModelFacet;
@@ -580,6 +610,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypeModelFacet createTypeModelFacet() {
 		TypeModelFacetImpl typeModelFacet = new TypeModelFacetImpl();
 		return typeModelFacet;
@@ -590,6 +621,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public FeatureLabelModelFacet createFeatureLabelModelFacet() {
 		FeatureLabelModelFacetImpl featureLabelModelFacet = new FeatureLabelModelFacetImpl();
 		return featureLabelModelFacet;
@@ -600,6 +632,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DesignLabelModelFacet createDesignLabelModelFacet() {
 		DesignLabelModelFacetImpl designLabelModelFacet = new DesignLabelModelFacetImpl();
 		return designLabelModelFacet;
@@ -610,6 +643,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExpressionLabelModelFacet createExpressionLabelModelFacet() {
 		ExpressionLabelModelFacetImpl expressionLabelModelFacet = new ExpressionLabelModelFacetImpl();
 		return expressionLabelModelFacet;
@@ -620,6 +654,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypeLinkModelFacet createTypeLinkModelFacet() {
 		TypeLinkModelFacetImpl typeLinkModelFacet = new TypeLinkModelFacetImpl();
 		return typeLinkModelFacet;
@@ -630,6 +665,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public FeatureLinkModelFacet createFeatureLinkModelFacet() {
 		FeatureLinkModelFacetImpl featureLinkModelFacet = new FeatureLinkModelFacetImpl();
 		return featureLinkModelFacet;
@@ -640,6 +676,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ColorAttributes createColorAttributes() {
 		ColorAttributesImpl colorAttributes = new ColorAttributesImpl();
 		return colorAttributes;
@@ -650,6 +687,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public StyleAttributes createStyleAttributes() {
 		StyleAttributesImpl styleAttributes = new StyleAttributesImpl();
 		return styleAttributes;
@@ -660,6 +698,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ResizeConstraints createResizeConstraints() {
 		ResizeConstraintsImpl resizeConstraints = new ResizeConstraintsImpl();
 		return resizeConstraints;
@@ -670,6 +709,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DefaultSizeAttributes createDefaultSizeAttributes() {
 		DefaultSizeAttributesImpl defaultSizeAttributes = new DefaultSizeAttributesImpl();
 		return defaultSizeAttributes;
@@ -680,6 +720,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LabelOffsetAttributes createLabelOffsetAttributes() {
 		LabelOffsetAttributesImpl labelOffsetAttributes = new LabelOffsetAttributesImpl();
 		return labelOffsetAttributes;
@@ -690,6 +731,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public FigureViewmap createFigureViewmap() {
 		FigureViewmapImpl figureViewmap = new FigureViewmapImpl();
 		return figureViewmap;
@@ -700,6 +742,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SnippetViewmap createSnippetViewmap() {
 		SnippetViewmapImpl snippetViewmap = new SnippetViewmapImpl();
 		return snippetViewmap;
@@ -710,6 +753,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public InnerClassViewmap createInnerClassViewmap() {
 		InnerClassViewmapImpl innerClassViewmap = new InnerClassViewmapImpl();
 		return innerClassViewmap;
@@ -720,6 +764,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ParentAssignedViewmap createParentAssignedViewmap() {
 		ParentAssignedViewmapImpl parentAssignedViewmap = new ParentAssignedViewmapImpl();
 		return parentAssignedViewmap;
@@ -730,6 +775,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ModeledViewmap createModeledViewmap() {
 		ModeledViewmapImpl modeledViewmap = new ModeledViewmapImpl();
 		return modeledViewmap;
@@ -740,6 +786,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ValueExpression createValueExpression() {
 		ValueExpressionImpl valueExpression = new ValueExpressionImpl();
 		return valueExpression;
@@ -750,6 +797,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenConstraint createGenConstraint() {
 		GenConstraintImpl genConstraint = new GenConstraintImpl();
 		return genConstraint;
@@ -760,6 +808,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Palette createPalette() {
 		PaletteImpl palette = new PaletteImpl();
 		return palette;
@@ -770,6 +819,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ToolEntry createToolEntry() {
 		ToolEntryImpl toolEntry = new ToolEntryImpl();
 		return toolEntry;
@@ -780,6 +830,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public StandardEntry createStandardEntry() {
 		StandardEntryImpl standardEntry = new StandardEntryImpl();
 		return standardEntry;
@@ -790,6 +841,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Separator createSeparator() {
 		SeparatorImpl separator = new SeparatorImpl();
 		return separator;
@@ -800,6 +852,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ToolGroup createToolGroup() {
 		ToolGroupImpl toolGroup = new ToolGroupImpl();
 		return toolGroup;
@@ -810,6 +863,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenFeatureSeqInitializer createGenFeatureSeqInitializer() {
 		GenFeatureSeqInitializerImpl genFeatureSeqInitializer = new GenFeatureSeqInitializerImpl();
 		return genFeatureSeqInitializer;
@@ -820,6 +874,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenFeatureValueSpec createGenFeatureValueSpec() {
 		GenFeatureValueSpecImpl genFeatureValueSpec = new GenFeatureValueSpecImpl();
 		return genFeatureValueSpec;
@@ -830,6 +885,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenReferenceNewElementSpec createGenReferenceNewElementSpec() {
 		GenReferenceNewElementSpecImpl genReferenceNewElementSpec = new GenReferenceNewElementSpecImpl();
 		return genReferenceNewElementSpec;
@@ -840,6 +896,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenLinkConstraints createGenLinkConstraints() {
 		GenLinkConstraintsImpl genLinkConstraints = new GenLinkConstraintsImpl();
 		return genLinkConstraints;
@@ -850,6 +907,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenAuditRoot createGenAuditRoot() {
 		GenAuditRootImpl genAuditRoot = new GenAuditRootImpl();
 		return genAuditRoot;
@@ -860,6 +918,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenAuditContainer createGenAuditContainer() {
 		GenAuditContainerImpl genAuditContainer = new GenAuditContainerImpl();
 		return genAuditContainer;
@@ -870,6 +929,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenAuditRule createGenAuditRule() {
 		GenAuditRuleImpl genAuditRule = new GenAuditRuleImpl();
 		return genAuditRule;
@@ -880,6 +940,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenDomainElementTarget createGenDomainElementTarget() {
 		GenDomainElementTargetImpl genDomainElementTarget = new GenDomainElementTargetImpl();
 		return genDomainElementTarget;
@@ -890,6 +951,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenDiagramElementTarget createGenDiagramElementTarget() {
 		GenDiagramElementTargetImpl genDiagramElementTarget = new GenDiagramElementTargetImpl();
 		return genDiagramElementTarget;
@@ -900,6 +962,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenDomainAttributeTarget createGenDomainAttributeTarget() {
 		GenDomainAttributeTargetImpl genDomainAttributeTarget = new GenDomainAttributeTargetImpl();
 		return genDomainAttributeTarget;
@@ -910,6 +973,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenNotationElementTarget createGenNotationElementTarget() {
 		GenNotationElementTargetImpl genNotationElementTarget = new GenNotationElementTargetImpl();
 		return genNotationElementTarget;
@@ -920,6 +984,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenMetricContainer createGenMetricContainer() {
 		GenMetricContainerImpl genMetricContainer = new GenMetricContainerImpl();
 		return genMetricContainer;
@@ -930,6 +995,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenMetricRule createGenMetricRule() {
 		GenMetricRuleImpl genMetricRule = new GenMetricRuleImpl();
 		return genMetricRule;
@@ -940,6 +1006,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenAuditedMetricTarget createGenAuditedMetricTarget() {
 		GenAuditedMetricTargetImpl genAuditedMetricTarget = new GenAuditedMetricTargetImpl();
 		return genAuditedMetricTarget;
@@ -950,6 +1017,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenAuditContext createGenAuditContext() {
 		GenAuditContextImpl genAuditContext = new GenAuditContextImpl();
 		return genAuditContext;
@@ -960,6 +1028,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenExpressionProviderContainer createGenExpressionProviderContainer() {
 		GenExpressionProviderContainerImpl genExpressionProviderContainer = new GenExpressionProviderContainerImpl();
 		return genExpressionProviderContainer;
@@ -970,6 +1039,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenJavaExpressionProvider createGenJavaExpressionProvider() {
 		GenJavaExpressionProviderImpl genJavaExpressionProvider = new GenJavaExpressionProviderImpl();
 		return genJavaExpressionProvider;
@@ -980,6 +1050,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenExpressionInterpreter createGenExpressionInterpreter() {
 		GenExpressionInterpreterImpl genExpressionInterpreter = new GenExpressionInterpreterImpl();
 		return genExpressionInterpreter;
@@ -990,6 +1061,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenLiteralExpressionProvider createGenLiteralExpressionProvider() {
 		GenLiteralExpressionProviderImpl genLiteralExpressionProvider = new GenLiteralExpressionProviderImpl();
 		return genLiteralExpressionProvider;
@@ -1000,6 +1072,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenNavigator createGenNavigator() {
 		GenNavigatorImpl genNavigator = new GenNavigatorImpl();
 		return genNavigator;
@@ -1010,6 +1083,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenNavigatorChildReference createGenNavigatorChildReference() {
 		GenNavigatorChildReferenceImpl genNavigatorChildReference = new GenNavigatorChildReferenceImpl();
 		return genNavigatorChildReference;
@@ -1020,6 +1094,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenNavigatorPath createGenNavigatorPath() {
 		GenNavigatorPathImpl genNavigatorPath = new GenNavigatorPathImpl();
 		return genNavigatorPath;
@@ -1030,6 +1105,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenNavigatorPathSegment createGenNavigatorPathSegment() {
 		GenNavigatorPathSegmentImpl genNavigatorPathSegment = new GenNavigatorPathSegmentImpl();
 		return genNavigatorPathSegment;
@@ -1040,6 +1116,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenPropertySheet createGenPropertySheet() {
 		GenPropertySheetImpl genPropertySheet = new GenPropertySheetImpl();
 		return genPropertySheet;
@@ -1050,6 +1127,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenStandardPropertyTab createGenStandardPropertyTab() {
 		GenStandardPropertyTabImpl genStandardPropertyTab = new GenStandardPropertyTabImpl();
 		return genStandardPropertyTab;
@@ -1060,6 +1138,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenCustomPropertyTab createGenCustomPropertyTab() {
 		GenCustomPropertyTabImpl genCustomPropertyTab = new GenCustomPropertyTabImpl();
 		return genCustomPropertyTab;
@@ -1070,6 +1149,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypeTabFilter createTypeTabFilter() {
 		TypeTabFilterImpl typeTabFilter = new TypeTabFilterImpl();
 		return typeTabFilter;
@@ -1080,6 +1160,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CustomTabFilter createCustomTabFilter() {
 		CustomTabFilterImpl customTabFilter = new CustomTabFilterImpl();
 		return customTabFilter;
@@ -1090,6 +1171,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenSharedContributionItem createGenSharedContributionItem() {
 		GenSharedContributionItemImpl genSharedContributionItem = new GenSharedContributionItemImpl();
 		return genSharedContributionItem;
@@ -1100,6 +1182,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenGroupMarker createGenGroupMarker() {
 		GenGroupMarkerImpl genGroupMarker = new GenGroupMarkerImpl();
 		return genGroupMarker;
@@ -1110,6 +1193,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenSeparator createGenSeparator() {
 		GenSeparatorImpl genSeparator = new GenSeparatorImpl();
 		return genSeparator;
@@ -1120,6 +1204,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenCustomAction createGenCustomAction() {
 		GenCustomActionImpl genCustomAction = new GenCustomActionImpl();
 		return genCustomAction;
@@ -1130,6 +1215,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenCommandAction createGenCommandAction() {
 		GenCommandActionImpl genCommandAction = new GenCommandActionImpl();
 		return genCommandAction;
@@ -1140,6 +1226,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LoadResourceAction createLoadResourceAction() {
 		LoadResourceActionImpl loadResourceAction = new LoadResourceActionImpl();
 		return loadResourceAction;
@@ -1150,6 +1237,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public InitDiagramAction createInitDiagramAction() {
 		InitDiagramActionImpl initDiagramAction = new InitDiagramActionImpl();
 		return initDiagramAction;
@@ -1160,6 +1248,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CreateShortcutAction createCreateShortcutAction() {
 		CreateShortcutActionImpl createShortcutAction = new CreateShortcutActionImpl();
 		return createShortcutAction;
@@ -1170,6 +1259,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenActionFactoryContributionItem createGenActionFactoryContributionItem() {
 		GenActionFactoryContributionItemImpl genActionFactoryContributionItem = new GenActionFactoryContributionItemImpl();
 		return genActionFactoryContributionItem;
@@ -1180,6 +1270,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenMenuManager createGenMenuManager() {
 		GenMenuManagerImpl genMenuManager = new GenMenuManagerImpl();
 		return genMenuManager;
@@ -1190,6 +1281,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenToolBarManager createGenToolBarManager() {
 		GenToolBarManagerImpl genToolBarManager = new GenToolBarManagerImpl();
 		return genToolBarManager;
@@ -1200,6 +1292,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenContextMenu createGenContextMenu() {
 		GenContextMenuImpl genContextMenu = new GenContextMenuImpl();
 		return genContextMenu;
@@ -1210,6 +1303,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenApplication createGenApplication() {
 		GenApplicationImpl genApplication = new GenApplicationImpl();
 		return genApplication;
@@ -1220,6 +1314,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenParsers createGenParsers() {
 		GenParsersImpl genParsers = new GenParsersImpl();
 		return genParsers;
@@ -1230,6 +1325,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PredefinedParser createPredefinedParser() {
 		PredefinedParserImpl predefinedParser = new PredefinedParserImpl();
 		return predefinedParser;
@@ -1240,6 +1336,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PredefinedEnumParser createPredefinedEnumParser() {
 		PredefinedEnumParserImpl predefinedEnumParser = new PredefinedEnumParserImpl();
 		return predefinedEnumParser;
@@ -1250,6 +1347,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OclChoiceParser createOclChoiceParser() {
 		OclChoiceParserImpl oclChoiceParser = new OclChoiceParserImpl();
 		return oclChoiceParser;
@@ -1260,6 +1358,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExpressionLabelParser createExpressionLabelParser() {
 		ExpressionLabelParserImpl expressionLabelParser = new ExpressionLabelParserImpl();
 		return expressionLabelParser;
@@ -1270,6 +1369,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CustomParser createCustomParser() {
 		CustomParserImpl customParser = new CustomParserImpl();
 		return customParser;
@@ -1280,6 +1380,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExternalParser createExternalParser() {
 		ExternalParserImpl externalParser = new ExternalParserImpl();
 		return externalParser;
@@ -1290,6 +1391,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenVisualEffect createGenVisualEffect() {
 		GenVisualEffectImpl genVisualEffect = new GenVisualEffectImpl();
 		return genVisualEffect;
@@ -1300,6 +1402,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenCustomGeneratorExtension createGenCustomGeneratorExtension() {
 		GenCustomGeneratorExtensionImpl genCustomGeneratorExtension = new GenCustomGeneratorExtensionImpl();
 		return genCustomGeneratorExtension;
@@ -1310,6 +1413,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenTemplateInvocation createGenTemplateInvocation() {
 		GenTemplateInvocationImpl genTemplateInvocation = new GenTemplateInvocationImpl();
 		return genTemplateInvocation;
@@ -1320,6 +1424,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenFixedInputsTemplateInvocation createGenFixedInputsTemplateInvocation() {
 		GenFixedInputsTemplateInvocationImpl genFixedInputsTemplateInvocation = new GenFixedInputsTemplateInvocationImpl();
 		return genFixedInputsTemplateInvocation;
@@ -1650,6 +1755,7 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GMFGenPackage getGMFGenPackage() {
 		return (GMFGenPackage)getEPackage();
 	}

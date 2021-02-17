@@ -28,8 +28,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenConstraint;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Gen Constraint</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

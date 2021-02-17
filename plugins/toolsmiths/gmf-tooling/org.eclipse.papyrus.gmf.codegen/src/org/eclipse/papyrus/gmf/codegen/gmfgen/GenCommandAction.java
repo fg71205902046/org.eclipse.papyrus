@@ -27,11 +27,11 @@ package org.eclipse.papyrus.gmf.codegen.gmfgen;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommandAction#getCommandIdentifier <em>Command Identifier</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommandAction#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenCommandAction()
  * @model

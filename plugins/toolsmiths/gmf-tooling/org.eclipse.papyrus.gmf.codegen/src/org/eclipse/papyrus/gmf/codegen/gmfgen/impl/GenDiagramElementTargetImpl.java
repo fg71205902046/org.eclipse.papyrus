@@ -36,10 +36,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagramElementTarget;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenDiagramElementTargetImpl#getElement <em>Element</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -78,6 +78,7 @@ public class GenDiagramElementTargetImpl extends GenAuditableImpl implements Gen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GenCommonBase> getElement() {
 		if (element == null) {
 			element = new EObjectResolvingEList<GenCommonBase>(GenCommonBase.class, this, GMFGenPackage.GEN_DIAGRAM_ELEMENT_TARGET__ELEMENT);

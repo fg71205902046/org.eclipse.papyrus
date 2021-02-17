@@ -34,10 +34,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeModelFacet;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenElementInitializer#getTypeModelFacet <em>Type Model Facet</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenElementInitializer()
  * @model interface="true" abstract="true"

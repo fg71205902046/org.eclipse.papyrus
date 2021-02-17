@@ -35,6 +35,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenCompartment#getTitle <em>Title</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenCompartment#isCanCollapse <em>Can Collapse</em>}</li>
@@ -44,7 +45,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenCompartment#getNode <em>Node</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenCompartment#isListLayout <em>List Layout</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenCompartment()
  * @model

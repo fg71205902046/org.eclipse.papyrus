@@ -28,8 +28,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.PredefinedEnumParser;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Predefined Enum Parser</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

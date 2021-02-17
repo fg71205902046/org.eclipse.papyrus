@@ -31,11 +31,11 @@ package org.eclipse.papyrus.gmf.codegen.gmfgen;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.CustomParser#getQualifiedName <em>Qualified Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.CustomParser#isGenerateBoilerplate <em>Generate Boilerplate</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getCustomParser()
  * @model

@@ -30,6 +30,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorView;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.EditorCandies#getCreationWizardClassName <em>Creation Wizard Class Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.EditorCandies#getCreationWizardPageClassName <em>Creation Wizard Page Class Name</em>}</li>
@@ -47,7 +48,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorView;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.EditorCandies#getLoadResourceActionClassName <em>Load Resource Action Class Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.EditorCandies#getEditingDomainID <em>Editing Domain ID</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getEditorCandies()
  * @model interface="true" abstract="true"

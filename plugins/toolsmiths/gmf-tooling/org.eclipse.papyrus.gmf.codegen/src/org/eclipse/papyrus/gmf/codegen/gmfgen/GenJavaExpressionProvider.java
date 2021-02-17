@@ -27,11 +27,11 @@ package org.eclipse.papyrus.gmf.codegen.gmfgen;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenJavaExpressionProvider#isThrowException <em>Throw Exception</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenJavaExpressionProvider#isInjectExpressionBody <em>Inject Expression Body</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenJavaExpressionProvider()
  * @model
@@ -51,7 +51,6 @@ public interface GenJavaExpressionProvider extends GenExpressionProviderBase {
 	 * @see #setThrowException(boolean)
 	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenJavaExpressionProvider_ThrowException()
 	 * @model default="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel documentaion='Whether to generate default implementation that rises RuntimeException to signal unimplemented method'"
 	 * @generated
 	 */
 	boolean isThrowException();
@@ -79,7 +78,6 @@ public interface GenJavaExpressionProvider extends GenExpressionProviderBase {
 	 * @see #setInjectExpressionBody(boolean)
 	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenJavaExpressionProvider_InjectExpressionBody()
 	 * @model default="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel documentaion='When \'true\', body of associated ValueExpression would get injected into Java code as-is, thus allowing to provide method implementations right within the model. Note, if body is empty, default implementation would be generated instead.'"
 	 * @generated
 	 */
 	boolean isInjectExpressionBody();

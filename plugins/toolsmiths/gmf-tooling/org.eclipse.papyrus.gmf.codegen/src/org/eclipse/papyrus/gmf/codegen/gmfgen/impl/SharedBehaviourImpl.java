@@ -37,11 +37,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.SharedBehaviour;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.SharedBehaviourImpl#getSubject <em>Subject</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.SharedBehaviourImpl#getDelegate <em>Delegate</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -80,6 +80,7 @@ public class SharedBehaviourImpl extends EObjectImpl implements SharedBehaviour 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenCommonBase getSubject() {
 		if (eContainerFeatureID() != GMFGenPackage.SHARED_BEHAVIOUR__SUBJECT) return null;
 		return (GenCommonBase)eInternalContainer();
@@ -90,6 +91,7 @@ public class SharedBehaviourImpl extends EObjectImpl implements SharedBehaviour 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Behaviour getDelegate() {
 		if (delegate != null && delegate.eIsProxy()) {
 			InternalEObject oldDelegate = (InternalEObject)delegate;
@@ -116,6 +118,7 @@ public class SharedBehaviourImpl extends EObjectImpl implements SharedBehaviour 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDelegate(Behaviour newDelegate) {
 		Behaviour oldDelegate = delegate;
 		delegate = newDelegate;

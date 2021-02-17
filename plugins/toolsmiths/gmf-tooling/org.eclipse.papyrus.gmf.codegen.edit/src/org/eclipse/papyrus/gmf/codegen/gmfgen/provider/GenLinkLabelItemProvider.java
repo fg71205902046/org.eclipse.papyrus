@@ -45,13 +45,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLinkLabel;
  * @generated
  */
 public class GenLinkLabelItemProvider
-	extends GenLabelItemProvider
-	implements	
-		IEditingDomainItemProvider,	
-		IStructuredItemContentProvider,	
-		ITreeItemContentProvider,	
-		IItemLabelProvider,	
-		IItemPropertySource {
+	extends GenLabelItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

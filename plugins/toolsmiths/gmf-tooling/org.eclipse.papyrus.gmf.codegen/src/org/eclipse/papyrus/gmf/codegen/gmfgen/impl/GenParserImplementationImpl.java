@@ -44,11 +44,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.LabelModelFacet;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenParserImplementationImpl#getHolder <em>Holder</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenParserImplementationImpl#getUses <em>Uses</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -87,6 +87,7 @@ public abstract class GenParserImplementationImpl extends EObjectImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenParsers getHolder() {
 		if (eContainerFeatureID() != GMFGenPackage.GEN_PARSER_IMPLEMENTATION__HOLDER) return null;
 		return (GenParsers)eInternalContainer();
@@ -97,6 +98,7 @@ public abstract class GenParserImplementationImpl extends EObjectImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<LabelModelFacet> getUses() {
 		if (uses == null) {
 			uses = new EObjectWithInverseResolvingEList<LabelModelFacet>(LabelModelFacet.class, this, GMFGenPackage.GEN_PARSER_IMPLEMENTATION__USES, GMFGenPackage.LABEL_MODEL_FACET__PARSER);

@@ -35,11 +35,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenRuleBase;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenRuleBaseImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenRuleBaseImpl#getDescription <em>Description</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -108,6 +108,7 @@ public abstract class GenRuleBaseImpl extends EObjectImpl implements GenRuleBase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -117,6 +118,7 @@ public abstract class GenRuleBaseImpl extends EObjectImpl implements GenRuleBase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -129,6 +131,7 @@ public abstract class GenRuleBaseImpl extends EObjectImpl implements GenRuleBase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDescription() {
 		return description;
 	}
@@ -138,6 +141,7 @@ public abstract class GenRuleBaseImpl extends EObjectImpl implements GenRuleBase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDescription(String newDescription) {
 		String oldDescription = description;
 		description = newDescription;
@@ -222,7 +226,7 @@ public abstract class GenRuleBaseImpl extends EObjectImpl implements GenRuleBase
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
 		result.append(", description: ");

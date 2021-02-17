@@ -35,12 +35,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenRGBColor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenRGBColorImpl#getRed <em>Red</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenRGBColorImpl#getGreen <em>Green</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenRGBColorImpl#getBlue <em>Blue</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -129,6 +129,7 @@ public class GenRGBColorImpl extends EObjectImpl implements GenRGBColor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getRed() {
 		return red;
 	}
@@ -138,6 +139,7 @@ public class GenRGBColorImpl extends EObjectImpl implements GenRGBColor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRed(int newRed) {
 		int oldRed = red;
 		red = newRed;
@@ -150,6 +152,7 @@ public class GenRGBColorImpl extends EObjectImpl implements GenRGBColor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getGreen() {
 		return green;
 	}
@@ -159,6 +162,7 @@ public class GenRGBColorImpl extends EObjectImpl implements GenRGBColor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGreen(int newGreen) {
 		int oldGreen = green;
 		green = newGreen;
@@ -171,6 +175,7 @@ public class GenRGBColorImpl extends EObjectImpl implements GenRGBColor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getBlue() {
 		return blue;
 	}
@@ -180,6 +185,7 @@ public class GenRGBColorImpl extends EObjectImpl implements GenRGBColor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBlue(int newBlue) {
 		int oldBlue = blue;
 		blue = newBlue;
@@ -274,7 +280,7 @@ public class GenRGBColorImpl extends EObjectImpl implements GenRGBColor {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (red: ");
 		result.append(red);
 		result.append(", green: ");

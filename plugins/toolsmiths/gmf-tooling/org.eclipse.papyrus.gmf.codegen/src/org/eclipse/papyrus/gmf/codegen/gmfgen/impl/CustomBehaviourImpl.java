@@ -36,12 +36,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.CustomBehaviourImpl#getSubject <em>Subject</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.CustomBehaviourImpl#getKey <em>Key</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.CustomBehaviourImpl#getEditPolicyQualifiedClassName <em>Edit Policy Qualified Class Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -110,6 +110,7 @@ public class CustomBehaviourImpl extends EObjectImpl implements CustomBehaviour 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenCommonBase getSubject() {
 		if (eContainerFeatureID() != GMFGenPackage.CUSTOM_BEHAVIOUR__SUBJECT) return null;
 		return (GenCommonBase)eInternalContainer();
@@ -120,6 +121,7 @@ public class CustomBehaviourImpl extends EObjectImpl implements CustomBehaviour 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getKey() {
 		return key;
 	}
@@ -129,6 +131,7 @@ public class CustomBehaviourImpl extends EObjectImpl implements CustomBehaviour 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setKey(String newKey) {
 		String oldKey = key;
 		key = newKey;
@@ -141,6 +144,7 @@ public class CustomBehaviourImpl extends EObjectImpl implements CustomBehaviour 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getEditPolicyQualifiedClassName() {
 		return editPolicyQualifiedClassName;
 	}
@@ -150,6 +154,7 @@ public class CustomBehaviourImpl extends EObjectImpl implements CustomBehaviour 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEditPolicyQualifiedClassName(String newEditPolicyQualifiedClassName) {
 		String oldEditPolicyQualifiedClassName = editPolicyQualifiedClassName;
 		editPolicyQualifiedClassName = newEditPolicyQualifiedClassName;
@@ -282,7 +287,7 @@ public class CustomBehaviourImpl extends EObjectImpl implements CustomBehaviour 
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (key: ");
 		result.append(key);
 		result.append(", editPolicyQualifiedClassName: ");

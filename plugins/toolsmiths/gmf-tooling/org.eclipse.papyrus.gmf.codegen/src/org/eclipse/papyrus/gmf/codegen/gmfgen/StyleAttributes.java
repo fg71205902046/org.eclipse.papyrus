@@ -27,12 +27,12 @@ package org.eclipse.papyrus.gmf.codegen.gmfgen;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.StyleAttributes#isFixedFont <em>Fixed Font</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.StyleAttributes#isFixedForeground <em>Fixed Foreground</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.StyleAttributes#isFixedBackground <em>Fixed Background</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getStyleAttributes()
  * @model

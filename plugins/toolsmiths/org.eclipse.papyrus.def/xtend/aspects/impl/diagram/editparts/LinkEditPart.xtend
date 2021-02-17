@@ -21,7 +21,7 @@ import com.google.inject.Inject
 import com.google.inject.Singleton
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink
 import org.eclipse.papyrus.gmf.codegen.gmfgen.ModeledViewmap
-import org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView
+import org.eclipse.papyrus.gmf.codegen.genextension.ExtendedGenView
 import xpt.Common
 
 /**
