@@ -10,7 +10,6 @@
 	<artifactId>org.eclipse.papyrus.examples.others</artifactId>
 	<packaging>pom</packaging>
 	<modules>
-		<module>org.eclipse.papyrus.example.diagram.simplediagram</module>
 		<module>org.eclipse.papyrus.example.text.instance</module>
 	</modules>
 </project>

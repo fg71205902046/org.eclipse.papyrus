@@ -2127,12 +2127,6 @@ If you want to use other figure for externals labels you should make sure the me
 
 This section contains code example related to diagrams. 
 
-==== How to develop my own UML diagram ====
-
-Papyrus allow to add new kind of UML diagrams. A plugin example with a doc can be found in the Git : 
-
-*[http://git.eclipse.org/c/papyrus/org.eclipse.papyrus.git/tree/examples/others/org.eclipse.papyrus.example.diagram.simplediagram]
-
 ==== Compartment without Scrollbar ====
 
 ===== Goal =====
