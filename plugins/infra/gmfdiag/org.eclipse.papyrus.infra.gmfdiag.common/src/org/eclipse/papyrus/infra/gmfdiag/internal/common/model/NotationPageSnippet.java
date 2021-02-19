@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.internal.common.model;
@@ -112,7 +112,7 @@ public class NotationPageSnippet implements IModelSnippet {
 								GMFUnsafe.write(domain, () -> {
 									// Because the diagram/table/whatever is deleted
 									// from the resource, any and all pages that were
-									// showing it must be closed.  Usually a notation
+									// showing it must be closed. Usually a notation
 									// is only opened in at most one page in the editor,
 									// but the API allows for more than one
 									pageManager.closeAllOpenedPages(root);

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2005, 2018 AIRBUS FRANCE, CEA LIST, EclipseSource and others. 
+ * Copyright (c) 2005, 2018 AIRBUS FRANCE, CEA LIST, EclipseSource and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -8,10 +8,10 @@
  *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- * David Sciamma (Anyware Technologies), 
+ * Contributors:
+ * David Sciamma (Anyware Technologies),
  * Mathieu Garcia (Anyware Technologies),
- * Jacques Lescot (Anyware Technologies), 
+ * Jacques Lescot (Anyware Technologies),
  * Thomas Friol (Anyware Technologies),
  * Nicolas Lalevee (Anyware Technologies) - initial API and implementation
  * EclipseSource - Bug 536638, Bug 536641

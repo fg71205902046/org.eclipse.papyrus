@@ -20,14 +20,15 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GridManagementEditPolicy;
 
 /**
- *this command is used to explain all line must move at the same time or not
+ * this command is used to explain all line must move at the same time or not
  *
  */
-public class SetMoveAllLineAtSamePositionCommand extends  Command {
+public class SetMoveAllLineAtSamePositionCommand extends Command {
 
 	protected boolean setMoveAllLineAtSamePosition;
 
-	protected GridManagementEditPolicy grid=null;
+	protected GridManagementEditPolicy grid = null;
+
 	/**
 	 * Constructor.
 	 *
@@ -35,10 +36,10 @@ public class SetMoveAllLineAtSamePositionCommand extends  Command {
 	 * @param label
 	 * @param affectedFiles
 	 */
-	public SetMoveAllLineAtSamePositionCommand(GridManagementEditPolicy grid,boolean setMoveAllLineAtSamePosition) {
-		super( "SetMoveAllLineAtSamePosition to "+setMoveAllLineAtSamePosition);
-		this.setMoveAllLineAtSamePosition=setMoveAllLineAtSamePosition;
-		this.grid=grid;
+	public SetMoveAllLineAtSamePositionCommand(GridManagementEditPolicy grid, boolean setMoveAllLineAtSamePosition) {
+		super("SetMoveAllLineAtSamePosition to " + setMoveAllLineAtSamePosition);
+		this.setMoveAllLineAtSamePosition = setMoveAllLineAtSamePosition;
+		this.grid = grid;
 	}
 
 	/**
@@ -53,6 +54,7 @@ public class SetMoveAllLineAtSamePositionCommand extends  Command {
 	public void execute() {
 		grid.setMoveAllLinesAtSamePosition(setMoveAllLineAtSamePosition);
 	}
+
 	/**
 	 * @see org.eclipse.gef.commands.Command#undo()
 	 *

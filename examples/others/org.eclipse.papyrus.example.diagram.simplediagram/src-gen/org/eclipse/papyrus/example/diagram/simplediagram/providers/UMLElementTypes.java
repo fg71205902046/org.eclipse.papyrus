@@ -9,12 +9,12 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.providers.DiagramElementTypeImages;
-import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.providers.DiagramElementTypes;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.example.diagram.simplediagram.edit.parts.ComponentEditPart;
 import org.eclipse.papyrus.example.diagram.simplediagram.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.example.diagram.simplediagram.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.providers.DiagramElementTypeImages;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.providers.DiagramElementTypes;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -85,19 +85,19 @@ public class UMLElementTypes {
 
 	/**
 	 * Returns 'type' of the ecore object associated with the hint.
-	 * 
+	 *
 	 * @generated
 	 */
 	public static ENamedElement getElement(IAdaptable hint) {
 		Object type = hint.getAdapter(IElementType.class);
 		if (elements == null) {
-			elements = new IdentityHashMap<IElementType, ENamedElement>();
+			elements = new IdentityHashMap<>();
 
 			elements.put(Model_1000, UMLPackage.eINSTANCE.getModel());
 
 			elements.put(Component_2001, UMLPackage.eINSTANCE.getComponent());
 		}
-		return (ENamedElement) elements.get(type);
+		return elements.get(type);
 	}
 
 	/**
@@ -112,7 +112,7 @@ public class UMLElementTypes {
 	 */
 	public static boolean isKnownElementType(IElementType elementType) {
 		if (KNOWN_ELEMENT_TYPES == null) {
-			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
+			KNOWN_ELEMENT_TYPES = new HashSet<>();
 			KNOWN_ELEMENT_TYPES.add(Model_1000);
 			KNOWN_ELEMENT_TYPES.add(Component_2001);
 		}

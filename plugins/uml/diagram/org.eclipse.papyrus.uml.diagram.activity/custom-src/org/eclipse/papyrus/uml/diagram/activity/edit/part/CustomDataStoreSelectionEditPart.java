@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.part;
@@ -36,6 +36,7 @@ public class CustomDataStoreSelectionEditPart extends DataStoreSelectionEditPart
 	/**
 	 * handle LinkAndCornerBentWithTextFigure
 	 */
+	@Override
 	protected String getLabelTextHelper(IFigure figure) {
 		if (figure instanceof LinkAndCornerBentWithTextFigure) {
 			return ((LinkAndCornerBentWithTextFigure) figure).getCornerBentContent().getText();
@@ -46,6 +47,7 @@ public class CustomDataStoreSelectionEditPart extends DataStoreSelectionEditPart
 	/**
 	 * handle LinkAndCornerBentWithTextFigure
 	 */
+	@Override
 	protected void setLabelTextHelper(IFigure figure, String text) {
 		if (figure instanceof LinkAndCornerBentWithTextFigure) {
 			((LinkAndCornerBentWithTextFigure) figure).getCornerBentContent().setText(text);
@@ -57,6 +59,7 @@ public class CustomDataStoreSelectionEditPart extends DataStoreSelectionEditPart
 	/**
 	 * handle LinkAndCornerBentWithTextFigure
 	 */
+	@Override
 	protected Image getLabelIconHelper(IFigure figure) {
 		if (figure instanceof LinkAndCornerBentWithTextFigure) {
 			return ((LinkAndCornerBentWithTextFigure) figure).getCornerBentContent().getIcon();
@@ -67,6 +70,7 @@ public class CustomDataStoreSelectionEditPart extends DataStoreSelectionEditPart
 	/**
 	 * handle LinkAndCornerBentWithTextFigure
 	 */
+	@Override
 	protected void setLabelIconHelper(IFigure figure, Image icon) {
 		if (figure instanceof LinkAndCornerBentWithTextFigure) {
 			((LinkAndCornerBentWithTextFigure) figure).getCornerBentContent().setIcon(icon);
@@ -78,10 +82,11 @@ public class CustomDataStoreSelectionEditPart extends DataStoreSelectionEditPart
 	/**
 	 * do not edit label if hidden
 	 */
+	@Override
 	protected String getLabelText() {
 		if (isSelectionSet()) {
 			return super.getLabelText();
-		} 
+		}
 		return "";
 	}
 
@@ -103,6 +108,7 @@ public class CustomDataStoreSelectionEditPart extends DataStoreSelectionEditPart
 	/**
 	 * do not edit label if hidden
 	 */
+	@Override
 	protected void performDirectEdit() {
 		if (isSelectionSet()) {
 			super.performDirectEdit();
@@ -112,6 +118,7 @@ public class CustomDataStoreSelectionEditPart extends DataStoreSelectionEditPart
 	/**
 	 * do not edit label if hidden
 	 */
+	@Override
 	protected void performDirectEdit(Point eventLocation) {
 		if (isSelectionSet()) {
 			super.performDirectEdit(eventLocation);
@@ -121,6 +128,7 @@ public class CustomDataStoreSelectionEditPart extends DataStoreSelectionEditPart
 	/**
 	 * do not edit label if hidden
 	 */
+	@Override
 	protected void performDirectEdit(char initialCharacter) {
 		if (isSelectionSet()) {
 			super.performDirectEdit(initialCharacter);
@@ -160,7 +168,7 @@ public class CustomDataStoreSelectionEditPart extends DataStoreSelectionEditPart
 
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.activity.edit.parts.DataStoreSelectionEditPart#refreshLabel()
-	 * refresh the visibility in case the selection assignment changed -- refreshLabel
+	 *      refresh the visibility in case the selection assignment changed -- refreshLabel
 	 */
 	@Override
 	protected void refreshLabel() {

@@ -549,7 +549,7 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 	 */
 	private Set<Object> getAvailableTypes() {
 		Collection<EObject> types = ModelSetQuery.getObjectsOfType(activityOwner, UMLPackage.eINSTANCE.getTypedElement_Type().getEType());
-		Set<Object> result = new HashSet<Object>();
+		Set<Object> result = new HashSet<>();
 		result.add("");
 		result.addAll(types);
 		return result;

@@ -1,13 +1,13 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
  *
  * SPDX-License-Identifier: EPL-2.0
- *   
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.part;
 
@@ -26,6 +26,7 @@ import org.eclipse.papyrus.uml.diagram.activity.helper.ActivityFigureDrawer;
 
 /**
  * This edit part allow to update pin icon following UML Norm
+ *
  * @see 16.2.4.2 Pins and Figure 16.4 Pin notations
  */
 public abstract class AbstractPinEditPart extends BorderedBorderItemEditPart {
@@ -33,7 +34,7 @@ public abstract class AbstractPinEditPart extends BorderedBorderItemEditPart {
 	public AbstractPinEditPart(View view) {
 		super(view);
 	}
-	
+
 	/**
 	 * Notifies listeners that a target connection has been added.
 	 *
@@ -182,7 +183,7 @@ public abstract class AbstractPinEditPart extends BorderedBorderItemEditPart {
 		// redraw the pin arrow if no connection
 		redrawPinArrow(getTargetConnections().isEmpty() ? getSourceConnections() : getTargetConnections());
 	}
-	
+
 	@Override
 	public void refreshBounds() {
 		super.refreshBounds();

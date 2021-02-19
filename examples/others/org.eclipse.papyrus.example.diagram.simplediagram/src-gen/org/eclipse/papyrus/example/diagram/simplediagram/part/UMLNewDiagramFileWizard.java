@@ -97,6 +97,7 @@ public class UMLNewDiagramFileWizard extends Wizard {
 	/**
 	 * @generated
 	 */
+	@Override
 	public void addPages() {
 		addPage(myFileCreationPage);
 		addPage(diagramRootElementSelectionPage);
@@ -105,8 +106,9 @@ public class UMLNewDiagramFileWizard extends Wizard {
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean performFinish() {
-		LinkedList<IFile> affectedFiles = new LinkedList<IFile>();
+		LinkedList<IFile> affectedFiles = new LinkedList<>();
 		IFile diagramFile = myFileCreationPage.createNewFile();
 		UMLDiagramEditorUtil.setCharset(diagramFile);
 		affectedFiles.add(diagramFile);
@@ -120,6 +122,7 @@ public class UMLNewDiagramFileWizard extends Wizard {
 				Messages.UMLNewDiagramFileWizard_InitDiagramCommand,
 				affectedFiles) {
 
+			@Override
 			protected CommandResult doExecuteWithResult(
 					IProgressMonitor monitor, IAdaptable info)
 					throws ExecutionException {
@@ -172,6 +175,7 @@ public class UMLNewDiagramFileWizard extends Wizard {
 		/**
 		 * @generated
 		 */
+		@Override
 		protected String getSelectionTitle() {
 			return Messages.UMLNewDiagramFileWizard_RootSelectionPageSelectionTitle;
 		}
@@ -179,6 +183,7 @@ public class UMLNewDiagramFileWizard extends Wizard {
 		/**
 		 * @generated
 		 */
+		@Override
 		protected boolean validatePage() {
 			if (getModelElement() == null) {
 				setErrorMessage(Messages.UMLNewDiagramFileWizard_RootSelectionPageNoSelectionMessage);

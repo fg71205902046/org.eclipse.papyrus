@@ -33,7 +33,7 @@ public interface EditPolicyProviderTester {
 	 * @param provider
 	 * @param editPart
 	 * @return
-	 * 		<code>false</code> if this tester explicitly rejects this provider in the context of that edit part;
+	 *         <code>false</code> if this tester explicitly rejects this provider in the context of that edit part;
 	 *         <code>true</code> otherwise.
 	 */
 	boolean isEnabled(IEditPolicyProvider provider, EditPart editPart);

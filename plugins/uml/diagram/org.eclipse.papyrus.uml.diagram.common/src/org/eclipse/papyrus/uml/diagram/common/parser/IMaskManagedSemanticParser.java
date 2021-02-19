@@ -27,7 +27,7 @@ import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 public interface IMaskManagedSemanticParser extends ISemanticParser {
 
 	/** The label to show in case ParserOptions.None is passed as flag (avoid a fully masked label) */
-	public static final String MaskedLabel = "<empty label>";  //$NON-NLS-1$
+	public static final String MaskedLabel = "<empty label>"; //$NON-NLS-1$
 
 	/**
 	 * Get the {@link Map} of masks

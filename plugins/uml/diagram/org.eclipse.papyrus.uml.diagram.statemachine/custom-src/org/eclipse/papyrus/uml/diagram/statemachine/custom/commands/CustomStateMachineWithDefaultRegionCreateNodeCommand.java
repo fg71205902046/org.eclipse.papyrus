@@ -65,8 +65,8 @@ public class CustomStateMachineWithDefaultRegionCreateNodeCommand extends Abstra
 				compartmentView = currentView;
 			}
 		}
-		EObject represented = stateMachineView.getElement() ;
-		if(!(represented instanceof StateMachine)) {
+		EObject represented = stateMachineView.getElement();
+		if (!(represented instanceof StateMachine)) {
 			return CommandResult.newErrorCommandResult("Impossible to get the state machine to create the region from");
 		}
 		StateMachine stateMachine = (StateMachine) stateMachineView.getElement();

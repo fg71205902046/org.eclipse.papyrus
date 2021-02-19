@@ -58,24 +58,24 @@ public class SequenceReconciler_1_3_0 extends DiagramReconciler {
 
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-			//look for all combined fragment
-			View interactionShape=null;
-			View interactionCompartmentShape=null;
-			if( diagram.getChildren().size()==1) {
-				interactionShape=(View)diagram.getChildren().get(0);
-				if(interactionShape.getChildren().size()>0) {
+			// look for all combined fragment
+			View interactionShape = null;
+			View interactionCompartmentShape = null;
+			if (diagram.getChildren().size() == 1) {
+				interactionShape = (View) diagram.getChildren().get(0);
+				if (interactionShape.getChildren().size() > 0) {
 					for (int i = 0; i < interactionShape.getChildren().size(); i++) {
-						View child=(View)interactionShape.getChildren().get(i);
-						if( "Interaction_SubfragmentCompartment".equals(child.getType())) {
-							interactionCompartmentShape=child;
+						View child = (View) interactionShape.getChildren().get(i);
+						if ("Interaction_SubfragmentCompartment".equals(child.getType())) {
+							interactionCompartmentShape = child;
 						}
 					}
 				}
-				if(interactionCompartmentShape!=null) {
-					ArrayList<View>  combinedViews= new ArrayList<>();
+				if (interactionCompartmentShape != null) {
+					ArrayList<View> combinedViews = new ArrayList<>();
 					for (int i = 0; i < interactionCompartmentShape.getChildren().size(); i++) {
-						View child=(View)interactionCompartmentShape.getChildren().get(i);
-						if( "CombinedFragment_Shape".equals(child.getType())) {
+						View child = (View) interactionCompartmentShape.getChildren().get(i);
+						if ("CombinedFragment_Shape".equals(child.getType())) {
 							combinedViews.add(child);
 						}
 					}

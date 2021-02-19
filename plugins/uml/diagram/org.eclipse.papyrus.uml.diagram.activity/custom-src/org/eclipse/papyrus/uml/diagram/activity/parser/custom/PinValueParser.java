@@ -206,7 +206,7 @@ public class PinValueParser extends MessageFormatParser implements ISemanticPars
 	 */
 	@Override
 	public List<?> getSemanticElementsBeingParsed(EObject element) {
-		List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
+		List<Element> semanticElementsBeingParsed = new ArrayList<>();
 		if (element instanceof Pin) {
 			Pin pin = (Pin) element;
 			semanticElementsBeingParsed.add(pin);

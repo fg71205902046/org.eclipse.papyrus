@@ -178,21 +178,21 @@ public class PapyrusLabelHelper {
 				if (segment.isHorizontal()) {
 					if (segment.getOrigin().x > segment.getTerminus().x) {
 						relativeOffset = ptOnLine.getTranslated(offset.getNegated());
-						//						System.out.println("1. Relative offset: " + relativeOffset);//$NON-NLS-1$
+						// System.out.println("1. Relative offset: " + relativeOffset);//$NON-NLS-1$
 						return relativeOffset;
 					} else {
 						relativeOffset = ptOnLine.getTranslated(offset);
-						//						System.out.println("2. Relative offset: " + relativeOffset);//$NON-NLS-1$
+						// System.out.println("2. Relative offset: " + relativeOffset);//$NON-NLS-1$
 						return relativeOffset;
 					}
 				} else if (segment.isVertical()) {
 					if (segment.getOrigin().y > segment.getTerminus().y) {
 						relativeOffset = ptOnLine.getTranslated(offset.getCopy().scale(-1, 1).transpose());
-						//						System.out.println("3. Relative offset: " + relativeOffset);//$NON-NLS-1$
+						// System.out.println("3. Relative offset: " + relativeOffset);//$NON-NLS-1$
 						return relativeOffset;
 					} else {
 						relativeOffset = ptOnLine.getTranslated(offset.getCopy().scale(1, -1).transpose());
-						//						System.out.println("4. Relative offset: " + relativeOffset);//$NON-NLS-1$
+						// System.out.println("4. Relative offset: " + relativeOffset);//$NON-NLS-1$
 						return relativeOffset;
 					}
 				} else {
@@ -205,11 +205,13 @@ public class PapyrusLabelHelper {
 					}
 
 					calculatedOffset = new Point(normalizedOffset.x
-							* Math.cos(theta) - normalizedOffset.y
-							* Math.sin(theta), normalizedOffset.x * Math.sin(theta)
-							+ normalizedOffset.y * Math.cos(theta));
+							* Math.cos(theta)
+							- normalizedOffset.y
+									* Math.sin(theta),
+							normalizedOffset.x * Math.sin(theta)
+									+ normalizedOffset.y * Math.cos(theta));
 					relativeOffset = ptOnLine.getTranslated(calculatedOffset);
-					//					System.out.println("5. Relative offset: " + relativeOffset);//$NON-NLS-1$
+					// System.out.println("5. Relative offset: " + relativeOffset);//$NON-NLS-1$
 					return relativeOffset;
 				}
 			}
@@ -239,27 +241,27 @@ public class PapyrusLabelHelper {
 				if (segment.isHorizontal()) {
 					if (segment.getOrigin().x > segment.getTerminus().x) {
 						normalOffset = offset.getNegated();
-						//System.out.println("1. Normal offset: " + normalOffset);//$NON-NLS-1$
+						// System.out.println("1. Normal offset: " + normalOffset);//$NON-NLS-1$
 						return normalOffset;
 					} else {
 						normalOffset = offset;
-						//System.out.println("2. Normal offset: " + normalOffset);//$NON-NLS-1$
+						// System.out.println("2. Normal offset: " + normalOffset);//$NON-NLS-1$
 						return normalOffset;
 					}
 				} else if (segment.isVertical()) {
 					if (segment.getOrigin().y < segment.getTerminus().y) {
 						normalOffset = offset.scale(-1, 1).transpose();
-						//System.out.println("3. Normal offset: " + normalOffset);//$NON-NLS-1$
+						// System.out.println("3. Normal offset: " + normalOffset);//$NON-NLS-1$
 						return normalOffset;
 					} else {
 						normalOffset = offset.scale(1, -1).transpose();
-						//System.out.println("4. Normal offset: " + normalOffset);//$NON-NLS-1$
+						// System.out.println("4. Normal offset: " + normalOffset);//$NON-NLS-1$
 						return normalOffset;
 					}
 				} else {
 					Point p = ptOnLine.getTranslated(offset);
 					normalOffset = getOrthogonalDistances(segment, ptOnLine, p);
-					//System.out.println("5. Normal offset: " + normalOffset);//$NON-NLS-1$
+					// System.out.println("5. Normal offset: " + normalOffset);//$NON-NLS-1$
 					return normalOffset;
 				}
 			}

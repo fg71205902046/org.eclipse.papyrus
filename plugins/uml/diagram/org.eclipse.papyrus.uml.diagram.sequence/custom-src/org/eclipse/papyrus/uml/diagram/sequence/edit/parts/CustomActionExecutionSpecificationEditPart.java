@@ -25,7 +25,8 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ExecutionGraphical
  */
 public class CustomActionExecutionSpecificationEditPart extends CCombinedCompartmentEditPart {
 
-	public static int DEFAULT_HEIGHT=100;
+	public static int DEFAULT_HEIGHT = 100;
+
 	/**
 	 * Constructor.
 	 *
@@ -57,6 +58,7 @@ public class CustomActionExecutionSpecificationEditPart extends CCombinedCompart
 
 		super.refreshBounds();
 	}
+
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart#refreshVisuals()
 	 *
@@ -66,6 +68,7 @@ public class CustomActionExecutionSpecificationEditPart extends CCombinedCompart
 
 		super.refreshVisuals();
 	}
+
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart#handleNotificationEvent(org.eclipse.emf.common.notify.Notification)
 	 *

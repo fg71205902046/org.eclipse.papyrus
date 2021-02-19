@@ -91,10 +91,10 @@ public class NamedElementLabelParser implements IMaskManagedSemanticParser {
 		}
 
 		try {
-			if(InternationalizationPreferencesUtils.getInternationalizationPreference(objectToEdit) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML((NamedElement)objectToEdit)){
-				final ModelSet modelSet = (ModelSet)objectToEdit.eResource().getResourceSet();
-				command = new EMFtoGMFCommandWrapper(UMLLabelInternationalization.getInstance().getSetLabelCommand(modelSet.getTransactionalEditingDomain(), (NamedElement)objectToEdit, newString, null));
-			}else{
+			if (InternationalizationPreferencesUtils.getInternationalizationPreference(objectToEdit) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML((NamedElement) objectToEdit)) {
+				final ModelSet modelSet = (ModelSet) objectToEdit.eResource().getResourceSet();
+				command = new EMFtoGMFCommandWrapper(UMLLabelInternationalization.getInstance().getSetLabelCommand(modelSet.getTransactionalEditingDomain(), (NamedElement) objectToEdit, newString, null));
+			} else {
 				IClientContext context = TypeContext.getContext(objectToEdit);
 				command = ElementEditServiceUtils.getEditServiceProvider(context).getEditService(objectToEdit).getEditCommand(new SetRequest(objectToEdit, UMLPackage.eINSTANCE.getNamedElement_Name(), newString));
 			}
@@ -149,7 +149,7 @@ public class NamedElementLabelParser implements IMaskManagedSemanticParser {
 	 */
 	@Override
 	public List<EObject> getSemanticElementsBeingParsed(EObject element) {
-		List<EObject> semanticElementsBeingParsed = new ArrayList<EObject>();
+		List<EObject> semanticElementsBeingParsed = new ArrayList<>();
 		semanticElementsBeingParsed.add(element);
 
 		return semanticElementsBeingParsed;
@@ -172,7 +172,7 @@ public class NamedElementLabelParser implements IMaskManagedSemanticParser {
 	}
 
 	protected Collection<String> getMaskValues(IAdaptable element) {
-		View view = (View) element.getAdapter(View.class);
+		View view = element.getAdapter(View.class);
 		if (view == null) {
 			return getDefaultValue(element);
 		}

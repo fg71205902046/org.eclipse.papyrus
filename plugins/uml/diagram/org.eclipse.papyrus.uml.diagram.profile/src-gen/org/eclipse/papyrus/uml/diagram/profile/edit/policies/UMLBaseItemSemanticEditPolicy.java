@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  * 
+  *
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License 2.0
   * which accompanies this distribution, and is available at
   * https://www.eclipse.org/legal/epl-2.0/
   *
   * SPDX-License-Identifier: EPL-2.0
-  * 
+  *
   * Contributors:
   *  CEA LIST - Initial API and implementation
  */
@@ -79,11 +79,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Extended request data key to hold editpart visual id.
+	 *
 	 * @generated
 	 */
 	public static final String VISUAL_ID_KEY = "visual_id"; //$NON-NLS-1$
 	/**
 	 * Extended request data key to hold the edge view during a reconnect request.
+	 *
 	 * @generated
 	 */
 	public static final String GRAPHICAL_RECONNECTED_EDGE = "graphical_edge"; //$NON-NLS-1$
@@ -106,11 +108,12 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * It is done in those cases when it's not possible to deduce diagram
 	 * element kind from domain element.
 	 * Add the reoriented view to the request extended data so that the view
-	 *  currently edited can be distinguished from other views of the same element
-	 *  and these latter possibly removed if they become inconsistent after reconnect
-	 * 
+	 * currently edited can be distinguished from other views of the same element
+	 * and these latter possibly removed if they become inconsistent after reconnect
+	 *
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public Command getCommand(Request request) {
 		if (request instanceof ReconnectRequest) {
@@ -126,6 +129,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Returns visual id from request parameters.
+	 *
 	 * @generated
 	 */
 	protected String getVisualID(IEditCommandRequest request) {
@@ -135,6 +139,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected Command getSemanticCommand(IEditCommandRequest request) {
 		IEditCommandRequest completedRequest = completeRequest(request);
 		Command semanticCommand = getSemanticCommandSwitch(completedRequest);
@@ -325,6 +330,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Returns editing domain from the host edit part.
+	 *
 	 * @generated
 	 */
 	protected TransactionalEditingDomain getEditingDomain() {
@@ -333,6 +339,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Clean all shortcuts to the host element from the same diagram
+	 *
 	 * @generated
 	 */
 	protected void addDestroyShortcutsCommand(ICompositeCommand cmd, View view) {
@@ -480,17 +487,19 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		public boolean canExistExtension_Edge(Package container, Extension linkInstance, Property source,
 				Class target) {
 			try {
-				//ExtensionSource
-				/**we can't make a test here, because, the source must be a Property (ExtensionEnd) and it's a Stereotype
-				 * 
+				// ExtensionSource
+				/**
+				 * we can't make a test here, because, the source must be a Property (ExtensionEnd) and it's a Stereotype
+				 *
 				 * @see org.eclipse.papyrus.uml.diagram.profile.custom.policies.CUMLBaseItemSemanticEditPolicy for the good test!
-				*/
-				//ExtensionTarget
+				 */
+				// ExtensionTarget
 
-				/**we can't make a test here, because, the source must be a Property (ExtensionEnd) and it's a Stereotype
-				 * 
+				/**
+				 * we can't make a test here, because, the source must be a Property (ExtensionEnd) and it's a Stereotype
+				 *
 				 * @see org.eclipse.papyrus.uml.diagram.profile.custom.policies.CUMLBaseItemSemanticEditPolicy for the good test!
-				*/
+				 */
 				return true;
 			} catch (Exception e) {
 				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
@@ -503,14 +512,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canExistAssociation_Edge(Package container, Association linkInstance, Type source, Type target) {
 			try {
-				//AssociationSource
-				if ((source instanceof Type) && Util.isMetaclass((Type) source)) {
+				// AssociationSource
+				if ((source instanceof Type) && Util.isMetaclass(source)) {
 					return false;
 				}
 				if (source instanceof Extension) {
 					return false;
 				}
-				//AssociationTarget
+				// AssociationTarget
 				if (target != null) {
 					if (target instanceof Extension) {
 						return false;
@@ -537,14 +546,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		public boolean canExistAssociation_BranchEdge(Package container, Association linkInstance, Type source,
 				Type target) {
 			try {
-				//AssociationSource
-				if ((source instanceof Type) && Util.isMetaclass((Type) source)) {
+				// AssociationSource
+				if ((source instanceof Type) && Util.isMetaclass(source)) {
 					return false;
 				}
 				if (source instanceof Extension) {
 					return false;
 				}
-				//AssociationTarget
+				// AssociationTarget
 				if (target != null) {
 					if (target instanceof Extension) {
 						return false;
@@ -562,7 +571,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canExistGeneralization_Edge(Generalization linkInstance, Classifier source, Classifier target) {
 			try {
-				//GeneralizationSource
+				// GeneralizationSource
 				if (!(source instanceof Classifier)) {
 					return false;
 				}
@@ -570,9 +579,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return false;
 				}
 				if (source instanceof Extension) {
-					return false; //meaningless
+					return false; // meaningless
 				}
-				//GeneralizationTarget
+				// GeneralizationTarget
 				if (target != null) {
 					if (!(target instanceof Classifier)) {
 						return false;
@@ -581,7 +590,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 						return false;
 					}
 					if (target instanceof Extension) {
-						return false;//meaningless
+						return false;// meaningless
 					}
 				}
 				return true;
@@ -597,14 +606,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		public boolean canExistDependency_Edge(Package container, Dependency linkInstance, NamedElement source,
 				NamedElement target) {
 			try {
-				//DependencySource
+				// DependencySource
 				if ((source instanceof Type) && Util.isMetaclass((Type) source)) {
 					return false;
 				}
 				if (source instanceof Extension) {
 					return false;
 				}
-				//DependencyTarget 
+				// DependencyTarget
 				if (target != null) {
 					if (target instanceof Extension) {
 						return false;
@@ -623,14 +632,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		public boolean canExistDependency_BranchEdge(Package container, Dependency linkInstance, NamedElement source,
 				NamedElement target) {
 			try {
-				//DependencySource
+				// DependencySource
 				if ((source instanceof Type) && Util.isMetaclass((Type) source)) {
 					return false;
 				}
 				if (source instanceof Extension) {
 					return false;
 				}
-				//DependencyTarget 
+				// DependencyTarget
 				if (target != null) {
 					if (target instanceof Extension) {
 						return false;
@@ -649,14 +658,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		public boolean canExistElementImport_Edge(Namespace container, ElementImport linkInstance, Namespace source,
 				PackageableElement target) {
 			try {
-				//ElementImportSource
+				// ElementImportSource
 				if ((source instanceof Type) && Util.isMetaclass((Type) source)) {
 					return false;
 				}
 				if (source instanceof Extension) {
 					return false;
 				}
-				//ElementImportTarget
+				// ElementImportTarget
 				if (target != null) {
 					if (target instanceof Extension) {
 						return false;
@@ -675,7 +684,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		public boolean canExistPackageImport_Edge(Namespace container, PackageImport linkInstance, Namespace source,
 				Package target) {
 			try {
-				//PackageImportSource
+				// PackageImportSource
 				if ((source instanceof Type) && Util.isMetaclass((Type) source)) {
 					return false;
 				}
@@ -694,7 +703,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canExistComment_AnnotatedElementEdge(Comment source, Element target) {
 			try {
-				//AnnotatedElementLink target
+				// AnnotatedElementLink target
 				if ((target instanceof Type) && Util.isMetaclass((Type) target)) {
 					return false;
 				}
@@ -710,7 +719,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canExistConstraint_ConstrainedElementEdge(Constraint source, Element target) {
 			try {
-				//ConstraintedElementLink
+				// ConstraintedElementLink
 				if ((target instanceof Type) && Util.isMetaclass((Type) target)) {
 					return false;
 				}

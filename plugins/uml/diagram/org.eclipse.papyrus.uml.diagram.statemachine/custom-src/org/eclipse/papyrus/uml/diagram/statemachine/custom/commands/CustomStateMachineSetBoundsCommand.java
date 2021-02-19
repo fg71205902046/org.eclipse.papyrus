@@ -75,7 +75,7 @@ public class CustomStateMachineSetBoundsCommand extends AbstractTransactionalCom
 				if (currentNode.getLayoutConstraint() == null) {
 					currentNode.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 				}
-				if (UMLVisualIDRegistry.getVisualID(currentNode.getType()).equals(StateMachineNameEditPart.VISUAL_ID) ||UMLVisualIDRegistry.getVisualID(currentNode.getType()).equals(StateNameEditPartTN.VISUAL_ID) ) {
+				if (UMLVisualIDRegistry.getVisualID(currentNode.getType()).equals(StateMachineNameEditPart.VISUAL_ID) || UMLVisualIDRegistry.getVisualID(currentNode.getType()).equals(StateNameEditPartTN.VISUAL_ID)) {
 					if ((size != null) && !size.equals(-1, -1)) {
 						Zone.setWidth(currentNode, size.width);
 						Zone.setHeight(currentNode, Zone.defaultHeader);

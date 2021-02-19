@@ -119,7 +119,7 @@ public class PackageEditPart extends org.eclipse.papyrus.uml.diagram.common.edit
 
 	/**
 	 * Papyrus codeGen
-	 * 
+	 *
 	 * @generated
 	 **/
 	@Override
@@ -138,7 +138,7 @@ public class PackageEditPart extends org.eclipse.papyrus.uml.diagram.common.edit
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.common.figure.node.PackageFigure
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -240,7 +240,7 @@ public class PackageEditPart extends org.eclipse.papyrus.uml.diagram.common.edit
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * 
+	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
 	 * @generated

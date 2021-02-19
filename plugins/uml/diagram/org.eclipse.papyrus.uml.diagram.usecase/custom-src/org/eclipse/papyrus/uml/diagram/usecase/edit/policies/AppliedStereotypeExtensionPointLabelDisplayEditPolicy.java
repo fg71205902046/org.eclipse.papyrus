@@ -39,6 +39,6 @@ public class AppliedStereotypeExtensionPointLabelDisplayEditPolicy extends Appli
 
 	@Override
 	protected void refreshStereotypeDisplay() {
-		
+
 	}
 }

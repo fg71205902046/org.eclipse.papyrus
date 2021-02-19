@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and Implementation
- *   
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.migration;
 
@@ -22,6 +22,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.ReconcilerForCompartm
 
 /**
  * Diagram Reconciler for compartment from 1.1.0 to 1.2.0
+ *
  * @since 3.1
  */
 public class StateMachineReconcilerForCompartment_1_2_0 extends ReconcilerForCompartment {

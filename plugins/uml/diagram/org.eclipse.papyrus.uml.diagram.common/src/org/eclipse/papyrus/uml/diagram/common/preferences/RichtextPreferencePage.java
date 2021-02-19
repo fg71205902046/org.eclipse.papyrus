@@ -25,10 +25,10 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
  */
 @Deprecated
 public class RichtextPreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
-	
+
 	public static final String USE_HTML_RENDERER = "useHtmlRenderer";
 	public static final String USE_CK_EDITOR = "useCkEditor";
-	
+
 	public RichtextPreferencePage() {
 		super(GRID);
 		setPreferenceStore(Activator.getDefault().getPreferenceStore());

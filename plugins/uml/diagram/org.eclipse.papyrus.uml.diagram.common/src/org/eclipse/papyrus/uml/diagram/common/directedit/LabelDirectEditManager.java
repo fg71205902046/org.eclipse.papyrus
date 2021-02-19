@@ -11,7 +11,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *  Benoit Maggi    (CEA LIST) benoit.maggi@cea.fr - Bug 444063 Use static to avoid concurrency problem on restore 
+ *  Benoit Maggi    (CEA LIST) benoit.maggi@cea.fr - Bug 444063 Use static to avoid concurrency problem on restore
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.directedit;
 
@@ -146,7 +146,7 @@ public class LabelDirectEditManager extends DirectEditManager {
 		IActionBars editorActionBars = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
 				.getActivePage().getActiveEditor().getEditorSite()
 				.getActionBars();
-		if (actionBars != null){
+		if (actionBars != null) {
 			restoreSavedActions(editorActionBars);
 		}
 		saveCurrentActions(editorActionBars);

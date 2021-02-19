@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST, ALL4TEC and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -57,7 +57,7 @@ import org.eclipse.uml2.uml.Type;
 
 /**
  * Edit policy for stereotype property reference edge which delete edge when related Profile or Stereotype are unapplyed.
- * 
+ *
  * @author Mickael ADAM
  * @since 3.1
  */
@@ -76,7 +76,7 @@ public class StereotypePropertyReferenceEdgeCleaningEditPolicy extends AbstractE
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gef.editpolicies.AbstractEditPolicy#activate()
 	 */
 	@Override
@@ -161,7 +161,7 @@ public class StereotypePropertyReferenceEdgeCleaningEditPolicy extends AbstractE
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.emf.common.notify.Adapter#notifyChanged(org.eclipse.emf.common.notify.Notification)
 	 */
 	@Override
@@ -248,7 +248,7 @@ public class StereotypePropertyReferenceEdgeCleaningEditPolicy extends AbstractE
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gef.editpolicies.AbstractEditPolicy#deactivate()
 	 */
 	@Override

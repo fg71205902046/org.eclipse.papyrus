@@ -101,7 +101,8 @@ public class WarningAndLinkDialog extends MessageDialog {
 	 * @param linkLabel
 	 *            the label of the link
 	 */
-	protected WarningAndLinkDialog(Shell parentShell, String dialogTitle, Image dialogTitleImage, String dialogMessage, int dialogImageType, String[] dialogButtonLabels, int defaultIndex, NamedElement linkElement, String linkLabel, boolean closeAfterNavigation) {
+	protected WarningAndLinkDialog(Shell parentShell, String dialogTitle, Image dialogTitleImage, String dialogMessage, int dialogImageType, String[] dialogButtonLabels, int defaultIndex, NamedElement linkElement, String linkLabel,
+			boolean closeAfterNavigation) {
 		super(parentShell, dialogTitle, dialogTitleImage, dialogMessage, dialogImageType, dialogButtonLabels, defaultIndex);
 		element = linkElement;
 		label = linkLabel;

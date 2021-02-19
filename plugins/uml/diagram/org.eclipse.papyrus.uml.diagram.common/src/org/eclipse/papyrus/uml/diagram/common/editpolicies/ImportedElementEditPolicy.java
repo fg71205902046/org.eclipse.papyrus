@@ -92,14 +92,16 @@ public class ImportedElementEditPolicy extends ExternalReferenceEditPolicy {
 		String papyrusEditorConstant = PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.EXTERNAL_REFERENCE_STRATEGY);
 		String externalReferencePreference = org.eclipse.papyrus.infra.gmfdiag.preferences.Activator.getDefault().getPreferenceStore().getString(papyrusEditorConstant);
 		switch (externalReferencePreference) {
-			case ExternalReferenceGroup.EXTERNAL_REFERENCE_NONE: return false;	
-			case ExternalReferenceGroup.EXTERNAL_REFERENCE_OWNER: return semanticUMLElement.getOwner() != parentUMLElement;	
-			case ExternalReferenceGroup.EXTERNAL_REFERENCE_CONTAINER:	
-			default:
-				if (parentUMLElement instanceof Package) {
-					return semanticUMLElement.getNearestPackage() != parentUMLElement;
-				}
-				return semanticUMLElement.getNearestPackage() != parentUMLElement.getNearestPackage();
+		case ExternalReferenceGroup.EXTERNAL_REFERENCE_NONE:
+			return false;
+		case ExternalReferenceGroup.EXTERNAL_REFERENCE_OWNER:
+			return semanticUMLElement.getOwner() != parentUMLElement;
+		case ExternalReferenceGroup.EXTERNAL_REFERENCE_CONTAINER:
+		default:
+			if (parentUMLElement instanceof Package) {
+				return semanticUMLElement.getNearestPackage() != parentUMLElement;
+			}
+			return semanticUMLElement.getNearestPackage() != parentUMLElement.getNearestPackage();
 		}
 	}
 

@@ -20,6 +20,7 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements
 	/**
 	 * @generated
 	 */
+	@Override
 	public String getText(Object element) {
 		element = unwrap(element);
 		if (element instanceof UMLNavigatorGroup) {
@@ -32,6 +33,7 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements
 	/**
 	 * @generated
 	 */
+	@Override
 	public Image getImage(Object element) {
 		IElementType etype = getElementType(getView(unwrap(element)));
 		return etype == null ? null : UMLElementTypes.getImage(etype);
@@ -55,7 +57,7 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements
 			return (View) element;
 		}
 		if (element instanceof IAdaptable) {
-			return (View) ((IAdaptable) element).getAdapter(View.class);
+			return ((IAdaptable) element).getAdapter(View.class);
 		}
 		return null;
 	}

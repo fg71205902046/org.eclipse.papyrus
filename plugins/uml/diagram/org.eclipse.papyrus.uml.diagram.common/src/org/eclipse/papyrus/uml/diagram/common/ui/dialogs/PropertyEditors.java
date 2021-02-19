@@ -99,7 +99,8 @@ public class PropertyEditors {
 
 	/** the UML elements who aren't NamedElement */
 	static String unNamedElements[] = new String[] {
-			"ActivityGroup", "Clause", "Comment", "ExceptionHandler", "Image", "LinkEndData", "MultiplicityElement", "ParameterableElement", "QualifierValue", "Relationship", "Slot", "TemplateableElement", "TemplateParameter", "TemplateParameterSubstitution", "TemplateableParameterSubsitution", }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$ //$NON-NLS-12$ //$NON-NLS-13$ //$NON-NLS-14$ //$NON-NLS-15$
+			"ActivityGroup", "Clause", "Comment", "ExceptionHandler", "Image", "LinkEndData", "MultiplicityElement", "ParameterableElement", "QualifierValue", "Relationship", "Slot", "TemplateableElement", "TemplateParameter", "TemplateParameterSubstitution", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$ //$NON-NLS-12$ //$NON-NLS-13$ //$NON-NLS-14$
+			"TemplateableParameterSubsitution", }; //$NON-NLS-1$
 
 	// TODO : we doesn't know edit a property if the initial value is a property
 	// need implements this functionality is editors

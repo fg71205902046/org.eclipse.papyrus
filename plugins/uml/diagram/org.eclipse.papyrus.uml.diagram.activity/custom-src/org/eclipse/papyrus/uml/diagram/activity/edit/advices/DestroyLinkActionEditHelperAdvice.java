@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.advices;
@@ -30,10 +30,11 @@ import org.eclipse.uml2.uml.DestroyLinkAction;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * 
+ *
  * Pins of DestroyLinkAction should be create and update automatically
+ *
  * @since 3.0
- *  
+ *
  */
 public class DestroyLinkActionEditHelperAdvice extends AbstractEditHelperAdvice {
 
@@ -54,7 +55,7 @@ public class DestroyLinkActionEditHelperAdvice extends AbstractEditHelperAdvice 
 			if (editedModelElement != null) {
 				// 3] call the command for the DestroyLinkAction
 				IPinUpdater<DestroyLinkAction> updater = PinUpdaterFactory.getInstance().instantiate(editedModelElement);
-				return new PinUpdateCommand<DestroyLinkAction>("Update destroy link action pins", updater, editedModelElement); //$NON-NLS-1$
+				return new PinUpdateCommand<>("Update destroy link action pins", updater, editedModelElement); //$NON-NLS-1$
 			}
 		}
 		return null;
@@ -79,7 +80,7 @@ public class DestroyLinkActionEditHelperAdvice extends AbstractEditHelperAdvice 
 				if (editedModelElement != null) {
 					// 3] call the command for the DestroyLinkAction
 					IPinUpdater<DestroyLinkAction> updater = PinUpdaterFactory.getInstance().instantiate(editedModelElement);
-					return new PinUpdateCommand<DestroyLinkAction>("Update destroy link action pins", updater, editedModelElement); //$NON-NLS-1$
+					return new PinUpdateCommand<>("Update destroy link action pins", updater, editedModelElement); //$NON-NLS-1$
 				}
 			}
 		}

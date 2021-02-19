@@ -20,11 +20,11 @@ package org.eclipse.papyrus.uml.diagram.usecase.figure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 
 /**
- * 
+ *
  * @deprecated since 4.0 (bug 520755)
- * This wrapping label class should be removed in the same time than its associated view and its associated editpart (update of the gmfgen file).
- * Moreover removing all these things requires to write a diagram reconciler. 
- * As it is for a Service release, we don't do it yet. 
+ *             This wrapping label class should be removed in the same time than its associated view and its associated editpart (update of the gmfgen file).
+ *             Moreover removing all these things requires to write a diagram reconciler.
+ *             As it is for a Service release, we don't do it yet.
  *
  */
 @Deprecated

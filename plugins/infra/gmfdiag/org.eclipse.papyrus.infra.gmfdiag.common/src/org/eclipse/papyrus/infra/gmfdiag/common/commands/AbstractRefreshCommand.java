@@ -12,6 +12,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.commands;
 
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.RootEditPart;
 import org.eclipse.gef.commands.Command;
@@ -20,6 +21,7 @@ import org.eclipse.swt.widgets.Display;
 
 /**
  * Refresh the {@link IFigure} of a given {@link GraphicalEditPart}.
+ *
  * @since 3.0
  */
 public abstract class AbstractRefreshCommand extends Command {

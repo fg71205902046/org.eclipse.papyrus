@@ -41,6 +41,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescrip
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.DurationLinkUtil;
+import org.eclipse.papyrus.uml.diagram.sequence.util.OccurrenceSpecificationUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
@@ -77,7 +78,7 @@ public class CustomExecutionSpecificationCreationEditPolicy extends DefaultCreat
 			Point location = request.getLocation().getCopy();
 			location.setX(-10);
 			IFigure execFigure = ((IGraphicalEditPart) getHost()).getFigure();
-			boolean isStart = DurationLinkUtil.isStart(execFigure, location);
+			boolean isStart = OccurrenceSpecificationUtil.isStart(execFigure, location);
 			if (isStart) {
 				location.setY(-1);
 			} else {

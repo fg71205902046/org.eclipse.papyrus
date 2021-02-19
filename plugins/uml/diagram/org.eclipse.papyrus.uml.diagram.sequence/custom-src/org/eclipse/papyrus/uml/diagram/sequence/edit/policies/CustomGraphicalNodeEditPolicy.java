@@ -40,6 +40,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.command.CustomSetConnectionAncho
 /**
  * This class allows to redefine the reconnect source and target commands to use the {@link CustomSetConnectionAnchorsCommand} instead of {@link SetConnectionAnchorsCommand} because the custom manage the calculation during the execution and not in the
  * initialisation.
+ *
  * @since 5.0
  */
 public class CustomGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {

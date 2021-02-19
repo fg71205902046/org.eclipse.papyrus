@@ -50,6 +50,7 @@ public class UMLInitDiagramFileAction implements IObjectActionDelegate {
 	/**
 	 * @generated
 	 */
+	@Override
 	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
 		this.targetPart = targetPart;
 	}
@@ -57,6 +58,7 @@ public class UMLInitDiagramFileAction implements IObjectActionDelegate {
 	/**
 	 * @generated
 	 */
+	@Override
 	public void selectionChanged(IAction action, ISelection selection) {
 		domainModelURI = null;
 		action.setEnabled(false);
@@ -78,6 +80,7 @@ public class UMLInitDiagramFileAction implements IObjectActionDelegate {
 	/**
 	 * @generated
 	 */
+	@Override
 	public void run(IAction action) {
 		TransactionalEditingDomain editingDomain = WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain();
 		ResourceSet resourceSet = editingDomain.getResourceSet();

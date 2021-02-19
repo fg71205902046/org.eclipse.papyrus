@@ -85,11 +85,11 @@ public abstract class ClassifierEditPart extends RoundedCompartmentEditPart {
 	protected FontData getFontData(FontStyle style) {
 		return super.getFontData(style);
 
-		//next line commented for bug  464129: [Class Diagram] Italic font style not kept after re-opening any diagrams
+		// next line commented for bug 464129: [Class Diagram] Italic font style not kept after re-opening any diagrams
 		// https://bugs.eclipse.org/bugs/show_bug.cgi?id=464129
-		//new implementation use CSS (umlBase.css)
-		
-		
+		// new implementation use CSS (umlBase.css)
+
+
 		// FontData data = super.getFontData(style);
 		// if (isAbstract) {
 		// data.setStyle(data.getStyle() | SWT.ITALIC); // Force the Italic flag

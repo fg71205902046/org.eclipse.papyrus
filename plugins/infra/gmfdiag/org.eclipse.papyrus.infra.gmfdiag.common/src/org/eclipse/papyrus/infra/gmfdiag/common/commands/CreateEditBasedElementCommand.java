@@ -102,9 +102,9 @@ public class CreateEditBasedElementCommand extends CreateElementCommand {
 
 		protected Collection<Command> getPossibleCommands() {
 			if (possibleCommands == null) {
-				possibleCommands = new HashSet<Command>();
+				possibleCommands = new HashSet<>();
 				EClass eClass = getElementType().getEClass();
-				List<EClass> eClassesToCreateCommandsFor = new ArrayList<EClass>();
+				List<EClass> eClassesToCreateCommandsFor = new ArrayList<>();
 				if (eClass.isAbstract()) {
 					// If we didn't receive a hint on the eClass to create
 					if (eClassHint == null) {
@@ -153,13 +153,13 @@ public class CreateEditBasedElementCommand extends CreateElementCommand {
 		 * if the {@code resourceSet} is {@code null}, the static factory
 		 * of the {@code eClass}'s static package</li>
 		 * </ul>
-		 * 
+		 *
 		 * @param eClass
 		 *            an Ecore class to instantiate
 		 * @param resourceSet
 		 *            the resource set in which context the model is being edited.
 		 *            May be {@code null}
-		 * 
+		 *
 		 * @return the factory to use for instantiation of the {@code eClass}
 		 */
 		EFactory getFactory(EClass eClass, ResourceSet resourceSet) {

@@ -34,7 +34,6 @@ import org.eclipse.uml2.uml.OutputPin;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.TimeConstraint;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.UnmarshallAction;
 import org.eclipse.uml2.uml.ValuePin;
 
 /**

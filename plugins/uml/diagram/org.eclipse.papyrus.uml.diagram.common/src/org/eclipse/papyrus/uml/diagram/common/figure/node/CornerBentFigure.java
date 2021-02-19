@@ -115,7 +115,7 @@ public class CornerBentFigure extends NoteFigure implements IPapyrusNodeUMLEleme
 
 	/**
 	 * Fill the Compartment with the properties
-	 * 
+	 *
 	 * @param stereotypeProperties
 	 *            Properties List to display
 	 */
@@ -136,7 +136,7 @@ public class CornerBentFigure extends NoteFigure implements IPapyrusNodeUMLEleme
 
 	/**
 	 * Retrieve the Property position
-	 * 
+	 *
 	 * @return The integer for the Position of the property by incrementation
 	 */
 	protected int getStereotypePropertiesCompartmentPosition() {

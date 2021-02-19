@@ -128,7 +128,7 @@ public class CreateOrSelectTypeDialog extends FormDialog {
 		this.containerFeature = containerFeature;
 		this.containerEClass = containerEClass;
 		this.labelProvider = new UMLLabelProvider();
-		this.notWantedMetaclasses = new LinkedList<Object>();
+		this.notWantedMetaclasses = new LinkedList<>();
 	}
 
 	/**
@@ -461,9 +461,9 @@ public class CreateOrSelectTypeDialog extends FormDialog {
 	protected void setNewTypeName(String text) {
 		String name = text;
 		if (text == null) {
-			name = NamedElementUtil.computeDefaultNameWithIncrementFromBase(elementType.getEClass().getName(), newTypeContainer.eContents(),null, "",NamedElementIndexNamingStrategyEnum.UNIQUE_INDEX_INITIALIZATION.getName());
+			name = NamedElementUtil.computeDefaultNameWithIncrementFromBase(elementType.getEClass().getName(), newTypeContainer.eContents(), null, "", NamedElementIndexNamingStrategyEnum.UNIQUE_INDEX_INITIALIZATION.getName());
 			if (elementEClass != null) {
-				name = NamedElementUtil.computeDefaultNameWithIncrementFromBase(elementEClass.getName(), newTypeContainer.eContents(),null, "",NamedElementIndexNamingStrategyEnum.UNIQUE_INDEX_INITIALIZATION.getName());
+				name = NamedElementUtil.computeDefaultNameWithIncrementFromBase(elementEClass.getName(), newTypeContainer.eContents(), null, "", NamedElementIndexNamingStrategyEnum.UNIQUE_INDEX_INITIALIZATION.getName());
 			}
 			newTypeNameText.setText(name);
 

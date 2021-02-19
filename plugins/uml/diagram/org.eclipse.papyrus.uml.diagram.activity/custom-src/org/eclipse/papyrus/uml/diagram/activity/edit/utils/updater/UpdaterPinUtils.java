@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Jérémie TATIBOUET (CEA LIST) - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater;
@@ -23,7 +23,7 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageImport;
 
 /**
- * 
+ *
  * Automated pin derivation for AcceptEventAction and AcceptCallAction
  *
  */
@@ -33,7 +33,7 @@ public class UpdaterPinUtils {
 
 	/**
 	 * This method test if the UML primitive type package is already imported in the model
-	 * 
+	 *
 	 * @param entryPoint
 	 * @return return true if the UML primitive type package is already imported in the model, false otherwise
 	 */
@@ -55,7 +55,7 @@ public class UpdaterPinUtils {
 
 	/**
 	 * Get the UML primitive type package
-	 * 
+	 *
 	 * @param element
 	 * @return the UML primitive type package
 	 */

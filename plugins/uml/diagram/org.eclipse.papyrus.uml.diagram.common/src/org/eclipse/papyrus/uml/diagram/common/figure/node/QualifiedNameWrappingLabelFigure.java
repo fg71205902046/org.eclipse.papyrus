@@ -136,37 +136,37 @@ public class QualifiedNameWrappingLabelFigure extends PapyrusWrappingLabel imple
 
 	@Override
 	public void restoreNameLabel() {
-		
+
 
 	}
 
 	@Override
 	public void removeNameLabel() {
-		
+
 
 	}
 
 	@Override
 	public void removeStereotypeLabel() {
-		
+
 
 	}
 
 	@Override
 	public void restoreStereotypeLabel() {
-		
+
 
 	}
 
 	@Override
 	public void restoreTaggedLabel() {
-		
+
 
 	}
 
 	@Override
 	public void removeTaggedLabel() {
-		
+
 
 	}
 

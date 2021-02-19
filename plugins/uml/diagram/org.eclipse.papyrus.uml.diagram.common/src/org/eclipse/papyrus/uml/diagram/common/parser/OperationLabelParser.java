@@ -157,7 +157,7 @@ public class OperationLabelParser extends NamedElementLabelParser {
 	}
 
 	private static Collection<String> extractParameterMaskValues(Collection<String> operationMaskValues) {
-		Set<String> result = new HashSet<String>();
+		Set<String> result = new HashSet<>();
 
 		for (String maskValue : operationMaskValues) {
 			if (maskValue.startsWith(ICustomAppearance.PARAMETERS_PREFIX)) {
@@ -193,7 +193,7 @@ public class OperationLabelParser extends NamedElementLabelParser {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<EObject> getSemanticElementsBeingParsed(EObject element) {
-		List<EObject> semanticElementsBeingParsed = new ArrayList<EObject>();
+		List<EObject> semanticElementsBeingParsed = new ArrayList<>();
 
 		if ((element != null) && (element instanceof Operation)) {
 			Operation semElement = (Operation) element;
@@ -214,7 +214,7 @@ public class OperationLabelParser extends NamedElementLabelParser {
 	 */
 	@Override
 	public Map<String, String> getMasks() {
-		Map<String, String> masks = new HashMap<String, String>(5);
+		Map<String, String> masks = new HashMap<>(5);
 		masks.put(ICustomAppearance.DISP_VISIBILITY, "Visibility");
 		masks.put(ICustomAppearance.DISP_NAME, "Name");
 		masks.put(ICustomAppearance.DISP_TYPE, "Type");

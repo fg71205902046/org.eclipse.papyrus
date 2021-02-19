@@ -26,6 +26,7 @@ import org.eclipse.jface.util.PropertyChangeEvent;
 /**
  *
  * Implementation for an ObservableValue associated to a DoubleValueStyle and a IPreferenceStore.
+ *
  * @since 3.0
  *
  */

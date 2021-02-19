@@ -29,8 +29,9 @@ import org.eclipse.uml2.uml.StartObjectBehaviorAction;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * 
+ *
  * Pins of StartObjectBehaviorAction should be create and update automatically
+ *
  * @since 3.0
  *
  */
@@ -50,7 +51,7 @@ public class StartObjectBehaviorActionEditHelperAdvice extends AbstractEditHelpe
 			if (editedModelElement != null) {
 				// 3] call the command for the StartObjectBehaviorAction
 				IPinUpdater<StartObjectBehaviorAction> updater = PinUpdaterFactory.getInstance().instantiate(editedModelElement);
-				return new PinUpdateCommand<StartObjectBehaviorAction>("Update start object behavior action pins", updater, editedModelElement); //$NON-NLS-1$
+				return new PinUpdateCommand<>("Update start object behavior action pins", updater, editedModelElement); //$NON-NLS-1$
 			}
 		}
 		return null;
@@ -76,7 +77,7 @@ public class StartObjectBehaviorActionEditHelperAdvice extends AbstractEditHelpe
 				if (editedModelElement != null) {
 					// 4] call the command for the StartObjectBehaviorAction
 					IPinUpdater<StartObjectBehaviorAction> updater = PinUpdaterFactory.getInstance().instantiate(editedModelElement);
-					return new PinUpdateCommand<StartObjectBehaviorAction>("Update start object behavior action pins", updater, editedModelElement); //$NON-NLS-1$
+					return new PinUpdateCommand<>("Update start object behavior action pins", updater, editedModelElement); //$NON-NLS-1$
 				}
 			}
 		}

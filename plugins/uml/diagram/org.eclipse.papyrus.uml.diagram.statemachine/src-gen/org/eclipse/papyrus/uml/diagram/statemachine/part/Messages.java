@@ -255,7 +255,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -263,7 +263,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -271,7 +271,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -279,7 +279,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -287,7 +287,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -295,7 +295,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -303,7 +303,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -311,7 +311,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -319,7 +319,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -327,7 +327,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -335,7 +335,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -343,7 +343,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -351,7 +351,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -359,7 +359,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -367,7 +367,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -375,7 +375,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -383,7 +383,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -391,7 +391,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -399,7 +399,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -407,7 +407,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -415,7 +415,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -423,7 +423,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -431,7 +431,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -439,7 +439,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -447,7 +447,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -455,7 +455,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -463,7 +463,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -471,7 +471,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -479,7 +479,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -487,7 +487,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -495,7 +495,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -503,7 +503,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -511,7 +511,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -519,7 +519,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -527,7 +527,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -535,7 +535,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -543,7 +543,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -551,7 +551,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -559,7 +559,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated
@@ -567,7 +567,7 @@ public class Messages extends NLS {
 
 	/**
 	 * @generated
-	 * 
+	 *
 	 * @deprecated since 3.2.100, will be removed in Papyrus 5.0, see bug 560722
 	 */
 	@Deprecated

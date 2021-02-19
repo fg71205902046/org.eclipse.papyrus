@@ -61,8 +61,7 @@ public class ReconnectMessageHelper {
 	public static void updateMessageEnd(MessageEnd messageEnd, Element oldElement, Element newElement) {
 		if (messageEnd instanceof DestructionOccurrenceSpecification) {
 			updateDos((DestructionOccurrenceSpecification) messageEnd, oldElement, newElement);
-		}
-		else if (messageEnd instanceof MessageOccurrenceSpecification) {
+		} else if (messageEnd instanceof MessageOccurrenceSpecification) {
 			updateMos((MessageOccurrenceSpecification) messageEnd, oldElement, newElement);
 		} else if (messageEnd instanceof Gate) {
 			updateGate((Gate) messageEnd, oldElement, newElement);

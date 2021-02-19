@@ -50,7 +50,7 @@ public class DefaultCopyCommand extends AbstractOverrideableCommand implements N
 	 */
 	public DefaultCopyCommand(EditingDomain domain, PapyrusClipboard papyrusClipboard, Collection<EObject> pObjectsToPutInClipboard) {
 		super(domain);
-		objectsToPutInClipboard = new ArrayList<Object>();
+		objectsToPutInClipboard = new ArrayList<>();
 		boolean keepReferences = Activator.getInstance().getPreferenceStore().getBoolean(PastePreferencesPage.KEEP_EXTERNAL_REFERENCES);
 		EcoreUtil.Copier copier = ICopierFactory.getInstance(domain.getResourceSet(), keepReferences).get();
 		copier.copyAll(pObjectsToPutInClipboard);

@@ -27,15 +27,15 @@ import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorTarget.Di
  * A locator to add an overlay to an IFigure. The Overlay can be located
  * following theses value :
  * <ul>
- * <li> {@link Direction#NORTH}</li>
- * <li> {@link Direction#NORTH_EAST}</li>
- * <li> {@link Direction#NORTH_WEST}</li>
- * <li> {@link Direction#EAST}</li>
- * <li> {@link Direction#WEST}</li>
- * <li> {@link Direction#SOUTH}</li>
- * <li> {@link Direction#SOUTH_EAST}</li>
- * <li> {@link Direction#SOUTH_WEST}</li>
- * <li> {@link Direction#CENTER}</li>
+ * <li>{@link Direction#NORTH}</li>
+ * <li>{@link Direction#NORTH_EAST}</li>
+ * <li>{@link Direction#NORTH_WEST}</li>
+ * <li>{@link Direction#EAST}</li>
+ * <li>{@link Direction#WEST}</li>
+ * <li>{@link Direction#SOUTH}</li>
+ * <li>{@link Direction#SOUTH_EAST}</li>
+ * <li>{@link Direction#SOUTH_WEST}</li>
+ * <li>{@link Direction#CENTER}</li>
  * </ul>
  *
  */

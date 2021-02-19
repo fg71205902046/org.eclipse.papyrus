@@ -22,6 +22,7 @@ import org.eclipse.jface.action.IMenuManager;
 
 /**
  * Specific context menu provider for Papyrus diagrams
+ *
  * @since 3.0
  */
 public class PapyrusPaletteContextMenuProvider extends PaletteContextMenuProvider {

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.advices;
@@ -38,8 +38,9 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecificationAction;
 
 /**
- * 
+ *
  * Pin of ValueSpecificationAction should be create and update automatically
+ *
  * @since 3.0
  *
  */
@@ -70,12 +71,12 @@ public class InstanceSpecificationEditHelperAdvice extends AbstractEditHelperAdv
 					ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(instanceSpecification);
 					Collection<Setting> allReferences = adapter.getNonNavigableInverseReferences(instanceSpecification);
 					for (Setting reference : allReferences) {
-						if(reference.getEObject() instanceof InstanceValue) {
-							if(((InstanceValue) reference.getEObject()).getOwner() instanceof ValueSpecificationAction) {
+						if (reference.getEObject() instanceof InstanceValue) {
+							if (((InstanceValue) reference.getEObject()).getOwner() instanceof ValueSpecificationAction) {
 								ValueSpecificationAction valueSpecificationAction = (ValueSpecificationAction) ((InstanceValue) reference.getEObject()).getOwner();
 								// 4] call the command for the ValueSpecificationAction whose value is an instanceValue which referenced the instance specification
 								IPinUpdater<ValueSpecificationAction> updater = PinUpdaterFactory.getInstance().instantiate(valueSpecificationAction);
-								command.add(new PinUpdateCommand<ValueSpecificationAction>("Update value specification action pins", updater, valueSpecificationAction)); //$NON-NLS-1$
+								command.add(new PinUpdateCommand<>("Update value specification action pins", updater, valueSpecificationAction)); //$NON-NLS-1$
 							}
 						}
 					}

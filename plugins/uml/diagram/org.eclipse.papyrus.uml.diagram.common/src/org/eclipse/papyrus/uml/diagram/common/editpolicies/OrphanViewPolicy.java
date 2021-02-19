@@ -75,13 +75,13 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 	 * array list of visual id that correspond to views that are not linked to
 	 * semantic elements. For example, comment links
 	 */
-	private ArrayList<String> notOrphanList = new ArrayList<String>();
+	private ArrayList<String> notOrphanList = new ArrayList<>();
 
 	/** the pattern that checks visual ids are valid integers */
 	private static Pattern digit = Pattern.compile("\\d+");
 
 	/** list of element to listen */
-	protected HashMap<EObject, List<View>> additionalParentToListen = new HashMap<EObject, List<View>>();
+	protected HashMap<EObject, List<View>> additionalParentToListen = new HashMap<>();
 
 	/** stores the host associated semantic element */
 	protected EObject hostSemanticElement;
@@ -279,7 +279,7 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 	 * @return the list of views that are orphaned
 	 */
 	protected List<View> findOrphanView(Iterator<? extends EObject> viewChildrenIterator) {
-		ArrayList<View> orphanView = new ArrayList<View>();
+		ArrayList<View> orphanView = new ArrayList<>();
 		while (viewChildrenIterator.hasNext()) {
 			EObject view = viewChildrenIterator.next();
 			if (view instanceof View) {
@@ -373,7 +373,7 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		if(!isActive()) {
+		if (!isActive()) {
 			return;
 		}
 		// something has change. What ? :)
@@ -480,7 +480,7 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 	protected void removeListenerForView(View oldView) {
 		// create a temp list of elements to delete (iterator concurrent
 		// modification..)
-		Map<EObject, List<View>> parentsToDelete = new HashMap<EObject, List<View>>();
+		Map<EObject, List<View>> parentsToDelete = new HashMap<>();
 
 		for (EObject parent : additionalParentToListen.keySet()) {
 			List<View> parentViews = additionalParentToListen.get(parent);

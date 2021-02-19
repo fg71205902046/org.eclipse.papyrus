@@ -333,7 +333,7 @@ public class CreateOrShowExistingLinkDialog extends MessageDialog {
 	 * @param list
 	 *            the list of the elements for which we want the label
 	 * @return
-	 * 		the string to display for this list
+	 *         the string to display for this list
 	 */
 	private String getLabel(final Collection<?> list) {
 		if (list != null) {
@@ -353,7 +353,7 @@ public class CreateOrShowExistingLinkDialog extends MessageDialog {
 	/**
 	 *
 	 * @return
-	 * 		the selected link
+	 *         the selected link
 	 */
 	public EObject getResult() {
 		return this.result;

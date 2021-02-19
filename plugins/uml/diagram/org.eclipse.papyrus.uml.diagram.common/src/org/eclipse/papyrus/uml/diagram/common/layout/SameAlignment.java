@@ -108,9 +108,10 @@ public class SameAlignment {
 	/**
 	 * Tests if each editpart is linked with only one or two other editparts
 	 *
-	 * @return <ul>
+	 * @return
+	 *         <ul>
 	 *         <li>{@code true}</li> all the node are linked with only one or two other editparts
-	 *         <li> {@code false}</li> if not
+	 *         <li>{@code false}</li> if not
 	 *
 	 *         </ul>
 	 */
@@ -191,7 +192,8 @@ public class SameAlignment {
 	 *
 	 * @param representedEditPart
 	 *            the {@linkplain EditPart} that we are looking for
-	 * @return <ul>
+	 * @return
+	 *         <ul>
 	 *         <li>the {@linkplain EditPartRepresentation} for this editpart if it exists</li>
 	 *         <li>{@code null}if the representation for this editpart doesn't exist</li>
 	 *         </ul>

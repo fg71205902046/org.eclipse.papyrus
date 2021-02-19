@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.advices;
@@ -51,9 +51,9 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Automated pin derivation for AcceptEventAction and AcceptCallAction
- * 
+ *
  * Call pin derivation command on modification of a property
- * 
+ *
  * @since 3.0
  */
 public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
@@ -95,7 +95,7 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 										if (((Trigger) settingSignalEvent.getEObject()).getOwner() instanceof AcceptEventAction) {
 											AcceptEventAction acceptEventAction = (AcceptEventAction) ((Trigger) settingSignalEvent.getEObject()).getOwner();
 											IPinUpdater<AcceptEventAction> updater = PinUpdaterFactory.getInstance().instantiate(acceptEventAction);
-											command.add(new PinUpdateCommand<AcceptEventAction>("Update accept event action pins", updater, acceptEventAction)); //$NON-NLS-1$
+											command.add(new PinUpdateCommand<>("Update accept event action pins", updater, acceptEventAction)); //$NON-NLS-1$
 										}
 									}
 								}
@@ -174,7 +174,7 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 							if (setting.getEObject() instanceof ReadStructuralFeatureAction) {
 								ReadStructuralFeatureAction readStructuralFeatureAction = (ReadStructuralFeatureAction) setting.getEObject();
 								IPinUpdater<ReadStructuralFeatureAction> updater = PinUpdaterFactory.getInstance().instantiate(readStructuralFeatureAction);
-								command.add(new PinUpdateCommand<ReadStructuralFeatureAction>("Update read structural feature action pins", updater, readStructuralFeatureAction)); //$NON-NLS-1$
+								command.add(new PinUpdateCommand<>("Update read structural feature action pins", updater, readStructuralFeatureAction)); //$NON-NLS-1$
 							}
 						}
 					}
@@ -192,7 +192,7 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 							if (setting.getEObject() instanceof AddStructuralFeatureValueAction) {
 								AddStructuralFeatureValueAction addStructuralFeatureValueAction = (AddStructuralFeatureValueAction) setting.getEObject();
 								IPinUpdater<AddStructuralFeatureValueAction> updater = PinUpdaterFactory.getInstance().instantiate(addStructuralFeatureValueAction);
-								command.add(new PinUpdateCommand<AddStructuralFeatureValueAction>("Update add structural feature value action pins", updater, addStructuralFeatureValueAction)); //$NON-NLS-1$
+								command.add(new PinUpdateCommand<>("Update add structural feature value action pins", updater, addStructuralFeatureValueAction)); //$NON-NLS-1$
 							}
 						}
 					}

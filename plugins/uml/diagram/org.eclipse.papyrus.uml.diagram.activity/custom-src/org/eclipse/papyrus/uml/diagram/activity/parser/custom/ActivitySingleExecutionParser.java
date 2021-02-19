@@ -112,7 +112,7 @@ public class ActivitySingleExecutionParser extends MessageFormatParser implement
 	 */
 	@Override
 	public List<?> getSemanticElementsBeingParsed(EObject element) {
-		List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
+		List<Element> semanticElementsBeingParsed = new ArrayList<>();
 		if (element instanceof Activity) {
 			Activity activity = (Activity) element;
 			semanticElementsBeingParsed.add(activity);

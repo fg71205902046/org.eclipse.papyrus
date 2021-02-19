@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.parsers;
@@ -35,7 +35,7 @@ public class OpaqueBehaviorViewUtil {
 	public static final String DOTS = "..."; //$NON-NLS-1$
 	public static final String PARAM_DOTS = "(...)"; //$NON-NLS-1$
 	public static final String EMPTY_STRING = ""; //$NON-NLS-1$
-	
+
 	/**
 	 * Cut a body string after a predefined number of lines (taken from preference store).
 	 *
@@ -48,12 +48,11 @@ public class OpaqueBehaviorViewUtil {
 		int prefCutLength = preferenceStore.getInt(PreferenceConstants.BODY_CUT_LENGTH);
 		int cutLength = prefCutLength;
 		if (view != null) {
-			cutLength =	NotationUtils.getIntValue(view, CSSOptionsConstants.BODY_CUT_LENGTH, prefCutLength);
+			cutLength = NotationUtils.getIntValue(view, CSSOptionsConstants.BODY_CUT_LENGTH, prefCutLength);
 		}
 		if (cutLength == 0) {
 			return DOTS;
-		}
-		else {
+		} else {
 			int start = 0;
 			int newStart = 0;
 			while (cutLength > 0) {
@@ -64,8 +63,7 @@ public class OpaqueBehaviorViewUtil {
 				if (newStart > 0) {
 					cutLength--;
 					start = newStart + 1;
-				}
-				else {
+				} else {
 					return body;
 				}
 			}

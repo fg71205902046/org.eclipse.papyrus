@@ -113,7 +113,7 @@ public class SelectAndExecuteCommand extends PopupMenuCommand {
 
 		if (defaultHandler != null) {
 			// Contains a list of commands + a Default item
-			List<Object> menuContents = new LinkedList<Object>(content);
+			List<Object> menuContents = new LinkedList<>(content);
 
 			PopupMenu submenu = new PopupMenu(convertToDefault(content), new CommandLabelProvider());
 
@@ -135,7 +135,7 @@ public class SelectAndExecuteCommand extends PopupMenuCommand {
 	 * @return
 	 */
 	protected List<Command> convertToDefault(List<Command> commands) {
-		List<Command> result = new ArrayList<Command>(commands.size());
+		List<Command> result = new ArrayList<>(commands.size());
 		for (Command command : commands) {
 			final Command commandToExecute = command;
 			CompoundCommand compound = new CompoundCommand(commandToExecute.getLabel());

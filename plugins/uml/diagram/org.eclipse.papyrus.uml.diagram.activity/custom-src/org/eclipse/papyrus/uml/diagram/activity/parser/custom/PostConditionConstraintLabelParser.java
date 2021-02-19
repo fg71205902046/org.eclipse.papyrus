@@ -94,7 +94,7 @@ public class PostConditionConstraintLabelParser implements IParser {
 		if (editingDomain == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		
+
 		ICommand command = null;
 		if (InternationalizationPreferencesUtils.getInternationalizationPreference(constraint) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(constraint)) {
 			final ModelSet modelSet = (ModelSet) constraint.eResource().getResourceSet();

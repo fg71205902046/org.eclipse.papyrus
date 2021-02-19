@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and Implementation
- * 
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.figure.node;
 
@@ -53,7 +53,7 @@ public class RoundedRectangleShadowBorder extends RectangularShadowBorder {
 
 	/**
 	 * Method for determining the inset the border will take up on the shape.
-	 * 
+	 *
 	 * @param figure
 	 *            Figure that will be inset from the border
 	 * @return Insets the Insets for the border on the given figure.
@@ -115,11 +115,13 @@ public class RoundedRectangleShadowBorder extends RectangularShadowBorder {
 		graphics.setClip(newRect);
 		if (cornerDimension.width != 0 || cornerDimension.height != 0) {
 			// Adapt arc width
-			if (cornerDimension.width > tempRect.width)
+			if (cornerDimension.width > tempRect.width) {
 				cornerDimension.width = tempRect.width;
+			}
 			// Adapt arc height
-			if (cornerDimension.height > tempRect.height)
+			if (cornerDimension.height > tempRect.height) {
 				cornerDimension.height = tempRect.height;
+			}
 			// Right Top corner
 			graphics.drawArc(tempRect.x + tempRect.width - cornerDimension.width + borderwidth, tempRect.y, cornerDimension.width - 1, cornerDimension.height, -5, 45); // -5,70);
 			graphics.drawArc(tempRect.x + tempRect.width - cornerDimension.width + borderwidth, tempRect.y, cornerDimension.width - 2, cornerDimension.height, -5, 45); // -5,70);
@@ -138,11 +140,13 @@ public class RoundedRectangleShadowBorder extends RectangularShadowBorder {
 			graphics.drawArc(tempRect.x + tempRect.width - cornerDimension.width + borderwidth, tempRect.y + borderwidth + tempRect.height - cornerDimension.height + getWidth() / 2, cornerDimension.width - 3 + getWidth() / 2, cornerDimension.height - 3, 270,
 					95);
 			// Right rectangle shadow
-			if ((tempRect.height - cornerDimension.height) > 0)
+			if ((tempRect.height - cornerDimension.height) > 0) {
 				graphics.fillRectangle(tempRect.x + tempRect.width + getWidth() / 2, tempRect.y + cornerDimension.height / 2, borderwidth, tempRect.height - cornerDimension.height + borderwidth);
+			}
 			// Bottom rectangle shadow
-			if ((tempRect.width - cornerDimension.width) > 0)
+			if ((tempRect.width - cornerDimension.width) > 0) {
 				graphics.fillRectangle(tempRect.x + cornerDimension.width / 2, tempRect.y + tempRect.height + getWidth() / 2, tempRect.width - cornerDimension.width + borderwidth, borderwidth);
+			}
 		} else {
 			// If there is no rounded corner
 			PointList plt = new PointList();

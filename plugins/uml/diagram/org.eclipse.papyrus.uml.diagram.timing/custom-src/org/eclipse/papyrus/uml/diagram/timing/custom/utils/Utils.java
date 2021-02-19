@@ -66,7 +66,7 @@ public final class Utils {
 	 * @return the list of linked elements to remove
 	 */
 	public static Set<EObject> getReferencingElementsToRemove(final EObject element, final EReference[] references, final boolean viewsOnly, final View expectedParentView, final Class<?>[] expectedClasses) {
-		final Set<EObject> referencingElements = new HashSet<EObject>();
+		final Set<EObject> referencingElements = new HashSet<>();
 		final Collection<?> referencers = EMFCoreUtil.getReferencers(element, references);
 		for (final Object object : referencers) {
 			if (object instanceof EObject && isExpectedClass(object, expectedClasses)) {
@@ -138,7 +138,7 @@ public final class Utils {
 	 * @return the list of linked elements
 	 */
 	public static Set<EObject> findReferencingElements(final EObject element, final EReference[] references, final Class<?>[] expectedClasses) {
-		final Set<EObject> referencingElements = new HashSet<EObject>();
+		final Set<EObject> referencingElements = new HashSet<>();
 		final Collection<?> referencers = EMFCoreUtil.getReferencers(element, references);
 		for (final Object object : referencers) {
 			if (object instanceof EObject && isExpectedClass(object, expectedClasses)) {

@@ -79,7 +79,7 @@ public class ChangeParentCommand extends AbstractTransactionalCommand {
 
 	@Override
 	public List getAffectedFiles() {
-		View view = (View) parent.getAdapter(View.class);
+		View view = parent.getAdapter(View.class);
 		if (view != null) {
 			List result = new ArrayList();
 			IFile file = WorkspaceSynchronizer.getFile(view.eResource());

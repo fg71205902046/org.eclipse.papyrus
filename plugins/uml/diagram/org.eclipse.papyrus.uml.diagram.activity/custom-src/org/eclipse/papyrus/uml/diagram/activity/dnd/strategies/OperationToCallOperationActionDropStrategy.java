@@ -32,7 +32,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * Drop strategy to create a CallOperationAction from an Operation drop and to update
  * the "operation" reference.
- * 
+ *
  * @since 3.5.0
  */
 public class OperationToCallOperationActionDropStrategy extends AbstractActivityNodeStrategy {

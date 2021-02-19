@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2018 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.validation;
@@ -98,7 +98,7 @@ public class AsyncValidateCommand extends AsynchronousCommand implements INonDir
 
 	/**
 	 * Returns a new {@link AsyncValidateCommand} if preference to validate after edition is set to <code>true</code>.
-	 * 
+	 *
 	 * @return a {@link Optional} {@link AsyncValidateCommand} or an empty one if the preference is set to no validation.
 	 */
 	public static Optional<AsyncValidateCommand> get(EObject object) {

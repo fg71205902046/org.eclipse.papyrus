@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *  Pauline DEVILLE (CEA LIST) - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.usecase.locator;
@@ -24,7 +24,7 @@ import org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPosit
 /**
  * The class relocate the actor name when it is the default position the label is moved
  * to the bottom the bottom of the actor and place in the center
- * 
+ *
  * @since 4.0
  */
 public class ActorFloatingLabelLocator extends RoundedRectangleLabelPositionLocator {
@@ -100,7 +100,7 @@ public class ActorFloatingLabelLocator extends RoundedRectangleLabelPositionLoca
 
 	/**
 	 * get the default position of the label (bottom of the actor shape and center)
-	 * 
+	 *
 	 * @param labelFigure
 	 * @param actorRect
 	 * @return the default position

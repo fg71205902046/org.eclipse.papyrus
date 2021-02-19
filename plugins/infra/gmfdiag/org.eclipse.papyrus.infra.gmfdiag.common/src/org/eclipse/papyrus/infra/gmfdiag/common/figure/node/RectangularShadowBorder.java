@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2008 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -27,7 +27,7 @@ import org.eclipse.swt.graphics.Color;
 
 /**
  * Provide shadow border on Rectangular figure
- * 
+ *
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
 public class RectangularShadowBorder extends LineBorder {
@@ -42,7 +42,7 @@ public class RectangularShadowBorder extends LineBorder {
 
 	/**
 	 * Method for determining the inset the border will take up on the shape.
-	 * 
+	 *
 	 * @param figure
 	 *            Figure that will be inset from the border
 	 * @return Insets the Insets for the border on the given figure.
@@ -73,8 +73,9 @@ public class RectangularShadowBorder extends LineBorder {
 
 		tempRect.shrink(getWidth() / 2, getWidth() / 2);
 		graphics.setLineWidth(getWidth());
-		if (getColor() != null)
+		if (getColor() != null) {
 			graphics.setForegroundColor(getColor());
+		}
 		graphics.drawRectangle(tempRect);
 
 		// draw the shadow

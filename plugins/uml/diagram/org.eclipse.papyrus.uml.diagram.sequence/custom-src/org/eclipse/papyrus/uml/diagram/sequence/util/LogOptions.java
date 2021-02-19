@@ -17,6 +17,7 @@ package org.eclipse.papyrus.uml.diagram.sequence.util;
 
 /**
  * This class contains various options related to sequence diagram debug
+ *
  * @since 3.0
  */
 public class LogOptions {

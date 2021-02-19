@@ -58,7 +58,7 @@ public class GMFDiagramDuplicateEditHelperAdvice extends AbstractEditHelperAdvic
 		}
 
 		// retrieve the diagrams linked to the object
-		List<Diagram> diagramsToDuplicate = new ArrayList<Diagram>();
+		List<Diagram> diagramsToDuplicate = new ArrayList<>();
 
 		ResourceSet resourceSet = object.eResource().getResourceSet();
 		ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(resourceSet);
@@ -101,7 +101,7 @@ public class GMFDiagramDuplicateEditHelperAdvice extends AbstractEditHelperAdvic
 			for (Diagram diagramToDuplicate : diagramsToDuplicate) {
 				if (!duplicatedObjects.contains(diagramToDuplicate)) {
 					if (command == null) {
-						command = new CompositeCommand("", Arrays.asList(new DuplicateDiagramCommand(request.getEditingDomain(), "Duplicate Diagram", diagramToDuplicate, request.getAllDuplicatedElementsMap()))); //$NON-NLS-1$  //$NON-NLS-2$
+						command = new CompositeCommand("", Arrays.asList(new DuplicateDiagramCommand(request.getEditingDomain(), "Duplicate Diagram", diagramToDuplicate, request.getAllDuplicatedElementsMap()))); //$NON-NLS-1$ //$NON-NLS-2$
 					} else {
 						command.add(new DuplicateDiagramCommand(request.getEditingDomain(), "Duplicate Diagram", diagramToDuplicate, request.getAllDuplicatedElementsMap())); //$NON-NLS-1$
 					}

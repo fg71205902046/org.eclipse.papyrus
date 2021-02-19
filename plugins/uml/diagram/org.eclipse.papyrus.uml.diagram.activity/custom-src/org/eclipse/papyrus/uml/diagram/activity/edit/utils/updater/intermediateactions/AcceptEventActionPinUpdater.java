@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions;
@@ -40,7 +40,7 @@ public class AcceptEventActionPinUpdater extends AbstractActionPinUpdater<Accept
 	 * @see org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.IPinUpdater#updatePins(org.eclipse.uml2.uml.ActivityNode)
 	 *
 	 * @param node
-	 * 
+	 *
 	 */
 	@Override
 	public void updatePins(AcceptEventAction node) {
@@ -187,14 +187,14 @@ public class AcceptEventActionPinUpdater extends AbstractActionPinUpdater<Accept
 
 	/**
 	 * Get the common ancestor
-	 * 
+	 *
 	 * @param triggers
 	 * @return
 	 */
 	private Classifier getTypeForMultipleTriggers(List<Trigger> triggers) {
 		List<Classifier> listOfClassifier = new ArrayList<>();
 		// 1] check if all triggers reference a SignalEvent
-		if(!triggers.isEmpty()){
+		if (!triggers.isEmpty()) {
 			for (Trigger t : triggers) {
 				if (t.getEvent() instanceof SignalEvent) {
 					listOfClassifier.add(((SignalEvent) t.getEvent()).getSignal());

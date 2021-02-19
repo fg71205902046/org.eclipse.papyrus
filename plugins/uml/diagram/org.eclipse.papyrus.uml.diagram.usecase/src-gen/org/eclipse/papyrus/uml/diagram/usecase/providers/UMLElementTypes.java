@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  * 
+  *
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License 2.0
   * which accompanies this distribution, and is available at
   * https://www.eclipse.org/legal/epl-2.0/
   *
   * SPDX-License-Identifier: EPL-2.0
-  * 
+  *
   * Contributors:
   *  CEA LIST - Initial API and implementation
  */
@@ -262,13 +262,13 @@ public class UMLElementTypes {
 
 	/**
 	 * Returns 'type' of the ecore object associated with the hint.
-	 * 
+	 *
 	 * @generated
 	 */
 	public static synchronized ENamedElement getElement(IAdaptable hint) {
 		Object type = hint.getAdapter(IElementType.class);
 		if (elements == null) {
-			elements = new IdentityHashMap<IElementType, ENamedElement>();
+			elements = new IdentityHashMap<>();
 
 			elements.put(Package_UseCaseDiagram, UMLPackage.eINSTANCE.getPackage());
 
@@ -387,7 +387,7 @@ public class UMLElementTypes {
 	 */
 	public static synchronized boolean isKnownElementType(IElementType elementType) {
 		if (KNOWN_ELEMENT_TYPES == null) {
-			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
+			KNOWN_ELEMENT_TYPES = new HashSet<>();
 			KNOWN_ELEMENT_TYPES.add(Package_UseCaseDiagram);
 			KNOWN_ELEMENT_TYPES.add(Actor_Shape);
 			KNOWN_ELEMENT_TYPES.add(Actor_ClassifierShape);

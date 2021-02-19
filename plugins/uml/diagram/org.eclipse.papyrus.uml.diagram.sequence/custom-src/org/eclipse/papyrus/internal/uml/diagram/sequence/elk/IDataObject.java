@@ -25,12 +25,14 @@ import java.io.Serializable;
  */
 public interface IDataObject extends Serializable {
 
-    /**
-     * Parse the given string and set the content of this data object.
-     *
-     * @param string a string
-     * @throws IllegalArgumentException if the string does not have the expected format
-     */
-    void parse(String string);
+	/**
+	 * Parse the given string and set the content of this data object.
+	 *
+	 * @param string
+	 *            a string
+	 * @throws IllegalArgumentException
+	 *             if the string does not have the expected format
+	 */
+	void parse(String string);
 
 }

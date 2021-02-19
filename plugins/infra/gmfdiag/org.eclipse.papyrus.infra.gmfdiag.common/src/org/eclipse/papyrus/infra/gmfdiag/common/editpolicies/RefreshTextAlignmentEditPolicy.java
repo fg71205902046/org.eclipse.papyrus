@@ -28,6 +28,7 @@ import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomStringStyleObservableValue;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusLabelEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.NamedStyleProperties;
 
 /**
  * this edit policy has in charge to refresh the edit part when text alignment change.
@@ -35,7 +36,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusLabelEditPart;
 public class RefreshTextAlignmentEditPolicy extends GraphicalEditPolicyEx implements IChangeListener {
 
 	/** key for this edit policy. */
-	public static final String REFRESH_TEXT_ALIGNMENT_EDITPOLICY = "Refresh text alignment edit policy";//$NON-NLS-N$
+	public static final String REFRESH_TEXT_ALIGNMENT_EDITPOLICY = "Refresh text alignment edit policy";// $NON-NLS-N$
 
 	/** The style observable. */
 	protected IObservableValue styleObservable;
@@ -57,7 +58,7 @@ public class RefreshTextAlignmentEditPolicy extends GraphicalEditPolicyEx implem
 
 		if (getHost() instanceof PapyrusLabelEditPart) {
 			// add style observable value
-			styleObservable = new CustomStringStyleObservableValue(view, EMFHelper.resolveEditingDomain(view), PapyrusLabelEditPart.TEXT_ALIGNMENT);
+			styleObservable = new CustomStringStyleObservableValue(view, EMFHelper.resolveEditingDomain(view), NamedStyleProperties.TEXT_ALIGNMENT);
 			styleObservable.addChangeListener(this);
 		}
 		getHost().refresh();

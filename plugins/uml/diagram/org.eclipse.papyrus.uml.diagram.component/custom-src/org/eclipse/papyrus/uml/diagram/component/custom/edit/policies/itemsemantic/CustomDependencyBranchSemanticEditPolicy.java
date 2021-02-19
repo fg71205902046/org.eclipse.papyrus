@@ -22,6 +22,7 @@ import org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes;
 
 /**
  * this class is used to forbid the creation of a dependency branch on a dependency branch.
+ *
  * @since 3.0
  *
  */

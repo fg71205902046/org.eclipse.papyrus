@@ -52,10 +52,12 @@ public class CallBehaviorActionAsInteractionEditPart extends CallBehaviorActionE
 		return primaryShape = new InteractionWithSnapshotFigure();
 	}
 
+	@Override
 	protected boolean addFixedChild(final EditPart childEditPart) {
 		return false;
 	}
 
+	@Override
 	protected boolean removeFixedChild(final EditPart childEditPart) {
 		return false;
 	}
@@ -76,7 +78,7 @@ public class CallBehaviorActionAsInteractionEditPart extends CallBehaviorActionE
 
 	@Override
 	public Command getCommand(final Request _request) {
-		
+
 		if (_request instanceof ChangeBoundsRequest) {
 			final ChangeBoundsRequest request = (ChangeBoundsRequest) _request;
 			final CompoundCommand compoundCommand = new CompoundCommand();

@@ -12,7 +12,7 @@
  *    Michael Golubev (Borland) - initial API and implementation
  *    Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 Stereotype Display
  *    Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
- *    
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.parser.stereotype;
 
@@ -39,7 +39,7 @@ import org.eclipse.uml2.uml.Stereotype;
 public class AppliedStereotypeParser implements ISemanticParser {
 
 	private final String myDefaultPrintString;
-	
+
 	public AppliedStereotypeParser() {
 		this(null);
 	}
@@ -63,7 +63,7 @@ public class AppliedStereotypeParser implements ISemanticParser {
 	@Override
 	public List<?> getSemanticElementsBeingParsed(EObject eObject) {
 		Element element = (Element) eObject;
-		List<EObject> result = new LinkedList<EObject>();
+		List<EObject> result = new LinkedList<>();
 		// result.add(element);
 		result.addAll(element.getStereotypeApplications());
 		return result;
@@ -72,11 +72,11 @@ public class AppliedStereotypeParser implements ISemanticParser {
 	@Override
 	public IContentAssistProcessor getCompletionProcessor(IAdaptable subject) {
 		Element element = doAdapt(subject);
-		List<Stereotype> remaining = new LinkedList<Stereotype>();
+		List<Stereotype> remaining = new LinkedList<>();
 		remaining.addAll(element.getApplicableStereotypes());
 		remaining.removeAll(element.getAppliedStereotypes());
 
-		List<String> names = new LinkedList<String>();
+		List<String> names = new LinkedList<>();
 		for (Stereotype next : remaining) {
 			names.add(next.getName());
 		}

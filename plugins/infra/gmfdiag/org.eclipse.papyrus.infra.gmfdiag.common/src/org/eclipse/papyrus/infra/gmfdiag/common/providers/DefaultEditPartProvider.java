@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.common.providers;
@@ -82,11 +82,12 @@ public class DefaultEditPartProvider extends AbstractEditPartProvider {
 
 	protected IGraphicalEditPart getCachedPart(View view) {
 		if (cachedView != null && cachedView.get() == view) {
-			return (IGraphicalEditPart) cachedPart.get();
+			return cachedPart.get();
 		}
 		return null;
 	}
 
+	@Override
 	public synchronized IGraphicalEditPart createGraphicEditPart(View view) {
 		if (isAllowCaching()) {
 			IGraphicalEditPart part = getCachedPart(view);
@@ -99,6 +100,7 @@ public class DefaultEditPartProvider extends AbstractEditPartProvider {
 		return createEditPart(view);
 	}
 
+	@Override
 	public synchronized boolean provides(IOperation operation) {
 		if (operation instanceof CreateGraphicEditPartOperation) {
 			View view = ((IEditPartOperation) operation).getView();
@@ -111,8 +113,8 @@ public class DefaultEditPartProvider extends AbstractEditPartProvider {
 			IGraphicalEditPart part = createEditPart(view);
 			if (part != null) {
 				if (isAllowCaching()) {
-					cachedPart = new WeakReference<IGraphicalEditPart>(part);
-					cachedView = new WeakReference<View>(view);
+					cachedPart = new WeakReference<>(part);
+					cachedView = new WeakReference<>(view);
 				}
 				return true;
 			}

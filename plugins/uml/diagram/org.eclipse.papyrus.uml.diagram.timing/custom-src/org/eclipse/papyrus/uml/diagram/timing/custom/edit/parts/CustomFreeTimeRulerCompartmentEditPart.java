@@ -95,7 +95,7 @@ public class CustomFreeTimeRulerCompartmentEditPart extends FreeTimeRulerCompart
 		final List<SmallSquareFigure> osFigures = FigureUtils.findChildFigureInstances(interactionFigure, SmallSquareFigure.class);
 		final List<CrossFigure> destructionOSFigures = FigureUtils.findChildFigureInstances(interactionFigure, CrossFigure.class);
 
-		final List<EditPart> osEditParts = new ArrayList<EditPart>();
+		final List<EditPart> osEditParts = new ArrayList<>();
 
 		for (final SmallSquareFigure figure : osFigures) {
 			final EditPart editPart = visualPartMap.get(FigureUtils.findParentFigureInstance(figure, BorderedNodeFigure.class));

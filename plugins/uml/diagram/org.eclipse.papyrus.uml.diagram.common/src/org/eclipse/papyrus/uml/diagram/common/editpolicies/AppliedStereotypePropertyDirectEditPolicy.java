@@ -55,8 +55,7 @@ public class AppliedStereotypePropertyDirectEditPolicy extends LabelDirectEditPo
 		String prevText = compartment.getParser().getEditString(elementAdapter,
 				compartment.getParserOptions().intValue());
 		if (!prevText.equals(labelText)) {
-			ICommand iCommand =
-					compartment.getParser().getParseCommand(elementAdapter, labelText, 0);
+			ICommand iCommand = compartment.getParser().getParseCommand(elementAdapter, labelText, 0);
 			return new ICommandProxy(iCommand);
 		}
 

@@ -166,7 +166,7 @@ public class ProtocolStateMachineCompositeEditPart extends RoundedCompartmentEdi
 
 	/**
 	 * Papyrus codeGen
-	 * 
+	 *
 	 * @generated
 	 **/
 	@Override
@@ -199,7 +199,7 @@ public class ProtocolStateMachineCompositeEditPart extends RoundedCompartmentEdi
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.composite.custom.figures.ProtocolStateMachineCompositeFigure
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -345,7 +345,7 @@ public class ProtocolStateMachineCompositeEditPart extends RoundedCompartmentEdi
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * 
+	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
 	 * @generated

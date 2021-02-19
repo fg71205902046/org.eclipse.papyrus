@@ -25,7 +25,7 @@ import org.eclipse.papyrus.uml.diagram.component.edit.policies.UMLTextSelectionE
 
 /**
  * The custom edit policy for the port applied stereotype.
- * 
+ *
  * @since 3.0
  */
 public class CustomPortAppliedStereotypeEditPart extends PortAppliedStereotypeEditPart implements IFloatingLabelEditPart {
@@ -42,7 +42,7 @@ public class CustomPortAppliedStereotypeEditPart extends PortAppliedStereotypeEd
 
 	/**
 	 * Redefine the refresh label to get the STEREOTYPE_LABEL_POLICY if exist and don't recalculate the text.
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.uml.diagram.component.edit.parts.PortAppliedStereotypeEditPart#refreshLabel()
 	 */
 	@Override

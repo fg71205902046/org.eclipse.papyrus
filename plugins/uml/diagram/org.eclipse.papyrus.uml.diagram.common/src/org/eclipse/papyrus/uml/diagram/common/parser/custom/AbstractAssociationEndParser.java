@@ -78,7 +78,7 @@ public abstract class AbstractAssociationEndParser implements IParser {
 	 */
 	@Override
 	public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
-		
+
 		return null;
 	}
 
@@ -88,7 +88,7 @@ public abstract class AbstractAssociationEndParser implements IParser {
 	 */
 	@Override
 	public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
-		
+
 		return null;
 	}
 

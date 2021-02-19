@@ -36,6 +36,7 @@ public class UMLTextSelectionEditPolicy extends SelectionEditPolicy implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void showPrimarySelection() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setSelected(true);
@@ -49,6 +50,7 @@ public class UMLTextSelectionEditPolicy extends SelectionEditPolicy implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void showSelection() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setSelected(true);
@@ -65,6 +67,7 @@ public class UMLTextSelectionEditPolicy extends SelectionEditPolicy implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void hideSelection() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setSelected(false);
@@ -82,6 +85,7 @@ public class UMLTextSelectionEditPolicy extends SelectionEditPolicy implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void showFocus() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setFocus(true);
@@ -95,6 +99,7 @@ public class UMLTextSelectionEditPolicy extends SelectionEditPolicy implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void hideFocus() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setFocus(false);
@@ -147,6 +152,7 @@ public class UMLTextSelectionEditPolicy extends SelectionEditPolicy implements
 	protected IFigure createFocusFeedbackFigure() {
 		return new Figure() {
 
+			@Override
 			protected void paintFigure(Graphics graphics) {
 				graphics.drawFocus(getBounds().getResized(-1, -1));
 			}
@@ -191,6 +197,7 @@ public class UMLTextSelectionEditPolicy extends SelectionEditPolicy implements
 	 * @generated
 	 */
 
+	@Override
 	public void refreshFeedback() {
 		refreshSelectionFeedback();
 		refreshFocusFeedback();
@@ -202,6 +209,7 @@ public class UMLTextSelectionEditPolicy extends SelectionEditPolicy implements
 	private FigureListener getHostPositionListener() {
 		if (hostPositionListener == null) {
 			hostPositionListener = new FigureListener() {
+				@Override
 				public void figureMoved(IFigure source) {
 					refreshFeedback();
 				}

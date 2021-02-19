@@ -61,14 +61,14 @@ public class PasteEditPolicy extends ContainerEditPolicy {
 	 */
 	public Command getCommand(Request request) {
 
-		if(PasteRequest.REQ_PAPYRUS_PASTE.equals(request.getType())) {
+		if (PasteRequest.REQ_PAPYRUS_PASTE.equals(request.getType())) {
 
-			if(request instanceof PasteRequest) {
-				return getPasteCommand((PasteRequest)request);
+			if (request instanceof PasteRequest) {
+				return getPasteCommand((PasteRequest) request);
 			} else {
 
 				// Use parent implementation to manage this kind of request
-				return getPasteCommand((PasteViewRequest)request);
+				return getPasteCommand((PasteViewRequest) request);
 			}
 		}
 
@@ -78,10 +78,10 @@ public class PasteEditPolicy extends ContainerEditPolicy {
 	@SuppressWarnings("unchecked")
 	protected Command getPasteCommand(PasteRequest request) {
 		List notationView = new ArrayList();
-		if(request.getElementToPaste() != null && request.getElementToPaste().size() > 0) {
+		if (request.getElementToPaste() != null && request.getElementToPaste().size() > 0) {
 			notationView.addAll(request.getElementToPaste());
 			HashSet semanticElement = new HashSet();
-			return constructDuplicationCommand(notationView, semanticElement, request.getDuplicate(), ((IGraphicalEditPart)getHost()).getEditingDomain());
+			return constructDuplicationCommand(notationView, semanticElement, request.getDuplicate(), ((IGraphicalEditPart) getHost()).getEditingDomain());
 		}
 		return null;
 	}
@@ -112,15 +112,15 @@ public class PasteEditPolicy extends ContainerEditPolicy {
 		// }
 		// notationViewsToDuplicate.addAll(allInnerEdges);
 
-		if(!notationViewsToDuplicate.isEmpty()) {
-			if(!elementsToDuplicate.isEmpty()) {
+		if (!notationViewsToDuplicate.isEmpty()) {
+			if (!elementsToDuplicate.isEmpty()) {
 				ArrayList<EObject> stereotypedSelection = new ArrayList<EObject>();
 				// copy stereotype contained into
 				Iterator<EObject> iter = elementsToDuplicate.iterator();
-				while(iter.hasNext()) {
-					EObject subeObject = (EObject)iter.next();
-					if(subeObject instanceof Element) {
-						stereotypedSelection.addAll(((Element)subeObject).getStereotypeApplications());
+				while (iter.hasNext()) {
+					EObject subeObject = (EObject) iter.next();
+					if (subeObject instanceof Element) {
+						stereotypedSelection.addAll(((Element) subeObject).getStereotypeApplications());
 					}
 
 				}
@@ -128,7 +128,7 @@ public class PasteEditPolicy extends ContainerEditPolicy {
 				resultToCopy.addAll(stereotypedSelection);
 				org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest duplicateElementsRequest = new DuplicateElementsRequest(editingDomain, new ArrayList(resultToCopy));
 				Command duplicateElementsCommand = getHost().getEditPolicy(EditPolicyRoles.SEMANTIC_ROLE).getCommand(new EditCommandRequestWrapper(duplicateElementsRequest, request.getExtendedData()));
-				if(duplicateElementsCommand != null && duplicateElementsCommand.canExecute()) {
+				if (duplicateElementsCommand != null && duplicateElementsCommand.canExecute()) {
 					CompositeCommand cc = new CompositeCommand(DiagramUIMessages.Commands_Duplicate_Label);
 					cc.compose(new CommandProxy(duplicateElementsCommand));
 
@@ -136,7 +136,7 @@ public class PasteEditPolicy extends ContainerEditPolicy {
 					return new ICommandProxy(cc);
 				}
 			} else {
-				return new ICommandProxy(new PapyrusDuplicateViewsCommand(editingDomain, DiagramUIMessages.Commands_Duplicate_Label, request, notationViewsToDuplicate, new HashMap(), getDuplicateViewsOffset(request), (View)getHost().getModel()));
+				return new ICommandProxy(new PapyrusDuplicateViewsCommand(editingDomain, DiagramUIMessages.Commands_Duplicate_Label, request, notationViewsToDuplicate, new HashMap(), getDuplicateViewsOffset(request), (View) getHost().getModel()));
 			}
 		}
 		return null;
@@ -146,10 +146,10 @@ public class PasteEditPolicy extends ContainerEditPolicy {
 	 * code comes from super class
 	 */
 	protected Point getDuplicateViewsOffset(DuplicateRequest request) {
-		if(request.getOffset() != null) {
+		if (request.getOffset() != null) {
 			return request.getOffset();
 		}
-		int offset = MapModeUtil.getMapMode(((org.eclipse.gef.GraphicalEditPart)getHost()).getFigure()).DPtoLP(10);
+		int offset = MapModeUtil.getMapMode(((org.eclipse.gef.GraphicalEditPart) getHost()).getFigure()).DPtoLP(10);
 		return new Point(offset, offset);
 	}
 }

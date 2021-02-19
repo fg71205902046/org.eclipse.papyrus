@@ -226,7 +226,7 @@ public class MDTUtil {
 		if (uri != null) {
 			Resource resource = resourceSet.getResource(uri, true);
 			if (resource != null) {
-				List<EObject> rootEObjects = new ArrayList<EObject>();
+				List<EObject> rootEObjects = new ArrayList<>();
 				for (EObject eObject : resource.getContents()) {
 					rootEObjects.add(eObject);
 				}

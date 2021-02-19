@@ -12,11 +12,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.commands;
 
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.GraphicalEditPart;
 
 /**
  * Refresh the {@link IFigure} of a given {@link GraphicalEditPart} on execute and redo of this command. This command
  * must be placed at the end of a {@link CompoundCommand}, as the execute and redo are done in forward order.
+ *
  * @since 3.0
  */
 public class RefreshCommandForDo extends AbstractRefreshCommand {

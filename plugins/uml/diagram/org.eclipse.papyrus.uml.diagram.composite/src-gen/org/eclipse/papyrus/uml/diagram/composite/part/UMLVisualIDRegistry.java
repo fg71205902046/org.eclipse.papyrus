@@ -5960,7 +5960,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isProperty_Shape(View containerView, Property domainElement) {
-		// Property / CollaborationRole constraint		
+		// Property / CollaborationRole constraint
 		// Restriction for the case where domainElement owner is a Collaboration
 		// If the domainElement is not referenced as one of its owner role
 		// then it should be considered as a Property creation on Collaboration,
@@ -6010,7 +6010,7 @@ public class UMLVisualIDRegistry {
 	 */
 	public static boolean checkNodeVisualID(View containerView, EObject domainElement, String candidate) {
 		if (candidate == null) {
-			//unrecognized id is always bad
+			// unrecognized id is always bad
 			return false;
 		}
 		String basic = getNodeVisualID(containerView, domainElement);

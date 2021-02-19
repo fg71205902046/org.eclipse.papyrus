@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.common.editpolicies;
@@ -38,7 +38,7 @@ public interface AutomaticNotationEditPolicy extends EditPolicy {
 	 * with full undo/redo recording in the active read/write transaction, if there is
 	 * one. Otherwise, just execute it as a stand-alone (or nested) unprotected write.
 	 * So, in a sense, this is only potentially an "unsafe" execution.
-	 * 
+	 *
 	 * @param command
 	 *            a command to execute
 	 */
@@ -51,7 +51,7 @@ public interface AutomaticNotationEditPolicy extends EditPolicy {
 	 * with full undo/redo recording in the active read/write transaction, if there is
 	 * one. Otherwise, just execute it as a stand-alone (or nested) unprotected write.
 	 * So, in a sense, this is only potentially an "unsafe" execution.
-	 * 
+	 *
 	 * @param command
 	 *            a command to execute
 	 */

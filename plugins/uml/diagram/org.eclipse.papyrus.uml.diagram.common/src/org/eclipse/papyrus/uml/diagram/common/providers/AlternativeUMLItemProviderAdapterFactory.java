@@ -44,7 +44,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -71,7 +71,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -98,7 +98,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -125,7 +125,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -152,7 +152,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -179,7 +179,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -206,7 +206,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -233,7 +233,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -260,7 +260,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -287,7 +287,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -314,7 +314,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -341,7 +341,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -368,7 +368,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -395,7 +395,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -422,7 +422,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -449,7 +449,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -476,7 +476,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -503,7 +503,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -530,7 +530,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -557,7 +557,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -584,7 +584,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -611,7 +611,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -638,7 +638,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -665,7 +665,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -692,7 +692,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -719,7 +719,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -746,7 +746,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -773,7 +773,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -800,7 +800,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -827,7 +827,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -854,7 +854,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -881,7 +881,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -908,7 +908,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -935,7 +935,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -962,7 +962,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -989,7 +989,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1016,7 +1016,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1043,7 +1043,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1070,7 +1070,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1097,7 +1097,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1124,7 +1124,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1151,7 +1151,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1178,7 +1178,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1205,7 +1205,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1232,7 +1232,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1259,7 +1259,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1286,7 +1286,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1313,7 +1313,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1340,7 +1340,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1367,7 +1367,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1394,7 +1394,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1421,7 +1421,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1448,7 +1448,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1475,7 +1475,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1502,7 +1502,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1529,7 +1529,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1556,7 +1556,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1583,7 +1583,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1610,7 +1610,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1637,7 +1637,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1664,7 +1664,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1691,7 +1691,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1718,7 +1718,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1745,7 +1745,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1772,7 +1772,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1799,7 +1799,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1826,7 +1826,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1853,7 +1853,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1880,7 +1880,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1907,7 +1907,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1934,7 +1934,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1961,7 +1961,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -1988,7 +1988,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2015,7 +2015,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2042,7 +2042,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2069,7 +2069,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2096,7 +2096,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2123,7 +2123,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2150,7 +2150,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2177,7 +2177,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2204,7 +2204,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2231,7 +2231,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2258,7 +2258,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2285,7 +2285,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2312,7 +2312,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2339,7 +2339,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2366,7 +2366,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2393,7 +2393,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2420,7 +2420,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2447,7 +2447,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2476,7 +2476,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2503,7 +2503,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2530,7 +2530,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2557,7 +2557,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2584,7 +2584,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2611,7 +2611,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2641,7 +2641,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2668,7 +2668,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2695,7 +2695,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2726,7 +2726,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2754,7 +2754,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2781,7 +2781,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2808,7 +2808,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2835,7 +2835,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2862,7 +2862,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2889,7 +2889,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2916,7 +2916,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2943,7 +2943,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2970,7 +2970,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -2997,7 +2997,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3024,7 +3024,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3051,7 +3051,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3078,7 +3078,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3105,7 +3105,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3132,7 +3132,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3159,7 +3159,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3186,7 +3186,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3213,7 +3213,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3240,7 +3240,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3267,7 +3267,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3294,7 +3294,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3321,7 +3321,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3348,7 +3348,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3375,7 +3375,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3402,7 +3402,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3429,7 +3429,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3456,7 +3456,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3483,7 +3483,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3510,7 +3510,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3537,7 +3537,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3564,7 +3564,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3591,7 +3591,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3618,7 +3618,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3645,7 +3645,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3672,7 +3672,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3699,7 +3699,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3726,7 +3726,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3753,7 +3753,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3780,7 +3780,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3807,7 +3807,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3834,7 +3834,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3861,7 +3861,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3888,7 +3888,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3915,7 +3915,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3942,7 +3942,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3969,7 +3969,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -3996,7 +3996,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4023,7 +4023,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4050,7 +4050,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4077,7 +4077,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4104,7 +4104,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4131,7 +4131,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4158,7 +4158,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4185,7 +4185,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4212,7 +4212,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4239,7 +4239,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4266,7 +4266,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4293,7 +4293,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4320,7 +4320,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4347,7 +4347,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4374,7 +4374,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4401,7 +4401,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4428,7 +4428,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4455,7 +4455,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4482,7 +4482,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4509,7 +4509,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4536,7 +4536,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4563,7 +4563,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4590,7 +4590,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4617,7 +4617,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4644,7 +4644,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4671,7 +4671,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4698,7 +4698,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4725,7 +4725,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4752,7 +4752,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4779,7 +4779,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4806,7 +4806,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4833,7 +4833,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4860,7 +4860,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4887,7 +4887,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4914,7 +4914,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4941,7 +4941,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4968,7 +4968,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -4995,7 +4995,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -5022,7 +5022,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -5049,7 +5049,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -5076,7 +5076,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -5103,7 +5103,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -5130,7 +5130,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());
@@ -5157,7 +5157,7 @@ public class AlternativeUMLItemProviderAdapterFactory extends Internationalizati
 					}
 					return super.getImage(object);
 				}
-				
+
 				@Override
 				protected StringBuffer appendLabel(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendLabel(text, object, shouldTranslate());

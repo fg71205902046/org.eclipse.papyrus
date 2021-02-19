@@ -41,7 +41,7 @@ public class MoveSeparatorRequest extends ChangeBoundsRequest {
 
 	/**
 	 * @return
-	 * 		The index of the separator being moved
+	 *         The index of the separator being moved
 	 */
 	public int getSeparatorIndex() {
 		return separatorIndex;

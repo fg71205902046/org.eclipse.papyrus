@@ -128,7 +128,7 @@ public abstract class AbstractStateBehaviorsParser implements ISemanticParser {
 				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 					if (InternationalizationPreferencesUtils.getInternationalizationPreference(behavior) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(behavior)) {
 						UMLLabelInternationalization.getInstance().setLabel(behavior, newStringResult, null);
-					}else{
+					} else {
 						behavior.setName(newStringResult);
 					}
 					return CommandResult.newOKCommandResult();
@@ -167,8 +167,7 @@ public abstract class AbstractStateBehaviorsParser implements ISemanticParser {
 			}
 			if (body != null && !body.equals(OpaqueBehaviorViewUtil.DOTS)) {
 				result.append(body);
-			}
-			else {
+			} else {
 				// Append kind
 				String kind = behavior.eClass().getName();
 				result.append(kind);

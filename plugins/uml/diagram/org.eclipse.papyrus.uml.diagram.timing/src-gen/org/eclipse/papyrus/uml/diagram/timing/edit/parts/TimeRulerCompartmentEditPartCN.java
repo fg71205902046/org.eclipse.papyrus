@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  * 
+  *
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License 2.0
   * which accompanies this distribution, and is available at
   * https://www.eclipse.org/legal/epl-2.0/
   *
   * SPDX-License-Identifier: EPL-2.0
-  * 
+  *
   * Contributors:
   *  CEA LIST - Initial API and implementation
  */
@@ -54,6 +54,7 @@ public class TimeRulerCompartmentEditPartCN extends ListCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected boolean hasModelChildrenChanged(Notification evt) {
 		return false;
 	}
@@ -61,6 +62,7 @@ public class TimeRulerCompartmentEditPartCN extends ListCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public String getCompartmentName() {
 		return Messages.TimeRulerCompartmentEditPartCN_title;
 	}
@@ -68,6 +70,7 @@ public class TimeRulerCompartmentEditPartCN extends ListCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure createFigure() {
 		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super.createFigure();
 		result.setTitleVisibility(false);
@@ -77,6 +80,7 @@ public class TimeRulerCompartmentEditPartCN extends ListCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultCompartmentSemanticEditPolicy());
@@ -89,6 +93,7 @@ public class TimeRulerCompartmentEditPartCN extends ListCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setRatio(Double ratio) {
 		if (getFigure().getParent().getLayoutManager() instanceof ConstrainedToolbarLayout) {
 			super.setRatio(ratio);
@@ -98,6 +103,7 @@ public class TimeRulerCompartmentEditPartCN extends ListCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPart getTargetEditPart(Request request) {
 
 		return super.getTargetEditPart(request);
@@ -106,6 +112,7 @@ public class TimeRulerCompartmentEditPartCN extends ListCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
 		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature)
@@ -133,6 +140,7 @@ public class TimeRulerCompartmentEditPartCN extends ListCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshBounds();

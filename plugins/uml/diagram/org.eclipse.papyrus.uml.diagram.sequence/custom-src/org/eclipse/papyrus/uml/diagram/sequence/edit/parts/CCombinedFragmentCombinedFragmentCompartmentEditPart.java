@@ -16,6 +16,7 @@
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.OrderedLayout;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
@@ -69,7 +70,7 @@ public class CCombinedFragmentCombinedFragmentCompartmentEditPart extends Combin
 		SwimlanesCompartmentLayout layout = new SwimlanesCompartmentLayout();
 		layout.setStretchMajorAxis(false);
 		layout.setStretchMinorAxis(true);
-		layout.setMinorAlignment(ConstrainedToolbarLayout.ALIGN_TOPLEFT);
+		layout.setMinorAlignment(OrderedLayout.ALIGN_TOPLEFT);
 		rcf.getContentPane().setLayoutManager(layout);
 		rcf.getContentPane().setBorder(null);
 		return rcf;

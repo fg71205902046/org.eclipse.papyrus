@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *  Pauline DEVILLE (CEA LIST) - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.commands;
@@ -36,7 +36,7 @@ public class ActivityEdgeReparentCommand extends AbstractTransactionalCommand {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param domain
 	 * @param edge
 	 */
@@ -61,7 +61,7 @@ public class ActivityEdgeReparentCommand extends AbstractTransactionalCommand {
 
 	/**
 	 * change the container of an edge, if necessary
-	 * 
+	 *
 	 * @param edge
 	 */
 	private boolean changeContainer(ActivityEdge edge) {

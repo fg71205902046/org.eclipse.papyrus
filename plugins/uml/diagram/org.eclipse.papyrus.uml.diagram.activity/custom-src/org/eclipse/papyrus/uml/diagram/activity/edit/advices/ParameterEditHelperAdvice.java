@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.advices;
@@ -44,16 +44,16 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Automated pin derivation for AcceptEventAction and AcceptCallAction
- * 
+ *
  * Call pin derivation command on modification of a parameter
- * 
+ *
  * @since 3.0
  */
 public class ParameterEditHelperAdvice extends AbstractEditHelperAdvice {
 
 	/**
 	 * This method call command to synchronize pin
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice#getAfterEditCommand(org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest)
 	 *
 	 * @param request
@@ -91,7 +91,7 @@ public class ParameterEditHelperAdvice extends AbstractEditHelperAdvice {
 											// 4] call the command for the acceptCallAction whose trigger reference a callEvent which reference the operation
 											AcceptCallAction acceptCallAction = (AcceptCallAction) ((Trigger) referenceCallEvent.getEObject()).getOwner();
 											IPinUpdater<AcceptCallAction> updater = PinUpdaterFactory.getInstance().instantiate(acceptCallAction);
-											return new PinUpdateCommand<AcceptCallAction>("Update accept event action pins", updater, acceptCallAction); //$NON-NLS-1$
+											return new PinUpdateCommand<>("Update accept event action pins", updater, acceptCallAction); //$NON-NLS-1$
 
 										}
 									}
@@ -116,7 +116,7 @@ public class ParameterEditHelperAdvice extends AbstractEditHelperAdvice {
 									// 4] call the command for the StartObjectBehaviorAction which has as behavior the current one
 									StartObjectBehaviorAction startObjectBehaviorAction = (StartObjectBehaviorAction) ((InputPin) reference.getEObject()).getOwner();
 									IPinUpdater<StartObjectBehaviorAction> updater = PinUpdaterFactory.getInstance().instantiate(startObjectBehaviorAction);
-									command.add(new PinUpdateCommand<StartObjectBehaviorAction>("Update start object behavior action pins", updater, startObjectBehaviorAction)); //$NON-NLS-1$
+									command.add(new PinUpdateCommand<>("Update start object behavior action pins", updater, startObjectBehaviorAction)); //$NON-NLS-1$
 								}
 							}
 						}

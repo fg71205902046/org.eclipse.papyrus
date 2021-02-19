@@ -142,21 +142,22 @@ public class CustomObjectFlowSelectionEditPart extends ObjectFlowSelectionEditPa
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.uml.diagram.activity.edit.parts.ObjectFlowSelectionEditPart#getManager()
 	 *
-	 * Use custom locator
+	 *      Use custom locator
 	 */
+	@Override
 	protected DirectEditManager getManager() {
 		if (manager == null) {
 			setManager(new MultilineLabelDirectEditManager(this,
 					MultilineLabelDirectEditManager.getTextCellEditorClass(this),
-					new TextCellEditorLocator(((ObjectFlowSelectionEditPart.LinkAndCornerBentWithTextFigure) this.getFigure()).getCornerBentContent())
-					));
+					new TextCellEditorLocator(((ObjectFlowSelectionEditPart.LinkAndCornerBentWithTextFigure) this.getFigure()).getCornerBentContent())));
 		}
 		return manager;
 	}
 
+	@Override
 	protected void setManager(DirectEditManager manager) {
 		this.manager = manager;
 	}

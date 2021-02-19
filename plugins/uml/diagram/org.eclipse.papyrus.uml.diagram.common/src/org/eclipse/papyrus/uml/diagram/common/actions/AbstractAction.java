@@ -69,7 +69,7 @@ public abstract class AbstractAction extends Action {
 	 * @return a list of selected objects view
 	 */
 	protected List<View> getSelection() {
-		List<View> viewSelected = new ArrayList<View>();
+		List<View> viewSelected = new ArrayList<>();
 		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 		if (activeWorkbenchWindow != null) {
 			ISelection selection = activeWorkbenchWindow.getSelectionService().getSelection();

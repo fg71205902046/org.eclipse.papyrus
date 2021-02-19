@@ -55,6 +55,7 @@ public class ActivityCNPostConditionsCompartmentEditPart extends NoBorderListCom
 	/**
 	 * @generated
 	 */
+	@Override
 	protected boolean hasModelChildrenChanged(Notification evt) {
 		return false;
 	}
@@ -62,6 +63,7 @@ public class ActivityCNPostConditionsCompartmentEditPart extends NoBorderListCom
 	/**
 	 * @generated
 	 */
+	@Override
 	public String getCompartmentName() {
 		return Messages.ActivityCNPostConditionsCompartmentEditPart_title;
 	}
@@ -69,6 +71,7 @@ public class ActivityCNPostConditionsCompartmentEditPart extends NoBorderListCom
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure createFigure() {
 		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super.createFigure();
 		result.setTitleVisibility(false);
@@ -78,6 +81,7 @@ public class ActivityCNPostConditionsCompartmentEditPart extends NoBorderListCom
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultCompartmentSemanticEditPolicy());
@@ -92,6 +96,7 @@ public class ActivityCNPostConditionsCompartmentEditPart extends NoBorderListCom
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setRatio(Double ratio) {
 		if (getFigure().getParent().getLayoutManager() instanceof ConstrainedToolbarLayout) {
 			super.setRatio(ratio);
@@ -101,6 +106,7 @@ public class ActivityCNPostConditionsCompartmentEditPart extends NoBorderListCom
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPart getTargetEditPart(Request request) {
 
 		return super.getTargetEditPart(request);
@@ -109,6 +115,7 @@ public class ActivityCNPostConditionsCompartmentEditPart extends NoBorderListCom
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
 		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature)
@@ -139,6 +146,7 @@ public class ActivityCNPostConditionsCompartmentEditPart extends NoBorderListCom
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshBounds();

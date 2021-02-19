@@ -32,14 +32,14 @@ public interface IGrillingEditpolicy {
 	 */
 	public default DiagramEditPart getDiagramEditPart(EditPart editPart) {
 		while (editPart instanceof IGraphicalEditPart) {
-			if (editPart instanceof DiagramEditPart){
+			if (editPart instanceof DiagramEditPart) {
 				return (DiagramEditPart) editPart;
 			}
 
 			editPart = editPart.getParent();
 		}
-		if(editPart instanceof DiagramRootEditPart){
-			return (DiagramEditPart)((DiagramRootEditPart)editPart).getChildren().get(0);
+		if (editPart instanceof DiagramRootEditPart) {
+			return (DiagramEditPart) ((DiagramRootEditPart) editPart).getChildren().get(0);
 		}
 		return null;
 	}

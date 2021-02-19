@@ -62,7 +62,7 @@ public class ActivityParameterAndParameterSynchronizer extends AbstractModelCons
 	private static final ILabelProvider labelProvider = new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
 
 	/** The activity parameter nodes to remove with parameter */
-	private Set<ActivityParameterNode> nodesToRemove = new HashSet<ActivityParameterNode>();
+	private Set<ActivityParameterNode> nodesToRemove = new HashSet<>();
 
 	/**
 	 * {@inheritDoc}
@@ -106,7 +106,7 @@ public class ActivityParameterAndParameterSynchronizer extends AbstractModelCons
 			if (parameter != null) {
 				final String elementLabel = labelProvider.getText(parameter);
 				final String message = NLS.bind(CustomMessages.ActivityParameterAndParameterSynchronizer_UnauthorizedModificationRedirection, elementLabel);
-				SafeDialogOpenerDuringValidation<Void> opener = new SafeDialogOpenerDuringValidation<Void>() {
+				SafeDialogOpenerDuringValidation<Void> opener = new SafeDialogOpenerDuringValidation<>() {
 
 					@Override
 					protected Void openDialog() {
@@ -220,7 +220,7 @@ public class ActivityParameterAndParameterSynchronizer extends AbstractModelCons
 	 * @return the activity parameter nodes
 	 */
 	private Set<ActivityParameterNode> getActivityParameterNodesFromParameter(Parameter parameter) {
-		Set<ActivityParameterNode> references = new HashSet<ActivityParameterNode>();
+		Set<ActivityParameterNode> references = new HashSet<>();
 		if (parameter != null) {
 			Collection<Setting> inverseReferences = CacheAdapter.getInstance().getNonNavigableInverseReferences(parameter);
 			for (Setting ref : inverseReferences) {
@@ -270,7 +270,7 @@ public class ActivityParameterAndParameterSynchronizer extends AbstractModelCons
 	 * @return whether the user validates the modifications
 	 */
 	protected boolean askForValidation(final Set<? extends NamedElement> parameterNodes) {
-		SafeDialogOpenerDuringValidation<Boolean> opener = new SafeDialogOpenerDuringValidation<Boolean>() {
+		SafeDialogOpenerDuringValidation<Boolean> opener = new SafeDialogOpenerDuringValidation<>() {
 
 			@Override
 			protected Boolean openDialog() {

@@ -35,6 +35,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 
 /**
  * This class provides utilities for the layout actions
+ *
  * @since 3.0
  */
 public class LayoutUtils {
@@ -212,7 +213,7 @@ public class LayoutUtils {
 	public static final List<Integer> westPositions = fillList(westArray);
 
 	private static List<Integer> fillList(int[] array) {
-		List<Integer> list = new ArrayList<Integer>();
+		List<Integer> list = new ArrayList<>();
 		for (int i = 0; i < array.length; i++) {
 			list.add(new Integer(array[i]));
 		}

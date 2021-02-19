@@ -24,6 +24,7 @@ import org.eclipse.gmf.runtime.notation.View;
 
 /**
  * The Class CreateViewCommand.
+ *
  * @since 3.0
  */
 public class CreateViewCommand extends CreateCommand {
@@ -40,8 +41,8 @@ public class CreateViewCommand extends CreateCommand {
 	 */
 	public CreateViewCommand(TransactionalEditingDomain editingDomain, ViewDescriptor viewDescriptor, View containerView) {
 		super(editingDomain, viewDescriptor, containerView);
-	}	
-	
+	}
+
 	/**
 	 * Can execute.
 	 *

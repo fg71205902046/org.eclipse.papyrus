@@ -1067,7 +1067,7 @@ public class SequenceUtil {
 	 * @param ignoreSet
 	 *            a set of ift to ignore.
 	 * @return
-	 * 		a set containing ift at least partially covered by the rectangle.
+	 *         a set containing ift at least partially covered by the rectangle.
 	 */
 	@SuppressWarnings("unchecked")
 	public static Set<InteractionFragment> getCoveredInteractionFragments(Rectangle selectionRect, EditPart hostEditPart, Set<InteractionFragment> ignoreSet) {

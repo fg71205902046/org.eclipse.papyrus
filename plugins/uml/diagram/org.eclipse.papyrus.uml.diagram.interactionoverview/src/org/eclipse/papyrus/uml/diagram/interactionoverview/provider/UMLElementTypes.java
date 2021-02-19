@@ -149,7 +149,7 @@ public class UMLElementTypes {
 	public static ENamedElement getElement(final IAdaptable hint) {
 		final Object type = hint.getAdapter(IElementType.class);
 		if (elements == null) {
-			elements = new IdentityHashMap<IElementType, ENamedElement>();
+			elements = new IdentityHashMap<>();
 			elements.put(CallBehaviorAction_InteractionShape, UMLPackage.eINSTANCE.getCallBehaviorAction());
 		}
 		return elements.get(type);
@@ -167,7 +167,7 @@ public class UMLElementTypes {
 	 */
 	public static boolean isKnownElementType(final IElementType elementType) {
 		if (KNOWN_ELEMENT_TYPES == null) {
-			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
+			KNOWN_ELEMENT_TYPES = new HashSet<>();
 			KNOWN_ELEMENT_TYPES.add(CallBehaviorAction_InteractionShape);
 			KNOWN_ELEMENT_TYPES.add(CallBehaviorAction_InteractionUseShape);
 		}

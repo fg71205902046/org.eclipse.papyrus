@@ -76,8 +76,7 @@ public class CustomStateMachineNameEditPart extends StateMachineNameEditPart {
 			if (height < 0) {
 				height = 0;
 			}
-		}
-		else {
+		} else {
 			height = stateFigure.getNameLabel().getBounds().height;
 		}
 

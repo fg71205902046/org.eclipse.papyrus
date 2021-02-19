@@ -27,10 +27,11 @@ import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.uml2.uml.ReadSelfAction;
 
 /**
- * 
+ *
  * Pin of ReadSelfAction should be create and update automatically
+ *
  * @since 3.0
- * 
+ *
  */
 public class ReadSelfActionEditHelperAdvice extends AbstractEditHelperAdvice {
 
@@ -51,7 +52,7 @@ public class ReadSelfActionEditHelperAdvice extends AbstractEditHelperAdvice {
 			if (editedModelElement != null) {
 				// 3] call the command for the ReadSelfAction
 				IPinUpdater<ReadSelfAction> updater = PinUpdaterFactory.getInstance().instantiate(editedModelElement);
-				return new PinUpdateCommand<ReadSelfAction>("Update read self action pins", updater, editedModelElement);
+				return new PinUpdateCommand<>("Update read self action pins", updater, editedModelElement);
 			}
 		}
 		return null;

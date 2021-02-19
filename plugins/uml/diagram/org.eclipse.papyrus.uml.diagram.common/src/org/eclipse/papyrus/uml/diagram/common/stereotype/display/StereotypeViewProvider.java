@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *   Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.net - Initial API and implementation
  *   Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 : Refactor Stereotype Display
 
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.common.stereotype.display;
@@ -25,9 +25,9 @@ import org.eclipse.uml2.uml.Stereotype;
 
 /**
  * This Class Implement the interface {@link IStereotypeViewProvider} to provide Stereotype Views.
- * 
+ *
  * @see IStereotypeViewProvider
- * 
+ *
  * @author Céline JANSSENS
  *
  */
@@ -87,7 +87,7 @@ public class StereotypeViewProvider implements IStereotypeViewProvider {
 
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.common.stereotype.display.IStereotypeViewProvider#getLabel(org.eclipse.uml2.uml.Property, org.eclipse.uml2.uml.Stereotype, java.lang.String)
-	 * 
+	 *
 	 */
 	@Override
 	public View getLabel(Stereotype stereotype) {
@@ -98,7 +98,7 @@ public class StereotypeViewProvider implements IStereotypeViewProvider {
 
 	/**
 	 * Retrieve the Stereotype Compartment related to a Stereotype and create it if null.
-	 * 
+	 *
 	 * @param view
 	 *            The view on which the Compartment is checked
 	 * @param stereotype
@@ -114,7 +114,7 @@ public class StereotypeViewProvider implements IStereotypeViewProvider {
 
 	/**
 	 * Retrieve the Stereotype Compartment View related to a Stereotype in Compartment and create it if null.
-	 * 
+	 *
 	 * @param view
 	 *            The view on which the Compartment is checked
 	 * @param stereotype
@@ -130,7 +130,7 @@ public class StereotypeViewProvider implements IStereotypeViewProvider {
 
 	/**
 	 * Retrieve the Stereotype Compartment View related to a Stereotype in Brace and create it if null.
-	 * 
+	 *
 	 * @param view
 	 *            The view on which the Compartment is checked
 	 * @param stereotype
@@ -146,7 +146,7 @@ public class StereotypeViewProvider implements IStereotypeViewProvider {
 
 	/**
 	 * Retrieve the Stereotype Compartment View related to a Stereotype in Comment and create it if null.
-	 * 
+	 *
 	 * @param view
 	 *            The view on which the Compartment is checked
 	 * @param stereotype
@@ -162,14 +162,14 @@ public class StereotypeViewProvider implements IStereotypeViewProvider {
 
 	/**
 	 * Retrieve the Stereotype Property related to a Stereotype and create it if null.
-	 * 
+	 *
 	 * @param view
 	 *            The view on which the Compartment is checked
 	 * @param stereotype
 	 *            The Stereotype of the Compartment that is retrieved.
 	 * @param property
 	 *            The UML Property of the Stereotype to be retrieved.
-	 * 
+	 *
 	 * @return The Property related with the Stereotype (existing or newly created)
 	 */
 	public View getStereotypePropertyInCompartment(final View view, final Stereotype stereotype, final Property property) {
@@ -182,14 +182,14 @@ public class StereotypeViewProvider implements IStereotypeViewProvider {
 
 	/**
 	 * Retrieve the Stereotype Property View related to a Stereotype in Brace and create it if null.
-	 * 
+	 *
 	 * @param view
 	 *            The view on which the Compartment is checked
 	 * @param stereotype
 	 *            The Stereotype of the Compartment that is retrieved.
 	 * @param property
 	 *            The UML Property of the Stereotype to be retrieved.
-	 * 
+	 *
 	 * @return The Property related with the Stereotype (existing or newly created)
 	 */
 	public View getStereotypePropertyInBrace(View view, Stereotype stereotype, Property property) {
@@ -204,14 +204,14 @@ public class StereotypeViewProvider implements IStereotypeViewProvider {
 
 	/**
 	 * Retrieve the Stereotype Property View related to a Stereotype in Comment and create it if null.
-	 * 
+	 *
 	 * @param view
 	 *            The view on which the Compartment is checked
 	 * @param stereotype
 	 *            The Stereotype of the Compartment that is retrieved.
 	 * @param property
 	 *            The UML Property of the Stereotype to be retrieved.
-	 * 
+	 *
 	 * @return The Property related with the Stereotype (existing or newly created)
 	 */
 	public View getStereotypePropertyInComment(View view, Stereotype stereotype, Property property) {

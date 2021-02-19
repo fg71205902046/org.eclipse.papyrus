@@ -61,7 +61,7 @@ public class CInteractionInteractionCompartmentEditPart extends InteractionInter
 		// ExecutionSpecification can't be drop into Interaction
 		if (request instanceof ChangeBoundsRequest) {
 			List<?> editParts = ((ChangeBoundsRequest) request).getEditParts();
-			if(null != editParts && !editParts.isEmpty()) {
+			if (null != editParts && !editParts.isEmpty()) {
 				for (Object part : editParts) {
 					if (part instanceof AbstractExecutionSpecificationEditPart) {
 						return UnexecutableCommand.INSTANCE;

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2003, 2014 IBM Corporation, Christian W. Damus, and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  * Contributors:
  *   IBM Corporation - Initial API and implementation
  *   Christian W. Damus - Adapted to the Papyrus environment
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.common.editpolicies;
@@ -32,7 +32,7 @@ import org.eclipse.ui.PlatformUI;
 
 /**
  * Papyrus adaptation of the GMF connection handle diagram assistant.
- * 
+ *
  * @author cmahoney
  */
 public class PapyrusConnectionHandleEditPolicy extends ConnectionHandleEditPolicy {
@@ -119,7 +119,7 @@ public class PapyrusConnectionHandleEditPolicy extends ConnectionHandleEditPolic
 				if (activePart instanceof IDiagramWorkbenchPart) {
 					editorPart = (IDiagramWorkbenchPart) activePart;
 				} else if (activePart instanceof IAdaptable) {
-					editorPart = (IDiagramWorkbenchPart) ((IAdaptable) activePart).getAdapter(IDiagramWorkbenchPart.class);
+					editorPart = ((IAdaptable) activePart).getAdapter(IDiagramWorkbenchPart.class);
 				}
 
 				if (editorPart != null) {

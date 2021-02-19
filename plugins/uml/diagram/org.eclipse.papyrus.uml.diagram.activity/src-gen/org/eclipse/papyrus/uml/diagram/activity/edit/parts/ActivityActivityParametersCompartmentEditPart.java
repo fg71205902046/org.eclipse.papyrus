@@ -54,6 +54,7 @@ public class ActivityActivityParametersCompartmentEditPart extends NoBorderListC
 	/**
 	 * @generated
 	 */
+	@Override
 	protected boolean hasModelChildrenChanged(Notification evt) {
 		return false;
 	}
@@ -61,6 +62,7 @@ public class ActivityActivityParametersCompartmentEditPart extends NoBorderListC
 	/**
 	 * @generated
 	 */
+	@Override
 	public String getCompartmentName() {
 		return Messages.ActivityActivityParametersCompartmentEditPart_title;
 	}
@@ -68,6 +70,7 @@ public class ActivityActivityParametersCompartmentEditPart extends NoBorderListC
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure createFigure() {
 		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super.createFigure();
 		result.setTitleVisibility(false);
@@ -77,6 +80,7 @@ public class ActivityActivityParametersCompartmentEditPart extends NoBorderListC
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultCompartmentSemanticEditPolicy());
@@ -90,6 +94,7 @@ public class ActivityActivityParametersCompartmentEditPart extends NoBorderListC
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setRatio(Double ratio) {
 		if (getFigure().getParent().getLayoutManager() instanceof ConstrainedToolbarLayout) {
 			super.setRatio(ratio);
@@ -99,6 +104,7 @@ public class ActivityActivityParametersCompartmentEditPart extends NoBorderListC
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPart getTargetEditPart(Request request) {
 
 		return super.getTargetEditPart(request);
@@ -107,6 +113,7 @@ public class ActivityActivityParametersCompartmentEditPart extends NoBorderListC
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
 		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature)
@@ -137,6 +144,7 @@ public class ActivityActivityParametersCompartmentEditPart extends NoBorderListC
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshBounds();

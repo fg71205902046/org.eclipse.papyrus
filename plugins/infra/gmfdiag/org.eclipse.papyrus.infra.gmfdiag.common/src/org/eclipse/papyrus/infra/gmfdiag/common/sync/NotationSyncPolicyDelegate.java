@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.common.sync;
@@ -26,7 +26,7 @@ import org.eclipse.papyrus.infra.tools.util.TypeUtils;
 
 /**
  * A synchronization policy delegate that looks for feature exclusions in the notation style dedicated to that purpose.
- * 
+ *
  * @see SyncStyles#isSynchronized(View, String)
  */
 public abstract class NotationSyncPolicyDelegate<M extends EObject, T extends EditPart> extends SyncPolicyDelegate<M, T> {
@@ -55,7 +55,7 @@ public abstract class NotationSyncPolicyDelegate<M extends EObject, T extends Ed
 
 	/**
 	 * Obtains a command that will stop synchronizing the given edit-part.
-	 * 
+	 *
 	 * @param editPart
 	 *            an edit-part that should stop having my feature synchronized
 	 * @return a command to override synchronization of my feature for the edit-part, or {@code null}
@@ -79,7 +79,7 @@ public abstract class NotationSyncPolicyDelegate<M extends EObject, T extends Ed
 	/**
 	 * Handles the response to a synchronization override event that was received by a {@code receiver}
 	 * dispatcher for the given {@code syncItem}.
-	 * 
+	 *
 	 * @param receiver
 	 *            a dispatcher that received an event on the feature that is synchronized to the {@code syncItem}
 	 * @param syncItem

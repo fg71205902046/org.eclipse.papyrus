@@ -75,7 +75,7 @@ public class InsertFloatingLabelFromMapCommand extends AbstractCommand {
 		final TreeIterator<EObject> children = diagram.eAllContents();
 
 		while (children.hasNext()) {
-			EObject object = (EObject) children.next();
+			EObject object = children.next();
 			// for (Object child : children) {
 			if (object instanceof View) {
 				View element = (View) object;

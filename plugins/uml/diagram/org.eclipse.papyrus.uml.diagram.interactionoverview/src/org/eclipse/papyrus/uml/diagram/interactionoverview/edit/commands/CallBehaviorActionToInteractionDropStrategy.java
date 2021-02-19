@@ -83,7 +83,7 @@ public class CallBehaviorActionToInteractionDropStrategy extends TransactionalDr
 		}
 		CompositeCommand cc = new CompositeCommand(getLabel());
 		List<EObject> sourceElements = getSourceEObjects(request);
-		List<CallBehaviorAction> callBehaviorActionToDrop = new ArrayList<CallBehaviorAction>(sourceElements.size());
+		List<CallBehaviorAction> callBehaviorActionToDrop = new ArrayList<>(sourceElements.size());
 		for (EObject sourceElement : sourceElements) {
 			if (!(sourceElement instanceof CallBehaviorAction)) {
 				return null;

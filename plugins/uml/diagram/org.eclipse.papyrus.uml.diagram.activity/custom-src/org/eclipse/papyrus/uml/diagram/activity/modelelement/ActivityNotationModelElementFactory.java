@@ -22,14 +22,14 @@ import org.eclipse.papyrus.uml.diagram.common.Activator;
 
 /**
  * A factory for handling the GMF Notation Activity elements.
- * 
+ *
  * @since 3.2
  */
 public class ActivityNotationModelElementFactory extends AbstractModelElementFactory<ActivityNotationModelElement> {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.properties.ui.modelelement.AbstractModelElementFactory#doCreateFromSource(java.lang.Object, org.eclipse.papyrus.infra.properties.contexts.DataContextElement)
 	 */
 	@Override
@@ -48,7 +48,7 @@ public class ActivityNotationModelElementFactory extends AbstractModelElementFac
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.properties.ui.modelelement.AbstractModelElementFactory#updateModelElement(org.eclipse.papyrus.infra.properties.ui.modelelement.AbstractModelElement, java.lang.Object)
 	 */
 	@Override

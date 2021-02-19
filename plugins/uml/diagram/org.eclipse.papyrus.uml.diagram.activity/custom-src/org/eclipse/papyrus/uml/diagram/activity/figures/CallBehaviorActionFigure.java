@@ -46,7 +46,7 @@ public class CallBehaviorActionFigure extends RoundedCompartmentFigure {
 
 	@Override
 	public void paint(Graphics graphics) {
-		
+
 		super.paint(graphics);
 		if (isDisplayedRake) {
 			Activator.getDefault();

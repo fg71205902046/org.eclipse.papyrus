@@ -70,7 +70,7 @@ public interface ICopyStrategy extends IStrategy {
 	 * @param targetEditPart
 	 *            The target edit part
 	 * @return
-	 * 		A command, or null if the strategy cannot handle the request
+	 *         A command, or null if the strategy cannot handle the request
 	 */
 	public Command getCommand(Request request, EditPart targetEditPart);
 
@@ -87,7 +87,7 @@ public interface ICopyStrategy extends IStrategy {
 
 	/**
 	 * This method allows to modify the elements list in the ClipBoard before being Paste
-	 * 
+	 *
 	 * @param elementsInClipboard
 	 *            The list of Objects in the clipBoard to be modified, same as selectedElements by default
 	 * @param selectedElements

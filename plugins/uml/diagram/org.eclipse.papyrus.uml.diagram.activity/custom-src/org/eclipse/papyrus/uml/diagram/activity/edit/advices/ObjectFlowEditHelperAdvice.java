@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *  Pauline DEVILLE (CEA LIST) - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.advices;
@@ -40,9 +40,11 @@ import org.eclipse.uml2.uml.OutputPin;
  */
 public class ObjectFlowEditHelperAdvice extends AbstractEditHelperAdvice {
 
+	@Override
 	protected ICommand getAfterConfigureCommand(final ConfigureRequest req) {
 		ICommand configureCommand = new ConfigureElementCommand(req) {
 
+			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 				ObjectFlow element = (ObjectFlow) req.getElementToConfigure();
 				ActivityNode source = getSourceObject(req);
@@ -94,7 +96,7 @@ public class ObjectFlowEditHelperAdvice extends AbstractEditHelperAdvice {
 
 	/**
 	 * This method provides the object to be use as source.
-	 * 
+	 *
 	 * @return the source value
 	 */
 	protected ActivityNode getSourceObject(ConfigureRequest req) {
@@ -104,7 +106,7 @@ public class ObjectFlowEditHelperAdvice extends AbstractEditHelperAdvice {
 
 	/**
 	 * This method provides the object to be used as target.
-	 * 
+	 *
 	 * @return the target value
 	 */
 	protected ActivityNode getTargetObject(ConfigureRequest req) {

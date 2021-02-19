@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 516559
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.common.snap;
@@ -200,7 +200,7 @@ public class ResizeTrackerWithPreferences extends ResizeTracker {
 	/**
 	 *
 	 * @return
-	 * 		<code>true</code> if the current resize must be constrained and <code>false</code> if not
+	 *         <code>true</code> if the current resize must be constrained and <code>false</code> if not
 	 */
 	private final boolean isConstrainedResizeAccordingToPreference() {
 		IPreferenceStore store = Activator.getInstance().getPreferenceStore();

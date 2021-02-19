@@ -41,7 +41,8 @@ public class LinkedBehaviorLocator extends AdvancedBorderItemLocator {
 	/** Constructor **/
 	public LinkedBehaviorLocator(IFigure borderItem, IFigure parentFigure, Rectangle constraint) {
 		super(borderItem, parentFigure, constraint);
-		this.setBorderItemOffset(OFFSET);	}
+		this.setBorderItemOffset(OFFSET);
+	}
 
 	/** Constructor **/
 	public LinkedBehaviorLocator(IFigure parentFigure, int preferredSide) {

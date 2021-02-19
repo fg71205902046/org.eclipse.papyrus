@@ -135,9 +135,9 @@ public abstract class AssociatedBehaviorParser extends MessageFormatParser imple
 		if (getReferenceFeature().getContainerClass().isInstance(obj)) {
 			Object behavior = ((EObject) obj).eGet(getReferenceFeature());
 			if (behavior instanceof Behavior) {
-				if(useInternationalization){
-					return UMLLabelInternationalization.getInstance().getLabel((Behavior)behavior);
-				}else{
+				if (useInternationalization) {
+					return UMLLabelInternationalization.getInstance().getLabel((Behavior) behavior);
+				} else {
 					return ((Behavior) behavior).getName();
 				}
 			}
@@ -166,7 +166,7 @@ public abstract class AssociatedBehaviorParser extends MessageFormatParser imple
 	 */
 	@Override
 	public List<?> getSemanticElementsBeingParsed(EObject element) {
-		List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
+		List<Element> semanticElementsBeingParsed = new ArrayList<>();
 		if (getReferenceFeature().getContainerClass().isInstance(element)) {
 			semanticElementsBeingParsed.add((Element) element);
 			Object behavior = element.eGet(getReferenceFeature());

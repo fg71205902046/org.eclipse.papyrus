@@ -22,40 +22,40 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.PapyrusResizableSha
  * @author Patrick Tessier
  *
  */
-public class GrillingBasedResizableShapeEditPolicy extends PapyrusResizableShapeEditPolicy implements IGrillingEditpolicy{
+public class GrillingBasedResizableShapeEditPolicy extends PapyrusResizableShapeEditPolicy implements IGrillingEditpolicy {
 
 	@Override
 	protected void showChangeBoundsFeedback(ChangeBoundsRequest request) {
-		 super.showChangeBoundsFeedback(request);
-//		IFigure feedback = getDragSourceFeedbackFigure();
-//		PrecisionRectangle rect = new PrecisionRectangle(getInitialFeedbackBounds().getCopy());
-//		getHostFigure().translateToAbsolute(rect);
-//		Point left = rect.getLeft();
-//		Point right = rect.getRight();
-//		rect.translate(request.getMoveDelta());
-//		rect.resize(request.getSizeDelta());
-//		IFigure f = getHostFigure();
-//		View row=null;
-//		DiagramEditPart diagramEditPart=getDiagramEditPart(getHost());
-//		try{
-//			GrillingManagementEditPolicy grilling=(GrillingManagementEditPolicy)diagramEditPart.getEditPolicy(GrillingManagementEditPolicy.GRILLING_MANAGEMENT);
-//			if (grilling!=null){
-//				row=grilling.getRowTolisten(((GraphicalEditPart)getHost()).resolveSemanticElement(), (Node)((GraphicalEditPart)getHost()).getNotationView());
-//			}
-//		}catch (NoGrillElementFound e) {
-//			UMLDiagramEditorPlugin.log.error(e);
-//		}
-//		Location boundsRow=(Location)	((Node)row).getLayoutConstraint();
-//		Point poisition = new Point(0,boundsRow.getY());
-//		// IMapMode mmode = MapModeUtil.getMapMode(f);
-//		// min.height = mmode.LPtoDP(min.height);
-//		// min.width = mmode.LPtoDP(min.width);
-//		// max.height = mmode.LPtoDP(max.height);
-//		// max.width = mmode.LPtoDP(max.width);
-//		getHostFigure().translateToAbsolute(poisition);
-//		// In manual mode, there is no minimal width, see https://bugs.eclipse.org/bugs/show_bug.cgi?id=383723
-//		rect.y=poisition.y;
-//		feedback.translateToRelative(rect);
-//		feedback.setBounds(rect);
+		super.showChangeBoundsFeedback(request);
+		// IFigure feedback = getDragSourceFeedbackFigure();
+		// PrecisionRectangle rect = new PrecisionRectangle(getInitialFeedbackBounds().getCopy());
+		// getHostFigure().translateToAbsolute(rect);
+		// Point left = rect.getLeft();
+		// Point right = rect.getRight();
+		// rect.translate(request.getMoveDelta());
+		// rect.resize(request.getSizeDelta());
+		// IFigure f = getHostFigure();
+		// View row=null;
+		// DiagramEditPart diagramEditPart=getDiagramEditPart(getHost());
+		// try{
+		// GrillingManagementEditPolicy grilling=(GrillingManagementEditPolicy)diagramEditPart.getEditPolicy(GrillingManagementEditPolicy.GRILLING_MANAGEMENT);
+		// if (grilling!=null){
+		// row=grilling.getRowTolisten(((GraphicalEditPart)getHost()).resolveSemanticElement(), (Node)((GraphicalEditPart)getHost()).getNotationView());
+		// }
+		// }catch (NoGrillElementFound e) {
+		// UMLDiagramEditorPlugin.log.error(e);
+		// }
+		// Location boundsRow=(Location) ((Node)row).getLayoutConstraint();
+		// Point poisition = new Point(0,boundsRow.getY());
+		// // IMapMode mmode = MapModeUtil.getMapMode(f);
+		// // min.height = mmode.LPtoDP(min.height);
+		// // min.width = mmode.LPtoDP(min.width);
+		// // max.height = mmode.LPtoDP(max.height);
+		// // max.width = mmode.LPtoDP(max.width);
+		// getHostFigure().translateToAbsolute(poisition);
+		// // In manual mode, there is no minimal width, see https://bugs.eclipse.org/bugs/show_bug.cgi?id=383723
+		// rect.y=poisition.y;
+		// feedback.translateToRelative(rect);
+		// feedback.setBounds(rect);
 	}
 }

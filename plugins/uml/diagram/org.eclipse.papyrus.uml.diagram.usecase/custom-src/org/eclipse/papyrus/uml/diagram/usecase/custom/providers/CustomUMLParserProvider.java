@@ -44,7 +44,7 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 	protected IParser getAppliedKeywordParser(String defaultPrintString) {
 		return new AppliedKeywordParser(defaultPrintString);
 	}
-	
+
 	@Override
 	protected IParser getParser(String visualID) {
 		switch (visualID) {

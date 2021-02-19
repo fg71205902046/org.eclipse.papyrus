@@ -43,13 +43,11 @@ public class PropertiesCompartmentLayoutManager extends AbstractLayout {
 				if (((AppliedStereotypeCompartmentFigure) fig).isExpanded()) {
 					minimumHeight = minimumHeight + fig.getPreferredSize(hint, hint2).height + MARGIN_Y;
 					minimumWith = Math.max(minimumWith, fig.getPreferredSize(hint, hint2).width);
-				}
-				else {
+				} else {
 					minimumHeight = minimumHeight + fig.getPreferredSize().height + MARGIN_Y;
 					minimumWith = Math.max(minimumWith, fig.getPreferredSize().width);
 				}
-			}
-			else {
+			} else {
 				minimumWith = Math.max(minimumWith, fig.getPreferredSize(hint, hint2).width);
 				minimumHeight = minimumHeight + fig.getPreferredSize().height + MARGIN_Y;
 			}

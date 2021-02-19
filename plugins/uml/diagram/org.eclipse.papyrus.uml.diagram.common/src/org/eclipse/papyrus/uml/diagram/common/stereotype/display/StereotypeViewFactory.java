@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -11,8 +11,8 @@
  * Contributors:
  *   Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.net - Initial API and implementation
  *   Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 : Refactor Stereotype Display
- *   
- *   
+ *
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.common.stereotype.display;
@@ -30,7 +30,7 @@ import org.eclipse.uml2.uml.Stereotype;
 
 /**
  * This Factory implement {@link IStereotypeViewFactory} and is in charge of creating Stereotype Views.
- * 
+ *
  * @author Céline JANSSENS
  *
  */
@@ -44,7 +44,7 @@ public class StereotypeViewFactory implements IStereotypeViewFactory {
 	 *
 	 * @param mainView
 	 *            The View on which the Stereotype is applied (i.e: A Shape, an Edge, An Operation, ...)
-	 * 
+	 *
 	 */
 	public StereotypeViewFactory(View mainView) {
 		super();
@@ -102,7 +102,7 @@ public class StereotypeViewFactory implements IStereotypeViewFactory {
 
 	/**
 	 * Execute the creation Compartment command
-	 * 
+	 *
 	 * @param stereotype
 	 *            Stereotype for which the View is created
 	 */
@@ -119,7 +119,7 @@ public class StereotypeViewFactory implements IStereotypeViewFactory {
 
 	/**
 	 * Create the Compartment of Stereotype to be shown into the Compartment of the Shape.
-	 * 
+	 *
 	 * @param stereotype
 	 *            The Stereotype of the Compartment that is retrieved.
 	 */
@@ -131,7 +131,7 @@ public class StereotypeViewFactory implements IStereotypeViewFactory {
 
 	/**
 	 * Create the Compartment of Stereotype to be shown into the Compartment of the Shape.
-	 * 
+	 *
 	 * @param stereotype
 	 *            The Stereotype of the Compartment that is retrieved.
 	 */
@@ -143,13 +143,13 @@ public class StereotypeViewFactory implements IStereotypeViewFactory {
 
 	/**
 	 * Create the Property of the Stereotype to be shown into the Compartment of the Shape.
-	 * 
-	 * 
+	 *
+	 *
 	 * @param compartment
 	 *            The Compartment View that is the Owner of the new Property
 	 * @param property
 	 *            The UML Property of the Stereotype to be retrieved.
-	 * 
+	 *
 	 */
 	private void createStereotypePropertyInCompartment(View compartment, Property property) {
 		CreateAppliedStereotypePropertyViewCommand command = new CreateAppliedStereotypePropertyViewCommand(domain, compartment, property, StereotypeDisplayConstant.STEREOTYPE_PROPERTY_TYPE);
@@ -159,13 +159,13 @@ public class StereotypeViewFactory implements IStereotypeViewFactory {
 
 	/**
 	 * Create the Property of the Stereotype to be shown into the Brace of the Shape.
-	 * 
-	 * 
+	 *
+	 *
 	 * @param compartment
 	 *            The Compartment View that is the Owner of the new Property
 	 * @param property
 	 *            The UML Property of the Stereotype to be retrieved.
-	 * 
+	 *
 	 */
 	private void createStereotypePropertyInBrace(View compartmentView, Property property) {
 		CreateAppliedStereotypePropertyViewCommand command = new CreateAppliedStereotypePropertyViewCommand(domain, mainView, property, StereotypeDisplayConstant.STEREOTYPE_BRACE_TYPE);
@@ -175,13 +175,13 @@ public class StereotypeViewFactory implements IStereotypeViewFactory {
 
 	/**
 	 * Create the Property of the Stereotype to be shown into the Comment of the Shape.
-	 * 
-	 * 
+	 *
+	 *
 	 * @param compartment
 	 *            The Compartment View that is the Owner of the new Property
 	 * @param property
 	 *            The UML Property of the Stereotype to be retrieved.
-	 * 
+	 *
 	 */
 	private void createStereotypePropertyInComment(View compartmentView, Property property) {
 		CreateAppliedStereotypePropertyViewCommand command = new CreateAppliedStereotypePropertyViewCommand(domain, compartmentView, property, StereotypeDisplayConstant.STEREOTYPE_PROPERTY_TYPE);
@@ -193,7 +193,7 @@ public class StereotypeViewFactory implements IStereotypeViewFactory {
 
 	/**
 	 * Execute the {@link CreateStereotypeLabelCommand}
-	 * 
+	 *
 	 * @param view
 	 *            The view that required a Stereotype Label
 	 */

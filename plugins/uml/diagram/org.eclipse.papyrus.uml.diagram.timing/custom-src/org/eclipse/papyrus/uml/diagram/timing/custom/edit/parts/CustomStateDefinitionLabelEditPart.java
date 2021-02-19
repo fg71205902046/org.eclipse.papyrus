@@ -55,7 +55,7 @@ public class CustomStateDefinitionLabelEditPart extends StateDefinitionLabelEdit
 		super.setParser(parser);
 		this.parser = parser;
 	}
-	
+
 	@Override
 	public Object getAdapter(@SuppressWarnings("rawtypes") final Class key) {
 		// GMF returns the View by default, but Papyrus expects a semantic element.
@@ -67,12 +67,12 @@ public class CustomStateDefinitionLabelEditPart extends StateDefinitionLabelEdit
 		}
 		return super.getAdapter(key);
 	}
-	
+
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#resolveSemanticElement()
 	 */
 	@Override
 	public EObject resolveSemanticElement() {
-		return ((IGraphicalEditPart)getParent()).resolveSemanticElement();
+		return ((IGraphicalEditPart) getParent()).resolveSemanticElement();
 	}
 }

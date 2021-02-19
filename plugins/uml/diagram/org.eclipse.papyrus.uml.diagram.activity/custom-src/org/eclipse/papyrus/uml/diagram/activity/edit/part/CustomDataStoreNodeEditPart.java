@@ -86,7 +86,7 @@ public class CustomDataStoreNodeEditPart extends DataStoreNodeEditPart {
 	 */
 	@Override
 	protected NodeFigure createNodePlate() {
-		
+
 		DefaultSizeNodeFigure result = new RoundedRectangleNodePlateFigure(100, 100);
 		return result;
 	}

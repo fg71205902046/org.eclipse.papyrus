@@ -34,7 +34,7 @@ public class CustomCompactStateInvariantItemSemanticEditPolicy extends CompactSt
 		if (request.getType() == REQ_DELETE) {
 			try {
 				final View view = (View) getHost().getModel();
-				final Set<View> viewsToRemove = new HashSet<View>();
+				final Set<View> viewsToRemove = new HashSet<>();
 				if (view.getType().equals(Constants.compactStateInvariantId)) {
 					viewsToRemove.addAll(StateInvariantUtils.getViewsToHide(view));
 				}

@@ -82,10 +82,10 @@ public class InteractionOperandDragDropEditPolicy extends DragDropEditPolicy {
 			if (fragment == null || false == fragmentCptPart instanceof IGraphicalEditPart) {
 				return UnexecutableCommand.INSTANCE;
 			}
-			IGraphicalEditPart fragmentGEP = (IGraphicalEditPart)fragmentCptPart;
+			IGraphicalEditPart fragmentGEP = (IGraphicalEditPart) fragmentCptPart;
 			CompositeCommand command = new CompositeCommand("Reorder operands");
 			List<InteractionOperand> operands = new ArrayList<>(fragment.getOperands());
-			if (! operands.contains(operandToReorder)) {
+			if (!operands.contains(operandToReorder)) {
 				return UnexecutableCommand.INSTANCE;
 			}
 
@@ -108,13 +108,13 @@ public class InteractionOperandDragDropEditPolicy extends DragDropEditPolicy {
 			// The height of each operand didn't change, so we just have to compute the sum of heights for each previous view
 			int y = 0;
 			CompositeCommand updateBounds = new CompositeCommand("Update operands bounds");
-			TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
+			TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
 			for (View view : operandViews) {
 				if (view instanceof Node) {
-					Node node = (Node)view;
+					Node node = (Node) view;
 					LayoutConstraint layoutConstraint = node.getLayoutConstraint();
 					if (layoutConstraint instanceof Bounds) {
-						Bounds currentBounds = (Bounds)layoutConstraint;
+						Bounds currentBounds = (Bounds) layoutConstraint;
 						Point newPos = new Point(0, y);
 						updateBounds.add(new SetLocationCommand(editingDomain, "Update bounds", new EObjectAdapter(node), newPos));
 						y += currentBounds.getHeight();
@@ -131,7 +131,7 @@ public class InteractionOperandDragDropEditPolicy extends DragDropEditPolicy {
 
 	private InteractionOperand getOperand(InteractionOperandEditPart editPart) {
 		EObject element = editPart.getNotationView().getElement();
-		return element instanceof InteractionOperand ? (InteractionOperand)element : null;
+		return element instanceof InteractionOperand ? (InteractionOperand) element : null;
 	}
 
 	private CombinedFragment getCombinedFragment() {
@@ -142,7 +142,7 @@ public class InteractionOperandDragDropEditPolicy extends DragDropEditPolicy {
 
 	private InteractionOperand getHostOperand() {
 		EObject hostSemantic = getHostObject();
-		return hostSemantic instanceof InteractionOperand ? (InteractionOperand)hostSemantic : null;
+		return hostSemantic instanceof InteractionOperand ? (InteractionOperand) hostSemantic : null;
 	}
 
 }

@@ -62,7 +62,7 @@ public class StructuredActivityNodeContainment extends AbstractContainerNodeDesc
 	@Override
 	public List<EReference> getChildrenReferences() {
 		if (childrenReferences == null) {
-			childrenReferences = new ArrayList<EReference>(2);
+			childrenReferences = new ArrayList<>(2);
 			childrenReferences.add(UMLPackage.eINSTANCE.getStructuredActivityNode_Node());
 			childrenReferences.add(UMLPackage.eINSTANCE.getStructuredActivityNode_Edge());
 		}
@@ -72,7 +72,7 @@ public class StructuredActivityNodeContainment extends AbstractContainerNodeDesc
 	@Override
 	public List<EReference> getParentReferences() {
 		if (parentReferences == null) {
-			parentReferences = new ArrayList<EReference>();
+			parentReferences = new ArrayList<>();
 			parentReferences.add(UMLPackage.Literals.ACTIVITY_NODE__IN_INTERRUPTIBLE_REGION);
 			parentReferences.add(UMLPackage.Literals.ACTIVITY_NODE__IN_PARTITION);
 			parentReferences.add(UMLPackage.Literals.ACTIVITY_NODE__IN_STRUCTURED_NODE);
@@ -84,7 +84,7 @@ public class StructuredActivityNodeContainment extends AbstractContainerNodeDesc
 	@Override
 	public Map<EStructuralFeature, EStructuralFeature> getParentEOppositeReferences() {
 		if (parentOpositeReferences == null) {
-			parentOpositeReferences = new HashMap<EStructuralFeature, EStructuralFeature>();
+			parentOpositeReferences = new HashMap<>();
 			parentOpositeReferences.put(UMLPackage.Literals.ACTIVITY_NODE__IN_INTERRUPTIBLE_REGION, UMLPackage.Literals.INTERRUPTIBLE_ACTIVITY_REGION__NODE);
 			parentOpositeReferences.put(UMLPackage.Literals.ACTIVITY_NODE__IN_PARTITION, UMLPackage.Literals.ACTIVITY_PARTITION__NODE);
 			parentOpositeReferences.put(UMLPackage.Literals.ACTIVITY_NODE__IN_STRUCTURED_NODE, UMLPackage.Literals.STRUCTURED_ACTIVITY_NODE__NODE);

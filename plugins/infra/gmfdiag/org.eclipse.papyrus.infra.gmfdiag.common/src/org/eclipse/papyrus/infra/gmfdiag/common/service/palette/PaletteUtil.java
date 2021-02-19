@@ -231,7 +231,7 @@ public class PaletteUtil {
 		// retrieve all provider for the given editor ID
 		PaletteRoot root = new PaletteRoot();
 		List<? extends PapyrusPaletteService.ProviderDescriptor> providers = (List<? extends ProviderDescriptor>) PapyrusPaletteService.getInstance().getProviders();
-		ContributeToPaletteOperation operation = new ContributeToPaletteOperation(part, part.getEditorInput(), root, new HashMap<Object, Object>());
+		ContributeToPaletteOperation operation = new ContributeToPaletteOperation(part, part.getEditorInput(), root, new HashMap<>());
 
 		// generate for each provider, according to priority
 		@SuppressWarnings("unchecked")
@@ -240,7 +240,7 @@ public class PaletteUtil {
 			int compare = descriptor.getPriority().compareTo(priority);
 			if (compare < 0) {
 				if (descriptor.providesWithVisibility(operation)) {
-					((IPaletteProvider) descriptor.getProvider()).contributeToPalette(part, part.getEditorInput(), root, new HashMap<Object, Object>());
+					((IPaletteProvider) descriptor.getProvider()).contributeToPalette(part, part.getEditorInput(), root, new HashMap<>());
 				}
 			}
 		}

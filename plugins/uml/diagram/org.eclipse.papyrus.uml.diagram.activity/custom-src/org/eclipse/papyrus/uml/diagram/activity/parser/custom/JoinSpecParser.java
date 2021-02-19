@@ -159,7 +159,7 @@ public class JoinSpecParser extends MessageFormatParser implements ISemanticPars
 	 */
 	@Override
 	public List<?> getSemanticElementsBeingParsed(EObject element) {
-		List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
+		List<Element> semanticElementsBeingParsed = new ArrayList<>();
 		if (element instanceof JoinNode) {
 			JoinNode join = (JoinNode) element;
 			semanticElementsBeingParsed.add(join);
@@ -180,7 +180,7 @@ public class JoinSpecParser extends MessageFormatParser implements ISemanticPars
 	 * @return true if is valid, false otherwise
 	 */
 	private boolean isValidFeature(EStructuralFeature feature) {
-		if (feature == null){
+		if (feature == null) {
 			return false;
 		}
 		return UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature) || UMLPackage.eINSTANCE.getJoinNode_JoinSpec().equals(feature) || (feature != null && ValueSpecification.class.isAssignableFrom(feature.getContainerClass()));

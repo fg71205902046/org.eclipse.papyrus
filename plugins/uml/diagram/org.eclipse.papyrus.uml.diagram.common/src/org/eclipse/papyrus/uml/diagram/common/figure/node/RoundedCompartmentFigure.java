@@ -154,7 +154,7 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 
 	/**
 	 * Constructor with a tagged value.
-	 * 
+	 *
 	 * @param compartmentFigure
 	 *            a list of id for the compartment figure
 	 * @param taggedLabelValue
@@ -202,7 +202,7 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	 *            the compartment figure
 	 */
 	protected void createContentPane(final List<String> compartmentFigure) {
-		containerFigures = new HashMap<String, RectangleFigure>();
+		containerFigures = new HashMap<>();
 		for (final String id : compartmentFigure) {
 			final RectangleFigure newFigure = new RectangleFigure();
 			newFigure.setLayoutManager(new SubCompartmentLayoutManager());
@@ -218,7 +218,7 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 
 	/**
 	 * Get the RectangleFigure containing the wanted compartment.
-	 * 
+	 *
 	 * @param id
 	 *            the id to find the right compartment
 	 * @return the RectangleFigure
@@ -697,7 +697,7 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 
 	/**
 	 * @return the Rounded border used as border for this figure.
-	 * 
+	 *
 	 */
 	private Border getRoundedBorder() {
 

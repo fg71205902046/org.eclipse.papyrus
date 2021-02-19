@@ -12,7 +12,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 451230
  *  Shuai Li
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.providers;
 
@@ -42,6 +42,7 @@ public class PopupBarEditPolicyProvider extends AbstractProvider implements IEdi
 	 *
 	 * This provider can handle GraphicalEditParts
 	 */
+	@Override
 	public boolean provides(IOperation operation) {
 		if (operation instanceof CreateEditPoliciesOperation) {
 			CreateEditPoliciesOperation epOperation = (CreateEditPoliciesOperation) operation;
@@ -67,6 +68,7 @@ public class PopupBarEditPolicyProvider extends AbstractProvider implements IEdi
 	 *
 	 * Installs the Papyrus edit policy
 	 */
+	@Override
 	public void createEditPolicies(EditPart editPart) {
 		if (editPart instanceof IPrimaryEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new PapyrusPopupBarEditPolicy());

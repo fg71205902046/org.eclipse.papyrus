@@ -19,6 +19,7 @@ public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
 		Platform.getAdapterManager().registerAdapters(
 				new IAdapterFactory() {
 
+					@Override
 					public Object getAdapter(Object adaptableObject,
 							Class adapterType) {
 						if (adaptableObject instanceof org.eclipse.papyrus.example.diagram.simplediagram.navigator.UMLNavigatorItem
@@ -29,6 +30,7 @@ public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
 						return null;
 					}
 
+					@Override
 					public Class[] getAdapterList() {
 						return supportedTypes;
 					}
@@ -72,6 +74,7 @@ public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof org.eclipse.papyrus.example.diagram.simplediagram.navigator.UMLNavigatorItem) {
 			return EcoreUtil
@@ -86,6 +89,7 @@ public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
 	/**
 	 * @generated
 	 */
+	@Override
 	public int hashCode() {
 		return EcoreUtil.getURI(getView()).hashCode();
 	}

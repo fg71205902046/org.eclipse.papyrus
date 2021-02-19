@@ -98,7 +98,7 @@ public class CustomOrphanViewPolicy extends OrphanViewPolicy {
 	 */
 	@Override
 	protected List<View> findOrphanView(Iterator<? extends EObject> viewChildrenIterator) {
-		ArrayList<View> orphanView = new ArrayList<View>();
+		ArrayList<View> orphanView = new ArrayList<>();
 		while (viewChildrenIterator.hasNext()) {
 			EObject view = viewChildrenIterator.next();
 			if (view instanceof View) {

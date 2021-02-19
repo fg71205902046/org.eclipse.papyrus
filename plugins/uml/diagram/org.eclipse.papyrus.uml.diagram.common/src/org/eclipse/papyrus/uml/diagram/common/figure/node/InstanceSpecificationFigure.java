@@ -29,7 +29,7 @@ public class InstanceSpecificationFigure extends RoundedCompartmentFigure {
 	private static final String SLOT_COMPARTMENT = "slotCompartment";
 
 	/** List of compartment */
-	private static final List<String> COMPARTMENT = new ArrayList<String>() {
+	private static final List<String> COMPARTMENT = new ArrayList<>() {
 
 		private static final long serialVersionUID = -5999996890220382272L;
 

@@ -38,6 +38,7 @@ import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
 
 /**
  * This class place element for the border item of the lifeline
+ *
  * @since 3.0
  *
  */
@@ -67,12 +68,12 @@ public class LifeLineAffixedNodesCreationEditPolicy extends DefaultCreationEditP
 		// Compute relative creation location
 		Point requestedLocation = realWantedLocation.getCopy();
 
-		//The position of the node must be relation form its container
+		// The position of the node must be relation form its container
 		requestedLocation.translate(parentLoc.negate());
-		//In the case of the destruction event we contsider the center as the origin.
-		if( descriptor.getSemanticHint().equals(UMLDIElementTypes.DESTRUCTION_OCCURRENCE_SPECIFICATION_SHAPE.getSemanticHint())){
-			DestructionEventFigure destructionEventFigure= new DestructionEventFigure();
-			requestedLocation.y=requestedLocation.y-destructionEventFigure.getDefaultSize().height/2;
+		// In the case of the destruction event we contsider the center as the origin.
+		if (descriptor.getSemanticHint().equals(UMLDIElementTypes.DESTRUCTION_OCCURRENCE_SPECIFICATION_SHAPE.getSemanticHint())) {
+			DestructionEventFigure destructionEventFigure = new DestructionEventFigure();
+			requestedLocation.y = requestedLocation.y - destructionEventFigure.getDefaultSize().height / 2;
 		}
 
 		setBoundsCommand = new SetLocationCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, descriptor, requestedLocation);
@@ -92,9 +93,10 @@ public class LifeLineAffixedNodesCreationEditPolicy extends DefaultCreationEditP
 	 */
 	@Override
 	protected Command getCreateElementAndViewCommand(CreateViewAndElementRequest request) {
-		//the code is delegated to the policy in charge of the semantic creation
+		// the code is delegated to the policy in charge of the semantic creation
 		return null;
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */

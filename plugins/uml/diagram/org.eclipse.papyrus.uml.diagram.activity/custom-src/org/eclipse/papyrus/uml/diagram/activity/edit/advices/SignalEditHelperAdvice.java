@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.advices;
@@ -42,14 +42,14 @@ import org.eclipse.uml2.uml.UMLPackage;
  * Automated pin derivation for AcceptEventAction and AcceptCallAction
  *
  * Call pin derivation command on modification of a signal
- * 
+ *
  * @since 3.0
  */
 public class SignalEditHelperAdvice extends AbstractEditHelperAdvice {
 
 	/**
 	 * This method call command to synchronize pin
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice#getAfterEditCommand(org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest)
 	 *
 	 * @param request
@@ -81,7 +81,7 @@ public class SignalEditHelperAdvice extends AbstractEditHelperAdvice {
 									if (((Trigger) settingSignalEvent.getEObject()).getOwner() instanceof AcceptEventAction) {
 										AcceptEventAction acceptEventAction = (AcceptEventAction) ((Trigger) settingSignalEvent.getEObject()).getOwner();
 										IPinUpdater<AcceptEventAction> updater = PinUpdaterFactory.getInstance().instantiate(acceptEventAction);
-										command.add(new PinUpdateCommand<AcceptEventAction>("Update accept event action pins", updater, acceptEventAction)); //$NON-NLS-1$
+										command.add(new PinUpdateCommand<>("Update accept event action pins", updater, acceptEventAction)); //$NON-NLS-1$
 									}
 								}
 							}

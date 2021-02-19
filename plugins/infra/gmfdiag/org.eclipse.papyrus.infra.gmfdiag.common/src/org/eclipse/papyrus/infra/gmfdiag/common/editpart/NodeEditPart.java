@@ -33,7 +33,6 @@ import org.eclipse.gmf.runtime.notation.FillStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
-import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.linklf.editparts.LinkLFBorderedShapeEditPart;
 import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.FollowSVGSymbolEditPolicy;
@@ -45,6 +44,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.LinkLFSVGNodePlateFi
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SVGNodePlateFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.ShapeService;
 import org.eclipse.papyrus.infra.gmfdiag.common.snap.PapyrusDragEditPartsTrackerEx;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.linklf.editparts.LinkLFBorderedShapeEditPart;
 import org.eclipse.swt.graphics.Color;
 import org.w3c.dom.svg.SVGDocument;
 
@@ -77,13 +77,14 @@ public abstract class NodeEditPart extends LinkLFBorderedShapeEditPart implement
 
 	/**
 	 * Adds the border item figure to the border item container with a locator.
-	 * 
+	 *
 	 * @param borderItemContainer
 	 *            the figure to which the border item figure is added
 	 * @param borderItemEditPart
 	 *            the border item editpart from which to retrieve the border
 	 *            item figure and determine which locator to create
 	 */
+	@Override
 	protected void addBorderItem(IFigure borderItemContainer,
 			IBorderItemEditPart borderItemEditPart) {
 		if (borderItemEditPart instanceof IBorderItemWithLocator) {

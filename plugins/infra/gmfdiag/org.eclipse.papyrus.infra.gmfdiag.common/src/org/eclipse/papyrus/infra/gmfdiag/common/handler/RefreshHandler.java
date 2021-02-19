@@ -51,7 +51,7 @@ public class RefreshHandler extends AbstractHandler {
 	 * The registry of refresh handler parts that are NOT specific to an editor
 	 * We use weak references so that we do not block the garbage collection of objects
 	 */
-	private static Collection<WeakReference<IRefreshHandlerPart>> PARTS = new LinkedList<WeakReference<IRefreshHandlerPart>>();
+	private static Collection<WeakReference<IRefreshHandlerPart>> PARTS = new LinkedList<>();
 
 	/**
 	 * Register a refresher part that is not attached to any editor
@@ -60,7 +60,7 @@ public class RefreshHandler extends AbstractHandler {
 	 *            The refresher part
 	 */
 	public static synchronized void register(IRefreshHandlerPart refresher) {
-		PARTS.add(new WeakReference<IRefreshHandlerPart>(refresher));
+		PARTS.add(new WeakReference<>(refresher));
 	}
 
 	/**
@@ -90,7 +90,7 @@ public class RefreshHandler extends AbstractHandler {
 
 	/**
 	 * Update UML diagram with canonical policy.
-	 * 
+	 *
 	 * <p>
 	 * This implementation comes from refactor of Generated code for the Bug 372322. It was generated in an update command to refresh current diagram.
 	 * </p>

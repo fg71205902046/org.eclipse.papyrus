@@ -106,8 +106,7 @@ public class CustomRegionEditPart extends RegionEditPart {
 			if (policy != null) {
 				policy.setResizeDirections(dirs);
 			}
-		}
-		else {
+		} else {
 			f.setDisplayBottomBorder(false);
 			f.setDisplayRightBorder(false);
 		}

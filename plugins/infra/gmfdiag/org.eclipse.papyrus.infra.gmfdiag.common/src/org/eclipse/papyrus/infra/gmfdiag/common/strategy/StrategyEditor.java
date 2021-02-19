@@ -87,7 +87,7 @@ public class StrategyEditor extends MultipleReferenceEditor {
 		treeViewer.refresh();
 
 		// Adds a checkbox for each PasteStrategy, to toggle it
-		checkboxes = new HashMap<IStrategy, Button>();
+		checkboxes = new HashMap<>();
 
 		for (TreeItem item : tree.getItems()) {
 			if (item.getData() instanceof IStrategy) {

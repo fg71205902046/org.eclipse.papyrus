@@ -84,6 +84,7 @@ public class MessageFigure extends PolylineConnectionEx implements IPapyrusUMLEl
 	 *            the image representing the stereotypes to be displayed
 	 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusUMLElementFigure#setStereotypeDisplay(java.lang.String, org.eclipse.swt.graphics.Image)
 	 */
+	@Override
 	public void setStereotypeDisplay(String stereotypes, Image image) {
 		// Set stereotype text on figure
 		if (!"".equals(stereotypes)) { //$NON-NLS-1$

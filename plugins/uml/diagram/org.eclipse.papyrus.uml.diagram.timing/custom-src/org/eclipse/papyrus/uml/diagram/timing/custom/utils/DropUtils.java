@@ -46,10 +46,10 @@ import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.uml.diagram.common.util.CrossReferencerUtil;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.timing.custom.Messages;
 import org.eclipse.papyrus.uml.diagram.timing.custom.edit.commands.RefreshCommandForDo;
 import org.eclipse.papyrus.uml.diagram.timing.custom.edit.commands.RefreshCommandForUndo;
@@ -95,8 +95,8 @@ public final class DropUtils {
 			return UnexecutableCommand.INSTANCE;
 		}
 
-		final List<View> sourceViews = new ArrayList<View>(CrossReferencerUtil.getCrossReferencingViews(sendEvent, TimingDiagramEditPart.MODEL_ID));
-		final List<View> targetViews = new ArrayList<View>(CrossReferencerUtil.getCrossReferencingViews(receiveEvent, TimingDiagramEditPart.MODEL_ID));
+		final List<View> sourceViews = new ArrayList<>(CrossReferencerUtil.getCrossReferencingViews(sendEvent, TimingDiagramEditPart.MODEL_ID));
+		final List<View> targetViews = new ArrayList<>(CrossReferencerUtil.getCrossReferencingViews(receiveEvent, TimingDiagramEditPart.MODEL_ID));
 
 		// Messages can only be created between MessageEnds
 		filterMessageSourceOrTargetViews(sourceViews);
@@ -195,7 +195,7 @@ public final class DropUtils {
 		while (listIterator.hasNext()) {
 			final View view = listIterator.next();
 			final String visualID = UMLVisualIDRegistry.getVisualID(view);
-			if (!OccurrenceSpecificationUtils.isOccurrenceSpecificationEditPart(visualID) &&  !GateEditPart.VISUAL_ID.equals(visualID)) {
+			if (!OccurrenceSpecificationUtils.isOccurrenceSpecificationEditPart(visualID) && !GateEditPart.VISUAL_ID.equals(visualID)) {
 				listIterator.remove();
 			}
 		}
@@ -213,7 +213,7 @@ public final class DropUtils {
 			return UnexecutableCommand.INSTANCE;
 		}
 
-		final Set<View> targetLifelines = new HashSet<View>();
+		final Set<View> targetLifelines = new HashSet<>();
 		for (final EObject eObject : linkedElements) {
 			if (eObject instanceof InteractionFragment) {
 				final InteractionFragment interactionFragment = (InteractionFragment) eObject;
@@ -287,7 +287,7 @@ public final class DropUtils {
 	}
 
 	public static ICommand getDropTimeConstraintCommand(final TimeConstraint timeConstraint, final View dropTarget, final EditPartViewer viewer) {
-		final Collection<EObject> linkedElements = new ArrayList<EObject>();
+		final Collection<EObject> linkedElements = new ArrayList<>();
 		linkedElements.addAll(timeConstraint.getConstrainedElements());
 		return getDropLinkedNodeInLifelineCommand(timeConstraint, linkedElements, dropTarget, viewer, new DropTimeConstraintAction());
 	}
@@ -307,7 +307,7 @@ public final class DropUtils {
 	}
 
 	public static ICommand getDropDurationObservationCommand(final DurationObservation durationObservation, final View dropTarget, final EditPartViewer viewer) {
-		final Collection<EObject> linkedElements = new ArrayList<EObject>();
+		final Collection<EObject> linkedElements = new ArrayList<>();
 		linkedElements.addAll(durationObservation.getEvents());
 		return getDropLinkedNodeInLifelineCommand(durationObservation, linkedElements, dropTarget, viewer, new DropDurationObservationAction());
 	}
@@ -326,7 +326,7 @@ public final class DropUtils {
 	}
 
 	public static ICommand getDropDurationConstraintCommand(final DurationConstraint durationConstraint, final View dropTarget, final EditPartViewer viewer) {
-		final Collection<EObject> linkedElements = new ArrayList<EObject>();
+		final Collection<EObject> linkedElements = new ArrayList<>();
 		linkedElements.addAll(durationConstraint.getConstrainedElements());
 		return getDropLinkedNodeInLifelineCommand(durationConstraint, linkedElements, dropTarget, viewer, new DropDurationConstraintAction());
 	}
@@ -345,7 +345,7 @@ public final class DropUtils {
 	}
 
 	public static ICommand getDropGeneralOrderingCommand(final GeneralOrdering generalOrdering, final View dropTarget, final EditPartViewer viewer) {
-		final Collection<EObject> linkedElements = new ArrayList<EObject>();
+		final Collection<EObject> linkedElements = new ArrayList<>();
 		linkedElements.add(generalOrdering.getBefore());
 		linkedElements.add(generalOrdering.getAfter());
 		return getDropLinkedNodeInLifelineCommand(generalOrdering, linkedElements, dropTarget, viewer, new DropGeneralOrderingAction());

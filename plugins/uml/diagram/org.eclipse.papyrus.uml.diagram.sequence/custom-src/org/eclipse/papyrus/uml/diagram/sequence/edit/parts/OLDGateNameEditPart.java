@@ -16,6 +16,7 @@
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 
 /**
  * 1. Refactoring with a BorderItemLabelEditPart.
@@ -32,7 +33,7 @@ public class OLDGateNameEditPart {
 	public static final String GATE_NAME_TYPE = "Gate_Name";
 
 	static {
-		BorderItemLabelEditPart.registerSnapBackPosition(GATE_NAME_TYPE, new Point(-32, 0));
+		LabelEditPart.registerSnapBackPosition(GATE_NAME_TYPE, new Point(-32, 0));
 	}
 
 	@Deprecated

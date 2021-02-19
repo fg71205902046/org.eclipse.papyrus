@@ -118,7 +118,7 @@ public final class OccurrenceSpecificationUtils {
 	 * @return the elements (EObjects and Views) that should be deleted together with the OccurrenceSpecification
 	 */
 	public static Collection<EObject> getElementsToDelete(final OccurrenceSpecification occurrenceSpecification) {
-		final Set<EObject> elementsToDestroy = new HashSet<EObject>();
+		final Set<EObject> elementsToDestroy = new HashSet<>();
 		final Set<View> crossReferencingViews = CrossReferencerUtil.getCrossReferencingViews(occurrenceSpecification, TimingDiagramEditPart.MODEL_ID);
 		for (final View view : crossReferencingViews) {
 			elementsToDestroy.addAll(getElementsToRemove(view, false));
@@ -135,7 +135,7 @@ public final class OccurrenceSpecificationUtils {
 	 * @return the Views that should be hidden together with the given OccurrenceSpecification View
 	 */
 	public static Collection<View> getViewsToHide(final View occurrenceSpecificationView) {
-		final Set<View> viewsToHide = new HashSet<View>();
+		final Set<View> viewsToHide = new HashSet<>();
 		final Collection<EObject> elementsToRemove = getElementsToRemove(occurrenceSpecificationView, true);
 		for (final EObject eObject : elementsToRemove) {
 			if (eObject instanceof View) {
@@ -158,7 +158,7 @@ public final class OccurrenceSpecificationUtils {
 	 *         together with the OccurrenceSpecification
 	 */
 	public static Collection<EObject> getElementsToRemove(final View occurrenceSpecificationView, final boolean hideOnly) {
-		final Set<EObject> elementsToRemove = new HashSet<EObject>();
+		final Set<EObject> elementsToRemove = new HashSet<>();
 		if (OccurrenceSpecificationUtils.isOccurrenceSpecificationView(occurrenceSpecificationView)) {
 			// remove associated ticks
 			final List<Node> associatedTickViews = TickUtils.getAssociatedTickViews(occurrenceSpecificationView);
@@ -225,7 +225,7 @@ public final class OccurrenceSpecificationUtils {
 
 	public static Collection<? extends EObject> getRelatedElementsToRemove(final EObject occurrenceSpecification, final boolean hideOnly, final View interactionView) {
 		Assert.isLegal(occurrenceSpecification instanceof OccurrenceSpecification);
-		final Set<EObject> elementsToRemove = new HashSet<EObject>();
+		final Set<EObject> elementsToRemove = new HashSet<>();
 		elementsToRemove.addAll(TimeElementUtils.getTimeElementsToRemove(occurrenceSpecification, hideOnly, interactionView));
 		elementsToRemove.addAll(MessageUtils.getReferencingMessagesToRemove(occurrenceSpecification, hideOnly, interactionView));
 		elementsToRemove.addAll(GeneralOrderingUtils.getReferencingGeneralOrderingsToRemove(occurrenceSpecification, hideOnly, interactionView));
@@ -257,7 +257,7 @@ public final class OccurrenceSpecificationUtils {
 						index--;
 					}
 				}
-				final List<InteractionFragment> fragmentsToRemove = new ArrayList<InteractionFragment>();
+				final List<InteractionFragment> fragmentsToRemove = new ArrayList<>();
 				for (int i = before ? index - 1 : index + 1; before ? i >= 0 : i < coveredBys.size(); i = (before ? i - 1 : i + 1)) {
 					fragmentsToRemove.add(coveredBys.get(i));
 				}
@@ -292,7 +292,7 @@ public final class OccurrenceSpecificationUtils {
 			final EList<View> children = parentView.getChildren();
 			final int index = children.indexOf(view);
 			if (index != -1) {
-				final List<View> viewsToRemove = new ArrayList<View>();
+				final List<View> viewsToRemove = new ArrayList<>();
 				for (int i = before ? index - 1 : index + 1; before ? i >= 0 : i < children.size(); i = (before ? i - 1 : i + 1)) {
 					final View childView = children.get(i);
 					final String visualID = UMLVisualIDRegistry.getVisualID(childView);

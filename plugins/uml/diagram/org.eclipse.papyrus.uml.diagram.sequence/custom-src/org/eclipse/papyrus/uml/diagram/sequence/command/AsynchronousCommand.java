@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2018 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.command;
@@ -37,7 +37,7 @@ import org.eclipse.swt.widgets.Display;
  * A command that posts its execution asynchronously on the UI thread
  * and captures its undoable action in the original context to support
  * undo/redo.
- * 
+ *
  * @since 5.0
  */
 public class AsynchronousCommand extends AbstractCommand {

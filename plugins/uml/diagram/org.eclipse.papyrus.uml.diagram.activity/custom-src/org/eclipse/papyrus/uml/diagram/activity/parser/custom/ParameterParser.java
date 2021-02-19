@@ -128,7 +128,7 @@ public class ParameterParser extends MessageFormatParser implements ISemanticPar
 	 */
 	@Override
 	public List<?> getSemanticElementsBeingParsed(EObject element) {
-		List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
+		List<Element> semanticElementsBeingParsed = new ArrayList<>();
 		if (element instanceof Parameter) {
 			Parameter parameter = (Parameter) element;
 			semanticElementsBeingParsed.add(parameter);

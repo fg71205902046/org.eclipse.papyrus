@@ -113,7 +113,7 @@ public class CompactStateInvariantNameParser implements ISemanticParser {
 
 	@Override
 	public List<?> getSemanticElementsBeingParsed(final EObject element) {
-		final List<EObject> list = new ArrayList<EObject>();
+		final List<EObject> list = new ArrayList<>();
 		if (element instanceof StateInvariant) {
 			final StateInvariant stateInvariant = (StateInvariant) element;
 			final Constraint invariant = stateInvariant.getInvariant();

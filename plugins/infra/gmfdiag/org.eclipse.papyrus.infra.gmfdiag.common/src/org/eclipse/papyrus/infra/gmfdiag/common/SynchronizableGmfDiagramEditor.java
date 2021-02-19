@@ -52,8 +52,8 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.commands.CheckedDiagramCommandStack;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.ReconcileHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.DiagramVersioningUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.CommandIds;
@@ -366,7 +366,7 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 			new ReconcileHelper(getEditingDomain()).reconcileDiagram(getDiagram());
 		}
 	}
-	
+
 	protected class PalettePageWrapper implements PalettePage, IAdaptable {
 
 		private final CustomPalettePage delegate;

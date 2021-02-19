@@ -20,9 +20,10 @@ import java.util.StringTokenizer;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.MDTUtil;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.part.FileEditorInput;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.MDTUtil;
+
 /**
  * Several util general methods to work with <URI>s, <IPath>s and <IFile>s.
  *
@@ -84,7 +85,7 @@ public class PathsUtil {
 	private static final String SCHEME_PLATFORM = "platform";
 	// Static initializer for archiveSchemes.
 	static {
-		Set<String> set = new HashSet<String>();
+		Set<String> set = new HashSet<>();
 		String propertyValue = System.getProperty("org.eclipse.emf.common.util.URI.archiveSchemes");
 
 		if (propertyValue == null) {

@@ -169,7 +169,7 @@ public class CustomStateInvariantEditPart extends StateInvariantEditPart impleme
 	 */
 	@Override
 	protected List getModelChildren() {
-		List<Object> modelChildren = new ArrayList<Object>(super.getModelChildren());
+		List<Object> modelChildren = new ArrayList<>(super.getModelChildren());
 		boolean hasInvariantView = false;
 		for (Object object : modelChildren) {
 			if (object instanceof View && UMLVisualIDRegistry.getType(StateInvariantLabelEditPart.VISUAL_ID).equals(((View) object).getType())) {

@@ -23,6 +23,7 @@ import org.eclipse.ui.IMemento;
 
 /**
  * Class that defines a profile for a palette.
+ *
  * @since 3.0
  */
 public class PapyrusPaletteDescription implements IPaletteDescription {
@@ -68,7 +69,7 @@ public class PapyrusPaletteDescription implements IPaletteDescription {
 
 		// retrieve the map of properties
 		IMemento propertiesMemento = memento.getChild(IPapyrusPaletteConstant.PALETTE_DESCRIPTION_PROPERTIES);
-		Map<String, String> properties = new HashMap<String, String>();
+		Map<String, String> properties = new HashMap<>();
 		if (propertiesMemento != null) {
 			// retrieve the child name/value tuple for each children
 			for (String key : propertiesMemento.getAttributeKeys()) {

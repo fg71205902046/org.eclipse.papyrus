@@ -19,8 +19,11 @@ import org.eclipse.papyrus.uml.diagram.timing.custom.utils.ViewUtils;
 import org.eclipse.papyrus.uml.diagram.timing.edit.parts.FullStateInvariantVerticalLineEditPart;
 import org.eclipse.papyrus.uml.diagram.timing.edit.parts.TimingDiagramEditPart;
 
-/** This HelperAdvice disapproves destroy requests for VerticalLines. 
- * @since 1.3*/
+/**
+ * This HelperAdvice disapproves destroy requests for VerticalLines.
+ *
+ * @since 1.3
+ */
 public class DefaultTypeHelperAdvice extends AbstractEditHelperAdvice {
 
 	private static String VERTICAL_LINE_ID = FullStateInvariantVerticalLineEditPart.VISUAL_ID;

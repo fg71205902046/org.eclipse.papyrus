@@ -41,7 +41,7 @@ public abstract class AbstractShortcutDiagramNameEditPart extends PapyrusLabelEd
 	 */
 	@Override
 	public void activate() {
-		
+
 		super.activate();
 		EObject eObject = resolveSemanticElement();
 		resourceToListen = eObject.eResource();
@@ -67,7 +67,7 @@ public abstract class AbstractShortcutDiagramNameEditPart extends PapyrusLabelEd
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		
+
 		super.notifyChanged(notification);
 		refreshVisuals();
 	}
@@ -79,7 +79,7 @@ public abstract class AbstractShortcutDiagramNameEditPart extends PapyrusLabelEd
 	 */
 	@Override
 	public void deactivate() {
-		
+
 		super.deactivate();
 		resourceToListen.eAdapters().remove(this);
 	}

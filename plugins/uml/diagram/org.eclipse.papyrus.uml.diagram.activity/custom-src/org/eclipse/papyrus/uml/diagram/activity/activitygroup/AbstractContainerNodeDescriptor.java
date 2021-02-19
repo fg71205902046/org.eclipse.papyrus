@@ -44,7 +44,7 @@ public abstract class AbstractContainerNodeDescriptor implements IContainerNodeD
 	@Override
 	public List<EClass> getPossibleGraphicalChildren() {
 		List<EReference> refs = this.getChildrenReferences();
-		List<EClass> result = new ArrayList<EClass>(refs.size());
+		List<EClass> result = new ArrayList<>(refs.size());
 		for (EReference ref : refs) {
 			result.add(ref.getEReferenceType());
 		}
@@ -129,7 +129,7 @@ public abstract class AbstractContainerNodeDescriptor implements IContainerNodeD
 	 */
 	@Override
 	public List<EReference> getReferenceFor(EClass childType) {
-		List<EReference> result = new ArrayList<EReference>();
+		List<EReference> result = new ArrayList<>();
 		for (EReference reference : this.getChildrenReferences()) {
 			if (reference.getEReferenceType().isSuperTypeOf(childType) && !reference.isContainment()) {
 				result.add(reference);
@@ -148,7 +148,7 @@ public abstract class AbstractContainerNodeDescriptor implements IContainerNodeD
 	@Override
 	public EReference getContainmentReferenceFor(EClass childType) {
 		EReference usedReference = null;
-		List<EReference> result = new ArrayList<EReference>();
+		List<EReference> result = new ArrayList<>();
 		for (EReference reference : this.getChildrenReferences()) {
 			if (reference.getEReferenceType().isSuperTypeOf(childType) && reference.isContainment() && !reference.isDerived()) {
 				result.add(reference);

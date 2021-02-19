@@ -40,43 +40,43 @@ import org.eclipse.uml2.uml.UseCase;
 public class UsecaseCommand extends AbstractCommand {
 	/** Selected command kept here for undo / re-do purpose */
 	private ICommand usecaseSelectionCommand;
-	
+
 	protected final UseCase sourceUsecase;
 	protected final Classifier subject;
 
 
 	public UsecaseCommand(UseCase sourceUsecase, Classifier subject) {
 		super("Manage usecase subject and owner"); //$NON-NLS-1$
-		this.sourceUsecase=sourceUsecase;
-		this.subject=subject;
+		this.sourceUsecase = sourceUsecase;
+		this.subject = subject;
 	}
 
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 		// Open the dialog to select the configurations
-		UsecaseSelectionDialog dialog = new UsecaseSelectionDialog(Display.getCurrent().getActiveShell(),sourceUsecase,subject);
-		
+		UsecaseSelectionDialog dialog = new UsecaseSelectionDialog(Display.getCurrent().getActiveShell(), sourceUsecase, subject);
+
 		if (dialog.open() != Window.OK) {
 			return CommandResult.newCancelledCommandResult();
 		}
-		
+
 		boolean isKeepOwner = dialog.isKeepOwner();
 		boolean isKeepSubject = dialog.isKeepSubject();
 
-		//should not be valid, it should have been already catched before
-		if(isKeepOwner & isKeepSubject){
+		// should not be valid, it should have been already catched before
+		if (isKeepOwner & isKeepSubject) {
 			return null;
-		}	
-		
-		if(!isKeepOwner & isKeepSubject){
-			
+		}
+
+		if (!isKeepOwner & isKeepSubject) {
+
 			CompositeCommand cc = new CompositeCommand(getLabel());
-			SetRequest setContextRequest = new SetRequest(subject, UMLPackage.eINSTANCE.getClassifier_OwnedUseCase(),sourceUsecase );
+			SetRequest setContextRequest = new SetRequest(subject, UMLPackage.eINSTANCE.getClassifier_OwnedUseCase(), sourceUsecase);
 			SetValueCommand setContextCommand = new SetValueCommand(setContextRequest);
 			cc.add(setContextCommand);
-			
+
 			usecaseSelectionCommand = cc.reduce();
-			
+
 			usecaseSelectionCommand.execute(new NullProgressMonitor(), null);
 
 			CommandResult commandResult = usecaseSelectionCommand.getCommandResult();
@@ -86,19 +86,19 @@ public class UsecaseCommand extends AbstractCommand {
 				}
 			}
 		}
-		
-		if(!isKeepOwner & !isKeepSubject){
+
+		if (!isKeepOwner & !isKeepSubject) {
 			CompositeCommand cc = new CompositeCommand(getLabel());
-			SetRequest setContextRequest = new SetRequest(sourceUsecase, UMLPackage.eINSTANCE.getUseCase_Subject(),subject );
+			SetRequest setContextRequest = new SetRequest(sourceUsecase, UMLPackage.eINSTANCE.getUseCase_Subject(), subject);
 			SetValueCommand setContextCommand = new SetValueCommand(setContextRequest);
 			cc.add(setContextCommand);
-			
-			setContextRequest = new SetRequest(subject, UMLPackage.eINSTANCE.getClassifier_OwnedUseCase(),sourceUsecase );
+
+			setContextRequest = new SetRequest(subject, UMLPackage.eINSTANCE.getClassifier_OwnedUseCase(), sourceUsecase);
 			setContextCommand = new SetValueCommand(setContextRequest);
 			cc.add(setContextCommand);
-			
+
 			usecaseSelectionCommand = cc.reduce();
-			
+
 			usecaseSelectionCommand.execute(new NullProgressMonitor(), null);
 
 			CommandResult commandResult = usecaseSelectionCommand.getCommandResult();
@@ -107,16 +107,16 @@ public class UsecaseCommand extends AbstractCommand {
 					return commandResult;
 				}
 			}
-		}	
-		
-		if(isKeepOwner & !isKeepSubject){
+		}
+
+		if (isKeepOwner & !isKeepSubject) {
 			CompositeCommand cc = new CompositeCommand(getLabel());
-			SetRequest setContextRequest = new SetRequest(sourceUsecase, UMLPackage.eINSTANCE.getUseCase_Subject(),subject );
+			SetRequest setContextRequest = new SetRequest(sourceUsecase, UMLPackage.eINSTANCE.getUseCase_Subject(), subject);
 			SetValueCommand setContextCommand = new SetValueCommand(setContextRequest);
 			cc.add(setContextCommand);
-			
+
 			usecaseSelectionCommand = cc.reduce();
-			
+
 			usecaseSelectionCommand.execute(new NullProgressMonitor(), null);
 
 			CommandResult commandResult = usecaseSelectionCommand.getCommandResult();
@@ -161,12 +161,14 @@ public class UsecaseCommand extends AbstractCommand {
 		}
 		return CommandResult.newOKCommandResult();
 	}
-	
-    public boolean canRedo() {
+
+	@Override
+	public boolean canRedo() {
 		return false;
 	}
-    
-    public boolean canUndo() {
+
+	@Override
+	public boolean canUndo() {
 		return true;
 	}
 

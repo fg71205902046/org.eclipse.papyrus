@@ -25,15 +25,15 @@ import java.util.Map;
 public class HTMLCleaner {
 
 	/** map of special html strings and their real value */
-	protected static final Map<String, String> specials = new HashMap<String, String>();
+	protected static final Map<String, String> specials = new HashMap<>();
 
 	/** symbol requiring new lines */
-	protected static final List<String> newLine = new ArrayList<String>();
+	protected static final List<String> newLine = new ArrayList<>();
 
 	/** map of special html strings and their real value */
-	protected static final Map<String, String> xmlSpecials = new HashMap<String, String>();
+	protected static final Map<String, String> xmlSpecials = new HashMap<>();
 
-	protected static final List<String> htmlTags = new ArrayList<String>();
+	protected static final List<String> htmlTags = new ArrayList<>();
 
 	static {
 		// initialize the special character map

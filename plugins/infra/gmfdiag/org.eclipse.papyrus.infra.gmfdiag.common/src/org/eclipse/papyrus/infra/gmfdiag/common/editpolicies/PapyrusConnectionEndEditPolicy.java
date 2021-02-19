@@ -45,7 +45,7 @@ public class PapyrusConnectionEndEditPolicy extends ConnectionEndpointEditPolicy
 	 */
 	@Override
 	protected List<?> createSelectionHandles() {
-		List<PapyrusConnectionEndpointHandle> list = new ArrayList<PapyrusConnectionEndpointHandle>();
+		List<PapyrusConnectionEndpointHandle> list = new ArrayList<>();
 		list.add(new PapyrusConnectionEndpointHandle((ConnectionEditPart) getHost(), ConnectionLocator.SOURCE));
 		list.add(new PapyrusConnectionEndpointHandle((ConnectionEditPart) getHost(), ConnectionLocator.TARGET));
 		return list;

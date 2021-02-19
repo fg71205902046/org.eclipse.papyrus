@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.advices;
@@ -35,8 +35,9 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecificationAction;
 
 /**
- * 
+ *
  * Pin of ValueSpecificationAction should be create and update automatically
+ *
  * @since 3.0
  *
  */
@@ -84,7 +85,7 @@ public class ValueSpecificationActionEditHelperAdvice extends AbstractEditHelper
 				if (valueSpecificationAction != null && request.getFeature() == UMLPackage.eINSTANCE.getValueSpecificationAction_Value()) {
 					// 4] call the command for the ValueSpecificationAction
 					IPinUpdater<ValueSpecificationAction> updater = PinUpdaterFactory.getInstance().instantiate(valueSpecificationAction);
-					return new PinUpdateCommand<ValueSpecificationAction>("Update value specification action pins", updater, valueSpecificationAction); //$NON-NLS-1$
+					return new PinUpdateCommand<>("Update value specification action pins", updater, valueSpecificationAction); //$NON-NLS-1$
 				}
 			}
 		}
@@ -107,7 +108,7 @@ public class ValueSpecificationActionEditHelperAdvice extends AbstractEditHelper
 			ValueSpecificationAction valueSpecificationAction = (ValueSpecificationAction) request.getElementToConfigure();
 			if (valueSpecificationAction != null) {
 				// 3] call the command for the ValueSpecificationAction
-				return new PinUpdateCommand<ValueSpecificationAction>("Update value specification action pins", PinUpdaterFactory.getInstance().instantiate(valueSpecificationAction), valueSpecificationAction); //$NON-NLS-1$
+				return new PinUpdateCommand<>("Update value specification action pins", PinUpdaterFactory.getInstance().instantiate(valueSpecificationAction), valueSpecificationAction); //$NON-NLS-1$
 			}
 		}
 		return null;

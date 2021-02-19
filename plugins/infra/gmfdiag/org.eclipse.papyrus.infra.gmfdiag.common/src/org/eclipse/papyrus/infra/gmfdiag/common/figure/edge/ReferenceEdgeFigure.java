@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST, ALL4TEC and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -18,7 +18,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel
 
 /**
  * {@link PapyrusEdgeFigure} for references.
- * 
+ *
  * @author Mickaël ADAM
  * @since 3.1
  */
@@ -55,7 +55,7 @@ public final class ReferenceEdgeFigure extends PapyrusEdgeFigure {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.edge.PapyrusEdgeFigure#resetStyle()
 	 */
 	@Override

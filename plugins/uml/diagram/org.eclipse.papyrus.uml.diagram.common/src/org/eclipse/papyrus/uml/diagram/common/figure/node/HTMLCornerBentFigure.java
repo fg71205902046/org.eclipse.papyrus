@@ -1012,6 +1012,7 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 
 	/**
 	 * Valid HTML tags enumeration
+	 * 
 	 * @since 3.0
 	 */
 	protected enum HTMLTags {
@@ -1075,11 +1076,11 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 	 * Styles to apply to the text
 	 */
 	protected enum Styles {
-		strong, header3, header4, header5, underline, italic, code, subscript, supscript, quote, font(new HashMap<String, Object>()), 
+		strong, header3, header4, header5, underline, italic, code, subscript, supscript, quote, font(new HashMap<String, Object>()),
 		/**
 		 * @since 3.0
 		 */
-		strikeThrough, 
+		strikeThrough,
 		/**
 		 * @since 3.0
 		 */

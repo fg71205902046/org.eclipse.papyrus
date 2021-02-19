@@ -61,7 +61,7 @@ public class EdgeWithNoSemanticElementRepresentationImpl extends EObjectImpl {
 	/**
 	 *
 	 * @return
-	 * 		the source of the represented link
+	 *         the source of the represented link
 	 */
 	public EObject getSource() {
 		return source;
@@ -70,7 +70,7 @@ public class EdgeWithNoSemanticElementRepresentationImpl extends EObjectImpl {
 	/**
 	 *
 	 * @return
-	 * 		the target of the represented link
+	 *         the target of the represented link
 	 */
 	public EObject getTarget() {
 		return target;
@@ -79,7 +79,7 @@ public class EdgeWithNoSemanticElementRepresentationImpl extends EObjectImpl {
 	/**
 	 *
 	 * @return
-	 * 		a view for this link
+	 *         a view for this link
 	 */
 	public String getSemanticHint() {
 		return semanticHint;
@@ -92,7 +92,7 @@ public class EdgeWithNoSemanticElementRepresentationImpl extends EObjectImpl {
 	 * @see java.lang.Object#hashCode()
 	 *
 	 * @return
-	 * 		the hashcode
+	 *         the hashcode
 	 */
 	@Override
 	public int hashCode() {
@@ -110,7 +110,7 @@ public class EdgeWithNoSemanticElementRepresentationImpl extends EObjectImpl {
 	 * @param obj
 	 *            an object
 	 * @return
-	 * 		<code>true</code> if this object is the same than the other one
+	 *         <code>true</code> if this object is the same than the other one
 	 */
 	@Override
 	public boolean equals(final Object obj) {

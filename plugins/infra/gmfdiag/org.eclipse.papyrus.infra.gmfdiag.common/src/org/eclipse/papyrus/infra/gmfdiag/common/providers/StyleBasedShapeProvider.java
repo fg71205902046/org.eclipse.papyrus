@@ -60,11 +60,11 @@ public class StyleBasedShapeProvider extends AbstractShapeProvider {
 	private List<RenderedImage> listRenderedImages;
 
 	public StyleBasedShapeProvider() {
-		listEmptySVG = new ArrayList<SVGDocument>(0);
-		listEmptyRendered = new ArrayList<RenderedImage>(0);
-		listSingletonSVG = new ArrayList<SVGDocument>(1);
+		listEmptySVG = new ArrayList<>(0);
+		listEmptyRendered = new ArrayList<>(0);
+		listSingletonSVG = new ArrayList<>(1);
 		listSingletonSVG.add(null);
-		listRenderedImages = new ArrayList<RenderedImage>();
+		listRenderedImages = new ArrayList<>();
 	}
 
 	/**
@@ -200,7 +200,7 @@ public class StyleBasedShapeProvider extends AbstractShapeProvider {
 
 	/**
 	 * Returns <code>false</code> if the given view specifically removes the support for css-defined shapes.
-	 * 
+	 *
 	 * @param view
 	 *            the view to check style
 	 * @return <code>false</code> if the given view specifically removes the support for css-defined shapes, otherwise <code>true</code>.
@@ -211,7 +211,7 @@ public class StyleBasedShapeProvider extends AbstractShapeProvider {
 
 	/**
 	 * Returns <code>false</code> if the given view specifically removes the support for css-defined shapes.
-	 * 
+	 *
 	 * @param view
 	 *            the view to check style
 	 * @return <code>false</code> if the given view specifically removes the support for css-defined shapes, otherwise <code>true</code>.

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -11,8 +11,8 @@
  * Contributors:
  *   Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.net - Initial API and implementation
  *   Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 : Refactor Stereotype Display
- *   
- *   
+ *
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.common.stereotype.display;
@@ -24,7 +24,7 @@ import org.eclipse.uml2.uml.Stereotype;
 
 /**
  * This Factory creates the different Stereotype View related to the Location.
- * 
+ *
  * @author Céline JANSSENS
  *
  */
@@ -32,7 +32,7 @@ public interface IStereotypeViewFactory {
 
 	/**
 	 * Create Property View according to a specific Location.
-	 * 
+	 *
 	 * @param property
 	 *            The UML property for the View to be created
 	 * @param stereotype
@@ -51,7 +51,7 @@ public interface IStereotypeViewFactory {
 
 	/**
 	 * Create Compartment View according to a specific Location.
-	 * 
+	 *
 	 * @param stereotype
 	 *            The UML Stereotype for which the property is required
 	 * @param location
@@ -67,10 +67,10 @@ public interface IStereotypeViewFactory {
 
 	/**
 	 * Create Label View.
-	 * 
+	 *
 	 * @param stereotype
 	 *            The UML Stereotype for which the property is required
-	 * 
+	 *
 	 */
 	public void createLabelView(Stereotype stereotype);
 

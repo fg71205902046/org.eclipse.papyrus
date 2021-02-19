@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -150,10 +150,12 @@ public class LinkLFSlidableRoundedRectangleAnchor extends PapyrusSlidableSnapToG
 					dimension = new Dimension();
 				}
 				// Adapt dimension according to the rectangle
-				if (rect.height < dimension.height)
+				if (rect.height < dimension.height) {
 					dimension.height = rect.height;
-				if (rect.width < dimension.width)
+				}
+				if (rect.width < dimension.width) {
 					dimension.width = rect.width;
+				}
 				PrecisionRectangle corner = new PrecisionRectangle(new Rectangle(0, 0, dimension.width, dimension.height));
 				((IFigure) figure).translateToAbsolute(corner);
 
@@ -176,7 +178,7 @@ public class LinkLFSlidableRoundedRectangleAnchor extends PapyrusSlidableSnapToG
 
 	/**
 	 * Set the offset
-	 * 
+	 *
 	 * @param portOffset
 	 */
 	public void setOffset(final Dimension portOffset) {

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.communication.custom.canonical;
@@ -28,6 +28,7 @@ import com.google.common.collect.Lists;
 
 /**
  * Custom visual-children strategy for lifelines in communication diagrams.
+ *
  * @since 3.0
  */
 public class LifelineVisualChildrenStrategy implements IVisualChildrenStrategy {
@@ -36,10 +37,12 @@ public class LifelineVisualChildrenStrategy implements IVisualChildrenStrategy {
 		super();
 	}
 
+	@Override
 	public List<? extends Edge> getCanonicalChildren(EditPart editPart, View view) {
 		return null;
 	}
 
+	@Override
 	public List<? extends View> getCanonicalEdges(EditPart editPart, View view) {
 		List<View> result = null;
 

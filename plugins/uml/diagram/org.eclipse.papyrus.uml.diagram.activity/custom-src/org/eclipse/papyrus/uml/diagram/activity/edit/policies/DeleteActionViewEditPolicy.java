@@ -79,7 +79,7 @@ public class DeleteActionViewEditPolicy extends ViewComponentEditPolicy {
 	 * @return list of local condition parts
 	 */
 	private List<EditPart> getListOfLinkedLocalConditionsParts(List<?> partsToExplore) {
-		List<EditPart> result = new LinkedList<EditPart>();
+		List<EditPart> result = new LinkedList<>();
 		for (Object part : partsToExplore) {
 			if (part instanceof AbstractBorderedShapeEditPart) {
 				EObject element = ((AbstractBorderedShapeEditPart) part).resolveSemanticElement();

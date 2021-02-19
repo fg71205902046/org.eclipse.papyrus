@@ -88,7 +88,7 @@ public class EditingFlowPage extends FlowPage implements ILabelFigure, IMultilin
 	 */
 	@Override
 	public void setIcon(Image icon) {
-		
+
 
 	}
 
@@ -99,7 +99,7 @@ public class EditingFlowPage extends FlowPage implements ILabelFigure, IMultilin
 	 */
 	@Override
 	public Image getIcon() {
-		
+
 		return null;
 	}
 

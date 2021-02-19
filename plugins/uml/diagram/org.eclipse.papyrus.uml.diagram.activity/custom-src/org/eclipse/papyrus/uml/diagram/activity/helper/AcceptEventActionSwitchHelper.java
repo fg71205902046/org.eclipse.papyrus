@@ -129,10 +129,10 @@ public class AcceptEventActionSwitchHelper extends NotificationHelper {
 
 
 			if (useHourglassFigure != hourglassAlreadyUsed) {
-	
+
 				// set usage of the correct figure
 				// actionFigure.useTemplateForAcceptTimeEventAction(useHourglassFigure);
-	
+
 				// arrange the figure so that style remains coherent
 				// if (editPart.getModel() instanceof View) {
 				// int locX = actionFigure.getLocation().x;

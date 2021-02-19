@@ -61,7 +61,7 @@ public class DefaultPasteCommand extends AbstractCommand {
 		this.targetOwner = targetOwner;
 		if (papyrusClipboard.size() > 0) {
 			// Filter only EObject
-			List<EObject> eobjectsTopaste = new ArrayList<EObject>();
+			List<EObject> eobjectsTopaste = new ArrayList<>();
 			Iterator<Object> iterData = papyrusClipboard.iterator();
 			while (iterData.hasNext()) {
 				Object object = iterData.next();
@@ -76,7 +76,7 @@ public class DefaultPasteCommand extends AbstractCommand {
 			EcoreUtil.Copier copier = ICopierFactory.getInstance(domain.getResourceSet()).get();
 			copier.copyAll(rootElementToPaste);
 			copier.copyReferences();
-			Map<EObject, EObject> duplicatedObjects = new HashMap<EObject, EObject>();
+			Map<EObject, EObject> duplicatedObjects = new HashMap<>();
 			duplicatedObjects.putAll(copier);
 
 			// Inform the clipboard of the element created (used by strategies)
@@ -84,7 +84,7 @@ public class DefaultPasteCommand extends AbstractCommand {
 
 			// Prepare the move command to move UML element to their new owner
 			// Nota: move only the "root" semantic elements to be paste
-			List<EObject> objectsToMove = new ArrayList<EObject>();
+			List<EObject> objectsToMove = new ArrayList<>();
 			Iterator<EObject> it = rootElementToPaste.iterator();
 			while (it.hasNext()) {
 				EObject eObject = it.next();

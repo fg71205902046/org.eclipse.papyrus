@@ -13,7 +13,7 @@
  *   Atos Origin - Initial API and implementation
  *   Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - adapted from sequence diagram
  * 	Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - bug 459678
- * 
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.communication.custom.edit.policies;
 

@@ -213,6 +213,7 @@ public class CustomCreateViewRequest extends org.eclipse.gef.requests.CreateRequ
 		 *
 		 * @see org.eclipse.core.runtime.IAdaptable#getAdapter(Class)
 		 */
+		@Override
 		@SuppressWarnings("rawtypes")
 		public Object getAdapter(Class adapter) {
 			if (adapter.isInstance(view)) {

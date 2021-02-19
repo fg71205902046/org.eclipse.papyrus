@@ -40,6 +40,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.OrphanViewPolicy;
  *
  * @deprecated since 3.1. Useless. Helper Advices remove views.
  */
+@Deprecated
 public class RemoveOrphanViewPolicy extends OrphanViewPolicy {
 
 	public String[] notOrphanNode = { ActivityNameEditPart.VISUAL_ID, ActionLocalPreconditionEditPart.VISUAL_ID, ActionLocalPostconditionEditPart.VISUAL_ID, ActivityEditPart.VISUAL_ID, ActivityActivityContentCompartmentEditPart.VISUAL_ID,

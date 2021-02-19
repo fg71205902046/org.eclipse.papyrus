@@ -40,7 +40,8 @@ public class GrillingEditpart extends GraphicalEditPart {
 		super(model);
 	}
 
-	public static final String VISUAL_ID="GRILLING";
+	public static final String VISUAL_ID = "GRILLING";
+
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#setVisibility(boolean)
 	 *
@@ -49,8 +50,9 @@ public class GrillingEditpart extends GraphicalEditPart {
 	@Override
 	protected void setVisibility(boolean vis) {
 		super.setVisibility(false);
-		//super.setVisibility(true);
+		// super.setVisibility(true);
 	}
+
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#createFigure()
 	 *
@@ -58,10 +60,11 @@ public class GrillingEditpart extends GraphicalEditPart {
 	 */
 	@Override
 	protected IFigure createFigure() {
-		Figure fig= new ReferencialGrid();
+		Figure fig = new ReferencialGrid();
 
 		return fig;
 	}
+
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#refreshVisuals()
 	 *
@@ -69,16 +72,16 @@ public class GrillingEditpart extends GraphicalEditPart {
 	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
-		if(getNotationView().isVisible()) {
-			getFigure().setBounds(new Rectangle (0,0,50,1000));
-			((ReferencialGrid)getFigure()).cleanAllLines();
-			DiagramEditPart diagramEditPart=(DiagramEditPart)this.getParent();
-			GridManagementEditPolicy grid=(GridManagementEditPolicy)diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
-			for (int i=0; i<grid.rows.size();i++) {
-				if( grid.rows.get(i)!=null) {
-					Location location= (Location)grid.rows.get(i).getLayoutConstraint();
-					if( location!=null) {
-						((ReferencialGrid)getFigure()).displayLine(location.getY());
+		if (getNotationView().isVisible()) {
+			getFigure().setBounds(new Rectangle(0, 0, 50, 1000));
+			((ReferencialGrid) getFigure()).cleanAllLines();
+			DiagramEditPart diagramEditPart = (DiagramEditPart) this.getParent();
+			GridManagementEditPolicy grid = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
+			for (int i = 0; i < grid.rows.size(); i++) {
+				if (grid.rows.get(i) != null) {
+					Location location = (Location) grid.rows.get(i).getLayoutConstraint();
+					if (location != null) {
+						((ReferencialGrid) getFigure()).displayLine(location.getY());
 					}
 				}
 			}

@@ -33,7 +33,7 @@ public class SubjectFigure extends RoundedCompartmentFigure {
 	private final static String USE_CASES_CONTAINER_COMPARTMENT = "UseCaseContainerCompartment";
 
 	/** The List of Compartment */
-	private final static List<String> COMPARTMENT = new ArrayList<String>() {
+	private final static List<String> COMPARTMENT = new ArrayList<>() {
 
 		private static final long serialVersionUID = 1L;
 

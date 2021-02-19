@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.communication.custom.canonical;
@@ -34,6 +34,7 @@ import com.google.common.collect.Lists;
 
 /**
  * Custom semantic-children strategy for lifelines in communication diagrams.
+ *
  * @since 3.0
  */
 public class LifelineSemanticChildrenStrategy extends DefaultUMLSemanticChildrenStrategy {
@@ -49,7 +50,7 @@ public class LifelineSemanticChildrenStrategy extends DefaultUMLSemanticChildren
 
 		Lifeline lifeline = (semanticFromEditPart instanceof Lifeline) ? (Lifeline) semanticFromEditPart : null;
 		if (lifeline != null) {
-			List<Element> messages = new ArrayList<Element>();
+			List<Element> messages = new ArrayList<>();
 			result = messages;
 
 			for (MessageEnd next : getMessageEnds(lifeline)) {
@@ -101,7 +102,7 @@ public class LifelineSemanticChildrenStrategy extends DefaultUMLSemanticChildren
 	/**
 	 * If a message end is a message occurrence specification (not a gate), get the lifeline
 	 * that it covers.
-	 * 
+	 *
 	 * @param messageEnd
 	 *            a message end
 	 * @return its covered lifeline, if any

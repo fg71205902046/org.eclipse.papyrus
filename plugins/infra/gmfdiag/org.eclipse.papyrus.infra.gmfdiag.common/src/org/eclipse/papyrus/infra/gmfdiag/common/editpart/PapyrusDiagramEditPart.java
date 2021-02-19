@@ -48,7 +48,7 @@ import com.google.common.collect.Sets;
 
 public class PapyrusDiagramEditPart extends DiagramEditPart {
 	// We store weak-referencing sets in the values
-	private static final Map<Diagram, Set<PapyrusDiagramEditPart>> diagrams = new WeakHashMap<Diagram, Set<PapyrusDiagramEditPart>>();
+	private static final Map<Diagram, Set<PapyrusDiagramEditPart>> diagrams = new WeakHashMap<>();
 
 	private IConflictingEditPartFilter conflictFilter = IConflictingEditPartFilter.DEFAULT;
 
@@ -98,10 +98,10 @@ public class PapyrusDiagramEditPart extends DiagramEditPart {
 
 	/**
 	 * Obtains the edit-parts currently managing the specified {@code diagram} in editors.
-	 * 
+	 *
 	 * @param diagram
 	 *            a diagram (may be {@code null})
-	 * 
+	 *
 	 * @return the set of edit-parts for the diagram, or an empty set if none (such as when the {@code diagram} is {@code null})
 	 */
 	public static Set<? extends DiagramEditPart> getDiagramEditPartsFor(Diagram diagram) {

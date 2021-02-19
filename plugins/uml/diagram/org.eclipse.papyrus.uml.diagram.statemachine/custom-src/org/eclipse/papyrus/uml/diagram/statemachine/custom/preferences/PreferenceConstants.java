@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.diagram.statemachine.custom.preferences;
 
 /**
  * Constants for Transition preferences (use same constants as for CSS options)
+ *
  * @since 3.1
  */
 public class PreferenceConstants {

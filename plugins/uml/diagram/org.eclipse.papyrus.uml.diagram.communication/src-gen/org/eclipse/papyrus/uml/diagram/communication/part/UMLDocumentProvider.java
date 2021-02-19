@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  * 
+  *
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License 2.0
   * which accompanies this distribution, and is available at
   * https://www.eclipse.org/legal/epl-2.0/
   *
   * SPDX-License-Identifier: EPL-2.0
-  * 
+  *
   * Contributors:
   *  CEA LIST - Initial API and implementation
  */
@@ -75,12 +75,13 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	/**
 	 * @generated
 	 */
+	@Override
 	protected ElementInfo createElementInfo(Object element) throws CoreException {
 		if (false == element instanceof FileEditorInput && false == element instanceof URIEditorInput) {
 			throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, 0,
 					NLS.bind(
 							Messages.UMLDocumentProvider_IncorrectInputError,
-							new Object[] { element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+							new Object[] { element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$
 					null));
 		}
 		IEditorInput editorInput = (IEditorInput) element;
@@ -95,12 +96,13 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IDocument createDocument(Object element) throws CoreException {
 		if (false == element instanceof FileEditorInput && false == element instanceof URIEditorInput) {
 			throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, 0,
 					NLS.bind(
 							Messages.UMLDocumentProvider_IncorrectInputError,
-							new Object[] { element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+							new Object[] { element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$
 					null));
 		}
 		IDocument document = createEmptyDocument();
@@ -113,9 +115,11 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	 * Sets up the given document as it would be provided for the given element. The
 	 * content of the document is not changed. This default implementation is empty.
 	 * Subclasses may reimplement.
-	 * 
-	 * @param element the blue-print element
-	 * @param document the document to set up
+	 *
+	 * @param element
+	 *            the blue-print element
+	 * @param document
+	 *            the document to set up
 	 * @generated
 	 */
 	protected void setupDocument(Object element, IDocument document) {
@@ -144,6 +148,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IDocument createEmptyDocument() {
 		DiagramDocument document = new DiagramDocument();
 		document.setEditingDomain(createEditingDomain());
@@ -214,7 +219,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 					try {
 						@SuppressWarnings({ "rawtypes", "unchecked" })
 						Map<?, ?> options = new HashMap(GMFResourceFactory.getDefaultLoadOptions());
-						// @see 171060 
+						// @see 171060
 						// options.put(org.eclipse.emf.ecore.xmi.XMLResource.OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
 						resource.load(options);
 					} catch (IOException e) {
@@ -253,7 +258,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 			throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, 0,
 					NLS.bind(
 							Messages.UMLDocumentProvider_IncorrectInputError,
-							new Object[] { element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+							new Object[] { element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$
 					null));
 		}
 	}
@@ -261,6 +266,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	/**
 	 * @generated
 	 */
+	@Override
 	public long getModificationStamp(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
@@ -272,6 +278,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean isDeleted(Object element) {
 		IDiagramDocument document = getDiagramDocument(element);
 		if (document != null) {
@@ -294,6 +301,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void disposeElementInfo(Object element, ElementInfo info) {
 		if (info instanceof ResourceSetInfo) {
 			ResourceSetInfo resourceSetInfo = (ResourceSetInfo) info;
@@ -305,10 +313,11 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void doValidateState(Object element, Object computationContext) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			LinkedList<IFile> files2Validate = new LinkedList<IFile>();
+			LinkedList<IFile> files2Validate = new LinkedList<>();
 			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
@@ -325,6 +334,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean isReadOnly(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
@@ -344,6 +354,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean isModifiable(Object element) {
 		if (!isStateValidated(element)) {
 			if (element instanceof FileEditorInput || element instanceof URIEditorInput) {
@@ -389,6 +400,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void doUpdateStateCache(Object element) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
@@ -400,6 +412,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean isSynchronized(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
@@ -411,10 +424,11 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	/**
 	 * @generated
 	 */
+	@Override
 	protected ISchedulingRule getResetRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			LinkedList<ISchedulingRule> rules = new LinkedList<ISchedulingRule>();
+			LinkedList<ISchedulingRule> rules = new LinkedList<>();
 			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
@@ -430,10 +444,11 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	/**
 	 * @generated
 	 */
+	@Override
 	protected ISchedulingRule getSaveRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			LinkedList<ISchedulingRule> rules = new LinkedList<ISchedulingRule>();
+			LinkedList<ISchedulingRule> rules = new LinkedList<>();
 			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
@@ -449,10 +464,11 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	/**
 	 * @generated
 	 */
+	@Override
 	protected ISchedulingRule getSynchronizeRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			LinkedList<ISchedulingRule> rules = new LinkedList<ISchedulingRule>();
+			LinkedList<ISchedulingRule> rules = new LinkedList<>();
 			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
@@ -468,10 +484,11 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	/**
 	 * @generated
 	 */
+	@Override
 	protected ISchedulingRule getValidateStateRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			LinkedList<ISchedulingRule> files = new LinkedList<ISchedulingRule>();
+			LinkedList<ISchedulingRule> files = new LinkedList<>();
 			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
@@ -509,6 +526,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void doSynchronize(Object element, IProgressMonitor monitor) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
@@ -524,6 +542,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void doSaveDocument(IProgressMonitor monitor, Object element, IDocument document, boolean overwrite)
 			throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
@@ -537,7 +556,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 			info.stopResourceListening();
 			fireElementStateChanging(element);
 			try {
-				monitor.beginTask(Messages.UMLDocumentProvider_SaveDiagramTask, info.getResourceSet().getResources().size() + 1); //"Saving diagram"
+				monitor.beginTask(Messages.UMLDocumentProvider_SaveDiagramTask, info.getResourceSet().getResources().size() + 1); // "Saving diagram"
 				for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 					Resource nextResource = it.next();
 					monitor.setTaskName(NLS.bind(
@@ -575,7 +594,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 				throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, 0,
 						NLS.bind(
 								Messages.UMLDocumentProvider_IncorrectInputError,
-								new Object[] { element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+								new Object[] { element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$
 						null));
 			}
 			if (false == document instanceof IDiagramDocument) {
@@ -652,6 +671,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	/**
 	 * @generated
 	 */
+	@Override
 	public IEditorInput createInputWithEditingDomain(IEditorInput editorInput, TransactionalEditingDomain domain) {
 		return editorInput;
 	}
@@ -659,6 +679,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	/**
 	 * @generated
 	 */
+	@Override
 	public IDiagramDocument getDiagramDocument(Object element) {
 		IDocument doc = getDocument(element);
 		if (doc instanceof IDiagramDocument) {
@@ -670,6 +691,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IRunnableContext getOperationRunner(IProgressMonitor monitor) {
 		return null;
 	}
@@ -692,7 +714,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 		/**
 		 * @generated
 		 */
-		private LinkedList<Resource> myUnSynchronizedResources = new LinkedList<Resource>();
+		private LinkedList<Resource> myUnSynchronizedResources = new LinkedList<>();
 
 		/**
 		 * @generated
@@ -768,7 +790,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 		 * @generated
 		 */
 		public Iterator<Resource> getLoadedResourcesIterator() {
-			return new ArrayList<Resource>(getResourceSet().getResources()).iterator();
+			return new ArrayList<>(getResourceSet().getResources()).iterator();
 		}
 
 		/**
@@ -877,12 +899,14 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 			/**
 			 * @generated
 			 */
+			@Override
 			public void dispose() {
 			}
 
 			/**
 			 * @generated
 			 */
+			@Override
 			public boolean handleResourceChanged(final Resource resource) {
 				synchronized (ResourceSetInfo.this) {
 					if (ResourceSetInfo.this.fCanBeSaved) {
@@ -902,6 +926,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 			/**
 			 * @generated
 			 */
+			@Override
 			public boolean handleResourceDeleted(Resource resource) {
 				synchronized (ResourceSetInfo.this) {
 					if (ResourceSetInfo.this.fCanBeSaved) {
@@ -921,6 +946,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 			/**
 			 * @generated
 			 */
+			@Override
 			public boolean handleResourceMoved(Resource resource, final URI newURI) {
 				synchronized (ResourceSetInfo.this) {
 					if (ResourceSetInfo.this.fCanBeSaved) {
@@ -971,6 +997,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 		/**
 		 * @generated
 		 */
+		@Override
 		public void notifyChanged(Notification notification) {
 			if (notification.getNotifier() instanceof ResourceSet) {
 				super.notifyChanged(notification);

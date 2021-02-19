@@ -332,7 +332,7 @@ public class ReceptionEditPart extends UMLCompartmentEditPart
 					final IParser parser = getParser();
 					try {
 						IParserEditStatus valid = (IParserEditStatus) getEditingDomain().runExclusive(
-								new RunnableWithResult.Impl<java.lang.Object>() {
+								new RunnableWithResult.Impl<>() {
 
 									@Override
 									public void run() {

@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  * 
+  *
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License 2.0
   * which accompanies this distribution, and is available at
   * https://www.eclipse.org/legal/epl-2.0/
   *
   * SPDX-License-Identifier: EPL-2.0
-  * 
+  *
   * Contributors:
   *  CEA LIST - Initial API and implementation
  */
@@ -27,10 +27,10 @@ import org.eclipse.papyrus.uml.diagram.communication.providers.UMLElementTypes;
  * @generated
  */
 public class UMLPaletteFactory extends PaletteFactory.Adapter {
-	//RS: New Palette generation
+	// RS: New Palette generation
 
-	//Generates the ID for the tool elements
-	//Generate the tool factory (if(ID) createtool...)
+	// Generates the ID for the tool elements
+	// Generate the tool factory (if(ID) createtool...)
 	/**
 	 * @generated
 	 */
@@ -70,6 +70,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
+	@Override
 	public Tool createTool(String toolId) {
 		if (toolId.equals(COMMUNICATION_TOOL_LIFELINE)) {
 			return createLifelineComCreationTool();
@@ -99,6 +100,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
+	@Override
 	public Object getTemplate(String templateId) {
 
 		// default return: null
@@ -109,7 +111,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createLifelineComCreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
+		List<IElementType> types = new ArrayList<>(1);
 		types.add(UMLElementTypes.Lifeline_Shape);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
@@ -119,7 +121,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createComment7CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
+		List<IElementType> types = new ArrayList<>(1);
 		types.add(UMLElementTypes.Comment_Shape);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
@@ -129,7 +131,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createConstraint5CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
+		List<IElementType> types = new ArrayList<>(1);
 		types.add(UMLElementTypes.Constraint_Shape);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
@@ -139,7 +141,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createDurationObservation4CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
+		List<IElementType> types = new ArrayList<>(1);
 		types.add(UMLElementTypes.DurationObservation_Shape);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
@@ -149,7 +151,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createTimeObservation6CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
+		List<IElementType> types = new ArrayList<>(1);
 		types.add(UMLElementTypes.TimeObservation_Shape);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
@@ -159,7 +161,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createMessageCreateCreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
+		List<IElementType> types = new ArrayList<>(1);
 		types.add(UMLElementTypes.Path_Edge);
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;
@@ -169,7 +171,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createLink13CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(4);
+		List<IElementType> types = new ArrayList<>(4);
 		types.add(UMLElementTypes.Comment_AnnotatedElementEdge);
 		types.add(UMLElementTypes.Constraint_ConstrainedElementEdge);
 		types.add(UMLElementTypes.DurationObservation_EventEdge);

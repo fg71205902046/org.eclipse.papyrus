@@ -31,7 +31,7 @@ public class NotificationHelper {
 
 	private final UIAdapterImpl modelListener;
 
-	private final List<Notifier> listeners = new ArrayList<Notifier>();
+	private final List<Notifier> listeners = new ArrayList<>();
 
 	/**
 	 *

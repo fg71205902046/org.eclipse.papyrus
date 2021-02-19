@@ -109,7 +109,7 @@ public final class LifelineUtils {
 	 *            the Lifeline to update
 	 * @param lifelineView
 	 *            the Lifeline's view, containing the StateDefinitions (ignored for a Compact lifeline)
-	 *            
+	 *
 	 */
 	@SuppressWarnings("boxing")
 	public static void updateFragmentNames(final Lifeline lifeline, final View lifelineView) {
@@ -117,9 +117,9 @@ public final class LifelineUtils {
 		if (lifelineView != null && !FullLifelineEditPartCN.VISUAL_ID.equals(lifelineView.getType())) {
 			fullLifelineView = null;
 		}
-		final Map<String, Integer> stateInvariantCounts = new HashMap<String, Integer>();
+		final Map<String, Integer> stateInvariantCounts = new HashMap<>();
 		final EList<InteractionFragment> fragments = lifeline.getCoveredBys();
-		final Map<StateInvariant, String> stateInvariantNames = new HashMap<StateInvariant, String>();
+		final Map<StateInvariant, String> stateInvariantNames = new HashMap<>();
 
 		// first, handle StateInvariant names
 		for (int i = 0; i < fragments.size(); i++) {
@@ -207,7 +207,7 @@ public final class LifelineUtils {
 	 * @return a command to update the names of Lifeline fragments
 	 */
 	public static IUndoableOperation getUpdateFragmentNamesCommand(final EObject element) {
-		final Set<View> impactedLifelines = new HashSet<View>();
+		final Set<View> impactedLifelines = new HashSet<>();
 		final Set<View> crossReferencingViews = CrossReferencerUtil.getCrossReferencingViews(element, TimingDiagramEditPart.MODEL_ID);
 		for (final View referencingView : crossReferencingViews) {
 			View lifeline = ViewUtils.findSuperViewWithId(referencingView, FullLifelineEditPartCN.VISUAL_ID);

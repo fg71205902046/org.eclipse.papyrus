@@ -79,7 +79,7 @@ public abstract class AbstractShortCutDiagramEditPart extends NodeEditPart imple
 
 	@Override
 	public void activate() {
-		
+
 		super.activate();
 		EObject eObject = resolveSemanticElement();
 		resourceToListen = eObject.eResource();
@@ -155,7 +155,7 @@ public abstract class AbstractShortCutDiagramEditPart extends NodeEditPart imple
 
 	@Override
 	public void deactivate() {
-		
+
 		super.deactivate();
 		resourceToListen.eAdapters().remove(this);
 	}

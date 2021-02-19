@@ -202,8 +202,7 @@ public class DiagramDecorationAdapter {
 				((Decoration) decoration).setToolTip(toolTip);
 			}
 			return image;
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
@@ -383,8 +382,7 @@ public class DiagramDecorationAdapter {
 			Rectangle bounds;
 			if (reference instanceof HandleBounds) {
 				bounds = new PrecisionRectangle(((HandleBounds) reference).getHandleBounds());
-			}
-			else {
+			} else {
 				bounds = new PrecisionRectangle(reference.getBounds());
 				// authorized rectangle without handle bounds is smaller: if the icon would be exactly on one of the corners,
 				// it would trigger an enlargement of the figure, followed by a reposition, i.e. an endless loop.
@@ -405,8 +403,7 @@ public class DiagramDecorationAdapter {
 			if (decorationX > pTL.x) {
 				// only set position, if it is inside the figure, i.e. bigger than left margin
 				pDecoration.setX(decorationX);
-			}
-			else {
+			} else {
 				pDecoration.setX(pTL.x);
 			}
 			target.setLocation(pDecoration);
@@ -420,6 +417,7 @@ public class DiagramDecorationAdapter {
 
 	/**
 	 * Gets the direction.
+	 * 
 	 * @deprecated
 	 * @param position
 	 *            the position

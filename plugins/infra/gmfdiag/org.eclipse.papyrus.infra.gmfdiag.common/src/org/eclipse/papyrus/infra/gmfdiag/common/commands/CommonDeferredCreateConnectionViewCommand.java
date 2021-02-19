@@ -148,7 +148,7 @@ public class CommonDeferredCreateConnectionViewCommand extends DeferredCreateCon
 			if ((currentEditPart instanceof CompartmentEditPart)) {
 				continue;
 			}
-			
+
 			if (!(currentEditPart instanceof IGraphicalEditPart)) {
 				continue;
 			}
@@ -158,7 +158,7 @@ public class CommonDeferredCreateConnectionViewCommand extends DeferredCreateCon
 			if (null == resolvedElement || !(semanticElement == resolvedElement)) {
 				continue;
 			}
-			
+
 			// In the case of a diagram created inside an element and this element being dropped inside, there is a possibility (the order does not seem to be kept between creations)
 			// that the editPart matching the semantic element is the diagram itself as it is contained by the element.
 			// We cannot link a diagram Edit Part, it will return a null command, preventing the link creation.

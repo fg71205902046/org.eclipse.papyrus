@@ -56,7 +56,7 @@ import org.eclipse.swt.SWT;
 
 /**
  * Creation tool for papyrus.
- * 
+ *
  * @since 3.0
  */
 public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTool {

@@ -17,6 +17,7 @@ package org.eclipse.papyrus.uml.diagram.sequence.figures;
 
 /**
  * This a specific kind of figure that are internal to the lifeline and must must managed especially in the {@link LifeLineLayoutManager}
+ *
  * @since 3.0
  *
  */

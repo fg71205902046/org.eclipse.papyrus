@@ -73,7 +73,7 @@ public class ActivityParameterNodeInCompartmentCreationEditPolicy extends Activi
 	@Override
 	protected Command getReparentCommand(ChangeBoundsRequest request) {
 		Iterator editParts = request.getEditParts().iterator();
-		View container = (View) getHost().getAdapter(View.class);
+		View container = getHost().getAdapter(View.class);
 		EObject context = container == null ? null : ViewUtil.resolveSemanticElement(container);
 		CompositeCommand cc = new CompositeCommand(DiagramUIMessages.AddCommand_Label);
 		while (editParts.hasNext()) {
@@ -84,7 +84,7 @@ public class ActivityParameterNodeInCompartmentCreationEditPolicy extends Activi
 			if (ep instanceof GroupEditPart) {
 				cc.compose(getReparentGroupCommand((GroupEditPart) ep));
 			}
-			View view = (View) ep.getAdapter(View.class);
+			View view = ep.getAdapter(View.class);
 			if (view == null) {
 				continue;
 			}
@@ -92,8 +92,7 @@ public class ActivityParameterNodeInCompartmentCreationEditPolicy extends Activi
 			EObject semantic = ViewUtil.resolveSemanticElement(view);
 			if (semantic == null) {
 				cc.compose(getReparentViewCommand((IGraphicalEditPart) ep));
-			}
-			else if (context != null && shouldReparent(semantic, context)) {
+			} else if (context != null && shouldReparent(semantic, context)) {
 				cc.compose(getReparentCommand((IGraphicalEditPart) ep));
 			}
 		}

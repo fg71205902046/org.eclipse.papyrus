@@ -57,9 +57,10 @@ import org.eclipse.ui.forms.widgets.ImageHyperlink;
 /**
  * Section to use in the properties view. This section enables to switch the
  * direction of a segment representation (for fork or join).
- * 
+ *
  * @deprecated since 3.2
  */
+@Deprecated
 public class SwitchSegmentDirectionSection extends AbstractNotationPropertiesSection {
 
 	/** path to the switch icon */
@@ -144,7 +145,7 @@ public class SwitchSegmentDirectionSection extends AbstractNotationPropertiesSec
 		}
 		// execute the command for all parts
 		if (!globalCommand.isEmpty() && globalCommand.canExecute()) {
-			CommandStack stack = (CommandStack) EditorUtils.getMultiDiagramEditor().getAdapter(CommandStack.class);
+			CommandStack stack = EditorUtils.getMultiDiagramEditor().getAdapter(CommandStack.class);
 			if (stack != null) {
 				stack.execute(new ICommandProxy(globalCommand));
 			}

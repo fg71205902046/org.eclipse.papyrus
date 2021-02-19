@@ -55,7 +55,7 @@ public abstract class AbstractLabelEditPart extends PapyrusLabelEditPart impleme
 	/**
 	 * Overrides default {@link LabelSnapBackEditPolicy} with correct coordination
 	 * between {@link #getCommand(Request)} and {@link #getTargetEditPart(Request)}.
-	 * 
+	 *
 	 * @see bug 472023
 	 */
 	private static class LabelSnapBackEditPolicyExt extends LabelSnapBackEditPolicy {

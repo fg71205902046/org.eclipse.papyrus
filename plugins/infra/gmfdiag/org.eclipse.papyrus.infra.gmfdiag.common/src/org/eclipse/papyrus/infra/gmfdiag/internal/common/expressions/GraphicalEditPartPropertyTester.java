@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  * Contributors:
  *   Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Initial API and implementation
  *   Christian W. Damus - bug 485220
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.internal.common.expressions;
@@ -25,7 +25,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 
 /**
  * Property tester to enable different actions in diagrams.
- * 
+ *
  * @author Gabriel Pascual
  *
  */

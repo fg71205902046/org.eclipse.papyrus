@@ -179,7 +179,7 @@ public class BorderDisplayEditPolicy extends GraphicalEditPolicyEx implements IC
 			return ((org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart) host).getNotationView();
 		}
 
-		View view = (View) host.getAdapter(View.class);
+		View view = host.getAdapter(View.class);
 		return view;
 	}
 
@@ -214,7 +214,7 @@ public class BorderDisplayEditPolicy extends GraphicalEditPolicyEx implements IC
 				getPrimaryShape().setBorder(defaultBorder);
 				// If a length or a length ratio is defined in notation or CSS
 				((OneTopLineResizableBorder) defaultBorder).setLength(NotationUtils.getIntValue(view, LINE_LENGTH, DEFAULT_LENGTH_VALUE));
-				((OneTopLineResizableBorder) defaultBorder).setLengthRatio(new Float(NotationUtils.getStringValue(view, LINE_LENGTH_RATIO, LINE_LENGTH_RATIO_DEFAULT_VALUE).replace(',', '.')));// $NON-NLS-1$ //$NON-NLS-2$
+				((OneTopLineResizableBorder) defaultBorder).setLengthRatio(new Float(NotationUtils.getStringValue(view, LINE_LENGTH_RATIO, LINE_LENGTH_RATIO_DEFAULT_VALUE).replace(',', '.')));// $NON-NLS-1$ 
 				((OneTopLineResizableBorder) defaultBorder).setLinePosition(getlinePosition());
 
 				// If it's the first one, set border to null.
@@ -267,9 +267,10 @@ public class BorderDisplayEditPolicy extends GraphicalEditPolicyEx implements IC
 	 * @return all the displayed compartments for the EditPart
 	 */
 	public static List<View> getAllVisibleCompartments(View view, EditPart editpart) {
-		List<View> visibleCompartments = new ArrayList<View>();
-		if (editpart == null)
+		List<View> visibleCompartments = new ArrayList<>();
+		if (editpart == null) {
 			return visibleCompartments;
+		}
 		List<?> localChildren = editpart.getChildren();
 		for (Object current : localChildren) {
 			if (current instanceof CompartmentEditPart) {

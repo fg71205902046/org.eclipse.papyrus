@@ -187,7 +187,7 @@ public final class StateDefinitionUtils {
 		checkStateDefinitionView(stateDefinitionView);
 		final View stateDefinitionsCompartment = ViewUtils.findSuperViewWithId(stateDefinitionView, FullLifelineStateDefinitionCompartmentEditPartCN.VISUAL_ID);
 		final List<View> allStateDefinitionViews = ViewUtils.findSubViewsWithId(stateDefinitionsCompartment, StateDefinitionEditPart.VISUAL_ID);
-		final Set<String> existingNames = new HashSet<String>();
+		final Set<String> existingNames = new HashSet<>();
 		for (final View aStateDefinitionView : allStateDefinitionViews) {
 			existingNames.add(getStateDefinitionName(aStateDefinitionView));
 		}
@@ -234,7 +234,7 @@ public final class StateDefinitionUtils {
 		final EAnnotation eAnnotation = getStateDefinitionsEAnnotation(lifeline);
 		if (eAnnotation != null) {
 			final EMap<String, String> details = eAnnotation.getDetails();
-			final List<String> result = new ArrayList<String>();
+			final List<String> result = new ArrayList<>();
 			// note: using the iterator preserves the order
 			final Iterator<Entry<String, String>> iterator = details.iterator();
 			while (iterator.hasNext()) {
@@ -276,7 +276,7 @@ public final class StateDefinitionUtils {
 	 */
 	public static void updateStateDefinitionNamesForCompactLifeline(final Lifeline lifeline) {
 		final EList<InteractionFragment> coveredBys = lifeline.getCoveredBys();
-		final Map<String, String> nameIdMap = new LinkedHashMap<String, String>();
+		final Map<String, String> nameIdMap = new LinkedHashMap<>();
 		// first, get all the unique state invariant names and generate the associated ids
 		for (final InteractionFragment interactionFragment : coveredBys) {
 			if (interactionFragment instanceof StateInvariant) {

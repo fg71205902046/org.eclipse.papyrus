@@ -43,6 +43,7 @@ public class ActionLocalPostconditionEditPart extends ConnectionEditPart impleme
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
@@ -50,12 +51,13 @@ public class ActionLocalPostconditionEditPart extends ConnectionEditPart impleme
 
 	/**
 	 * Creates figure for this edit part.
-	 * 
+	 *
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	protected Connection createConnectionFigure() {
 		return new DashedLinkDescriptor();
 	}
@@ -63,6 +65,7 @@ public class ActionLocalPostconditionEditPart extends ConnectionEditPart impleme
 	/**
 	 * @generated
 	 */
+	@Override
 	public DashedLinkDescriptor getPrimaryShape() {
 		return (DashedLinkDescriptor) getFigure();
 	}

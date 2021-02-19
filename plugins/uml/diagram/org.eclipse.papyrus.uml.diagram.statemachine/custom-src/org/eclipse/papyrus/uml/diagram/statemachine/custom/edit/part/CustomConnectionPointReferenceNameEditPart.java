@@ -32,7 +32,7 @@ public class CustomConnectionPointReferenceNameEditPart extends ConnectionPointR
 
 	@Override
 	protected void handleNotificationEvent(Notification event) {
-		
+
 		super.handleNotificationEvent(event);
 
 		refreshVisuals();

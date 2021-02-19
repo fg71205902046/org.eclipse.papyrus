@@ -90,7 +90,7 @@ public class Domain2Notation extends HashMap<EObject, Set<View>> {
 		if (set != null) {
 			set.add(view);
 		} else {
-			Set<View> hashSet = new HashSet<View>();
+			Set<View> hashSet = new HashSet<>();
 			hashSet.add(view);
 			put(element, hashSet);
 		}
@@ -109,7 +109,7 @@ public class Domain2Notation extends HashMap<EObject, Set<View>> {
 		if (set != null) {
 			set.add(view);
 		} else {
-			Set<View> hashSet = new HashSet<View>();
+			Set<View> hashSet = new HashSet<>();
 			hashSet.add(view);
 			put(element, hashSet);
 		}

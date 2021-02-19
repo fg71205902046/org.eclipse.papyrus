@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.parser.custom;
@@ -48,7 +48,7 @@ public class StreamLabelParser implements IParser {
 		if (false == object instanceof ActivityParameterNode) {
 			return "";
 		}
-		Parameter parameter = ((ActivityParameterNode)object).getParameter();
+		Parameter parameter = ((ActivityParameterNode) object).getParameter();
 		if (parameter == null || !parameter.isStream()) {
 			return "";
 		}

@@ -69,6 +69,7 @@ public class AbstractObservationNodeFigure extends NodeNamedElementFigure {
 		 *
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void layout(IFigure container) {
 			List<?> childrenList = container.getChildren();
 			for (int i = 0; i < container.getChildren().size(); i++) {

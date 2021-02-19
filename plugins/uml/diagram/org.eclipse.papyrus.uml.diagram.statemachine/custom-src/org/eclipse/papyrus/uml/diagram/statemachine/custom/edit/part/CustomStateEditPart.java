@@ -45,7 +45,7 @@ public class CustomStateEditPart extends StateEditPart {
 
 	/**
 	 * obtain the state compartment view when the view of the state is given.
-	 * 
+	 *
 	 * @param stateView
 	 *            the view of the state
 	 * @return the view representing the state compartment

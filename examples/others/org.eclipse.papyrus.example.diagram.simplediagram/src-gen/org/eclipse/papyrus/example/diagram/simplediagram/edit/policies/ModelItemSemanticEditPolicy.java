@@ -24,6 +24,7 @@ public class ModelItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if (UMLElementTypes.Component_2001 == req.getElementType()) {
 			return getGEFWrapper(new ComponentCreateCommand(req));
@@ -34,6 +35,7 @@ public class ModelItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected Command getDuplicateCommand(DuplicateElementsRequest req) {
 		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost())
 				.getEditingDomain();
@@ -53,8 +55,9 @@ public class ModelItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 				TransactionalEditingDomain editingDomain,
 				DuplicateElementsRequest req) {
 			super(editingDomain, req.getLabel(), req
-					.getElementsToBeDuplicated(), req
-					.getAllDuplicatedElementsMap());
+					.getElementsToBeDuplicated(),
+					req
+							.getAllDuplicatedElementsMap());
 		}
 
 	}

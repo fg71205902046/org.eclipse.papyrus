@@ -32,7 +32,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Class dedicated to the management of drag and drop of a Behavior (Functional etc..) into a Activity diagram to create automatically a callbehavor action
- * 
+ *
  * @since 3.5.0
  */
 public class BehaviorToCallBehaviorActionDropStrategy extends AbstractActivityNodeStrategy {

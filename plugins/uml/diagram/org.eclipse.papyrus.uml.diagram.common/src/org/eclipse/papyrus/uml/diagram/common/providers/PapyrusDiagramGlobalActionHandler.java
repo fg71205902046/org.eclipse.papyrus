@@ -63,7 +63,7 @@ public class PapyrusDiagramGlobalActionHandler extends ImageSupportGlobalActionH
 	public boolean canHandle(IGlobalActionContext cntxt) {
 		/* Check if the active part is a IDiagramWorkbenchPart */
 		IWorkbenchPart part = cntxt.getActivePart();
-		part = (IWorkbenchPart) part.getAdapter(IDiagramWorkbenchPart.class);
+		part = part.getAdapter(IDiagramWorkbenchPart.class);
 		if (!(part instanceof IDiagramWorkbenchPart)) {
 			return false;
 		}
@@ -115,7 +115,7 @@ public class PapyrusDiagramGlobalActionHandler extends ImageSupportGlobalActionH
 	public ICommand getCommand(IGlobalActionContext cntxt) {
 		/* Check if the active part is a IDiagramWorkbenchPart */
 		IWorkbenchPart part = cntxt.getActivePart();
-		part = (IWorkbenchPart) part.getAdapter(IDiagramWorkbenchPart.class);
+		part = part.getAdapter(IDiagramWorkbenchPart.class);
 		if (!(part instanceof IDiagramWorkbenchPart)) {
 			return null;
 		}
@@ -277,7 +277,7 @@ public class PapyrusDiagramGlobalActionHandler extends ImageSupportGlobalActionH
 
 		TransactionalEditingDomain result = null;
 
-		IEditingDomainProvider provider = (IEditingDomainProvider) part.getAdapter(IEditingDomainProvider.class);
+		IEditingDomainProvider provider = part.getAdapter(IEditingDomainProvider.class);
 
 		if (provider != null) {
 			EditingDomain domain = provider.getEditingDomain();

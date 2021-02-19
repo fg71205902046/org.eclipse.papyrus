@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *   J�r�mie TATIBOUET (CEA LIST) - Initial API and implementation
  *   S�bastien REVOL (CEA LIST) - Initial API and implementation
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater;
@@ -29,13 +29,13 @@ import org.eclipse.papyrus.uml.tools.providers.UMLContentProvider;
 import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.InputPin;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Reception;
 import org.eclipse.uml2.uml.SendSignalAction;
 import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.Type;
-import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -73,17 +73,17 @@ public class SendSignalActionPinUpdater extends AbstractInvocationActionPinUpdat
 
 	/**
 	 * Derive the type of the target in the context of a SendSignalAction. Three cases are supported:
-	 * 
+	 *
 	 * 1] A port is specified to send the signal. In the theory, this port must be owned the class realizing the sending. Hence
 	 * the type chosen for the target is the class owning the port.
-	 * 
+	 *
 	 * 2] The node already has a typed target pin. Make sure this type is still correct. This is evaluated by checking if
 	 * the type has a reception for chosen signal. If it is the case the type is reused, otherwise the only remaining solution
 	 * is to propose to the user all classes having a reception on the signal referenced by the action.
-	 * 
+	 *
 	 * @param node
 	 *            the send signal action for which the target type is derived
-	 * 
+	 *
 	 * @return the derived type or null
 	 */
 	private Type deriveTargetType(SendSignalAction node) {
@@ -101,7 +101,7 @@ public class SendSignalActionPinUpdater extends AbstractInvocationActionPinUpdat
 					targetPinType = currentTargetPinType;
 				}
 			}
-			if (targetPinType == null && Display.getCurrent() !=null) {
+			if (targetPinType == null && Display.getCurrent() != null) {
 				// In this case there is no automated derivation possible. Indeed at most we can only propose
 				// to the user to choose among a list of type being able to accept the arrival of the signal
 				// specified for the given action.
@@ -154,7 +154,7 @@ public class SendSignalActionPinUpdater extends AbstractInvocationActionPinUpdat
 	 */
 	@Override
 	public List<InputPin> deriveArguments(SendSignalAction node) {
-		List<InputPin> derivedInputPins = new ArrayList<InputPin>();
+		List<InputPin> derivedInputPins = new ArrayList<>();
 		if (node.getSignal() != null) {
 			for (Property property : node.getSignal().getAllAttributes()) {
 				InputPin derivedPin = UMLFactory.eINSTANCE.createInputPin();

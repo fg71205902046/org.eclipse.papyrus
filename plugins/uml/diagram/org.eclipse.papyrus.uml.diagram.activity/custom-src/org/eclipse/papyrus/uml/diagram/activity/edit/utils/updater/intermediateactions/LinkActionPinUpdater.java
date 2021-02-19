@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions;
@@ -39,7 +39,7 @@ public class LinkActionPinUpdater extends AbstractActionPinUpdater<LinkAction> {
 	public void updatePins(LinkAction node) {
 		if (node != null) {
 			List<InputPin> values = node.getInputValues();
-			List<InputPin> keepingValues = new ArrayList<InputPin>();
+			List<InputPin> keepingValues = new ArrayList<>();
 			List<LinkEndData> endData = node.getEndData();
 
 			// 1] put value pin of each LinkEndData into the keepingValues list

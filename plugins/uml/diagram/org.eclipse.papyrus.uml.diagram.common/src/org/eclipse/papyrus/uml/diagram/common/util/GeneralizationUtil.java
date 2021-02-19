@@ -38,7 +38,7 @@ public class GeneralizationUtil {
 	 * @param el
 	 *            a {@link Classifier} or a {@link Property}
 	 * @return
-	 * 		<code>true</code> if the classifier has this generalization in its inheritance links (directly or indirectly) <code>false</code> if not
+	 *         <code>true</code> if the classifier has this generalization in its inheritance links (directly or indirectly) <code>false</code> if not
 	 */
 	public boolean isConcernedByGeneralizationChanges(Generalization generalization, View view) {
 		boolean isConcerned = false;
@@ -77,11 +77,11 @@ public class GeneralizationUtil {
 	 * @param el
 	 *
 	 * @return
-	 * 		<code>true</code> if another way exists to inherit of this element <code>false</code> if not
+	 *         <code>true</code> if another way exists to inherit of this element <code>false</code> if not
 	 */
 	protected boolean existsAnotherInheritanceWay(Element inheritedElement, Generalization forbiddenPath, NamedElement el, Set<Element> ignoredGeneralizations) {
 
-		Set<Generalization> generalizations = new HashSet<Generalization>();
+		Set<Generalization> generalizations = new HashSet<>();
 
 		Classifier _classifier = null;
 		if (el instanceof Property) {
@@ -95,7 +95,7 @@ public class GeneralizationUtil {
 
 		// List Generalization that have already been tested to avoid loop issues
 		// in case of Generalization cycles (such cycle creation should be avoided)
-		Set<Element> ignoredGeneralizationsTmp = new HashSet<Element>();
+		Set<Element> ignoredGeneralizationsTmp = new HashSet<>();
 		if (ignoredGeneralizations != null) {
 			ignoredGeneralizationsTmp.addAll(ignoredGeneralizations);
 		}
@@ -129,7 +129,7 @@ public class GeneralizationUtil {
 	 * @param view
 	 *            a view
 	 * @return
-	 * 		the Element owning this view
+	 *         the Element owning this view
 	 *         or <code>null</code> if not found
 	 */
 	protected NamedElement getGraphicalOwner(View view) {
@@ -149,20 +149,20 @@ public class GeneralizationUtil {
 	 * @param classifier
 	 *            a classifier
 	 * @return
-	 * 		all the generalization (direct and indirect) owning by the classifier
+	 *         all the generalization (direct and indirect) owning by the classifier
 	 */
 	protected Set<Generalization> getAllGeneralization(Classifier classifier, Set<Classifier> alreadyParsedClassifiers) {
 
-		Set<Generalization> generalizations = new HashSet<Generalization>();
+		Set<Generalization> generalizations = new HashSet<>();
 
 		// Keep track of already parsed Classifiers to avoid loop in case
 		// of Generalization cycle.
-		Set<Classifier> parsedClassifiers = new HashSet<Classifier>();
+		Set<Classifier> parsedClassifiers = new HashSet<>();
 		if (alreadyParsedClassifiers != null) {
 			parsedClassifiers.addAll(alreadyParsedClassifiers);
 		}
 
-		Set<Generalization> generalizationsTmp = new HashSet<Generalization>();
+		Set<Generalization> generalizationsTmp = new HashSet<>();
 		if (classifier != null) {
 			generalizations.addAll(classifier.getGeneralizations());
 

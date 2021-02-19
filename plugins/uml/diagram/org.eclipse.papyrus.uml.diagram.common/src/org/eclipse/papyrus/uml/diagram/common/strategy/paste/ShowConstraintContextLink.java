@@ -79,7 +79,7 @@ public class ShowConstraintContextLink extends AbstractTransactionalCommand {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor,
 	 * org.eclipse.core.runtime.IAdaptable)
@@ -94,7 +94,7 @@ public class ShowConstraintContextLink extends AbstractTransactionalCommand {
 			EditPart contextEditPart = getEditPart(context, allTopSemanticEditPart);
 
 			if (constraintEditPart != null && contextEditPart != null) {
-				Collection<EditPart> constraintAndContext = new ArrayList<EditPart>();
+				Collection<EditPart> constraintAndContext = new ArrayList<>();
 				constraintAndContext.add(constraintEditPart);
 				constraintAndContext.add(contextEditPart);
 				final Request request = new ShowHideRelatedLinkRequest(constraintAndContext, ShowHideKind.SHOW_ALL_LINK_BETWEEN_SELECTED_ELEMENT);

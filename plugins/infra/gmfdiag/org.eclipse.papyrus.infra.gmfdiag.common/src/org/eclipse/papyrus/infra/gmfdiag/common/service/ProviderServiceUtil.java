@@ -38,9 +38,9 @@ public class ProviderServiceUtil {
 	 * </p>
 	 *
 	 * @param editPart
-	 *                     The edit part to test
+	 *            The edit part to test
 	 * @return
-	 * 		<code>true</code> if this edit part is part of a Papyrus environment (Using a Papyrus {@link ServicesRegistry}), <code>false</code> otherwise
+	 *         <code>true</code> if this edit part is part of a Papyrus environment (Using a Papyrus {@link ServicesRegistry}), <code>false</code> otherwise
 	 */
 	public static boolean isPapyrusPart(EditPart editPart) {
 		try {
@@ -58,9 +58,9 @@ public class ProviderServiceUtil {
 	 * </p>
 	 *
 	 * @param view
-	 *                 The view to test
+	 *            The view to test
 	 * @return
-	 * 		<code>true</code> if this view is part of a Papyrus environment (Using a Papyrus {@link ServicesRegistry}), <code>false</code> otherwise
+	 *         <code>true</code> if this view is part of a Papyrus environment (Using a Papyrus {@link ServicesRegistry}), <code>false</code> otherwise
 	 */
 	public static boolean isPapyrusView(View view) {
 		try {

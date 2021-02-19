@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - moved class behavior from classiferEditPart
- * 
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.common.editparts;
@@ -21,7 +21,7 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.ClassifierFigure;
 
 /**
  * Class edit part.
- * 
+ *
  */
 public abstract class ClassEditPart extends ClassifierEditPart {
 
@@ -29,7 +29,7 @@ public abstract class ClassEditPart extends ClassifierEditPart {
 	 * Instantiates a new class edit part.
 	 *
 	 * @param view
-	 *        the view
+	 *            the view
 	 */
 	public ClassEditPart(View view) {
 		super(view);
@@ -42,7 +42,7 @@ public abstract class ClassEditPart extends ClassifierEditPart {
 	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
-		if(getPrimaryShape() != null && resolveSemanticElement() != null) {
+		if (getPrimaryShape() != null && resolveSemanticElement() != null) {
 			refreshIsActive();
 		}
 	}
@@ -53,9 +53,9 @@ public abstract class ClassEditPart extends ClassifierEditPart {
 	 * @see org.eclipse.papyrus.uml.diagram.common.editparts.ClassifierEditPart#refreshIsActive()
 	 */
 	protected void refreshIsActive() {
-		if(getUMLElement() instanceof org.eclipse.uml2.uml.Class) {
-			if(getPrimaryShape() instanceof ClassifierFigure) {
-				((ClassFigure)getPrimaryShape()).setActive(((org.eclipse.uml2.uml.Class)getUMLElement()).isActive());
+		if (getUMLElement() instanceof org.eclipse.uml2.uml.Class) {
+			if (getPrimaryShape() instanceof ClassifierFigure) {
+				((ClassFigure) getPrimaryShape()).setActive(((org.eclipse.uml2.uml.Class) getUMLElement()).isActive());
 			}
 		}
 	}

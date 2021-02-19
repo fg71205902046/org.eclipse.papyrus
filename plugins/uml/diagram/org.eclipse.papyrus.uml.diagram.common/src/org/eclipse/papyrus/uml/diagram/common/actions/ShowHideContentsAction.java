@@ -122,7 +122,7 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 			if (element instanceof Classifier || element instanceof InstanceSpecification) {
 				this.representations.add(new RootEditPartRepresentation(current, element));
 			}
-			if (element instanceof Port ) {
+			if (element instanceof Port) {
 				Port port = (Port) element;
 				Type type = port.getType();
 				if (type instanceof Classifier || type instanceof InstanceSpecification) {
@@ -197,8 +197,7 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 					if (initialPosition != null) {
 						// use initial-position instead of increment-based one
 						req.setLocation(initialPosition);
-					}
-					else {
+					} else {
 						req.setLocation(new Point(portLocation));
 					}
 				}
@@ -214,8 +213,10 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 	/**
 	 * Return the initial position of a port on a part. Should be override by subclasses (e.g. composite diagram)
 	 *
-	 * @param partEditPart edit part of the part within a composite (for which we want to display a port)
-	 * @param port the semantic UML2 port which we want to display
+	 * @param partEditPart
+	 *            edit part of the part within a composite (for which we want to display a port)
+	 * @param port
+	 *            the semantic UML2 port which we want to display
 	 * @return the initial location of the port or null (if none could be determined)
 	 * @since 3.1
 	 */
@@ -233,9 +234,10 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 	 *            the parent EditPart
 	 * @param child
 	 *            the child to show
-	 * @return <ul>
+	 * @return
+	 *         <ul>
 	 *         <li><code>true</code> if child is represented by an affixed child node</li>
-	 *         <li> <code>false</code> if not</li>
+	 *         <li><code>false</code> if not</li>
 	 *         </ul>
 	 */
 	protected boolean isAffixedChildNode(EditPart ep, EObject child) {
@@ -259,9 +261,10 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 	 *            the compartment to test
 	 * @param ep
 	 *            the editpart owning this compartment
-	 * @return <ul>
+	 * @return
+	 *         <ul>
 	 *         <li><code>true</code> if the layout for this compartment is a XYLayout</li>
-	 *         <li> <code>false</code> if not</li>
+	 *         <li><code>false</code> if not</li>
 	 *         </ul>
 	 */
 	protected boolean isXYLayout(View compartment, EditPart ep) {
@@ -561,12 +564,12 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 			if (policy != null) {
 				EditPartRepresentation representation;
 				// there can be some affixed children, create a pseudo compartment edit part representation
-				if (getSemanticElement() instanceof Port){
+				if (getSemanticElement() instanceof Port) {
 					representation = new PortAffixedChildrenEditPartRepresentation(getSemanticElement(), this);
-				}else {
-					representation = new AffixedChildrenEditPartRepresentation(getSemanticElement(), this);	
-				}			
-			elementsToSelect.add(representation);
+				} else {
+					representation = new AffixedChildrenEditPartRepresentation(getSemanticElement(), this);
+				}
+				elementsToSelect.add(representation);
 			}
 		}
 	}
@@ -764,8 +767,8 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 		public PortAffixedChildrenEditPartRepresentation(EObject element, EditPartRepresentation parentRepresentation) {
 			super(element, parentRepresentation);
 		}
-		
-		
+
+
 		/**
 		 * @see org.eclipse.papyrus.uml.diagram.common.actions.ShowHideContentsAction.CompartmentEditPartRepresentation#collectMembers()
 		 *
@@ -778,19 +781,19 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 			if (semanticElement instanceof Port) {
 				Port port = (Port) semanticElement;
 				Type type = port.getType();
-				if (type != null && type instanceof Classifier){
+				if (type != null && type instanceof Classifier) {
 					EList<Property> allAttributes = ((Classifier) type).getAllAttributes();
 					for (Element element : allAttributes) {
 						if (element instanceof Port) {
 							res.add(element);
 						}
 					}
-					return res;					
+					return res;
 				}
 			}
 			return Collections.emptyList();
 		}
-		
+
 		/**
 		 * {@inheritDoc}
 		 */
@@ -800,10 +803,10 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 			ViewDescriptor viewDescriptor = new ViewDescriptor(new EObjectAdapter(element), Node.class, "Port_Shape", ViewUtil.APPEND, false, getParentRepresentation().getRepresentedEditPart().getDiagramPreferencesHint());
 			CreateCommand cmd = new CreateCommand(domain, viewDescriptor, getParentRepresentation().getRepresentedEditPart().getNotationView());
 			return cmd.canExecute();
-		}		
-		
-	}	
-	
+		}
+
+	}
+
 	/**
 	 * Class that manages an element that can not be displayed currently
 	 */

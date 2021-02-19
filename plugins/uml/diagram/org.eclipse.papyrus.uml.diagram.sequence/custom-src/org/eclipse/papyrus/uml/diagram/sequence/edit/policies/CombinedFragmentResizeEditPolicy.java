@@ -326,7 +326,7 @@ public class CombinedFragmentResizeEditPolicy extends ResizableEditPolicyEx {
 
 	/**
 	 * @return
-	 * 		The host's children edit parts (Excluding border items)
+	 *         The host's children edit parts (Excluding border items)
 	 */
 	private List<GraphicalEditPart> getOperands() {
 		List<?> children = getHost().getChildren();

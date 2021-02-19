@@ -75,7 +75,7 @@ public class BorderedScalableImageFigure extends ScalableImageFigure {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.draw2d.Figure#getBackgroundColor()
 	 */
 	@Override
@@ -93,7 +93,7 @@ public class BorderedScalableImageFigure extends ScalableImageFigure {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.draw2d.Figure#getForegroundColor()
 	 */
 	@Override
@@ -110,7 +110,7 @@ public class BorderedScalableImageFigure extends ScalableImageFigure {
 
 	/**
 	 * Gets the main figure.
-	 * 
+	 *
 	 * @return the roundedRectangleFigure
 	 */
 	private IRoundedRectangleFigure getMainFigure() {

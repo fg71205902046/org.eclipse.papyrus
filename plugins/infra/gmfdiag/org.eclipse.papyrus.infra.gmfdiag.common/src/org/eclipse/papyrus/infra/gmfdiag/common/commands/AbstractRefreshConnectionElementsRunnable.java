@@ -87,7 +87,7 @@ public abstract class AbstractRefreshConnectionElementsRunnable<T> implements Ru
 	 * @see org.eclipse.emf.transaction.RunnableWithResult#getStatus()
 	 *
 	 * @return
-	 * 		the status of the runnable
+	 *         the status of the runnable
 	 */
 	@Override
 	public final IStatus getStatus() {
@@ -97,7 +97,7 @@ public abstract class AbstractRefreshConnectionElementsRunnable<T> implements Ru
 	/**
 	 *
 	 * @return
-	 * 		the container edit part
+	 *         the container edit part
 	 */
 	protected final IGraphicalEditPart getContainerEditPart() {
 		return this.containerEP;
@@ -130,7 +130,7 @@ public abstract class AbstractRefreshConnectionElementsRunnable<T> implements Ru
 	/**
 	 *
 	 * @return
-	 * 		the figure for the container edit part
+	 *         the figure for the container edit part
 	 */
 	protected final IFigure getContainerFigure() {
 		return this.containerEP.getFigure();

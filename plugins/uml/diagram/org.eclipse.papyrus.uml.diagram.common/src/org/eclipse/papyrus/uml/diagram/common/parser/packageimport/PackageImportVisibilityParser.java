@@ -19,7 +19,10 @@ import org.eclipse.papyrus.uml.diagram.common.parser.structural.UMLStructuralFea
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * Parses PackageImport visibility this way: <li>public <-> import</li> <li>private <-> access</li> <li>package, protected -> access.</li> <br>
+ * Parses PackageImport visibility this way:
+ * <li>public <-> import</li>
+ * <li>private <-> access</li>
+ * <li>package, protected -> access.</li> <br>
  *
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  */

@@ -99,6 +99,7 @@ public class CreateElementAndNodeCommand extends AbstractTransactionalCommand {
 		}
 		return affectedFiles;
 	}
+
 	/**
 	 * @see org.eclipse.core.commands.operations.AbstractOperation#canExecute()
 	 *

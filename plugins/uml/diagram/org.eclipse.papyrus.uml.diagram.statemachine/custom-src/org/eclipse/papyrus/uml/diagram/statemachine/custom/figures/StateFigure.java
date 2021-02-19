@@ -45,7 +45,7 @@ public class StateFigure extends RoundedCompartmentFigure {
 	private static final String STATE_COMPARTMENT = "stateCompartment";
 
 	/** The List of Compartment */
-	private static final List<String> COMPARTMENT = new ArrayList<String>() {
+	private static final List<String> COMPARTMENT = new ArrayList<>() {
 
 		private static final long serialVersionUID = 1L;
 		{

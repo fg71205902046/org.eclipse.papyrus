@@ -30,6 +30,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.utils.UnitsConverterUtils;
  *
  * Implementation for an ObservableValue corresponding to the property "rulergrid.rulerunit".
  * This ObservableValue is associated to a IntValueStyle and a IPreferenceStore.
+ *
  * @since 3.0
  *
  */

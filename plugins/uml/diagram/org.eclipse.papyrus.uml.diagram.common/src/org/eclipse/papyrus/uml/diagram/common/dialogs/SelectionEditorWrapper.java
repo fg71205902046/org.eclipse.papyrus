@@ -110,7 +110,7 @@ public class SelectionEditorWrapper implements SelectionListener {
 		} else if (ExtendedSelectionEditor.class.equals(wrappedEditorClass)) {
 			elementsToRemove = ((ExtendedSelectionEditor) wrappedSelectionEditor).getElementToRemove();
 		} else {
-			elementsToRemove = new ArrayList<Object>();
+			elementsToRemove = new ArrayList<>();
 		}
 
 		return elementsToRemove;
@@ -128,7 +128,7 @@ public class SelectionEditorWrapper implements SelectionListener {
 		} else if (ExtendedSelectionEditor.class.equals(wrappedEditorClass)) {
 			elementsToAdd = ((ExtendedSelectionEditor) wrappedSelectionEditor).getElementToAdd();
 		} else {
-			elementsToAdd = new ArrayList<Object>();
+			elementsToAdd = new ArrayList<>();
 		}
 
 		return elementsToAdd;

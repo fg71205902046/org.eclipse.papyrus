@@ -19,19 +19,21 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 
 /**
- *this calss is to delegate all notification in a diagram to the grill system in order to ensure consistency of rows and columns
+ * this calss is to delegate all notification in a diagram to the grill system in order to ensure consistency of rows and columns
  *
  */
 public class ContentDiagramListener extends EContentAdapter {
 
 	protected GridManagementEditPolicy grillingManagementEditPolicy;
+
 	/**
 	 * Constructor.
 	 *
 	 */
 	public ContentDiagramListener(GridManagementEditPolicy grillingManagementEditPolicy) {
-		this.grillingManagementEditPolicy= grillingManagementEditPolicy;
+		this.grillingManagementEditPolicy = grillingManagementEditPolicy;
 	}
+
 	/**
 	 * @see org.eclipse.emf.ecore.util.EContentAdapter#notifyChanged(org.eclipse.emf.common.notify.Notification)
 	 *

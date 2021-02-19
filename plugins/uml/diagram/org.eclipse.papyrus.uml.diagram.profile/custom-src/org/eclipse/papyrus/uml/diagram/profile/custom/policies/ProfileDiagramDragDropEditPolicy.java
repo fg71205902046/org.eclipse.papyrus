@@ -234,7 +234,7 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 	 * @param nodeVISUALID
 	 *            the node VISUAL ID
 	 * @return
-	 * 		the command to drop the metaclass
+	 *         the command to drop the metaclass
 	 */
 	protected Command dropMetaclass(DropObjectsRequest dropRequest, Element semanticElement, String nodeVISUALID) {
 		// we test if the element to drop is a Class or a Metaclass

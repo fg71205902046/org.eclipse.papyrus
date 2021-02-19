@@ -1055,7 +1055,7 @@ public class OperandBoundsComputeHelper {
 	 * Check if it is a combined fragment.
 	 *
 	 * @param hint
-	 *                 the semantic hint
+	 *            the semantic hint
 	 * @return
 	 */
 	public static boolean isDerivedCombinedFragment(String hint) {

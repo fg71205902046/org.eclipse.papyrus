@@ -32,7 +32,7 @@ import org.eclipse.uml2.uml.UnmarshallAction;
 /**
  * Drop strategy to create an UnmarshallAction from a Classifier drop and to update
  * the "unmarshallType" reference.
- * 
+ *
  * @since 3.5.0
  */
 public class ClassifierToUnmarshallActionDropStrategy extends AbstractActivityNodeStrategy {

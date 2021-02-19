@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.interactionoverview.provider;
 
@@ -19,7 +19,6 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.visualtype.AbstractVisualTypeProvider;
-import org.eclipse.papyrus.uml.diagram.interactionoverview.part.UMLVisualIDRegistry;
 
 /**
  * @generated
@@ -39,13 +38,13 @@ public class UMLVisualTypeProvider extends AbstractVisualTypeProvider {
 	@Override
 	public IElementType getElementType(Diagram diagram, String viewType) {
 		IElementType result = null;
-		
+
 		try {
 			result = UMLElementTypes.getElementType(viewType);
 		} catch (NumberFormatException e) {
 			// Not supported by this diagram
 		}
-		
+
 		return result;
 	}
 
@@ -54,7 +53,7 @@ public class UMLVisualTypeProvider extends AbstractVisualTypeProvider {
 	 */
 	@Override
 	public String getNodeType(View parentView, EObject element) {
-		return UMLVisualIDRegistry.getNodeVisualID(parentView, element);
+		return org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry.getNodeVisualID(parentView, element);
 	}
 
 	/**
@@ -62,7 +61,7 @@ public class UMLVisualTypeProvider extends AbstractVisualTypeProvider {
 	 */
 	@Override
 	public String getLinkType(Diagram diagram, EObject element) {
-		return UMLVisualIDRegistry.getLinkWithClassVisualID(element);
+		return org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry.getLinkWithClassVisualID(element);
 	}
 
 }

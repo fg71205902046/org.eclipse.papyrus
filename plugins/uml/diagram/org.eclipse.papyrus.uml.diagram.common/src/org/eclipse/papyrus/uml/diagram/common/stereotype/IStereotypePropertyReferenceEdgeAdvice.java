@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST, ALL4TEC and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -15,9 +15,9 @@ package org.eclipse.papyrus.uml.diagram.common.stereotype;
 
 /**
  * Interface for stereotype property reference edge advice. It include used keywords.
- * 
+ *
  * @author Mickaël ADAM
- * 
+ *
  * @since 3.1
  */
 public interface IStereotypePropertyReferenceEdgeAdvice {

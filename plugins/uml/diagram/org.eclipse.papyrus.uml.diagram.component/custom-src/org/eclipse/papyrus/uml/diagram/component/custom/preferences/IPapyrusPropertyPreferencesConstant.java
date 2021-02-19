@@ -21,6 +21,7 @@ import org.eclipse.uml2.uml.Property;
 
 /**
  * Constants for {@link Property} preferences.
+ *
  * @since 3.0
  */
 public interface IPapyrusPropertyPreferencesConstant {

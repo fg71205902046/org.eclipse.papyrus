@@ -121,6 +121,7 @@ public class ExtensionCustomNameEditPolicy extends AbstractEditPolicy implements
 	 * {@inheritedDoc}
 	 */
 	// @Override
+	@Override
 	public void notifyChanged(Notification notification) {
 		// change the label of the figure managed by the host edit part (managed by the parent edit
 		// part in general...)
@@ -136,12 +137,14 @@ public class ExtensionCustomNameEditPolicy extends AbstractEditPolicy implements
 
 						((IGraphicalEditPart) getHost()).getEditingDomain().runExclusive(new Runnable() {
 
+							@Override
 							public void run() {
 
 								Display.getCurrent().asyncExec(new Runnable() {
 
 
 
+									@Override
 									public void run() {
 
 										CompositeCommand cc = new CompositeCommand("Change Extension Name"); //$NON-NLS-1$

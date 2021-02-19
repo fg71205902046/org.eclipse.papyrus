@@ -175,7 +175,7 @@ public class TimingDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 				if (returnValue instanceof IAdaptable) {
 					final IAdaptable adaptable = (IAdaptable) returnValue;
-					final View lifelineView = (View) adaptable.getAdapter(View.class);
+					final View lifelineView = adaptable.getAdapter(View.class);
 					if (lifelineView == null) {
 						return CommandResult.newErrorCommandResult("Parent Lifeline not found"); //$NON-NLS-1$
 					}
@@ -211,7 +211,7 @@ public class TimingDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 				if (returnValue instanceof IAdaptable) {
 					final IAdaptable adaptable = (IAdaptable) returnValue;
-					final View lifelineView = (View) adaptable.getAdapter(View.class);
+					final View lifelineView = adaptable.getAdapter(View.class);
 					if (lifelineView == null) {
 						return CommandResult.newErrorCommandResult("Parent Lifeline not found"); //$NON-NLS-1$
 					}
@@ -311,7 +311,7 @@ public class TimingDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	/** @return the set of element ids for which we want to specialize the drop */
 	@Override
 	protected Set<String> getDroppableElementVisualId() {
-		return new HashSet<String>(Arrays.asList(SPECIFIC_DROP_ELEMENT_IDS));
+		return new HashSet<>(Arrays.asList(SPECIFIC_DROP_ELEMENT_IDS));
 	}
 
 	@Override
@@ -344,7 +344,7 @@ public class TimingDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 
 		final CompoundCommand cc = new CompoundCommand(Messages.TimingDiagramDragDropEditPolicy_Drop);
 
-		final List<Interaction> updatedInteractionsCache = new ArrayList<Interaction>();
+		final List<Interaction> updatedInteractionsCache = new ArrayList<>();
 		final List<?> droppedObjects = dropRequest.getObjects();
 
 		for (final Object droppedObject : droppedObjects) {

@@ -32,7 +32,7 @@ public class InteractionOverviewDiagramViewFactory extends DiagramViewFactory {
 
 	@Override
 	protected Diagram createDiagramView() {
-		
+
 		Diagram diagram = super.createDiagramView();
 		DiagramVersioningUtils.stampCurrentVersion(diagram);
 		return diagram;

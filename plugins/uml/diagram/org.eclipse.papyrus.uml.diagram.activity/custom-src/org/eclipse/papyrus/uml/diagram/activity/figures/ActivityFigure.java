@@ -445,10 +445,10 @@ public class ActivityFigure extends RoundedCompartmentFigure {
 		return fCompartmentFigure;
 	}
 
-	public void setRightAndBottomMargin(int rightAndBottomMargin){
+	public void setRightAndBottomMargin(int rightAndBottomMargin) {
 		ActivityLayoutManager lm = (ActivityLayoutManager) getLayoutManager();
 
-		if(lm != null){
+		if (lm != null) {
 			lm.setRightAndBottomMargin(rightAndBottomMargin);
 		}
 	}

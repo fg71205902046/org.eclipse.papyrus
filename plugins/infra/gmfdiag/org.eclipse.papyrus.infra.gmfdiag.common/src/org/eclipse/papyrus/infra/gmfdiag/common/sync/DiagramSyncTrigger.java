@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.common.sync;
@@ -50,7 +50,7 @@ public class DiagramSyncTrigger extends AbstractSyncTrigger {
 	}
 
 	Function<Object, Iterable<?>> synchronizedEditPartsFunction() {
-		return new Function<Object, Iterable<?>>() {
+		return new Function<>() {
 			@Override
 			public Iterable<?> apply(Object input) {
 				return getSynchronizedEditParts(input);
@@ -71,10 +71,10 @@ public class DiagramSyncTrigger extends AbstractSyncTrigger {
 	}
 
 	Iterable<? extends EditPart> getSynchronizedEditParts(final EditPartViewer viewer) {
-		return new Iterable<EditPart>() {
+		return new Iterable<>() {
 			@Override
 			public Iterator<EditPart> iterator() {
-				return new AbstractIterator<EditPart>() {
+				return new AbstractIterator<>() {
 					TreeIterator<EditPart> delegate = DiagramEditPartsUtil.getAllContents(viewer.getRootEditPart(), false);
 
 					@Override

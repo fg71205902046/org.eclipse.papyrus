@@ -222,7 +222,7 @@ public class MessageFormatParser extends AbstractElementTypeBasedAttributeParser
 
 	/**
 	 * @generated
-	 * 			{@inheritDoc}
+	 *            {@inheritDoc}
 	 * @see AbstractFeatureParser#getModificationCommand(EObject, EStructuralFeature, java.lang.Object)
 	 */
 	@Override
@@ -247,7 +247,7 @@ public class MessageFormatParser extends AbstractElementTypeBasedAttributeParser
 
 	/**
 	 * @generated
-	 * 			{@inheritDoc}
+	 *            {@inheritDoc}
 	 * @see AbstractAttributeParser#getValue(EObject, EStructuralFeature)
 	 */
 	@Override

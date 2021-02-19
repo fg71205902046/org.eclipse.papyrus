@@ -39,7 +39,7 @@ public final class GateUtils {
 	 * @return the elements (EObjects and Views) that should be deleted together with the Gate
 	 */
 	public static Collection<EObject> getElementsToDelete(final Gate gate) {
-		final Set<EObject> elementsToDestroy = new HashSet<EObject>();
+		final Set<EObject> elementsToDestroy = new HashSet<>();
 		final Collection<Setting> settings = EMFHelper.getUsages(gate);
 		for (final Setting setting : settings) {
 			// delete messages originating from or going to that gate

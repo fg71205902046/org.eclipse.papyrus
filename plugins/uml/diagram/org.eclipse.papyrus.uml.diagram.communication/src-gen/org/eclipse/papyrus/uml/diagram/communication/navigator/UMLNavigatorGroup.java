@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  * 
+  *
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License 2.0
   * which accompanies this distribution, and is available at
   * https://www.eclipse.org/legal/epl-2.0/
   *
   * SPDX-License-Identifier: EPL-2.0
-  * 
+  *
   * Contributors:
   *  CEA LIST - Initial API and implementation
  */
@@ -34,7 +34,7 @@ public class UMLNavigatorGroup extends UMLAbstractNavigatorItem {
 	/**
 	 * @generated
 	 */
-	private Collection<java.lang.Object> myChildren = new LinkedList<java.lang.Object>();
+	private Collection<java.lang.Object> myChildren = new LinkedList<>();
 
 	/**
 	 * @generated
@@ -90,6 +90,7 @@ public class UMLNavigatorGroup extends UMLAbstractNavigatorItem {
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof org.eclipse.papyrus.uml.diagram.communication.navigator.UMLNavigatorGroup) {
 			org.eclipse.papyrus.uml.diagram.communication.navigator.UMLNavigatorGroup anotherGroup = (org.eclipse.papyrus.uml.diagram.communication.navigator.UMLNavigatorGroup) obj;
@@ -103,6 +104,7 @@ public class UMLNavigatorGroup extends UMLAbstractNavigatorItem {
 	/**
 	 * @generated
 	 */
+	@Override
 	public int hashCode() {
 		return getGroupName().hashCode();
 	}

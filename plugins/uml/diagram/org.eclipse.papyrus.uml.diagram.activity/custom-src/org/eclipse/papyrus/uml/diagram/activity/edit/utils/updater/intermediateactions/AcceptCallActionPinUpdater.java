@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions;
@@ -39,7 +39,7 @@ public class AcceptCallActionPinUpdater extends AbstractActionPinUpdater<AcceptC
 	 * @see org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.IPinUpdater#updatePins(org.eclipse.uml2.uml.ActivityNode)
 	 *
 	 * @param node
-	 * 
+	 *
 	 */
 	@Override
 	public void updatePins(AcceptCallAction node) {
@@ -48,11 +48,11 @@ public class AcceptCallActionPinUpdater extends AbstractActionPinUpdater<AcceptC
 			List<OutputPin> keepOutputPins = new ArrayList<>();
 
 			// 1] create return information pin if it is not created yet
-			OutputPin returnInformation = ((AcceptCallAction) node).getReturnInformation();
+			OutputPin returnInformation = node.getReturnInformation();
 			if (returnInformation == null) {
 				returnInformation = UMLFactory.eINSTANCE.createOutputPin();
 				returnInformation.setName("return information"); //$NON-NLS-1$
-				((AcceptCallAction) node).setReturnInformation(returnInformation);
+				node.setReturnInformation(returnInformation);
 				// set isUnmarshall to true because according to the UML norm it should not be false
 				node.setIsUnmarshall(true);
 			}

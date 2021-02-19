@@ -99,13 +99,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Extended request data key to hold editpart visual id.
-	 * 
+	 *
 	 * @generated
 	 */
 	public static final String VISUAL_ID_KEY = "visual_id"; //$NON-NLS-1$
 	/**
 	 * Extended request data key to hold the edge view during a reconnect request.
-	 * 
+	 *
 	 * @generated
 	 */
 	public static final String GRAPHICAL_RECONNECTED_EDGE = "graphical_edge"; //$NON-NLS-1$
@@ -149,7 +149,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Returns visual id from request parameters.
-	 * 
+	 *
 	 * @generated
 	 */
 	protected String getVisualID(IEditCommandRequest request) {
@@ -348,7 +348,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Returns editing domain from the host edit part.
-	 * 
+	 *
 	 * @generated
 	 */
 	protected TransactionalEditingDomain getEditingDomain() {
@@ -357,7 +357,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Clean all shortcuts to the host element from the same diagram
-	 * 
+	 *
 	 * @generated
 	 */
 	protected void addDestroyShortcutsCommand(ICompositeCommand cmd, View view) {
@@ -777,7 +777,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		public boolean canExistInformationFlow_Edge(Package container, InformationFlow linkInstance,
 				NamedElement source, NamedElement target) {
 			try {
-				//Information Flow source constraint
+				// Information Flow source constraint
 				if (source != null) {
 					if (!((source instanceof Actor)
 							|| (source instanceof Node)
@@ -804,7 +804,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 						}
 					}
 				}
-				//Information Flow target constraint
+				// Information Flow target constraint
 				if (target != null) {
 					if (!((target instanceof Actor)
 							|| (target instanceof Node)

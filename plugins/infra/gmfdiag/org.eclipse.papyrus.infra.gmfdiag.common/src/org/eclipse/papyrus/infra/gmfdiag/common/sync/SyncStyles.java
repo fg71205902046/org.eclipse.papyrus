@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.common.sync;
@@ -149,12 +149,12 @@ public class SyncStyles {
 	/**
 	 * Queries whether the specified {@code feature} of a {@code view} is synchronized. A feature that is not excluded by
 	 * the <tt>papyrus-sync-exclude</tt> style is synchronized.
-	 * 
+	 *
 	 * @param view
 	 *            a diagram view
 	 * @param feature
 	 *            the name/key of the synchronizable feature. This does not necessarily correspond to the name of any feature in any Ecore model but is more abstract than that
-	 * 
+	 *
 	 * @return whether the {@code feature} is synchronized for this {@code view}
 	 */
 	public static boolean isSynchronized(View view, String feature) {
@@ -165,14 +165,14 @@ public class SyncStyles {
 	/**
 	 * Sets whether the specified {@code feature} of a {@code view} is excluded from synchronization. A feature that is not excluded by
 	 * the <tt>papyrus-sync-exclude</tt> style is synchronized.
-	 * 
+	 *
 	 * @param view
 	 *            a diagram view
 	 * @param feature
 	 *            the name/key of the synchronizable feature. This does not necessarily correspond to the name of any feature in any Ecore model but is more abstract than that
 	 * @param excluded
 	 *            whether the {@code feature} is excluded from synchronization
-	 * 
+	 *
 	 * @see #createSetExcludedCommand(View, String, boolean)
 	 */
 	@SuppressWarnings("unchecked")
@@ -212,7 +212,7 @@ public class SyncStyles {
 	/**
 	 * Creates a command that sets whether the specified {@code feature} of a {@code view} is excluded from synchronization. A feature
 	 * that is not excluded by the <tt>papyrus-sync-exclude</tt> style is synchronized.
-	 * 
+	 *
 	 * @param view
 	 *            a diagram view
 	 * @param feature

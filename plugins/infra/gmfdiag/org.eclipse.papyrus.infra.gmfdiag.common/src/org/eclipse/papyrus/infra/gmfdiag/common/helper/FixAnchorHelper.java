@@ -90,7 +90,7 @@ public class FixAnchorHelper {
 	 * @param moveDirection
 	 *            the direction for the resize/move
 	 * @return
-	 * 		the command to fix the anchor or <code>null</code> if we can't fix it
+	 *         the command to fix the anchor or <code>null</code> if we can't fix it
 	 */
 	public Command getFixIdentityAnchorCommand(final INodeEditPart node, final Point move, final Dimension sizeDelta, int moveDirection) {
 		final CompoundCommand cc = new CompoundCommand("Fix All Anchors Command"); //$NON-NLS-1$
@@ -138,7 +138,7 @@ public class FixAnchorHelper {
 	 * @param sourcePoint
 	 *            if <code>true</code> we return the source point and if false we return the end point
 	 * @return
-	 * 		the real point to fix
+	 *         the real point to fix
 	 */
 	protected Point getRealAnchorPoint(final AbstractConnectionEditPart edgeEP, final boolean sourcePoint) {
 		final IFigure figure = edgeEP.getFigure();
@@ -181,7 +181,7 @@ public class FixAnchorHelper {
 	 * @param p
 	 *            the real anchor point in absolute coordinate
 	 * @return
-	 * 		the anchor representing the point to fix
+	 *         the anchor representing the point to fix
 	 */
 	protected IdentityAnchor getIdentityAnchor(final AbstractConnectionEditPart edgeEP, final boolean sourcePoint, final INodeEditPart nodeEP, final Point p) {
 		final View view = (View) edgeEP.getAdapter(View.class);
@@ -320,7 +320,7 @@ public class FixAnchorHelper {
 	 * @param fixingSource
 	 *            if <code>true</code> we are fixing the source anchor and if <code>false</code> we are fixing the target anchor
 	 * @return
-	 * 		the direction of the manipulated anchor (according to {@link PositionConstants}
+	 *         the direction of the manipulated anchor (according to {@link PositionConstants}
 	 */
 	protected int getSideOfConnectionPoint(final IFigure nodeFigure, final AbstractConnectionEditPart edgeEP, final boolean fixingSource) {
 		int side = -1;

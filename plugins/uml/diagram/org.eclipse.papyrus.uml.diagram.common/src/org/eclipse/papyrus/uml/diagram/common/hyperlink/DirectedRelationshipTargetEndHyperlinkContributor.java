@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Shuai Li (CEA LIST) <shuai.li@cea.fr> - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.common.hyperlink;
@@ -39,7 +39,7 @@ import org.eclipse.uml2.uml.Element;
 /**
  * Returns a list of HyperLinkSpecificObjects (view elements) referencing
  * targets of the directed relationship
- * 
+ *
  * @author Shuai Li
  *
  */
@@ -53,12 +53,12 @@ public class DirectedRelationshipTargetEndHyperlinkContributor implements Hyperl
 	 */
 	@Override
 	public List<HyperLinkObject> getHyperlinks(Object fromElement) {
-		ArrayList<HyperLinkObject> hyperlinks = new ArrayList<HyperLinkObject>();
+		ArrayList<HyperLinkObject> hyperlinks = new ArrayList<>();
 
 		if (fromElement instanceof DirectedRelationship) {
 			List<Element> targets = ((DirectedRelationship) fromElement).getTargets();
 
-			List<Object> objectsInViews = new ArrayList<Object>();
+			List<Object> objectsInViews = new ArrayList<>();
 
 			for (Element target : targets) {
 				ViewerSearchService viewerSearchService = null;

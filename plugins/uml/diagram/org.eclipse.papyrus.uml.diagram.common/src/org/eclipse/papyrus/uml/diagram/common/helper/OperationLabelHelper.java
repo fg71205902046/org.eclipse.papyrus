@@ -12,7 +12,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) - Initial API and implementation
  *  Gabriel Pascual (ALL4TEC) - Bug 359270
- *  Benoît Maggi (CEA LIST) - Bug 516045 ClassCastException when opening a diagram 
+ *  Benoît Maggi (CEA LIST) - Bug 516045 ClassCastException when opening a diagram
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.helper;
 
@@ -53,7 +53,7 @@ public class OperationLabelHelper extends StereotypedElementLabelHelper {
 	}
 
 	/** Map for masks */
-	protected final Map<String, String> masks = new HashMap<String, String>();
+	protected final Map<String, String> masks = new HashMap<>();
 
 	/**
 	 * Creates a new Operation label helper.
@@ -94,7 +94,7 @@ public class OperationLabelHelper extends StereotypedElementLabelHelper {
 			IMaskManagedLabelEditPolicy policy = (IMaskManagedLabelEditPolicy) editPart.getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
 			if (policy != null) {
 				displayValue = policy.getCurrentDisplayValue();
-			}			
+			}
 			elementLabel = OperationUtil.getCustomLabel(umlElement, displayValue);
 		}
 		return elementLabel;
@@ -123,8 +123,8 @@ public class OperationLabelHelper extends StereotypedElementLabelHelper {
 				operation = (Operation) element;
 			} else {
 				Activator.log.warn("Operation Label Helper should only be applied on operation. " //$NON-NLS-1$
-						+ "Probably something else is present in the operation compartment, check: "+EcoreUtil.getID(view)+ //$NON-NLS-1$
-						" or "+EcoreUtil.getIdentification(view)); //$NON-NLS-1$
+						+ "Probably something else is present in the operation compartment, check: " + EcoreUtil.getID(view) + //$NON-NLS-1$
+						" or " + EcoreUtil.getIdentification(view)); //$NON-NLS-1$
 			}
 		}
 		return operation;

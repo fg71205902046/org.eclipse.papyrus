@@ -41,10 +41,10 @@ public class CustomMessageName5EditPart extends MessageDeleteNameEditPart implem
 	public CustomMessageName5EditPart(View view) {
 		super(view);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncNameEditPart#createDefaultEditPolicies()
 	 */
 	@Override

@@ -94,16 +94,25 @@ public class Messages extends NLS {
 	public static String PastePreferencesPage_KeepReferenceDescription;
 
 	// Palette UI //
-	/** LAbel for the standard group 
-	 * @since 3.0*/
+	/**
+	 * LAbel for the standard group
+	 *
+	 * @since 3.0
+	 */
 	public static String StandardGroup_Label;
 
-	/** label for the palette action in the palette viewer menu 
-	 * @since 3.0*/
+	/**
+	 * label for the palette action in the palette viewer menu
+	 *
+	 * @since 3.0
+	 */
 	public static String Palette_Action_Label;
 
-	/** tooltip for the palette action in the palette viewer menu 
-	 * @since 3.0*/
+	/**
+	 * tooltip for the palette action in the palette viewer menu
+	 *
+	 * @since 3.0
+	 */
 	public static String Palette_Action_Tooltip;
 
 	/**

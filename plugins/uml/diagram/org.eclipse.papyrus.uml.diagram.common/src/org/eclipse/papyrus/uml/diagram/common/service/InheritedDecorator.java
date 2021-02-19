@@ -40,9 +40,9 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.layout.OverlayLocator;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.common.util.Util;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Classifier;
@@ -140,7 +140,7 @@ public class InheritedDecorator implements IDecorator {
 	 */
 	static public Node getDecoratorTargetNode(IDecoratorTarget decoratorTarget) {
 		DescriptionStyle descStyle = null;
-		View node = (View) decoratorTarget.getAdapter(View.class);
+		View node = decoratorTarget.getAdapter(View.class);
 		if (node != null && !(node instanceof Diagram)) {
 			descStyle = (DescriptionStyle) node.getStyle(NotationPackage.eINSTANCE.getDescriptionStyle());
 
@@ -162,7 +162,7 @@ public class InheritedDecorator implements IDecorator {
 		removeDecoration();
 
 		Node node = getDecoratorTargetNode(getDecoratorTarget());
-		IGraphicalEditPart gep = (IGraphicalEditPart) getDecoratorTarget().getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart gep = getDecoratorTarget().getAdapter(IGraphicalEditPart.class);
 
 		if (node != null) {
 			DescriptionStyle descStyle = getDescriptionStyle(node);
@@ -212,7 +212,7 @@ public class InheritedDecorator implements IDecorator {
 	 * @return a figure corresponding to this image
 	 */
 	public IFigure getFigure(Image image) {
-		IMapMode mm = MapModeUtil.getMapMode(((IGraphicalEditPart) getDecoratorTarget().getAdapter(IGraphicalEditPart.class)).getFigure());
+		IMapMode mm = MapModeUtil.getMapMode(getDecoratorTarget().getAdapter(IGraphicalEditPart.class).getFigure());
 		ImageFigure fig = new ImageFigure();
 		fig.setImage(image);
 		fig.setSize(mm.DPtoLP(image.getBounds().width), mm.DPtoLP(image.getBounds().height));
@@ -227,13 +227,13 @@ public class InheritedDecorator implements IDecorator {
 	 * @return the direction to set the decorator for the node direction can be
 	 *         :
 	 *         <ul>
-	 *         <li> {@link PositionConstants#NORTH_WEST} or {@link PositionConstants#SOUTH_EAST}</li> if the node is an Affixed Child Node
+	 *         <li>{@link PositionConstants#NORTH_WEST} or {@link PositionConstants#SOUTH_EAST}</li> if the node is an Affixed Child Node
 	 *         <li>{@link PositionConstants#EAST}</li> if the node is in a compartment list
 	 *         <li>{@link PositionConstants#SOUTH_EAST}</li> in other cases
 	 *         </ul>
 	 */
 	protected Direction getDirection(Node node) {
-		IGraphicalEditPart gep = (IGraphicalEditPart) getDecoratorTarget().getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart gep = getDecoratorTarget().getAdapter(IGraphicalEditPart.class);
 		assert gep != null;
 		// test if its an affixed ChildNode
 		// if(Util.isAffixedChildNode(gep)) {
@@ -271,7 +271,7 @@ public class InheritedDecorator implements IDecorator {
 	 * @return <code>true</code> if the compartment is managed by an {@link XYLayoutEditPolicy}
 	 */
 	protected boolean isInCompartmentList(Node node) {
-		IGraphicalEditPart gep = (IGraphicalEditPart) getDecoratorTarget().getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart gep = getDecoratorTarget().getAdapter(IGraphicalEditPart.class);
 		if (gep != null && gep.getRoot() != null) {
 			EObject container = node.eContainer();
 			if (container instanceof View) {
@@ -351,7 +351,7 @@ public class InheritedDecorator implements IDecorator {
 
 			if (notification.getEventType() == Notification.REMOVE) {
 				if (notification.getNotifier() instanceof Classifier) {
-					IGraphicalEditPart gep = (IGraphicalEditPart) getDecoratorTarget().getAdapter(IGraphicalEditPart.class);
+					IGraphicalEditPart gep = getDecoratorTarget().getAdapter(IGraphicalEditPart.class);
 					assert gep != null;
 					// we remove the listener on the container (because it's
 					// changing
@@ -377,7 +377,7 @@ public class InheritedDecorator implements IDecorator {
 	@Override
 	public void activate() {
 
-		IGraphicalEditPart gep = (IGraphicalEditPart) getDecoratorTarget().getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart gep = getDecoratorTarget().getAdapter(IGraphicalEditPart.class);
 		assert gep != null;
 		View view = ((View) gep.getModel());
 
@@ -455,7 +455,7 @@ public class InheritedDecorator implements IDecorator {
 	public void deactivate() {
 		removeDecoration();
 
-		IGraphicalEditPart gep = (IGraphicalEditPart) getDecoratorTarget().getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart gep = getDecoratorTarget().getAdapter(IGraphicalEditPart.class);
 		assert gep != null;
 		DiagramEventBroker.getInstance(gep.getEditingDomain()).removeNotificationListener(gep.getNotationView(), notificationListener);
 		View view = ((View) gep.getModel());

@@ -172,7 +172,7 @@ public class CommandUtil {
 			// Just re-use the existing transaction
 			command.execute();
 		} else {
-		domain.getCommandStack().execute(command);
+			domain.getCommandStack().execute(command);
 		}
 	}
 
@@ -220,9 +220,9 @@ public class CommandUtil {
 			// Have to go the unprotected route. Hopefully the context is an
 			// edit-part refresh or something else that is not in a higher
 			// recorded edit command scope that needs to be undoable
-		try {
-			GMFUnsafe.write(domain, command);
-		} catch (Exception e) {
+			try {
+				GMFUnsafe.write(domain, command);
+			} catch (Exception e) {
 				// Failed to create the unprotected transaction or it rolled back
 				Activator.log.error("Unprotected command execution failed.", e); //$NON-NLS-1$
 			}
@@ -259,7 +259,7 @@ public class CommandUtil {
 	 */
 	private static void executeCommand(final ICommand command, final TransactionalEditingDomain domain) {
 		executeCommand(GMFtoEMFCommandWrapper.wrap(command), domain);
-		}
+	}
 
 	/**
 	 * Executes a {@code command} in the safest possible way within the context of
@@ -277,9 +277,9 @@ public class CommandUtil {
 			// Have to go the unprotected route. Hopefully the context is an
 			// edit-part refresh or something else that is not in a higher
 			// recorded edit command scope that needs to be undoable
-		try {
-			GMFUnsafe.write(domain, command);
-		} catch (Exception e) {
+			try {
+				GMFUnsafe.write(domain, command);
+			} catch (Exception e) {
 				// Failed to create the unprotected transaction or it rolled back
 				Activator.log.error("Unprotected command execution failed.", e); //$NON-NLS-1$
 			}

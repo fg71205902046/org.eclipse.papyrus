@@ -249,7 +249,7 @@ public class Zone {
 		// get the stateMachine compartment
 		View stateMachineCompartment = (View) region.eContainer();
 		// then the list of regions
-		List<View> regionList = new ArrayList<View>();
+		List<View> regionList = new ArrayList<>();
 		for (Object child : stateMachineCompartment.getChildren()) {
 			if (child instanceof View) {
 				regionList.add((View) child);
@@ -284,7 +284,7 @@ public class Zone {
 		// get the stateMachine compartment
 		View stateMachineCompartment = (View) region.eContainer();
 		// then the list of regions
-		List<View> regionList = new ArrayList<View>();
+		List<View> regionList = new ArrayList<>();
 		for (Object child : stateMachineCompartment.getChildren()) {
 			if (child instanceof View) {
 				regionList.add((View) child);
@@ -319,7 +319,7 @@ public class Zone {
 		// get the stateMachine compartment
 		View stateMachineCompartment = (View) region.eContainer();
 		// then the list of regions
-		List<View> regionList = new ArrayList<View>();
+		List<View> regionList = new ArrayList<>();
 		for (Object child : stateMachineCompartment.getChildren()) {
 			if (child instanceof View) {
 				regionList.add((View) child);
@@ -354,7 +354,7 @@ public class Zone {
 		// get the stateMachine compartment
 		View stateMachineCompartment = (View) region.eContainer();
 		// then the list of regions
-		List<View> regionList = new ArrayList<View>();
+		List<View> regionList = new ArrayList<>();
 		for (Object child : stateMachineCompartment.getChildren()) {
 			if (child instanceof View) {
 				regionList.add((View) child);
@@ -389,7 +389,7 @@ public class Zone {
 		// get the stateMachine compartment
 		View stateMachineCompartment = (View) region.eContainer();
 		// then the list of regions
-		List<View> regionList = new ArrayList<View>();
+		List<View> regionList = new ArrayList<>();
 		for (Object child : stateMachineCompartment.getChildren()) {
 			if (child instanceof View) {
 				regionList.add((View) child);
@@ -424,7 +424,7 @@ public class Zone {
 		// get the stateMachine compartment
 		View stateMachineCompartment = (View) region.eContainer();
 		// then the list of regions
-		List<View> regionList = new ArrayList<View>();
+		List<View> regionList = new ArrayList<>();
 		for (Object child : stateMachineCompartment.getChildren()) {
 			if (child instanceof View) {
 				regionList.add((View) child);
@@ -459,7 +459,7 @@ public class Zone {
 		// get the stateMachine compartment
 		View stateMachineCompartment = (View) region.eContainer();
 		// then the list of regions
-		List<View> regionList = new ArrayList<View>();
+		List<View> regionList = new ArrayList<>();
 		for (Object child : stateMachineCompartment.getChildren()) {
 			if (child instanceof View) {
 				regionList.add((View) child);
@@ -494,7 +494,7 @@ public class Zone {
 		// get the stateMachine compartment
 		View stateMachineCompartment = (View) region.eContainer();
 		// then the list of regions
-		List<View> regionList = new ArrayList<View>();
+		List<View> regionList = new ArrayList<>();
 		for (Object child : stateMachineCompartment.getChildren()) {
 			if (child instanceof View) {
 				regionList.add((View) child);

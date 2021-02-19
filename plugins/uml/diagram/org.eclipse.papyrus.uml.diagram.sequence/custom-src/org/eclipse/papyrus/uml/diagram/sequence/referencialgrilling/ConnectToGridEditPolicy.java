@@ -28,29 +28,33 @@ import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
 
 /**
- * This class is  a class that contains method to set position to the grid
+ * This class is a class that contains method to set position to the grid
  *
  */
 public abstract class ConnectToGridEditPolicy extends GraphicalEditPolicyEx implements AutomaticNotationEditPolicy, IGrillingEditpolicy {
 
-	protected int displayImprecision=2;
+	protected int displayImprecision = 2;
 
 	/**
 	 * update an axis of the grid from coordinate X or Y
-	 * @param axis the axis to update
-	 * @param x the coordinate x
-	 * @param y the coordinate y
+	 *
+	 * @param axis
+	 *            the axis to update
+	 * @param x
+	 *            the coordinate x
+	 * @param y
+	 *            the coordinate y
 	 */
 	protected void updatePositionGridAxis(DecorationNode axis, int x, int y) {
-		Location currentBounds=(Location)	axis.getLayoutConstraint();
-		if(x<currentBounds.getX()-displayImprecision||x>currentBounds.getX()+displayImprecision){
+		Location currentBounds = (Location) axis.getLayoutConstraint();
+		if (x < currentBounds.getX() - displayImprecision || x > currentBounds.getX() + displayImprecision) {
 			UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+---->ACTION: modifiy AXIS FINISH to  x=" + x);//$NON-NLS-1$
-			execute( new SetLocationCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update Column", new EObjectAdapter(axis), new Point(x,y)));
+			execute(new SetLocationCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update Column", new EObjectAdapter(axis), new Point(x, y)));
 
 		}
-		if(y<currentBounds.getY()-displayImprecision||y>currentBounds.getY()+displayImprecision){
+		if (y < currentBounds.getY() - displayImprecision || y > currentBounds.getY() + displayImprecision) {
 			UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+---->ACTION: modifiy AXIS FINISH to  y=" + y);//$NON-NLS-1$
-			execute( new SetLocationCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update row", new EObjectAdapter(axis), new Point(x,y)));
+			execute(new SetLocationCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update row", new EObjectAdapter(axis), new Point(x, y)));
 		}
 	}
 

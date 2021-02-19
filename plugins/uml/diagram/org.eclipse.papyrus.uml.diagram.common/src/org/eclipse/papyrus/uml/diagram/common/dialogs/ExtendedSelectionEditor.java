@@ -409,12 +409,10 @@ public class ExtendedSelectionEditor extends Composite implements SelectionListe
 	protected void move(java.util.List<Object> list, int oldIndex, int newIndex) {
 		int size = list.size();
 
-		if (oldIndex < 0 || oldIndex >= size)
-		{
+		if (oldIndex < 0 || oldIndex >= size) {
 			throw new IndexOutOfBoundsException("oldIndex: " + oldIndex + ", size:" + size); //$NON-NLS-1$ //$NON-NLS-2$
 		}
-		if (newIndex < 0 || newIndex >= size)
-		{
+		if (newIndex < 0 || newIndex >= size) {
 			throw new IndexOutOfBoundsException("newIndex: " + newIndex + ", size:" + size); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 		Object element = list.remove(oldIndex);

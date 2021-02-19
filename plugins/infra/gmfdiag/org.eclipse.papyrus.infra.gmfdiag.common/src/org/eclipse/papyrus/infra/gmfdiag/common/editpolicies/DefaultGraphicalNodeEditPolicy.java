@@ -115,12 +115,12 @@ public class DefaultGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	/**
 	 * Method that allow to add a command that will be executed after the connection creation
 	 * Exemple: Fixing the Edge Anchor
-	 * 
+	 *
 	 * @param request
 	 *            Initial Connection creation Request
 	 * @param editingDomain
 	 *            The editing Domain
-	 * 
+	 *
 	 * @return The Command to be executed after the creation of the connection View and element
 	 */
 	protected ICommand getAfterConnectionCompleteCommand(CreateConnectionViewAndElementRequest request, final TransactionalEditingDomain editingDomain) {
@@ -247,7 +247,7 @@ public class DefaultGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	/**
 	 *
 	 * @return
-	 * 		the editing domain to use
+	 *         the editing domain to use
 	 */
 	protected final TransactionalEditingDomain getEditingDomain() {
 		try {

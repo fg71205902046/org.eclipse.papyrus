@@ -25,6 +25,7 @@ import org.eclipse.ui.IEditorPart;
 
 /**
  * A provider configuration for the PapyrusPaletteService.
+ *
  * @since 3.0
  */
 public class XMLPaletteProviderConfiguration extends AbstractProviderConfiguration {

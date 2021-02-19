@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gmf.runtime.emf.core.GMFEditingDomainFactory;
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -60,10 +61,11 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	@SuppressWarnings({ "unchecked", "serial", "rawtypes" })
 	public UMLNavigatorContentProvider() {
-		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE
+		TransactionalEditingDomain editingDomain = WorkspaceEditingDomainFactory.INSTANCE
 				.createEditingDomain();
 		myEditingDomain = (AdapterFactoryEditingDomain) editingDomain;
 		myEditingDomain.setResourceToReadOnlyMap(new HashMap() {
+			@Override
 			public Object get(Object key) {
 				if (!containsKey(key)) {
 					put(key, Boolean.TRUE);
@@ -72,6 +74,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 			}
 		});
 		myViewerRefreshRunnable = new Runnable() {
+			@Override
 			public void run() {
 				if (myViewer != null) {
 					myViewer.refresh();
@@ -80,21 +83,25 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		};
 		myWorkspaceSynchronizer = new WorkspaceSynchronizer(editingDomain,
 				new WorkspaceSynchronizer.Delegate() {
+					@Override
 					public void dispose() {
 					}
 
+					@Override
 					public boolean handleResourceChanged(final Resource resource) {
 						unloadAllResources();
 						asyncRefresh();
 						return true;
 					}
 
+					@Override
 					public boolean handleResourceDeleted(Resource resource) {
 						unloadAllResources();
 						asyncRefresh();
 						return true;
 					}
 
+					@Override
 					public boolean handleResourceMoved(Resource resource,
 							final URI newURI) {
 						unloadAllResources();
@@ -107,6 +114,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	public void dispose() {
 		myWorkspaceSynchronizer.dispose();
 		myWorkspaceSynchronizer = null;
@@ -120,6 +128,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		myViewer = viewer;
 	}
@@ -147,6 +156,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	public Object[] getElements(Object inputElement) {
 		return getChildren(inputElement);
 	}
@@ -154,24 +164,28 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	public void restoreState(IMemento aMemento) {
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	public void saveState(IMemento aMemento) {
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	public void init(ICommonContentExtensionSite aConfig) {
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	public Object[] getChildren(Object parentElement) {
 		if (parentElement instanceof IFile) {
 			IFile file = (IFile) parentElement;
@@ -179,8 +193,8 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 					.toString(), true);
 			Resource resource = myEditingDomain.getResourceSet().getResource(
 					fileURI, true);
-			ArrayList<UMLNavigatorItem> result = new ArrayList<UMLNavigatorItem>();
-			ArrayList<View> topViews = new ArrayList<View>(resource
+			ArrayList<UMLNavigatorItem> result = new ArrayList<>();
+			ArrayList<View> topViews = new ArrayList<>(resource
 					.getContents().size());
 			for (EObject o : resource.getContents()) {
 				if (o instanceof View) {
@@ -216,7 +230,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		switch (UMLVisualIDRegistry.getVisualID(view)) {
 
 		case ModelEditPart.VISUAL_ID: {
-			LinkedList<UMLAbstractNavigatorItem> result = new LinkedList<UMLAbstractNavigatorItem>();
+			LinkedList<UMLAbstractNavigatorItem> result = new LinkedList<>();
 			Diagram sv = (Diagram) view;
 			Collection<View> connectedViews;
 			connectedViews = getChildrenByType(Collections.singleton(sv),
@@ -234,7 +248,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private Collection<View> getLinksSourceByType(Collection<Edge> edges,
 			String type) {
-		LinkedList<View> result = new LinkedList<View>();
+		LinkedList<View> result = new LinkedList<>();
 		for (Edge nextEdge : edges) {
 			View nextEdgeSource = nextEdge.getSource();
 			if (type.equals(nextEdgeSource.getType())
@@ -250,7 +264,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private Collection<View> getLinksTargetByType(Collection<Edge> edges,
 			String type) {
-		LinkedList<View> result = new LinkedList<View>();
+		LinkedList<View> result = new LinkedList<>();
 		for (Edge nextEdge : edges) {
 			View nextEdgeTarget = nextEdge.getTarget();
 			if (type.equals(nextEdgeTarget.getType())
@@ -266,7 +280,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private Collection<View> getOutgoingLinksByType(
 			Collection<? extends View> nodes, String type) {
-		LinkedList<View> result = new LinkedList<View>();
+		LinkedList<View> result = new LinkedList<>();
 		for (View nextNode : nodes) {
 			result.addAll(selectViewsByType(nextNode.getSourceEdges(), type));
 		}
@@ -278,7 +292,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private Collection<View> getIncomingLinksByType(
 			Collection<? extends View> nodes, String type) {
-		LinkedList<View> result = new LinkedList<View>();
+		LinkedList<View> result = new LinkedList<>();
 		for (View nextNode : nodes) {
 			result.addAll(selectViewsByType(nextNode.getTargetEdges(), type));
 		}
@@ -290,7 +304,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private Collection<View> getChildrenByType(
 			Collection<? extends View> nodes, String type) {
-		LinkedList<View> result = new LinkedList<View>();
+		LinkedList<View> result = new LinkedList<>();
 		for (View nextNode : nodes) {
 			result.addAll(selectViewsByType(nextNode.getChildren(), type));
 		}
@@ -302,7 +316,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private Collection<View> getDiagramLinksByType(
 			Collection<Diagram> diagrams, String type) {
-		ArrayList<View> result = new ArrayList<View>();
+		ArrayList<View> result = new ArrayList<>();
 		for (Diagram nextDiagram : diagrams) {
 			result.addAll(selectViewsByType(nextDiagram.getEdges(), type));
 		}
@@ -315,7 +329,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private Collection<View> selectViewsByType(Collection<View> views,
 			String type) {
-		ArrayList<View> result = new ArrayList<View>();
+		ArrayList<View> result = new ArrayList<>();
 		for (View nextView : views) {
 			if (type.equals(nextView.getType()) && isOwnView(nextView)) {
 				result.add(nextView);
@@ -337,7 +351,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private Collection<UMLNavigatorItem> createNavigatorItems(
 			Collection<View> views, Object parent, boolean isLeafs) {
-		ArrayList<UMLNavigatorItem> result = new ArrayList<UMLNavigatorItem>(
+		ArrayList<UMLNavigatorItem> result = new ArrayList<>(
 				views.size());
 		for (View nextView : views) {
 			result.add(new UMLNavigatorItem(nextView, parent, isLeafs));
@@ -348,6 +362,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	public Object getParent(Object element) {
 		if (element instanceof UMLAbstractNavigatorItem) {
 			UMLAbstractNavigatorItem abstractNavigatorItem = (UMLAbstractNavigatorItem) element;
@@ -359,6 +374,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean hasChildren(Object element) {
 		return element instanceof IFile || getChildren(element).length > 0;
 	}

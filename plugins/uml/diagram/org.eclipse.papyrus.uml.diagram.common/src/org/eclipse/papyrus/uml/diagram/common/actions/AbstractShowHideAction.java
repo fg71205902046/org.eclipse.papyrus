@@ -177,7 +177,7 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 	 * @return the list of all elements
 	 */
 	protected Object[] getExpandedElements() {
-		List<Object> allElements = new ArrayList<Object>();
+		List<Object> allElements = new ArrayList<>();
 		for (EditPartRepresentation current : this.representations) {
 			allElements.add(current);
 			allElements.addAll(current.getPossibleElement());
@@ -224,7 +224,7 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 	public void selectionChanged(IAction action, ISelection selection) {
 		boolean enabled = false;
 		if (editPolicyKey != null) {
-			selectedElements = new ArrayList<IGraphicalEditPart>();
+			selectedElements = new ArrayList<>();
 			if (selection instanceof StructuredSelection) {
 				for (Object current : ((StructuredSelection) selection).toArray()) {
 					if (current instanceof IGraphicalEditPart) {
@@ -248,7 +248,7 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 	 * Initialize
 	 * <ul>
 	 * <li>{@link #labelProvider}</li>
-	 * <li> {@link #representations}</li>
+	 * <li>{@link #representations}</li>
 	 * </ul>
 	 *
 	 * This method should be override by subclasses to initialize {@link #contentProvider} for example.
@@ -256,7 +256,7 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 	 */
 	protected void initAction() {
 		this.labelProvider = new EditPartRepresentationLabelProvider();
-		this.representations = new ArrayList<AbstractShowHideAction.EditPartRepresentation>();
+		this.representations = new ArrayList<>();
 	}
 
 	/**
@@ -273,7 +273,7 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 	 * Build the initial selection for the tree
 	 */
 	protected void buildInitialSelection() {
-		this.initialSelection = new ArrayList<Object>();
+		this.initialSelection = new ArrayList<>();
 		for (EditPartRepresentation current : this.representations) {
 			contributeToInitialSelection(initialSelection, current);
 		}
@@ -309,15 +309,15 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 	 * hide
 	 * <ul>
 	 * <li>{@link #viewsToCreate}</li>
-	 * <li> {@link #viewsToDestroy}</li>
+	 * <li>{@link #viewsToDestroy}</li>
 	 * </ul>
 	 *
 	 * @param result
 	 *            the interesting element selected in the tree
 	 */
 	protected void buildShowHideElementsList(Object[] result) {
-		this.viewsToCreate = new ArrayList<EditPartRepresentation>();
-		this.viewsToDestroy = new ArrayList<EditPartRepresentation>();
+		this.viewsToCreate = new ArrayList<>();
+		this.viewsToDestroy = new ArrayList<>();
 	}
 
 	/**
@@ -470,13 +470,13 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 		/**
 		 * initialize the following fields
 		 * <ul>
-		 * <li> {@link #initialSelection}</li>
+		 * <li>{@link #initialSelection}</li>
 		 * <li>{@link #elementsToSelect}</li>
 		 * </ul>
 		 */
 		protected void initRepresentation() {
-			this.initialSelection = new ArrayList<EditPartRepresentation>();
-			this.elementsToSelect = new ArrayList<EditPartRepresentation>();
+			this.initialSelection = new ArrayList<>();
+			this.elementsToSelect = new ArrayList<>();
 		}
 
 		/**

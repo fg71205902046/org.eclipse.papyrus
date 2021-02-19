@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2014 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -88,7 +88,7 @@ public class LabelPrimarySelectionEditPolicy extends SelectionHandlesEditPolicy 
 
 		/**
 		 * Returns the style line for the border of the handle.
-		 * 
+		 *
 		 * @return the style line of the handle
 		 */
 		protected LineBorder getStyleLine() {
@@ -97,7 +97,7 @@ public class LabelPrimarySelectionEditPolicy extends SelectionHandlesEditPolicy 
 
 		/**
 		 * Returns <code>true</code> if the handle's owner is the primary selection.
-		 * 
+		 *
 		 * @return <code>true</code> if the handles owner has primary selection.
 		 */
 		protected boolean isPrimary() {

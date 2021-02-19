@@ -45,6 +45,7 @@ public class InteractionCompartmentDiagramUpdater implements ICustomDiagramUpdat
 	 * {@inheritDoc}
 	 * </pre>
 	 */
+	@Override
 	public List<UMLNodeDescriptor> getSemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
@@ -54,7 +55,7 @@ public class InteractionCompartmentDiagramUpdater implements ICustomDiagramUpdat
 			return Collections.emptyList();
 		}
 		Interaction modelElement = (Interaction) containerView.getElement();
-		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
+		LinkedList<UMLNodeDescriptor> result = new LinkedList<>();
 		for (Iterator<?> it = modelElement.getLifelines().iterator(); it.hasNext();) {
 			Lifeline childElement = (Lifeline) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);

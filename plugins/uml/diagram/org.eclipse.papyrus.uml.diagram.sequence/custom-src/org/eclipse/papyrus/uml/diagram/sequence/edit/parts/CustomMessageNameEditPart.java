@@ -45,7 +45,7 @@ public class CustomMessageNameEditPart extends MessageSyncNameEditPart implement
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncNameEditPart#createDefaultEditPolicies()
 	 */
 	@Override
@@ -53,7 +53,7 @@ public class CustomMessageNameEditPart extends MessageSyncNameEditPart implement
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
 	}
-	
+
 	@Override
 	public int getDirectEditionType() {
 		return IDirectEdition.DEFAULT_DIRECT_EDITOR;

@@ -77,7 +77,7 @@ public class StereotypePropertyParser implements IParser, ISemanticParser {
 	public String getEditString(IAdaptable element, int flags) {
 		if (element instanceof IAdaptable) {
 			final Property property = ((Property) EMFHelper.getEObject(element));
-			final View view = ((View) element.getAdapter(View.class));
+			final View view = (element.getAdapter(View.class));
 			final EObject stereotypeApplication = ((View) view.eContainer()).getElement();
 			final Stereotype stereotype = UMLUtil.getStereotype(stereotypeApplication);
 			final Element umlElement = UMLUtil.getBaseElement(stereotypeApplication);
@@ -85,8 +85,7 @@ public class StereotypePropertyParser implements IParser, ISemanticParser {
 			if (result.contains(StereotypeUtil.EQUAL_SEPARATOR)) {
 				result = result.substring(property.getName().length() + 1);
 				return result;
-			}
-			else {
+			} else {
 				return "";//$NON-NLS-1$
 			}
 
@@ -107,7 +106,7 @@ public class StereotypePropertyParser implements IParser, ISemanticParser {
 	public ICommand getParseCommand(IAdaptable element, final String newString, int flags) {
 		if (element instanceof IAdaptable) {
 			final Property property = ((Property) (EMFHelper.getEObject(element)));
-			final View view = ((View) element.getAdapter(View.class));
+			final View view = (element.getAdapter(View.class));
 			final EObject stereotypeApplication = ((View) view.eContainer()).getElement();
 			final Stereotype stereotype = UMLUtil.getStereotype(stereotypeApplication);
 			final Element umlElement = UMLUtil.getBaseElement(stereotypeApplication);
@@ -152,7 +151,7 @@ public class StereotypePropertyParser implements IParser, ISemanticParser {
 		StereotypeDisplayUtil helper = StereotypeDisplayUtil.getInstance();
 		if (element instanceof IAdaptable) {
 			final Property property = ((Property) (EMFHelper.getEObject(element)));
-			final View view = ((View) element.getAdapter(View.class));
+			final View view = (element.getAdapter(View.class));
 
 			if (view != null && property != null) {
 				return helper.getStereotypePropertyToDisplay(view, property);
@@ -174,11 +173,11 @@ public class StereotypePropertyParser implements IParser, ISemanticParser {
 		if (event instanceof org.eclipse.emf.common.notify.Notification) {
 			Notification notification = (org.eclipse.emf.common.notify.Notification) event;
 			int eventType = notification.getEventType();
-			return StereotypeExtensionNotification.STEREOTYPE_UNAPPLIED_FROM_ELEMENT == eventType 
+			return StereotypeExtensionNotification.STEREOTYPE_UNAPPLIED_FROM_ELEMENT == eventType
 					|| StereotypeExtensionNotification.STEREOTYPE_APPLIED_TO_ELEMENT == eventType
-					|| StereotypeExtensionNotification.MODIFIED_STEREOTYPE_OF_ELEMENT == eventType;		
+					|| StereotypeExtensionNotification.MODIFIED_STEREOTYPE_OF_ELEMENT == eventType;
 		}
-		return false; 
+		return false;
 	}
 
 	/**
@@ -205,9 +204,9 @@ public class StereotypePropertyParser implements IParser, ISemanticParser {
 		if (object instanceof org.eclipse.emf.common.notify.Notification) {
 			Notification notification = (org.eclipse.emf.common.notify.Notification) object;
 			int eventType = notification.getEventType();
-			return StereotypeExtensionNotification.STEREOTYPE_UNAPPLIED_FROM_ELEMENT == eventType 
+			return StereotypeExtensionNotification.STEREOTYPE_UNAPPLIED_FROM_ELEMENT == eventType
 					|| StereotypeExtensionNotification.STEREOTYPE_APPLIED_TO_ELEMENT == eventType
-					|| StereotypeExtensionNotification.MODIFIED_STEREOTYPE_OF_ELEMENT == eventType;		
+					|| StereotypeExtensionNotification.MODIFIED_STEREOTYPE_OF_ELEMENT == eventType;
 		}
 		return false;
 	}

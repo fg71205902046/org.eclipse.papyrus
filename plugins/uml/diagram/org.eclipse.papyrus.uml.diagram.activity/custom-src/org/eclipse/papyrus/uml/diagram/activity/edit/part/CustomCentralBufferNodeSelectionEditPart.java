@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.part;
@@ -53,12 +53,14 @@ public class CustomCentralBufferNodeSelectionEditPart extends CentralBufferNodeS
 	protected void performDirectEdit(char initialCharacter) {
 		// do not edit label if hidden
 		if (isSetSelection()) {
-			super.performDirectEdit(initialCharacter);;
+			super.performDirectEdit(initialCharacter);
+			;
 		} else {
 			super.performDirectEdit();
 		}
 	}
 
+	@Override
 	protected String getLabelText() {
 		// do not edit label if hidden
 		if (isSetSelection()) {

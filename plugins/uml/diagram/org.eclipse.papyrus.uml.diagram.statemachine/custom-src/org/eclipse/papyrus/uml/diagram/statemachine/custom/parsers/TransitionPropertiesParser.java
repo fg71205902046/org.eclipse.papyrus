@@ -118,7 +118,7 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 									guardConstraint = UMLFactory.eINSTANCE.createConstraint();
 									if (InternationalizationPreferencesUtils.getInternationalizationPreference(guardConstraint) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(guardConstraint)) {
 										UMLLabelInternationalization.getInstance().setLabel(guardConstraint, result, null);
-									}else{
+									} else {
 										guardConstraint.setName(result);
 									}
 									guardConstraint.setContext(transition.getNamespace());
@@ -167,8 +167,8 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 		// If it is not possible to adapt directly the element
 		// as an EObject then it might be possible to first retrieve
 		// the view and then obtain the EObject that is behind the view
-		if(!(semanticElement instanceof Transition) && view != null) {
-			semanticElement = view.getElement(); 
+		if (!(semanticElement instanceof Transition) && view != null) {
+			semanticElement = view.getElement();
 		}
 		if (semanticElement instanceof Transition && view != null) {
 			Transition trans = (Transition) semanticElement;
@@ -203,8 +203,7 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 			String value;
 			if (constraint.getSpecification() != null) {
 				value = ValueSpecificationUtil.getConstraintnValue(constraint);
-			}
-			else {
+			} else {
 				String name = UMLLabelInternationalization.getInstance().getLabel(constraint);
 				if (name == null) {
 					name = "<undef>"; //$NON-NLS-1$
@@ -269,7 +268,7 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 							result.append(OpaqueBehaviorViewUtil.PARAM_DOTS);
 						}
 					} else {
-						result.append(UMLLabelInternationalization.getInstance().getLabel(((CallEvent) e)));
+						result.append(UMLLabelInternationalization.getInstance().getLabel((e)));
 					}
 				} else if (e instanceof SignalEvent) {
 					Signal signal = ((SignalEvent) e).getSignal();
@@ -279,15 +278,14 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 							result.append(OpaqueBehaviorViewUtil.PARAM_DOTS);
 						}
 					} else {
-						result.append(UMLLabelInternationalization.getInstance().getLabel(((SignalEvent) e)));
+						result.append(UMLLabelInternationalization.getInstance().getLabel((e)));
 					}
 				} else if (e instanceof ChangeEvent) {
 					ValueSpecification vs = ((ChangeEvent) e).getChangeExpression();
 					String value;
 					if (vs instanceof OpaqueExpression) {
 						value = OpaqueBehaviorViewUtil.retrieveBody(view, (OpaqueExpression) vs);
-					}
-					else {
+					} else {
 						value = vs.stringValue();
 					}
 					result.append(value);
@@ -302,12 +300,10 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 						ValueSpecification vs = te.getExpr();
 						if (vs instanceof OpaqueExpression) {
 							value = OpaqueBehaviorViewUtil.retrieveBody(view, (OpaqueExpression) vs);
-						}
-						else {
+						} else {
 							value = vs.stringValue();
 						}
-					}
-					else {
+					} else {
 						value = "undefined"; //$NON-NLS-1$
 					}
 					result.append(value);
@@ -327,7 +323,7 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 	@Override
 	public List<EObject> getSemanticElementsBeingParsed(EObject element) {
 		Element umlElement = (Element) element;
-		List<EObject> result = new LinkedList<EObject>();
+		List<EObject> result = new LinkedList<>();
 		if (umlElement instanceof Transition) {
 			Transition trans = (Transition) umlElement;
 			if (trans != null) {

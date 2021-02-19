@@ -52,7 +52,7 @@ public class ShowHideCompartmentEditPolicy extends AbstractEditPolicy {
 	public static final String SHOW_HIDE_COMPARTMENT_POLICY = "Show/Hide Compartment Policy"; //$NON-NLS-1$
 
 	/** the list of the listened compartment */
-	List<View> childlistened = new ArrayList<View>();
+	List<View> childlistened = new ArrayList<>();
 
 	/** A listener on the created compartment to refresh parent */
 	private NotificationListener listener = new NotificationListener() {
@@ -153,7 +153,7 @@ public class ShowHideCompartmentEditPolicy extends AbstractEditPolicy {
 	public List<?> getAllNotationViews(TopGraphicEditPart ep) {
 		View view = ep.getNotationView();
 		if (view != null) {
-			List<View> views = new ArrayList<View>();
+			List<View> views = new ArrayList<>();
 			Iterator<?> childrenIterator = view.getChildren().iterator();
 			while (childrenIterator.hasNext()) {
 				View child = (View) childrenIterator.next();

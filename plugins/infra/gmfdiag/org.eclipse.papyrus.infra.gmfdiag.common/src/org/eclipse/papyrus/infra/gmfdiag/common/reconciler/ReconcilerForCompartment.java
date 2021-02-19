@@ -95,27 +95,27 @@ public abstract class ReconcilerForCompartment extends DiagramReconciler {
 		protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 
 			TreeIterator<EObject> allContentIterator = diagram.eAllContents();
-			List<DecorationNode> oldComparments = new ArrayList<DecorationNode>();
-			
+			List<DecorationNode> oldComparments = new ArrayList<>();
+
 			while (allContentIterator.hasNext()) {
 				EObject eObject = allContentIterator.next();
-				if (eObject instanceof DecorationNode &&!(eObject instanceof BasicCompartment) && isCompartment((View) eObject)) {
-					oldComparments.add((DecorationNode)eObject);
+				if (eObject instanceof DecorationNode && !(eObject instanceof BasicCompartment) && isCompartment((View) eObject)) {
+					oldComparments.add((DecorationNode) eObject);
 				}
 			}
-			
-			for(DecorationNode oldCompartment : oldComparments) {
-					BasicCompartment newCompartment = NotationFactory.eINSTANCE.createBasicCompartment();
-					newCompartment.setType(oldCompartment.getType());
-					newCompartment.setVisible(oldCompartment.isVisible());
-					newCompartment.setMutable(oldCompartment.isMutable());
-					newCompartment.setLayoutConstraint(oldCompartment.getLayoutConstraint());
-					newCompartment.getStyles().addAll(oldCompartment.getStyles());
-					newCompartment.getPersistedChildren().addAll(oldCompartment.getPersistedChildren());
-					if (oldCompartment.isSetElement()) {
-						newCompartment.setElement(oldCompartment.getElement());
-					}
-					EcoreUtil.replace(oldCompartment, newCompartment);					
+
+			for (DecorationNode oldCompartment : oldComparments) {
+				BasicCompartment newCompartment = NotationFactory.eINSTANCE.createBasicCompartment();
+				newCompartment.setType(oldCompartment.getType());
+				newCompartment.setVisible(oldCompartment.isVisible());
+				newCompartment.setMutable(oldCompartment.isMutable());
+				newCompartment.setLayoutConstraint(oldCompartment.getLayoutConstraint());
+				newCompartment.getStyles().addAll(oldCompartment.getStyles());
+				newCompartment.getPersistedChildren().addAll(oldCompartment.getPersistedChildren());
+				if (oldCompartment.isSetElement()) {
+					newCompartment.setElement(oldCompartment.getElement());
+				}
+				EcoreUtil.replace(oldCompartment, newCompartment);
 			}
 
 			return CommandResult.newOKCommandResult();

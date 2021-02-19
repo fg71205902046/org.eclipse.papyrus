@@ -64,7 +64,7 @@ public abstract class PapyrusCompartmentEditPart extends CompartmentEditPart {
 		if (getFigure() instanceof PapyrusWrappingLabel) {
 			int labelWidth = NotationUtils.getIntValue(getNotationView(), NamedStyleProperties.LABEL_WIDTH, PapyrusWrappingLabel.AUTO_SIZE);
 			int labelHeight = NotationUtils.getIntValue(getNotationView(), NamedStyleProperties.LABEL_HEIGHT, PapyrusWrappingLabel.AUTO_SIZE);
-			((PapyrusWrappingLabel)getFigure() ).setLabelSize(labelWidth, labelHeight);
+			((PapyrusWrappingLabel) getFigure()).setLabelSize(labelWidth, labelHeight);
 		}
 	}
 

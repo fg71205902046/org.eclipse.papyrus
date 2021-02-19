@@ -102,7 +102,7 @@ public class ChangeEdgeTargetCommand extends AbstractTransactionalCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		// retrieve the edge from the descriptor
 		if (descriptor != null) {
-	 		Object obj = descriptor.getAdapter(Edge.class);
+			Object obj = descriptor.getAdapter(Edge.class);
 			if (false == obj instanceof Edge) {
 				return null;
 			}
@@ -150,7 +150,7 @@ public class ChangeEdgeTargetCommand extends AbstractTransactionalCommand {
 		}
 		if (edgeElement instanceof Message && MessageSort.DELETE_MESSAGE_LITERAL == ((Message) edgeElement).getMessageSort() && targetElement instanceof DestructionOccurrenceSpecification) {
 			// Set Message target to newly created DOS, destroy old MessageOccurrenceSpecification
-			//LifelineMessageDeleteHelper.setMessageEndDos((Message)edgeElement, (DestructionOccurrenceSpecification)targetElement);
+			// LifelineMessageDeleteHelper.setMessageEndDos((Message)edgeElement, (DestructionOccurrenceSpecification)targetElement);
 		}
 		return null;
 	}

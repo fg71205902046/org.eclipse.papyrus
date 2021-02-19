@@ -85,7 +85,7 @@ public class CommunicationUtil {
 			return null;
 		}
 
-		List<IFigure> exclusionSet = new ArrayList<IFigure>();
+		List<IFigure> exclusionSet = new ArrayList<>();
 
 		InteractionFragment interactionFragment = null;
 		EditPart ep = host.getRoot().getViewer().findObjectAtExcluding(location, exclusionSet);
@@ -268,7 +268,7 @@ public class CommunicationUtil {
 					if (!(me2.getMessage() == null)) {
 						if (me1.getMessage().equals(me2.getMessage())) {
 							if (messages == null) {
-								messages = new HashSet<Message>();
+								messages = new HashSet<>();
 								messages.add(me1.getMessage());
 							} else {
 								messages.add(me1.getMessage());

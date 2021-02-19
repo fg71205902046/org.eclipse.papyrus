@@ -29,6 +29,7 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 public class DefaultCompartmentSemanticEditPolicy extends DefaultSemanticEditPolicy {
 
 
+	@Override
 	protected Command getMoveCommand(MoveRequest req) {
 		EObject targetCEObject = req.getTargetContainer();
 		if (targetCEObject != null) {

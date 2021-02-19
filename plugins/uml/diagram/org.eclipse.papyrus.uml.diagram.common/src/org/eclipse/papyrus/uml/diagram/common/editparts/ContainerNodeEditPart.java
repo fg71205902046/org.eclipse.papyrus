@@ -151,6 +151,7 @@ public class ContainerNodeEditPart extends RoundedCompartmentEditPart {
 			primaryShape.setForegroundColor(color);
 		}
 	}
+
 	@Override
 	protected void setLineWidth(int width) {
 		super.setLineWidth(width);

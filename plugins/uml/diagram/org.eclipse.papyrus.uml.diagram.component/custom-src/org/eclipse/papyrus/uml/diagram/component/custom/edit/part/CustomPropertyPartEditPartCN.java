@@ -29,6 +29,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * in order to refresh the related figure when when the Property::aggregation eAttribute value
  * changes.
  * </pre>
+ *
  * @since 3.0
  */
 public abstract class CustomPropertyPartEditPartCN extends NamedElementEditPart {

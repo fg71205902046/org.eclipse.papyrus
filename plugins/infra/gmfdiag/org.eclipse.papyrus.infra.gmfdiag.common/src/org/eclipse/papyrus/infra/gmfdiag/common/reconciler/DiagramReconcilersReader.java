@@ -48,7 +48,7 @@ public class DiagramReconcilersReader extends RegistryReader {
 	 */
 	public synchronized Map<String, Collection<DiagramReconciler>> load() {
 		if (myReconcilers == null) {
-			myReconcilers = new HashMap<String, Collection<DiagramReconciler>>();
+			myReconcilers = new HashMap<>();
 			myReconcilersRO = Collections.unmodifiableMap(myReconcilers);
 			readRegistry();
 		}
@@ -114,7 +114,7 @@ public class DiagramReconcilersReader extends RegistryReader {
 				String diagramType = reconciler.getDiagramVisualID();
 				Collection<DiagramReconciler> listForType = myReconcilers.get(diagramType);
 				if (listForType == null) {
-					listForType = new LinkedList<DiagramReconciler>();
+					listForType = new LinkedList<>();
 					myReconcilers.put(diagramType, listForType);
 				}
 				listForType.add(reconciler);

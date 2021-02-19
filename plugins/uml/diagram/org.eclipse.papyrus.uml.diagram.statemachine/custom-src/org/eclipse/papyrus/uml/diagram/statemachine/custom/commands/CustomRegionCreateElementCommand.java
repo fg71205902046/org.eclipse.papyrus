@@ -81,7 +81,7 @@ public class CustomRegionCreateElementCommand extends AbstractTransactionalComma
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		// adapt the view at execution time
-		View existingRegion = (View) adaptable.getAdapter(View.class);
+		View existingRegion = adaptable.getAdapter(View.class);
 
 		// get existingRegion bounds (i.e. the space which needs to be divided)
 		int height = Zone.getHeight(existingRegion);

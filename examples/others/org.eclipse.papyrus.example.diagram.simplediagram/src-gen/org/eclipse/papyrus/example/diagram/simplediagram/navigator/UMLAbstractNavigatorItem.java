@@ -16,6 +16,7 @@ public abstract class UMLAbstractNavigatorItem extends PlatformObject {
 	static {
 		final Class[] supportedTypes = new Class[] { ITabbedPropertySheetPageContributor.class };
 		final ITabbedPropertySheetPageContributor propertySheetPageContributor = new ITabbedPropertySheetPageContributor() {
+			@Override
 			public String getContributorId() {
 				return "org.eclipse.uml2.uml.diagram"; //$NON-NLS-1$
 			}
@@ -23,6 +24,7 @@ public abstract class UMLAbstractNavigatorItem extends PlatformObject {
 		Platform.getAdapterManager().registerAdapters(
 				new IAdapterFactory() {
 
+					@Override
 					public Object getAdapter(Object adaptableObject,
 							Class adapterType) {
 						if (adaptableObject instanceof org.eclipse.papyrus.example.diagram.simplediagram.navigator.UMLAbstractNavigatorItem
@@ -32,6 +34,7 @@ public abstract class UMLAbstractNavigatorItem extends PlatformObject {
 						return null;
 					}
 
+					@Override
 					public Class[] getAdapterList() {
 						return supportedTypes;
 					}

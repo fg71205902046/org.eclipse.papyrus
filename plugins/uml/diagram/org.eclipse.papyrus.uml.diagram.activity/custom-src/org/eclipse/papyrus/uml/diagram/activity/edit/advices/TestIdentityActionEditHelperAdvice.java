@@ -32,10 +32,11 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.TestIdentityAction;
 
 /**
- * 
+ *
  * Pins of TestIdentityAction should be create automatically
+ *
  * @since 3.0
- * 
+ *
  */
 public class TestIdentityActionEditHelperAdvice extends AbstractEditHelperAdvice {
 
@@ -53,7 +54,7 @@ public class TestIdentityActionEditHelperAdvice extends AbstractEditHelperAdvice
 			if (testIdentityAction != null) {
 				// 3] call the command for the TestIdentityAction
 				IPinUpdater<TestIdentityAction> updater = PinUpdaterFactory.getInstance().instantiate(testIdentityAction);
-				return new PinUpdateCommand<TestIdentityAction>("Update test identity action pins", updater, testIdentityAction); //$NON-NLS-1$
+				return new PinUpdateCommand<>("Update test identity action pins", updater, testIdentityAction); //$NON-NLS-1$
 			}
 		}
 		return null;

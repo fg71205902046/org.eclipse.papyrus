@@ -97,17 +97,17 @@ public class StrategyManager implements IStrategyManager {
 
 	protected StrategyManager(String extensionId) {
 		EXTENSION_ID = extensionId;
-		allAvailableStrategies = new TreeMap<Integer, List<IStrategy>>();
-		activeStrategies = new HashMap<IStrategy, Boolean>();
-		defaultStrategies = new HashMap<Set<IStrategy>, IStrategy>();
+		allAvailableStrategies = new TreeMap<>();
+		activeStrategies = new HashMap<>();
+		defaultStrategies = new HashMap<>();
 		preferences = Activator.getInstance().getPreferenceStore();
 		init();
 	}
 
 	protected StrategyManager() {
-		allAvailableStrategies = new TreeMap<Integer, List<IStrategy>>();
-		activeStrategies = new HashMap<IStrategy, Boolean>();
-		defaultStrategies = new HashMap<Set<IStrategy>, IStrategy>();
+		allAvailableStrategies = new TreeMap<>();
+		activeStrategies = new HashMap<>();
+		defaultStrategies = new HashMap<>();
 		preferences = Activator.getInstance().getPreferenceStore();
 		init();
 	}
@@ -177,7 +177,7 @@ public class StrategyManager implements IStrategyManager {
 	private void parseDefaultDropStrategy(String key) {
 		String[] strategyIds = key.substring(0, key.lastIndexOf(":")).split(":");
 
-		Set<IStrategy> strategies = new HashSet<IStrategy>();
+		Set<IStrategy> strategies = new HashSet<>();
 		for (String strategyId : strategyIds) {
 			IStrategy strategy = findStrategy(strategyId);
 			if (strategy == null) {
@@ -211,7 +211,7 @@ public class StrategyManager implements IStrategyManager {
 	 * @return
 	 */
 	public List<IStrategy> getActiveStrategies() {
-		List<IStrategy> orderedActiveStrategies = new LinkedList<IStrategy>();
+		List<IStrategy> orderedActiveStrategies = new LinkedList<>();
 		for (List<IStrategy> strategies : allAvailableStrategies.values()) {
 			for (IStrategy strategy : strategies) {
 				if (isActive(strategy)) {
@@ -242,7 +242,7 @@ public class StrategyManager implements IStrategyManager {
 	}
 
 	public static String getDefaultStrategyKey(Collection<IStrategy> conflict) {
-		List<IStrategy> orderedStrategies = new LinkedList<IStrategy>(conflict);
+		List<IStrategy> orderedStrategies = new LinkedList<>(conflict);
 
 		Collections.sort(orderedStrategies, new Comparator<IStrategy>() {
 
@@ -310,7 +310,7 @@ public class StrategyManager implements IStrategyManager {
 	 */
 	@Override
 	public List<IStrategy> getAllStrategies() {
-		List<IStrategy> result = new LinkedList<IStrategy>();
+		List<IStrategy> result = new LinkedList<>();
 		for (List<IStrategy> strategies : allAvailableStrategies.values()) {
 			result.addAll(strategies);
 		}
@@ -355,7 +355,7 @@ public class StrategyManager implements IStrategyManager {
 		if (strategies.size() == 1) {
 			defaultStrategy = strategies.iterator().next();
 		} else {
-			Set<IStrategy> conflictingStrategies = new HashSet<IStrategy>(strategies);
+			Set<IStrategy> conflictingStrategies = new HashSet<>(strategies);
 			defaultStrategy = defaultStrategies.get(conflictingStrategies);
 		}
 
@@ -377,7 +377,7 @@ public class StrategyManager implements IStrategyManager {
 			return;
 		}
 
-		Set<IStrategy> conflict = new HashSet<IStrategy>(conflictingStrategies);
+		Set<IStrategy> conflict = new HashSet<>(conflictingStrategies);
 		defaultStrategies.put(conflict, defaultStrategy);
 		preferences.putValue(getDefaultStrategyKey(conflict), defaultStrategy.getID());
 
@@ -395,7 +395,7 @@ public class StrategyManager implements IStrategyManager {
 	 */
 	@Override
 	public List<IStrategy> getAllActiveStrategies() {
-		List<IStrategy> res = new ArrayList<IStrategy>();
+		List<IStrategy> res = new ArrayList<>();
 		List<IStrategy> allStrategies = getAllStrategies();
 		for (IStrategy iStrategy : allStrategies) {
 			if (isActive(iStrategy)) {

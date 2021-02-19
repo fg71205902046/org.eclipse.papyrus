@@ -91,7 +91,7 @@ public class PaletteMenuAction extends Action implements IMenuCreator {
 	 */
 	protected List<Action> createActions() {
 		// retrieve all palette availables for the current editor...
-		ArrayList<Action> list = new ArrayList<Action>();
+		ArrayList<Action> list = new ArrayList<>();
 		Action action = null;
 
 		final IEditorPart part = getActiveSashPage();
@@ -144,7 +144,7 @@ public class PaletteMenuAction extends Action implements IMenuCreator {
 		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		IEditorPart editorPart = page.getActiveEditor();
 		assert editorPart != null;
-		ISashWindowsContainer sashWindowsContainer = (ISashWindowsContainer) editorPart.getAdapter(ISashWindowsContainer.class);
+		ISashWindowsContainer sashWindowsContainer = editorPart.getAdapter(ISashWindowsContainer.class);
 		if (sashWindowsContainer != null) {
 			return sashWindowsContainer.getActiveEditor();
 		}

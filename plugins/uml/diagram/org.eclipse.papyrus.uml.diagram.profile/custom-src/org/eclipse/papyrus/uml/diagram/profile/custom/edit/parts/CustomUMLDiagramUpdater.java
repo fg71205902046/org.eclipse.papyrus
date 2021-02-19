@@ -29,7 +29,7 @@ public class CustomUMLDiagramUpdater extends UMLDiagramUpdater {
 
 	@Override
 	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Association_Edge(Package container) {
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
 		for (Iterator<?> links = container.getPackagedElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Association) {
@@ -86,7 +86,7 @@ public class CustomUMLDiagramUpdater extends UMLDiagramUpdater {
 			if (container == null) {
 				return Collections.emptyList();
 			}
-			LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+			LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
 			for (Iterator<?> links = container.getPackagedElements().iterator(); links.hasNext();) {
 				EObject linkObject = (EObject) links.next();
 				if (false == linkObject instanceof Association) {

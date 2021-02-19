@@ -21,7 +21,7 @@ import org.eclipse.draw2d.Graphics;
 
 /**
  * Enumeration to define line style as String related to the Open Declaration org.eclipse.draw2d.Graphics line styles
- * 
+ *
  * @author Mickael ADAM
  *
  */

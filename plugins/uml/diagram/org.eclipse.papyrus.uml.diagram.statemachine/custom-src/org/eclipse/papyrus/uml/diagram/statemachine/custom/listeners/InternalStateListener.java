@@ -42,7 +42,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Listener of internal state transition
- * 
+ *
  * @deprecated this is a bad way to create/synchronize views. Behavior similar to {@link PapyrusCanonicalEditPolicy} should be used instead.
  */
 @Deprecated

@@ -23,12 +23,14 @@ import org.eclipse.draw2d.RectangleFigure;
 
 /**
  * use to display a grid
+ *
  * @since 3.0
  *
  */
 public class ReferencialGrid extends RectangleFigure {
 
-	ArrayList<Integer> lines= new ArrayList<>();
+	ArrayList<Integer> lines = new ArrayList<>();
+
 	/**
 	 * Constructor.
 	 *
@@ -36,6 +38,7 @@ public class ReferencialGrid extends RectangleFigure {
 	public ReferencialGrid() {
 		setOpaque(false);
 	}
+
 	/**
 	 * @see org.eclipse.draw2d.Figure#paint(org.eclipse.draw2d.Graphics)
 	 *
@@ -43,16 +46,17 @@ public class ReferencialGrid extends RectangleFigure {
 	 */
 	@Override
 	public void paint(Graphics graphics) {
-		int postionofGrid=28;
+		int postionofGrid = 28;
 		graphics.pushState();
 		graphics.setForegroundColor(ColorConstants.green);
 		graphics.setLineWidth(2);
-		graphics.drawLine(100,100, 200, 200);
+		graphics.drawLine(100, 100, 200, 200);
 		for (int i = 0; i < lines.size(); i++) {
-			graphics.drawLine(0,lines.get(i)+postionofGrid, 50, lines.get(i)+postionofGrid);
+			graphics.drawLine(0, lines.get(i) + postionofGrid, 50, lines.get(i) + postionofGrid);
 		}
 		graphics.popState();
 	}
+
 	/**
 	 * @param y
 	 */
@@ -60,6 +64,7 @@ public class ReferencialGrid extends RectangleFigure {
 		lines.add(new Integer(y));
 
 	}
+
 	public void cleanAllLines() {
 		lines.clear();
 	}

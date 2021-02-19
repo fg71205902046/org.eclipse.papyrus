@@ -36,7 +36,7 @@ public class AssociationEndTargetEditPart extends AssociationRoleTargetEditPart 
 	 */
 	public AssociationEndTargetEditPart(View view) {
 		super(view);
-		
+
 	}
 
 

@@ -131,7 +131,7 @@ public class SynchronizePinsParametersHandler extends AbstractSynchronizePinsAnd
 			Object obj = structuredSelection.getFirstElement();
 			EObject element = null;
 			if (obj instanceof IAdaptable) {
-				element = (EObject) ((IAdaptable) obj).getAdapter(EObject.class);
+				element = ((IAdaptable) obj).getAdapter(EObject.class);
 				if (element instanceof View) {
 					element = ((View) element).getElement();
 				}
@@ -227,8 +227,8 @@ public class SynchronizePinsParametersHandler extends AbstractSynchronizePinsAnd
 		if (invocationAction instanceof CallAction) {
 			CallAction callAction = (CallAction) invocationAction;
 			List<Parameter> callActionParams = getParametersFromCallAction(callAction);
-			Map<Integer, TypedElement> inputParameters = new HashMap<Integer, TypedElement>();
-			Map<Integer, TypedElement> outputParameters = new HashMap<Integer, TypedElement>();
+			Map<Integer, TypedElement> inputParameters = new HashMap<>();
+			Map<Integer, TypedElement> outputParameters = new HashMap<>();
 			// Splitting parameters.
 			PinAndParameterSynchronizer.splitParameters(callActionParams, Lists.<Parameter> newArrayList(), inputParameters, outputParameters, invocationAction);
 			// Matching pins and parameters.
@@ -456,7 +456,7 @@ public class SynchronizePinsParametersHandler extends AbstractSynchronizePinsAnd
 			return true;
 		}
 		// checking if each pin is up to date.
-		final Set<TypedElement> typedElementArgumentFound = new HashSet<TypedElement>();
+		final Set<TypedElement> typedElementArgumentFound = new HashSet<>();
 		for (InputPin p : invocationActionArguments) {
 			if (!isUpToDate(p, xmiResource)) {
 				return false;
@@ -592,7 +592,7 @@ public class SynchronizePinsParametersHandler extends AbstractSynchronizePinsAnd
 	 * @return a list of selected objects view
 	 */
 	protected static List<IGraphicalEditPart> getIGraphicalPartSelection() {
-		List<IGraphicalEditPart> viewSelected = new ArrayList<IGraphicalEditPart>();
+		List<IGraphicalEditPart> viewSelected = new ArrayList<>();
 		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 		if (activeWorkbenchWindow != null) {
 			ISelection selection = activeWorkbenchWindow.getSelectionService().getSelection();

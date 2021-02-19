@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Patrick Tessier (CEA LIST) - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.common.selection;
@@ -40,14 +40,14 @@ import org.eclipse.swt.graphics.Cursor;
 
 /**
  * @since 3.0
- * this class is used to move several links at the same time.
+ *        this class is used to move several links at the same time.
  */
 public class SelectSeveralLinksEditPartTracker extends SelectEditPartTracker {
 
 
 
 	/**
-	 * Key modifier for ignoring snap while dragging.  It's CTRL on Mac, and ALT on all
+	 * Key modifier for ignoring snap while dragging. It's CTRL on Mac, and ALT on all
 	 * other platforms.
 	 */
 	private final int MODIFIER_NO_SNAPPING;
@@ -56,32 +56,37 @@ public class SelectSeveralLinksEditPartTracker extends SelectEditPartTracker {
 	private String type;
 	private boolean bSourceFeedback = false;
 
-	protected HashMap<EditPart, Point> locationsForEditParts= new HashMap<EditPart, Point>();
+	protected HashMap<EditPart, Point> locationsForEditParts = new HashMap<>();
 
-	int[] relativePosition=null;
+	int[] relativePosition = null;
 
 
 	/**
 	 * Method SelectConnectionEditPartTracker.
-	 * @param owner ConnectionNodeEditPart that creates and owns the tracker object
+	 *
+	 * @param owner
+	 *            ConnectionNodeEditPart that creates and owns the tracker object
 	 */
 	public SelectSeveralLinksEditPartTracker(ConnectionEditPart owner) {
 		super(owner);
 
-		if (SWT.getPlatform().equals("carbon"))//$NON-NLS-1$
+		if (SWT.getPlatform().equals("carbon")) {
 			MODIFIER_NO_SNAPPING = SWT.CTRL;
-		else
+		} else {
 			MODIFIER_NO_SNAPPING = SWT.ALT;
+		}
 	}
 
-	/* 
+	/*
 	 * (non-Javadoc)
+	 *
 	 * @see org.eclipse.gef.tools.AbstractTool#handleButtonDown(int)
 	 */
 	@Override
 	protected boolean handleButtonDown(int button) {
-		if (!super.handleButtonDown(button))
+		if (!super.handleButtonDown(button)) {
 			return false;
+		}
 
 		Point p = getLocation();
 		getConnection().translateToRelative(p);
@@ -89,9 +94,9 @@ public class SelectSeveralLinksEditPartTracker extends SelectEditPartTracker {
 		PointList points = getConnection().getPoints();
 		Dimension size = new Dimension(7, 7);
 		getConnection().translateToRelative(size);
-		for (int i=1; i<points.size()-1; i++) {
+		for (int i = 1; i < points.size() - 1; i++) {
 			Point ptCenter = points.getPoint(i);
-			Rectangle rect = new Rectangle( ptCenter.x - size.width / 2, ptCenter.y - size.height / 2, size.width, size.height);
+			Rectangle rect = new Rectangle(ptCenter.x - size.width / 2, ptCenter.y - size.height / 2, size.width, size.height);
 
 			if (rect.contains(p)) {
 				setType(RequestConstants.REQ_MOVE_BENDPOINT);
@@ -106,19 +111,19 @@ public class SelectSeveralLinksEditPartTracker extends SelectEditPartTracker {
 			setType(RequestConstants.REQ_CREATE_BENDPOINT);
 		}
 
-		//compute the relative position be fore the beginning of the move
+		// compute the relative position be fore the beginning of the move
 		List editparts = getOperationSet();
-		relativePosition=new int[editparts.size()];
-		if(editparts.size()>1){
-			for (int i=0; i<editparts.size()-1;i++){
+		relativePosition = new int[editparts.size()];
+		if (editparts.size() > 1) {
+			for (int i = 0; i < editparts.size() - 1; i++) {
 				Object currentEditPart = editparts.get(i);
-				Object nextEditPart = editparts.get(i+1);
-				if(currentEditPart instanceof org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart && nextEditPart instanceof org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart){
-					Connection currentConnection=((org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart)currentEditPart).getConnectionFigure();
-					Connection nextConnection=((org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart)nextEditPart).getConnectionFigure();
+				Object nextEditPart = editparts.get(i + 1);
+				if (currentEditPart instanceof org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart && nextEditPart instanceof org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart) {
+					Connection currentConnection = ((org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart) currentEditPart).getConnectionFigure();
+					Connection nextConnection = ((org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart) nextEditPart).getConnectionFigure();
 					Point currentConnectionPosition = currentConnection.getPoints().getFirstPoint().getCopy();
 					Point nextConnectionPosition = nextConnection.getPoints().getFirstPoint().getCopy();
-					relativePosition[i]=nextConnectionPosition.y-currentConnectionPosition.y;
+					relativePosition[i] = nextConnectionPosition.y - currentConnectionPosition.y;
 				}
 			}
 		}
@@ -128,16 +133,17 @@ public class SelectSeveralLinksEditPartTracker extends SelectEditPartTracker {
 
 	/**
 	 * Determines if the the connection should be dragged or not.
-	 * 
-	 * @return <code>boolean</code> <code>true</code> if dragging can occur, 
-	 * <code>false</code> otherwise.
+	 *
+	 * @return <code>boolean</code> <code>true</code> if dragging can occur,
+	 *         <code>false</code> otherwise.
 	 */
 	protected boolean shouldAllowDrag() {
 		return (getIndex() != -1);
 	}
 
-	/* 
+	/*
 	 * (non-Javadoc)
+	 *
 	 * @see org.eclipse.gef.tools.AbstractTool#handleButtonUp(int)
 	 */
 	@Override
@@ -156,8 +162,9 @@ public class SelectSeveralLinksEditPartTracker extends SelectEditPartTracker {
 		return bRet;
 	}
 
-	/* 
+	/*
 	 * (non-Javadoc)
+	 *
 	 * @see org.eclipse.gef.tools.AbstractTool#handleDragInProgress()
 	 */
 	@Override
@@ -170,16 +177,19 @@ public class SelectSeveralLinksEditPartTracker extends SelectEditPartTracker {
 		return true;
 	}
 
-	/* 
+	/*
 	 * (non-Javadoc)
+	 *
 	 * @see org.eclipse.gef.tools.AbstractTool#handleDragStarted()
 	 */
+	@Override
 	protected boolean handleDragStarted() {
 		return stateTransition(STATE_DRAG, STATE_DRAG_IN_PROGRESS);
 	}
 
-	/* 
+	/*
 	 * (non-Javadoc)
+	 *
 	 * @see org.eclipse.gef.tools.AbstractTool#calculateCursor()
 	 */
 	@Override
@@ -191,13 +201,16 @@ public class SelectSeveralLinksEditPartTracker extends SelectEditPartTracker {
 		return getConnection().getCursor();
 	}
 
-	/* 
+	/*
 	 * (non-Javadoc)
+	 *
 	 * @see org.eclipse.gef.Tool#deactivate()
 	 */
+	@Override
 	public void deactivate() {
-		if (!isInState(STATE_TERMINAL))
+		if (!isInState(STATE_TERMINAL)) {
 			eraseSourceFeedback();
+		}
 		sourceRequest = null;
 		super.deactivate();
 	}
@@ -211,7 +224,9 @@ public class SelectSeveralLinksEditPartTracker extends SelectEditPartTracker {
 
 	/**
 	 * Method setShowingFeedback.
-	 * @param bSet boolean to set the feedback flag on or off.
+	 *
+	 * @param bSet
+	 *            boolean to set the feedback flag on or off.
 	 */
 	private void setShowingFeedback(boolean bSet) {
 		bSourceFeedback = bSet;
@@ -236,9 +251,9 @@ public class SelectSeveralLinksEditPartTracker extends SelectEditPartTracker {
 		List editParts = getOperationSet();
 		for (int i = 0; i < editParts.size(); i++) {
 			EditPart editPart = (EditPart) editParts.get(i);
-			LocationRequest locationRequest= (LocationRequest)getSourceRequest();
-			if( locationsForEditParts.get(editPart)!=null){
-				Point location= locationsForEditParts.get(editPart);
+			LocationRequest locationRequest = (LocationRequest) getSourceRequest();
+			if (locationsForEditParts.get(editPart) != null) {
+				Point location = locationsForEditParts.get(editPart);
 				locationRequest.setLocation(location);
 				editPart.showSourceFeedback(locationRequest);
 			}
@@ -251,17 +266,18 @@ public class SelectSeveralLinksEditPartTracker extends SelectEditPartTracker {
 	 * Show the source drag feedback for the drag occurring
 	 * within the viewer.
 	 */
-	private void eraseSourceFeedback() {	
-		if (!isShowingFeedback())
+	private void eraseSourceFeedback() {
+		if (!isShowingFeedback()) {
 			return;
+		}
 		setShowingFeedback(false);
 		List editParts = getOperationSet();
 
 		for (int i = 0; i < editParts.size(); i++) {
 			EditPart editPart = (EditPart) editParts.get(i);
-			LocationRequest locationRequest= (LocationRequest)getSourceRequest();
-			if( locationsForEditParts.get(editPart)!=null){
-				Point location= locationsForEditParts.get(editPart);
+			LocationRequest locationRequest = (LocationRequest) getSourceRequest();
+			if (locationsForEditParts.get(editPart) != null) {
+				Point location = locationsForEditParts.get(editPart);
 				locationRequest.setLocation(location);
 				editPart.eraseSourceFeedback(locationRequest);
 			}
@@ -271,17 +287,20 @@ public class SelectSeveralLinksEditPartTracker extends SelectEditPartTracker {
 
 	/**
 	 * Method getSourceRequest.
+	 *
 	 * @return Request
 	 */
 	private Request getSourceRequest() {
-		if (sourceRequest == null)
+		if (sourceRequest == null) {
 			sourceRequest = createSourceRequest();
+		}
 		return sourceRequest;
 	}
 
 	/**
 	 * Determines the type of request that will be created for the drag
 	 * operation.
+	 *
 	 * @return Object
 	 */
 	protected Object getType() {
@@ -290,8 +309,9 @@ public class SelectSeveralLinksEditPartTracker extends SelectEditPartTracker {
 
 	/**
 	 * Sets the type of request that will be created for the drag operation.
-	 * 
-	 * @param type the <code>String</code> that represents the type of request.
+	 *
+	 * @param type
+	 *            the <code>String</code> that represents the type of request.
 	 */
 	public void setType(String type) {
 		this.type = type;
@@ -300,19 +320,20 @@ public class SelectSeveralLinksEditPartTracker extends SelectEditPartTracker {
 	/**
 	 * Creates the source request that is activated when the drag operation
 	 * occurs.
-	 * 
+	 *
 	 * @return a <code>Request</code> that is the newly created source request
 	 */
 	protected Request createSourceRequest() {
 		BendpointRequest request = new BendpointRequest();
 		request.setType(getType());
 		request.setIndex(getIndex());
-		request.setSource((ConnectionEditPart)getSourceEditPart());
+		request.setSource((ConnectionEditPart) getSourceEditPart());
 		return request;
 	}
 
-	/* 
+	/*
 	 * (non-Javadoc)
+	 *
 	 * @see org.eclipse.gef.tools.AbstractTool#getCommand()
 	 */
 	@Override
@@ -324,9 +345,9 @@ public class SelectSeveralLinksEditPartTracker extends SelectEditPartTracker {
 		command.setDebugLabel("change bounds");//$NON-NLS-1$
 		for (int i = 0; i < editparts.size(); i++) {
 			part = (EditPart) editparts.get(i);
-			LocationRequest locationRequest= (LocationRequest)getSourceRequest();
-			if( locationsForEditParts.get(part)!=null){
-				Point location= locationsForEditParts.get(part);
+			LocationRequest locationRequest = (LocationRequest) getSourceRequest();
+			if (locationsForEditParts.get(part) != null) {
+				Point location = locationsForEditParts.get(part);
 				locationRequest.setLocation(location);
 				command.add(part.getCommand(locationRequest));
 			}
@@ -334,8 +355,9 @@ public class SelectSeveralLinksEditPartTracker extends SelectEditPartTracker {
 		return command.unwrap();
 	}
 
-	/* 
+	/*
 	 * (non-Javadoc)
+	 *
 	 * @see org.eclipse.gef.tools.AbstractTool#getCommandName()
 	 */
 	@Override
@@ -352,14 +374,16 @@ public class SelectSeveralLinksEditPartTracker extends SelectEditPartTracker {
 
 	/**
 	 * Method getConnectionEditPart.
+	 *
 	 * @return ConnectionEditPart
 	 */
 	private ConnectionEditPart getConnectionEditPart() {
-		return (ConnectionEditPart)getSourceEditPart();
+		return (ConnectionEditPart) getSourceEditPart();
 	}
 
-	/* 
+	/*
 	 * (non-Javadoc)
+	 *
 	 * @see org.eclipse.gef.tools.AbstractTool#getDebugName()
 	 */
 	@Override
@@ -368,9 +392,9 @@ public class SelectSeveralLinksEditPartTracker extends SelectEditPartTracker {
 	}
 
 	/**
-	 * Gets the current line segment index that the user clicked on to 
+	 * Gets the current line segment index that the user clicked on to
 	 * activate the drag tracker.
-	 * 
+	 *
 	 * @return int
 	 */
 	protected int getIndex() {
@@ -379,9 +403,11 @@ public class SelectSeveralLinksEditPartTracker extends SelectEditPartTracker {
 
 	/**
 	 * Method setIndex.
-	 * Sets the current line segment index based on the location the user 
+	 * Sets the current line segment index based on the location the user
 	 * clicked on the connection.
-	 * @param i int representing the line segment index in the connection.
+	 *
+	 * @param i
+	 *            int representing the line segment index in the connection.
 	 */
 	public void setIndex(int i) {
 		index = i;
@@ -395,17 +421,18 @@ public class SelectSeveralLinksEditPartTracker extends SelectEditPartTracker {
 		Dimension delta = getDragMoveDelta();
 		Point mouseLocation = getStartLocation().getCopy();
 		mouseLocation.translate(delta.width, delta.height);
-		for (int index=0; index<editparts.size();index++){
+		for (int index = 0; index < editparts.size(); index++) {
 			Object currentEditPart = editparts.get(index);
-			if(currentEditPart instanceof org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart ){
-				if( index>0){
-					mouseLocation.translate(new Dimension (0,relativePosition[index-1]));
+			if (currentEditPart instanceof org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart) {
+				if (index > 0) {
+					mouseLocation.translate(new Dimension(0, relativePosition[index - 1]));
 				}
-				locationsForEditParts.put((EditPart)currentEditPart, mouseLocation.getCopy());
+				locationsForEditParts.put((EditPart) currentEditPart, mouseLocation.getCopy());
 
 			}
 		}
 	}
+
 	/**
 	 * @see org.eclipse.gef.tools.AbstractTool#getOperationSet()
 	 *
@@ -413,9 +440,10 @@ public class SelectSeveralLinksEditPartTracker extends SelectEditPartTracker {
 	 */
 	@Override
 	protected List getOperationSet() {
-		if(getCurrentViewer().getSelectedEditParts().contains(getSourceEditPart())){
-			return getCurrentViewer().getSelectedEditParts();}
-		ArrayList result= new ArrayList<>();
+		if (getCurrentViewer().getSelectedEditParts().contains(getSourceEditPart())) {
+			return getCurrentViewer().getSelectedEditParts();
+		}
+		ArrayList result = new ArrayList<>();
 		result.add(getSourceEditPart());
 		return result;
 	}

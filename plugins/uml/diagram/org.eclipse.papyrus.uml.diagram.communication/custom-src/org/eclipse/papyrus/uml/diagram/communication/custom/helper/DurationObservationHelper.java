@@ -41,8 +41,8 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.uml.diagram.common.helper.AssociationHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.ElementHelper;
 import org.eclipse.papyrus.uml.diagram.communication.providers.UMLElementTypes;
@@ -84,7 +84,7 @@ public class DurationObservationHelper extends ElementHelper {
 		CompositeCommand cc = new CompositeCommand("dropDurationObservation"); //$NON-NLS-1$
 		int nbEvents = durationObservation.getEvents().size();
 		// 0. Obtain list of the events
-		ArrayList<NamedElement> endToConnect = new ArrayList<NamedElement>(durationObservation.getEvents());
+		ArrayList<NamedElement> endToConnect = new ArrayList<>(durationObservation.getEvents());
 		GraphicalEditPart[] endEditPart = new GraphicalEditPart[nbEvents];
 		// 1. Look for if each event is on the diagram
 		Iterator<NamedElement> iteratorProp = endToConnect.iterator();

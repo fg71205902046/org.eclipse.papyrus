@@ -33,7 +33,7 @@ public class BaseViewInfoLabelProvider implements IBaseLabelProvider, ILabelProv
 	 */
 	@Override
 	public Image getImage(Object element) {
-		
+
 		return null;
 	}
 
@@ -81,7 +81,7 @@ public class BaseViewInfoLabelProvider implements IBaseLabelProvider, ILabelProv
 	 */
 	@Override
 	public boolean isLabelProperty(Object element, String property) {
-		
+
 		return false;
 	}
 

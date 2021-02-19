@@ -62,7 +62,7 @@ public class DeferredMoveRequest extends MoveRequest {
 	public DeferredMoveRequest(TransactionalEditingDomain editingDomain, IAdaptable targetContainer, List<? extends IAdaptable> elementsToMove, Class<? extends EObject> classToCast) {
 		super(editingDomain, null, elementsToMove);
 		this.targetContainer = targetContainer;
-		this.iAdaptableToMove = new HashMap<IAdaptable, Object>();
+		this.iAdaptableToMove = new HashMap<>();
 		this.classToCast = classToCast;
 		for (Iterator<? extends IAdaptable> i = elementsToMove.iterator(); i.hasNext();) {
 			this.iAdaptableToMove.put(i.next(), null);
@@ -72,7 +72,7 @@ public class DeferredMoveRequest extends MoveRequest {
 	public DeferredMoveRequest(TransactionalEditingDomain editingDomain, IAdaptable targetContainer, EReference targetFeature, IAdaptable elementToMove, Class<? extends EObject> classToCast) {
 		super(editingDomain, null, targetFeature, null);
 		this.targetContainer = targetContainer;
-		this.iAdaptableToMove = new HashMap<IAdaptable, Object>();
+		this.iAdaptableToMove = new HashMap<>();
 		this.classToCast = classToCast;
 		iAdaptableToMove.put(elementToMove, targetFeature);
 	}
@@ -87,7 +87,7 @@ public class DeferredMoveRequest extends MoveRequest {
 	@Override
 	public Map getElementsToMove() {
 		if (elementsToMove == null) {
-			elementsToMove = new HashMap<EObject, Object>(iAdaptableToMove.size());
+			elementsToMove = new HashMap<>(iAdaptableToMove.size());
 			for (Entry<IAdaptable, Object> entry : iAdaptableToMove.entrySet()) {
 				IAdaptable key = entry.getKey();
 				Object object = key.getAdapter(classToCast);

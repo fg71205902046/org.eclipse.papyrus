@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -38,7 +38,7 @@ public class SlidableRoundedRectangleAnchor extends SlidableAnchor {
 	/**
 	 * Constructs a SlidableRoundedRectangleAnchor without a desired anchor
 	 * point.
-	 * 
+	 *
 	 * @param figure
 	 *            the anchorable figure
 	 */
@@ -119,12 +119,12 @@ public class SlidableRoundedRectangleAnchor extends SlidableAnchor {
 				// take in account the header of the package
 				points.addPoint(anchorableRectangle.x + packageHeader.width, anchorableRectangle.y);
 				points.addPoint(anchorableRectangle.x + packageHeader.width, anchorableRectangle.y + packageHeader.height);
-				
-				//drawing is from 0 to n-1 for width and height, same principle as array
-				points.addPoint(anchorableRectangle.x + anchorableRectangle.width -1, anchorableRectangle.y + packageHeader.height);
 
-				points.addPoint(anchorableRectangle.x + anchorableRectangle.width -1, anchorableRectangle.y + anchorableRectangle.height-1);
-				points.addPoint(anchorableRectangle.x, anchorableRectangle.y + anchorableRectangle.height-1);
+				// drawing is from 0 to n-1 for width and height, same principle as array
+				points.addPoint(anchorableRectangle.x + anchorableRectangle.width - 1, anchorableRectangle.y + packageHeader.height);
+
+				points.addPoint(anchorableRectangle.x + anchorableRectangle.width - 1, anchorableRectangle.y + anchorableRectangle.height - 1);
+				points.addPoint(anchorableRectangle.x, anchorableRectangle.y + anchorableRectangle.height - 1);
 				points.addPoint(anchorableRectangle.x, anchorableRectangle.y);
 			}
 		}
@@ -162,10 +162,12 @@ public class SlidableRoundedRectangleAnchor extends SlidableAnchor {
 					dimension = new Dimension();
 				}
 				// Adapt dimension according to the rectangle
-				if (rect.height < dimension.height)
+				if (rect.height < dimension.height) {
 					dimension.height = rect.height;
-				if (rect.width < dimension.width)
+				}
+				if (rect.width < dimension.width) {
 					dimension.width = rect.width;
+				}
 				PrecisionRectangle corner = new PrecisionRectangle(new Rectangle(0, 0, dimension.width, dimension.height));
 				((IFigure) figure).translateToAbsolute(corner);
 
@@ -179,7 +181,7 @@ public class SlidableRoundedRectangleAnchor extends SlidableAnchor {
 
 	/**
 	 * Get the location on the border with a specific ownReference point. Used for the PortEditPart.
-	 * 
+	 *
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -189,7 +191,7 @@ public class SlidableRoundedRectangleAnchor extends SlidableAnchor {
 
 	/**
 	 * Set the offset
-	 * 
+	 *
 	 * @param portOffset
 	 */
 	public void setOffset(final Dimension portOffset) {

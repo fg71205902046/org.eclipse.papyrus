@@ -24,6 +24,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.DiagramReconciler;
 
 /**
  * Communication Diagram Reconciler from 1.0.0 to 1.1.0
+ *
  * @since 3.0
  */
 public class CommunicationReconciler_1_1_0 extends DiagramReconciler {
@@ -52,7 +53,7 @@ public class CommunicationReconciler_1_1_0 extends DiagramReconciler {
 	 * @return the floating label map
 	 */
 	private Map<String, String> getFloatingLabelMap() {
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, String> map = new HashMap<>();
 		map.put(InteractionEditPart_VISUAL_ID, InteractionFloatingLabelEditPart_VISUAL_ID);
 		map.put(LifelineEditPartCN_VISUAL_ID, LifelineFloatingLabelEditPartCN_VISUAL_ID);
 

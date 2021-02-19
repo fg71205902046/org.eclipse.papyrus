@@ -24,6 +24,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.DiagramReconciler;
 
 /**
  * Activity Diagram Reconciler from 1.0.0 to 1.1.0
+ *
  * @since 3.0
  */
 public class ActivityReconciler_1_1_0 extends DiagramReconciler {
@@ -124,7 +125,7 @@ public class ActivityReconciler_1_1_0 extends DiagramReconciler {
 	 * @return the floating label map
 	 */
 	private Map<String, String> getFloatingLabelMap() {
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, String> map = new HashMap<>();
 		map.put(AcceptEventActionEditPart_VISUAL_ID, AcceptEventActionFloatingNameEditPart_VISUAL_ID);
 		map.put(ActivityFinalNodeEditPart_VISUAL_ID, ActivityFinalNodeFloatingNameEditPart_VISUAL_ID);
 		map.put(ActivityPartitionEditPart_VISUAL_ID, ActivityPartitionFloatingNameEditPart_VISUAL_ID);

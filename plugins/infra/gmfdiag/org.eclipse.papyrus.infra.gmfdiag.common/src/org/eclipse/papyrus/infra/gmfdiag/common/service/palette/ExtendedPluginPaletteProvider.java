@@ -12,7 +12,7 @@
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Move from oep.uml.diagram.common see bug 512343
  *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 515361
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.service.palette;
 
@@ -84,7 +84,7 @@ import com.google.common.base.Predicate;
 
 /**
  * Palette provider with enhanced elements types
- * 
+ *
  * @since 3.0
  */
 @SuppressWarnings({ "restriction", "deprecation" })
@@ -112,7 +112,7 @@ public class ExtendedPluginPaletteProvider extends AbstractProvider implements I
 	protected List<PaletteConfiguration> contributions;
 
 	/** map for toolID => extended element type */
-	protected Map<String, ToolEntry> mapToolId2Entries = new HashMap<String, ToolEntry>();
+	protected Map<String, ToolEntry> mapToolId2Entries = new HashMap<>();
 
 	/** default icon for tools */
 	protected static final ImageDescriptor DEFAULT_TOOL_IMAGE_DESCRIPTOR = Activator.imageDescriptorFromPlugin(org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Activator.PLUGIN_ID, "/icons/tool.gif"); //$NON-NLS-1$
@@ -149,7 +149,7 @@ public class ExtendedPluginPaletteProvider extends AbstractProvider implements I
 			return Collections.emptyList();
 		}
 		if (requiredProfiles == null) {
-			requiredProfiles = new HashSet<String>();
+			requiredProfiles = new HashSet<>();
 
 			// compute. should be at least an empty list as soon as it has been initialized
 			for (PaletteConfiguration configuration : contributions) {
@@ -191,8 +191,8 @@ public class ExtendedPluginPaletteProvider extends AbstractProvider implements I
 		// Most (all?) filters are based on the semantic element,
 		// but for Palettes, it makes more sense to test filters
 		// on diagrams. So... just test on both.
-		// Edit parts don't make sense either, because the palette is global to the diagram. 
-		//Moreover, the palette is created before the EditParts, so we don't always have them.
+		// Edit parts don't make sense either, because the palette is global to the diagram.
+		// Moreover, the palette is created before the EditParts, so we don't always have them.
 		Filter filter = paletteElement.getFilter();
 		return filter == null ? true : filter.matches(diagram) || filter.matches(diagram.getElement());
 	}
@@ -370,7 +370,7 @@ public class ExtendedPluginPaletteProvider extends AbstractProvider implements I
 			container.add(toolEntry);
 			// register the tool in the tool predefined entries
 			predefinedEntries.put(toolID, toolEntry);
-			mapToolId2Entries.put(toolID, (ExtendedConnectionToolEntry) toolEntry);
+			mapToolId2Entries.put(toolID, toolEntry);
 		}
 
 		return toolEntry;
@@ -407,7 +407,7 @@ public class ExtendedPluginPaletteProvider extends AbstractProvider implements I
 			container.add(toolEntry);
 			// register the tool in the tool predefined entries
 			predefinedEntries.put(toolID, toolEntry);
-			mapToolId2Entries.put(toolID, (ExtendedCreationToolEntry) toolEntry);
+			mapToolId2Entries.put(toolID, toolEntry);
 		}
 
 		return toolEntry;
@@ -579,7 +579,7 @@ public class ExtendedPluginPaletteProvider extends AbstractProvider implements I
 
 	/**
 	 * Loads and returns the model, given the resource
-	 * 
+	 *
 	 * @param resource
 	 * @return
 	 * @throws IOException
@@ -588,7 +588,7 @@ public class ExtendedPluginPaletteProvider extends AbstractProvider implements I
 		resource.load(Collections.emptyMap());
 		if (resource.getContents().size() > 0) {
 
-			return new ArrayList<PaletteConfiguration>(EcoreUtil.<PaletteConfiguration> getObjectsByType(resource.getContents(), PaletteconfigurationPackage.eINSTANCE.getPaletteConfiguration()));
+			return new ArrayList<>(EcoreUtil.<PaletteConfiguration> getObjectsByType(resource.getContents(), PaletteconfigurationPackage.eINSTANCE.getPaletteConfiguration()));
 		}
 		return Collections.emptyList();
 	}
@@ -722,7 +722,7 @@ public class ExtendedPluginPaletteProvider extends AbstractProvider implements I
 
 		/**
 		 * Create a tool with the
-		 * 
+		 *
 		 * @param toolEntry
 		 *            The tool entry.
 		 * @return the created tool.

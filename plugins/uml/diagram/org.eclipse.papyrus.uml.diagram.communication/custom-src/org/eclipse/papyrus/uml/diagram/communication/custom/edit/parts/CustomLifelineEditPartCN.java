@@ -67,7 +67,7 @@ public class CustomLifelineEditPartCN extends LifelineEditPartCN {
 					StructuredClassifier structuredClassifier = (StructuredClassifier) type;
 
 					if (!structuredClassifier.getAllAttributes().isEmpty()) {
-						return new ArrayList<Property>(((StructuredClassifier) type).getAllAttributes());
+						return new ArrayList<>(((StructuredClassifier) type).getAllAttributes());
 					}
 				}
 			}
@@ -145,7 +145,7 @@ public class CustomLifelineEditPartCN extends LifelineEditPartCN {
 	 * @return the list of InnerConnectableElement EditParts
 	 */
 	public List<LifelineEditPartCN> getInnerConnectableElementList() {
-		List<LifelineEditPartCN> propertyList = new ArrayList<LifelineEditPartCN>();
+		List<LifelineEditPartCN> propertyList = new ArrayList<>();
 		for (Object obj : getChildren()) {
 			if (obj instanceof LifelineEditPartCN) {
 				propertyList.add((LifelineEditPartCN) obj);

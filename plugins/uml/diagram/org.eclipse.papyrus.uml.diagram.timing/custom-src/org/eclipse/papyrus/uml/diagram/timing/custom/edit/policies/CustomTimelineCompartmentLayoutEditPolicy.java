@@ -77,7 +77,7 @@ public class CustomTimelineCompartmentLayoutEditPolicy extends AbstractTimelineL
 	/** The height of the feedback figure when moving StateInvariants up or down. */
 	private static final int LAYOUT_FEEDBACK_HEIGHT = 4;
 
-	private final List<IFigure> layoutFeedbackFigures = new ArrayList<IFigure>();
+	private final List<IFigure> layoutFeedbackFigures = new ArrayList<>();
 
 	@Override
 	protected Command getMoveChildrenCommand(final Request request) {
@@ -160,8 +160,8 @@ public class CustomTimelineCompartmentLayoutEditPolicy extends AbstractTimelineL
 		final Point moveDelta = FigureUtils.scaleByZoom(changeBoundsRequest.getMoveDelta(), lifelineEditPart.getFigure());
 		// no vertical move
 		moveDelta.y = 0;
-		final List<Node> nodesToMove = new ArrayList<Node>();
-		final List<Integer> indexes = new ArrayList<Integer>();
+		final List<Node> nodesToMove = new ArrayList<>();
+		final List<Integer> indexes = new ArrayList<>();
 		final List<Node> allMovedNodes = getAllMovedNodes(request);
 		for (final EditPart editPart : editParts) {
 			if (editPart instanceof FullStateInvariantVerticalLineEditPart) {
@@ -202,7 +202,7 @@ public class CustomTimelineCompartmentLayoutEditPolicy extends AbstractTimelineL
 		final Point moveDelta = FigureUtils.scaleByZoom(changeBoundsRequest.getMoveDelta(), lifelineEditPart.getFigure());
 		// no vertical move
 		moveDelta.y = 0;
-		final List<Node> nodesToMove = new ArrayList<Node>();
+		final List<Node> nodesToMove = new ArrayList<>();
 		final List<Node> allMovedNodes = getAllMovedNodes(request);
 		for (final EditPart editPart : editParts) {
 			if (OccurrenceSpecificationUtils.isOccurrenceSpecificationEditPart(editPart)) {
@@ -226,7 +226,7 @@ public class CustomTimelineCompartmentLayoutEditPolicy extends AbstractTimelineL
 
 	@SuppressWarnings("unchecked")
 	private static List<Node> getAllMovedNodes(final Request request) {
-		final List<Node> allMovedNodes = new ArrayList<Node>();
+		final List<Node> allMovedNodes = new ArrayList<>();
 		final Map<Object, Object> extendedData = request.getExtendedData();
 		if (extendedData != null) {
 			List<EditPart> editParts = (List<EditPart>) extendedData.get(ALL_MOVED_EDITPARTS);
@@ -259,7 +259,8 @@ public class CustomTimelineCompartmentLayoutEditPolicy extends AbstractTimelineL
 		final View childView = (View) child.getModel();
 		final String visualID = UMLVisualIDRegistry.getVisualID(childView);
 		// make these EditParts non-resizable
-		if (FullStateInvariantEditPartCN.VISUAL_ID.equals(visualID) || OccurrenceSpecificationUtils.isOccurrenceSpecificationEditPart(visualID) || FullStateInvariantVerticalLineEditPart.VISUAL_ID.equals(visualID) || TimeElementUtils.isTimeElementEditPart(visualID)
+		if (FullStateInvariantEditPartCN.VISUAL_ID.equals(visualID) || OccurrenceSpecificationUtils.isOccurrenceSpecificationEditPart(visualID) || FullStateInvariantVerticalLineEditPart.VISUAL_ID.equals(visualID)
+				|| TimeElementUtils.isTimeElementEditPart(visualID)
 				|| GeneralOrderingUtils.isGeneralOrderingEditPart(visualID)) {
 			return createNonResizableEditPolicy();
 		}

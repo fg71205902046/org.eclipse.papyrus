@@ -254,7 +254,7 @@ public class ShapeNamedElementFigure extends PapyrusNodeFigure implements IPapyr
 
 	@Override
 	public PapyrusWrappingLabel getStereotypesLabel() {
-		
+
 		return null;
 	}
 

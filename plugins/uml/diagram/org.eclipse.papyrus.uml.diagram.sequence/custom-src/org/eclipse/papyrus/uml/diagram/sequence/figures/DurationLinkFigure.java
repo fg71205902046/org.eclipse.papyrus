@@ -367,11 +367,13 @@ public class DurationLinkFigure extends UMLEdgeFigure {
 		}
 	}
 
-	/** Returns the arrow position delta.
+	/**
+	 * Returns the arrow position delta.
 	 * <p>
 	 * By default, the arrow is centered between its start and end point (delta = 0). The position
 	 * delta can be used to move it to the right (delta > 0) or to the left (delta < 0).
-	 * </p>*/
+	 * </p>
+	 */
 	public int getArrowPositionDelta() {
 		return arrowPositionDelta;
 	}

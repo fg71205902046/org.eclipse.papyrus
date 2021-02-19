@@ -119,12 +119,12 @@ public class InterfaceManagerDialog extends SelectionDialog implements IPortInte
 	private SelectionEditorWrapper requiredEditor;
 
 	/** In this map, we link the {@link Interface} with their {@link Usage} This map is used when we want remove an Interface from a Usage. */
-	private Map<Interface, List<Usage>> requiredInterfacesMappedWithUsage = new HashMap<Interface, List<Usage>>();
+	private Map<Interface, List<Usage>> requiredInterfacesMappedWithUsage = new HashMap<>();
 
 	/**
 	 * In this map, we link the {@link Interface} with their {@link Realization} This map is used when we want remove an Interface from a Realization.
 	 */
-	private Map<Interface, List<Realization>> providedInterfacesMappedWithRealization = new HashMap<Interface, List<Realization>>();
+	private Map<Interface, List<Realization>> providedInterfacesMappedWithRealization = new HashMap<>();
 
 	/** the label provider for selector. */
 	private ILabelProvider selectorLabelProvider = new SelectorLabelProvider();
@@ -192,8 +192,8 @@ public class InterfaceManagerDialog extends SelectionDialog implements IPortInte
 	 */
 	protected void init() {
 
-		this.forbiddenNames = new ArrayList<String>();
-		this.interfaceRepresentations = new ArrayList<NewElementRepresentation>();
+		this.forbiddenNames = new ArrayList<>();
+		this.interfaceRepresentations = new ArrayList<>();
 		EList<Namespace> namespaces = port.allNamespaces();
 		Element el = namespaces.get(namespaces.size() - 1);
 		if (el instanceof Package) {
@@ -207,7 +207,7 @@ public class InterfaceManagerDialog extends SelectionDialog implements IPortInte
 		buildRequiredInterfaces();
 
 		// we build the list of the provided interfaces
-		this.providedInterfaces = new ArrayList<Object>();
+		this.providedInterfaces = new ArrayList<>();
 		for (Interface current : this.port.getProvideds()) {
 			this.providedInterfaces.add(current);
 		}
@@ -217,7 +217,7 @@ public class InterfaceManagerDialog extends SelectionDialog implements IPortInte
 		}
 
 		// we build the list of the required interfaces
-		this.requiredInterfaces = new ArrayList<Object>();
+		this.requiredInterfaces = new ArrayList<>();
 		for (Interface current : this.port.getRequireds()) {
 			this.requiredInterfaces.add(current);
 		}
@@ -245,7 +245,7 @@ public class InterfaceManagerDialog extends SelectionDialog implements IPortInte
 	 */
 	protected void buildRequiredInterfaces() {
 		List<Usage> allUsage = ElementUtil.getInstancesFilteredByType(this.model, Usage.class, null);
-		List<Classifier> classifiers = new ArrayList<Classifier>();
+		List<Classifier> classifiers = new ArrayList<>();
 		classifiers.add((Classifier) this.port.getType());
 
 		classifiers.addAll(Util.getAllSuperClasses(null, (Classifier) this.port.getType()));
@@ -260,7 +260,7 @@ public class InterfaceManagerDialog extends SelectionDialog implements IPortInte
 							if (usages != null) {
 								usages.add(usage);
 							} else {
-								usages = new ArrayList<Usage>();
+								usages = new ArrayList<>();
 								usages.add(usage);
 								this.requiredInterfacesMappedWithUsage.put((Interface) target, usages);
 							}
@@ -277,7 +277,7 @@ public class InterfaceManagerDialog extends SelectionDialog implements IPortInte
 	 */
 	protected void buildProvidedInterfaces() {
 		List<Realization> allRealization = ElementUtil.getInstancesFilteredByType(this.model, Realization.class, null);
-		List<Classifier> classifiers = new ArrayList<Classifier>();
+		List<Classifier> classifiers = new ArrayList<>();
 		classifiers.add((Classifier) this.port.getType());
 
 		classifiers.addAll(Util.getAllSuperClasses(null, (Classifier) this.port.getType()));
@@ -292,7 +292,7 @@ public class InterfaceManagerDialog extends SelectionDialog implements IPortInte
 							if (realizations != null) {
 								realizations.add(realization);
 							} else {
-								realizations = new ArrayList<Realization>();
+								realizations = new ArrayList<>();
 								realizations.add(realization);
 								this.providedInterfacesMappedWithRealization.put((Interface) target, realizations);
 							}
@@ -321,7 +321,7 @@ public class InterfaceManagerDialog extends SelectionDialog implements IPortInte
 			 */
 			@Override
 			public Object[] getElements() {
-				List<Object> tmp = new ArrayList<Object>();
+				List<Object> tmp = new ArrayList<>();
 				tmp.addAll(getAllAvailableInterfaces(model));
 				if (typedWithInterface) {
 					tmp.remove(port.getType());
@@ -344,7 +344,7 @@ public class InterfaceManagerDialog extends SelectionDialog implements IPortInte
 			 */
 			@Override
 			public Object[] getElements() {
-				List<Object> tmp = new ArrayList<Object>();
+				List<Object> tmp = new ArrayList<>();
 				tmp.addAll(getAllAvailableInterfaces(model));
 
 				// we add the new interfaces which are not yet created
@@ -425,7 +425,7 @@ public class InterfaceManagerDialog extends SelectionDialog implements IPortInte
 	protected List<Interface> getAllAvailableInterfaces(Package pack) {
 
 		// Set ensure there is not duplicated interface
-		Set<Interface> otherInterfaces = new HashSet<Interface>();
+		Set<Interface> otherInterfaces = new HashSet<>();
 
 		List<Element> interfaces = Visitor.getOwnedAndImportedElement(pack, Interface.class);
 		for (Namespace namespace : Visitor.getOwnedAndImportedNamespaces(pack)) {
@@ -473,7 +473,7 @@ public class InterfaceManagerDialog extends SelectionDialog implements IPortInte
 	protected Command getCommandToRemoveReferencedInterfaces() {
 		CompoundCommand command = new CompoundCommand("Command to destroy Usage and InterfaceRealization"); //$NON-NLS-1$
 
-		Set<Dependency> relationshipToDestroy = new HashSet<Dependency>();
+		Set<Dependency> relationshipToDestroy = new HashSet<>();
 		// commands to destroy Usage
 		for (Object current : this.requiredEditor.getElementToRemove()) {
 			// we get all usage associated with this interface
@@ -651,7 +651,7 @@ public class InterfaceManagerDialog extends SelectionDialog implements IPortInte
 			dialog.setMessage(Messages.InterfaceManagerDialog_SelectTheParentOfThisNewInterface);
 			dialog.setHelpAvailable(false);
 			dialog.setForbiddenNames(forbiddenNames);
-			List<Object> input = new ArrayList<Object>();
+			List<Object> input = new ArrayList<>();
 			input.add(model);
 			dialog.setInput(input);
 			dialog.setValidator(new ParentInterfaceValidator());
@@ -844,7 +844,7 @@ public class InterfaceManagerDialog extends SelectionDialog implements IPortInte
 		 */
 		@Override
 		public Object[] getChildren(Object parentElement) {
-			List<Object> children = new ArrayList<Object>();
+			List<Object> children = new ArrayList<>();
 			List<?> tmp = null;
 			if (parentElement instanceof Package) {
 				tmp = ((Package) parentElement).getOwnedMembers();

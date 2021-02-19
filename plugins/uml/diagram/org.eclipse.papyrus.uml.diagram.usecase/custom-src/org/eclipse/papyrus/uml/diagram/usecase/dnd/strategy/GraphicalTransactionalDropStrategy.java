@@ -30,6 +30,7 @@ import org.eclipse.papyrus.uml.diagram.common.commands.ShowHideElementsRequest;
 //FIXME should be moved to the plugin org.eclipse.papyrus.infra.gmfdiag.dnd
 /**
  * An abstract strategy with a basic preimplemented graphical command management.
+ *
  * @author Francois Le Fevre
  */
 public abstract class GraphicalTransactionalDropStrategy extends TransactionalDropStrategy {
@@ -91,6 +92,6 @@ public abstract class GraphicalTransactionalDropStrategy extends TransactionalDr
 
 		return null;
 	}
-	
+
 	protected abstract List<CreateViewRequest.ViewDescriptor> getViewDescriptors(DropObjectsRequest dropRequest, EditPart targetEditPart);
 }

@@ -20,6 +20,7 @@ import org.eclipse.gmf.runtime.common.core.service.ProviderPriority;
 
 /**
  * Interface that describes a palette.
+ *
  * @since 3.0
  */
 public interface IPaletteDescription {

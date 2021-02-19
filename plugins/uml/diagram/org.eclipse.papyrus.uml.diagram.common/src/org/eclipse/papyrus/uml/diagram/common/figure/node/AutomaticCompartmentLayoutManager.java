@@ -147,7 +147,7 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 		Rectangle bounds = container.getBounds();
 		// do the layout based on the policies
 		if (!visibleCompartments.isEmpty()) {
-			if (forcedLabelBounds && hasShapeDisplayed(container) ) { // Bug 485824
+			if (forcedLabelBounds && hasShapeDisplayed(container)) { // Bug 485824
 				layoutForcedLabel(container);
 			} else {
 				layoutDefault(container);
@@ -163,7 +163,9 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 
 	/**
 	 * Returns <code>true</code> if there is a displayed shape compartment in the list of visible compartment
-	 * @param container the figure to check
+	 * 
+	 * @param container
+	 *            the figure to check
 	 * @return <code>true</code> if there is a displayed shape compartment in the list of visible compartment
 	 */
 	protected boolean hasShapeDisplayed(IFigure container) {
@@ -322,7 +324,7 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 	 *            The previously filled bound
 	 */
 	protected void fillBoundsForOther(IFigure container, Rectangle bound, Rectangle previous) {
-		bound.x = container.getBounds().x + 1; //+1, see bug 490318, restore +1 to fix shift from Papyrus Luna to Papyrus Mars
+		bound.x = container.getBounds().x + 1; // +1, see bug 490318, restore +1 to fix shift from Papyrus Luna to Papyrus Mars
 		bound.width = container.getBounds().width;
 		if (previous == null) {
 			bound.y = container.getBounds().y + 3;
@@ -449,7 +451,7 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 				visibleCompartments.add(child);
 			} else if (child instanceof Label || child instanceof WrappingLabel || child instanceof StereotypePropertiesCompartment) {
 				visibleOthers.add(child);
-			} else if ((child instanceof ScalableCompartmentFigure)|| (child instanceof ShapeCompartmentFigure)) {
+			} else if ((child instanceof ScalableCompartmentFigure) || (child instanceof ShapeCompartmentFigure)) {
 				visibleCompartments.add(child);
 			} else {
 				invisibles.add(child);
@@ -465,7 +467,7 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 	 * @return <code>true</code> if the figure contains a GMF compartment
 	 */
 	private boolean isGMFContainer(IFigure figure) {
-		if (figure instanceof ResizableCompartmentFigure){
+		if (figure instanceof ResizableCompartmentFigure) {
 			return true;
 		}
 		if (figure instanceof StereotypePropertiesCompartment) {

@@ -24,6 +24,7 @@ public class ShowHideRelatedLinkEditPolicy extends AbstractUMLShowHideRelatedLin
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public DiagramUpdater getDiagramUpdater() {
 		return UMLDiagramUpdater.INSTANCE;
 	}
@@ -35,6 +36,7 @@ public class ShowHideRelatedLinkEditPolicy extends AbstractUMLShowHideRelatedLin
 	 *
 	 * @return
 	 */
+	@Override
 	public DiagramStructure getDiagramStructure() {
 		return UMLVisualIDRegistry.TYPED_INSTANCE;
 	}

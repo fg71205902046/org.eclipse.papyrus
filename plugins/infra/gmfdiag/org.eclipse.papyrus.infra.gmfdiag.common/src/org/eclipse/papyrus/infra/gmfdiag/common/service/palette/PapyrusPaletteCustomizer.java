@@ -44,12 +44,13 @@ import org.eclipse.ui.XMLMemento;
 
 /**
  * Customizer for the palette viewer
+ *
  * @since 3.0
  */
 public class PapyrusPaletteCustomizer extends PaletteCustomizerEx {
 
 	/** maps that stores the modification of parents */
-	protected Map<PaletteEntry, PaletteContainer> changedParents = new HashMap<PaletteEntry, PaletteContainer>();
+	protected Map<PaletteEntry, PaletteContainer> changedParents = new HashMap<>();
 
 	/**
 	 * Creates a new PapyrusPaletteCustomizer.
@@ -107,7 +108,7 @@ public class PapyrusPaletteCustomizer extends PaletteCustomizerEx {
 	protected void cleanPalette(PaletteContainer paletteContainer) {
 		// copy children list, then iterate, so the original children list can
 		// be modified...
-		List<PaletteEntry> children = new ArrayList<PaletteEntry>(paletteContainer.getChildren().size());
+		List<PaletteEntry> children = new ArrayList<>(paletteContainer.getChildren().size());
 		for (Object o : paletteContainer.getChildren()) {
 			children.add((PaletteEntry) o);
 		}
@@ -152,7 +153,7 @@ public class PapyrusPaletteCustomizer extends PaletteCustomizerEx {
 	/**
 	 * Matches each palette entry with a palette state.
 	 */
-	private HashMap<PaletteEntry, IPaletteState> paletteStates = new HashMap<PaletteEntry, IPaletteState>();
+	private HashMap<PaletteEntry, IPaletteState> paletteStates = new HashMap<>();
 
 	/**
 	 * the preference store in which the palette customizations are to be saved
@@ -253,7 +254,7 @@ public class PapyrusPaletteCustomizer extends PaletteCustomizerEx {
 	 */
 	private IMemento getMementoForEntry(IMemento rootMemento, PaletteEntry paletteEntry) {
 
-		ArrayList<String> idList = new ArrayList<String>();
+		ArrayList<String> idList = new ArrayList<>();
 		idList.add(paletteEntry.getId());
 
 		// modification of GMF code to have the parent. takes the default parent

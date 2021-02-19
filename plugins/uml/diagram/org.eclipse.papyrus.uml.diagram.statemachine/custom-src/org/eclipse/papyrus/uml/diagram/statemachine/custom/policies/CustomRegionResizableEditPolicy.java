@@ -102,7 +102,7 @@ public class CustomRegionResizableEditPolicy extends ResizableEditPolicy {
 			// the associated region view
 			View region = (View) regionEP.getModel();
 			// a list to get all the nodes impacted by the resize
-			List<View> nodes = new ArrayList<View>();
+			List<View> nodes = new ArrayList<>();
 			// test the direction and call the appropriate method
 			if (direction == PositionConstants.NORTH) {
 				// retrieve the list of nodes that are at the BOTTOM of NORTH

@@ -31,7 +31,7 @@ import org.eclipse.uml2.uml.Signal;
 /**
  * Drop strategy to create an AcceptEventAction from a Signal drop.
  * It also includes the creation of a nested trigger as well has a Signal event.
- * 
+ *
  * @since 3.5.0
  */
 public class SignalToAcceptEventActionDropStrategy extends AbstractActivityNodeStrategy {

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -34,9 +34,9 @@ public abstract class UseCaseNodeEditPart extends RoundedCompartmentEditPart {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * Add missing edit policy to show/hide contents (Bug 489118)
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart#createDefaultEditPolicies()
 	 *
 	 */

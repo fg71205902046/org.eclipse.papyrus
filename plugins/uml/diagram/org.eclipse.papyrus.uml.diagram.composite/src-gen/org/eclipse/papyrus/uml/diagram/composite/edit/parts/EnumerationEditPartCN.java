@@ -156,7 +156,7 @@ public class EnumerationEditPartCN extends RoundedCompartmentEditPart {
 
 	/**
 	 * Papyrus codeGen
-	 * 
+	 *
 	 * @generated
 	 **/
 	@Override
@@ -189,7 +189,7 @@ public class EnumerationEditPartCN extends RoundedCompartmentEditPart {
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.common.figure.node.EnumerationFigure
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -209,7 +209,7 @@ public class EnumerationEditPartCN extends RoundedCompartmentEditPart {
 
 		if (childEditPart instanceof EnumerationEnumerationLiteralCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getEnumerationLiteralCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((EnumerationEnumerationLiteralCompartmentEditPartCN) childEditPart).getFigure());
 			return true;
 		}
@@ -307,7 +307,7 @@ public class EnumerationEditPartCN extends RoundedCompartmentEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * 
+	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
 	 * @generated

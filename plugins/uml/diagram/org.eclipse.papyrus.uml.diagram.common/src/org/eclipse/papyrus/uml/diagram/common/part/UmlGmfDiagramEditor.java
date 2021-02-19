@@ -75,6 +75,7 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor implemen
 
 	/**
 	 * Listener to to the diagram kind
+	 *
 	 * @since 3.1
 	 */
 	protected Adapter diagramKindAdapter;
@@ -109,28 +110,28 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor implemen
 			@Override
 			public void notifyChanged(Notification msg) {
 				if (msg.getNewValue() instanceof PapyrusDiagramStyle) {
-					((PapyrusDiagramStyle)msg.getNewValue()).eAdapters().add(diagramKindAdapter);
+					((PapyrusDiagramStyle) msg.getNewValue()).eAdapters().add(diagramKindAdapter);
 				} else if (msg.getOldValue() instanceof PapyrusDiagramStyle) {
-					((PapyrusDiagramStyle)msg.getOldValue()).eAdapters().remove(diagramKindAdapter);
+					((PapyrusDiagramStyle) msg.getOldValue()).eAdapters().remove(diagramKindAdapter);
 				}
 				if (StylePackage.Literals.PAPYRUS_DIAGRAM_STYLE__DIAGRAM_KIND_ID.equals(msg.getFeature()) ||
-					msg.getNewValue() instanceof PapyrusDiagramStyle ||
-					msg.getOldValue() instanceof PapyrusDiagramStyle	) {
-					//reload the editor's two viewers
+						msg.getNewValue() instanceof PapyrusDiagramStyle ||
+						msg.getOldValue() instanceof PapyrusDiagramStyle) {
+					// reload the editor's two viewers
 					if (getEditDomain().getPaletteViewer() != null) {
 						getEditDomain().setPaletteRoot(createPaletteRoot(null));
-					}			
+					}
 					if (getGraphicalViewer() != null) {
 						getGraphicalViewer().setContents(diagram);
 					}
-						
+
 				}
 			}
 		};
-		
+
 		diagram.eAdapters().add(diagramKindAdapter);
 		PapyrusDiagramStyle style = DiagramUtils.getPapyrusDiagramStyle(diagram);
-		if(style!=null) {
+		if (style != null) {
 			style.eAdapters().add(diagramKindAdapter);
 		}
 	}
@@ -143,9 +144,10 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor implemen
 	@Override
 	public void setFocus() {
 		if (!viewerInitialized) {
-			BusyIndicator.showWhile(Display.getDefault(), new Runnable(){
+			BusyIndicator.showWhile(Display.getDefault(), new Runnable() {
 
-				public void run(){
+				@Override
+				public void run() {
 					doInitializeGraphicalViewer();
 					viewerInitialized = true;
 				}
@@ -190,7 +192,7 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor implemen
 		// remove the listener to the diagram kind id
 		if (diagramKindAdapter != null) {
 			PapyrusDiagramStyle style = DiagramUtils.getPapyrusDiagramStyle(getDiagram());
-			if(style!=null) {
+			if (style != null) {
 				style.eAdapters().remove(diagramKindAdapter);
 			}
 			getDiagram().eAdapters().remove(diagramKindAdapter);

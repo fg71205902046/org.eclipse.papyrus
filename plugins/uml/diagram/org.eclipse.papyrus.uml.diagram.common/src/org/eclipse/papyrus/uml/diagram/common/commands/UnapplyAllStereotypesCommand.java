@@ -28,7 +28,7 @@ import org.eclipse.uml2.uml.Element;
 
 /**
  * Unapplies all stereotypes from an Element.
- * 
+ *
  * @deprecated Proper delegation to the Edit Service ensures deletion of stereotype applications when UML elements are deleted.
  */
 @Deprecated

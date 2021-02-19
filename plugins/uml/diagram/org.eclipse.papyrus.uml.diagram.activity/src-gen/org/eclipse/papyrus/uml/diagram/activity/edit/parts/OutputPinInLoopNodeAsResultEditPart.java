@@ -43,7 +43,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEdit
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
 import org.eclipse.papyrus.uml.diagram.activity.edit.part.AbstractPinEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
@@ -80,6 +79,7 @@ public class OutputPinInLoopNodeAsResultEditPart extends AbstractPinEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
@@ -140,9 +140,10 @@ public class OutputPinInLoopNodeAsResultEditPart extends AbstractPinEditPart {
 
 	/**
 	 * Papyrus codeGen
-	 * 
+	 *
 	 * @generated
 	 **/
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 		/*
 		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
@@ -171,9 +172,10 @@ public class OutputPinInLoopNodeAsResultEditPart extends AbstractPinEditPart {
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	public OutputPinFigure getPrimaryShape() {
 		return (OutputPinFigure) primaryShape;
 	}
@@ -181,6 +183,7 @@ public class OutputPinInLoopNodeAsResultEditPart extends AbstractPinEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
 		if (borderItemEditPart instanceof OutputPinInLoopNodeAsResultLabelEditPart) {
 			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
@@ -203,12 +206,13 @@ public class OutputPinInLoopNodeAsResultEditPart extends AbstractPinEditPart {
 
 	/**
 	 * Creates figure for this edit part.
-	 * 
+	 *
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createMainFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
@@ -222,7 +226,7 @@ public class OutputPinInLoopNodeAsResultEditPart extends AbstractPinEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * 
+	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
 	 * @generated
@@ -234,6 +238,7 @@ public class OutputPinInLoopNodeAsResultEditPart extends AbstractPinEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -244,6 +249,7 @@ public class OutputPinInLoopNodeAsResultEditPart extends AbstractPinEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -253,6 +259,7 @@ public class OutputPinInLoopNodeAsResultEditPart extends AbstractPinEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineWidth(int width) {
 		super.setLineWidth(width);
 	}
@@ -260,6 +267,7 @@ public class OutputPinInLoopNodeAsResultEditPart extends AbstractPinEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineType(int style) {
 		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
@@ -269,6 +277,7 @@ public class OutputPinInLoopNodeAsResultEditPart extends AbstractPinEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(OutputPinInLoopNodeAsResultLabelEditPart.VISUAL_ID));
 	}

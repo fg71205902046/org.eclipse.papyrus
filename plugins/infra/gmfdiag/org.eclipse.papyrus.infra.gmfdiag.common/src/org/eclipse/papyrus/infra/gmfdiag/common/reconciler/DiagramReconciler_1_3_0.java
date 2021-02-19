@@ -32,6 +32,7 @@ import org.eclipse.papyrus.infra.viewpoints.style.PapyrusViewStyle;
 /**
  * Diagram reconciler form 1.2.0 to 1.3.0 that replaces the old PapyrusViewStyle
  * by the new PapyrusDiagramStyle
+ *
  * @since 3.0
  */
 public abstract class DiagramReconciler_1_3_0 extends DiagramReconciler {
@@ -39,7 +40,7 @@ public abstract class DiagramReconciler_1_3_0 extends DiagramReconciler {
 	@Override
 	public ICommand getReconcileCommand(Diagram diagram) {
 		PapyrusViewStyle oldStyle = null;
-		for(Object obj : new ArrayList<Style>(diagram.getStyles())) {
+		for (Object obj : new ArrayList<Style>(diagram.getStyles())) {
 			if (obj instanceof PapyrusViewStyle) {
 				oldStyle = (PapyrusViewStyle) obj;
 			}
@@ -48,7 +49,7 @@ public abstract class DiagramReconciler_1_3_0 extends DiagramReconciler {
 		PapyrusDiagram diagramKind = getDiagramKind(diagram, oldStyle);
 
 		PapyrusDiagramStyle newStyle = null;
-		for(Object obj : new ArrayList<Style>(diagram.getStyles())) {
+		for (Object obj : new ArrayList<Style>(diagram.getStyles())) {
 			if (obj instanceof PapyrusDiagramStyle) {
 				newStyle = (PapyrusDiagramStyle) obj;
 			}
@@ -56,26 +57,27 @@ public abstract class DiagramReconciler_1_3_0 extends DiagramReconciler {
 
 		if (newStyle == null && diagramKind != null) {
 			newStyle = StyleFactory.eINSTANCE.createPapyrusDiagramStyle();
-			if (oldStyle != null)
+			if (oldStyle != null) {
 				newStyle.setOwner(oldStyle.getOwner());
-			else
+			} else {
 				newStyle.setOwner(diagram.getElement());
+			}
 			newStyle.setDiagramKindId(diagramKind.getId());
 			return new ReplacePapyrusViewStyleCommand(diagram, oldStyle, newStyle);
 		}
-		
+
 		return null;
 	}
-	
+
 	/**
-	 *  Gets the new diagram kind that based on the given diagram and its old PapyrusViewStyle
-	 *  
+	 * Gets the new diagram kind that based on the given diagram and its old PapyrusViewStyle
+	 *
 	 * @param diagram
 	 * @param oldStyle
 	 * @return
 	 */
 	protected abstract PapyrusDiagram getDiagramKind(Diagram diagram, PapyrusViewStyle oldStyle);
-	
+
 	/**
 	 * A command to replace the old PapyrusViewStyle with the new PapyrusDiagramStyle
 	 */
@@ -98,8 +100,9 @@ public abstract class DiagramReconciler_1_3_0 extends DiagramReconciler {
 			if (index > -1) {
 				diagram.getStyles().remove(index);
 				diagram.getStyles().add(index, newStyle);
-			} else
+			} else {
 				diagram.getStyles().add(newStyle);
+			}
 			return CommandResult.newOKCommandResult();
 		}
 

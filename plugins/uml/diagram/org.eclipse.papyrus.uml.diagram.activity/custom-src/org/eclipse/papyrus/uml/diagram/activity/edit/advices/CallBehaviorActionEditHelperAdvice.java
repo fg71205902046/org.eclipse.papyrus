@@ -82,7 +82,7 @@ public class CallBehaviorActionEditHelperAdvice extends AbstractEditHelperAdvice
 	public void configureRequest(IEditCommandRequest request) {
 		request.getParameters().put(POPUP_TYPE, CALL_BEHAVIOR_ACTION);
 	}
-	
+
 	/**
 	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice#getBeforeSetCommand(org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest)
 	 *
@@ -91,11 +91,11 @@ public class CallBehaviorActionEditHelperAdvice extends AbstractEditHelperAdvice
 	 */
 	@Override
 	protected ICommand getAfterSetCommand(SetRequest request) {
-		CallBehaviorAction editedModelElement = (CallBehaviorAction)request.getElementToEdit();
-		if(request.getFeature()==UMLPackage.eINSTANCE.getCallBehaviorAction_Behavior()){
+		CallBehaviorAction editedModelElement = (CallBehaviorAction) request.getElementToEdit();
+		if (request.getFeature() == UMLPackage.eINSTANCE.getCallBehaviorAction_Behavior()) {
 			IPinUpdater<CallBehaviorAction> updater = PinUpdaterFactory.getInstance().instantiate(editedModelElement);
-			return new PinUpdateCommand<CallBehaviorAction>("Update call behavior action pins", updater, editedModelElement);
-		}else{
+			return new PinUpdateCommand<>("Update call behavior action pins", updater, editedModelElement);
+		} else {
 			return null;
 		}
 	}

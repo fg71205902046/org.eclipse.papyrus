@@ -32,7 +32,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * Drop strategy to create a ReadStructuralFeatureAction from a Property drop and to update
  * the "structuralFeature" reference.
- * 
+ *
  * @since 3.5.0
  */
 public class PropertyToReadStructuralFeatureActionDropStrategy extends AbstractActivityNodeStrategy {

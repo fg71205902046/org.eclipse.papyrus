@@ -30,7 +30,7 @@ import org.eclipse.swt.widgets.Shell;
 
 /**
  * Extended Palette Viewer, to have a new customize dialog
- * 
+ *
  * @since 3.0
  */
 public class PapyrusPaletteViewer extends PaletteViewerEx {

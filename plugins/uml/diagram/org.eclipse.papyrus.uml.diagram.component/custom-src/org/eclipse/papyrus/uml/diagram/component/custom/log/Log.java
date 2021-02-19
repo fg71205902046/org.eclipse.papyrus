@@ -21,6 +21,7 @@ import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin;
 
 /**
  * Log singleton class for CSD.
+ *
  * @since 3.0
  */
 public class Log extends LogHelper {

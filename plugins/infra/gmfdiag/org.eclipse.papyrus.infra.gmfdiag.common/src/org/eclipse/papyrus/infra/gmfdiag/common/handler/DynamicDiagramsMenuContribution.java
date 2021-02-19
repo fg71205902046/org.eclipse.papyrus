@@ -60,7 +60,7 @@ public class DynamicDiagramsMenuContribution extends DynamicContribution {
 		}
 
 		// build a list of all the available prototypes
-		List<ViewPrototype> data = new ArrayList<ViewPrototype>();
+		List<ViewPrototype> data = new ArrayList<>();
 		for (final ViewPrototype proto : PolicyChecker.getFor(selection).getPrototypesFor(selection)) {
 			if (!(proto.getRepresentationKind() instanceof PapyrusDiagram)) {
 				continue;
@@ -72,7 +72,7 @@ public class DynamicDiagramsMenuContribution extends DynamicContribution {
 		Collections.sort(data, new ViewPrototype.Comp());
 
 		// build the full labels
-		List<String> labels = new ArrayList<String>(data.size());
+		List<String> labels = new ArrayList<>(data.size());
 		String last = null;
 		boolean first = true;
 		for (ViewPrototype item : data) {
@@ -92,7 +92,7 @@ public class DynamicDiagramsMenuContribution extends DynamicContribution {
 		}
 
 		// build the menu
-		List<IContributionItem> items = new ArrayList<IContributionItem>(data.size());
+		List<IContributionItem> items = new ArrayList<>(data.size());
 		for (int i = 0; i != data.size(); i++) {
 			final ViewPrototype proto = data.get(i);
 			String label = labels.get(i);

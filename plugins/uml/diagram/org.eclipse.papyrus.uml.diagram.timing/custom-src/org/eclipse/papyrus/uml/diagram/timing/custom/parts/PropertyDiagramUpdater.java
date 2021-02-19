@@ -48,7 +48,7 @@ public class PropertyDiagramUpdater implements ICustomDiagramUpdater<UMLNodeDesc
 			return Collections.emptyList();
 		}
 		final Lifeline modelElement = (Lifeline) containerView.getElement();
-		final LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
+		final LinkedList<UMLNodeDescriptor> result = new LinkedList<>();
 		if ((modelElement).getCoveredBys().size() > 0) {
 			final Interaction interaction = modelElement.getInteraction();
 			for (final Object element : interaction.getFragments()) {
@@ -99,7 +99,7 @@ public class PropertyDiagramUpdater implements ICustomDiagramUpdater<UMLNodeDesc
 			return Collections.emptyList();
 		}
 		final Lifeline modelElement = (Lifeline) containerView.getElement();
-		final LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
+		final LinkedList<UMLNodeDescriptor> result = new LinkedList<>();
 		if ((modelElement).getCoveredBys().size() > 0) {
 			final Interaction interaction = modelElement.getInteraction();
 			for (final Object element : interaction.getFragments()) {

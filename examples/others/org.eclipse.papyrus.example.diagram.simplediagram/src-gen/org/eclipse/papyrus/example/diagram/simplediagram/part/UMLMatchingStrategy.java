@@ -14,6 +14,7 @@ public class UMLMatchingStrategy implements IEditorMatchingStrategy {
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean matches(IEditorReference editorRef, IEditorInput input) {
 		IEditorInput editorInput;
 		try {

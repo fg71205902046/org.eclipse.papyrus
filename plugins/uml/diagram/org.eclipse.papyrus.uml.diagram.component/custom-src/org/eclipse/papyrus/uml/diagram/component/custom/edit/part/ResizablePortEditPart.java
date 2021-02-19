@@ -32,7 +32,7 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortEditPart;
  * This class is used for 2 purposes.
  * 1. Install new ResizablePolicy for port
  * 2. Override Affixed_child_alignment_role policy for resize commands
- * 
+ *
  * @author Trung-Truc Nguyen
  * @since 3.0
  *
@@ -56,10 +56,12 @@ public class ResizablePortEditPart extends PortEditPart {
 	public void installEditPolicy(Object key, EditPolicy editPolicy) {
 		if (EditPolicy.PRIMARY_DRAG_ROLE.equals(key)) {
 			// prevent its parents from overriding this policy
-			if (editPolicy instanceof PortResizableEditPolicy)
+			if (editPolicy instanceof PortResizableEditPolicy) {
 				super.installEditPolicy(key, editPolicy);
-		} else
+			}
+		} else {
 			super.installEditPolicy(key, editPolicy);
+		}
 	}
 
 	/**

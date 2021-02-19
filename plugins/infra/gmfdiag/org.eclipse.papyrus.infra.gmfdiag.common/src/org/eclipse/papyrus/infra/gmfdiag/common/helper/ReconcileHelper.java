@@ -40,10 +40,11 @@ import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.DiagramVersioningUtil
 
 /**
  * Diagram migration between version of Papyrus.
+ *
  * @since 3.0
  */
 public class ReconcileHelper {
-	
+
 	private final TransactionalEditingDomain domain;
 
 	private static final String ALL_DIAGRAMS = "AllDiagrams";//$NON-NLS-1$
@@ -103,7 +104,7 @@ public class ReconcileHelper {
 			String sourceVersion = DiagramVersioningUtils.getCompatibilityVersion(diagram);
 			Map<String, Collection<DiagramReconciler>> diagramReconcilers = DiagramReconcilersReader.getInstance().load();
 			String diagramType = diagram.getType();
-			Collection<DiagramReconciler> reconcilers = new LinkedList<DiagramReconciler>();
+			Collection<DiagramReconciler> reconcilers = new LinkedList<>();
 			if (diagramReconcilers.containsKey(diagramType)) {
 				reconcilers.addAll(diagramReconcilers.get(diagramType));
 			}

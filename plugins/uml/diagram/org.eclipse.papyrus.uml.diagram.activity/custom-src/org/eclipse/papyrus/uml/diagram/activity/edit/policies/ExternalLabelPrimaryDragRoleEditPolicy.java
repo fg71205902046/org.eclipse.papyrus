@@ -50,12 +50,12 @@ public class ExternalLabelPrimaryDragRoleEditPolicy extends NonResizableLabelEdi
 		mh.setBorder(null);
 		return Collections.singletonList(mh);
 	}
-	
-	
-	/* 
+
+
+	/*
 	 * generic getMove Command from
 	 * org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.ExternalLabelPrimaryDragRoleEditPolicy
-	 * 
+	 *
 	 */
 	@Override
 	protected Command getMoveCommand(ChangeBoundsRequest request) {
@@ -82,7 +82,7 @@ public class ExternalLabelPrimaryDragRoleEditPolicy extends NonResizableLabelEdi
 				break;
 			}
 		}
-		
+
 		ICommand moveCommand = new SetBoundsCommand(editPart.getEditingDomain(), DiagramUIMessages.MoveLabelCommand_Label_Location, new EObjectAdapter((View) editPart.getModel()), updatedRect);
 		return new ICommandProxy(moveCommand);
 	}

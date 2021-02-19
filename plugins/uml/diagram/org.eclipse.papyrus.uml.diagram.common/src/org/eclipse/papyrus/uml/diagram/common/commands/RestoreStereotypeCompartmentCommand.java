@@ -54,7 +54,7 @@ public class RestoreStereotypeCompartmentCommand extends RecordingCommand {
 			if (eContainer instanceof View) {
 				View containerView = (View) eContainer;
 				EObject containerEObject = containerView.getElement();
-				if (containerEObject instanceof Element){
+				if (containerEObject instanceof Element) {
 					Element containerElement = (Element) containerEObject;
 					if (!baseElement.equals(containerEObject)) {
 						Stereotype stereotype = UMLUtil.getStereotype(element);

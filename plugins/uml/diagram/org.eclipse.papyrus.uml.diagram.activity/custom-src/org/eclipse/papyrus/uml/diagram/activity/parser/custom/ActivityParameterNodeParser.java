@@ -149,7 +149,7 @@ public class ActivityParameterNodeParser extends MessageFormatParser implements 
 	@Override
 	@SuppressWarnings("unchecked")
 	public List getSemanticElementsBeingParsed(EObject element) {
-		List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
+		List<Element> semanticElementsBeingParsed = new ArrayList<>();
 		ActivityParameterNode parameterNode = null;
 		if (element instanceof ActivityParameterNode) {
 			parameterNode = (ActivityParameterNode) element;

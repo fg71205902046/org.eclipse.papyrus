@@ -28,13 +28,13 @@ import org.eclipse.gef.requests.ChangeBoundsRequest;
  * @author Trung-Truc Nguyen
  *
  */
-public class AllowResizeAffixedNodeAlignmentEditPolicy extends AffixedNodeAlignmentEditPolicy{
+public class AllowResizeAffixedNodeAlignmentEditPolicy extends AffixedNodeAlignmentEditPolicy {
 
 	// without this command, port resize command will never be called.
-		public Command getCommand(Request request) {
-			if (REQ_RESIZE_CHILDREN.equals(request.getType())) {
-				return getResizeChildrenCommand((ChangeBoundsRequest) request);
-			}
-			return super.getCommand(request);
+	public Command getCommand(Request request) {
+		if (REQ_RESIZE_CHILDREN.equals(request.getType())) {
+			return getResizeChildrenCommand((ChangeBoundsRequest) request);
 		}
+		return super.getCommand(request);
+	}
 }

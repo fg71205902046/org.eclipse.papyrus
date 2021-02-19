@@ -35,6 +35,7 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void refreshOnActivate() {
 		// Need to activate editpart children before invoking the canonical refresh for EditParts to add event listeners
 		List<?> c = getHost().getChildren();
@@ -47,6 +48,7 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected EStructuralFeature getFeatureToSynchronize() {
 		return UMLPackage.eINSTANCE.getPackage_PackagedElement();
 	}
@@ -54,10 +56,11 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 	/**
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	protected List getSemanticChildrenList() {
 		View viewObject = (View) getHost().getModel();
-		LinkedList<EObject> result = new LinkedList<EObject>();
+		LinkedList<EObject> result = new LinkedList<>();
 		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater
 				.getModel_1000SemanticChildren(viewObject);
 		for (UMLNodeDescriptor d : childDescriptors) {
@@ -69,6 +72,7 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected boolean isOrphaned(Collection<EObject> semanticChildren,
 			final View view) {
 		return isMyDiagramElement(view)
@@ -86,16 +90,17 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void refreshSemantic() {
 		if (resolveSemanticElement() == null) {
 			return;
 		}
-		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
+		LinkedList<IAdaptable> createdViews = new LinkedList<>();
 		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater
 				.getModel_1000SemanticChildren((View) getHost().getModel());
-		LinkedList<View> orphaned = new LinkedList<View>();
+		LinkedList<View> orphaned = new LinkedList<>();
 		// we care to check only views we recognize as ours
-		LinkedList<View> knownViewChildren = new LinkedList<View>();
+		LinkedList<View> knownViewChildren = new LinkedList<>();
 		for (View v : getViewChildren()) {
 			if (isMyDiagramElement(v)) {
 				knownViewChildren.add(v);
@@ -104,13 +109,13 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 		// alternative to #cleanCanonicalSemanticChildren(getViewChildren(), semanticChildren)
 		//
 		// iteration happens over list of desired semantic elements, trying to find best matching View, while original CEP
-		// iterates views, potentially losing view (size/bounds) information - i.e. if there are few views to reference same EObject, only last one 
+		// iterates views, potentially losing view (size/bounds) information - i.e. if there are few views to reference same EObject, only last one
 		// to answer isOrphaned == true will be used for the domain element representation, see #cleanCanonicalSemanticChildren()
 		for (Iterator<UMLNodeDescriptor> descriptorsIterator = childDescriptors
 				.iterator(); descriptorsIterator.hasNext();) {
 			UMLNodeDescriptor next = descriptorsIterator.next();
 			String hint = UMLVisualIDRegistry.getType(next.getVisualID());
-			LinkedList<View> perfectMatch = new LinkedList<View>(); // both semanticElement and hint match that of NodeDescriptor
+			LinkedList<View> perfectMatch = new LinkedList<>(); // both semanticElement and hint match that of NodeDescriptor
 			for (View childView : getViewChildren()) {
 				EObject semanticElement = childView.getElement();
 				if (next.getModelElement().equals(semanticElement)) {
@@ -132,7 +137,7 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 		// or those we have potential matches to, and thus need to be recreated, preserving size/location information.
 		orphaned.addAll(knownViewChildren);
 		//
-		ArrayList<CreateViewRequest.ViewDescriptor> viewDescriptors = new ArrayList<CreateViewRequest.ViewDescriptor>(
+		ArrayList<CreateViewRequest.ViewDescriptor> viewDescriptors = new ArrayList<>(
 				childDescriptors.size());
 		for (UMLNodeDescriptor next : childDescriptors) {
 			String hint = UMLVisualIDRegistry.getType(next.getVisualID());

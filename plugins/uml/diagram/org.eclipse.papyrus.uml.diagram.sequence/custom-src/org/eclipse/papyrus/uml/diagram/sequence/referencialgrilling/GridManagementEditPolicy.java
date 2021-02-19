@@ -151,7 +151,7 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 
 
 
-	public Comparator<DecorationNode> RowComparator = new Comparator<DecorationNode>() {
+	public Comparator<DecorationNode> RowComparator = new Comparator<>() {
 
 		@Override
 		public int compare(DecorationNode o1, DecorationNode o2) {
@@ -164,7 +164,7 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 		}
 	};
 
-	public Comparator<DecorationNode> ColumnComparator = new Comparator<DecorationNode>() {
+	public Comparator<DecorationNode> ColumnComparator = new Comparator<>() {
 
 		@Override
 		public int compare(DecorationNode o1, DecorationNode o2) {

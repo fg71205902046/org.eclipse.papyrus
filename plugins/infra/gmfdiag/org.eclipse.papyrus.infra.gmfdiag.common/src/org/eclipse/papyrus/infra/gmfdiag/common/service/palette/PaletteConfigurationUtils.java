@@ -33,6 +33,7 @@ import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.util.Paletteconfig
 
 /**
  * Utility class for {@link PaletteConfiguration} elements.
+ *
  * @since 3.0
  */
 public class PaletteConfigurationUtils {

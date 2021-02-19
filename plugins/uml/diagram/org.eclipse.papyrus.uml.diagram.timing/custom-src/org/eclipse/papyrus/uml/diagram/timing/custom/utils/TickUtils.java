@@ -90,7 +90,7 @@ public final class TickUtils {
 	}
 
 	public static List<Node> getAssociatedTickViews(final View occurrenceView) {
-		final List<Node> result = new ArrayList<Node>();
+		final List<Node> result = new ArrayList<>();
 		checkOccurrenceSpecificationView(occurrenceView);
 		final EAnnotation eAnnotation = occurrenceView.getEAnnotation(OCCURRENCE_TO_TICK_ANNOTATION);
 		if (eAnnotation != null) {

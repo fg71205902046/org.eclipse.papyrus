@@ -59,7 +59,7 @@ import org.w3c.dom.Node;
 
 /**
  * Connection tool that adds stereotype application after creation actions.
- * 
+ *
  * @since 3.0
  */
 public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnectionTool {
@@ -280,7 +280,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		 * A map containing the <code>CreateConnectionRequest</code> for each
 		 * element type.
 		 */
-		private Map<IElementType, CreateConnectionRequest> requests = new HashMap<IElementType, CreateConnectionRequest>();
+		private Map<IElementType, CreateConnectionRequest> requests = new HashMap<>();
 
 		/** The result to be returned from which the new views can be retrieved. */
 		private List newObjectList = new ArrayList();
@@ -354,7 +354,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 							adapter.add((CreateRequest) request);
 						}
 					}
-					List<IAdaptable> newObjects = new ArrayList<IAdaptable>();
+					List<IAdaptable> newObjects = new ArrayList<>();
 					newObjects.add(adapter);
 					return newObjects;
 				}

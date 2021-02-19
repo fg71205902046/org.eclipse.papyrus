@@ -140,7 +140,7 @@ public class RetargetMessageEndFromExecutionSpecificationToLifelineDiagramReconc
 	 * @param view
 	 *            a view
 	 * @return
-	 * 		<code>true</code> if the current view is the expected Lifeline View to which the messages must be linked
+	 *         <code>true</code> if the current view is the expected Lifeline View to which the messages must be linked
 	 */
 	private boolean isLifelineShape(final View view) {
 		return view instanceof Shape && view.getElement() instanceof Lifeline && LifelineEditPart.VISUAL_ID.equals(view.getType());
@@ -151,7 +151,7 @@ public class RetargetMessageEndFromExecutionSpecificationToLifelineDiagramReconc
 	 * @param object
 	 *            an object
 	 * @return
-	 * 		<code>true</code> if the object is a Notation Connector and represents a UML Message
+	 *         <code>true</code> if the object is a Notation Connector and represents a UML Message
 	 */
 	private boolean isAMessageConnector(final Object object) {
 		return object instanceof Connector && ((Connector) object).getElement() instanceof Message;
@@ -162,7 +162,7 @@ public class RetargetMessageEndFromExecutionSpecificationToLifelineDiagramReconc
 	 * @param messageConnector
 	 *            a message connector
 	 * @return
-	 * 		<code>true</code> if the source must be migrated
+	 *         <code>true</code> if the source must be migrated
 	 */
 	private boolean migrateSource(final Connector messageConnector) {
 		return isAnExecutionSpecification(messageConnector.getSource());
@@ -173,7 +173,7 @@ public class RetargetMessageEndFromExecutionSpecificationToLifelineDiagramReconc
 	 * @param messageConnector
 	 *            a message connector
 	 * @return
-	 * 		<code>true</code> if the target must be migrated
+	 *         <code>true</code> if the target must be migrated
 	 */
 	private boolean migrateTarget(final Connector messageConnector) {
 		return isAnExecutionSpecification(messageConnector.getTarget());
@@ -184,7 +184,7 @@ public class RetargetMessageEndFromExecutionSpecificationToLifelineDiagramReconc
 	 * @param messageConnector
 	 *            a message connector
 	 * @return
-	 * 		the new source to use for the connector
+	 *         the new source to use for the connector
 	 */
 	private Shape getNewSource(final Connector messageConnector) {
 		final View source = messageConnector.getSource();
@@ -202,7 +202,7 @@ public class RetargetMessageEndFromExecutionSpecificationToLifelineDiagramReconc
 	 * @param messageConnector
 	 *            a message connector
 	 * @return
-	 * 		the new target to use for the connector
+	 *         the new target to use for the connector
 	 */
 	private Shape getNewTarget(final Connector messageConnector) {
 		final View target = messageConnector.getTarget();
@@ -220,7 +220,7 @@ public class RetargetMessageEndFromExecutionSpecificationToLifelineDiagramReconc
 	 * @param view
 	 *            a view
 	 * @return
-	 * 		<code>true</code> if the view represents an ActionExecutionSpecification or a BehaviorExecutionSpecification
+	 *         <code>true</code> if the view represents an ActionExecutionSpecification or a BehaviorExecutionSpecification
 	 */
 	private boolean isAnExecutionSpecification(final View view) {
 		return view instanceof Shape &&

@@ -46,12 +46,12 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.AffixedNamedElementFig
 import org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator;
 import org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator;
 
-public class AroundBorderItemEditPart extends RoundedBorderNamedElementEditPart implements IBorderItemWithLocator{
+public class AroundBorderItemEditPart extends RoundedBorderNamedElementEditPart implements IBorderItemWithLocator {
 
 
 	private LayoutListener.Stub layoutInitializationListener;
 
-	private IFigure contentPane=null;
+	private IFigure contentPane = null;
 
 	private AffixedNamedElementFigure primaryShape;
 
@@ -173,12 +173,15 @@ public class AroundBorderItemEditPart extends RoundedBorderNamedElementEditPart 
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * 
+	 * @param nodeShape
+	 *            instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		return nodeShape; // use nodeShape itself as contentPane
 	}
+
 	/**
 	 * Creates figure for this edit part.
 	 * 
@@ -195,7 +198,7 @@ public class AroundBorderItemEditPart extends RoundedBorderNamedElementEditPart 
 		contentPane = setupContentPane(shape);
 		return figure;
 	}
-	
+
 	/**
 	 * @generated
 	 */
@@ -205,6 +208,7 @@ public class AroundBorderItemEditPart extends RoundedBorderNamedElementEditPart 
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.composite.custom.figures.PortFigure
+	 * 
 	 * @generated
 	 */
 	public AffixedNamedElementFigure getPrimaryShape() {

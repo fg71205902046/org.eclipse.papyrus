@@ -29,10 +29,10 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 
 	/** A Set containing all known node graphical types */
-	protected Set<String> knownNodes = new HashSet<String>();
+	protected Set<String> knownNodes = new HashSet<>();
 
 	/** A Set containing all known edge graphical types */
-	protected Set<String> knownEdges = new HashSet<String>();
+	protected Set<String> knownEdges = new HashSet<>();
 
 	/** Default constructor */
 	public GraphicalTypeRegistry() {

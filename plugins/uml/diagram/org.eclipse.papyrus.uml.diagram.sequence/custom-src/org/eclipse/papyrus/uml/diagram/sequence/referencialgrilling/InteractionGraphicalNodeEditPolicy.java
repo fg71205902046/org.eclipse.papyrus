@@ -36,9 +36,9 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomGraphicalNodeEditPolicy;
 
 /**
- *This class overload all creation of link between lifelines
+ * This class overload all creation of link between lifelines
  */
-public class InteractionGraphicalNodeEditPolicy extends CustomGraphicalNodeEditPolicy implements IGrillingEditpolicy{
+public class InteractionGraphicalNodeEditPolicy extends CustomGraphicalNodeEditPolicy implements IGrillingEditpolicy {
 
 
 	/**
@@ -49,12 +49,12 @@ public class InteractionGraphicalNodeEditPolicy extends CustomGraphicalNodeEditP
 	 */
 	@Override
 	protected Command getConnectionCreateCommand(CreateConnectionRequest request) {
-		ConnectionAnchor anchor = ((NodeEditPart)request.getTargetEditPart()).getSourceConnectionAnchor(request);
-		if(DiagramEditPartsUtil.isSnapToGridActive(getHost())){
-			//This part is very peculiar for lost and found message because the anchor is not standard.
-			if( anchor instanceof AnchorHelper.InnerPointAnchor){
-				PrecisionPoint pt = BaseSlidableAnchor.parseTerminalString(((AnchorHelper.InnerPointAnchor)anchor).getTerminal());
-				PrecisionRectangle ptOnScreen=new PrecisionRectangle( pt.x,  pt.y,0,0);
+		ConnectionAnchor anchor = ((NodeEditPart) request.getTargetEditPart()).getSourceConnectionAnchor(request);
+		if (DiagramEditPartsUtil.isSnapToGridActive(getHost())) {
+			// This part is very peculiar for lost and found message because the anchor is not standard.
+			if (anchor instanceof AnchorHelper.InnerPointAnchor) {
+				PrecisionPoint pt = BaseSlidableAnchor.parseTerminalString(((AnchorHelper.InnerPointAnchor) anchor).getTerminal());
+				PrecisionRectangle ptOnScreen = new PrecisionRectangle(pt.x, pt.y, 0, 0);
 				SimpleSnapHelper.snapAPoint(ptOnScreen, getHost().getRoot());
 				computeSourcePosition(request, new PrecisionPoint(ptOnScreen.x, ptOnScreen.y));
 				Map<Object, Object> parameters = request.getExtendedData();
@@ -67,28 +67,32 @@ public class InteractionGraphicalNodeEditPolicy extends CustomGraphicalNodeEditP
 
 	/**
 	 * This method update the request in order to make the point at the correctposition on the grill.
-	 * @param request the request
-	 * @param wanted the position has we want in the serialization
+	 *
+	 * @param request
+	 *            the request
+	 * @param wanted
+	 *            the position has we want in the serialization
 	 */
-	protected  void computeSourcePosition(CreateConnectionRequest request, PrecisionPoint wanted){
+	protected void computeSourcePosition(CreateConnectionRequest request, PrecisionPoint wanted) {
 
-		ConnectionAnchor anchor = ((NodeEditPart)request.getTargetEditPart()).getSourceConnectionAnchor(request);
-		if(DiagramEditPartsUtil.isSnapToGridActive(getHost())){
-			if( anchor instanceof AnchorHelper.InnerPointAnchor){
-				PrecisionPoint resultedPoint = BaseSlidableAnchor.parseTerminalString(((AnchorHelper.InnerPointAnchor)anchor).getTerminal());
-				while (resultedPoint.getDistance(wanted)>5 ){
-					Point original= request.getLocation().getCopy();
-					PrecisionPoint diff=new PrecisionPoint(original.x-resultedPoint.x,original.y- resultedPoint.y);
-					PrecisionRectangle ptOnScreen=new PrecisionRectangle( resultedPoint.x,  resultedPoint.y,0,0);
+		ConnectionAnchor anchor = ((NodeEditPart) request.getTargetEditPart()).getSourceConnectionAnchor(request);
+		if (DiagramEditPartsUtil.isSnapToGridActive(getHost())) {
+			if (anchor instanceof AnchorHelper.InnerPointAnchor) {
+				PrecisionPoint resultedPoint = BaseSlidableAnchor.parseTerminalString(((AnchorHelper.InnerPointAnchor) anchor).getTerminal());
+				while (resultedPoint.getDistance(wanted) > 5) {
+					Point original = request.getLocation().getCopy();
+					PrecisionPoint diff = new PrecisionPoint(original.x - resultedPoint.x, original.y - resultedPoint.y);
+					PrecisionRectangle ptOnScreen = new PrecisionRectangle(resultedPoint.x, resultedPoint.y, 0, 0);
 					SimpleSnapHelper.snapAPoint(ptOnScreen, getHost().getRoot());
-					PrecisionPoint Result=new PrecisionPoint(ptOnScreen.x+diff.x, ptOnScreen.y+diff.y);
+					PrecisionPoint Result = new PrecisionPoint(ptOnScreen.x + diff.x, ptOnScreen.y + diff.y);
 					request.setLocation(Result);
-					anchor = ((NodeEditPart)request.getTargetEditPart()).getSourceConnectionAnchor(request);
-					resultedPoint = BaseSlidableAnchor.parseTerminalString(((AnchorHelper.InnerPointAnchor)anchor).getTerminal());
+					anchor = ((NodeEditPart) request.getTargetEditPart()).getSourceConnectionAnchor(request);
+					resultedPoint = BaseSlidableAnchor.parseTerminalString(((AnchorHelper.InnerPointAnchor) anchor).getTerminal());
 				}
 			}
 		}
 	}
+
 	/**
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy#getConnectionAndRelationshipCompleteCommand(org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest)
 	 *
@@ -97,9 +101,10 @@ public class InteractionGraphicalNodeEditPolicy extends CustomGraphicalNodeEditP
 	 */
 	@Override
 	protected Command getConnectionAndRelationshipCompleteCommand(CreateConnectionViewAndElementRequest request) {
-		Command cmd= super.getConnectionAndRelationshipCompleteCommand(request);
+		Command cmd = super.getConnectionAndRelationshipCompleteCommand(request);
 		return cmd;
 	}
+
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy#createDummyConnection(org.eclipse.gef.Request)
 	 *
@@ -108,24 +113,25 @@ public class InteractionGraphicalNodeEditPolicy extends CustomGraphicalNodeEditP
 	 */
 	@Override
 	protected Connection createDummyConnection(Request req) {
-		//	if(req.isSnapToEnabled()){
-		if(req instanceof  CreateUnspecifiedTypeConnectionRequest){
-			CreateUnspecifiedTypeConnectionRequest request2= (CreateUnspecifiedTypeConnectionRequest)req;
-			if(DiagramEditPartsUtil.isSnapToGridActive(getHost())){
-				ConnectionAnchor anchor = ((NodeEditPart)request2.getTargetEditPart()).getSourceConnectionAnchor(request2);
-				//This part is very peculiar for lost and found message because the anchor is not standard.
-				if( anchor instanceof AnchorHelper.InnerPointAnchor){
-					PrecisionPoint pt = BaseSlidableAnchor.parseTerminalString(((AnchorHelper.InnerPointAnchor)anchor).getTerminal());
-					PrecisionRectangle ptOnScreen=new PrecisionRectangle( pt.x,  pt.y,0,0);
+		// if(req.isSnapToEnabled()){
+		if (req instanceof CreateUnspecifiedTypeConnectionRequest) {
+			CreateUnspecifiedTypeConnectionRequest request2 = (CreateUnspecifiedTypeConnectionRequest) req;
+			if (DiagramEditPartsUtil.isSnapToGridActive(getHost())) {
+				ConnectionAnchor anchor = ((NodeEditPart) request2.getTargetEditPart()).getSourceConnectionAnchor(request2);
+				// This part is very peculiar for lost and found message because the anchor is not standard.
+				if (anchor instanceof AnchorHelper.InnerPointAnchor) {
+					PrecisionPoint pt = BaseSlidableAnchor.parseTerminalString(((AnchorHelper.InnerPointAnchor) anchor).getTerminal());
+					PrecisionRectangle ptOnScreen = new PrecisionRectangle(pt.x, pt.y, 0, 0);
 					SimpleSnapHelper.snapAPoint(ptOnScreen, getHost().getRoot());
 					computeSourcePosition(request2, new PrecisionPoint(ptOnScreen.x, ptOnScreen.y));
 
 				}
 			}
 		}
-		//	}
+		// }
 		return super.createDummyConnection(req);
 	}
+
 	/**
 	 * @see org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy#showSourceFeedback(org.eclipse.gef.Request)
 	 *
@@ -136,6 +142,7 @@ public class InteractionGraphicalNodeEditPolicy extends CustomGraphicalNodeEditP
 
 		super.showSourceFeedback(request);
 	}
+
 	/**
 	 * @see org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy#getFeedbackHelper(org.eclipse.gef.requests.CreateConnectionRequest)
 	 *

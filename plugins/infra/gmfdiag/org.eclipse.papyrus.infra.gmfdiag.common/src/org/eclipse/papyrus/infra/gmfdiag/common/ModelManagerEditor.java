@@ -137,8 +137,7 @@ public class ModelManagerEditor {
 
 			} else if (eventType == Notification.REMOVE) {
 				Object newValue = notification.getNewValue();
-				if (newValue == null)
-				{
+				if (newValue == null) {
 					Activator.log.debug(getClass().getName() + "- Warning: can't get removed object."); //$NON-NLS-1$
 				}
 

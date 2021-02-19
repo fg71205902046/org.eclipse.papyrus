@@ -46,7 +46,7 @@ public abstract class AbstractActionStateSourceProvider extends AbstractSourcePr
 	/**
 	 * The enabled state value.
 	 */
-	public static final String ENABLED = "enabled"; //$NON-NLS-
+	public static final String ENABLED = "enabled"; // $NON-NLS-
 
 	/**
 	 * The disabled state value.
@@ -211,7 +211,7 @@ public abstract class AbstractActionStateSourceProvider extends AbstractSourcePr
 		 */
 		@Override
 		public void partOpened(IWorkbenchPart part) {
-			
+
 		}
 
 		/**
@@ -222,7 +222,7 @@ public abstract class AbstractActionStateSourceProvider extends AbstractSourcePr
 		 */
 		@Override
 		public void partDeactivated(IWorkbenchPart part) {
-			
+
 		}
 
 		/**
@@ -233,7 +233,7 @@ public abstract class AbstractActionStateSourceProvider extends AbstractSourcePr
 		 */
 		@Override
 		public void partClosed(IWorkbenchPart part) {
-			
+
 
 		}
 
@@ -245,7 +245,7 @@ public abstract class AbstractActionStateSourceProvider extends AbstractSourcePr
 		 */
 		@Override
 		public void partBroughtToTop(IWorkbenchPart part) {
-			
+
 
 		}
 

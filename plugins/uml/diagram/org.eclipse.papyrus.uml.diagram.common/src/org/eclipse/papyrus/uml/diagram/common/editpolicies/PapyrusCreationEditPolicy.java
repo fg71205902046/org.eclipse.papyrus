@@ -113,7 +113,7 @@ public class PapyrusCreationEditPolicy extends CreationEditPolicy {
 	/**
 	 * @return the command to reparent the supplied non connectable editpart's view only
 	 *         or an {@link org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy.EmptyExecutableCommand} for all connectable editpart's.
-	 * 
+	 *
 	 */
 	@Override
 	protected ICommand getReparentViewCommand(IGraphicalEditPart gep) {

@@ -32,7 +32,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * Drop strategy to create a ReduceAction from a Behavior drop and to update
  * the "reducer" reference.
- * 
+ *
  * @since 3.5.0
  */
 public class BehaviorToReduceActionDropStrategy extends AbstractActivityNodeStrategy {

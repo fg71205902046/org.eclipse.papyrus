@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.advices;
@@ -30,8 +30,9 @@ import org.eclipse.uml2.uml.CreateLinkAction;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * 
+ *
  * Pins of CreateLinkAction should be create and update automatically
+ *
  * @since 3.0
  *
  */
@@ -54,7 +55,7 @@ public class CreateLinkActionEditHelperAdvice extends AbstractEditHelperAdvice {
 			if (editedModelElement != null) {
 				// 3] call the command for the CreateLinkAction
 				IPinUpdater<CreateLinkAction> updater = PinUpdaterFactory.getInstance().instantiate(editedModelElement);
-				return new PinUpdateCommand<CreateLinkAction>("Update create link action pins", updater, editedModelElement); //$NON-NLS-1$
+				return new PinUpdateCommand<>("Update create link action pins", updater, editedModelElement); //$NON-NLS-1$
 			}
 		}
 		return null;
@@ -79,7 +80,7 @@ public class CreateLinkActionEditHelperAdvice extends AbstractEditHelperAdvice {
 				if (editedModelElement != null) {
 					// 4] call the command for the CreateLinkAction
 					IPinUpdater<CreateLinkAction> updater = PinUpdaterFactory.getInstance().instantiate(editedModelElement);
-					return new PinUpdateCommand<CreateLinkAction>("Update create link action pins", updater, editedModelElement); //$NON-NLS-1$
+					return new PinUpdateCommand<>("Update create link action pins", updater, editedModelElement); //$NON-NLS-1$
 				}
 			}
 		}

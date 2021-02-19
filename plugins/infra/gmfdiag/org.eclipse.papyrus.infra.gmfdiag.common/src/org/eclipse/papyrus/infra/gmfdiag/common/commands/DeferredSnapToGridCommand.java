@@ -106,7 +106,7 @@ public class DeferredSnapToGridCommand extends AbstractTransactionalCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 
-		final RunnableWithResult<List<IGraphicalEditPart>> refreshRunnable = new RunnableWithResult<List<IGraphicalEditPart>>() {
+		final RunnableWithResult<List<IGraphicalEditPart>> refreshRunnable = new RunnableWithResult<>() {
 
 			private IStatus status;
 
@@ -135,11 +135,11 @@ public class DeferredSnapToGridCommand extends AbstractTransactionalCommand {
 				getContainerFigure().invalidate();
 				getContainerFigure().validate();
 
-				List<IGraphicalEditPart> editParts = new ArrayList<IGraphicalEditPart>(viewAdapters.size());
+				List<IGraphicalEditPart> editParts = new ArrayList<>(viewAdapters.size());
 				Map<?, ?> epRegistry = containerEP.getRoot().getViewer().getEditPartRegistry();
 				for (Iterator<?> iter = viewAdapters.iterator(); iter.hasNext();) {
 					IAdaptable ad = (IAdaptable) iter.next();
-					View view = (View) ad.getAdapter(View.class);
+					View view = ad.getAdapter(View.class);
 					Object ep = epRegistry.get(view);
 					if (ep instanceof IGraphicalEditPart) {
 						editParts.add((IGraphicalEditPart) ep);
@@ -178,7 +178,7 @@ public class DeferredSnapToGridCommand extends AbstractTransactionalCommand {
 		// add an arrange command, to layout the related shapes
 		CompoundCommand cc = new CompoundCommand("Snap Command"); //$NON-NLS-1$
 		for (final IGraphicalEditPart current : editParts) {
-			final SnapToHelper snapHelper = (SnapToHelper) ((IAdaptable) current).getAdapter(SnapToHelper.class);
+			final SnapToHelper snapHelper = ((IAdaptable) current).getAdapter(SnapToHelper.class);
 			final NodeSnapHelper nodeSnapHelper;
 			final PrecisionRectangle boundsFigure = new PrecisionRectangle(((GraphicalEditPart) current).getFigure().getBounds());
 			current.getFigure().translateToAbsolute(boundsFigure);

@@ -100,7 +100,7 @@ public class NotationHelper {
 
 	/**
 	 * get the absolute position form the notation
-	 * 
+	 *
 	 * @param node
 	 *            the current node
 	 * @return
@@ -109,7 +109,7 @@ public class NotationHelper {
 	public static PrecisionRectangle getAbsoluteBounds(Node node) {
 		if (node.getLayoutConstraint() instanceof Bounds) {
 			PrecisionRectangle bounds = new PrecisionRectangle(((Bounds) node.getLayoutConstraint()).getX(), ((Bounds) node.getLayoutConstraint()).getY(), ((Bounds) node.getLayoutConstraint()).getWidth(), ((Bounds) node.getLayoutConstraint()).getHeight());
-			EObject currentView = (EObject) node.eContainer();
+			EObject currentView = node.eContainer();
 			while (currentView != null) {
 
 				if (currentView instanceof Node) {
@@ -119,7 +119,8 @@ public class NotationHelper {
 				currentView = currentView.eContainer();
 			}
 			return bounds;
-		} else
+		} else {
 			return null;
+		}
 	}
 }

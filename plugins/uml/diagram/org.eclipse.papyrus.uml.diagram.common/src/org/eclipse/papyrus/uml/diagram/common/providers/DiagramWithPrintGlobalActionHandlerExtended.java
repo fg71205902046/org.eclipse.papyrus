@@ -32,6 +32,7 @@ import org.eclipse.ui.IWorkbenchPart;
 /**
  * Class that implements the <code>IGlobalActionHandler</code>
  * interface and provides a command for <code>GlobalActionId.PRINT</code>.
+ *
  * @since 3.0
  */
 public class DiagramWithPrintGlobalActionHandlerExtended extends DiagramWithPrintGlobalActionHandler {

@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and Implementation
- * 
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.common.editpolicies;
@@ -38,9 +38,9 @@ public class GetChildLayoutEditPolicy extends LayoutEditPolicy {
 	 */
 	@Override
 	protected EditPolicy createChildEditPolicy(EditPart child) {
-		//		View childView = (View)child.getModel();
+		// View childView = (View)child.getModel();
 		EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-		if(result == null) {
+		if (result == null) {
 			result = new NonResizableEditPolicy();
 		}
 		return result;

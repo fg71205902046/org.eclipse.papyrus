@@ -29,7 +29,7 @@ public class UMLCreationWizardPage extends WizardNewFileCreationPage {
 
 	/**
 	 * Override to create files with this extension.
-	 * 
+	 *
 	 * @generated
 	 */
 	protected String getExtension() {
@@ -61,6 +61,7 @@ public class UMLCreationWizardPage extends WizardNewFileCreationPage {
 	/**
 	 * @generated
 	 */
+	@Override
 	public void createControl(Composite parent) {
 		super.createControl(parent);
 		setFileName(UMLDiagramEditorUtil.getUniqueFileName(
@@ -71,6 +72,7 @@ public class UMLCreationWizardPage extends WizardNewFileCreationPage {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected boolean validatePage() {
 		if (!super.validatePage()) {
 			return false;

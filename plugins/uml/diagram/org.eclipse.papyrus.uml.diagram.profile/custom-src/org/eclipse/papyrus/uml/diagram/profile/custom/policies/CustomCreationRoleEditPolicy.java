@@ -240,7 +240,7 @@ public class CustomCreationRoleEditPolicy extends org.eclipse.gmf.runtime.diagra
 	@Override
 	protected Command getReparentCommand(ChangeBoundsRequest request) {
 		Iterator<?> editParts = request.getEditParts().iterator();
-		View container = (View) getHost().getAdapter(View.class);
+		View container = getHost().getAdapter(View.class);
 		EObject context = container == null ? null : ViewUtil.resolveSemanticElement(container);
 		CompositeCommand cc = new CompositeCommand(DiagramUIMessages.AddCommand_Label);
 		while (editParts.hasNext()) {
@@ -251,7 +251,7 @@ public class CustomCreationRoleEditPolicy extends org.eclipse.gmf.runtime.diagra
 			if (ep instanceof GroupEditPart) {
 				cc.compose(getReparentGroupCommand((GroupEditPart) ep));
 			}
-			View view = (View) ep.getAdapter(View.class);
+			View view = ep.getAdapter(View.class);
 			if (view == null) {
 				continue;
 			}
@@ -301,7 +301,7 @@ public class CustomCreationRoleEditPolicy extends org.eclipse.gmf.runtime.diagra
 		CompositeCommand deleteViewCmd = new CompositeCommand("Reparent one metaclass view and delete the others"); //$NON-NLS-1$
 		/*
 		 * If a metaclass (ElementImport) has dropped many times, we need to reparent the selected view and delete the others!
-		 * 
+		 *
 		 * The RemoveOrphanViewEditPolicy can't make it, because it runs too early and short-circuits the AddCommand
 		 */
 		/**

@@ -91,7 +91,7 @@ public class StereotypeDisplayUtil {
 			if (commentSemanticElement != null) {
 				appliedStereotypes = commentSemanticElement.getStereotypeApplication(stereotype);
 			}
-		} 
+		}
 		return appliedStereotypes;
 	}
 
@@ -165,7 +165,7 @@ public class StereotypeDisplayUtil {
 	public String getStereotypeTextToDisplay(View model) {
 		StringBuilder finalText = new StringBuilder();
 		boolean displayStereotypes = NotationUtils.getBooleanValue(model, NamedElementEditPart.DISPLAY_STEREOTYPES, true);
-		if (displayStereotypes){
+		if (displayStereotypes) {
 			StringBuilder textToDisplay = new StringBuilder();
 			Iterator<?> childrenIterator = model.getChildren().iterator();
 			// For all children, check if it's a StereotypeLabel and add the Name

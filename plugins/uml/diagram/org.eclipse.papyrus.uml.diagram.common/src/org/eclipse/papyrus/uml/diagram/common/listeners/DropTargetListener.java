@@ -67,11 +67,11 @@ public abstract class DropTargetListener extends DiagramDropTargetListener {
 	protected List<EObject> getObjectsBeingDropped() {
 		// get objects from transfer
 		TransferData data = getCurrentEvent().currentDataType;
-		ArrayList<URI> uris = new ArrayList<URI>(); // Array list to keep the
+		ArrayList<URI> uris = new ArrayList<>(); // Array list to keep the
 		// order of the selection
 
 		Object transferedObject = getJavaObject(data);
-		ArrayList<EObject> result = new ArrayList<EObject>();
+		ArrayList<EObject> result = new ArrayList<>();
 
 		if (transferedObject instanceof IStructuredSelection) {
 			IStructuredSelection selection = (IStructuredSelection) transferedObject;

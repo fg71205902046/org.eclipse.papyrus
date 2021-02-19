@@ -143,6 +143,7 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 			}
 			try {
 				new WorkspaceModifyOperation() {
+					@Override
 					protected void execute(IProgressMonitor monitor) throws CoreException, InvocationTargetException, InterruptedException {
 						try {
 							for (Iterator<?> it = diagramFacet.eResource().getResourceSet().getResources().iterator(); it.hasNext();) {

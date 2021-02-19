@@ -27,6 +27,7 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortNameEditPart;
 
 /**
  * The Class CustomPortNameEditPart.
+ *
  * @since 3.0
  */
 public class CustomPortNameEditPart extends PortNameEditPart {

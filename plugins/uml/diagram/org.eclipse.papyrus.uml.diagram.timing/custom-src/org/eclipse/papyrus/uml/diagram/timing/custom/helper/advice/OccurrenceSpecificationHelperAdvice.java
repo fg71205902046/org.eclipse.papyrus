@@ -28,6 +28,7 @@ import org.eclipse.uml2.uml.OccurrenceSpecification;
 /**
  * This HelperAdvice completes {@link OccurrenceSpecification} edit commands with commands specific to the timing
  * diagram in order to keep the model and diagram consistent when deleting an {@link OccurrenceSpecification}.
+ *
  * @since 1.3
  */
 public class OccurrenceSpecificationHelperAdvice extends AbstractEditHelperAdvice {

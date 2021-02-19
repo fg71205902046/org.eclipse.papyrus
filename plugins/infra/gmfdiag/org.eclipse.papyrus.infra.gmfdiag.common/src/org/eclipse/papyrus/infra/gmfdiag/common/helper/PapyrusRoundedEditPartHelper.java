@@ -61,7 +61,7 @@ public abstract class PapyrusRoundedEditPartHelper implements NamedStyleProperti
 
 	/**
 	 * Gets the Border style of the edit part defined in notation
-	 * 
+	 *
 	 * @param editpart
 	 * @param defaultBorderStyle
 	 * @return the border style

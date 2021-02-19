@@ -27,13 +27,15 @@ import org.eclipse.emf.common.notify.Notification;
 public class GridCommandStackListener implements CommandStackListener {
 
 	protected GridManagementEditPolicy gridManagementEditPolicy;
+
 	/**
 	 * Constructor.
 	 *
 	 */
 	public GridCommandStackListener(GridManagementEditPolicy gridManagementEditPolicy) {
-		this.gridManagementEditPolicy= gridManagementEditPolicy;
+		this.gridManagementEditPolicy = gridManagementEditPolicy;
 	}
+
 	/**
 	 * @see org.eclipse.emf.common.command.CommandStackListener#commandStackChanged(java.util.EventObject)
 	 *
@@ -41,7 +43,7 @@ public class GridCommandStackListener implements CommandStackListener {
 	 */
 	@Override
 	public void commandStackChanged(EventObject event) {
-		gridManagementEditPolicy.notifyChanged(new CommandExecutionNotification(Notification.ADD, true,true));
+		gridManagementEditPolicy.notifyChanged(new CommandExecutionNotification(Notification.ADD, true, true));
 	}
 
 }

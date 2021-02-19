@@ -73,7 +73,7 @@ public class PasteCommandService {
 	private PasteCommandService() {
 		// Reading data from plugins
 		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(PASTECOMMANDPROVIDER_EXTENSION_ID);
-		pasteCommandProviderMap = new HashMap<String, IPasteCommandProvider>();
+		pasteCommandProviderMap = new HashMap<>();
 		for (int i = 0; i < configElements.length; i++) {
 			getPasteCommandProvider(configElements[i]);
 		}

@@ -24,7 +24,7 @@ import org.eclipse.papyrus.uml.diagram.activity.observables.SwitchOrientationObs
 
 /**
  * This allows to define the model element for the activity notation.
- * 
+ *
  * @since 3.2
  */
 public class ActivityNotationModelElement extends AbstractModelElement {
@@ -48,7 +48,7 @@ public class ActivityNotationModelElement extends AbstractModelElement {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.properties.ui.modelelement.AbstractModelElement#doGetObservable(java.lang.String)
 	 */
 	@Override

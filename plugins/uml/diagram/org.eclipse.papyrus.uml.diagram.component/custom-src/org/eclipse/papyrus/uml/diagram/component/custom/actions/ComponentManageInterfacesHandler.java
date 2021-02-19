@@ -25,6 +25,7 @@ import org.eclipse.uml2.uml.Port;
 
 /**
  * This handler provides the action to manage the provided and required {@link Interface} for a {@link Port}.
+ *
  * @since 3.0
  */
 public class ComponentManageInterfacesHandler extends ManagePortInterfacesHandler {

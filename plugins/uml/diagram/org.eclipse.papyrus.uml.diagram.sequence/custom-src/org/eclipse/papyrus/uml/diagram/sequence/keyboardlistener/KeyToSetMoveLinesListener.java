@@ -25,25 +25,27 @@ import org.eclipse.swt.widgets.Listener;
  * This listener listen keyboard and affect the behavior of the grid
  *
  */
-public class KeyToSetMoveLinesListener  implements Listener{
+public class KeyToSetMoveLinesListener implements Listener {
 
 	protected GridManagementEditPolicy gridManagementEditPolicy;
 	protected boolean moveAllLines;
 	protected int keyboard;
+
 	/**
 	 * Constructor.
 	 *
 	 */
-	public KeyToSetMoveLinesListener(GridManagementEditPolicy gridManagementEditPolicy,int keyboard,boolean moveAllLines ) {
-		this.gridManagementEditPolicy=gridManagementEditPolicy;
-		this.moveAllLines=moveAllLines;
-		this.keyboard=keyboard;
+	public KeyToSetMoveLinesListener(GridManagementEditPolicy gridManagementEditPolicy, int keyboard, boolean moveAllLines) {
+		this.gridManagementEditPolicy = gridManagementEditPolicy;
+		this.moveAllLines = moveAllLines;
+		this.keyboard = keyboard;
 	}
+
 	@Override
 	public void handleEvent(Event event) {
 		if (event.keyCode == keyboard) {
-			SetMoveAllLineAtSamePositionCommand setMoveAllLineAtSamePositionCommand= new SetMoveAllLineAtSamePositionCommand(gridManagementEditPolicy, moveAllLines);
-			((GraphicalEditPart)gridManagementEditPolicy.getHost()).getDiagramEditDomain().getDiagramCommandStack().execute(setMoveAllLineAtSamePositionCommand);
+			SetMoveAllLineAtSamePositionCommand setMoveAllLineAtSamePositionCommand = new SetMoveAllLineAtSamePositionCommand(gridManagementEditPolicy, moveAllLines);
+			((GraphicalEditPart) gridManagementEditPolicy.getHost()).getDiagramEditDomain().getDiagramCommandStack().execute(setMoveAllLineAtSamePositionCommand);
 		}
 	}
 }

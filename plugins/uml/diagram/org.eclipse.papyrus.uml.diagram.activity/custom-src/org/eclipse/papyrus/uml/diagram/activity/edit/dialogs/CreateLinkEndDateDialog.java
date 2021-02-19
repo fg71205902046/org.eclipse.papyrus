@@ -39,7 +39,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * DialogBox in order to link association end to a LinkEndData
- * 
+ *
  * @since 3.5
  */
 public class CreateLinkEndDateDialog extends FormDialog {

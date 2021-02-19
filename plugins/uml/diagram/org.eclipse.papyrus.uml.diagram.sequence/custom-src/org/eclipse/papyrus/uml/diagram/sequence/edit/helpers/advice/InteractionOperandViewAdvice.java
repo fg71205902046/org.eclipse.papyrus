@@ -134,7 +134,7 @@ public class InteractionOperandViewAdvice extends AbstractEditHelperAdvice {
 	/**
 	 * @param view
 	 * @return
-	 * 		The sibling view immediately following the given view, or <code>null</code> if there is no such view
+	 *         The sibling view immediately following the given view, or <code>null</code> if there is no such view
 	 */
 	private static View findViewAfter(View view) {
 		if (false == view.eContainer() instanceof View) {
@@ -155,7 +155,7 @@ public class InteractionOperandViewAdvice extends AbstractEditHelperAdvice {
 	/**
 	 * @param view
 	 * @return
-	 * 		The sibling view immediately preceding the given view, or <code>null</code> if there is no such view
+	 *         The sibling view immediately preceding the given view, or <code>null</code> if there is no such view
 	 */
 	private static View findViewBefore(View view) {
 		if (false == view.eContainer() instanceof View) {
@@ -176,7 +176,7 @@ public class InteractionOperandViewAdvice extends AbstractEditHelperAdvice {
 	/**
 	 * @param view
 	 * @return
-	 * 		A new {@link Rectangle} instance representing the model bounds of the {@link View},
+	 *         A new {@link Rectangle} instance representing the model bounds of the {@link View},
 	 *         or <code>null</code> if the View doesn't have a size.
 	 */
 	private Rectangle getBounds(View view) {

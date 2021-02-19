@@ -417,7 +417,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 		// the SashModel's resource (either the shared .di or the local .sash) contains the sash window mgr that can be impacted with diagram creation
 		final Resource sashResource = SashModelUtils.getSashModel(modelSet).getResource();
 
-		ArrayList<IFile> modifiedFiles = new ArrayList<IFile>();
+		ArrayList<IFile> modifiedFiles = new ArrayList<>();
 		if (notationResource.getURI().isPlatformResource()) {
 			modifiedFiles.add(ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(notationResource.getURI().toPlatformString(true))));
 		}

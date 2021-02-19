@@ -28,7 +28,8 @@ public class ConnectExecutionToGridEditPolicy extends ConnectYCoordinateToGrilli
 
 
 	/**
-	 * @see org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectRectangleToGridEditPolicy#initListeningRowStart(org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GridManagementEditPolicy, org.eclipse.uml2.uml.Element, org.eclipse.draw2d.geometry.PrecisionRectangle)
+	 * @see org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectRectangleToGridEditPolicy#initListeningRowStart(org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GridManagementEditPolicy, org.eclipse.uml2.uml.Element,
+	 *      org.eclipse.draw2d.geometry.PrecisionRectangle)
 	 *
 	 * @param grid
 	 * @param element
@@ -37,10 +38,12 @@ public class ConnectExecutionToGridEditPolicy extends ConnectYCoordinateToGrilli
 	 */
 	@Override
 	protected void initListeningRowStart(GridManagementEditPolicy grid, Element element, PrecisionRectangle bounds) throws NoGrillElementFound {
-		super.initListeningRowStart(grid, ((ExecutionSpecification)element).getStart(), bounds);
+		super.initListeningRowStart(grid, ((ExecutionSpecification) element).getStart(), bounds);
 	}
+
 	/**
-	 * @see org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectRectangleToGridEditPolicy#initListeningRowFinish(org.eclipse.gmf.runtime.notation.Node, org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GridManagementEditPolicy, org.eclipse.uml2.uml.Element, org.eclipse.draw2d.geometry.PrecisionRectangle)
+	 * @see org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectRectangleToGridEditPolicy#initListeningRowFinish(org.eclipse.gmf.runtime.notation.Node, org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GridManagementEditPolicy,
+	 *      org.eclipse.uml2.uml.Element, org.eclipse.draw2d.geometry.PrecisionRectangle)
 	 *
 	 * @param node
 	 * @param grilling
@@ -50,6 +53,6 @@ public class ConnectExecutionToGridEditPolicy extends ConnectYCoordinateToGrilli
 	 */
 	@Override
 	protected void initListeningRowFinish(Node node, GridManagementEditPolicy grilling, Element element, PrecisionRectangle bounds) throws NoGrillElementFound {
-		super.initListeningRowFinish(node, grilling, ((ExecutionSpecification)element).getFinish(), bounds);
+		super.initListeningRowFinish(node, grilling, ((ExecutionSpecification) element).getFinish(), bounds);
 	}
 }

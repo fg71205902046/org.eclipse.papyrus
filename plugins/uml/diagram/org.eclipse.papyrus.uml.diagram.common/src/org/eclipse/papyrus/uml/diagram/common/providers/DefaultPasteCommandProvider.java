@@ -157,7 +157,7 @@ public class DefaultPasteCommandProvider implements IPasteCommandProvider {
 				if (object instanceof View) {
 					objectToPaste.add(((View) object).getElement());
 
-					ArrayList<EObject> stereotypedSelection = new ArrayList<EObject>();
+					ArrayList<EObject> stereotypedSelection = new ArrayList<>();
 					EObject semantic = ((View) object).getElement();
 					if (semantic instanceof Element) {
 						stereotypedSelection.addAll(((Element) semantic).getStereotypeApplications());

@@ -114,7 +114,7 @@ public abstract class AbstractUMLShowHideRelatedLinkEditPolicy extends AbstractS
 	 * @param domain2NotationMap
 	 * @param linksDescriptors
 	 * @return
-	 * 		the command which open a dialog to ask for the user to select visible links, chained with the command to show/hide the links according
+	 *         the command which open a dialog to ask for the user to select visible links, chained with the command to show/hide the links according
 	 *         to the user selection
 	 */
 	@Override
@@ -153,7 +153,7 @@ public abstract class AbstractUMLShowHideRelatedLinkEditPolicy extends AbstractS
 	 * @param descriptor
 	 *            the link descriptor
 	 * @return
-	 * 		the collection of link descriptors without some invalid descriptor (we get this case when the link doesn't have source AND target, but
+	 *         the collection of link descriptors without some invalid descriptor (we get this case when the link doesn't have source AND target, but
 	 *         only ends)
 	 */
 	@Override
@@ -210,7 +210,7 @@ public abstract class AbstractUMLShowHideRelatedLinkEditPolicy extends AbstractS
 	/**
 	 *
 	 * @return
-	 * 		<code>true</code> if the link is oriented and <code>false</code> if not.
+	 *         <code>true</code> if the link is oriented and <code>false</code> if not.
 	 *         If not, that is to say than {@link LinkMappingHelper} should returns the same values for sources and targets
 	 */
 	public static final boolean isAnOrientedLink(final EObject link) {
@@ -236,7 +236,7 @@ public abstract class AbstractUMLShowHideRelatedLinkEditPolicy extends AbstractS
 	 * @param element
 	 *            an element
 	 * @return
-	 * 		a linkEndsMapper according to this element
+	 *         a linkEndsMapper according to this element
 	 */
 	public static final LinkEndsMapper createLinkEndMapper(final Element element, final UpdaterLinkDescriptor descriptor) {
 		Collection<?> ends;
@@ -263,7 +263,7 @@ public abstract class AbstractUMLShowHideRelatedLinkEditPolicy extends AbstractS
 	 * @param domain
 	 *            the editing domain
 	 * @return
-	 * 		the command to open the dialog to choose the link to show
+	 *         the command to open the dialog to choose the link to show
 	 */
 	protected ICommand getOpenDialogCommand(final TransactionalEditingDomain domain, final Collection<EditPart> selectedEditPart, final Map<EditPart, Set<EObject>> availableLinks, final Collection<EObject> initialSelection,
 			final Map<EObject, LinkEndsMapper> linkMapping) {

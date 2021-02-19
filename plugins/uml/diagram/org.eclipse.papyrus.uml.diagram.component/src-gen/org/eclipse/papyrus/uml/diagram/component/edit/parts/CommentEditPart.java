@@ -118,7 +118,7 @@ public class CommentEditPart extends AbstractCommentEditPart {
 
 	/**
 	 * Papyrus codeGen
-	 * 
+	 *
 	 * @generated
 	 **/
 	@Override
@@ -137,7 +137,7 @@ public class CommentEditPart extends AbstractCommentEditPart {
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.common.figure.node.HTMLCornerBentFigure
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -224,7 +224,7 @@ public class CommentEditPart extends AbstractCommentEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * 
+	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
 	 * @generated

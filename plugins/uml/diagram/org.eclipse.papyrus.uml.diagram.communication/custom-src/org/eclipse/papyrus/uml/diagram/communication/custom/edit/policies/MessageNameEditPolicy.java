@@ -123,6 +123,7 @@ public class MessageNameEditPolicy extends AbstractEditPolicy implements AnchorL
 	 * When the anchor is moved the label icon is rotated to be parallel to the
 	 * connection
 	 **/
+	@Override
 	public void anchorMoved(ConnectionAnchor anchor) {
 		Point sLoc = new Point();
 		Point tLoc = new Point();

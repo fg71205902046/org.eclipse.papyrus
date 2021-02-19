@@ -159,7 +159,7 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 
 	/**
 	 * Draw a separator between the name figure and the body's.
-	 * 
+	 *
 	 * @see org.eclipse.draw2d.Figure#paint(org.eclipse.draw2d.Graphics)
 	 *
 	 * @param graphics
@@ -185,7 +185,7 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 
 	/**
 	 * Checks if the separator is wanted.
-	 * 
+	 *
 	 * @return true, if it is
 	 * @since 3.0
 	 */
@@ -195,7 +195,7 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 
 	/**
 	 * Set the separator option
-	 * 
+	 *
 	 * @param isSeparated
 	 * @since 3.0
 	 */

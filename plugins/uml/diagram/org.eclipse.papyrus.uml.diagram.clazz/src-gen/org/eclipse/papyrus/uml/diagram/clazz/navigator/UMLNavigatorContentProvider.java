@@ -73,7 +73,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		TransactionalEditingDomain editingDomain = WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain();
 		myEditingDomain = (AdapterFactoryEditingDomain) editingDomain;
 		@SuppressWarnings("serial")
-		Map<Resource, Boolean> map = new HashMap<Resource, Boolean>() {
+		Map<Resource, Boolean> map = new HashMap<>() {
 
 			@Override
 			public Boolean get(java.lang.Object key) {

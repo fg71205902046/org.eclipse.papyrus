@@ -71,13 +71,13 @@ public class DeferredCreateCommand extends AbstractTransactionalCommand {
 	@Override
 	@SuppressWarnings("unchecked")
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		View view = (View) adapter.getAdapter(View.class);
+		View view = adapter.getAdapter(View.class);
 		if (view != null) {
 			// Get the parent edit part
 			EditPart parentEditPart = (EditPart) editPartViewer.getEditPartRegistry().get(view.eContainer());
 			parentEditPart.refresh();
 			Object editPart = editPartViewer.getEditPartRegistry().get(view);
-			List<IGraphicalEditPart> graphicalEditParts = new ArrayList<IGraphicalEditPart>();
+			List<IGraphicalEditPart> graphicalEditParts = new ArrayList<>();
 			if (editPart != null && editPart instanceof IGraphicalEditPart) {
 				IGraphicalEditPart graphicalParentEditPart = (IGraphicalEditPart) editPart;
 				graphicalEditParts.add(graphicalParentEditPart);

@@ -41,7 +41,6 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeConnectionTool;
-import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeConnectionTool.CreateAspectUnspecifiedTypeConnectionRequest;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeCreationTool;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.FigureUtils;
 import org.eclipse.papyrus.uml.diagram.timing.custom.Messages;
@@ -179,7 +178,7 @@ public class CustomPaletteFactory extends UMLPaletteFactory {
 
 	/** Overloaded to only let StateDefinitions be created in the StateDefinition compartment. */
 	private static Tool createStateDefinitionCreationTool() {
-		final List<IElementType> types = new ArrayList<IElementType>(1);
+		final List<IElementType> types = new ArrayList<>(1);
 		types.add(UMLElementTypes.Node_StateDefinitionShape);
 
 		final Tool tool = new AspectUnspecifiedTypeCreationTool(types) {

@@ -49,9 +49,9 @@ import org.eclipse.uml2.uml.Stereotype;
  * This Class provides a dialog to edit meta-elements properties. The editor is
  * chosen following the property type. The editor order is the following :
  * <ul>
- * <li> {@link Text}</li>
- * <li> {@link Combo}</li>
- * <li> {@link Button} (checkBox)</li>
+ * <li>{@link Text}</li>
+ * <li>{@link Combo}</li>
+ * <li>{@link Button} (checkBox)</li>
  * </ul>
  *
  */
@@ -73,13 +73,13 @@ public class DefinedPropertiesAtRuntimeDialog extends Dialog {
 	protected List<Stereotype> appliedStereotypes = null;
 
 	/** The boolean meta properties. */
-	private ArrayList<EAttribute> booleanMetaProperties = new ArrayList<EAttribute>();
+	private ArrayList<EAttribute> booleanMetaProperties = new ArrayList<>();
 
 	/** The string meta properties. */
-	private ArrayList<EAttribute> stringMetaProperties = new ArrayList<EAttribute>();
+	private ArrayList<EAttribute> stringMetaProperties = new ArrayList<>();
 
 	/** The enumeration meta properties. */
-	private ArrayList<EAttribute> enumerationMetaProperties = new ArrayList<EAttribute>();
+	private ArrayList<EAttribute> enumerationMetaProperties = new ArrayList<>();
 
 	/**
 	 * Instantiates a new dialog.
@@ -271,7 +271,7 @@ public class DefinedPropertiesAtRuntimeDialog extends Dialog {
 
 			final List<EEnumLiteral> literals = eType.getELiterals();
 			final String[] proposals = new String[literals.size() + 1];
-			ArrayList<String> list = new ArrayList<String>();
+			ArrayList<String> list = new ArrayList<>();
 			list.add(""); //$NON-NLS-1$
 			proposals[0] = ""; //$NON-NLS-1$
 			for (int i = 0; i < literals.size(); i++) {

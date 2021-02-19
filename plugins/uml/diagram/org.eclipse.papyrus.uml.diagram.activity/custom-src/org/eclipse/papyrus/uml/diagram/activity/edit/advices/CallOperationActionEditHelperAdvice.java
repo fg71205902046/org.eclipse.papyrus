@@ -70,7 +70,7 @@ public class CallOperationActionEditHelperAdvice extends AbstractEditHelperAdvic
 		}
 		return null;
 	}
-	
+
 	/**
 	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice#getAfterSetCommand(org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest)
 	 *
@@ -80,10 +80,10 @@ public class CallOperationActionEditHelperAdvice extends AbstractEditHelperAdvic
 	@Override
 	protected ICommand getAfterSetCommand(SetRequest request) {
 		CallOperationAction editedModelElement = (CallOperationAction) request.getElementToEdit();
-		if(request.getFeature()==UMLPackage.eINSTANCE.getCallOperationAction_Operation()){
-			IPinUpdater<CallOperationAction> updater =PinUpdaterFactory.getInstance().instantiate(editedModelElement);
-			return new PinUpdateCommand<CallOperationAction>("Update call operation action pins", updater, editedModelElement);
-		}else{
+		if (request.getFeature() == UMLPackage.eINSTANCE.getCallOperationAction_Operation()) {
+			IPinUpdater<CallOperationAction> updater = PinUpdaterFactory.getInstance().instantiate(editedModelElement);
+			return new PinUpdateCommand<>("Update call operation action pins", updater, editedModelElement);
+		} else {
 			return null;
 		}
 	}

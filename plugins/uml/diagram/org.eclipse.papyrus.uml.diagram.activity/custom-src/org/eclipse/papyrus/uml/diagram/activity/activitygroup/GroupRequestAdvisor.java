@@ -158,8 +158,8 @@ public class GroupRequestAdvisor implements IGroupRequestAdvisor {
 		 */
 		@Override
 		public void run(IContext context) {
-			IntegrateViewToConfigureComposite composite = (IntegrateViewToConfigureComposite) context.get(IContext.COMPOSITE_CREATED);
-			final INotification notif = (INotification) context.get(IContext.NOTIFICATION_OBJECT);
+			IntegrateViewToConfigureComposite composite = (IntegrateViewToConfigureComposite) context.get(org.eclipse.papyrus.infra.tools.notify.IContext.COMPOSITE_CREATED);
+			final INotification notif = (INotification) context.get(org.eclipse.papyrus.infra.tools.notify.IContext.NOTIFICATION_OBJECT);
 			CompositeTransactionalCommand ccMovingElement = new CompositeTransactionalCommand(request.getHostRequest().getEditingDomain(), "Move graphical elements into a new host");////$NON-NLS-1$
 			/*
 			 * Use to calculate impacted file
@@ -665,7 +665,7 @@ public class GroupRequestAdvisor implements IGroupRequestAdvisor {
 		/*
 		 * List of all the graphical children
 		 */
-		List<EObject> graphicalChildren = new ArrayList<EObject>();
+		List<EObject> graphicalChildren = new ArrayList<>();
 		/*
 		 * Handle graphical children
 		 */

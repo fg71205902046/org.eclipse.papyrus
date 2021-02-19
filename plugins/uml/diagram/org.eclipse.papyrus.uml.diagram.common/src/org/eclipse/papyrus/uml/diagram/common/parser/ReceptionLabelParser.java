@@ -105,7 +105,7 @@ public class ReceptionLabelParser extends NamedElementLabelParser implements IMa
 	 */
 	@Override
 	public List<EObject> getSemanticElementsBeingParsed(EObject element) {
-		List<EObject> semanticElementsBeingParsed = new ArrayList<EObject>();
+		List<EObject> semanticElementsBeingParsed = new ArrayList<>();
 
 		if ((element != null) && (element instanceof Reception)) {
 			Reception semElement = (Reception) element;
@@ -123,7 +123,7 @@ public class ReceptionLabelParser extends NamedElementLabelParser implements IMa
 	 */
 	@Override
 	public Map<String, String> getMasks() {
-		Map<String, String> masks = new HashMap<String, String>();
+		Map<String, String> masks = new HashMap<>();
 		masks.put(ICustomAppearance.DISP_NAME, "Name");
 		masks.put(ILabelPreferenceConstants.DISP_SIGNAL, "Signal");
 		return masks;

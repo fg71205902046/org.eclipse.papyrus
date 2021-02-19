@@ -110,13 +110,13 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 			final Domain2Notation domain2NotationMap = new Domain2Notation();
 
 			// -- the map between selected EditPart and the semantic existing links
-			final Map<EditPart, Set<EObject>> availableLinks = new HashMap<EditPart, Set<EObject>>();
+			final Map<EditPart, Set<EObject>> availableLinks = new HashMap<>();
 
 			// -- the list of the links which are currently visible on the diagram
-			final Set<EObject> visibleLinks = new HashSet<EObject>();
+			final Set<EObject> visibleLinks = new HashSet<>();
 
 			// -- the link descriptors
-			final Set<UpdaterLinkDescriptor> linksDescriptors = new HashSet<UpdaterLinkDescriptor>();
+			final Set<UpdaterLinkDescriptor> linksDescriptors = new HashSet<>();
 
 
 			// 1. resolve all to avoid concurrent modification exception during the call of the method collectPartRelatedLinks
@@ -134,7 +134,7 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 				if (view != null) {
 					final Collection<? extends UpdaterLinkDescriptor> desc = collectPartRelatedLinks(view, domain2NotationMap);
 					linksDescriptors.addAll(desc);
-					final Set<EObject> modelLinks = new HashSet<EObject>();
+					final Set<EObject> modelLinks = new HashSet<>();
 					final Iterator<? extends UpdaterLinkDescriptor> iter = desc.iterator();
 
 					while (iter.hasNext()) {
@@ -164,11 +164,11 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 			case OPEN_DIALOG:
 				return getShowHideRelatedLinkCommandWithDialog(request.getSelectedEditParts(), availableLinks, visibleLinks, domain2NotationMap, linksDescriptors);
 			case SHOW_ALL_LINK_BETWEEN_SELECTED_ELEMENT:
-				final Collection<EObject> possibleEnds = new HashSet<EObject>();
+				final Collection<EObject> possibleEnds = new HashSet<>();
 				for (final EditPart currentIGraphical : request.getSelectedEditParts()) {
 					possibleEnds.add(currentIGraphical.getAdapter(EObject.class));
 				}
-				final Collection<UpdaterLinkDescriptor> toRemove = new ArrayList<UpdaterLinkDescriptor>();
+				final Collection<UpdaterLinkDescriptor> toRemove = new ArrayList<>();
 				for (final UpdaterLinkDescriptor current : linksDescriptors) {
 					final EObject source = current.getSource();
 					final EObject target = current.getDestination();
@@ -179,7 +179,7 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 				linksDescriptors.removeAll(toRemove);
 				// not necessary to remove the eobject links from the map availableLinks
 			case SHOW_ALL_LINK_IN_DIAGRAM:
-				final Set<EObject> allLinks = new HashSet<EObject>();
+				final Set<EObject> allLinks = new HashSet<>();
 				for (final Collection<EObject> currentColl : availableLinks.values()) {
 					allLinks.addAll(currentColl);
 				}
@@ -201,7 +201,7 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 	 * @return linkdescriptors
 	 */
 	protected Collection<? extends UpdaterLinkDescriptor> collectPartRelatedLinks(final View view, final Domain2Notation domain2NotationMap) {
-		Collection<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		Collection<UpdaterLinkDescriptor> result = new LinkedList<>();
 		DiagramUpdater diagramUpdater = getDiagramUpdater();
 
 		// We must prevent duplicate descriptors
@@ -239,8 +239,8 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 	 *         only ends
 	 */
 	protected Collection<UpdaterLinkDescriptor> removeInvalidLinkDescriptor(final Collection<UpdaterLinkDescriptor> descriptors) {
-		final Collection<UpdaterLinkDescriptor> toRemove = new ArrayList<UpdaterLinkDescriptor>();
-		final Collection<UpdaterLinkDescriptor> toAdd = new ArrayList<UpdaterLinkDescriptor>();
+		final Collection<UpdaterLinkDescriptor> toRemove = new ArrayList<>();
+		final Collection<UpdaterLinkDescriptor> toAdd = new ArrayList<>();
 		for (final UpdaterLinkDescriptor current : descriptors) {
 			if (current.getModelElement() == null) {
 				final IElementType elementType = current.getSemanticAdapter().getAdapter(IElementType.class);
@@ -518,7 +518,7 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 	 * @return the link descriptors
 	 */
 	protected final List<UpdaterLinkDescriptor> getLinkDescriptors(final EObject link, final Collection<? extends UpdaterLinkDescriptor> descriptors) {
-		List<UpdaterLinkDescriptor> updaterLinkDescriptors = new ArrayList<UpdaterLinkDescriptor>();
+		List<UpdaterLinkDescriptor> updaterLinkDescriptors = new ArrayList<>();
 		final Iterator<? extends UpdaterLinkDescriptor> iter = descriptors.iterator();
 		while (iter.hasNext()) {
 			final UpdaterLinkDescriptor current = iter.next();

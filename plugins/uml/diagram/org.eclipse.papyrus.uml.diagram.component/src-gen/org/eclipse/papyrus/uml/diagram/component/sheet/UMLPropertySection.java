@@ -23,7 +23,7 @@ public class UMLPropertySection extends DefaultPropertySection implements IPrope
 
 	/**
 	 * Modify/unwrap selection.
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override

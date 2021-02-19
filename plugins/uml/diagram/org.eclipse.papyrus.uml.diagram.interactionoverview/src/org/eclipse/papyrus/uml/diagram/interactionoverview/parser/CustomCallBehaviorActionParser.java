@@ -29,13 +29,13 @@ import org.eclipse.uml2.uml.CallBehaviorAction;
 import org.eclipse.uml2.uml.UMLPackage;
 
 public class CustomCallBehaviorActionParser extends CallBehaviorActionParser {
-	
+
 	public static final String DEFAULT_VALUE = "";
-	
+
 	public CustomCallBehaviorActionParser() {
 		super(new EAttribute[] {});
 	}
-	
+
 	@Override
 	public String getPrintString(final IAdaptable element, final int flags) {
 		final Object obj = EMFHelper.getEObject(element);
@@ -45,19 +45,19 @@ public class CustomCallBehaviorActionParser extends CallBehaviorActionParser {
 			if (hasContent(actionName)) {
 				return actionName;
 			}
-			
+
 			String behaviorName = null;
 			if (action.getBehavior() != null) {
 				behaviorName = UMLLabelInternationalization.getInstance().getLabel(action.getBehavior());
 			}
-			
+
 			if (hasContent(behaviorName)) {
 				return behaviorName;
 			}
 		}
 		return DEFAULT_VALUE;
 	}
-	
+
 	@Override
 	public String getEditString(final IAdaptable element, final int flags) {
 		final Object obj = EMFHelper.getEObject(element);
@@ -77,7 +77,7 @@ public class CustomCallBehaviorActionParser extends CallBehaviorActionParser {
 	private boolean hasContent(String str) {
 		return str != null && str.length() != 0;
 	}
-	
+
 	@Override
 	public ICommand getParseCommand(final IAdaptable adapter, final String newString, final int flags) {
 		if (newString == null) {

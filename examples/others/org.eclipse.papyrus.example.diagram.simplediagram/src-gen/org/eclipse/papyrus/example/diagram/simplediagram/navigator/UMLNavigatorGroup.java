@@ -77,6 +77,7 @@ public class UMLNavigatorGroup extends UMLAbstractNavigatorItem {
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof org.eclipse.papyrus.example.diagram.simplediagram.navigator.UMLNavigatorGroup) {
 			org.eclipse.papyrus.example.diagram.simplediagram.navigator.UMLNavigatorGroup anotherGroup = (org.eclipse.papyrus.example.diagram.simplediagram.navigator.UMLNavigatorGroup) obj;
@@ -90,6 +91,7 @@ public class UMLNavigatorGroup extends UMLAbstractNavigatorItem {
 	/**
 	 * @generated
 	 */
+	@Override
 	public int hashCode() {
 		return getGroupName().hashCode();
 	}

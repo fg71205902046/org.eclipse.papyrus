@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  * 
+  *
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License 2.0
   * which accompanies this distribution, and is available at
   * https://www.eclipse.org/legal/epl-2.0/
   *
   * SPDX-License-Identifier: EPL-2.0
-  * 
+  *
   * Contributors:
   *  CEA LIST - Initial API and implementation
  */
@@ -77,7 +77,7 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 		TransactionalEditingDomain editingDomain = WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain();
 		myEditingDomain = (AdapterFactoryEditingDomain) editingDomain;
 		@SuppressWarnings("serial")
-		Map<Resource, Boolean> map = new HashMap<Resource, Boolean>() {
+		Map<Resource, Boolean> map = new HashMap<>() {
 
 			@Override
 			public Boolean get(java.lang.Object key) {
@@ -146,6 +146,7 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 	/**
 	 * @generated
 	 */
+	@Override
 	public void dispose() {
 		myWorkspaceSynchronizer.dispose();
 		myWorkspaceSynchronizer = null;
@@ -163,6 +164,7 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 	/**
 	 * @generated
 	 */
+	@Override
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		myViewer = viewer;
 	}
@@ -188,6 +190,7 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 	/**
 	 * @generated
 	 */
+	@Override
 	public Object[] getElements(Object inputElement) {
 		return getChildren(inputElement);
 	}
@@ -195,24 +198,28 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 	/**
 	 * @generated
 	 */
+	@Override
 	public void restoreState(IMemento aMemento) {
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	public void saveState(IMemento aMemento) {
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	public void init(ICommonContentExtensionSite aConfig) {
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	public Object[] getChildren(Object parentElement) {
 		if (parentElement instanceof IFile) {
 			IFile file = (IFile) parentElement;
@@ -231,7 +238,7 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 	 * @generated
 	 */
 	public Object[] wrapEObjects(Object[] objects, Object parentElement) {
-		Collection<UMLDomainNavigatorItem> result = new ArrayList<UMLDomainNavigatorItem>();
+		Collection<UMLDomainNavigatorItem> result = new ArrayList<>();
 		for (int i = 0; i < objects.length; i++) {
 			if (objects[i] instanceof EObject) {
 				result.add(new UMLDomainNavigatorItem((EObject) objects[i], parentElement, myAdapterFctoryContentProvier));
@@ -243,6 +250,7 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 	/**
 	 * @generated
 	 */
+	@Override
 	public Object getParent(Object element) {
 		if (element instanceof UMLAbstractNavigatorItem) {
 			UMLAbstractNavigatorItem abstractNavigatorItem = (UMLAbstractNavigatorItem) element;
@@ -254,6 +262,7 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean hasChildren(Object element) {
 		return element instanceof IFile || getChildren(element).length > 0;
 	}

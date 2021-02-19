@@ -30,7 +30,8 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigu
  *
  */
 public class SquareFigure extends RoundedCompartmentFigure {
-	static Dimension DEFAULT_SIZE=new Dimension(10,10);
+	static Dimension DEFAULT_SIZE = new Dimension(10, 10);
+
 	/**
 	 * Constructor.
 	 *

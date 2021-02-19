@@ -162,14 +162,14 @@ public class ClassEditPartCN extends ClassifierEditPart {
 
 		if (childEditPart instanceof ClassAttributeCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((ClassAttributeCompartmentEditPartCN) childEditPart).getFigure());
 			return true;
 		}
 
 		if (childEditPart instanceof ClassOperationCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((ClassOperationCompartmentEditPartCN) childEditPart).getFigure());
 			return true;
 		}

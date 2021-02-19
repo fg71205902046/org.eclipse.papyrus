@@ -52,8 +52,7 @@ public class AcceptTimeEventActionStereotypeExternalNodeEditPolicy extends Appli
 						final String stereotypesToDisplay = stereotypesToDisplay();
 						((IPapyrusUMLElementFigure) figure).setStereotypeDisplay(tag + (stereotypesToDisplay), null);
 					}
-				}
-				else {
+				} else {
 					((IPapyrusUMLElementFigure) figure).setStereotypeDisplay("", null);
 				}
 			}

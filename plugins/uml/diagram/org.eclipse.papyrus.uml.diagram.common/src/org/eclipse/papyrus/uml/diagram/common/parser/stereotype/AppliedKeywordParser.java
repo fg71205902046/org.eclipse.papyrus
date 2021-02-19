@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.parser.stereotype;
 
@@ -25,7 +25,7 @@ import org.eclipse.uml2.uml.Stereotype;
  * UML keywords are reserved words that are an integral part of the UML notation and normally appear as text
  * annotations attached to a UML graphic element or as part of a text line in a UML diagram.
  * See Table C.1 Keywords in OMG Unified Modeling Language TM (OMG UML) Version 2.5
- * 
+ *
  * @author Francois Le Fevre - francois.le-fevre@cea.fr
  * @since 3.1
  */

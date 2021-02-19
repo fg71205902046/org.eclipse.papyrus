@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  * 
+  *
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License 2.0
   * which accompanies this distribution, and is available at
   * https://www.eclipse.org/legal/epl-2.0/
   *
   * SPDX-License-Identifier: EPL-2.0
-  * 
+  *
   * Contributors:
   *  CEA LIST - Initial API and implementation
  */
@@ -75,7 +75,7 @@ public class UMLDiagramEditorUtil {
 	 * @generated
 	 */
 	public static Map<?, ?> getSaveOptions() {
-		HashMap<String, Object> saveOptions = new HashMap<String, Object>();
+		HashMap<String, Object> saveOptions = new HashMap<>();
 		saveOptions.put(XMLResource.OPTION_ENCODING, "UTF-8"); //$NON-NLS-1$
 		saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
 		return saveOptions;
@@ -118,7 +118,7 @@ public class UMLDiagramEditorUtil {
 
 	/**
 	 * Runs the wizard in a dialog.
-	 * 
+	 *
 	 * @generated
 	 */
 	public static void runWizard(Shell shell, Wizard wizard, String settingsKey) {
@@ -136,6 +136,7 @@ public class UMLDiagramEditorUtil {
 
 	/**
 	 * This method should be called within a workspace modify operation since it creates resources.
+	 *
 	 * @generated
 	 */
 	public static Resource createDiagram(URI diagramURI, URI modelURI, IProgressMonitor progressMonitor) {
@@ -180,21 +181,23 @@ public class UMLDiagramEditorUtil {
 	}
 
 	/**
-	* Create a new instance of domain element associated with canvas.
-	* <!-- begin-user-doc -->
+	 * Create a new instance of domain element associated with canvas.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	* @generated
-	*/
+	 *
+	 * @generated
+	 */
 	private static Package createInitialModel() {
 		return UMLFactory.eINSTANCE.createPackage();
 	}
 
 	/**
-	* Store model element in the resource.
-	* <!-- begin-user-doc -->
+	 * Store model element in the resource.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	* @generated
-	*/
+	 *
+	 * @generated
+	 */
 	private static void attachModelToResource(Package model, Resource resource) {
 		resource.getContents().add(model);
 	}
@@ -271,7 +274,7 @@ public class UMLDiagramEditorUtil {
 		}
 
 		View view = null;
-		LinkedList<EditPart> editPartHolder = new LinkedList<EditPart>();
+		LinkedList<EditPart> editPartHolder = new LinkedList<>();
 		if (hasStructuralURI && !lazyElement2ViewMap.getElement2ViewMap().isEmpty()) {
 			view = lazyElement2ViewMap.getElement2ViewMap().get(targetElement);
 		} else if (findElementsInDiagramByID(diagramEditPart, targetElement, editPartHolder) > 0) {
@@ -284,6 +287,7 @@ public class UMLDiagramEditorUtil {
 
 	/**
 	 * XXX This is quite suspicious code (especially editPartTmpHolder) and likely to be removed soon
+	 *
 	 * @generated
 	 */
 	public static class LazyElement2ViewMap {
@@ -315,7 +319,7 @@ public class UMLDiagramEditorUtil {
 		 */
 		public final Map<EObject, View> getElement2ViewMap() {
 			if (element2ViewMap == null) {
-				element2ViewMap = new HashMap<EObject, View>();
+				element2ViewMap = new HashMap<>();
 				// map possible notation elements to itself as these can't be found by view.getElement()
 				for (EObject element : elementSet) {
 					if (element instanceof View) {
@@ -358,6 +362,6 @@ public class UMLDiagramEditorUtil {
 			}
 			return complete;
 		}
-	} //LazyElement2ViewMap	
+	} // LazyElement2ViewMap
 
 }

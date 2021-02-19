@@ -51,7 +51,7 @@ public class Visitor {
 	 * @return the owned and imported {@link Type} imported namespace
 	 */
 	public static List<Element> getOwnedAndImportedElement(Namespace visited, Class<?> wantedClass) {
-		List<Element> visibleElements = new ArrayList<Element>();
+		List<Element> visibleElements = new ArrayList<>();
 		// first retrieves imported properties
 		for (ElementImport eImport : visited.getElementImports()) {
 			if (wantedClass.isInstance(eImport)) {
@@ -80,7 +80,7 @@ public class Visitor {
 	 * @return the imported {@link Namespace}
 	 */
 	public static List<Namespace> getImportedNamespaces(Namespace visited) {
-		List<Namespace> namespaces = new ArrayList<Namespace>();
+		List<Namespace> namespaces = new ArrayList<>();
 
 		// retrieves imported namespaces
 		for (PackageImport pImport : visited.getPackageImports()) {
@@ -103,7 +103,7 @@ public class Visitor {
 	 * @return the owned and imported {@link Namespace}
 	 */
 	public static List<Namespace> getOwnedAndImportedNamespaces(Namespace visited) {
-		List<Namespace> namespaces = new ArrayList<Namespace>();
+		List<Namespace> namespaces = new ArrayList<>();
 		// first retrieves imported namespaces
 		namespaces.addAll(getImportedNamespaces(visited));
 		// then retrieves owned namespaces

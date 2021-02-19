@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST, ALL4TEC and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -31,18 +31,18 @@ import org.eclipse.papyrus.uml.diagram.common.stereotype.IStereotypePropertyRefe
 
 /**
  * View provider for papyrus view used in all diagram.
- * 
+ *
  * @author Mickael ADAM
- * 
+ *
  * @since 3.1
  */
 public class StereotypePropertyReferenceEdgeViewProvider extends CustomAbstractViewProvider {
 
 	/** Map containing node view types supported by this provider. */
-	protected Map<String, Class<?>> nodeMap = new HashMap<String, Class<?>>();
+	protected Map<String, Class<?>> nodeMap = new HashMap<>();
 
 	/** Map containing edge view types supported by this provider. */
-	protected Map<String, Class<?>> edgeMap = new HashMap<String, Class<?>>();
+	protected Map<String, Class<?>> edgeMap = new HashMap<>();
 
 	/**
 	 * Constructor.
@@ -54,9 +54,9 @@ public class StereotypePropertyReferenceEdgeViewProvider extends CustomAbstractV
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * We check that it's a Papyrus diagram.
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.providers.CustomAbstractViewProvider#isRelevantDiagram(org.eclipse.gmf.runtime.notation.Diagram)
 	 */
 	@Override
@@ -71,7 +71,7 @@ public class StereotypePropertyReferenceEdgeViewProvider extends CustomAbstractV
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.providers.AbstractViewProvider#getNodeViewClass(org.eclipse.core.runtime.IAdaptable, org.eclipse.gmf.runtime.notation.View, java.lang.String)
 	 */
 	@Override
@@ -81,7 +81,7 @@ public class StereotypePropertyReferenceEdgeViewProvider extends CustomAbstractV
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.providers.AbstractViewProvider#getEdgeViewClass(org.eclipse.core.runtime.IAdaptable, org.eclipse.gmf.runtime.notation.View, java.lang.String)
 	 */
 	@Override
@@ -103,7 +103,7 @@ public class StereotypePropertyReferenceEdgeViewProvider extends CustomAbstractV
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.providers.CustomAbstractViewProvider#provides(org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewForKindOperation)
 	 */
 	@Override

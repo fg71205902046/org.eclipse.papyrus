@@ -134,7 +134,7 @@ public class CreateOrShowExistingElementHelper {
 	 * @param elementType
 	 *            an element type
 	 * @return
-	 * 		<code>true</code> if the element has the wanted type according to the element type
+	 *         <code>true</code> if the element has the wanted type according to the element type
 	 */
 	protected boolean hasWantedType(final EObject element, final IElementType elementType) {
 		return element.eClass() == elementType.getEClass();
@@ -145,7 +145,7 @@ public class CreateOrShowExistingElementHelper {
 	 * Returns the preferences AND Create the preference if it doesn't yet exist.
 	 *
 	 * @return
-	 * 		the preference to know if a dialog must ask to the use if he wants create a new edge or restore an existing edge
+	 *         the preference to know if a dialog must ask to the use if he wants create a new edge or restore an existing edge
 	 */
 	protected boolean showDialogAccordingPreferences() {
 		boolean showDialog = true;
@@ -167,7 +167,7 @@ public class CreateOrShowExistingElementHelper {
 	 * @param elementType
 	 *            an element type
 	 * @return
-	 * 		the element type to display in the dialog
+	 *         the element type to display in the dialog
 	 */
 	protected String getIElementTypeNameToDisplay(final IElementType elementType) {
 		return elementType.getEClass().getName();
@@ -207,7 +207,7 @@ public class CreateOrShowExistingElementHelper {
 	 *            the request to create the element
 	 * @param wantedEClass
 	 * @return
-	 * 		a list of {@link EdgeEndsMapper} referencing the existing links between the source and the target
+	 *         a list of {@link EdgeEndsMapper} referencing the existing links between the source and the target
 	 */
 	protected List<LinkEndsMapper> getExistingLinksBetweenSourceAndTarget(final CreateRelationshipRequest request, final IElementType wantedElementType) {
 		final List<LinkEndsMapper> existingElement = new ArrayList<LinkEndsMapper>();
@@ -331,7 +331,7 @@ public class CreateOrShowExistingElementHelper {
 	 * @param existingEObject
 	 *            the list of the existing objects (can't be null, neither empty
 	 * @return
-	 * 		the command to open the dialog AND do the selected action
+	 *         the command to open the dialog AND do the selected action
 	 */
 	public static final ICommand getOpenLinkDialogCommand(final CreateRelationshipRequest request, final Command defaultCommand, final CreateOrShowExistingLinkDialog dialog, final List<LinkEndsMapper> existingEObject) {
 		final AbstractTransactionalCommand compoundCommand = new AbstractTransactionalCommand(request.getEditingDomain(), "", null) { //$NON-NLS-1$
@@ -383,7 +383,7 @@ public class CreateOrShowExistingElementHelper {
 	/**
 	 *
 	 * @return
-	 * 		the link mapping helper to use
+	 *         the link mapping helper to use
 	 */
 	public ILinkMappingHelper getLinkMappingHelper() {
 		return linkMappingHelper;

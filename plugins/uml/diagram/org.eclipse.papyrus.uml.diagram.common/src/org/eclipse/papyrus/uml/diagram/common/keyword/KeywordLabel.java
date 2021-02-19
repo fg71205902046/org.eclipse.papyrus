@@ -24,25 +24,25 @@ package org.eclipse.papyrus.uml.diagram.common.keyword;
  * @since 3.1
  */
 public class KeywordLabel {
-	
+
 	public static final String ABSTRACTION = "abstraction"; //$NON-NLS-1$
-	
+
 	public static final String DEPLOY = "deploy"; //$NON-NLS-1$
-	
+
 	public static final String EXTEND = "extend"; //$NON-NLS-1$
-	
+
 	public static final String FLOW = "flow"; //$NON-NLS-1$
-	
+
 	public static final String IMPORT = "import"; //$NON-NLS-1$
-	
+
 	public static final String INCLUDE = "include"; //$NON-NLS-1$
-	
+
 	public static final String MANIFEST = "manifest"; //$NON-NLS-1$
-	
+
 	public static final String MERGE = "merge"; //$NON-NLS-1$
-	
+
 	public static final String SUBSTITUTE = "substitute"; //$NON-NLS-1$
-	
+
 	public static final String USE = "use"; //$NON-NLS-1$
-	
+
 }

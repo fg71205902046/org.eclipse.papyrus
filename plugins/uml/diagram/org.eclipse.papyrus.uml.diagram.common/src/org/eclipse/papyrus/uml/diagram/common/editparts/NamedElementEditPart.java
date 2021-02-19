@@ -59,7 +59,7 @@ public abstract class NamedElementEditPart extends UMLNodeEditPart implements IU
 	/** Default Left Margin when not present in CSS, set to 5 - see bug 516265 */
 	public static final int DEFAULT_LEFT_MARGIN = 5;
 
-	/** Default Right Margin when not present in CSS, see left margin above  */
+	/** Default Right Margin when not present in CSS, see left margin above */
 	public static final int DEFAULT_RIGHT_MARGIN = 5;
 
 	/**

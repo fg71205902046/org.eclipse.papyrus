@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST, ALL4TEC and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -74,7 +74,7 @@ public class ArchitectureExtendedProviderDescriptor extends ExtendedProviderDesc
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param diagram
 	 *            the PapyrusDiagram target
 	 */
@@ -86,7 +86,7 @@ public class ArchitectureExtendedProviderDescriptor extends ExtendedProviderDesc
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.service.palette.PapyrusPaletteService.ProviderDescriptor#getProvider()
 	 */
 	@Override
@@ -100,7 +100,7 @@ public class ArchitectureExtendedProviderDescriptor extends ExtendedProviderDesc
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.service.palette.PapyrusPaletteService.ProviderDescriptor#hasOnlyEntriesDefinition()
 	 */
 	@Override
@@ -110,7 +110,7 @@ public class ArchitectureExtendedProviderDescriptor extends ExtendedProviderDesc
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.service.palette.PapyrusPaletteService.ProviderDescriptor#getContributionName()
 	 */
 	@Override
@@ -128,7 +128,7 @@ public class ArchitectureExtendedProviderDescriptor extends ExtendedProviderDesc
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.service.palette.PapyrusPaletteService.ProviderDescriptor#getPriority()
 	 */
 	@Override
@@ -138,7 +138,7 @@ public class ArchitectureExtendedProviderDescriptor extends ExtendedProviderDesc
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.service.palette.PapyrusPaletteService.ProviderDescriptor#provides(org.eclipse.gmf.runtime.common.core.service.IOperation)
 	 */
 	@SuppressWarnings("restriction")
@@ -199,6 +199,7 @@ public class ArchitectureExtendedProviderDescriptor extends ExtendedProviderDesc
 	 * @return <code>true</code> if this provider contributes to the
 	 *         operation
 	 */
+	@Override
 	public boolean providesWithVisibility(ContributeToPaletteOperation operation) {
 		/**
 		 * @see org.eclipse.gmf.runtime.common.core.service.IProvider#provides(org.eclipse.gmf.runtime.common.core.service.IOperation)
@@ -238,6 +239,7 @@ public class ArchitectureExtendedProviderDescriptor extends ExtendedProviderDesc
 	 * @param filePath
 	 * @return
 	 */
+	@Override
 	protected InputStream openConfigurationFile(Bundle bundle, String filePath) {
 		try {
 			URL urlFile = bundle.getEntry(filePath);
@@ -309,6 +311,7 @@ public class ArchitectureExtendedProviderDescriptor extends ExtendedProviderDesc
 	/**
 	 * @return
 	 */
+	@Override
 	public String createLocalRedefinition() {
 		PaletteConfiguration paletteConfiguration = getDiagram().getPalettes().get(0);
 		URI uri = EcoreUtil.getURI(paletteConfiguration).trimFragment();

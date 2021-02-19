@@ -29,7 +29,7 @@ public class StateMachineFigure extends RoundedCompartmentFigure {
 	private static final String STATEMACHINE_COMPARTMENT = "stateMachineCompartment";
 
 	/** The List of Compartment */
-	private static final List<String> COMPARTMENT = new ArrayList<String>() {
+	private static final List<String> COMPARTMENT = new ArrayList<>() {
 
 		private static final long serialVersionUID = 1L;
 		{

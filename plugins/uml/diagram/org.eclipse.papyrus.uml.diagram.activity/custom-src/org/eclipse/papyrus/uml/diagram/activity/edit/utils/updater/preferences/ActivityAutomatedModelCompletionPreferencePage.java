@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.preferences;
@@ -36,10 +36,11 @@ import org.eclipse.uml2.uml.TestIdentityAction;
 import org.eclipse.uml2.uml.ValueSpecificationAction;
 
 /**
- * 
+ *
  * Automated pin derivation for AcceptEventAction and AcceptCallAction
+ *
  * @since 3.0
- * 
+ *
  */
 public class ActivityAutomatedModelCompletionPreferencePage extends AbstractAutomatedModelCompletionPreferencesPage {
 
@@ -77,7 +78,7 @@ public class ActivityAutomatedModelCompletionPreferencePage extends AbstractAuto
 
 	/**
 	 * This method create a list of actions which will be display in the preference page
-	 * 
+	 *
 	 * @return the list of actions
 	 */
 	protected List<Class<? extends ActivityNode>> getActionList() {

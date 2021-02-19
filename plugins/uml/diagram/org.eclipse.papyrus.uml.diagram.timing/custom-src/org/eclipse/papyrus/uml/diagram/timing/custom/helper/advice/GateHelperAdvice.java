@@ -26,6 +26,7 @@ import org.eclipse.uml2.uml.Gate;
 /**
  * This HelperAdvice completes {@link Gate} edit commands with commands specific to the timing diagram in order to keep
  * the model consistent when deleting a {@link Gate}.
+ *
  * @since 1.3
  */
 public class GateHelperAdvice extends AbstractEditHelperAdvice {

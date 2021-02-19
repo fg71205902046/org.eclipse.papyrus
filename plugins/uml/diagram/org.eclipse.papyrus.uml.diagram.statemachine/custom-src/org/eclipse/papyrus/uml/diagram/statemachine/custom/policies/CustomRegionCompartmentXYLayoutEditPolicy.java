@@ -98,8 +98,7 @@ public class CustomRegionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolic
 				public void eraseSourceFeedback(Request request) {
 					if (RequestConstants.REQ_DROP.equals(request.getType())) {
 						eraseChangeBoundsFeedback((ChangeBoundsRequest) request);
-					}
-					else {
+					} else {
 						super.eraseSourceFeedback(request);
 					}
 				}
@@ -109,8 +108,7 @@ public class CustomRegionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolic
 					if (RequestConstants.REQ_DROP.equals(request.getType())) {
 						// also show feedback in case of a drop request
 						showChangeBoundsFeedback((ChangeBoundsRequest) request);
-					}
-					else {
+					} else {
 						super.showSourceFeedback(request);
 					}
 				}

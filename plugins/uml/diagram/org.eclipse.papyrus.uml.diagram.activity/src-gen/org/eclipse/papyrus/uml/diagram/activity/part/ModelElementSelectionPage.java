@@ -18,7 +18,7 @@ import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.part.DefaultModelElemen
 
 /**
  * Wizard page that allows to select element from model.
- * 
+ *
  * @generated
  */
 public class ModelElementSelectionPage extends DefaultModelElementSelectionPage {
@@ -32,9 +32,10 @@ public class ModelElementSelectionPage extends DefaultModelElementSelectionPage 
 
 	/**
 	 * Override to provide custom model element description.
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	protected String getSelectionTitle() {
 		return Messages.ModelElementSelectionPageMessage;
 	}

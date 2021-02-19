@@ -1,13 +1,13 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
  *
  * SPDX-License-Identifier: EPL-2.0
- *   
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.part;
 
@@ -38,7 +38,7 @@ public class CustomActivityPartitionEditPart extends ActivityPartitionEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new GetChildLayoutEditPolicy());
 		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY, new ActivityPartitionLabelEditPolicy());
-		
+
 	}
 
 	@Override
@@ -58,13 +58,14 @@ public class CustomActivityPartitionEditPart extends ActivityPartitionEditPart {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);
 		}
 	}
-	
+
 	@Override
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof CustomActivityPartitionNameEditPart) {
 			((CustomActivityPartitionNameEditPart) childEditPart).setLabel(getPrimaryShape().getPartitionLabel());
 			return true;
-		} else 
+		} else {
 			return super.addFixedChild(childEditPart);
+		}
 	}
 }

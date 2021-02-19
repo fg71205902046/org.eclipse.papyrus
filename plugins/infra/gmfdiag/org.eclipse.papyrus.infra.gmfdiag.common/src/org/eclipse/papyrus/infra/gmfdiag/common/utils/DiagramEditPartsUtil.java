@@ -160,10 +160,10 @@ public class DiagramEditPartsUtil {
 	 * @param ep
 	 *            an edit part
 	 * @return
-	 * 		all children edit part which are "top" semantic edit part
+	 *         all children edit part which are "top" semantic edit part
 	 */
 	public static Collection<EditPart> getAllTopSemanticEditPart(final EditPart ep) {
-		final Collection<EditPart> editparts = new HashSet<EditPart>();
+		final Collection<EditPart> editparts = new HashSet<>();
 		for (final Object current : ep.getChildren()) {
 			if (current instanceof EditPart) {
 				editparts.addAll(getAllTopSemanticEditPart((EditPart) current));
@@ -181,7 +181,7 @@ public class DiagramEditPartsUtil {
 	 * @param ep
 	 *            an editpart
 	 * @return
-	 * 		the top edit part representing the same eobject or <code>null</code> if ep doesn't represent an editpart
+	 *         the top edit part representing the same eobject or <code>null</code> if ep doesn't represent an editpart
 	 */
 	public static final EditPart getTopSemanticEditPart(final EditPart ep) {
 		final EObject currentEObject = ep.getAdapter(EObject.class);
@@ -238,7 +238,7 @@ public class DiagramEditPartsUtil {
 	 * @param anEditPart
 	 *            an edit part
 	 * @return
-	 * 		the preference store for the diagram owning this edit part or <code>null</code> if not found
+	 *         the preference store for the diagram owning this edit part or <code>null</code> if not found
 	 *
 	 */
 	public static final IPreferenceStore getDiagramWorkspacePreferenceStore(final EditPart anEditPart) {
@@ -271,7 +271,7 @@ public class DiagramEditPartsUtil {
 	 * @param anEditPart
 	 *            an edit part
 	 * @return
-	 * 		the value of the grid spacing or -1 if not found
+	 *         the value of the grid spacing or -1 if not found
 	 */
 	public static final double getDiagramGridSpacing(final EditPart anEditPart) {
 		final RootEditPart rootEP = anEditPart.getRoot();
@@ -284,7 +284,7 @@ public class DiagramEditPartsUtil {
 	/**
 	 * This Method return the Graphical container of an EditPart.
 	 * Depending on the type of EditPart, the container can be the Direct Parent or the grand parent.
-	 * 
+	 *
 	 * @param currentEP
 	 * @return
 	 */
@@ -308,7 +308,7 @@ public class DiagramEditPartsUtil {
 	/*
 	 * @param anEditPart
 	 * an edit part
-	 * 
+	 *
 	 * @return
 	 * the zoom level in the diagram or 1.0 when {@link ZoomManager} has not been found
 	 */
@@ -353,7 +353,7 @@ public class DiagramEditPartsUtil {
 
 		EditPart topEditPart = getTopMostEditPart(editPart);
 
-		List<IGraphicalEditPart> editParts = new ArrayList<IGraphicalEditPart>();
+		List<IGraphicalEditPart> editParts = new ArrayList<>();
 
 		if (editPart instanceof IGraphicalEditPart) {
 			editParts.add((IGraphicalEditPart) editPart);
@@ -590,7 +590,7 @@ public class DiagramEditPartsUtil {
 	 * @return the e object views
 	 */
 	public static List<View> getEObjectViews(EObject element) {
-		List<View> views = new ArrayList<View>();
+		List<View> views = new ArrayList<>();
 		if (element != null) {
 			EReference[] features = { NotationPackage.eINSTANCE.getView_Element() };
 
@@ -612,7 +612,7 @@ public class DiagramEditPartsUtil {
 	 * @return views found if any
 	 */
 	public static List<View> findViews(EObject parserElement, EditPartViewer viewer) {
-		List<View> modelElements = new ArrayList<View>();
+		List<View> modelElements = new ArrayList<>();
 		if (parserElement != null) {
 			for (Object ep : viewer.getEditPartRegistry().keySet()) {
 				if (ep instanceof View) {
@@ -628,7 +628,7 @@ public class DiagramEditPartsUtil {
 
 	/**
 	 * Finds all of the {@link EditPart}s in currently open editors that present a given notation {@code view}.
-	 * 
+	 *
 	 * @param view
 	 *            a view that may be presented by zero or more open diagram editors
 	 * @return all edit parts in all diagrams that currently present the {@code view} (so could be empty)
@@ -667,7 +667,7 @@ public class DiagramEditPartsUtil {
 		if (selection instanceof StructuredSelection && !selection.isEmpty()) {
 			StructuredSelection structuredSelection = (StructuredSelection) selection;
 			// look for Views of the EObjects in the selection
-			List<View> views = new ArrayList<View>();
+			List<View> views = new ArrayList<>();
 			for (Object o : structuredSelection.toList()) {
 				if (o instanceof EObject) {
 					List referencerViews = getEObjectViews((EObject) o);
@@ -679,7 +679,7 @@ public class DiagramEditPartsUtil {
 				}
 			}
 			if (!views.isEmpty()) {
-				List<EditPart> editParts = new ArrayList<EditPart>();
+				List<EditPart> editParts = new ArrayList<>();
 				for (View view : views) {
 					Object ep = viewer.getEditPartRegistry().get(view);
 					if (ep instanceof EditPart) {
@@ -770,7 +770,7 @@ public class DiagramEditPartsUtil {
 		if (eObject != null && rootEditPart != null) {
 
 			try {
-				Predicate<EditPart> predicate = new Predicate<EditPart>() {
+				Predicate<EditPart> predicate = new Predicate<>() {
 
 					@Override
 					public boolean apply(EditPart input) {
@@ -816,7 +816,7 @@ public class DiagramEditPartsUtil {
 		if (eObject != null && rootEditPart != null) {
 
 			try {
-				Predicate<EditPart> predicate = new Predicate<EditPart>() {
+				Predicate<EditPart> predicate = new Predicate<>() {
 
 					@Override
 					public boolean apply(EditPart input) {
@@ -839,8 +839,9 @@ public class DiagramEditPartsUtil {
 					}
 				};
 
-				Iterable<EditPart> find = (isEdge) ? Iterables.filter((Iterable<EditPart>) EditPartUtilities.getAllNestedConnectionEditParts(rootEditPart), predicate) : Iterables.filter((Iterable<EditPart>) EditPartUtilities.getAllChildren(rootEditPart),
-						predicate);
+				Iterable<EditPart> find = (isEdge) ? Iterables.filter((Iterable<EditPart>) EditPartUtilities.getAllNestedConnectionEditParts(rootEditPart), predicate)
+						: Iterables.filter((Iterable<EditPart>) EditPartUtilities.getAllChildren(rootEditPart),
+								predicate);
 				return Iterables.transform(find, new Function<EditPart, IGraphicalEditPart>() {
 
 					@Override
@@ -868,7 +869,7 @@ public class DiagramEditPartsUtil {
 	}
 
 	private static final TreeIterator<EditPart> internalGetAllContents(final Object root, boolean includeRoot) {
-		return new AbstractTreeIterator<EditPart>(root, includeRoot) {
+		return new AbstractTreeIterator<>(root, includeRoot) {
 			private static final long serialVersionUID = 1L;
 
 			// Let's do this instanceof check only once. And take a defensive copy, of course
@@ -905,7 +906,7 @@ public class DiagramEditPartsUtil {
 
 	/**
 	 * Queries whether an {@code editPart} has canonical synchronization enabled.
-	 * 
+	 *
 	 * @param editPart
 	 *            an edit part
 	 * @return whether it has canonical synchronization enabled
@@ -1019,20 +1020,23 @@ public class DiagramEditPartsUtil {
 	 * @since 3.2.0
 	 * @deprecated has been replaced by labelProviderMap
 	 */
-	@Deprecated ILabelProvider labelProvider;
+	@Deprecated
+	ILabelProvider labelProvider;
 
 	/**
 	 * @since 3.2.0
-	 * Use hash map to cache label provider references. The "weak" assures that resources no longer
-	 * in use are freed
+	 *        Use hash map to cache label provider references. The "weak" assures that resources no longer
+	 *        in use are freed
 	 */
-	protected static Map<Resource, ILabelProvider> labelProviderMap = new WeakHashMap<Resource, ILabelProvider>();
+	protected static Map<Resource, ILabelProvider> labelProviderMap = new WeakHashMap<>();
 
 	/**
 	 * Return the icon of a label, taking element type definitions into account
 	 *
-	 * @param parserElement the parserElement, typically the (model) element of an edit part
-	 * @param viewer the edit part viewer
+	 * @param parserElement
+	 *            the parserElement, typically the (model) element of an edit part
+	 * @param viewer
+	 *            the edit part viewer
 	 * @return the icon element
 	 * @since 3.0
 	 */
@@ -1044,7 +1048,7 @@ public class DiagramEditPartsUtil {
 		for (View view : views) {
 			if (AppearanceHelper.showElementIcon(view)) {
 				Resource rs = parserElement.eResource();
-				ILabelProvider labelProvider = labelProviderMap.get(rs); 
+				ILabelProvider labelProvider = labelProviderMap.get(rs);
 				if (labelProvider == null) {
 					try {
 						LabelProviderService provider = ServiceUtilsForEObject.getInstance().getService(LabelProviderService.class, parserElement);

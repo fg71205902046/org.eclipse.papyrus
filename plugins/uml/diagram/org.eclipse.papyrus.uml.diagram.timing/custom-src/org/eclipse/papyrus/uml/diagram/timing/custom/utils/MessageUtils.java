@@ -92,7 +92,8 @@ public final class MessageUtils {
 	}
 
 	public static boolean isMessage(final String visualID) {
-		return MessageSyncEditPart.VISUAL_ID.equals(visualID) || MessageAsyncEditPart.VISUAL_ID.equals(visualID) || MessageReplyEditPart.VISUAL_ID.equals(visualID) || MessageCreateEditPart.VISUAL_ID.equals(visualID) || MessageDeleteEditPart.VISUAL_ID.equals(visualID)
+		return MessageSyncEditPart.VISUAL_ID.equals(visualID) || MessageAsyncEditPart.VISUAL_ID.equals(visualID) || MessageReplyEditPart.VISUAL_ID.equals(visualID) || MessageCreateEditPart.VISUAL_ID.equals(visualID)
+				|| MessageDeleteEditPart.VISUAL_ID.equals(visualID)
 				|| MessageFoundEditPart.VISUAL_ID.equals(visualID) || MessageLostEditPart.VISUAL_ID.equals(visualID);
 	}
 

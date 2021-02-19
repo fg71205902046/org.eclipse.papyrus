@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *   J�r�mie TATIBOUET (CEA LIST) - Initial API and implementation
  *   S�bastien REVOL (CEA LIST) - Initial API and implementation
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions;
@@ -24,9 +24,9 @@ import org.eclipse.uml2.uml.TestIdentityAction;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * 
+ *
  * Pins of TestIdentityAction should be create automatically
- * 
+ *
  */
 public class TestIdentityActionPinUpdater extends AbstractActionPinUpdater<TestIdentityAction> {
 

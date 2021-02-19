@@ -177,30 +177,44 @@ public interface NamedStyleProperties {
 	/** name of the CSS property that manages the enablement of the {@link StyleBasedShapeProvider} for decoration */
 	public static final String SHAPE_DECORATION_STYLE_PROPERTY = "shapeDecorationStyle"; //$NON-NLS-1$
 
-	/** NameStyle property to show an icon next to the label of an element.
-	 * @since 3.0*/
+	/**
+	 * NameStyle property to show an icon next to the label of an element.
+	 *
+	 * @since 3.0
+	 */
 	public static final String ELEMENT_ICON = "elementIcon"; //$NON-NLS-1$
 
-	/** NameStyle property to define the depth of the qualified name to display.
-	 * @since 3.0*/
+	/**
+	 * NameStyle property to define the depth of the qualified name to display.
+	 *
+	 * @since 3.0
+	 */
 	public static final String QUALIFIED_NAME_DEPTH = "qualifiedNameDepth"; //$NON-NLS-1$
 
-	/** NameStyle property to display a shadow under the shape.
-	 * @since 3.0*/
+	/**
+	 * NameStyle property to display a shadow under the shape.
+	 *
+	 * @since 3.0
+	 */
 	public static final String SHADOW = "shadow"; //$NON-NLS-1$
 
-	/** NamedStyle property used to show an image on the symbol compartment.
-	 * @since 3.0*/
+	/**
+	 * NamedStyle property used to show an image on the symbol compartment.
+	 *
+	 * @since 3.0
+	 */
 	public static final String IMAGE_PATH = "imagePath"; //$NON-NLS-1$
 
 	/**
 	 * NamedStyle property used to set a fixed height for a Label, in pixels
+	 *
 	 * @since 3.101
 	 */
 	public static final String LABEL_HEIGHT = "labelHeight"; //$NON-NLS-1$
 
 	/**
 	 * NamedStyle property used to set a fixed width for a Label, in pixels
+	 *
 	 * @since 3.101
 	 */
 	public static final String LABEL_WIDTH = "labelWidth"; //$NON-NLS-1$

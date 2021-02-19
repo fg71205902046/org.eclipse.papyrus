@@ -61,6 +61,7 @@ public class ProfileLinkMappingHelper implements ILinkMappingHelper {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public Collection<?> getSource(Element link) {
 		return LinkMappingHelper.getSource(link, new CommonSourceUMLSwitch() {
 			@Override
@@ -95,7 +96,7 @@ public class ProfileLinkMappingHelper implements ILinkMappingHelper {
 
 			@Override
 			public java.util.Collection<?> caseExtension(org.eclipse.uml2.uml.Extension object) {
-				ArrayList<Type> result = new ArrayList<Type>();
+				ArrayList<Type> result = new ArrayList<>();
 				// it's possible don't have ownedEnd...
 				if (object.getOwnedEnds().size() != 0) {
 					Iterator<Property> iterator = object.getOwnedEnds().iterator();
@@ -111,11 +112,12 @@ public class ProfileLinkMappingHelper implements ILinkMappingHelper {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public Collection<?> getTarget(Element link) {
 		return LinkMappingHelper.getTarget(link, new CommonTargetUMLSwitch() {
 			@Override
 			public java.util.Collection<?> caseExtension(org.eclipse.uml2.uml.Extension object) {
-				ArrayList<Type> result = new ArrayList<Type>();
+				ArrayList<Type> result = new ArrayList<>();
 				if (object.getMemberEnds().size() != 0) {
 					for (int i = 0; i < object.getMemberEnds().size(); i++) {
 						if (!(object.getMemberEnds().get(i) instanceof ExtensionEnd)) {

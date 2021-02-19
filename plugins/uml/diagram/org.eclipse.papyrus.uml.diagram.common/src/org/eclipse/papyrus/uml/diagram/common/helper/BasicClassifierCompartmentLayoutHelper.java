@@ -98,7 +98,7 @@ public class BasicClassifierCompartmentLayoutHelper extends ClassifierCompartmen
 	 * @return the sets the layout kind command
 	 */
 	public SetLayoutKindCommand setManualLayoutKindOnView(TransactionalEditingDomain domain, EModelElement view) {
-		
+
 		return super.setLayoutKindOnView(domain, view, manualtoolBox.getLayout());
 	}
 
@@ -113,7 +113,7 @@ public class BasicClassifierCompartmentLayoutHelper extends ClassifierCompartmen
 	 * @return the sets the layout kind command
 	 */
 	public SetLayoutKindCommand setAutomaticLayoutKindOnView(TransactionalEditingDomain domain, EModelElement view) {
-		
+
 		return super.setLayoutKindOnView(domain, view, automaticToolBox.getLayout());
 	}
 }

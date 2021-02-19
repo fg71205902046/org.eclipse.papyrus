@@ -8,7 +8,7 @@
  * https://www.eclipse.org/legal/epl-2.0/
  *
  * SPDX-License-Identifier: EPL-2.0
- * 
+ *
  * Céline Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 440230 : Label Margin
  *
  *****************************************************************************/
@@ -99,7 +99,8 @@ public class InteractionUseFigure extends CallBehaviorActionFigure {
 	protected RectangleFigure createInteractionFigureHeader() {
 		this.interactionHeader = new PapyrusWrappingLabel() {
 
-		
+
+			@Override
 			public Dimension getPreferredSize(final int wHint, final int hHint) {
 				final Dimension preferredSize = super.getPreferredSize(wHint, hHint);
 				if (preferredSize.width == 0) {

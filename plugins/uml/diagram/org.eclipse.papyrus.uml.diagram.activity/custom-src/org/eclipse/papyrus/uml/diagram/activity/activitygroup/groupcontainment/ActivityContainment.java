@@ -58,7 +58,7 @@ public class ActivityContainment extends AbstractContainerNodeDescriptor {
 	@Override
 	public List<EReference> getChildrenReferences() {
 		if (parentReferences == null) {
-			parentReferences = new ArrayList<EReference>();
+			parentReferences = new ArrayList<>();
 			parentReferences.add(UMLPackage.Literals.ACTIVITY__OWNED_NODE);
 			parentReferences.add(UMLPackage.Literals.ACTIVITY__OWNED_GROUP);
 		}

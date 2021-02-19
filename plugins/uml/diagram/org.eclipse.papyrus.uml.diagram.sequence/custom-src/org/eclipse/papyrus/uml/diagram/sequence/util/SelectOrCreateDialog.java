@@ -467,7 +467,7 @@ public class SelectOrCreateDialog extends FormDialog {
 		}
 		collected.add(c);
 		if (c instanceof Component) {
-			Component comp = (Component)c;
+			Component comp = (Component) c;
 			for (org.eclipse.uml2.uml.Interface intf : comp.getProvideds()) {
 				collectSignals(intf, accept, collected);
 			}
@@ -483,7 +483,7 @@ public class SelectOrCreateDialog extends FormDialog {
 				if (v == VisibilityKind.PACKAGE_LITERAL && (prop.getClass() == null || prop.getClass_().getNamespace() != c)) {
 					continue;
 				}
-				Port port = (Port)prop;
+				Port port = (Port) prop;
 				for (org.eclipse.uml2.uml.Interface intf : port.getProvideds()) {
 					collectSignals(intf, accept, collected);
 				}
@@ -492,7 +492,7 @@ public class SelectOrCreateDialog extends FormDialog {
 			if (c instanceof org.eclipse.uml2.uml.Class || c instanceof org.eclipse.uml2.uml.Interface) {
 				for (Feature f : c.allFeatures()) {
 					if (f instanceof Reception) {
-						accept.add(((Reception)f).getSignal());
+						accept.add(((Reception) f).getSignal());
 					}
 				}
 			}

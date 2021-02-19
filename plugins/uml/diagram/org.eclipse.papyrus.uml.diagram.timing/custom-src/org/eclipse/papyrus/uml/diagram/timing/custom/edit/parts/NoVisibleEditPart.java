@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.timing.custom.edit.parts;
@@ -36,7 +36,8 @@ public class NoVisibleEditPart extends GraphicalEditPart {
 		super(model);
 	}
 
-	public static final String VISUAL_ID="NoVisibleEditPart"; 
+	public static final String VISUAL_ID = "NoVisibleEditPart";
+
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#setVisibility(boolean)
 	 *
@@ -46,6 +47,7 @@ public class NoVisibleEditPart extends GraphicalEditPart {
 	protected void setVisibility(boolean vis) {
 		super.setVisibility(false);
 	}
+
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#createFigure()
 	 *

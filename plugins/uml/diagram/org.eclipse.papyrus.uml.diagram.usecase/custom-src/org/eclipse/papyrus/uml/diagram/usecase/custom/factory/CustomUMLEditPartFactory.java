@@ -38,14 +38,14 @@ public class CustomUMLEditPartFactory extends UMLEditPartFactory {
 				return new CustomAssociationEditPart(view);
 			case ShortCutDiagramEditPart.VISUAL_ID:
 				return new CustomShortCutDiagramEditPart(view);
-				// case UseCaseEditPartTN.VISUAL_ID:
-				// return new CustomUseCaseEditPartTN(view);
-				// case UseCaseInComponentEditPart.VISUAL_ID:
-				// return new CustomUseCaseInComponentEditPart(view);
-				// case UseCaseInPackageEditPart.VISUAL_ID:
-				// return new CustomUseCaseInPackageEditPart(view);
-				// case UseCasePointsEditPartTN.VISUAL_ID:
-				// return new CustomUseCasePointsEditPartTN(view);
+			// case UseCaseEditPartTN.VISUAL_ID:
+			// return new CustomUseCaseEditPartTN(view);
+			// case UseCaseInComponentEditPart.VISUAL_ID:
+			// return new CustomUseCaseInComponentEditPart(view);
+			// case UseCaseInPackageEditPart.VISUAL_ID:
+			// return new CustomUseCaseInPackageEditPart(view);
+			// case UseCasePointsEditPartTN.VISUAL_ID:
+			// return new CustomUseCasePointsEditPartTN(view);
 			}
 		}
 		return super.createEditPart(context, model);

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.commands.util;
@@ -26,15 +26,15 @@ import org.eclipse.uml2.uml.ActivityNode;
 public class PinUpdateCommand<NodeType extends ActivityNode> extends AbstractCommand {
 
 	/**
-	 * 
+	 *
 	 */
 	protected IPinUpdater<NodeType> updater;
-	
+
 	/**
-	 * 
+	 *
 	 */
 	protected NodeType node;
-	
+
 	/**
 	 * Constructor.
 	 *
@@ -56,10 +56,10 @@ public class PinUpdateCommand<NodeType extends ActivityNode> extends AbstractCom
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor arg0, IAdaptable arg1) throws ExecutionException {
-		CommandResult result = CommandResult.newOKCommandResult(); 
-		try{
+		CommandResult result = CommandResult.newOKCommandResult();
+		try {
 			this.updater.updatePins(this.node);
-		}catch(Exception e){
+		} catch (Exception e) {
 			result = CommandResult.newErrorCommandResult(e);
 		}
 		return result;

@@ -175,7 +175,7 @@ public class AssociationEndLabelParser extends PropertyLabelParser {
 
 	@Override
 	public Collection<String> getDefaultValue(IAdaptable element) {
-		View view = (View) element.getAdapter(View.class);
+		View view = element.getAdapter(View.class);
 		if (view == null) {
 			return super.getDefaultValue(element);
 		}

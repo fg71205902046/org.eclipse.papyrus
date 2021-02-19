@@ -69,7 +69,7 @@ public class ActivityNodeContainment extends AbstractContainerNodeDescriptor {
 	@Override
 	public List<EReference> getParentReferences() {
 		if (parentReferences == null) {
-			parentReferences = new ArrayList<EReference>();
+			parentReferences = new ArrayList<>();
 			parentReferences.add(UMLPackage.Literals.ACTIVITY_NODE__IN_STRUCTURED_NODE);
 			parentReferences.add(UMLPackage.Literals.ACTIVITY_NODE__ACTIVITY);
 		}
@@ -84,7 +84,7 @@ public class ActivityNodeContainment extends AbstractContainerNodeDescriptor {
 	@Override
 	public Map<EStructuralFeature, EStructuralFeature> getParentEOppositeReferences() {
 		if (parentOpositeReferences == null) {
-			parentOpositeReferences = new HashMap<EStructuralFeature, EStructuralFeature>();
+			parentOpositeReferences = new HashMap<>();
 			parentOpositeReferences.put(UMLPackage.Literals.ACTIVITY_NODE__IN_INTERRUPTIBLE_REGION, UMLPackage.Literals.INTERRUPTIBLE_ACTIVITY_REGION__NODE);
 			parentOpositeReferences.put(UMLPackage.Literals.ACTIVITY_NODE__IN_PARTITION, UMLPackage.Literals.ACTIVITY_PARTITION__NODE);
 			parentOpositeReferences.put(UMLPackage.Literals.ACTIVITY_NODE__IN_STRUCTURED_NODE, UMLPackage.Literals.STRUCTURED_ACTIVITY_NODE__NODE);

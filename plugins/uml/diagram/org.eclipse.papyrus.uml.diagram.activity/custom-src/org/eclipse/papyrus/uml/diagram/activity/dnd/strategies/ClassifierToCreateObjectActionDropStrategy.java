@@ -32,7 +32,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * Drop strategy to create an CreateObjectAction from a Classifier drop and to update
  * the "classifier" reference.
- * 
+ *
  * @since 3.5.0
  */
 public class ClassifierToCreateObjectActionDropStrategy extends AbstractActivityNodeStrategy {

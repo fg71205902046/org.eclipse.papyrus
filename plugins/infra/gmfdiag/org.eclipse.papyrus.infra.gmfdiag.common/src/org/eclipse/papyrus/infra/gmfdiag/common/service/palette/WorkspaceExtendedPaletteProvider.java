@@ -10,7 +10,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) - Initial API and implementation
- *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - bug 512343
+ *  Mickaï¿½l ADAM (ALL4TEC) mickael.adam@all4tec.net - bug 512343
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.service.palette;
@@ -54,7 +54,7 @@ public class WorkspaceExtendedPaletteProvider extends ExtendedPluginPaletteProvi
 			try {
 				resource.load(Collections.emptyMap());
 				if (resource.getContents().size() > 0) {
-					contributions = new ArrayList<PaletteConfiguration>(EcoreUtil.<PaletteConfiguration> getObjectsByType(resource.getContents(), PaletteconfigurationPackage.eINSTANCE.getPaletteConfiguration()));
+					contributions = new ArrayList<>(EcoreUtil.<PaletteConfiguration> getObjectsByType(resource.getContents(), PaletteconfigurationPackage.eINSTANCE.getPaletteConfiguration()));
 				}
 			} catch (IOException e) {
 				if (!loadResourceExceptionLogged) {

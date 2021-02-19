@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.common.commands;
@@ -41,11 +41,11 @@ public class CreateRelationshipCommandEx extends CreateRelationshipCommand {
 	protected ConfigureRequest createConfigureRequest() {
 		// let the super() create the requests as usual
 		ConfigureRequest result = super.createConfigureRequest();
-		
+
 		// retrieve those from create request
-		Object requestSource = getRequest().getParameter(CreateRelationshipRequest.SOURCE); 
+		Object requestSource = getRequest().getParameter(CreateRelationshipRequest.SOURCE);
 		Object requestTarget = getRequest().getParameter(CreateRelationshipRequest.TARGET);
-		
+
 		// overrides parameters only if necessary, e.g. set and different
 		if (requestSource != null && !requestSource.equals(result.getParameter(CreateRelationshipRequest.SOURCE))) {
 			result.setParameter(CreateRelationshipRequest.SOURCE, requestSource);

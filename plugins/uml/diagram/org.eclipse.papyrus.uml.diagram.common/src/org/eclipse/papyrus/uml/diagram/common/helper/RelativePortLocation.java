@@ -32,6 +32,7 @@ import org.eclipse.gmf.runtime.notation.Bounds;
 
 /**
  * A representation of the relative location of a port on the border of a shape.
+ * 
  * @since 3.1
  */
 public final class RelativePortLocation {

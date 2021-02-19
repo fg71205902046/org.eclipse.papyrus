@@ -13,7 +13,7 @@
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
- package org.eclipse.papyrus.uml.diagram.sequence.edit.helpers;
+package org.eclipse.papyrus.uml.diagram.sequence.edit.helpers;
 
 import java.util.Arrays;
 import java.util.Collection;

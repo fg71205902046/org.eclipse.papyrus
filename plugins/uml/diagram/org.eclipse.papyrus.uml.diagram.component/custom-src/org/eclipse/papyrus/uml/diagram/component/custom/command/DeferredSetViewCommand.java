@@ -32,6 +32,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 /**
  * this command is used to set a value of a view during the execution
  * as deferred command
+ *
  * @since 3.0
  *
  */

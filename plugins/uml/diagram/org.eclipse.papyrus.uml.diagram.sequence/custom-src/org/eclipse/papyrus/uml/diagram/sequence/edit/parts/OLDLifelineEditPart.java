@@ -75,7 +75,7 @@ public class OLDLifelineEditPart {
 	 * Return the inner ConnectableElements of the lifeline
 	 *
 	 * @param lifeline
-	 *                     The lifeline
+	 *            The lifeline
 	 * @return inner ConnectableElements
 	 */
 	// TODO Extract in a helper

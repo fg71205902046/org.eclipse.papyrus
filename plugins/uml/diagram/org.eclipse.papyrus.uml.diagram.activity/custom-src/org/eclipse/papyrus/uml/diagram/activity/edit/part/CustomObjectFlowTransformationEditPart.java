@@ -141,16 +141,17 @@ public class CustomObjectFlowTransformationEditPart extends ObjectFlowTransforma
 		super.handleNotificationEvent(event);
 	}
 
+	@Override
 	protected DirectEditManager getManager() {
 		if (manager == null) {
 			setManager(new MultilineLabelDirectEditManager(this,
 					MultilineLabelDirectEditManager.getTextCellEditorClass(this),
-					new TextCellEditorLocator(((ObjectFlowTransformationEditPart.LinkAndCornerBentWithTextFigure) this.getFigure()).getCornerBentContent())
-					));
+					new TextCellEditorLocator(((ObjectFlowTransformationEditPart.LinkAndCornerBentWithTextFigure) this.getFigure()).getCornerBentContent())));
 		}
 		return manager;
 	}
 
+	@Override
 	protected void setManager(DirectEditManager manager) {
 		this.manager = manager;
 	}

@@ -40,7 +40,7 @@ public class TimeConstraintHelper {
 	public static List<TimeConstraint> getTimeConstraintsOn(NamedElement element) {
 		Collection<Setting> inverseReferences = EMFHelper.getUsages(element);
 		// TimeConstraint referencing element
-		List<TimeConstraint> referencing = new LinkedList<TimeConstraint>();
+		List<TimeConstraint> referencing = new LinkedList<>();
 		for (Setting ref : inverseReferences) {
 			if (UMLPackage.eINSTANCE.getConstraint_ConstrainedElement().equals(ref.getEStructuralFeature()) && ref.getEObject() instanceof TimeConstraint && ref.getEObject().eContainer() != null) {
 				referencing.add((TimeConstraint) ref.getEObject());

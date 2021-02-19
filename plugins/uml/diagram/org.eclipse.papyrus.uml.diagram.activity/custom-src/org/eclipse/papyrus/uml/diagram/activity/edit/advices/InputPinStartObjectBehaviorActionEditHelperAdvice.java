@@ -15,7 +15,7 @@
 package org.eclipse.papyrus.uml.diagram.activity.edit.advices;
 
 /**
- * 
+ *
  * Pins of StartObjectBehaviorAction should be create and update automatically
  *
  */
@@ -35,6 +35,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Edit helper advice for {@link StartObjectBehaviorAction}
+ *
  * @since 3.0
  */
 public class InputPinStartObjectBehaviorActionEditHelperAdvice extends AbstractEditHelperAdvice {
@@ -59,7 +60,7 @@ public class InputPinStartObjectBehaviorActionEditHelperAdvice extends AbstractE
 					if (inputPin.getOwner() instanceof StartObjectBehaviorAction) {
 						// 4] call the command for the StartObjectBehaviorAction which owned the current input pin
 						IPinUpdater<StartObjectBehaviorAction> updater = new StartObjectBehaviorActionPinUpdater();
-						return new PinUpdateCommand<StartObjectBehaviorAction>("Update start object behavior action pins", updater, (StartObjectBehaviorAction) inputPin.getOwner());
+						return new PinUpdateCommand<>("Update start object behavior action pins", updater, (StartObjectBehaviorAction) inputPin.getOwner());
 					}
 				}
 			}

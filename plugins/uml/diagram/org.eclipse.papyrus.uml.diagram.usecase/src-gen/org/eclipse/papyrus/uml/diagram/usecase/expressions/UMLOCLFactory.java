@@ -100,7 +100,7 @@ public class UMLOCLFactory {
 
 	/**
 	 * This is factory method, callers are responsible to keep reference to the return value if they want to reuse parsed expression
-	 * 
+	 *
 	 * @generated
 	 */
 	public static UMLAbstractExpression getExpression(String body, EClassifier context,
@@ -110,7 +110,7 @@ public class UMLOCLFactory {
 
 	/**
 	 * This method will become private in the next release
-	 * 
+	 *
 	 * @generated
 	 */
 	public static UMLAbstractExpression getExpression(String body, EClassifier context) {

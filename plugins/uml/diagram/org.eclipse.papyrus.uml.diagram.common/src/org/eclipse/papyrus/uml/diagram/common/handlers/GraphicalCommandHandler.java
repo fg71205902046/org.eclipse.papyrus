@@ -55,7 +55,7 @@ public abstract class GraphicalCommandHandler extends AbstractHandler {
 	 * @return the currently selected {@link IGraphicalEditPart}
 	 */
 	protected List<IGraphicalEditPart> getSelectedElements() {
-		List<IGraphicalEditPart> result = new LinkedList<IGraphicalEditPart>();
+		List<IGraphicalEditPart> result = new LinkedList<>();
 		for (Object element : getSelection()) {
 			if (element instanceof IGraphicalEditPart) {
 				result.add((IGraphicalEditPart) element);

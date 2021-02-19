@@ -127,7 +127,7 @@ public class CallBehaviorActionParser extends MessageFormatParser implements ISe
 	 */
 	@Override
 	public List<?> getSemanticElementsBeingParsed(EObject element) {
-		List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
+		List<Element> semanticElementsBeingParsed = new ArrayList<>();
 		if (element instanceof CallBehaviorAction) {
 			CallBehaviorAction action = (CallBehaviorAction) element;
 			semanticElementsBeingParsed.add(action);

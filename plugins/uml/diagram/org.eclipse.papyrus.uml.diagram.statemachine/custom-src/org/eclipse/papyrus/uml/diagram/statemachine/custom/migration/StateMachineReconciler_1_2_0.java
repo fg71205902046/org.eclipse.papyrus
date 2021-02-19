@@ -30,6 +30,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.DiagramReconciler;
 
 /**
  * State Machine Diagram Reconciler from 1.1.0 to 1.2.0
+ *
  * @since 3.1
  */
 public class StateMachineReconciler_1_2_0 extends DiagramReconciler {

@@ -32,7 +32,7 @@ public class CustomEntryStateBehaviorEditPart extends EntryStateBehaviorEditPart
 		EObject parserElement = getParserElement();
 		if (parserElement != null && getParser() != null) {
 			// pass an EObject based on the view (getModel) to the parser. This enables the parser to
-			// access the view dependent configuration how much text should be displayed. 
+			// access the view dependent configuration how much text should be displayed.
 			text = getParser().getPrintString(
 					new EObjectAdapter((View) getModel()),
 					getParserOptions().intValue());

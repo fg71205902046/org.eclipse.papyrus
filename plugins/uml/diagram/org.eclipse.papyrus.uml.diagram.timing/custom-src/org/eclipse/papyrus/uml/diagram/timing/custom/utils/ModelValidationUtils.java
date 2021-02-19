@@ -143,7 +143,7 @@ public final class ModelValidationUtils {
 	 * @return the filtered list of fragments that cover the Lifeline
 	 */
 	private static List<InteractionFragment> filterFragments(final EList<InteractionFragment> fragments, final Lifeline lifeline) {
-		final List<InteractionFragment> result = new ArrayList<InteractionFragment>();
+		final List<InteractionFragment> result = new ArrayList<>();
 		for (final InteractionFragment interactionFragment : fragments) {
 			if (interactionFragment.getCovereds().contains(lifeline)) {
 				result.add(interactionFragment);
@@ -187,7 +187,7 @@ public final class ModelValidationUtils {
 
 		final List<InteractionFragment> coveredBys = lifeline.getCoveredBys();
 		int missingOccurrences = 0;
-		final Map<OccurrenceSpecification, Integer> occurencesToBeAdded = new LinkedHashMap<OccurrenceSpecification, Integer>();
+		final Map<OccurrenceSpecification, Integer> occurencesToBeAdded = new LinkedHashMap<>();
 		InteractionFragment previousElement = null;
 		int offset = 0;
 		for (final InteractionFragment interactionFragment : coveredBys) {

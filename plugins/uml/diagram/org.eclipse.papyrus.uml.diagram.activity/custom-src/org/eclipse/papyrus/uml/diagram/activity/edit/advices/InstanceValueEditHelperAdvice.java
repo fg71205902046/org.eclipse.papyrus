@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.advices;
@@ -32,8 +32,9 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecificationAction;
 
 /**
- * 
+ *
  * Pin of ValueSpecificationAction should be create and update automatically
+ *
  * @since 3.0
  *
  */
@@ -60,11 +61,11 @@ public class InstanceValueEditHelperAdvice extends AbstractEditHelperAdvice {
 				if (root != null) {
 					// 4] get all ValueSpecificationAction referencing the instance value
 					// ValueSpecification (CrossReference) -> ValueSpecificationAction (owned by)
-					if(instanceValue.getOwner() instanceof ValueSpecificationAction) {
+					if (instanceValue.getOwner() instanceof ValueSpecificationAction) {
 						// 5] call the command for the ValueSpecificationAction whose value is the instanceValue
 						ValueSpecificationAction valueSpecificationAction = (ValueSpecificationAction) instanceValue.getOwner();
 						IPinUpdater<ValueSpecificationAction> updater = PinUpdaterFactory.getInstance().instantiate(valueSpecificationAction);
-						return new PinUpdateCommand<ValueSpecificationAction>("Update value specification action pins", updater, valueSpecificationAction); //$NON-NLS-1$
+						return new PinUpdateCommand<>("Update value specification action pins", updater, valueSpecificationAction); //$NON-NLS-1$
 					}
 				}
 			}

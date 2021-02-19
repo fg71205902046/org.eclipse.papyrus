@@ -136,7 +136,7 @@ public class LinkRepresentationForLayoutAction {
 	 *
 	 * @return the source location to move this link
 	 *         <ul>
-	 *         <li> {@link #newSourcePosition} if not <code>null</code></li>
+	 *         <li>{@link #newSourcePosition} if not <code>null</code></li>
 	 *         <li>{@link #oldSourcePosition} if {@link #newSourcePosition} is <code>null</code></li>
 	 *         </ul>
 	 */
@@ -153,7 +153,7 @@ public class LinkRepresentationForLayoutAction {
 	 *
 	 * @return the target location to move this link
 	 *         <ul>
-	 *         <li> {@link #newTargetPosition} if not <code>null</code></li>
+	 *         <li>{@link #newTargetPosition} if not <code>null</code></li>
 	 *         <li>{@link #oldTargetPosition} if {@link #newTargetPosition} is <code>null</code></li>
 	 *         </ul>
 	 */

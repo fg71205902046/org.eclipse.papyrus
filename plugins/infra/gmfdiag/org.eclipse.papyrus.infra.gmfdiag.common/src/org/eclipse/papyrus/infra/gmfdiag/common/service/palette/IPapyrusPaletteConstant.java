@@ -20,6 +20,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 
 /**
  * Constant for the papyrus palette extension point
+ *
  * @since 3.0
  */
 public interface IPapyrusPaletteConstant {

@@ -89,7 +89,7 @@ public class PapyrusConnectionEndpointTracker extends ConnectionEndpointTracker 
 			}
 		}
 		Point moveDelta = new Point(delta.width, delta.height);
-		SnapToHelper snapToHelper = (SnapToHelper) getConnectionEditPart().getAdapter(SnapToHelper.class);
+		SnapToHelper snapToHelper = getConnectionEditPart().getAdapter(SnapToHelper.class);
 
 		Rectangle rect = new Rectangle(originalLocation.x, originalLocation.y, 1, 1);
 		PrecisionRectangle sourceRectangle = null;

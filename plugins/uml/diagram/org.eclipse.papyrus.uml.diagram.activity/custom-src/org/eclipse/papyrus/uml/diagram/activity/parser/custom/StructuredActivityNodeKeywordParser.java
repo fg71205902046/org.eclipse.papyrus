@@ -154,7 +154,7 @@ public class StructuredActivityNodeKeywordParser extends MessageFormatParser imp
 	 */
 	@Override
 	public List<?> getSemanticElementsBeingParsed(EObject element) {
-		List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
+		List<Element> semanticElementsBeingParsed = new ArrayList<>();
 		if (element instanceof StructuredActivityNode) {
 			StructuredActivityNode node = (StructuredActivityNode) element;
 			semanticElementsBeingParsed.add(node);

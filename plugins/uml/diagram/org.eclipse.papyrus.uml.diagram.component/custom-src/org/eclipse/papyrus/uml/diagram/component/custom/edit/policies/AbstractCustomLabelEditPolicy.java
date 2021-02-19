@@ -27,6 +27,7 @@ import org.eclipse.uml2.uml.Element;
 
 /**
  * Edit policy for specific Label.
+ *
  * @since 3.0
  */
 public abstract class AbstractCustomLabelEditPolicy extends GraphicalEditPolicy implements IPapyrusListener, NotificationListener {

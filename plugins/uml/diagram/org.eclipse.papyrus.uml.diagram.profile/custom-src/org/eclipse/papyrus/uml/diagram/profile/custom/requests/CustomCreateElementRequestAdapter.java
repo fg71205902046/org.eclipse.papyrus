@@ -42,13 +42,13 @@ public class CustomCreateElementRequestAdapter extends org.eclipse.gmf.runtime.d
 	public CustomCreateElementRequestAdapter(CreateElementRequest createElementRequest) {
 		super(createElementRequest);
 		this.createElementRequest = createElementRequest;
-		listRequestAdapter = new ArrayList<CreateElementRequestAdapter>();
+		listRequestAdapter = new ArrayList<>();
 		listRequestAdapter.add(new CreateElementRequestAdapter(createElementRequest));
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.core.runtime.IAdaptable#getAdapter(java.lang.Class)
 	 */
 	public Object getAdapter(java.lang.Class<?> adapter, int i) {

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Mickaël ADAM (ALL4TEC) - mickael.adam@all4tec.net - Bug 517679
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.common.updater;
@@ -49,6 +49,7 @@ public class UpdaterLinkDescriptor extends UpdaterNodeDescriptor {
 		if (null != linkElement && !(linkElement instanceof EdgeWithNoSemanticElementRepresentationImpl)) {
 			mySemanticAdapter = new EObjectAdapter(linkElement) {
 
+				@Override
 				public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
 					if (IElementType.class.equals(adapter)) {
 						return elementType;
@@ -59,6 +60,7 @@ public class UpdaterLinkDescriptor extends UpdaterNodeDescriptor {
 		} else {
 			mySemanticAdapter = new IAdaptable() {
 
+				@Override
 				public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
 					if (IElementType.class.equals(adapter)) {
 						return elementType;

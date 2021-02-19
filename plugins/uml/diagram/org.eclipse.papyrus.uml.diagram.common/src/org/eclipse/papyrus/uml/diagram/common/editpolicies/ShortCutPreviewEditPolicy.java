@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  * Contributors:
  *   Shuai Li (CEA LIST) <shuai.li@cea.fr> - Initial API and implementation
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
- *   
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
@@ -35,7 +35,7 @@ import org.eclipse.swt.widgets.Display;
 /**
  * This class is used to open a popup containing a preview of the diagram shortcut
  * when the mouse hovers over the shortcut
- * 
+ *
  */
 public class ShortCutPreviewEditPolicy extends PapyrusPopupBarEditPolicy {
 	private final double SCALE_FACTOR = 0.5;
@@ -91,8 +91,8 @@ public class ShortCutPreviewEditPolicy extends PapyrusPopupBarEditPolicy {
 				int optimalHeight = (int) (this.getHost().getRoot().getViewer().getControl().getBounds().height * SCALE_FACTOR);
 
 				if (scaledPreviewImage == null || optimalWidth != maxWidth || optimalHeight != maxHeight) {
-					maxHeight = (int) optimalHeight;
-					maxWidth = (int) optimalWidth;
+					maxHeight = optimalHeight;
+					maxWidth = optimalWidth;
 					if (scaledPreviewImage != null) {
 						scaledPreviewImage.dispose();
 					}

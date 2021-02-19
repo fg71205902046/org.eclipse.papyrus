@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.common.sync;
@@ -20,7 +20,7 @@ import org.eclipse.gmf.runtime.notation.StringValueStyle;
 
 /**
  * The kinds of diagram-to-diagram synchronization supported by {@linkplain SyncStyles notation styles}.
- * 
+ *
  * @see SyncStyles
  */
 public enum SyncKind {

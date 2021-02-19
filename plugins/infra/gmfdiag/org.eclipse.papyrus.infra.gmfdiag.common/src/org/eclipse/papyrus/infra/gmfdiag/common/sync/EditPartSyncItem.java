@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.common.sync;
@@ -50,7 +50,7 @@ public class EditPartSyncItem<M, T extends EditPart> extends SyncItem<M, T> {
 			}
 		} else if ((lastKnownModel == null) || (lastKnownModel.get() != result)) {
 			// Refresh the cache
-			lastKnownModel = new WeakReference<M>(result);
+			lastKnownModel = new WeakReference<>(result);
 		}
 
 		return result;

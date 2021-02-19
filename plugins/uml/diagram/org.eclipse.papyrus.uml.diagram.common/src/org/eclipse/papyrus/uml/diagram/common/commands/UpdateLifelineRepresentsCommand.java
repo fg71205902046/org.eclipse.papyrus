@@ -38,7 +38,7 @@ public class UpdateLifelineRepresentsCommand extends AbstractCommand {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.emf.common.command.AbstractCommand#canExecute()
 	 */
 	@Override

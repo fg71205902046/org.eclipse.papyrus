@@ -40,7 +40,7 @@ public class PinLabelHelper extends StereotypedElementLabelHelper {
 
 	private static PinLabelHelper labelHelper;
 
-	private final Map<String, String> masks = new HashMap<String, String>();
+	private final Map<String, String> masks = new HashMap<>();
 
 	/**
 	 * {@inheritDoc}

@@ -128,28 +128,28 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 	public PointList getPolygonPoints() {
 		if (cachedPolygon == null) {
 			// we create the basic Lifeline figure
-		final PointList points = new PointList(8);
+			final PointList points = new PointList(8);
 
 			int bottomOfHeader = ((LifeLineLayoutManager) this.getLifeLineLayoutManager()).getBottomHeader();
 			Rectangle bounds = this.getBounds();
 			int right = bounds.right();
 			int midX = bounds.x + bounds.width / 2;
 
-		// top left corner
+			// top left corner
 			points.addPoint(bounds.x, bounds.y);
-		// top right corner
+			// top right corner
 			points.addPoint(right, bounds.y);
-		// bottom header right corner
+			// bottom header right corner
 			points.addPoint(right, bottomOfHeader);
-		// bottom middle header
+			// bottom middle header
 			points.addPoint(midX, bottomOfHeader);
-		// middle bottom lifeline
+			// middle bottom lifeline
 			points.addPoint(midX, bounds.bottom());
-		// bottom middle header
+			// bottom middle header
 			points.addPoint(midX, bottomOfHeader);
-		// bottom left header
+			// bottom left header
 			points.addPoint(bounds.x, bottomOfHeader);
-		// top left header
+			// top left header
 			points.addPoint(bounds.x, bounds.y);
 
 			// Duplicate this basic shape for the hit area but make a wider target on the stem
@@ -182,7 +182,7 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 	/**
 	 *
 	 * @return
-	 * 		the LifelineFigure including its children (ExecutionSpecification)
+	 *         the LifelineFigure including its children (ExecutionSpecification)
 	 */
 	private PointList completeFigureWithChildren(final PointList nudeLifelinePointList) {
 		if (this.childrenFigure.isEmpty()) {
@@ -266,7 +266,7 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 	/**
 	 *
 	 * @return
-	 * 		the list of {@link Rectangle} representing each child figure
+	 *         the list of {@link Rectangle} representing each child figure
 	 */
 	private Collection<Rectangle> getChildrenRectangle() {
 		final List<Rectangle> rectangles = new ArrayList<>();
@@ -340,7 +340,7 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 	 * @param points
 	 *            a points' collection
 	 * @return
-	 * 		the point with the smallest ordinate
+	 *         the point with the smallest ordinate
 	 * @since 5.0
 	 */
 	private static final Point getTopPoint(final Collection<Point> points) {
@@ -358,7 +358,7 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 	 * @param points
 	 *            a points' collection
 	 * @return
-	 * 		the point with the highest ordinate
+	 *         the point with the highest ordinate
 	 * @since 5.0
 	 */
 	private static final Point getBottomPoint(final Collection<Point> points) {
@@ -376,7 +376,7 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 	 * @param rectangles
 	 *            a collections of rectangle
 	 * @return
-	 * 		a list of set of rectangles. Each Set in the List contains the rectangles which have intersections between them
+	 *         a list of set of rectangles. Each Set in the List contains the rectangles which have intersections between them
 	 *
 	 * @since 5.0
 	 */
@@ -400,7 +400,7 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 	 * @param allAvailableRectangle
 	 *            a collections of rectangle
 	 * @return
-	 * 		a set of rectangles. Each Set contains the rectangles which have intersections between them
+	 *         a set of rectangles. Each Set contains the rectangles which have intersections between them
 	 * @since 5.0
 	 */
 	private Set<Rectangle> getIntersectingRectangles(final Rectangle aRectangle, Collection<Rectangle> allAvailableRectangle) {
@@ -589,7 +589,7 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 		 * @param rectangles
 		 *            overlaping rectangles
 		 * @return
-		 * 		the list of points describing the polygon represented by a set of overlaping rectangles
+		 *         the list of points describing the polygon represented by a set of overlaping rectangles
 		 */
 		public static final List<Point> getExternalShapeForRectangle(final Collection<Rectangle> rectangles) {
 			return getExternalShapeForPoints(getAllPoints(rectangles));
@@ -600,7 +600,7 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 		 * @param inputPoints
 		 *            a collection of points
 		 * @return
-		 * 		the list of points describing the external shape of the input points
+		 *         the list of points describing the external shape of the input points
 		 */
 		private static final List<Point> getExternalShapeForPoints(final Collection<Point> inputPoints) {
 			// 1. convert to ELK points
@@ -618,7 +618,7 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 		 * @param rectangles
 		 *            the input rectangles
 		 * @return
-		 * 		a set of points composed by all the corners of the input rectangles AND the intersection's points of the rectangles between them
+		 *         a set of points composed by all the corners of the input rectangles AND the intersection's points of the rectangles between them
 		 */
 		private static final Set<Point> getAllPoints(final Collection<Rectangle> rectangles) {
 			final Set<Point> points = new HashSet<>();
@@ -645,7 +645,7 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 		 * @param draw2DPoints
 		 *            drawd2D points
 		 * @return
-		 * 		a list of ELK Points
+		 *         a list of ELK Points
 		 */
 		private static final List<org.eclipse.papyrus.internal.uml.diagram.sequence.elk.Point> convertToELKPoints(final Collection<Point> draw2DPoints) {
 			final List<org.eclipse.papyrus.internal.uml.diagram.sequence.elk.Point> elkPoints = new ArrayList<>();
@@ -660,7 +660,7 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 		 * @param elkPoints
 		 *            ELK points
 		 * @return
-		 * 		a list of draw2D points
+		 *         a list of draw2D points
 		 */
 		private static final List<Point> convertToPoints(final Collection<org.eclipse.papyrus.internal.uml.diagram.sequence.elk.Point> elkPoints) {
 			final List<Point> draw2DPoints = new ArrayList<>();

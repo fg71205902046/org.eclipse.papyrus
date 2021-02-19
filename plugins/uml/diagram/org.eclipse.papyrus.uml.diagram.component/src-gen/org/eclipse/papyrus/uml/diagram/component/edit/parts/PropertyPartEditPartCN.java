@@ -145,7 +145,7 @@ public class PropertyPartEditPartCN extends CustomPropertyPartEditPartCN {
 
 	/**
 	 * Papyrus codeGen
-	 * 
+	 *
 	 * @generated
 	 **/
 	@Override
@@ -164,7 +164,7 @@ public class PropertyPartEditPartCN extends CustomPropertyPartEditPartCN {
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.component.custom.figure.nodes.PropertyPartFigure
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -268,7 +268,7 @@ public class PropertyPartEditPartCN extends CustomPropertyPartEditPartCN {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * 
+	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
 	 * @generated

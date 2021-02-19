@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2018 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.widgets;
@@ -25,9 +25,7 @@ import org.eclipse.papyrus.uml.diagram.common.ui.helper.HelpComponentFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -38,7 +36,7 @@ import org.eclipse.ui.forms.widgets.ImageHyperlink;
 
 /**
  * The switch orientation widget with a simple button and a help button.
- * 
+ *
  * @since 3.2
  */
 public class SwitchOrientationWidget extends AbstractValueEditor {
@@ -73,7 +71,7 @@ public class SwitchOrientationWidget extends AbstractValueEditor {
 	 *            The style for this editor's text box.
 	 */
 	public SwitchOrientationWidget(final Composite parent, final int style) {
-		this(parent, style, null); //$NON-NLS-1$
+		this(parent, style, null); // $NON-NLS-1$
 	}
 
 	/**
@@ -88,7 +86,7 @@ public class SwitchOrientationWidget extends AbstractValueEditor {
 	 */
 	public SwitchOrientationWidget(final Composite parent, final int style, final String label) {
 		super(parent, label);
-		
+
 		final Composite composite = new Composite(parent, SWT.NONE);
 		composite.setLayout(new GridLayout(2, true));
 		composite.setLayoutData(new GridData(SWT.CENTER, SWT.FILL, false, true));
@@ -128,10 +126,10 @@ public class SwitchOrientationWidget extends AbstractValueEditor {
 
 		pack();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.widgets.editors.AbstractEditor#setLabel(java.lang.String)
 	 */
 	@Override
@@ -141,7 +139,7 @@ public class SwitchOrientationWidget extends AbstractValueEditor {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.widgets.editors.AbstractValueEditor#setModelObservable(org.eclipse.core.databinding.observable.value.IObservableValue)
 	 */
 	@SuppressWarnings("rawtypes")
@@ -158,7 +156,7 @@ public class SwitchOrientationWidget extends AbstractValueEditor {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.widgets.editors.AbstractValueEditor#getValue()
 	 */
 	@Override
@@ -168,7 +166,7 @@ public class SwitchOrientationWidget extends AbstractValueEditor {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.widgets.editors.AbstractEditor#getEditableType()
 	 */
 	@Override
@@ -178,7 +176,7 @@ public class SwitchOrientationWidget extends AbstractValueEditor {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.widgets.editors.AbstractEditor#setReadOnly(boolean)
 	 */
 	@Override
@@ -188,7 +186,7 @@ public class SwitchOrientationWidget extends AbstractValueEditor {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.widgets.editors.AbstractEditor#isReadOnly()
 	 */
 	@Override

@@ -26,6 +26,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 
 /**
  * this class has been customized to prevent the strange feedback of lifeline during the move
+ *
  * @since 3.0
  */
 public class SequenceDiagramLayoutEditPolicy extends XYLayoutWithConstrainedResizedEditPolicy {
@@ -39,7 +40,7 @@ public class SequenceDiagramLayoutEditPolicy extends XYLayoutWithConstrainedResi
 	 */
 	@Override
 	protected Command createAddCommand(ChangeBoundsRequest request, EditPart child, Object constraint) {
-		if( child instanceof LifelineEditPart) {
+		if (child instanceof LifelineEditPart) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		return super.createAddCommand(request, child, constraint);
@@ -53,11 +54,11 @@ public class SequenceDiagramLayoutEditPolicy extends XYLayoutWithConstrainedResi
 	 */
 	@Override
 	public void showTargetFeedback(Request request) {
-		if(request instanceof ChangeBoundsRequest){
-			ChangeBoundsRequest changeBoundsRequest= (ChangeBoundsRequest)request;
+		if (request instanceof ChangeBoundsRequest) {
+			ChangeBoundsRequest changeBoundsRequest = (ChangeBoundsRequest) request;
 
-			if( changeBoundsRequest.getEditParts().get(0) instanceof LifelineEditPart) {
-				changeBoundsRequest.setMoveDelta(new Point(changeBoundsRequest.getMoveDelta().x,0));
+			if (changeBoundsRequest.getEditParts().get(0) instanceof LifelineEditPart) {
+				changeBoundsRequest.setMoveDelta(new Point(changeBoundsRequest.getMoveDelta().x, 0));
 			}
 		}
 		super.showTargetFeedback(request);

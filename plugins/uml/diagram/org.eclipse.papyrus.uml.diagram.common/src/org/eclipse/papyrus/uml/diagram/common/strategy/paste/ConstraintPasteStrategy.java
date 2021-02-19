@@ -140,7 +140,7 @@ public class ConstraintPasteStrategy extends AbstractPasteStrategy implements IP
 
 	@Override
 	public Command getGraphicalCommand(EditingDomain domain, GraphicalEditPart targetEditPart, PapyrusClipboard<Object> papyrusClipboard) {
-		Set<Constraint> alreadyprocesed = new HashSet<Constraint>();
+		Set<Constraint> alreadyprocesed = new HashSet<>();
 		View targetView = (View) targetEditPart.getModel();
 		EObject targetOwner = targetView.getElement();
 		org.eclipse.gef.commands.CompoundCommand compoundCommand = new org.eclipse.gef.commands.CompoundCommand("Reassociate constraint context");
@@ -239,7 +239,7 @@ public class ConstraintPasteStrategy extends AbstractPasteStrategy implements IP
 	 */
 	@Override
 	public void prepare(PapyrusClipboard<Object> papyrusClipboard, Collection<EObject> selection) {
-		Map<Object, IClipboardAdditionalData> mapCopyToConstraintData = new HashMap<Object, IClipboardAdditionalData>();
+		Map<Object, IClipboardAdditionalData> mapCopyToConstraintData = new HashMap<>();
 		for (Iterator<EObject> iterator = papyrusClipboard.iterateOnSource(); iterator.hasNext();) {
 			EObject eObjectSource = iterator.next();
 			if (eObjectSource instanceof Constraint) {
@@ -273,6 +273,6 @@ public class ConstraintPasteStrategy extends AbstractPasteStrategy implements IP
 		public Namespace getContext() {
 			return context;
 		}
-		
+
 	}
 }

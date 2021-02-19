@@ -109,7 +109,7 @@ public class SequenceDiagramLunaToMarsReconciler extends DiagramReconciler {
 	 * Eclipse Mars forces changes on the Lifeline width (ignoring saved values), excepted adding a specific EAnnoation to the Lifeline shapes
 	 *
 	 * @param diagram
-	 *                    the diagram to update
+	 *            the diagram to update
 	 */
 	private void addManualSizeEAnnotation(final Diagram diagram) {
 		final TreeIterator<EObject> allContentIterator = diagram.eAllContents();

@@ -28,7 +28,7 @@ public class RegionFigure extends CompartmentFigure {
 	private static final String REGION_COMPARTMENT = "regionCompartment";
 
 	/** The List of Compartment */
-	private static final List<String> COMPARTMENT = new ArrayList<String>() {
+	private static final List<String> COMPARTMENT = new ArrayList<>() {
 
 		private static final long serialVersionUID = 1L;
 		{

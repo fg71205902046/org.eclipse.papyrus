@@ -65,7 +65,7 @@ public class ViewInfoRegistry {
 	/** Mapping storage getter. */
 	protected static Map<String, RootViewInfo> getMapEditorID2RootViewInfo() {
 		if (mapEditorID2RootViewInfo == null) {
-			mapEditorID2RootViewInfo = new HashMap<String, RootViewInfo>();
+			mapEditorID2RootViewInfo = new HashMap<>();
 		}
 		return mapEditorID2RootViewInfo;
 	}
@@ -169,7 +169,7 @@ public class ViewInfoRegistry {
 		Map<String, RootViewInfo> map = getMapEditorID2RootViewInfo();
 		ExtensionPointParser parser = new ExtensionPointParser(getExtensionPointID(), new Class[] { RootViewInfo.class, BaseViewInfo.class });
 		for (Object object : parser.parseExtensionPoint()) {
-			RootViewInfo rootViewInfo = (RootViewInfo) Platform.getAdapterManager().getAdapter(object, RootViewInfo.class);
+			RootViewInfo rootViewInfo = Platform.getAdapterManager().getAdapter(object, RootViewInfo.class);
 			if (rootViewInfo != null) {
 				if (processRootViewInfo(rootViewInfo)) {
 					map.put(rootViewInfo.editorID, rootViewInfo);
@@ -211,7 +211,7 @@ public class ViewInfoRegistry {
 			return null;
 		}
 		for (Object object : rootViewInfo.BaseViewInfo) {
-			BaseViewInfo baseViewInfo = (BaseViewInfo) Platform.getAdapterManager().getAdapter(object, BaseViewInfo.class);
+			BaseViewInfo baseViewInfo = Platform.getAdapterManager().getAdapter(object, BaseViewInfo.class);
 			if (baseViewInfo != null && ViewInfo.Head == baseViewInfo.getType()) {
 				baseViewInfo.rootViewInfo = rootViewInfo;
 				return baseViewInfo;
@@ -226,7 +226,7 @@ public class ViewInfoRegistry {
 		}
 		ViewInfo headViewInfo = rootViewInfo.headViewInfo;
 		for (Object object : rootViewInfo.BaseViewInfo) {
-			BaseViewInfo baseViewInfo = (BaseViewInfo) Platform.getAdapterManager().getAdapter(object, BaseViewInfo.class);
+			BaseViewInfo baseViewInfo = Platform.getAdapterManager().getAdapter(object, BaseViewInfo.class);
 			if (baseViewInfo != null && ViewInfo.Head != baseViewInfo.getType() && ViewInfo.None != baseViewInfo.getType()) {
 				baseViewInfo.rootViewInfo = rootViewInfo;
 				headViewInfo.addNode(baseViewInfo.parent, baseViewInfo);

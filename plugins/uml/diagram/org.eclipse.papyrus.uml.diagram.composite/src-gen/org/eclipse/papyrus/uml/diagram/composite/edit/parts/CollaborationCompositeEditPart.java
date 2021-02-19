@@ -150,7 +150,7 @@ public class CollaborationCompositeEditPart extends RoundedCompartmentEditPart {
 
 	/**
 	 * Papyrus codeGen
-	 * 
+	 *
 	 * @generated
 	 **/
 	@Override
@@ -183,7 +183,7 @@ public class CollaborationCompositeEditPart extends RoundedCompartmentEditPart {
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.composite.custom.figures.CollaborationCompositeFigure
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -203,7 +203,7 @@ public class CollaborationCompositeEditPart extends RoundedCompartmentEditPart {
 
 		if (childEditPart instanceof CollaborationCompositeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getCompositeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((CollaborationCompositeCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -301,7 +301,7 @@ public class CollaborationCompositeEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * 
+	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
 	 * @generated

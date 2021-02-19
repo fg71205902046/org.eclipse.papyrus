@@ -167,7 +167,7 @@ public abstract class AbstractConstraintEditPart extends NamedElementEditPart {
 			if (first && constraint.getContext() == null) {
 				first = false;
 				// instead of editing, open link element tool
-				List<IElementType> elementTypes = new ArrayList<IElementType>();
+				List<IElementType> elementTypes = new ArrayList<>();
 				if (elementTypeOfToolAfterCreation() != null) {
 					elementTypes.add(elementTypeOfToolAfterCreation());
 					AspectUnspecifiedTypeConnectionTool tool = new AspectUnspecifiedTypeConnectionTool(elementTypes);
@@ -181,7 +181,7 @@ public abstract class AbstractConstraintEditPart extends NamedElementEditPart {
 		// suppress condition based on selected edit part, always edit.
 		try {
 			editPart = (EditPart) getEditingDomain().runExclusive(
-					new RunnableWithResult.Impl<Object>() {
+					new RunnableWithResult.Impl<>() {
 
 						@Override
 						public void run() {

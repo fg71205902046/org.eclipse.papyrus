@@ -47,7 +47,7 @@ public final class EcoreUtils {
 	public static void replaceEObjectInstance(final EObject original, final EObject replacement) {
 		final Collection<Setting> settings = EMFHelper.getUsages(original);
 
-		final Set<EStructuralFeature> referencingFeatures = new HashSet<EStructuralFeature>();
+		final Set<EStructuralFeature> referencingFeatures = new HashSet<>();
 		for (final Setting setting : settings) {
 			referencingFeatures.add(setting.getEStructuralFeature());
 		}

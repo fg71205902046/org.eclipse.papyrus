@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST, ALL4TEC and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -40,7 +40,7 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * {@link PapyrusLabelEditPart} for the Reference edge.
- * 
+ *
  * @since 3.1
  */
 public class ReferenceEdgeNameEditPart extends PapyrusLabelEditPart {
@@ -87,7 +87,7 @@ public class ReferenceEdgeNameEditPart extends PapyrusLabelEditPart {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusLabelEditPart#createDefaultEditPolicies()
 	 */
 	@Override
@@ -100,7 +100,7 @@ public class ReferenceEdgeNameEditPart extends PapyrusLabelEditPart {
 
 	/**
 	 * Gets the label text helper.
-	 * 
+	 *
 	 * @param figure
 	 *            the figure
 	 * @return the label text helper
@@ -177,18 +177,20 @@ public class ReferenceEdgeNameEditPart extends PapyrusLabelEditPart {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#getModelChildren()
 	 */
+	@Override
 	protected List<?> getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#getChildBySemanticHint(java.lang.String)
 	 */
+	@Override
 	public IGraphicalEditPart getChildBySemanticHint(String semanticHint) {
 		return null;
 	}
@@ -246,6 +248,7 @@ public class ReferenceEdgeNameEditPart extends PapyrusLabelEditPart {
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusLabelEditPart#refreshVisuals()
 	 *
 	 */
+	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshLabel();
@@ -300,9 +303,10 @@ public class ReferenceEdgeNameEditPart extends PapyrusLabelEditPart {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#refreshFont()
 	 */
+	@Override
 	protected void refreshFont() {
 		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null) {
@@ -314,27 +318,30 @@ public class ReferenceEdgeNameEditPart extends PapyrusLabelEditPart {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#setFontColor(org.eclipse.swt.graphics.Color)
 	 */
+	@Override
 	protected void setFontColor(final Color color) {
 		getFigure().setForegroundColor(color);
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#addSemanticListeners()
 	 */
+	@Override
 	protected void addSemanticListeners() {
 		// Do nothing
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#removeSemanticListeners()
 	 */
+	@Override
 	protected void removeSemanticListeners() {
 		// Do nothing
 	}
@@ -350,9 +357,10 @@ public class ReferenceEdgeNameEditPart extends PapyrusLabelEditPart {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusLabelEditPart#handleNotificationEvent(org.eclipse.emf.common.notify.Notification)
 	 */
+	@Override
 	protected void handleNotificationEvent(final Notification event) {
 		Object feature = event.getFeature();
 		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
@@ -373,9 +381,10 @@ public class ReferenceEdgeNameEditPart extends PapyrusLabelEditPart {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart#createFigure()
 	 */
+	@Override
 	protected IFigure createFigure() {
 		// Parent should assign one using setLabel() method
 		return null;

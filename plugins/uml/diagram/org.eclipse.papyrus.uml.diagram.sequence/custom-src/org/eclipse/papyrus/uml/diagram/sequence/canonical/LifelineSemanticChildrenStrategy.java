@@ -52,7 +52,7 @@ import com.google.common.collect.Lists;
  */
 public class LifelineSemanticChildrenStrategy extends DefaultUMLSemanticChildrenStrategy {
 
-	private final Switch<Boolean> visualizedInteractionFragmentSwitch = new UMLSwitch<Boolean>() {
+	private final Switch<Boolean> visualizedInteractionFragmentSwitch = new UMLSwitch<>() {
 		@Override
 		public Boolean caseInteractionFragment(InteractionFragment object) {
 			return false;

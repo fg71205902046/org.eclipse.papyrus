@@ -39,6 +39,7 @@ import org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint;
 
 /**
  * This class redefine the SetConnectionBendpointsCommand with the anchors calculation during the execution instead of during the initialisation.
+ *
  * @since 5.0
  */
 public class CustomSetConnectionBendpointsCommand extends AbstractTransactionalCommand {

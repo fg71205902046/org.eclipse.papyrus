@@ -31,7 +31,7 @@ import org.eclipse.uml2.uml.Operation;
 /**
  * Drop strategy to create an AcceptCallAction from an Operation drop.
  * It also includes the creation of a nested trigger as well has a Call event.
- * 
+ *
  * @since 3.5.0
  */
 public class OperationToAcceptCallActionDropStrategy extends AbstractActivityNodeStrategy {

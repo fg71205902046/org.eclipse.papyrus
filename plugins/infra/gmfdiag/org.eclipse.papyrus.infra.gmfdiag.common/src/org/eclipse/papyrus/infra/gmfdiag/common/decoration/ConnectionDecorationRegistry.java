@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST, ALL4TEC and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -26,7 +26,7 @@ import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
 
 /**
  * Registry for connection decoration declared throw <i>org.eclipse.papyrus.infra.gmfdiag.common.connectionDecoration</i> extension point.
- * 
+ *
  * @author Mickaël ADAM
  * @since 3.1
  */
@@ -66,8 +66,8 @@ public class ConnectionDecorationRegistry {
 	 * Initialize the registry.
 	 */
 	protected void init() {
-		decorationMap = new HashMap<String, Class<? extends RotatableDecoration>>();
-		labelMap = new HashMap<String, String>();
+		decorationMap = new HashMap<>();
+		labelMap = new HashMap<>();
 		IConfigurationElement[] elements = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
 		for (IConfigurationElement element : elements) {
 			String decorationName = element.getAttribute("name"); //$NON-NLS-1$
@@ -87,7 +87,7 @@ public class ConnectionDecorationRegistry {
 
 	/**
 	 * Gets the decoration class.
-	 * 
+	 *
 	 * @param decorationName
 	 *            the decoration name
 	 * @return the decoration class (null if not found)
@@ -109,7 +109,7 @@ public class ConnectionDecorationRegistry {
 
 	/**
 	 * Gets the decoration label.
-	 * 
+	 *
 	 * @param decorationName
 	 *            the decoration name
 	 * @return the decoration label (null if not found)
@@ -120,7 +120,7 @@ public class ConnectionDecorationRegistry {
 
 	/**
 	 * Gets the decoration name.
-	 * 
+	 *
 	 * @param decorationLabel
 	 *            the decoration label
 	 * @return the decoration name (null if not found)

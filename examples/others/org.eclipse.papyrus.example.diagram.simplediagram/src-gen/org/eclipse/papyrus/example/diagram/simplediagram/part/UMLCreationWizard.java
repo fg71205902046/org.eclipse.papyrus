@@ -88,6 +88,7 @@ public class UMLCreationWizard extends Wizard implements INewWizard {
 	/**
 	 * @generated
 	 */
+	@Override
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.workbench = workbench;
 		this.selection = selection;
@@ -100,6 +101,7 @@ public class UMLCreationWizard extends Wizard implements INewWizard {
 	/**
 	 * @generated
 	 */
+	@Override
 	public void addPages() {
 		diagramModelFilePage = new UMLCreationWizardPage(
 				"DiagramModelFile", getSelection(), "PapyrusNewDiagram_diagram"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -112,6 +114,7 @@ public class UMLCreationWizard extends Wizard implements INewWizard {
 		domainModelFilePage = new UMLCreationWizardPage(
 				"DomainModelFile", getSelection(), "PapyrusNewDiagram") { //$NON-NLS-1$ //$NON-NLS-2$
 
+			@Override
 			public void setVisible(boolean visible) {
 				if (visible) {
 					String fileName = diagramModelFilePage.getFileName();
@@ -134,9 +137,11 @@ public class UMLCreationWizard extends Wizard implements INewWizard {
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean performFinish() {
 		IRunnableWithProgress op = new WorkspaceModifyOperation(null) {
 
+			@Override
 			protected void execute(IProgressMonitor monitor)
 					throws CoreException, InterruptedException {
 				diagram = UMLDiagramEditorUtil.createDiagram(

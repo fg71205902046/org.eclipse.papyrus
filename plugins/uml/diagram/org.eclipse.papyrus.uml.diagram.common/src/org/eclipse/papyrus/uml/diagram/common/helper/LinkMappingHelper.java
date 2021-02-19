@@ -144,7 +144,7 @@ public class LinkMappingHelper {
 
 		@Override
 		public Collection<?> caseConnector(final Connector object) {
-			final List<EObject> sources = new ArrayList<EObject>();
+			final List<EObject> sources = new ArrayList<>();
 			for (final ConnectorEnd current : object.getEnds()) {
 				final ConnectableElement role = current.getRole();
 				if (role != null) {
@@ -220,7 +220,7 @@ public class LinkMappingHelper {
 
 		@Override
 		public Collection<?> caseConnector(final Connector object) {
-			final List<EObject> targets = new ArrayList<EObject>();
+			final List<EObject> targets = new ArrayList<>();
 			for (final ConnectorEnd current : object.getEnds()) {
 				final ConnectableElement role = current.getRole();
 				if (role != null) {
@@ -232,14 +232,14 @@ public class LinkMappingHelper {
 
 		@Override
 		public Collection<?> caseConstraint(Constraint object) {
-			final List<EObject> targets = new ArrayList<EObject>();
+			final List<EObject> targets = new ArrayList<>();
 			targets.addAll(object.getConstrainedElements());
 			return targets;
 		}
 
 		@Override
 		public Collection<?> caseInterfaceRealization(InterfaceRealization object) {
-			final List<EObject> targets = new ArrayList<EObject>();
+			final List<EObject> targets = new ArrayList<>();
 			targets.addAll(object.getSuppliers());
 			return targets;
 		}

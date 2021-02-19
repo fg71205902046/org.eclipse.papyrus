@@ -50,8 +50,8 @@ public class ShowHideCompartmentRequest extends ChangePropertyValueRequest {
 	 * @param value
 	 *            This parameter can be :
 	 *            <ul>
-	 *            <li> {@link ShowHideCompartmentRequest#SHOW}</li>
-	 *            <li> {@link ShowHideCompartmentRequest#HIDE}</li>
+	 *            <li>{@link ShowHideCompartmentRequest#SHOW}</li>
+	 *            <li>{@link ShowHideCompartmentRequest#HIDE}</li>
 	 *            </ul>
 	 * @param semanticHint
 	 *            the semanticHint for the compartment

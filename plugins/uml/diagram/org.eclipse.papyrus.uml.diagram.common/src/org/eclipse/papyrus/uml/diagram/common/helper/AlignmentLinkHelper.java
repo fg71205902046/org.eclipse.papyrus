@@ -43,7 +43,7 @@ public class AlignmentLinkHelper {
 	private List<?> linkEditparts;
 
 	/** the families of editparts */
-	private List<SameAlignment> families = new ArrayList<SameAlignment>();
+	private List<SameAlignment> families = new ArrayList<>();
 
 	/**
 	 *
@@ -62,9 +62,10 @@ public class AlignmentLinkHelper {
 	/**
 	 * Returns the command for this link representation
 	 *
-	 * @return <ul>
+	 * @return
+	 *         <ul>
 	 *         <li>the command for this link representation</li>
-	 *         <li> {@linkplain UnexecutableCommand#INSTANCE} if the alignment is {@linkplain PositionConstants#MIDDLE} or {@linkplain PositionConstants#CENTER}</li>
+	 *         <li>{@linkplain UnexecutableCommand#INSTANCE} if the alignment is {@linkplain PositionConstants#MIDDLE} or {@linkplain PositionConstants#CENTER}</li>
 	 *         </ul>
 	 */
 	public Command createCommand() {
@@ -82,14 +83,15 @@ public class AlignmentLinkHelper {
 	/**
 	 * Tests if a parent and one of these children are selected
 	 *
-	 * @return <ul>
+	 * @return
+	 *         <ul>
 	 *         <li>{@code true}</li>if a parent and one of these children are selected
 	 *         <li>{@code false}</li>if not
 	 *         </ul>
 	 *
 	 */
 	protected boolean isAncestorSelected() {
-		List<EditPart> nodesEditPart = new ArrayList<EditPart>();
+		List<EditPart> nodesEditPart = new ArrayList<>();
 		// get all the sources and target for the selected links
 		for (Object currentEP : linkEditparts) {
 			EditPart source = ((AbstractConnectionEditPart) currentEP).getSource();

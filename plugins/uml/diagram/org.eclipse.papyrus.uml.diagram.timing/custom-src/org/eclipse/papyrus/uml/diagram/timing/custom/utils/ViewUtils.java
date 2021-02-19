@@ -120,7 +120,7 @@ public class ViewUtils {
 	}
 
 	public static List<View> findSubViewsWithId(final View view, final String visualId) {
-		final List<View> views = new ArrayList<View>();
+		final List<View> views = new ArrayList<>();
 		internalFindSubViewsWithId(view, visualId, views);
 		return views;
 	}

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions;
@@ -38,16 +38,16 @@ public class AddStructuralFeatureValueActionPinUpdater extends AbstractActionPin
 	public void updatePins(AddStructuralFeatureValueAction node) {
 		// 1] create object pin if it is not created yet
 		InputPin object = node.getObject();
-		if(object == null){
+		if (object == null) {
 			object = UMLFactory.eINSTANCE.createInputPin();
 			object.setLower(1);
 			object.setUpper(1);
 			object.setName("object"); //$NON-NLS-1$
 		}
 		StructuralFeature structuralFeature = node.getStructuralFeature();
-		if(structuralFeature != null){
+		if (structuralFeature != null) {
 			// 2] update object pin type with the classifier owning the feature since the structural feature is set
-			if(structuralFeature.getFeaturingClassifiers().size() != 0){
+			if (structuralFeature.getFeaturingClassifiers().size() != 0) {
 				object.setType(structuralFeature.getFeaturingClassifiers().get(0));
 			}
 

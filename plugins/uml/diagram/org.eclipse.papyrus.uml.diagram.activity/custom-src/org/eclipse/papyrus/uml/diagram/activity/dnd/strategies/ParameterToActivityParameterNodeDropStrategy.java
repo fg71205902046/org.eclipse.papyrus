@@ -21,8 +21,8 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.papyrus.uml.diagram.activity.dnd.Messages;
 import org.eclipse.papyrus.uml.diagram.activity.dnd.commands.CreateActivityParameterNodeAndUpdateCommand;
-import org.eclipse.papyrus.uml.diagram.activity.edit.part.CustomActivityParameterNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityParameterNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.uml2.uml.Activity;
@@ -33,7 +33,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * Drop strategy to create a ActivityParameterNode from a Parameter drop and to update
  * the "parameter" reference.
- * 
+ *
  * @since 3.5.0
  */
 public class ParameterToActivityParameterNodeDropStrategy extends AbstractActivityNodeStrategy {
@@ -89,7 +89,7 @@ public class ParameterToActivityParameterNodeDropStrategy extends AbstractActivi
 				UMLElementTypes.ACTIVITY_PARAMETER_NODE,
 				UMLPackage.eINSTANCE.getActivityParameterNode_Parameter(),
 				location,
-				CustomActivityParameterNodeEditPart.VISUAL_ID);
+				ActivityParameterNodeEditPart.VISUAL_ID);
 	}
 
 	/**

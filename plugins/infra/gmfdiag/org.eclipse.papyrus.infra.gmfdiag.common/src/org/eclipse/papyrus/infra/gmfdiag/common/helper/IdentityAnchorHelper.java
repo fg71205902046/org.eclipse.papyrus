@@ -62,9 +62,9 @@ public class IdentityAnchorHelper {
 	 * @param anchor
 	 *            an {@link IdentityAnchor} representing a {@link BaseSlidableAnchor}
 	 * @return
-	 * 		the value of x percentage
+	 *         the value of x percentage
 	 * @deprecated
-	 * 			This method only supports {@link IdentityAnchor IdentityAnchors} representing a {@link BaseSlidableAnchor}. Other
+	 *             This method only supports {@link IdentityAnchor IdentityAnchors} representing a {@link BaseSlidableAnchor}. Other
 	 *             anchors would cause an exception. Use {@link BaseSlidableAnchor#parseTerminalString(String)} instead; and check if the
 	 *             resulting point is != null (If null, then the {@link IdentityAnchor} doesn't represent a {@link BaseSlidableAnchor})
 	 */
@@ -82,9 +82,9 @@ public class IdentityAnchorHelper {
 	 * @param anchor
 	 *            an anchor
 	 * @return
-	 * 		the value of y percentage
+	 *         the value of y percentage
 	 * @deprecated
-	 * 			This method only supports {@link IdentityAnchor IdentityAnchors} representing a {@link BaseSlidableAnchor}. Other
+	 *             This method only supports {@link IdentityAnchor IdentityAnchors} representing a {@link BaseSlidableAnchor}. Other
 	 *             anchors would cause an exception. Use {@link BaseSlidableAnchor#parseTerminalString(String)} instead; and check if the
 	 *             resulting point is != null (If null, then the {@link IdentityAnchor} doesn't represent a {@link BaseSlidableAnchor})
 	 */
@@ -105,7 +105,7 @@ public class IdentityAnchorHelper {
 	 * @param percentageOnY
 	 *            the percentage on y
 	 * @return
-	 * 		the string representing the new id for an anchor
+	 *         the string representing the new id for an anchor
 	 */
 	public static final String createNewAnchorIdValue(final double percentageOnX, final double percentageOnY) {
 		final StringBuilder builder = new StringBuilder();

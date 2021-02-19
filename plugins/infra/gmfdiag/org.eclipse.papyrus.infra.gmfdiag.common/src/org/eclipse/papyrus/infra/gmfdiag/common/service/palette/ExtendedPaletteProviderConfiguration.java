@@ -21,6 +21,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 
 /**
  * A provider configuration for the PapyrusPaletteService.
+ *
  * @since 3.0
  */
 public class ExtendedPaletteProviderConfiguration extends XMLPaletteProviderConfiguration {

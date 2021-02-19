@@ -15,7 +15,7 @@ import org.eclipse.ui.dialogs.ElementListSelectionDialog;
  */
 public class GetObjectsOfTypeListSelectionDialog extends ElementListSelectionDialog {
 
-	private final HashSet<EObject> myElementsOfType = new HashSet<EObject>();
+	private final HashSet<EObject> myElementsOfType = new HashSet<>();
 
 	private final EObject mySourceObject;
 

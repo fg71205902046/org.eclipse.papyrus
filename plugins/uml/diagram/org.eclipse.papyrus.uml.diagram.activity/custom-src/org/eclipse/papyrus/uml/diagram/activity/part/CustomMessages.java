@@ -198,7 +198,7 @@ public class CustomMessages extends NLS {
 	 * @since 3.0
 	 */
 	public static String AutomatedModelCompletionPreferencesInitializer_None;
-	
+
 	/**
 	 * @since 3.0
 	 */

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015, 2016 CEA LIST, Christian W. Damus, and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *   Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Initial API and implementation
  *   Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 : Refactor Stereotype Display
  *   Christian W. Damus - bug 492482
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper;
@@ -32,7 +32,7 @@ import org.eclipse.uml2.uml.Stereotype;
 
 /**
  * This Class regroups the Commands and their execution for the Stereotype Display
- * 
+ *
  * @author Céline JANSSENS
  *
  */
@@ -155,7 +155,7 @@ public final class StereotypeDisplayCommandExecution {
 	/**
 	 * Set the depth Name of the Stereotype Label.
 	 * It uses the NamedStyle to store the depth into a View.
-	 * 
+	 *
 	 * @param stereotype
 	 *            The Stereotype of the Label that should be modified.
 	 * @param nodeView
@@ -183,7 +183,7 @@ public final class StereotypeDisplayCommandExecution {
 	 * This Method is called when the user ask explicitly to display a View.
 	 * Then the node is first set as Persistence and the command is put in the command Stack
 	 * before to set the Visibility as wanted.
-	 * 
+	 *
 	 * @param domain
 	 *            The Transactional Domain
 	 * @param view
@@ -207,7 +207,7 @@ public final class StereotypeDisplayCommandExecution {
 	/**
 	 * This Method is called when the user ask explicitly to display a View.
 	 * The command is put in the command Stack before to set the Visibility as wanted.
-	 * 
+	 *
 	 * @param domain
 	 *            The Transactional Domain
 	 * @param view
@@ -228,7 +228,7 @@ public final class StereotypeDisplayCommandExecution {
 	 * This Method is called when the user ask explicitly to display a View.
 	 * Then the node is first set as Persistence and the command is put in the command Stack
 	 * before to set the Visibility as wanted.
-	 * 
+	 *
 	 * @param domain
 	 *            The Transactional Domain
 	 * @param view

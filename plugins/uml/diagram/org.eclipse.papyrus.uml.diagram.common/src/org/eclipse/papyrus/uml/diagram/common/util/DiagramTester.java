@@ -20,6 +20,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.uml.diagram.common.part.UmlGmfDiagramEditor;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.MDTUtil;
+
 /**
  * This class provides a Tester to know if the current diagram is the wanted
  * diagram. Test is done using {@link Diagram#getType()}

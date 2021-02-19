@@ -219,11 +219,11 @@ public class SwimlanesCompartmentLayout extends ConstrainedToolbarLayout {
 	 * Sets the constraint for the given figure.
 	 *
 	 * @param child
-	 *                       the child
+	 *            the child
 	 * @param constraint
-	 *                       the child's new constraint. Supported values are <code>null</code> (remove),
-	 *                       {@link Integer} (height in pixels) or {@link Rectangle} (Height in pixels; position and width will be ignored).
-	 *                       Other values are silently ignored.
+	 *            the child's new constraint. Supported values are <code>null</code> (remove),
+	 *            {@link Integer} (height in pixels) or {@link Rectangle} (Height in pixels; position and width will be ignored).
+	 *            Other values are silently ignored.
 	 */
 	@Override
 	public void setConstraint(IFigure child, Object constraint) {
@@ -238,7 +238,7 @@ public class SwimlanesCompartmentLayout extends ConstrainedToolbarLayout {
 			return; // Not supported, don't change anything
 		}
 		if (constraints == null) {
-			constraints = new HashMap<IFigure, Integer>();
+			constraints = new HashMap<>();
 		}
 		if (height == null || height < 0) {
 			constraints.remove(child);

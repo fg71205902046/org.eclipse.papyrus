@@ -37,8 +37,8 @@ public class StereotypeDisplayDiagramReconciler_1_2_0 extends DiagramReconciler 
 	public ICommand getReconcileCommand(final Diagram diagram) {
 		CompositeCommand cc = new CompositeCommand("Migrate diagram from 1.1.0 to 1.2.0"); //$NON-NLS-1$
 		TransactionalEditingDomain domain = CommandUtil.resolveEditingDomain(diagram);
-		cc.add(new StereotypesAppliedCommand(domain, diagram)); 
-		cc.add(new StereotypesMigrationCommand(domain, diagram)); 
+		cc.add(new StereotypesAppliedCommand(domain, diagram));
+		cc.add(new StereotypesMigrationCommand(domain, diagram));
 		return cc;
 	}
 }

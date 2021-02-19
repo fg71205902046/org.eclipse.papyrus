@@ -55,7 +55,7 @@ public class UpdateConnectionReferenceEditPolicy extends GraphicalEditPolicy {
 	 * @return
 	 *
 	 *
-	 * 		<img src="../../../../../../../../../icons/sequenceScheme.png" width="250" />
+	 *         <img src="../../../../../../../../../icons/sequenceScheme.png" width="250" />
 	 *         <UL>
 	 *         <LI>when move E --> move B on the coordinate Y of E and move A on the coordinate Y of E
 	 *         <LI>when Move F (execution specification) (resize)--> move C on the coordinate of C of F and move D on the coordinate of Y of F

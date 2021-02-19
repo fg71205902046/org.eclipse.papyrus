@@ -35,10 +35,10 @@ import com.google.common.collect.Collections2;
 /**
  * The Class AddAppliedStereotypeToDisplayCommand used to set the list of
  * applied stereotype to display
- * 
+ *
  * @deprecated The Display of stereotype is now treated with notation View (Bug 455311)
  *             use the command into oep.uml.diagram.common.stereotype.display.command instead
- * 
+ *
  */
 @Deprecated
 public class DefferedAppliedStereotypeToDisplayCommand extends CreateEAnnotationCommand {

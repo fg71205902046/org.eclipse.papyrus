@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST, ALL4TEC and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -19,7 +19,7 @@ import org.eclipse.draw2d.geometry.PointList;
 
 /**
  * The <i>solid_diamond_filled</i> connection decoration.
- * 
+ *
  * @author Mickaël ADAM
  * @since 3.1
  */
@@ -61,9 +61,9 @@ public class SolidDiamondFilledConnectionDecoration extends PolygonDecoration {
 	 * <pre>
 	 * Overridden to take into account of the line with in the scale (better representation).
 	 * </pre>
-	 * 
+	 *
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.draw2d.Polyline#setLineWidth(int)
 	 */
 	@Override

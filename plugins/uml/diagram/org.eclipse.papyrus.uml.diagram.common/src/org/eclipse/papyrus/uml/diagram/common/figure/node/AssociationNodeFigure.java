@@ -25,12 +25,12 @@ public class AssociationNodeFigure extends DefaultSizeNodeFigure {
 	// @unused
 	public AssociationNodeFigure(Dimension defSize) {
 		super(defSize);
-		
+
 	}
 
 	public AssociationNodeFigure(int width, int height) {
 		super(width, height);
-		
+
 	}
 
 	// This returns as the anchoring area only the central line

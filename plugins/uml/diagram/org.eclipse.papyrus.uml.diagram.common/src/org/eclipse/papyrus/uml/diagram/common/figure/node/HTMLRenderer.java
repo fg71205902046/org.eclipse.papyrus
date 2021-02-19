@@ -26,22 +26,24 @@ import org.eclipse.swt.graphics.Point;
 public interface HTMLRenderer {
 	/**
 	 * Returns the IFigure on which HTML content is rendered
+	 * 
 	 * @return
 	 */
 	public IFigure getFigure();
-	
+
 	/**
 	 * Renders HTML content on the figure that the class, implementing this interface, should return
+	 * 
 	 * @param width
-	 * 			width of the figure on which to render HTML content
+	 *            width of the figure on which to render HTML content
 	 * @param height
-	 * 			height of the figure on which to render HTML content
+	 *            height of the figure on which to render HTML content
 	 * @param x
-	 * 			point x in the figure at which to render HTML content
+	 *            point x in the figure at which to render HTML content
 	 * @param y
-	 * 			point y in the figure at which to render HTML content
+	 *            point y in the figure at which to render HTML content
 	 */
 	public void paintHTML(String text, int width, int height, int x, int y);
-	
+
 	public Point getPreferredSize();
 }

@@ -14,9 +14,9 @@ import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
-import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.LogHelper;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.example.diagram.simplediagram.providers.ElementInitializers;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.LogHelper;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
@@ -72,6 +72,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
+	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		instance = this;
@@ -84,6 +85,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
+	@Override
 	public void stop(BundleContext context) throws Exception {
 		adapterFactory.dispose();
 		adapterFactory = null;
@@ -103,7 +105,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	protected ComposedAdapterFactory createAdapterFactory() {
-		ArrayList<AdapterFactory> factories = new ArrayList<AdapterFactory>();
+		ArrayList<AdapterFactory> factories = new ArrayList<>();
 		fillItemProviderFactories(factories);
 		return new ComposedAdapterFactory(factories);
 	}
@@ -141,9 +143,10 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * Returns an image descriptor for the image file at the given
 	 * plug-in relative path.
-	 * 
+	 *
 	 * @generated
-	 * @param path the path
+	 * @param path
+	 *            the path
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor getBundledImageDescriptor(String path) {
@@ -154,9 +157,10 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * Respects images residing in any plug-in. If path is relative,
 	 * then this bundle is looked up for the image, otherwise, for absolute
 	 * path, first segment is taken as id of plug-in with image
-	 * 
+	 *
 	 * @generated
-	 * @param path the path to image, either absolute (with plug-in id as first segment), or relative for bundled images
+	 * @param path
+	 *            the path to image, either absolute (with plug-in id as first segment), or relative for bundled images
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor findImageDescriptor(String path) {
@@ -172,9 +176,10 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * Returns an image for the image file at the given plugin relative path.
 	 * Client do not need to dispose this image. Images will be disposed automatically.
-	 * 
+	 *
 	 * @generated
-	 * @param path the path
+	 * @param path
+	 *            the path
 	 * @return image instance
 	 */
 	public Image getBundledImage(String path) {
@@ -188,7 +193,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 
 	/**
 	 * Returns string from plug-in's resource bundle
-	 * 
+	 *
 	 * @generated
 	 */
 	public static String getString(String key) {

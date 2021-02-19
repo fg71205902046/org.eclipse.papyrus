@@ -744,7 +744,7 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 		return null;
 	}
 
-	
+
 	protected class ResourceSetInfo extends ElementInfo {
 
 
@@ -964,7 +964,7 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 		private List<ResourceSetInfo> myInfos;
 
 		public ResourceSetModificationListener() {
-			myInfos = new ArrayList<GmfMultiDiagramDocumentProvider.ResourceSetInfo>();
+			myInfos = new ArrayList<>();
 			myModifiedFilter = NotificationFilter.createEventTypeFilter(Notification.SET).or(
 					NotificationFilter.createEventTypeFilter(Notification.UNSET)).and(
 							NotificationFilter.createFeatureFilter(Resource.class, Resource.RESOURCE__IS_MODIFIED));
@@ -982,7 +982,7 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 			return myInfos.isEmpty();
 		}
 
-	
+
 		@Override
 		public void notifyChanged(Notification notification) {
 			if (notification.getNotifier() instanceof ResourceSet) {

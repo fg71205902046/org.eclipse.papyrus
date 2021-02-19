@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST, ALL4TEC and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -21,9 +21,9 @@ import org.eclipse.papyrus.uml.diagram.common.stereotype.IStereotypePropertyRefe
 
 /**
  * {@link ReferenceEdgeEditPart} for Stereotype property reference
- * 
+ *
  * @author Mickaël ADAM
- * 
+ *
  * @since 3.1
  */
 public class StereotypePropertyReferenceEdgeEditPart extends ReferenceEdgeEditPart {
@@ -42,9 +42,10 @@ public class StereotypePropertyReferenceEdgeEditPart extends ReferenceEdgeEditPa
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpart.ReferenceEdgeEditPart#createDefaultEditPolicies()
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(StereotypePropertyReferenceEdgeCleaningEditPolicy.EDIT_POLICY_KEY, new StereotypePropertyReferenceEdgeCleaningEditPolicy());

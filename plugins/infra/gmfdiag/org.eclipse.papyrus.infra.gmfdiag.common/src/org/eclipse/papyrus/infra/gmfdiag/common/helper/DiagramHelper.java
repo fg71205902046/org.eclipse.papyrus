@@ -11,7 +11,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bugs 433206, 461629, 466997, 478556, 485220, 501946
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.helper;
 
@@ -131,10 +131,10 @@ public class DiagramHelper {
 	/**
 	 * Posts an asynchronous refresh that will aggregate all subsequent refresh requests until the
 	 * refresh is actually performed.
-	 * 
+	 *
 	 * @see #forceRefresh(DiagramEditPart)
 	 * @see #scheduleRefresh()
-	 * 
+	 *
 	 * @since 1.1
 	 */
 	public static void scheduleRefresh(final DiagramEditPart diagram) {
@@ -175,9 +175,9 @@ public class DiagramHelper {
 
 	/**
 	 * Forces a asynchronous refresh of a {@code diagram}. Generally, an {@linkplain #scheduleRefresh(DiagramEditPart) asynchronous refresh} is preferred.
-	 * 
+	 *
 	 * @see #scheduleRefresh(DiagramEditPart)
-	 * 
+	 *
 	 * @since 1.1
 	 */
 	public static void forceRefresh(DiagramEditPart diagram) {
@@ -187,9 +187,9 @@ public class DiagramHelper {
 
 	/**
 	 * Refreshes all opened diagrams, if we currently {@link #setNeedsRefresh() need to}.
-	 * 
+	 *
 	 * @deprecated Use the {@link #scheduleRefresh()} or {@link #forceRefresh()} API, instead
-	 * 
+	 *
 	 * @see #setNeedsRefresh()
 	 * @see #scheduleRefresh()
 	 */
@@ -209,12 +209,12 @@ public class DiagramHelper {
 	/**
 	 * Indicates that diagrams are in need of refresh, to be performed later (perhaps asynchronously).
 	 * Has no effect if the needs-refresh state is already set.
-	 * 
+	 *
 	 * @return whether the refresh state of the diagrams was changed by this call. A {@code false} result
 	 *         indicates that refresh was already pending
-	 * 
+	 *
 	 * @deprecated Use the {@link #scheduleRefresh()} or {@link #forceRefresh()} API, instead
-	 * 
+	 *
 	 * @see #scheduleRefresh()
 	 * @see #refreshDiagrams()
 	 */
@@ -226,10 +226,10 @@ public class DiagramHelper {
 	/**
 	 * Posts an asynchronous refresh that will aggregate all subsequent refresh requests until the
 	 * refresh is actually performed.
-	 * 
+	 *
 	 * @see #setNeedsRefresh()
 	 * @see #refreshDiagrams()
-	 * 
+	 *
 	 * @since 1.1
 	 */
 	public static void scheduleRefresh() {
@@ -246,9 +246,9 @@ public class DiagramHelper {
 
 	/**
 	 * Forces a asynchronous refresh of all open diagrams. Generally, an {@linkplain #scheduleRefresh() asynchronous refresh} is preferred.
-	 * 
+	 *
 	 * @see #scheduleRefresh()
-	 * 
+	 *
 	 * @since 1.1
 	 */
 	public static void forceRefresh() {
@@ -258,7 +258,7 @@ public class DiagramHelper {
 
 	/**
 	 * Schedules a {@code task} for asynchronous execution in the {@code context} of a particular diagram.
-	 * 
+	 *
 	 * @param context
 	 *            the diagram context. Must not be {@code null}
 	 * @param task
@@ -270,7 +270,7 @@ public class DiagramHelper {
 
 	/**
 	 * Schedules a {@code task} for asynchronous execution in the {@code context} of an edit-part in a diagram.
-	 * 
+	 *
 	 * @param context
 	 *            the edit-part context. Must not be {@code null}
 	 * @param task
@@ -283,7 +283,7 @@ public class DiagramHelper {
 
 	/**
 	 * Schedules a {@code task} for asynchronous execution in the {@code context} of a particular diagram.
-	 * 
+	 *
 	 * @param context
 	 *            the diagram context. Must not be {@code null}
 	 * @param task
@@ -297,7 +297,7 @@ public class DiagramHelper {
 
 	/**
 	 * Schedules a {@code task} for asynchronous execution in the {@code context} of an edit-part in a diagram.
-	 * 
+	 *
 	 * @param context
 	 *            the edit-part context. Must not be {@code null}
 	 * @param task

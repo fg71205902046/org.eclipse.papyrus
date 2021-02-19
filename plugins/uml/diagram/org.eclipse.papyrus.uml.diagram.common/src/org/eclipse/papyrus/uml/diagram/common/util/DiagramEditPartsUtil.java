@@ -19,10 +19,10 @@ package org.eclipse.papyrus.uml.diagram.common.util;
  *
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
  * @deprecated since 1.1.0
- * use org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil
+ *             use org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil
  */
 @Deprecated
-public class DiagramEditPartsUtil extends org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil{
+public class DiagramEditPartsUtil extends org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil {
 
 
 }

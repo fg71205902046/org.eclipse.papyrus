@@ -116,14 +116,14 @@ public class CustomSemanticCreateCommand extends AbstractTransactionalCommand {
 		selector.setLabelProvider(labelProvider);
 		// EList<PackageableElement> importedElement = profile.getImportedElements();
 		// we don't set initial selection to allows to draw new instance of imported metaclass
-		final List<EObject> alreadyImportedElement = new ArrayList<EObject>();
+		final List<EObject> alreadyImportedElement = new ArrayList<>();
 		// for(final PackageableElement current : importedElement){
 		// if(current instanceof Class && ((Class)current).isMetaclass()){
 		// alreadyImportedElement.add(current);
 		// }
 		// }
 		IEditCommandRequest request = customRequestAdapter.getRequest(0);
-		if (MetaclassHelper.shouldSuppressDialog(request)){
+		if (MetaclassHelper.shouldSuppressDialog(request)) {
 			this.addedMetaclasses = MetaclassHelper.getSuppressedDialogResult(request);
 		} else {
 			final MultipleValueSelectorDialog dialog = new MultipleValueSelectorDialog(Display.getDefault().getActiveShell(), selector, Messages.CustomSemanticCreateCommand_SelectMetaclass, true, false, -1);

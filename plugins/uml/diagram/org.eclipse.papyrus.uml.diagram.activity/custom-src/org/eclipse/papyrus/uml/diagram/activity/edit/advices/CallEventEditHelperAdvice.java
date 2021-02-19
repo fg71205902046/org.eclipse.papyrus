@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.advices;
@@ -39,15 +39,16 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Automated pin derivation for AcceptEventAction and AcceptCallAction
- * 
+ *
  * Call pin derivation command on modification of a callEvent
+ *
  * @since 3.0
  */
 public class CallEventEditHelperAdvice extends AbstractEditHelperAdvice {
 
 	/**
 	 * This method call command to synchronize pin
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice#getAfterEditCommand(org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest)
 	 *
 	 * @param request
@@ -71,12 +72,12 @@ public class CallEventEditHelperAdvice extends AbstractEditHelperAdvice {
 					ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(callEvent);
 					Collection<Setting> allReferences = adapter.getNonNavigableInverseReferences(callEvent);
 					for (Setting reference : allReferences) {
-						if(reference.getEObject() instanceof Trigger) {
-							if(((Trigger)reference.getEObject()).getOwner() instanceof AcceptCallAction) {
-								AcceptCallAction acceptCallAction = (AcceptCallAction) ((Trigger)reference.getEObject()).getOwner();
+						if (reference.getEObject() instanceof Trigger) {
+							if (((Trigger) reference.getEObject()).getOwner() instanceof AcceptCallAction) {
+								AcceptCallAction acceptCallAction = (AcceptCallAction) ((Trigger) reference.getEObject()).getOwner();
 								// 4] call the command for the acceptCallAction whose trigger reference the callEvent
 								IPinUpdater<AcceptCallAction> updater = PinUpdaterFactory.getInstance().instantiate(acceptCallAction);
-								command.add(new PinUpdateCommand<AcceptCallAction>("Update accept event action pins", updater, acceptCallAction)); //$NON-NLS-1$
+								command.add(new PinUpdateCommand<>("Update accept event action pins", updater, acceptCallAction)); //$NON-NLS-1$
 							}
 						}
 					}

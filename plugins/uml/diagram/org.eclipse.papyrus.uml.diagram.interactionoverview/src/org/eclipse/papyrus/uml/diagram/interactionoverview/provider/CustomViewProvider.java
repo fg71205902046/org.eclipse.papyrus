@@ -60,7 +60,7 @@ public class CustomViewProvider extends AbstractViewProvider {
 		// expected container.
 		// /////////////////////////////////////////////////////////////////////
 
-		final IElementType elementType = (IElementType) op.getSemanticAdapter().getAdapter(IElementType.class);
+		final IElementType elementType = op.getSemanticAdapter().getAdapter(IElementType.class);
 		if (elementType == UMLElementTypes.CallBehaviorAction_InteractionShape) {
 
 			if (ElementTypes.ACTIVITY_COMPARTMENT_ACTIVITY_FIGURE_CONTENT_HINT.equals(containerGraphicalType)) {
@@ -90,7 +90,7 @@ public class CustomViewProvider extends AbstractViewProvider {
 		case CallBehaviorActionEditPart.VISUAL_ID:
 		case CustomInteractionUseEditPartCN.VISUAL_ID:
 			return createCallBehaviorAction_InteractionUseShape(domainElement, containerView, index, persisted, preferencesHint);
-			// can't happen, provided #provides(CreateNodeViewOperation) is correct
+		// can't happen, provided #provides(CreateNodeViewOperation) is correct
 		}
 		return null;
 
@@ -133,7 +133,7 @@ public class CustomViewProvider extends AbstractViewProvider {
 		callBehaviorAction_FloatingNameLabel_Location.setY(5);
 		return node;
 	}
-	
+
 	protected Node createLabel(View owner, String hint) {
 		DecorationNode rv = NotationFactory.eINSTANCE.createDecorationNode();
 		rv.setType(hint);

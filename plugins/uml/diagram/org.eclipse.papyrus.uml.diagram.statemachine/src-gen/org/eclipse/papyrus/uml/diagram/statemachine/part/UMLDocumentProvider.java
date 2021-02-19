@@ -317,7 +317,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	protected void doValidateState(Object element, Object computationContext) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			LinkedList<IFile> files2Validate = new LinkedList<IFile>();
+			LinkedList<IFile> files2Validate = new LinkedList<>();
 			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
@@ -428,7 +428,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	protected ISchedulingRule getResetRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			LinkedList<ISchedulingRule> rules = new LinkedList<ISchedulingRule>();
+			LinkedList<ISchedulingRule> rules = new LinkedList<>();
 			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
@@ -448,7 +448,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	protected ISchedulingRule getSaveRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			LinkedList<ISchedulingRule> rules = new LinkedList<ISchedulingRule>();
+			LinkedList<ISchedulingRule> rules = new LinkedList<>();
 			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
@@ -468,7 +468,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	protected ISchedulingRule getSynchronizeRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			LinkedList<ISchedulingRule> rules = new LinkedList<ISchedulingRule>();
+			LinkedList<ISchedulingRule> rules = new LinkedList<>();
 			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
@@ -488,7 +488,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	protected ISchedulingRule getValidateStateRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			LinkedList<ISchedulingRule> files = new LinkedList<ISchedulingRule>();
+			LinkedList<ISchedulingRule> files = new LinkedList<>();
 			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
@@ -714,7 +714,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 		/**
 		 * @generated
 		 */
-		private LinkedList<Resource> myUnSynchronizedResources = new LinkedList<Resource>();
+		private LinkedList<Resource> myUnSynchronizedResources = new LinkedList<>();
 
 		/**
 		 * @generated
@@ -790,7 +790,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 		 * @generated
 		 */
 		public Iterator<Resource> getLoadedResourcesIterator() {
-			return new ArrayList<Resource>(getResourceSet().getResources()).iterator();
+			return new ArrayList<>(getResourceSet().getResources()).iterator();
 		}
 
 		/**

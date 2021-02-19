@@ -25,6 +25,6 @@ public class DiagramEditorFactory extends GmfEditorFactory {
 	public DiagramEditorFactory() {
 		super(UmlDiagramForMultiEditor.class, ModelEditPart.MODEL_ID);
 	}
-	
+
 
 }

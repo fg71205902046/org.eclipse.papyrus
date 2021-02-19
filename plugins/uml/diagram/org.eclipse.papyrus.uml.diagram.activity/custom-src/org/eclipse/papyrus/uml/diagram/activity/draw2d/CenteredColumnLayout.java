@@ -40,7 +40,7 @@ public class CenteredColumnLayout extends StackLayout {
 	/** Extra margin (for avoiding cut) */
 	private static final int MARGIN = 5;
 
-	private Map<IFigure, CenteredColumnConstraint> constraints = new HashMap<IFigure, CenteredColumnConstraint>();
+	private Map<IFigure, CenteredColumnConstraint> constraints = new HashMap<>();
 
 	@Override
 	public void layout(IFigure figure) {
@@ -49,7 +49,7 @@ public class CenteredColumnLayout extends StackLayout {
 		int yAxe = rect.y;
 		int availableExtraHeight = rect.height;
 		int numberOfFillChildren = 0;
-		List<IFigure> orderedFigures = new LinkedList<IFigure>();
+		List<IFigure> orderedFigures = new LinkedList<>();
 		List<?> children = figure.getChildren();
 		IFigure child;
 		for (int i = 0; i < children.size(); i++) {

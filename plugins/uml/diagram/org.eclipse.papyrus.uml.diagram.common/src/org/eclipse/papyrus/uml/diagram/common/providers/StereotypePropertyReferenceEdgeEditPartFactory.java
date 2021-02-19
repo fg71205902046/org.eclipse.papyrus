@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST, ALL4TEC and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -23,16 +23,16 @@ import org.eclipse.papyrus.uml.diagram.common.editparts.StereotypePropertyRefere
 
 /**
  * {@link EditPartFactory} for Papyrus generic edit parts.
- * 
+ *
  * @author Mickaël ADAM
- * 
+ *
  * @since 3.1
  */
 public class StereotypePropertyReferenceEdgeEditPartFactory implements EditPartFactory {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gef.EditPartFactory#createEditPart(org.eclipse.gef.EditPart, java.lang.Object)
 	 */
 	@Override

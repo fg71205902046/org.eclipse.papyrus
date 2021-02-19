@@ -83,11 +83,11 @@ public class MessageLostFoundConnectionTool extends SequenceSpecificConnectionTo
 						getLocation(), getExclusionSet(),
 						getTargetingConditional());
 			}
-			if( editPart instanceof InteractionInteractionCompartmentEditPart){
+			if (editPart instanceof InteractionInteractionCompartmentEditPart) {
 				editPart = getCurrentViewer().findObjectAtExcluding(
 						getLocation(), getExclusionSet(),
 						getTargetingConditional());
-				editPart= editPart.getParent();
+				editPart = editPart.getParent();
 			}
 			if (editPart != null) {
 				editPart = editPart.getTargetEditPart(getTargetRequest());
@@ -99,6 +99,7 @@ public class MessageLostFoundConnectionTool extends SequenceSpecificConnectionTo
 			return false;
 		}
 	}
+
 	/**
 	 * Queries the target editpart for a command.
 	 *
@@ -111,6 +112,7 @@ public class MessageLostFoundConnectionTool extends SequenceSpecificConnectionTo
 		}
 		return getTargetEditPart().getCommand(getTargetRequest());
 	}
+
 	/**
 	 * {@inheritDoc}
 	 *

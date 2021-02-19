@@ -41,7 +41,7 @@ public class ClassFigure extends ClassifierFigure {
 	 * Create a new Classifier figure with the given tag
 	 * 
 	 * @param tagLabel
-	 *        a String that will be displayed at the top of the figure
+	 *            a String that will be displayed at the top of the figure
 	 */
 	public ClassFigure(String tagLabel) {
 		super(tagLabel);
@@ -52,7 +52,7 @@ public class ClassFigure extends ClassifierFigure {
 	 */
 	public void paint(Graphics graphics) {
 		super.paint(graphics);
-		if(active) {
+		if (active) {
 			Rectangle rect = this.getBounds();
 			graphics.pushState();
 			graphics.setForegroundColor(getForegroundColor());

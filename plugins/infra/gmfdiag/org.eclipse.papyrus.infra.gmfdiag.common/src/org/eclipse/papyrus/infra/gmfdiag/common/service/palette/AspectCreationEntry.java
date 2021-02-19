@@ -26,6 +26,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 
 /**
  * Entry that uses the functionality of another entry.
+ *
  * @since 3.0
  */
 public class AspectCreationEntry extends CombinedTemplateCreationEntry implements Cloneable {

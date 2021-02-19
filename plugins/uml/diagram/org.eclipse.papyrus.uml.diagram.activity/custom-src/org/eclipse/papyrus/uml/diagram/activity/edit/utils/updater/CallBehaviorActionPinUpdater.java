@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *   J�r�mie TATIBOUET (CEA LIST) - Initial API and implementation
  *   S�bastien REVOL (CEA LIST) - Initial API and implementation
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater;
@@ -38,7 +38,7 @@ public class CallBehaviorActionPinUpdater extends AbstractCallActionPinUpdater<C
 	 */
 	@Override
 	public List<OutputPin> deriveResults(CallBehaviorAction node) {
-		List<OutputPin> derivedOutputPins = new ArrayList<OutputPin>();
+		List<OutputPin> derivedOutputPins = new ArrayList<>();
 		if (node.getBehavior() != null) {
 			for (Parameter parameter : node.getBehavior().getOwnedParameters()) {
 				if (parameter.getDirection() == ParameterDirectionKind.INOUT_LITERAL
@@ -73,7 +73,7 @@ public class CallBehaviorActionPinUpdater extends AbstractCallActionPinUpdater<C
 	 */
 	@Override
 	public List<InputPin> deriveArguments(CallBehaviorAction node) {
-		List<InputPin> derivedInputPins = new ArrayList<InputPin>();
+		List<InputPin> derivedInputPins = new ArrayList<>();
 		if (node.getBehavior() != null) {
 			for (Parameter parameter : node.getBehavior().getOwnedParameters()) {
 				if (parameter.getDirection() == ParameterDirectionKind.INOUT_LITERAL

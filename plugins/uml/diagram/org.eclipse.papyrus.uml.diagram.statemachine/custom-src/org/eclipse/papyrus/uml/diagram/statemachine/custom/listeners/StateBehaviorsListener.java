@@ -150,7 +150,7 @@ public class StateBehaviorsListener extends AbstractModifcationTriggerListener {
 	 */
 	protected StateEditPart getContainingEditPart(Object toTest) {
 		// If not EObject found return null;
-		if (toTest instanceof EObject && Display.getCurrent() != null)	{
+		if (toTest instanceof EObject && Display.getCurrent() != null) {
 			IGraphicalEditPart found = getChildByEObject((EObject) toTest, getDiagramEditPart(), false);
 			if (found instanceof StateEditPart) {
 				return (StateEditPart) found;

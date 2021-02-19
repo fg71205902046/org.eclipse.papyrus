@@ -50,7 +50,7 @@ public class StereotypeDisplayConstant {
 
 	public static final String STEREOTYPE_COMMENT_TYPE = "StereotypeComment";//$NON-NLS-1$
 	public static final String STEREOTYPE_COMMENT_LINK_TYPE = "StereotypeCommentLink";//$NON-NLS-1$
-	
+
 	/**
 	 * The applied-stereotype view types.
 	 */

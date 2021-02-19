@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  * Contributors:
  *   J�r�mie TATIBOUET (CEA LIST) - Initial API and implementation
  *   S�bastien REVOL (CEA LIST) - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater;
@@ -23,14 +23,14 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediatea
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions.CreateObjectActionPinUpdater;
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions.LinkActionPinUpdater;
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions.ReadLinkActionPinUpdater;
+import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions.ReadSelfActionPinUpdater;
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions.ReadStructuralFeatureActionPinUpdater;
+import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions.StartClassifierBehaviorActionPinUpdater;
+import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions.StartObjectBehaviorActionPinUpdater;
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions.TestIdentityActionPinUpdater;
 import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions.ValueSpecificationActionPinUpdater;
 import org.eclipse.uml2.uml.AcceptCallAction;
 import org.eclipse.uml2.uml.AcceptEventAction;
-import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions.StartClassifierBehaviorActionPinUpdater;
-import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions.StartObjectBehaviorActionPinUpdater;
-import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions.ReadSelfActionPinUpdater;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.AddStructuralFeatureValueAction;
 import org.eclipse.uml2.uml.CallBehaviorAction;
@@ -39,13 +39,13 @@ import org.eclipse.uml2.uml.CreateLinkAction;
 import org.eclipse.uml2.uml.CreateObjectAction;
 import org.eclipse.uml2.uml.DestroyLinkAction;
 import org.eclipse.uml2.uml.ReadLinkAction;
-import org.eclipse.uml2.uml.ReadStructuralFeatureAction;
 import org.eclipse.uml2.uml.ReadSelfAction;
+import org.eclipse.uml2.uml.ReadStructuralFeatureAction;
 import org.eclipse.uml2.uml.SendSignalAction;
-import org.eclipse.uml2.uml.TestIdentityAction;
-import org.eclipse.uml2.uml.ValueSpecificationAction;
 import org.eclipse.uml2.uml.StartClassifierBehaviorAction;
 import org.eclipse.uml2.uml.StartObjectBehaviorAction;
+import org.eclipse.uml2.uml.TestIdentityAction;
+import org.eclipse.uml2.uml.ValueSpecificationAction;
 
 public class PinUpdaterFactory {
 
@@ -62,7 +62,7 @@ public class PinUpdaterFactory {
 
 	/**
 	 * Provide access to the singleton instance
-	 * 
+	 *
 	 * @return INSTANCE
 	 *         the singleton
 	 */
@@ -76,7 +76,7 @@ public class PinUpdaterFactory {
 	/**
 	 * Provide a pin updater for the given activity node. This update encapsulates
 	 * logic to derive activity node pins.
-	 * 
+	 *
 	 * @param node
 	 *            the activity node
 	 * @return updater

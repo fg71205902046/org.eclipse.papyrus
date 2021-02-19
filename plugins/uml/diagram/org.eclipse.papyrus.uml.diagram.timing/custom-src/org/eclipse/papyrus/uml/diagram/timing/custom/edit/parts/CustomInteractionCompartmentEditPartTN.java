@@ -84,7 +84,7 @@ public class CustomInteractionCompartmentEditPartTN extends InteractionCompartme
 	}
 
 	protected Map<IFigure, Integer> computeNumberOfStates(final List<IFigure> children) {
-		final LinkedHashMap<IFigure, Integer> numberOfStatesPerLifeline = new LinkedHashMap<IFigure, Integer>();
+		final LinkedHashMap<IFigure, Integer> numberOfStatesPerLifeline = new LinkedHashMap<>();
 		final EditPartViewer viewer = CustomInteractionCompartmentEditPartTN.this.getRoot().getViewer();
 		for (int i = 0; i < children.size(); i++) {
 			final IFigure child = children.get(i);

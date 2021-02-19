@@ -53,7 +53,7 @@ public class EObjectInheritanceCopyCommand extends CompositeCommand {
 
 	private final TransactionalEditingDomain editingDomain;
 
-	private Collection<Object> alreadyManaged = new LinkedList<Object>();
+	private Collection<Object> alreadyManaged = new LinkedList<>();
 
 	public EObjectInheritanceCopyCommand(EObject source, EClass target, TransactionalEditingDomain adapterFactoryEditingDomain) {
 		super("Inheritance copy");
@@ -163,7 +163,7 @@ public class EObjectInheritanceCopyCommand extends CompositeCommand {
 			} else if (owner != null) {
 				Object value = owner.eGet(structuralFeature);
 				if (value instanceof Collection<?>) {
-					List<Object> newList = new ArrayList<Object>((Collection<?>) value);
+					List<Object> newList = new ArrayList<>((Collection<?>) value);
 					newList.remove(source);
 					add(new SetValueCommand(new SetRequest(editingDomain, owner, structuralFeature, newList)));
 				} else if (source.equals(value)) {
@@ -186,7 +186,7 @@ public class EObjectInheritanceCopyCommand extends CompositeCommand {
 			} else if (owner != null) {
 				Object value = owner.eGet(structuralFeature);
 				if (value instanceof Collection<?>) {
-					List<Object> newList = new ArrayList<Object>((Collection<?>) value);
+					List<Object> newList = new ArrayList<>((Collection<?>) value);
 					int index = newList.indexOf(source);
 					if (index >= 0) {
 						newList.remove(index);
@@ -244,7 +244,7 @@ public class EObjectInheritanceCopyCommand extends CompositeCommand {
 	 * @return true, if is compatible
 	 */
 	public static boolean isCompatible(EClassifier type, EClassifier target) {
-		Collection<EClassifier> types = new LinkedList<EClassifier>();
+		Collection<EClassifier> types = new LinkedList<>();
 		if (target instanceof EClass) {
 			EClass eclass = (EClass) target;
 			types.addAll(eclass.getEAllSuperTypes());
@@ -277,12 +277,12 @@ public class EObjectInheritanceCopyCommand extends CompositeCommand {
 				if (feature.isMany() && targetFeature.isMany()) {
 					Collection<EObject> list = (Collection<EObject>) value;
 					if (list != null && !list.isEmpty()) {
-						Collection<EObject> newList = new LinkedList<EObject>();
+						Collection<EObject> newList = new LinkedList<>();
 						newList.addAll(list);
 						if (feature instanceof EReference && !((EReference) feature).isContainment()) {
 							add(new SetValueCommand(new SetRequest(editingDomain, target, targetFeature, newList)));
 						} else if (feature instanceof EReference && ((EReference) feature).isContainment()) {
-							Collection<Object> toTreat = new LinkedList<Object>();
+							Collection<Object> toTreat = new LinkedList<>();
 							for (Object o : newList) {
 								if (!alreadyManaged.contains(o)) {
 									toTreat.add(o);

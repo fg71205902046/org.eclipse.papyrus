@@ -167,12 +167,12 @@ public abstract class AbstractShapeProvider extends AbstractProvider implements 
 	 */
 	protected synchronized SVGDocument getSVGDocument(EObject view, String location) {
 		if (relativePaths == null) {
-			relativePaths = new WeakHashMap<Resource, Map<String, String>>();
+			relativePaths = new WeakHashMap<>();
 		}
-		if (location.contains("/" + POSITION_KEY) || location.contains("." + POSITION_KEY)) {  //$NON-NLS-1$//$NON-NLS-2$
+		if (location.contains("/" + POSITION_KEY) || location.contains("." + POSITION_KEY)) { //$NON-NLS-1$//$NON-NLS-2$
 			// load a specific variant of a symbol (with a different orientation) if the file name
 			// contains a specific "magic" key. The motivation is that symbols on the border of a parent
-			// (e.g. a port	symbol) could always point into the parent shape depending on its position
+			// (e.g. a port symbol) could always point into the parent shape depending on its position
 			try {
 				IMultiDiagramEditor editor = ServiceUtilsForEObject.getInstance().getService(IMultiDiagramEditor.class, view);
 
@@ -203,7 +203,9 @@ public abstract class AbstractShapeProvider extends AbstractProvider implements 
 
 	/**
 	 * Get a position key (enumeration) from the bit-vector representation of the position
-	 * @param side the binary encoded position
+	 *
+	 * @param side
+	 *            the binary encoded position
 	 * @return the position key
 	 */
 	protected PositionEnum getPositionKey(int side) {
@@ -218,6 +220,7 @@ public abstract class AbstractShapeProvider extends AbstractProvider implements 
 			return PositionEnum.SOUTH;
 		}
 	}
+
 	/**
 	 * Loads a SVG document from the given location.
 	 * This method uses a cache so that any given document is only loaded once.
@@ -228,7 +231,7 @@ public abstract class AbstractShapeProvider extends AbstractProvider implements 
 	 */
 	protected synchronized SVGDocument getSVGDocument(String location) {
 		if (cache == null) {
-			cache = new HashMap<String, SVGDocument>();
+			cache = new HashMap<>();
 		}
 		if (cache.containsKey(location)) {
 			return cache.get(location);
@@ -287,7 +290,7 @@ public abstract class AbstractShapeProvider extends AbstractProvider implements 
 
 		Map<String, String> resMap = relativePaths.get(model.eResource());
 		if (resMap == null) {
-			resMap = new HashMap<String, String>();
+			resMap = new HashMap<>();
 			relativePaths.put(model.eResource(), resMap);
 		}
 		String canonical = resMap.get(uri);

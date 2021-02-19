@@ -161,8 +161,9 @@ public class UMLValidationHelper {
 	 * @return
 	 */
 	public static IStatus validateInterruptibleEdge(ActivityEdge context, IValidationContext ctx) {
-		return validateInterruptibleEdge(context, context.getInterrupts()) ? ctx.createSuccessStatus() : ctx
-				.createFailureStatus("Interrupting edges of a region must have their source node in the region and their target node outside the region in the same activity containing the region.");//
+		return validateInterruptibleEdge(context, context.getInterrupts()) ? ctx.createSuccessStatus()
+				: ctx
+						.createFailureStatus("Interrupting edges of a region must have their source node in the region and their target node outside the region in the same activity containing the region.");//
 	}
 
 	/**
@@ -822,7 +823,7 @@ public class UMLValidationHelper {
 		if (target instanceof ObjectNode) {
 			return Collections.singletonList((ObjectNode) target);
 		} else if (target instanceof ControlNode) {
-			List<ObjectNode> result = new LinkedList<ObjectNode>();
+			List<ObjectNode> result = new LinkedList<>();
 			for (ActivityEdge outgoingEdge : target.getOutgoings()) {
 				if (outgoingEdge instanceof ObjectFlow && !outgoingEdge.equals(objectFlow)) {
 					result.addAll(getDownStreamObjectNodes((ObjectFlow) outgoingEdge));
@@ -865,7 +866,7 @@ public class UMLValidationHelper {
 			}
 		} else if (src instanceof ControlNode) {
 			// type coming to the control node from object flows
-			List<Type> result = new LinkedList<Type>();
+			List<Type> result = new LinkedList<>();
 			for (ActivityEdge incomingEdge : src.getIncomings()) {
 				if (incomingEdge instanceof ObjectFlow) {
 					ObjectFlow incomingFlow = (ObjectFlow) incomingEdge;
@@ -910,7 +911,7 @@ public class UMLValidationHelper {
 			}
 		} else if (target instanceof ControlNode) {
 			// type coming to the control node from object flows
-			List<Type> result = new LinkedList<Type>();
+			List<Type> result = new LinkedList<>();
 			for (ActivityEdge outgoingEdge : target.getOutgoings()) {
 				if (outgoingEdge instanceof ObjectFlow) {
 					ObjectFlow outgoingFlow = (ObjectFlow) outgoingEdge;
@@ -936,7 +937,7 @@ public class UMLValidationHelper {
 	 *         (unspecified types omitted).
 	 */
 	private static List<Type> getTypeComingFromFlow(ObjectFlow inputFlow, List<ObjectFlow> alreadyMetObjectFlows) {
-		List<Type> result = new LinkedList<Type>();
+		List<Type> result = new LinkedList<>();
 		if (inputFlow.getTransformation() == null && inputFlow.getSelection() == null) {
 			// type coming from other object flows' sources
 			result.addAll(getUpstreamExpectedTypes(inputFlow, alreadyMetObjectFlows));
@@ -987,7 +988,7 @@ public class UMLValidationHelper {
 	 *         (unspecified types omitted).
 	 */
 	private static List<Type> getTypeExpectedByFlow(ObjectFlow outputFlow, List<ObjectFlow> alreadyMetObjectFlows) {
-		List<Type> result = new LinkedList<Type>();
+		List<Type> result = new LinkedList<>();
 		if (outputFlow.getTransformation() == null) {
 			// type coming from other object flows' targets
 			result.addAll(getDownstreamExpectedTypes(outputFlow, alreadyMetObjectFlows));
@@ -1089,7 +1090,7 @@ public class UMLValidationHelper {
 	}
 
 	private static List<Parameter> getParameters(Operation operation, Direction theDirection) {
-		List<Parameter> parameters = new ArrayList<Parameter>(operation.getOwnedParameters().size());
+		List<Parameter> parameters = new ArrayList<>(operation.getOwnedParameters().size());
 		for (Parameter p : operation.getOwnedParameters()) {
 			if (theDirection == Direction.IN) {
 				if (p.getDirection() == ParameterDirectionKind.IN_LITERAL || p.getDirection() == ParameterDirectionKind.INOUT_LITERAL) {

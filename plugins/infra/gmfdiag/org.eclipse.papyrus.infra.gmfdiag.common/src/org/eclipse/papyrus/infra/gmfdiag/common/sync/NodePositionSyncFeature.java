@@ -138,11 +138,11 @@ public class NodePositionSyncFeature<M extends EObject, T extends EditPart> exte
 	}
 
 	public static <M extends EObject, T extends EditPart> NotationSyncPolicyDelegate<M, T> createPolicyDelegate() {
-		return new NotationSyncPolicyDelegate<M, T>(NotationPackage.Literals.LOCATION.getName()) {
+		return new NotationSyncPolicyDelegate<>(NotationPackage.Literals.LOCATION.getName()) {
 
 			@Override
 			protected EMFDispatch createDispatcher(SyncItem<M, T> syncTarget) {
-				return new NodePositionSyncDispatcher<M, T>(syncTarget) {
+				return new NodePositionSyncDispatcher<>(syncTarget) {
 					@Override
 					public void onClear() {
 						// Nothing to do do

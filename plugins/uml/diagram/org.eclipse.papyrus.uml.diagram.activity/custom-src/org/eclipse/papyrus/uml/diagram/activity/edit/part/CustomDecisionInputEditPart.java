@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.part;
@@ -181,15 +181,14 @@ public class CustomDecisionInputEditPart extends DecisionInputEditPart {
 
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.activity.edit.parts.DecisionInputEditPart#getManager()
-	 *	Use custom locator
+	 *      Use custom locator
 	 */
 	@Override
 	protected DirectEditManager getManager() {
 		if (manager == null) {
 			setManager(new MultilineLabelDirectEditManager(this,
 					MultilineLabelDirectEditManager.getTextCellEditorClass(this),
-					new TextCellEditorLocator(((LinkAndCornerBentWithTextFigure) this.getFigure()).getCornerBentContent()))
-					);
+					new TextCellEditorLocator(((LinkAndCornerBentWithTextFigure) this.getFigure()).getCornerBentContent())));
 		}
 		return manager;
 	}

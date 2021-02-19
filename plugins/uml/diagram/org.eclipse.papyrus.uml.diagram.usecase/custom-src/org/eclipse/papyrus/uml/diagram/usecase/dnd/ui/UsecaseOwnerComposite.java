@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *  Francois Le Fevre (CEA LIST) francois.le-fevre - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.usecase.dnd.ui;
 
@@ -28,11 +28,12 @@ import org.eclipse.swt.widgets.Label;
 
 /**
  * UI composite element dedicated to manage the choice for ownership switch
+ *
  * @author Francois Le Fevre
  *
  */
 public class UsecaseOwnerComposite extends Composite {
-	
+
 	private boolean keepOwner;
 	private Button keepOwnerButton;
 	private Button switchOwnerButton;
@@ -41,15 +42,15 @@ public class UsecaseOwnerComposite extends Composite {
 		super(composite, SWT.NONE);
 		this.setLayout(new GridLayout(1, true));
 		this.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		keepOwner=true;
+		keepOwner = true;
 		createOwnerComposite();
 	}
-	
+
 	public UsecaseOwnerComposite(Composite composite, boolean isKeepOwner) {
 		super(composite, SWT.NONE);
 		this.setLayout(new GridLayout(1, true));
 		this.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		keepOwner=isKeepOwner;
+		keepOwner = isKeepOwner;
 		createOwnerComposite();
 	}
 
@@ -58,16 +59,16 @@ public class UsecaseOwnerComposite extends Composite {
 		titleLabel.setText(Messages.UsecaseOwnerComposite_TITLE);
 
 		Composite composite = new Composite(this, SWT.NULL);
-	    composite.setLayout(new RowLayout());
-	    
-	    keepOwnerButton = new Button(composite, SWT.RADIO);
-	    keepOwnerButton.setText(Messages.UsecaseOwnerComposite_OWNER_KEEP);
-	    keepOwnerButton.setSelection(keepOwner);
-	    switchOwnerButton = new Button(composite, SWT.RADIO);
-	    switchOwnerButton.setText(Messages.UsecaseOwnerComposite_OWNER_SWITCH);
-	    switchOwnerButton.setSelection(!keepOwner);
+		composite.setLayout(new RowLayout());
 
-	    SelectionListener selectOwnerListener = new SelectionAdapter() {
+		keepOwnerButton = new Button(composite, SWT.RADIO);
+		keepOwnerButton.setText(Messages.UsecaseOwnerComposite_OWNER_KEEP);
+		keepOwnerButton.setSelection(keepOwner);
+		switchOwnerButton = new Button(composite, SWT.RADIO);
+		switchOwnerButton.setText(Messages.UsecaseOwnerComposite_OWNER_SWITCH);
+		switchOwnerButton.setSelection(!keepOwner);
+
+		SelectionListener selectOwnerListener = new SelectionAdapter() {
 
 			/**
 			 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
@@ -75,16 +76,16 @@ public class UsecaseOwnerComposite extends Composite {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (keepOwnerButton.equals(e.getSource())) {
-					keepOwner=true;
+					keepOwner = true;
 				} else {
-					keepOwner=false;
+					keepOwner = false;
 				}
 
 			}
 		};
 		keepOwnerButton.addSelectionListener(selectOwnerListener);
 		switchOwnerButton.addSelectionListener(selectOwnerListener);
-		
+
 		return composite;
 	}
 

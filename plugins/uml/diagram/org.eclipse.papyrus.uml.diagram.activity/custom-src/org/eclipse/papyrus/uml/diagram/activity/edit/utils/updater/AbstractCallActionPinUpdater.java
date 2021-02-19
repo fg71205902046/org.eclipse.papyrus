@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  * Contributors:
  *   J�r�mie TATIBOUET (CEA LIST) - Initial API and implementation
  *   S�bastien REVOL (CEA LIST) - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater;
@@ -40,10 +40,10 @@ public abstract class AbstractCallActionPinUpdater<NodeType extends CallAction> 
 
 	/**
 	 * Derive the list of result pins for the CallAction
-	 * 
+	 *
 	 * @param node
 	 *            the call action for which result pins are derived
-	 * 
+	 *
 	 * @return the list of derived result pins
 	 */
 	public abstract List<OutputPin> deriveResults(NodeType node);

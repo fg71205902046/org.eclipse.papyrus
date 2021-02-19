@@ -26,6 +26,7 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * Figure for Required interface. It draws an half circle.
+ *
  * @since 3.0
  */
 public class LollipopInterfaceFigure extends RoundedCompartmentFigure implements IPapyrusNodeUMLElementFigure {
@@ -42,8 +43,8 @@ public class LollipopInterfaceFigure extends RoundedCompartmentFigure implements
 	public LollipopInterfaceFigure() {
 		setShadow(false);
 		setBorder(null);
-	}	
-	
+	}
+
 	/**
 	 * display the Interface as Required
 	 *
@@ -108,7 +109,7 @@ public class LollipopInterfaceFigure extends RoundedCompartmentFigure implements
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * com.cea.papyrus.diagram.composite.figure.ProvidedInterfaceFigure#paintFigure(org.eclipse.
 	 * draw2d.Graphics)
@@ -122,8 +123,7 @@ public class LollipopInterfaceFigure extends RoundedCompartmentFigure implements
 			graphics.setLineWidth(1);
 			graphics.drawArc(area.x, area.y, area.width - 1, area.height - 1, arcStarting, 180);
 			graphics.popState();
-		}
-		else if (!isRequired && isProvided) {
+		} else if (!isRequired && isProvided) {
 			graphics.pushState();
 			graphics.setAntialias(SWT.ON);
 			graphics.setLineWidth(1);
@@ -132,8 +132,7 @@ public class LollipopInterfaceFigure extends RoundedCompartmentFigure implements
 			graphics.drawOval(area.x, area.y, area.width - 1, area.height - 1);
 			graphics.popState();
 
-		}
-		else if (isRequired && isProvided) {
+		} else if (isRequired && isProvided) {
 			graphics.pushState();
 			graphics.setAntialias(SWT.ON);
 			graphics.setLineWidth(1);
@@ -142,8 +141,7 @@ public class LollipopInterfaceFigure extends RoundedCompartmentFigure implements
 			graphics.drawArc(area.x, area.y, area.width - 1, area.height - 1, arcStarting, 180);
 			graphics.popState();
 
-		}
-		else {
+		} else {
 			graphics.pushState();
 			graphics.setAntialias(SWT.ON);
 			graphics.setLineWidth(1);

@@ -25,6 +25,7 @@ import org.eclipse.uml2.uml.Operation;
 /**
  * Specific edit policy for label displaying stereotypes and their properties for edges representing
  * UML elements.
+ *
  * @since 3.0
  */
 public class AppliedStereotypeOperationDisplayEditPolicy extends AbstractAppliedStereotypeDisplayEditPolicy {

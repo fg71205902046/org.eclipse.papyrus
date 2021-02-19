@@ -125,7 +125,7 @@ public class WarningAndCreateAttributeDialog extends MessageDialog {
 		StringBuffer impactText = new StringBuffer();
 		// explore referencing elements
 		Collection<Setting> references = CacheAdapter.getInstance().getNonNavigableInverseReferences(attributeOwner);
-		HashSet<EObject> impactedElements = new HashSet<EObject>();
+		HashSet<EObject> impactedElements = new HashSet<>();
 		for (Setting ref : references) {
 			EObject referencing = ref.getEObject();
 			if (referencing.eContainer() != null && !(referencing instanceof View) && !impactedElements.contains(referencing)) {

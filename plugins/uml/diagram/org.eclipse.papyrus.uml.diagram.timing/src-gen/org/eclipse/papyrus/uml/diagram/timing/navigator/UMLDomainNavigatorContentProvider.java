@@ -78,7 +78,7 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 		TransactionalEditingDomain editingDomain = WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain();
 		myEditingDomain = (AdapterFactoryEditingDomain) editingDomain;
 		@SuppressWarnings("serial")
-		Map<Resource, Boolean> map = new HashMap<Resource, Boolean>() {
+		Map<Resource, Boolean> map = new HashMap<>() {
 
 			@Override
 			public Boolean get(java.lang.Object key) {
@@ -244,7 +244,7 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 	 * @generated
 	 */
 	public Object[] wrapEObjects(Object[] objects, Object parentElement) {
-		Collection<UMLDomainNavigatorItem> result = new ArrayList<UMLDomainNavigatorItem>();
+		Collection<UMLDomainNavigatorItem> result = new ArrayList<>();
 		for (int i = 0; i < objects.length; i++) {
 			if (objects[i] instanceof EObject) {
 				result.add(

@@ -23,7 +23,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Show and hide exception label edit policy according to {@link Parameter#isStream()}
- * 
+ *
  * @since 2.0
  */
 public class ShowHideStreamLabelEditPolicy extends AbstractShowHideParameterPropertyEditPolicy {

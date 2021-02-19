@@ -34,7 +34,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityDiagramChangeStereotypedShapeEditpolicy;
-import org.eclipse.papyrus.uml.diagram.activity.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.figures.LocalPostconditionConstraintFigure;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.common.editparts.AbstractConstraintEditPart;
@@ -73,6 +72,7 @@ public class TimeConstraintAsLocalPostcondEditPart extends AbstractConstraintEdi
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
@@ -116,9 +116,10 @@ public class TimeConstraintAsLocalPostcondEditPart extends AbstractConstraintEdi
 
 	/**
 	 * Papyrus codeGen
-	 * 
+	 *
 	 * @generated
 	 **/
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
@@ -127,15 +128,17 @@ public class TimeConstraintAsLocalPostcondEditPart extends AbstractConstraintEdi
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure createNodeShape() {
 		return primaryShape = new LocalPostconditionConstraintFigure();
 	}
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.activity.figures.LocalPostconditionConstraintFigure
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	public LocalPostconditionConstraintFigure getPrimaryShape() {
 		return (LocalPostconditionConstraintFigure) primaryShape;
 	}
@@ -173,6 +176,7 @@ public class TimeConstraintAsLocalPostcondEditPart extends AbstractConstraintEdi
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -183,6 +187,7 @@ public class TimeConstraintAsLocalPostcondEditPart extends AbstractConstraintEdi
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -193,6 +198,7 @@ public class TimeConstraintAsLocalPostcondEditPart extends AbstractConstraintEdi
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		return getContentPane();
 	}
@@ -200,6 +206,7 @@ public class TimeConstraintAsLocalPostcondEditPart extends AbstractConstraintEdi
 	/**
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
 		return result;
@@ -207,12 +214,13 @@ public class TimeConstraintAsLocalPostcondEditPart extends AbstractConstraintEdi
 
 	/**
 	 * Creates figure for this edit part.
-	 * 
+	 *
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createNodeFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
 
@@ -221,11 +229,12 @@ public class TimeConstraintAsLocalPostcondEditPart extends AbstractConstraintEdi
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * 
+	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
 	 * @generated
 	 */
+	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
@@ -238,6 +247,7 @@ public class TimeConstraintAsLocalPostcondEditPart extends AbstractConstraintEdi
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -248,6 +258,7 @@ public class TimeConstraintAsLocalPostcondEditPart extends AbstractConstraintEdi
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -257,6 +268,7 @@ public class TimeConstraintAsLocalPostcondEditPart extends AbstractConstraintEdi
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineWidth(int width) {
 		super.setLineWidth(width);
 	}
@@ -264,6 +276,7 @@ public class TimeConstraintAsLocalPostcondEditPart extends AbstractConstraintEdi
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineType(int style) {
 		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
@@ -273,6 +286,7 @@ public class TimeConstraintAsLocalPostcondEditPart extends AbstractConstraintEdi
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(TimeConstraintAsLocalPostcondNameEditPart.VISUAL_ID));
 	}

@@ -35,7 +35,7 @@ public class SVGPostProcessorImpl implements SVGPostProcessor, IRefreshHandlerPa
 	protected final List<SVGPostProcessor> processors;
 
 	public SVGPostProcessorImpl() {
-		processors = new LinkedList<SVGPostProcessor>();
+		processors = new LinkedList<>();
 		loadPostProcessors();
 	}
 
@@ -76,8 +76,9 @@ public class SVGPostProcessorImpl implements SVGPostProcessor, IRefreshHandlerPa
 	@Override
 	public void refresh(IEditorPart editorPart) {
 		for (SVGPostProcessor processor : processors) {
-			if (processor instanceof IRefreshHandlerPart)
+			if (processor instanceof IRefreshHandlerPart) {
 				((IRefreshHandlerPart) processor).refresh(editorPart);
+			}
 		}
 	}
 

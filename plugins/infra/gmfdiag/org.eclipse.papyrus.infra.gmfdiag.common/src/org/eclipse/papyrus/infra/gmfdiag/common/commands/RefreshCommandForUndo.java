@@ -12,12 +12,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.commands;
 
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.GraphicalEditPart;
 
 /**
  * Refresh the {@link IFigure} of a given {@link GraphicalEditPart} on undo of this command. <br/>
  * <strong>This command must be created before the other ones in a CompoundCommand</strong> since the commands are
  * executed in reverse when undoing.
+ *
  * @since 3.0
  */
 public class RefreshCommandForUndo extends AbstractRefreshCommand {

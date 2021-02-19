@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST, ALL4TEC and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -23,9 +23,9 @@ import org.eclipse.papyrus.infra.gmfdiag.common.figure.edge.ReferenceEdgeFigure;
 
 /**
  * {@link ConnectionEditPart} for Reference edge.
- * 
+ *
  * @author Mickael ADAM
- * 
+ *
  * @since 3.1
  */
 public class ReferenceEdgeEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
@@ -37,7 +37,7 @@ public class ReferenceEdgeEditPart extends ConnectionEditPart implements ITreeBr
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param view
 	 *            The view.
 	 */
@@ -47,9 +47,10 @@ public class ReferenceEdgeEditPart extends ConnectionEditPart implements ITreeBr
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart#createDefaultEditPolicies()
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
@@ -67,9 +68,10 @@ public class ReferenceEdgeEditPart extends ConnectionEditPart implements ITreeBr
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#addChildVisual(org.eclipse.gef.EditPart, int)
 	 */
+	@Override
 	protected void addChildVisual(final EditPart childEditPart, final int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -89,9 +91,10 @@ public class ReferenceEdgeEditPart extends ConnectionEditPart implements ITreeBr
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#removeChildVisual(org.eclipse.gef.EditPart)
 	 */
+	@Override
 	protected void removeChildVisual(final EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -101,18 +104,20 @@ public class ReferenceEdgeEditPart extends ConnectionEditPart implements ITreeBr
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart#createConnectionFigure()
 	 */
+	@Override
 	protected Connection createConnectionFigure() {
 		return new ReferenceEdgeFigure();
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart#getPrimaryShape()
 	 */
+	@Override
 	public ReferenceEdgeFigure getPrimaryShape() {
 		return (ReferenceEdgeFigure) getFigure();
 	}

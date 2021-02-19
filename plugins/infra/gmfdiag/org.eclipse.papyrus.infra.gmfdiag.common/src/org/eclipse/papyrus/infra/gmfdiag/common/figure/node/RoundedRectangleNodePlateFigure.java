@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and Implementation
- * 
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.figure.node;
 
@@ -123,10 +123,11 @@ public class RoundedRectangleNodePlateFigure extends DefaultSizeNodeFigure imple
 	 */
 	@Override
 	protected ConnectionAnchor createAnchor(PrecisionPoint p) {
-		if (p == null)
+		if (p == null) {
 			// If the old terminal for the connection anchor cannot be resolved (by SlidableAnchor) a null
 			// PrecisionPoint will passed in - this is handled here
 			return createDefaultAnchor();
+		}
 		return new SlidableRoundedRectangleAnchor(this, p);
 	}
 

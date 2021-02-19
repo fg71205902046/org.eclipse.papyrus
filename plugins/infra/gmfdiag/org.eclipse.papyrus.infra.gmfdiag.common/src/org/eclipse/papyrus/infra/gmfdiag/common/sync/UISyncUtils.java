@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.common.sync;
@@ -38,13 +38,13 @@ public class UISyncUtils {
 	 * Runs an operation in the context of the {@link ISyncService} that owns a {@link syncObject},
 	 * asynchronously on the UI thread.
 	 * The {@link SyncServiceRunnable.Safe Safe} variant does not throw a checked exception.
-	 * 
+	 *
 	 * @param syncObject
 	 *            a sync object
 	 * @param operation
 	 *            a sync-service operation
 	 * @return the future result of the {@code operation}
-	 * 
+	 *
 	 * @see SyncServiceRunnable.Safe
 	 */
 	public static <V, X extends Exception> CheckedFuture<V, X> asyncExec(final ISyncObject syncObject, final SyncServiceRunnable<V, X> operation) {
@@ -55,16 +55,16 @@ public class UISyncUtils {
 	 * Runs an operation in the context of the {@link ISyncService} that owns a {@link syncObject},
 	 * synchronously on the UI thread.
 	 * The {@link SyncServiceRunnable.Safe Safe} variant does not throw a checked exception.
-	 * 
+	 *
 	 * @param syncObject
 	 *            a sync object
 	 * @param operation
 	 *            a sync-service operation
 	 * @return the result of the {@code operation}, if it completes without throwing
-	 * 
+	 *
 	 * @throws X
 	 *             a checked exception that the {@code operation} may optionally declare
-	 * 
+	 *
 	 * @see SyncServiceRunnable.Safe
 	 */
 	public static <V, X extends Exception> V syncExec(final ISyncObject syncObject, final SyncServiceRunnable<V, X> operation) throws X {

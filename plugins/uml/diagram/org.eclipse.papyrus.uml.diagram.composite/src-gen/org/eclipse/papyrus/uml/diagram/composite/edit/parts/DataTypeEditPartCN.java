@@ -154,7 +154,7 @@ public class DataTypeEditPartCN extends RoundedCompartmentEditPart {
 
 	/**
 	 * Papyrus codeGen
-	 * 
+	 *
 	 * @generated
 	 **/
 	@Override
@@ -187,7 +187,7 @@ public class DataTypeEditPartCN extends RoundedCompartmentEditPart {
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.common.figure.node.DataTypeFigure
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -207,14 +207,14 @@ public class DataTypeEditPartCN extends RoundedCompartmentEditPart {
 
 		if (childEditPart instanceof DataTypeAttributeCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((DataTypeAttributeCompartmentEditPartCN) childEditPart).getFigure());
 			return true;
 		}
 
 		if (childEditPart instanceof DataTypeOperationCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((DataTypeOperationCompartmentEditPartCN) childEditPart).getFigure());
 			return true;
 		}
@@ -320,7 +320,7 @@ public class DataTypeEditPartCN extends RoundedCompartmentEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * 
+	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
 	 * @generated

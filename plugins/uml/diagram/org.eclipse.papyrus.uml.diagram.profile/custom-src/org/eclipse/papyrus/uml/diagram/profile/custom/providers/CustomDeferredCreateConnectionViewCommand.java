@@ -28,9 +28,10 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.C
 
 /**
  * This class is used to create a connection view.
+ *
  * @deprecated in 3.0.100
  */
-@Deprecated // No code 
+@Deprecated // No code
 public class CustomDeferredCreateConnectionViewCommand extends org.eclipse.papyrus.infra.gmfdiag.common.commands.CommonDeferredCreateConnectionViewCommand {
 
 	/**

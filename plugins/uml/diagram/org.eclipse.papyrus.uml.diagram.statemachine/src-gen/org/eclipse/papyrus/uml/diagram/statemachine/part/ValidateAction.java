@@ -210,7 +210,7 @@ public class ValidateAction extends Action {
 			return;
 		}
 		final Diagnostic rootStatus = emfValidationStatus;
-		List<Diagnostic> allDiagnostics = new ArrayList<Diagnostic>();
+		List<Diagnostic> allDiagnostics = new ArrayList<>();
 		UMLDiagramEditorUtil.LazyElement2ViewMap element2ViewMap = new UMLDiagramEditorUtil.LazyElement2ViewMap(
 				diagramEditPart.getDiagramView(),
 				collectTargetElements(rootStatus, new HashSet<EObject>(), allDiagnostics));

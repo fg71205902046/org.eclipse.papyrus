@@ -190,7 +190,7 @@ public class ShowHideRelatedLinkSelectionDialog extends AbstractCheckedTreeColum
 	/**
 	 *
 	 * @return
-	 * 		the checkedStateListener to use
+	 *         the checkedStateListener to use
 	 */
 	protected ICheckStateListener getOrCreateCheckStateListener() {
 		if (this.checkedStateListener == null) {
@@ -273,7 +273,7 @@ public class ShowHideRelatedLinkSelectionDialog extends AbstractCheckedTreeColum
 	/**
 	 *
 	 * @return
-	 * 		the checkedStateProvider to use for this dialog
+	 *         the checkedStateProvider to use for this dialog
 	 */
 	protected ICheckStateProvider getOrCreateCheckStateProvider() {
 		if (this.checkedStateProvider == null) {

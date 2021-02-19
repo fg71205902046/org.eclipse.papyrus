@@ -42,7 +42,7 @@ public class NotificationManager {
 	 */
 	public NotificationManager(EObject view) {
 		this.view = view;
-		providerNotificationManagers = new ArrayList<ProviderNotificationManager>();
+		providerNotificationManagers = new ArrayList<>();
 	}
 
 	/**

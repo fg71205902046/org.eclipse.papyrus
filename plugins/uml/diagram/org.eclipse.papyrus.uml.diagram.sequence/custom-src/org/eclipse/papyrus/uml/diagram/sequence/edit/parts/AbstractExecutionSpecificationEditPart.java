@@ -207,7 +207,7 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 		Point where = constraint.getTopLeft();
 		where.setX((figBounds.width() - constraint.width()) / 2);
 
-		if (DurationLinkUtil.isStart(execFig, where)) {
+		if (OccurrenceSpecificationUtil.isStart(execFig, where)) {
 			// Pin it to the top of the execution
 			return PositionConstants.NORTH;
 		} else {

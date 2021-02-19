@@ -23,7 +23,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Show and hide exception label edit policy according to {@link Parameter#isException()}
- * 
+ *
  * @since 2.0
  */
 public class ShowHideExceptionEditPolicy extends AbstractShowHideParameterPropertyEditPolicy {

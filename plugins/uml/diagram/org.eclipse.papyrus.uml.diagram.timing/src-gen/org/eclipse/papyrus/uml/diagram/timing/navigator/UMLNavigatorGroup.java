@@ -34,7 +34,7 @@ public class UMLNavigatorGroup extends UMLAbstractNavigatorItem {
 	/**
 	 * @generated
 	 */
-	private Collection<java.lang.Object> myChildren = new LinkedList<java.lang.Object>();
+	private Collection<java.lang.Object> myChildren = new LinkedList<>();
 
 	/**
 	 * @generated

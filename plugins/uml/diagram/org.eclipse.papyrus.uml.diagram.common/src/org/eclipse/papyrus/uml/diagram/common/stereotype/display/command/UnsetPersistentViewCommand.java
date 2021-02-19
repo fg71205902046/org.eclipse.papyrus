@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  * Contributors:
  *   Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.net - Initial API and implementation
  *   Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 Stereotype Display
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.common.stereotype.display.command;
@@ -23,7 +23,7 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * This Command set a view Transcient.
  *
- * 
+ *
  * @author Céline JANSSENS
  *
  */
@@ -34,7 +34,7 @@ public class UnsetPersistentViewCommand extends RecordingCommand {
 	protected final static String LABEL_COMMAND = "Unset Persistency"; //$NON-NLS-1$
 
 	/**
-	 * 
+	 *
 	 * Constructor.
 	 *
 	 * @param domain
@@ -61,7 +61,7 @@ public class UnsetPersistentViewCommand extends RecordingCommand {
 
 	/**
 	 * Recursive method that makes a view and all its ancestors persistent.
-	 * 
+	 *
 	 * @param view
 	 *            The view to make persistent ( cannot be {@code null})
 	 */

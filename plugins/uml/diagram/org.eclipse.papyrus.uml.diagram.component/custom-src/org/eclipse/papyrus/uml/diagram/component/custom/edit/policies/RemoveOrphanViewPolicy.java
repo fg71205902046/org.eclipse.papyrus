@@ -30,11 +30,12 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.OrphanViewPolicy;
  *
  * See RemoveOrphanViewPolicy in Class Diagram
  * </pre>
- * 
+ *
  * @since 3.0
- * 
+ *
  * @deprecated since 3.1. Useless. Helper Advices remove views.
  */
+@Deprecated
 public class RemoveOrphanViewPolicy extends OrphanViewPolicy {
 
 	/**

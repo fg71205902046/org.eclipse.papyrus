@@ -86,8 +86,10 @@ public class ShowHideClassifierContentsEditPolicy extends AbstractEditPolicy {
 	 * @param container
 	 *            the container for the element
 	 * @param semanticElement
-	 * @param point where to create the view
-	 * @param hint to create the view
+	 * @param point
+	 *            where to create the view
+	 * @param hint
+	 *            to create the view
 	 * @return The command to create the view
 	 */
 	protected Command getCreateViewCommand(View container, EObject semanticElement, Point location, String hint) {
@@ -107,8 +109,8 @@ public class ShowHideClassifierContentsEditPolicy extends AbstractEditPolicy {
 		}
 
 		return compositeCmd;
-	}	
-	
+	}
+
 	/**
 	 * Return the command to the EditPart
 	 *

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.profile.edit.policies;
@@ -22,9 +22,9 @@ import org.eclipse.papyrus.uml.diagram.common.helper.EnumerationLiteralLabelHelp
 import org.eclipse.uml2.uml.EnumerationLiteral;
 
 /**
- * 
+ *
  * This Policy is to be used for Enumeration Literal Edit Part to manage the stereotype display
- * 
+ *
  * @author Céline JANSSENS
  *
  */

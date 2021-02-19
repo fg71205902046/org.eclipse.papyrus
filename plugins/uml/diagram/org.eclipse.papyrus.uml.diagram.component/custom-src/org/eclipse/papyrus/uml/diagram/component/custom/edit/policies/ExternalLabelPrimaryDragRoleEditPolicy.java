@@ -40,6 +40,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusLabelEditPart;
  * external node label.
  * The expected behavior is to provide an external label that can freely move and with a link feedback
  * towards its parent figure during the move.
+ *
  * @since 3.0
  */
 public class ExternalLabelPrimaryDragRoleEditPolicy extends NonResizableLabelEditPolicy {

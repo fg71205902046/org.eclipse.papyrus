@@ -22,6 +22,7 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.ModelEditPart;
 
 /**
  * this a specific editpart used to overload the method createNodePlate
+ *
  * @since 3.0
  */
 public class CustomModelEditPart extends ModelEditPart {

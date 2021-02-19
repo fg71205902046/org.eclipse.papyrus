@@ -38,7 +38,7 @@ public class EditPartUtils {
 	}
 
 	public static List<? extends EditPart> findChildEditPartsWithId(final EditPart editPart, final String visualId) {
-		final List<EditPart> editParts = new ArrayList<EditPart>();
+		final List<EditPart> editParts = new ArrayList<>();
 		internalFindChildEditPartsWithId(editPart, visualId, editParts);
 		return editParts;
 	}
@@ -89,7 +89,7 @@ public class EditPartUtils {
 			return null;
 		}
 
-		final TreeMap<Integer, GraphicalEditPart> distanceMap = new TreeMap<Integer, GraphicalEditPart>();
+		final TreeMap<Integer, GraphicalEditPart> distanceMap = new TreeMap<>();
 		for (final GraphicalEditPart editPart : editParts) {
 			final IFigure figure = editPart.getFigure();
 			final Rectangle bounds = new Rectangle(figure.getBounds());

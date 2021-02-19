@@ -119,7 +119,7 @@ public class BaseViewInfo implements ViewInfo {
 	@Override
 	public Collection<ViewInfo> getChildren() {
 		if (children == null) {
-			children = new ArrayList<ViewInfo>();
+			children = new ArrayList<>();
 		}
 		return children;
 	}
@@ -199,7 +199,7 @@ public class BaseViewInfo implements ViewInfo {
 	 */
 	protected static Map<String, Collection<ViewInfo>> getToAdd() {
 		if (toAdd == null) {
-			toAdd = new HashMap<String, Collection<ViewInfo>>();
+			toAdd = new HashMap<>();
 		}
 		return toAdd;
 	}

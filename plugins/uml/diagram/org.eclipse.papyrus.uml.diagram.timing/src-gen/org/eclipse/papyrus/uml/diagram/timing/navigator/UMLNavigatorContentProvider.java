@@ -73,7 +73,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		TransactionalEditingDomain editingDomain = WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain();
 		myEditingDomain = (AdapterFactoryEditingDomain) editingDomain;
 		@SuppressWarnings("serial")
-		Map<Resource, Boolean> map = new HashMap<Resource, Boolean>() {
+		Map<Resource, Boolean> map = new HashMap<>() {
 
 			@Override
 			public Boolean get(java.lang.Object key) {
@@ -224,8 +224,8 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 			IFile file = (IFile) parentElement;
 			URI fileURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
 			Resource resource = myEditingDomain.getResourceSet().getResource(fileURI, true);
-			Collection<Object> result = new ArrayList<Object>();
-			List<View> topViews = new ArrayList<View>(resource.getContents().size());
+			Collection<Object> result = new ArrayList<>();
+			List<View> topViews = new ArrayList<>(resource.getContents().size());
 			for (EObject o : resource.getContents()) {
 				if (o instanceof View) {
 					topViews.add((View) o);

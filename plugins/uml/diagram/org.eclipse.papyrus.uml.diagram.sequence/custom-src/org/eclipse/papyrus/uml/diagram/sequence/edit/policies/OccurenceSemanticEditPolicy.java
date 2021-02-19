@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.SemanticEditPolicy;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
@@ -113,7 +114,7 @@ public class OccurenceSemanticEditPolicy extends DefaultSemanticEditPolicy {
 					.getEditingDomain();
 			ReorientRelationshipRequest semRequest = new ReorientRelationshipRequest(
 					editingDomain, connectionSemElement, targetSemElement,
-					oldSemElement, ReorientRelationshipRequest.REORIENT_SOURCE);
+					oldSemElement, ReorientRequest.REORIENT_SOURCE);
 
 			semRequest.addParameters(request.getExtendedData());
 
@@ -134,7 +135,7 @@ public class OccurenceSemanticEditPolicy extends DefaultSemanticEditPolicy {
 					.getEditingDomain();
 			ReorientRelationshipRequest semRequest = new ReorientRelationshipRequest(
 					editingDomain, connectionSemElement, targetSemElement,
-					oldSemElement, ReorientRelationshipRequest.REORIENT_TARGET);
+					oldSemElement, ReorientRequest.REORIENT_TARGET);
 
 			semRequest.addParameters(request.getExtendedData());
 

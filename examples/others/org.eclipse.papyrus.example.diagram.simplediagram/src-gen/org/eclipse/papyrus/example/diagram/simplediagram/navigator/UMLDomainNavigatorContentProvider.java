@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gmf.runtime.emf.core.GMFEditingDomainFactory;
 import org.eclipse.jface.viewers.Viewer;
@@ -62,10 +63,11 @@ public class UMLDomainNavigatorContentProvider implements
 		myAdapterFctoryContentProvier = new AdapterFactoryContentProvider(
 				UMLDiagramEditorPlugin.getInstance()
 						.getItemProvidersAdapterFactory());
-		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE
+		TransactionalEditingDomain editingDomain = WorkspaceEditingDomainFactory.INSTANCE
 				.createEditingDomain();
 		myEditingDomain = (AdapterFactoryEditingDomain) editingDomain;
 		myEditingDomain.setResourceToReadOnlyMap(new HashMap() {
+			@Override
 			public Object get(Object key) {
 				if (!containsKey(key)) {
 					put(key, Boolean.TRUE);
@@ -74,6 +76,7 @@ public class UMLDomainNavigatorContentProvider implements
 			}
 		});
 		myViewerRefreshRunnable = new Runnable() {
+			@Override
 			public void run() {
 				if (myViewer != null) {
 					myViewer.refresh();
@@ -82,21 +85,25 @@ public class UMLDomainNavigatorContentProvider implements
 		};
 		myWorkspaceSynchronizer = new WorkspaceSynchronizer(editingDomain,
 				new WorkspaceSynchronizer.Delegate() {
+					@Override
 					public void dispose() {
 					}
 
+					@Override
 					public boolean handleResourceChanged(final Resource resource) {
 						unloadAllResources();
 						asyncRefresh();
 						return true;
 					}
 
+					@Override
 					public boolean handleResourceDeleted(Resource resource) {
 						unloadAllResources();
 						asyncRefresh();
 						return true;
 					}
 
+					@Override
 					public boolean handleResourceMoved(Resource resource,
 							final URI newURI) {
 						unloadAllResources();
@@ -109,6 +116,7 @@ public class UMLDomainNavigatorContentProvider implements
 	/**
 	 * @generated
 	 */
+	@Override
 	public void dispose() {
 		myWorkspaceSynchronizer.dispose();
 		myWorkspaceSynchronizer = null;
@@ -122,6 +130,7 @@ public class UMLDomainNavigatorContentProvider implements
 	/**
 	 * @generated
 	 */
+	@Override
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		myViewer = viewer;
 	}
@@ -149,6 +158,7 @@ public class UMLDomainNavigatorContentProvider implements
 	/**
 	 * @generated
 	 */
+	@Override
 	public Object[] getElements(Object inputElement) {
 		return getChildren(inputElement);
 	}
@@ -156,24 +166,28 @@ public class UMLDomainNavigatorContentProvider implements
 	/**
 	 * @generated
 	 */
+	@Override
 	public void restoreState(IMemento aMemento) {
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	public void saveState(IMemento aMemento) {
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	public void init(ICommonContentExtensionSite aConfig) {
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	public Object[] getChildren(Object parentElement) {
 		if (parentElement instanceof IFile) {
 			IFile file = (IFile) parentElement;
@@ -189,7 +203,8 @@ public class UMLDomainNavigatorContentProvider implements
 		if (parentElement instanceof UMLDomainNavigatorItem) {
 			return wrapEObjects(
 					myAdapterFctoryContentProvier.getChildren(((UMLDomainNavigatorItem) parentElement)
-							.getEObject()), parentElement);
+							.getEObject()),
+					parentElement);
 		}
 		return EMPTY_ARRAY;
 	}
@@ -211,6 +226,7 @@ public class UMLDomainNavigatorContentProvider implements
 	/**
 	 * @generated
 	 */
+	@Override
 	public Object getParent(Object element) {
 		if (element instanceof UMLAbstractNavigatorItem) {
 			UMLAbstractNavigatorItem abstractNavigatorItem = (UMLAbstractNavigatorItem) element;
@@ -222,6 +238,7 @@ public class UMLDomainNavigatorContentProvider implements
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean hasChildren(Object element) {
 		return element instanceof IFile || getChildren(element).length > 0;
 	}

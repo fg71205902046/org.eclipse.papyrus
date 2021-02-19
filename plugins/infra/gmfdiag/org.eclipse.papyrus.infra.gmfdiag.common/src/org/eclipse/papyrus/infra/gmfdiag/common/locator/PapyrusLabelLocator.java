@@ -167,7 +167,7 @@ public class PapyrusLabelLocator extends AbstractLocator {
 	@Override
 	public Point getReferencePoint() {
 		if (parent instanceof Connection) {
-			NamedStyle style = view.getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(), IS_UPDATED_POSITION); 
+			NamedStyle style = view.getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(), IS_UPDATED_POSITION);
 			Boolean updated = style == null ? false : (Boolean) style.eGet(NotationPackage.eINSTANCE.getBooleanValueStyle_BooleanValue());
 			return getConnectionReferancePoint(updated);
 		} else {

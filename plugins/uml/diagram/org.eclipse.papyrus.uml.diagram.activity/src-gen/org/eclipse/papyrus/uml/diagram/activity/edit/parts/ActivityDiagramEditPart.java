@@ -46,6 +46,7 @@ public class ActivityDiagramEditPart extends PapyrusDiagramEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 

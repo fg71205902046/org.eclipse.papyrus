@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  * Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and Implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.common.utils;
@@ -31,7 +31,7 @@ public class RoundedRectangleUtil {
 
 	/**
 	 * Computes the intersections of a line segment with a rounded rectangle.
-	 * 
+	 *
 	 * @param line
 	 *            the line segment
 	 * @param rectX
@@ -138,7 +138,7 @@ public class RoundedRectangleUtil {
 
 	/**
 	 * Get the position of the location relative to a rounded rectangle.
-	 * 
+	 *
 	 * @param rectangle
 	 *            The parent rectangle.
 	 * @param cornerDimension

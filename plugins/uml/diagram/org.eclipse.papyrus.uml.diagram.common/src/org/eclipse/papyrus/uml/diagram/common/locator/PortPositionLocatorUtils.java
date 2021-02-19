@@ -105,13 +105,13 @@ public class PortPositionLocatorUtils {
 	 * @return the position of the port around its parent. This position can be
 	 *         <ul>
 	 *         <li>{@linkplain PositionConstants#NORTH}</li>
-	 *         <li> {@linkplain PositionConstants#SOUTH}</li>
-	 *         <li> {@linkplain PositionConstants#EAST}</li>
-	 *         <li> {@linkplain PositionConstants#WEST}</li>
-	 *         <li> {@linkplain PositionConstants#NORTH_EAST}</li>
-	 *         <li> {@linkplain PositionConstants#NORTH_WEST}</li>
-	 *         <li> {@linkplain PositionConstants#SOUTH_EAST}</li>
-	 *         <li> {@linkplain PositionConstants#SOUTH_WEST}</li>
+	 *         <li>{@linkplain PositionConstants#SOUTH}</li>
+	 *         <li>{@linkplain PositionConstants#EAST}</li>
+	 *         <li>{@linkplain PositionConstants#WEST}</li>
+	 *         <li>{@linkplain PositionConstants#NORTH_EAST}</li>
+	 *         <li>{@linkplain PositionConstants#NORTH_WEST}</li>
+	 *         <li>{@linkplain PositionConstants#SOUTH_EAST}</li>
+	 *         <li>{@linkplain PositionConstants#SOUTH_WEST}</li>
 	 *         </ul>
 	 */
 	public static int getCurrentSideOfParent(Rectangle parentFigureBounds, Rectangle figureBounds, int borderItemOffset) {

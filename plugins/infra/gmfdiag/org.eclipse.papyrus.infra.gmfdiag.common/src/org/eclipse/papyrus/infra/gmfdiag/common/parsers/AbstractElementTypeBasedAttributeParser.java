@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -58,7 +58,7 @@ public abstract class AbstractElementTypeBasedAttributeParser extends AbstractAt
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gmf.tooling.runtime.parsers.AbstractFeatureParser#getModificationCommand(org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EStructuralFeature, java.lang.Object)
 	 *
 	 * @param element
@@ -76,12 +76,12 @@ public abstract class AbstractElementTypeBasedAttributeParser extends AbstractAt
 		} else {
 			SetRequest request = new SetRequest(element, feature, validValue);
 			IElementEditService serviceEdit = ElementEditServiceUtils.getCommandProvider(element);
-			if(serviceEdit != null) {
+			if (serviceEdit != null) {
 				// Ask to Edit Service for the command
 				modificationCommand = serviceEdit.getEditCommand(request);
-			}else {
+			} else {
 				// Return the standard command
-				modificationCommand= new SetValueCommand(request);
+				modificationCommand = new SetValueCommand(request);
 			}
 		}
 		return modificationCommand;

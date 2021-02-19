@@ -47,7 +47,7 @@ public class ExecutionSpecificationGraphicalNodeEditPolicy extends ElementCreati
 	@Override
 	protected Command getConnectionCreateCommand(CreateConnectionRequest request) {
 		if (DurationLinkUtil.isCreateDurationLink(request) || GeneralOrderingUtil.isCreateGeneralOrderingLink(request)) {
-			CreateRelationshipRequest createRequest = DurationLinkUtil.getCreateRelationshipRequest(request);
+			CreateRelationshipRequest createRequest = OccurrenceSpecificationUtil.getCreateRelationshipRequest(request);
 			if (createRequest != null) {
 				OccurrenceSpecification sourceOccurrence;
 				ExecutionSpecification execSpec = getExecutionSpecification();

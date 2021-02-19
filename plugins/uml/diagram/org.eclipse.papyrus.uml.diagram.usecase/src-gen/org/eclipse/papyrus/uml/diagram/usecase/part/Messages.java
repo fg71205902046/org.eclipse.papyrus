@@ -264,8 +264,8 @@ public class Messages extends NLS {
 	public static String Nodes1Group_desc;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static String Links2Group_title;
 
 	/**
@@ -334,8 +334,8 @@ public class Messages extends NLS {
 	public static String Comment6CreationTool_desc;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static String ExtensionPoint7CreationTool_title;
 
 	/**

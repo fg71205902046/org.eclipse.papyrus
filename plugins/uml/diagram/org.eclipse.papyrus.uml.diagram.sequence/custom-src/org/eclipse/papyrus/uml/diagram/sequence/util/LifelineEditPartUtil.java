@@ -285,10 +285,10 @@ public class LifelineEditPartUtil {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * This allows to create command to resize life lines of the interaction if needed.
-	 * 
+	 *
 	 * @param compoundCommand
 	 *            The compound command to fill.
 	 * @param initialEditPart

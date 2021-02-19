@@ -181,7 +181,7 @@ public class Util {
 	 *
 	 */
 	public static Object getValueFromString(Property property, ArrayList<String> stringValues) {
-		List<Object> returnedValue = new ArrayList<Object>();
+		List<Object> returnedValue = new ArrayList<>();
 
 		Type type = property.getType();
 		if (type instanceof PrimitiveType) {
@@ -233,8 +233,8 @@ public class Util {
 
 		// the applied profiles
 		EList<Profile> profiles = ((org.eclipse.uml2.uml.Package) packageContainer).getAllAppliedProfiles();
-		List<Element> returnedValues = new ArrayList<Element>();
-		List<Element> metaclassElement = new ArrayList<Element>();
+		List<Element> returnedValues = new ArrayList<>();
+		List<Element> metaclassElement = new ArrayList<>();
 		String metaclassName = ((org.eclipse.uml2.uml.Class) property.getType()).getName();
 
 		/*
@@ -285,8 +285,8 @@ public class Util {
 	 */
 	public static Object retrievesStereotypedElementFromString(Property property, ArrayList<String> stringValues, org.eclipse.uml2.uml.Element packageContainer) {
 
-		ArrayList<Object> returnedValues = new ArrayList<Object>();
-		ArrayList<Object> stereotypedElement = new ArrayList<Object>();
+		ArrayList<Object> returnedValues = new ArrayList<>();
+		ArrayList<Object> stereotypedElement = new ArrayList<>();
 
 		EList<Profile> profiles = ((org.eclipse.uml2.uml.Package) packageContainer).getAllAppliedProfiles();
 		/*
@@ -352,7 +352,7 @@ public class Util {
 		Assert.isTrue(type instanceof Enumeration);
 		enume = (Enumeration) type;
 
-		ArrayList<Object> returnedValues = new ArrayList<Object>();
+		ArrayList<Object> returnedValues = new ArrayList<>();
 
 		// we research the enumerationLiteral
 		for (int i = 0; i < stringValues.size(); i++) {
@@ -373,9 +373,10 @@ public class Util {
 	 *
 	 * @param ep
 	 *            an editpart
-	 * @return <ul>
-	 *         <li> <code>true</code> if the editpart is an Affixed Child Node</li>
-	 *         <li> <code>false</code>if not</li>
+	 * @return
+	 *         <ul>
+	 *         <li><code>true</code> if the editpart is an Affixed Child Node</li>
+	 *         <li><code>false</code>if not</li>
 	 *         </ul>
 	 */
 	public static boolean isAffixedChildNode(EditPart ep) {
@@ -405,7 +406,7 @@ public class Util {
 	public static Set<Classifier> getAllSuperClasses(Set<Classifier> visitedClassifier, Classifier clazz) {
 		Assert.isNotNull(clazz);
 		if (visitedClassifier == null) {
-			visitedClassifier = new HashSet<Classifier>();
+			visitedClassifier = new HashSet<>();
 		}
 		for (Classifier classifier : clazz.getGenerals()) {
 			if (!visitedClassifier.contains(classifier)) {

@@ -60,13 +60,13 @@ public class UpdateNodeReferenceEditPolicy extends GraphicalEditPolicy {
 
 	/**
 	 * To extract in other EditPolicy
-	 * 
+	 *
 	 * @see org.eclipse.gef.editpolicies.AbstractEditPolicy#getCommand(org.eclipse.gef.Request)
 	 *
 	 * @param request
 	 * @return
-	 * 
-	 * 		<img src="../../../../../../../../../icons/sequenceScheme.png" width="250" />
+	 *
+	 *         <img src="../../../../../../../../../icons/sequenceScheme.png" width="250" />
 	 *         <UL>
 	 *         <LI>when move B (anchor of the message)-->
 	 *         Move E and Move F this is a move of the execution specification
@@ -127,16 +127,16 @@ public class UpdateNodeReferenceEditPolicy extends GraphicalEditPolicy {
 		} else if (request instanceof ChangeBoundsRequest && (!org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_AUTOSIZE.equals(request.getType()))) {
 
 			final ChangeBoundsRequest initialChangeBoundsRequest = (ChangeBoundsRequest) request;
-			if(null == initialChangeBoundsRequest.getEditParts() || initialChangeBoundsRequest.getEditParts().isEmpty()) {
+			if (null == initialChangeBoundsRequest.getEditParts() || initialChangeBoundsRequest.getEditParts().isEmpty()) {
 				return UnexecutableCommand.INSTANCE;
 			}
 			final Iterator<?> editParts = initialChangeBoundsRequest.getEditParts().iterator();
-			
+
 			// The reparent of execution specification in another life line is not allowed
-			while(editParts.hasNext()) {
+			while (editParts.hasNext()) {
 				Object childEP = editParts.next();
-				if(childEP instanceof AbstractExecutionSpecificationEditPart && getHost() instanceof CLifeLineEditPart) {
-					final LifelineEditPart parentLifeLine = SequenceUtil.getParentLifelinePart((AbstractExecutionSpecificationEditPart)childEP);
+				if (childEP instanceof AbstractExecutionSpecificationEditPart && getHost() instanceof CLifeLineEditPart) {
+					final LifelineEditPart parentLifeLine = SequenceUtil.getParentLifelinePart((AbstractExecutionSpecificationEditPart) childEP);
 					if (null != parentLifeLine && !parentLifeLine.equals(getHost())) {
 						return UnexecutableCommand.INSTANCE;
 					}
@@ -144,48 +144,48 @@ public class UpdateNodeReferenceEditPolicy extends GraphicalEditPolicy {
 			}
 
 			final Point moveDelta = initialChangeBoundsRequest.getMoveDelta();
-			
+
 			final CompoundCommand compoundCommand = new CompoundCommand();
-			
+
 			if (moveDelta.y != 0) {
-				
+
 				UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+ MOVE delta " + moveDelta + " of " + getHost());//$NON-NLS-1$ //$NON-NLS-2$
-	
+
 				// The variables needed to check the possible resize of life lines
 				int maxY = -1;
 				EditPart editPartSaved = null;
-				
+
 				for (final Object changedEditPart : initialChangeBoundsRequest.getEditParts()) {
 					if (changedEditPart instanceof AbstractExecutionSpecificationEditPart) {
 						final AbstractExecutionSpecificationEditPart execSpecEditPart = (AbstractExecutionSpecificationEditPart) changedEditPart;
 						editPartSaved = execSpecEditPart;
-						
-						if(((EditPart) changedEditPart).getEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE) != null) {
+
+						if (((EditPart) changedEditPart).getEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE) != null) {
 							if (!SenderRequestUtils.isASender(request, execSpecEditPart)) {
-		
+
 								final SequenceReferenceEditPolicy references = (SequenceReferenceEditPolicy) execSpecEditPart.getEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE);
 								for (EditPart editPart : references.getStrongReferences().keySet()) {
 									if (!SenderRequestUtils.isASender(request, editPart) && editPart instanceof GraphicalEditPart && editPart.getModel() instanceof Node) {
-		
-										final Bounds initialBoundStrongRef = BoundForEditPart.getBounds((Node)editPart.getModel());
-										
+
+										final Bounds initialBoundStrongRef = BoundForEditPart.getBounds((Node) editPart.getModel());
+
 										UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+--> try to Move " + editPart.getClass().getName());//$NON-NLS-1$
-			
+
 										UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+--> try to Move from " + initialBoundStrongRef.getY() + " " + editPart.getClass().getName()); //$NON-NLS-1$ //$NON-NLS-2$
 										ChangeBoundsRequest changeBoundsRequest = new ChangeBoundsRequest(RequestConstants.REQ_RESIZE);
 										changeBoundsRequest.setLocation(new Point(initialBoundStrongRef.getX(), initialBoundStrongRef.getY()));
 										changeBoundsRequest.setEditParts(editPart);
-		
+
 										UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+--> Delta " + moveDelta.y + " " + editPart.getClass().getName()); //$NON-NLS-1$ //$NON-NLS-2$
 										changeBoundsRequest.setMoveDelta(new Point(0, moveDelta.y));
 										changeBoundsRequest.setSizeDelta(new Dimension(0, 0));
-		
+
 										final ArrayList<EditPart> senderList = SenderRequestUtils.getSenders(request);
 										SenderRequestUtils.addRequestSenders(changeBoundsRequest, senderList);
 										SenderRequestUtils.addRequestSender(changeBoundsRequest, execSpecEditPart);
 										final Command cmd = editPart.getCommand(changeBoundsRequest);
 										compoundCommand.add(cmd);
-										
+
 										// If the move delta is going down, keep the maximum Y of the execution specification
 										if (moveDelta.y > 0) {
 											// The magical number '15' is here to define the Life line header height
@@ -198,11 +198,11 @@ public class UpdateNodeReferenceEditPolicy extends GraphicalEditPolicy {
 								}
 							}
 						}
-						
+
 						// If the move delta is going down, keep the maximum Y of the execution specification
 						if (moveDelta.y > 0) {
-							final Bounds initialBoundStrongRef = BoundForEditPart.getBounds((Node)execSpecEditPart.getModel());
-							
+							final Bounds initialBoundStrongRef = BoundForEditPart.getBounds((Node) execSpecEditPart.getModel());
+
 							// The magical number '15' is here to define the Life line header height
 							// TODO : We need to remove this magical number
 							if (maxY < initialBoundStrongRef.getY() + initialBoundStrongRef.getHeight() + moveDelta.y + 15) {
@@ -211,18 +211,18 @@ public class UpdateNodeReferenceEditPolicy extends GraphicalEditPolicy {
 						}
 					}
 				}
-				
+
 				// Check if this is needed to resize life lines
-				if(null != editPartSaved && maxY > 0) {
+				if (null != editPartSaved && maxY > 0) {
 					final CompoundCommand resizeCompoundCommand = new CompoundCommand("Resize life lines"); //$NON-NLS-1$
 					LifelineEditPartUtil.resizeAllLifeLines(resizeCompoundCommand, editPartSaved, maxY, null);
-					
-					if(!resizeCompoundCommand.isEmpty()) {
+
+					if (!resizeCompoundCommand.isEmpty()) {
 						compoundCommand.add(resizeCompoundCommand);
 					}
 				}
 			}
-			
+
 			if (!compoundCommand.isEmpty()) {
 				return compoundCommand;
 			}

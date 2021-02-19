@@ -272,7 +272,7 @@ public class CreateUmlElementDialog extends ElementTreeSelectionDialog {
 	 */
 	@Override
 	protected void computeResult() {
-		java.util.List<Object> result = new ArrayList<Object>();
+		java.util.List<Object> result = new ArrayList<>();
 		result.add(elementToCreate);
 		setResult(result);
 	}

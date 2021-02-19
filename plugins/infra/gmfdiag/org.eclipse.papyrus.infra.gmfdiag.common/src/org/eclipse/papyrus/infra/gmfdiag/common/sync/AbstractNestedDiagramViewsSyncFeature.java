@@ -111,7 +111,7 @@ public abstract class AbstractNestedDiagramViewsSyncFeature<M extends EObject, N
 	/**
 	 * Gets an unfiltered view of the nested edit-parts with the specified {@code backend} edit-part, which depends
 	 * on the kind of edit-part that it is.
-	 * 
+	 *
 	 * @param backend
 	 *            a back-end edit-part
 	 * @return the raw view of its children, either nested nodes or contained/attached connections, as appropriate
@@ -158,7 +158,7 @@ public abstract class AbstractNestedDiagramViewsSyncFeature<M extends EObject, N
 			 * We need to defer the calculation of the drop command until it is time to execute it,
 			 * because otherwise the object that we need to drop may not yet exist in the target
 			 * model if there is some kind of master/slave mapping in the semantic model, also.
-			 * 
+			 *
 			 * @return the drop command
 			 */
 			private org.eclipse.gef.commands.Command getDropCommand() {

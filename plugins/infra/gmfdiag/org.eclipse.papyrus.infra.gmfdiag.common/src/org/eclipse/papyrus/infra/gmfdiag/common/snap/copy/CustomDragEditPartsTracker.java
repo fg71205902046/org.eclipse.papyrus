@@ -585,7 +585,7 @@ public class CustomDragEditPartsTracker extends SelectEditPartTracker {
 		super.setTargetEditPart(editpart);
 		snapToHelper = null;
 		if (getTargetEditPart() != null && getOperationSet().size() > 0) {
-			snapToHelper = (SnapToHelper) getTargetEditPart().getAdapter(SnapToHelper.class);
+			snapToHelper = getTargetEditPart().getAdapter(SnapToHelper.class);
 		}
 	}
 

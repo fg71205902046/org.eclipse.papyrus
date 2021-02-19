@@ -21,7 +21,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.figure.edge.PapyrusEdgeFigure;
 
 /**
  * The Class UsageDecoration.
- * 
+ *
  * @since 3.0
  */
 public class UsageDecoration extends PapyrusEdgeFigure {

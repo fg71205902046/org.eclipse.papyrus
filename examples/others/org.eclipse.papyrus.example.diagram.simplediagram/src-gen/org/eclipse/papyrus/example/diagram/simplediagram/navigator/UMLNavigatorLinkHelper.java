@@ -52,6 +52,7 @@ public class UMLNavigatorLinkHelper implements ILinkHelper {
 	/**
 	 * @generated
 	 */
+	@Override
 	public IStructuredSelection findSelection(IEditorInput anInput) {
 		IDiagramDocument document = UMLDiagramEditorPlugin.getInstance()
 				.getDocumentProvider().getDiagramDocument(anInput);
@@ -73,6 +74,7 @@ public class UMLNavigatorLinkHelper implements ILinkHelper {
 	/**
 	 * @generated
 	 */
+	@Override
 	public void activateEditor(IWorkbenchPage aPage,
 			IStructuredSelection aSelection) {
 		if (aSelection == null || aSelection.isEmpty()) {

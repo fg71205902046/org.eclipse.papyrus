@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.interactionoverview.migration;
@@ -36,7 +36,7 @@ import org.eclipse.papyrus.uml.diagram.activity.migration.ActivityReconciler_1_2
  * @author melaasar
  *
  */
-public class InteractionOverviewReconciler_1_2_0  extends DiagramReconciler {
+public class InteractionOverviewReconciler_1_2_0 extends DiagramReconciler {
 
 	@Override
 	public ICommand getReconcileCommand(Diagram diagram) {
@@ -59,13 +59,14 @@ public class InteractionOverviewReconciler_1_2_0  extends DiagramReconciler {
 		protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 			TreeIterator<EObject> allContentIterator = diagram.eAllContents();
 
-			Set<View> toDelete = new HashSet<View>();
+			Set<View> toDelete = new HashSet<>();
 			while (allContentIterator.hasNext()) {
 				EObject eObject = allContentIterator.next();
 				if (eObject instanceof View) {
 					View view = (View) eObject;
-					if (view.getType().equals("5173"))//InputPinInBroadcastSignalActionValueLabel
+					if (view.getType().equals("5173")) {
 						toDelete.add(view);
+					}
 				}
 			}
 
@@ -73,7 +74,7 @@ public class InteractionOverviewReconciler_1_2_0  extends DiagramReconciler {
 				View container = (View) v.eContainer();
 				container.getPersistedChildren().remove(v);
 			}
-			
+
 			return CommandResult.newOKCommandResult();
 		}
 

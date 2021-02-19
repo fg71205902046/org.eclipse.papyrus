@@ -329,7 +329,7 @@ public abstract class PapyrusLabelEditPart extends LabelEditPart implements Name
 
 	/**
 	 * Refresh the diagram when changing the label filters (Bug 488286 - [CSS][Diagram] Missing refresh in some cases when using label filters)
-	 * 
+	 *
 	 * @since 2.0
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart#handleNotificationEvent(org.eclipse.emf.common.notify.Notification)
 	 *

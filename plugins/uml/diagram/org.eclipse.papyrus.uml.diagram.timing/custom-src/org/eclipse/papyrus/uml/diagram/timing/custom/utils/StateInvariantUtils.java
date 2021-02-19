@@ -176,7 +176,7 @@ public final class StateInvariantUtils {
 	 * {@link StateDefinitionUtils})
 	 * </ul>
 	 *
-	 * */
+	 */
 	public static String getInnerStateInvariantName(final StateInvariant stateInvariant) {
 		final Constraint constraint = stateInvariant.getInvariant();
 		if (constraint == null) {
@@ -219,7 +219,7 @@ public final class StateInvariantUtils {
 
 	/** Find and return all the StateInvariants defined in the given Interaction that have the given id. */
 	public static List<StateInvariant> findStateInvariantsWithId(final String id, final Interaction interaction) {
-		final List<StateInvariant> stateInvariants = new ArrayList<StateInvariant>();
+		final List<StateInvariant> stateInvariants = new ArrayList<>();
 		final EList<InteractionFragment> fragments = interaction.getFragments();
 		for (final InteractionFragment interactionFragment : fragments) {
 			if (interactionFragment instanceof StateInvariant) {
@@ -243,7 +243,7 @@ public final class StateInvariantUtils {
 	 *             if the StateInvariant should not be deleted
 	 */
 	public static Collection<EObject> getElementsToDelete(final StateInvariant stateInvariant) throws OperationForbiddenException {
-		final Set<EObject> elementsToDestroy = new HashSet<EObject>();
+		final Set<EObject> elementsToDestroy = new HashSet<>();
 		final Set<View> crossReferencingViews = CrossReferencerUtil.getCrossReferencingViews(stateInvariant, TimingDiagramEditPart.MODEL_ID);
 		for (final View view : crossReferencingViews) {
 			elementsToDestroy.addAll(getElementsToRemove(view, false));
@@ -262,7 +262,7 @@ public final class StateInvariantUtils {
 	 */
 	public static Collection<View> getViewsToHide(final View stateInvariantView) throws OperationForbiddenException {
 
-		final Set<View> viewsToHide = new HashSet<View>();
+		final Set<View> viewsToHide = new HashSet<>();
 		final Collection<EObject> elementsToRemove = getElementsToRemove(stateInvariantView, true);
 		for (final EObject eObject : elementsToRemove) {
 			if (eObject instanceof View) {
@@ -287,7 +287,7 @@ public final class StateInvariantUtils {
 	 *             if the StateInvariant should not be removed
 	 */
 	public static Collection<EObject> getElementsToRemove(final View view, final boolean hideOnly) throws OperationForbiddenException {
-		final Set<EObject> elementsToRemove = new HashSet<EObject>();
+		final Set<EObject> elementsToRemove = new HashSet<>();
 		final boolean fullStateInvariant = view.getType().equals(Constants.fullStateInvariantId);
 		final boolean compactStateInvariant = view.getType().equals(Constants.compactStateInvariantId);
 
@@ -325,14 +325,14 @@ public final class StateInvariantUtils {
 
 	public static Collection<? extends EObject> getRelatedElementsToRemove(final EObject stateInvariant, final boolean hideOnly, final View interactionView) {
 		Assert.isLegal(stateInvariant instanceof StateInvariant);
-		final Set<EObject> elementsToRemove = new HashSet<EObject>();
+		final Set<EObject> elementsToRemove = new HashSet<>();
 		elementsToRemove.addAll(TimeElementUtils.getTimeElementsToRemove(stateInvariant, hideOnly, interactionView));
 		elementsToRemove.addAll(GeneralOrderingUtils.getReferencingGeneralOrderingsToRemove(stateInvariant, hideOnly, interactionView));
 		return elementsToRemove;
 	}
 
 	private static Collection<EObject> getElementsToRemoveForFullStateInvariant(final View stateInvariantView, final EList<View> children, final boolean hideOnly, final View interactionView) {
-		final Set<EObject> elementsToRemove = new HashSet<EObject>();
+		final Set<EObject> elementsToRemove = new HashSet<>();
 		final int childrenSize = children.size();
 		final int index = children.indexOf(stateInvariantView);
 		if (index == 0) {
@@ -372,7 +372,7 @@ public final class StateInvariantUtils {
 	}
 
 	private static Collection<EObject> getElementsToRemoveForCompactStateInvariant(final View stateInvariantView, final EList<View> children, final boolean hideOnly, final View interactionView) {
-		final Set<EObject> elementsToRemove = new HashSet<EObject>();
+		final Set<EObject> elementsToRemove = new HashSet<>();
 		final int index = children.indexOf(stateInvariantView);
 		if (index == 0) {
 			// first StateInvariant: remove the OccurrenceSpecification AFTER it

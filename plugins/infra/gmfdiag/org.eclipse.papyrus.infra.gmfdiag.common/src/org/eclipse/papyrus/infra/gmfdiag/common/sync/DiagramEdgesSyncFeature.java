@@ -117,20 +117,20 @@ public abstract class DiagramEdgesSyncFeature<M extends EObject, N extends EObje
 
 	/**
 	 * Queries the source element of a semantic connection.
-	 * 
+	 *
 	 * @param connectionElement
 	 *            a semantic connection element
-	 * 
+	 *
 	 * @return its source element
 	 */
 	protected abstract EObject getSourceElement(EObject connectionElement);
 
 	/**
 	 * Queries the target element of a semantic connection.
-	 * 
+	 *
 	 * @param connectionElement
 	 *            a semantic connection element
-	 * 
+	 *
 	 * @return its target element
 	 */
 	protected abstract EObject getTargetElement(EObject connectionElement);
@@ -138,9 +138,9 @@ public abstract class DiagramEdgesSyncFeature<M extends EObject, N extends EObje
 	@Override
 	protected org.eclipse.gef.commands.Command getCreateCommand(IGraphicalEditPart parentPart, CreateRequest request) {
 		// Initialize the command
-		request.setType(RequestConstants.REQ_CONNECTION_START);
+		request.setType(org.eclipse.gef.RequestConstants.REQ_CONNECTION_START);
 		((CreateConnectionViewRequest) request).getSourceEditPart().getCommand(request);
-		request.setType(RequestConstants.REQ_CONNECTION_END);
+		request.setType(org.eclipse.gef.RequestConstants.REQ_CONNECTION_END);
 
 		// Get the command
 		return ((CreateConnectionViewRequest) request).getTargetEditPart().getCommand(request);

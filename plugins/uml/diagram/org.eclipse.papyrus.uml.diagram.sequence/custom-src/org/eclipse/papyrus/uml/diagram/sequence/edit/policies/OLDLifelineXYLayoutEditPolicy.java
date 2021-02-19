@@ -107,13 +107,13 @@ public class OLDLifelineXYLayoutEditPolicy {
 	 * they can be used, directly, within a SetBoundsCommand.
 	 *
 	 * @param lifelineEP
-	 *                                                 the lifeline ep
+	 *            the lifeline ep
 	 * @param oldBounds
-	 *                                                 The old bounds of the ES
+	 *            The old bounds of the ES
 	 * @param newBounds
-	 *                                                 The new initial bounds
+	 *            The new initial bounds
 	 * @param notToCheckExecutionSpecificationList
-	 *                                                 The ExecutionSpecification EditPart's List that won't be checked
+	 *            The ExecutionSpecification EditPart's List that won't be checked
 	 *
 	 * @return The new bounds of the executionSpecificationEP figure
 	 */
@@ -281,11 +281,11 @@ public class OLDLifelineXYLayoutEditPolicy {
 	 * Modifies Lifeline's height and keeps anchors' positions intact.
 	 *
 	 * @param compoundCmd
-	 *                        command to add to
+	 *            command to add to
 	 * @param lifelineEP
-	 *                        Lifeline's edit part
+	 *            Lifeline's edit part
 	 * @param newHeight
-	 *                        new height of the Lifeline
+	 *            new height of the Lifeline
 	 *
 	 * @return the compound command
 	 */
@@ -300,13 +300,13 @@ public class OLDLifelineXYLayoutEditPolicy {
 	 * Command for change ZOrder of ExecutionSpecification ordered from parent to children.
 	 *
 	 * @param lifelineEP
-	 *                                                 the lifeline ep
+	 *            the lifeline ep
 	 * @param executionSpecificationEP
-	 *                                                 the execution specification ep
+	 *            the execution specification ep
 	 * @param newBounds
-	 *                                                 the new bounds
+	 *            the new bounds
 	 * @param notToCheckExecutionSpecificationList
-	 *                                                 the not to check bes list
+	 *            the not to check bes list
 	 *
 	 * @return the command
 	 */
@@ -355,13 +355,13 @@ public class OLDLifelineXYLayoutEditPolicy {
 	 * they can be used, directly, within a SetBoundsCommand.
 	 *
 	 * @param lifelineDotLineFigure
-	 *                                                 TODO
+	 *            TODO
 	 * @param newBounds
-	 *                                                 The new initial bounds
+	 *            The new initial bounds
 	 * @param executionSpecifactionEditPart
-	 *                                                 TODO
+	 *            TODO
 	 * @param notToCheckExecutionSpecificationList
-	 *                                                 The ExecutionSpecification EditPart's List that won't be checked
+	 *            The ExecutionSpecification EditPart's List that won't be checked
 	 *
 	 * @return The new bounds of the executionSpecificationEP figure
 	 */
@@ -371,9 +371,9 @@ public class OLDLifelineXYLayoutEditPolicy {
 	 * @param lifelinePart
 	 *
 	 * @param childBounds
-	 *                                              the child bounds
+	 *            the child bounds
 	 * @param toCheckExecutionSpecificationList
-	 *                                              List of EditPart to check
+	 *            List of EditPart to check
 	 * @return The parent
 	 */
 	public static final ShapeNodeEditPart getParent(LifelineEditPart lifelinePart, Rectangle childBounds, List<ShapeNodeEditPart> toCheckExecutionSpecificationList) {
@@ -399,9 +399,9 @@ public class OLDLifelineXYLayoutEditPolicy {
 	 * allowed values of the figure.
 	 *
 	 * @param figure
-	 *                      the figure
+	 *            the figure
 	 * @param sizeDelta
-	 *                      the size delta
+	 *            the size delta
 	 *
 	 * @return a corrected sizeDelta
 	 */
@@ -426,7 +426,7 @@ public class OLDLifelineXYLayoutEditPolicy {
 	 * is done recursively)
 	 *
 	 * @param executionSpecificationEP
-	 *                                     the execution specification ep
+	 *            the execution specification ep
 	 *
 	 * @return the list of affixed ExecutionSpecification. If there is no affixed
 	 *         ExecutionSpecification, then an empty list will be returned
@@ -442,9 +442,9 @@ public class OLDLifelineXYLayoutEditPolicy {
 	 * EditPart and the notToCheckList.
 	 *
 	 * @param executionSpecificationEP
-	 *                                                 the execution specification ep
+	 *            the execution specification ep
 	 * @param notToCheckExecutionSpecificationList
-	 *                                                 the not to check ExecutionSpecification list
+	 *            the not to check ExecutionSpecification list
 	 *
 	 * @return the list of affixed ExecutionSpecification. If there is no affixed
 	 *         ExecutionSpecification, then an empty list will be returned
@@ -478,9 +478,9 @@ public class OLDLifelineXYLayoutEditPolicy {
 	 * if figures touch each other.
 	 *
 	 * @param leftFigure
-	 *                        The left rectangle
+	 *            The left rectangle
 	 * @param rightFigure
-	 *                        The right rectangle
+	 *            The right rectangle
 	 *
 	 * @return true if the rectangles of both figures touch and the right figure is really on the
 	 *         right. False otherwise
@@ -496,11 +496,11 @@ public class OLDLifelineXYLayoutEditPolicy {
 	 * according to that delta.
 	 *
 	 * @param executionSpecificationEP
-	 *                                     The ExecutionSpecification EditPart that is going to be moved
+	 *            The ExecutionSpecification EditPart that is going to be moved
 	 * @param moveDelta
-	 *                                     The moveDelta of the previous EditPart
+	 *            The moveDelta of the previous EditPart
 	 * @param newBounds
-	 *                                     the new bounds
+	 *            the new bounds
 	 *
 	 * @return the compound command
 	 */
@@ -542,9 +542,9 @@ public class OLDLifelineXYLayoutEditPolicy {
 	 * returns the real delta applied to the movement.
 	 *
 	 * @param oldRelativeBounds
-	 *                              The old position of the mentioned EditPart
+	 *            The old position of the mentioned EditPart
 	 * @param newRelativeBounds
-	 *                              The new position of the mentioned EditPart
+	 *            The new position of the mentioned EditPart
 	 *
 	 * @return The real MoveDelta applied
 	 */
@@ -561,7 +561,7 @@ public class OLDLifelineXYLayoutEditPolicy {
 	 * It returns the relative bounds of an Figure.
 	 *
 	 * @param figure
-	 *                   The Figure
+	 *            The Figure
 	 *
 	 * @return The relative bounds regarding it's parent figure
 	 */

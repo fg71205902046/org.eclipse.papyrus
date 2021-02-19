@@ -51,6 +51,7 @@ public class AffixedNodeAlignmentEditPolicy extends ConstrainedItemBorderLayoutE
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected Point getLayoutOrigin() {
 		// Could be move into ConstrainedItemBorderLayoutEditPolicy but requires important revalidation for all border items
 		// For Border items, return the top left point of the whole figure and not the top left point of the figure's client area

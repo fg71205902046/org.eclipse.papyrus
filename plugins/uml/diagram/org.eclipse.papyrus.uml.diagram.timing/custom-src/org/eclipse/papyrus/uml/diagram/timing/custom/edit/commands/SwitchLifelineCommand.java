@@ -128,7 +128,7 @@ public class SwitchLifelineCommand extends GraphicalCommandHandler {
 
 	/** Compute the map of OccurrenceSpecifications to corresponding tick Views. */
 	private static Map<OccurrenceSpecification, List<Node>> computeAllTicksAssociations(final View lifelineView) {
-		final Map<OccurrenceSpecification, List<Node>> map = new HashMap<OccurrenceSpecification, List<Node>>();
+		final Map<OccurrenceSpecification, List<Node>> map = new HashMap<>();
 		final View timelineCompartmentView = ViewUtils.findChildTimelineCompartmentView(lifelineView);
 		@SuppressWarnings("unchecked")
 		final EList<View> children = timelineCompartmentView.getChildren();
@@ -149,7 +149,7 @@ public class SwitchLifelineCommand extends GraphicalCommandHandler {
 	private static Map<OccurrenceSpecification, String> computeLifelineTicksAssociations(final View lifelineView) {
 		// there should be a single tick corresponding to an OccurrenceSpecification in this lifeline time ruler
 		// hence this map from OccurrenceSpecification to a tick name
-		final Map<OccurrenceSpecification, String> map = new HashMap<OccurrenceSpecification, String>();
+		final Map<OccurrenceSpecification, String> map = new HashMap<>();
 		final View timeRulerCompartment = ViewUtils.findFirstChildViewWithId(lifelineView, FreeTimeRulerCompartmentEditPart.VISUAL_ID);
 		@SuppressWarnings("unchecked")
 		final EList<View> children = timeRulerCompartment.getChildren();
@@ -322,7 +322,7 @@ public class SwitchLifelineCommand extends GraphicalCommandHandler {
 				final EReference[] references = new EReference[] { UMLPackage.eINSTANCE.getMessage_ReceiveEvent(), UMLPackage.eINSTANCE.getMessage_SendEvent() };
 				final Class<?>[] expectedClasses = new Class<?>[] { Message.class };
 				final EList<InteractionFragment> coveredBys = lifeline.getCoveredBys();
-				final Set<EObject> referencingElements = new HashSet<EObject>();
+				final Set<EObject> referencingElements = new HashSet<>();
 				for (final InteractionFragment interactionFragment : coveredBys) {
 					referencingElements.addAll(Utils.findReferencingElements(interactionFragment, references, expectedClasses));
 				}
@@ -353,7 +353,7 @@ public class SwitchLifelineCommand extends GraphicalCommandHandler {
 
 				final Lifeline lifeline = (Lifeline) lifelineView.getElement();
 				final EList<InteractionFragment> coveredBys = lifeline.getCoveredBys();
-				final Set<EObject> referencingElements = new HashSet<EObject>();
+				final Set<EObject> referencingElements = new HashSet<>();
 				for (final InteractionFragment interactionFragment : coveredBys) {
 					referencingElements.addAll(Utils.findReferencingElements(interactionFragment, references, expectedClasses));
 				}

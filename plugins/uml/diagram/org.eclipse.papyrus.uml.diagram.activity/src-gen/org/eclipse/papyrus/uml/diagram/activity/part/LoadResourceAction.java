@@ -25,6 +25,7 @@ public class LoadResourceAction extends DefaultLoadResourceAction {
 	/**
 	 * @generated
 	 */
+	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		return super.execute(event);
 	}

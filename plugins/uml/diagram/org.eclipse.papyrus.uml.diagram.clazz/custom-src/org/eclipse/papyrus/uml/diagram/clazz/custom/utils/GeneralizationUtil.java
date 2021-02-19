@@ -36,7 +36,7 @@ public class GeneralizationUtil {
 	 * @param el
 	 *            a {@link Classifier} or a {@link Property}
 	 * @return
-	 * 		<code>true</code> if the classifier has this generalization in its inheritance links (directly or indirectly) <code>false</code> if not
+	 *         <code>true</code> if the classifier has this generalization in its inheritance links (directly or indirectly) <code>false</code> if not
 	 */
 	public boolean isConcernedByGeneralizationChanges(Generalization generalization, View view) {
 		boolean isConcerned = false;
@@ -70,7 +70,7 @@ public class GeneralizationUtil {
 	 * @param el
 	 *
 	 * @return
-	 * 		<code>true</code> if another way exists to inherit of this element <code>false</code> if not
+	 *         <code>true</code> if another way exists to inherit of this element <code>false</code> if not
 	 */
 	protected boolean existsAnotherInheritanceWay(Element inheritedElement, Generalization forbiddenPath, NamedElement el, Set<Element> ignoredGeneralizations) {
 		Set<Generalization> generalizations = new HashSet<>();
@@ -114,7 +114,7 @@ public class GeneralizationUtil {
 	 * @param view
 	 *            a view
 	 * @return
-	 * 		the Element owning this view
+	 *         the Element owning this view
 	 *         or <code>null</code> if not found
 	 */
 	protected NamedElement getGraphicalOwner(View view) {
@@ -134,7 +134,7 @@ public class GeneralizationUtil {
 	 * @param classifier
 	 *            a classifier
 	 * @return
-	 * 		all the generalization (direct and indirect) owning by the classifier
+	 *         all the generalization (direct and indirect) owning by the classifier
 	 */
 	protected Set<Generalization> getAllGeneralization(Classifier classifier, Set<Classifier> alreadyParsedClassifiers) {
 		Set<Generalization> generalizations = new HashSet<>();

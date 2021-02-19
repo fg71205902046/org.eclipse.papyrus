@@ -64,8 +64,8 @@ public class CustomGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	 *
 	 * This method is used too to call the custom command for InformationFlow creation.
 	 *
-	 * @param request the request
-	 * @return the connection and relationship complete command
+	 * &#64;param request the request
+	 * &#64;return the connection and relationship complete command
 	 * {@inheritDoc}
 	 * </pre>
 	 */
@@ -88,11 +88,11 @@ public class CustomGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		}
 		// resolve the source parent (meaning graphical parent here)
 		Object sourceParentViewObject = request.getSourceEditPart().getParent().getModel();
-		if(!(sourceParentViewObject instanceof View)) {
+		if (!(sourceParentViewObject instanceof View)) {
 			// parent view is not a view (in case of a cretion of a Dependency on a Dependency link for example)
 			return super.getConnectionAndRelationshipCompleteCommand(request);
 		}
-		View sourceParentView = (View)sourceParentViewObject;
+		View sourceParentView = (View) sourceParentViewObject;
 		EObject sourceParent = ViewUtil.resolveSemanticElement(sourceParentView);
 		if (sourceParent == null) {
 			sourceParent = sourceParentView;
@@ -107,11 +107,11 @@ public class CustomGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		}
 		// resolve the target parent (meaning graphical parent here)
 		Object targetParentViewObject = request.getSourceEditPart().getParent().getModel();
-		if(!(targetParentViewObject instanceof View)) {
+		if (!(targetParentViewObject instanceof View)) {
 			// parent view is not a view (in case of a cretion of a Dependency on a Dependency link for example)
 			return super.getConnectionAndRelationshipCompleteCommand(request);
 		}
-		View targetParentView = (View)targetParentViewObject;
+		View targetParentView = (View) targetParentViewObject;
 		EObject targetParent = ViewUtil.resolveSemanticElement(targetParentView);
 		if (targetParent == null) {
 			targetParent = targetParentView;

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST, ALL4TEC and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -24,7 +24,7 @@ public class ArchitectureForPaletteServiceListener implements IArchitectureDescr
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.architecture.listeners.IArchitectureDescriptionListener#architectureContextChanged(org.eclipse.emf.common.notify.Notification)
 	 */
 	@Override
@@ -34,7 +34,7 @@ public class ArchitectureForPaletteServiceListener implements IArchitectureDescr
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.architecture.listeners.IArchitectureDescriptionListener#architectureViewpointsChanged(org.eclipse.emf.common.notify.Notification)
 	 */
 	@Override

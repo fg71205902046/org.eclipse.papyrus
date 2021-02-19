@@ -64,7 +64,7 @@ public class MaskManagedNodeEditPolicy extends AbstractMaskManagedEditPolicy {
 		if (getUMLElement() instanceof Port) {
 			return PortLabelHelper.getInstance().getMasks();
 		}
-		
+
 		return PropertyLabelHelper.getInstance().getMasks();
 	}
 

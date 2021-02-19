@@ -36,6 +36,7 @@ public class MessageParser implements IParser {
 	 *
 	 * @see org.eclipse.gmf.runtime.common.ui.services.parser.IParser#getEditString(org.eclipse.core.runtime.IAdaptable, int)
 	 */
+	@Override
 	public String getEditString(IAdaptable element, int flags) {
 		return null;
 	}
@@ -45,6 +46,7 @@ public class MessageParser implements IParser {
 	 *
 	 * @see org.eclipse.gmf.runtime.common.ui.services.parser.IParser#isValidEditString(org.eclipse.core.runtime.IAdaptable, java.lang.String)
 	 */
+	@Override
 	public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
 		return null;
 	}
@@ -54,6 +56,7 @@ public class MessageParser implements IParser {
 	 *
 	 * @see org.eclipse.gmf.runtime.common.ui.services.parser.IParser#getParseCommand(org.eclipse.core.runtime.IAdaptable, java.lang.String, int)
 	 */
+	@Override
 	public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
 		return null;
 	}
@@ -63,6 +66,7 @@ public class MessageParser implements IParser {
 	 *
 	 * @see org.eclipse.gmf.runtime.common.ui.services.parser.IParser#getPrintString(org.eclipse.core.runtime.IAdaptable, int)
 	 */
+	@Override
 	public String getPrintString(IAdaptable element, int flags) {
 		if (element instanceof EObjectAdapter) {
 			String result = ""; //$NON-NLS-1$
@@ -96,6 +100,7 @@ public class MessageParser implements IParser {
 	 *
 	 * @see org.eclipse.gmf.runtime.common.ui.services.parser.IParser#isAffectingEvent(java.lang.Object, int)
 	 */
+	@Override
 	public boolean isAffectingEvent(Object event, int flags) {
 		return false;
 	}
@@ -105,6 +110,7 @@ public class MessageParser implements IParser {
 	 *
 	 * @see org.eclipse.gmf.runtime.common.ui.services.parser.IParser#getCompletionProcessor(org.eclipse.core.runtime.IAdaptable)
 	 */
+	@Override
 	public IContentAssistProcessor getCompletionProcessor(IAdaptable element) {
 		return null;
 	}

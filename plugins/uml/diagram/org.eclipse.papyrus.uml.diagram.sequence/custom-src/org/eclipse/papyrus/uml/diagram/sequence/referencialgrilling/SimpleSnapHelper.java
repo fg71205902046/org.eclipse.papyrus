@@ -26,38 +26,38 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramRootEditPart;
 public class SimpleSnapHelper {
 
 	/**
-	 * @param update the point by taking account the spacing form the diagram
+	 * @param update
+	 *            the point by taking account the spacing form the diagram
 	 */
 	/**
-	 * @param update the point by taking account the spacing form the diagram
+	 * @param update
+	 *            the point by taking account the spacing form the diagram
 	 */
-	public static  void snapAPoint(PrecisionRectangle ptOnScreen, RootEditPart drep) {
-		if( drep instanceof DiagramRootEditPart){
-		double spacing = ((DiagramRootEditPart)drep).getGridSpacing();
-		int  modulo= (int)((ptOnScreen.y) / spacing);
-		double  rest=(ptOnScreen.y) % spacing;
-		if( rest>(spacing/2)){
-			modulo=modulo+1;
-		}
-		if (modulo==0){
-			ptOnScreen.setPreciseY(0);
-		}
-		else{
-			ptOnScreen.setPreciseY((spacing*modulo));
-		}
+	public static void snapAPoint(PrecisionRectangle ptOnScreen, RootEditPart drep) {
+		if (drep instanceof DiagramRootEditPart) {
+			double spacing = ((DiagramRootEditPart) drep).getGridSpacing();
+			int modulo = (int) ((ptOnScreen.y) / spacing);
+			double rest = (ptOnScreen.y) % spacing;
+			if (rest > (spacing / 2)) {
+				modulo = modulo + 1;
+			}
+			if (modulo == 0) {
+				ptOnScreen.setPreciseY(0);
+			} else {
+				ptOnScreen.setPreciseY((spacing * modulo));
+			}
 
 
-		modulo= (int)((ptOnScreen.x) / spacing);
-		rest=(ptOnScreen.x) % spacing;
-		if( rest>(spacing/2)){
-			modulo=modulo+1;
-		}
-		if (modulo==0){
-			ptOnScreen.setPreciseX(0);
-		}
-		else{
-			ptOnScreen.setPreciseX((spacing*modulo));
-		}
+			modulo = (int) ((ptOnScreen.x) / spacing);
+			rest = (ptOnScreen.x) % spacing;
+			if (rest > (spacing / 2)) {
+				modulo = modulo + 1;
+			}
+			if (modulo == 0) {
+				ptOnScreen.setPreciseX(0);
+			} else {
+				ptOnScreen.setPreciseX((spacing * modulo));
+			}
 		}
 	}
 }

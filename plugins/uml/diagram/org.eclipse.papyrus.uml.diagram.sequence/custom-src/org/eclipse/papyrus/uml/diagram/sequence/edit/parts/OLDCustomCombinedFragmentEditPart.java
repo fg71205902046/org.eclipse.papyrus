@@ -211,9 +211,9 @@ public class OLDCustomCombinedFragmentEditPart {
 		 * constructor
 		 *
 		 * @param element
-		 *                    element to be wrapped
+		 *            element to be wrapped
 		 * @param view
-		 *                    view to be wrapped
+		 *            view to be wrapped
 		 */
 		public EObjectAdapterEx(EObject element, View view) {
 			super(element);

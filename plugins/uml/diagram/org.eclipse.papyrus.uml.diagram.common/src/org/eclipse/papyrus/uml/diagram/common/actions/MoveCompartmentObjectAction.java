@@ -85,7 +85,7 @@ public class MoveCompartmentObjectAction extends DiagramAction {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * org.eclipse.gmf.runtime.diagram.ui.actions.DiagramAction#createTargetRequest
 	 * ()
@@ -97,7 +97,7 @@ public class MoveCompartmentObjectAction extends DiagramAction {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * org.eclipse.gmf.runtime.diagram.ui.actions.DiagramAction#isSelectionListener
 	 * ()
@@ -193,8 +193,8 @@ public class MoveCompartmentObjectAction extends DiagramAction {
 	}
 
 	/**
- *
- */
+	*
+	*/
 	@Override
 	public void refresh() {
 		super.refresh();
@@ -250,7 +250,7 @@ public class MoveCompartmentObjectAction extends DiagramAction {
 			return MOVE_DOWN_STR;
 		case MOVE_BOTTOM:
 			return MOVE_BOTTOM_STR;
-			// We should never get here. Constructor should take care of that
+		// We should never get here. Constructor should take care of that
 		default:
 			return getDefaultActionStr();
 		}

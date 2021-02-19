@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - manage namedStyle isPortResizable
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
@@ -39,7 +39,7 @@ import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedBorderNamedElemen
  * BorderItemResizableEditPolicy is a policy which takes over the resize command of an item on the
  * border of another item.
  * This class serves to override the resize command (which is null) of a port item.
- * 
+ *
  * @author Trung-Truc Nguyen
  *
  */
@@ -47,7 +47,7 @@ public class PortResizableEditPolicy extends BorderItemResizableEditPolicy {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gef.editpolicies.ResizableEditPolicy#getResizeCommand(org.eclipse.gef.requests.ChangeBoundsRequest)
 	 */
 	@Override
@@ -107,7 +107,7 @@ public class PortResizableEditPolicy extends BorderItemResizableEditPolicy {
 	/**
 	 * This method makes sure that the minimum dimension of the port figure is 20x20
 	 * and setting the port figure size due to the request.
-	 * 
+	 *
 	 * @param request
 	 *            change size bound request
 	 * @return
@@ -130,8 +130,9 @@ public class PortResizableEditPolicy extends BorderItemResizableEditPolicy {
 			return null;
 		}
 
-		if (request.getEditParts() == null)
+		if (request.getEditParts() == null) {
 			return null;
+		}
 
 		for (Object object : request.getEditParts()) {
 			if (object instanceof RoundedBorderNamedElementEditPart) {
@@ -148,8 +149,9 @@ public class PortResizableEditPolicy extends BorderItemResizableEditPolicy {
 				if (w < 20) {
 					sizeDelta.setWidth(wdelta);
 				}
-				if (h < 20)
+				if (h < 20) {
 					sizeDelta.setHeight(hdelta);
+				}
 				req.setSizeDelta(sizeDelta);
 			}
 		}

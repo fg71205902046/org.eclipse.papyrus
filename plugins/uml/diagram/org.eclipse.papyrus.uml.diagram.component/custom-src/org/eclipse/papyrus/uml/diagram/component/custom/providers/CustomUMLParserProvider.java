@@ -34,7 +34,7 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 	protected IParser getAppliedStereotypeParser(String defaultEditString) {
 		return new AppliedStereotypeParser(defaultEditString);
 	}
-	
+
 	protected IParser getAppliedKeywordParser(String defaultPrintString) {
 		return new AppliedKeywordParser(defaultPrintString);
 	}

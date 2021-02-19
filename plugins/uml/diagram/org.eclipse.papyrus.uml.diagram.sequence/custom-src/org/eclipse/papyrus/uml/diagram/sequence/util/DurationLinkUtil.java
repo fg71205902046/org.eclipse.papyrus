@@ -115,7 +115,7 @@ public class DurationLinkUtil extends OccurrenceSpecificationUtil {
 	 *            A {@link SetRequest} modifying a duration link source/target (for {@link DurationConstraint#getConstrainedElements()}
 	 *            or {@link DurationObservation#getEvents()},
 	 * @return
-	 * 		<code>true</code> if the Connector is consistent with the new proposed value, <code>false</code> if the connector
+	 *         <code>true</code> if the Connector is consistent with the new proposed value, <code>false</code> if the connector
 	 *         is no longer consistent. If the result is <code>false</code>, actions should be taken to preserve the diagram
 	 *         consistency.
 	 */
@@ -150,15 +150,15 @@ public class DurationLinkUtil extends OccurrenceSpecificationUtil {
 		}
 
 		Object sourceEvent = values.get(0);
-		if (sourceEvent != DurationLinkUtil.findSemanticOccurrence(sourceView, sourceAnchor)) {
+		if (sourceEvent != OccurrenceSpecificationUtil.findSemanticOccurrence(sourceView, sourceAnchor)) {
 			return false;
 		}
 
 		if (values.size() > 1) { // source != target
 			Object targetEvent = values.get(1);
-			return targetEvent == DurationLinkUtil.findSemanticOccurrence(targetView, targetAnchor);
+			return targetEvent == OccurrenceSpecificationUtil.findSemanticOccurrence(targetView, targetAnchor);
 		} else { // source == target
-			return sourceEvent == DurationLinkUtil.findSemanticOccurrence(targetView, targetAnchor);
+			return sourceEvent == OccurrenceSpecificationUtil.findSemanticOccurrence(targetView, targetAnchor);
 		}
 	}
 

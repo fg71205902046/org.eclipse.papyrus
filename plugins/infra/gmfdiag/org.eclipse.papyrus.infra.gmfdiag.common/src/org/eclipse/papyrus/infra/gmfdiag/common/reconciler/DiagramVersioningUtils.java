@@ -163,7 +163,7 @@ public class DiagramVersioningUtils {
 	 * Compare to version number.
 	 * The test is done only on the first 2 segments of a version.
 	 * The two String should have the same number of segments (i.e: 0.9.2 and 1.1.0).
-	 * 
+	 *
 	 * @param referenceVersion
 	 *            Version that is the reference for the test
 	 * @param testedVersion

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.advices;
@@ -40,15 +40,16 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Automated pin derivation for AcceptEventAction and AcceptCallAction
- * 
+ *
  * Call pin derivation command on modification of an operation
+ *
  * @since 3.0
  */
 public class OperationEditHelperAdvice extends AbstractEditHelperAdvice {
 
 	/**
 	 * This method call command to synchronize pin
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice#getAfterEditCommand(org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest)
 	 *
 	 * @param request
@@ -72,17 +73,17 @@ public class OperationEditHelperAdvice extends AbstractEditHelperAdvice {
 					ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(operation);
 					Collection<Setting> allReferences = adapter.getNonNavigableInverseReferences(operation);
 					for (Setting reference : allReferences) {
-						if(reference.getEObject() instanceof CallEvent) {
+						if (reference.getEObject() instanceof CallEvent) {
 							ECrossReferenceAdapter adapterCallEvent = ECrossReferenceAdapter.getCrossReferenceAdapter(reference.getEObject());
 							Collection<Setting> allReferencesCallEvent = adapterCallEvent.getNonNavigableInverseReferences(reference.getEObject());
-							for(Setting referenceCallEvent : allReferencesCallEvent) {
-								if(referenceCallEvent.getEObject() instanceof Trigger) {
-									if(((Trigger)referenceCallEvent.getEObject()).getOwner() instanceof AcceptCallAction) {
+							for (Setting referenceCallEvent : allReferencesCallEvent) {
+								if (referenceCallEvent.getEObject() instanceof Trigger) {
+									if (((Trigger) referenceCallEvent.getEObject()).getOwner() instanceof AcceptCallAction) {
 										// 4] call the command for the acceptCallAction whose trigger reference a callEvent which reference the operation
-										AcceptCallAction acceptCallAction = (AcceptCallAction) ((Trigger)referenceCallEvent.getEObject()).getOwner();
+										AcceptCallAction acceptCallAction = (AcceptCallAction) ((Trigger) referenceCallEvent.getEObject()).getOwner();
 										IPinUpdater<AcceptCallAction> updater = PinUpdaterFactory.getInstance().instantiate(acceptCallAction);
-										return new PinUpdateCommand<AcceptCallAction>("Update accept event action pins", updater, acceptCallAction); //$NON-NLS-1$
-									
+										return new PinUpdateCommand<>("Update accept event action pins", updater, acceptCallAction); //$NON-NLS-1$
+
 									}
 								}
 							}

@@ -12,7 +12,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Laurent Wouters (CEA LIST) laurent.wouters@cea.fr - Refactoring, cleanup, added support for PapyrusLabel element
  *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Add IRoundedRectangleFigure use case(436547)
- *  Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr - NPE if SVG unit is not in pixels (521232)  
+ *  Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr - NPE if SVG unit is not in pixels (521232)
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.figure.node;
@@ -199,8 +199,7 @@ public class SVGNodePlateFigure extends DefaultSizeNodeFigure {
 		}
 		try {
 			return base.getValue();
-		}
-		catch (NullPointerException e) {
+		} catch (NullPointerException e) {
 			// NPE during getValue (bug 521232) => retry using getValueInSpecifiedUnits)
 			return base.getValueInSpecifiedUnits();
 		}
@@ -232,7 +231,7 @@ public class SVGNodePlateFigure extends DefaultSizeNodeFigure {
 	 * @return The list of the corresponding Draw2D points
 	 */
 	private List<PrecisionPoint> toDraw2DPoints(SVGPathSegList segments) {
-		ArrayList<PrecisionPoint> pointList = new ArrayList<PrecisionPoint>();
+		ArrayList<PrecisionPoint> pointList = new ArrayList<>();
 
 		// current coordinates
 		double currentX = 0;
@@ -408,7 +407,7 @@ public class SVGNodePlateFigure extends DefaultSizeNodeFigure {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure#createAnchor(org.eclipse.draw2d.geometry.PrecisionPoint)
 	 */
 	@Override
@@ -438,7 +437,7 @@ public class SVGNodePlateFigure extends DefaultSizeNodeFigure {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure#createDefaultAnchor()
 	 */
 	@Override

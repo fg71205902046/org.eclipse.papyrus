@@ -89,7 +89,7 @@ public class FixEdgeAnchorAfterCreationCommand extends AbstractTransactionalComm
 		final ConnectionViewDescriptor connectionViewDescriptor = this.request.getConnectionViewDescriptor();
 		final Edge createdEdge = (Edge) connectionViewDescriptor.getAdapter(View.class);
 		final IAdaptable adaptable = connectionViewDescriptor.getElementAdapter();
-		final CreateRelationshipRequest createRelationShipRequest = (CreateRelationshipRequest) adaptable.getAdapter(CreateRelationshipRequest.class);
+		final CreateRelationshipRequest createRelationShipRequest = adaptable.getAdapter(CreateRelationshipRequest.class);
 		final Map<?, ?> requestParameters = createRelationShipRequest.getParameters();
 		final IFigure sourceFigure = (IFigure) requestParameters.get(RequestParameterConstants.EDGE_SOURCE_FIGURE);
 		final IFigure targetFigure = (IFigure) requestParameters.get(RequestParameterConstants.EDGE_TARGET_FIGURE);

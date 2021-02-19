@@ -23,6 +23,7 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 
 /**
  * This class is used to constrain the position of Entry/Exit points when they are added on a StateMachine
+ *
  * @since 3.1
  *
  */
@@ -52,13 +53,13 @@ public class CustomEntryExitPointPositionLocator implements IBorderItemLocator {
 	 *         the position of the port around its parent. This position can be
 	 *         <ul>
 	 *         <li>{@linkplain PositionConstants#NORTH}</li>
-	 *         <li> {@linkplain PositionConstants#SOUTH}</li>
-	 *         <li> {@linkplain PositionConstants#EAST}</li>
-	 *         <li> {@linkplain PositionConstants#WEST}</li>
-	 *         <li> {@linkplain PositionConstants#NORTH_EAST}</li>
-	 *         <li> {@linkplain PositionConstants#NORTH_WEST}</li>
-	 *         <li> {@linkplain PositionConstants#SOUTH_EAST}</li>
-	 *         <li> {@linkplain PositionConstants#SOUTH_WEST}</li>
+	 *         <li>{@linkplain PositionConstants#SOUTH}</li>
+	 *         <li>{@linkplain PositionConstants#EAST}</li>
+	 *         <li>{@linkplain PositionConstants#WEST}</li>
+	 *         <li>{@linkplain PositionConstants#NORTH_EAST}</li>
+	 *         <li>{@linkplain PositionConstants#NORTH_WEST}</li>
+	 *         <li>{@linkplain PositionConstants#SOUTH_EAST}</li>
+	 *         <li>{@linkplain PositionConstants#SOUTH_WEST}</li>
 	 *         </ul>
 	 */
 	@Override

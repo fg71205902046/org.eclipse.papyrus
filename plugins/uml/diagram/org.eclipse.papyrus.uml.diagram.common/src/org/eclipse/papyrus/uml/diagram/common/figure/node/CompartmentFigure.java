@@ -59,7 +59,7 @@ public class CompartmentFigure extends NodeNamedElementFigure {
 	 * @param compartmentFigure
 	 */
 	protected void createContentPane(List<String> compartmentFigure) {
-		containerFigures = new HashMap<String, RectangleFigure>();
+		containerFigures = new HashMap<>();
 
 		for (String id : compartmentFigure) {
 			RectangleFigure newFigure = new RectangleFigure();

@@ -31,9 +31,10 @@ public class Util {
 	 *
 	 * @param ep
 	 *            the editpart to test
-	 * @return <ul>
-	 *         <li> <code>true</code> if the editpart is an Affixed Child Node</li>
-	 *         <li> <code>false</code>if not</li>
+	 * @return
+	 *         <ul>
+	 *         <li><code>true</code> if the editpart is an Affixed Child Node</li>
+	 *         <li><code>false</code>if not</li>
 	 *         </ul>
 	 */
 	public static boolean isAffixedChildNode(EditPart ep) {

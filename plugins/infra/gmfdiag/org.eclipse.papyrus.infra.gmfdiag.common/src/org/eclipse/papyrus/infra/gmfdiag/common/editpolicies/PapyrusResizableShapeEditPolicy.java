@@ -46,7 +46,7 @@ public class PapyrusResizableShapeEditPolicy extends ResizableShapeEditPolicy {
 	/**
 	 * Tries to find the cached instance of {@link CachedEditPartsSet} in the request extended data map.
 	 * If not found, initializes the new instance and caches it in request for other edit-policy instances.
-	 * 
+	 *
 	 * @param req
 	 * @return never returns <code>null</code>
 	 */
@@ -66,7 +66,7 @@ public class PapyrusResizableShapeEditPolicy extends ResizableShapeEditPolicy {
 	 * Multi-selection request identified by the presence of {@link PapyrusResizableShapeEditPolicy#PARAM_CACHED_EDIT_PARTS_SET} key
 	 * for request extended data
 	 * see {@link org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.XYLayoutWithConstrainedResizedEditPolicy#getConnectionsToElementsNotBeingMoved}
-	 * 
+	 *
 	 * @param request
 	 *            the change bounds request
 	 * @return the command contribution to the request
@@ -79,7 +79,7 @@ public class PapyrusResizableShapeEditPolicy extends ResizableShapeEditPolicy {
 		req.setMoveDelta(request.getMoveDelta());
 		req.setSizeDelta(request.getSizeDelta());
 		req.setLocation(request.getLocation());
-		Map<Object, Object> extendedData = new HashMap<Object, Object>();
+		Map<Object, Object> extendedData = new HashMap<>();
 		extendedData.putAll(request.getExtendedData());
 		CachedEditPartsSet set = new CachedEditPartsSet(request.getEditParts());
 		extendedData.put(PARAM_CACHED_EDIT_PARTS_SET, set);
@@ -148,17 +148,17 @@ public class PapyrusResizableShapeEditPolicy extends ResizableShapeEditPolicy {
 		private final Set<EditPart> myKnownIndirectlyNo;
 
 		public CachedEditPartsSet(List<EditPart> directlyMoved) {
-			myDirectlyMoved = new HashSet<EditPart>(directlyMoved);
-			myKnownIndirectlyNo = new HashSet<EditPart>(directlyMoved.size() * 5 + 1);
-			myKnownIndirectlyYes = new HashSet<EditPart>(directlyMoved.size() * 5 + 1);
+			myDirectlyMoved = new HashSet<>(directlyMoved);
+			myKnownIndirectlyNo = new HashSet<>(directlyMoved.size() * 5 + 1);
+			myKnownIndirectlyYes = new HashSet<>(directlyMoved.size() * 5 + 1);
 		}
-		
+
 		public boolean isMovedEditPart(EditPart ep) {
 			return isMoved(ep) != MovedNodeKind.NO;
 		}
 
 		public MovedNodeKind isMoved(EditPart ep) {
-			List<EditPart> chainUp = new LinkedList<EditPart>();
+			List<EditPart> chainUp = new LinkedList<>();
 			EditPart cur = ep;
 			MovedNodeKind kind = null;
 			while (cur != null) {

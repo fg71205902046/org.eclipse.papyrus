@@ -87,7 +87,7 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 		 * @generated
 		 */
 		OpenDiagramCommand(HintedDiagramLinkStyle linkStyle) {
-			// editing domain is taken for original diagram, 
+			// editing domain is taken for original diagram,
 			// if we open diagram from another file, we should use another editing domain
 			super(TransactionUtil.getEditingDomain(linkStyle), Messages.CommandName_OpenDiagram, null);
 			diagramFacet = linkStyle;
@@ -141,6 +141,7 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 			}
 			try {
 				new WorkspaceModifyOperation() {
+					@Override
 					protected void execute(IProgressMonitor monitor) throws CoreException, InvocationTargetException, InterruptedException {
 						try {
 							for (Iterator<?> it = diagramFacet.eResource().getResourceSet().getResources().iterator(); it.hasNext();) {

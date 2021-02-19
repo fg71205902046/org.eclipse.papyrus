@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.advices;
@@ -38,9 +38,9 @@ import org.eclipse.uml2.uml.StartObjectBehaviorAction;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * 
+ *
  * Pins of StartObjectBehaviorAction should be create and update automatically
- * 
+ *
  * @since 3.0
  *
  */
@@ -76,7 +76,7 @@ public class BehaviorEditHelperAdvice extends AbstractEditHelperAdvice {
 								StartObjectBehaviorAction startObjectBehaviorAction = (StartObjectBehaviorAction) ((InputPin) reference.getEObject()).getOwner();
 								// 5] call the command for the StartObjectBehaviorAction which has as behavior the current one
 								IPinUpdater<StartObjectBehaviorAction> updater = PinUpdaterFactory.getInstance().instantiate(startObjectBehaviorAction);
-								command.add(new PinUpdateCommand<StartObjectBehaviorAction>("Update start object behavior action pins", updater, startObjectBehaviorAction)); //$NON-NLS-1$
+								command.add(new PinUpdateCommand<>("Update start object behavior action pins", updater, startObjectBehaviorAction)); //$NON-NLS-1$
 							}
 						}
 					}

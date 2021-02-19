@@ -34,7 +34,7 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 		default:
 			return super.getParser(visualID);
 		}
-		
+
 
 	}
 

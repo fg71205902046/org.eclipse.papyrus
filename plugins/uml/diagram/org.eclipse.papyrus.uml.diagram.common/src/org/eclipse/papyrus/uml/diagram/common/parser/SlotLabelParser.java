@@ -136,7 +136,7 @@ public class SlotLabelParser implements ISemanticParser {
 	 */
 	@Override
 	public List<EObject> getSemanticElementsBeingParsed(EObject element) {
-		List<EObject> semanticElementsBeingParsed = new ArrayList<EObject>();
+		List<EObject> semanticElementsBeingParsed = new ArrayList<>();
 		semanticElementsBeingParsed.add(element);
 
 		return semanticElementsBeingParsed;

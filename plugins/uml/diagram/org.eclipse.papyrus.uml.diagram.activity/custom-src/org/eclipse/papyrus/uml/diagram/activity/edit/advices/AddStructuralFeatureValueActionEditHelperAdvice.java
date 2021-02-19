@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.advices;
@@ -34,8 +34,9 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * 
+ *
  * Pins of AddStructuralFeatureValueAction should be create and update automatically
+ *
  * @since 3.0
  *
  */
@@ -57,7 +58,7 @@ public class AddStructuralFeatureValueActionEditHelperAdvice extends AbstractEdi
 			// 3] call the command for the AddStructuralFeatureValueAction
 			AddStructuralFeatureValueAction addStructuralFeatureValueAction = (AddStructuralFeatureValueAction) request.getElementToConfigure();
 			if (addStructuralFeatureValueAction != null) {
-				return new PinUpdateCommand<AddStructuralFeatureValueAction>("Update add structural feature value action pins", PinUpdaterFactory.getInstance().instantiate(addStructuralFeatureValueAction), addStructuralFeatureValueAction); //$NON-NLS-1$
+				return new PinUpdateCommand<>("Update add structural feature value action pins", PinUpdaterFactory.getInstance().instantiate(addStructuralFeatureValueAction), addStructuralFeatureValueAction); //$NON-NLS-1$
 			}
 		}
 		return null;
@@ -103,7 +104,7 @@ public class AddStructuralFeatureValueActionEditHelperAdvice extends AbstractEdi
 				// 4] call the command for the AddStructuralFeatureValueAction
 				AddStructuralFeatureValueAction addStructuralFeatureValueAction = (AddStructuralFeatureValueAction) request.getElementToEdit();
 				if (addStructuralFeatureValueAction != null) {
-					return new PinUpdateCommand<AddStructuralFeatureValueAction>("Update add structural feature value action pins", PinUpdaterFactory.getInstance().instantiate(addStructuralFeatureValueAction), addStructuralFeatureValueAction); //$NON-NLS-1$
+					return new PinUpdateCommand<>("Update add structural feature value action pins", PinUpdaterFactory.getInstance().instantiate(addStructuralFeatureValueAction), addStructuralFeatureValueAction); //$NON-NLS-1$
 				}
 			}
 		}

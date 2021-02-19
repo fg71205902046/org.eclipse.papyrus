@@ -103,6 +103,7 @@ public class MessageFormatParser extends AbstractElementTypeBasedAttributeParser
 	/**
 	 * @generated
 	 */
+	@Override
 	public void setViewPattern(String viewPattern) {
 		super.setViewPattern(viewPattern);
 		viewProcessor = null;
@@ -111,6 +112,7 @@ public class MessageFormatParser extends AbstractElementTypeBasedAttributeParser
 	/**
 	 * @generated
 	 */
+	@Override
 	public void setEditorPattern(String editorPattern) {
 		super.setEditorPattern(editorPattern);
 		editorProcessor = null;
@@ -158,6 +160,7 @@ public class MessageFormatParser extends AbstractElementTypeBasedAttributeParser
 	/**
 	 * @generated
 	 */
+	@Override
 	public void setEditPattern(String editPattern) {
 		super.setEditPattern(editPattern);
 		editProcessor = null;
@@ -176,14 +179,16 @@ public class MessageFormatParser extends AbstractElementTypeBasedAttributeParser
 	/**
 	 * @generated
 	 */
+	@Override
 	public String getEditString(IAdaptable adapter, int flags) {
-		EObject element = (EObject) adapter.getAdapter(EObject.class);
+		EObject element = adapter.getAdapter(EObject.class);
 		return getEditorProcessor().format(getEditableValues(element), new StringBuffer(), new FieldPosition(0)).toString();
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	public IParserEditStatus isValidEditString(IAdaptable adapter, String editString) {
 		ParsePosition pos = new ParsePosition(0);
 		Object[] values = getEditProcessor().parse(editString, pos);
@@ -201,6 +206,7 @@ public class MessageFormatParser extends AbstractElementTypeBasedAttributeParser
 	/**
 	 * @generated
 	 */
+	@Override
 	public ICommand getParseCommand(IAdaptable adapter, String newString, int flags) {
 		Object[] values = getEditProcessor().parse(newString, new ParsePosition(0));
 		return getParseCommand(adapter, values, flags);
@@ -209,14 +215,15 @@ public class MessageFormatParser extends AbstractElementTypeBasedAttributeParser
 	/**
 	 * @generated
 	 */
+	@Override
 	public String getPrintString(IAdaptable adapter, int flags) {
-		EObject element = (EObject) adapter.getAdapter(EObject.class);
+		EObject element = adapter.getAdapter(EObject.class);
 		return getViewProcessor().format(getValues(element), new StringBuffer(), new FieldPosition(0)).toString();
 	}
 
 	/**
 	 * @generated
-	 * 			{@inheritDoc}
+	 *            {@inheritDoc}
 	 * @see AbstractFeatureParser#getModificationCommand(EObject, EStructuralFeature, java.lang.Object)
 	 */
 	@Override
@@ -239,7 +246,7 @@ public class MessageFormatParser extends AbstractElementTypeBasedAttributeParser
 
 	/**
 	 * @generated
-	 * 			{@inheritDoc}
+	 *            {@inheritDoc}
 	 * @see AbstractAttributeParser#getValue(EObject, EStructuralFeature)
 	 */
 	@Override

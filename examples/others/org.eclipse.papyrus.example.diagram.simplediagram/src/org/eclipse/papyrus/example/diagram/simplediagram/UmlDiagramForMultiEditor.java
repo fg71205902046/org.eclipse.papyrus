@@ -47,10 +47,10 @@ public class UmlDiagramForMultiEditor extends UMLDiagramEditor {
 	/**
 	 * Constructor for SashSystem v2. Context and required objects are retrieved from the
 	 * ServiceRegistry.
-	 * 
+	 *
 	 * @throws BackboneException
 	 * @throws ServiceException
-	 * 
+	 *
 	 */
 	public UmlDiagramForMultiEditor() throws BackboneException, ServiceException {
 		super();

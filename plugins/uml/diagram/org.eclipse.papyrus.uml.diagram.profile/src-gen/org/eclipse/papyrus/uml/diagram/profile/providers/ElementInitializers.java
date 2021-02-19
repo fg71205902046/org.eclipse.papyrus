@@ -504,7 +504,7 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private Boolean isAbstract_Class_MetaclassShape(Class it) {
-		//isAbstract = true
+		// isAbstract = true
 		return true;
 	}
 
@@ -633,7 +633,7 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private Boolean isAbstract_Class_MetaclassShape_CN(Class it) {
-		//isAbstract = true
+		// isAbstract = true
 		return true;
 	}
 

@@ -39,21 +39,21 @@ import org.eclipse.papyrus.infra.gmfdiag.common.snap.ResizeTrackerWithPreference
 public class PapyrusReflowableShapeEditPolicy extends PapyrusResizableShapeEditPolicy {
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.gef.editpolicies.ResizableEditPolicy#getResizeTracker(int)
-	 * 
+	 *
 	 * @param direction
 	 * @return
 	 */
 	@Override
 	protected ResizeTracker getResizeTracker(int direction) {
-		return new ResizeTrackerWithPreferences((GraphicalEditPart)getHost(), direction);
+		return new ResizeTrackerWithPreferences((GraphicalEditPart) getHost(), direction);
 	}
 
 	/**
 	 * The copy of super-class method with the computation of the minimum size extracted
 	 * to separate method.
-	 * 
+	 *
 	 * @see PapyrusReflowableShapeEditPolicy#computeMinimumSizeFor(Dimension)
 	 */
 	@Override
@@ -76,15 +76,17 @@ public class PapyrusReflowableShapeEditPolicy extends PapyrusResizableShapeEditP
 		max.height = mmode.LPtoDP(max.height);
 		max.width = mmode.LPtoDP(max.width);
 
-		if(min.width > rect.width)
+		if (min.width > rect.width) {
 			rect.width = min.width;
-		else if(max.width < rect.width)
+		} else if (max.width < rect.width) {
 			rect.width = max.width;
+		}
 
-		if(min.height > rect.height)
+		if (min.height > rect.height) {
 			rect.height = min.height;
-		else if(max.height < rect.height)
+		} else if (max.height < rect.height) {
 			rect.height = max.height;
+		}
 
 		feedback.translateToRelative(rect);
 		feedback.setBounds(rect);
@@ -96,9 +98,9 @@ public class PapyrusReflowableShapeEditPolicy extends PapyrusResizableShapeEditP
 	 * width and uses it as a hint for {@link IFigure#getMinimumSize(int, int)}.
 	 */
 	protected Dimension computeMinimumSizeFor(Dimension suggestedSize) {
-		//super class just returns f.getMinimumSize().getCopy() here
+		// super class just returns f.getMinimumSize().getCopy() here
 		IFigure f = getHostFigure();
-		//assuming that width is more important than height for user
+		// assuming that width is more important than height for user
 		return f.getMinimumSize(suggestedSize.width, -1);
 	}
 

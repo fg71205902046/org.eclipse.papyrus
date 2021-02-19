@@ -63,10 +63,10 @@ public class CustomMessageName2EditPart extends MessageAsyncNameEditPart impleme
 	public CustomMessageName2EditPart(View view) {
 		super(view);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncNameEditPart#createDefaultEditPolicies()
 	 */
 	@Override

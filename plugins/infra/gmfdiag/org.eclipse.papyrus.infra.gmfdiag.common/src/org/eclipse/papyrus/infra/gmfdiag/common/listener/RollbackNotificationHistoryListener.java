@@ -92,7 +92,7 @@ public class RollbackNotificationHistoryListener implements IOperationHistoryLis
 	}
 
 	protected List<String> getObjectLabels(Iterable<?> objects) {
-		List<String> result = new ArrayList<String>();
+		List<String> result = new ArrayList<>();
 		ILabelProvider labels = null;
 
 		try {

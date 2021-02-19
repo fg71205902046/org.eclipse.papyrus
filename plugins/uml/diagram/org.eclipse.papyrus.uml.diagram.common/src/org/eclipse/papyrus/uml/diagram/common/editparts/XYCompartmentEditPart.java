@@ -41,7 +41,7 @@ public class XYCompartmentEditPart extends XYLayoutShapeCompartmentEditPart {
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		
+
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new ResizableCompartmentEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultCompartmentSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
@@ -52,7 +52,7 @@ public class XYCompartmentEditPart extends XYLayoutShapeCompartmentEditPart {
 	public String getCompartmentName() {
 		return getNotationView().getType();
 	}
-	
+
 	@Override
 	protected void setRatio(Double ratio) {
 		if (getFigure().getParent().getLayoutManager() instanceof ConstrainedToolbarLayout) {

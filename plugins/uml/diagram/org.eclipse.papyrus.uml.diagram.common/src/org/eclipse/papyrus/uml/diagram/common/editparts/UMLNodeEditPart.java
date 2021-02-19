@@ -181,21 +181,23 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 
 	/**
 	 * get the diagram type from a view.
-	 * @param currentView the current view
+	 *
+	 * @param currentView
+	 *            the current view
 	 * @return the diagram type it can be also a view point
 	 */
 	protected static String getDiagramType(View currentView) {
-		Diagram diagram=currentView.getDiagram();
-		String currentDiagramType=null;
-		ViewPrototype viewPrototype=org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils.getPrototype(diagram);
-		if(viewPrototype!=null){
-			currentDiagramType=viewPrototype.getLabel();
-		}
-		else{
-			currentDiagramType=diagram.getType();
+		Diagram diagram = currentView.getDiagram();
+		String currentDiagramType = null;
+		ViewPrototype viewPrototype = org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils.getPrototype(diagram);
+		if (viewPrototype != null) {
+			currentDiagramType = viewPrototype.getLabel();
+		} else {
+			currentDiagramType = diagram.getType();
 		}
 		return currentDiagramType;
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -206,30 +208,30 @@ public abstract class UMLNodeEditPart extends NodeEditPart implements IUMLEditPa
 		}
 
 		if (request instanceof CreateViewAndElementRequest) {
-			String  elementHint= ((CreateViewAndElementRequest) request).getViewAndElementDescriptor().getSemanticHint();
+			String elementHint = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor().getSemanticHint();
 			DiagramExpansionsRegistry diagramExpansionRegistry = DiagramExpansionSingleton.getInstance().getDiagramExpansionRegistry();
-			String diagramType= getDiagramType(getNotationView());
-			String currentElementType=getNotationView().getType();
-			//there is an extension for the current diagram?
-			if(diagramExpansionRegistry.mapChildreen.get(diagramType)!=null){
-				List<String> possibleChildreenIDs=diagramExpansionRegistry.mapChildreen.get(diagramType).parentChildrenRelation.get(currentElementType);
-				//The current element has expansion, it may be compartment?
-				if (possibleChildreenIDs!=null){
-					//maybe the container can create it.
-					if (possibleChildreenIDs.contains(elementHint)){
+			String diagramType = getDiagramType(getNotationView());
+			String currentElementType = getNotationView().getType();
+			// there is an extension for the current diagram?
+			if (diagramExpansionRegistry.mapChildreen.get(diagramType) != null) {
+				List<String> possibleChildreenIDs = diagramExpansionRegistry.mapChildreen.get(diagramType).parentChildrenRelation.get(currentElementType);
+				// The current element has expansion, it may be compartment?
+				if (possibleChildreenIDs != null) {
+					// maybe the container can create it.
+					if (possibleChildreenIDs.contains(elementHint)) {
 						return this;
 					}
-					//look for accepted element in compartments to find good compartment
+					// look for accepted element in compartments to find good compartment
 					for (String compartmentHint : possibleChildreenIDs) {
-						List<String> compartmentChildreenIDs=diagramExpansionRegistry.mapChildreen.get(diagramType).parentChildrenRelation.get(compartmentHint);
-						
-						if(  compartmentChildreenIDs!=null &&compartmentChildreenIDs.contains(elementHint)){
-							//find the edipart that can respond to this accepted hint
-							List<?> subEditParts=getChildren();
+						List<String> compartmentChildreenIDs = diagramExpansionRegistry.mapChildreen.get(diagramType).parentChildrenRelation.get(compartmentHint);
+
+						if (compartmentChildreenIDs != null && compartmentChildreenIDs.contains(elementHint)) {
+							// find the edipart that can respond to this accepted hint
+							List<?> subEditParts = getChildren();
 							for (Object object : subEditParts) {
-								if(object instanceof IGraphicalEditPart){
-									if(((IGraphicalEditPart)object).getNotationView().getType().equals(compartmentHint)){
-										return ((IGraphicalEditPart)object);
+								if (object instanceof IGraphicalEditPart) {
+									if (((IGraphicalEditPart) object).getNotationView().getType().equals(compartmentHint)) {
+										return ((IGraphicalEditPart) object);
 									}
 
 								}

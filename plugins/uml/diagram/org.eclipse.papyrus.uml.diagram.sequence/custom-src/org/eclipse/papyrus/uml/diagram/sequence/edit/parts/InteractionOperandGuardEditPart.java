@@ -90,6 +90,9 @@ import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGEFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.commands.CreateEAnnotationCommand;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
 import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration;
 import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.configuration.IDirectEditorConfiguration;
@@ -99,9 +102,6 @@ import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.ui.ILabelEditor
 import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.utils.IDirectEditorsIds;
-import org.eclipse.papyrus.infra.emf.commands.CreateEAnnotationCommand;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
-import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
@@ -261,7 +261,7 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 			 * <a href="http://eclip.se/533699">bug 533699</a>.
 			 *
 			 * @return {@code false}, always
-			 * 
+			 *
 			 * @see <a href="http://eclip.se/533699">bug 533699</a>
 			 */
 			@Override
@@ -559,7 +559,7 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 
 	/**
 	 * This allows to initialize the direct edit manager for the edit.
-	 * 
+	 *
 	 * @param request
 	 *            The called request.
 	 * @since 5.0

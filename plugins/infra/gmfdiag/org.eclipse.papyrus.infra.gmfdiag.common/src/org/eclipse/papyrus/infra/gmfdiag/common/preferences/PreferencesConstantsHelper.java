@@ -150,7 +150,7 @@ public class PreferencesConstantsHelper {
 	public static final String RESTORE_LINK_ELEMENT_CONSTANT = "restoreLinkElement"; //$NON-NLS-1$
 
 	public static final String EXTERNAL_REFERENCE_STRATEGY_CONSTANT = "externalReferenceStrategy"; //$NON-NLS-1$
-	
+
 	/**
 	 * A preference of type COLOR FILL
 	 */
@@ -341,8 +341,8 @@ public class PreferencesConstantsHelper {
 	/**
 	 * A preference to indicate if the link element must be restore or not
 	 */
-	public static final int EXTERNAL_REFERENCE_STRATEGY = RESTORE_LINK_ELEMENT + 1;	
-	
+	public static final int EXTERNAL_REFERENCE_STRATEGY = RESTORE_LINK_ELEMENT + 1;
+
 	/**
 	 * Get the preference constant used to store the preference of an element.
 	 *
@@ -462,7 +462,7 @@ public class PreferencesConstantsHelper {
 			break;
 		case EXTERNAL_REFERENCE_STRATEGY:
 			sb.append(EXTERNAL_REFERENCE_STRATEGY_CONSTANT);
-			break;				
+			break;
 		default:
 			break;
 		}

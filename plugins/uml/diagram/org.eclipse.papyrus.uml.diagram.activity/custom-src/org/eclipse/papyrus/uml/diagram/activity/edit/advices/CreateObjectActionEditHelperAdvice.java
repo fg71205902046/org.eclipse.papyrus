@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.advices;
@@ -29,10 +29,11 @@ import org.eclipse.uml2.uml.CreateObjectAction;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * 
+ *
  * Pins of CreateObjectAction should be create and update automatically
+ *
  * @since 3.0
- * 
+ *
  */
 public class CreateObjectActionEditHelperAdvice extends AbstractEditHelperAdvice {
 
@@ -52,9 +53,9 @@ public class CreateObjectActionEditHelperAdvice extends AbstractEditHelperAdvice
 			// 3] check preference
 			if (synchronizePin) {
 				CreateObjectAction createObjectAction = (CreateObjectAction) request.getElementToEdit();
-				if(createObjectAction != null && request.getFeature() == UMLPackage.eINSTANCE.getCreateObjectAction_Classifier()){
+				if (createObjectAction != null && request.getFeature() == UMLPackage.eINSTANCE.getCreateObjectAction_Classifier()) {
 					// 4] call the command for the CreateObjectAction
-					return new PinUpdateCommand<CreateObjectAction>("Update create object action pins", //$NON-NLS-1$
+					return new PinUpdateCommand<>("Update create object action pins", //$NON-NLS-1$
 							PinUpdaterFactory.getInstance().instantiate(createObjectAction), createObjectAction);
 				}
 			}
@@ -76,9 +77,9 @@ public class CreateObjectActionEditHelperAdvice extends AbstractEditHelperAdvice
 		// 2] check preference
 		if (synchronizePin) {
 			CreateObjectAction createObjectAction = (CreateObjectAction) request.getElementToConfigure();
-			if(createObjectAction != null){
+			if (createObjectAction != null) {
 				// 3] call the command for the CreateObjectAction
-				return new PinUpdateCommand<CreateObjectAction>("Update create object action pins", //$NON-NLS-1$
+				return new PinUpdateCommand<>("Update create object action pins", //$NON-NLS-1$
 						PinUpdaterFactory.getInstance().instantiate(createObjectAction), createObjectAction);
 			}
 		}

@@ -22,6 +22,7 @@ import org.eclipse.ui.IMemento;
 
 /**
  * Extended palette state, that also manages parent modification, etc.
+ *
  * @since 3.0
  */
 public class PapyrusPaletteEntryState extends PaletteEntryState {

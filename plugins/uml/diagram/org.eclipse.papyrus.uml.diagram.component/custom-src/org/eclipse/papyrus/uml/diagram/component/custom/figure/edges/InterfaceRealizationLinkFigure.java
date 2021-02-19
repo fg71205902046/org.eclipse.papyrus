@@ -23,6 +23,7 @@ import org.eclipse.papyrus.uml.diagram.common.figure.edge.InterfaceRealizationFi
 /**
  * this class has to option to display it:
  * normal with the UML view or as a link to display lollipop
+ *
  * @since 3.0
  *
  */

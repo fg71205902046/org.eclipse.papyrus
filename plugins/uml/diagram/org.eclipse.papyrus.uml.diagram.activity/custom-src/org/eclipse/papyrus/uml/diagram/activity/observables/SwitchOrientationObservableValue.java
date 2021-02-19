@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2018 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.observables;
@@ -43,7 +43,7 @@ import org.eclipse.papyrus.uml.diagram.activity.part.CustomMessages;
 
 /**
  * The observable value for the switch observable action.
- * 
+ *
  * @since 3.2
  */
 public class SwitchOrientationObservableValue extends AbstractObservableValue<Boolean> {
@@ -67,14 +67,14 @@ public class SwitchOrientationObservableValue extends AbstractObservableValue<Bo
 	 *            The activity nodes edit parts to modify.
 	 */
 	public SwitchOrientationObservableValue(final TransactionalEditingDomain editingDomain, final Collection<EditPart> activityNodesEP) {
-		this.activityNodesEP = new ArrayList<EditPart>(activityNodesEP.size());
+		this.activityNodesEP = new ArrayList<>(activityNodesEP.size());
 		this.activityNodesEP.addAll(activityNodesEP);
 		this.editingDomain = editingDomain;
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.core.databinding.observable.value.IObservableValue#getValueType()
 	 */
 	@Override
@@ -84,7 +84,7 @@ public class SwitchOrientationObservableValue extends AbstractObservableValue<Bo
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.core.databinding.observable.value.AbstractObservableValue#doGetValue()
 	 */
 	@Override
@@ -94,7 +94,7 @@ public class SwitchOrientationObservableValue extends AbstractObservableValue<Bo
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.core.databinding.observable.value.AbstractObservableValue#doSetValue(java.lang.Object)
 	 */
 	@Override

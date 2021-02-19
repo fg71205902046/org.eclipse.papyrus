@@ -81,6 +81,7 @@ public class ValuePinInDestroyObjectActionEditPart extends AbstractPinEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
@@ -143,9 +144,10 @@ public class ValuePinInDestroyObjectActionEditPart extends AbstractPinEditPart {
 
 	/**
 	 * Papyrus codeGen
-	 * 
+	 *
 	 * @generated
 	 **/
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 		/*
 		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
@@ -174,9 +176,10 @@ public class ValuePinInDestroyObjectActionEditPart extends AbstractPinEditPart {
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	public InputPinFigure getPrimaryShape() {
 		return (InputPinFigure) primaryShape;
 	}
@@ -184,6 +187,7 @@ public class ValuePinInDestroyObjectActionEditPart extends AbstractPinEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
 		if (borderItemEditPart instanceof ValuePinInDestroyObjectActionLabelEditPart) {
 			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
@@ -209,12 +213,13 @@ public class ValuePinInDestroyObjectActionEditPart extends AbstractPinEditPart {
 
 	/**
 	 * Creates figure for this edit part.
-	 * 
+	 *
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createMainFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
@@ -228,7 +233,7 @@ public class ValuePinInDestroyObjectActionEditPart extends AbstractPinEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * 
+	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
 	 * @generated
@@ -240,6 +245,7 @@ public class ValuePinInDestroyObjectActionEditPart extends AbstractPinEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -250,6 +256,7 @@ public class ValuePinInDestroyObjectActionEditPart extends AbstractPinEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -259,6 +266,7 @@ public class ValuePinInDestroyObjectActionEditPart extends AbstractPinEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineWidth(int width) {
 		super.setLineWidth(width);
 	}
@@ -266,6 +274,7 @@ public class ValuePinInDestroyObjectActionEditPart extends AbstractPinEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineType(int style) {
 		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
@@ -275,6 +284,7 @@ public class ValuePinInDestroyObjectActionEditPart extends AbstractPinEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ValuePinInDestroyObjectActionLabelEditPart.VISUAL_ID));
 	}

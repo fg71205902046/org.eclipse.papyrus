@@ -66,7 +66,7 @@ public class LocalExtendedPaletteProvider extends ExtendedPluginPaletteProvider 
 					if (!resource.getContents().isEmpty()) {
 						// Deploy local element type model if exist
 						deployLocalElementTypeModels(description.getPaletteID());
-						contributions = new ArrayList<PaletteConfiguration>(EcoreUtil.<PaletteConfiguration> getObjectsByType(resource.getContents(), PaletteconfigurationPackage.eINSTANCE.getPaletteConfiguration()));
+						contributions = new ArrayList<>(EcoreUtil.<PaletteConfiguration> getObjectsByType(resource.getContents(), PaletteconfigurationPackage.eINSTANCE.getPaletteConfiguration()));
 					}
 				} catch (IOException e) {
 					if (!loadResourceExceptionLogged) {
@@ -81,7 +81,7 @@ public class LocalExtendedPaletteProvider extends ExtendedPluginPaletteProvider 
 
 	/**
 	 * Deploy associated local element type model if exists(same name).
-	 * 
+	 *
 	 * @param description
 	 *            the {@link IPaletteDescription}
 	 * @param resourceSet

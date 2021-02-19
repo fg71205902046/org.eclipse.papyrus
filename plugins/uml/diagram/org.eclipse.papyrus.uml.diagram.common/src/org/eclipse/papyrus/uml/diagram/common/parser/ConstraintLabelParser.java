@@ -35,8 +35,8 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
@@ -151,10 +151,10 @@ public class ConstraintLabelParser extends NamedElementLabelParser {
 
 		// prepare set name request
 		if ((maskValues.contains(ICustomAppearance.DISP_NAME))) {
-			if(InternationalizationPreferencesUtils.getInternationalizationPreference(constraint) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(constraint)){
-				final ModelSet modelSet = (ModelSet)constraint.eResource().getResourceSet();
+			if (InternationalizationPreferencesUtils.getInternationalizationPreference(constraint) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(constraint)) {
+				final ModelSet modelSet = (ModelSet) constraint.eResource().getResourceSet();
 				command = new EMFtoGMFCommandWrapper(UMLLabelInternationalization.getInstance().getSetLabelCommand(modelSet.getTransactionalEditingDomain(), constraint, newString, null));
-			}else{
+			} else {
 				updateRequest = new SetRequest(constraint, UMLPackage.eINSTANCE.getNamedElement_Name(), newString);
 				updateRequest.setLabel("Update Constraint Label");
 			}
@@ -210,7 +210,7 @@ public class ConstraintLabelParser extends NamedElementLabelParser {
 	 */
 	@Override
 	public List<EObject> getSemanticElementsBeingParsed(EObject element) {
-		List<EObject> semanticElementsBeingParsed = new ArrayList<EObject>();
+		List<EObject> semanticElementsBeingParsed = new ArrayList<>();
 
 		if ((element != null) && (element instanceof Constraint)) {
 			Constraint semElement = (Constraint) element;
@@ -228,7 +228,7 @@ public class ConstraintLabelParser extends NamedElementLabelParser {
 	 */
 	@Override
 	public Map<String, String> getMasks() {
-		Map<String, String> masks = new HashMap<String, String>(2);
+		Map<String, String> masks = new HashMap<>(2);
 		masks.put(ICustomAppearance.DISP_NAME, "Name");
 		masks.put(ILabelPreferenceConstants.DISP_SPECIFICATION, "Specification");
 		return masks;

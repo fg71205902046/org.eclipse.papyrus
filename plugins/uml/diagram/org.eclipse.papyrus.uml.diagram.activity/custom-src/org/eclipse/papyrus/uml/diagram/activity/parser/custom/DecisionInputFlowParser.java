@@ -118,7 +118,7 @@ public class DecisionInputFlowParser extends MessageFormatParser implements ISem
 	 */
 	@Override
 	public List<?> getSemanticElementsBeingParsed(EObject element) {
-		List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
+		List<Element> semanticElementsBeingParsed = new ArrayList<>();
 		if (element instanceof ObjectFlow) {
 			ObjectFlow flow = (ObjectFlow) element;
 			semanticElementsBeingParsed.add(flow);

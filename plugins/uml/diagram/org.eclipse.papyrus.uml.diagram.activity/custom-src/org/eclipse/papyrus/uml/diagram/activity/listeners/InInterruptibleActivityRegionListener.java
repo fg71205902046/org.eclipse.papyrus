@@ -152,7 +152,7 @@ public class InInterruptibleActivityRegionListener extends AbstractPapyrusModifc
 		IEditorPart editor = page.getActiveEditor();
 		if (editor instanceof IMultiDiagramEditor) {
 			IMultiDiagramEditor papyrusEditor = (IMultiDiagramEditor) editor;
-			return (DiagramEditPart) papyrusEditor.getAdapter(DiagramEditPart.class);
+			return papyrusEditor.getAdapter(DiagramEditPart.class);
 		}
 		return null;
 	}

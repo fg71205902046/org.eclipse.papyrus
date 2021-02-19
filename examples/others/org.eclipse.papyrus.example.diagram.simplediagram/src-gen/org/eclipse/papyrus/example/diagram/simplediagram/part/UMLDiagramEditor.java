@@ -68,6 +68,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected String getContextID() {
 		return CONTEXT_ID;
 	}
@@ -75,6 +76,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected PaletteRoot createPaletteRoot(PaletteRoot existingPaletteRoot) {
 		PaletteRoot root = super.createPaletteRoot(existingPaletteRoot);
 		new UMLPaletteFactory().fillPalette(root);
@@ -84,6 +86,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected PreferencesHint getPreferencesHint() {
 		return UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
 	}
@@ -91,6 +94,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements
 	/**
 	 * @generated
 	 */
+	@Override
 	public String getContributorId() {
 		return UMLDiagramEditorPlugin.ID;
 	}
@@ -98,10 +102,12 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements
 	/**
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public Object getAdapter(Class type) {
 		if (type == IShowInTargetList.class) {
 			return new IShowInTargetList() {
+				@Override
 				public String[] getShowInTargetIds() {
 					return new String[] { ProjectExplorer.VIEW_ID };
 				}
@@ -113,6 +119,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IDocumentProvider getDocumentProvider(IEditorInput input) {
 		if (input instanceof IFileEditorInput
 				|| input instanceof URIEditorInput) {
@@ -124,6 +131,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements
 	/**
 	 * @generated
 	 */
+	@Override
 	public TransactionalEditingDomain getEditingDomain() {
 		IDocument document = getEditorInput() != null ? getDocumentProvider()
 				.getDocument(getEditorInput()) : null;
@@ -136,6 +144,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setDocumentProvider(IEditorInput input) {
 		if (input instanceof IFileEditorInput
 				|| input instanceof URIEditorInput) {
@@ -149,6 +158,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements
 	/**
 	 * @generated
 	 */
+	@Override
 	public void gotoMarker(IMarker marker) {
 		MarkerNavigationService.getInstance().gotoMarker(this, marker);
 	}
@@ -156,6 +166,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean isSaveAsAllowed() {
 		return true;
 	}
@@ -163,6 +174,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements
 	/**
 	 * @generated
 	 */
+	@Override
 	public void doSaveAs() {
 		performSaveAs(new NullProgressMonitor());
 	}
@@ -170,6 +182,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void performSaveAs(IProgressMonitor progressMonitor) {
 		Shell shell = getSite().getShell();
 		IEditorInput input = getEditorInput();
@@ -251,6 +264,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements
 	/**
 	 * @generated
 	 */
+	@Override
 	public ShowInContext getShowInContext() {
 		return new ShowInContext(getEditorInput(), getNavigatorSelection());
 	}
@@ -278,6 +292,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void configureGraphicalViewer() {
 		super.configureGraphicalViewer();
 		DiagramEditorContextMenuProvider provider = new DiagramEditorContextMenuProvider(

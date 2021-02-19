@@ -216,7 +216,7 @@ public class ConstraintParser implements ISemanticParser {
 
 	@Override
 	public List<?> getSemanticElementsBeingParsed(final EObject element) {
-		final List<EObject> list = new ArrayList<EObject>();
+		final List<EObject> list = new ArrayList<>();
 		if (element instanceof Constraint) {
 			final Constraint constraint = (Constraint) element;
 			final MinMax minMax = getMinMax(constraint);

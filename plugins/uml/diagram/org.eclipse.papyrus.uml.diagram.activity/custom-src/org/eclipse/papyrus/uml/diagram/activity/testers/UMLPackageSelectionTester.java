@@ -53,7 +53,7 @@ public class UMLPackageSelectionTester extends PropertyTester {
 				Object obj = structuredSelection.getFirstElement();
 				EObject element = null;
 				if (obj instanceof IAdaptable) {
-					element = (EObject) ((IAdaptable) obj).getAdapter(EObject.class);
+					element = ((IAdaptable) obj).getAdapter(EObject.class);
 					if (element instanceof View) {
 						element = ((View) element).getElement();
 					}

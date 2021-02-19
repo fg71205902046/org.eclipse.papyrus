@@ -460,7 +460,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 		} else {
 			preferredDirection = ParameterDirectionKind.IN_LITERAL;
 		}
-		SafeDialogOpenerDuringValidation<Boolean> opener = new SafeDialogOpenerDuringValidation<Boolean>() {
+		SafeDialogOpenerDuringValidation<Boolean> opener = new SafeDialogOpenerDuringValidation<>() {
 
 			@Override
 			protected Boolean openDialog() {
@@ -539,7 +539,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	protected boolean proposeAttributeCreation(final NamedElement element, final EClass preferredPinClass) {
 		final String elementLabel = labelProvider.getText(element);
 		final String message = NLS.bind(CustomMessages.PinAndParameterSynchronizer_UnauthorizedModification, elementLabel);
-		SafeDialogOpenerDuringValidation<Boolean> opener = new SafeDialogOpenerDuringValidation<Boolean>() {
+		SafeDialogOpenerDuringValidation<Boolean> opener = new SafeDialogOpenerDuringValidation<>() {
 
 			@Override
 			protected Boolean openDialog() {
@@ -592,7 +592,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	protected void proposeNavigation(final NamedElement element) {
 		final String elementLabel = labelProvider.getText(element);
 		final String message = NLS.bind(CustomMessages.PinAndParameterSynchronizer_UnauthorizedModificationRedirection, elementLabel);
-		SafeDialogOpenerDuringValidation<Void> opener = new SafeDialogOpenerDuringValidation<Void>() {
+		SafeDialogOpenerDuringValidation<Void> opener = new SafeDialogOpenerDuringValidation<>() {
 
 			@Override
 			protected Void openDialog() {
@@ -805,7 +805,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	 */
 	protected static List<InvocationAction> getCallingActions(Element element) {
 		// explore referencing actions
-		Set<InvocationAction> callingActions = new HashSet<InvocationAction>();
+		Set<InvocationAction> callingActions = new HashSet<>();
 		if (element instanceof Behavior || element instanceof Operation) {
 			Collection<Setting> references = CacheAdapter.getInstance().getNonNavigableInverseReferences(element);
 			for (Setting ref : references) {
@@ -829,7 +829,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 				}
 			}
 		}
-		return new ArrayList<InvocationAction>(callingActions);
+		return new ArrayList<>(callingActions);
 	}
 
 	/**
@@ -897,7 +897,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 				 * authorized.
 				 */
 				final String msg = NLS.bind(CustomMessages.PinAndParameterSynchronizer_UndeleteablePinMessage, UMLPackage.eINSTANCE.getCallOperationAction_Target().getName());
-				SafeDialogOpenerDuringValidation<Void> opener = new SafeDialogOpenerDuringValidation<Void>() {
+				SafeDialogOpenerDuringValidation<Void> opener = new SafeDialogOpenerDuringValidation<>() {
 
 					@Override
 					protected Void openDialog() {
@@ -1151,7 +1151,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 				 * authorized.
 				 */
 				final String msg = NLS.bind(CustomMessages.PinAndParameterSynchronizer_UndeleteablePinMessage, UMLPackage.eINSTANCE.getSendSignalAction_Target().getName());
-				SafeDialogOpenerDuringValidation<Void> opener = new SafeDialogOpenerDuringValidation<Void>() {
+				SafeDialogOpenerDuringValidation<Void> opener = new SafeDialogOpenerDuringValidation<>() {
 
 					@Override
 					protected Void openDialog() {
@@ -1185,7 +1185,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 				 * authorized.
 				 */
 				final String msg = NLS.bind(CustomMessages.PinAndParameterSynchronizer_UndeleteablePinMessage, UMLPackage.eINSTANCE.getSendObjectAction_Target().getName());
-				SafeDialogOpenerDuringValidation<Void> opener = new SafeDialogOpenerDuringValidation<Void>() {
+				SafeDialogOpenerDuringValidation<Void> opener = new SafeDialogOpenerDuringValidation<>() {
 
 					@Override
 					protected Void openDialog() {
@@ -1202,7 +1202,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 				 * authorized.
 				 */
 				final String msg = NLS.bind(CustomMessages.PinAndParameterSynchronizer_UndeleteablePinMessage, UMLPackage.eINSTANCE.getSendObjectAction_Request().getName());
-				SafeDialogOpenerDuringValidation<Void> opener = new SafeDialogOpenerDuringValidation<Void>() {
+				SafeDialogOpenerDuringValidation<Void> opener = new SafeDialogOpenerDuringValidation<>() {
 
 					@Override
 					protected Void openDialog() {
@@ -1245,9 +1245,9 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 			} else if (Notification.REMOVE_MANY == remove.getEventType() && Notification.ADD_MANY == add.getEventType()) {
 				if (Notification.NO_INDEX == remove.getPosition() && add.getFeature().equals(remove.getFeature())) {
 					if (remove.getOldValue() instanceof List<?> && add.getNewValue() instanceof List<?>) {
-						ArrayList<Object> removeList = new ArrayList<Object>((List<?>) remove.getOldValue());
+						ArrayList<Object> removeList = new ArrayList<>((List<?>) remove.getOldValue());
 						removeList.removeAll((List<?>) add.getNewValue());
-						ArrayList<Object> addList = new ArrayList<Object>((List<?>) add.getNewValue());
+						ArrayList<Object> addList = new ArrayList<>((List<?>) add.getNewValue());
 						addList.removeAll((List<?>) remove.getOldValue());
 						if (removeList.size() == 1 && addList.size() == 1) {
 							removed = removeList.get(0);
@@ -1357,7 +1357,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	 */
 	protected IStatus handleParametersRemoved(NamedElement element, IValidationContext ctx) {
 		// construct the list of removed indexes and their direction
-		Map<Integer, ParameterDirectionKind> removedParameterIndexes = new HashMap<Integer, ParameterDirectionKind>();
+		Map<Integer, ParameterDirectionKind> removedParameterIndexes = new HashMap<>();
 		for (Notification event : ctx.getAllEvents()) {
 			if (UMLPackage.eINSTANCE.getBehavior_OwnedParameter().equals(event.getFeature()) || UMLPackage.eINSTANCE.getBehavioralFeature_OwnedParameter().equals(event.getFeature())) {
 				Object removedValue = event.getOldValue();
@@ -1384,8 +1384,8 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 		} else if (element instanceof Operation) {
 			newParameters = ((Operation) element).getOwnedParameters();
 		}
-		List<Integer> removedInputPinIndexes = new LinkedList<Integer>();
-		List<Integer> removedOutputPinIndexes = new LinkedList<Integer>();
+		List<Integer> removedInputPinIndexes = new LinkedList<>();
+		List<Integer> removedOutputPinIndexes = new LinkedList<>();
 		Iterator<Parameter> parametersIterator = newParameters.iterator();
 		// iterate on the virtual list of old parameters
 		// (correspondingParameterIndex) to deduce
@@ -1465,7 +1465,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	 */
 	protected IStatus handleParametersAdded(NamedElement element, IValidationContext ctx) {
 		// construct the list of added indexes and their direction
-		List<Parameter> addedParameters = new LinkedList<Parameter>();
+		List<Parameter> addedParameters = new LinkedList<>();
 		for (Notification event : ctx.getAllEvents()) {
 			if (UMLPackage.eINSTANCE.getBehavior_OwnedParameter().equals(event.getFeature()) || UMLPackage.eINSTANCE.getBehavioralFeature_OwnedParameter().equals(event.getFeature())) {
 				Object addedValue = event.getNewValue();
@@ -1490,8 +1490,8 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 		} else if (element instanceof Operation) {
 			newParameters = ((Operation) element).getOwnedParameters();
 		}
-		Map<Integer, TypedElement> addedInputPinMap = new HashMap<Integer, TypedElement>();
-		Map<Integer, TypedElement> addedOutputPinMap = new HashMap<Integer, TypedElement>();
+		Map<Integer, TypedElement> addedInputPinMap = new HashMap<>();
+		Map<Integer, TypedElement> addedOutputPinMap = new HashMap<>();
 		// iterate on the list of new parameters to deduce pins indexes
 		int correspondingInputPinIndex = 0;
 		int correspondingOutputPinIndex = 0;
@@ -1565,7 +1565,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	 */
 	protected IStatus handleAttributesRemoved(Signal element, IValidationContext ctx) {
 		// construct the list of removed indexes and their direction
-		Set<Integer> removedAttributeIndexes = new HashSet<Integer>();
+		Set<Integer> removedAttributeIndexes = new HashSet<>();
 		for (Notification event : ctx.getAllEvents()) {
 			if (UMLPackage.eINSTANCE.getSignal_OwnedAttribute().equals(event.getFeature())) {
 				Object removedValue = event.getOldValue();
@@ -1585,7 +1585,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 			}
 		}
 		// deduce pins indexes from old attributes indexes
-		List<Integer> removedInputPinIndexes = new LinkedList<Integer>(removedAttributeIndexes);
+		List<Integer> removedInputPinIndexes = new LinkedList<>(removedAttributeIndexes);
 		CompoundCommand globalCmd = new CompoundCommand();
 		// explore referencing actions
 		List<InvocationAction> callingActions = getCallingActions(element);
@@ -1616,7 +1616,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	 */
 	protected IStatus handleAttributesAdded(Signal element, IValidationContext ctx) {
 		// construct the list of added indexes and their direction
-		List<Property> addedAttributes = new LinkedList<Property>();
+		List<Property> addedAttributes = new LinkedList<>();
 		for (Notification event : ctx.getAllEvents()) {
 			if (UMLPackage.eINSTANCE.getSignal_OwnedAttribute().equals(event.getFeature())) {
 				Object addedValue = event.getNewValue();
@@ -1639,7 +1639,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 		if (element instanceof Signal) {
 			newAttributes = element.getOwnedAttributes();
 		}
-		Map<Integer, Property> addedInputPinMap = new HashMap<Integer, Property>();
+		Map<Integer, Property> addedInputPinMap = new HashMap<>();
 		// iterate on the list of added attributes to deduce pins indexes
 		for (Property param : addedAttributes) {
 			if (newAttributes.contains(param)) {
@@ -1718,7 +1718,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 		// Get the editing domain
 		TransactionalEditingDomain editingdomain = EditorUtils.getTransactionalEditingDomain();
 		if (action instanceof CallBehaviorAction || action instanceof CallOperationAction) {
-			ArrayList<InputPin> removedIn = new ArrayList<InputPin>(removedInputPinsIndexes.size());
+			ArrayList<InputPin> removedIn = new ArrayList<>(removedInputPinsIndexes.size());
 			for (int i : removedInputPinsIndexes) {
 				if (i < action.getArguments().size()) {
 					removedIn.add(action.getArguments().get(i));
@@ -1728,7 +1728,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 				Command cmd = RemoveCommand.create(editingdomain, action, UMLPackage.eINSTANCE.getInvocationAction_Argument(), removedIn);
 				globalCmd.append(cmd);
 			}
-			ArrayList<OutputPin> removedOut = new ArrayList<OutputPin>(removedInputPinsIndexes.size());
+			ArrayList<OutputPin> removedOut = new ArrayList<>(removedInputPinsIndexes.size());
 			for (int i : removedOutputPinsIndexes) {
 				if (i < action.getResults().size()) {
 					removedOut.add(action.getResults().get(i));
@@ -1756,7 +1756,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 		// Get the editing domain
 		TransactionalEditingDomain editingdomain = EditorUtils.getTransactionalEditingDomain();
 		if (action instanceof SendSignalAction) {
-			ArrayList<InputPin> removedIn = new ArrayList<InputPin>(removedInputPinsIndexes.size());
+			ArrayList<InputPin> removedIn = new ArrayList<>(removedInputPinsIndexes.size());
 			for (int i : removedInputPinsIndexes) {
 				if (i < action.getArguments().size()) {
 					removedIn.add(action.getArguments().get(i));
@@ -2536,7 +2536,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 		}
 		XMIResource xmiResource = getXMIResource(behaviorStructural);
 		// Removing input pins that are not up to date.
-		Collection<TypedElement> parameterWhichPinNotDeleted = new ArrayList<TypedElement>();
+		Collection<TypedElement> parameterWhichPinNotDeleted = new ArrayList<>();
 		Iterable<? extends Pin> allPins = Lists.newArrayList(action.getArguments());
 		if (action instanceof CallAction) {
 			allPins = Iterables.concat(allPins, ((CallAction) action).getResults());
@@ -2561,8 +2561,8 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 			}
 		}
 		// Splitting parameters
-		Map<Integer, TypedElement> inParams = new HashMap<Integer, TypedElement>();
-		Map<Integer, TypedElement> outParams = new HashMap<Integer, TypedElement>();
+		Map<Integer, TypedElement> inParams = new HashMap<>();
+		Map<Integer, TypedElement> outParams = new HashMap<>();
 		splitParameters(parameters, parameterWhichPinNotDeleted, inParams, outParams, action);
 		// Creating new pins.
 		if (!inParams.isEmpty() || !outParams.isEmpty()) {
@@ -2796,7 +2796,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 		Element owner = property.getOwner();
 		if (owner instanceof Signal) {
 			// initialize listOfPins
-			List<Pin> listOfPins = new LinkedList<Pin>();
+			List<Pin> listOfPins = new LinkedList<>();
 			// get index of pins
 			int inIndex = ((Signal) owner).getAttributes().indexOf(property);
 			List<InvocationAction> callingActions = getCallingActions(owner);
@@ -2825,7 +2825,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 		Element owner = parameter.getOwner();
 		List<InvocationAction> callingActions = getCallingActions(owner);
 		// initialize listOfPins
-		List<Pin> listOfPins = new LinkedList<Pin>();
+		List<Pin> listOfPins = new LinkedList<>();
 		// get index of pins
 		int inIndex = -1;
 		int outIndex = -1;
@@ -2958,7 +2958,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	 * @return whether the user validates the modifications
 	 */
 	protected boolean askForValidation(final List<? extends NamedElement> listOfActions) {
-		SafeDialogOpenerDuringValidation<Boolean> opener = new SafeDialogOpenerDuringValidation<Boolean>() {
+		SafeDialogOpenerDuringValidation<Boolean> opener = new SafeDialogOpenerDuringValidation<>() {
 
 			@Override
 			protected Boolean openDialog() {

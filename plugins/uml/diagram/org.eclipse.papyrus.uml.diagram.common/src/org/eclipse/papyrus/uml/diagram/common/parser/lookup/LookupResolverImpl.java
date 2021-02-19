@@ -99,7 +99,7 @@ public class LookupResolverImpl implements LookupResolver {
 					List allNew = (List) nextRequest.getNewObject();
 					for (Object nextCreated : allNew) {
 						if (nextCreated instanceof IAdaptable) {
-							View createdView = (View) ((IAdaptable) nextCreated).getAdapter(View.class);
+							View createdView = ((IAdaptable) nextCreated).getAdapter(View.class);
 							if (createdView != null) {
 								EObject createdEntity = createdView.getElement();
 								if (createdEntity instanceof NamedElement) {

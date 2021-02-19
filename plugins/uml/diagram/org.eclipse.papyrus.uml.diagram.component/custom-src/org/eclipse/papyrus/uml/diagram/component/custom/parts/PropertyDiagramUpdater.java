@@ -29,6 +29,7 @@ import org.eclipse.papyrus.uml.diagram.component.part.UMLNodeDescriptor;
  * resolving the semantic children of a Property (as viewed in a
  * structured classifier) in {@link UMLDiagramUpdater}.
  * </pre>
+ *
  * @since 3.0
  */
 public class PropertyDiagramUpdater implements ICustomDiagramUpdater<UMLNodeDescriptor> {

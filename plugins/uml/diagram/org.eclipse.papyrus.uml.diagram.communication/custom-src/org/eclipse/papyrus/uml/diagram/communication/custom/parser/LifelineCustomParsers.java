@@ -164,6 +164,7 @@ public class LifelineCustomParsers extends org.eclipse.papyrus.uml.diagram.commu
 	 * areSemanticElementsAffected (org.eclipse.emf.ecore.EObject,
 	 * java.lang.Object)
 	 */
+	@Override
 	public boolean areSemanticElementsAffected(EObject listener, Object notification) {
 		EStructuralFeature feature = getEStructuralFeature(notification);
 		return isValidFeature(feature);
@@ -175,9 +176,10 @@ public class LifelineCustomParsers extends org.eclipse.papyrus.uml.diagram.commu
 	 * @seeorg.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser#
 	 * getSemanticElementsBeingParsed (org.eclipse.emf.ecore.EObject)
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List getSemanticElementsBeingParsed(EObject element) {
-		List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
+		List<Element> semanticElementsBeingParsed = new ArrayList<>();
 		if (element instanceof Lifeline) {
 			Lifeline lifeline = (Lifeline) element;
 

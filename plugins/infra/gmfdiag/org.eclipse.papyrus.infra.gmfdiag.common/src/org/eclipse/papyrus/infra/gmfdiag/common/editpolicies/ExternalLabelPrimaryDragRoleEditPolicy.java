@@ -11,7 +11,7 @@
  * Contributors:
  *   Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
  *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Move to common
- * 
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.common.editpolicies;
@@ -136,6 +136,7 @@ public class ExternalLabelPrimaryDragRoleEditPolicy extends NonResizableLabelEdi
 		drawTether(request);
 	}
 
+	@Override
 	protected IFigure createDragSourceFeedbackFigure() {
 		IFigure feedback = super.createDragSourceFeedbackFigure();
 		tether = new Polyline();
@@ -177,23 +178,26 @@ public class ExternalLabelPrimaryDragRoleEditPolicy extends NonResizableLabelEdi
 		int x = r.x + r.width / 2 - refPoint.x;
 		int y = r.y + r.height / 2 - refPoint.y;
 
-		if (y > 0 && y > x && y > -x)
+		if (y > 0 && y > x && y > -x) {
 			startPoint = midTop;
-		else if (y < 0 && y < x && y < -x)
+		} else if (y < 0 && y < x && y < -x) {
 			startPoint = midBottom;
-		else if (x < 0 && y > x && y < -x)
+		} else if (x < 0 && y > x && y < -x) {
 			startPoint = midRight;
-		else
+		} else {
 			startPoint = midLeft;
+		}
 
 		tether.setStart(startPoint);
 		tether.setEnd(ref.getLocation());
 	}
 
+	@Override
 	protected void eraseChangeBoundsFeedback(ChangeBoundsRequest request) {
 		super.eraseChangeBoundsFeedback(request);
-		if (tether != null)
+		if (tether != null) {
 			removeFeedback(tether);
+		}
 		tether = null;
 	}
 

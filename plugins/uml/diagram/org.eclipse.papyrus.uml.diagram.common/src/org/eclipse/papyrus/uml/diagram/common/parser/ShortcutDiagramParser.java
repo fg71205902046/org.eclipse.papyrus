@@ -112,7 +112,7 @@ public class ShortcutDiagramParser implements IParser {
 	 */
 	@Override
 	public boolean isAffectingEvent(Object event, int flags) {
-		
+
 		return false;
 	}
 
@@ -122,7 +122,7 @@ public class ShortcutDiagramParser implements IParser {
 	 */
 	@Override
 	public IContentAssistProcessor getCompletionProcessor(IAdaptable element) {
-		
+
 		return null;
 	}
 

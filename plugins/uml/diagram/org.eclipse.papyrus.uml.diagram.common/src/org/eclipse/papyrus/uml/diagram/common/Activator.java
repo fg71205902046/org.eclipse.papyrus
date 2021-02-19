@@ -82,14 +82,14 @@ public class Activator extends AbstractUIPlugin {
 
 	/** Font manager. */
 	protected static FontManager fontManager = /* new FontManager(); */null;
-	
+
 	/**
 	 * Keywords are always enclosed in guillemets («keyword»), which serve as visual cues to more readily distinguish when
 	 * a keyword is being used.
 	 * NOTE. Guillemets are a special kind of quotation marks and should not be confused with or replaced by duplicated
 	 * “greater than” (>>) or “less than” (<<) symbols, except in situations where the available character set may not include
-     *guillemets.
-     * See Annex C: Keywords OMG Unified Modeling Language TM (OMG UML), Version 2.5
+	 * guillemets.
+	 * See Annex C: Keywords OMG Unified Modeling Language TM (OMG UML), Version 2.5
 	 */
 
 	/** left Stereotype delimiters ('Guillemets francais'). */
@@ -349,7 +349,7 @@ public class Activator extends AbstractUIPlugin {
 	 * @param element
 	 *            The element for which we will retrieve the stereotype icon
 	 * @return
-	 * 		The element's first applied stereotype's Image
+	 *         The element's first applied stereotype's Image
 	 */
 	public static Image getIconElement(Element element) {
 		return getIconElement(element, false);
@@ -385,7 +385,7 @@ public class Activator extends AbstractUIPlugin {
 	 * @return {@link image} of the icon
 	 */
 	public static Collection<Image> getIconElements(Element elt, Collection<Stereotype> stereotypes, boolean withVisibilityDecorator) {
-		Collection<Image> images = new ArrayList<Image>();
+		Collection<Image> images = new ArrayList<>();
 		VisibilityKind vis = null;
 		if ((elt instanceof NamedElement) && (withVisibilityDecorator)) {
 			vis = ((NamedElement) elt).getVisibility();
@@ -646,7 +646,7 @@ public class Activator extends AbstractUIPlugin {
 	 * @return the composed adapter factory
 	 */
 	protected ComposedAdapterFactory createAdapterFactory() {
-		List<AdapterFactory> factories = new ArrayList<AdapterFactory>();
+		List<AdapterFactory> factories = new ArrayList<>();
 		fillItemProviderFactories(factories);
 		return new ComposedAdapterFactory(factories);
 	}

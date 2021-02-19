@@ -654,9 +654,10 @@ public class UMLVisualIDRegistry {
 	private static boolean isPseudostate_InitialShape(View containerView, Pseudostate domainElement) {
 		// Test if the pseudostate is an initial
 		if (domainElement instanceof Pseudostate) {
-			PseudostateKind kind = ((Pseudostate) domainElement).getKind();
-			if (kind.equals(PseudostateKind.INITIAL_LITERAL))
+			PseudostateKind kind = domainElement.getKind();
+			if (kind.equals(PseudostateKind.INITIAL_LITERAL)) {
 				return true;
+			}
 		}
 		return false;
 	}
@@ -667,9 +668,10 @@ public class UMLVisualIDRegistry {
 	private static boolean isPseudostate_JoinShape(View containerView, Pseudostate domainElement) {
 		// Test if the pseudostate is a join
 		if (domainElement instanceof Pseudostate) {
-			PseudostateKind kind = ((Pseudostate) domainElement).getKind();
-			if (kind.equals(PseudostateKind.JOIN_LITERAL))
+			PseudostateKind kind = domainElement.getKind();
+			if (kind.equals(PseudostateKind.JOIN_LITERAL)) {
 				return true;
+			}
 		}
 		return false;
 	}
@@ -680,9 +682,10 @@ public class UMLVisualIDRegistry {
 	private static boolean isPseudostate_ForkShape(View containerView, Pseudostate domainElement) {
 		// Test if the pseudostate is a fork
 		if (domainElement instanceof Pseudostate) {
-			PseudostateKind kind = ((Pseudostate) domainElement).getKind();
-			if (kind.equals(PseudostateKind.FORK_LITERAL))
+			PseudostateKind kind = domainElement.getKind();
+			if (kind.equals(PseudostateKind.FORK_LITERAL)) {
 				return true;
+			}
 		}
 		return false;
 	}
@@ -693,9 +696,10 @@ public class UMLVisualIDRegistry {
 	private static boolean isPseudostate_ChoiceShape(View containerView, Pseudostate domainElement) {
 		// Test if the pseudostate is a choice
 		if (domainElement instanceof Pseudostate) {
-			PseudostateKind kind = ((Pseudostate) domainElement).getKind();
-			if (kind.equals(PseudostateKind.CHOICE_LITERAL))
+			PseudostateKind kind = domainElement.getKind();
+			if (kind.equals(PseudostateKind.CHOICE_LITERAL)) {
 				return true;
+			}
 		}
 		return false;
 	}
@@ -706,9 +710,10 @@ public class UMLVisualIDRegistry {
 	private static boolean isPseudostate_JunctionShape(View containerView, Pseudostate domainElement) {
 		// Test if the pseudostate is a junction
 		if (domainElement instanceof Pseudostate) {
-			PseudostateKind kind = ((Pseudostate) domainElement).getKind();
-			if (kind.equals(PseudostateKind.JUNCTION_LITERAL))
+			PseudostateKind kind = domainElement.getKind();
+			if (kind.equals(PseudostateKind.JUNCTION_LITERAL)) {
 				return true;
+			}
 		}
 		return false;
 	}
@@ -719,9 +724,10 @@ public class UMLVisualIDRegistry {
 	private static boolean isPseudostate_ShallowHistoryShape(View containerView, Pseudostate domainElement) {
 		// Test if the pseudostate is a shallowHistory
 		if (domainElement instanceof Pseudostate) {
-			PseudostateKind kind = ((Pseudostate) domainElement).getKind();
-			if (kind.equals(PseudostateKind.SHALLOW_HISTORY_LITERAL))
+			PseudostateKind kind = domainElement.getKind();
+			if (kind.equals(PseudostateKind.SHALLOW_HISTORY_LITERAL)) {
 				return true;
+			}
 		}
 		return false;
 	}
@@ -732,9 +738,10 @@ public class UMLVisualIDRegistry {
 	private static boolean isPseudostate_DeepHistoryShape(View containerView, Pseudostate domainElement) {
 		// Test if the pseudostate is a deepHistory
 		if (domainElement instanceof Pseudostate) {
-			PseudostateKind kind = ((Pseudostate) domainElement).getKind();
-			if (kind.equals(PseudostateKind.DEEP_HISTORY_LITERAL))
+			PseudostateKind kind = domainElement.getKind();
+			if (kind.equals(PseudostateKind.DEEP_HISTORY_LITERAL)) {
 				return true;
+			}
 		}
 		return false;
 	}
@@ -745,9 +752,10 @@ public class UMLVisualIDRegistry {
 	private static boolean isPseudostate_TerminateShape(View containerView, Pseudostate domainElement) {
 		// Test if the pseudostate is a terminate
 		if (domainElement instanceof Pseudostate) {
-			PseudostateKind kind = ((Pseudostate) domainElement).getKind();
-			if (kind.equals(PseudostateKind.TERMINATE_LITERAL))
+			PseudostateKind kind = domainElement.getKind();
+			if (kind.equals(PseudostateKind.TERMINATE_LITERAL)) {
 				return true;
+			}
 		}
 		return false;
 	}
@@ -758,9 +766,10 @@ public class UMLVisualIDRegistry {
 	private static boolean isPseudostate_EntryPointShape(View containerView, Pseudostate domainElement) {
 		// Test if the pseudostate is an entryPoint
 		if (domainElement instanceof Pseudostate) {
-			PseudostateKind kind = ((Pseudostate) domainElement).getKind();
-			if (kind.equals(PseudostateKind.ENTRY_POINT_LITERAL))
+			PseudostateKind kind = domainElement.getKind();
+			if (kind.equals(PseudostateKind.ENTRY_POINT_LITERAL)) {
 				return true;
+			}
 		}
 		return false;
 	}
@@ -771,9 +780,10 @@ public class UMLVisualIDRegistry {
 	private static boolean isPseudostate_ExitPointShape(View containerView, Pseudostate domainElement) {
 		// Test if the pseudostate is an exitPoint
 		if (domainElement instanceof Pseudostate) {
-			PseudostateKind kind = ((Pseudostate) domainElement).getKind();
-			if (kind.equals(PseudostateKind.EXIT_POINT_LITERAL))
+			PseudostateKind kind = domainElement.getKind();
+			if (kind.equals(PseudostateKind.EXIT_POINT_LITERAL)) {
 				return true;
+			}
 		}
 		return false;
 	}

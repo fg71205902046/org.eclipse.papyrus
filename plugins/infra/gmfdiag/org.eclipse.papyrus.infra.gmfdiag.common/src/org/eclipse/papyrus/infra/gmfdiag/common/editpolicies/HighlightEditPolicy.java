@@ -21,7 +21,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.utils.HighlightUtil;
 
 /**
  * EditPolicy dedicated to highligh node/edge in case of mouseover.
- * 
+ *
  * @author flefevre
  *
  */

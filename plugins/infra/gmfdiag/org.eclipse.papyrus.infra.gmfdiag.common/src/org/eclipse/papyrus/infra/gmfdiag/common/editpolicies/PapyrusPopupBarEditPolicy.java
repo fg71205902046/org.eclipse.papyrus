@@ -108,7 +108,7 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	protected IFigure myBalloon = null;
 
 	/** The popup bar descriptors for the popup bar buttons */
-	private List<PopupBarDescriptor> myPopupBarDescriptors = new ArrayList<PopupBarDescriptor>();
+	private List<PopupBarDescriptor> myPopupBarDescriptors = new ArrayList<>();
 
 	/** Images created that must be deleted when popup bar is removed */
 	protected List<Image> imagesToBeDisposed = null;
@@ -871,7 +871,7 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 			myDisabledImage = new Image(Display.getCurrent(), theImage, SWT.IMAGE_DISABLE);
 			if (imagesToBeDisposed == null) {
-				imagesToBeDisposed = new ArrayList<Image>();
+				imagesToBeDisposed = new ArrayList<>();
 			}
 			imagesToBeDisposed.add(myDisabledImage);
 			return myDisabledImage;

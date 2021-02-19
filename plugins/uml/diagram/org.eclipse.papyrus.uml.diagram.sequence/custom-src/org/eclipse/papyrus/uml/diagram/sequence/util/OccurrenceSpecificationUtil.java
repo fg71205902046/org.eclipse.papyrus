@@ -94,7 +94,7 @@ public class OccurrenceSpecificationUtil {
 	 * @param createRequest
 	 *            The create request
 	 * @return
-	 * 		<code>true</code> if the given request is closer to the top of the figure; false if it is closer to the bottom
+	 *         <code>true</code> if the given request is closer to the top of the figure; false if it is closer to the bottom
 	 */
 	public static boolean isStart(IFigure targetFigure, CreateRequest createRequest) {
 		return isStart(targetFigure, createRequest.getLocation());
@@ -106,7 +106,7 @@ public class OccurrenceSpecificationUtil {
 	 * @param Point
 	 *            The current request location
 	 * @return
-	 * 		<code>true</code> if the given request is closer to the top of the figure; false if it is closer to the bottom
+	 *         <code>true</code> if the given request is closer to the top of the figure; false if it is closer to the bottom
 	 */
 	public static boolean isStart(IFigure targetFigure, Point requestLocation) {
 		Rectangle bounds = targetFigure.getBounds().getCopy();
@@ -125,7 +125,7 @@ public class OccurrenceSpecificationUtil {
 	 * @param createRequest
 	 *            The create request
 	 * @return
-	 * 		<code>true</code> if the given request is closer to the source of the connection; false if it is closer to the target
+	 *         <code>true</code> if the given request is closer to the source of the connection; false if it is closer to the target
 	 */
 	public static boolean isSource(IFigure targetFigure, CreateRequest createRequest) {
 		return isSource(targetFigure, createRequest.getLocation());
@@ -139,7 +139,7 @@ public class OccurrenceSpecificationUtil {
 	 * @param requestLocation
 	 *            The mouse location for the current {@link Request}, in Viewer coordinates
 	 * @return
-	 * 		<code>true</code> if the given request is closer to the source of the connection; false if it is closer to the target
+	 *         <code>true</code> if the given request is closer to the source of the connection; false if it is closer to the target
 	 */
 	public static boolean isSource(IFigure targetFigure, Point requestLocation) {
 		requestLocation = requestLocation.getCopy();
@@ -171,7 +171,7 @@ public class OccurrenceSpecificationUtil {
 	 * @param anchorTerminal
 	 *            The connection anchor corresponding to the given connector end.
 	 * @return
-	 * 		The semantic occurrence specification represented by the given connector end (View), or null
+	 *         The semantic occurrence specification represented by the given connector end (View), or null
 	 *         if the view doesn't represent a valid {@link OccurrenceSpecification}.
 	 */
 	public static OccurrenceSpecification findSemanticOccurrence(View connectorEnd, String anchorTerminal) {

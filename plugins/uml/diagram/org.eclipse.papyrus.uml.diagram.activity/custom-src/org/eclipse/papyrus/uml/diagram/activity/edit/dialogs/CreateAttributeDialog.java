@@ -371,7 +371,7 @@ public class CreateAttributeDialog extends FormDialog {
 	 */
 	private Set<Object> getPossibleTypes() {
 		Collection<EObject> types = ModelSetQuery.getObjectsOfType(attributeOwner, UMLPackage.eINSTANCE.getTypedElement_Type().getEType());
-		Set<Object> result = new HashSet<Object>();
+		Set<Object> result = new HashSet<>();
 		result.add("");
 		result.addAll(types);
 		return result;

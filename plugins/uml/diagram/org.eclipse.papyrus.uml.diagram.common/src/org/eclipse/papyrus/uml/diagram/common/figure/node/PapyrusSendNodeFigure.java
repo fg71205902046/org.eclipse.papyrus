@@ -95,8 +95,7 @@ public class PapyrusSendNodeFigure extends NodeNamedElementFigure {
 			graphics.setForegroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
 			graphics.fillGradient(rect1, false);
 
-		}
-		else {
+		} else {
 			graphics.setBackgroundColor(getBackgroundColor());
 			graphics.setForegroundColor(getForegroundColor());
 			graphics.fillPolygon(ptList);

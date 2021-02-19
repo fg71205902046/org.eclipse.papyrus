@@ -54,9 +54,9 @@ public class LoadHandler extends GraphicalCommandHandler {
 		if (editingDomain != null && editingDomain.getResourceSet() instanceof ModelSet && selection.size() > 0) {
 			final ModelSet set = (ModelSet) editingDomain.getResourceSet();
 			CompoundCommand command = new CompoundCommand();
-			List<URI> handledURI = new ArrayList<URI>();
+			List<URI> handledURI = new ArrayList<>();
 			for (IGraphicalEditPart selPart : selection) {
-				View view = (View) ((IAdaptable) selPart).getAdapter(View.class);
+				View view = ((IAdaptable) selPart).getAdapter(View.class);
 				if (view != null) {
 					EObject sel = view.getElement();
 					// check for partially not loaded edge

@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -40,11 +41,11 @@ import org.eclipse.gmf.runtime.emf.core.GMFEditingDomainFactory;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.part.DefaultDiagramEditorUtil;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.papyrus.example.diagram.simplediagram.edit.parts.ModelEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.part.DefaultDiagramEditorUtil;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
@@ -62,7 +63,7 @@ public class UMLDiagramEditorUtil {
 	 * @generated
 	 */
 	public static Map<?, ?> getSaveOptions() {
-		HashMap<String, Object> saveOptions = new HashMap<String, Object>();
+		HashMap<String, Object> saveOptions = new HashMap<>();
 		saveOptions.put(XMLResource.OPTION_ENCODING, "UTF-8"); //$NON-NLS-1$
 		saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED,
 				Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
@@ -113,7 +114,7 @@ public class UMLDiagramEditorUtil {
 
 	/**
 	 * Runs the wizard in a dialog.
-	 * 
+	 *
 	 * @generated
 	 */
 	public static void runWizard(Shell shell, Wizard wizard, String settingsKey) {
@@ -135,11 +136,12 @@ public class UMLDiagramEditorUtil {
 
 	/**
 	 * This method should be called within a workspace modify operation since it creates resources.
+	 *
 	 * @generated
 	 */
 	public static Resource createDiagram(URI diagramURI, URI modelURI,
 			IProgressMonitor progressMonitor) {
-		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE
+		TransactionalEditingDomain editingDomain = WorkspaceEditingDomainFactory.INSTANCE
 				.createEditingDomain();
 		progressMonitor.beginTask(
 				Messages.UMLDiagramEditorUtil_CreateDiagramProgressTask, 3);
@@ -152,6 +154,7 @@ public class UMLDiagramEditorUtil {
 				editingDomain,
 				Messages.UMLDiagramEditorUtil_CreateDiagramCommandLabel,
 				Collections.EMPTY_LIST) {
+			@Override
 			protected CommandResult doExecuteWithResult(
 					IProgressMonitor monitor, IAdaptable info)
 					throws ExecutionException {
@@ -198,6 +201,7 @@ public class UMLDiagramEditorUtil {
 	 * Create a new instance of domain element associated with canvas.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	private static Model createInitialModel() {
@@ -208,6 +212,7 @@ public class UMLDiagramEditorUtil {
 	 * Store model element in the resource.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	private static void attachModelToResource(Model model, Resource resource) {
@@ -231,8 +236,9 @@ public class UMLDiagramEditorUtil {
 
 		if (!editParts.isEmpty()) {
 			diagramPart.getDiagramGraphicalViewer().reveal(
-					firstPrimary != null ? firstPrimary : (EditPart) editParts
-							.get(0));
+					firstPrimary != null ? firstPrimary
+							: (EditPart) editParts
+									.get(0));
 		}
 	}
 
@@ -294,7 +300,7 @@ public class UMLDiagramEditorUtil {
 		}
 
 		View view = null;
-		LinkedList<EditPart> editPartHolder = new LinkedList<EditPart>();
+		LinkedList<EditPart> editPartHolder = new LinkedList<>();
 		if (hasStructuralURI
 				&& !lazyElement2ViewMap.getElement2ViewMap().isEmpty()) {
 			view = lazyElement2ViewMap.getElement2ViewMap().get(targetElement);
@@ -310,6 +316,7 @@ public class UMLDiagramEditorUtil {
 
 	/**
 	 * XXX This is quite suspicious code (especially editPartTmpHolder) and likely to be removed soon
+	 *
 	 * @generated
 	 */
 	public static class LazyElement2ViewMap {
@@ -341,7 +348,7 @@ public class UMLDiagramEditorUtil {
 		 */
 		public final Map<EObject, View> getElement2ViewMap() {
 			if (element2ViewMap == null) {
-				element2ViewMap = new HashMap<EObject, View>();
+				element2ViewMap = new HashMap<>();
 				// map possible notation elements to itself as these can't be found by view.getElement()
 				for (EObject element : elementSet) {
 					if (element instanceof View) {
@@ -393,6 +400,6 @@ public class UMLDiagramEditorUtil {
 			}
 			return complete;
 		}
-	} //LazyElement2ViewMap	
+	} // LazyElement2ViewMap
 
 }

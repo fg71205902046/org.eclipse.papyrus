@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.common.editpart;
@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 /**
  * @author Patrick Tessier
  * @since 3.0
- * The purpose is to display nothing equivalent of DefaultNodeEditPart
+ *        The purpose is to display nothing equivalent of DefaultNodeEditPart
  *
  */
 public class SilentEditpart extends GraphicalEditPart {
@@ -39,7 +39,8 @@ public class SilentEditpart extends GraphicalEditPart {
 		super(model);
 	}
 
-	public static final String VISUAL_ID="SilentEditPart"; 
+	public static final String VISUAL_ID = "SilentEditPart";
+
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#setVisibility(boolean)
 	 *
@@ -49,6 +50,7 @@ public class SilentEditpart extends GraphicalEditPart {
 	protected void setVisibility(boolean vis) {
 		super.setVisibility(false);
 	}
+
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#createFigure()
 	 *
@@ -56,10 +58,10 @@ public class SilentEditpart extends GraphicalEditPart {
 	 */
 	@Override
 	protected IFigure createFigure() {
-		Figure fig= new RectangleFigure();
+		Figure fig = new RectangleFigure();
 		return fig;
 	}
-	
+
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#addChild(org.eclipse.gef.EditPart, int)
 	 *
@@ -70,5 +72,5 @@ public class SilentEditpart extends GraphicalEditPart {
 	protected void addChild(EditPart child, int index) {
 		// do nothing
 	}
-	
+
 }

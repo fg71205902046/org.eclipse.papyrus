@@ -31,6 +31,7 @@ import org.eclipse.uml2.uml.Region;
  * <pre>
  * This HelperAdvice resizes other regions of a state-machine or composite state, if a region gets deleted
  * </pre>
+ *
  * @since 3.1
  */
 public class DeleteRegionHelperAdvice extends AbstractEditHelperAdvice {
@@ -39,7 +40,7 @@ public class DeleteRegionHelperAdvice extends AbstractEditHelperAdvice {
 	protected ICommand getBeforeDestroyElementCommand(DestroyElementRequest request) {
 		EObject destructee = request.getElementToDestroy();
 
-		Set<View> viewsToDestroy = new HashSet<View>();
+		Set<View> viewsToDestroy = new HashSet<>();
 
 		if (destructee instanceof Region) {
 			viewsToDestroy = CrossReferencerUtil.getCrossReferencingViews(destructee, PackageEditPart.MODEL_ID);

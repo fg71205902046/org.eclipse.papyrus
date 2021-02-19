@@ -31,16 +31,17 @@ import org.eclipse.uml2.uml.Element;
  * this editpolicy is overloaded because the width of the interaction operand is managed by the editpartparent
  *
  */
-public class ConnectInteractionOperandToGridEditPolicy  extends ConnectRectangleToGridEditPolicy{
+public class ConnectInteractionOperandToGridEditPolicy extends ConnectRectangleToGridEditPolicy {
 
 	private CombinedFragmentEditPart combinedFragmentEditPart;
+
 	/**
 	 * Constructor.
 	 *
 	 */
 	public ConnectInteractionOperandToGridEditPolicy() {
 		super();
-		margin=27;
+		margin = 27;
 	}
 
 	/**
@@ -49,10 +50,10 @@ public class ConnectInteractionOperandToGridEditPolicy  extends ConnectRectangle
 	 */
 	@Override
 	public void activate() {
-		//the parent is the compartment of combinedFragment so we look for its great parent
-		if( getHost().getParent() instanceof CombinedFragmentCombinedFragmentCompartmentEditPart){
-			if(getHost().getParent().getParent() instanceof CombinedFragmentEditPart){
-				combinedFragmentEditPart = (CombinedFragmentEditPart)getHost().getParent().getParent();
+		// the parent is the compartment of combinedFragment so we look for its great parent
+		if (getHost().getParent() instanceof CombinedFragmentCombinedFragmentCompartmentEditPart) {
+			if (getHost().getParent().getParent() instanceof CombinedFragmentEditPart) {
+				combinedFragmentEditPart = (CombinedFragmentEditPart) getHost().getParent().getParent();
 				getDiagramEventBroker().addNotificationListener(combinedFragmentEditPart.getNotationView(), this);
 			}
 		}
@@ -65,13 +66,15 @@ public class ConnectInteractionOperandToGridEditPolicy  extends ConnectRectangle
 	 */
 	@Override
 	public void deactivate() {
-		if( combinedFragmentEditPart!=null){
+		if (combinedFragmentEditPart != null) {
 			getDiagramEventBroker().removeNotificationListener(combinedFragmentEditPart.getNotationView(), this);
 		}
 		super.deactivate();
 	}
+
 	/**
-	 * @see org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectNodeToGridEditPolicy#initListeningColumnFinish(org.eclipse.gmf.runtime.notation.Node, org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GrillingManagementEditPolicy, org.eclipse.uml2.uml.Element, org.eclipse.draw2d.geometry.PrecisionRectangle)
+	 * @see org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectNodeToGridEditPolicy#initListeningColumnFinish(org.eclipse.gmf.runtime.notation.Node, org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GrillingManagementEditPolicy,
+	 *      org.eclipse.uml2.uml.Element, org.eclipse.draw2d.geometry.PrecisionRectangle)
 	 *
 	 * @param node
 	 * @param grilling
@@ -81,9 +84,9 @@ public class ConnectInteractionOperandToGridEditPolicy  extends ConnectRectangle
 	 */
 	@Override
 	protected void initListeningColumnFinish(Node node, GridManagementEditPolicy grilling, Element element, PrecisionRectangle bounds) throws NoGrillElementFound {
-		if(combinedFragmentEditPart!=null){
-			Node cfNode=(Node)combinedFragmentEditPart.getNotationView();
-			columnFinish=grilling.createColumnTolisten(bounds.x+BoundForEditPart.getWidthFromView(cfNode), element);
+		if (combinedFragmentEditPart != null) {
+			Node cfNode = (Node) combinedFragmentEditPart.getNotationView();
+			columnFinish = grilling.createColumnTolisten(bounds.x + BoundForEditPart.getWidthFromView(cfNode), element);
 			getDiagramEventBroker().addNotificationListener(columnFinish, this);
 		}
 	}
@@ -97,12 +100,13 @@ public class ConnectInteractionOperandToGridEditPolicy  extends ConnectRectangle
 	 */
 	@Override
 	protected void updateColumFinishFromWitdhNotification(PrecisionRectangle notationBound) {
-		if( combinedFragmentEditPart!=null){
-			Node cfNode=(Node)combinedFragmentEditPart.getNotationView();
-			int newX=notationBound.x+BoundForEditPart.getWidthFromView(cfNode);
-			updatePositionGridAxis(columnFinish, newX,0);
+		if (combinedFragmentEditPart != null) {
+			Node cfNode = (Node) combinedFragmentEditPart.getNotationView();
+			int newX = notationBound.x + BoundForEditPart.getWidthFromView(cfNode);
+			updatePositionGridAxis(columnFinish, newX, 0);
 		}
 	}
+
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectNodeToGridEditPolicy#notifyChanged(org.eclipse.emf.common.notify.Notification)
 	 *
@@ -111,9 +115,9 @@ public class ConnectInteractionOperandToGridEditPolicy  extends ConnectRectangle
 	@Override
 	public void notifyChanged(Notification notification) {
 		super.notifyChanged(notification);
-		if( notification.getEventType()==Notification.SET && notification.getNotifier() instanceof Bounds && (((EObject)notification.getNotifier()).eContainer().equals(combinedFragmentEditPart.getNotationView()))){
-			PrecisionRectangle bounds=NotationHelper.getAbsoluteBounds((Node)((GraphicalEditPart)getHost()).getNotationView());
-			if( notification.getFeature().equals(NotationPackage.eINSTANCE.getSize_Width())){
+		if (notification.getEventType() == Notification.SET && notification.getNotifier() instanceof Bounds && (((EObject) notification.getNotifier()).eContainer().equals(combinedFragmentEditPart.getNotationView()))) {
+			PrecisionRectangle bounds = NotationHelper.getAbsoluteBounds((Node) ((GraphicalEditPart) getHost()).getNotationView());
+			if (notification.getFeature().equals(NotationPackage.eINSTANCE.getSize_Width())) {
 				updateColumFinishFromWitdhNotification(bounds);
 			}
 		}

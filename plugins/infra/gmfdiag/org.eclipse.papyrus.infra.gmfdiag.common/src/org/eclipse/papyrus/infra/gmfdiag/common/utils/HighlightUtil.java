@@ -30,11 +30,11 @@ import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.FillStyle;
 import org.eclipse.gmf.runtime.notation.LineStyle;
-
 import org.eclipse.swt.graphics.Color;
 
 /**
  * Util methods dedicated to help for the highlight of node/edge in case of mouseover.
+ *
  * @author flefevre
  *
  */
@@ -55,7 +55,7 @@ public class HighlightUtil {
 		}
 	}
 
-	private static Map<Object, FigureState> figureState = new HashMap<Object, FigureState>();
+	private static Map<Object, FigureState> figureState = new HashMap<>();
 
 	/**
 	 * Make a private instance, avoid highlight above highlight.
@@ -82,19 +82,19 @@ public class HighlightUtil {
 	}
 
 	private static List<IFigure> getHighlightFigures(EditPart host, boolean parentLooking) {
-		List<IFigure> figures = new ArrayList<IFigure>();
+		List<IFigure> figures = new ArrayList<>();
 		try {
 			Method getMethod = getGetPrimaryShapeMethod(host.getClass());
 			getMethod.setAccessible(true);
 			figures.add((IFigure) getMethod.invoke(host));
 		} catch (Exception e) {
-			if(!parentLooking){
+			if (!parentLooking) {
 				List<IFigure> po = getHighlightFigures(host.getParent(), true);
-				if(po!=null){
+				if (po != null) {
 					figures.addAll(po);
 				}
 			}
-					
+
 		}
 		return figures;
 	}

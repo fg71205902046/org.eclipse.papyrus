@@ -41,10 +41,10 @@ public class ViewServiceUtil {
 		IEditorPart activeEditor = MDTUtil.getActiveEditor();
 		if (activeEditor != null) {
 			if (activeEditor instanceof IMultiDiagramEditor) {
-				Diagram diagram = (Diagram) ((IMultiDiagramEditor) activeEditor).getAdapter(Diagram.class);
+				Diagram diagram = ((IMultiDiagramEditor) activeEditor).getAdapter(Diagram.class);
 				if (diagram != null) {
 					String diagramSemanticHint = diagram.getType();
-					DiagramEditPart host = (DiagramEditPart) ((IMultiDiagramEditor) activeEditor).getAdapter(DiagramEditPart.class);
+					DiagramEditPart host = ((IMultiDiagramEditor) activeEditor).getAdapter(DiagramEditPart.class);
 
 					// When we don't have the semanticHint, the command can't be
 					// executed, if the ViewService is not started

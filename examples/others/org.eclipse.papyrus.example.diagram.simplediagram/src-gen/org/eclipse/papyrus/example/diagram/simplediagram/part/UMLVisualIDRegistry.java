@@ -16,7 +16,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * This registry is used to determine which type of visual object should be
  * created for the corresponding Diagram, Node, ChildNode or Link represented
  * by a domain model object.
- * 
+ *
  * @generated
  */
 public class UMLVisualIDRegistry {
@@ -49,7 +49,7 @@ public class UMLVisualIDRegistry {
 		while (view != diagram) {
 			EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 			if (annotation != null) {
-				return (String) annotation.getDetails().get("modelID"); //$NON-NLS-1$
+				return annotation.getDetails().get("modelID"); //$NON-NLS-1$
 			}
 			view = (View) view.eContainer();
 		}
@@ -177,7 +177,7 @@ public class UMLVisualIDRegistry {
 	/**
 	 * User can change implementation of this method to handle some specific
 	 * situations not covered by default logic.
-	 * 
+	 *
 	 * @generated
 	 */
 	private static boolean isDiagram(Model element) {
@@ -190,7 +190,7 @@ public class UMLVisualIDRegistry {
 	public static boolean checkNodeVisualID(View containerView,
 			EObject domainElement, int candidate) {
 		if (candidate == -1) {
-			//unrecognized id is always bad
+			// unrecognized id is always bad
 			return false;
 		}
 		int basic = getNodeVisualID(containerView, domainElement);
@@ -227,6 +227,7 @@ public class UMLVisualIDRegistry {
 		 * @generated
 		 */
 
+		@Override
 		public int getVisualID(View view) {
 			return org.eclipse.papyrus.example.diagram.simplediagram.part.UMLVisualIDRegistry
 					.getVisualID(view);
@@ -236,6 +237,7 @@ public class UMLVisualIDRegistry {
 		 * @generated
 		 */
 
+		@Override
 		public String getModelID(View view) {
 			return org.eclipse.papyrus.example.diagram.simplediagram.part.UMLVisualIDRegistry
 					.getModelID(view);
@@ -245,6 +247,7 @@ public class UMLVisualIDRegistry {
 		 * @generated
 		 */
 
+		@Override
 		public int getNodeVisualID(View containerView, EObject domainElement) {
 			return org.eclipse.papyrus.example.diagram.simplediagram.part.UMLVisualIDRegistry
 					.getNodeVisualID(containerView, domainElement);
@@ -254,6 +257,7 @@ public class UMLVisualIDRegistry {
 		 * @generated
 		 */
 
+		@Override
 		public boolean checkNodeVisualID(View containerView,
 				EObject domainElement, int candidate) {
 			return org.eclipse.papyrus.example.diagram.simplediagram.part.UMLVisualIDRegistry
@@ -264,6 +268,7 @@ public class UMLVisualIDRegistry {
 		 * @generated
 		 */
 
+		@Override
 		public boolean isCompartmentVisualID(int visualID) {
 			return org.eclipse.papyrus.example.diagram.simplediagram.part.UMLVisualIDRegistry
 					.isCompartmentVisualID(visualID);
@@ -273,6 +278,7 @@ public class UMLVisualIDRegistry {
 		 * @generated
 		 */
 
+		@Override
 		public boolean isSemanticLeafVisualID(int visualID) {
 			return org.eclipse.papyrus.example.diagram.simplediagram.part.UMLVisualIDRegistry
 					.isSemanticLeafVisualID(visualID);

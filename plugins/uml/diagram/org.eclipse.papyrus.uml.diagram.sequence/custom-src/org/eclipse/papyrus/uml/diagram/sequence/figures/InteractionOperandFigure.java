@@ -71,8 +71,9 @@ public class InteractionOperandFigure extends RoundedCompartmentFigure {
 	private void createContents() {
 		fInteractionConstraintLabel = new WrappingLabel();
 		fInteractionConstraintLabel.setText("");
-		this.add(fInteractionConstraintLabel, new Rectangle(10,10,200,20));
+		this.add(fInteractionConstraintLabel, new Rectangle(10, 10, 200, 20));
 	}
+
 	/**
 	 * @see org.eclipse.draw2d.Figure#getMinimumSize(int, int)
 	 *
@@ -83,18 +84,18 @@ public class InteractionOperandFigure extends RoundedCompartmentFigure {
 	@Override
 	public Dimension getMinimumSize(int wHint, int hHint) {
 
-		Dimension dim= super.getMinimumSize(wHint, hHint);
-		//look for combinedFragmentFigure
-		IFigure cfFigure=getParent();
+		Dimension dim = super.getMinimumSize(wHint, hHint);
+		// look for combinedFragmentFigure
+		IFigure cfFigure = getParent();
 		while (!(cfFigure instanceof CombinedFragmentFigure)) {
-			cfFigure= cfFigure.getParent();
+			cfFigure = cfFigure.getParent();
 		}
-		if (cfFigure==null){
+		if (cfFigure == null) {
 			return dim;
 		}
-		Rectangle ccfbound=cfFigure.getBounds();
-		if( ccfbound.width!=-1){
-			return new Dimension(ccfbound.width,dim.height );
+		Rectangle ccfbound = cfFigure.getBounds();
+		if (ccfbound.width != -1) {
+			return new Dimension(ccfbound.width, dim.height);
 		}
 		return dim;
 	}

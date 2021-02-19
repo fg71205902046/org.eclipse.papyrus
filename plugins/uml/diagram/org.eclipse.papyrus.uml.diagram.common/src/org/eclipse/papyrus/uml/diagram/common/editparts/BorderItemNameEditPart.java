@@ -295,7 +295,7 @@ public class BorderItemNameEditPart extends FloatingLabelEditPart implements ITe
 					final EObject element = getParserElement();
 					final IParser parser = getParser();
 					try {
-						IParserEditStatus valid = (IParserEditStatus) getEditingDomain().runExclusive(new RunnableWithResult.Impl<java.lang.Object>() {
+						IParserEditStatus valid = (IParserEditStatus) getEditingDomain().runExclusive(new RunnableWithResult.Impl<>() {
 
 							@Override
 							public void run() {

@@ -63,10 +63,10 @@ public class CustomStateResizeCommand extends AbstractTransactionalCommand {
 
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		View state = (View) adaptable.getAdapter(View.class);
+		View state = adaptable.getAdapter(View.class);
 		View stateLabel = (View) state.getChildren().get(0);
 		View stateCompartment = CustomStateEditPart.getStateCompartmentView(state);
-		if(stateCompartment == null) {
+		if (stateCompartment == null) {
 			// try this time as a CustomStateEditPartTN
 			stateCompartment = CustomStateEditPartTN.getStateCompartmentView(state);
 		}
@@ -353,7 +353,7 @@ public class CustomStateResizeCommand extends AbstractTransactionalCommand {
 				}
 				break;
 			}// switch
-		}// while
+		} // while
 		return CommandResult.newOKCommandResult();
 	}
 }

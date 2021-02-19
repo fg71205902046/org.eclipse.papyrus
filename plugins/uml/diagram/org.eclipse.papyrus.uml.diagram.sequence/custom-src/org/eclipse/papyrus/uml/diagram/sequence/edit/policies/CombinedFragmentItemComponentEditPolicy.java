@@ -30,6 +30,7 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalC
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CombinedFragmentDeleteHelper;
 import org.eclipse.uml2.uml.CombinedFragment;
+
 @Deprecated
 public class CombinedFragmentItemComponentEditPolicy extends ComponentEditPolicy {
 

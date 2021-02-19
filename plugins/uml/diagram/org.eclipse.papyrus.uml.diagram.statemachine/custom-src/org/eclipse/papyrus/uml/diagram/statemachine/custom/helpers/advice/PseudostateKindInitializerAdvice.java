@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.advice;
@@ -97,7 +97,7 @@ public class PseudostateKindInitializerAdvice extends AbstractEditHelperAdvice {
 
 		private final PseudostateKind myKind;
 
-		protected SetPseudostateKindCommand(PseudostateKind kind , EObject elementToEdit, ConfigureRequest request) {
+		protected SetPseudostateKindCommand(PseudostateKind kind, EObject elementToEdit, ConfigureRequest request) {
 			super(request);
 			myKind = kind;
 		}
@@ -122,10 +122,10 @@ public class PseudostateKindInitializerAdvice extends AbstractEditHelperAdvice {
 			pseudo.setKind(myKind);
 
 			// we have to reset initialized name because it depends on kind
-			//reset old name
+			// reset old name
 			String oldName = pseudo.getName();
 			pseudo.setName(null);
-			
+
 			String initializedName = NamedElementUtil.getDefaultNameWithIncrement(pseudo, pseudo.eContainer().eContents());
 			initializedName = initializedName != null ? initializedName : oldName;
 			pseudo.setName(initializedName);

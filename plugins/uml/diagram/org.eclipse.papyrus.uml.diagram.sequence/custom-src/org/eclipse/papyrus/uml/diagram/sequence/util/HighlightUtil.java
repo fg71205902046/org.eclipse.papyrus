@@ -84,7 +84,7 @@ public class HighlightUtil {
 		List<IFigure> figures = new ArrayList<>();
 		if (host instanceof LifelineEditPart) {
 			LifelineEditPart part = (LifelineEditPart) host;
-			//figures.add(part.getPrimaryShape().getFigureLifelineNameContainerFigure());
+			// figures.add(part.getPrimaryShape().getFigureLifelineNameContainerFigure());
 			figures.add(part.getPrimaryShape().getFigureLifelineDotLineFigure());
 		} else if (host instanceof InteractionOperandEditPart) {
 			InteractionOperandEditPart op = (InteractionOperandEditPart) host;

@@ -22,6 +22,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.uml.diagram.sequence.util.DurationLinkUtil;
+import org.eclipse.papyrus.uml.diagram.sequence.util.OccurrenceSpecificationUtil;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant;
@@ -46,7 +47,7 @@ public class CustomExecutionSpecificationSemanticEditPolicy extends OccurenceSem
 				return super.getCreateCommand(req);
 			}
 
-			boolean isStart = DurationLinkUtil.isStart(((IGraphicalEditPart) getHost()).getFigure(), Point.class.cast(loc));
+			boolean isStart = OccurrenceSpecificationUtil.isStart(((IGraphicalEditPart) getHost()).getFigure(), Point.class.cast(loc));
 			if (isStart) {
 				req.setParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION, Arrays.asList(((ExecutionSpecification) req.getContainer()).getStart()));
 			} else {

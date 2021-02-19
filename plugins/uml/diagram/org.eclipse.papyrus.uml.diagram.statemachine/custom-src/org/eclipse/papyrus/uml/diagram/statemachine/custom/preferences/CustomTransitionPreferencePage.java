@@ -11,7 +11,7 @@
  * Contributors:
  *  CEA LIST - Initial API and implementation
  *  Christian W. Damus - bug 461629
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.preferences;
 
@@ -28,14 +28,13 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
  * @since 3.1
  */
 public class CustomTransitionPreferencePage extends FieldEditorPreferencePage
-		implements IWorkbenchPreferencePage
-{
+		implements IWorkbenchPreferencePage {
 	public CustomTransitionPreferencePage() {
 		super(GRID);
 		setPreferenceStore(UMLDiagramEditorPlugin.getInstance().getPreferenceStore());
 		setDescription(
-		"This preference page allows to customize label appearance on transitions and in entry/exit/do behaviors. " + //$NON-NLS-1$
-				"Please note that per diagram or element settings can be done via CSS."); //$NON-NLS-1$
+				"This preference page allows to customize label appearance on transitions and in entry/exit/do behaviors. " + //$NON-NLS-1$
+						"Please note that per diagram or element settings can be done via CSS."); //$NON-NLS-1$
 	}
 
 	boolean updatePending;

@@ -42,7 +42,7 @@ public class NotationTypesMap {
 
 	public static final String MAPPING = "mapping";
 
-	private final Map<String, TypeMap> typeMaps = new HashMap<String, TypeMap>(); // DiagramID -> TypeMap
+	private final Map<String, TypeMap> typeMaps = new HashMap<>(); // DiagramID -> TypeMap
 
 	private NotationTypesMap() {
 		readExtensionPoint();
@@ -178,9 +178,9 @@ public class NotationTypesMap {
 
 		public static final TypeMap defaultMap = new TypeMap();
 
-		private final Map<String, String> computerToHumanTypeMapping = new HashMap<String, String>(); // GMF Type -> Human-readable Type
+		private final Map<String, String> computerToHumanTypeMapping = new HashMap<>(); // GMF Type -> Human-readable Type
 
-		private final Map<String, String> humanToComputerTypeMapping = new HashMap<String, String>(); // Human-readable Type -> GMF Type
+		private final Map<String, String> humanToComputerTypeMapping = new HashMap<>(); // Human-readable Type -> GMF Type
 
 		public String getNotationType(String humanReadableType) {
 			if (humanToComputerTypeMapping.containsKey(humanReadableType) || defaultMap == this) {

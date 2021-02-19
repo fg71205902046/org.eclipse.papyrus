@@ -26,10 +26,10 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IShapeCompartmentEditPa
 public abstract class AbstractShapeCompartmentViewProvider extends CustomAbstractViewProvider {
 
 	/** Map containing node view types supported by this provider */
-	protected Map<String, Class<?>> nodeMap = new HashMap<String, Class<?>>();
+	protected Map<String, Class<?>> nodeMap = new HashMap<>();
 
 	/** Map containing edge view types supported by this provider */
-	protected Map<String, Class<?>> edgeMap = new HashMap<String, Class<?>>();
+	protected Map<String, Class<?>> edgeMap = new HashMap<>();
 
 	/** Default constructor */
 	public AbstractShapeCompartmentViewProvider() {

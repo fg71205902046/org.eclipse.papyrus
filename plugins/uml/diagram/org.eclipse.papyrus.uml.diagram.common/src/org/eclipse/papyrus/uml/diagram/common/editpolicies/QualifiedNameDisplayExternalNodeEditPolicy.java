@@ -144,7 +144,7 @@ public class QualifiedNameDisplayExternalNodeEditPolicy extends QualifiedNameDis
 		DiagramEventBroker diagramEventBroker = getDiagramEventBroker();
 		if (diagramEventBroker != null) {
 			if (parentListeners == null) {
-				parentListeners = new ArrayList<Object>();
+				parentListeners = new ArrayList<>();
 			}
 			if (getNamedElement() != null) {
 				EObject parentEOBject = getNamedElement().eContainer();

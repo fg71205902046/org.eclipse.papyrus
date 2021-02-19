@@ -42,6 +42,7 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void showPrimarySelection() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setSelected(true);
@@ -55,6 +56,7 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void showSelection() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setSelected(true);
@@ -71,6 +73,7 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void hideSelection() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setSelected(false);
@@ -88,6 +91,7 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void showFocus() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setFocus(true);
@@ -101,6 +105,7 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void hideFocus() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setFocus(false);
@@ -153,6 +158,7 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx
 	protected IFigure createFocusFeedbackFigure() {
 		return new Figure() {
 
+			@Override
 			protected void paintFigure(Graphics graphics) {
 				graphics.drawFocus(getBounds().getResized(-1, -1));
 			}
@@ -197,6 +203,7 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx
 	 * @generated
 	 */
 
+	@Override
 	public void refreshFeedback() {
 		refreshSelectionFeedback();
 		refreshFocusFeedback();
@@ -208,6 +215,7 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx
 	private FigureListener getHostPositionListener() {
 		if (hostPositionListener == null) {
 			hostPositionListener = new FigureListener() {
+				@Override
 				public void figureMoved(IFigure source) {
 					refreshFeedback();
 				}
@@ -219,6 +227,7 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx
 	/**
 	 * @generated
 	 */
+	@Override
 	protected List createSelectionHandles() {
 		MoveHandle moveHandle = new MoveHandle((GraphicalEditPart) getHost());
 		moveHandle.setBorder(null);

@@ -145,11 +145,11 @@ public class NodeSizeSyncFeature<M extends EObject, T extends EditPart> extends 
 	}
 
 	public static <M extends EObject, T extends EditPart> NotationSyncPolicyDelegate<M, T> createPolicyDelegate() {
-		return new NotationSyncPolicyDelegate<M, T>(NotationPackage.Literals.SIZE.getName()) {
+		return new NotationSyncPolicyDelegate<>(NotationPackage.Literals.SIZE.getName()) {
 
 			@Override
 			protected EMFDispatch createDispatcher(SyncItem<M, T> syncTarget) {
-				return new NodeSizeSyncDispatcher<M, T>(syncTarget) {
+				return new NodeSizeSyncDispatcher<>(syncTarget) {
 					@Override
 					public void onClear() {
 						// Nothing to do do

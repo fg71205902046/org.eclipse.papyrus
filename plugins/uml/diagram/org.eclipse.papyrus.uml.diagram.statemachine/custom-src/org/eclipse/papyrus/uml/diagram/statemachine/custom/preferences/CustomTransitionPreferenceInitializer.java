@@ -21,6 +21,7 @@ import org.eclipse.papyrus.uml.diagram.statemachine.part.UMLDiagramEditorPlugin;
 
 /**
  * Class used to initialize default preference values.
+ *
  * @since 3.1
  */
 public class CustomTransitionPreferenceInitializer extends AbstractPreferenceInitializer {

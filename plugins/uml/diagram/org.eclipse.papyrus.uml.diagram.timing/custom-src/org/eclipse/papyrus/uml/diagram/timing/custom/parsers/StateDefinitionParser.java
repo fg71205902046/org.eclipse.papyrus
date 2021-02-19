@@ -58,7 +58,7 @@ public class StateDefinitionParser implements IParser {
 
 	@Override
 	public ICommand getParseCommand(final IAdaptable adaptable, final String newString, final int flags) {
-		final View stateDefinitionLabelView = (View) adaptable.getAdapter(View.class);
+		final View stateDefinitionLabelView = adaptable.getAdapter(View.class);
 		final View stateDefinitionView = (View) stateDefinitionLabelView.eContainer();
 		final View lifelineView = ViewUtils.findSuperViewWithId(stateDefinitionView, FullLifelineEditPartCN.VISUAL_ID);
 		final Lifeline lifeline = (Lifeline) lifelineView.getElement();

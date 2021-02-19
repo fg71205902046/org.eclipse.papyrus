@@ -135,7 +135,7 @@ public class StereotypeEditPart extends ClassEditPart {
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-		//set the figure active when the feature of the of a class is true
+		// set the figure active when the feature of the of a class is true
 		if (resolveSemanticElement() != null) {
 			if (resolveSemanticElement().equals(event.getNotifier()) && (event.getFeature() instanceof EAttribute)
 					&& ((EAttribute) (event.getFeature())).getName().equals("isActive")) {
@@ -175,14 +175,14 @@ public class StereotypeEditPart extends ClassEditPart {
 
 		if (childEditPart instanceof StereotypeAttributeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((StereotypeAttributeCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
 
 		if (childEditPart instanceof StereotypeOperationCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((StereotypeOperationCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}

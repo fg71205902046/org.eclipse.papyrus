@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -33,9 +33,10 @@ import org.eclipse.uml2.uml.Constraint;
 /**
  * Custom context link semantic edit policy that provides removing a context from constrained element
  * during delete/hide context link command
- * 
+ *
  * @deprecated since 2.0, the work is now done by an advice helper in the oep.uml.service.types
  */
+@Deprecated
 public class ContextLinkSemanticEditPolicy extends DefaultSemanticEditPolicy {
 
 	@Override

@@ -66,10 +66,10 @@ public class ScaledImageFigure extends ImageFigure {
 	 *            the scale factor. 0 < scale <= 1
 	 */
 	public void setScale(double scale) {
-		if (scale<1.0 && scale >0.0)		
-			this.scale = scale;		
-		
-		
+		if (scale < 1.0 && scale > 0.0)
+			this.scale = scale;
+
+
 	}
 
 	private double scale = 1;

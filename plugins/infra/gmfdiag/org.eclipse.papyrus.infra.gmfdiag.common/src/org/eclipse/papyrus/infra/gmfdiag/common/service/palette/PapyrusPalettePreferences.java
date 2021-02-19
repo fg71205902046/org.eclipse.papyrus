@@ -44,7 +44,7 @@ public class PapyrusPalettePreferences implements IPapyrusPaletteConstant {
 	 * @return
 	 */
 	public static List<IPaletteDescription> getWorkspaceExtendedPalettes() {
-		ArrayList<IPaletteDescription> paletteDescriptions = new ArrayList<IPaletteDescription>();
+		ArrayList<IPaletteDescription> paletteDescriptions = new ArrayList<>();
 		// retrieve the value of the preference field
 		XMLMemento rootMemento = getExistingWorkspaceExtendedPalettes();
 		if (null == rootMemento) {
@@ -61,11 +61,11 @@ public class PapyrusPalettePreferences implements IPapyrusPaletteConstant {
 
 	/**
 	 * Get Extended Palette defined Locally
-	 * 
+	 *
 	 * @return the list of extended palette defined locally
 	 */
 	public static List<IPaletteDescription> getLocalExtendedPalettes() {
-		ArrayList<IPaletteDescription> paletteDescriptions = new ArrayList<IPaletteDescription>();
+		ArrayList<IPaletteDescription> paletteDescriptions = new ArrayList<>();
 		// retrieve the value of the preference field
 		XMLMemento rootMemento = getExistingLocalExtendedPalettes();
 		if (rootMemento == null) {
@@ -343,7 +343,7 @@ public class PapyrusPalettePreferences implements IPapyrusPaletteConstant {
 	 */
 	public static List<String> getHiddenPalettesList(IMemento hiddenPalettesMemento) {
 		String hiddenPalettes = hiddenPalettesMemento.getString(ID);
-		ArrayList<String> ids = new ArrayList<String>();
+		ArrayList<String> ids = new ArrayList<>();
 		StringTokenizer tokenizer = new StringTokenizer((hiddenPalettes != null) ? hiddenPalettes : "", ";"); //$NON-NLS-1$ //$NON-NLS-2$
 		while (tokenizer.hasMoreTokens()) {
 			ids.add(tokenizer.nextToken());

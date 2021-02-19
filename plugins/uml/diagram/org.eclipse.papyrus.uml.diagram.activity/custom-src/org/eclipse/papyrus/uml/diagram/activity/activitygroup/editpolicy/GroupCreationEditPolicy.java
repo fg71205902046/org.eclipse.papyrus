@@ -84,7 +84,7 @@ public class GroupCreationEditPolicy extends CreationEditPolicy {
 	@Override
 	protected Command getReparentCommand(ChangeBoundsRequest request) {
 		Iterator editParts = request.getEditParts().iterator();
-		View container = (View) getHost().getAdapter(View.class);
+		View container = getHost().getAdapter(View.class);
 		EObject context = container == null ? null : ViewUtil.resolveSemanticElement(container);
 		CompositeCommand cc = new CompositeCommand(DiagramUIMessages.AddCommand_Label);
 		while (editParts.hasNext()) {
@@ -95,7 +95,7 @@ public class GroupCreationEditPolicy extends CreationEditPolicy {
 			if (ep instanceof GroupEditPart) {
 				cc.compose(getReparentGroupCommand((GroupEditPart) ep));
 			}
-			View view = (View) ep.getAdapter(View.class);
+			View view = ep.getAdapter(View.class);
 			if (view == null) {
 				continue;
 			}

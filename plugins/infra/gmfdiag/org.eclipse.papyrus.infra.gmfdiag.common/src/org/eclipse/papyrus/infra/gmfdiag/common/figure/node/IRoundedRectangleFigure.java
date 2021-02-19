@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and Implementation
- * 
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.figure.node;
 
@@ -21,13 +21,13 @@ import org.eclipse.draw2d.geometry.Rectangle;
 /**
  * An interface for figures which have a rounded rectangle shape and need to
  * provide a connection anchor and a floating Name.
- * 
+ *
  */
 public interface IRoundedRectangleFigure extends IFigure {
 
 	/**
 	 * Returns the rounded rectangles corner dimensions.
-	 * 
+	 *
 	 * @return the corner dimensions
 	 */
 	Dimension getCornerDimensions();
@@ -42,7 +42,7 @@ public interface IRoundedRectangleFigure extends IFigure {
 
 	/**
 	 * Returns the rounded rectangles bounds.
-	 * 
+	 *
 	 * @return the bounds
 	 */
 	Rectangle getRoundedRectangleBounds();
@@ -121,7 +121,7 @@ public interface IRoundedRectangleFigure extends IFigure {
 
 	/**
 	 * Gets the Package Header
-	 * 
+	 *
 	 * @return
 	 */
 	public Rectangle getPackageHeader();

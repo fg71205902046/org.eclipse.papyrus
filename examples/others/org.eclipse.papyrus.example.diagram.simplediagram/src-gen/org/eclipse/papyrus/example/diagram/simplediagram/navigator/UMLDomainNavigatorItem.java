@@ -22,6 +22,7 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 		Platform.getAdapterManager().registerAdapters(
 				new IAdapterFactory() {
 
+					@Override
 					public Object getAdapter(Object adaptableObject,
 							Class adapterType) {
 						if (adaptableObject instanceof org.eclipse.papyrus.example.diagram.simplediagram.navigator.UMLDomainNavigatorItem) {
@@ -40,6 +41,7 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 						return null;
 					}
 
+					@Override
 					public Class[] getAdapterList() {
 						return supportedTypes;
 					}
@@ -96,6 +98,7 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof org.eclipse.papyrus.example.diagram.simplediagram.navigator.UMLDomainNavigatorItem) {
 			return EcoreUtil
@@ -110,6 +113,7 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 	/**
 	 * @generated
 	 */
+	@Override
 	public int hashCode() {
 		return EcoreUtil.getURI(getEObject()).hashCode();
 	}

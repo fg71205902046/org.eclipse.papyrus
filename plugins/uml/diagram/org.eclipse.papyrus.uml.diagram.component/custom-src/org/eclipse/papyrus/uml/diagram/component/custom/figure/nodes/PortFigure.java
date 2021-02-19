@@ -18,6 +18,7 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.AffixedNamedElementFig
 
 /**
  * The Class PortFigure.
+ *
  * @since 3.0
  */
 public class PortFigure extends AffixedNamedElementFigure {

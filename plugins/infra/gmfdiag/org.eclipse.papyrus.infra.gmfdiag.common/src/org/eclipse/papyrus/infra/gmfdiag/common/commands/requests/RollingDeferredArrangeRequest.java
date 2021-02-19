@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.common.commands.requests;
@@ -70,7 +70,7 @@ public class RollingDeferredArrangeRequest implements Runnable {
 	/**
 	 * Posts a collection of views (as view adapters) to be arranged later when all views needing
 	 * to be arranged are ready.
-	 * 
+	 *
 	 * @param context
 	 *            the calling edit-policy context in which the arrangement is requested
 	 * @param viewAdapters
@@ -111,7 +111,7 @@ public class RollingDeferredArrangeRequest implements Runnable {
 	 * or more others already pending. The resulting roll-up maps to the aggregate of all
 	 * of the view-adapter collections corresponding to the contexts that are rolled up into
 	 * it.
-	 * 
+	 *
 	 * @param context
 	 *            a context to roll up
 	 * @return its roll-up super-context
@@ -162,11 +162,11 @@ public class RollingDeferredArrangeRequest implements Runnable {
 	/**
 	 * A partial ordering on edit parts that sorts edit parts ahead of those that contain them (directly
 	 * or indirectly).
-	 * 
+	 *
 	 * @return an ancestors-last partial ordering on edit parts
 	 */
 	private static Comparator<EditPart> ancestorComparator() {
-		return new Comparator<EditPart>() {
+		return new Comparator<>() {
 			@Override
 			public int compare(EditPart o1, EditPart o2) {
 				int result = 0;
@@ -252,7 +252,7 @@ public class RollingDeferredArrangeRequest implements Runnable {
 	/**
 	 * Adds more views to be arranged in my edit-part context. This further defers my execution,
 	 * waiting for yet more views to be added to the overall arragement operation.
-	 * 
+	 *
 	 * @param viewAdapters
 	 *            views to be arranged, as view adapters
 	 * @return myself, for the convenience of call chaining
@@ -314,7 +314,7 @@ public class RollingDeferredArrangeRequest implements Runnable {
 	 * Partitions a collection of view adapters by the edit-parts that are the parents of (containing)
 	 * the edit-parts managing the given views. The idea being that these parent edit-parts are the
 	 * ones that are responsible for providing the layout commands of their child views.
-	 * 
+	 *
 	 * @param viewAdapters
 	 *            views to be arranged, as view adapters
 	 * @return the views, partitioned by parent edit-part
@@ -347,7 +347,7 @@ public class RollingDeferredArrangeRequest implements Runnable {
 	 * Resolves a view adapter as an arrangeable view. Labels (as for messages in communication diagrams)
 	 * are not arrangeable, as such, but the views (shapes and connectors) that they decorate are the views
 	 * that should be arranged.
-	 * 
+	 *
 	 * @param viewAdapter
 	 *            a view adapter
 	 * @return the arrangeable view that it adapts, or {@code null} if no arrangeable view can be resolved
@@ -370,7 +370,7 @@ public class RollingDeferredArrangeRequest implements Runnable {
 
 	/**
 	 * The context in which an arrangement of views is requested.
-	 * 
+	 *
 	 * @see RollingDeferredArrangeRequest#post(IArrangementContext, Iterable)
 	 */
 	public interface IArrangementContext {
@@ -378,7 +378,7 @@ public class RollingDeferredArrangeRequest implements Runnable {
 		 * The edit-part requesting an arrangement of views, which presumably has children
 		 * managing those views (the child edit-parts need not yet exist; that is one reason
 		 * why arrangement may be deferred).
-		 * 
+		 *
 		 * @return the requesting edit-part
 		 */
 		EditPart getHost();
@@ -387,7 +387,7 @@ public class RollingDeferredArrangeRequest implements Runnable {
 		 * Executes an arrange command in the appropriate context, which usually should be
 		 * folded into some other user-triggered operation, but which context is determined
 		 * by the edit-part requesting the arrangement.
-		 * 
+		 *
 		 * @param command
 		 *            a command to execute
 		 */

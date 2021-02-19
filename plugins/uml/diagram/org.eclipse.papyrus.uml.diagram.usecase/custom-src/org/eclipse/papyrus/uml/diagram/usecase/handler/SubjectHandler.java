@@ -39,13 +39,13 @@ public class SubjectHandler extends ChangeShapeHandler implements IHandler {
 			return false;
 		}
 
-		
+
 		Diagram diagram = editPart.getNotationView().getDiagram();
 		String diagramType = diagram.getType();
 		if (false == UseCaseDiagramEditPart.MODEL_ID.equals(diagramType)) {
 			return false;
 		}
-		
+
 		if ((editPart.resolveSemanticElement() instanceof org.eclipse.uml2.uml.Classifier && (!(editPart.resolveSemanticElement() instanceof Actor)) && (!(editPart.resolveSemanticElement() instanceof UseCase)))) {
 			if ((editPart instanceof SubjectClassifierEditPartTN)) {
 				return false;

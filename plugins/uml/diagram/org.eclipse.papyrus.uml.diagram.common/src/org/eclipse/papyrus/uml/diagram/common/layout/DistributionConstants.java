@@ -32,7 +32,8 @@ public class DistributionConstants {
 	 * the list of the horizontal values for the distribution and the alignment
 	 * actions
 	 */
-	public static final List<Integer> horizontalValuesList = createArrayList(new int[] { PositionConstants.NORTH, PositionConstants.SOUTH, PositionConstants.NORTH_EAST, PositionConstants.NORTH_WEST, PositionConstants.SOUTH_EAST, PositionConstants.SOUTH_WEST });
+	public static final List<Integer> horizontalValuesList = createArrayList(
+			new int[] { PositionConstants.NORTH, PositionConstants.SOUTH, PositionConstants.NORTH_EAST, PositionConstants.NORTH_WEST, PositionConstants.SOUTH_EAST, PositionConstants.SOUTH_WEST });
 
 	/**
 	 * the list of the vertical values for the distribution and the alignment

@@ -144,7 +144,7 @@ public class MultiplicityElementLabelParser implements IMaskManagedSemanticParse
 	 */
 	@Override
 	public List<EObject> getSemanticElementsBeingParsed(EObject element) {
-		List<EObject> semanticElementsBeingParsed = new ArrayList<EObject>();
+		List<EObject> semanticElementsBeingParsed = new ArrayList<>();
 
 		if ((element != null) && (element instanceof MultiplicityElement)) {
 			MultiplicityElement semElement = (MultiplicityElement) element;
@@ -170,14 +170,14 @@ public class MultiplicityElementLabelParser implements IMaskManagedSemanticParse
 
 	@Override
 	public Map<String, String> getMasks() {
-		Map<String, String> masks = new HashMap<String, String>();
+		Map<String, String> masks = new HashMap<>();
 		masks.put(ICustomAppearance.DISP_MULTIPLICITY, "Multiplicity");
 		masks.put(ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY, "Show default multiplicity");
 		return masks;
 	}
 
 	protected Collection<String> getMaskValues(IAdaptable element) {
-		View view = (View) element.getAdapter(View.class);
+		View view = element.getAdapter(View.class);
 		if (view == null) {
 			return getDefaultValue(element);
 		}

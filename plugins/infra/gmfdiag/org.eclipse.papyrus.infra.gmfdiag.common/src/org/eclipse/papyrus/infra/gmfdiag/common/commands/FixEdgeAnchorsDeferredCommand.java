@@ -135,7 +135,7 @@ public class FixEdgeAnchorsDeferredCommand extends AbstractFixEdgeAnchorDeferred
 			getContainerFigure().invalidate();
 			getContainerFigure().validate();
 			final Iterator<?> iter = connectionsEditPartToRefresh.iterator();
-			final Collection<AbstractConnectionEditPart> connectionsEP = new HashSet<AbstractConnectionEditPart>();
+			final Collection<AbstractConnectionEditPart> connectionsEP = new HashSet<>();
 			setResult(connectionsEP);
 			while (iter.hasNext()) {
 				final Object object = iter.next();

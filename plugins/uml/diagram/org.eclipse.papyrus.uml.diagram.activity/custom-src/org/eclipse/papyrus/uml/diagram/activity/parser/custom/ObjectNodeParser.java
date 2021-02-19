@@ -149,7 +149,7 @@ public class ObjectNodeParser extends MessageFormatParser implements ISemanticPa
 	@Override
 	@SuppressWarnings("unchecked")
 	public List getSemanticElementsBeingParsed(EObject element) {
-		List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
+		List<Element> semanticElementsBeingParsed = new ArrayList<>();
 		ObjectNode objectNode = null;
 		if (element instanceof ObjectNode) {
 			objectNode = (ObjectNode) element;

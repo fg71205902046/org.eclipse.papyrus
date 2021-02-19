@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015, 2016 CEA LIST, Christian W. Damus, and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  * Contributors:
  *   Shuai Li (CEA LIST) <shuai.li@cea.fr> - Initial API and implementation
  *   Christian W. Damus - bug 485220
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.common.hyperlink;
@@ -40,7 +40,7 @@ import org.eclipse.uml2.uml.Element;
 /**
  * Returns a list of HyperLinkSpecificObjects (view elements) referencing
  * sources of the directed relationships for which the element is a target
- * 
+ *
  * @author Shuai Li
  *
  */
@@ -54,12 +54,12 @@ public class DirectedRelationshipSourceHyperlinkContributor implements Hyperlink
 	 */
 	@Override
 	public List<HyperLinkObject> getHyperlinks(Object fromElement) {
-		ArrayList<HyperLinkObject> hyperlinks = new ArrayList<HyperLinkObject>();
+		ArrayList<HyperLinkObject> hyperlinks = new ArrayList<>();
 
 		if (fromElement instanceof Element) {
 			List<DirectedRelationship> relationships = ((Element) fromElement).getTargetDirectedRelationships();
 
-			List<Object> objectsInViews = new ArrayList<Object>();
+			List<Object> objectsInViews = new ArrayList<>();
 
 			for (DirectedRelationship relationship : relationships) {
 				for (Element source : relationship.getSources()) {

@@ -118,7 +118,7 @@ public class CustomMessageViewCreateCommand extends AbstractTransactionalCommand
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		// Connector linkConnector = linkView.get
-		CustomMessageViewCreateCommand.node = customCreateLabel(((EObject) semanticApdater.getAdapter(EObject.class)), existingLink, UMLVisualIDRegistry.getType(MessageNameEditPart.VISUAL_ID));
+		CustomMessageViewCreateCommand.node = customCreateLabel((semanticApdater.getAdapter(EObject.class)), existingLink, UMLVisualIDRegistry.getType(MessageNameEditPart.VISUAL_ID));
 		// put to the good position
 		Location notationLocation = NotationFactory.eINSTANCE.createLocation();
 		// notationLocation.setX(location.x);

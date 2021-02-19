@@ -105,7 +105,7 @@ public class PapyrusDragEditPartsTrackerEx extends DragEditPartsTrackerEx {
 			restrictedDirection = restrictedDirection | PositionConstants.NORTH;
 			request.getExtendedData().put(SnapToHelperUtil.RESTRICTED_DIRECTIONS, restrictedDirection);
 
-			final Map<Double, PrecisionPoint> distVSPoint = new HashMap<Double, PrecisionPoint>();
+			final Map<Double, PrecisionPoint> distVSPoint = new HashMap<>();
 			if (this.snapOnCorners) {
 				distVSPoint.putAll(getCornerDistances(request));
 			}
@@ -118,7 +118,7 @@ public class PapyrusDragEditPartsTrackerEx extends DragEditPartsTrackerEx {
 				distVSPoint.putAll(getCenterDistances(request));
 			}
 
-			final List<Double> distances = new ArrayList<Double>(distVSPoint.keySet());
+			final List<Double> distances = new ArrayList<>(distVSPoint.keySet());
 			if (distances.size() > 0) {
 				double min = distances.get(0);
 				for (int i = 1; i < distances.size() - 1; i++) {
@@ -199,7 +199,7 @@ public class PapyrusDragEditPartsTrackerEx extends DragEditPartsTrackerEx {
 			request.setMoveDelta(newDelta);
 			request.getExtendedData().put(SnapToHelperUtil.RESTRICTED_DIRECTIONS, restrictedDirection);
 
-			final Map<Double, PrecisionPoint> distVSPoint = new HashMap<Double, PrecisionPoint>();
+			final Map<Double, PrecisionPoint> distVSPoint = new HashMap<>();
 			if (this.snapOnCorners) {
 				distVSPoint.putAll(getCornerDistances(request));
 			}
@@ -212,7 +212,7 @@ public class PapyrusDragEditPartsTrackerEx extends DragEditPartsTrackerEx {
 				distVSPoint.putAll(getCenterDistances(request));
 			}
 
-			final List<Double> distances = new ArrayList<Double>(distVSPoint.keySet());
+			final List<Double> distances = new ArrayList<>(distVSPoint.keySet());
 			if (distances.size() > 0) {
 				double min = distances.get(0);
 				// We look for the minus distance
@@ -239,7 +239,7 @@ public class PapyrusDragEditPartsTrackerEx extends DragEditPartsTrackerEx {
 	 *         a map with the couple distance and delta point to anchor by the corner of the figure
 	 */
 	protected Map<Double, PrecisionPoint> getCornerDistances(final ChangeBoundsRequest request) {
-		final Map<Double, PrecisionPoint> distVSPoints = new HashMap<Double, PrecisionPoint>();
+		final Map<Double, PrecisionPoint> distVSPoints = new HashMap<>();
 		if (getSnapToHelper() != null && request.isSnapToEnabled()) {
 			final Point moveDelta = request.getMoveDelta();
 			PrecisionRectangle jointRect = getCompoundSourceRectangle();
@@ -291,7 +291,7 @@ public class PapyrusDragEditPartsTrackerEx extends DragEditPartsTrackerEx {
 	 *         a map with the couple distance and delta point to anchor by the middle of each side of the figure
 	 */
 	protected Map<Double, PrecisionPoint> getMiddleDistances(final ChangeBoundsRequest request) {
-		final Map<Double, PrecisionPoint> distVSPoints = new HashMap<Double, PrecisionPoint>();
+		final Map<Double, PrecisionPoint> distVSPoints = new HashMap<>();
 		if (getSnapToHelper() != null && request.isSnapToEnabled()) {
 			final Point moveDelta = request.getMoveDelta();
 
@@ -342,7 +342,7 @@ public class PapyrusDragEditPartsTrackerEx extends DragEditPartsTrackerEx {
 	 *         a map with the couple distance and delta point to anchor by the center of the figure
 	 */
 	protected Map<Double, PrecisionPoint> getCenterDistances(final ChangeBoundsRequest request) {
-		final Map<Double, PrecisionPoint> distVSPoints = new HashMap<Double, PrecisionPoint>();
+		final Map<Double, PrecisionPoint> distVSPoints = new HashMap<>();
 		if (getSnapToHelper() != null && request.isSnapToEnabled()) {
 			final Point moveDelta = request.getMoveDelta();
 

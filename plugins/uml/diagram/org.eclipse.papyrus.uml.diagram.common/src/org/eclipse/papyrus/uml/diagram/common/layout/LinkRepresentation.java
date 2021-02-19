@@ -211,10 +211,10 @@ public class LinkRepresentation {
 	/**
 	 * This method initializes the following fields :
 	 * <ul>
-	 * <li> {@link #fixedEditPart}</li>
-	 * <li> {@link #movedEditPart}</li>
-	 * <li> {@link #referencePoint}</li>
-	 * <li> {@link #movedPoint}</li>
+	 * <li>{@link #fixedEditPart}</li>
+	 * <li>{@link #movedEditPart}</li>
+	 * <li>{@link #referencePoint}</li>
+	 * <li>{@link #movedPoint}</li>
 	 * </ul>
 	 *
 	 * It determines the reference point and the reference editpart for the
@@ -227,9 +227,9 @@ public class LinkRepresentation {
 		switch (this.align) {
 		case PositionConstants.LEFT:
 			if (absolutePositionSource.preciseX() < absolutePositionTarget.preciseX()) {// the
-																					// left
-																					// node
-																					// moves
+				// left
+				// node
+				// moves
 				fixedEditPart = target;
 			} else {
 				fixedEditPart = source;
@@ -237,9 +237,9 @@ public class LinkRepresentation {
 			break;
 		case PositionConstants.RIGHT:
 			if (absolutePositionSource.preciseX() > absolutePositionTarget.preciseX()) {// the
-																					// right
-																					// node
-																					// moves
+				// right
+				// node
+				// moves
 				fixedEditPart = target;
 			} else {
 				fixedEditPart = source;
@@ -247,9 +247,9 @@ public class LinkRepresentation {
 			break;
 		case PositionConstants.TOP:
 			if (absolutePositionSource.preciseY() < absolutePositionTarget.preciseY()) {// the
-																					// top
-																					// node
-																					// moves
+				// top
+				// node
+				// moves
 				fixedEditPart = target;
 			} else {
 				fixedEditPart = source;
@@ -257,9 +257,9 @@ public class LinkRepresentation {
 			break;
 		case PositionConstants.BOTTOM:
 			if (absolutePositionSource.preciseY() > absolutePositionTarget.preciseY()) {// the
-																					// bottom
-																					// node
-																					// moves
+				// bottom
+				// node
+				// moves
 				fixedEditPart = target;
 			} else {
 				fixedEditPart = source;

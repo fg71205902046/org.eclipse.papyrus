@@ -155,7 +155,7 @@ public class GenericListCompartmentLayoutEditPolicy extends ConstrainedToolbarLa
 		}
 		final List<InsertionPoint> insertionPoints = computeInsertionPoints(children);
 
-		final TreeMap<Integer, InsertionPoint> distanceMap = new TreeMap<Integer, InsertionPoint>();
+		final TreeMap<Integer, InsertionPoint> distanceMap = new TreeMap<>();
 		for (final InsertionPoint insertionPoint : insertionPoints) {
 			final int distance = Math.abs(offset - insertionPoint.getLocation());
 			distanceMap.put(Integer.valueOf(distance), insertionPoint);
@@ -173,7 +173,7 @@ public class GenericListCompartmentLayoutEditPolicy extends ConstrainedToolbarLa
 
 	protected List<InsertionPoint> computeInsertionPoints(final List<GraphicalEditPart> children) {
 		final int size = children.size();
-		final List<InsertionPoint> insertionPoints = new ArrayList<GenericListCompartmentLayoutEditPolicy.InsertionPoint>();
+		final List<InsertionPoint> insertionPoints = new ArrayList<>();
 		Rectangle previousBounds = null;
 		for (int i = 0; i < size; i++) {
 			final GraphicalEditPart childEditPart = children.get(i);

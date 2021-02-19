@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST, ALL4TEC and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * Representation for stereotype property reference edge.
- * 
+ *
  * @author Mickael ADAM
  * @since 3.1
  */
@@ -78,7 +78,7 @@ public class StereotypePropertyReferenceEdgeRepresentation extends EdgeWithNoSem
 	 * @see java.lang.Object#hashCode()
 	 *
 	 * @return
-	 * 		the hashcode
+	 *         the hashcode
 	 */
 	@Override
 	public int hashCode() {
@@ -93,7 +93,7 @@ public class StereotypePropertyReferenceEdgeRepresentation extends EdgeWithNoSem
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override

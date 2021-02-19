@@ -103,13 +103,15 @@ public class PapyrusWrappingLabel extends WrappingLabel implements IPapyrusWrapp
 	/**
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.IPapyrusWrappingLabel#setMarginLabel(int, int)
 	 *
-	 * @param xMargin Vertical margin
-	 * @param yMargin Horizontal margin
+	 * @param xMargin
+	 *            Vertical margin
+	 * @param yMargin
+	 *            Horizontal margin
 	 */
 	@Override
 	public void setMarginLabel(int xMargin, int yMargin) {
 
-		this.setMarginLabel(xMargin, yMargin , xMargin, yMargin);
+		this.setMarginLabel(xMargin, yMargin, xMargin, yMargin);
 
 	}
 
@@ -174,7 +176,7 @@ public class PapyrusWrappingLabel extends WrappingLabel implements IPapyrusWrapp
 	 */
 	@Override
 	public Dimension getPreferredSize(int wHint, int hHint) {
-		//TODO Compute the best font size to fit the height, and truncate on width
+		// TODO Compute the best font size to fit the height, and truncate on width
 		Dimension prefSize = super.getPreferredSize(wHint, hHint);
 		if (labelHeight > 0) {
 			prefSize.height = labelHeight;

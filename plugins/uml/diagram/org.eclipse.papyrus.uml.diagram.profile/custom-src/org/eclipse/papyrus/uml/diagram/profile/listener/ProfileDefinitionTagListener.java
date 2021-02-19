@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2018 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -36,7 +36,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * The purpose of this listener is to tag modifications which doesn't appear in Profile Definition.
- * 
+ *
  * @author Gabriel Pascual
  * @since 3.1
  */
@@ -68,6 +68,7 @@ public class ProfileDefinitionTagListener implements IPapyrusListener {
 	 *
 	 * @param notification
 	 */
+	@Override
 	public void notifyChanged(final Notification notification) {
 
 		// Filter notification

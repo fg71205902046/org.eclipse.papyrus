@@ -70,7 +70,7 @@ public class SendSignalActionEditHelperAdvice extends AbstractEditHelperAdvice {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice#getAfterSetCommand(org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest)
 	 *
@@ -80,10 +80,10 @@ public class SendSignalActionEditHelperAdvice extends AbstractEditHelperAdvice {
 	@Override
 	protected ICommand getAfterSetCommand(SetRequest request) {
 		SendSignalAction editedModelElement = (SendSignalAction) request.getElementToEdit();
-		if(request.getFeature()==UMLPackage.eINSTANCE.getSendSignalAction_Signal()){
-			IPinUpdater<SendSignalAction > updater = PinUpdaterFactory.getInstance().instantiate(editedModelElement);
-			return new PinUpdateCommand<SendSignalAction>("Update send signal action pins", updater, editedModelElement);
-		}else{
+		if (request.getFeature() == UMLPackage.eINSTANCE.getSendSignalAction_Signal()) {
+			IPinUpdater<SendSignalAction> updater = PinUpdaterFactory.getInstance().instantiate(editedModelElement);
+			return new PinUpdateCommand<>("Update send signal action pins", updater, editedModelElement);
+		} else {
 			return null;
 		}
 	}

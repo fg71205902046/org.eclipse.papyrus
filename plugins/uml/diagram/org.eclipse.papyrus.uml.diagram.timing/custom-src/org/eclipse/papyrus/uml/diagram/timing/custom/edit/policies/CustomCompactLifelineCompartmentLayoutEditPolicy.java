@@ -202,7 +202,7 @@ public class CustomCompactLifelineCompartmentLayoutEditPolicy extends AbstractTi
 
 		@SuppressWarnings("unchecked")
 		final List<EditPart> editParts = changeBoundsRequest.getEditParts();
-		final List<Node> nodesToMove = new ArrayList<Node>();
+		final List<Node> nodesToMove = new ArrayList<>();
 		for (final EditPart editPart : editParts) {
 			final Object model = editPart.getModel();
 			if (model instanceof Node) {

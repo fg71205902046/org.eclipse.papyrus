@@ -116,16 +116,16 @@ public class LayoutUtils {
 	 *         </ul>
 	 *         </li>
 	 *         <li>{@linkplain PositionConstants#NORTH}</li>
-	 *         <li> {@linkplain PositionConstants#SOUTH}</li>
+	 *         <li>{@linkplain PositionConstants#SOUTH}</li>
 	 *         <li>
 	 *         {@linkplain PositionConstants#EAST}</li>
-	 *         <li> {@linkplain PositionConstants#WEST}</li>
+	 *         <li>{@linkplain PositionConstants#WEST}</li>
 	 *         <li>
 	 *         {@linkplain PositionConstants#NORTH_EAST}</li>
-	 *         <li> {@linkplain PositionConstants#NORTH_WEST}</li>
+	 *         <li>{@linkplain PositionConstants#NORTH_WEST}</li>
 	 *         <li>
 	 *         {@linkplain PositionConstants#SOUTH_EAST}</li>
-	 *         <li> {@linkplain PositionConstants#SOUTH_WEST}</li>
+	 *         <li>{@linkplain PositionConstants#SOUTH_WEST}</li>
 	 *         </ul>
 	 */
 	public static int getAnchorPosition(EditPart node, Point anchor) {
@@ -242,7 +242,8 @@ public class LayoutUtils {
 	 *            the source EditPart, it must be a node
 	 * @param targetEditPart
 	 *            the targetEditPart, it must be a node
-	 * @return <ul>
+	 * @return
+	 *         <ul>
 	 *         <li>Point[0] is the source Anchor</li>
 	 *         <li>Point[1] is the target Anchor</li>
 	 *         </ul>
@@ -512,14 +513,14 @@ public class LayoutUtils {
 	 * @return the position of rect compared with reference Returned values can
 	 *         be :
 	 *         <ul>
-	 *         <li> {@link PositionConstants#NORTH}</li>
-	 *         <li> {@link PositionConstants#SOUTH}</li>
-	 *         <li> {@link PositionConstants#EAST}</li>
+	 *         <li>{@link PositionConstants#NORTH}</li>
+	 *         <li>{@link PositionConstants#SOUTH}</li>
+	 *         <li>{@link PositionConstants#EAST}</li>
 	 *         <li>{@link PositionConstants#WEST}</li>
-	 *         <li> {@link PositionConstants#NORTH_EAST}</li>
-	 *         <li> {@link PositionConstants#NORTH_WEST}</li>
-	 *         <li> {@link PositionConstants#SOUTH_EAST}</li>
-	 *         <li> {@link PositionConstants#SOUTH_WEST}</li>
+	 *         <li>{@link PositionConstants#NORTH_EAST}</li>
+	 *         <li>{@link PositionConstants#NORTH_WEST}</li>
+	 *         <li>{@link PositionConstants#SOUTH_EAST}</li>
+	 *         <li>{@link PositionConstants#SOUTH_WEST}</li>
 	 *         </ul>
 	 *         If the 2 Rectangles intersect between them, the answer will be
 	 *         one of NORTH_EAST or SOUTH_EAST or NORTH_WEST or SOUTH_WEST

@@ -63,7 +63,7 @@ public class UseCaseReconciler_1_1_0 extends DiagramReconciler {
 	 * @return the floating label map
 	 */
 	private Map<String, String> getFloatingLabelMap() {
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, String> map = new HashMap<>();
 		map.put(ActorEditPartTN_VISUAL_ID, ActorFloatingLabelEditPartTN_VISUAL_ID);
 		map.put(ActorInComponentEditPart_VISUAL_ID, ActorInComponentFloatingLabelEditPart_VISUAL_ID);
 		map.put(ActorInPackageEditPart_VISUAL_ID, ActorInPackageFloatingLabelEditPart_VISUAL_ID);

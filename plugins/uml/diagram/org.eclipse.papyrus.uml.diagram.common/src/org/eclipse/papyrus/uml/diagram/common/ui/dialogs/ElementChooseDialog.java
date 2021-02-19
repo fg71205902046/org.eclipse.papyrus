@@ -114,7 +114,7 @@ public class ElementChooseDialog extends AbstractChooseElement {
 
 	@Override
 	protected void createContents() {
-		
+
 		super.createContents();
 		// intall tree with uml element
 		treeViewer = filtercontrol.getViewer();
@@ -131,8 +131,7 @@ public class ElementChooseDialog extends AbstractChooseElement {
 					EObject eObject = (EObject) element;
 					if (eObject.eContents().size() == 0) {
 						return isSelectableEobject(eObject);
-					}
-					else { // it contains something so we have to test children before
+					} else { // it contains something so we have to test children before
 						boolean result = false;
 						if (isSelectableEobject(eObject)) {
 							return true;
@@ -169,8 +168,7 @@ public class ElementChooseDialog extends AbstractChooseElement {
 						btnSelect.setEnabled(true);
 						result = selection;
 						selectedElement = (ParameterableElement) selection;
-					}
-					else {
+					} else {
 						btnSelect.setEnabled(false);
 						result = null;
 						selectedElement = null;

@@ -54,7 +54,7 @@ public final class ContainerNodeDescriptorRegistry {
 	 * (May be in the future using extension point
 	 */
 	static {
-		registry = new HashMap<EClass, IContainerNodeDescriptor>();
+		registry = new HashMap<>();
 		registry.put(UMLPackage.Literals.ACTIVITY_PARTITION, new ActivityPartitionContainment());
 		registry.put(UMLPackage.Literals.STRUCTURED_ACTIVITY_NODE, new StructuredActivityNodeContainment());
 		registry.put(UMLPackage.Literals.CONDITIONAL_NODE, new ConditionalNodeContainment());

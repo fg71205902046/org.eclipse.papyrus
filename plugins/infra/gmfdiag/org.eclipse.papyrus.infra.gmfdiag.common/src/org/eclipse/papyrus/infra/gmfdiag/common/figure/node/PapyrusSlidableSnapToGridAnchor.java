@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.common.figure.node;
@@ -43,17 +43,19 @@ public class PapyrusSlidableSnapToGridAnchor extends SlidableSnapToGridAnchor {
 	/**
 	 * If grid provider had been set up and has grid enabled then returns active
 	 * grid specification in absolute coordinates. Otherwise returns null.
-	 * 
+	 *
 	 * @return <code>null</code> if no active grid or grid provider had not been
 	 *         set up.
 	 */
+	@Override
 	protected Rectangle getAbsoluteGridSpec() {
 		if (editPart == null) {
 			return null;
 		} else {
 			EditPartViewer viewer = editPart.getViewer();
-			return viewer == null ? null : DiagramGridSpec
-					.getAbsoluteGridSpec(viewer);
+			return viewer == null ? null
+					: DiagramGridSpec
+							.getAbsoluteGridSpec(viewer);
 		}
 	}
 

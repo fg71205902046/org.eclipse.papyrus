@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2014 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *   CEA LIST - Initial API and implementation
  *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 482586
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 531596
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.common.figure.node;
@@ -105,10 +105,10 @@ public class LinkLFSVGNodePlateFigure extends SVGNodePlateFigure {
 			return createAnchor(pt);
 		}
 	}
-	
+
 	/**
 	 * Get the graphical edit part.
-	 * 
+	 *
 	 * @return The myHost.
 	 * @since 3.100
 	 */

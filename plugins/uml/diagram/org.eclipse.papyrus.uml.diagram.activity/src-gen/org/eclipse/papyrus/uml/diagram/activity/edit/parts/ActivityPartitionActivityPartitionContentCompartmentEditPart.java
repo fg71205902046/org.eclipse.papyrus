@@ -56,6 +56,7 @@ public class ActivityPartitionActivityPartitionContentCompartmentEditPart
 	/**
 	 * @generated
 	 */
+	@Override
 	public String getCompartmentName() {
 		return Messages.ActivityPartitionActivityPartitionContentCompartmentEditPart_title;
 	}
@@ -68,6 +69,7 @@ public class ActivityPartitionActivityPartitionContentCompartmentEditPart
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultCompartmentSemanticEditPolicy());
@@ -84,6 +86,7 @@ public class ActivityPartitionActivityPartitionContentCompartmentEditPart
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setRatio(Double ratio) {
 		if (getFigure().getParent().getLayoutManager() instanceof ConstrainedToolbarLayout) {
 			super.setRatio(ratio);
@@ -93,6 +96,7 @@ public class ActivityPartitionActivityPartitionContentCompartmentEditPart
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPart getTargetEditPart(Request request) {
 
 		return super.getTargetEditPart(request);
@@ -101,6 +105,7 @@ public class ActivityPartitionActivityPartitionContentCompartmentEditPart
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
 		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature)
@@ -131,6 +136,7 @@ public class ActivityPartitionActivityPartitionContentCompartmentEditPart
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshBounds();

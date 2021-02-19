@@ -56,10 +56,10 @@ public class DefaultDiagramCopyCommand extends AbstractOverrideableCommand imple
 	 */
 	public DefaultDiagramCopyCommand(EditingDomain domain, PapyrusClipboard<Object> papyrusClipboard, Collection<IGraphicalEditPart> pObjectsToPutInClipboard) {
 		super(domain);
-		objectsToPutInClipboard = new ArrayList<Object>();
+		objectsToPutInClipboard = new ArrayList<>();
 		Boolean keepReferences = Activator.getInstance().getPreferenceStore().getBoolean(PastePreferencesPage.KEEP_EXTERNAL_REFERENCES);
 		EcoreUtil.Copier copier = ICopierFactory.getInstance(domain.getResourceSet(), keepReferences).get();
-		List<EObject> objectToCopy = new ArrayList<EObject>();
+		List<EObject> objectToCopy = new ArrayList<>();
 
 		if (pObjectsToPutInClipboard != null) {
 			for (IGraphicalEditPart iGraphicalEditPart : pObjectsToPutInClipboard) {
@@ -74,7 +74,7 @@ public class DefaultDiagramCopyCommand extends AbstractOverrideableCommand imple
 		copier.copyAll(filterDescendants);
 		copier.copyReferences();
 
-		Map<EObject, Object> mapInternalCopyInClipboard = new HashMap<EObject, Object>();
+		Map<EObject, Object> mapInternalCopyInClipboard = new HashMap<>();
 		mapInternalCopyInClipboard.putAll(copier);
 		papyrusClipboard.addAllInternalCopyInClipboard(mapInternalCopyInClipboard);
 

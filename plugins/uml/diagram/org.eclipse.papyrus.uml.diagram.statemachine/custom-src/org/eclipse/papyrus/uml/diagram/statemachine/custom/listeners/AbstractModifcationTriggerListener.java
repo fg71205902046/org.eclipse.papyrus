@@ -23,6 +23,7 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.gmfdiag.canonical.editpolicy.PapyrusCanonicalEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.swt.widgets.Display;
@@ -84,17 +85,17 @@ public abstract class AbstractModifcationTriggerListener extends TriggerListener
 	 * @return
 	 */
 	protected DiagramEditPart getDiagramEditPart() {
-		if(Display.getCurrent()==null) { // UI-thread safe...
+		if (Display.getCurrent() == null) { // UI-thread safe...
 			return null;
 		}
-		if(PlatformUI.isWorkbenchRunning()) {
+		if (PlatformUI.isWorkbenchRunning()) {
 			IWorkbench wb = PlatformUI.getWorkbench();
 			IWorkbenchPage page = wb.getActiveWorkbenchWindow().getActivePage();
 			IEditorPart editor = page.getActiveEditor();
 			if (editor instanceof IMultiDiagramEditor) {
 				IMultiDiagramEditor papyrusEditor = (IMultiDiagramEditor) editor;
 				return papyrusEditor.getAdapter(DiagramEditPart.class);
-			}	
+			}
 		}
 		return null;
 	}

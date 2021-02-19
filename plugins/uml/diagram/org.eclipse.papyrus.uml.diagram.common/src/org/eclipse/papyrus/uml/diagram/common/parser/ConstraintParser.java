@@ -74,8 +74,7 @@ public class ConstraintParser implements IParser, ISemanticParser {
 		if (constraint.getSpecification() instanceof DurationInterval) {
 			if ((((DurationInterval) constraint.getSpecification()).getMin()) != null && (((DurationInterval) constraint.getSpecification()).getMax() != null)) {
 				return ((DurationInterval) constraint.getSpecification()).getMin().stringValue() + ".." + ((DurationInterval) constraint.getSpecification()).getMax().stringValue();
-			}
-			else {
+			} else {
 				return "0..0";
 			}
 		}
@@ -83,16 +82,14 @@ public class ConstraintParser implements IParser, ISemanticParser {
 		if (constraint.getSpecification() instanceof TimeInterval) {
 			if ((((TimeInterval) constraint.getSpecification()).getMin()) != null && (((TimeInterval) constraint.getSpecification()).getMax() != null)) {
 				return ((TimeInterval) constraint.getSpecification()).getMin().stringValue() + ".." + ((TimeInterval) constraint.getSpecification()).getMax().stringValue();
-			}
-			else {
+			} else {
 				return "0..0";
 			}
 		}
 		if (constraint.getSpecification() instanceof Interval) {
 			if ((((Interval) constraint.getSpecification()).getMin()) != null && (((Interval) constraint.getSpecification()).getMax() != null)) {
 				return ((Interval) constraint.getSpecification()).getMin().stringValue() + ".." + ((Interval) constraint.getSpecification()).getMax().stringValue();
-			}
-			else {
+			} else {
 				return "0..0";
 			}
 		}
@@ -107,8 +104,7 @@ public class ConstraintParser implements IParser, ISemanticParser {
 				}
 				b.append(opaqueExpression.getBodies().get(0));
 				return b.toString();
-			}
-			else {
+			} else {
 				return OPAQUE_EXPRESSION_BEGIN_LANGUAGE + "NATURAL" + OPAQUE_EXPRESSION_END_LANGUAGE;
 			}
 		}
@@ -150,8 +146,8 @@ public class ConstraintParser implements IParser, ISemanticParser {
 		if (constraint.getSpecification() instanceof OpaqueExpression) {
 			OpaqueExpression specif = (OpaqueExpression) constraint.getSpecification();
 			command = new CompositeTransactionalCommand(editingDomain, "Set Value Constraint"); //$NON-NLS-1$
-			ArrayList<String> stringBodyList = new ArrayList<String>();
-			ArrayList<String> stringLanguageList = new ArrayList<String>();
+			ArrayList<String> stringBodyList = new ArrayList<>();
+			ArrayList<String> stringLanguageList = new ArrayList<>();
 			stringLanguageList.add(newString.substring(1, newString.indexOf(OPAQUE_EXPRESSION_END_LANGUAGE)).toUpperCase());
 			stringBodyList.add(newString.substring(newString.indexOf(OPAQUE_EXPRESSION_END_LANGUAGE) + 2, newString.length()));
 			SetRequest request = new SetRequest(specif, UMLPackage.eINSTANCE.getOpaqueExpression_Body(), stringBodyList);
@@ -244,7 +240,7 @@ public class ConstraintParser implements IParser, ISemanticParser {
 
 	@Override
 	public boolean isAffectingEvent(Object event, int flags) {
-		
+
 		return false;
 	}
 
@@ -255,7 +251,7 @@ public class ConstraintParser implements IParser, ISemanticParser {
 
 	@Override
 	public IContentAssistProcessor getCompletionProcessor(IAdaptable element) {
-		
+
 		return null;
 	}
 
@@ -282,7 +278,7 @@ public class ConstraintParser implements IParser, ISemanticParser {
 	@Override
 	public List getSemanticElementsBeingParsed(EObject element) {
 		Element umlElement = (Element) element;
-		List<EObject> result = new LinkedList<EObject>();
+		List<EObject> result = new LinkedList<>();
 		if (umlElement instanceof Constraint) {
 			Constraint constraint = (Constraint) umlElement;
 			if (constraint.getSpecification() != null) {

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,16 +10,17 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.preferences;
 
 /**
- * 
+ *
  * Automated pin derivation for AcceptEventAction and AcceptCallAction
+ *
  * @since 3.0
- * 
+ *
  */
 public interface IAutomatedModelCompletionPreferencesConstants {
 

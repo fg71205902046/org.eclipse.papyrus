@@ -46,7 +46,7 @@ public abstract class AbstractShowHideHandler extends AbstractHandler {
 	private final String editpolicy;
 
 	/** the current selection */
-	private final List<IGraphicalEditPart> selection = new ArrayList<IGraphicalEditPart>();
+	private final List<IGraphicalEditPart> selection = new ArrayList<>();
 
 	/**
 	 *

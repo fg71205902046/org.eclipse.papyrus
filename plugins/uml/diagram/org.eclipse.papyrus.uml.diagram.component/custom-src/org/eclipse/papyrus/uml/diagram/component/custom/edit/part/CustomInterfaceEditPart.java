@@ -39,6 +39,7 @@ import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin;
 
 /**
  * This class is used to add behavior to reorient the lollipop or the required interface representation
+ *
  * @since 3.0
  *
  */
@@ -94,19 +95,16 @@ public class CustomInterfaceEditPart extends InterfaceEditPart {
 			if ("REQUIRED".equals(valueStyle.getName())) {
 				this.getPrimaryShape().setRequired(true);
 				this.getPrimaryShape().setProvided(false);
-			}
-			else {
+			} else {
 				this.getPrimaryShape().setRequired(false);
 				this.getPrimaryShape().setProvided(true);
 			}
 
 			this.getPrimaryShape().setOrientation(position);
-		}
-		else if ((getTargetConnections().size() == 1) && (getTargetConnections().get(0) instanceof InterfaceRealizationEditPart)) {
+		} else if ((getTargetConnections().size() == 1) && (getTargetConnections().get(0) instanceof InterfaceRealizationEditPart)) {
 			this.getPrimaryShape().setRequired(false);
 			this.getPrimaryShape().setProvided(true);
-		}
-		else if ((getTargetConnections().size() > 1)) {
+		} else if ((getTargetConnections().size() > 1)) {
 			UsageEditPart usageEditPart = null;
 			InterfaceRealizationEditPart interfaceRealizationEditPart = null;
 			for (Iterator<?> iterator = getTargetConnections().iterator(); iterator.hasNext();) {

@@ -134,6 +134,7 @@ public class PapyrusNodeFigure extends NodeFigure implements IPapyrusNodeFigure 
 	protected boolean getShadow() {
 		return this.shadow;
 	}
+
 	/**
 	 * Sets the border color.
 	 *
@@ -242,7 +243,7 @@ public class PapyrusNodeFigure extends NodeFigure implements IPapyrusNodeFigure 
 	 * <pre>
 	 * This method propagates the new line style to the border
 	 * 
-	 * @see org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure#setLineStyle(int)
+	 * &#64;see org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure#setLineStyle(int)
 	 * </pre>
 	 *
 	 * @param s
@@ -261,7 +262,7 @@ public class PapyrusNodeFigure extends NodeFigure implements IPapyrusNodeFigure 
 	 * <pre>
 	 * This method propagates the new line width to the border
 	 * 
-	 * @see org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure#setLineWidth(int)
+	 * &#64;see org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure#setLineWidth(int)
 	 * </pre>
 	 *
 	 * @param w

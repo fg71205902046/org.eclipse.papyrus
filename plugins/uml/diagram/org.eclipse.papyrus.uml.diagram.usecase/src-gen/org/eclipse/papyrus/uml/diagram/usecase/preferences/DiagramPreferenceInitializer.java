@@ -15,6 +15,10 @@
 package org.eclipse.papyrus.uml.diagram.usecase.preferences;
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
+import org.eclipse.gmf.runtime.diagram.ui.preferences.AppearancePreferencePage;
+import org.eclipse.gmf.runtime.diagram.ui.preferences.ConnectionsPreferencePage;
+import org.eclipse.gmf.runtime.diagram.ui.preferences.DiagramsPreferencePage;
+import org.eclipse.gmf.runtime.diagram.ui.preferences.PrintingPreferencePage;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.uml.diagram.usecase.part.UMLDiagramEditorPlugin;
 
@@ -29,10 +33,10 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	@Override
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
-		DiagramGeneralPreferencePage.initDefaults(store);
-		DiagramAppearancePreferencePage.initDefaults(store);
-		DiagramConnectionsPreferencePage.initDefaults(store);
-		DiagramPrintingPreferencePage.initDefaults(store);
+		DiagramsPreferencePage.initDefaults(store);
+		AppearancePreferencePage.initDefaults(store);
+		ConnectionsPreferencePage.initDefaults(store);
+		PrintingPreferencePage.initDefaults(store);
 
 	}
 

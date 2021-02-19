@@ -47,7 +47,7 @@ public class CustomAddVariableValueActionEditPart extends AddVariableValueAction
 	 */
 	public CustomAddVariableValueActionEditPart(View view) {
 		super(view);
-		
+
 	}
 
 	/**

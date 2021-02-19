@@ -124,7 +124,7 @@ public class ExceptionHandlerTypeParser extends MessageFormatParser implements I
 	 */
 	@Override
 	public List<?> getSemanticElementsBeingParsed(EObject element) {
-		List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
+		List<Element> semanticElementsBeingParsed = new ArrayList<>();
 		if (element instanceof StructuredActivityNode) {
 			semanticElementsBeingParsed.add((ExceptionHandler) element);
 			EList<Classifier> excTypes = ((ExceptionHandler) element).getExceptionTypes();

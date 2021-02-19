@@ -8,7 +8,7 @@
  * https://www.eclipse.org/legal/epl-2.0/
  *
  * SPDX-License-Identifier: EPL-2.0
- * 
+ *
  * Contributors:
  * 	Pauline DEVILLE (CEA LIST) - Bug 521670 - [InteractionOverviewDiagram] Can not create elements in the diagram
  *
@@ -48,12 +48,12 @@ public class InheritedActivityDiagramViewProvider extends CustomUMLViewProvider 
 	public Edge createEdge(final IAdaptable semanticAdapter, final View containerView, final String semanticHint, final int index, final boolean persisted, final PreferencesHint preferencesHint) {
 		Edge createdEdge = null;
 
-		final IElementType elementType = (IElementType) semanticAdapter.getAdapter(IElementType.class);
+		final IElementType elementType = semanticAdapter.getAdapter(IElementType.class);
 		if (elementType != null) {
 			createdEdge = super.createEdge(semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);
 		} else {
 
-			final EObject domainElement = (EObject) semanticAdapter.getAdapter(EObject.class);
+			final EObject domainElement = semanticAdapter.getAdapter(EObject.class);
 
 			String domainElementGraphicalType = semanticHint;
 			if (domainElementGraphicalType == null) {
@@ -133,7 +133,7 @@ public class InheritedActivityDiagramViewProvider extends CustomUMLViewProvider 
 		// IElementType may be null (especially when drop from ModelExplorer).
 		// In such a case, test the semantic EObject instead.
 		if (elementType == null) {
-			final EObject domainElement = (EObject) op.getSemanticAdapter().getAdapter(EObject.class);
+			final EObject domainElement = op.getSemanticAdapter().getAdapter(EObject.class);
 			String domainElementGraphicalType = op.getSemanticHint();
 			if (domainElementGraphicalType == null) {
 				domainElementGraphicalType = registry.getEdgeGraphicalType(domainElement);
@@ -168,7 +168,7 @@ public class InheritedActivityDiagramViewProvider extends CustomUMLViewProvider 
 		// expected container.
 		// /////////////////////////////////////////////////////////////////////
 
-		final IElementType elementType = (IElementType) op.getSemanticAdapter().getAdapter(IElementType.class);
+		final IElementType elementType = op.getSemanticAdapter().getAdapter(IElementType.class);
 		if (elementType == ElementTypes.ACTIVITY_FINAL_NODE_CN) {
 
 			if (ElementTypes.ACTIVITY_COMPARTMENT_ACTIVITY_FIGURE_CONTENT_HINT.equals(containerGraphicalType)) {
@@ -396,7 +396,7 @@ public class InheritedActivityDiagramViewProvider extends CustomUMLViewProvider 
 		// IElementType may be null (especially when drop from ModelExplorer).
 		// In such a case, test the semantic EObject instead.
 		if (elementType == null) {
-			final EObject domainElement = (EObject) op.getSemanticAdapter().getAdapter(EObject.class);
+			final EObject domainElement = op.getSemanticAdapter().getAdapter(EObject.class);
 			String domainElementGraphicalType = op.getSemanticHint();
 			if (domainElementGraphicalType == null) {
 				domainElementGraphicalType = registry.getNodeGraphicalType(domainElement, containerGraphicalType);
@@ -423,7 +423,7 @@ public class InheritedActivityDiagramViewProvider extends CustomUMLViewProvider 
 		// Get the type of the container
 		final String containerGraphicalType = containerView.getType();
 		// Get the type of the domain element
-		final EObject domainElement = (EObject) semanticAdapter.getAdapter(EObject.class);
+		final EObject domainElement = semanticAdapter.getAdapter(EObject.class);
 		final String domainElementGraphicalType = registry.getNodeGraphicalType(domainElement, containerGraphicalType);
 
 		// Create the expected node

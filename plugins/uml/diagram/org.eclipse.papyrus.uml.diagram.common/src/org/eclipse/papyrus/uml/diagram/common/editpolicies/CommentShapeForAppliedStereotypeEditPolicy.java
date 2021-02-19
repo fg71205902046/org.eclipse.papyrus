@@ -87,7 +87,7 @@ public class CommentShapeForAppliedStereotypeEditPolicy extends AbstractAppliedS
 	/**
 	 * Refreshes the stereotypes properties displayed above name of the element
 	 * in this edit part.
-	 * 
+	 *
 	 * @param stereotypesPropertiesToDisplay
 	 */
 	protected void refreshAppliedStereotypesPropertiesInBrace(IPapyrusNodeUMLElementFigure figure) {
@@ -105,7 +105,7 @@ public class CommentShapeForAppliedStereotypeEditPolicy extends AbstractAppliedS
 
 	/**
 	 * Execute Comment Deletion
-	 * 
+	 *
 	 * @param domain
 	 *            TransactionalDomain
 	 * @param commentNode

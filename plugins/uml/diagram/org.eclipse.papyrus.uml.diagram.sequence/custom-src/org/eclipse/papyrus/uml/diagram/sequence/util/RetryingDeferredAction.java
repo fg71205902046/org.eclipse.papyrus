@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2018 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.util;
@@ -24,7 +24,7 @@ import org.eclipse.swt.widgets.Display;
 /**
  * A deferred action that posts itself asynchronously on the {@link Display} thread
  * and re-tries some limited number of times if its initial conditions are not met.
- * 
+ *
  * @since 5.0
  */
 public abstract class RetryingDeferredAction {
@@ -36,12 +36,12 @@ public abstract class RetryingDeferredAction {
 
 	/**
 	 * Initializes me with the {@code executor} on which to run myself.
-	 * 
+	 *
 	 * @param executor
 	 *            the executor on which to run myself
 	 * @param retryLimit
 	 *            the number of times I may retry
-	 * 
+	 *
 	 * @throws IllegalArgumentException
 	 *             if the retry limit is non-positive
 	 */
@@ -59,7 +59,7 @@ public abstract class RetryingDeferredAction {
 	/**
 	 * Initializes me with the default number (three) of retries and
 	 * an {@code executor} on which to run myself.
-	 * 
+	 *
 	 * @param executor
 	 *            the executor on which to run myself
 	 */
@@ -69,12 +69,12 @@ public abstract class RetryingDeferredAction {
 
 	/**
 	 * Initializes me with a {@code display} on which to executor myself.
-	 * 
+	 *
 	 * @param display
 	 *            the display on which I post myself for delayed execution
 	 * @param retryLimit
 	 *            the number of times I may retry
-	 * 
+	 *
 	 * @throws IllegalArgumentException
 	 *             if the retry limit is non-positive
 	 */
@@ -85,7 +85,7 @@ public abstract class RetryingDeferredAction {
 	/**
 	 * Initializes me with the default number (three) of retries and
 	 * a {@code display} on which to executor myself.
-	 * 
+	 *
 	 * @param display
 	 *            the display on which I post myself for delayed execution
 	 */
@@ -95,10 +95,10 @@ public abstract class RetryingDeferredAction {
 
 	/**
 	 * Initializes me to execute myself asynchronously on the current display.
-	 * 
+	 *
 	 * @param retryLimit
 	 *            the number of times I may retry
-	 * 
+	 *
 	 * @throws IllegalArgumentException
 	 *             if the retry limit is non-positive
 	 */
@@ -118,7 +118,7 @@ public abstract class RetryingDeferredAction {
 	 * Try an {@code action} up to the given number of times, deferred on the {@code display} thread.
 	 * This is useful for the simple case where it is only necessary to attempt to perform the
 	 * action and there is no need for an explicit preparation step.
-	 * 
+	 *
 	 * @param display
 	 *            the display on which thread to defer the {@code action}
 	 * @param retryLimit
@@ -126,7 +126,7 @@ public abstract class RetryingDeferredAction {
 	 * @param action
 	 *            the action to perform. If it returns {@code false}, then it will
 	 *            be re-tried (unless the limit is exceeded, of course)
-	 * 
+	 *
 	 * @throws IllegalArgumentException
 	 *             if the retry limit is non-positive
 	 */
@@ -136,7 +136,7 @@ public abstract class RetryingDeferredAction {
 
 	/**
 	 * Try an {@code action} up to the default number (three) of times, deferred on the {@code display} thread.
-	 * 
+	 *
 	 * @param display
 	 *            the display on which thread to defer the {@code action}
 	 * @param action
@@ -150,7 +150,7 @@ public abstract class RetryingDeferredAction {
 	 * Try an {@code action} up to the given number of times, asynchronously on an {@code executor}.
 	 * This is useful for the simple case where it is only necessary to attempt to perform the
 	 * action and there is no need for an explicit preparation step.
-	 * 
+	 *
 	 * @param executor
 	 *            the executor on which to run myself
 	 * @param retryLimit
@@ -158,7 +158,7 @@ public abstract class RetryingDeferredAction {
 	 * @param action
 	 *            the action to perform. If it returns {@code false}, then it will
 	 *            be re-tried (unless the limit is exceeded, of course)
-	 * 
+	 *
 	 * @throws IllegalArgumentException
 	 *             if the retry limit is non-positive
 	 */
@@ -168,7 +168,7 @@ public abstract class RetryingDeferredAction {
 
 	/**
 	 * Try an {@code action} up to the default number (three) of times, asynchronously on an {@code executor}.
-	 * 
+	 *
 	 * @param executor
 	 *            the executor on which to run myself
 	 * @param action
@@ -180,12 +180,12 @@ public abstract class RetryingDeferredAction {
 
 	/**
 	 * Try an {@code action} up to the given number of times, deferred on the current display thread.
-	 * 
+	 *
 	 * @param retryLimit
 	 *            the maximal number of times to tr-try the {@code action}
 	 * @param action
 	 *            the action to perform
-	 * 
+	 *
 	 * @throws IllegalArgumentException
 	 *             if the retry limit is non-positive
 	 */
@@ -195,7 +195,7 @@ public abstract class RetryingDeferredAction {
 
 	/**
 	 * Try an {@code action} up to the default number (three) of times, deferred on the current display thread.
-	 * 
+	 *
 	 * @param action
 	 *            the action to perform
 	 */
@@ -206,7 +206,7 @@ public abstract class RetryingDeferredAction {
 	/**
 	 * Prepares me for execution, testing my initial conditions and setting up any
 	 * required state.
-	 * 
+	 *
 	 * @return {@code true} if my initial conditions are satisfied and I may {@link #perform()};
 	 *         {@code false}, otherwise
 	 */

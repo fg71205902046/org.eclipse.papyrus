@@ -122,7 +122,7 @@ public class ShapeCompartmentEditPolicy extends GraphicalEditPolicy implements A
 			// boolean isVisible = hasToDisplayCompartment(editPart.getNotationView());
 			TransactionalEditingDomain domain = getEditingDomain(editPart);
 			CreateShapeCompartmentViewCommand command = new CreateShapeCompartmentViewCommand(domain, "Create Compartment", "Command that creates the compartment displaying shapes", editPart.getNotationView(), /* isVisible */false);
-			
+
 			// This should not change the command stack, as this transaction will only manipulate transient views. Create a transaction manually, if needed
 			execute(command);
 		} catch (Exception e) {

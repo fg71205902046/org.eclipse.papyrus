@@ -62,7 +62,7 @@ public class Utils {
 	 */
 	public static Iterable<IGraphicalEditPart> getTargetedEditPart(ChangeBoundsRequest req) {
 		if (req != null && req.getEditParts() != null) {
-			return Iterables.transform(Iterables.filter((Iterable<Object>) req.getEditParts(), new Predicate<Object>() {
+			return Iterables.transform(Iterables.filter((Iterable<Object>) req.getEditParts(), new Predicate<>() {
 
 				@Override
 				public boolean apply(Object input) {

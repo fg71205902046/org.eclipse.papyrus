@@ -208,7 +208,7 @@ public class PropertyLabelParser extends NamedElementLabelParser {
 	 */
 	@Override
 	public List<EObject> getSemanticElementsBeingParsed(EObject element) {
-		List<EObject> semanticElementsBeingParsed = new ArrayList<EObject>();
+		List<EObject> semanticElementsBeingParsed = new ArrayList<>();
 
 		if ((element != null) && (element instanceof Property)) {
 			Property semElement = (Property) element;
@@ -235,7 +235,7 @@ public class PropertyLabelParser extends NamedElementLabelParser {
 	 */
 	@Override
 	public Map<String, String> getMasks() {
-		Map<String, String> masks = new HashMap<String, String>();
+		Map<String, String> masks = new HashMap<>();
 		masks.put(ICustomAppearance.DISP_VISIBILITY, "Visibility");
 		masks.put(ICustomAppearance.DISP_DERIVE, "Is Derived");
 		masks.put(ICustomAppearance.DISP_NAME, "Name");

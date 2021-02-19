@@ -49,11 +49,12 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.NamedElement;
+
 /**
  * 
  * This class is a generic EditpartProvider that is enable to associate controler to new notation element by reading an expansion model
  * See Requirement #Req org.eclipse.papyrus.infra.gmfdiag.expansion.Req_010
- * This edipart provider is not used because the  all diagram have the priority lowest.
+ * This edipart provider is not used because the all diagram have the priority lowest.
  * In order to use it. The priority of all diagrams editpart provider must low and this one lowest.
  *
  */
@@ -93,18 +94,19 @@ public class BasicEditPartProvider extends AbstractEditPartProvider {
 				if (newView == null) {
 					return false;
 				}
-				//detect if the editor is inside Papyrus, it provides always
+				// detect if the editor is inside Papyrus, it provides always
 				try {
-					if( ServiceUtilsForEObject.getInstance().getServiceRegistry(newView)==null){
+					if (ServiceUtilsForEObject.getInstance().getServiceRegistry(newView) == null) {
 						return false;
 					}
 				} catch (ServiceException e) {
-					Activator.log.error(e);;
+					Activator.log.error(e);
+					;
 					return false;
 				}
 				String graphicalType = newView.getType();
-				if(DEBUG_EXPANSION){
-					Activator.log.debug(DEBUG_PREFIX+this.getClass().getName()+" view appears with the type "+graphicalType);
+				if (DEBUG_EXPANSION) {
+					Activator.log.debug(DEBUG_PREFIX + this.getClass().getName() + " view appears with the type " + graphicalType);
 				}
 				return true;
 
@@ -122,21 +124,23 @@ public class BasicEditPartProvider extends AbstractEditPartProvider {
 	@Override
 	public IGraphicalEditPart createGraphicEditPart(View view) {
 		String graphicalType = view.getType();
-		if(DEBUG_EXPANSION){
-			Activator.log.debug(DEBUG_PREFIX+this.getClass().getName()+" view appears with the type "+graphicalType);
+		if (DEBUG_EXPANSION) {
+			Activator.log.debug(DEBUG_PREFIX + this.getClass().getName() + " view appears with the type " + graphicalType);
 		}
-		IGraphicalEditPart graphicEditPart=null;
-		if(view.eContainer() instanceof Diagram){
-			if( view instanceof Node && (view.getElement() instanceof NamedElement)){
-				graphicEditPart= new NamedElementEditPart(view) {
+		IGraphicalEditPart graphicEditPart = null;
+		if (view.eContainer() instanceof Diagram) {
+			if (view instanceof Node && (view.getElement() instanceof NamedElement)) {
+				graphicEditPart = new NamedElementEditPart(view) {
 					protected NodeNamedElementFigure primaryShape;
 
 					protected void handleNotificationEvent(Notification event) {
-						if( resolveSemanticElement()!=null){
-							primaryShape.setName(UMLLabelInternationalization.getInstance().getLabel(((NamedElement)getNotationView().getElement())));}
+						if (resolveSemanticElement() != null) {
+							primaryShape.setName(UMLLabelInternationalization.getInstance().getLabel(((NamedElement) getNotationView().getElement())));
+						}
 						super.handleNotificationEvent(event);
 
-					}				
+					}
+
 					@Override
 					public IPapyrusNodeFigure getPrimaryShape() {
 						return (NodeNamedElementFigure) primaryShape;
@@ -168,8 +172,8 @@ public class BasicEditPartProvider extends AbstractEditPartProvider {
 
 			}
 
-			else if( view instanceof Edge && (view.getElement() instanceof NamedElement)){
-				graphicEditPart= new UMLConnectionNodeEditPart(view ) {
+			else if (view instanceof Edge && (view.getElement() instanceof NamedElement)) {
+				graphicEditPart = new UMLConnectionNodeEditPart(view) {
 
 					/**
 					 * Creates figure for this edit part.
@@ -184,14 +188,16 @@ public class BasicEditPartProvider extends AbstractEditPartProvider {
 					}
 
 					protected void handleNotificationEvent(Notification event) {
-						if( resolveSemanticElement()!=null){
+						if (resolveSemanticElement() != null) {
 
 							getPrimaryShape().getAppliedStereotypeLabel().setBorder(new LineBorder(new Color(Display.getDefault(), new RGB(0, 255, 0))));
 							getPrimaryShape().getNameLabel().setBorder(new LineBorder(new Color(Display.getDefault(), new RGB(255, 0, 0))));
-							getPrimaryShape().getNameLabel().setText(UMLLabelInternationalization.getInstance().getLabel((NamedElement)getNotationView().getElement()));}
+							getPrimaryShape().getNameLabel().setText(UMLLabelInternationalization.getInstance().getLabel((NamedElement) getNotationView().getElement()));
+						}
 						super.handleNotificationEvent(event);
 
 					}
+
 					@Override
 					public DashedEdgeFigure getPrimaryShape() {
 						return (DashedEdgeFigure) getFigure();
@@ -200,19 +206,20 @@ public class BasicEditPartProvider extends AbstractEditPartProvider {
 				};
 			}
 		}
-		if( (!(view instanceof Diagram))  && (graphicEditPart==null) ){
-			//an dummy editpart
+		if ((!(view instanceof Diagram)) && (graphicEditPart == null)) {
+			// an dummy editpart
 			return new GraphicalEditPart(view) {
 
 				protected IFigure createFigure() {
 					return new Figure();
 				}
+
 				protected void addNotationalListeners() {
 					// no need for Listeners
 				}
 
 				protected void addSemanticListeners() {
-					//no need for Listeners
+					// no need for Listeners
 				}
 			};
 		}

@@ -91,7 +91,7 @@ public class PortPositionLocator implements ISideAffixedNodeBorderItemLocator {
 
 	/**
 	 * Constructor
-	 * 
+	 *
 	 * @param parentFigure
 	 *            the parent figure
 	 */
@@ -187,9 +187,9 @@ public class PortPositionLocator implements ISideAffixedNodeBorderItemLocator {
 
 
 	/**
-	 * 
+	 *
 	 * Get the svg preferred position by letting the connection anchor calculate the position.
-	 * 
+	 *
 	 * @param proposedLocation
 	 * @param svgNodePlateFigure
 	 * @param slidableRoundedRectangleAnchor
@@ -250,7 +250,7 @@ public class PortPositionLocator implements ISideAffixedNodeBorderItemLocator {
 
 	/**
 	 * The old implementation to get the preferred Location. Here to compatibility reason with no generic AffixedNodes.
-	 * 
+	 *
 	 * @param proposedLocation
 	 *            The proposed location.
 	 * @return

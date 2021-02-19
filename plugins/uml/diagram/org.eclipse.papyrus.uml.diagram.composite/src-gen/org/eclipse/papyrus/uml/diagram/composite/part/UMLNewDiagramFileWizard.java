@@ -111,7 +111,7 @@ public class UMLNewDiagramFileWizard extends Wizard {
 	 */
 	@Override
 	public boolean performFinish() {
-		LinkedList<IFile> affectedFiles = new LinkedList<IFile>();
+		LinkedList<IFile> affectedFiles = new LinkedList<>();
 		IFile diagramFile = myFileCreationPage.createNewFile();
 		UMLDiagramEditorUtil.setCharset(diagramFile);
 		affectedFiles.add(diagramFile);

@@ -22,6 +22,7 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceRealization
 
 /**
  * this class is used to display an interface Realization as UML or as fill line for lollipop
+ *
  * @since 3.0
  *
  */
@@ -42,8 +43,7 @@ public class CustomInterfaceRealizationEditPart extends InterfaceRealizationEdit
 		super.refresh();
 		if ((getTarget() instanceof InterfaceEditPart) || (getTarget() instanceof InterfaceEditPartPCN)) {
 			getPrimaryShape().displayAsAlink();
-		}
-		else {
+		} else {
 			getPrimaryShape().displayAsUMLShape();
 		}
 	}

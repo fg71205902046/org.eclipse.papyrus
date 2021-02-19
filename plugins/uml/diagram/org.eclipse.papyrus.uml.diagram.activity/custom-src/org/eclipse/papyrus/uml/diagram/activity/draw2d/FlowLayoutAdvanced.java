@@ -48,7 +48,7 @@ public class FlowLayoutAdvanced extends FlowLayout {
 	 */
 	private Orientation orientation = Orientation.VERTICAL;
 
-	private Map<IFigure, Object> constraints = new HashMap<IFigure, Object>();
+	private Map<IFigure, Object> constraints = new HashMap<>();
 
 	@Override
 	protected void setBoundsOfChild(IFigure parent, IFigure child, Rectangle bounds) {

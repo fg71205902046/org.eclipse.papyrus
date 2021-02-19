@@ -170,8 +170,7 @@ public class DirectEditNodeEditPart {
 	public IParser getParser() {
 		if (gep instanceof ITextAwareEditPart) {
 			return ((ITextAwareEditPart) gep).getParser();
-		}
-		else {
+		} else {
 			return null;
 		}
 	}

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 Ericsson Communications.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Ericsson Communications - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.helper;
 
@@ -35,7 +35,7 @@ import org.eclipse.uml2.uml.NamedElement;
 public class ActivityPartitionLabelHelper extends StereotypedElementLabelHelper {
 
 	public static final String SHOW_REPRESENT_NAME = "representsName"; //$NON-NLS-1$
-	
+
 	public static final String SHOW_REPRESENT_SELECTOR = "representsSelector"; //$NON-NLS-1$
 
 	public static final String SHOW_REPRESENT_TYPE = "representsType"; //$NON-NLS-1$
@@ -67,7 +67,7 @@ public class ActivityPartitionLabelHelper extends StereotypedElementLabelHelper 
 	}
 
 	/** Map for masks */
-	protected final Map<String, String> masks = new HashMap<String, String>();
+	protected final Map<String, String> masks = new HashMap<>();
 
 	/**
 	 * Creates a new Operation label helper.
@@ -123,7 +123,7 @@ public class ActivityPartitionLabelHelper extends StereotypedElementLabelHelper 
 		String activitypartitionName = UMLLabelInternationalization.getInstance().getLabel(activitypartition);
 
 		if (represents instanceof NamedElement) {
-		    activitypartitionName = ((NamedElement) represents).getName() ;
+			activitypartitionName = ((NamedElement) represents).getName();
 		}
 		appendString(sb, activitypartitionName, UNNAMED);
 		return;

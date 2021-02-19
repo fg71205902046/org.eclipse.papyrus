@@ -377,7 +377,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 		if (droppedObject instanceof Property) {
 			Property property = (Property) droppedObject;
 			Element owner = property.getOwner();
-			if (owner instanceof Association && !(owner instanceof AssociationClass)){
+			if (owner instanceof Association && !(owner instanceof AssociationClass)) {
 				return false;
 			}
 		}
@@ -690,7 +690,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 	 * @return true if an edit part of this type should be selected
 	 */
 	private boolean isEditPartTypeAdapted(Class<? extends EditPart> editPartClass, EClass eClass) {
-		if( DefaultNodeEditPart.class.isAssignableFrom(editPartClass)) {
+		if (DefaultNodeEditPart.class.isAssignableFrom(editPartClass)) {
 			return false;
 		}
 		if (DiagramEditPart.class.isAssignableFrom(editPartClass) || CompartmentEditPart.class.isAssignableFrom(editPartClass)) {

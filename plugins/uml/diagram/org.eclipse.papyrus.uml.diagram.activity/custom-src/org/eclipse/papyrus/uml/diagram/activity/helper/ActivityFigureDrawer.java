@@ -40,7 +40,7 @@ public class ActivityFigureDrawer {
 	/**
 	 * The template for drawing a triangle figure
 	 */
-	private static final List<Point> TRIANGLE_FIGURE = new ArrayList<Point>(3);
+	private static final List<Point> TRIANGLE_FIGURE = new ArrayList<>(3);
 	static {
 		TRIANGLE_FIGURE.add(new Point(0, 5));
 		TRIANGLE_FIGURE.add(new Point(5, 5));
@@ -55,7 +55,7 @@ public class ActivityFigureDrawer {
 	/**
 	 * The template for drawing a rake figure
 	 */
-	private static final List<Point> RAKE_FIGURE = new ArrayList<Point>(8);
+	private static final List<Point> RAKE_FIGURE = new ArrayList<>(8);
 	static {
 		RAKE_FIGURE.add(new Point(0, 10));
 		RAKE_FIGURE.add(new Point(0, 4));
@@ -75,7 +75,7 @@ public class ActivityFigureDrawer {
 	/**
 	 * The template for drawing an pin arrow figure turned right
 	 */
-	private static final List<Point> RIGHT_PIN_ARROW_FIGURE = new ArrayList<Point>(8);
+	private static final List<Point> RIGHT_PIN_ARROW_FIGURE = new ArrayList<>(8);
 	static {
 		RIGHT_PIN_ARROW_FIGURE.add(new Point(4, 2));
 		RIGHT_PIN_ARROW_FIGURE.add(new Point(7, 4));
@@ -87,7 +87,7 @@ public class ActivityFigureDrawer {
 	/**
 	 * The template for drawing a pin arrow figure turned left
 	 */
-	private static final List<Point> LEFT_PIN_ARROW_FIGURE = new ArrayList<Point>(8);
+	private static final List<Point> LEFT_PIN_ARROW_FIGURE = new ArrayList<>(8);
 	static {
 		LEFT_PIN_ARROW_FIGURE.add(new Point(4, 2));
 		LEFT_PIN_ARROW_FIGURE.add(new Point(1, 4));
@@ -99,7 +99,7 @@ public class ActivityFigureDrawer {
 	/**
 	 * The template for drawing a pin arrow figure turned up
 	 */
-	private static final List<Point> UP_PIN_ARROW_FIGURE = new ArrayList<Point>(8);
+	private static final List<Point> UP_PIN_ARROW_FIGURE = new ArrayList<>(8);
 	static {
 		UP_PIN_ARROW_FIGURE.add(new Point(2, 4));
 		UP_PIN_ARROW_FIGURE.add(new Point(4, 1));
@@ -111,7 +111,7 @@ public class ActivityFigureDrawer {
 	/**
 	 * The template for drawing a pin arrow figure turned down
 	 */
-	private static final List<Point> DOWN_PIN_ARROW_FIGURE = new ArrayList<Point>(8);
+	private static final List<Point> DOWN_PIN_ARROW_FIGURE = new ArrayList<>(8);
 	static {
 		DOWN_PIN_ARROW_FIGURE.add(new Point(2, 4));
 		DOWN_PIN_ARROW_FIGURE.add(new Point(4, 7));

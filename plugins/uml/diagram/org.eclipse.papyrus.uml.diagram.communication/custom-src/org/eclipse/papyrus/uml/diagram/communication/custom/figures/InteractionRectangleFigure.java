@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -30,7 +30,7 @@ public class InteractionRectangleFigure extends RoundedCompartmentFigure {
 	private final static String INTERACTION_CONTENT_PANE_COMPARTMENT = "interactionContentPaneCompartment";
 
 	/** The List of Compartment. */
-	private final static List<String> COMPARTMENT = new ArrayList<String>() {
+	private final static List<String> COMPARTMENT = new ArrayList<>() {
 
 		private static final long serialVersionUID = 1L;
 

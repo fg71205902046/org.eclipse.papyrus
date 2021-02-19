@@ -103,7 +103,7 @@ public class DefineProfileCommand extends AbstractTransactionalCommand {
 	 *            the package to define (if it is a profile)
 	 */
 	public static List<EPackage> defineProfiles(Package thePackage, boolean saveConstraintInDef) {
-		Map<String, String> options = new HashMap<String, String>();
+		Map<String, String> options = new HashMap<>();
 
 		options.put(UML2EcoreConverter.OPTION__ECORE_TAGGED_VALUES, UMLUtil.OPTION__PROCESS);
 		options.put(UML2EcoreConverter.OPTION__DERIVED_FEATURES, UMLUtil.OPTION__REPORT);
@@ -124,8 +124,8 @@ public class DefineProfileCommand extends AbstractTransactionalCommand {
 		options.put(UML2EcoreConverter.OPTION__VALIDATION_DELEGATES, handleConstraints);
 		options.put(UML2EcoreConverter.OPTION__INVOCATION_DELEGATES, handleConstraints);
 		options.put(UML2EcoreConverter.OPTION__OPERATION_BODIES, handleConstraints);
-		
-		// Assure that "right" (consistent with xtext editor) OCL delegate is used , see bug 512428 
+
+		// Assure that "right" (consistent with xtext editor) OCL delegate is used , see bug 512428
 		options.put(UML2EcoreConverter.OPTION__OCL_DELEGATE_URI, "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"); //$NON-NLS-1$
 
 		options.put(UML2EcoreConverter.OPTION__COMMENTS, UMLUtil.OPTION__IGNORE);
@@ -133,7 +133,7 @@ public class DefineProfileCommand extends AbstractTransactionalCommand {
 
 		options.put(UML2EcoreConverter.OPTION__UNTYPED_PROPERTIES, UMLUtil.OPTION__PROCESS); // Closer to the UML semantics of untyped properties
 
-		List<Profile> toDefine = new ArrayList<Profile>();
+		List<Profile> toDefine = new ArrayList<>();
 		for (TreeIterator<EObject> all = UML2Util.getAllContents(thePackage, true, false); all.hasNext();) {
 			EObject next = all.next();
 			if (next instanceof Profile) {
@@ -149,7 +149,7 @@ public class DefineProfileCommand extends AbstractTransactionalCommand {
 			ProfileUtil.sortProfiles(toDefine);
 		}
 
-		List<EPackage> result = new ArrayList<EPackage>(toDefine.size());
+		List<EPackage> result = new ArrayList<>(toDefine.size());
 		for (Profile next : toDefine) {
 			result.add(next.define(options, null, null));
 		}
@@ -253,7 +253,7 @@ public class DefineProfileCommand extends AbstractTransactionalCommand {
 		IFile f = WorkspaceSynchronizer.getFile(rootProfile.eResource());
 		return f != null ? Collections.<IFile> singletonList(f) : Collections.<IFile> emptyList();
 	}
-	
+
 	/**
 	 * Clean undefine tag.
 	 */

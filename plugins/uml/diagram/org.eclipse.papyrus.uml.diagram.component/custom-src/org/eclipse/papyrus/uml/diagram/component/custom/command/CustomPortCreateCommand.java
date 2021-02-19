@@ -30,6 +30,7 @@ import org.eclipse.uml2.uml.UMLFactory;
 /**
  * Port creation command used to create Port on a Property (no direct containment link between
  * Property and Port).
+ *
  * @since 3.0
  *
  */

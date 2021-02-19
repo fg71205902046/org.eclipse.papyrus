@@ -85,7 +85,7 @@ public class ViewUtils {
 		return false;
 	}
 
-	
+
 
 	public static void selectInViewer(final View view, final EditPartViewer viewer) {
 		final EditPart editPart = (EditPart) viewer.getEditPartRegistry().get(view);

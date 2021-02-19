@@ -52,7 +52,7 @@ public class LoadResourceAction extends AbstractHandler {
 		if (diagramEditor instanceof IDiagramWorkbenchPart) {
 			workbenchPart = (IDiagramWorkbenchPart) diagramEditor;
 		} else {
-			workbenchPart = (IDiagramWorkbenchPart) diagramEditor.getAdapter(IDiagramWorkbenchPart.class);
+			workbenchPart = diagramEditor.getAdapter(IDiagramWorkbenchPart.class);
 		}
 		assert diagramEditor != null;
 		TransactionalEditingDomain editingDomain = workbenchPart.getDiagramEditPart().getEditingDomain();

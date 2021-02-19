@@ -43,7 +43,7 @@ public class FinalNode extends PapyrusNodeFigure implements IPapyrusNodeUMLEleme
 	 */
 	@Override
 	public Dimension getPreferredSize(int wHint, int hHint) {
-		
+
 		return new Dimension(20, 20);
 	}
 
@@ -73,7 +73,7 @@ public class FinalNode extends PapyrusNodeFigure implements IPapyrusNodeUMLEleme
 	 */
 	@Override
 	public void setStereotypeDisplay(String stereotypes, Image image) {
-		
+
 
 	}
 
@@ -82,7 +82,7 @@ public class FinalNode extends PapyrusNodeFigure implements IPapyrusNodeUMLEleme
 	 */
 	@Override
 	public void setStereotypePropertiesInBrace(String stereotypeProperties) {
-		
+
 
 	}
 
@@ -91,7 +91,7 @@ public class FinalNode extends PapyrusNodeFigure implements IPapyrusNodeUMLEleme
 	 */
 	@Override
 	public void setStereotypePropertiesInCompartment(String stereotypeProperties) {
-		
+
 
 	}
 

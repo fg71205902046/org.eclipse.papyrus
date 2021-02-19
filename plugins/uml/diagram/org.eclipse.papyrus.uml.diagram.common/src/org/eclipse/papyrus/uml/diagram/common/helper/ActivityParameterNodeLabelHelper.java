@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.common.helper;
@@ -31,7 +31,7 @@ import org.eclipse.uml2.uml.State;
 
 
 public class ActivityParameterNodeLabelHelper extends StereotypedElementLabelHelper {
-	
+
 	/**
 	 * String for separate masked label part
 	 */
@@ -58,7 +58,7 @@ public class ActivityParameterNodeLabelHelper extends StereotypedElementLabelHel
 	}
 
 	/** Map for masks */
-	protected final Map<String, String> masks = new HashMap<String, String>();
+	protected final Map<String, String> masks = new HashMap<>();
 
 	/**
 	 * Creates a new {@link ActivityParameterNode} label helper.
@@ -127,13 +127,13 @@ public class ActivityParameterNodeLabelHelper extends StereotypedElementLabelHel
 			if (stateLabel.length() > 0) {
 				if (result.length() > 0) {
 					result.append(System.getProperty("line.separator"));
-				} 
+				}
 				result.append(START_STATE_SEQUENCE).append(stateLabel).append(END_STATE_SEQUENCE);
 			}
 		}
 		return result.toString();
 	}
-	
+
 	private void appendName(StringBuilder builder, NamedElement element) {
 		if (element == null) {
 			return;

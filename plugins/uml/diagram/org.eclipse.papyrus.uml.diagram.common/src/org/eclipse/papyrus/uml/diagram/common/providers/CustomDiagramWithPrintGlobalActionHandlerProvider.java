@@ -34,6 +34,7 @@ import org.eclipse.ui.IWorkbenchPart;
  * when queried for global action handler.
  *
  * Customization of {@link org.eclipse.gmf.runtime.diagram.ui.printing.providers.DiagramWithPrintGlobalActionHandlerProvider}.
+ * 
  * @since 3.0
  *
  */

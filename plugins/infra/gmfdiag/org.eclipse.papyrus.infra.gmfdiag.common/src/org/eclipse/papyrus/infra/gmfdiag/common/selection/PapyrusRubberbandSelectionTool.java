@@ -80,7 +80,7 @@ public class PapyrusRubberbandSelectionTool extends AbstractTool {
 
 	private Figure marqueeRectangleFigure;
 
-	private Set<EditPart> allChildren = new HashSet<EditPart>();
+	private Set<EditPart> allChildren = new HashSet<>();
 
 	private List<EditPart> selectedEditParts;
 
@@ -155,7 +155,8 @@ public class PapyrusRubberbandSelectionTool extends AbstractTool {
 	 * Constructor.
 	 *
 	 * @param behavior
-	 *            <li>BEHAVIOR_OBJECT_INCLUDE = 1</li> <li>BEHAVIOR_OBJECT_TOUCHED = 2</li>
+	 *            <li>BEHAVIOR_OBJECT_INCLUDE = 1</li>
+	 *            <li>BEHAVIOR_OBJECT_TOUCHED = 2</li>
 	 */
 	public PapyrusRubberbandSelectionTool(int behavior) {
 		this();
@@ -169,7 +170,8 @@ public class PapyrusRubberbandSelectionTool extends AbstractTool {
 	 * @param behavior
 	 *            Define what behavior is expected by the tool.
 	 *
-	 *            <li>BEHAVIOR_OBJECT_INCLUDE = 1</li> <li>BEHAVIOR_OBJECT_TOUCHED = 2</li>
+	 *            <li>BEHAVIOR_OBJECT_INCLUDE = 1</li>
+	 *            <li>BEHAVIOR_OBJECT_TOUCHED = 2</li>
 	 * @param nodeSelectable
 	 *            true if Nodes should be selected
 	 * @param labelSelectable
@@ -244,14 +246,17 @@ public class PapyrusRubberbandSelectionTool extends AbstractTool {
 
 
 	/**
-	 * Calculate the selection of the Rubberband: <li>List all the eligible Edit parts</li> <li>Keep only if include in the Marquee rectangle</li> <li>
+	 * Calculate the selection of the Rubberband:
+	 * <li>List all the eligible Edit parts</li>
+	 * <li>Keep only if include in the Marquee rectangle</li>
+	 * <li>
 	 * Add in the selection if the EditPart type (connection, Label and node) is requested into the selection</li>
 	 *
 	 * @return List of EditParts which meet the conditions of the selection
 	 */
 	private List calculateNewSelection() {
 
-		List<EditPart> newSelections = new ArrayList<EditPart>();
+		List<EditPart> newSelections = new ArrayList<>();
 		Iterator<EditPart> children = getAllChildren().iterator();
 
 		// Calculate new selections based on which children fall
@@ -386,7 +391,9 @@ public class PapyrusRubberbandSelectionTool extends AbstractTool {
 	/**
 	 * Default getter of the Marquee Behavior
 	 *
-	 * @return behavior: <li>BEHAVIOR_OBJECT_INCLUDE = 1</li> <li>BEHAVIOR_OBJECT_TOUCHED = 2</li>
+	 * @return behavior:
+	 *         <li>BEHAVIOR_OBJECT_INCLUDE = 1</li>
+	 *         <li>BEHAVIOR_OBJECT_TOUCHED = 2</li>
 	 */
 	public int getMarqueeBehavior() {
 		return marqueeBehavior;
@@ -416,7 +423,7 @@ public class PapyrusRubberbandSelectionTool extends AbstractTool {
 			eraseTargetFeedback();
 		}
 		super.deactivate();
-		allChildren = new HashSet<EditPart>();
+		allChildren = new HashSet<>();
 		setState(STATE_TERMINAL);
 	}
 

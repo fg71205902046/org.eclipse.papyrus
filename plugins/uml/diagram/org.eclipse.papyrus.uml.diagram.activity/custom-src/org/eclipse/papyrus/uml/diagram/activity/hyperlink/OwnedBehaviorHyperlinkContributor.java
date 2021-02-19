@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Shuai Li (CEA LIST) <shuai.li@cea.fr> - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.hyperlink;
@@ -36,7 +36,7 @@ import org.eclipse.uml2.uml.BehavioredClassifier;
 /**
  * Returns a list of HyperLinkSpecificObjects (view elements) referencing
  * owned behaviors of a BehaviorClassifier
- * 
+ *
  * @author Shuai Li
  *
  */
@@ -48,13 +48,14 @@ public class OwnedBehaviorHyperlinkContributor implements HyperlinkContributor {
 	 * @param fromElement
 	 * @return
 	 */
+	@Override
 	public List<HyperLinkObject> getHyperlinks(Object fromElement) {
-		ArrayList<HyperLinkObject> hyperlinks = new ArrayList<HyperLinkObject>();
-		
+		ArrayList<HyperLinkObject> hyperlinks = new ArrayList<>();
+
 		if (fromElement instanceof BehavioredClassifier) {
 			List<Behavior> behaviors = ((BehavioredClassifier) fromElement).getOwnedBehaviors();
-			List<Object> objectsInViews = new ArrayList<Object>();
-			
+			List<Object> objectsInViews = new ArrayList<>();
+
 			for (Behavior behavior : behaviors) {
 				ViewerSearchService viewerSearchService = null;
 				try {
@@ -77,15 +78,15 @@ public class OwnedBehaviorHyperlinkContributor implements HyperlinkContributor {
 						}
 					}
 				}
-				
+
 				if (viewerSearchService != null) {
 					List<Object> viewerSearchResults = viewerSearchService.getViewersInCurrentModel(behavior, (BehavioredClassifier) fromElement, false, false);
 					objectsInViews.addAll(viewerSearchResults);
 				}
 			}
-			
+
 			for (Object object : objectsInViews) {
-				if (object instanceof View && ((View) object).getDiagram()!= null) {
+				if (object instanceof View && ((View) object).getDiagram() != null) {
 					if (((View) object).getDiagram().getType().equals(ActivityDiagramEditPart.MODEL_ID)) {
 						HyperLinkSpecificObject hyperlink = new HyperLinkSpecificObject((EObject) object);
 						hyperlinks.add(hyperlink);
@@ -93,7 +94,7 @@ public class OwnedBehaviorHyperlinkContributor implements HyperlinkContributor {
 				}
 			}
 		}
-		
+
 		return hyperlinks;
 	}
 

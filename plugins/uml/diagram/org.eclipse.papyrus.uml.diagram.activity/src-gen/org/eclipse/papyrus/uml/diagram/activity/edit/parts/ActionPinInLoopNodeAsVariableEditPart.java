@@ -43,7 +43,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEdit
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
 import org.eclipse.papyrus.uml.diagram.activity.edit.part.AbstractPinEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
@@ -80,6 +79,7 @@ public class ActionPinInLoopNodeAsVariableEditPart extends AbstractPinEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
@@ -141,9 +141,10 @@ public class ActionPinInLoopNodeAsVariableEditPart extends AbstractPinEditPart {
 
 	/**
 	 * Papyrus codeGen
-	 * 
+	 *
 	 * @generated
 	 **/
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 		/*
 		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
@@ -172,9 +173,10 @@ public class ActionPinInLoopNodeAsVariableEditPart extends AbstractPinEditPart {
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	public InputPinFigure getPrimaryShape() {
 		return (InputPinFigure) primaryShape;
 	}
@@ -182,6 +184,7 @@ public class ActionPinInLoopNodeAsVariableEditPart extends AbstractPinEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
 		if (borderItemEditPart instanceof ActionPinInLoopNodeAsVariableLabelEditPart) {
 			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
@@ -207,12 +210,13 @@ public class ActionPinInLoopNodeAsVariableEditPart extends AbstractPinEditPart {
 
 	/**
 	 * Creates figure for this edit part.
-	 * 
+	 *
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createMainFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
@@ -226,7 +230,7 @@ public class ActionPinInLoopNodeAsVariableEditPart extends AbstractPinEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * 
+	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
 	 * @generated
@@ -238,6 +242,7 @@ public class ActionPinInLoopNodeAsVariableEditPart extends AbstractPinEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -248,6 +253,7 @@ public class ActionPinInLoopNodeAsVariableEditPart extends AbstractPinEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -257,6 +263,7 @@ public class ActionPinInLoopNodeAsVariableEditPart extends AbstractPinEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineWidth(int width) {
 		super.setLineWidth(width);
 	}
@@ -264,6 +271,7 @@ public class ActionPinInLoopNodeAsVariableEditPart extends AbstractPinEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineType(int style) {
 		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
@@ -273,6 +281,7 @@ public class ActionPinInLoopNodeAsVariableEditPart extends AbstractPinEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ActionPinInLoopNodeAsVariableLabelEditPart.VISUAL_ID));
 	}

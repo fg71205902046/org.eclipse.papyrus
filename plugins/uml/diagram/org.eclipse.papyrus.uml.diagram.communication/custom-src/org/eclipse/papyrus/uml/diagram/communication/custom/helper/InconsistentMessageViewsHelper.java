@@ -76,7 +76,7 @@ public class InconsistentMessageViewsHelper {
 			View parentView = (View) view.eContainer();
 			// ---------------------------------------------------------
 			// help to debug
-			// System.err.println("+-> parent View  :" + parentView);
+			// System.err.println("+-> parent View :" + parentView);
 			// ---------------------------------------------------------
 
 			// get children of the parent view
@@ -146,7 +146,7 @@ public class InconsistentMessageViewsHelper {
 
 		// the set connectors that are concerned by the deleted to the messages views
 		Set<View> connectors = null;
-		Set<View> newViewsToDestroy = new HashSet<View>(viewsToDestroy);
+		Set<View> newViewsToDestroy = new HashSet<>(viewsToDestroy);
 		// for all the messages to delete, search for their parent connector
 		Iterator<?> it = viewsToDestroy.iterator();
 		while (it.hasNext()) {
@@ -154,7 +154,7 @@ public class InconsistentMessageViewsHelper {
 			if ((msgView instanceof DecorationNode) && (msgView.getElement() instanceof Message)) {
 				if (msgView.eContainer() instanceof Connector) {
 					if (connectors == null) {
-						connectors = new HashSet<View>();
+						connectors = new HashSet<>();
 					}
 					connectors.add((View) msgView.eContainer());
 				}
@@ -177,7 +177,7 @@ public class InconsistentMessageViewsHelper {
 					if ((msgView instanceof DecorationNode) && (msgView.getElement() instanceof Message)) {
 						if ((msgView.eContainer() instanceof Connector) && (msgView.eContainer().equals(conView))) {
 							if (viewsOfLabelsToDestroy == null) {
-								viewsOfLabelsToDestroy = new HashSet<View>();
+								viewsOfLabelsToDestroy = new HashSet<>();
 							}
 							viewsOfLabelsToDestroy.add(msgView);
 						}
@@ -187,7 +187,7 @@ public class InconsistentMessageViewsHelper {
 				// then add the connector to the views to destroy
 				@SuppressWarnings("unchecked")
 				EList<View> conChildren = conView.getChildren();
-				Set<View> comparisonResult = new HashSet<View>(conChildren.size());
+				Set<View> comparisonResult = new HashSet<>(conChildren.size());
 				for (Iterator<?> i = conChildren.iterator(); i.hasNext();) {
 					View element = (View) i.next();
 					if ((element instanceof DecorationNode) && (element.getElement() instanceof Message)) {
@@ -219,7 +219,7 @@ public class InconsistentMessageViewsHelper {
 	 * @return the list of {@link View} to delete
 	 */
 	public static Set<View> getMemberViewsToDestroy(Message destructee, IEditCommandRequest request) {
-		Set<View> viewsToDestroy = new HashSet<View>();
+		Set<View> viewsToDestroy = new HashSet<>();
 		CrossReferenceAdapter crossReferenceAdapter = InconsistentMessageViewsHelper.getCrossReferenceAdapter(request, destructee);
 		if (crossReferenceAdapter != null) {
 

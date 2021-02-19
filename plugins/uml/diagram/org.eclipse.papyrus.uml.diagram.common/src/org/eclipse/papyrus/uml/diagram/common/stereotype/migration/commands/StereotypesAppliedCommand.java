@@ -221,7 +221,7 @@ public class StereotypesAppliedCommand extends AbstractTransactionalCommand {
 	 * @return The list of stereotypes.
 	 */
 	private List<Stereotype> getAllStereotypes() {
-		List<Stereotype> stereotypes = new ArrayList<Stereotype>();
+		List<Stereotype> stereotypes = new ArrayList<>();
 		// Get the stereotype on the stereotype list
 		String stereotypesToDisplay = migrationHelper.getStereotypesToDisplay(currentView);
 		if (!StereotypeMigrationHelper.EMPTY_STRING.equals(stereotypesToDisplay)) {
@@ -252,7 +252,7 @@ public class StereotypesAppliedCommand extends AbstractTransactionalCommand {
 	 * @return
 	 */
 	private List<String> parsePropStereoDisplay() {
-		List<String> stringStereotypes = new ArrayList<String>();
+		List<String> stringStereotypes = new ArrayList<>();
 		String appliedStereotypesPropertiesToDisplay = migrationHelper.getAppliedStereotypesPropertiesToDisplay(currentView);
 		if (!StereotypeMigrationHelper.EMPTY_STRING.equals(appliedStereotypesPropertiesToDisplay)) {
 			String[] splitedProperties = appliedStereotypesPropertiesToDisplay.split(StereotypeDisplayMigrationConstant.EANNOTATION_LIST_SEPARATOR);
@@ -352,7 +352,7 @@ public class StereotypesAppliedCommand extends AbstractTransactionalCommand {
 	private void hideStereotypePropertiesNotDisplayed(final Enum<?> location) {
 		String propertyList = migrationHelper.getAppliedStereotypesPropertiesToDisplay(currentView);
 		if (!StereotypeMigrationHelper.EMPTY_STRING.equals(propertyList)) {
-			List<String> displayedProperties = new ArrayList<String>(Arrays.asList(propertyList.split(StereotypeDisplayMigrationConstant.EANNOTATION_LIST_SEPARATOR)));
+			List<String> displayedProperties = new ArrayList<>(Arrays.asList(propertyList.split(StereotypeDisplayMigrationConstant.EANNOTATION_LIST_SEPARATOR)));
 			// If applied Stereotype is not in the Stereotype list to display, set the visibility to false to hide the Label.
 			EList<Stereotype> appliedStereotypesFromView = migrationHelper.getAppliedStereotypesFromView(currentView);
 			if (null != appliedStereotypesFromView) {

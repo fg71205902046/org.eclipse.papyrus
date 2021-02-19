@@ -22,9 +22,9 @@ import org.eclipse.papyrus.infra.filters.Filter;
 /**
  * Interface implemented by all palette providers that requires some profiles
  * applied to be shown
- * 
+ *
  * @since 3.0
- * 
+ *
  * @deprecated Since 3.1 - Was never supported. Use {@link Filter Filters} in Palette Configuration elements instead.
  */
 @Deprecated

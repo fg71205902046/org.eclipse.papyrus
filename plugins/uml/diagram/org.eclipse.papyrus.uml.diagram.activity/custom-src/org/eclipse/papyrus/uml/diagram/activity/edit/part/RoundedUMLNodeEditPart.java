@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and Implementation
- * 
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.part;
 
@@ -177,7 +177,7 @@ public abstract class RoundedUMLNodeEditPart extends UMLNodeEditPart {
 
 	/**
 	 * Get the line type of the shape.
-	 * 
+	 *
 	 * @return the line type.
 	 */
 	@Override

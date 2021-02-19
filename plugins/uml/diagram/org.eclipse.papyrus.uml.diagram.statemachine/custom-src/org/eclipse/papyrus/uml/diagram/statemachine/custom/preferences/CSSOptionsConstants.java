@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.diagram.statemachine.custom.preferences;
 
 /**
  * Values to use in CSS styles for transition options (how to show code attached to a transition)
+ *
  * @since 3.1
  */
 public class CSSOptionsConstants {

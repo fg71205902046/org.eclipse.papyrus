@@ -210,7 +210,7 @@ public class QualifiedNameDisplayEditPolicy extends GraphicalEditPolicy implemen
 		DiagramEventBroker diagramEventBroker = getDiagramEventBroker();
 		if (diagramEventBroker != null) {
 			if (parentListeners == null) {
-				parentListeners = new ArrayList<Object>();
+				parentListeners = new ArrayList<>();
 			}
 			if (getNamedElement() != null) {
 				EObject parentEOBject = getNamedElement().eContainer();

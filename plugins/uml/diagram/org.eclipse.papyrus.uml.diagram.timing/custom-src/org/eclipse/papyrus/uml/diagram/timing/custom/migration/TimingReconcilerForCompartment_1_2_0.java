@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and Implementation
- *   
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.timing.custom.migration;
 
@@ -22,6 +22,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.ReconcilerForCompartm
 
 /**
  * Diagram Reconciler for compartment from 1.1.0 to 1.2.0
+ *
  * @since 1.3
  */
 public class TimingReconcilerForCompartment_1_2_0 extends ReconcilerForCompartment {
@@ -34,7 +35,7 @@ public class TimingReconcilerForCompartment_1_2_0 extends ReconcilerForCompartme
 	private static final String FullLifelineTimeRulerCompartmentEditPartCN_VISUAL_ID = "82";
 	private static final String CompactLifelineTimeRulerCompartmentEditPartCN_VISUAL_ID = "83";
 	private static final String FreeTimeRulerCompartmentEditPart_VISUAL_ID = "80";
-	private static final String LinearTimeRulerCompartmentEditPart_VISUAL_ID  = "81";
+	private static final String LinearTimeRulerCompartmentEditPart_VISUAL_ID = "81";
 
 	/** The compartments visual id. */
 	private List<String> compartmentsVisualID = Arrays.asList(

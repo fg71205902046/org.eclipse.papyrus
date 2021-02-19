@@ -41,12 +41,12 @@ import org.w3c.dom.svg.SVGDocument;
 public class ShapeService extends org.eclipse.gmf.runtime.common.core.service.Service {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final String MAX_NUMBER_OF_SYMBOL = "maxNumberOfSymbol";//$NON-NLS-1$
 
 	/**
-	 * 
+	 *
 	 */
 	private static final String MAX_NUMBER_OF_SYMBOL_DECORATION = "maxNumberOfSymbolDecoration";//$NON-NLS-1$
 
@@ -72,10 +72,10 @@ public class ShapeService extends org.eclipse.gmf.runtime.common.core.service.Se
 		boolean hasRealImage = false;
 		while (!hasRealImage && iterator.hasNext()) { // strategy gives a lot of null && empty list check if there is a real one
 			List<RenderedImage> next = iterator.next();
-			hasRealImage = next!=null && !next.isEmpty() ;
-		} 
+			hasRealImage = next != null && !next.isEmpty();
+		}
 		return hasRealImage;
-	}	
+	}
 
 	/**
 	 * Checks if the given element can display shapes as decoration.
@@ -89,8 +89,8 @@ public class ShapeService extends org.eclipse.gmf.runtime.common.core.service.Se
 		boolean hasRealImage = false;
 		while (!hasRealImage && iterator.hasNext()) { // strategy gives a lot of null && empty list check if there is a real one
 			List<RenderedImage> next = iterator.next();
-			hasRealImage = next!=null && !next.isEmpty() ;
-		} 
+			hasRealImage = next != null && !next.isEmpty();
+		}
 		return hasRealImage;
 	}
 
@@ -104,7 +104,7 @@ public class ShapeService extends org.eclipse.gmf.runtime.common.core.service.Se
 	public List<RenderedImage> getShapesToDisplay(EObject view) {
 		@SuppressWarnings("unchecked")
 		List<List<RenderedImage>> listOfListOfImages = execute(ExecutionStrategy.FORWARD, new GetShapesForViewOperation(view));
-		List<RenderedImage> images = new ArrayList<RenderedImage>();
+		List<RenderedImage> images = new ArrayList<>();
 		for (List<RenderedImage> listOfImages : listOfListOfImages) {
 			if (listOfImages != null && !listOfImages.isEmpty()) {
 				images.addAll(listOfImages);
@@ -115,7 +115,7 @@ public class ShapeService extends org.eclipse.gmf.runtime.common.core.service.Se
 
 		return images.subList(0, Math.min(nbImagesToDisplay, images.size()));
 	}
-	
+
 	/**
 	 * Returns the shape to be displayed
 	 *
@@ -126,7 +126,7 @@ public class ShapeService extends org.eclipse.gmf.runtime.common.core.service.Se
 	public List<RenderedImage> getShapeDecorationsToDisplay(EObject view) {
 		@SuppressWarnings("unchecked")
 		List<List<RenderedImage>> listOfListOfImages = execute(ExecutionStrategy.FORWARD, new GetShapeDecorationsForViewOperation(view));
-		List<RenderedImage> images = new ArrayList<RenderedImage>();
+		List<RenderedImage> images = new ArrayList<>();
 		for (List<RenderedImage> listOfImages : listOfListOfImages) {
 			if (listOfImages != null && !listOfImages.isEmpty()) {
 				images.addAll(listOfImages);
@@ -149,7 +149,7 @@ public class ShapeService extends org.eclipse.gmf.runtime.common.core.service.Se
 		@SuppressWarnings("unchecked")
 		List<List<SVGDocument>> listOfListOfImages = execute(ExecutionStrategy.FORWARD, new GetSVGDocumentForViewOperation(view));
 		// lists of images are sort by priority from the highest to the lowest
-		List<SVGDocument> images = new ArrayList<SVGDocument>();
+		List<SVGDocument> images = new ArrayList<>();
 		for (List<SVGDocument> listOfImages : listOfListOfImages) {
 			if (listOfImages != null && !listOfImages.isEmpty()) {
 				images.addAll(listOfImages);
@@ -224,7 +224,7 @@ public class ShapeService extends org.eclipse.gmf.runtime.common.core.service.Se
 	 * @{inheritDoc
 	 */
 	public List<IShapeProvider> getProviders() {
-		List<IShapeProvider> providers = new ArrayList<IShapeProvider>();
+		List<IShapeProvider> providers = new ArrayList<>();
 		execute(ExecutionStrategy.REVERSE, new GetAllShapeProvidersOperation(providers));
 		return providers;
 	}

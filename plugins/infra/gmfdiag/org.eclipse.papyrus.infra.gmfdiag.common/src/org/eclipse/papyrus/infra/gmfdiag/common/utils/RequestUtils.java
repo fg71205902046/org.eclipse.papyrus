@@ -81,7 +81,7 @@ public class RequestUtils extends ElementTypeUtils {
 	public static Map<String, Object> getParameters(Request request) {
 		Map<String, Object> parameters = request.getExtendedData();
 		if (parameters == null) {
-			parameters = new HashMap<String, Object>();
+			parameters = new HashMap<>();
 			request.setExtendedData(parameters);
 		}
 

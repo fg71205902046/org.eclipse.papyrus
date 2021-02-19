@@ -69,7 +69,7 @@ import org.eclipse.uml2.uml.Stereotype;
 public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends GraphicalEditPolicyEx implements AutomaticNotationEditPolicy, NotificationListener, IPapyrusListener {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final String VISIBLE = "visible";
 
@@ -97,15 +97,15 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	protected View hostView = null;
 
 	protected List<Stereotype> stereotypeList = Collections.emptyList();
-	
+
 	private final NotificationPreCommitListener precommitListener = this::handlePrecommit;
 
 	static {
 		// Tell the Canonical Edit Policy not to manage applied-stereotype views
 		DefaultUMLVisualChildrenStrategy.registerExcludedViewTypes(StereotypeDisplayConstant.APPLIED_STEREOTYPE_VIEW_TYPES);
 	}
-	
-	
+
+
 	/**
 	 * Creates a new AppliedStereotype display edit policy
 	 */
@@ -136,8 +136,9 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	/**
 	 * Subscribes to a {@code notifier} for notifications from the
 	 * {@link #getDiagramEventBroker() event broker}.
-	 * 
-	 * @param notifier a notifier to subscribe to
+	 *
+	 * @param notifier
+	 *            a notifier to subscribe to
 	 */
 	protected void subscribe(EObject notifier) {
 		// Subscribe to pre-commit, not post-commit events
@@ -147,8 +148,9 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	/**
 	 * Unsubscribes from a {@code notifier} for notifications from the
 	 * {@link #getDiagramEventBroker() event broker}.
-	 * 
-	 * @param notifier a notifier to unsubscribe from
+	 *
+	 * @param notifier
+	 *            a notifier to unsubscribe from
 	 */
 	protected void unsubscribe(EObject notifier) {
 		// Unsubscribe from pre-commit, not post-commit events
@@ -194,10 +196,10 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	 * React to a transaction pre-commit notification by returning a command that
 	 * encapsulates follow-up changes in the applied-stereotype visualizaiton of
 	 * my host edit-part.
-	 * 
+	 *
 	 * @param notification
 	 *            some model or notation change notification
-	 * 
+	 *
 	 * @return a trigger command that may or may not perform some modifications
 	 *         to the applied-stereotype notation in consequence
 	 */
@@ -279,7 +281,7 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 
 	/**
 	 * Defined if the notification concerned the update of the visibility of the node
-	 * 
+	 *
 	 * @param notification
 	 *            The tested notification
 	 * @return true if the Notification is about the update of the visibility either through the visible feature or by adding the CSS Force Value with Eannotation.
@@ -476,7 +478,7 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	protected void removeUnappliedStereotypes(View view) {
 
 		if (null != view) {
-			List<Object> children = new ArrayList<Object>(view.getChildren());
+			List<Object> children = new ArrayList<>(view.getChildren());
 			Iterator<Object> iter = children.iterator();
 			while (iter.hasNext()) {
 				Object child = iter.next();

@@ -36,11 +36,12 @@ import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternati
 
 /**
  * Offer a strategy for the internationalization of pasted objects.
+ * 
  * @since 3.0
  */
 public class InternationalizationPasteStrategy extends AbstractPasteStrategy implements IPasteStrategy {
-	
-	/** 
+
+	/**
 	 * The instance.
 	 */
 	private static IPasteStrategy instance = new InternationalizationPasteStrategy();
@@ -51,7 +52,7 @@ public class InternationalizationPasteStrategy extends AbstractPasteStrategy imp
 	public InternationalizationPasteStrategy() {
 		// Do nothing
 	}
-	
+
 	/**
 	 * Gets the single instance of StereotypePasteStrategy.
 	 *
@@ -100,7 +101,7 @@ public class InternationalizationPasteStrategy extends AbstractPasteStrategy imp
 	public IPasteStrategy dependsOn() {
 		return DefaultPasteStrategy.getInstance();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -109,17 +110,17 @@ public class InternationalizationPasteStrategy extends AbstractPasteStrategy imp
 	@Override
 	public Command getSemanticCommand(final EditingDomain domain, final EObject targetOwner, final PapyrusClipboard<Object> papyrusClipboard) {
 		final CompoundCommand compoundCommand = new CompoundCommand("Internationalization paste objects"); //$NON-NLS-1$
-		
+
 		Map<EObject, Object> sourceToCopy = papyrusClipboard.getSourceToInternalClipboard();
-		
+
 		for (final Entry<EObject, Object> sourceToCopyEntry : sourceToCopy.entrySet()) {
 			final EObject source = sourceToCopyEntry.getKey();
 			final EObject target = papyrusClipboard.getTragetCopyFromInternalClipboardCopy(sourceToCopyEntry.getValue());
-			
+
 			final Set<Locale> localesForSource = LabelInternationalizationUtils.getAvailableLocales(source.eResource());
-			
+
 			// Modify all the loaded properties files for copied object
-			for(final Locale currentLocale : localesForSource){
+			for (final Locale currentLocale : localesForSource) {
 				final InternationalizationEntry internationalizationEntry = LabelInternationalizationUtils.getInternationalizationEntry(source, source, currentLocale);
 				if (null != internationalizationEntry) {
 					compoundCommand.append(new InternationalizationPasteCommand((TransactionalEditingDomain) domain, target, internationalizationEntry.getValue(), currentLocale));

@@ -94,11 +94,11 @@ public class ExecutionOccurrenceSpecificationMessageCreateCommand extends EditEl
 		}
 		Element sourceObject = deduceLifeline(source);
 		if (null == sourceObject && source instanceof Gate) {
-			sourceObject = (Gate)source;
+			sourceObject = (Gate) source;
 		}
 		Element targetObject = deduceLifeline(target);
 		if (null == targetObject && target instanceof Gate) {
-			targetObject = (Gate)target;
+			targetObject = (Gate) target;
 		}
 		InteractionFragment sourceContainer = (InteractionFragment) getRequest().getParameters().get(SequenceRequestConstant.SOURCE_MODEL_CONTAINER);
 		InteractionFragment targetContainer = (InteractionFragment) getRequest().getParameters().get(SequenceRequestConstant.TARGET_MODEL_CONTAINER);

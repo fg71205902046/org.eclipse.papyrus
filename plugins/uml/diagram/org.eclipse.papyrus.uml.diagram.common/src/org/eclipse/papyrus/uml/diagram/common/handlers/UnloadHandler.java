@@ -49,12 +49,12 @@ public class UnloadHandler extends GraphicalCommandHandler {
 		if (editingDomain != null && editingDomain.getResourceSet() instanceof ModelSet && selection.size() > 0) {
 			final ModelSet set = (ModelSet) editingDomain.getResourceSet();
 			CompoundCommand command = new CompoundCommand();
-			List<URI> handledURI = new ArrayList<URI>();
+			List<URI> handledURI = new ArrayList<>();
 			// ensure main URI is never unloaded
 			URI mainURI = NotationUtils.getNotationModel(set).getResourceURI().trimFileExtension();
 			handledURI.add(mainURI);
 			for (IGraphicalEditPart selPart : selection) {
-				View view = (View) ((IAdaptable) selPart).getAdapter(View.class);
+				View view = ((IAdaptable) selPart).getAdapter(View.class);
 				if (view != null) {
 					EObject sel = view.getElement();
 					// note: the element may be null if the View is notational only

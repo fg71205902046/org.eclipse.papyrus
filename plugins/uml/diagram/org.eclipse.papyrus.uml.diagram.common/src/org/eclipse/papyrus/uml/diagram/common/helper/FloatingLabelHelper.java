@@ -73,7 +73,7 @@ public class FloatingLabelHelper extends StereotypedElementLabelHelper {
 	}
 
 	/** Map for masks. */
-	protected final Map<String, String> masks = new HashMap<String, String>();
+	protected final Map<String, String> masks = new HashMap<>();
 
 	/**
 	 * Instantiates a new floating label helper.

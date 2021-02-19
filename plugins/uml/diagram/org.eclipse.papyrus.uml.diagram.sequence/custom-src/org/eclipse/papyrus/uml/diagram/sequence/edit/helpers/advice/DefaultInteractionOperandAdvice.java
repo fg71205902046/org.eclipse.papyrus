@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2018 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.advice;
@@ -111,7 +111,7 @@ public class DefaultInteractionOperandAdvice extends AbstractEditHelperAdvice {
 		// Subtract one to avoid scroll bars
 		int operandHeight = cfragBounds.y() + cfragBounds.height() - operandBounds.y() - 1;
 
-		ChangeBoundsRequest request = new ChangeBoundsRequest(RequestConstants.REQ_RESIZE);
+		ChangeBoundsRequest request = new ChangeBoundsRequest(org.eclipse.gef.RequestConstants.REQ_RESIZE);
 		request.setSizeDelta(new Dimension(0, operandHeight - operandBounds.height()));
 		request.setResizeDirection(PositionConstants.SOUTH);
 		request.setSnapToEnabled(false);

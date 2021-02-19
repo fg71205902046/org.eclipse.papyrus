@@ -104,12 +104,12 @@ public class OccurrenceSpecificationHelper {
 		if (newEnd.getName() == null) {
 			if (isStart) {
 				newEnd.setName(execution.getName() + "Start");
-				if(InternationalizationPreferencesUtils.getInternationalizationPreference(execution) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(execution)){
+				if (InternationalizationPreferencesUtils.getInternationalizationPreference(execution) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(execution)) {
 					UMLLabelInternationalization.getInstance().setLabel(newEnd, UMLLabelInternationalization.getInstance().getLabelWithoutUML(execution) + "Start", null);
 				}
 			} else {
 				newEnd.setName(execution.getName() + "Finish");
-				if(InternationalizationPreferencesUtils.getInternationalizationPreference(execution) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(execution)){
+				if (InternationalizationPreferencesUtils.getInternationalizationPreference(execution) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(execution)) {
 					UMLLabelInternationalization.getInstance().setLabel(newEnd, UMLLabelInternationalization.getInstance().getLabelWithoutUML(execution) + "Finish", null);
 				}
 			}

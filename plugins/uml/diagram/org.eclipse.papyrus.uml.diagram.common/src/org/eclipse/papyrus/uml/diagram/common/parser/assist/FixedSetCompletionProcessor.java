@@ -25,7 +25,7 @@ public class FixedSetCompletionProcessor extends EObjectCompletionProcessor {
 	private final List<String> myProposals;
 
 	public FixedSetCompletionProcessor(List<String> proposals) {
-		myProposals = Collections.unmodifiableList(new ArrayList<String>(proposals));
+		myProposals = Collections.unmodifiableList(new ArrayList<>(proposals));
 	}
 
 	// @unused

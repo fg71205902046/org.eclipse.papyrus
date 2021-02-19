@@ -60,7 +60,7 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 
 	protected static final String KEY = "validationStatus"; //$NON-NLS-1$
 
-	private static Map<String, IDecorator> allDecorators = new HashMap<String, IDecorator>();
+	private static Map<String, IDecorator> allDecorators = new HashMap<>();
 
 	/**
 	 * Refined by generated class
@@ -164,13 +164,13 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 			}
 			if ((view.getElement() != null) && (decorationService != null)) {
 				diagramDecorationAdapter.removeDecorations();
-				List<IPapyrusDecoration> semanticDecorations = new BasicEList<IPapyrusDecoration>();
+				List<IPapyrusDecoration> semanticDecorations = new BasicEList<>();
 				for (Object decoratedElement : getDecoratedElements(element)) {
 					semanticDecorations.addAll(decorationService.getDecorations(decoratedElement, false));
 				}
 				List<IPapyrusDecoration> graphicalDecorations = decorationService.getDecorations(view, false);
 
-				List<IPapyrusDecoration> decorations = new LinkedList<IPapyrusDecoration>(semanticDecorations);
+				List<IPapyrusDecoration> decorations = new LinkedList<>(semanticDecorations);
 				decorations.addAll(graphicalDecorations);
 				if (view instanceof Edge) {
 					diagramDecorationAdapter.setDecorationsEdge(decorations, 50, true);
@@ -289,7 +289,7 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 		 * @return the list of observed decorations
 		 */
 		public EList<Object> getDecoratedElements(Object viewElement) {
-			EList<Object> decoratedElements = new BasicEList<Object>();
+			EList<Object> decoratedElements = new BasicEList<>();
 			decoratedElements.add(viewElement);
 			/**
 			 * Add decorations of specification to constraint.

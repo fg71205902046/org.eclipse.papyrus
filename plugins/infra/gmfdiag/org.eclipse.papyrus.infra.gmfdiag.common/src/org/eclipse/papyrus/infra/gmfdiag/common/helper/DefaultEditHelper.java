@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010, 2017 CEA LIST, EclipseSource and others.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -9,7 +9,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- * 
+ *
  *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 440108
  *  Camille Letavernier (EclipseSource) - Bug 519446
@@ -60,16 +60,16 @@ import org.eclipse.papyrus.infra.types.core.utils.AdviceUtil;
  * in EditHelper(s) the getDestroyDependentsCommand will only be called with default element type
  * (null command) and in AdviceHelper the getBeforeDestroyDependentsCommand will work but will
  * not retrieve command to destroy elements that themselves depend on dependent element to destroy.
- * 
+ *
  * The changes are replacing:
  * ElementTypeRegistry.getInstance().getElementType(req.getElementToDestroy());
  * by
- * ElementTypeRegistry.getInstance().getElementType(req.getElementToDestroy(), req.getClientContext()); 
- * 
+ * ElementTypeRegistry.getInstance().getElementType(req.getElementToDestroy(), req.getClientContext());
+ *
  * See:
  * - Bug328232 (https://bugs.eclipse.org/bugs/show_bug.cgi?id=328232)
  * - Bug328506 (https://bugs.eclipse.org/bugs/show_bug.cgi?id=328506)
- * 
+ *
  * </pre>
  */
 public class DefaultEditHelper extends AbstractNotifierEditHelper {
@@ -136,7 +136,7 @@ public class DefaultEditHelper extends AbstractNotifierEditHelper {
 
 	/**
 	 * Gets the EClass of the element to be edited.
-	 * 
+	 *
 	 * @return the EClass
 	 */
 	protected EClass getEClassToEdit(CreateElementRequest request) {
@@ -171,30 +171,31 @@ public class DefaultEditHelper extends AbstractNotifierEditHelper {
 	@Override
 	protected ICommand getCreateRelationshipCommand(CreateRelationshipRequest req) {
 		EObject source = req.getSource();
-        EObject target = req.getTarget();
+		EObject target = req.getTarget();
 
-        boolean noSourceOrTarget = (source == null || target == null);
-        boolean noSourceAndTarget = (source == null && target == null);
+		boolean noSourceOrTarget = (source == null || target == null);
+		boolean noSourceAndTarget = (source == null && target == null);
 
-        if (noSourceOrTarget && !noSourceAndTarget) {
-            // The request isn't complete yet. Return the identity command so
-            // that the create relationship gesture is enabled.
-            return IdentityCommand.INSTANCE;
-        }
-        
+		if (noSourceOrTarget && !noSourceAndTarget) {
+			// The request isn't complete yet. Return the identity command so
+			// that the create relationship gesture is enabled.
+			return IdentityCommand.INSTANCE;
+		}
+
 		return new CreateRelationshipCommandEx(req);
 	}
-	
+
 	/**
 	 * Gets the command to destroy a single child of an element of my kind along
 	 * with its dependents (not related by containment). By default, returns a
 	 * composite that destroys the elements and zero or more dependents.
-	 * 
+	 *
 	 * @param req
 	 *            the destroy request
 	 * @return a command that destroys the element specified as the request's {@linkplain DestroyElementRequest#getElementToDestroy() element to
 	 *         destroy} and its non-containment dependents
 	 */
+	@Override
 	protected ICommand getDestroyElementWithDependentsCommand(DestroyElementRequest req) {
 		ICommand result = getBasicDestroyElementCommand(req);
 
@@ -250,11 +251,12 @@ public class DefaultEditHelper extends AbstractNotifierEditHelper {
 	 * Gets the command to destroy a child of an element of my kind. By
 	 * default, returns a composite command that destroys the element specified
 	 * by the request and all of its contents.
-	 * 
+	 *
 	 * @param req
 	 *            the destroy request
 	 * @return a command that destroys the element specified as the request's {@link DestroyElementRequest#getElementToDestroy() element to destroy} along with its contents and other dependents
 	 */
+	@Override
 	protected ICommand getDestroyElementCommand(DestroyElementRequest req) {
 		ICommand result = null;
 
@@ -331,11 +333,12 @@ public class DefaultEditHelper extends AbstractNotifierEditHelper {
 
 	/**
 	 * Gets the array of edit helper advice for this request.
-	 * 
+	 *
 	 * @param req
 	 *            the edit request
 	 * @return the edit helper advice, or <code>null</code> if there is none
 	 */
+	@Override
 	protected IEditHelperAdvice[] getEditHelperAdvice(IEditCommandRequest req) {
 		IEditHelperAdvice[] advices = null;
 		Object editHelperContext = req.getEditHelperContext();
@@ -374,9 +377,9 @@ public class DefaultEditHelper extends AbstractNotifierEditHelper {
 		if (advices == null) {
 			if (editHelperContext instanceof EObject) {
 				IClientContext context = req.getClientContext();
-				if(context == null) {
+				if (context == null) {
 					try {
-						context = TypeContext.getContext(((EObject)editHelperContext));
+						context = TypeContext.getContext(((EObject) editHelperContext));
 						req.setClientContext(context);
 					} catch (ServiceException e) {
 						Activator.log.error(e);
@@ -386,7 +389,7 @@ public class DefaultEditHelper extends AbstractNotifierEditHelper {
 				IElementType[] types = ElementTypeRegistry.getInstance().getAllTypesMatching((EObject) editHelperContext, req.getClientContext());
 				AdviceUtil.sort(advices, types, req.getClientContext().getId());
 			} else if (editHelperContext instanceof IElementType) {
-				if(req.getClientContext() == null) {
+				if (req.getClientContext() == null) {
 					try {
 						req.setClientContext(TypeContext.getContext(req.getEditingDomain()));
 					} catch (ServiceException e) {
@@ -394,7 +397,7 @@ public class DefaultEditHelper extends AbstractNotifierEditHelper {
 					}
 				}
 				advices = CacheRegistry.getInstance().getEditHelperAdvice(req.getClientContext(), ((IElementType) editHelperContext));
-				AdviceUtil.sort(advices, (IElementType)editHelperContext, req.getClientContext().getId());
+				AdviceUtil.sort(advices, (IElementType) editHelperContext, req.getClientContext().getId());
 
 			} else if (editHelperContext instanceof IEditHelperContext) {
 				IClientContext clientContext = ((IEditHelperContext) editHelperContext).getClientContext();
@@ -413,7 +416,7 @@ public class DefaultEditHelper extends AbstractNotifierEditHelper {
 					}
 				} else {
 					if (elementType != null) {
-						if(req.getClientContext() == null) {
+						if (req.getClientContext() == null) {
 							try {
 								req.setClientContext(TypeContext.getContext(req.getEditingDomain()));
 							} catch (ServiceException e) {
@@ -424,9 +427,9 @@ public class DefaultEditHelper extends AbstractNotifierEditHelper {
 						AdviceUtil.sort(advices, elementType, req.getClientContext().getId());
 					} else if (eObject != null) {
 						IClientContext context = req.getClientContext();
-						if(context == null) {
+						if (context == null) {
 							try {
-								context = TypeContext.getContext(((EObject)eObject));
+								context = TypeContext.getContext((eObject));
 								req.setClientContext(context);
 							} catch (ServiceException e) {
 								Activator.log.error(e);
@@ -551,7 +554,7 @@ public class DefaultEditHelper extends AbstractNotifierEditHelper {
 
 	protected EReference computeContainmentFeature(IElementType elementType, EObject container, Object editHelperContext) {
 		// First, try to find the feature from the element type
-		ISpecializationType specializationType = (ISpecializationType) elementType.getAdapter(ISpecializationType.class);
+		ISpecializationType specializationType = elementType.getAdapter(ISpecializationType.class);
 
 		if (specializationType != null) {
 

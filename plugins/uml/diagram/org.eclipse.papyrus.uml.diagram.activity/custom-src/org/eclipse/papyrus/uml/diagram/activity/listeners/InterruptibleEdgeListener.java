@@ -47,6 +47,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.uml.diagram.activity.edit.part.interfaces.InterruptibleEdge;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ControlFlowInterruptibleIconEditPart;
@@ -54,7 +55,6 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ObjectFlowInterruptib
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.activity.request.InterruptibleEdgeRequest;
 import org.eclipse.papyrus.uml.diagram.common.listeners.AbstractPapyrusModifcationTriggerListener;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.common.util.functions.EObjectToViewFunction;
 import org.eclipse.papyrus.uml.diagram.common.util.functions.SettingToEObjectFunction;
 import org.eclipse.papyrus.uml.diagram.common.util.predicates.ReferencingViewPredicate;
@@ -102,7 +102,7 @@ public class InterruptibleEdgeListener extends AbstractPapyrusModifcationTrigger
 		IEditorPart editor = page.getActiveEditor();
 		if (editor instanceof IMultiDiagramEditor) {
 			IMultiDiagramEditor papyrusEditor = (IMultiDiagramEditor) editor;
-			return (DiagramEditPart) papyrusEditor.getAdapter(DiagramEditPart.class);
+			return papyrusEditor.getAdapter(DiagramEditPart.class);
 		}
 		return null;
 	}

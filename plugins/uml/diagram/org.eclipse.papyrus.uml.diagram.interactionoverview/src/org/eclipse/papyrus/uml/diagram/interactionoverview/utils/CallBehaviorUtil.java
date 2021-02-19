@@ -127,9 +127,9 @@ public class CallBehaviorUtil {
 	public static List<String> getRemovedLifelinesQualifiedNames(final View callBehaviorActionView) {
 		final EAnnotation eAnnotation = callBehaviorActionView.getEAnnotation(LIFELINE_QUALIFIED_NAME);
 		if (eAnnotation != null) {
-			return new ArrayList<String>(eAnnotation.getDetails().keySet());
+			return new ArrayList<>(eAnnotation.getDetails().keySet());
 		}
-		return new ArrayList<String>();
+		return new ArrayList<>();
 	}
 
 	public static void addLifelineQualifiedNames(final View callBehaviorActionView, final String qualifiedName) {

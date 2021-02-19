@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *   J�r�mie TATIBOUET (CEA LIST) - Initial API and implementation
  *   S�bastien REVOL (CEA LIST) - Initial API and implementation
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater;
@@ -50,7 +50,7 @@ public class CallOperationActionPinUpdater extends AbstractCallActionPinUpdater<
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.AbstractInvocationActionPinUpdater#deriveTarget(org.eclipse.uml2.uml.InvocationAction)
 	 *
 	 * @param node
@@ -76,7 +76,7 @@ public class CallOperationActionPinUpdater extends AbstractCallActionPinUpdater<
 	 */
 	@Override
 	public List<InputPin> deriveArguments(CallOperationAction node) {
-		List<InputPin> derivedInputPins = new ArrayList<InputPin>();
+		List<InputPin> derivedInputPins = new ArrayList<>();
 		if (node.getOperation() != null) {
 			for (Parameter parameter : node.getOperation().getOwnedParameters()) {
 				if (parameter.getDirection() == ParameterDirectionKind.INOUT_LITERAL
@@ -111,7 +111,7 @@ public class CallOperationActionPinUpdater extends AbstractCallActionPinUpdater<
 	 */
 	@Override
 	public List<OutputPin> deriveResults(CallOperationAction node) {
-		List<OutputPin> derivedOutputPins = new ArrayList<OutputPin>();
+		List<OutputPin> derivedOutputPins = new ArrayList<>();
 		if (node.getOperation() != null) {
 			for (Parameter parameter : node.getOperation().getOwnedParameters()) {
 				if (parameter.getDirection() == ParameterDirectionKind.INOUT_LITERAL

@@ -60,7 +60,7 @@ public class ActivityPartitionContainment extends AbstractContainerNodeDescripto
 	 */
 	@Override
 	public List<EReference> getChildrenReferences() {
-		List<EReference> references = new ArrayList<EReference>(3);
+		List<EReference> references = new ArrayList<>(3);
 		references.add(UMLPackage.eINSTANCE.getActivityPartition_Subpartition());
 		references.add(UMLPackage.eINSTANCE.getElement_OwnedComment());
 		return references;
@@ -69,7 +69,7 @@ public class ActivityPartitionContainment extends AbstractContainerNodeDescripto
 	@Override
 	public List<EReference> getParentReferences() {
 		if (parentReferences == null) {
-			parentReferences = new ArrayList<EReference>();
+			parentReferences = new ArrayList<>();
 			parentReferences.add(UMLPackage.Literals.ACTIVITY_PARTITION__SUPER_PARTITION);
 			parentReferences.add(UMLPackage.Literals.ACTIVITY_GROUP__IN_ACTIVITY);
 		}
@@ -79,7 +79,7 @@ public class ActivityPartitionContainment extends AbstractContainerNodeDescripto
 	@Override
 	public Map<EStructuralFeature, EStructuralFeature> getParentEOppositeReferences() {
 		if (parentOpositeReferences == null) {
-			parentOpositeReferences = new HashMap<EStructuralFeature, EStructuralFeature>();
+			parentOpositeReferences = new HashMap<>();
 			parentOpositeReferences.put(UMLPackage.Literals.ACTIVITY_PARTITION__SUPER_PARTITION, UMLPackage.Literals.ACTIVITY_PARTITION__SUBPARTITION);
 			parentOpositeReferences.put(UMLPackage.Literals.ACTIVITY_GROUP__IN_ACTIVITY, UMLPackage.Literals.ACTIVITY__OWNED_GROUP);
 		}

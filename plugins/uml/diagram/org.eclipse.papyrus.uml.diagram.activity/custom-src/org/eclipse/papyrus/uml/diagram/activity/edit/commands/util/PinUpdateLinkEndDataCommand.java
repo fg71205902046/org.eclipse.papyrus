@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.commands.util;
@@ -24,7 +24,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.IPinUpdaterLi
 import org.eclipse.uml2.uml.LinkEndData;
 
 /**
- * 
+ *
  * Pins of CreateLinkAction should be create and update automatically
  *
  */
@@ -32,12 +32,12 @@ public class PinUpdateLinkEndDataCommand extends AbstractCommand {
 
 
 	/**
-	 * 
+	 *
 	 */
 	protected IPinUpdaterLinkEndData updater;
 
 	/**
-	 * 
+	 *
 	 */
 	protected LinkEndData node;
 

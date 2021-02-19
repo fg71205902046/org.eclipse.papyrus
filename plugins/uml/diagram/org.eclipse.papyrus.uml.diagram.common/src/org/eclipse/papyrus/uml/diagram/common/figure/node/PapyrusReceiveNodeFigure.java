@@ -95,8 +95,7 @@ public class PapyrusReceiveNodeFigure extends NodeNamedElementFigure {
 				graphics.setForegroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
 				Rectangle rect = new Rectangle(rectangle.x, rectangle.y + corner / 2, rectangle.width, rectangle.height - corner);
 				graphics.fillGradient(rect, true);
-			}
-			else if (!isVertical && rectangle.width > ((3 * corner) / 2)) {
+			} else if (!isVertical && rectangle.width > ((3 * corner) / 2)) {
 				Rectangle rect1 = new Rectangle(rectangle.getLocation(), new Dimension(corner, rectangle.height));
 				Rectangle rect2 = new Rectangle(rectangle.x + rectangle.width - corner, rectangle.y, corner, rectangle.height);
 				graphics.setBackgroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
@@ -108,14 +107,12 @@ public class PapyrusReceiveNodeFigure extends NodeNamedElementFigure {
 				graphics.setForegroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
 				Rectangle rect = new Rectangle(rectangle.x + corner / 2, rectangle.y, rectangle.width - corner, rectangle.height);
 				graphics.fillGradient(rect, false);
-			}
-			else {
+			} else {
 				graphics.setBackgroundColor(ColorRegistry.getInstance().getColor(getGradientColor1()));
 				graphics.setForegroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
 				graphics.fillRoundRectangle(rectangle, corner, corner);
 			}
-		}
-		else {
+		} else {
 			graphics.setBackgroundColor(getBackgroundColor());
 			graphics.setForegroundColor(getForegroundColor());
 			graphics.fillRoundRectangle(rectangle, corner, corner);

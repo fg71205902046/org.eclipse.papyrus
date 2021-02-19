@@ -27,7 +27,7 @@ import org.eclipse.gmf.runtime.notation.View;
  */
 public class EditPartUtils {
 
-	
+
 	public static EditPart findFirstChildEditPartWithId(final EditPart editPart, final String visualId) {
 		final List<? extends EditPart> result = findChildEditPartsWithId(editPart, visualId);
 		if (result.isEmpty()) {
@@ -37,7 +37,7 @@ public class EditPartUtils {
 	}
 
 	public static List<? extends EditPart> findChildEditPartsWithId(final EditPart editPart, final String visualId) {
-		final List<EditPart> editParts = new ArrayList<EditPart>();
+		final List<EditPart> editParts = new ArrayList<>();
 		internalFindChildEditPartsWithId(editPart, visualId, editParts);
 		return editParts;
 	}
@@ -46,7 +46,7 @@ public class EditPartUtils {
 		final Object model = editPart.getModel();
 		if (model instanceof View) {
 			final View view = (View) model;
-			if( view.getType()!=null) {
+			if (view.getType() != null) {
 				if (view.getType().equals(visualId)) {
 					result.add(editPart);
 				}
@@ -65,7 +65,7 @@ public class EditPartUtils {
 			final Object model = parent.getModel();
 			if (model instanceof View) {
 				final View parentView = (View) model;
-				if (parentView.getType()!=null) {
+				if (parentView.getType() != null) {
 					if (parentView.getType().equals(visualId)) {
 						return parent;
 					}
@@ -92,7 +92,7 @@ public class EditPartUtils {
 			return null;
 		}
 
-		final TreeMap<Integer, GraphicalEditPart> distanceMap = new TreeMap<Integer, GraphicalEditPart>();
+		final TreeMap<Integer, GraphicalEditPart> distanceMap = new TreeMap<>();
 		for (final GraphicalEditPart editPart : editParts) {
 			final IFigure figure = editPart.getFigure();
 			final Rectangle bounds = new Rectangle(figure.getBounds());

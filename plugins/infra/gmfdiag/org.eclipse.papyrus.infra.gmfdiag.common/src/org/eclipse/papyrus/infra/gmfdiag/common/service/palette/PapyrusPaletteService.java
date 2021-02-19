@@ -911,27 +911,27 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 				configurePaletteVisibility(checker, diagram, drawer);
 			}
 		}
-		
+
 		// if the default entry is set but not visible, set it to null instead to avoid a potential NPE
 		if (root.getDefaultEntry() != null && !isVisible(root.getDefaultEntry())) {
 			root.setDefaultEntry(null);
-		}	
-		
+		}
+
 		return root;
 	}
-	
+
 	private boolean isVisible(PaletteEntry entry) {
 		PaletteContainer parent = entry.getParent();
 		return entry.isVisible() && (parent == null || isVisible(parent));
 	}
-	
+
 	protected void configurePaletteVisibility(PolicyChecker checker, Diagram diagram, PaletteContainer container) {
 		boolean isVisible = checker.isInPalette(diagram, container.getId());
 		container.setVisible(isVisible);
 		if (isVisible) {
 			for (Object child : container.getChildren()) {
 				if (child instanceof PaletteContainer) {
-					configurePaletteVisibility(checker, diagram, (PaletteContainer)child);
+					configurePaletteVisibility(checker, diagram, (PaletteContainer) child);
 				}
 				if (child instanceof PaletteEntry) {
 					PaletteEntry entry = (PaletteEntry) child;

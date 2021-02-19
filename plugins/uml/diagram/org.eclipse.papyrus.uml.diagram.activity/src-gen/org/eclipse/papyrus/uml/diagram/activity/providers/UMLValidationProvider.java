@@ -94,7 +94,7 @@ public class UMLValidationProvider {
 			}
 			if (needReport && event.getEvaluationMode().isLive()) {
 				StringBuffer messageBuff = new StringBuffer();
-				List<String> handledConstraints = new LinkedList<String>(SELF_MANAGING_CONSTRAINTS);
+				List<String> handledConstraints = new LinkedList<>(SELF_MANAGING_CONSTRAINTS);
 				for (IConstraintStatus status : event.getValidationResults()) {
 					// report only major problems
 					if (status.getSeverity() >= event.getSeverity()) {
@@ -113,7 +113,7 @@ public class UMLValidationProvider {
 				}
 				final String message = messageBuff.toString();
 				if (event.getSeverity() >= IStatus.ERROR) {
-					SafeDialogOpenerDuringValidation<Void> opener = new SafeDialogOpenerDuringValidation<Void>() {
+					SafeDialogOpenerDuringValidation<Void> opener = new SafeDialogOpenerDuringValidation<>() {
 
 						@Override
 						protected Void openDialog() {
@@ -124,7 +124,7 @@ public class UMLValidationProvider {
 					};
 					opener.execute();
 				} else {
-					SafeDialogOpenerDuringValidation<Void> opener = new SafeDialogOpenerDuringValidation<Void>() {
+					SafeDialogOpenerDuringValidation<Void> opener = new SafeDialogOpenerDuringValidation<>() {
 
 						@Override
 						protected Void openDialog() {

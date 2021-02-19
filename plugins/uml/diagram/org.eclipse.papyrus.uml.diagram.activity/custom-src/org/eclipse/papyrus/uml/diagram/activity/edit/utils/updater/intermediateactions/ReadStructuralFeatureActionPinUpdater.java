@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions;
@@ -25,7 +25,7 @@ import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * Pins of ReadStructuralFeatureAction should be create and update automatically
- * 
+ *
  * This class define derivation rules
  */
 public class ReadStructuralFeatureActionPinUpdater extends AbstractActionPinUpdater<ReadStructuralFeatureAction> {
@@ -39,7 +39,7 @@ public class ReadStructuralFeatureActionPinUpdater extends AbstractActionPinUpda
 	public void updatePins(ReadStructuralFeatureAction node) {
 		// 1] create object pin if it is not created yet
 		InputPin object = node.getObject();
-		if(object == null){
+		if (object == null) {
 			object = UMLFactory.eINSTANCE.createInputPin();
 			object.setLower(1);
 			object.setUpper(1);
@@ -49,9 +49,9 @@ public class ReadStructuralFeatureActionPinUpdater extends AbstractActionPinUpda
 		// 2] update or create the result pin if the structural feature is set
 		// the result pin should have the same type, multiplicity as the structural feature
 		StructuralFeature structuralFeature = node.getStructuralFeature();
-		if(structuralFeature != null) {
+		if (structuralFeature != null) {
 			OutputPin result = node.getResult();
-			if(result == null){
+			if (result == null) {
 				result = UMLFactory.eINSTANCE.createOutputPin();
 			}
 			result.setLower(structuralFeature.getLower());
@@ -60,8 +60,8 @@ public class ReadStructuralFeatureActionPinUpdater extends AbstractActionPinUpda
 			result.setType(structuralFeature.getType());
 
 			// 3] update object pin type with the classifier owning the feature
-			if(structuralFeature instanceof Property){
-				if(structuralFeature.getFeaturingClassifiers().size() != 0){
+			if (structuralFeature instanceof Property) {
+				if (structuralFeature.getFeaturingClassifiers().size() != 0) {
 					object.setType(structuralFeature.getFeaturingClassifiers().get(0));
 				}
 			}

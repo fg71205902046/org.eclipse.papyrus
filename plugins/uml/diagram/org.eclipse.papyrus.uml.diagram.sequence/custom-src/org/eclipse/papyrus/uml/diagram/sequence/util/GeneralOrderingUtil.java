@@ -103,7 +103,7 @@ public class GeneralOrderingUtil extends OccurrenceSpecificationUtil {
 	 * @param setRequest
 	 *            A {@link SetRequest} modifying a GeneralOrdering 'before' or 'after' reference
 	 * @return
-	 * 		<code>true</code> if the Connector is consistent with the new proposed value, <code>false</code> if the connector
+	 *         <code>true</code> if the Connector is consistent with the new proposed value, <code>false</code> if the connector
 	 *         is no longer consistent. If the result is <code>false</code>, actions should be taken to preserve the diagram
 	 *         consistency.
 	 *
@@ -132,11 +132,11 @@ public class GeneralOrderingUtil extends OccurrenceSpecificationUtil {
 		}
 
 		if (feature == Literals.GENERAL_ORDERING__BEFORE) {
-			if (newValue != DurationLinkUtil.findSemanticOccurrence(sourceView, sourceAnchor)) {
+			if (newValue != OccurrenceSpecificationUtil.findSemanticOccurrence(sourceView, sourceAnchor)) {
 				return false;
 			}
 		} else if (feature == Literals.GENERAL_ORDERING__AFTER) {
-			if (newValue != DurationLinkUtil.findSemanticOccurrence(targetView, targetAnchor)) {
+			if (newValue != OccurrenceSpecificationUtil.findSemanticOccurrence(targetView, targetAnchor)) {
 				return false;
 			}
 		}

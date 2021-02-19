@@ -31,7 +31,7 @@ public class CustomAppliedStereotypeContextLinkLabelDisplayEditPolicy extends Ap
 	 * Creates the EditPolicy, with the correct tag.
 	 */
 	public CustomAppliedStereotypeContextLinkLabelDisplayEditPolicy() {
-		super(APPLIED_STEREOTYPE_LABEL); //$NON-NLS-1$
+		super(APPLIED_STEREOTYPE_LABEL); // $NON-NLS-1$
 	}
 
 	@Override

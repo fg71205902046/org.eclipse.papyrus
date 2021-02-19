@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.timing.custom.helper.advice;
@@ -23,8 +23,11 @@ import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest;
 
-/** This advice does nothing because the actual semantic command are done somewhere else. 
- * @since 1.3*/
+/**
+ * This advice does nothing because the actual semantic command are done somewhere else.
+ *
+ * @since 1.3
+ */
 public class StateDefinitionHelperAdvice extends AbstractEditHelperAdvice {
 
 	@Override

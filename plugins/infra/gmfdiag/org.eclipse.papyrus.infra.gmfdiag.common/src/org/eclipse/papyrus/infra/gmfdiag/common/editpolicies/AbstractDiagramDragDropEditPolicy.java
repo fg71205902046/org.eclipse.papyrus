@@ -29,8 +29,8 @@ public abstract class AbstractDiagramDragDropEditPolicy extends DiagramDragDropE
 	 * The list of visualID that the policy manages.
 	 */
 	protected abstract Set<String> getDroppableElementVisualId();
-		
-	
+
+
 	/**
 	 * Gets elements visual id that can be dropped in the diagram
 	 */

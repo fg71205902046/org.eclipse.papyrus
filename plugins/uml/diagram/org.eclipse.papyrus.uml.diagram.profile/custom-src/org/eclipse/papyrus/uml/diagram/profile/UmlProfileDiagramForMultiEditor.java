@@ -143,7 +143,7 @@ public class UmlProfileDiagramForMultiEditor extends UMLDiagramEditor {
 			// and to set the diagram to the fragment.
 			// First, compute the URI
 			URIEditorInput uriInput = new URIEditorInput(EcoreUtil.getURI(getDiagram()));
-			//System.err.println(this.getClass().getSimpleName() + ".setInput(" + uriInput.toString() + ")"); //$NON-NLS-1$
+			// System.err.println(this.getClass().getSimpleName() + ".setInput(" + uriInput.toString() + ")"); //$NON-NLS-1$
 			doSetInput(uriInput, true);
 		} catch (CoreException x) {
 			String title = EditorMessages.Editor_error_setinput_title;

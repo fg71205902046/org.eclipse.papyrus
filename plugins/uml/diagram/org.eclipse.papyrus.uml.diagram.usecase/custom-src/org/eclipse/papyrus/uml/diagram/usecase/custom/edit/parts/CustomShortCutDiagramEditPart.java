@@ -32,7 +32,7 @@ public class CustomShortCutDiagramEditPart extends ShortCutDiagramEditPart {
 
 	public CustomShortCutDiagramEditPart(View view) {
 		super(view);
-		
+
 	}
 
 	private IPageIconsRegistry editorRegistry;

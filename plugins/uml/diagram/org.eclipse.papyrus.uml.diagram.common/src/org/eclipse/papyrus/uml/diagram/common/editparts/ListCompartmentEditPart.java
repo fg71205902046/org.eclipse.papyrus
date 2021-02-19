@@ -36,7 +36,7 @@ public class ListCompartmentEditPart extends ResizeableListCompartmentEditPart {
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		
+
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new ResizableCompartmentEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultCompartmentSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
@@ -63,6 +63,7 @@ public class ListCompartmentEditPart extends ResizeableListCompartmentEditPart {
 		result.getContentPane().setLayoutManager(layout);
 		return result;
 	}
+
 	@Override
 	protected void setRatio(Double ratio) {
 		if (getFigure().getParent().getLayoutManager() instanceof ConstrainedToolbarLayout) {

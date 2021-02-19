@@ -34,7 +34,7 @@ public class CustomFullStateInvariantItemSemanticEditPolicy extends FullStateInv
 		if (request.getType() == REQ_DELETE) {
 			try {
 				final View view = (View) getHost().getModel();
-				final Set<View> viewsToRemove = new HashSet<View>();
+				final Set<View> viewsToRemove = new HashSet<>();
 				if (view.getType().equals(Constants.fullStateInvariantId)) {
 					viewsToRemove.addAll(StateInvariantUtils.getViewsToHide(view));
 				}

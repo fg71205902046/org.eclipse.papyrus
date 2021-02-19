@@ -26,12 +26,12 @@ import org.eclipse.uml2.uml.Element;
  */
 public class ConnectYCoordinateToGrillingEditPolicy extends ConnectRectangleToGridEditPolicy {
 
-	protected GrillingEditpart grillingCompartment=null;
+	protected GrillingEditpart grillingCompartment = null;
 
-	public static String CONNECT_TO_GRILLING_MANAGEMENT="CONNECT_TO_GRILLING_MANAGEMENT";
+	public static String CONNECT_TO_GRILLING_MANAGEMENT = "CONNECT_TO_GRILLING_MANAGEMENT";
 
-	protected View rowStart=null;
-	protected View rowFinish=null;
+	protected View rowStart = null;
+	protected View rowFinish = null;
 
 	/**
 	 * Constructor.
@@ -39,8 +39,10 @@ public class ConnectYCoordinateToGrillingEditPolicy extends ConnectRectangleToGr
 	 */
 	public ConnectYCoordinateToGrillingEditPolicy() {
 	}
+
 	/**
-	 * @see org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectRectangleToGridEditPolicy#initListeningColumnFinish(org.eclipse.gmf.runtime.notation.Node, org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GridManagementEditPolicy, org.eclipse.uml2.uml.Element, org.eclipse.draw2d.geometry.PrecisionRectangle)
+	 * @see org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectRectangleToGridEditPolicy#initListeningColumnFinish(org.eclipse.gmf.runtime.notation.Node, org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GridManagementEditPolicy,
+	 *      org.eclipse.uml2.uml.Element, org.eclipse.draw2d.geometry.PrecisionRectangle)
 	 *
 	 * @param node
 	 * @param grilling
@@ -50,11 +52,12 @@ public class ConnectYCoordinateToGrillingEditPolicy extends ConnectRectangleToGr
 	 */
 	@Override
 	protected void initListeningColumnFinish(Node node, GridManagementEditPolicy grilling, Element element, PrecisionRectangle bounds) throws NoGrillElementFound {
-		//do nothing
+		// do nothing
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectRectangleToGridEditPolicy#initListeningColumnStart(org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GridManagementEditPolicy, org.eclipse.uml2.uml.Element, org.eclipse.draw2d.geometry.PrecisionRectangle)
+	 * @see org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectRectangleToGridEditPolicy#initListeningColumnStart(org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GridManagementEditPolicy, org.eclipse.uml2.uml.Element,
+	 *      org.eclipse.draw2d.geometry.PrecisionRectangle)
 	 *
 	 * @param grilling
 	 * @param element
@@ -63,7 +66,7 @@ public class ConnectYCoordinateToGrillingEditPolicy extends ConnectRectangleToGr
 	 */
 	@Override
 	protected void initListeningColumnStart(GridManagementEditPolicy grilling, Element element, PrecisionRectangle bounds) throws NoGrillElementFound {
-		//do nothing
+		// do nothing
 	}
 
 	/**
@@ -73,8 +76,9 @@ public class ConnectYCoordinateToGrillingEditPolicy extends ConnectRectangleToGr
 	 */
 	@Override
 	protected void updateColumFinishFromWitdhNotification(PrecisionRectangle notationBound) {
-		//do nothing
+		// do nothing
 	}
+
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectRectangleToGridEditPolicy#updateColumnStartFromXNotification(org.eclipse.draw2d.geometry.PrecisionRectangle)
 	 *
@@ -82,7 +86,7 @@ public class ConnectYCoordinateToGrillingEditPolicy extends ConnectRectangleToGr
 	 */
 	@Override
 	protected void updateColumnStartFromXNotification(PrecisionRectangle bounds) {
-		//do nothing
+		// do nothing
 	}
 
 }

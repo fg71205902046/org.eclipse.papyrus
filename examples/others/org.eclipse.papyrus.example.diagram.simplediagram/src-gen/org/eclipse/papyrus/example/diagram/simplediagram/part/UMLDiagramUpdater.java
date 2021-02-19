@@ -6,9 +6,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.update.DiagramUpdater;
 import org.eclipse.papyrus.example.diagram.simplediagram.edit.parts.ComponentEditPart;
 import org.eclipse.papyrus.example.diagram.simplediagram.edit.parts.ModelEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.update.DiagramUpdater;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.PackageableElement;
 
@@ -37,7 +37,7 @@ public class UMLDiagramUpdater {
 			return Collections.emptyList();
 		}
 		Model modelElement = (Model) view.getElement();
-		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
+		LinkedList<UMLNodeDescriptor> result = new LinkedList<>();
 		for (Iterator<?> it = modelElement.getPackagedElements().iterator(); it
 				.hasNext();) {
 			PackageableElement childElement = (PackageableElement) it.next();
@@ -125,6 +125,7 @@ public class UMLDiagramUpdater {
 		 * @generated
 		 */
 
+		@Override
 		public List<UMLNodeDescriptor> getSemanticChildren(View view) {
 			return UMLDiagramUpdater.getSemanticChildren(view);
 		}
@@ -133,6 +134,7 @@ public class UMLDiagramUpdater {
 		 * @generated
 		 */
 
+		@Override
 		public List<UMLLinkDescriptor> getContainedLinks(View view) {
 			return UMLDiagramUpdater.getContainedLinks(view);
 		}
@@ -141,6 +143,7 @@ public class UMLDiagramUpdater {
 		 * @generated
 		 */
 
+		@Override
 		public List<UMLLinkDescriptor> getIncomingLinks(View view) {
 			return UMLDiagramUpdater.getIncomingLinks(view);
 		}
@@ -149,6 +152,7 @@ public class UMLDiagramUpdater {
 		 * @generated
 		 */
 
+		@Override
 		public List<UMLLinkDescriptor> getOutgoingLinks(View view) {
 			return UMLDiagramUpdater.getOutgoingLinks(view);
 		}

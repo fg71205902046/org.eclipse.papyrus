@@ -175,7 +175,7 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 	 *            the figure where to add the new shapes
 	 */
 	protected void refreshShapes(IFigure contentPane) {
-		List<Object> children = new ArrayList<Object>(contentPane.getChildren());
+		List<Object> children = new ArrayList<>(contentPane.getChildren());
 		for (Object child : children) {
 			if (child instanceof IFigure) {
 				contentPane.remove((IFigure) child);
@@ -262,8 +262,9 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 		protected Dimension calculatePreferredSize(IFigure figure, int wHint, int hHint) {
 			Dimension dim = super.calculatePreferredSize(figure, wHint, hHint);
 
-			if (figure.getParent().getBounds().height > MIN_PREFERRED_SIZE) // Patch to permit to have shape dimension < 40
+			if (figure.getParent().getBounds().height > MIN_PREFERRED_SIZE) {
 				dim.height = Math.max(MIN_PREFERRED_SIZE, dim.height);
+			}
 
 			return dim;
 		}

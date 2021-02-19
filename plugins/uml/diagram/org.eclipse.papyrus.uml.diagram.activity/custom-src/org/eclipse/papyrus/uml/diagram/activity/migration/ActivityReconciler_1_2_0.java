@@ -57,13 +57,14 @@ public class ActivityReconciler_1_2_0 extends DiagramReconciler {
 		protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 			TreeIterator<EObject> allContentIterator = diagram.eAllContents();
 
-			Set<View> toDelete = new HashSet<View>();
+			Set<View> toDelete = new HashSet<>();
 			while (allContentIterator.hasNext()) {
 				EObject eObject = allContentIterator.next();
 				if (eObject instanceof View) {
 					View view = (View) eObject;
-					if (view.getType().equals("5173"))// InputPinInBroadcastSignalActionValueLabel
+					if (view.getType().equals("5173")) {
 						toDelete.add(view);
+					}
 				}
 			}
 

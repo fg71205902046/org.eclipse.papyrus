@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -9,9 +9,9 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   Jérémie TATIBOUET (CEA LIST) - Initial API and implementation
- *   Sébastien REVOL (CEA LIST) - Initial API and implementation
- *   
+ *   Jï¿½rï¿½mie TATIBOUET (CEA LIST) - Initial API and implementation
+ *   Sï¿½bastien REVOL (CEA LIST) - Initial API and implementation
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater;
@@ -39,14 +39,14 @@ public abstract class AbstractInvocationActionPinUpdater<NodeType extends Invoca
 	/**
 	 * Update the original pins with newly derived pins. If it is possible to preserve
 	 * existing pins then this action is preferred to replacement.
-	 * 
+	 *
 	 * @param originPins
 	 *            the list of pins already existing for the node
 	 * @param newPins
 	 *            the list of pins newly computed for the node
 	 */
 	protected <P extends Pin> void update(List<P> originPins, List<P> newPins) {
-		List<P> orderedPinsList = new ArrayList<P>();
+		List<P> orderedPinsList = new ArrayList<>();
 		Iterator<P> newPinsIterator = newPins.iterator();
 		while (newPinsIterator.hasNext()) {
 			P newPin = newPinsIterator.next();
@@ -84,7 +84,7 @@ public abstract class AbstractInvocationActionPinUpdater<NodeType extends Invoca
 	 * An existing pin can only be reused under the following conditions:
 	 * 1] Original type conforms to the new type (i.e. the new type is a super type of the original type or the original type itself)
 	 * 2] The multiplicity of the new pin is wider than, or the same as, self
-	 * 
+	 *
 	 * @param new_
 	 *            the new pin
 	 * @param origin
@@ -104,7 +104,7 @@ public abstract class AbstractInvocationActionPinUpdater<NodeType extends Invoca
 
 	/**
 	 * Update multiplicity, type and name of origin pin with the new pin
-	 * 
+	 *
 	 * @param origin
 	 *            the original pin
 	 * @param new_
@@ -121,11 +121,11 @@ public abstract class AbstractInvocationActionPinUpdater<NodeType extends Invoca
 	 * The deletion of a pin has an impact on edges that are using as a source or a target.
 	 * To ensure model consistency, the deletion of a pin implies deletion of edges referencing
 	 * this pin either as a source or a target.
-	 * 
+	 *
 	 * @param pin
 	 */
 	protected static void delete(Pin pin) {
-		List<ActivityEdge> edgeToDelete = new ArrayList<ActivityEdge>(pin.getIncomings());
+		List<ActivityEdge> edgeToDelete = new ArrayList<>(pin.getIncomings());
 		edgeToDelete.addAll(pin.getOutgoings());
 		Iterator<ActivityEdge> edgeToDeleteIterator = edgeToDelete.iterator();
 		while (edgeToDeleteIterator.hasNext()) {
@@ -156,7 +156,7 @@ public abstract class AbstractInvocationActionPinUpdater<NodeType extends Invoca
 
 	/**
 	 * Derive the argument pins of the invocation action
-	 * 
+	 *
 	 * @param node
 	 *            the invocation action for which the arguments pin are derived
 	 * @return the list of derived arguments pin
@@ -165,7 +165,7 @@ public abstract class AbstractInvocationActionPinUpdater<NodeType extends Invoca
 
 	/**
 	 * Derive the target used for the invocation action
-	 * 
+	 *
 	 * @param node
 	 *            the invocation action for which the target is derived
 	 * @return the input pin corresponding to the derived target

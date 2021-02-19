@@ -68,7 +68,7 @@ public class InterruptibleActivityRegionContainment extends AbstractContainerNod
 	@Override
 	public Map<EStructuralFeature, EStructuralFeature> getParentEOppositeReferences() {
 		if (parentOpositeReferences == null) {
-			parentOpositeReferences = new HashMap<EStructuralFeature, EStructuralFeature>();
+			parentOpositeReferences = new HashMap<>();
 			parentOpositeReferences.put(UMLPackage.Literals.ACTIVITY_GROUP__IN_ACTIVITY, UMLPackage.Literals.ACTIVITY__OWNED_GROUP);
 		}
 		return parentOpositeReferences;
