@@ -47,7 +47,7 @@ location xwt "https://download.eclipse.org/xwt/milestones-1.6.0/1.6.0-M2/" {
 
 //updateFrom("QVT Operational for 2021-03",0)
 
-location qvto "https://download.eclipse.org/mmt/qvto/updates/releases/3.10.2" {
+location qvto "https://download.eclipse.org/mmt/qvto/updates/milestones/3.10.3/S202102231023" {
 	org.eclipse.m2m.qvt.oml.sdk.feature.group
 }
 
@@ -66,20 +66,20 @@ location uml "https://download.eclipse.org/modeling/mdt/uml2/updates/5.5mileston
 
 //updateFrom("Eclipse",0)
 
-location platform "https://download.eclipse.org/eclipse/updates/4.19-I-builds/I20210129-1800/" {
+location platform "https://download.eclipse.org/eclipse/updates/4.19-I-builds/I20210217-1800/" {
 	org.eclipse.sdk.feature.group
 }
 
 //updateFrom("OCL for 2021-03",0) 
 
-location ocl "https://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.14.0/S202102011648" {
+location ocl "https://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.14.0/S202102221732" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
 
 //updateFrom("Xtext, Xtend",0)
 
-location xtext "https://download.eclipse.org/modeling/tmf/xtext/updates/milestones/S202101110955" {
+location xtext "https://download.eclipse.org/modeling/tmf/xtext/updates/milestones/S202102220934" {
 	org.eclipse.xtext.sdk.feature.group
 	org.eclipse.xtend.sdk.feature.group
 	org.eclipse.xtext.redist.feature.group
@@ -89,13 +89,13 @@ location xtext "https://download.eclipse.org/modeling/tmf/xtext/updates/mileston
 
 //updateFrom("EMFT MWE for 2021-03",0)
 
-location mwe "https://download.eclipse.org/modeling/emft/mwe/updates/milestones/S202102011009/" {
+location mwe "https://download.eclipse.org/modeling/emft/mwe/updates/releases/2.12.1/" {
 	org.eclipse.emf.mwe2.language.sdk.feature.group
 }
 
 //updateFrom("Web Tools Platform 3.21 for Simrel 2021-03",0) 
 
-location webtools "https://download.eclipse.org/webtools/downloads/drops/R3.21.0/S-3.21.0.M2-20210128163350/repository/" {
+location webtools "https://download.eclipse.org/webtools/downloads/drops/R3.21.0/S-3.21.0.M3-20210220134345/repository/" {
 	org.eclipse.wst.xml_ui.feature.feature.group lazy 
 }
 
