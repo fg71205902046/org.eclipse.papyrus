@@ -24,17 +24,32 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.FileVisitOption;
+import java.nio.file.FileVisitResult;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.StandardCopyOption;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.util.EnumSet;
 
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IProjectDescription;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
-import org.junit.AfterClass;
+import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.papyrus.junit.utils.rules.AbstractHouseKeeperRule.CleanUp;
+import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
 import org.junit.BeforeClass;
+import org.junit.ClassRule;
 import org.junit.Test;
 import org.osgi.framework.FrameworkUtil;
 
@@ -53,7 +68,12 @@ public class ClasspathHelperTest {
 	private static final URI PROJECT2_CONTEXT = URI.createPlatformResourceURI(PROJECT2 + "/other/resource.xmi", true);
 
 
+	@ClassRule
+	public static final HouseKeeper.Static housekeeper = new HouseKeeper.Static();
+
+	@CleanUp
 	private static IProject project1;
+	@CleanUp
 	private static IProject project2;
 
 	@Test
@@ -110,26 +130,58 @@ public class ClasspathHelperTest {
 
 	@BeforeClass
 	public static void importProjects() throws URISyntaxException, CoreException, IOException {
-		project1 = importProject(PROJECT1);
-		project2 = importProject(PROJECT2);
-	}
+		project1 = housekeeper.cleanUpLater(importProject(PROJECT1));
+		project2 = housekeeper.cleanUpLater(importProject(PROJECT2));
 
-	@AfterClass
-	public static void destroyProjects() throws CoreException {
-		project2.delete(false, true, null);
-		project1.delete(false, true, null);
+		JavaCore.rebuildIndex(null);
 	}
 
 	private static IProject importProject(String name) throws URISyntaxException, CoreException, IOException {
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		IProject result = workspace.getRoot().getProject(name);
 
-		IProjectDescription desc = workspace.newProjectDescription(name);
+		// Copy the contents of the template into the project
+		java.nio.file.Path location = result.getParent().getLocation().append(name).toFile().toPath();
 		URL url = FileLocator.find(FrameworkUtil.getBundle(ClasspathHelperTest.class), new Path("resources/projects/" + name));
-		url = FileLocator.toFileURL(url);
-		desc.setLocationURI(url.toURI());
-		result.create(desc, null);
+		java.nio.file.Path path = Paths.get(FileLocator.toFileURL(url).toURI());
+		Files.walkFileTree(path, EnumSet.of(FileVisitOption.FOLLOW_LINKS), Integer.MAX_VALUE,
+				new SimpleFileVisitor<java.nio.file.Path>() {
+					@Override
+					public FileVisitResult preVisitDirectory(java.nio.file.Path dir, BasicFileAttributes attrs)
+							throws IOException {
+
+						java.nio.file.Path targetDir = location.resolve(path.relativize(dir));
+						try {
+							Files.copy(dir, targetDir);
+						} catch (FileAlreadyExistsException e) {
+							if (!Files.isDirectory(targetDir)) {
+								throw e;
+							}
+						}
+
+						return FileVisitResult.CONTINUE;
+					}
+
+					@Override
+					public FileVisitResult visitFile(java.nio.file.Path file, BasicFileAttributes attrs)
+							throws IOException {
+
+						java.nio.file.Path targetFile = location.resolve(path.relativize(file));
+						Files.copy(file, targetFile, StandardCopyOption.REPLACE_EXISTING); // e.g., .project
+
+						return FileVisitResult.CONTINUE;
+					}
+				});
+
+		result.create(null);
 		result.open(null);
+		result.refreshLocal(IResource.DEPTH_INFINITE, null);
+
+		IJavaProject javaProject = JavaCore.create(result);
+		if (javaProject.exists()) {
+			javaProject.makeConsistent(new NullProgressMonitor());
+		}
+		result.build(IncrementalProjectBuilder.FULL_BUILD, null);
 
 		return result;
 	}

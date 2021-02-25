@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014, 2015 CEA, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2021 CEA, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
- *   Christian W. Damus - bug 476683
+ *   Christian W. Damus - bugs 476683, 539694
  *
  */
 package org.eclipse.papyrus.junit.utils.rules;
@@ -95,7 +95,7 @@ public abstract class AbstractHouseKeeperRule {
 		// This one must be last because it matches any object
 		ReflectiveDisposer.register(disposers);
 
-		DISPOSER_FUNCTION = new Function<Object, Disposer<Object>>() {
+		DISPOSER_FUNCTION = new Function<>() {
 
 			private final Function<Object, Disposer<?>> nullFunction = Functions.constant(null);
 
@@ -295,7 +295,7 @@ public abstract class AbstractHouseKeeperRule {
 	 */
 	public IMultiDiagramEditor openPapyrusEditor(final IFile file) throws Exception {
 		final IMultiDiagramEditor[] result = { null };
-		final AtomicReference<Exception> syncExecException = new AtomicReference<Exception>();
+		final AtomicReference<Exception> syncExecException = new AtomicReference<>();
 
 		Display.getDefault().syncExec(new Runnable() {
 
@@ -323,7 +323,7 @@ public abstract class AbstractHouseKeeperRule {
 	 *            the field to access now and clear later
 	 *
 	 * @return the value of the field
-	 * 
+	 *
 	 * @deprecated Use the {@link CleanUp @CleanUp} annotation on the field and access it directly.
 	 */
 	@Deprecated
@@ -373,7 +373,7 @@ public abstract class AbstractHouseKeeperRule {
 	 *            the value to set
 	 *
 	 * @return the new value of the field
-	 * 
+	 *
 	 * @deprecated Use the {@link CleanUp @CleanUp} annotation on the field and access it directly.
 	 */
 	@Deprecated
@@ -490,7 +490,7 @@ public abstract class AbstractHouseKeeperRule {
 	}
 
 	private static CacheLoader<Class<?>, Field[]> fieldCacheLoader(final boolean staticFields) {
-		return new CacheLoader<Class<?>, Field[]>() {
+		return new CacheLoader<>() {
 
 			@Override
 			public Field[] load(Class<?> key) {
@@ -539,7 +539,7 @@ public abstract class AbstractHouseKeeperRule {
 		 * up the annotated field. By default, the field is simply
 		 * cleared to {@code null}.
 		 */
-		Class<? extends Disposer<?>>value() default FieldDisposer.class;
+		Class<? extends Disposer<?>> value() default FieldDisposer.class;
 	}
 
 	private static final class CleanUpAction implements Runnable {
@@ -627,7 +627,7 @@ public abstract class AbstractHouseKeeperRule {
 			case IResource.PROJECT:
 			case IResource.FOLDER:
 			case IResource.FILE:
-				object.delete(true, null);
+				object.delete(IResource.FORCE | IResource.ALWAYS_DELETE_PROJECT_CONTENT, null);
 				break;
 			default:
 				// Delete the workspace? No, I don't think so

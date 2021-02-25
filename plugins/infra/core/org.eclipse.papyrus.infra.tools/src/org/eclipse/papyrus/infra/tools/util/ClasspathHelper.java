@@ -92,9 +92,16 @@ public class ClasspathHelper {
 
 			IJavaProject project = getJavaProject(context);
 			if (project == null) {
-				// This search is not in a Java project context. So, it's a run-time environment
-				// and we need to search the classpath.
-				result = super.findClass(name, context, constraint);
+				if (context == null) {
+					// No specific source context? Try to search the entire workspace, then
+					result = searchType(name, constraint);
+				}
+
+				if (result == null) {
+					// Assume that this search is not in a Java project context. So, it's a
+					// run-time environment and we need to search the classpath.
+					result = super.findClass(name, context, constraint);
+				}
 			} else {
 				result = findType(project, name, constraint);
 			}
