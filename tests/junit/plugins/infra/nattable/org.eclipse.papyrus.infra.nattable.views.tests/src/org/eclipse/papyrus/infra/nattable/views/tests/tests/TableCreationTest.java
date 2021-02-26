@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
+ * Copyright (c) 2013, 2014, 2021 CEA LIST and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -12,254 +12,228 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 434993
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 571540
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.views.tests.tests;
 
-import java.io.IOException;
 import java.util.Collection;
 
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.papyrus.infra.nattable.common.editor.NatTableEditor;
+import org.eclipse.papyrus.infra.nattable.common.helper.TableViewPrototype;
 import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.nattable.views.tests.Activator;
-import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
-import org.eclipse.papyrus.junit.utils.EditorUtils;
-import org.eclipse.papyrus.junit.utils.GenericUtils;
-import org.eclipse.papyrus.junit.utils.ModelExplorerUtils;
-import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
-import org.eclipse.papyrus.junit.utils.ProjectUtils;
-import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
-import org.eclipse.papyrus.views.modelexplorer.ModelExplorerView;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.PartInitException;
+import org.eclipse.papyrus.junit.utils.rules.PluginResource;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
-import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.ClassRule;
+import org.junit.Before;
 import org.junit.Test;
-import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleException;
 
-public class TableCreationTest extends AbstractPapyrusTest {
+@PluginResource("resources/model.di")
+public class TableCreationTest extends AbstractCreationTableTests {
 
-	@ClassRule
-	public static final HouseKeeper.Static houseKeeper = new HouseKeeper.Static();
-	
-	private static final String MODEL_PATH = "/resources/model"; //$NON-NLS-1$
+	private static final String FIRST_TABLE_NAME = "MyViewTable1"; //$NON-NLS-1$
 
-	private static final String SOURCE_PATH = "/resources/"; //$NON-NLS-1$
+	private static final String TABLE_2_NAME = "MyViewTable2"; //$NON-NLS-1$
 
-	private static final String FILE_ROOT_NAME = "model"; //$NON-NLS-1$
+	private static final String TABLE_3_NAME = "MyViewTable3"; //$NON-NLS-1$
 
-	private static final String PROJECT_NAME = "test"; //$NON-NLS-1$
+	private Model rootModel;
 
-	private static IMultiDiagramEditor papyrusEditor;
+	private Model subModel;
 
-	private static final String BUNDLE_ID = Activator.getDefault().getBundle().getSymbolicName();
+	private Model subSubModel;
 
-	protected static Model rootModel;
+	private Package subPackage;
 
-	private static Model subModel;
+	private Package subSubPackage;
 
-	private static Model subSubModel;
 
-	private static Package subPackage;
-
-	private static Package subSubPackage;
-
-	protected static ModelExplorerView view;
-
-	@BeforeClass
-	public static void init() {
-		try {
-			initTests(Activator.getDefault().getBundle(), PROJECT_NAME, MODEL_PATH);
-
-		} catch (CoreException e) {
-			Activator.log.error(e);
-		} catch (IOException e) {
-			Activator.log.error(e);
-		} catch (BundleException e) {
-			Activator.log.error(e);
+	@Override
+	@Before
+	public void setUp() {
+		super.setUp();
+		this.rootModel = (Model) fixture.getModel();
+		this.subModel = (Model) this.rootModel.getMember("SubModel"); //$NON-NLS-1$
+		this.subPackage = (Package) this.rootModel.getMember("SubPackage"); //$NON-NLS-1$
+		if (this.subModel != null && this.subPackage != null) {
+			this.subSubModel = (Model) this.subModel.getMember("SubSubModel"); //$NON-NLS-1$
+			this.subSubPackage = (Package) this.subPackage.getMember("SubSubPackage");//$NON-NLS-1$
 		}
+		Assert.assertNotNull(this.rootModel);
+		Assert.assertNotNull(this.subModel);
+		Assert.assertNotNull(this.subPackage);
+		Assert.assertNotNull(this.subSubModel);
+		Assert.assertNotNull(this.subSubPackage);
 	}
 
-	public static void initTests(final Bundle bundle, final String projectName, final String papyrusModelPath) throws CoreException, IOException, BundleException {
-		ProjectUtils.removeAllProjectFromTheWorkspace();
-		IProject testProject = houseKeeper.createProject(projectName);
-		final IFile file = PapyrusProjectUtils.copyPapyrusModel(testProject, bundle, SOURCE_PATH, FILE_ROOT_NAME);
-		RunnableWithResult<?> runnableWithResult = new RunnableWithResult.Impl<Object>() {
-
-			@Override
-			public void run() {
-				try {
-					papyrusEditor = houseKeeper.cleanUpLater(EditorUtils.openPapyrusEditor(file));
-				} catch (PartInitException e) {
-					setStatus(new Status(IStatus.ERROR, bundle.getSymbolicName(), e.getMessage()));
-				}
-				try {
-					TableCreationTest.view = ModelExplorerUtils.openModelExplorerView();
-				} catch (PartInitException e) {
-					setStatus(new Status(IStatus.ERROR, bundle.getSymbolicName(), e.getMessage()));
-				}
-				EObject root = ModelExplorerUtils.getRootInModelExplorer(TableCreationTest.view);
-				TableCreationTest.rootModel = (Model)root;
-				subModel = (Model)TableCreationTest.rootModel.getMember("SubModel"); //$NON-NLS-1$
-				subPackage = (Package)TableCreationTest.rootModel.getMember("SubPackage"); //$NON-NLS-1$
-				if(subModel != null && subPackage != null) {
-					subSubModel = (Model)TableCreationTest.subModel.getMember("SubSubModel"); //$NON-NLS-1$
-					subSubPackage = (Package)TableCreationTest.subPackage.getMember("SubSubPackage");
-
-					setStatus(Status.OK_STATUS);
-
-				} else {
-					setStatus(new Status(IStatus.ERROR, bundle.getSymbolicName(), "Requirement1 not found")); //$NON-NLS-1$
-				}
-
-			}
-
-		};
-		Display.getDefault().syncExec(runnableWithResult);
-		Assert.assertEquals(runnableWithResult.getStatus().getMessage(), IStatus.OK, runnableWithResult.getStatus().getSeverity());
-		Assert.assertNotNull(subModel);
-		Assert.assertNotNull(subPackage);
-		Assert.assertNotNull(subSubModel);
-		Assert.assertNotNull(subPackage);
-
-		Assert.assertNotNull(TableCreationTest.rootModel);
-
-
-
-	}
 
 	@Test
 	public void testCreationHandlerStatusOnRootModel() {
-		ModelExplorerUtils.testHandlerStatusInModelExplorer(TableCreationTest.view, AllTests.COMMAND_ID, TableCreationTest.rootModel, true);
+		final TableViewPrototype viewPrototype = getViewPrototype(TABLE_VIEW_REPRESENTATION_KIND_ID, this.rootModel);
+		Assert.assertNotNull("The view prototype to create the table is not available", viewPrototype); //$NON-NLS-1$
 	}
 
 	@Test
 	public void testCreationHandlerStatusOnSubModel() {
-		ModelExplorerUtils.testHandlerStatusInModelExplorer(TableCreationTest.view, AllTests.COMMAND_ID, subModel, true);
+		final TableViewPrototype viewPrototype = getViewPrototype(TABLE_VIEW_REPRESENTATION_KIND_ID, this.subModel);
+		Assert.assertNotNull("The view prototype to create the table is not available", viewPrototype); //$NON-NLS-1$
 	}
 
 	@Test
 	public void testCreationHandlerStatusOnSubSubModel() {
-		ModelExplorerUtils.testHandlerStatusInModelExplorer(TableCreationTest.view, AllTests.COMMAND_ID, subSubModel, true);
+		final TableViewPrototype viewPrototype = getViewPrototype(TABLE_VIEW_REPRESENTATION_KIND_ID, this.subSubModel);
+		Assert.assertNotNull("The view prototype to create the table is not available", viewPrototype); //$NON-NLS-1$
 	}
 
 	@Test
 	public void testCreationHandlerStatusOnSubPackage() {
-		ModelExplorerUtils.testHandlerStatusInModelExplorer(TableCreationTest.view, AllTests.COMMAND_ID, subPackage, true);
+		final TableViewPrototype viewPrototype = getViewPrototype(TABLE_VIEW_REPRESENTATION_KIND_ID, this.subPackage);
+		Assert.assertNotNull("The view prototype to create the table is not available", viewPrototype); //$NON-NLS-1$
 	}
 
 	@Test
 	public void testCreationHandlerStatusOnSubSubPackage() {
-		ModelExplorerUtils.testHandlerStatusInModelExplorer(TableCreationTest.view, AllTests.COMMAND_ID, subSubPackage, true);
+		final TableViewPrototype viewPrototype = getViewPrototype(TABLE_VIEW_REPRESENTATION_KIND_ID, this.subSubPackage);
+		Assert.assertNotNull("The view prototype to create the table is not available", viewPrototype); //$NON-NLS-1$
 	}
-
 
 	@Test
 	public void testCreationAndSynchronization() {
-		final Object result1 = ModelExplorerUtils.executeCreateNestedEditorHandlerInModelExplorer(papyrusEditor, TableCreationTest.view, AllTests.COMMAND_ID, TableCreationTest.subSubPackage, BUNDLE_ID);
-		Assert.assertTrue(result1 instanceof NatTableEditor);
-		final NatTableEditor editor1 = (NatTableEditor)result1;
-		final NattableModelManager manager1 = (NattableModelManager)editor1.getAdapter(INattableModelManager.class);
-		Assert.assertNotNull(manager1);
-		final Table subSubPackageTable1 = manager1.getTable();
-		Assert.assertEquals(AllTests.VIEWS_TABLE_ID, subSubPackageTable1.getTableConfiguration().getType());
+		// 1. get the view prototype
+		TableViewPrototype viewPrototype = getViewPrototype(TABLE_VIEW_REPRESENTATION_KIND_ID, this.subSubPackage);
+		Assert.assertNotNull("The view prototype to create the table is not available", viewPrototype); //$NON-NLS-1$
 
-		final IAxisManager rowAxisManager = manager1.getRowAxisManager();
+		// 1.1 Create first table
+		viewPrototype.instantiateOn(this.subSubPackage, FIRST_TABLE_NAME, true);
+		flushEvent();
+
+		// 1.2 get the created editor
+		IEditorPart tmp = this.papyrusEditor.getActiveEditor();
+		Assert.assertTrue(tmp instanceof NatTableEditor);
+		final NatTableEditor firstEditor = (NatTableEditor) tmp;
+		final INattableModelManager firstManager = (INattableModelManager) firstEditor.getAdapter(INattableModelManager.class);
+
+		// 1.3 check created editor
+		Assert.assertNotNull(firstManager);
+		final Table firstTable = firstManager.getTable();
+		Assert.assertEquals(AllTests.VIEWS_TABLE_ID, firstTable.getTableConfiguration().getType());
+		Assert.assertEquals(FIRST_TABLE_NAME, firstTable.getName());
+		Assert.assertEquals(FIRST_TABLE_NAME, firstEditor.getPartName());
+
+		// 1.4 check contents
+		final IAxisManager rowAxisManager = firstManager.getRowAxisManager();
 		final Collection<Object> managedAxis_subSubPackageTable1 = rowAxisManager.getAllManagedAxis();
 		Assert.assertEquals(1, managedAxis_subSubPackageTable1.size());
-		Assert.assertTrue(managedAxis_subSubPackageTable1.contains(subSubPackageTable1));
+		Assert.assertTrue(managedAxis_subSubPackageTable1.contains(firstTable));
 		Assert.assertEquals(managedAxis_subSubPackageTable1.size(), rowAxisManager.getTableManager().getRowElementsList().size());
-		Assert.assertTrue(rowAxisManager.getTableManager().getRowElementsList().contains(subSubPackageTable1));
+		Assert.assertTrue(rowAxisManager.getTableManager().getRowElementsList().contains(firstTable));
 
+		/* we create a second table in the same element, to check the correct synchronization of the contents */
 
-		//we create a second table. This one must be added to the content of the first one
-		final Object result2 = ModelExplorerUtils.executeCreateNestedEditorHandlerInModelExplorer(papyrusEditor, TableCreationTest.view, AllTests.COMMAND_ID, TableCreationTest.subSubPackage, BUNDLE_ID);
+		// 2 get the view prototype to create a second table
+		viewPrototype = getViewPrototype(TABLE_VIEW_REPRESENTATION_KIND_ID, this.subSubPackage);
+		Assert.assertNotNull("The view prototype to create the table is not available", viewPrototype); //$NON-NLS-1$
 
-		Assert.assertTrue(result2 instanceof NatTableEditor);
-		final NatTableEditor editor2 = (NatTableEditor)result2;
-		final NattableModelManager manager2 = (NattableModelManager)editor2.getAdapter(INattableModelManager.class);
-		Assert.assertNotNull(manager2);
-		final Table subSubPackageTable2 = manager2.getTable();
-		Assert.assertEquals(AllTests.VIEWS_TABLE_ID, subSubPackageTable2.getTableConfiguration().getType());
+		// 2.1 we create a second table. This one must be added to the content of the first one
+		viewPrototype.instantiateOn(this.subSubPackage, TABLE_2_NAME, true);
+		flushEvent();
 
-		//we verify the contents of the second table
-		final IAxisManager rowAxisManager2 = manager2.getRowAxisManager();
+		// 2.2 get the created editor
+		tmp = this.papyrusEditor.getActiveEditor();
+		Assert.assertTrue(tmp instanceof NatTableEditor);
+		final NatTableEditor secondEditor = (NatTableEditor) tmp;
+		final INattableModelManager secondManager = (INattableModelManager) secondEditor.getAdapter(INattableModelManager.class);
+
+		// 2.3 check created editor
+		Assert.assertNotNull(secondManager);
+		final Table secondTable = secondManager.getTable();
+		Assert.assertEquals(AllTests.VIEWS_TABLE_ID, secondTable.getTableConfiguration().getType());
+		Assert.assertEquals(TABLE_2_NAME, secondTable.getName());
+		Assert.assertEquals(TABLE_2_NAME, secondEditor.getPartName());
+
+		// 2.4 check contents
+		final IAxisManager rowAxisManager2 = secondManager.getRowAxisManager();
 		Collection<Object> managedAxis2 = rowAxisManager2.getAllManagedAxis();
 		Assert.assertEquals(2, managedAxis2.size());
-		Assert.assertTrue(managedAxis2.contains(subSubPackageTable1));
-		Assert.assertTrue(managedAxis2.contains(subSubPackageTable2));
-
-		DisplayUtils.safeReadAndDispatch();
+		Assert.assertTrue(managedAxis2.contains(firstTable));
+		Assert.assertTrue(managedAxis2.contains(secondTable));
 
 		Assert.assertEquals(managedAxis2.size(), rowAxisManager2.getTableManager().getRowElementsList().size());
-		Assert.assertTrue(rowAxisManager2.getTableManager().getRowElementsList().contains(subSubPackageTable1));
-		Assert.assertTrue(rowAxisManager2.getTableManager().getRowElementsList().contains(subSubPackageTable2));
+		Assert.assertTrue(rowAxisManager2.getTableManager().getRowElementsList().contains(firstTable));
+		Assert.assertTrue(rowAxisManager2.getTableManager().getRowElementsList().contains(secondTable));
 
 
-		//we verify the contents of the first table
+		// 2.5 we verify the contents of the first table
 		final Collection<Object> managedAxis_subSubPackageTable1_1 = rowAxisManager.getAllManagedAxis();
 		Assert.assertEquals(2, managedAxis_subSubPackageTable1_1.size());
-		Assert.assertTrue(managedAxis_subSubPackageTable1_1.contains(subSubPackageTable1));
-		Assert.assertTrue(managedAxis_subSubPackageTable1_1.contains(subSubPackageTable2));
+		Assert.assertTrue(managedAxis_subSubPackageTable1_1.contains(firstTable));
+		Assert.assertTrue(managedAxis_subSubPackageTable1_1.contains(secondTable));
 		Assert.assertEquals(managedAxis_subSubPackageTable1_1.size(), rowAxisManager.getTableManager().getRowElementsList().size());
-		Assert.assertTrue(rowAxisManager.getTableManager().getRowElementsList().contains(subSubPackageTable1));
-		Assert.assertTrue(rowAxisManager.getTableManager().getRowElementsList().contains(subSubPackageTable2));
+		Assert.assertTrue(rowAxisManager.getTableManager().getRowElementsList().contains(firstTable));
+		Assert.assertTrue(rowAxisManager.getTableManager().getRowElementsList().contains(secondTable));
 
+		/* 3. we create a third table in another container. This table must contains only itself and the others table muse not contains it */
+		viewPrototype = getViewPrototype(TABLE_VIEW_REPRESENTATION_KIND_ID, this.subModel);
+		Assert.assertNotNull("The view prototype to create the table is not available", viewPrototype); //$NON-NLS-1$
 
-		//-----------------we create a table in subModel. This table must contains only itself and the others table muse not contains it
-		final Object result3 = ModelExplorerUtils.executeCreateNestedEditorHandlerInModelExplorer(papyrusEditor, TableCreationTest.view, AllTests.COMMAND_ID, TableCreationTest.subModel, BUNDLE_ID);
-		Assert.assertTrue(result3 instanceof NatTableEditor);
-		final NatTableEditor editor3 = (NatTableEditor)result3;
-		final NattableModelManager manager3 = (NattableModelManager)editor3.getAdapter(INattableModelManager.class);
-		Assert.assertNotNull(manager3);
-		final Table subModelTable3 = manager3.getTable();
-		Assert.assertEquals(AllTests.VIEWS_TABLE_ID, subModelTable3.getTableConfiguration().getType());
-		DisplayUtils.safeReadAndDispatch();
-		final IAxisManager rowAxisManager3 = manager3.getRowAxisManager();
+		// 3.1 create the thirst table
+		viewPrototype.instantiateOn(this.subModel, TABLE_3_NAME, true);
+		flushEvent();
+
+		// 3.2 get the created editor
+		tmp = this.papyrusEditor.getActiveEditor();
+		Assert.assertTrue(tmp instanceof NatTableEditor);
+		final NatTableEditor thirdEditor = (NatTableEditor) tmp;
+		final INattableModelManager thirdManager = (INattableModelManager) thirdEditor.getAdapter(INattableModelManager.class);
+
+		// 3.3 check created editor
+		Assert.assertNotNull(thirdManager);
+		final Table thirdTable = thirdManager.getTable();
+		Assert.assertEquals(AllTests.VIEWS_TABLE_ID, thirdTable.getTableConfiguration().getType());
+		Assert.assertEquals(TABLE_3_NAME, thirdTable.getName());
+		Assert.assertEquals(TABLE_3_NAME, thirdEditor.getPartName());
+
+		// 3.4 check contents
+		final IAxisManager rowAxisManager3 = thirdManager.getRowAxisManager();
 		final Collection<Object> managedAxis_SubPackageTable3 = rowAxisManager3.getAllManagedAxis();
 		Assert.assertEquals(1, managedAxis_SubPackageTable3.size());
-		Assert.assertTrue(managedAxis_SubPackageTable3.contains(subModelTable3));
+		Assert.assertTrue(managedAxis_SubPackageTable3.contains(thirdTable));
 		Assert.assertEquals(managedAxis_SubPackageTable3.size(), rowAxisManager3.getTableManager().getRowElementsList().size());
-		Assert.assertTrue(rowAxisManager3.getTableManager().getRowElementsList().contains(subModelTable3));
+		Assert.assertTrue(rowAxisManager3.getTableManager().getRowElementsList().contains(thirdTable));
 
-		//we verify that the other tables don't reference it
-		//verify in table 1
-		IAxisManager rowAxisManagerTable1 = manager1.getRowAxisManager();
+		// 3.5 we verify that the other tables don't reference it
+		// verify in table 1
+		IAxisManager rowAxisManagerTable1 = firstManager.getRowAxisManager();
 		Collection<Object> managedAxisTable1 = rowAxisManagerTable1.getAllManagedAxis();
 		Assert.assertEquals(2, managedAxisTable1.size());
-		Assert.assertFalse(managedAxisTable1.contains(subModelTable3));
+		Assert.assertFalse(managedAxisTable1.contains(thirdTable));
 		Assert.assertEquals(managedAxisTable1.size(), rowAxisManagerTable1.getTableManager().getRowElementsList().size());
-		Assert.assertFalse(rowAxisManagerTable1.getTableManager().getRowElementsList().contains(subModelTable3));
+		Assert.assertFalse(rowAxisManagerTable1.getTableManager().getRowElementsList().contains(thirdTable));
 
-		//verify in table 2
-		IAxisManager rowAxisManagerTable2 = manager2.getRowAxisManager();
+		// verify in table 2
+		IAxisManager rowAxisManagerTable2 = secondManager.getRowAxisManager();
 		Collection<Object> managedAxisTable2 = rowAxisManagerTable2.getAllManagedAxis();
 		Assert.assertEquals(2, managedAxisTable2.size());
-		Assert.assertFalse(managedAxisTable2.contains(subModelTable3));
+		Assert.assertFalse(managedAxisTable2.contains(thirdTable));
 		Assert.assertEquals(managedAxisTable2.size(), rowAxisManagerTable2.getTableManager().getRowElementsList().size());
-		Assert.assertFalse(rowAxisManagerTable2.getTableManager().getRowElementsList().contains(subModelTable3));
+		Assert.assertFalse(rowAxisManagerTable2.getTableManager().getRowElementsList().contains(thirdTable));
 	}
 
-	@AfterClass
-	public static void endOfTest() {
-		GenericUtils.closeAllEditors();
+	/**
+	 * @see org.eclipse.papyrus.infra.nattable.views.tests.tests.AbstractCreationTableTests#tearDown()
+	 *
+	 */
+	@Override
+	public void tearDown() {
+		super.tearDown();
+		this.rootModel = null;
+		this.subModel = null;
+		this.subSubModel = null;
+		this.subPackage = null;
+		this.subSubPackage = null;
 	}
-
 
 }
