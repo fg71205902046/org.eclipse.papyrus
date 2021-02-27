@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2021 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,12 +11,13 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Christian W. Damus - bug 568853
+ *  Christian W. Damus - bugs 568853, 571560
  */
 package org.eclipse.papyrus.infra.types.rulebased.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -41,7 +42,7 @@ import org.eclipse.papyrus.infra.types.rulebased.RuleConfiguration;
  */
 public class NotRuleConfigurationImpl extends RuleConfigurationImpl implements NotRuleConfiguration {
 	/**
-	 * The cached value of the '{@link #getComposedRule() <em>Composed Rule</em>}' reference.
+	 * The cached value of the '{@link #getComposedRule() <em>Composed Rule</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getComposedRule()
@@ -76,14 +77,6 @@ public class NotRuleConfigurationImpl extends RuleConfigurationImpl implements N
 	 */
 	@Override
 	public RuleConfiguration getComposedRule() {
-		if (composedRule != null && composedRule.eIsProxy()) {
-			InternalEObject oldComposedRule = (InternalEObject)composedRule;
-			composedRule = (RuleConfiguration)eResolveProxy(oldComposedRule);
-			if (composedRule != oldComposedRule) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RuleBasedPackage.NOT_RULE_CONFIGURATION__COMPOSED_RULE, oldComposedRule, composedRule));
-			}
-		}
 		return composedRule;
 	}
 
@@ -92,8 +85,14 @@ public class NotRuleConfigurationImpl extends RuleConfigurationImpl implements N
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RuleConfiguration basicGetComposedRule() {
-		return composedRule;
+	public NotificationChain basicSetComposedRule(RuleConfiguration newComposedRule, NotificationChain msgs) {
+		RuleConfiguration oldComposedRule = composedRule;
+		composedRule = newComposedRule;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RuleBasedPackage.NOT_RULE_CONFIGURATION__COMPOSED_RULE, oldComposedRule, newComposedRule);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -103,10 +102,30 @@ public class NotRuleConfigurationImpl extends RuleConfigurationImpl implements N
 	 */
 	@Override
 	public void setComposedRule(RuleConfiguration newComposedRule) {
-		RuleConfiguration oldComposedRule = composedRule;
-		composedRule = newComposedRule;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RuleBasedPackage.NOT_RULE_CONFIGURATION__COMPOSED_RULE, oldComposedRule, composedRule));
+		if (newComposedRule != composedRule) {
+			NotificationChain msgs = null;
+			if (composedRule != null)
+				msgs = ((InternalEObject)composedRule).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RuleBasedPackage.NOT_RULE_CONFIGURATION__COMPOSED_RULE, null, msgs);
+			if (newComposedRule != null)
+				msgs = ((InternalEObject)newComposedRule).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RuleBasedPackage.NOT_RULE_CONFIGURATION__COMPOSED_RULE, null, msgs);
+			msgs = basicSetComposedRule(newComposedRule, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RuleBasedPackage.NOT_RULE_CONFIGURATION__COMPOSED_RULE, newComposedRule, newComposedRule));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case RuleBasedPackage.NOT_RULE_CONFIGURATION__COMPOSED_RULE:
+				return basicSetComposedRule(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -118,8 +137,7 @@ public class NotRuleConfigurationImpl extends RuleConfigurationImpl implements N
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case RuleBasedPackage.NOT_RULE_CONFIGURATION__COMPOSED_RULE:
-				if (resolve) return getComposedRule();
-				return basicGetComposedRule();
+				return getComposedRule();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

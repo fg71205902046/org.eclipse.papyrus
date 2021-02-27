@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2021 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,7 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Christian W. Damus - bug 568853
+ *  Christian W. Damus - bugs 568853, 571560
  */
 package org.eclipse.papyrus.infra.types.rulebased;
 
@@ -318,7 +318,7 @@ public interface RuleBasedPackage extends EPackage {
 	int NOT_RULE_CONFIGURATION = 3;
 
 	/**
-	 * The feature id for the '<em><b>Composed Rule</b></em>' reference.
+	 * The feature id for the '<em><b>Composed Rule</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -482,10 +482,10 @@ public interface RuleBasedPackage extends EPackage {
 	EClass getNotRuleConfiguration();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.types.rulebased.NotRuleConfiguration#getComposedRule <em>Composed Rule</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.types.rulebased.NotRuleConfiguration#getComposedRule <em>Composed Rule</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Composed Rule</em>'.
+	 * @return the meta object for the containment reference '<em>Composed Rule</em>'.
 	 * @see org.eclipse.papyrus.infra.types.rulebased.NotRuleConfiguration#getComposedRule()
 	 * @see #getNotRuleConfiguration()
 	 * @generated
@@ -592,7 +592,7 @@ public interface RuleBasedPackage extends EPackage {
 		EClass NOT_RULE_CONFIGURATION = eINSTANCE.getNotRuleConfiguration();
 
 		/**
-		 * The meta object literal for the '<em><b>Composed Rule</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Composed Rule</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

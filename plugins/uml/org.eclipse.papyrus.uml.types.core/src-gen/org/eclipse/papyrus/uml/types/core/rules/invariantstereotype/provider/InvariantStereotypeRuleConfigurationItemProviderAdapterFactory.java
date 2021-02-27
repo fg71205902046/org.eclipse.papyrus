@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2021 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,7 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Christian W. Damus - bug 568853
+ *  Christian W. Damus - bugs 568853, 571560
  */
 package org.eclipse.papyrus.uml.types.core.rules.invariantstereotype.provider;
 
@@ -45,6 +45,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 import org.eclipse.papyrus.infra.types.rulebased.CompositeRuleConfiguration;
+import org.eclipse.papyrus.infra.types.rulebased.NotRuleConfiguration;
 import org.eclipse.papyrus.infra.types.rulebased.RuleBasedPackage;
 import org.eclipse.papyrus.infra.types.rulebased.RuleBasedTypeConfiguration;
 import org.eclipse.papyrus.infra.types.rulebased.util.RuleBasedSwitch;
@@ -294,6 +295,19 @@ public class InvariantStereotypeRuleConfigurationItemProviderAdapterFactory exte
 			@Override
 			public Object caseCompositeRuleConfiguration(CompositeRuleConfiguration object) {
 				newChildDescriptors.add(createChildParameter(RuleBasedPackage.Literals.COMPOSITE_RULE_CONFIGURATION__COMPOSED_RULES,
+						InvariantStereotypeRuleConfigurationFactory.eINSTANCE.createInvariantStereotypeRuleConfiguration()));
+
+				return null;
+			}
+
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseNotRuleConfiguration(NotRuleConfiguration object) {
+				newChildDescriptors.add(createChildParameter(RuleBasedPackage.Literals.NOT_RULE_CONFIGURATION__COMPOSED_RULE,
 						InvariantStereotypeRuleConfigurationFactory.eINSTANCE.createInvariantStereotypeRuleConfiguration()));
 
 				return null;

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2021 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 571560
  */
 package org.eclipse.papyrus.infra.types.rulebased;
 
@@ -33,26 +34,26 @@ package org.eclipse.papyrus.infra.types.rulebased;
  */
 public interface NotRuleConfiguration extends RuleConfiguration {
 	/**
-	 * Returns the value of the '<em><b>Composed Rule</b></em>' reference.
+	 * Returns the value of the '<em><b>Composed Rule</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Composed Rule</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Composed Rule</em>' reference.
+	 * @return the value of the '<em>Composed Rule</em>' containment reference.
 	 * @see #setComposedRule(RuleConfiguration)
 	 * @see org.eclipse.papyrus.infra.types.rulebased.RuleBasedPackage#getNotRuleConfiguration_ComposedRule()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	RuleConfiguration getComposedRule();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.types.rulebased.NotRuleConfiguration#getComposedRule <em>Composed Rule</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.types.rulebased.NotRuleConfiguration#getComposedRule <em>Composed Rule</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Composed Rule</em>' reference.
+	 * @param value the new value of the '<em>Composed Rule</em>' containment reference.
 	 * @see #getComposedRule()
 	 * @generated
 	 */
