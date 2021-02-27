@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2020 Christian W. Damus, CEA LIST, and others.
+ * Copyright (c) 2014, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -19,6 +19,8 @@ import java.util.regex.Pattern;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.FeatureMatcher;
@@ -332,6 +334,20 @@ public class MoreMatchers {
 	 */
 	public static <T> Matcher<Iterable<T>> hasAtLeast(int min, Matcher<? super T> elementMatcher) {
 		return hasCount(greaterThanOrEqual(min), elementMatcher);
+	}
+
+	public static Matcher<EObject> eEqualTo(EObject eObject) {
+		return new TypeSafeMatcher<>(EObject.class) {
+			@Override
+			public void describeTo(Description description) {
+				description.appendText("is structurally equal to ").appendValue(eObject);
+			}
+
+			@Override
+			protected boolean matchesSafely(EObject item) {
+				return EcoreUtil.equals(item, eObject);
+			}
+		};
 	}
 
 }

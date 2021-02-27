@@ -45,4 +45,14 @@
             uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2"
             class="org.eclipse.papyrus.infra.types.rulebased.provider.RuleBasedItemProviderAdapterFactory$ElementTypesConfigurationsChildCreationExtender"/>
    </extension>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="org.eclipse.papyrus.infra.types.rulebased.internal.expressions.RuleConfigurationPropertyTester"
+            id="org.eclipse.papyrus.infra.types.rulebased.propertyTester"
+            namespace="org.eclipse.papyrus.infra.types.rulebased"
+            properties="container,operandCount"
+            type="org.eclipse.papyrus.infra.types.rulebased.RuleConfiguration">
+      </propertyTester>
+   </extension>
 </plugin>
