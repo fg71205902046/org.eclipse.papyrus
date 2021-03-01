@@ -10,7 +10,7 @@
  *  
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
- *  Christian W. Damus - bug 539694
+ *  Christian W. Damus - bugs 539694, 570486
  *  
  * 
  */
@@ -71,12 +71,60 @@ public class ArchitectureValidator extends EObjectValidator {
 	public static final int ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS_EXISTS = 2;
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Context Extensions Are Consistent' of 'Context'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int ARCHITECTURE_CONTEXT__CONTEXT_EXTENSIONS_ARE_CONSISTENT = 3;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Context Generalization Is Consistent' of 'Context'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int ARCHITECTURE_CONTEXT__CONTEXT_GENERALIZATION_IS_CONSISTENT = 4;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Creation Command Class Required' of 'Context'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS_REQUIRED = 5;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Extension Cycle' of 'Context'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int ARCHITECTURE_CONTEXT__EXTENSION_CYCLE = 6;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Generalization Cycle' of 'Context'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int ARCHITECTURE_CONTEXT__GENERALIZATION_CYCLE = 7;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'General Not Extended' of 'Context'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int ARCHITECTURE_CONTEXT__GENERAL_NOT_EXTENDED = 8;
+
+	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 2;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 8;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -180,6 +228,12 @@ public class ArchitectureValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(architectureDescriptionLanguage, diagnostics, context);
 		if (result || diagnostics != null) result &= validateArchitectureContext_ceationCommandClassExists(architectureDescriptionLanguage, diagnostics, context);
 		if (result || diagnostics != null) result &= validateArchitectureContext_conversionCommandClassExists(architectureDescriptionLanguage, diagnostics, context);
+		if (result || diagnostics != null) result &= validateArchitectureContext_contextExtensionsAreConsistent(architectureDescriptionLanguage, diagnostics, context);
+		if (result || diagnostics != null) result &= validateArchitectureContext_contextGeneralizationIsConsistent(architectureDescriptionLanguage, diagnostics, context);
+		if (result || diagnostics != null) result &= validateArchitectureContext_creationCommandClassRequired(architectureDescriptionLanguage, diagnostics, context);
+		if (result || diagnostics != null) result &= validateArchitectureContext_extensionCycle(architectureDescriptionLanguage, diagnostics, context);
+		if (result || diagnostics != null) result &= validateArchitectureContext_generalizationCycle(architectureDescriptionLanguage, diagnostics, context);
+		if (result || diagnostics != null) result &= validateArchitectureContext_generalNotExtended(architectureDescriptionLanguage, diagnostics, context);
 		return result;
 	}
 
@@ -236,6 +290,12 @@ public class ArchitectureValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(architectureContext, diagnostics, context);
 		if (result || diagnostics != null) result &= validateArchitectureContext_ceationCommandClassExists(architectureContext, diagnostics, context);
 		if (result || diagnostics != null) result &= validateArchitectureContext_conversionCommandClassExists(architectureContext, diagnostics, context);
+		if (result || diagnostics != null) result &= validateArchitectureContext_contextExtensionsAreConsistent(architectureContext, diagnostics, context);
+		if (result || diagnostics != null) result &= validateArchitectureContext_contextGeneralizationIsConsistent(architectureContext, diagnostics, context);
+		if (result || diagnostics != null) result &= validateArchitectureContext_creationCommandClassRequired(architectureContext, diagnostics, context);
+		if (result || diagnostics != null) result &= validateArchitectureContext_extensionCycle(architectureContext, diagnostics, context);
+		if (result || diagnostics != null) result &= validateArchitectureContext_generalizationCycle(architectureContext, diagnostics, context);
+		if (result || diagnostics != null) result &= validateArchitectureContext_generalNotExtended(architectureContext, diagnostics, context);
 		return result;
 	}
 
@@ -260,6 +320,66 @@ public class ArchitectureValidator extends EObjectValidator {
 	}
 
 	/**
+	 * Validates the contextExtensionsAreConsistent constraint of '<em>Context</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateArchitectureContext_contextExtensionsAreConsistent(ArchitectureContext architectureContext, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return architectureContext.contextExtensionsAreConsistent(diagnostics, context);
+	}
+
+	/**
+	 * Validates the contextGeneralizationIsConsistent constraint of '<em>Context</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateArchitectureContext_contextGeneralizationIsConsistent(ArchitectureContext architectureContext, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return architectureContext.contextGeneralizationIsConsistent(diagnostics, context);
+	}
+
+	/**
+	 * Validates the creationCommandClassRequired constraint of '<em>Context</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateArchitectureContext_creationCommandClassRequired(ArchitectureContext architectureContext, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return architectureContext.creationCommandClassRequired(diagnostics, context);
+	}
+
+	/**
+	 * Validates the extensionCycle constraint of '<em>Context</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateArchitectureContext_extensionCycle(ArchitectureContext architectureContext, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return architectureContext.extensionCycle(diagnostics, context);
+	}
+
+	/**
+	 * Validates the generalizationCycle constraint of '<em>Context</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateArchitectureContext_generalizationCycle(ArchitectureContext architectureContext, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return architectureContext.generalizationCycle(diagnostics, context);
+	}
+
+	/**
+	 * Validates the generalNotExtended constraint of '<em>Context</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateArchitectureContext_generalNotExtended(ArchitectureContext architectureContext, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return architectureContext.generalNotExtended(diagnostics, context);
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -276,6 +396,12 @@ public class ArchitectureValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(architectureFramework, diagnostics, context);
 		if (result || diagnostics != null) result &= validateArchitectureContext_ceationCommandClassExists(architectureFramework, diagnostics, context);
 		if (result || diagnostics != null) result &= validateArchitectureContext_conversionCommandClassExists(architectureFramework, diagnostics, context);
+		if (result || diagnostics != null) result &= validateArchitectureContext_contextExtensionsAreConsistent(architectureFramework, diagnostics, context);
+		if (result || diagnostics != null) result &= validateArchitectureContext_contextGeneralizationIsConsistent(architectureFramework, diagnostics, context);
+		if (result || diagnostics != null) result &= validateArchitectureContext_creationCommandClassRequired(architectureFramework, diagnostics, context);
+		if (result || diagnostics != null) result &= validateArchitectureContext_extensionCycle(architectureFramework, diagnostics, context);
+		if (result || diagnostics != null) result &= validateArchitectureContext_generalizationCycle(architectureFramework, diagnostics, context);
+		if (result || diagnostics != null) result &= validateArchitectureContext_generalNotExtended(architectureFramework, diagnostics, context);
 		return result;
 	}
 

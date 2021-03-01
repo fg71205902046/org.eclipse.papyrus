@@ -1,5 +1,5 @@
 /**
-* Copyright (c) 2017 CEA LIST.
+* Copyright (c) 2017, 2021 CEA LIST, Christian W. Damus, and others.
  * 
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *  
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
+ *  Christian W. Damus - bug 570486
  *  
  * 
  */
@@ -365,13 +366,40 @@ public interface ArchitecturePackage extends EPackage {
 	int ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS = AD_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
+	 * The feature id for the '<em><b>General Context</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_CONTEXT__GENERAL_CONTEXT = AD_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>Extended Contexts</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_CONTEXT__EXTENDED_CONTEXTS = AD_ELEMENT_FEATURE_COUNT + 8;
+
+	/**
+	 * The feature id for the '<em><b>Extension</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_CONTEXT__EXTENSION = AD_ELEMENT_FEATURE_COUNT + 9;
+
+	/**
 	 * The number of structural features of the '<em>Context</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ARCHITECTURE_CONTEXT_FEATURE_COUNT = AD_ELEMENT_FEATURE_COUNT + 7;
+	int ARCHITECTURE_CONTEXT_FEATURE_COUNT = AD_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The operation id for the '<em>Ceation Command Class Exists</em>' operation.
@@ -392,13 +420,94 @@ public interface ArchitecturePackage extends EPackage {
 	int ARCHITECTURE_CONTEXT___CONVERSION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = AD_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Is Consistent With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_CONTEXT___IS_CONSISTENT_WITH__ARCHITECTURECONTEXT = AD_ELEMENT_OPERATION_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Context Extensions Are Consistent</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_CONTEXT___CONTEXT_EXTENSIONS_ARE_CONSISTENT__DIAGNOSTICCHAIN_MAP = AD_ELEMENT_OPERATION_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Context Generalization Is Consistent</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_CONTEXT___CONTEXT_GENERALIZATION_IS_CONSISTENT__DIAGNOSTICCHAIN_MAP = AD_ELEMENT_OPERATION_COUNT + 4;
+
+	/**
+	 * The operation id for the '<em>Creation Command Class Required</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_CONTEXT___CREATION_COMMAND_CLASS_REQUIRED__DIAGNOSTICCHAIN_MAP = AD_ELEMENT_OPERATION_COUNT + 5;
+
+	/**
+	 * The operation id for the '<em>All Extended Contexts</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_CONTEXT___ALL_EXTENDED_CONTEXTS = AD_ELEMENT_OPERATION_COUNT + 6;
+
+	/**
+	 * The operation id for the '<em>All General Contexts</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_CONTEXT___ALL_GENERAL_CONTEXTS = AD_ELEMENT_OPERATION_COUNT + 7;
+
+	/**
+	 * The operation id for the '<em>Extension Cycle</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_CONTEXT___EXTENSION_CYCLE__DIAGNOSTICCHAIN_MAP = AD_ELEMENT_OPERATION_COUNT + 8;
+
+	/**
+	 * The operation id for the '<em>Generalization Cycle</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_CONTEXT___GENERALIZATION_CYCLE__DIAGNOSTICCHAIN_MAP = AD_ELEMENT_OPERATION_COUNT + 9;
+
+	/**
+	 * The operation id for the '<em>General Not Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_CONTEXT___GENERAL_NOT_EXTENDED__DIAGNOSTICCHAIN_MAP = AD_ELEMENT_OPERATION_COUNT + 10;
+
+	/**
 	 * The number of operations of the '<em>Context</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ARCHITECTURE_CONTEXT_OPERATION_COUNT = AD_ELEMENT_OPERATION_COUNT + 2;
+	int ARCHITECTURE_CONTEXT_OPERATION_COUNT = AD_ELEMENT_OPERATION_COUNT + 11;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.core.architecture.impl.ArchitectureDescriptionLanguageImpl <em>Description Language</em>}' class.
@@ -519,6 +628,33 @@ public interface ArchitecturePackage extends EPackage {
 	int ARCHITECTURE_DESCRIPTION_LANGUAGE__CONVERSION_COMMAND_CLASS = ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS;
 
 	/**
+	 * The feature id for the '<em><b>General Context</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_DESCRIPTION_LANGUAGE__GENERAL_CONTEXT = ARCHITECTURE_CONTEXT__GENERAL_CONTEXT;
+
+	/**
+	 * The feature id for the '<em><b>Extended Contexts</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_DESCRIPTION_LANGUAGE__EXTENDED_CONTEXTS = ARCHITECTURE_CONTEXT__EXTENDED_CONTEXTS;
+
+	/**
+	 * The feature id for the '<em><b>Extension</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_DESCRIPTION_LANGUAGE__EXTENSION = ARCHITECTURE_CONTEXT__EXTENSION;
+
+	/**
 	 * The feature id for the '<em><b>Representation Kinds</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -580,6 +716,87 @@ public interface ArchitecturePackage extends EPackage {
 	 * @ordered
 	 */
 	int ARCHITECTURE_DESCRIPTION_LANGUAGE___CONVERSION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = ARCHITECTURE_CONTEXT___CONVERSION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Is Consistent With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_DESCRIPTION_LANGUAGE___IS_CONSISTENT_WITH__ARCHITECTURECONTEXT = ARCHITECTURE_CONTEXT___IS_CONSISTENT_WITH__ARCHITECTURECONTEXT;
+
+	/**
+	 * The operation id for the '<em>Context Extensions Are Consistent</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_DESCRIPTION_LANGUAGE___CONTEXT_EXTENSIONS_ARE_CONSISTENT__DIAGNOSTICCHAIN_MAP = ARCHITECTURE_CONTEXT___CONTEXT_EXTENSIONS_ARE_CONSISTENT__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Context Generalization Is Consistent</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_DESCRIPTION_LANGUAGE___CONTEXT_GENERALIZATION_IS_CONSISTENT__DIAGNOSTICCHAIN_MAP = ARCHITECTURE_CONTEXT___CONTEXT_GENERALIZATION_IS_CONSISTENT__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Creation Command Class Required</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_DESCRIPTION_LANGUAGE___CREATION_COMMAND_CLASS_REQUIRED__DIAGNOSTICCHAIN_MAP = ARCHITECTURE_CONTEXT___CREATION_COMMAND_CLASS_REQUIRED__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>All Extended Contexts</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_DESCRIPTION_LANGUAGE___ALL_EXTENDED_CONTEXTS = ARCHITECTURE_CONTEXT___ALL_EXTENDED_CONTEXTS;
+
+	/**
+	 * The operation id for the '<em>All General Contexts</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_DESCRIPTION_LANGUAGE___ALL_GENERAL_CONTEXTS = ARCHITECTURE_CONTEXT___ALL_GENERAL_CONTEXTS;
+
+	/**
+	 * The operation id for the '<em>Extension Cycle</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_DESCRIPTION_LANGUAGE___EXTENSION_CYCLE__DIAGNOSTICCHAIN_MAP = ARCHITECTURE_CONTEXT___EXTENSION_CYCLE__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Generalization Cycle</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_DESCRIPTION_LANGUAGE___GENERALIZATION_CYCLE__DIAGNOSTICCHAIN_MAP = ARCHITECTURE_CONTEXT___GENERALIZATION_CYCLE__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>General Not Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_DESCRIPTION_LANGUAGE___GENERAL_NOT_EXTENDED__DIAGNOSTICCHAIN_MAP = ARCHITECTURE_CONTEXT___GENERAL_NOT_EXTENDED__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Description Language</em>' class.
@@ -1082,6 +1299,33 @@ public interface ArchitecturePackage extends EPackage {
 	int ARCHITECTURE_FRAMEWORK__CONVERSION_COMMAND_CLASS = ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS;
 
 	/**
+	 * The feature id for the '<em><b>General Context</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_FRAMEWORK__GENERAL_CONTEXT = ARCHITECTURE_CONTEXT__GENERAL_CONTEXT;
+
+	/**
+	 * The feature id for the '<em><b>Extended Contexts</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_FRAMEWORK__EXTENDED_CONTEXTS = ARCHITECTURE_CONTEXT__EXTENDED_CONTEXTS;
+
+	/**
+	 * The feature id for the '<em><b>Extension</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_FRAMEWORK__EXTENSION = ARCHITECTURE_CONTEXT__EXTENSION;
+
+	/**
 	 * The number of structural features of the '<em>Framework</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1107,6 +1351,87 @@ public interface ArchitecturePackage extends EPackage {
 	 * @ordered
 	 */
 	int ARCHITECTURE_FRAMEWORK___CONVERSION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = ARCHITECTURE_CONTEXT___CONVERSION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Is Consistent With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_FRAMEWORK___IS_CONSISTENT_WITH__ARCHITECTURECONTEXT = ARCHITECTURE_CONTEXT___IS_CONSISTENT_WITH__ARCHITECTURECONTEXT;
+
+	/**
+	 * The operation id for the '<em>Context Extensions Are Consistent</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_FRAMEWORK___CONTEXT_EXTENSIONS_ARE_CONSISTENT__DIAGNOSTICCHAIN_MAP = ARCHITECTURE_CONTEXT___CONTEXT_EXTENSIONS_ARE_CONSISTENT__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Context Generalization Is Consistent</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_FRAMEWORK___CONTEXT_GENERALIZATION_IS_CONSISTENT__DIAGNOSTICCHAIN_MAP = ARCHITECTURE_CONTEXT___CONTEXT_GENERALIZATION_IS_CONSISTENT__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Creation Command Class Required</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_FRAMEWORK___CREATION_COMMAND_CLASS_REQUIRED__DIAGNOSTICCHAIN_MAP = ARCHITECTURE_CONTEXT___CREATION_COMMAND_CLASS_REQUIRED__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>All Extended Contexts</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_FRAMEWORK___ALL_EXTENDED_CONTEXTS = ARCHITECTURE_CONTEXT___ALL_EXTENDED_CONTEXTS;
+
+	/**
+	 * The operation id for the '<em>All General Contexts</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_FRAMEWORK___ALL_GENERAL_CONTEXTS = ARCHITECTURE_CONTEXT___ALL_GENERAL_CONTEXTS;
+
+	/**
+	 * The operation id for the '<em>Extension Cycle</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_FRAMEWORK___EXTENSION_CYCLE__DIAGNOSTICCHAIN_MAP = ARCHITECTURE_CONTEXT___EXTENSION_CYCLE__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Generalization Cycle</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_FRAMEWORK___GENERALIZATION_CYCLE__DIAGNOSTICCHAIN_MAP = ARCHITECTURE_CONTEXT___GENERALIZATION_CYCLE__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>General Not Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_FRAMEWORK___GENERAL_NOT_EXTENDED__DIAGNOSTICCHAIN_MAP = ARCHITECTURE_CONTEXT___GENERAL_NOT_EXTENDED__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Framework</em>' class.
@@ -1607,6 +1932,39 @@ public interface ArchitecturePackage extends EPackage {
 	EAttribute getArchitectureContext_ConversionCommandClass();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getGeneralContext <em>General Context</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>General Context</em>'.
+	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getGeneralContext()
+	 * @see #getArchitectureContext()
+	 * @generated
+	 */
+	EReference getArchitectureContext_GeneralContext();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getExtendedContexts <em>Extended Contexts</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Extended Contexts</em>'.
+	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getExtendedContexts()
+	 * @see #getArchitectureContext()
+	 * @generated
+	 */
+	EReference getArchitectureContext_ExtendedContexts();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#isExtension <em>Extension</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Extension</em>'.
+	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#isExtension()
+	 * @see #getArchitectureContext()
+	 * @generated
+	 */
+	EAttribute getArchitectureContext_Extension();
+
+	/**
 	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#ceationCommandClassExists(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Ceation Command Class Exists</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1625,6 +1983,96 @@ public interface ArchitecturePackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getArchitectureContext__ConversionCommandClassExists__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#isConsistentWith(org.eclipse.papyrus.infra.core.architecture.ArchitectureContext) <em>Is Consistent With</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Consistent With</em>' operation.
+	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#isConsistentWith(org.eclipse.papyrus.infra.core.architecture.ArchitectureContext)
+	 * @generated
+	 */
+	EOperation getArchitectureContext__IsConsistentWith__ArchitectureContext();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#contextExtensionsAreConsistent(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Context Extensions Are Consistent</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Context Extensions Are Consistent</em>' operation.
+	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#contextExtensionsAreConsistent(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getArchitectureContext__ContextExtensionsAreConsistent__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#contextGeneralizationIsConsistent(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Context Generalization Is Consistent</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Context Generalization Is Consistent</em>' operation.
+	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#contextGeneralizationIsConsistent(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getArchitectureContext__ContextGeneralizationIsConsistent__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#creationCommandClassRequired(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Creation Command Class Required</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Creation Command Class Required</em>' operation.
+	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#creationCommandClassRequired(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getArchitectureContext__CreationCommandClassRequired__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#allExtendedContexts() <em>All Extended Contexts</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>All Extended Contexts</em>' operation.
+	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#allExtendedContexts()
+	 * @generated
+	 */
+	EOperation getArchitectureContext__AllExtendedContexts();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#allGeneralContexts() <em>All General Contexts</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>All General Contexts</em>' operation.
+	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#allGeneralContexts()
+	 * @generated
+	 */
+	EOperation getArchitectureContext__AllGeneralContexts();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#extensionCycle(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Extension Cycle</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Extension Cycle</em>' operation.
+	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#extensionCycle(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getArchitectureContext__ExtensionCycle__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#generalizationCycle(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Generalization Cycle</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Generalization Cycle</em>' operation.
+	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#generalizationCycle(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getArchitectureContext__GeneralizationCycle__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#generalNotExtended(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>General Not Extended</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>General Not Extended</em>' operation.
+	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#generalNotExtended(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getArchitectureContext__GeneralNotExtended__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getDomain <em>Domain</em>}'.
@@ -2030,6 +2478,30 @@ public interface ArchitecturePackage extends EPackage {
 		EAttribute ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS = eINSTANCE.getArchitectureContext_ConversionCommandClass();
 
 		/**
+		 * The meta object literal for the '<em><b>General Context</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ARCHITECTURE_CONTEXT__GENERAL_CONTEXT = eINSTANCE.getArchitectureContext_GeneralContext();
+
+		/**
+		 * The meta object literal for the '<em><b>Extended Contexts</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ARCHITECTURE_CONTEXT__EXTENDED_CONTEXTS = eINSTANCE.getArchitectureContext_ExtendedContexts();
+
+		/**
+		 * The meta object literal for the '<em><b>Extension</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ARCHITECTURE_CONTEXT__EXTENSION = eINSTANCE.getArchitectureContext_Extension();
+
+		/**
 		 * The meta object literal for the '<em><b>Ceation Command Class Exists</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2044,6 +2516,78 @@ public interface ArchitecturePackage extends EPackage {
 		 * @generated
 		 */
 		EOperation ARCHITECTURE_CONTEXT___CONVERSION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getArchitectureContext__ConversionCommandClassExists__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Consistent With</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ARCHITECTURE_CONTEXT___IS_CONSISTENT_WITH__ARCHITECTURECONTEXT = eINSTANCE.getArchitectureContext__IsConsistentWith__ArchitectureContext();
+
+		/**
+		 * The meta object literal for the '<em><b>Context Extensions Are Consistent</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ARCHITECTURE_CONTEXT___CONTEXT_EXTENSIONS_ARE_CONSISTENT__DIAGNOSTICCHAIN_MAP = eINSTANCE.getArchitectureContext__ContextExtensionsAreConsistent__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Context Generalization Is Consistent</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ARCHITECTURE_CONTEXT___CONTEXT_GENERALIZATION_IS_CONSISTENT__DIAGNOSTICCHAIN_MAP = eINSTANCE.getArchitectureContext__ContextGeneralizationIsConsistent__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Creation Command Class Required</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ARCHITECTURE_CONTEXT___CREATION_COMMAND_CLASS_REQUIRED__DIAGNOSTICCHAIN_MAP = eINSTANCE.getArchitectureContext__CreationCommandClassRequired__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>All Extended Contexts</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ARCHITECTURE_CONTEXT___ALL_EXTENDED_CONTEXTS = eINSTANCE.getArchitectureContext__AllExtendedContexts();
+
+		/**
+		 * The meta object literal for the '<em><b>All General Contexts</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ARCHITECTURE_CONTEXT___ALL_GENERAL_CONTEXTS = eINSTANCE.getArchitectureContext__AllGeneralContexts();
+
+		/**
+		 * The meta object literal for the '<em><b>Extension Cycle</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ARCHITECTURE_CONTEXT___EXTENSION_CYCLE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getArchitectureContext__ExtensionCycle__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Generalization Cycle</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ARCHITECTURE_CONTEXT___GENERALIZATION_CYCLE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getArchitectureContext__GeneralizationCycle__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>General Not Extended</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ARCHITECTURE_CONTEXT___GENERAL_NOT_EXTENDED__DIAGNOSTICCHAIN_MAP = eINSTANCE.getArchitectureContext__GeneralNotExtended__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Domain</b></em>' container reference feature.

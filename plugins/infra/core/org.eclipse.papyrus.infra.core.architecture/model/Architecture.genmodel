@@ -6,12 +6,14 @@
     modelPluginID="org.eclipse.papyrus.infra.core.architecture" modelName="Architecture"
     modelPluginClass="org.eclipse.papyrus.infra.core.architecture.impl.ArchitecturePlugin"
     nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    testsDirectory="/org.eclipse.papyrus.infra.core.architecture.tests/src-gen" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="8.0" copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.genmodel#//types"
+    testsDirectory="/org.eclipse.papyrus.infra.architecture.tests/src-gen" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="8.0" copyrightFields="false" testsPluginID="org.eclipse.papyrus.infra.architecture.tests"
+    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.genmodel#//types"
     operationReflection="true" importOrganizing="true">
   <foreignModel>Architecture.ecore</foreignModel>
   <genPackages prefix="Architecture" basePackage="org.eclipse.papyrus.infra.core"
-      disposableProviderFactory="true" extensibleProviderFactory="true" ecorePackage="Architecture.ecore#/">
+      disposableProviderFactory="true" generateExampleClass="false" extensibleProviderFactory="true"
+      ecorePackage="Architecture.ecore#/">
     <genClasses image="false" ecoreClass="Architecture.ecore#//ADElement">
       <genFeatures createChild="false" propertyCategory="Element" propertyDescription="The unique id of the element"
           ecoreFeature="ecore:EAttribute Architecture.ecore#//ADElement/id"/>
@@ -89,6 +91,12 @@
           ecoreFeature="ecore:EAttribute Architecture.ecore#//ArchitectureContext/creationCommandClass"/>
       <genFeatures createChild="false" propertyCategory="Context" propertyDescription="The fully qualified name of a command that refactors models that switched to this context. The command must implement the org.eclipse.papyrus.infra.architecture.commands.IModelConversionCommand inteface"
           ecoreFeature="ecore:EAttribute Architecture.ecore#//ArchitectureContext/conversionCommandClass"/>
+      <genFeatures notify="false" createChild="false" propertyCategory="Dependencies"
+          propertySortChoices="true" ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureContext/generalContext"/>
+      <genFeatures notify="false" createChild="false" propertyCategory="Dependencies"
+          propertySortChoices="true" ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureContext/extendedContexts"/>
+      <genFeatures property="Readonly" createChild="false" propertyCategory="Dependencies"
+          ecoreFeature="ecore:EAttribute Architecture.ecore#//ArchitectureContext/extension"/>
       <genOperations ecoreOperation="Architecture.ecore#//ArchitectureContext/ceationCommandClassExists">
         <genParameters ecoreParameter="Architecture.ecore#//ArchitectureContext/ceationCommandClassExists/diagnostics"/>
         <genParameters ecoreParameter="Architecture.ecore#//ArchitectureContext/ceationCommandClassExists/context"/>
@@ -96,6 +104,35 @@
       <genOperations ecoreOperation="Architecture.ecore#//ArchitectureContext/conversionCommandClassExists">
         <genParameters ecoreParameter="Architecture.ecore#//ArchitectureContext/conversionCommandClassExists/diagnostics"/>
         <genParameters ecoreParameter="Architecture.ecore#//ArchitectureContext/conversionCommandClassExists/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="Architecture.ecore#//ArchitectureContext/isConsistentWith">
+        <genParameters ecoreParameter="Architecture.ecore#//ArchitectureContext/isConsistentWith/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="Architecture.ecore#//ArchitectureContext/contextExtensionsAreConsistent">
+        <genParameters ecoreParameter="Architecture.ecore#//ArchitectureContext/contextExtensionsAreConsistent/diagnostics"/>
+        <genParameters ecoreParameter="Architecture.ecore#//ArchitectureContext/contextExtensionsAreConsistent/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="Architecture.ecore#//ArchitectureContext/contextGeneralizationIsConsistent">
+        <genParameters ecoreParameter="Architecture.ecore#//ArchitectureContext/contextGeneralizationIsConsistent/diagnostics"/>
+        <genParameters ecoreParameter="Architecture.ecore#//ArchitectureContext/contextGeneralizationIsConsistent/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="Architecture.ecore#//ArchitectureContext/creationCommandClassRequired">
+        <genParameters ecoreParameter="Architecture.ecore#//ArchitectureContext/creationCommandClassRequired/diagnostics"/>
+        <genParameters ecoreParameter="Architecture.ecore#//ArchitectureContext/creationCommandClassRequired/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="Architecture.ecore#//ArchitectureContext/allExtendedContexts"/>
+      <genOperations ecoreOperation="Architecture.ecore#//ArchitectureContext/allGeneralContexts"/>
+      <genOperations ecoreOperation="Architecture.ecore#//ArchitectureContext/extensionCycle">
+        <genParameters ecoreParameter="Architecture.ecore#//ArchitectureContext/extensionCycle/diagnostics"/>
+        <genParameters ecoreParameter="Architecture.ecore#//ArchitectureContext/extensionCycle/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="Architecture.ecore#//ArchitectureContext/generalizationCycle">
+        <genParameters ecoreParameter="Architecture.ecore#//ArchitectureContext/generalizationCycle/diagnostics"/>
+        <genParameters ecoreParameter="Architecture.ecore#//ArchitectureContext/generalizationCycle/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="Architecture.ecore#//ArchitectureContext/generalNotExtended">
+        <genParameters ecoreParameter="Architecture.ecore#//ArchitectureContext/generalNotExtended/diagnostics"/>
+        <genParameters ecoreParameter="Architecture.ecore#//ArchitectureContext/generalNotExtended/context"/>
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="Architecture.ecore#//ArchitectureFramework"/>

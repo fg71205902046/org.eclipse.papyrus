@@ -10,7 +10,7 @@
  *  
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
- *  Christian W. Damus - bug 539694
+ *  Christian W. Damus - bugs 539694, 570486
  *  
  * 
  */
@@ -41,6 +41,9 @@ import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getExtensionPrefix <em>Extension Prefix</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getCreationCommandClass <em>Creation Command Class</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getConversionCommandClass <em>Conversion Command Class</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getGeneralContext <em>General Context</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getExtendedContexts <em>Extended Contexts</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#isExtension <em>Extension</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureContext()
@@ -150,8 +153,7 @@ public interface ArchitectureContext extends ADElement {
 	 * @return the value of the '<em>Creation Command Class</em>' attribute.
 	 * @see #setCreationCommandClass(String)
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureContext_CreationCommandClass()
-	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/papyrus/infra/core/architecture classConstraint='bundleclass://org.eclipse.papyrus.infra.architecture/org.eclipse.papyrus.infra.architecture.commands.IModelCreationCommand'"
+	 * @model annotation="http://www.eclipse.org/papyrus/infra/core/architecture classConstraint='bundleclass://org.eclipse.papyrus.infra.architecture/org.eclipse.papyrus.infra.architecture.commands.IModelCreationCommand'"
 	 * @generated
 	 */
 	String getCreationCommandClass();
@@ -196,6 +198,60 @@ public interface ArchitectureContext extends ADElement {
 	void setConversionCommandClass(String value);
 
 	/**
+	 * Returns the value of the '<em><b>General Context</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * An {@link ArchitectureContext} of the same kind that this context specializes.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>General Context</em>' reference.
+	 * @see #setGeneralContext(ArchitectureContext)
+	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureContext_GeneralContext()
+	 * @model
+	 * @generated
+	 */
+	ArchitectureContext getGeneralContext();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getGeneralContext <em>General Context</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>General Context</em>' reference.
+	 * @see #getGeneralContext()
+	 * @generated
+	 */
+	void setGeneralContext(ArchitectureContext value);
+
+	/**
+	 * Returns the value of the '<em><b>Extended Contexts</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * {@link ArchitectureContext}s to which this context contributes additional definitions.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Extended Contexts</em>' reference list.
+	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureContext_ExtendedContexts()
+	 * @model
+	 * @generated
+	 */
+	EList<ArchitectureContext> getExtendedContexts();
+
+	/**
+	 * Returns the value of the '<em><b>Extension</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Whether this context is an {@linkplain #getExtendedContexts() extension of other contexts}. Extension contexts are not presented in their own right in model creation wizards and other UI components.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Extension</em>' attribute.
+	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureContext_Extension()
+	 * @model required="true" transient="true" changeable="false" volatile="true"
+	 * @generated
+	 */
+	boolean isExtension();
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model diagnosticsUnique="false" contextUnique="false"
@@ -210,6 +266,105 @@ public interface ArchitectureContext extends ADElement {
 	 * @generated
 	 */
 	boolean conversionCommandClassExists(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Query whether the context is consistent with some other {@code context}. At the least, this means that it is of the same metaclass: an {@link ArchitectureFramework} is not consistent with an {@link ArchitectureDescriptionLanguage}.
+	 * <!-- end-model-doc -->
+	 * @model contextRequired="true"
+	 * @generated
+	 */
+	boolean isConsistentWith(ArchitectureContext context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * A context must be {@linkplain #isConsistentWith(ArchitectureContext consistent with} all contexts that it extends.
+	 * <!-- end-model-doc -->
+	 * @model diagnosticsUnique="false" contextUnique="false"
+	 * @generated
+	 */
+	boolean contextExtensionsAreConsistent(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * A context must be {@linkplain #isConsistentWith(ArchitectureContext consistent with} all the context that it specializes (if any).
+	 * <!-- end-model-doc -->
+	 * @model diagnosticsUnique="false" contextUnique="false"
+	 * @generated
+	 */
+	boolean contextGeneralizationIsConsistent(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * A context requires a {@linkplain #getCreationCommandClass() creation command class} if it {@linkplain #isExtension() is not an extension} of some other context.
+	 * <!-- end-model-doc -->
+	 * @model diagnosticsUnique="false" contextUnique="false"
+	 * @generated
+	 */
+	boolean creationCommandClassRequired(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Query the graph of all contexts that this context extends, in breadth-first order from those directly extended.
+	 * <!-- end-model-doc -->
+	 * @model
+	 * @generated
+	 */
+	EList<ArchitectureContext> allExtendedContexts();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Query the chain of all contexts that this context specializes, from most specific to most general.
+	 * <!-- end-model-doc -->
+	 * @model
+	 * @generated
+	 */
+	EList<ArchitectureContext> allGeneralContexts();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * A context may not extend itself, neither directly not indirectly.
+	 * <!-- end-model-doc -->
+	 * @model diagnosticsUnique="false" contextUnique="false"
+	 * @generated
+	 */
+	boolean extensionCycle(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * A context may not specialize itself, neither directly not indirectly.
+	 * <!-- end-model-doc -->
+	 * @model diagnosticsUnique="false" contextUnique="false"
+	 * @generated
+	 */
+	boolean generalizationCycle(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * A context must not extend any {@linkplain #allGeneralContexts() context that it specializes}, neither directly nor indirectly.
+	 * <!-- end-model-doc -->
+	 * @model diagnosticsUnique="false" contextUnique="false"
+	 * @generated
+	 */
+	boolean generalNotExtended(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * Returns the value of the '<em><b>Domain</b></em>' container reference.
