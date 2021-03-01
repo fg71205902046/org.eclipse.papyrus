@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017 CEA LIST.
+ * Copyright (c) 2017, 2021 CEA LIST, Christian W. Damus, and others.
  *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License 2.0
@@ -10,24 +10,28 @@
  *
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
+ *  Christian W. Damus - bug 570486
  *
  *
  */
 package org.eclipse.papyrus.infra.core.architecture.merged;
 
 import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
 import java.util.Map;
-import java.util.Set;
+import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.util.ECollections;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.architecture.commands.IModelConversionCommand;
 import org.eclipse.papyrus.infra.architecture.commands.IModelCreationCommand;
-import org.eclipse.papyrus.infra.core.architecture.ADElement;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureContext;
+import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureViewpoint;
+import org.eclipse.papyrus.infra.core.architecture.util.MergeTraceAdapter;
 import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 
@@ -44,14 +48,37 @@ import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
  */
 public abstract class MergedArchitectureContext extends MergedADElement {
 
+	private final EList<MergedArchitectureViewpoint> viewpoints = new UniqueEList<>();
+	private EList<MergedArchitectureViewpoint> defaultViewpoints;
+
 	/**
 	 * Create a new '<em><b>Merged Architecture Context</b></em>'.
 	 *
 	 * @param domain
 	 *            the merged parent domain of this context
+	 * @deprecated Since version 3.1 of the bundle, the merge model requires a backing model.
+	 * @see <a href="https://eclip.se/573168">bug 573168</a> to follow removal of this API in a future release
 	 */
+	@Deprecated(since = "3.1", forRemoval = true)
 	public MergedArchitectureContext(MergedArchitectureDomain domain) {
-		super(domain);
+		this(domain, null);
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	public MergedArchitectureContext(MergedArchitectureDomain domain, ArchitectureContext context) {
+		super(domain, context);
+
+		domain.addContext(this);
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	@Override
+	protected ArchitectureContext getModel() {
+		return (ArchitectureContext) super.getModel();
 	}
 
 	/**
@@ -60,13 +87,7 @@ public abstract class MergedArchitectureContext extends MergedADElement {
 	 * @return an extension prefix
 	 */
 	public String getExtensionPrefix() {
-		for (ADElement element : elements) {
-			ArchitectureContext context = (ArchitectureContext) element;
-			if (context.getExtensionPrefix() != null) {
-				return context.getExtensionPrefix();
-			}
-		}
-		return null;
+		return getModel().getExtensionPrefix();
 	}
 
 	/**
@@ -75,13 +96,11 @@ public abstract class MergedArchitectureContext extends MergedADElement {
 	 * @return a creation command class
 	 */
 	public Class<? extends IModelCreationCommand> getCreationCommandClass() throws ClassNotFoundException {
-		for (ADElement element : elements) {
-			ArchitectureContext context = (ArchitectureContext) element;
-			if (context.getCreationCommandClass() != null) {
-				return ClassLoaderHelper.loadClass(context.getCreationCommandClass(), IModelCreationCommand.class, EcoreUtil.getURI(context));
-			}
-		}
-		return null;
+		String className = getCreationCommandClassName();
+
+		return className == null ? null
+				: ClassLoaderHelper.loadClass(className, IModelCreationCommand.class,
+						EcoreUtil.getURI(MergeTraceAdapter.getSource(getModel(), ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS)));
 	}
 
 	/**
@@ -90,13 +109,10 @@ public abstract class MergedArchitectureContext extends MergedADElement {
 	 * @return a conversion command class
 	 */
 	public Class<? extends IModelConversionCommand> getConversionCommandClass() throws ClassNotFoundException {
-		for (ADElement element : elements) {
-			ArchitectureContext context = (ArchitectureContext) element;
-			if (context.getConversionCommandClass() != null) {
-				return ClassLoaderHelper.loadClass(context.getConversionCommandClass(), IModelConversionCommand.class, EcoreUtil.getURI(context));
-			}
-		}
-		return null;
+		String className = getConversionCommandClassName();
+		return className == null ? null
+				: ClassLoaderHelper.loadClass(className, IModelConversionCommand.class,
+						EcoreUtil.getURI(MergeTraceAdapter.getSource(getModel(), ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS)));
 	}
 
 	/**
@@ -106,13 +122,7 @@ public abstract class MergedArchitectureContext extends MergedADElement {
 	 * @since 2.0
 	 */
 	public String getCreationCommandClassName() {
-		for (ADElement element : elements) {
-			ArchitectureContext context = (ArchitectureContext) element;
-			if (context.getCreationCommandClass() != null) {
-				return context.getCreationCommandClass();
-			}
-		}
-		return null;
+		return getModel().getCreationCommandClass();
 	}
 
 	/**
@@ -122,13 +132,7 @@ public abstract class MergedArchitectureContext extends MergedADElement {
 	 * @since 2.0
 	 */
 	public String getConversionCommandClassName() {
-		for (ADElement element : elements) {
-			ArchitectureContext context = (ArchitectureContext) element;
-			if (context.getConversionCommandClass() != null) {
-				return context.getConversionCommandClass();
-			}
-		}
-		return null;
+		return getModel().getConversionCommandClass();
 	}
 
 	/**
@@ -146,12 +150,8 @@ public abstract class MergedArchitectureContext extends MergedADElement {
 	 * @return a merged collection of element type set configurations
 	 */
 	public Collection<ElementTypeSetConfiguration> getElementTypes() {
-		Set<ElementTypeSetConfiguration> configurations = new LinkedHashSet<>();
-		for (ADElement element : elements) {
-			ArchitectureContext context = (ArchitectureContext) element;
-			configurations.addAll(context.getElementTypes());
-		}
-		return Collections.unmodifiableCollection(configurations);
+		return ECollections.unmodifiableEList(getModel().getElementTypes());
+
 	}
 
 	/**
@@ -160,18 +160,15 @@ public abstract class MergedArchitectureContext extends MergedADElement {
 	 * @return a merged collection of viewpoints
 	 */
 	public Collection<MergedArchitectureViewpoint> getViewpoints() {
-		Map<String, MergedArchitectureViewpoint> viewpoints = new HashMap<>();
-		for (ADElement element : elements) {
-			ArchitectureContext context = (ArchitectureContext) element;
-			for (ArchitectureViewpoint viewpoint : context.getViewpoints()) {
-				MergedArchitectureViewpoint merged = viewpoints.get(viewpoint.getName());
-				if (merged == null) {
-					viewpoints.put(viewpoint.getName(), merged = new MergedArchitectureViewpoint(this));
-				}
-				merged.merge(viewpoint);
-			}
-		}
-		return Collections.unmodifiableCollection(viewpoints.values());
+		return ECollections.unmodifiableEList(viewpoints);
+
+	}
+
+	final void addViewpoint(MergedArchitectureViewpoint viewpoint) {
+		viewpoints.add(viewpoint);
+
+		// Recalculate the default viewpoints
+		defaultViewpoints = null;
 	}
 
 	/**
@@ -180,18 +177,21 @@ public abstract class MergedArchitectureContext extends MergedADElement {
 	 * @return a merged collection of viewpoints
 	 */
 	public Collection<MergedArchitectureViewpoint> getDefaultViewpoints() {
-		Map<String, MergedArchitectureViewpoint> viewpoints = new HashMap<>();
-		for (ADElement element : elements) {
-			ArchitectureContext context = (ArchitectureContext) element;
-			for (ArchitectureViewpoint viewpoint : context.getDefaultViewpoints()) {
-				MergedArchitectureViewpoint merged = viewpoints.get(viewpoint.getName());
-				if (merged == null) {
-					viewpoints.put(viewpoint.getName(), merged = new MergedArchitectureViewpoint(this));
-				}
-				merged.merge(viewpoint);
-			}
+		if (defaultViewpoints == null) {
+			Map<ArchitectureViewpoint, MergedArchitectureViewpoint> map = getViewpoints().stream()
+					.collect(Collectors.toMap(MergedArchitectureViewpoint::getModel, Function.identity()));
+			defaultViewpoints = getModel().getDefaultViewpoints().stream()
+					.map(map::get)
+					.filter(Objects::nonNull)
+					.collect(Collectors.toCollection(UniqueEList::new));
 		}
-		return Collections.unmodifiableCollection(viewpoints.values());
+
+		return ECollections.unmodifiableEList(defaultViewpoints);
+
+	}
+
+	final void addDefaultViewpoint(MergedArchitectureViewpoint viewpoint) {
+		defaultViewpoints.add(viewpoint);
 	}
 
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017, 2020 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2017, 2021 CEA LIST, Christian W. Damus, and others.
  *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License 2.0
@@ -10,14 +10,16 @@
  *
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
- *  Christian W. Damus - bug 569357
+ *  Christian W. Damus - bugs 569357, 570486
  *
  *
  */
 package org.eclipse.papyrus.infra.architecture;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -33,7 +35,12 @@ import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureCont
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureDescriptionLanguage;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureDomain;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureViewpoint;
+import org.eclipse.papyrus.infra.core.architecture.util.FormattableADElement;
+import org.eclipse.papyrus.infra.core.internal.architecture.merger.InternalArchitectureDomainMerger;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ResourceUtils;
+
+import com.google.common.collect.Iterables;
 
 /**
  * A merger for architecture domains read from extensions or preferences or contributed
@@ -53,6 +60,11 @@ public class ArchitectureDomainMerger implements Cloneable {
 	private ResourceSet resourceSet;
 
 	/**
+	 * A resource set used to store merged architecture models
+	 */
+	private ResourceSet mergedResourceSet;
+
+	/**
 	 * a collection of architecture models coming from extensions
 	 */
 	private Collection<URI> extensionModels;
@@ -68,9 +80,14 @@ public class ArchitectureDomainMerger implements Cloneable {
 	private Collection<ArchitectureDomain> dynamicDomains;
 
 	/**
+	 * A collection of loaded source domains
+	 */
+	private Collection<ArchitectureDomain> loadedDomains;
+
+	/**
 	 * A collection of merged domains
 	 */
-	private Map<String, MergedArchitectureDomain> mergedDomains;
+	private Collection<MergedArchitectureDomain> mergedDomains;
 
 	/**
 	 * a cached mapping from id to ADElement
@@ -99,6 +116,7 @@ public class ArchitectureDomainMerger implements Cloneable {
 	 *            a collection of architecture model URIs
 	 */
 	public void setExtensionModels(Collection<URI> models) {
+		logf("Extension Architecture Domain models changed: %s.", models); //$NON-NLS-1$
 		this.extensionModels = models;
 		reset();
 	}
@@ -119,6 +137,7 @@ public class ArchitectureDomainMerger implements Cloneable {
 	 *            a collection of architecture model URIS
 	 */
 	public void setPreferenceModels(Collection<URI> models) {
+		logf("Preference Architecture Domain models changed: %s.", models); //$NON-NLS-1$
 		this.preferenceModels = models;
 		reset();
 	}
@@ -139,6 +158,7 @@ public class ArchitectureDomainMerger implements Cloneable {
 	 *            a collection of architecture domains
 	 */
 	public void setDynamicDomains(Collection<ArchitectureDomain> domains) {
+		logf("Dynamic Architecture Domains changed: %s.", FormattableADElement.wrap(domains)); //$NON-NLS-1$
 		this.dynamicDomains = domains;
 		reset();
 	}
@@ -149,10 +169,8 @@ public class ArchitectureDomainMerger implements Cloneable {
 	 * @return the collection of merged architecture domains
 	 */
 	public Collection<MergedArchitectureDomain> getDomains() {
-		if (mergedDomains == null) {
-			init();
-		}
-		return mergedDomains.values();
+		init();
+		return Collections.unmodifiableCollection(mergedDomains);
 	}
 
 	/**
@@ -163,9 +181,7 @@ public class ArchitectureDomainMerger implements Cloneable {
 	 * @return an architecture context
 	 */
 	public MergedArchitectureContext getArchitectureContextById(String id) {
-		if (mergedDomains == null) {
-			init();
-		}
+		init();
 		Object found = idCache.get(id);
 		return (found instanceof MergedArchitectureContext) ? (MergedArchitectureContext) found : null;
 	}
@@ -178,9 +194,7 @@ public class ArchitectureDomainMerger implements Cloneable {
 	 * @return an architecture viewpoint
 	 */
 	public MergedArchitectureViewpoint getArchitectureViewpointById(String id) {
-		if (mergedDomains == null) {
-			init();
-		}
+		init();
 		Object found = idCache.get(id);
 		return (found instanceof MergedArchitectureViewpoint) ? (MergedArchitectureViewpoint) found : null;
 	}
@@ -193,9 +207,7 @@ public class ArchitectureDomainMerger implements Cloneable {
 	 * @return a representation kind
 	 */
 	public RepresentationKind getRepresentationKindById(String id) {
-		if (mergedDomains == null) {
-			init();
-		}
+		init();
 		Object found = idCache.get(id);
 		return (found instanceof RepresentationKind) ? (RepresentationKind) found : null;
 	}
@@ -211,19 +223,85 @@ public class ArchitectureDomainMerger implements Cloneable {
 	/*
 	 * Resets the merger's state
 	 */
-	private void reset() {
+	private synchronized void reset() {
+		log("Resetting the Architecture Domains."); //$NON-NLS-1$
+
+		// UML models can be cross-referenced, which may leak stuff via the CacheAdapter
+		if (resourceSet != null) {
+			EMFHelper.unload(resourceSet);
+		}
+		if (mergedResourceSet != null) {
+			EMFHelper.unload(mergedResourceSet);
+		}
+
 		resourceSet = null;
+		mergedResourceSet = null;
+		loadedDomains = null;
 		mergedDomains = null;
 		idCache = null;
+	}
+
+	/** Log a model tracing message. */
+	static void log(String message) {
+		Activator.log.trace(Activator.DEBUG_MODELS, message);
+	}
+
+	/** Log a model tracing message. */
+	static void logf(String pattern, Object arg) {
+		if (Activator.log.isTraceEnabled(Activator.DEBUG_MODELS)) {
+			Activator.log.trace(Activator.DEBUG_MODELS, String.format(pattern, FormattableADElement.wrap(arg)));
+		}
+	}
+
+	/** Log a model tracing message. */
+	static void logf(String pattern, Object arg1, Object arg2) {
+		if (Activator.log.isTraceEnabled(Activator.DEBUG_MODELS)) {
+			Activator.log.trace(Activator.DEBUG_MODELS, String.format(pattern, FormattableADElement.wrap(arg1), FormattableADElement.wrap(arg2)));
+		}
 	}
 
 	/**
 	 * Initializes this instance of the merger
 	 */
-	void init() {
+	synchronized void init() {
+		if (mergedDomains != null) {
+			return; // Already initialized
+		}
+
+		log("Initializing the Architecture Domains."); //$NON-NLS-1$
+
+		Collection<ArchitectureDomain> domains = getLoadedArchitectureDomains();
+
+		mergedDomains = new ArrayList<>();
+
+		log("Merging the Architecture Domains."); //$NON-NLS-1$
+
+		InternalArchitectureDomainMerger merger = InternalArchitectureDomainMerger.newInstance();
+		Iterables.addAll(mergedDomains, merger.mergeDomains(domains));
+		if (!mergedDomains.isEmpty()) {
+			mergedResourceSet = mergedDomains.iterator().next().getAdapter(ResourceSet.class);
+
+			// Purge unneeded resources from domains that were merged into other domains
+			mergedResourceSet.getResources().removeIf(res -> !res.isLoaded() || res.getContents().isEmpty());
+		}
+
+		log("Indexing the Architecture Domains."); //$NON-NLS-1$
+
+		buildCache();
+	}
+
+	private synchronized void initResourceSet() {
+		if (loadedDomains != null) {
+			return; // Already initialized
+		}
+
+		log("Loading the Architecture Domains from source models."); //$NON-NLS-1$
+
 		resourceSet = new ResourceSetImpl();
 		resourceSet.setURIConverter(ResourceUtils.createWorkspaceAwareURIConverter());
-		mergedDomains = new HashMap<>();
+		resourceSet.setPackageRegistry(ResourceUtils.createWorkspaceAwarePackageRegistry());
+
+		loadedDomains = new ArrayList<>();
 
 		Stream<URI> modelURIs = Stream.empty();
 		if (extensionModels != null) {
@@ -237,7 +315,7 @@ public class ArchitectureDomainMerger implements Cloneable {
 		modelURIs.map(resourceSet.getURIConverter()::normalize).distinct().forEach(model -> {
 			ArchitectureDomain domain = loadDomain(resourceSet.createResource(model));
 			if (domain != null) {
-				merge(domain);
+				loadedDomains.add(domain);
 			}
 		});
 
@@ -245,12 +323,10 @@ public class ArchitectureDomainMerger implements Cloneable {
 		if (dynamicDomains != null) {
 			for (ArchitectureDomain domain : dynamicDomains) {
 				if (domain != null) {
-					merge(domain);
+					loadedDomains.add(domain);
 				}
 			}
 		}
-
-		buildCache();
 	}
 
 	/*
@@ -258,9 +334,11 @@ public class ArchitectureDomainMerger implements Cloneable {
 	 */
 	private ArchitectureDomain loadDomain(Resource resource) {
 		try {
+			logf("Loading Architecture resource %s.", resource.getURI()); //$NON-NLS-1$
 			resource.load(null);
 		} catch (IOException e) {
 			// Don't log the error yet; we're trying several options
+			logf("Exception loading Architecture resource %s: %s", resource.getURI(), e.getMessage()); //$NON-NLS-1$
 			return null;
 		}
 		EObject content = resource.getContents().get(0);
@@ -273,22 +351,11 @@ public class ArchitectureDomainMerger implements Cloneable {
 	}
 
 	/*
-	 * Merges the given architecture domain with the others
-	 */
-	private void merge(ArchitectureDomain domain) {
-		MergedArchitectureDomain merged = mergedDomains.get(domain.getName());
-		if (merged == null) {
-			mergedDomains.put(domain.getName(), merged = new MergedArchitectureDomain());
-		}
-		merged.merge(domain);
-	}
-
-	/*
 	 * builds a id to element cache for faster lookup
 	 */
 	private void buildCache() {
 		idCache = new HashMap<>();
-		for (MergedArchitectureDomain domain : mergedDomains.values()) {
+		for (MergedArchitectureDomain domain : mergedDomains) {
 			for (MergedArchitectureContext context : domain.getContexts()) {
 				idCache.put(context.getId(), context);
 				for (MergedArchitectureViewpoint viewpoint : context.getViewpoints()) {
@@ -302,6 +369,17 @@ public class ArchitectureDomainMerger implements Cloneable {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Obtain the architecture domains that are the source models for my merged architecture domains.
+	 *
+	 * @return the original registered architecture domains
+	 * @since 3.1
+	 */
+	Collection<ArchitectureDomain> getLoadedArchitectureDomains() {
+		initResourceSet();
+		return Collections.unmodifiableCollection(loadedDomains);
 	}
 
 }

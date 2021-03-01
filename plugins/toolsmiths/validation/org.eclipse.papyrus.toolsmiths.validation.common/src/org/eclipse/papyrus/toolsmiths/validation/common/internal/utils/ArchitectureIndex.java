@@ -40,7 +40,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
 import org.eclipse.papyrus.infra.core.architecture.ADElement;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureDomain;
-import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureDomain;
 import org.eclipse.papyrus.infra.core.utils.JobExecutorService;
 import org.eclipse.papyrus.infra.emf.utils.InternalCrossReferencer;
 import org.eclipse.papyrus.toolsmiths.validation.common.Activator;
@@ -106,9 +105,7 @@ public class ArchitectureIndex {
 	}
 
 	private Multimap<EObject, EStructuralFeature.Setting> computeExternalCrossReferences() {
-		Set<? extends ADElement> architectureDomains = ArchitectureDomainManager.getInstance().getMerger().getDomains().stream()
-				.map(MergedArchitectureDomain::getMergedElements)
-				.flatMap(Collection::stream)
+		Set<? extends ADElement> architectureDomains = ArchitectureDomainManager.getInstance().getRegisteredArchitectureDomains().stream()
 				.collect(Collectors.toSet());
 
 		ImmutableListMultimap.Builder<EObject, EStructuralFeature.Setting> result = ImmutableListMultimap.builder();
@@ -130,9 +127,7 @@ public class ArchitectureIndex {
 	}
 
 	private Multimap<EObject, EStructuralFeature.Setting> computeInternalCrossReferences() {
-		Set<? extends ADElement> architectureDomains = ArchitectureDomainManager.getInstance().getMerger().getDomains().stream()
-				.map(MergedArchitectureDomain::getMergedElements)
-				.flatMap(Collection::stream)
+		Set<? extends ADElement> architectureDomains = ArchitectureDomainManager.getInstance().getRegisteredArchitectureDomains().stream()
 				.collect(Collectors.toSet());
 
 		ImmutableListMultimap.Builder<EObject, EStructuralFeature.Setting> result = ImmutableListMultimap.builder();

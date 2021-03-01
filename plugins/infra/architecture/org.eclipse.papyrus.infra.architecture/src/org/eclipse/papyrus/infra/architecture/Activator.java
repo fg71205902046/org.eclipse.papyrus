@@ -1,17 +1,17 @@
 /**
  * Copyright (c) 2017 CEA LIST.
- * 
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License 2.0
  *  which accompanies this distribution, and is available at
  *  https://www.eclipse.org/legal/epl-2.0/
  *
  *  SPDX-License-Identifier: EPL-2.0
- *  
+ *
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
- *  
- * 
+ *
+ *
  */
 package org.eclipse.papyrus.infra.architecture;
 
@@ -26,6 +26,12 @@ public class Activator extends Plugin {
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.infra.architecture"; //$NON-NLS-1$
+
+	/** Debug option for tracing the operations on Architecture models in the Architecture Domain Manager. */
+	public static final String DEBUG_MODELS = "models"; //$NON-NLS-1$
+
+	/** Debug option for tracing the Architecture model merge. */
+	public static final String DEBUG_MERGE = "merge"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;

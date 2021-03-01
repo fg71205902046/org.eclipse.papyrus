@@ -83,7 +83,7 @@ The diagrams properties show the following information:
 
 =Definition of New Architecture Models=
 
-Papyrus supports the definition of new architecture models that can subsequently be used by selecting them as other models in the Papyrus Architecture Context preference page, as presented above. Papyrus architecture models are defined in files with the *.architecture extension. They are really just Ecore models that can be edited with the specialized architecture model editor provided by Papyrus.
+Papyrus supports the definition of new architecture models that can subsequently be used by selecting them as other models in the Papyrus Architecture Context preference page, as presented above. Papyrus architecture models are defined in files with the *.architecture extension. They are really just EMF models that can be edited with the specialized architecture model editor provided by Papyrus.
 
 ==Basic Concepts==
 
@@ -91,12 +91,129 @@ The architecture metamodel in Papyrus is implemented as a realization and an ext
 * A ''domain'' is the root of the architecture model. It can contains a collection of ''concerns'', ''stakeholders'', as well as ''contexts'' (which can be ''description languages'' and/or ''frameworks'').
 * A ''concern'' (from ISO 42010) represents in Papyrus a matter of interest to some stakeholder.
 * A ''stakeholder'' (from ISO 42010) represents in Papyrus an archetype of users. It references a set of its ''concerns''.
-* A ''description language'' (from ISO 42010) represents in Papyrus a modeling language (e.g., UML, SysML). It has a unique ''id' that corresponds to that of an ''IClientContext'' from GMF. It references a ''metamodel'', a set of ''profiles'', a set of ''element type set configurations'', a ''creation command'' (creates a model of this language), a ''conversion command'' (converts a model to this language), and and ''icon''. It also has an optional ''extension prefix'' for its models. It can also contain a set of ''representation kinds'' (which can be either ''diagrams'' or ''tables'') and a set of ''viewpoints''. This element can also provide ''TreeViewerConfigurations'' elements to configure the display of the model in TreeViewer (used in Dialog and in ModelExplorer).
-* A ''framework'' (from ISO 42010) represents in Papyrus a modeling framework (e.g., DoDAF). It has a unique ''id' that corresponds to that of an ''IClientContext'' from GMF. It references a set of ''element type set configurations'', a ''creation command'' (creates a model of this framework), a ''conversion command'' (converts a model to this framework), and an ''icon''. It also has an optional ''extension prefix'' for its models. It can also contain a set of ''viewpoints''.
-* A ''viewpoint'' (from ISO 42010) in Papyrus references set of ''representation kinds'', which can be ''diagrams'' or ''tables''.
-* A ''diagram'' in this context does not represent a single instance (for example the diagram named X in model Y), but the specification (or prototype) of future diagrams of this kind. For example the ''UML Class Diagram''.
+* A ''description language'' (from ISO 42010) represents in Papyrus a modeling language (e.g., UML, SysML). It has a unique ''identifier'' that corresponds to that of an ''IClientContext'' from GMF. It references a ''metamodel'', a set of ''profiles'', a set of ''element type set configurations'', a ''creation command'' (creates a model of this language), a ''conversion command'' (converts a model to this language), and an ''icon''. It also has an optional ''extension prefix'' for its models. It can also contain a set of ''representation kinds'' (which can be either ''diagrams'' or ''tables'') and a set of ''viewpoints''. This element can also provide ''TreeViewerConfigurations'' elements to configure the display of the model in TreeViewer (used in Dialogs and in the Model Explorer).
+* A ''framework'' (from ISO 42010) represents in Papyrus a modeling framework (e.g., DoDAF). It has a unique ''identifier'' that corresponds to that of an ''IClientContext'' from GMF. It references a set of ''element type set configurations'', a ''creation command'' (creates a model of this framework), a ''conversion command'' (converts a model to this framework), and an ''icon''. It also has an optional ''extension prefix'' for its models. It can also contain a set of ''viewpoints''.
+* A ''viewpoint'' (from ISO 42010) in Papyrus references a set of ''representation kinds'', which can be ''diagrams'' or ''tables''.
+* A ''diagram'' in this context does not represent a single instance (for example the diagram named X in model Y), but the specification (or prototype) of all diagrams of this kind. For example the ''UML Class Diagram''.
 * A ''table'' is another kind of view in Papyrus that enables the presentation of models in a tabular format.
-* A ''tree viewer configuration'' is used to configure the display of the model in TreeViewer (used in Dialog and in ModelExplorer). An implementation of it is provided by the class ''EMFFacetTreeViewerConfiguration''
+* A ''tree viewer configuration'' is used to configure the display of the model in TreeViewer (used in Dialogs and in the Model Explorer). An implementation of it is provided by the class ''EMFFacetTreeViewerConfiguration''
+
+==Extension and Inheritance==
+
+Papyrus adds to the ISO 42010 standard two mechanisms that enable reuse of and additions to ''architecture contexts'' provided by other bundles.
+These are ''extension'' and ''inheritance.'' Extension allows an ''architecture context'' to '''add''' definitions to other contexts; these added
+definitions are merged as appropriate (see below) with definitions already in the receiving context and contributed to it by other extensions.
+Inheritance allows an ''architecture context'' to reuse definitions from another context, integrating them into itself in accordance with the same
+merge semantics as extension: inherited definitions are merged into the inheriting context's local definitions and also any definitions that may
+be added to it by extensions.
+
+===Context Extension===
+
+A common use case for context extension is the addition of custom viewpoints and representation kinds to some context. For example, consider a
+plug-in that defines a new kind of diagram or table for some peculiar visualization of elements in UML models. Papyrus provides an ''architecture
+description language'' covering the standard UML diagrams. An custom ''architecture description language'' can have an ''extension'' relationship
+to UML by adding the UML language to its ''extended contexts'' list. Its custom viewpoint with its custom representation kinds are then '''added'''
+to the viewpoints and representation kinds defined in the UML context.
+
+An ''architecture context'' that extends other contexts via this mechanism is an ''extension context'' and is not instantiable in its own right in
+Papyrus models. Its only purpose is to contribute definitions to the contexts that it extends. In Papyrus, its definitions are ''merged'' into the
+contexts that it extends and then it is elided from the set of contexts available in the UI.
+
+===Context Inheritance===
+
+Another use case involves specialization of another ''architecture context'' for domain-specific semantics. For example, UML is engineered to enable
+refinement of the language in various ways for the description of domain-specific modeling languages (DSMLs) such as UML-RT or SysML. For these
+purposes, Papyrus makes it possible to define an ''architecture context'' that '''inherits''' another context. A domain-specific
+''architecture description language'' can, for example, set the UML ''architecture description language'' as its ''general context''. This defines
+a new language that has all of the definitions provided by its general context (here, UML) and adds further definitions of its own. Unlike the
+''extension'' scenario, a ''specialization context'' that inherits some other context is a first-class context that is available in Papyrus for
+creation of models in that language (or framework).
+
+===Architecture Context Merge===
+
+In cases of ''extension'' and ''inheritance'' of contexts, definitions from one context are added to another context, albeit in different directions.
+This contribution of definitions from one context to another is not strictly additive: definitions that would have the same name in the
+same scope (thus would have equal ''qualified names'') are ''merged''. When Papyrus initializes its ''architecture definition'' subsystem, it loads
+all of the source architecture models and merges their contexts according to the semantics described below. The contexts resulting from this merge
+operation are what are presented in the ''New Model Wizard'' and other UI.
+
+====Semantics of Merge====
+
+Architecture Contexts
+
+* in the case of ''inheritance'', the definitions (viewpoints, representation kinds, etc.) in the ''general'' context are merged into the ''specific'' (inheriting) context. A context may inherit zero or one contexts of the same kind (''architecture description language'' or ''architecture framework'')
+* in the case of ''extension'', the definitions in the ''extending'' (or extension) context are merged into each of the ''extended'' contexts. A context may extend zero or more contexts of the same kind (''architecture description language'' or ''architecture framework'')
+* the ''specific'' context or ''extended'' context into which some context is merged will copy attributes from the merged context as follows:
+** the receiving context copies the ''name'' of the merged context if it does not already have a name specified
+** the receiving context copies the ''description'' of the merged context if it does not already have a description specified
+** the receiving context copies the ''identifier'' of the merged context if it does not already have an identifier specified
+** the receiving context copies the ''icon'' of the merged context if it does not already have an icon specified
+** the receiving context copies the ''creation command class'' of the merged context if it does not already have a class specified
+** the receiving context copies the ''conversion command class'' of the merged context if it does not already have a class specified
+** the receiving context adds any ''element type set configurations'' of the merged context that it does not already reference
+** the receiving context '''merges''' the ''viewpoints'' of the merged context (details below)
+** the receiving ''architecture description language'' copies the referenced ''metamodel'' of the merged language if it does not already reference some metamodel
+** the receiving ''architecture description language'' adds any referenced ''profiles'' of the merged language that it does not already reference
+** the receiving ''architecture description language'' copies ''tree viewer configurations'' of the merged language
+** the receiving ''architecture description language'' '''merges''' the ''representation kinds'' of the merged language
+
+Viewpoints
+
+* a viewpoint received into an ''architecture context'' is merged with a viewpoint of the same name, if any, already defined in the receiving context. Otherwise, the viewpoint is just copied into the receiving context
+* in the case of a merge,
+** the receiving viewpoint copies the ''description'' of the merged viewpoint if it does not already have a description specified
+** the receiving viewpoint copies the ''identifier'' of the merged viewpoint if it does not already have an identifier specified
+** the receiving viewpoint copies the ''icon'' of the merged viewpoint if it does not already have an icon specified
+** the receiving viewpoint adds any ''concerns'' of the merged viewpoint that it does not already reference
+** the receiving viewpoint '''merges''' the ''representation kinds'' of the merged viewpoint
+
+Representation Kinds
+
+* a representation kind received into an ''architecture context'' is merged with a representation kind of the same name and type (diagram, table, etc.), if any, already defined in the receiving context. Otherwise, the representation kind is just copied into the receiving context
+* a representation kind received into a ''viewpoint'' is merged in the ''architecture context'' featuring that viewpoint, which is its namespace
+* in the case of a merge,
+** the receiving representation kind copies the ''description'' of the merged representation kind if it does not already have a description specified
+** the receiving representation kind copies the ''identifier'' of the merged representation kind if it does not already have an identifier specified
+** the receiving representation kind copies the ''icon'' of the merged representation kind if it does not already have an icon specified
+** the receiving representation kind copies the ''grayed icon'' of the merged representation kind if it does not already have an icon specified
+** the receiving representation kind adds any ''concerns'' of the merged representation kind that it does not already reference
+** the receiving ''diagram'' '''merges''' the parent diagram of the merged diagram, if any
+** all other details of the merged representation kind are dropped
+
+====Interaction of Context Inheritance and Extension====
+
+An ''architecture context'' may participate in both inheritance and extension relationships. In this case, the context is an ''extension context'' and
+as such is elided by the merge algorithm.
+
+Conceptually, the merge algorithm proceeds in two stages: first a top-down merge of contexts in ''inheritance'' relationships and second a bottom-up
+merge of contexts in ''extension'' relationships. This has several consequences:
+
+* contexts '''do not inherit''' definitions that are added to their general contexts (recursively) by extensions, because inheritance is merged first. This is practically useful because it means that the inheriting context knows extactly what definitions it is inheriting: only those defined locally in its general context (and that context's general context, recursively)
+* extension contexts '''do contribute''' definitions to their extended contexts that they inherit from their general context. Because inheritance is merged first, those inherited definitions are present in the specific context to be merged into the extended contexts
+* contexts that inherit definitions from a general context '''may receive definitions''' from contexts that extend them
+
+As inheritance is transitive, so is extension: a context that merges its definitions into some extended contexts will include in that merge any definitions that are merged into it by other contexts that extend it.
+
+There are configurations of inheritance and extension that are not permitted and are flagged as errors by validation of ''architecture models'':
+
+* a context may not inherit itself, either directly or indirectly. Inheritance cycles are forbidden
+* a context may not extend itself, either directly or indirectly. Extension cycles are forbidden
+* a context may not inherit, either directly or indirectly, a context that it extends, either directly or indirectly. Otherwise, it would inherit its own definitions
+
+The ''architecture contexts'' that result from this merge algorithm do not have any references to inherited and/or extended contexts. This reflects
+semantics of merge as ''copying'' definitions from merged to contexts to receiving contexts, so that these relationships are not needed in the merge
+result. But also, more practically, extension contexts are not included in the merge result (as they only exist to donate definitions to other contexts)
+and so do not exist to reference as general or extended contexts.
+
+<blockquote>''For advanced tools that need it, Papyrus does provide a mechanism by which contexts and other elements in the merge result can be traced to the elements in the source'' architecture models ''from which they are derived. Those source models retain the original inheritance and extension relationships.''</blockquote>
+
+====Architecture Context Debugging====
+
+In case the Papyrus workbench shows an unexpected configuration of ''architecture contexts'', Eclipse tracing options are available
+to assist in the analysis of how the source architecture models were merged to produce that outcome. These are:
+
+* <tt>org.eclipse.papyrus.infra.architecture/debug/models</tt> to trace the discovery and processing of source models by the ''Architecture Domain Manager''
+* <tt>org.eclipse.papyrus.infra.architecture/debug/merge</tt> to trace the merge algorithm as it transforms those source models into the merged ''architecture contexts''
 
 ==Walkthrough==
 

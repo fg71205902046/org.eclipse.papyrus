@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017, 2020 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2017, 2021 CEA LIST, Christian W. Damus, and others.
  *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License 2.0
@@ -11,18 +11,20 @@
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
  *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 550359
- *  Christian W. Damus - bug 569357
+ *  Christian W. Damus - bugs 569357, 570486
  *
  */
 package org.eclipse.papyrus.infra.core.architecture.merged;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.Set;
-
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.papyrus.infra.core.architecture.ADElement;
+import org.eclipse.papyrus.infra.core.architecture.util.MergeTraceAdapter;
+
+import com.google.common.base.Objects;
 
 /**
  * An element that represents a merged collection of {@link org.eclipse.papyrus.infra.core.
@@ -36,7 +38,7 @@ import org.eclipse.papyrus.infra.core.architecture.ADElement;
  * @see org.eclipse.papyrus.infra.core.architecture.ADElement
  * @since 1.0
  */
-public class MergedADElement {
+public class MergedADElement implements IAdaptable {
 
 	/**
 	 * The merged parent of this element
@@ -46,17 +48,41 @@ public class MergedADElement {
 	/**
 	 * the architecture elements that represent merge increments of this element
 	 */
-	protected Set<ADElement> elements;
+	protected ADElement element;
 
 	/**
 	 * Create a new '<em><b>Merged AD Element</b></em>'.
 	 *
 	 * @param parent
 	 *            the merged parent of this element
+	 * @deprecated Since version 3.1 of the bundle, the merge model requires a backing model.
+	 * @see <a href="https://eclip.se/573168">bug 573168</a> to follow removal of this API in a future release
 	 */
+	@Deprecated(since = "3.1", forRemoval = true)
 	public MergedADElement(MergedADElement parent) {
+		this(parent, null);
+	}
+
+	/**
+	 * Create a new '<em><b>Merged AD Element</b></em>'.
+	 *
+	 * @param parent
+	 *            the merged parent of this element
+	 * @param element
+	 *            the architecture domain model element underlying this façade, to which it delegates for details
+	 *            of its attributes and relationships
+	 * @since 3.1
+	 */
+	public MergedADElement(MergedADElement parent, ADElement element) {
 		this.parent = parent;
-		this.elements = new LinkedHashSet<>();
+		this.element = element;
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	protected ADElement getModel() {
+		return element;
 	}
 
 	/**
@@ -69,17 +95,22 @@ public class MergedADElement {
 	}
 
 	/**
+	 * Update my parent.
+	 *
+	 * @param domain
+	 *            my new parent
+	 */
+	void setParent(MergedArchitectureDomain domain) {
+		this.parent = domain;
+	}
+
+	/**
 	 * Gets the context's id
 	 *
 	 * @return an id
 	 */
 	public String getId() {
-		for (ADElement element : elements) {
-			if (element.getId() != null) {
-				return element.getId();
-			}
-		}
-		return null;
+		return element.getId();
 	}
 
 	/**
@@ -88,12 +119,7 @@ public class MergedADElement {
 	 * @return a name
 	 */
 	public String getName() {
-		for (ADElement element : elements) {
-			if (element.getName() != null) {
-				return element.getName();
-			}
-		}
-		return null;
+		return element.getName();
 	}
 
 	/**
@@ -102,12 +128,7 @@ public class MergedADElement {
 	 * @return a qualified name
 	 */
 	public String getQualifiedName() {
-		for (ADElement element : elements) {
-			if (element.getQualifiedName() != null) {
-				return element.getQualifiedName();
-			}
-		}
-		return null;
+		return element.getQualifiedName();
 	}
 
 	/**
@@ -116,12 +137,7 @@ public class MergedADElement {
 	 * @return a description
 	 */
 	public String getDescription() {
-		for (ADElement element : elements) {
-			if (element.getDescription() != null) {
-				return element.getDescription();
-			}
-		}
-		return null;
+		return element.getDescription();
 	}
 
 	/**
@@ -130,11 +146,7 @@ public class MergedADElement {
 	 * @return an icon path
 	 */
 	public String getIcon() {
-		Object obj = getImageObject();
-		if (obj instanceof ADElement) {
-			return ((ADElement) obj).getIcon();
-		}
-		return null;
+		return element.getIcon();
 	}
 
 	/**
@@ -146,21 +158,12 @@ public class MergedADElement {
 	 * @since 2.0
 	 */
 	public ADElement getImageObject() {
-		for (ADElement element : elements) {
-			if (element.getIcon() != null) {
-				return element;
-			}
-		}
-		return null;
+		return element;
 	}
 
 	@Override
 	public int hashCode() {
-		int hash = 0;
-		for (ADElement element : elements) {
-			hash += element.hashCode();
-		}
-		return hash;
+		return Objects.hashCode(element);
 	}
 
 	@Override
@@ -172,25 +175,12 @@ public class MergedADElement {
 		if (other.parent != this.parent) {
 			return false;
 		}
-		Set<ADElement> copy = new HashSet<>(this.elements);
-		copy.retainAll(other.elements);
-		return copy.size() == this.elements.size();
+		return Objects.equal(other.element, element);
 	}
 
 	@Override
 	public String toString() {
-		Iterator<ADElement> i = elements.iterator();
-		if (i.hasNext()) {
-			return i.next().toString();
-		}
-		return super.toString();
-	}
-
-	/*
-	 * Adds the given element to the collection of merged elements
-	 */
-	void merge(ADElement element) {
-		elements.add(element);
+		return element != null ? element.toString() : super.toString();
 	}
 
 	/**
@@ -198,19 +188,56 @@ public class MergedADElement {
 	 *
 	 * @return The number of merged elements.
 	 * @since 2.1
+	 *
+	 * @deprecated Since version 3.1 of the bundle, the merge model is backed one-for-one by merged model elements
+	 * @see <a href="https://eclip.se/573168">bug 573168</a> to follow removal of this API in a future release
 	 */
+	@Deprecated(since = "3.1", forRemoval = true)
 	public int getElementsNumber() {
-		return elements.size();
+		return element != null ? 1 : 0;
 	}
 
 	/**
-	 * Obtain an unmodifiable set of the original elements that I merge.
+	 * Query whether I actually a merge of multiple elements in the registered architecture models.
 	 *
-	 * @return my merged elements
-	 * @since 3.0
+	 * @return whether I am a merge of multiple elements
+	 * @since 3.1
 	 */
-	public Set<? extends ADElement> getMergedElements() {
-		return Collections.unmodifiableSet(elements);
+	public boolean isMerged() {
+		MergeTraceAdapter trace = MergeTraceAdapter.getMergeTraces(getModel());
+
+		// If the adapter isn't attached, then of course I wasn't merged
+		return trace != null && trace.trace(getModel()).size() > 1;
+	}
+
+	//
+	// IAdaptable protocol
+	//
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @since 3.1
+	 */
+	@Override
+	public <T> T getAdapter(Class<T> adapter) {
+		T result;
+
+		if (getModel() == null) {
+			result = Platform.getAdapterManager().getAdapter(this, adapter);
+		} else {
+			if (adapter == EObject.class || adapter.isInstance(getModel())) {
+				result = adapter.cast(getModel());
+			} else if (adapter == Resource.class) {
+				result = adapter.cast(getModel().eResource());
+			} else if (adapter == ResourceSet.class) {
+				result = adapter.cast(getModel().eResource().getResourceSet());
+			} else {
+				result = Platform.getAdapterManager().getAdapter(this, adapter);
+			}
+		}
+
+		return result;
 	}
 
 }

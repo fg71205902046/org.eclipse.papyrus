@@ -16,15 +16,8 @@
 
 package org.eclipse.papyrus.architectureview.views;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-
 import org.eclipse.emf.common.ui.URIEditorInput;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.viewers.AbstractTreeViewer;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IContentProvider;
@@ -39,8 +32,8 @@ import org.eclipse.papyrus.architectureview.Activator;
 import org.eclipse.papyrus.architectureview.providers.ArchiectureViewLabelProvider;
 import org.eclipse.papyrus.architectureview.providers.ArchitectureViewContentProvider;
 import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
-import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.infra.emf.utils.ResourceUtils;
+import org.eclipse.papyrus.infra.core.architecture.ADElement;
+import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureDomain;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -62,11 +55,6 @@ public class ArchitectureView extends ViewPart {
 	 * The tree viewer.
 	 */
 	private TreeViewer viewer;
-
-	/**
-	 * The resource set needed to create resources with URIs.
-	 */
-	private ResourceSet resourceSet;
 
 	private ArchitectureDomainManager.Listener architectureListener = this::domainManagerChanged;
 
@@ -214,10 +202,12 @@ public class ArchitectureView extends ViewPart {
 
 					// for each selected resource, we try to open this one
 					for (final Object selectedObject : ((IStructuredSelection) selection).toList()) {
-						if (selectedObject instanceof Resource) {
+						if (selectedObject instanceof MergedArchitectureDomain) {
 							// Open the architecture editor for the architecture file
+							ADElement element = ((MergedArchitectureDomain) selectedObject).getAdapter(ADElement.class);
+							Resource resource = element.eResource();
 							try {
-								page.openEditor(new URIEditorInput(((Resource) selectedObject).getURI()), "org.eclipse.papyrus.infra.ui.architecture.ArchitectureEditorID", true); //$NON-NLS-1$
+								page.openEditor(new URIEditorInput(resource.getURI()), "org.eclipse.papyrus.infra.ui.architecture.ArchitectureEditorID", true); //$NON-NLS-1$
 							} catch (PartInitException e) {
 								Activator.log.error("The selected resource cannot be opened.", e); //$NON-NLS-1$
 							}
@@ -271,42 +261,11 @@ public class ArchitectureView extends ViewPart {
 	@Override
 	public void dispose() {
 		ArchitectureDomainManager.getInstance().removeListener(architectureListener);
-		disposeResourceSet();
 		super.dispose();
 	}
 
-	/**
-	 * The architecture models in the resource set can reference UML models, especially via dynamic profile definitions.
-	 * Because the UML {@code CacheAdapter} is a static singleton, we need to unload resources explicitly to ensure
-	 * that models do not leak in the cache adapter.
-	 */
-	private void disposeResourceSet() {
-		if (resourceSet != null) {
-			EMFHelper.unload(resourceSet);
-			resourceSet = null;
-		}
-	}
-
 	private void domainManagerChanged() {
-		// Create the resources corresponding to the architectures
-		disposeResourceSet();
-		resourceSet = new ResourceSetImpl();
-		resourceSet.setPackageRegistry(ResourceUtils.createWorkspaceAwarePackageRegistry());
-		resourceSet.setURIConverter(ResourceUtils.createWorkspaceAwareURIConverter());
-
-		final Collection<URI> registeredArchitectureModels = ArchitectureDomainManager.getInstance().getRegisteredArchitectureModels();
-		final Collection<Resource> inputResources = new ArrayList<>(registeredArchitectureModels.size());
-		for (final URI uri : registeredArchitectureModels) {
-			Resource testResource = resourceSet.createResource(uri);
-			try {
-				testResource.load(null);
-				inputResources.add(testResource);
-			} catch (IOException e) {
-				// Do nothing
-			}
-		}
-
-		viewer.setInput(inputResources);
+		viewer.setInput(ArchitectureDomainManager.getInstance().getMerger().getDomains());
 	}
 
 }

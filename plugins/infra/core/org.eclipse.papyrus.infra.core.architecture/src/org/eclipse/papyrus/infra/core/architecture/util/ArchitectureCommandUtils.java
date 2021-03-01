@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.papyrus.infra.core.architecture.ADElement;
 import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
 import org.eclipse.papyrus.infra.core.architecture.impl.ArchitecturePlugin;
 import org.eclipse.papyrus.infra.tools.util.ClasspathHelper;
@@ -147,9 +148,39 @@ public class ArchitectureCommandUtils {
 			return null;
 		}
 
-		URI context = EcoreUtil.getURI(modelObject).trimFragment();
+		URI context = getSourceURI(modelObject, commandClassFeature).trimFragment();
 
 		return ClasspathHelper.INSTANCE.findClass(className, context, registeredType.orElse(null));
+	}
+
+	/**
+	 * Get the URI of the object that is the source (via architecture model merge) of the value of the given
+	 * command class feature.
+	 *
+	 * @param object
+	 *            an architecture model element
+	 * @param commandClassFeature
+	 *            the command class feature to trace to the source
+	 * @return the URI of the source object
+	 */
+	private static URI getSourceURI(EObject object, EStructuralFeature commandClassFeature) {
+		URI result;
+
+		if (!(object instanceof ADElement)) {
+			// It wasn't merged, so it is its own source object (referenced directly wherever it is)
+			result = EcoreUtil.getURI(object);
+		} else {
+			ADElement element = (ADElement) object;
+			MergeTraceAdapter traces = MergeTraceAdapter.getMergeTraces(element);
+
+			ADElement source = traces == null ? element : traces.trace(element, commandClassFeature);
+
+			result = source == null
+					? EcoreUtil.getURI(element) // Hope for the best
+					: EcoreUtil.getURI(source);
+		}
+
+		return result;
 	}
 
 	/**
