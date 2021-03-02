@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,16 +10,18 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 571630
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.types.rulebased.core;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
+import java.util.stream.Stream;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -61,10 +63,10 @@ public class DefaultRuleEditHelperAdvice extends AbstractEditHelperAdvice {
 
 	/**
 	 * @param request
-	 * 
+	 *
 	 */
 	protected List<ConfiguredHintedSpecializationElementType> getTypes(IEditCommandRequest request) {
-		List<ConfiguredHintedSpecializationElementType> result = new ArrayList<ConfiguredHintedSpecializationElementType>();
+		List<ConfiguredHintedSpecializationElementType> result = new ArrayList<>();
 		if (request instanceof CreateElementRequest) {
 			IElementType typeToCreate = ((CreateElementRequest) request).getElementType();
 			List<ConfiguredHintedSpecializationElementType> superConfiguredTypes = getAllTypes(typeToCreate);
@@ -77,7 +79,7 @@ public class DefaultRuleEditHelperAdvice extends AbstractEditHelperAdvice {
 
 					// containment. Check the kind of element to edit
 					Object value = ((SetRequest) request).getValue();
-					List<Object> values = new ArrayList<Object>();
+					List<Object> values = new ArrayList<>();
 					// value = single object or list ?
 					if (value instanceof EObject) {
 						values.add(value);
@@ -89,14 +91,7 @@ public class DefaultRuleEditHelperAdvice extends AbstractEditHelperAdvice {
 						if (object instanceof EObject) {
 							IElementType[] types = ElementTypeRegistry.getInstance().getAllTypesMatching((EObject) object, request.getClientContext());
 							for (IElementType type : types) {
-								if (type instanceof ConfiguredHintedSpecializationElementType) {
-									if (((ConfiguredHintedSpecializationElementType) type).getConfiguration() instanceof RuleBasedTypeConfiguration) {
-										result.add((ConfiguredHintedSpecializationElementType) type);
-
-										List<ConfiguredHintedSpecializationElementType> superConfiguredTypes = getAllSuperConfiguredTypes((ConfiguredHintedSpecializationElementType) type);
-										result.addAll(superConfiguredTypes);
-									}
-								}
+								appendConfiguredTypes(type, result);
 							}
 						}
 					}
@@ -104,36 +99,48 @@ public class DefaultRuleEditHelperAdvice extends AbstractEditHelperAdvice {
 			}
 		} else if (request instanceof MoveRequest) {
 			// check the feature to set is a containment feature and element to move is an extended element type
+			@SuppressWarnings("unchecked")
 			Map<EObject, EReference> objectsToMove = ((MoveRequest) request).getElementsToMove();
-			for (Entry<EObject, EReference> movedElement : objectsToMove.entrySet()) {
-				// do not compute with reference, this can be null. This could be interesting to check...
-				IElementType[] types = ElementTypeRegistry.getInstance().getAllTypesMatching(movedElement.getKey(), request.getClientContext());
-				for (IElementType type : types) {
-					if (type instanceof ConfiguredHintedSpecializationElementType) {
-						if (((ConfiguredHintedSpecializationElementType) type).getConfiguration() instanceof RuleBasedTypeConfiguration) {
-							result.add((ConfiguredHintedSpecializationElementType) type);
-
-							List<ConfiguredHintedSpecializationElementType> superConfiguredTypes = getAllSuperConfiguredTypes((ConfiguredHintedSpecializationElementType) type);
-							result.addAll(superConfiguredTypes);
-						}
-					}
-				}
-			}
+			// do not compute with reference, this can be null. This could be interesting to check...
+			appendConfiguredTypes(request, objectsToMove.keySet(), result);
+		} else {
+			// Get types of the elements to edit
+			@SuppressWarnings("unchecked")
+			Collection<? extends EObject> elementsToEdit = request.getElementsToEdit();
+			appendConfiguredTypes(request, elementsToEdit, result);
 		}
 
 		return result;
 
 	}
 
+	private void appendConfiguredTypes(IEditCommandRequest request, Collection<? extends EObject> objects, Collection<? super ConfiguredHintedSpecializationElementType> result) {
+		objects.stream()
+				.map(object -> ElementTypeRegistry.getInstance().getAllTypesMatching(object, request.getClientContext()))
+				.flatMap(Stream::of)
+				.forEach(type -> appendConfiguredTypes(type, result));
+	}
+
+	private void appendConfiguredTypes(IElementType type, Collection<? super ConfiguredHintedSpecializationElementType> result) {
+		if (type instanceof ConfiguredHintedSpecializationElementType) {
+			if (((ConfiguredHintedSpecializationElementType) type).getConfiguration() instanceof RuleBasedTypeConfiguration) {
+				result.add((ConfiguredHintedSpecializationElementType) type);
+
+				List<ConfiguredHintedSpecializationElementType> superConfiguredTypes = getAllSuperConfiguredTypes((ConfiguredHintedSpecializationElementType) type);
+				result.addAll(superConfiguredTypes);
+			}
+		}
+	}
+
 	/**
 	 * Returns the list of types (this one and supers) that are configuredTypes.
-	 * 
+	 *
 	 * @param type
 	 *            the type from which all s are retrieved
 	 * @return the list of types in the hierarchy of specified type, including type itself if matching. Returns an empty list if none is matching
 	 */
 	protected List<ConfiguredHintedSpecializationElementType> getAllTypes(IElementType type) {
-		List<ConfiguredHintedSpecializationElementType> result = new ArrayList<ConfiguredHintedSpecializationElementType>();
+		List<ConfiguredHintedSpecializationElementType> result = new ArrayList<>();
 
 		if (!(type instanceof ConfiguredHintedSpecializationElementType)) {
 			// no need to take care of metamodel types yet
@@ -165,7 +172,7 @@ public class DefaultRuleEditHelperAdvice extends AbstractEditHelperAdvice {
 		if (superTypes.length == 0) {
 			return Collections.emptyList();
 		}
-		List<ConfiguredHintedSpecializationElementType> superElementTypes = new ArrayList<ConfiguredHintedSpecializationElementType>();
+		List<ConfiguredHintedSpecializationElementType> superElementTypes = new ArrayList<>();
 		// get the reverse order
 		for (int i = superTypes.length - 1; i >= 0; i--) {
 			if (superTypes[i] instanceof ConfiguredHintedSpecializationElementType) {
@@ -215,7 +222,7 @@ public class DefaultRuleEditHelperAdvice extends AbstractEditHelperAdvice {
 
 	protected boolean approveRequest(ConfiguredHintedSpecializationElementType elementType, IEditCommandRequest request) {
 
-		ElementTypeConfiguration configuration = ((ConfiguredHintedSpecializationElementType) elementType).getConfiguration();
+		ElementTypeConfiguration configuration = elementType.getConfiguration();
 		if (configuration instanceof RuleBasedTypeConfiguration) {
 			RuleConfiguration ruleConfiguration = ((RuleBasedTypeConfiguration) configuration).getRuleConfiguration();
 
