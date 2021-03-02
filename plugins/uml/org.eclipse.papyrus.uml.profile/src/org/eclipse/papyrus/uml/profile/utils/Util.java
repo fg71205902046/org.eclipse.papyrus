@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2021 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -14,23 +14,26 @@
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - add getNearestProfileApplication
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
+ *  Christian W. Damus - bug 571629
  *****************************************************************************/
 package org.eclipse.papyrus.uml.profile.utils;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.profile.Activator;
 import org.eclipse.papyrus.uml.profile.Message;
+import org.eclipse.papyrus.uml.tools.commands.ReorderStereotypeApplicationsCommand;
 import org.eclipse.papyrus.uml.tools.profile.definition.IPapyrusVersionConstants;
 import org.eclipse.papyrus.uml.tools.profile.definition.PapyrusDefinitionAnnotation;
 import org.eclipse.papyrus.uml.tools.profile.definition.Version;
@@ -60,7 +63,6 @@ import org.eclipse.uml2.uml.TemplateableElement;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
-import org.eclipse.uml2.uml.util.UMLUtil;
 
 
 /**
@@ -201,7 +203,7 @@ public class Util {
 	 */
 	public static String[] getStringArrayFromList(List<Element> elements) {
 
-		ArrayList<String> tmp = new ArrayList<String>();
+		ArrayList<String> tmp = new ArrayList<>();
 
 		// if no possible selection : abort
 		if (elements.size() == 0) {
@@ -350,7 +352,7 @@ public class Util {
 		Package topPackage = Util.topPackage(element);
 		Assert.isNotNull(topPackage, "Top package should not be null for element " + element);
 		Iterator<EObject> iter = topPackage.eAllContents();
-		ArrayList<Element> filteredElements = new ArrayList<Element>();
+		ArrayList<Element> filteredElements = new ArrayList<>();
 
 		while (iter.hasNext()) {
 			EObject currentEObj = iter.next();
@@ -388,19 +390,40 @@ public class Util {
 	 *            the element
 	 * @param stereotypes
 	 *            the stereotypes
+	 *
+	 * @deprecated Since version 4.2 of the bundle, for correct undo/redo support,
+	 *             use the {@link ReorderStereotypeApplicationsCommand} API, instead
+	 * @see <a href="https://eclip.se/573167">bug 573167</a> to follow removal of this API in a future release
 	 */
+	@Deprecated(since = "4.2", forRemoval = true)
 	public static void reorderStereotypeApplications(Element element, EList<Stereotype> stereotypes) {
-		for (Iterator<Stereotype> s = stereotypes.iterator(); s.hasNext();) {
-			EObject stereotypeApplication = element.getStereotypeApplication(s.next());
-			if (stereotypeApplication != null) {
-				UMLUtil.setBaseElement(stereotypeApplication, null);
-				UMLUtil.setBaseElement(stereotypeApplication, element);
-				Resource eResource = stereotypeApplication.eResource();
-				if (eResource != null) {
-					EList<EObject> contents = eResource.getContents();
-					contents.move(contents.size() - 1, stereotypeApplication);
-				}
-			}
+		EList<EObject> stereotypeApplications = element.getStereotypeApplications();
+		if (stereotypes.size() != stereotypeApplications.size()) {
+			Activator.log.warn("Wrong number of stereotype applications in element " + element); //$NON-NLS-1$
+			return;
+		}
+
+		if (stereotypeApplications.stream().map(EObject::eResource).distinct().count() != 1) {
+			Activator.log.warn("Cannot reorder stereotype applications across resources for element " + element); //$NON-NLS-1$
+			return;
+		}
+
+		if (stereotypes.size() != stereotypeApplications.size()) {
+			Activator.log.warn("Inconsistent stereotype applications in element " + element); //$NON-NLS-1$
+			return;
+		}
+
+		EObject[] newOrdering = stereotypes.stream().map(element::getStereotypeApplication)
+				.filter(Objects::nonNull)
+				.toArray(EObject[]::new);
+		if (newOrdering.length != stereotypeApplications.size()) {
+			Activator.log.warn("Inconsistent stereotype applications in element " + element); //$NON-NLS-1$
+			return;
+		}
+
+		Command command = new ReorderStereotypeApplicationsCommand(element, stereotypes);
+		if (command.canExecute()) {
+			command.execute();
 		}
 	}
 
@@ -482,7 +505,7 @@ public class Util {
 	 *         eAnnotation exists for given profile
 	 */
 	public static List<PapyrusDefinitionAnnotation> getAllPapyrusDefinitionAnnotation(Profile profile) {
-		List<PapyrusDefinitionAnnotation> definitions = new ArrayList<PapyrusDefinitionAnnotation>();
+		List<PapyrusDefinitionAnnotation> definitions = new ArrayList<>();
 		Iterator<EAnnotation> it = getAllPapyrusVersionAnnotation(profile).iterator();
 		while (it.hasNext()) {
 			definitions.add(PapyrusDefinitionAnnotation.parseEAnnotation(it.next()));
@@ -499,7 +522,7 @@ public class Util {
 	 *         eAnnotation exists for given profile
 	 */
 	public static List<EAnnotation> getAllPapyrusVersionAnnotation(Profile profile) {
-		List<EAnnotation> annotations = new ArrayList<EAnnotation>();
+		List<EAnnotation> annotations = new ArrayList<>();
 		EAnnotation definitions = profile.getEAnnotation("http://www.eclipse.org/uml2/2.0.0/UML");
 		if (definitions == null) {
 			return annotations;

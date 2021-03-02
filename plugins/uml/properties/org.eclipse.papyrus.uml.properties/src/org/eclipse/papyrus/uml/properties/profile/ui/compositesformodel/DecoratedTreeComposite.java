@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008, 2014, 2017 CEA LIST and others.
+ * Copyright (c) 2008, 2021 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -14,8 +14,11 @@
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
  *  Christian W. Damus (CEA) - bug 323802
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 522564
+ *  Christian W. Damus - bug 571629
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.profile.ui.compositesformodel;
+
+import java.util.concurrent.atomic.AtomicReference;
 
 import org.eclipse.gef.commands.CommandStack;
 import org.eclipse.jface.viewers.ISelection;
@@ -115,7 +118,7 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 	 * Listener for the down button.
 	 */
 	protected MouseListener downButtonlistener;
-	
+
 	/**
 	 * DisposeListener registered for the composite parent
 	 */
@@ -137,6 +140,11 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 	 * text of the label.
 	 */
 	protected String name;
+
+	/**
+	 * The pending asynchronous refresh, if any.
+	 */
+	private final AtomicReference<Runnable> asyncRefresh = new AtomicReference<>();
 
 	/**
 	 * returns the element that is selected in Papyrus tool, for which
@@ -171,11 +179,11 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 	 */
 	public DecoratedTreeComposite(Composite parent, int style, String name, boolean isStereotypeTree) {
 		super(parent, style);
-		
-		//we register a dispose listener on the parent because the dispose method is never called during the dispose
-		//see https://stackoverflow.com/questions/25717036/why-swt-ctabitem-doesnt-dispose-child-widget-recursively 
+
+		// we register a dispose listener on the parent because the dispose method is never called during the dispose
+		// see https://stackoverflow.com/questions/25717036/why-swt-ctabitem-doesnt-dispose-child-widget-recursively
 		parent.addDisposeListener(this.parentDisposeListener = new LocalDisposeListener());
-		
+
 		this.name = name;
 		this.setLayout(new FormLayout());
 
@@ -206,6 +214,7 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 	 *
 	 * @return
 	 */
+	@Override
 	public Composite createContent(Composite parent, TabbedPropertySheetWidgetFactory factory) {
 
 		FormData data;
@@ -290,8 +299,27 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 		return this;
 	}
 
+	@Override
 	public void refresh() {
 		updateEnablement();
+	}
+
+	/**
+	 * Post an asynchronous refresh if one is not already pending (to avoid unnecessary repetition of refreshes).
+	 */
+	protected final void asyncRefresh() {
+		Runnable refresh = new Runnable() {
+			@Override
+			public void run() {
+				if (asyncRefresh.compareAndSet(this, null) && !tree.isDisposed()) {
+					refresh();
+				}
+			}
+		};
+
+		if (asyncRefresh.compareAndSet(null, refresh)) {
+			tree.getDisplay().asyncExec(refresh);
+		}
 	}
 
 	protected boolean isEditable() {
@@ -302,11 +330,27 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 		boolean isEditable = isEditable();
 
 		if ((addButton != null) && !addButton.isDisposed()) {
-			addButton.setEnabled(isEditable);
-			removeButton.setEnabled(isEditable);
-			upButton.setEnabled(isEditable);
-			downButton.setEnabled(isEditable);
+			addButton.setEnabled(isEditable && canAdd());
+			removeButton.setEnabled(isEditable && canRemove());
+			upButton.setEnabled(isEditable && canMoveUp());
+			downButton.setEnabled(isEditable && canMoveDown());
 		}
+	}
+
+	protected boolean canRemove() {
+		return tree.getSelectionCount() > 0;
+	}
+
+	protected boolean canAdd() {
+		return true;
+	}
+
+	protected boolean canMoveUp() {
+		return tree.getSelectionCount() > 0;
+	}
+
+	protected boolean canMoveDown() {
+		return tree.getSelectionCount() > 0;
 	}
 
 	// /**
@@ -328,7 +372,7 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 	 */
 	public CommandStack getCommandStack() {
 		if (getActiveEditor() != null) {
-			return (CommandStack) getActiveEditor().getAdapter(CommandStack.class);
+			return getActiveEditor().getAdapter(CommandStack.class);
 		}
 		return null;
 	}
@@ -390,6 +434,7 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 		 *
 		 * @param e
 		 */
+		@Override
 		public void mouseDoubleClick(MouseEvent e) {
 			// do nothing
 		}
@@ -399,6 +444,7 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 		 *
 		 * @param e
 		 */
+		@Override
 		public void mouseDown(MouseEvent e) {
 			// do nothing
 		}
@@ -408,6 +454,7 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 		 *
 		 * @param e
 		 */
+		@Override
 		public void mouseUp(MouseEvent e) {
 			addButtonPressed();
 			refresh();
@@ -427,6 +474,7 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 		 *
 		 * @param e
 		 */
+		@Override
 		public void mouseDoubleClick(MouseEvent e) {
 			// do nothing
 		}
@@ -436,6 +484,7 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 		 *
 		 * @param e
 		 */
+		@Override
 		public void mouseDown(MouseEvent e) {
 			// do nothing
 		}
@@ -445,6 +494,7 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 		 *
 		 * @param e
 		 */
+		@Override
 		public void mouseUp(MouseEvent e) {
 			removeButtonPressed();
 			refresh();
@@ -464,6 +514,7 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 		 *
 		 * @param e
 		 */
+		@Override
 		public void mouseDoubleClick(MouseEvent e) {
 			// do nothing
 		}
@@ -473,6 +524,7 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 		 *
 		 * @param e
 		 */
+		@Override
 		public void mouseDown(MouseEvent e) {
 			// do nothing
 		}
@@ -482,6 +534,7 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 		 *
 		 * @param e
 		 */
+		@Override
 		public void mouseUp(MouseEvent e) {
 			ISelection selection = treeViewer.getSelection();
 			upButtonPressed();
@@ -504,6 +557,7 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 		 *
 		 * @param e
 		 */
+		@Override
 		public void mouseDoubleClick(MouseEvent e) {
 			// do nothing
 		}
@@ -513,6 +567,7 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 		 *
 		 * @param e
 		 */
+		@Override
 		public void mouseDown(MouseEvent e) {
 			// do nothing
 		}
@@ -522,6 +577,7 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 		 *
 		 * @param e
 		 */
+		@Override
 		public void mouseUp(MouseEvent e) {
 			ISelection vSelection = treeViewer.getSelection();
 
@@ -543,6 +599,7 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 		 *
 		 * @param event
 		 */
+		@Override
 		public void handleEvent(Event event) {
 			if (tree.getSelection().length > 0) {
 				TreeItem item = tree.getSelection()[0];
@@ -555,7 +612,7 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 	 * Dipose listeners.
 	 */
 	public void disposeListeners() {
-		if(!getParent().isDisposed()){
+		if (!getParent().isDisposed()) {
 			getParent().removeDisposeListener(this.parentDisposeListener);
 		}
 		if (addButton != null && !addButton.isDisposed()) {
@@ -574,11 +631,11 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 			tree.removeListener(SWT.MouseDoubleClick, treeListener);
 		}
 	}
-	
+
 	/**
 	 * DisposeListener used to listen the parent composite
 	 */
-	private class LocalDisposeListener implements DisposeListener{
+	private class LocalDisposeListener implements DisposeListener {
 
 		/**
 		 * @see org.eclipse.swt.events.DisposeListener#widgetDisposed(org.eclipse.swt.events.DisposeEvent)
@@ -589,9 +646,9 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 		public void widgetDisposed(DisposeEvent e) {
 			dispose();
 		}
-		
+
 	}
-	
+
 	/**
 	 * @see org.eclipse.swt.widgets.Widget#dispose()
 	 *

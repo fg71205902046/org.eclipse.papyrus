@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2014 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2011, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,7 +11,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - 402525
- *  Christian W. Damus - bug 399859
+ *  Christian W. Damus - bugs 399859, 571629
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.databinding;
@@ -27,16 +27,23 @@ import org.eclipse.core.databinding.observable.list.ListDiffEntry;
 import org.eclipse.core.databinding.observable.list.WritableList;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.papyrus.infra.emf.gmf.command.ICommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
 import org.eclipse.papyrus.uml.tools.commands.ApplyProfileCommand;
 import org.eclipse.papyrus.uml.tools.commands.UnapplyProfileCommand;
 import org.eclipse.papyrus.uml.tools.databinding.AbstractStereotypeListener;
 import org.eclipse.papyrus.uml.tools.helper.ProfileApplicationDelegateRegistry;
+import org.eclipse.papyrus.uml.types.core.requests.ApplyProfileRequest;
+import org.eclipse.papyrus.uml.types.core.requests.UnapplyProfileRequest;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.ProfileApplication;
@@ -243,7 +250,15 @@ public class ProfileApplicationObservableList extends WritableList implements IC
 		}
 
 		Profile profile = EMFHelper.reloadIntoContext((Profile) o, umlSource);
-		Command command = new ApplyProfileCommand(umlSource, profile, (TransactionalEditingDomain) domain);
+
+		Command command = UnexecutableCommand.INSTANCE;
+		IElementEditService edit = ElementEditServiceUtils.getCommandProvider(umlSource);
+		if (edit != null) {
+			ICommand op = edit.getEditCommand(new ApplyProfileRequest((TransactionalEditingDomain) domain, umlSource, profile));
+			if (op != null) {
+				command = ICommandWrapper.wrap(op, Command.class);
+			}
+		}
 
 		commands.add(command);
 
@@ -262,7 +277,15 @@ public class ProfileApplicationObservableList extends WritableList implements IC
 		}
 
 		final Profile profile = (Profile) o;
-		Command command = new UnapplyProfileCommand(umlSource, profile, (TransactionalEditingDomain) domain);
+
+		Command command = UnexecutableCommand.INSTANCE;
+		IElementEditService edit = ElementEditServiceUtils.getCommandProvider(umlSource);
+		if (edit != null) {
+			ICommand op = edit.getEditCommand(new UnapplyProfileRequest(umlSource, profile, (TransactionalEditingDomain) domain));
+			if (op != null) {
+				command = ICommandWrapper.wrap(op, Command.class);
+			}
+		}
 
 		commands.add(command);
 

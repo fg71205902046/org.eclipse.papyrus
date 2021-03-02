@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008, 2014, 2017. 2019 CEA LIST and others.
+ * Copyright (c) 2008, 2021 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -12,25 +12,38 @@
  * Contributors:
  *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
- *  Christian W. Damus (CEA) - bug 323802
- *  Christian W. Damus (CEA) - bug 448139
+ *  Christian W. Damus (CEA) - bugs 323802, 448139
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 522564
  *  Ansgar Radermacher (CEA LIST) - bug 558645
+ *  Christian W. Damus - bug 571629
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.profile.ui.compositesformodel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.EventObject;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Stream;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStackListener;
+import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.common.command.UnexecutableCommand;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -39,7 +52,10 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.gmf.command.ICommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.profile.Activator;
 import org.eclipse.papyrus.uml.profile.preference.ProfilePreferenceConstants;
 import org.eclipse.papyrus.uml.profile.tree.ProfileElementContentProvider;
@@ -49,10 +65,11 @@ import org.eclipse.papyrus.uml.profile.tree.objects.AppliedStereotypePropertyTre
 import org.eclipse.papyrus.uml.profile.tree.objects.AppliedStereotypeTreeObject;
 import org.eclipse.papyrus.uml.profile.tree.objects.StereotypedElementTreeObject;
 import org.eclipse.papyrus.uml.profile.tree.objects.TreeObject;
-import org.eclipse.papyrus.uml.profile.utils.Util;
 import org.eclipse.papyrus.uml.properties.profile.ui.dialogs.ChooseSetStereotypeDialog;
 import org.eclipse.papyrus.uml.properties.profile.ui.panels.AppliedStereotypePanel;
-import org.eclipse.papyrus.uml.tools.commands.UnapplyStereotypeCommand;
+import org.eclipse.papyrus.uml.tools.commands.ReorderStereotypeApplicationsCommand;
+import org.eclipse.papyrus.uml.types.core.requests.ApplyStereotypeRequest;
+import org.eclipse.papyrus.uml.types.core.requests.UnapplyStereotypeRequest;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.widgets.Composite;
@@ -96,6 +113,11 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	private CommandStackListener commandStackListener;
 
 	/**
+	 * An adapter that detects changes to the stereotype applications, triggering refresh.
+	 */
+	private final Adapter stereotypeApplicationAdapter = new StereotypeApplicationAdapter();
+
+	/**
 	 * The default constructor.
 	 *
 	 * @param parent
@@ -132,42 +154,50 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 
 			// compare the 2 lists (present list and future list
 			EList<Stereotype> oldStereotypeList = element.getAppliedStereotypes();
-			ArrayList<Stereotype> newStereotypeList = dialog.getSelectedElements();
-
-			// Keep newStereotype order (will be used at the end of the method)
-			EList<Stereotype> newOrderList = new BasicEList<Stereotype>();
-			newOrderList.addAll(newStereotypeList);
+			@SuppressWarnings("unchecked")
+			List<Stereotype> newStereotypeList = dialog.getSelectedElements();
 
 			// If the 2 lists differ, apply the new list of stereotypes
 			if (!(newStereotypeList.equals(oldStereotypeList))) {
+				try {
+					final TransactionalEditingDomain domain = getEditingDomain(element);
+					domain.runExclusive(() -> {
+						CompoundCommand command = new CompoundCommand();
 
-				// Parse old list :
-				// if stereotype is in the new list : it is already applied
-				// --> don't unapply it
-				// --> remove it from new list
-				Iterator<Stereotype> it = oldStereotypeList.iterator();
-				while (it.hasNext()) {
-					Stereotype currentStOld = it.next();
-					if (newStereotypeList.contains(currentStOld)) {
-						newStereotypeList.remove(currentStOld);
-					} else {
-						unapplyStereotype(element, currentStOld);
-					}
+						// Parse old list :
+						// if stereotype is in the new list : it is already applied
+						// --> don't unapply it
+						// --> remove it from new list
+						Iterator<Stereotype> it = oldStereotypeList.iterator();
+						while (it.hasNext()) {
+							Stereotype currentStOld = it.next();
+							if (newStereotypeList.contains(currentStOld)) {
+								newStereotypeList.remove(currentStOld);
+							} else {
+								command.append(getUnapplyStereotypeCommand(element, currentStOld, domain));
+							}
+						}
+
+						// Already applied stereotype should have been removed
+						// apply others
+						Iterator<Stereotype> newApplyStereotypes = newStereotypeList.iterator();
+						while (newApplyStereotypes.hasNext()) {
+							Stereotype currentStereotype = newApplyStereotypes.next();
+							command.append(getApplyStereotypeCommand(element, currentStereotype, domain));
+						}
+
+						if (command.canExecute()) {
+							// checkSelection(null);
+							selectionChanged(null);
+							Display.getCurrent().asyncExec(() -> domain.getCommandStack().execute(command));
+						} else {
+							command.dispose();
+						}
+					});
+
+				} catch (Exception e) {
+					Activator.log.error(e);
 				}
-
-				// Already applied stereotype should have been removed
-				// apply others
-				Iterator<Stereotype> newApplyStereotypes = newStereotypeList.iterator();
-				while (newApplyStereotypes.hasNext()) {
-					Stereotype currentStereotype = newApplyStereotypes.next();
-					applyStereotype(element, currentStereotype);
-				}
-
-				// Update Stereotype order
-				// this.reorderStereotypeApplications(element, newOrderList);
-
-				// checkSelection(null);
-				selectionChanged(null);
 
 				if (appliedStereotypePanel != null) {
 					appliedStereotypePanel.refresh();
@@ -224,40 +254,63 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 		treeViewer.addSelectionChangedListener(this);
 	}
 
+	@Override
+	protected boolean canMoveDown() {
+		// We can only reorder stereotype applications if they are all in the same resource
+		boolean result = super.canMoveDown() && stereotypeApplicationsCollocated();
+
+		if (result) {
+
+			// Order of selection is unspecified. So compute the reverse since
+			// we have to sort, anyways
+			TreeItem[] selection = getSortedSelection(true);
+			int indexOfLastSelected = getTree().indexOf(selection[0]);
+
+			// Cannot move down if the last selected stereotype is the last in the tree
+			result = indexOfLastSelected < (getTree().getItemCount() - 1);
+		}
+
+		return result;
+	}
+
+	/**
+	 * Query whether all stereotype applications are in the same resource.
+	 *
+	 * @return whether all stereotype applications are in the same resource
+	 */
+	protected final boolean stereotypeApplicationsCollocated() {
+		return element != null && element.getStereotypeApplications().stream()
+				.map(EObject::eResource)
+				.distinct()
+				.count() == 1;
+	}
+
 	/**
 	 * Button action : modify display order of stereotypes (selected elements are pushed down in the list).
 	 */
 	@Override
 	public void downButtonPressed() {
-		int nbrOfSelection = getTree().getSelectionCount();
-		if (nbrOfSelection < 1) {
+		if (!canMoveDown()) {
 			return;
 		}
 
-		TreeItem[] items = getTree().getSelection();
-		int indexLast = getTree().indexOf(items[items.length - 1]);
-		if (indexLast + 1 >= getElement().getAppliedStereotypes().size()) {
-			// do nothing
-			return;
-		}
+		EList<Stereotype> stereotypes = new BasicEList.FastCompare<>(element.getAppliedStereotypes());
 
-		for (int i = 0; i < nbrOfSelection; i++) {
-			TreeItem item = items[nbrOfSelection - 1 - i];
+		for (TreeItem item : getSortedSelection(true)) {
 			if (item.getData() instanceof AppliedStereotypeTreeObject) {
 				AppliedStereotypeTreeObject sTO = (AppliedStereotypeTreeObject) item.getData();
-				EList stereotypes = new BasicEList();
-				stereotypes.addAll(element.getAppliedStereotypes());
 
 				int index = stereotypes.indexOf(sTO.getStereotype());
 				if ((index == -1) || (index >= stereotypes.size() - 1)) {
-					// Not found of already on top...
+					// Not found or already on bottom...
 					return;
 				}
 
 				stereotypes.move(index + 1, sTO.getStereotype());
-				this.reorderStereotypeApplications(element, stereotypes);
 			}
 		}
+
+		this.reorderStereotypeApplications(element, stereotypes);
 	}
 
 	/**
@@ -351,7 +404,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 			if ((rTO.getChildren() != null) && (rTO.getChildren().length == 0)) {
 				removeButton.setEnabled(false);
 			} else {
-				removeButton.setEnabled(isEditable);
+				removeButton.setEnabled(isEditable && canRemove());
 			}
 		}
 	}
@@ -370,8 +423,12 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	 * @param event
 	 *            the event
 	 */
+	@Override
 	public void selectionChanged(SelectionChangedEvent event) {
+		updateEnablement();
+
 		if (appliedStereotypePanel != null) {
+
 			if (event == null) {
 				appliedStereotypePanel.setSelectedProperty(null);
 				return;
@@ -416,19 +473,97 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 			return;
 		}
 
-		for (int i = 0; i < nbrOfSelection; i++) {
-			TreeItem item = getTree().getSelection()[i];
-			if (item.getData() instanceof AppliedStereotypeTreeObject) {
-				AppliedStereotypeTreeObject sTO = (AppliedStereotypeTreeObject) item.getData();
-				unapplyStereotype(element, sTO.getStereotype());
-				sTO.removeMe();
-			}
+		final TransactionalEditingDomain domain = getEditingDomain(element);
+		try {
+			domain.runExclusive(() -> {
+				CompoundCommand command = new CompoundCommand();
+				List<AppliedStereotypeTreeObject> stosToRemove = new ArrayList<>(nbrOfSelection);
+				for (int i = 0; i < nbrOfSelection; i++) {
+					TreeItem item = getTree().getSelection()[i];
+					if (item.getData() instanceof AppliedStereotypeTreeObject) {
+						AppliedStereotypeTreeObject sTO = (AppliedStereotypeTreeObject) item.getData();
+						stosToRemove.add(sTO);
+						command.append(getUnapplyStereotypeCommand(element, sTO.getStereotype(), domain));
+					}
+				}
+
+				if (command.canExecute()) {
+					stosToRemove.forEach(AppliedStereotypeTreeObject::removeMe);
+					Display.getCurrent().asyncExec(() -> domain.getCommandStack().execute(command.unwrap()));
+				} else {
+					command.dispose();
+				}
+			});
+		} catch (Exception e) {
+			Activator.log.error(e);
 		}
+
 		if (appliedStereotypePanel != null) {
 			appliedStereotypePanel.refresh();
-		} else {
-			refresh();
 		}
+	}
+
+	@Override
+	protected boolean canRemove() {
+		return canUnapplyStereotype();
+	}
+
+	protected boolean canUnapplyStereotype() {
+		boolean result = false;
+
+		TreeItem[] selection = getTree().getSelection();
+		if (selection.length > 0) {
+			// Assume unapplicable until we determine otherwise
+			result = true;
+
+			for (int i = 0; result && i < selection.length; i++) {
+				TreeItem next = selection[i];
+				if (next.getData() instanceof AppliedStereotypeTreeObject) {
+					AppliedStereotypeTreeObject s = (AppliedStereotypeTreeObject) next.getData();
+					result = canUnapplyStereotype(element, s.getStereotype());
+				}
+			}
+		}
+
+		return result;
+	}
+
+	@Override
+	protected boolean canMoveUp() {
+		// We can only reorder stereotype applications if they are all in the same resource
+		boolean result = super.canMoveUp() && stereotypeApplicationsCollocated();
+
+		if (result) {
+			TreeItem[] selection = getSortedSelection(false);
+
+			// Cannot move up if the first selected stereotype is the first in the list
+			result = getTree().indexOf(selection[0]) > 0;
+		}
+
+		return result;
+	}
+
+	/**
+	 * As the order of tree items reported in the selection is unspecified by API contract,
+	 * we need to sort the selection in order to properly process moves up/down.
+	 *
+	 * @param reversed
+	 *            whether to reverse the sort (e.g., for move down)
+	 * @return the sorted selection
+	 */
+	protected TreeItem[] getSortedSelection(boolean reversed) {
+		// Order of selection is unspecified
+		TreeItem[] result = getTree().getSelection();
+
+		if (result.length > 1) {
+			Comparator<TreeItem> order = Comparator.comparing(getTree()::indexOf);
+			if (reversed) {
+				order = order.reversed();
+			}
+			Arrays.sort(result, order);
+		}
+
+		return result;
 	}
 
 	/**
@@ -436,24 +571,14 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	 */
 	@Override
 	public void upButtonPressed() {
-		int nbrOfSelection = getTree().getSelectionCount();
-		if (nbrOfSelection < 1) {
+		if (!canMoveUp()) {
 			return;
 		}
 
-		TreeItem[] items = getTree().getSelection();
-		int indexFirst = getTree().indexOf(items[0]);
-		if (indexFirst == 0) {
-			// do nothing
-			return;
-		}
-
-		for (int i = 0; i < nbrOfSelection; i++) {
-			TreeItem item = items[i];
+		EList<Stereotype> stereotypes = new BasicEList.FastCompare<>(element.getAppliedStereotypes());
+		for (TreeItem item : getSortedSelection(false)) {
 			if (item.getData() instanceof AppliedStereotypeTreeObject) {
 				AppliedStereotypeTreeObject sTO = (AppliedStereotypeTreeObject) item.getData();
-				EList stereotypes = new BasicEList();
-				stereotypes.addAll(element.getAppliedStereotypes());
 
 				int index = stereotypes.indexOf(sTO.getStereotype());
 				if (index < 1) {
@@ -461,13 +586,13 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 				}
 
 				stereotypes.move(index - 1, sTO.getStereotype());
-				this.reorderStereotypeApplications(element, stereotypes);
 			}
 		}
+
+		this.reorderStereotypeApplications(element, stereotypes);
+
 		if (appliedStereotypePanel != null) {
 			appliedStereotypePanel.refresh();
-		} else {
-			refresh();
 		}
 	}
 
@@ -489,16 +614,23 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	 *            the elt
 	 * @param st
 	 *            the st
+	 *
+	 * @deprecated Since version 4.1 of the bundle as this does not support multiple selection.
+	 *             Use the {@link #getApplyStereotypeCommand(Element, Stereotype, TransactionalEditingDomain)} API, instead
+	 * @see <a href="https://eclip.se/573167">bug 573167</a> to follow removal of this API in a future release
 	 */
+	@Deprecated(since = "4.1", forRemoval = true)
 	public void applyStereotype(final Element elt, final Stereotype st) {
 		try {
 			final TransactionalEditingDomain domain = getEditingDomain(elt);
 			domain.runExclusive(new Runnable() {
 
+				@Override
 				public void run() {
 
 					Display.getCurrent().asyncExec(new Runnable() {
 
+						@Override
 						public void run() {
 							domain.getCommandStack().execute(getApplyStereotypeCommand(elt, st, domain));
 						}
@@ -519,17 +651,24 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	 *            the uml element
 	 * @param st
 	 *            the stereotype to unapply
+	 *
+	 * @deprecated Since version 4.1 of the bundle as this does not support multiple selection.
+	 *             Use the {@link #getUnapplyStereotypeCommand(Element, Stereotype, TransactionalEditingDomain)} API, instead
+	 * @see <a href="https://eclip.se/573167">bug 573167</a> to follow removal of this API in a future release
 	 */
+	@Deprecated(since = "4.1", forRemoval = true)
 	protected void unapplyStereotype(final Element elt, final Stereotype st) {
 		// bugfix: a selected element is not necessary a diagram element (ex: selection in the outline)
 		try {
 			final TransactionalEditingDomain domain = getEditingDomain(elt);
 			domain.runExclusive(new Runnable() {
 
+				@Override
 				public void run() {
 
 					Display.getCurrent().asyncExec(new Runnable() {
 
+						@Override
 						public void run() {
 							domain.getCommandStack().execute(getUnapplyStereotypeCommand(elt, st, domain));
 						}
@@ -543,6 +682,24 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 
 	}
 
+	protected boolean canUnapplyStereotype(final Element element, final Stereotype stereotype) {
+		boolean result = false;
+
+		try {
+			// Cannot unapplied a stereotype that isn't applied, no matter what
+			// the edit helpers may say
+			if (element.isStereotypeApplied(stereotype)) {
+				final TransactionalEditingDomain domain = getEditingDomain(element);
+				Command unapply = getUnapplyStereotypeCommand(element, stereotype, domain);
+				result = unapply != null && unapply.canExecute();
+			}
+		} catch (Exception e) {
+			Activator.log.error("Failed to determine whether stereotype can be unapplied.", e); //$NON-NLS-1$
+		}
+
+		return result;
+	}
+
 	/**
 	 * change the order of applied stereotype
 	 *
@@ -551,24 +708,20 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	 * @param stereotypes
 	 *            the lis of applied stereotypes with the wanted order
 	 */
-	public void reorderStereotypeApplications(final Element element, final EList stereotypes) {
+	public void reorderStereotypeApplications(final Element element, final EList<Stereotype> stereotypes) {
 		try {
 			final TransactionalEditingDomain domain = getEditingDomain(element);
 			domain.runExclusive(new Runnable() {
 
+				@Override
 				public void run() {
+					Command command = new ReorderStereotypeApplicationsCommand(element, stereotypes);
 
 					Display.getCurrent().asyncExec(new Runnable() {
 
+						@Override
 						public void run() {
-							domain.getCommandStack().execute(new RecordingCommand(domain) {
-
-								@Override
-								protected void doExecute() {
-									Util.reorderStereotypeApplications(element, stereotypes);
-									refresh();
-								}
-							});
+							domain.getCommandStack().execute(command);
 						}
 					});
 				}
@@ -599,6 +752,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 			this.selection = selection;
 		}
 
+		@Override
 		public void run() {
 			Object[] vSelectedElements = extractSelectedElements(selection);
 			Object[] vCorrespondingElements = getCorrespondingElements(vSelectedElements);
@@ -613,7 +767,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 
 		private Object[] getCorrespondingElements(Object[] vSelectedElements) {
 			StereotypedElementTreeObject vStereotypesTree = (StereotypedElementTreeObject) treeViewer.getInput();
-			List<Object> vReturn = new ArrayList<Object>();
+			List<Object> vReturn = new ArrayList<>();
 			for (Object vStereotype : vSelectedElements) {
 				if (vStereotype instanceof AppliedStereotypeTreeObject) {
 					AppliedStereotypeTreeObject vTreeObject = findAppliedStereotypeInTree(((AppliedStereotypeTreeObject) vStereotype).getStereotype(), vStereotypesTree);
@@ -640,7 +794,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 		}
 
 		private Object[] extractSelectedElements(ISelection pSelection) {
-			List<Object> vObjectsList = new ArrayList<Object>();
+			List<Object> vObjectsList = new ArrayList<>();
 			if (pSelection instanceof IStructuredSelection) {
 				vObjectsList.addAll(Arrays.asList(((IStructuredSelection) pSelection).toArray()));
 			}
@@ -661,17 +815,18 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	 * @return Command to execute to apply stereotype on element
 	 */
 	protected Command getApplyStereotypeCommand(final Element elt, final Stereotype st, final TransactionalEditingDomain domain) {
-		return new RecordingCommand(domain) {
+		Command result = UnexecutableCommand.INSTANCE;
 
-			/**
-			 * @see org.eclipse.emf.transaction.RecordingCommand#doExecute()
-			 */
-			@Override
-			protected void doExecute() {
-				elt.applyStereotype(st);
-				refresh();
+		IElementEditService edit = ElementEditServiceUtils.getCommandProvider(elt);
+		if (edit != null) {
+			ApplyStereotypeRequest request = new ApplyStereotypeRequest(elt, st, domain);
+			ICommand editCommand = edit.getEditCommand(request);
+			if (editCommand != null && editCommand.canExecute()) {
+				result = ICommandWrapper.wrap(editCommand, Command.class);
 			}
-		};
+		}
+
+		return result;
 	}
 
 	/**
@@ -686,7 +841,18 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	 * @return Command to execute to unapply stereotype on element
 	 */
 	protected Command getUnapplyStereotypeCommand(final Element elt, final Stereotype st, final TransactionalEditingDomain domain) {
-		return new UnapplyStereotypeCommand(elt, st, domain);
+		Command result = UnexecutableCommand.INSTANCE;
+
+		IElementEditService edit = ElementEditServiceUtils.getCommandProvider(elt);
+		if (edit != null) {
+			UnapplyStereotypeRequest request = new UnapplyStereotypeRequest(elt, st, domain);
+			ICommand editCommand = edit.getEditCommand(request);
+			if (editCommand != null && editCommand.canExecute()) {
+				result = ICommandWrapper.wrap(editCommand, Command.class);
+			}
+		}
+
+		return result;
 	}
 
 	/**
@@ -696,27 +862,39 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	 */
 	@Override
 	public void setElement(Element element) {
+		Element oldElement = getElement();
+
 		// if the new element is null, we remove the command stack listener
-		if (null == element && null != getElement()) {
-			getEditingDomain(getElement()).getCommandStack().removeCommandStackListener(this.commandStackListener);
+		if (null == element && null != oldElement) {
+			getEditingDomain(oldElement).getCommandStack().removeCommandStackListener(this.commandStackListener);
 		}
 		if (null != element && null == this.commandStackListener) {
 			// if the command stack listener has not yet been created, we create it
 			getEditingDomain(element).getCommandStack().addCommandStackListener(this.commandStackListener = new LocalCommandStackListener());
 		}
+
+		if (oldElement != null) {
+			oldElement.eAdapters().remove(stereotypeApplicationAdapter);
+		}
+		if (element != null) {
+			element.eAdapters().add(stereotypeApplicationAdapter);
+		}
+
 		super.setElement(element);
 	}
 
-	/**
-	 * @see org.eclipse.swt.widgets.Widget#dispose()
-	 *
-	 */
 	@Override
 	public void dispose() {
-		if (null != this.commandStackListener && null != getElement()) {
+		Element oldElement = getElement();
+
+		if (null != this.commandStackListener && null != oldElement) {
 			getEditingDomain(getElement()).getCommandStack().removeCommandStackListener(this.commandStackListener);
 			this.commandStackListener = null;
 		}
+		if (oldElement != null) {
+			oldElement.eAdapters().remove(stereotypeApplicationAdapter);
+		}
+
 		super.dispose();
 	}
 
@@ -752,6 +930,52 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 			};
 			treeViewer.getControl().getDisplay().asyncExec(runRefresh);
 		}
+	}
+
+	private class StereotypeApplicationAdapter extends AdapterImpl {
+		private final Set<Notifier> additionalTargets = new HashSet<>();
+
+		@Override
+		public void setTarget(Notifier newTarget) {
+			if (newTarget instanceof Element) {
+				super.setTarget(newTarget);
+				scope((Element) newTarget).forEach(this::addAdapter);
+			}
+		}
+
+		private void addAdapter(Notifier target) {
+			if (target.eAdapters().add(this)) {
+				additionalTargets.add(target);
+			}
+		}
+
+		@Override
+		public void unsetTarget(Notifier oldTarget) {
+			if (oldTarget instanceof Element) {
+				scope((Element) oldTarget).forEach(this::removeAdapter);
+				super.unsetTarget(oldTarget);
+			}
+		}
+
+		private void removeAdapter(Notifier target) {
+			if (target.eAdapters().remove(this)) {
+				additionalTargets.remove(target);
+			}
+		}
+
+		private Stream<Resource> scope(Element element) {
+			return Stream.concat(Stream.of(element.eResource()),
+					element.getStereotypeApplications().stream().map(EObject::eResource))
+					.filter(Objects::nonNull).distinct();
+		}
+
+		@Override
+		public void notifyChanged(Notification msg) {
+			if (!msg.isTouch() && msg.getFeatureID(Resource.class) == Resource.RESOURCE__CONTENTS && additionalTargets.contains(msg.getNotifier())) {
+				asyncRefresh();
+			}
+		}
+
 	}
 
 }

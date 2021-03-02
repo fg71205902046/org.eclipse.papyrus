@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2014, 2018 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2011, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,7 +11,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - Refactoring package/profile import/apply UI for CDO
- *  Christian W. Damus - bug 399859
+ *  Christian W. Damus - bugs 399859, 571629
  *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 538193
  *
  *****************************************************************************/
@@ -28,6 +28,7 @@ import java.util.Map;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.DelegatingStyledCellLabelProvider.IStyledLabelProvider;
 import org.eclipse.jface.viewers.IBaseLabelProvider;
@@ -42,6 +43,8 @@ import org.eclipse.jface.viewers.TableLayout;
 import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.widgets.editors.MultipleReferenceEditor;
 import org.eclipse.papyrus.uml.profile.ui.dialogs.ElementImportTreeSelectionDialog.ImportSpec;
 import org.eclipse.papyrus.uml.profile.ui.dialogs.ProfileTreeSelectionDialog;
@@ -54,6 +57,7 @@ import org.eclipse.papyrus.uml.properties.profile.ui.dialogs.RegisteredProfileSe
 import org.eclipse.papyrus.uml.tools.importsources.PackageImportSourceDialog;
 import org.eclipse.papyrus.uml.tools.profile.definition.Version;
 import org.eclipse.papyrus.uml.tools.utils.ProfileUtil;
+import org.eclipse.papyrus.uml.types.core.requests.UnapplyProfileRequest;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
@@ -373,7 +377,7 @@ public class ProfileApplicationEditor extends MultipleReferenceEditor {
 		boolean enabled = modelProperty != null && umlPackage != null;
 		add.setEnabled(enabled);
 		addRegisteredProfile.setEnabled(enabled);
-		remove.setEnabled(enabled);
+		remove.setEnabled(enabled && canUnapplyProfiles());
 
 		// check whether the selection can be reapplied
 		IStructuredSelection selection = (IStructuredSelection) treeViewer.getSelection();
@@ -391,4 +395,26 @@ public class ProfileApplicationEditor extends MultipleReferenceEditor {
 
 		reapplyProfile.setEnabled(enabled);
 	}
+
+	protected boolean canUnapplyProfiles() {
+		boolean result = umlPackage != null;
+
+		IStructuredSelection selection = getSelection();
+		if (selection != null && !selection.isEmpty()) {
+			for (Iterator<?> iter = selection.iterator(); result && iter.hasNext();) {
+				Object next = iter.next();
+				if (next instanceof Profile) {
+					Profile profile = (Profile) next;
+					UnapplyProfileRequest request = new UnapplyProfileRequest(umlPackage, profile, TransactionUtil.getEditingDomain(umlPackage));
+					IElementEditService edit = ElementEditServiceUtils.getCommandProvider(umlPackage);
+					if (edit != null) {
+						result = edit.canEdit(request);
+					}
+				}
+			}
+		}
+
+		return result;
+	}
+
 }
