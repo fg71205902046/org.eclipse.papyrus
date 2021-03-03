@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
- * 
+ * Copyright (c) 2015, 2021 Christian W. Damus and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,18 +10,18 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *   Quentin Le Menez - bug 570177
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.sync;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.infra.guava.internal.CheckedFuture;
 import org.eclipse.papyrus.infra.sync.internal.SyncService;
 import org.eclipse.papyrus.infra.sync.service.ISyncService;
 import org.eclipse.papyrus.infra.sync.service.SyncServiceRunnable;
-
-import com.google.common.util.concurrent.CheckedFuture;
 
 /**
  * A core synchronization framework object.

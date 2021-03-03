@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
+ * Copyright (c) 2015, 2021 Christian W. Damus and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,17 +10,17 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
+ *   Quentin Le Menez - bug 570177
  *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.common.sync;
 
+import org.eclipse.papyrus.infra.guava.internal.CheckedFuture;
 import org.eclipse.papyrus.infra.sync.ISyncObject;
 import org.eclipse.papyrus.infra.sync.service.ISyncService;
 import org.eclipse.papyrus.infra.sync.service.SyncServiceRunnable;
 import org.eclipse.swt.widgets.Display;
-
-import com.google.common.util.concurrent.CheckedFuture;
 
 /**
  * Sync framework utilities for a UI context.
@@ -46,6 +46,7 @@ public class UISyncUtils {
 	 * @return the future result of the {@code operation}
 	 *
 	 * @see SyncServiceRunnable.Safe
+	 * @since 4.1
 	 */
 	public static <V, X extends Exception> CheckedFuture<V, X> asyncExec(final ISyncObject syncObject, final SyncServiceRunnable<V, X> operation) {
 		return syncObject.runAsync(operation);

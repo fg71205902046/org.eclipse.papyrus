@@ -21,12 +21,12 @@ Export-Package: org.eclipse.papyrus.uml.tools.tests,
  org.eclipse.papyrus.uml.tools.tests.tests
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 4.0.0.qualifier
+Bundle-Version: 4.1.0.qualifier
 Bundle-Name: UML Tools Tests
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.tools.tests.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.uml.tools.tests;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-11
-Import-Package: com.google.common.base;version="[27.1.0, 28.0.0)",
- com.google.common.collect;version="[27.1.0, 28.0.0)"
+Import-Package: com.google.common.base;version="[30.1.0, 31.0.0)",
+ com.google.common.collect;version="[30.1.0, 31.0.0)"
 Automatic-Module-Name: org.eclipse.papyrus.uml.tools.tests

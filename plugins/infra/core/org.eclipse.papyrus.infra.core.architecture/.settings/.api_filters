@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.papyrus.infra.core.architecture" version="2">
+    <resource path="src-gen/org/eclipse/papyrus/infra/core/architecture/impl/ArchitecturePackageImpl.java" type="org.eclipse.papyrus.infra.core.architecture.impl.ArchitecturePackageImpl">
+        <filter comment="generated code" id="1143996420">
+            <message_arguments>
+                <message_argument value="createArchitectureAnnotations()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/papyrus/infra/core/architecture/impl/ArchitecturePlugin.java" type="org.eclipse.papyrus.infra.core.architecture.impl.ArchitecturePlugin">
+        <filter comment="generated code" id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.core.architecture.impl.ArchitecturePlugin"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>

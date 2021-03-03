@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
- * 
+ * Copyright (c) 2015, 2021 Christian W. Damus and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,8 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *   Quentin Le Menez - bug 570177
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.sync.internal;
@@ -38,6 +39,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.core.utils.TransactionHelper;
+import org.eclipse.papyrus.infra.guava.internal.CheckedFuture;
 import org.eclipse.papyrus.infra.sync.Activator;
 import org.eclipse.papyrus.infra.sync.EMFDispatch;
 import org.eclipse.papyrus.infra.sync.EMFDispatchManager;
@@ -53,7 +55,6 @@ import org.eclipse.papyrus.infra.sync.service.SyncServiceRunnable;
 import org.eclipse.papyrus.infra.tools.util.TypeUtils;
 
 import com.google.common.collect.Maps;
-import com.google.common.util.concurrent.CheckedFuture;
 import com.google.common.util.concurrent.MoreExecutors;
 
 /**
@@ -318,12 +319,12 @@ public class SyncService implements ISyncService {
 
 	/**
 	 * Registers a synchronization policy delegate with me.
-	 * 
+	 *
 	 * @param policyDelegate
 	 *            the policy delegate to register
 	 * @param featureType
 	 *            the feature type on which to register it
-	 * 
+	 *
 	 * @return the listener on which the policy delegate must attach dispatchers for reacting to changes in the synchronized feature(s)
 	 */
 	public EMFListener register(SyncPolicyDelegate<?, ?> policyDelegate, Class<?> featureType) {
@@ -333,7 +334,7 @@ public class SyncService implements ISyncService {
 
 	/**
 	 * De-registers a former synchronization policy delegate.
-	 * 
+	 *
 	 * @param policyDelegate
 	 *            the policy delegate to de-register
 	 * @param featureType

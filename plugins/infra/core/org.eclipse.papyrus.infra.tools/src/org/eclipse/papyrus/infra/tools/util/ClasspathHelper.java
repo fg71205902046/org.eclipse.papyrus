@@ -40,6 +40,8 @@ import org.eclipse.papyrus.infra.tools.Activator;
 /**
  * Optional support for a JDT workspace, to find development-time classes such as may be referenced for commands
  * in <em>Architecture Models</em>.
+ *
+ * @since 4.1
  */
 public class ClasspathHelper {
 

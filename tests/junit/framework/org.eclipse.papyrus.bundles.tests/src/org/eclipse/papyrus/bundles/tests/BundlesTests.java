@@ -231,7 +231,7 @@ public class BundlesTests extends AbstractPapyrusTest {
 
 	@Test
 	public void guavaDependencyVersionTest() {
-		testPapyrusDependencies2("com.google.guava", "27.1.0");//$NON-NLS-1$ //$NON-NLS-2$
+		testPapyrusDependencies2("com.google.guava", "30.1.0");//$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	@Test

@@ -9,10 +9,10 @@ Require-Bundle: org.eclipse.gmf.runtime.diagram.ui;bundle-version="[1.9.0,2.0.0)
 Export-Package: org.eclipse.papyrus.eclipse.project.editors.tests
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 3.0.0.qualifier
+Bundle-Version: 3.1.0.qualifier
 Bundle-Name: Papyrus Project Editor Tests
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.eclipse.project.editors.tests;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-11
-Import-Package: com.google.common.base;version="[27.1.0, 28.0.0)"
+Import-Package: com.google.common.base;version="[30.1.0, 31.0.0)"
 Automatic-Module-Name: org.eclipse.papyrus.eclipse.project.editors.tests

@@ -15,12 +15,12 @@ Export-Package: org.eclipse.papyrus.uml.modelrepair.internal.stereotypes,
  org.eclipse.papyrus.uml.modelrepair.internal.uripattern,
  org.eclipse.papyrus.uml.modelrepair.tests
 Bundle-Vendor: %providerName
-Bundle-Version: 2.0.0.qualifier
+Bundle-Version: 2.1.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.modelrepair.tests;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-11
-Import-Package: com.google.common.base;version="[27.1.0, 28.0.0)",
- com.google.common.collect;version="[27.1.0, 28.0.0)"
+Import-Package: com.google.common.base;version="[30.1.0, 31.0.0)",
+ com.google.common.collect;version="[30.1.0, 31.0.0)"
 Automatic-Module-Name: org.eclipse.papyrus.uml.modelrepair.tests

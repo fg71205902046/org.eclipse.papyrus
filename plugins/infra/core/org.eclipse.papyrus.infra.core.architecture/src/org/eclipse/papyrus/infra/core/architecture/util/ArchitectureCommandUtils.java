@@ -32,6 +32,8 @@ import org.osgi.framework.Bundle;
 /**
  * Utilities for working with/resolving the command classes referenced by
  * <em>Architecture Models</em>.
+ *
+ * @since 3.1
  */
 public class ArchitectureCommandUtils {
 

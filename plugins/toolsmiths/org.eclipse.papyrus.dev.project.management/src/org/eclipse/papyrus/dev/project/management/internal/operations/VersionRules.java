@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.dev.project.management.internal.operations;
@@ -37,8 +37,8 @@ public class VersionRules {
 	private final VersionRule rule = VersionRule.composeAll(
 			new CurrentVersionRule(), // The default behaviour
 			new FixedRangeRule(dep -> dep.startsWith("org.apache.batik"), "[1.6.0,1.7.0)"), //$NON-NLS-1$//$NON-NLS-2$
-			new SkipRule("com.ibm.icu"), //$NON-NLS-1$
-			new FixedRangeRule("com.google.guava", "27.1.0") //$NON-NLS-1$
+			new SkipRule("com.ibm.icu") //$NON-NLS-1$
+	,new FixedRangeRule("com.google.guava", "30.1.0") //$NON-NLS-1$
 	);
 
 	public VersionRules() {
@@ -48,12 +48,12 @@ public class VersionRules {
 	/**
 	 * Queries the version range that should constraint a dependency of the given {@code kind}
 	 * on a bundle or package.
-	 * 
+	 *
 	 * @param kind
 	 *            the dependency kind
 	 * @param dependency
 	 *            the bundle or package dependency
-	 * 
+	 *
 	 * @return the appropriate version range, or {@code null} if unknown or the range
 	 *         currently specified in the manfiest can be retained as is
 	 */

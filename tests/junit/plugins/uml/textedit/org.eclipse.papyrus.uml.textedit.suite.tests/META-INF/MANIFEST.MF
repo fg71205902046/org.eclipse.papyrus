@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 1.1.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
@@ -10,6 +10,7 @@ Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.suite.tests;singleton:=tru
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Require-Bundle: org.eclipse.gmf.runtime.diagram.ui;bundle-version="[1.9.0,2.0.0)",
  org.eclipse.papyrus.junit.framework;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.junit.utils;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.papyrus.uml.textedit.parameter.tests;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.uml.textedit.port.tests;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.uml.textedit.property.tests;bundle-version="[2.0.0,3.0.0)",

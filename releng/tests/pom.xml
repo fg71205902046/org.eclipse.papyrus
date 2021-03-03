@@ -16,7 +16,7 @@
 	<properties>
 		<testConfig>CI_TESTS_CONFIG</testConfig> <!-- See org.eclipse.papyrus.junit.framework.classification.ClassificationConfig -->
 		<testSuiteClass>org.eclipse.papyrus.tests.AllTests</testSuiteClass>
-		<jacoco.version>0.8.5</jacoco.version> <!-- https://repo.maven.apache.org/maven2/ -->
+		<jacoco.version>0.8.6</jacoco.version> <!-- https://repo.maven.apache.org/maven2/ -->
 		<!-- Separate property for test argLine seems to be required when running 
 			Jacoco + Surefire -->
 		<test.argLine>-Xms512m -Xmx2048m -XX:SoftRefLRUPolicyMSPerMB=100</test.argLine>
@@ -153,10 +153,10 @@
 		<profile>
 			<id>mainTestsCDO</id>
 			<activation>
-                <property>
-                    <name>mainTestsCDO</name>
-                    <value>true</value>
-                </property>
+				<property>
+					<name>mainTestsCDO</name>
+					<value>true</value>
+				</property>
 			</activation>
 			<properties>
 				<target.platform>org.eclipse.papyrus.main.tests.cdo.${target.suffix}.target</target.platform>

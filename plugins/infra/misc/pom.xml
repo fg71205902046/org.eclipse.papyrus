@@ -15,5 +15,6 @@
 		<module>org.eclipse.papyrus.infra.hyperlink</module>
 		<module>org.eclipse.papyrus.infra.psf</module>
 		<module>org.eclipse.papyrus.infra.sync</module>
+		<module>org.eclipse.papyrus.infra.guava</module>
 	</modules>
 </project>

@@ -65,4 +65,5 @@
    </category-def>
    
    <repository-reference location="http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a" enabled="true" />
+   <repository-reference location="https://download.eclipse.org/cbi/tpd/3.0.0-SNAPSHOT" enabled="true" />
 </site>

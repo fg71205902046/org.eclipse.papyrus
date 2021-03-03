@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.infra.core.architecture;singleton:=true
 Automatic-Module-Name: org.eclipse.papyrus.infra.core.architecture
-Bundle-Version: 3.0.0.qualifier
+Bundle-Version: 3.1.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.papyrus.infra.core.architecture.impl.ArchitecturePlugin$Implementation
 Bundle-Vendor: %providerName

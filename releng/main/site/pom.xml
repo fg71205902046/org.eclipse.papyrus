@@ -14,14 +14,6 @@
 	<version>5.1.0-SNAPSHOT</version>
 	<packaging>eclipse-repository</packaging>
 
-
-	<pluginRepositories>
-		<pluginRepository>
-			<id>org.jboss.tools.tycho-plugins</id>
-			<url>https://repository.jboss.org/</url>
-		</pluginRepository>
-	</pluginRepositories>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -31,30 +23,6 @@
 				<configuration>
 					<includePackedArtifacts>true</includePackedArtifacts>
 				</configuration>
-			</plugin>
-
-			<!-- workaround https://bugs.eclipse.org/bugs/show_bug.cgi?id=453708 -->
-			<plugin>
-				<groupId>org.jboss.tools.tycho-plugins</groupId>
-				<artifactId>repository-utils</artifactId>
-				<version>${jboss.utils.version}</version>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>generate-repository-facade</goal>
-						</goals>
-						<configuration>
-							<!-- do not generate the pesky web folder and index.html -->
-							<skipWebContentGeneration>true</skipWebContentGeneration>
-							<!-- p2 update site transitive dependencies repositories -->
-							<associateSites>
-								<!-- Oxygen orbit bundles for batik 1.6.0 -->
-								<site>http://download.eclipse.org/tools/orbit/downloads/drops/R20180206163158/repository/</site>
-							</associateSites>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>
