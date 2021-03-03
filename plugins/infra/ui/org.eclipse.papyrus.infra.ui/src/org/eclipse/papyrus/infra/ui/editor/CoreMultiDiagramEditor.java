@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008, 2016 LIFL, CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2008, 2016, 2021 LIFL, CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -15,6 +15,7 @@
  *  Christian W. Damus (CEA) - bug 431953 (pre-requisite refactoring of ModelSet service start-up)
  *  Christian W. Damus (CEA) - bug 437217
  *  Christian W. Damus - bugs 469464, 469188, 485220, 496299
+ *  Pauline DEVILLE (CEA LIST) - bug 571948
  *
  *****************************************************************************/
 
@@ -80,9 +81,14 @@ import org.eclipse.papyrus.infra.ui.contentoutline.ContentOutlineRegistry;
 import org.eclipse.papyrus.infra.ui.editor.IReloadableEditor.DirtyPolicy;
 import org.eclipse.papyrus.infra.ui.editor.reload.EditorReloadEvent;
 import org.eclipse.papyrus.infra.ui.editor.reload.IEditorReloadListener;
+import org.eclipse.papyrus.infra.ui.internal.services.status.BeginStatusEvent;
+import org.eclipse.papyrus.infra.ui.internal.services.status.EndStatusEvent;
+import org.eclipse.papyrus.infra.ui.internal.services.status.IStatusService;
+import org.eclipse.papyrus.infra.ui.internal.services.status.StepStatusEvent;
 import org.eclipse.papyrus.infra.ui.lifecycleevents.DoSaveEvent;
 import org.eclipse.papyrus.infra.ui.lifecycleevents.IEditorInputChangedListener;
 import org.eclipse.papyrus.infra.ui.lifecycleevents.ISaveAndDirtyService;
+import org.eclipse.papyrus.infra.ui.messages.Messages;
 import org.eclipse.papyrus.infra.ui.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
 import org.eclipse.papyrus.infra.ui.multidiagram.actionbarcontributor.CoreComposedActionBarContributor;
 import org.eclipse.papyrus.infra.ui.services.EditorLifecycleManager;
@@ -109,6 +115,9 @@ import org.eclipse.ui.statushandlers.StatusManager;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.framework.ServiceReference;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
@@ -263,10 +272,19 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 */
 	private final AtomicReference<DeferredReload> pendingReload = new AtomicReference<>();
 
+	/**
+	 * The OSGI service which manage the display of the progression
+	 */
+	private IStatusService loadingStatusService;
+
 	public CoreMultiDiagramEditor() {
 		super();
 
 		addSelfReloadListener();
+
+		BundleContext bundleContext = FrameworkUtil.getBundle(this.getClass()).getBundleContext();
+		ServiceReference<IStatusService> statusServiceRef = bundleContext.getServiceReference(IStatusService.class);
+		loadingStatusService = bundleContext.getService(statusServiceRef);
 	}
 
 	/**
@@ -328,7 +346,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 */
 	@Override
 	protected ISashWindowsContentProvider createPageProvider() {
-		throw new UnsupportedOperationException("Not implemented. Should not be called as the ContentProvider is already initialized.");
+		throw new UnsupportedOperationException("Not implemented. Should not be called as the ContentProvider is already initialized."); //$NON-NLS-1$
 	}
 
 	/**
@@ -362,7 +380,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		try {
 			return sashModelMngr.getIPageManager();
 		} catch (Exception e) {
-			throw new IllegalStateException("Method should be called after CoreMultiDiagramEditor#init(IEditorSite, IEditorInput) is called");
+			throw new IllegalStateException("Method should be called after CoreMultiDiagramEditor#init(IEditorSite, IEditorInput) is called"); //$NON-NLS-1$
 		}
 	}
 
@@ -378,12 +396,12 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			// Get it from the contributor.
 			IEditorActionBarContributor contributor = getEditorSite().getActionBarContributor();
 			if (contributor instanceof CoreComposedActionBarContributor) {
-				log.debug(getClass().getSimpleName() + " - ActionBarContributorRegistry loaded from CoreComposedActionBarContributor.");
+				log.debug(getClass().getSimpleName() + " - ActionBarContributorRegistry loaded from CoreComposedActionBarContributor."); //$NON-NLS-1$
 				actionBarContributorRegistry = ((CoreComposedActionBarContributor) contributor).getActionBarContributorRegistry();
 
 			} else {
 				// Create a registry.
-				log.debug(getClass().getSimpleName() + " - create an ActionBarContributorRegistry.");
+				log.debug(getClass().getSimpleName() + " - create an ActionBarContributorRegistry."); //$NON-NLS-1$
 				actionBarContributorRegistry = createActionBarContributorRegistry();
 			}
 		}
@@ -476,6 +494,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 */
 	@Override
 	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
+		loadingStatusService.trigger(new BeginStatusEvent(Messages.CoreMultiDiagramEditor_StatisDialog_Title, Messages.CoreMultiDiagramEditor_StatisDialog_LoadingPapyrusMessage, 4));
 		// Init super
 		super.init(site, input);
 
@@ -487,6 +506,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 	@Override
 	public void createPartControl(Composite parent) {
+		loadingStatusService.trigger(new StepStatusEvent(Messages.CoreMultiDiagramEditor_StatisDialog_CreatePartControlMessage));
 		super.createPartControl(parent);
 
 		// Fire the PreDisplay event synchronously, so that listeners can continue
@@ -501,10 +521,14 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			public void run() {
 				// Because we are asynchronous, the editor may already have been disposed
 				// (Especially in the case of tests running in the UI Thread)
-				if (servicesRegistry == null) {
-					return;
+				try {
+					if (servicesRegistry == null) {
+						return;
+					}
+					getLifecycleManager().firePostDisplay(CoreMultiDiagramEditor.this);
+				} finally {
+					loadingStatusService.trigger(new EndStatusEvent());
 				}
-				getLifecycleManager().firePostDisplay(CoreMultiDiagramEditor.this);
 			}
 		});
 
@@ -578,10 +602,10 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 				IItemLabelProvider itemLabelProvider = (IItemLabelProvider) adapterFactory.adapt(object, IItemLabelProvider.class);
 				if (object instanceof EObject) {
 					if (((EObject) object).eIsProxy()) {
-						return "Proxy - " + object;
+						return "Proxy - " + object; //$NON-NLS-1$
 					}
 				}
-				return itemLabelProvider != null ? itemLabelProvider.getText(object) : object == null ? "" : object.toString();
+				return itemLabelProvider != null ? itemLabelProvider.getText(object) : object == null ? "" : object.toString(); //$NON-NLS-1$
 			}
 		};
 		servicesRegistry.add(ILabelProvider.class, 1, labelProvider);
@@ -617,7 +641,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			servicesRegistry.startRegistry();
 
 			// In case of a shard
-			String name = java.net.URLDecoder.decode(uri.lastSegment(), "UTF-8");
+			String name = java.net.URLDecoder.decode(uri.lastSegment(), "UTF-8"); //$NON-NLS-1$
 			if (!name.equals(getPartName())) {
 				setPartName(name);
 			}
@@ -649,10 +673,10 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 			servicesRegistry.getService(ILanguageService.class).addLanguageChangeListener(createLanguageChangeListener());
 		} catch (ServiceException e) {
-			log.error("A required service is missing.", e);
+			log.error("A required service is missing.", e); //$NON-NLS-1$
 			// if one of the services above fail to start, the editor can't run
 			// => stop
-			throw new PartInitException("could not initialize services", e);
+			throw new PartInitException("could not initialize services", e); //$NON-NLS-1$
 		}
 
 
@@ -669,7 +693,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			public void languagesChanged(LanguageChangeEvent event) {
 				// Re-load the editor if languages changed, because new ModelSet configurations may be required
 				if (event.getType() == LanguageChangeEvent.ADDED) {
-					new UIJob(getSite().getShell().getDisplay(), NLS.bind("Reload editor {0}", getTitle())) {
+					new UIJob(getSite().getShell().getDisplay(), NLS.bind("Reload editor {0}", getTitle())) { //$NON-NLS-1$
 
 						@Override
 						public IStatus runInUIThread(IProgressMonitor monitor) {
@@ -718,10 +742,10 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		try {
 			contentProvider = servicesRegistry.getService(ISashWindowsContentProvider.class);
 		} catch (ServiceException ex) {
-			log.error("A required service is missing.", ex);
+			log.error("A required service is missing.", ex); //$NON-NLS-1$
 			// if one of the services above fail to start, the editor can't run
 			// => stop
-			throw new PartInitException("could not initialize services", ex);
+			throw new PartInitException("could not initialize services", ex); //$NON-NLS-1$
 		}
 
 		// Set the content provider providing editors.
@@ -746,7 +770,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			for (URI pageIdentifierURI : papyrusPageInput.getPages()) {
 				final EObject pageIdentifier = resourceSet.getEObject(pageIdentifierURI, true);
 				if (!pageManager.allPages().contains(pageIdentifier)) {
-					Activator.log.warn("The object " + pageIdentifier + " does not reference an existing page");
+					Activator.log.warn("The object " + pageIdentifier + " does not reference an existing page"); //$NON-NLS-1$ //$NON-NLS-2$
 					continue;
 				}
 
@@ -761,7 +785,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 	protected void warnUser(ModelMultiException e) {
 		Activator.log.error(e);
-		MessageDialog.openError(getSite().getShell(), "Error", String.format("Your model is corrupted, invalid links have been found :\n" + "%s" + "It is recommended to fix it before editing it", e.getMessage()));
+		MessageDialog.openError(getSite().getShell(), "Error", String.format("Your model is corrupted, invalid links have been found :\n" + "%s" + "It is recommended to fix it before editing it", e.getMessage())); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 	}
 
 	/**
@@ -799,13 +823,13 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		ISashWindowsContainer container = getISashWindowsContainer();
 
 		// TODO : use a constant
-		MenuManager menuManager = new MenuManager("tabmenu");
-		menuManager.add(new Separator("tabcommands"));
+		MenuManager menuManager = new MenuManager("tabmenu"); //$NON-NLS-1$
+		menuManager.add(new Separator("tabcommands")); //$NON-NLS-1$
 		menuManager.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));
 		container.setFolderTabMenuManager(menuManager);
 
 		// TODO : use a constant
-		getSite().registerContextMenu("org.eclipse.papyrus.infra.core.editor.ui.tabmenu", menuManager, getSite().getSelectionProvider());
+		getSite().registerContextMenu("org.eclipse.papyrus.infra.core.editor.ui.tabmenu", menuManager, getSite().getSelectionProvider()); //$NON-NLS-1$
 
 	}
 
@@ -882,7 +906,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 * Register an action to be run when I am closed. Any number of such actions may
 	 * be added. note that close actions also run on re-load, which behaves to all
 	 * outward appearances like a close and re-open.
-	 * 
+	 *
 	 * @param closeAction
 	 *            an action to run when I am closed
 	 */
@@ -935,7 +959,9 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	}
 
 	void initContents() throws PartInitException {
+		loadingStatusService.trigger(new StepStatusEvent(Messages.CoreMultiDiagramEditor_StatisDialog_LoadServicesAndModelMessage));
 		loadModelAndServices();
+		loadingStatusService.trigger(new StepStatusEvent(Messages.CoreMultiDiagramEditor_StatisDialog_LoadNestedEditorMessage));
 		loadNestedEditors();
 	}
 
@@ -1045,7 +1071,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	@Override
 	public String getContributorId() {
 		// return Activator.PLUGIN_ID;
-		return "TreeOutlinePage";
+		return "TreeOutlinePage"; //$NON-NLS-1$
 
 	}
 

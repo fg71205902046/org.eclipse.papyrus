@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2021 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Bug 571948
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.ui.messages;
@@ -57,6 +58,12 @@ public class Messages extends NLS {
 	public static String IReloadableEditor_Save_and_Reopen;
 	public static String IReloadableEditor_continue_to_work;
 	public static String IReloadableEditor_Failed_to_determine;
+
+	public static String CoreMultiDiagramEditor_StatisDialog_CreatePartControlMessage;
+	public static String CoreMultiDiagramEditor_StatisDialog_LoadingPapyrusMessage;
+	public static String CoreMultiDiagramEditor_StatisDialog_LoadNestedEditorMessage;
+	public static String CoreMultiDiagramEditor_StatisDialog_LoadServicesAndModelMessage;
+	public static String CoreMultiDiagramEditor_StatisDialog_Title;
 
 	static {
 		// initialize resource bundle

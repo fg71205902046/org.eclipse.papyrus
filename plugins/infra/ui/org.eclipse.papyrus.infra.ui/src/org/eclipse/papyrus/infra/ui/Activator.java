@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2011, 2016, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,15 +11,20 @@
  * Contributors:
  *  Francois Le Fevre (CEA LIST) francois.le-fevre@cea.fr - Initial API and implementation
  *  Christian W. Damus = bug 485220
- *  
+ *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Bug 571948
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.ui;
+
+import java.util.Hashtable;
 
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.services.spi.IContextualServiceRegistryTracker;
 import org.eclipse.papyrus.infra.tools.spi.IExecutorServiceFactory;
 import org.eclipse.papyrus.infra.tools.spi.INotificationBuilderFactory;
+import org.eclipse.papyrus.infra.ui.internal.services.status.IStatusService;
+import org.eclipse.papyrus.infra.ui.internal.services.status.StatusService;
 import org.eclipse.papyrus.infra.ui.util.UIUtil;
 import org.eclipse.papyrus.infra.ui.util.WorkbenchPartHelper;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
@@ -79,6 +84,11 @@ public class Activator extends AbstractUIPlugin {
 		serviceRegistryTrackerReg = context.registerService(IContextualServiceRegistryTracker.class, serviceRegistryTracker, null);
 
 		notificationBuilderReg = context.registerService(INotificationBuilderFactory.class, NotificationBuilder::new, null);
+
+		// register IStatusService OSGI service
+		Hashtable<String, String> props = new Hashtable<>();
+		props.put("description", "This service is used to display loading status."); //$NON-NLS-1$ //$NON-NLS-2$
+		context.registerService(IStatusService.class, new StatusService(), props);
 	}
 
 	@Override
