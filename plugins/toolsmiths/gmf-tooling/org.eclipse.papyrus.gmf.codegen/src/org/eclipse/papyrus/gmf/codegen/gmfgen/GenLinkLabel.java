@@ -39,6 +39,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.LinkLabelAlignment;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenLinkLabel#getLink <em>Link</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenLinkLabel#getAlignment <em>Alignment</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenLinkLabel#getLabelVisibilityPreference <em>Label Visibility Preference</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenLinkLabel()
@@ -104,5 +105,30 @@ public interface GenLinkLabel extends GenLabel {
 	 * @generated
 	 */
 	void setAlignment(LinkLabelAlignment value);
+
+	/**
+	 * Returns the value of the '<em><b>Label Visibility Preference</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Bug 569174 : from LabelVisibilityPreference
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Label Visibility Preference</em>' containment reference.
+	 * @see #setLabelVisibilityPreference(GenFloatingLabel)
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenLinkLabel_LabelVisibilityPreference()
+	 * @model containment="true"
+	 * @generated
+	 */
+	GenFloatingLabel getLabelVisibilityPreference();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenLinkLabel#getLabelVisibilityPreference <em>Label Visibility Preference</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Label Visibility Preference</em>' containment reference.
+	 * @see #getLabelVisibilityPreference()
+	 * @generated
+	 */
+	void setLabelVisibilityPreference(GenFloatingLabel value);
 
 } // GenLinkLabel

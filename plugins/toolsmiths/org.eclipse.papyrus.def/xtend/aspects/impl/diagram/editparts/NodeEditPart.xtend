@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2006, 2014 Borland Software Corporation, Christian W. Damus, and others.
+ * Copyright (c) 2006, 2014, 2021 Borland Software Corporation, Christian W. Damus, CEA LIST, Artal and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -16,6 +16,7 @@
  * Thibault Landre (Atos Origin) - initial API and implementation
  * Vincent Lorenzo (CEA-LIST) - Bug 335987 [General][Enhancement] Show/Hide Connectors Labels and External Nodes Labels
  * Christian W. Damus - bug 451230
+ * Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : PapyrusGmfExtension epackage merge into gmfgen
  * 
  *****************************************************************************/
 package aspects.impl.diagram.editparts
@@ -30,17 +31,14 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorChildReference
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
 import org.eclipse.papyrus.gmf.codegen.gmfgen.ParentAssignedViewmap
 import org.eclipse.papyrus.gmf.codegen.gmfgen.ToolEntry
-import org.eclipse.papyrus.gmf.codegen.genextension.ExtendedGenView
-import org.eclipse.papyrus.gmf.codegen.genextension.PropertyRefreshHook
-import org.eclipse.papyrus.gmf.codegen.genextension.SpecificLocator
 import utils.EditPartsUtils_qvto
 import xpt.Common
 import xpt.diagram.editparts.EditPartFactory
 import xpt.diagram.editparts.Utils_qvto
 import xpt.CodeStyle
 import xpt.diagram.ViewmapAttributesUtils_qvto
-import org.eclipse.papyrus.gmf.codegen.genextension.SpecificNodePlate
 import xpt.providers.ElementTypes
+import org.eclipse.papyrus.gmf.codegen.gmfgen.RefreshHook
 
 @Singleton class NodeEditPart extends impl.diagram.editparts.NodeEditPart {
 	@Inject extension Common;
@@ -66,10 +64,8 @@ import xpt.providers.ElementTypes
 	override dispatch extendsListContents (GenNode it)'''
 «««BEGIN: PapyrusGenCode
 «««Add own extension
-«IF it.eResource.allContents.filter(typeof(ExtendedGenView)).filter[v |v.genView.contains(it) && v.superOwnedEditPart!=null].size != 0»
-«FOR extendedObject : it.eResource.allContents.filter(typeof(ExtendedGenView)).filter[v |v.genView.contains(it) && v.superOwnedEditPart!=null].toIterable»
-«specifyInheritance(extendedObject as ExtendedGenView)»
-«ENDFOR»
+«IF superEditPart !== null»
+«superEditPart»
 «««END: BEGIN: PapyrusGenCode
 «ELSE»
 	org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart
@@ -79,10 +75,8 @@ import xpt.providers.ElementTypes
 override dispatch extendsListContents (GenChildSideAffixedNode it)'''
 «««BEGIN: PapyrusGenCode
 «««Add own extension
-«IF it.eResource.allContents.filter(typeof(ExtendedGenView)).filter[v |v.genView.contains(it) && v.superOwnedEditPart!=null].size != 0»
-«FOR extendedObject : it.eResource.allContents.filter(typeof(ExtendedGenView)).filter[v |v.genView.contains(it) && v.superOwnedEditPart!=null].toIterable»
-«specifyInheritance(extendedObject)»
-«ENDFOR»
+«IF superEditPart !== null»
+«superEditPart»
 «««END: BEGIN: PapyrusGenCode
 «ELSE»
 	«IF hasBorderItems(it)»org.eclipse.gmf.runtime.diagram.ui.editparts.BorderedBorderItemEditPart«ELSE»org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart«ENDIF»
@@ -113,11 +107,8 @@ override addFixedChild (GenNode it)'''
 	«««	adding IF else end in order to take in account the case where a specific locator is added
 	
 
-	«IF  it.eResource.allContents.filter(typeof (SpecificLocator)).filter[v | v.genChildSideAffixedNode.contains(child)].size !=0»
-	 «FOR extendedObject : it.eResource.allContents.filter(typeof (SpecificLocator)).filter[v |v.genChildSideAffixedNode.contains(child)].toIterable»
-	 	«genSpecificLocator(extendedObject,child)»
-	 «ENDFOR»
-
+	«IF  child.locatorClassName !== null»
+	 	«genSpecificLocator(child)»
 	 «ELSE»
 	 «««END PapyrusGencode«ENDREM
 		if (childEditPart instanceof «child.getEditPartQualifiedClassName()») {
@@ -195,24 +186,25 @@ override addFixedChild (GenNode it)'''
 //	'''
 
 	override createNodePlate(GenNode it) '''
-	«generatedMemberComment»
-	«IF it.eResource.allContents.filter(typeof(SpecificNodePlate)).filter[v |v.editParts.contains(it) && v.nodePlateQualifiedName!=null].size != 0»
-		«val  editPart = it.eResource.allContents.filter(typeof(SpecificNodePlate)).filter[v |v.editParts.contains(it) && v.nodePlateQualifiedName!=null].head»
-		protected org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure createNodePlate() {
-			«editPart.nodePlateQualifiedName» result = new «editPart.nodePlateQualifiedName»(«IF getDiagram().isPixelMapMode()»«defaultSizeWidth(viewmap, 40)», «defaultSizeHeight(viewmap, 40)»«ELSE»getMapMode().DPtoLP(«defaultSizeWidth(viewmap, 40)»), getMapMode().DPtoLP(«defaultSizeHeight(viewmap, 40)»)«ENDIF»);
-			«setupNodePlate»
-			return result;
-		}
-	«««END: BEGIN: PapyrusGenCode
-	«ELSE»
+		«generatedMemberComment»
+		«««	@deprecated
+		«««	«IF nodePlateQualifiedName !== null»
+		«««		protected org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure createNodePlate() {
+		«««			«nodePlateQualifiedName» result = new «nodePlateQualifiedName»(«IF getDiagram().isPixelMapMode()»«defaultSizeWidth(viewmap, 40)», «defaultSizeHeight(viewmap, 40)»«ELSE»getMapMode().DPtoLP(«defaultSizeWidth(viewmap, 40)»), getMapMode().DPtoLP(«defaultSizeHeight(viewmap, 40)»)«ENDIF»);
+		«««			«setupNodePlate»
+		«««			return result;
+		«««		}
+		«««	«««END: BEGIN: PapyrusGenCode
+		«««	«ELSE»
 		«««	«super.createNodePlate(it)»
+		«««	
 		«««	By default node edit part are now RoundedRectangleNodePlateFigure
 		protected org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure createNodePlate() {
 			org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure result = new org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure(«IF getDiagram().isPixelMapMode()»«defaultSizeWidth(viewmap, 40)», «defaultSizeHeight(viewmap, 40)»«ELSE»getMapMode().DPtoLP(«defaultSizeWidth(viewmap, 40)»), getMapMode().DPtoLP(«defaultSizeHeight(viewmap, 40)»)«ENDIF»);
 			«setupNodePlate»
 			return result;
 		}
-	«ENDIF»
+		«««	«ENDIF»
 	'''
 
 override borderItemSelectionEditPolicy(GenNode it)'''
@@ -300,10 +292,6 @@ override borderItemSelectionEditPolicy(GenNode it)'''
 // PAPYRUS
 //---------
 
-//BEGIN: PapyrusGenCode
-//definition of the inheritance
-def specifyInheritance (ExtendedGenView it)'''«superOwnedEditPart»'''
-//END: PapyrusGenCode
 
 
 def genSpecificLocator(GenCommonBase it, GenChildSideAffixedNode child) ''''''
@@ -312,11 +300,11 @@ def genSpecificLocator(ToolEntry it, GenChildSideAffixedNode child) ''''''
 
 def genSpecificLocator(GenNavigatorChildReference it,GenChildSideAffixedNode child)''''''
 
-def genSpecificLocator(SpecificLocator it, GenChildSideAffixedNode child)'''
-//Papyrus Gencode :«it.comment»
-	if (childEditPart instanceof «child.getEditPartQualifiedClassName()») {
-			org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator locator = new «it.classpath»(getMainFigure(), org.eclipse.draw2d.PositionConstants.«child.preferredSideName»);
-			getBorderedFigure().getBorderItemContainer().add(((«child.getEditPartQualifiedClassName()») childEditPart).getFigure(), locator);
+def genSpecificLocator(GenChildSideAffixedNode it)'''
+	««« // @depracated Papyrus Gencode :«locatorComment»
+	if (childEditPart instanceof «it.getEditPartQualifiedClassName()») {
+			org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator locator = new «locatorClassName»(getMainFigure(), org.eclipse.draw2d.PositionConstants.«preferredSideName»);
+			getBorderedFigure().getBorderItemContainer().add(((«it.getEditPartQualifiedClassName()») childEditPart).getFigure(), locator);
 			return true;
 		}
 		
@@ -389,8 +377,7 @@ def genSpecificLocator(SpecificLocator it, GenChildSideAffixedNode child)'''
 //BEGIN: PapyrusGenCode
 //CreateGenerator to refresh figure by taking account of event of UML element or graphical element 
 def specificHandleNotificationEvent (GenNode it) '''
-
-	«IF it.eResource.allContents.filter(typeof (ExtendedGenView)).filter[v |v.genView.contains(it)].size != 0»
+	«IF it.specificNotificationEvent »
 		/**
 		*Papyrus codeGen
 		*@generated
@@ -414,27 +401,22 @@ def specificHandleNotificationEvent (GenNode it) '''
 			}
 		«ENDIF»
 			super.handleNotificationEvent(event);
-			«FOR extendedObject : it.eResource.allContents.filter(typeof (ExtendedGenView)).filter[v |v.genView.contains(it)].toIterable»
-				«IF extendedObject.propRefreshHook !=null»
-					«specificHandleNotificationEventBody(extendedObject.propRefreshHook)»
-				«ENDIF»
-			«ENDFOR»
+			«IF refreshHook !== null»
+				«specificHandleNotificationEventBody(refreshHook)»
+			«ENDIF»
 			
 		 	}
 	«ENDIF»
 
 '''
 
-def specificHandleNotificationEventBody(PropertyRefreshHook it)'''
-«IF (it.comment !=null)»
-//«it.comment»
-«ENDIF»
-if (resolveSemanticElement() != null) {
-if(«it.triggeringCondition»){
-	«it.action»;
-	refreshVisuals();
-}
-}
+def specificHandleNotificationEventBody(RefreshHook it) '''
+	if (resolveSemanticElement() != null) {
+		if(«refreshCondition»){
+			«refreshAction»;
+			refreshVisuals();
+		}
+	}
 '''
 //END: PapyrusGenCode
 

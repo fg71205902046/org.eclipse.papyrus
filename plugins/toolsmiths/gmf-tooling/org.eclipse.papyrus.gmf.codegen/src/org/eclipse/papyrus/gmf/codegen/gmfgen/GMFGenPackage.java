@@ -25,8 +25,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenFactory;
-import org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -414,13 +412,49 @@ public interface GMFGenPackage extends EPackage {
 	int GEN_COMMON_BASE__SANS_DOMAIN = 9;
 
 	/**
+	 * The feature id for the '<em><b>Super Edit Part</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_COMMON_BASE__SUPER_EDIT_PART = 10;
+
+	/**
+	 * The feature id for the '<em><b>Visual ID Override</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_COMMON_BASE__VISUAL_ID_OVERRIDE = 11;
+
+	/**
+	 * The feature id for the '<em><b>Using Delete Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_COMMON_BASE__USING_DELETE_SERVICE = 12;
+
+	/**
+	 * The feature id for the '<em><b>Using Reorient Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_COMMON_BASE__USING_REORIENT_SERVICE = 13;
+
+	/**
 	 * The number of structural features of the '<em>Gen Common Base</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEN_COMMON_BASE_FEATURE_COUNT = 10;
+	int GEN_COMMON_BASE_FEATURE_COUNT = 14;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenContainerBase <em>Gen Container Base</em>}' class.
@@ -523,6 +557,42 @@ public interface GMFGenPackage extends EPackage {
 	int GEN_CONTAINER_BASE__SANS_DOMAIN = GEN_COMMON_BASE__SANS_DOMAIN;
 
 	/**
+	 * The feature id for the '<em><b>Super Edit Part</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_CONTAINER_BASE__SUPER_EDIT_PART = GEN_COMMON_BASE__SUPER_EDIT_PART;
+
+	/**
+	 * The feature id for the '<em><b>Visual ID Override</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_CONTAINER_BASE__VISUAL_ID_OVERRIDE = GEN_COMMON_BASE__VISUAL_ID_OVERRIDE;
+
+	/**
+	 * The feature id for the '<em><b>Using Delete Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_CONTAINER_BASE__USING_DELETE_SERVICE = GEN_COMMON_BASE__USING_DELETE_SERVICE;
+
+	/**
+	 * The feature id for the '<em><b>Using Reorient Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_CONTAINER_BASE__USING_REORIENT_SERVICE = GEN_COMMON_BASE__USING_REORIENT_SERVICE;
+
+	/**
 	 * The feature id for the '<em><b>Contained Nodes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -541,13 +611,22 @@ public interface GMFGenPackage extends EPackage {
 	int GEN_CONTAINER_BASE__CANONICAL_EDIT_POLICY_CLASS_NAME = GEN_COMMON_BASE_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Specific Diagram Updater Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_CONTAINER_BASE__SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME = GEN_COMMON_BASE_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Gen Container Base</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEN_CONTAINER_BASE_FEATURE_COUNT = GEN_COMMON_BASE_FEATURE_COUNT + 2;
+	int GEN_CONTAINER_BASE_FEATURE_COUNT = GEN_COMMON_BASE_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenDiagramImpl <em>Gen Diagram</em>}' class.
@@ -650,6 +729,42 @@ public interface GMFGenPackage extends EPackage {
 	int GEN_DIAGRAM__SANS_DOMAIN = GEN_CONTAINER_BASE__SANS_DOMAIN;
 
 	/**
+	 * The feature id for the '<em><b>Super Edit Part</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_DIAGRAM__SUPER_EDIT_PART = GEN_CONTAINER_BASE__SUPER_EDIT_PART;
+
+	/**
+	 * The feature id for the '<em><b>Visual ID Override</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_DIAGRAM__VISUAL_ID_OVERRIDE = GEN_CONTAINER_BASE__VISUAL_ID_OVERRIDE;
+
+	/**
+	 * The feature id for the '<em><b>Using Delete Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_DIAGRAM__USING_DELETE_SERVICE = GEN_CONTAINER_BASE__USING_DELETE_SERVICE;
+
+	/**
+	 * The feature id for the '<em><b>Using Reorient Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_DIAGRAM__USING_REORIENT_SERVICE = GEN_CONTAINER_BASE__USING_REORIENT_SERVICE;
+
+	/**
 	 * The feature id for the '<em><b>Contained Nodes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -666,6 +781,15 @@ public interface GMFGenPackage extends EPackage {
 	 * @ordered
 	 */
 	int GEN_DIAGRAM__CANONICAL_EDIT_POLICY_CLASS_NAME = GEN_CONTAINER_BASE__CANONICAL_EDIT_POLICY_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Specific Diagram Updater Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_DIAGRAM__SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME = GEN_CONTAINER_BASE__SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Edit Commands Package Name</b></em>' attribute.
@@ -1316,13 +1440,40 @@ public interface GMFGenPackage extends EPackage {
 	int GEN_DIAGRAM__PREFERENCE_PAGES = GEN_CONTAINER_BASE_FEATURE_COUNT + 71;
 
 	/**
+	 * The feature id for the '<em><b>Base Edit Helper Package</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_DIAGRAM__BASE_EDIT_HELPER_PACKAGE = GEN_CONTAINER_BASE_FEATURE_COUNT + 72;
+
+	/**
+	 * The feature id for the '<em><b>Using Element Type Creation Command</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_DIAGRAM__USING_ELEMENT_TYPE_CREATION_COMMAND = GEN_CONTAINER_BASE_FEATURE_COUNT + 73;
+
+	/**
+	 * The feature id for the '<em><b>Visual Type Provider</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_DIAGRAM__VISUAL_TYPE_PROVIDER = GEN_CONTAINER_BASE_FEATURE_COUNT + 74;
+
+	/**
 	 * The number of structural features of the '<em>Gen Diagram</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEN_DIAGRAM_FEATURE_COUNT = GEN_CONTAINER_BASE_FEATURE_COUNT + 72;
+	int GEN_DIAGRAM_FEATURE_COUNT = GEN_CONTAINER_BASE_FEATURE_COUNT + 75;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenEditorViewImpl <em>Gen Editor View</em>}' class.
@@ -2903,13 +3054,22 @@ public interface GMFGenPackage extends EPackage {
 	int GEN_DIAGRAM_UPDATER__UPDATE_COMMAND_ID = 5;
 
 	/**
+	 * The feature id for the '<em><b>Custom Diagram Updater Singleton Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_DIAGRAM_UPDATER__CUSTOM_DIAGRAM_UPDATER_SINGLETON_PATH = 6;
+
+	/**
 	 * The number of structural features of the '<em>Gen Diagram Updater</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEN_DIAGRAM_UPDATER_FEATURE_COUNT = 6;
+	int GEN_DIAGRAM_UPDATER_FEATURE_COUNT = 7;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenPluginImpl <em>Gen Plugin</em>}' class.
@@ -3374,6 +3534,42 @@ public interface GMFGenPackage extends EPackage {
 	int GEN_CHILD_CONTAINER__SANS_DOMAIN = GEN_CONTAINER_BASE__SANS_DOMAIN;
 
 	/**
+	 * The feature id for the '<em><b>Super Edit Part</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_CHILD_CONTAINER__SUPER_EDIT_PART = GEN_CONTAINER_BASE__SUPER_EDIT_PART;
+
+	/**
+	 * The feature id for the '<em><b>Visual ID Override</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_CHILD_CONTAINER__VISUAL_ID_OVERRIDE = GEN_CONTAINER_BASE__VISUAL_ID_OVERRIDE;
+
+	/**
+	 * The feature id for the '<em><b>Using Delete Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_CHILD_CONTAINER__USING_DELETE_SERVICE = GEN_CONTAINER_BASE__USING_DELETE_SERVICE;
+
+	/**
+	 * The feature id for the '<em><b>Using Reorient Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_CHILD_CONTAINER__USING_REORIENT_SERVICE = GEN_CONTAINER_BASE__USING_REORIENT_SERVICE;
+
+	/**
 	 * The feature id for the '<em><b>Contained Nodes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3390,6 +3586,15 @@ public interface GMFGenPackage extends EPackage {
 	 * @ordered
 	 */
 	int GEN_CHILD_CONTAINER__CANONICAL_EDIT_POLICY_CLASS_NAME = GEN_CONTAINER_BASE__CANONICAL_EDIT_POLICY_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Specific Diagram Updater Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_CHILD_CONTAINER__SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME = GEN_CONTAINER_BASE__SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Child Nodes</b></em>' reference list.
@@ -3500,6 +3705,42 @@ public interface GMFGenPackage extends EPackage {
 	int GEN_NODE__SANS_DOMAIN = GEN_CHILD_CONTAINER__SANS_DOMAIN;
 
 	/**
+	 * The feature id for the '<em><b>Super Edit Part</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_NODE__SUPER_EDIT_PART = GEN_CHILD_CONTAINER__SUPER_EDIT_PART;
+
+	/**
+	 * The feature id for the '<em><b>Visual ID Override</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_NODE__VISUAL_ID_OVERRIDE = GEN_CHILD_CONTAINER__VISUAL_ID_OVERRIDE;
+
+	/**
+	 * The feature id for the '<em><b>Using Delete Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_NODE__USING_DELETE_SERVICE = GEN_CHILD_CONTAINER__USING_DELETE_SERVICE;
+
+	/**
+	 * The feature id for the '<em><b>Using Reorient Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_NODE__USING_REORIENT_SERVICE = GEN_CHILD_CONTAINER__USING_REORIENT_SERVICE;
+
+	/**
 	 * The feature id for the '<em><b>Contained Nodes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3516,6 +3757,15 @@ public interface GMFGenPackage extends EPackage {
 	 * @ordered
 	 */
 	int GEN_NODE__CANONICAL_EDIT_POLICY_CLASS_NAME = GEN_CHILD_CONTAINER__CANONICAL_EDIT_POLICY_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Specific Diagram Updater Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_NODE__SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME = GEN_CHILD_CONTAINER__SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Child Nodes</b></em>' reference list.
@@ -3608,13 +3858,31 @@ public interface GMFGenPackage extends EPackage {
 	int GEN_NODE__REORIENTED_INCOMING_LINKS = GEN_CHILD_CONTAINER_FEATURE_COUNT + 8;
 
 	/**
+	 * The feature id for the '<em><b>Refresh Hook</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_NODE__REFRESH_HOOK = GEN_CHILD_CONTAINER_FEATURE_COUNT + 9;
+
+	/**
+	 * The feature id for the '<em><b>Specific Notification Event</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_NODE__SPECIFIC_NOTIFICATION_EVENT = GEN_CHILD_CONTAINER_FEATURE_COUNT + 10;
+
+	/**
 	 * The number of structural features of the '<em>Gen Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEN_NODE_FEATURE_COUNT = GEN_CHILD_CONTAINER_FEATURE_COUNT + 9;
+	int GEN_NODE_FEATURE_COUNT = GEN_CHILD_CONTAINER_FEATURE_COUNT + 11;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenTopLevelNodeImpl <em>Gen Top Level Node</em>}' class.
@@ -3717,6 +3985,42 @@ public interface GMFGenPackage extends EPackage {
 	int GEN_TOP_LEVEL_NODE__SANS_DOMAIN = GEN_NODE__SANS_DOMAIN;
 
 	/**
+	 * The feature id for the '<em><b>Super Edit Part</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_TOP_LEVEL_NODE__SUPER_EDIT_PART = GEN_NODE__SUPER_EDIT_PART;
+
+	/**
+	 * The feature id for the '<em><b>Visual ID Override</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_TOP_LEVEL_NODE__VISUAL_ID_OVERRIDE = GEN_NODE__VISUAL_ID_OVERRIDE;
+
+	/**
+	 * The feature id for the '<em><b>Using Delete Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_TOP_LEVEL_NODE__USING_DELETE_SERVICE = GEN_NODE__USING_DELETE_SERVICE;
+
+	/**
+	 * The feature id for the '<em><b>Using Reorient Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_TOP_LEVEL_NODE__USING_REORIENT_SERVICE = GEN_NODE__USING_REORIENT_SERVICE;
+
+	/**
 	 * The feature id for the '<em><b>Contained Nodes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3733,6 +4037,15 @@ public interface GMFGenPackage extends EPackage {
 	 * @ordered
 	 */
 	int GEN_TOP_LEVEL_NODE__CANONICAL_EDIT_POLICY_CLASS_NAME = GEN_NODE__CANONICAL_EDIT_POLICY_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Specific Diagram Updater Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_TOP_LEVEL_NODE__SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME = GEN_NODE__SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Child Nodes</b></em>' reference list.
@@ -3823,6 +4136,24 @@ public interface GMFGenPackage extends EPackage {
 	 * @ordered
 	 */
 	int GEN_TOP_LEVEL_NODE__REORIENTED_INCOMING_LINKS = GEN_NODE__REORIENTED_INCOMING_LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Refresh Hook</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_TOP_LEVEL_NODE__REFRESH_HOOK = GEN_NODE__REFRESH_HOOK;
+
+	/**
+	 * The feature id for the '<em><b>Specific Notification Event</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_TOP_LEVEL_NODE__SPECIFIC_NOTIFICATION_EVENT = GEN_NODE__SPECIFIC_NOTIFICATION_EVENT;
 
 	/**
 	 * The feature id for the '<em><b>Diagram</b></em>' container reference.
@@ -3943,6 +4274,42 @@ public interface GMFGenPackage extends EPackage {
 	int GEN_CHILD_NODE__SANS_DOMAIN = GEN_NODE__SANS_DOMAIN;
 
 	/**
+	 * The feature id for the '<em><b>Super Edit Part</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_CHILD_NODE__SUPER_EDIT_PART = GEN_NODE__SUPER_EDIT_PART;
+
+	/**
+	 * The feature id for the '<em><b>Visual ID Override</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_CHILD_NODE__VISUAL_ID_OVERRIDE = GEN_NODE__VISUAL_ID_OVERRIDE;
+
+	/**
+	 * The feature id for the '<em><b>Using Delete Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_CHILD_NODE__USING_DELETE_SERVICE = GEN_NODE__USING_DELETE_SERVICE;
+
+	/**
+	 * The feature id for the '<em><b>Using Reorient Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_CHILD_NODE__USING_REORIENT_SERVICE = GEN_NODE__USING_REORIENT_SERVICE;
+
+	/**
 	 * The feature id for the '<em><b>Contained Nodes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3959,6 +4326,15 @@ public interface GMFGenPackage extends EPackage {
 	 * @ordered
 	 */
 	int GEN_CHILD_NODE__CANONICAL_EDIT_POLICY_CLASS_NAME = GEN_NODE__CANONICAL_EDIT_POLICY_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Specific Diagram Updater Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_CHILD_NODE__SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME = GEN_NODE__SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Child Nodes</b></em>' reference list.
@@ -4049,6 +4425,24 @@ public interface GMFGenPackage extends EPackage {
 	 * @ordered
 	 */
 	int GEN_CHILD_NODE__REORIENTED_INCOMING_LINKS = GEN_NODE__REORIENTED_INCOMING_LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Refresh Hook</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_CHILD_NODE__REFRESH_HOOK = GEN_NODE__REFRESH_HOOK;
+
+	/**
+	 * The feature id for the '<em><b>Specific Notification Event</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_CHILD_NODE__SPECIFIC_NOTIFICATION_EVENT = GEN_NODE__SPECIFIC_NOTIFICATION_EVENT;
 
 	/**
 	 * The feature id for the '<em><b>Diagram</b></em>' container reference.
@@ -4178,6 +4572,42 @@ public interface GMFGenPackage extends EPackage {
 	int GEN_CHILD_SIDE_AFFIXED_NODE__SANS_DOMAIN = GEN_CHILD_NODE__SANS_DOMAIN;
 
 	/**
+	 * The feature id for the '<em><b>Super Edit Part</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_CHILD_SIDE_AFFIXED_NODE__SUPER_EDIT_PART = GEN_CHILD_NODE__SUPER_EDIT_PART;
+
+	/**
+	 * The feature id for the '<em><b>Visual ID Override</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_CHILD_SIDE_AFFIXED_NODE__VISUAL_ID_OVERRIDE = GEN_CHILD_NODE__VISUAL_ID_OVERRIDE;
+
+	/**
+	 * The feature id for the '<em><b>Using Delete Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_CHILD_SIDE_AFFIXED_NODE__USING_DELETE_SERVICE = GEN_CHILD_NODE__USING_DELETE_SERVICE;
+
+	/**
+	 * The feature id for the '<em><b>Using Reorient Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_CHILD_SIDE_AFFIXED_NODE__USING_REORIENT_SERVICE = GEN_CHILD_NODE__USING_REORIENT_SERVICE;
+
+	/**
 	 * The feature id for the '<em><b>Contained Nodes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4194,6 +4624,15 @@ public interface GMFGenPackage extends EPackage {
 	 * @ordered
 	 */
 	int GEN_CHILD_SIDE_AFFIXED_NODE__CANONICAL_EDIT_POLICY_CLASS_NAME = GEN_CHILD_NODE__CANONICAL_EDIT_POLICY_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Specific Diagram Updater Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_CHILD_SIDE_AFFIXED_NODE__SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME = GEN_CHILD_NODE__SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Child Nodes</b></em>' reference list.
@@ -4286,6 +4725,24 @@ public interface GMFGenPackage extends EPackage {
 	int GEN_CHILD_SIDE_AFFIXED_NODE__REORIENTED_INCOMING_LINKS = GEN_CHILD_NODE__REORIENTED_INCOMING_LINKS;
 
 	/**
+	 * The feature id for the '<em><b>Refresh Hook</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_CHILD_SIDE_AFFIXED_NODE__REFRESH_HOOK = GEN_CHILD_NODE__REFRESH_HOOK;
+
+	/**
+	 * The feature id for the '<em><b>Specific Notification Event</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_CHILD_SIDE_AFFIXED_NODE__SPECIFIC_NOTIFICATION_EVENT = GEN_CHILD_NODE__SPECIFIC_NOTIFICATION_EVENT;
+
+	/**
 	 * The feature id for the '<em><b>Diagram</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4313,13 +4770,22 @@ public interface GMFGenPackage extends EPackage {
 	int GEN_CHILD_SIDE_AFFIXED_NODE__PREFERRED_SIDE_NAME = GEN_CHILD_NODE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Locator Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_CHILD_SIDE_AFFIXED_NODE__LOCATOR_CLASS_NAME = GEN_CHILD_NODE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Gen Child Side Affixed Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEN_CHILD_SIDE_AFFIXED_NODE_FEATURE_COUNT = GEN_CHILD_NODE_FEATURE_COUNT + 1;
+	int GEN_CHILD_SIDE_AFFIXED_NODE_FEATURE_COUNT = GEN_CHILD_NODE_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenChildLabelNodeImpl <em>Gen Child Label Node</em>}' class.
@@ -4422,6 +4888,42 @@ public interface GMFGenPackage extends EPackage {
 	int GEN_CHILD_LABEL_NODE__SANS_DOMAIN = GEN_CHILD_NODE__SANS_DOMAIN;
 
 	/**
+	 * The feature id for the '<em><b>Super Edit Part</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_CHILD_LABEL_NODE__SUPER_EDIT_PART = GEN_CHILD_NODE__SUPER_EDIT_PART;
+
+	/**
+	 * The feature id for the '<em><b>Visual ID Override</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_CHILD_LABEL_NODE__VISUAL_ID_OVERRIDE = GEN_CHILD_NODE__VISUAL_ID_OVERRIDE;
+
+	/**
+	 * The feature id for the '<em><b>Using Delete Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_CHILD_LABEL_NODE__USING_DELETE_SERVICE = GEN_CHILD_NODE__USING_DELETE_SERVICE;
+
+	/**
+	 * The feature id for the '<em><b>Using Reorient Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_CHILD_LABEL_NODE__USING_REORIENT_SERVICE = GEN_CHILD_NODE__USING_REORIENT_SERVICE;
+
+	/**
 	 * The feature id for the '<em><b>Contained Nodes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4438,6 +4940,15 @@ public interface GMFGenPackage extends EPackage {
 	 * @ordered
 	 */
 	int GEN_CHILD_LABEL_NODE__CANONICAL_EDIT_POLICY_CLASS_NAME = GEN_CHILD_NODE__CANONICAL_EDIT_POLICY_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Specific Diagram Updater Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_CHILD_LABEL_NODE__SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME = GEN_CHILD_NODE__SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Child Nodes</b></em>' reference list.
@@ -4528,6 +5039,24 @@ public interface GMFGenPackage extends EPackage {
 	 * @ordered
 	 */
 	int GEN_CHILD_LABEL_NODE__REORIENTED_INCOMING_LINKS = GEN_CHILD_NODE__REORIENTED_INCOMING_LINKS;
+
+	/**
+	 * The feature id for the '<em><b>Refresh Hook</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_CHILD_LABEL_NODE__REFRESH_HOOK = GEN_CHILD_NODE__REFRESH_HOOK;
+
+	/**
+	 * The feature id for the '<em><b>Specific Notification Event</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_CHILD_LABEL_NODE__SPECIFIC_NOTIFICATION_EVENT = GEN_CHILD_NODE__SPECIFIC_NOTIFICATION_EVENT;
 
 	/**
 	 * The feature id for the '<em><b>Diagram</b></em>' container reference.
@@ -4674,6 +5203,42 @@ public interface GMFGenPackage extends EPackage {
 	int GEN_COMPARTMENT__SANS_DOMAIN = GEN_CHILD_CONTAINER__SANS_DOMAIN;
 
 	/**
+	 * The feature id for the '<em><b>Super Edit Part</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_COMPARTMENT__SUPER_EDIT_PART = GEN_CHILD_CONTAINER__SUPER_EDIT_PART;
+
+	/**
+	 * The feature id for the '<em><b>Visual ID Override</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_COMPARTMENT__VISUAL_ID_OVERRIDE = GEN_CHILD_CONTAINER__VISUAL_ID_OVERRIDE;
+
+	/**
+	 * The feature id for the '<em><b>Using Delete Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_COMPARTMENT__USING_DELETE_SERVICE = GEN_CHILD_CONTAINER__USING_DELETE_SERVICE;
+
+	/**
+	 * The feature id for the '<em><b>Using Reorient Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_COMPARTMENT__USING_REORIENT_SERVICE = GEN_CHILD_CONTAINER__USING_REORIENT_SERVICE;
+
+	/**
 	 * The feature id for the '<em><b>Contained Nodes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4690,6 +5255,15 @@ public interface GMFGenPackage extends EPackage {
 	 * @ordered
 	 */
 	int GEN_COMPARTMENT__CANONICAL_EDIT_POLICY_CLASS_NAME = GEN_CHILD_CONTAINER__CANONICAL_EDIT_POLICY_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Specific Diagram Updater Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_COMPARTMENT__SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME = GEN_CHILD_CONTAINER__SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Child Nodes</b></em>' reference list.
@@ -4871,6 +5445,42 @@ public interface GMFGenPackage extends EPackage {
 	 * @ordered
 	 */
 	int GEN_LINK__SANS_DOMAIN = GEN_COMMON_BASE__SANS_DOMAIN;
+
+	/**
+	 * The feature id for the '<em><b>Super Edit Part</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_LINK__SUPER_EDIT_PART = GEN_COMMON_BASE__SUPER_EDIT_PART;
+
+	/**
+	 * The feature id for the '<em><b>Visual ID Override</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_LINK__VISUAL_ID_OVERRIDE = GEN_COMMON_BASE__VISUAL_ID_OVERRIDE;
+
+	/**
+	 * The feature id for the '<em><b>Using Delete Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_LINK__USING_DELETE_SERVICE = GEN_COMMON_BASE__USING_DELETE_SERVICE;
+
+	/**
+	 * The feature id for the '<em><b>Using Reorient Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_LINK__USING_REORIENT_SERVICE = GEN_COMMON_BASE__USING_REORIENT_SERVICE;
 
 	/**
 	 * The feature id for the '<em><b>Gen Outgoing Links</b></em>' reference list.
@@ -5126,6 +5736,42 @@ public interface GMFGenPackage extends EPackage {
 	int GEN_LABEL__SANS_DOMAIN = GEN_COMMON_BASE__SANS_DOMAIN;
 
 	/**
+	 * The feature id for the '<em><b>Super Edit Part</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_LABEL__SUPER_EDIT_PART = GEN_COMMON_BASE__SUPER_EDIT_PART;
+
+	/**
+	 * The feature id for the '<em><b>Visual ID Override</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_LABEL__VISUAL_ID_OVERRIDE = GEN_COMMON_BASE__VISUAL_ID_OVERRIDE;
+
+	/**
+	 * The feature id for the '<em><b>Using Delete Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_LABEL__USING_DELETE_SERVICE = GEN_COMMON_BASE__USING_DELETE_SERVICE;
+
+	/**
+	 * The feature id for the '<em><b>Using Reorient Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_LABEL__USING_REORIENT_SERVICE = GEN_COMMON_BASE__USING_REORIENT_SERVICE;
+
+	/**
 	 * The feature id for the '<em><b>Read Only</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5260,6 +5906,42 @@ public interface GMFGenPackage extends EPackage {
 	 * @ordered
 	 */
 	int GEN_NODE_LABEL__SANS_DOMAIN = GEN_LABEL__SANS_DOMAIN;
+
+	/**
+	 * The feature id for the '<em><b>Super Edit Part</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_NODE_LABEL__SUPER_EDIT_PART = GEN_LABEL__SUPER_EDIT_PART;
+
+	/**
+	 * The feature id for the '<em><b>Visual ID Override</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_NODE_LABEL__VISUAL_ID_OVERRIDE = GEN_LABEL__VISUAL_ID_OVERRIDE;
+
+	/**
+	 * The feature id for the '<em><b>Using Delete Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_NODE_LABEL__USING_DELETE_SERVICE = GEN_LABEL__USING_DELETE_SERVICE;
+
+	/**
+	 * The feature id for the '<em><b>Using Reorient Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_NODE_LABEL__USING_REORIENT_SERVICE = GEN_LABEL__USING_REORIENT_SERVICE;
 
 	/**
 	 * The feature id for the '<em><b>Read Only</b></em>' attribute.
@@ -5407,6 +6089,42 @@ public interface GMFGenPackage extends EPackage {
 	int GEN_EXTERNAL_NODE_LABEL__SANS_DOMAIN = GEN_NODE_LABEL__SANS_DOMAIN;
 
 	/**
+	 * The feature id for the '<em><b>Super Edit Part</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_EXTERNAL_NODE_LABEL__SUPER_EDIT_PART = GEN_NODE_LABEL__SUPER_EDIT_PART;
+
+	/**
+	 * The feature id for the '<em><b>Visual ID Override</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_EXTERNAL_NODE_LABEL__VISUAL_ID_OVERRIDE = GEN_NODE_LABEL__VISUAL_ID_OVERRIDE;
+
+	/**
+	 * The feature id for the '<em><b>Using Delete Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_EXTERNAL_NODE_LABEL__USING_DELETE_SERVICE = GEN_NODE_LABEL__USING_DELETE_SERVICE;
+
+	/**
+	 * The feature id for the '<em><b>Using Reorient Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_EXTERNAL_NODE_LABEL__USING_REORIENT_SERVICE = GEN_NODE_LABEL__USING_REORIENT_SERVICE;
+
+	/**
 	 * The feature id for the '<em><b>Read Only</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5443,13 +6161,40 @@ public interface GMFGenPackage extends EPackage {
 	int GEN_EXTERNAL_NODE_LABEL__NODE = GEN_NODE_LABEL__NODE;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_EXTERNAL_NODE_LABEL__NAME = GEN_NODE_LABEL_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Locator Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_EXTERNAL_NODE_LABEL__LOCATOR_CLASS_NAME = GEN_NODE_LABEL_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Label Visibility Preference</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_EXTERNAL_NODE_LABEL__LABEL_VISIBILITY_PREFERENCE = GEN_NODE_LABEL_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Gen External Node Label</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEN_EXTERNAL_NODE_LABEL_FEATURE_COUNT = GEN_NODE_LABEL_FEATURE_COUNT + 0;
+	int GEN_EXTERNAL_NODE_LABEL_FEATURE_COUNT = GEN_NODE_LABEL_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenLinkLabelImpl <em>Gen Link Label</em>}' class.
@@ -5552,6 +6297,42 @@ public interface GMFGenPackage extends EPackage {
 	int GEN_LINK_LABEL__SANS_DOMAIN = GEN_LABEL__SANS_DOMAIN;
 
 	/**
+	 * The feature id for the '<em><b>Super Edit Part</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_LINK_LABEL__SUPER_EDIT_PART = GEN_LABEL__SUPER_EDIT_PART;
+
+	/**
+	 * The feature id for the '<em><b>Visual ID Override</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_LINK_LABEL__VISUAL_ID_OVERRIDE = GEN_LABEL__VISUAL_ID_OVERRIDE;
+
+	/**
+	 * The feature id for the '<em><b>Using Delete Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_LINK_LABEL__USING_DELETE_SERVICE = GEN_LABEL__USING_DELETE_SERVICE;
+
+	/**
+	 * The feature id for the '<em><b>Using Reorient Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_LINK_LABEL__USING_REORIENT_SERVICE = GEN_LABEL__USING_REORIENT_SERVICE;
+
+	/**
 	 * The feature id for the '<em><b>Read Only</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5597,13 +6378,22 @@ public interface GMFGenPackage extends EPackage {
 	int GEN_LINK_LABEL__ALIGNMENT = GEN_LABEL_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Label Visibility Preference</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_LINK_LABEL__LABEL_VISIBILITY_PREFERENCE = GEN_LABEL_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Gen Link Label</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEN_LINK_LABEL_FEATURE_COUNT = GEN_LABEL_FEATURE_COUNT + 2;
+	int GEN_LINK_LABEL_FEATURE_COUNT = GEN_LABEL_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Diagram Element</b></em>' container reference.
@@ -10571,6 +11361,42 @@ public interface GMFGenPackage extends EPackage {
 	int GEN_LINK_END__SANS_DOMAIN = GEN_COMMON_BASE__SANS_DOMAIN;
 
 	/**
+	 * The feature id for the '<em><b>Super Edit Part</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_LINK_END__SUPER_EDIT_PART = GEN_COMMON_BASE__SUPER_EDIT_PART;
+
+	/**
+	 * The feature id for the '<em><b>Visual ID Override</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_LINK_END__VISUAL_ID_OVERRIDE = GEN_COMMON_BASE__VISUAL_ID_OVERRIDE;
+
+	/**
+	 * The feature id for the '<em><b>Using Delete Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_LINK_END__USING_DELETE_SERVICE = GEN_COMMON_BASE__USING_DELETE_SERVICE;
+
+	/**
+	 * The feature id for the '<em><b>Using Reorient Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_LINK_END__USING_REORIENT_SERVICE = GEN_COMMON_BASE__USING_REORIENT_SERVICE;
+
+	/**
 	 * The feature id for the '<em><b>Gen Outgoing Links</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11422,6 +12248,89 @@ public interface GMFGenPackage extends EPackage {
 	int GEN_FIXED_INPUTS_TEMPLATE_INVOCATION_FEATURE_COUNT = GEN_TEMPLATE_INVOCATION_BASE_FEATURE_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenFloatingLabelImpl <em>Gen Floating Label</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenFloatingLabelImpl
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GMFGenPackageImpl#getGenFloatingLabel()
+	 * @generated
+	 */
+	int GEN_FLOATING_LABEL = 147;
+
+	/**
+	 * The feature id for the '<em><b>Role</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_FLOATING_LABEL__ROLE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Icon Path Role</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_FLOATING_LABEL__ICON_PATH_ROLE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Visible By Default</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_FLOATING_LABEL__VISIBLE_BY_DEFAULT = 2;
+
+	/**
+	 * The number of structural features of the '<em>Gen Floating Label</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_FLOATING_LABEL_FEATURE_COUNT = 3;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.RefreshHookImpl <em>Refresh Hook</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.impl.RefreshHookImpl
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GMFGenPackageImpl#getRefreshHook()
+	 * @generated
+	 */
+	int REFRESH_HOOK = 148;
+
+	/**
+	 * The feature id for the '<em><b>Refresh Condition</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFRESH_HOOK__REFRESH_CONDITION = 0;
+
+	/**
+	 * The feature id for the '<em><b>Refresh Action</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFRESH_HOOK__REFRESH_ACTION = 1;
+
+	/**
+	 * The number of structural features of the '<em>Refresh Hook</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFRESH_HOOK_FEATURE_COUNT = 2;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.StandardPreferencePages <em>Standard Preference Pages</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11429,7 +12338,7 @@ public interface GMFGenPackage extends EPackage {
 	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GMFGenPackageImpl#getStandardPreferencePages()
 	 * @generated
 	 */
-	int STANDARD_PREFERENCE_PAGES = 147;
+	int STANDARD_PREFERENCE_PAGES = 149;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.RulerUnits <em>Ruler Units</em>}' enum.
@@ -11439,7 +12348,7 @@ public interface GMFGenPackage extends EPackage {
 	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GMFGenPackageImpl#getRulerUnits()
 	 * @generated
 	 */
-	int RULER_UNITS = 148;
+	int RULER_UNITS = 150;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.Routing <em>Routing</em>}' enum.
@@ -11449,7 +12358,7 @@ public interface GMFGenPackage extends EPackage {
 	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GMFGenPackageImpl#getRouting()
 	 * @generated
 	 */
-	int ROUTING = 149;
+	int ROUTING = 151;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.LineStyle <em>Line Style</em>}' enum.
@@ -11459,7 +12368,7 @@ public interface GMFGenPackage extends EPackage {
 	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GMFGenPackageImpl#getLineStyle()
 	 * @generated
 	 */
-	int LINE_STYLE = 150;
+	int LINE_STYLE = 152;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.JFaceFont <em>JFace Font</em>}' enum.
@@ -11469,7 +12378,7 @@ public interface GMFGenPackage extends EPackage {
 	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GMFGenPackageImpl#getJFaceFont()
 	 * @generated
 	 */
-	int JFACE_FONT = 151;
+	int JFACE_FONT = 153;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.FontStyle <em>Font Style</em>}' enum.
@@ -11479,7 +12388,7 @@ public interface GMFGenPackage extends EPackage {
 	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GMFGenPackageImpl#getFontStyle()
 	 * @generated
 	 */
-	int FONT_STYLE = 152;
+	int FONT_STYLE = 154;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.DiagramColors <em>Diagram Colors</em>}' enum.
@@ -11489,7 +12398,7 @@ public interface GMFGenPackage extends EPackage {
 	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GMFGenPackageImpl#getDiagramColors()
 	 * @generated
 	 */
-	int DIAGRAM_COLORS = 153;
+	int DIAGRAM_COLORS = 155;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.ProviderPriority <em>Provider Priority</em>}' enum.
@@ -11499,7 +12408,7 @@ public interface GMFGenPackage extends EPackage {
 	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GMFGenPackageImpl#getProviderPriority()
 	 * @generated
 	 */
-	int PROVIDER_PRIORITY = 154;
+	int PROVIDER_PRIORITY = 156;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.LinkLabelAlignment <em>Link Label Alignment</em>}' enum.
@@ -11509,7 +12418,7 @@ public interface GMFGenPackage extends EPackage {
 	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GMFGenPackageImpl#getLinkLabelAlignment()
 	 * @generated
 	 */
-	int LINK_LABEL_ALIGNMENT = 155;
+	int LINK_LABEL_ALIGNMENT = 157;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.LabelTextAccessMethod <em>Label Text Access Method</em>}' enum.
@@ -11519,7 +12428,7 @@ public interface GMFGenPackage extends EPackage {
 	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GMFGenPackageImpl#getLabelTextAccessMethod()
 	 * @generated
 	 */
-	int LABEL_TEXT_ACCESS_METHOD = 156;
+	int LABEL_TEXT_ACCESS_METHOD = 158;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.ViewmapLayoutType <em>Viewmap Layout Type</em>}' enum.
@@ -11529,7 +12438,7 @@ public interface GMFGenPackage extends EPackage {
 	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GMFGenPackageImpl#getViewmapLayoutType()
 	 * @generated
 	 */
-	int VIEWMAP_LAYOUT_TYPE = 157;
+	int VIEWMAP_LAYOUT_TYPE = 159;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.StandardEntryKind <em>Standard Entry Kind</em>}' enum.
@@ -11539,7 +12448,7 @@ public interface GMFGenPackage extends EPackage {
 	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GMFGenPackageImpl#getStandardEntryKind()
 	 * @generated
 	 */
-	int STANDARD_ENTRY_KIND = 158;
+	int STANDARD_ENTRY_KIND = 160;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenSeverity <em>Gen Severity</em>}' enum.
@@ -11549,7 +12458,7 @@ public interface GMFGenPackage extends EPackage {
 	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GMFGenPackageImpl#getGenSeverity()
 	 * @generated
 	 */
-	int GEN_SEVERITY = 159;
+	int GEN_SEVERITY = 161;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenLanguage <em>Gen Language</em>}' enum.
@@ -11559,7 +12468,7 @@ public interface GMFGenPackage extends EPackage {
 	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GMFGenPackageImpl#getGenLanguage()
 	 * @generated
 	 */
-	int GEN_LANGUAGE = 160;
+	int GEN_LANGUAGE = 162;
 
 
 	/**
@@ -11570,7 +12479,7 @@ public interface GMFGenPackage extends EPackage {
 	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GMFGenPackageImpl#getGenNavigatorReferenceType()
 	 * @generated
 	 */
-	int GEN_NAVIGATOR_REFERENCE_TYPE = 161;
+	int GEN_NAVIGATOR_REFERENCE_TYPE = 163;
 
 
 	/**
@@ -11581,7 +12490,7 @@ public interface GMFGenPackage extends EPackage {
 	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GMFGenPackageImpl#getGeneratedType()
 	 * @generated
 	 */
-	int GENERATED_TYPE = 162;
+	int GENERATED_TYPE = 164;
 
 
 	/**
@@ -11977,6 +12886,39 @@ public interface GMFGenPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getGenDiagram_PreferencePages();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram#getBaseEditHelperPackage <em>Base Edit Helper Package</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Base Edit Helper Package</em>'.
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram#getBaseEditHelperPackage()
+	 * @see #getGenDiagram()
+	 * @generated
+	 */
+	EAttribute getGenDiagram_BaseEditHelperPackage();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram#isUsingElementTypeCreationCommand <em>Using Element Type Creation Command</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Using Element Type Creation Command</em>'.
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram#isUsingElementTypeCreationCommand()
+	 * @see #getGenDiagram()
+	 * @generated
+	 */
+	EAttribute getGenDiagram_UsingElementTypeCreationCommand();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram#getVisualTypeProvider <em>Visual Type Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Visual Type Provider</em>'.
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram#getVisualTypeProvider()
+	 * @see #getGenDiagram()
+	 * @generated
+	 */
+	EAttribute getGenDiagram_VisualTypeProvider();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorView <em>Gen Editor View</em>}'.
@@ -13531,6 +14473,17 @@ public interface GMFGenPackage extends EPackage {
 	EAttribute getGenDiagramUpdater_UpdateCommandID();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagramUpdater#getCustomDiagramUpdaterSingletonPath <em>Custom Diagram Updater Singleton Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Custom Diagram Updater Singleton Path</em>'.
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagramUpdater#getCustomDiagramUpdaterSingletonPath()
+	 * @see #getGenDiagramUpdater()
+	 * @generated
+	 */
+	EAttribute getGenDiagramUpdater_CustomDiagramUpdaterSingletonPath();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenPlugin <em>Gen Plugin</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13909,6 +14862,50 @@ public interface GMFGenPackage extends EPackage {
 	EAttribute getGenCommonBase_SansDomain();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase#getSuperEditPart <em>Super Edit Part</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Super Edit Part</em>'.
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase#getSuperEditPart()
+	 * @see #getGenCommonBase()
+	 * @generated
+	 */
+	EAttribute getGenCommonBase_SuperEditPart();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase#getVisualIDOverride <em>Visual ID Override</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Visual ID Override</em>'.
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase#getVisualIDOverride()
+	 * @see #getGenCommonBase()
+	 * @generated
+	 */
+	EAttribute getGenCommonBase_VisualIDOverride();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase#isUsingDeleteService <em>Using Delete Service</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Using Delete Service</em>'.
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase#isUsingDeleteService()
+	 * @see #getGenCommonBase()
+	 * @generated
+	 */
+	EAttribute getGenCommonBase_UsingDeleteService();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase#isUsingReorientService <em>Using Reorient Service</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Using Reorient Service</em>'.
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase#isUsingReorientService()
+	 * @see #getGenCommonBase()
+	 * @generated
+	 */
+	EAttribute getGenCommonBase_UsingReorientService();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.Behaviour <em>Behaviour</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14069,6 +15066,17 @@ public interface GMFGenPackage extends EPackage {
 	EAttribute getGenContainerBase_CanonicalEditPolicyClassName();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenContainerBase#getSpecificDiagramUpdaterClassName <em>Specific Diagram Updater Class Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Specific Diagram Updater Class Name</em>'.
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GenContainerBase#getSpecificDiagramUpdaterClassName()
+	 * @see #getGenContainerBase()
+	 * @generated
+	 */
+	EAttribute getGenContainerBase_SpecificDiagramUpdaterClassName();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode <em>Gen Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14145,6 +15153,28 @@ public interface GMFGenPackage extends EPackage {
 	EReference getGenNode_ReorientedIncomingLinks();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode#getRefreshHook <em>Refresh Hook</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Refresh Hook</em>'.
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode#getRefreshHook()
+	 * @see #getGenNode()
+	 * @generated
+	 */
+	EReference getGenNode_RefreshHook();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode#isSpecificNotificationEvent <em>Specific Notification Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Specific Notification Event</em>'.
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode#isSpecificNotificationEvent()
+	 * @see #getGenNode()
+	 * @generated
+	 */
+	EAttribute getGenNode_SpecificNotificationEvent();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenTopLevelNode <em>Gen Top Level Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14217,6 +15247,17 @@ public interface GMFGenPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getGenChildSideAffixedNode_PreferredSideName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenChildSideAffixedNode#getLocatorClassName <em>Locator Class Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Locator Class Name</em>'.
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GenChildSideAffixedNode#getLocatorClassName()
+	 * @see #getGenChildSideAffixedNode()
+	 * @generated
+	 */
+	EAttribute getGenChildSideAffixedNode_LocatorClassName();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenChildLabelNode <em>Gen Child Label Node</em>}'.
@@ -14619,6 +15660,39 @@ public interface GMFGenPackage extends EPackage {
 	EClass getGenExternalNodeLabel();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenExternalNodeLabel#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GenExternalNodeLabel#getName()
+	 * @see #getGenExternalNodeLabel()
+	 * @generated
+	 */
+	EAttribute getGenExternalNodeLabel_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenExternalNodeLabel#getLocatorClassName <em>Locator Class Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Locator Class Name</em>'.
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GenExternalNodeLabel#getLocatorClassName()
+	 * @see #getGenExternalNodeLabel()
+	 * @generated
+	 */
+	EAttribute getGenExternalNodeLabel_LocatorClassName();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenExternalNodeLabel#getLabelVisibilityPreference <em>Label Visibility Preference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Label Visibility Preference</em>'.
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GenExternalNodeLabel#getLabelVisibilityPreference()
+	 * @see #getGenExternalNodeLabel()
+	 * @generated
+	 */
+	EReference getGenExternalNodeLabel_LabelVisibilityPreference();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenLinkLabel <em>Gen Link Label</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14649,6 +15723,17 @@ public interface GMFGenPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getGenLinkLabel_Alignment();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenLinkLabel#getLabelVisibilityPreference <em>Label Visibility Preference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Label Visibility Preference</em>'.
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GenLinkLabel#getLabelVisibilityPreference()
+	 * @see #getGenLinkLabel()
+	 * @generated
+	 */
+	EReference getGenLinkLabel_LabelVisibilityPreference();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.ModelFacet <em>Model Facet</em>}'.
@@ -18443,6 +19528,81 @@ public interface GMFGenPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getGenFixedInputsTemplateInvocation_FixedInputs();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenFloatingLabel <em>Gen Floating Label</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Gen Floating Label</em>'.
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GenFloatingLabel
+	 * @generated
+	 */
+	EClass getGenFloatingLabel();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenFloatingLabel#getRole <em>Role</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Role</em>'.
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GenFloatingLabel#getRole()
+	 * @see #getGenFloatingLabel()
+	 * @generated
+	 */
+	EAttribute getGenFloatingLabel_Role();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenFloatingLabel#getIconPathRole <em>Icon Path Role</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Icon Path Role</em>'.
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GenFloatingLabel#getIconPathRole()
+	 * @see #getGenFloatingLabel()
+	 * @generated
+	 */
+	EAttribute getGenFloatingLabel_IconPathRole();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenFloatingLabel#isVisibleByDefault <em>Visible By Default</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Visible By Default</em>'.
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GenFloatingLabel#isVisibleByDefault()
+	 * @see #getGenFloatingLabel()
+	 * @generated
+	 */
+	EAttribute getGenFloatingLabel_VisibleByDefault();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.RefreshHook <em>Refresh Hook</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Refresh Hook</em>'.
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.RefreshHook
+	 * @generated
+	 */
+	EClass getRefreshHook();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.RefreshHook#getRefreshCondition <em>Refresh Condition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Refresh Condition</em>'.
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.RefreshHook#getRefreshCondition()
+	 * @see #getRefreshHook()
+	 * @generated
+	 */
+	EAttribute getRefreshHook_RefreshCondition();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.RefreshHook#getRefreshAction <em>Refresh Action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Refresh Action</em>'.
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.RefreshHook#getRefreshAction()
+	 * @see #getRefreshHook()
+	 * @generated
+	 */
+	EAttribute getRefreshHook_RefreshAction();
 
 	/**
 	 * Returns the meta object for enum '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.StandardPreferencePages <em>Standard Preference Pages</em>}'.

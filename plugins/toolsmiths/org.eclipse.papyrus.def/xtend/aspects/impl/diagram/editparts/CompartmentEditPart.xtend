@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2006, 2009 Borland Software Corporation
+ * Copyright (c) 2006, 2009, 2021 Borland Software Corporation, CEA LIST, ARTAL and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,6 +12,7 @@
  * Dmitry Stadnik (Borland) - initial API and implementation
  * Alexander Shatalin (Borland) - initial API and implementation
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : PapyrusGmfExtension epackage merge into gmfgen
  * 
  *****************************************************************************/
 package aspects.impl.diagram.editparts
@@ -20,7 +21,6 @@ import com.google.inject.Inject
 import com.google.inject.Singleton
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCompartment
 import xpt.diagram.editparts.Common
-import org.eclipse.papyrus.gmf.codegen.genextension.ExtendedGenView
 
 //DOCUMENTATION: PapyrusGenCode
 //Overload only the creation of editPolicies in order to add the paste edit policy
@@ -67,6 +67,6 @@ import org.eclipse.papyrus.gmf.codegen.genextension.ExtendedGenView
 	}
 
 	def boolean hasExternalSuperClass(GenCompartment it, String className) {
-		return it.eResource.allContents.filter(typeof(ExtendedGenView)).filter [v |	(v.genView.contains(it) && v.superOwnedEditPart.equals(className))].size > 0;
+		superEditPart == className
 	}
 }

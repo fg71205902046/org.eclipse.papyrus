@@ -81,6 +81,7 @@ public class GenDiagramUpdaterItemProvider
 			addLinkDescriptorClassNamePropertyDescriptor(object);
 			addUpdateCommandClassNamePropertyDescriptor(object);
 			addUpdateCommandIDPropertyDescriptor(object);
+			addCustomDiagramUpdaterSingletonPathPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -196,6 +197,28 @@ public class GenDiagramUpdaterItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Custom Diagram Updater Singleton Path feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCustomDiagramUpdaterSingletonPathPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GenDiagramUpdater_customDiagramUpdaterSingletonPath_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GenDiagramUpdater_customDiagramUpdaterSingletonPath_feature", "_UI_GenDiagramUpdater_type"),
+				 GMFGenPackage.eINSTANCE.getGenDiagramUpdater_CustomDiagramUpdaterSingletonPath(),
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns GenDiagramUpdater.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -247,6 +270,7 @@ public class GenDiagramUpdaterItemProvider
 			case GMFGenPackage.GEN_DIAGRAM_UPDATER__LINK_DESCRIPTOR_CLASS_NAME:
 			case GMFGenPackage.GEN_DIAGRAM_UPDATER__UPDATE_COMMAND_CLASS_NAME:
 			case GMFGenPackage.GEN_DIAGRAM_UPDATER__UPDATE_COMMAND_ID:
+			case GMFGenPackage.GEN_DIAGRAM_UPDATER__CUSTOM_DIAGRAM_UPDATER_SINGLETON_PATH:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

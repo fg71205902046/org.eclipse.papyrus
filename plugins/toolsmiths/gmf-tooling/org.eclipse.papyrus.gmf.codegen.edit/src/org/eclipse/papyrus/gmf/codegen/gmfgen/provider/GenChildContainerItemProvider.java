@@ -68,6 +68,7 @@ public class GenChildContainerItemProvider
 			super.getPropertyDescriptors(object);
 
 			addCanonicalEditPolicyClassNamePropertyDescriptor(object);
+			addSpecificDiagramUpdaterClassNamePropertyDescriptor(object);
 			addChildNodesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -128,6 +129,28 @@ public class GenChildContainerItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Specific Diagram Updater Class Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSpecificDiagramUpdaterClassNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GenContainerBase_specificDiagramUpdaterClassName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GenContainerBase_specificDiagramUpdaterClassName_feature", "_UI_GenContainerBase_type"),
+				 GMFGenPackage.eINSTANCE.getGenContainerBase_SpecificDiagramUpdaterClassName(),
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -154,6 +177,7 @@ public class GenChildContainerItemProvider
 
 		switch (notification.getFeatureID(GenChildContainer.class)) {
 			case GMFGenPackage.GEN_CHILD_CONTAINER__CANONICAL_EDIT_POLICY_CLASS_NAME:
+			case GMFGenPackage.GEN_CHILD_CONTAINER__SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

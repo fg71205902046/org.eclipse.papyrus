@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -65,6 +66,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ViewmapLayoutType;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCommonBaseImpl#getStyles <em>Styles</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCommonBaseImpl#getBehaviour <em>Behaviour</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCommonBaseImpl#isSansDomain <em>Sans Domain</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCommonBaseImpl#getSuperEditPart <em>Super Edit Part</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCommonBaseImpl#getVisualIDOverride <em>Visual ID Override</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCommonBaseImpl#isUsingDeleteService <em>Using Delete Service</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCommonBaseImpl#isUsingReorientService <em>Using Reorient Service</em>}</li>
  * </ul>
  *
  * @generated
@@ -209,6 +214,86 @@ public abstract class GenCommonBaseImpl extends EObjectImpl implements GenCommon
 	 * @ordered
 	 */
 	protected static final boolean SANS_DOMAIN_EDEFAULT = false;
+
+	/**
+	 * The default value of the '{@link #getSuperEditPart() <em>Super Edit Part</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSuperEditPart()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String SUPER_EDIT_PART_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getSuperEditPart() <em>Super Edit Part</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSuperEditPart()
+	 * @generated
+	 * @ordered
+	 */
+	protected String superEditPart = SUPER_EDIT_PART_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getVisualIDOverride() <em>Visual ID Override</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getVisualIDOverride()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String VISUAL_ID_OVERRIDE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getVisualIDOverride() <em>Visual ID Override</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getVisualIDOverride()
+	 * @generated
+	 * @ordered
+	 */
+	protected String visualIDOverride = VISUAL_ID_OVERRIDE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isUsingDeleteService() <em>Using Delete Service</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUsingDeleteService()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean USING_DELETE_SERVICE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isUsingDeleteService() <em>Using Delete Service</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUsingDeleteService()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean usingDeleteService = USING_DELETE_SERVICE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isUsingReorientService() <em>Using Reorient Service</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUsingReorientService()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean USING_REORIENT_SERVICE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isUsingReorientService() <em>Using Reorient Service</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUsingReorientService()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean usingReorientService = USING_REORIENT_SERVICE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -493,6 +578,98 @@ public abstract class GenCommonBaseImpl extends EObjectImpl implements GenCommon
 	 */
 	public abstract boolean isSansDomain();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getSuperEditPart() {
+		return superEditPart;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSuperEditPart(String newSuperEditPart) {
+		String oldSuperEditPart = superEditPart;
+		superEditPart = newSuperEditPart;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GMFGenPackage.GEN_COMMON_BASE__SUPER_EDIT_PART, oldSuperEditPart, superEditPart));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getVisualIDOverride() {
+		return visualIDOverride;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setVisualIDOverride(String newVisualIDOverride) {
+		String oldVisualIDOverride = visualIDOverride;
+		visualIDOverride = newVisualIDOverride;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GMFGenPackage.GEN_COMMON_BASE__VISUAL_ID_OVERRIDE, oldVisualIDOverride, visualIDOverride));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isUsingDeleteService() {
+		return usingDeleteService;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setUsingDeleteService(boolean newUsingDeleteService) {
+		boolean oldUsingDeleteService = usingDeleteService;
+		usingDeleteService = newUsingDeleteService;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GMFGenPackage.GEN_COMMON_BASE__USING_DELETE_SERVICE, oldUsingDeleteService, usingDeleteService));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isUsingReorientService() {
+		return usingReorientService;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setUsingReorientService(boolean newUsingReorientService) {
+		boolean oldUsingReorientService = usingReorientService;
+		usingReorientService = newUsingReorientService;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GMFGenPackage.GEN_COMMON_BASE__USING_REORIENT_SERVICE, oldUsingReorientService, usingReorientService));
+	}
+
 	static boolean isEmpty(String s) {
 		return s == null || s.trim().length() == 0;
 	}
@@ -616,6 +793,14 @@ public abstract class GenCommonBaseImpl extends EObjectImpl implements GenCommon
 				return getBehaviour();
 			case GMFGenPackage.GEN_COMMON_BASE__SANS_DOMAIN:
 				return isSansDomain();
+			case GMFGenPackage.GEN_COMMON_BASE__SUPER_EDIT_PART:
+				return getSuperEditPart();
+			case GMFGenPackage.GEN_COMMON_BASE__VISUAL_ID_OVERRIDE:
+				return getVisualIDOverride();
+			case GMFGenPackage.GEN_COMMON_BASE__USING_DELETE_SERVICE:
+				return isUsingDeleteService();
+			case GMFGenPackage.GEN_COMMON_BASE__USING_REORIENT_SERVICE:
+				return isUsingReorientService();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -658,6 +843,18 @@ public abstract class GenCommonBaseImpl extends EObjectImpl implements GenCommon
 				getBehaviour().clear();
 				getBehaviour().addAll((Collection<? extends Behaviour>)newValue);
 				return;
+			case GMFGenPackage.GEN_COMMON_BASE__SUPER_EDIT_PART:
+				setSuperEditPart((String)newValue);
+				return;
+			case GMFGenPackage.GEN_COMMON_BASE__VISUAL_ID_OVERRIDE:
+				setVisualIDOverride((String)newValue);
+				return;
+			case GMFGenPackage.GEN_COMMON_BASE__USING_DELETE_SERVICE:
+				setUsingDeleteService((Boolean)newValue);
+				return;
+			case GMFGenPackage.GEN_COMMON_BASE__USING_REORIENT_SERVICE:
+				setUsingReorientService((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -697,6 +894,18 @@ public abstract class GenCommonBaseImpl extends EObjectImpl implements GenCommon
 			case GMFGenPackage.GEN_COMMON_BASE__BEHAVIOUR:
 				getBehaviour().clear();
 				return;
+			case GMFGenPackage.GEN_COMMON_BASE__SUPER_EDIT_PART:
+				setSuperEditPart(SUPER_EDIT_PART_EDEFAULT);
+				return;
+			case GMFGenPackage.GEN_COMMON_BASE__VISUAL_ID_OVERRIDE:
+				setVisualIDOverride(VISUAL_ID_OVERRIDE_EDEFAULT);
+				return;
+			case GMFGenPackage.GEN_COMMON_BASE__USING_DELETE_SERVICE:
+				setUsingDeleteService(USING_DELETE_SERVICE_EDEFAULT);
+				return;
+			case GMFGenPackage.GEN_COMMON_BASE__USING_REORIENT_SERVICE:
+				setUsingReorientService(USING_REORIENT_SERVICE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -729,6 +938,14 @@ public abstract class GenCommonBaseImpl extends EObjectImpl implements GenCommon
 				return behaviour != null && !behaviour.isEmpty();
 			case GMFGenPackage.GEN_COMMON_BASE__SANS_DOMAIN:
 				return isSansDomain() != SANS_DOMAIN_EDEFAULT;
+			case GMFGenPackage.GEN_COMMON_BASE__SUPER_EDIT_PART:
+				return SUPER_EDIT_PART_EDEFAULT == null ? superEditPart != null : !SUPER_EDIT_PART_EDEFAULT.equals(superEditPart);
+			case GMFGenPackage.GEN_COMMON_BASE__VISUAL_ID_OVERRIDE:
+				return VISUAL_ID_OVERRIDE_EDEFAULT == null ? visualIDOverride != null : !VISUAL_ID_OVERRIDE_EDEFAULT.equals(visualIDOverride);
+			case GMFGenPackage.GEN_COMMON_BASE__USING_DELETE_SERVICE:
+				return usingDeleteService != USING_DELETE_SERVICE_EDEFAULT;
+			case GMFGenPackage.GEN_COMMON_BASE__USING_REORIENT_SERVICE:
+				return usingReorientService != USING_REORIENT_SERVICE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -785,6 +1002,14 @@ public abstract class GenCommonBaseImpl extends EObjectImpl implements GenCommon
 		result.append(itemSemanticEditPolicyClassName);
 		result.append(", notationViewFactoryClassName: ");
 		result.append(notationViewFactoryClassName);
+		result.append(", superEditPart: ");
+		result.append(superEditPart);
+		result.append(", visualIDOverride: ");
+		result.append(visualIDOverride);
+		result.append(", usingDeleteService: ");
+		result.append(usingDeleteService);
+		result.append(", usingReorientService: ");
+		result.append(usingReorientService);
 		result.append(')');
 		return result.toString();
 	}

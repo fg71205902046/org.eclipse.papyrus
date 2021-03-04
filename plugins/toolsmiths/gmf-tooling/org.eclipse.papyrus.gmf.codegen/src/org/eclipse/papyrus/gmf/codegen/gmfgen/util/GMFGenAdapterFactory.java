@@ -671,6 +671,14 @@ public class GMFGenAdapterFactory extends AdapterFactoryImpl {
 				return createGenFixedInputsTemplateInvocationAdapter();
 			}
 			@Override
+			public Adapter caseGenFloatingLabel(GenFloatingLabel object) {
+				return createGenFloatingLabelAdapter();
+			}
+			@Override
+			public Adapter caseRefreshHook(RefreshHook object) {
+				return createRefreshHookAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -2703,6 +2711,34 @@ public class GMFGenAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createGenFixedInputsTemplateInvocationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenFloatingLabel <em>Gen Floating Label</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GenFloatingLabel
+	 * @generated
+	 */
+	public Adapter createGenFloatingLabelAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.RefreshHook <em>Refresh Hook</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.RefreshHook
+	 * @generated
+	 */
+	public Adapter createRefreshHookAdapter() {
 		return null;
 	}
 

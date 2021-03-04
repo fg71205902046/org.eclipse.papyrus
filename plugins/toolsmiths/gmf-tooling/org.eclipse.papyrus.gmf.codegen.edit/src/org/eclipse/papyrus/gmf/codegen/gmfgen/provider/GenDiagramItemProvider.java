@@ -70,6 +70,7 @@ public class GenDiagramItemProvider
 			super.getPropertyDescriptors(object);
 
 			addCanonicalEditPolicyClassNamePropertyDescriptor(object);
+			addSpecificDiagramUpdaterClassNamePropertyDescriptor(object);
 			addEditCommandsPackageNamePropertyDescriptor(object);
 			addEditHelpersPackageNamePropertyDescriptor(object);
 			addEditPartsPackageNamePropertyDescriptor(object);
@@ -133,6 +134,9 @@ public class GenDiagramItemProvider
 			addUnitsPropertyDescriptor(object);
 			addDomainDiagramElementPropertyDescriptor(object);
 			addSynchronizedPropertyDescriptor(object);
+			addBaseEditHelperPackagePropertyDescriptor(object);
+			addUsingElementTypeCreationCommandPropertyDescriptor(object);
+			addVisualTypeProviderPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -178,6 +182,72 @@ public class GenDiagramItemProvider
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 getString("_UI_DiagramPropertyCategory"),
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Base Edit Helper Package feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addBaseEditHelperPackagePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GenDiagram_baseEditHelperPackage_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GenDiagram_baseEditHelperPackage_feature", "_UI_GenDiagram_type"),
+				 GMFGenPackage.eINSTANCE.getGenDiagram_BaseEditHelperPackage(),
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Using Element Type Creation Command feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addUsingElementTypeCreationCommandPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GenDiagram_usingElementTypeCreationCommand_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GenDiagram_usingElementTypeCreationCommand_feature", "_UI_GenDiagram_type"),
+				 GMFGenPackage.eINSTANCE.getGenDiagram_UsingElementTypeCreationCommand(),
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Visual Type Provider feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addVisualTypeProviderPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GenDiagram_visualTypeProvider_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GenDiagram_visualTypeProvider_feature", "_UI_GenDiagram_type"),
+				 GMFGenPackage.eINSTANCE.getGenDiagram_VisualTypeProvider(),
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
 				 null));
 	}
 
@@ -974,6 +1044,28 @@ public class GenDiagramItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Specific Diagram Updater Class Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSpecificDiagramUpdaterClassNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GenContainerBase_specificDiagramUpdaterClassName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GenContainerBase_specificDiagramUpdaterClassName_feature", "_UI_GenContainerBase_type"),
+				 GMFGenPackage.eINSTANCE.getGenContainerBase_SpecificDiagramUpdaterClassName(),
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This adds a property descriptor for the Text Selection Edit Policy Class Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1629,6 +1721,7 @@ public class GenDiagramItemProvider
 
 		switch (notification.getFeatureID(GenDiagram.class)) {
 			case GMFGenPackage.GEN_DIAGRAM__CANONICAL_EDIT_POLICY_CLASS_NAME:
+			case GMFGenPackage.GEN_DIAGRAM__SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME:
 			case GMFGenPackage.GEN_DIAGRAM__EDIT_COMMANDS_PACKAGE_NAME:
 			case GMFGenPackage.GEN_DIAGRAM__EDIT_HELPERS_PACKAGE_NAME:
 			case GMFGenPackage.GEN_DIAGRAM__EDIT_PARTS_PACKAGE_NAME:
@@ -1692,6 +1785,9 @@ public class GenDiagramItemProvider
 			case GMFGenPackage.GEN_DIAGRAM__LIVE_VALIDATION_UI_FEEDBACK:
 			case GMFGenPackage.GEN_DIAGRAM__UNITS:
 			case GMFGenPackage.GEN_DIAGRAM__SYNCHRONIZED:
+			case GMFGenPackage.GEN_DIAGRAM__BASE_EDIT_HELPER_PACKAGE:
+			case GMFGenPackage.GEN_DIAGRAM__USING_ELEMENT_TYPE_CREATION_COMMAND:
+			case GMFGenPackage.GEN_DIAGRAM__VISUAL_TYPE_PROVIDER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case GMFGenPackage.GEN_DIAGRAM__CHILD_NODES:

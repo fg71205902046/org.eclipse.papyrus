@@ -1,22 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2006, 2020 Borland Software Corporation, CEA LIST, ARTAL
- * 
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License 2.0
- *  which accompanies this distribution, and is available at
- *  https://www.eclipse.org/legal/epl-2.0/
- * 
- *  SPDX-License-Identifier: EPL-2.0
- * 
- *  Contributors:
- *     Borland - initial API and implementation
- *     Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
- ******************************************************************************/
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * Copyright (c) 2006, 2015, 2020, 2021 Borland Software Corporation, CEA LIST, ARTAL
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ * 
+ * SPDX-License-Identifier: EPL-2.0
+ * 
+ * Contributors:
+ *   Borland - Initial API and implementation for code duplicated from gmf tooling repository
+ *   CEA LIST - Initial API and implementation for code from Papyrus gmfgenextension
+ *   Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
  */
 package org.eclipse.papyrus.gmf.codegen.gmfgen.provider;
 
@@ -26,7 +21,11 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -34,25 +33,33 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage;
-import org.eclipse.papyrus.gmf.codegen.gmfgen.GenChildSideAffixedNode;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.RefreshHook;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenChildSideAffixedNode} object.
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.gmf.codegen.gmfgen.RefreshHook} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class GenChildSideAffixedNodeItemProvider
-	extends GenChildNodeItemProvider {
+public class RefreshHookItemProvider 
+	extends ItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GenChildSideAffixedNodeItemProvider(AdapterFactory adapterFactory) {
+	public RefreshHookItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -67,48 +74,26 @@ public class GenChildSideAffixedNodeItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addPreferredSideNamePropertyDescriptor(object);
-			addLocatorClassNamePropertyDescriptor(object);
+			addRefreshConditionPropertyDescriptor(object);
+			addRefreshActionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Preferred Side Name feature.
+	 * This adds a property descriptor for the Refresh Condition feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPreferredSideNamePropertyDescriptor(Object object) {
+	protected void addRefreshConditionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_GenChildSideAffixedNode_preferredSideName_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GenChildSideAffixedNode_preferredSideName_feature", "_UI_GenChildSideAffixedNode_type"),
-				 GMFGenPackage.eINSTANCE.getGenChildSideAffixedNode_PreferredSideName(),
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 getString("_UI_DiagramElementPropertyCategory"),
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Locator Class Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addLocatorClassNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_GenChildSideAffixedNode_locatorClassName_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GenChildSideAffixedNode_locatorClassName_feature", "_UI_GenChildSideAffixedNode_type"),
-				 GMFGenPackage.eINSTANCE.getGenChildSideAffixedNode_LocatorClassName(),
+				 getString("_UI_RefreshHook_refreshCondition_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_RefreshHook_refreshCondition_feature", "_UI_RefreshHook_type"),
+				 GMFGenPackage.eINSTANCE.getRefreshHook_RefreshCondition(),
 				 true,
 				 false,
 				 false,
@@ -118,14 +103,36 @@ public class GenChildSideAffixedNodeItemProvider
 	}
 
 	/**
-	 * This returns GenChildSideAffixedNode.gif.
+	 * This adds a property descriptor for the Refresh Action feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRefreshActionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_RefreshHook_refreshAction_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_RefreshHook_refreshAction_feature", "_UI_RefreshHook_type"),
+				 GMFGenPackage.eINSTANCE.getRefreshHook_RefreshAction(),
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This returns RefreshHook.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/GenChildSideAffixedNode"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/RefreshHook"));
 	}
 
 	/**
@@ -146,11 +153,12 @@ public class GenChildSideAffixedNodeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((GenChildSideAffixedNode)object).getEditPartClassName();
+		String label = ((RefreshHook)object).getRefreshCondition();
 		return label == null || label.length() == 0 ?
-			getString("_UI_GenChildSideAffixedNode_type") :
-			getString("_UI_GenChildSideAffixedNode_type") + " " + label;
+			getString("_UI_RefreshHook_type") :
+			getString("_UI_RefreshHook_type") + " " + label;
 	}
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -163,9 +171,9 @@ public class GenChildSideAffixedNodeItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(GenChildSideAffixedNode.class)) {
-			case GMFGenPackage.GEN_CHILD_SIDE_AFFIXED_NODE__PREFERRED_SIDE_NAME:
-			case GMFGenPackage.GEN_CHILD_SIDE_AFFIXED_NODE__LOCATOR_CLASS_NAME:
+		switch (notification.getFeatureID(RefreshHook.class)) {
+			case GMFGenPackage.REFRESH_HOOK__REFRESH_CONDITION:
+			case GMFGenPackage.REFRESH_HOOK__REFRESH_ACTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -182,6 +190,17 @@ public class GenChildSideAffixedNodeItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

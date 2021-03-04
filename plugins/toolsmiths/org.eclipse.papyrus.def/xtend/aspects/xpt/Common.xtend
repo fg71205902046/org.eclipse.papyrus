@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2006-2013 Borland Software Corporation and others
+ * Copyright (c) 2006-2013, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,6 +11,7 @@
  * Contributors:
  * Dmitry Stadnik (Borland) - initial API and implementation
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : PapyrusGmfExtension epackage merge into gmfgen
  * 
  *****************************************************************************/
 package aspects.xpt;
@@ -18,12 +19,11 @@ package aspects.xpt;
 import com.google.inject.Singleton
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator
-import org.eclipse.papyrus.gmf.codegen.genextension.VisualIDOverride
 
 @Singleton class Common extends xpt.Common {
 	override copyright(GenEditorGenerator it) 
 	'''
-	«IF copyrightText != null»
+	«IF copyrightText !== null»
 	/**
 	 * «copyrightText.replaceAll('\n', '\n * ')»
 	 */
@@ -31,15 +31,15 @@ import org.eclipse.papyrus.gmf.codegen.genextension.VisualIDOverride
 	'''
 
 	def String stringVisualID(GenCommonBase it) {
-		if (it.eResource.allContents.filter(typeof (VisualIDOverride)).exists(v|v.genView == it))
-			it.eResource.allContents.filter(typeof (VisualIDOverride)).findFirst(v|v.genView == it).visualID
+		if (visualIDOverride !== null)
+			visualIDOverride
 		else
-			it.visualID.toString
+			visualID.toString
 	}
 
 	def String stringUniqueIdentifier(GenCommonBase it) {
-		if (it.eResource.allContents.filter(typeof (VisualIDOverride)).exists(v|v.genView == it))
-			it.eResource.allContents.filter(typeof (VisualIDOverride)).findFirst(v|v.genView == it).visualID
+		if (visualIDOverride !== null)
+			visualIDOverride
 		else
 			it.uniqueIdentifier
 	}

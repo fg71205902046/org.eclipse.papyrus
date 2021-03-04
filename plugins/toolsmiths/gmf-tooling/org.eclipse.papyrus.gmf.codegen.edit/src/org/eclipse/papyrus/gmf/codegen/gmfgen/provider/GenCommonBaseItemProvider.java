@@ -85,6 +85,10 @@ public class GenCommonBaseItemProvider
 			addNotationViewFactoryClassNamePropertyDescriptor(object);
 			addStylesPropertyDescriptor(object);
 			addSansDomainPropertyDescriptor(object);
+			addSuperEditPartPropertyDescriptor(object);
+			addVisualIDOverridePropertyDescriptor(object);
+			addUsingDeleteServicePropertyDescriptor(object);
+			addUsingReorientServicePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -244,6 +248,94 @@ public class GenCommonBaseItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Super Edit Part feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSuperEditPartPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GenCommonBase_superEditPart_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GenCommonBase_superEditPart_feature", "_UI_GenCommonBase_type"),
+				 GMFGenPackage.eINSTANCE.getGenCommonBase_SuperEditPart(),
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Visual ID Override feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addVisualIDOverridePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GenCommonBase_visualIDOverride_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GenCommonBase_visualIDOverride_feature", "_UI_GenCommonBase_type"),
+				 GMFGenPackage.eINSTANCE.getGenCommonBase_VisualIDOverride(),
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Using Delete Service feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addUsingDeleteServicePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GenCommonBase_usingDeleteService_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GenCommonBase_usingDeleteService_feature", "_UI_GenCommonBase_type"),
+				 GMFGenPackage.eINSTANCE.getGenCommonBase_UsingDeleteService(),
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Using Reorient Service feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addUsingReorientServicePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GenCommonBase_usingReorientService_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GenCommonBase_usingReorientService_feature", "_UI_GenCommonBase_type"),
+				 GMFGenPackage.eINSTANCE.getGenCommonBase_UsingReorientService(),
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -316,6 +408,10 @@ public class GenCommonBaseItemProvider
 			case GMFGenPackage.GEN_COMMON_BASE__ITEM_SEMANTIC_EDIT_POLICY_CLASS_NAME:
 			case GMFGenPackage.GEN_COMMON_BASE__NOTATION_VIEW_FACTORY_CLASS_NAME:
 			case GMFGenPackage.GEN_COMMON_BASE__SANS_DOMAIN:
+			case GMFGenPackage.GEN_COMMON_BASE__SUPER_EDIT_PART:
+			case GMFGenPackage.GEN_COMMON_BASE__VISUAL_ID_OVERRIDE:
+			case GMFGenPackage.GEN_COMMON_BASE__USING_DELETE_SERVICE:
+			case GMFGenPackage.GEN_COMMON_BASE__USING_REORIENT_SERVICE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case GMFGenPackage.GEN_COMMON_BASE__ELEMENT_TYPE:

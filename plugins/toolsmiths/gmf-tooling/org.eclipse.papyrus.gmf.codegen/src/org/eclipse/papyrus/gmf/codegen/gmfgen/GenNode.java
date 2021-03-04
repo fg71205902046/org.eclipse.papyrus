@@ -49,6 +49,8 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeModelFacet;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode#getGraphicalNodeEditPolicyClassName <em>Graphical Node Edit Policy Class Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode#getCreateCommandClassName <em>Create Command Class Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode#getReorientedIncomingLinks <em>Reoriented Incoming Links</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode#getRefreshHook <em>Refresh Hook</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode#isSpecificNotificationEvent <em>Specific Notification Event</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenNode()
@@ -226,6 +228,56 @@ public interface GenNode extends GenChildContainer, GenLinkEnd {
 	 * @generated
 	 */
 	EList<GenLink> getReorientedIncomingLinks();
+
+	/**
+	 * Returns the value of the '<em><b>Refresh Hook</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Bug 569174 : from PropertyRefreshHook
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Refresh Hook</em>' containment reference.
+	 * @see #setRefreshHook(RefreshHook)
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenNode_RefreshHook()
+	 * @model containment="true"
+	 * @generated
+	 */
+	RefreshHook getRefreshHook();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode#getRefreshHook <em>Refresh Hook</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Refresh Hook</em>' containment reference.
+	 * @see #getRefreshHook()
+	 * @generated
+	 */
+	void setRefreshHook(RefreshHook value);
+
+	/**
+	 * Returns the value of the '<em><b>Specific Notification Event</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Bug 569174 : from ExtendedGenView
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Specific Notification Event</em>' attribute.
+	 * @see #setSpecificNotificationEvent(boolean)
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenNode_SpecificNotificationEvent()
+	 * @model
+	 * @generated
+	 */
+	boolean isSpecificNotificationEvent();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode#isSpecificNotificationEvent <em>Specific Notification Event</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Specific Notification Event</em>' attribute.
+	 * @see #isSpecificNotificationEvent()
+	 * @generated
+	 */
+	void setSpecificNotificationEvent(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Model Facet</b></em>' containment reference.

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2006-2013 Borland Software Corporation and others
+ * Copyright (c) 2006-2013, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,6 +11,7 @@
  * Contributors:
  * Alexander Shatalin (Borland) - initial API and implementation
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : PapyrusGmfExtension epackage merge into gmfgen
  * 
  *****************************************************************************/
 package aspects.xpt.diagram.editpolicies
@@ -23,7 +24,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenChildNode
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCompartment
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
 import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeModelFacet
-import org.eclipse.papyrus.gmf.codegen.genextension.ConstrainedByReferenceCompartmentItemSemanticEditPolicy
 import xpt.Common
 import xpt.diagram.editpolicies.childContainerCreateCommand
 
@@ -47,18 +47,6 @@ import xpt.diagram.editpolicies.childContainerCreateCommand
 		«xptChildContainerCreateCommand.childContainerCreateCommand( it.childNodes)»
 		
 		«additions(it)»
-		
-		««« Papyrus REM : 
-		««« Test if this compartment edit policy should used a referenced constraint for the move command.
-
-		«IF it.eResource.allContents.filter(typeof (ConstrainedByReferenceCompartmentItemSemanticEditPolicy)).filter[v | v.genView.contains(it)].size != 0»
-		«getChildNodeReference(childNodes)»
-			
-			«isCorrectCompartment(it)»
-			
-			«constraintedMoveCommand(it)»
-		
-		«ENDIF»
 		}
 	'''
 

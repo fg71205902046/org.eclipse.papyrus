@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
+ * Copyright (c) 2015, 2021 Christian W. Damus, CEA LIST, Artal and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  * Christian W. Damus - Initial API and implementation
+ * Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : PapyrusGmfExtension epackage merge into gmfgen
  * 
  *****************************************************************************/
 package aspects.xpt.providers
@@ -17,7 +18,6 @@ package aspects.xpt.providers
 import javax.inject.Inject
 import javax.inject.Singleton
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
-import org.eclipse.papyrus.gmf.codegen.genextension.GenVisualTypeProvider
 import xpt.CodeStyle
 import xpt.Common
 import xpt.editor.VisualIDRegistry
@@ -36,13 +36,12 @@ import xpt.providers.ElementTypes
 	
 	def packageName(GenDiagram it) '''«it.providersPackageName»'''
 	
-	def className(GenDiagram it) '''«GenVisualTypeProvider.getClassName(it)»'''
 	
-	def qualifiedClassName(GenDiagram it) '''«packageName(it)».«className(it)»'''
+	def qualifiedClassName(GenDiagram it) '''«packageName(it)».«visualTypeProvider»'''
 	
 	protected def constructor(GenDiagram it) '''
 		«generatedMemberComment»
-		public «it.className»() {
+		public «visualTypeProvider»() {
 			super();
 		}
 	'''
@@ -84,7 +83,7 @@ import xpt.providers.ElementTypes
 		package «packageName»;
 		
 		«generatedClassComment»
-		public class «className» extends org.eclipse.papyrus.infra.gmfdiag.common.service.visualtype.AbstractVisualTypeProvider {
+		public class «visualTypeProvider» extends org.eclipse.papyrus.infra.gmfdiag.common.service.visualtype.AbstractVisualTypeProvider {
 		
 			«constructor»
 			

@@ -33,6 +33,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenContainerBase#getContainedNodes <em>Contained Nodes</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenContainerBase#getCanonicalEditPolicyClassName <em>Canonical Edit Policy Class Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenContainerBase#getSpecificDiagramUpdaterClassName <em>Specific Diagram Updater Class Name</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenContainerBase()
@@ -83,6 +84,31 @@ public interface GenContainerBase extends GenCommonBase {
 	 * @generated
 	 */
 	void setCanonicalEditPolicyClassName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Specific Diagram Updater Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Bug 569174 : from SpecificDiagramUpdater
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Specific Diagram Updater Class Name</em>' attribute.
+	 * @see #setSpecificDiagramUpdaterClassName(String)
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenContainerBase_SpecificDiagramUpdaterClassName()
+	 * @model
+	 * @generated
+	 */
+	String getSpecificDiagramUpdaterClassName();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenContainerBase#getSpecificDiagramUpdaterClassName <em>Specific Diagram Updater Class Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Specific Diagram Updater Class Name</em>' attribute.
+	 * @see #getSpecificDiagramUpdaterClassName()
+	 * @generated
+	 */
+	void setSpecificDiagramUpdaterClassName(String value);
 
 	/**
 	 * <!-- begin-user-doc -->

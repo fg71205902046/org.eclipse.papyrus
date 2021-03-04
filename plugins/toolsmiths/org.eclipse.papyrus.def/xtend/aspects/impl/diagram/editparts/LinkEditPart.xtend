@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2006, 2010, 2013 Borland Software Corporation and others
+ * Copyright (c) 2006, 2010, 2013, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -13,6 +13,7 @@
  * Alexander Shatalin (Borland) - initial API and implementation
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Remi Schnekenburger (CEA LIST) - modification for Papyrus MDT
+ * Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : PapyrusGmfExtension epackage merge into gmfgen
  * 
  *****************************************************************************/
 package aspects.impl.diagram.editparts
@@ -21,7 +22,6 @@ import com.google.inject.Inject
 import com.google.inject.Singleton
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink
 import org.eclipse.papyrus.gmf.codegen.gmfgen.ModeledViewmap
-import org.eclipse.papyrus.gmf.codegen.genextension.ExtendedGenView
 import xpt.Common
 
 /**
@@ -34,20 +34,13 @@ import xpt.Common
 	//BEGIN: PapyrusGenCode
 	//computes super type of the link edit part in case the edit part manages a representation of a UML element
 	def extendsListContents(GenLink it)'''
-	«IF it.eResource.allContents.filter(typeof (ExtendedGenView)).filter[v |(v.genView.contains(it) && v.superOwnedEditPart!=null)].size != 0»
-	«FOR extendedObject : it.eResource.allContents.filter(typeof (ExtendedGenView)).filter[v |(v.genView.contains(it) && v.superOwnedEditPart!=null)].toIterable»
-	«specifyInheritance(extendedObject)»
-	«ENDFOR»
+	«IF superEditPart !== null»
+	«superEditPart»
 	«ELSE»
 	org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart
 	«ENDIF»
 	'''
 	//END: BEGIN: PapyrusGenCode
-	
-	//BEGIN: PapyrusGenCode
-	//definition of the inheritance
-	def specifyInheritance (ExtendedGenView it)'''«superOwnedEditPart»'''
-	//END: PapyrusGenCode
 
 	override addFixedChild (GenLink it)'''
 	«IF labels.size > 0»
