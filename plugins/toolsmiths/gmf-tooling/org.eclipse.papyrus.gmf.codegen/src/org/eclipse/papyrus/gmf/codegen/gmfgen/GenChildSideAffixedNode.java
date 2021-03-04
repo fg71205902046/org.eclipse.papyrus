@@ -32,6 +32,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenChildNode;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenChildSideAffixedNode#getPreferredSideName <em>Preferred Side Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenChildSideAffixedNode#getLocatorClassName <em>Locator Class Name</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenChildSideAffixedNode()
@@ -65,5 +66,30 @@ public interface GenChildSideAffixedNode extends GenChildNode {
 	 * @generated
 	 */
 	void setPreferredSideName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Locator Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Bug 569174 : from SpecificLocator
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Locator Class Name</em>' attribute.
+	 * @see #setLocatorClassName(String)
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenChildSideAffixedNode_LocatorClassName()
+	 * @model
+	 * @generated
+	 */
+	String getLocatorClassName();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenChildSideAffixedNode#getLocatorClassName <em>Locator Class Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Locator Class Name</em>' attribute.
+	 * @see #getLocatorClassName()
+	 * @generated
+	 */
+	void setLocatorClassName(String value);
 
 } // GenChildSideAffixedNode

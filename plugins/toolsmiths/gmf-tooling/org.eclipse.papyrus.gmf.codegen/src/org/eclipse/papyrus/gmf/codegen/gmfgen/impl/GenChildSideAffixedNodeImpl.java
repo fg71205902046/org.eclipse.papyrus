@@ -35,6 +35,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenChildSideAffixedNode;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenChildSideAffixedNodeImpl#getPreferredSideName <em>Preferred Side Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenChildSideAffixedNodeImpl#getLocatorClassName <em>Locator Class Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -59,6 +60,26 @@ public class GenChildSideAffixedNodeImpl extends GenChildNodeImpl implements Gen
 	 * @ordered
 	 */
 	protected String preferredSideName = PREFERRED_SIDE_NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getLocatorClassName() <em>Locator Class Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLocatorClassName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String LOCATOR_CLASS_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getLocatorClassName() <em>Locator Class Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLocatorClassName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String locatorClassName = LOCATOR_CLASS_NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -108,10 +129,35 @@ public class GenChildSideAffixedNodeImpl extends GenChildNodeImpl implements Gen
 	 * @generated
 	 */
 	@Override
+	public String getLocatorClassName() {
+		return locatorClassName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setLocatorClassName(String newLocatorClassName) {
+		String oldLocatorClassName = locatorClassName;
+		locatorClassName = newLocatorClassName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GMFGenPackage.GEN_CHILD_SIDE_AFFIXED_NODE__LOCATOR_CLASS_NAME, oldLocatorClassName, locatorClassName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case GMFGenPackage.GEN_CHILD_SIDE_AFFIXED_NODE__PREFERRED_SIDE_NAME:
 				return getPreferredSideName();
+			case GMFGenPackage.GEN_CHILD_SIDE_AFFIXED_NODE__LOCATOR_CLASS_NAME:
+				return getLocatorClassName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -126,6 +172,9 @@ public class GenChildSideAffixedNodeImpl extends GenChildNodeImpl implements Gen
 		switch (featureID) {
 			case GMFGenPackage.GEN_CHILD_SIDE_AFFIXED_NODE__PREFERRED_SIDE_NAME:
 				setPreferredSideName((String)newValue);
+				return;
+			case GMFGenPackage.GEN_CHILD_SIDE_AFFIXED_NODE__LOCATOR_CLASS_NAME:
+				setLocatorClassName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -142,6 +191,9 @@ public class GenChildSideAffixedNodeImpl extends GenChildNodeImpl implements Gen
 			case GMFGenPackage.GEN_CHILD_SIDE_AFFIXED_NODE__PREFERRED_SIDE_NAME:
 				setPreferredSideName(PREFERRED_SIDE_NAME_EDEFAULT);
 				return;
+			case GMFGenPackage.GEN_CHILD_SIDE_AFFIXED_NODE__LOCATOR_CLASS_NAME:
+				setLocatorClassName(LOCATOR_CLASS_NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -156,6 +208,8 @@ public class GenChildSideAffixedNodeImpl extends GenChildNodeImpl implements Gen
 		switch (featureID) {
 			case GMFGenPackage.GEN_CHILD_SIDE_AFFIXED_NODE__PREFERRED_SIDE_NAME:
 				return PREFERRED_SIDE_NAME_EDEFAULT == null ? preferredSideName != null : !PREFERRED_SIDE_NAME_EDEFAULT.equals(preferredSideName);
+			case GMFGenPackage.GEN_CHILD_SIDE_AFFIXED_NODE__LOCATOR_CLASS_NAME:
+				return LOCATOR_CLASS_NAME_EDEFAULT == null ? locatorClassName != null : !LOCATOR_CLASS_NAME_EDEFAULT.equals(locatorClassName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -172,6 +226,8 @@ public class GenChildSideAffixedNodeImpl extends GenChildNodeImpl implements Gen
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (preferredSideName: ");
 		result.append(preferredSideName);
+		result.append(", locatorClassName: ");
+		result.append(locatorClassName);
 		result.append(')');
 		return result.toString();
 	}

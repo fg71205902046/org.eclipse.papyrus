@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2007, 2010, 2014 Borland Software Corporation, CEA, and others
+ * Copyright (c) 2007, 2010, 2014, 2021 Borland Software Corporation, CEA, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -13,6 +13,7 @@
  * Michael Golubev (Borland) - [243151] explicit source/target for links
  * Michael Golubev (Montages) - API extracted to gmf.tooling.runtime, template migrated to Xtend2
  * Christian W. Damus (CEA) - bug 426732: override the cross-reference searches for views to use the CrossReferenceAdapter        
+ * Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : PapyrusGmfExtension epackage merge into gmfgen
  * 
  *****************************************************************************/
 package aspects.xpt.diagram.updater
@@ -30,8 +31,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagramUpdater
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
 import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeLinkModelFacet
-import org.eclipse.papyrus.gmf.codegen.genextension.CustomDiagramUpdaterSingleton
-import org.eclipse.papyrus.gmf.codegen.genextension.SpecificDiagramUpdater
 import xpt.Common_qvto
 import xpt.GenModelUtils_qvto
 import xpt.diagram.updater.UpdaterLinkType
@@ -53,10 +52,8 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenFeature
 	@Inject MetaModel xptMetaModel;
 
 	def diagramUpdaterInstanceToUse(GenDiagramUpdater it) '''
-		«IF it.eResource.allContents.filter(typeof(CustomDiagramUpdaterSingleton)).filter[v|v.singletonPath != null].size ==
-			1»
-			«it.eResource.allContents.filter(typeof(CustomDiagramUpdaterSingleton)).filter[v|v.singletonPath != null].head.
-			singletonPath»
+		«IF customDiagramUpdaterSingletonPath !== null»
+			«customDiagramUpdaterSingletonPath»
 		«ELSE»
 			«diagramUpdaterQualifiedClassName».INSTANCE
 		«ENDIF»
@@ -84,7 +81,7 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenFeature
 	//create the singleton using custom class defined in GMFGen
 	public def classSingleton(GenDiagramUpdater it) '''
 		«««we create the singleton only in the case where there is no custom diagram updater
-	«IF it.eResource.allContents.filter(typeof(CustomDiagramUpdaterSingleton)).filter[v|v.singletonPath != null].size != 1»
+	«IF customDiagramUpdaterSingletonPath === null»
 			«generatedMemberComment()»
 			public static final  «diagramUpdaterQualifiedClassName» INSTANCE = new «diagramUpdaterClassName»();
 		«ENDIF»
@@ -193,16 +190,12 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenFeature
 
 	override getSemanticChildrenOfView(GenContainerBase it) '''
 		«««remove static modifier
-		«IF it.eResource.allContents.filter(typeof(SpecificDiagramUpdater)).filter[v|v.genNode == it && v.classpath != null].
-			size != 0»
+		«IF specificDiagramUpdaterClassName !==  null»
 			«generatedMemberComment»
-			«FOR updater : it.eResource.allContents.filter(typeof(SpecificDiagramUpdater)).filter[v|
-			v.genNode == it && v.classpath != null].toIterable»
 				public  «listOfNodeDescriptors» «getSemanticChildrenMethodName(it)»(org.eclipse.gmf.runtime.notation.View view) {
-					«getICustomDiagramUpdater(it)» customUpdater = new «updater.classpath»();
+					«getICustomDiagramUpdater(it)» customUpdater = new «specificDiagramUpdaterClassName»();
 					return customUpdater.getSemanticChildren(view);
 				}
-			«ENDFOR»	
 			«ELSE»
 			«generatedMemberComment»
 			public  «listOfNodeDescriptors» «getSemanticChildrenMethodName(it)»(org.eclipse.gmf.runtime.notation.View view) {

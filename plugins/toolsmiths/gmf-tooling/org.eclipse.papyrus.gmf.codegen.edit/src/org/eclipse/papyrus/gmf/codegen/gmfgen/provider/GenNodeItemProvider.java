@@ -76,6 +76,7 @@ public class GenNodeItemProvider
 			addGraphicalNodeEditPolicyClassNamePropertyDescriptor(object);
 			addCreateCommandClassNamePropertyDescriptor(object);
 			addReorientedIncomingLinksPropertyDescriptor(object);
+			addSpecificNotificationEventPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -235,6 +236,28 @@ public class GenNodeItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Specific Notification Event feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSpecificNotificationEventPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GenNode_specificNotificationEvent_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GenNode_specificNotificationEvent_feature", "_UI_GenNode_type"),
+				 GMFGenPackage.eINSTANCE.getGenNode_SpecificNotificationEvent(),
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -248,6 +271,7 @@ public class GenNodeItemProvider
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(GMFGenPackage.eINSTANCE.getGenNode_ModelFacet());
 			childrenFeatures.add(GMFGenPackage.eINSTANCE.getGenNode_Labels());
+			childrenFeatures.add(GMFGenPackage.eINSTANCE.getGenNode_RefreshHook());
 		}
 		return childrenFeatures;
 	}
@@ -304,10 +328,12 @@ public class GenNodeItemProvider
 			case GMFGenPackage.GEN_NODE__PRIMARY_DRAG_EDIT_POLICY_QUALIFIED_CLASS_NAME:
 			case GMFGenPackage.GEN_NODE__GRAPHICAL_NODE_EDIT_POLICY_CLASS_NAME:
 			case GMFGenPackage.GEN_NODE__CREATE_COMMAND_CLASS_NAME:
+			case GMFGenPackage.GEN_NODE__SPECIFIC_NOTIFICATION_EVENT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case GMFGenPackage.GEN_NODE__MODEL_FACET:
 			case GMFGenPackage.GEN_NODE__LABELS:
+			case GMFGenPackage.GEN_NODE__REFRESH_HOOK:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -344,6 +370,11 @@ public class GenNodeItemProvider
 			(createChildParameter
 				(GMFGenPackage.eINSTANCE.getGenNode_Labels(),
 				 GMFGenFactory.eINSTANCE.createGenExternalNodeLabel()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GMFGenPackage.eINSTANCE.getGenNode_RefreshHook(),
+				 GMFGenFactory.eINSTANCE.createRefreshHook()));
 	}
 
 }

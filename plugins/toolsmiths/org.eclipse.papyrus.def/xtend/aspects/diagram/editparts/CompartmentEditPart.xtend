@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2006, 2009, 2013 Borland Software Corporation and others
+ * Copyright (c) 2006, 2009, 2013, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,6 +12,7 @@
  * Dmitry Stadnik (Borland) - initial API and implementation
  * Alexander Shatalin (Borland) - initial API and implementation
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : PapyrusGmfExtension epackage merge into gmfgen
  * 
  *****************************************************************************/
 package aspects.diagram.editparts
@@ -19,7 +20,6 @@ package aspects.diagram.editparts
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCompartment
-import org.eclipse.papyrus.gmf.codegen.genextension.ExtendedGenView
 import xpt.Common
 
 @Singleton class CompartmentEditPart extends diagram.editparts.CompartmentEditPart {
@@ -29,19 +29,14 @@ import xpt.Common
 
 «««BEGIN: PapyrusGenCode
 «««Add own extension
-«IF it.eResource.allContents.filter(typeof(ExtendedGenView)).filter[v|v.genView.contains(it) && v.superOwnedEditPart != null].size != 0»
-	extends «FOR extendedObject : it.eResource.allContents.filter(typeof (ExtendedGenView)).filter[v|v.genView.contains(it) && v.superOwnedEditPart != null].toIterable»
-	«specifyInheritance(extendedObject as ExtendedGenView)»
-«ENDFOR»
+«IF superEditPart!== null»
+	extends «superEditPart»
 «««END: BEGIN: PapyrusGenCode
 «ELSE»
   extends «IF listLayout»org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart«ELSE»org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.linklf.LinkLFShapeCompartmentEditPart«ENDIF»
 «ENDIF»
 	'''
 
-	//BEGIN: PapyrusGenCode
-	//definition of the inheritance
-	def specifyInheritance(ExtendedGenView it) '''«superOwnedEditPart»'''
 
 	//END: PapyrusGenCode
 	override additions(GenCompartment it) '''

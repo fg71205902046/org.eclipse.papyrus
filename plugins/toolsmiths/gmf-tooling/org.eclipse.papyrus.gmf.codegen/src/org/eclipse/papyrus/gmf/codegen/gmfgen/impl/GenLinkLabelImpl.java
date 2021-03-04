@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenFloatingLabel;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLinkLabel;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.LinkLabelAlignment;
@@ -42,6 +43,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.LinkLabelAlignment;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenLinkLabelImpl#getLink <em>Link</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenLinkLabelImpl#getAlignment <em>Alignment</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenLinkLabelImpl#getLabelVisibilityPreference <em>Label Visibility Preference</em>}</li>
  * </ul>
  *
  * @generated
@@ -66,6 +68,16 @@ public class GenLinkLabelImpl extends GenLabelImpl implements GenLinkLabel {
 	 * @ordered
 	 */
 	protected LinkLabelAlignment alignment = ALIGNMENT_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getLabelVisibilityPreference() <em>Label Visibility Preference</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLabelVisibilityPreference()
+	 * @generated
+	 * @ordered
+	 */
+	protected GenFloatingLabel labelVisibilityPreference;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -158,6 +170,51 @@ public class GenLinkLabelImpl extends GenLabelImpl implements GenLinkLabel {
 	 * @generated
 	 */
 	@Override
+	public GenFloatingLabel getLabelVisibilityPreference() {
+		return labelVisibilityPreference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetLabelVisibilityPreference(GenFloatingLabel newLabelVisibilityPreference, NotificationChain msgs) {
+		GenFloatingLabel oldLabelVisibilityPreference = labelVisibilityPreference;
+		labelVisibilityPreference = newLabelVisibilityPreference;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GMFGenPackage.GEN_LINK_LABEL__LABEL_VISIBILITY_PREFERENCE, oldLabelVisibilityPreference, newLabelVisibilityPreference);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setLabelVisibilityPreference(GenFloatingLabel newLabelVisibilityPreference) {
+		if (newLabelVisibilityPreference != labelVisibilityPreference) {
+			NotificationChain msgs = null;
+			if (labelVisibilityPreference != null)
+				msgs = ((InternalEObject)labelVisibilityPreference).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GMFGenPackage.GEN_LINK_LABEL__LABEL_VISIBILITY_PREFERENCE, null, msgs);
+			if (newLabelVisibilityPreference != null)
+				msgs = ((InternalEObject)newLabelVisibilityPreference).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GMFGenPackage.GEN_LINK_LABEL__LABEL_VISIBILITY_PREFERENCE, null, msgs);
+			msgs = basicSetLabelVisibilityPreference(newLabelVisibilityPreference, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GMFGenPackage.GEN_LINK_LABEL__LABEL_VISIBILITY_PREFERENCE, newLabelVisibilityPreference, newLabelVisibilityPreference));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case GMFGenPackage.GEN_LINK_LABEL__LINK:
@@ -178,6 +235,8 @@ public class GenLinkLabelImpl extends GenLabelImpl implements GenLinkLabel {
 		switch (featureID) {
 			case GMFGenPackage.GEN_LINK_LABEL__LINK:
 				return basicSetLink(null, msgs);
+			case GMFGenPackage.GEN_LINK_LABEL__LABEL_VISIBILITY_PREFERENCE:
+				return basicSetLabelVisibilityPreference(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -208,6 +267,8 @@ public class GenLinkLabelImpl extends GenLabelImpl implements GenLinkLabel {
 				return getLink();
 			case GMFGenPackage.GEN_LINK_LABEL__ALIGNMENT:
 				return getAlignment();
+			case GMFGenPackage.GEN_LINK_LABEL__LABEL_VISIBILITY_PREFERENCE:
+				return getLabelVisibilityPreference();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -225,6 +286,9 @@ public class GenLinkLabelImpl extends GenLabelImpl implements GenLinkLabel {
 				return;
 			case GMFGenPackage.GEN_LINK_LABEL__ALIGNMENT:
 				setAlignment((LinkLabelAlignment)newValue);
+				return;
+			case GMFGenPackage.GEN_LINK_LABEL__LABEL_VISIBILITY_PREFERENCE:
+				setLabelVisibilityPreference((GenFloatingLabel)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -244,6 +308,9 @@ public class GenLinkLabelImpl extends GenLabelImpl implements GenLinkLabel {
 			case GMFGenPackage.GEN_LINK_LABEL__ALIGNMENT:
 				setAlignment(ALIGNMENT_EDEFAULT);
 				return;
+			case GMFGenPackage.GEN_LINK_LABEL__LABEL_VISIBILITY_PREFERENCE:
+				setLabelVisibilityPreference((GenFloatingLabel)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -260,6 +327,8 @@ public class GenLinkLabelImpl extends GenLabelImpl implements GenLinkLabel {
 				return getLink() != null;
 			case GMFGenPackage.GEN_LINK_LABEL__ALIGNMENT:
 				return alignment != ALIGNMENT_EDEFAULT;
+			case GMFGenPackage.GEN_LINK_LABEL__LABEL_VISIBILITY_PREFERENCE:
+				return labelVisibilityPreference != null;
 		}
 		return super.eIsSet(featureID);
 	}

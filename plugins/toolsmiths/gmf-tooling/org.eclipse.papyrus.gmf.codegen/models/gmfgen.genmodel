@@ -189,6 +189,9 @@
       <genFeatures createChild="false" propertyCategory="Diagram" ecoreFeature="ecore:EAttribute gmfgen.ecore#//GenDiagram/synchronized"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gmfgen.ecore#//GenDiagram/preferences"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gmfgen.ecore#//GenDiagram/preferencePages"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//GenDiagram/baseEditHelperPackage"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//GenDiagram/usingElementTypeCreationCommand"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//GenDiagram/visualTypeProvider"/>
       <genOperations ecoreOperation="gmfgen.ecore#//GenDiagram/getAllNodes"/>
       <genOperations ecoreOperation="gmfgen.ecore#//GenDiagram/getAllChildContainers"/>
       <genOperations ecoreOperation="gmfgen.ecore#//GenDiagram/getAllContainers"/>
@@ -416,6 +419,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//GenDiagramUpdater/linkDescriptorClassName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//GenDiagramUpdater/updateCommandClassName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//GenDiagramUpdater/updateCommandID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//GenDiagramUpdater/customDiagramUpdaterSingletonPath"/>
       <genOperations ecoreOperation="gmfgen.ecore#//GenDiagramUpdater/getDiagramUpdaterQualifiedClassName"/>
       <genOperations ecoreOperation="gmfgen.ecore#//GenDiagramUpdater/getNodeDescriptorQualifiedClassName"/>
       <genOperations ecoreOperation="gmfgen.ecore#//GenDiagramUpdater/getLinkDescriptorQualifiedClassName"/>
@@ -454,6 +458,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gmfgen.ecore#//GenCommonBase/behaviour"/>
       <genFeatures property="Readonly" createChild="false" propertyCategory="Diagram Element"
           ecoreFeature="ecore:EAttribute gmfgen.ecore#//GenCommonBase/sansDomain"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//GenCommonBase/superEditPart"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//GenCommonBase/visualIDOverride"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//GenCommonBase/usingDeleteService"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//GenCommonBase/usingReorientService"/>
       <genOperations ecoreOperation="gmfgen.ecore#//GenCommonBase/getEditPartQualifiedClassName"/>
       <genOperations ecoreOperation="gmfgen.ecore#//GenCommonBase/getItemSemanticEditPolicyQualifiedClassName"/>
       <genOperations ecoreOperation="gmfgen.ecore#//GenCommonBase/getNotationViewFactoryQualifiedClassName"/>
@@ -483,6 +491,7 @@
     <genClasses image="false" ecoreClass="gmfgen.ecore#//GenContainerBase">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference gmfgen.ecore#//GenContainerBase/containedNodes"/>
       <genFeatures createChild="false" propertyCategory="Class Names" ecoreFeature="ecore:EAttribute gmfgen.ecore#//GenContainerBase/canonicalEditPolicyClassName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//GenContainerBase/specificDiagramUpdaterClassName"/>
       <genOperations ecoreOperation="gmfgen.ecore#//GenContainerBase/getAssistantNodes"/>
       <genOperations ecoreOperation="gmfgen.ecore#//GenContainerBase/needsCanonicalEditPolicy"/>
       <genOperations ecoreOperation="gmfgen.ecore#//GenContainerBase/getCanonicalEditPolicyQualifiedClassName"/>
@@ -501,6 +510,8 @@
       <genFeatures createChild="false" propertyCategory="Class Names" ecoreFeature="ecore:EAttribute gmfgen.ecore#//GenNode/createCommandClassName"/>
       <genFeatures property="Readonly" notify="false" createChild="false" propertyCategory="Diagram Element"
           ecoreFeature="ecore:EReference gmfgen.ecore#//GenNode/reorientedIncomingLinks"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gmfgen.ecore#//GenNode/refreshHook"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//GenNode/specificNotificationEvent"/>
       <genOperations ecoreOperation="gmfgen.ecore#//GenNode/getDomainMetaClass"/>
       <genOperations ecoreOperation="gmfgen.ecore#//GenNode/getGraphicalNodeEditPolicyQualifiedClassName"/>
       <genOperations ecoreOperation="gmfgen.ecore#//GenNode/getCreateCommandQualifiedClassName"/>
@@ -515,6 +526,7 @@
     </genClasses>
     <genClasses ecoreClass="gmfgen.ecore#//GenChildSideAffixedNode">
       <genFeatures createChild="false" propertyCategory="Diagram Element" ecoreFeature="ecore:EAttribute gmfgen.ecore#//GenChildSideAffixedNode/preferredSideName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//GenChildSideAffixedNode/locatorClassName"/>
     </genClasses>
     <genClasses ecoreClass="gmfgen.ecore#//GenChildLabelNode">
       <genFeatures createChild="false" propertyCategory="Diagram Element" ecoreFeature="ecore:EAttribute gmfgen.ecore#//GenChildLabelNode/labelReadOnly"/>
@@ -560,10 +572,15 @@
     <genClasses ecoreClass="gmfgen.ecore#//GenNodeLabel">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference gmfgen.ecore#//GenNodeLabel/node"/>
     </genClasses>
-    <genClasses ecoreClass="gmfgen.ecore#//GenExternalNodeLabel"/>
+    <genClasses ecoreClass="gmfgen.ecore#//GenExternalNodeLabel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//GenExternalNodeLabel/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//GenExternalNodeLabel/locatorClassName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gmfgen.ecore#//GenExternalNodeLabel/labelVisibilityPreference"/>
+    </genClasses>
     <genClasses ecoreClass="gmfgen.ecore#//GenLinkLabel">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference gmfgen.ecore#//GenLinkLabel/link"/>
       <genFeatures createChild="false" propertyCategory="Diagram Element" ecoreFeature="ecore:EAttribute gmfgen.ecore#//GenLinkLabel/alignment"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gmfgen.ecore#//GenLinkLabel/labelVisibilityPreference"/>
     </genClasses>
     <genClasses ecoreClass="gmfgen.ecore#//ElementType">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference gmfgen.ecore#//ElementType/diagramElement"/>
@@ -1096,6 +1113,15 @@
     <genClasses ecoreClass="gmfgen.ecore#//GenFixedInputsTemplateInvocation">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gmfgen.ecore#//GenFixedInputsTemplateInvocation/fixedInputs"/>
     </genClasses>
+    <genClasses ecoreClass="gmfgen.ecore#//GenFloatingLabel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//GenFloatingLabel/role"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//GenFloatingLabel/iconPathRole"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//GenFloatingLabel/visibleByDefault"/>
+    </genClasses>
+    <genClasses ecoreClass="gmfgen.ecore#//RefreshHook">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//RefreshHook/refreshCondition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//RefreshHook/refreshAction"/>
+    </genClasses>
     <nestedGenPackages prefix="GenExtension" basePackage="org.eclipse.papyrus.gmf.codegen"
         multipleEditorPages="false" generateModelWizard="false" ecorePackage="gmfgen.ecore#//genextension">
       <genClasses ecoreClass="gmfgen.ecore#//genextension/ExtendedGenView">
@@ -1209,7 +1235,7 @@
       </genClasses>
       <genClasses ecoreClass="gmfgen.ecore#//genextension/CustomDiagramUpdaterSingleton">
         <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="Documentation" value="This object is used to register the diagram updater instance to use in the code. &#xD;&#xA;The class must extends the generated diagram updater.&#xD;&#xA;&#xD;&#xA;"/>
+          <details key="Documentation" value="This object is used to register the diagram updater instance to use in the code. &#xA;The class must extends the generated diagram updater.&#xA;&#xA;"/>
         </genAnnotations>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//genextension/CustomDiagramUpdaterSingleton/singletonPath"/>
       </genClasses>

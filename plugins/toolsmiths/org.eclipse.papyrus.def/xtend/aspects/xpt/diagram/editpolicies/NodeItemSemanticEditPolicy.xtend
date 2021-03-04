@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2007-2013 Borland Software Corporation and others
+ * Copyright (c) 2007-2013, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,6 +12,7 @@
  * Alexander Shatalin (Borland) - initial API and implementation
  * Artem Tikhomirov (Borland) - [257632] do not rely on EditPart presence for element deletion
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : PapyrusGmfExtension epackage merge into gmfgen
  * 
  *****************************************************************************/
 package aspects.xpt.diagram.editpolicies
@@ -23,7 +24,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.FeatureLinkModelFacet
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenChildNode
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
 import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeLinkModelFacet
-import org.eclipse.papyrus.gmf.codegen.genextension.EditPartUsingDeleteService
 import utils.UtilsItemSemanticEditPolicy
 import xpt.Common
 import xpt.diagram.editpolicies.childContainerCreateCommand
@@ -62,7 +62,7 @@ import xpt.editor.VisualIDRegistry
 	«««	Papyrus REM : 
 	«««	Test to know how the delete of this EditPart is done : we used the DeleteService or the "Traditional method"
 	
-	«IF it.eResource.allContents.filter(typeof (EditPartUsingDeleteService)).filter[v | v.genView.contains(it)].size != 0»
+	«IF usingDeleteService»
 		«generatedMemberComment»
 		«getDestroyElementCommandByService(it)»
 	«ELSE»

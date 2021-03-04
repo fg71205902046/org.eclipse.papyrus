@@ -47,6 +47,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenChildContainerImpl#getContainedNodes <em>Contained Nodes</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenChildContainerImpl#getCanonicalEditPolicyClassName <em>Canonical Edit Policy Class Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenChildContainerImpl#getSpecificDiagramUpdaterClassName <em>Specific Diagram Updater Class Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenChildContainerImpl#getChildNodes <em>Child Nodes</em>}</li>
  * </ul>
  *
@@ -72,6 +73,26 @@ public abstract class GenChildContainerImpl extends GenCommonBaseImpl implements
 	 * @ordered
 	 */
 	protected String canonicalEditPolicyClassName = CANONICAL_EDIT_POLICY_CLASS_NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getSpecificDiagramUpdaterClassName() <em>Specific Diagram Updater Class Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSpecificDiagramUpdaterClassName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getSpecificDiagramUpdaterClassName() <em>Specific Diagram Updater Class Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSpecificDiagramUpdaterClassName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String specificDiagramUpdaterClassName = SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getChildNodes() <em>Child Nodes</em>}' reference list.
@@ -178,6 +199,29 @@ public abstract class GenChildContainerImpl extends GenCommonBaseImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getSpecificDiagramUpdaterClassName() {
+		return specificDiagramUpdaterClassName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSpecificDiagramUpdaterClassName(String newSpecificDiagramUpdaterClassName) {
+		String oldSpecificDiagramUpdaterClassName = specificDiagramUpdaterClassName;
+		specificDiagramUpdaterClassName = newSpecificDiagramUpdaterClassName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GMFGenPackage.GEN_CHILD_CONTAINER__SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME, oldSpecificDiagramUpdaterClassName, specificDiagramUpdaterClassName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public String getCanonicalEditPolicyQualifiedClassName() {
@@ -225,6 +269,8 @@ public abstract class GenChildContainerImpl extends GenCommonBaseImpl implements
 				return getContainedNodes();
 			case GMFGenPackage.GEN_CHILD_CONTAINER__CANONICAL_EDIT_POLICY_CLASS_NAME:
 				return getCanonicalEditPolicyClassName();
+			case GMFGenPackage.GEN_CHILD_CONTAINER__SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME:
+				return getSpecificDiagramUpdaterClassName();
 			case GMFGenPackage.GEN_CHILD_CONTAINER__CHILD_NODES:
 				return getChildNodes();
 		}
@@ -242,6 +288,9 @@ public abstract class GenChildContainerImpl extends GenCommonBaseImpl implements
 		switch (featureID) {
 			case GMFGenPackage.GEN_CHILD_CONTAINER__CANONICAL_EDIT_POLICY_CLASS_NAME:
 				setCanonicalEditPolicyClassName((String)newValue);
+				return;
+			case GMFGenPackage.GEN_CHILD_CONTAINER__SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME:
+				setSpecificDiagramUpdaterClassName((String)newValue);
 				return;
 			case GMFGenPackage.GEN_CHILD_CONTAINER__CHILD_NODES:
 				getChildNodes().clear();
@@ -262,6 +311,9 @@ public abstract class GenChildContainerImpl extends GenCommonBaseImpl implements
 			case GMFGenPackage.GEN_CHILD_CONTAINER__CANONICAL_EDIT_POLICY_CLASS_NAME:
 				setCanonicalEditPolicyClassName(CANONICAL_EDIT_POLICY_CLASS_NAME_EDEFAULT);
 				return;
+			case GMFGenPackage.GEN_CHILD_CONTAINER__SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME:
+				setSpecificDiagramUpdaterClassName(SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME_EDEFAULT);
+				return;
 			case GMFGenPackage.GEN_CHILD_CONTAINER__CHILD_NODES:
 				getChildNodes().clear();
 				return;
@@ -281,6 +333,8 @@ public abstract class GenChildContainerImpl extends GenCommonBaseImpl implements
 				return !getContainedNodes().isEmpty();
 			case GMFGenPackage.GEN_CHILD_CONTAINER__CANONICAL_EDIT_POLICY_CLASS_NAME:
 				return CANONICAL_EDIT_POLICY_CLASS_NAME_EDEFAULT == null ? canonicalEditPolicyClassName != null : !CANONICAL_EDIT_POLICY_CLASS_NAME_EDEFAULT.equals(canonicalEditPolicyClassName);
+			case GMFGenPackage.GEN_CHILD_CONTAINER__SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME:
+				return SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME_EDEFAULT == null ? specificDiagramUpdaterClassName != null : !SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME_EDEFAULT.equals(specificDiagramUpdaterClassName);
 			case GMFGenPackage.GEN_CHILD_CONTAINER__CHILD_NODES:
 				return childNodes != null && !childNodes.isEmpty();
 		}
@@ -299,6 +353,8 @@ public abstract class GenChildContainerImpl extends GenCommonBaseImpl implements
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (canonicalEditPolicyClassName: ");
 		result.append(canonicalEditPolicyClassName);
+		result.append(", specificDiagramUpdaterClassName: ");
+		result.append(specificDiagramUpdaterClassName);
 		result.append(')');
 		return result.toString();
 	}

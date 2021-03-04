@@ -54,4 +54,46 @@
          </command>
       </menuContribution>
   </extension>
+  
+  <!--  TMP migration tool for dev -->
+  <extension
+         point="org.eclipse.ui.commands">
+    <command
+        defaultHandler="org.eclipse.papyrus.gmf.codegen.xtend.ui.handlers.MigrateGMFGenFileHandler"
+        id="org.eclipse.papyrus.gmf.codegen.commands.MigrateGMFGenFile"
+        name="Migrate GMF Gen Papyrus extensions">
+  	</command>
+  </extension>
+  <extension
+        point="org.eclipse.ui.menus">
+    <menuContribution
+         allPopups="false"
+         locationURI="popup:org.eclipse.papyrus.dev.ui.menu">
+      <command
+          commandId="org.eclipse.papyrus.gmf.codegen.commands.MigrateGMFGenFile"
+          id="org.eclipse.papyrus.gmf.codegen.menus.MigrateGMFGenFile"
+          label="Migrate GMF Gen Papyrus extensions"
+          mnemonic="W"
+          style="push">
+        <visibleWhen
+            checkEnabled="false">
+          <with
+              variable="selection">
+            <iterate
+                ifEmpty="false"
+                operator="and">
+                   <adapt
+                         type="org.eclipse.core.resources.IFile">
+                      <test
+                            property="org.eclipse.core.resources.extension"
+                            value="gmfgen">
+                      </test>
+                   </adapt>
+            </iterate>
+          </with>
+        </visibleWhen>
+      </command>
+    </menuContribution>
+  </extension>
+     
 </plugin>

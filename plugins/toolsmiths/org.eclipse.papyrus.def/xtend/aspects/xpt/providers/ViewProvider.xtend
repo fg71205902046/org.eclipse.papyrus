@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2007, 2010, 2013, 2017 Borland Software Corporation and others
+ * Copyright (c) 2007, 2010, 2013, 2017, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -16,6 +16,7 @@
  * Vincent Lorenzo (CEA-LIST) Add a line to initialize the display of the compartments to true
  * Vincent Lorenzo (CEA-LIST) - Add lines to initialize the display of the labels - Bug 335987 [General][Enhancement] Show/Hide Connectors Labels and External Nodes Labels
  * Vincent Lorenzo (CEA-LIST) - Bug 520733
+ * Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : PapyrusGmfExtension epackage merge into gmfgen
  * 
  *****************************************************************************/
 package aspects.xpt.providers
@@ -37,7 +38,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenTopLevelNode
 import org.eclipse.papyrus.gmf.codegen.gmfgen.MetamodelType
 import org.eclipse.papyrus.gmf.codegen.gmfgen.NotationType
 import org.eclipse.papyrus.gmf.codegen.gmfgen.SpecializationType
-import org.eclipse.papyrus.gmf.codegen.genextension.LabelVisibilityPreference
 import xpt.Common_qvto
 import xpt.diagram.Utils_qvto
 import xpt.diagram.ViewmapAttributesUtils_qvto
@@ -670,16 +670,14 @@ def specificInitRountingFromPrefs(GenCommonBase it,String viewVar, String prefSt
 //write the line to initialize the property isVisible for the label of the link
 def initLabelVisibility(GenLink it,String viewVar, String prefStoreVar) '''
 
-	«IF it.labels.filter(typeof (GenLinkLabel)).exists[lbl  | 
-		(it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[label | label.linkLabels.contains(lbl)]).size !=0]»
+	«IF it.labels.filter(typeof (GenLinkLabel)).exists[lbl  | lbl.labelVisibilityPreference !== null]»
 	 org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
 	«ENDIF»
 '''
 
 //write the line to initialize the property isVisible for the label of the link
 def initLabelVisibility(GenNode it,String viewVar, String prefStoreVar) '''
-	«IF it.labels.filter(typeof (GenExternalNodeLabel)).exists[lbl  | 
-		(it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[label | label.externalNodeLabels.contains(lbl)]).size !=0]»
+	«IF it.labels.filter(typeof (GenExternalNodeLabel)).exists[lbl  | lbl.labelVisibilityPreference !== null]»
 	 org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
 	«ENDIF»
 '''

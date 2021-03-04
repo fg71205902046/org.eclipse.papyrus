@@ -1127,6 +1127,18 @@ public class GMFGenSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case GMFGenPackage.GEN_FLOATING_LABEL: {
+				GenFloatingLabel genFloatingLabel = (GenFloatingLabel)theEObject;
+				T result = caseGenFloatingLabel(genFloatingLabel);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GMFGenPackage.REFRESH_HOOK: {
+				RefreshHook refreshHook = (RefreshHook)theEObject;
+				T result = caseRefreshHook(refreshHook);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -3288,6 +3300,36 @@ public class GMFGenSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseGenFixedInputsTemplateInvocation(GenFixedInputsTemplateInvocation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Gen Floating Label</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Gen Floating Label</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGenFloatingLabel(GenFloatingLabel object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Refresh Hook</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Refresh Hook</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRefreshHook(RefreshHook object) {
 		return null;
 	}
 

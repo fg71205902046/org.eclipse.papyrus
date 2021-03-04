@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2007-2012 Borland Software Corporation and others
+ * Copyright (c) 2007-2012, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,7 +12,8 @@
  * Alexander Shatalin (Borland) - initial API and implementation
  * Michael Golubev (Borland) - [243151] explicit source/target for links
  *                              - #386838 - migrate to Xtend2
- * Vincent Lorenzo (CEA-LIST) 
+ * Vincent Lorenzo (CEA-LIST)
+ * Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : PapyrusGmfExtension epackage merge into gmfgen
  * 
  *****************************************************************************/
 package aspects.xpt.diagram.editpolicies
@@ -22,7 +23,6 @@ import com.google.inject.Singleton
 import impl.diagram.commands.DeleteLinkCommand
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink
 import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeLinkModelFacet
-import org.eclipse.papyrus.gmf.codegen.genextension.EditPartUsingDeleteService
 import utils.UtilsItemSemanticEditPolicy
 import xpt.Common
 
@@ -34,7 +34,7 @@ import xpt.Common
 	override dispatch getDestroySemanticCommand(TypeLinkModelFacet it, GenLink genLink) '''
 		««« Test to know which delete command should be used in the generated code : "Traditional Delete Command" or the Delete Service
 
-		«IF it.eResource.allContents.filter(typeof (EditPartUsingDeleteService)).filter[v | v.genView.contains(genLink)].size !=0 »
+		«IF genLink.usingDeleteService»
 		
 			«generatedMemberComment»
 			«getDestroyElementCommandByService(it)»

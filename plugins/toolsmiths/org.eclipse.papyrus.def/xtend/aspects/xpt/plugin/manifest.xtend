@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2007, 2015 Borland Software Corporation, Christian W. Damus, and others.
+ * Copyright (c) 2007, 2015, 2021 Borland Software Corporation, Christian W. Damus, CEA LIST, Artal and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -13,15 +13,15 @@
  * Thibault Landre (Atos Origin) - add Papyrus dependencies to Papyrus GMF diagram*
  * Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr : add the dependencyorg.eclipse.papyrus.infra.services.edit
  * Christian W. Damus - bug 477384
+ * Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : PapyrusGmfExtension epackage merge into gmfgen
  * 
  *****************************************************************************/
 package aspects.xpt.plugin
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenPlugin
-import org.eclipse.papyrus.gmf.codegen.genextension.EditPartUsingDeleteService
-import org.eclipse.papyrus.gmf.codegen.genextension.EditPartUsingReorientService
 import xpt.Common
 
 @Singleton class manifest extends xpt.plugin.manifest{
@@ -68,7 +68,7 @@ Require-Bundle: org.eclipse.core.runtime,
 «FOR reqId : reqPlugins» «reqId»;visibility:=reexport,«extraLineBreak»
 «ENDFOR» org.eclipse.gef,
  org.eclipse.papyrus.infra.gmfdiag.preferences,
- «IF it.eResource.allContents.filter(typeof (EditPartUsingDeleteService)).size != 0 || it.eResource.allContents.filter(typeof (EditPartUsingReorientService)).size != 0»
+ «IF it.eResource.allContents.filter(typeof (GenCommonBase)).filter[node | node.usingDeleteService || node.usingReorientService].size != 0»
  org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors,
  org.eclipse.papyrus.infra.services.edit
  «ELSE»
@@ -77,7 +77,7 @@ Require-Bundle: org.eclipse.core.runtime,
 '''
 
 	override def executionEnvironment(GenPlugin it) '''
-		Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+		Bundle-RequiredExecutionEnvironment: JavaSE-11
 	'''
 	
 }

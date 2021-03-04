@@ -18,7 +18,6 @@ package aspects.diagram.editparts
 
 import com.google.inject.Singleton
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenChildLabelNode
-import org.eclipse.papyrus.gmf.codegen.genextension.ExtendedGenView
 
 @Singleton class ChildNodeLabelEditPart extends diagram.editparts.ChildNodeLabelEditPart {
 
@@ -27,20 +26,13 @@ import org.eclipse.papyrus.gmf.codegen.genextension.ExtendedGenView
 	override extendsList(GenChildLabelNode it) '''
 «««BEGIN: PapyrusGenCode
 «««Add own extension
-«IF it.eResource.allContents.filter(typeof (ExtendedGenView)).filter[v |v.genView.contains(it) && v.superOwnedEditPart!=null].size != 0»
-extends «FOR extendedObject : it.eResource.allContents.filter(typeof (ExtendedGenView)).filter[v |v.genView.contains(it) && v.superOwnedEditPart!=null].toIterable»
-«specifyInheritance(extendedObject as ExtendedGenView)»
-«ENDFOR»
+«IF superEditPart !== null»
+  extends «superEditPart»
 «««END: PapyrusGenCode
 «ELSE»
   extends org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart
 «ENDIF»
 '''
-
-//BEGIN: PapyrusGenCode
-//definition of the inheritance
-def specifyInheritance (ExtendedGenView it)'''«superOwnedEditPart»'''
-//END: PapyrusGenCode
 
 override implementsList(GenChildLabelNode it) '''implements org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart, org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart, org.eclipse.papyrus.infra.gmfdiag.common.editpart.IControlParserForDirectEdit'''
 }

@@ -2472,6 +2472,52 @@ public class GMFGenItemProviderAdapterFactory extends GMFGenAdapterFactory imple
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenFloatingLabel} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected GenFloatingLabelItemProvider genFloatingLabelItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenFloatingLabel}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createGenFloatingLabelAdapter() {
+		if (genFloatingLabelItemProvider == null) {
+			genFloatingLabelItemProvider = new GenFloatingLabelItemProvider(this);
+		}
+
+		return genFloatingLabelItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.gmf.codegen.gmfgen.RefreshHook} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected RefreshHookItemProvider refreshHookItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.gmf.codegen.gmfgen.RefreshHook}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createRefreshHookAdapter() {
+		if (refreshHookItemProvider == null) {
+			refreshHookItemProvider = new RefreshHookItemProvider(this);
+		}
+
+		return refreshHookItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.gmf.codegen.gmfgen.ValueExpression} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2754,6 +2800,8 @@ public class GMFGenItemProviderAdapterFactory extends GMFGenAdapterFactory imple
 		if (genCustomGeneratorExtensionItemProvider != null) genCustomGeneratorExtensionItemProvider.dispose();
 		if (genTemplateInvocationItemProvider != null) genTemplateInvocationItemProvider.dispose();
 		if (genFixedInputsTemplateInvocationItemProvider != null) genFixedInputsTemplateInvocationItemProvider.dispose();
+		if (genFloatingLabelItemProvider != null) genFloatingLabelItemProvider.dispose();
+		if (refreshHookItemProvider != null) refreshHookItemProvider.dispose();
 	}
 
 }

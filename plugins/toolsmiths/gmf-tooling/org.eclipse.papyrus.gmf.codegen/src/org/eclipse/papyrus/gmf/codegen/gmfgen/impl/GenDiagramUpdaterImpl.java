@@ -44,6 +44,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenDiagramUpdaterImpl#getLinkDescriptorClassName <em>Link Descriptor Class Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenDiagramUpdaterImpl#getUpdateCommandClassName <em>Update Command Class Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenDiagramUpdaterImpl#getUpdateCommandID <em>Update Command ID</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenDiagramUpdaterImpl#getCustomDiagramUpdaterSingletonPath <em>Custom Diagram Updater Singleton Path</em>}</li>
  * </ul>
  *
  * @generated
@@ -148,6 +149,26 @@ public class GenDiagramUpdaterImpl extends EObjectImpl implements GenDiagramUpda
 	 * @ordered
 	 */
 	protected String updateCommandID = UPDATE_COMMAND_ID_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getCustomDiagramUpdaterSingletonPath() <em>Custom Diagram Updater Singleton Path</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCustomDiagramUpdaterSingletonPath()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String CUSTOM_DIAGRAM_UPDATER_SINGLETON_PATH_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getCustomDiagramUpdaterSingletonPath() <em>Custom Diagram Updater Singleton Path</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCustomDiagramUpdaterSingletonPath()
+	 * @generated
+	 * @ordered
+	 */
+	protected String customDiagramUpdaterSingletonPath = CUSTOM_DIAGRAM_UPDATER_SINGLETON_PATH_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -332,6 +353,29 @@ public class GenDiagramUpdaterImpl extends EObjectImpl implements GenDiagramUpda
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCustomDiagramUpdaterSingletonPath() {
+		return customDiagramUpdaterSingletonPath;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setCustomDiagramUpdaterSingletonPath(String newCustomDiagramUpdaterSingletonPath) {
+		String oldCustomDiagramUpdaterSingletonPath = customDiagramUpdaterSingletonPath;
+		customDiagramUpdaterSingletonPath = newCustomDiagramUpdaterSingletonPath;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GMFGenPackage.GEN_DIAGRAM_UPDATER__CUSTOM_DIAGRAM_UPDATER_SINGLETON_PATH, oldCustomDiagramUpdaterSingletonPath, customDiagramUpdaterSingletonPath));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public String getDiagramUpdaterQualifiedClassName() {
@@ -429,6 +473,8 @@ public class GenDiagramUpdaterImpl extends EObjectImpl implements GenDiagramUpda
 				return getUpdateCommandClassName();
 			case GMFGenPackage.GEN_DIAGRAM_UPDATER__UPDATE_COMMAND_ID:
 				return getUpdateCommandID();
+			case GMFGenPackage.GEN_DIAGRAM_UPDATER__CUSTOM_DIAGRAM_UPDATER_SINGLETON_PATH:
+				return getCustomDiagramUpdaterSingletonPath();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -455,6 +501,9 @@ public class GenDiagramUpdaterImpl extends EObjectImpl implements GenDiagramUpda
 				return;
 			case GMFGenPackage.GEN_DIAGRAM_UPDATER__UPDATE_COMMAND_ID:
 				setUpdateCommandID((String)newValue);
+				return;
+			case GMFGenPackage.GEN_DIAGRAM_UPDATER__CUSTOM_DIAGRAM_UPDATER_SINGLETON_PATH:
+				setCustomDiagramUpdaterSingletonPath((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -483,6 +532,9 @@ public class GenDiagramUpdaterImpl extends EObjectImpl implements GenDiagramUpda
 			case GMFGenPackage.GEN_DIAGRAM_UPDATER__UPDATE_COMMAND_ID:
 				setUpdateCommandID(UPDATE_COMMAND_ID_EDEFAULT);
 				return;
+			case GMFGenPackage.GEN_DIAGRAM_UPDATER__CUSTOM_DIAGRAM_UPDATER_SINGLETON_PATH:
+				setCustomDiagramUpdaterSingletonPath(CUSTOM_DIAGRAM_UPDATER_SINGLETON_PATH_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -507,6 +559,8 @@ public class GenDiagramUpdaterImpl extends EObjectImpl implements GenDiagramUpda
 				return UPDATE_COMMAND_CLASS_NAME_EDEFAULT == null ? updateCommandClassName != null : !UPDATE_COMMAND_CLASS_NAME_EDEFAULT.equals(updateCommandClassName);
 			case GMFGenPackage.GEN_DIAGRAM_UPDATER__UPDATE_COMMAND_ID:
 				return UPDATE_COMMAND_ID_EDEFAULT == null ? updateCommandID != null : !UPDATE_COMMAND_ID_EDEFAULT.equals(updateCommandID);
+			case GMFGenPackage.GEN_DIAGRAM_UPDATER__CUSTOM_DIAGRAM_UPDATER_SINGLETON_PATH:
+				return CUSTOM_DIAGRAM_UPDATER_SINGLETON_PATH_EDEFAULT == null ? customDiagramUpdaterSingletonPath != null : !CUSTOM_DIAGRAM_UPDATER_SINGLETON_PATH_EDEFAULT.equals(customDiagramUpdaterSingletonPath);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -531,6 +585,8 @@ public class GenDiagramUpdaterImpl extends EObjectImpl implements GenDiagramUpda
 		result.append(updateCommandClassName);
 		result.append(", updateCommandID: ");
 		result.append(updateCommandID);
+		result.append(", customDiagramUpdaterSingletonPath: ");
+		result.append(customDiagramUpdaterSingletonPath);
 		result.append(')');
 		return result.toString();
 	}

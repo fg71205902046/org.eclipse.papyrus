@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2006, 2009, 2013 Borland Software Corporation and others
+ * Copyright (c) 2006, 2009, 2013, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,6 +12,7 @@
  * Dmitry Stadnik (Borland) - initial API and implementation
  * Alexander Shatalin (Borland) - initial API and implementation
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : PapyrusGmfExtension epackage merge into gmfgen
  * 
  *****************************************************************************/
 package aspects.diagram.editparts
@@ -20,7 +21,6 @@ import com.google.inject.Inject
 import com.google.inject.Singleton
 import org.eclipse.papyrus.gmf.codegen.gmfgen.CustomBehaviour
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLinkLabel
-import org.eclipse.papyrus.gmf.codegen.genextension.LabelVisibilityPreference
 import xpt.Common
 
 @Singleton class LinkLabelEditPart extends diagram.editparts.LinkLabelEditPart{
@@ -30,7 +30,7 @@ import xpt.Common
 	override implementsList(GenLinkLabel it) '''
 	implements org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart, org.eclipse.papyrus.infra.gmfdiag.common.editpart.IControlParserForDirectEdit
 	«««	BEGIN: PapyrusGenCode
-	«IF it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v |v.linkLabels.contains(it)].size != 0»
+	«IF labelVisibilityPreference !== null»
 	, org.eclipse.papyrus.uml.diagram.common.editparts.ILabelRoleProvider
 	«ENDIF»
 	«««	END: PapyrusGenCode
@@ -39,15 +39,15 @@ import xpt.Common
 
 	override additions(GenLinkLabel it) '''
 	«««	BEGIN: PapyrusGenCode
-	«IF it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v | v.linkLabels.contains(it)].size != 0»
+	«IF labelVisibilityPreference !== null»
 		«generatedClassComment»
 		public String getLabelRole(){
-		return "«it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v |v.linkLabels.contains(it)].head.role»";//$NON-NLS-1$
+		return "«labelVisibilityPreference.role»";//$NON-NLS-1$
 		}
 		
 		«generatedClassComment»
 		public String getIconPathRole(){
-		return "«it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v |v.linkLabels.contains(it)].head.iconPathRole»";//$NON-NLS-1$
+		return "«labelVisibilityPreference.iconPathRole»";//$NON-NLS-1$
 		}
 	«ENDIF»
 	«««	END: PapyrusGenCode

@@ -49,6 +49,10 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase#getStyles <em>Styles</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase#getBehaviour <em>Behaviour</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase#isSansDomain <em>Sans Domain</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase#getSuperEditPart <em>Super Edit Part</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase#getVisualIDOverride <em>Visual ID Override</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase#isUsingDeleteService <em>Using Delete Service</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase#isUsingReorientService <em>Using Reorient Service</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenCommonBase()
@@ -298,6 +302,106 @@ public interface GenCommonBase extends EObject {
 	 * @generated
 	 */
 	boolean isSansDomain();
+
+	/**
+	 * Returns the value of the '<em><b>Super Edit Part</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Bug 569174 : from ExtendedGenView
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Super Edit Part</em>' attribute.
+	 * @see #setSuperEditPart(String)
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenCommonBase_SuperEditPart()
+	 * @model
+	 * @generated
+	 */
+	String getSuperEditPart();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase#getSuperEditPart <em>Super Edit Part</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Super Edit Part</em>' attribute.
+	 * @see #getSuperEditPart()
+	 * @generated
+	 */
+	void setSuperEditPart(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Visual ID Override</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Bug 569174 : from VisualIDOverride
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Visual ID Override</em>' attribute.
+	 * @see #setVisualIDOverride(String)
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenCommonBase_VisualIDOverride()
+	 * @model unique="false" ordered="false"
+	 * @generated
+	 */
+	String getVisualIDOverride();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase#getVisualIDOverride <em>Visual ID Override</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Visual ID Override</em>' attribute.
+	 * @see #getVisualIDOverride()
+	 * @generated
+	 */
+	void setVisualIDOverride(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Using Delete Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Bug 569174 : from EditPartUsingDeleteService
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Using Delete Service</em>' attribute.
+	 * @see #setUsingDeleteService(boolean)
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenCommonBase_UsingDeleteService()
+	 * @model
+	 * @generated
+	 */
+	boolean isUsingDeleteService();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase#isUsingDeleteService <em>Using Delete Service</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Using Delete Service</em>' attribute.
+	 * @see #isUsingDeleteService()
+	 * @generated
+	 */
+	void setUsingDeleteService(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Using Reorient Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Bug 569174 : from EditPartUsingReorientService
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Using Reorient Service</em>' attribute.
+	 * @see #setUsingReorientService(boolean)
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenCommonBase_UsingReorientService()
+	 * @model
+	 * @generated
+	 */
+	boolean isUsingReorientService();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase#isUsingReorientService <em>Using Reorient Service</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Using Reorient Service</em>' attribute.
+	 * @see #isUsingReorientService()
+	 * @generated
+	 */
+	void setUsingReorientService(boolean value);
 
 	/**
 	 * Filter list of behavior to instances of particular kind. Note, behaviour returned is not 

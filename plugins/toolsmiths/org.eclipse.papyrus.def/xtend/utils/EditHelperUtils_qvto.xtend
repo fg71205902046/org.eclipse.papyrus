@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST and others.
+ * Copyright (c) 2014, 2021 CEA LIST, Artal and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,19 +10,20 @@
  *
  * Contributors:
  * Florian Noyrit - Initial API and implementation
+ * Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : PapyrusGmfExtension epackage merge into gmfgen
  * 
  *****************************************************************************/
 package utils
 
 import com.google.inject.Singleton
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
-import org.eclipse.papyrus.gmf.codegen.genextension.AdditionalEditPartCandies
 
 @Singleton class EditHelperUtils_qvto {
 
 	def String getBaseEditHelperFullName(GenDiagram diagram) {
-		if(!(diagram.eResource.allContents.filter(typeof(AdditionalEditPartCandies)).empty)) {
-			return diagram.eResource.allContents.filter(typeof(AdditionalEditPartCandies)).head.baseEditHelperPackage + "." + diagram.baseEditHelperClassName
+		// Bug 569174 : from AdditionalEditPartCandies
+		if(diagram.baseEditHelperPackage !== null) {
+			return diagram.baseEditHelperPackage + "." + diagram.baseEditHelperClassName
 		} else {
 			return diagram.getBaseEditHelperQualifiedClassName();
 		}

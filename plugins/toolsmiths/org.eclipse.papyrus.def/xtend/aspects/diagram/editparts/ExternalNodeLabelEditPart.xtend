@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2006, 2009, 2013 Borland Software Corporation and others
+ * Copyright (c) 2006, 2009, 2013, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,15 +12,14 @@
  * Dmitry Stadnik (Borland) - initial API and implementation
  * Alexander Shatalin (Borland) - initial API and implementation
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
- * 
+ * Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : PapyrusGmfExtension epackage merge into gmfgen
+ *
  *****************************************************************************/
 package aspects.diagram.editparts
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenExternalNodeLabel
-import org.eclipse.papyrus.gmf.codegen.genextension.ExtendedGenView
-import org.eclipse.papyrus.gmf.codegen.genextension.LabelVisibilityPreference
 import xpt.Common
 
 @Singleton class ExternalNodeLabelEditPart extends diagram.editparts.ExternalNodeLabelEditPart {
@@ -29,21 +28,19 @@ import xpt.Common
 	override extendsList(GenExternalNodeLabel it) '''
 		«««BEGIN: PapyrusGenCode
 	«««specify a java super class for external nodes
-	«IF it.eResource.allContents.filter(typeof (ExtendedGenView)).filter[v | v.genView.contains(it) && v.superOwnedEditPart != null].size != 0»
-			extends «FOR extendedObject : it.eResource.allContents.filter(typeof (ExtendedGenView)).filter[v|v.genView.contains(it) && v.superOwnedEditPart != null].toIterable»
-				«specifyInheritance(extendedObject as ExtendedGenView)»
-			«ENDFOR»
+	«IF superEditPart !== null»
+			extends «superEditPart»
 		«««END: PapyrusGenCode
 	«ELSE»
 			extends org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusLabelEditPart
-		«ENDIF»
+	«ENDIF»
 	'''
 
 	//we add the interface ILabelRoleProvider
 	override implementsList(GenExternalNodeLabel it) '''
 	implements org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart, org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart
 	«««	BEGIN: PapyrusGenCode
-	«IF it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v|v.externalNodeLabels.contains(it)].size != 0»
+	«IF labelVisibilityPreference !== null»
 		, org.eclipse.papyrus.uml.diagram.common.editparts.ILabelRoleProvider
 	«ENDIF»
 	«««	END: PapyrusGenCode
@@ -51,15 +48,15 @@ import xpt.Common
 
 	override additions(GenExternalNodeLabel it) '''
 	«««	BEGIN: PapyrusGenCode
-	«IF it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v|v.externalNodeLabels.contains(it)].size != 0»
+	«IF labelVisibilityPreference !== null»
 		«generatedClassComment»
 		public String getLabelRole(){
-		return "«it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v|v.externalNodeLabels.contains(it)].head.role»";//$NON-NLS-1$
+		return "«labelVisibilityPreference.role»";//$NON-NLS-1$
 		}
 		
 		«generatedClassComment»
 		public String getIconPathRole(){
-		return "«it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v|v.externalNodeLabels.contains(it)].head.iconPathRole»";//$NON-NLS-1$
+		return "«labelVisibilityPreference.iconPathRole»";//$NON-NLS-1$
 		}
 	«ENDIF»
 	«««	END: PapyrusGenCode
@@ -78,9 +75,4 @@ import xpt.Common
     «««	END: PapyrusGenCode
 	'''
 
-	//BEGIN: PapyrusGenCode
-	//definition of the inheritance 
-	def specifyInheritance(ExtendedGenView it) '''«superOwnedEditPart»'''
-
-//END: PapyrusGenCode
 }

@@ -46,6 +46,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLinkEnd;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNodeLabel;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenVisualEffect;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.RefreshHook;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeLinkModelFacet;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeModelFacet;
 import org.eclipse.papyrus.gmf.internal.codegen.util.Extras;
@@ -67,6 +68,8 @@ import org.eclipse.papyrus.gmf.internal.codegen.util.Extras;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenNodeImpl#getGraphicalNodeEditPolicyClassName <em>Graphical Node Edit Policy Class Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenNodeImpl#getCreateCommandClassName <em>Create Command Class Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenNodeImpl#getReorientedIncomingLinks <em>Reoriented Incoming Links</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenNodeImpl#getRefreshHook <em>Refresh Hook</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenNodeImpl#isSpecificNotificationEvent <em>Specific Notification Event</em>}</li>
  * </ul>
  *
  * @generated
@@ -161,6 +164,36 @@ public abstract class GenNodeImpl extends GenChildContainerImpl implements GenNo
 	 * @ordered
 	 */
 	protected String createCommandClassName = CREATE_COMMAND_CLASS_NAME_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getRefreshHook() <em>Refresh Hook</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRefreshHook()
+	 * @generated
+	 * @ordered
+	 */
+	protected RefreshHook refreshHook;
+
+	/**
+	 * The default value of the '{@link #isSpecificNotificationEvent() <em>Specific Notification Event</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSpecificNotificationEvent()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean SPECIFIC_NOTIFICATION_EVENT_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isSpecificNotificationEvent() <em>Specific Notification Event</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSpecificNotificationEvent()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean specificNotificationEvent = SPECIFIC_NOTIFICATION_EVENT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -259,6 +292,8 @@ public abstract class GenNodeImpl extends GenChildContainerImpl implements GenNo
 				return ((InternalEList<?>)getLabels()).basicRemove(otherEnd, msgs);
 			case GMFGenPackage.GEN_NODE__COMPARTMENTS:
 				return ((InternalEList<?>)getCompartments()).basicRemove(otherEnd, msgs);
+			case GMFGenPackage.GEN_NODE__REFRESH_HOOK:
+				return basicSetRefreshHook(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -289,6 +324,10 @@ public abstract class GenNodeImpl extends GenChildContainerImpl implements GenNo
 				return getCreateCommandClassName();
 			case GMFGenPackage.GEN_NODE__REORIENTED_INCOMING_LINKS:
 				return getReorientedIncomingLinks();
+			case GMFGenPackage.GEN_NODE__REFRESH_HOOK:
+				return getRefreshHook();
+			case GMFGenPackage.GEN_NODE__SPECIFIC_NOTIFICATION_EVENT:
+				return isSpecificNotificationEvent();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -322,6 +361,12 @@ public abstract class GenNodeImpl extends GenChildContainerImpl implements GenNo
 			case GMFGenPackage.GEN_NODE__CREATE_COMMAND_CLASS_NAME:
 				setCreateCommandClassName((String)newValue);
 				return;
+			case GMFGenPackage.GEN_NODE__REFRESH_HOOK:
+				setRefreshHook((RefreshHook)newValue);
+				return;
+			case GMFGenPackage.GEN_NODE__SPECIFIC_NOTIFICATION_EVENT:
+				setSpecificNotificationEvent((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -351,6 +396,12 @@ public abstract class GenNodeImpl extends GenChildContainerImpl implements GenNo
 				return;
 			case GMFGenPackage.GEN_NODE__CREATE_COMMAND_CLASS_NAME:
 				setCreateCommandClassName(CREATE_COMMAND_CLASS_NAME_EDEFAULT);
+				return;
+			case GMFGenPackage.GEN_NODE__REFRESH_HOOK:
+				setRefreshHook((RefreshHook)null);
+				return;
+			case GMFGenPackage.GEN_NODE__SPECIFIC_NOTIFICATION_EVENT:
+				setSpecificNotificationEvent(SPECIFIC_NOTIFICATION_EVENT_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -382,6 +433,10 @@ public abstract class GenNodeImpl extends GenChildContainerImpl implements GenNo
 				return CREATE_COMMAND_CLASS_NAME_EDEFAULT == null ? createCommandClassName != null : !CREATE_COMMAND_CLASS_NAME_EDEFAULT.equals(createCommandClassName);
 			case GMFGenPackage.GEN_NODE__REORIENTED_INCOMING_LINKS:
 				return !getReorientedIncomingLinks().isEmpty();
+			case GMFGenPackage.GEN_NODE__REFRESH_HOOK:
+				return refreshHook != null;
+			case GMFGenPackage.GEN_NODE__SPECIFIC_NOTIFICATION_EVENT:
+				return specificNotificationEvent != SPECIFIC_NOTIFICATION_EVENT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -582,6 +637,8 @@ public abstract class GenNodeImpl extends GenChildContainerImpl implements GenNo
 		result.append(graphicalNodeEditPolicyClassName);
 		result.append(", createCommandClassName: ");
 		result.append(createCommandClassName);
+		result.append(", specificNotificationEvent: ");
+		result.append(specificNotificationEvent);
 		result.append(')');
 		return result.toString();
 	}
@@ -666,6 +723,74 @@ public abstract class GenNodeImpl extends GenChildContainerImpl implements GenNo
 		return new EcoreEList.UnmodifiableEList<GenLink>(this, GMFGenPackage.eINSTANCE.getGenNode_ReorientedIncomingLinks(), reorientedLinks.size(), reorientedLinks.toArray());
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public RefreshHook getRefreshHook() {
+		return refreshHook;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetRefreshHook(RefreshHook newRefreshHook, NotificationChain msgs) {
+		RefreshHook oldRefreshHook = refreshHook;
+		refreshHook = newRefreshHook;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GMFGenPackage.GEN_NODE__REFRESH_HOOK, oldRefreshHook, newRefreshHook);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setRefreshHook(RefreshHook newRefreshHook) {
+		if (newRefreshHook != refreshHook) {
+			NotificationChain msgs = null;
+			if (refreshHook != null)
+				msgs = ((InternalEObject)refreshHook).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GMFGenPackage.GEN_NODE__REFRESH_HOOK, null, msgs);
+			if (newRefreshHook != null)
+				msgs = ((InternalEObject)newRefreshHook).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GMFGenPackage.GEN_NODE__REFRESH_HOOK, null, msgs);
+			msgs = basicSetRefreshHook(newRefreshHook, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GMFGenPackage.GEN_NODE__REFRESH_HOOK, newRefreshHook, newRefreshHook));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSpecificNotificationEvent() {
+		return specificNotificationEvent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSpecificNotificationEvent(boolean newSpecificNotificationEvent) {
+		boolean oldSpecificNotificationEvent = specificNotificationEvent;
+		specificNotificationEvent = newSpecificNotificationEvent;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GMFGenPackage.GEN_NODE__SPECIFIC_NOTIFICATION_EVENT, oldSpecificNotificationEvent, specificNotificationEvent));
+	}
+
 	public boolean isSansDomain() {
 		return getModelFacet() == null;
 	}

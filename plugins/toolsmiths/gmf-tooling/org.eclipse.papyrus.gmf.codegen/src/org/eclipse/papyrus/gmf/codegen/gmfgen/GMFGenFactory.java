@@ -967,6 +967,24 @@ public interface GMFGenFactory extends EFactory {
 	GenFixedInputsTemplateInvocation createGenFixedInputsTemplateInvocation();
 
 	/**
+	 * Returns a new object of class '<em>Gen Floating Label</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Gen Floating Label</em>'.
+	 * @generated
+	 */
+	GenFloatingLabel createGenFloatingLabel();
+
+	/**
+	 * Returns a new object of class '<em>Refresh Hook</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Refresh Hook</em>'.
+	 * @generated
+	 */
+	RefreshHook createRefreshHook();
+
+	/**
 	 * Returns a new object of class '<em>Value Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

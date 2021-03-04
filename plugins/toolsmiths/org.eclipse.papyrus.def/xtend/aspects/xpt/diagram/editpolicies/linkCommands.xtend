@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2007-2013 Borland Software Corporation and others
+ * Copyright (c) 2007-2013, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -14,19 +14,18 @@
  * Michael Golubev (Borland) - [243151] explicit source/target for links
  *                              - #386838 - migrate to Xtend2
  * Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ * Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : PapyrusGmfExtension epackage merge into gmfgen
  * 
  *****************************************************************************/
 package aspects.xpt.diagram.editpolicies
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLinkEnd
-import org.eclipse.papyrus.gmf.codegen.genextension.EditPartUsingReorientService
-import org.eclipse.papyrus.gmf.codegen.genextension.GenerateUsingElementTypeCreationCommand
 import xpt.Common
 import xpt.diagram.commands.CreateLinkCommand
-import xpt.diagram.editpolicies.Utils_qvto
 import xpt.editor.VisualIDRegistry
 import xpt.providers.ElementTypes
 
@@ -52,17 +51,16 @@ import xpt.providers.ElementTypes
  *
 */
 @Singleton class linkCommands extends xpt.diagram.editpolicies.linkCommands {
-	@Inject extension Utils_qvto;
+	@Inject extension xpt.diagram.editpolicies.Utils_qvto;
 	@Inject extension Common;
 
-	@Inject  aspects.xpt.diagram.editpolicies.Utils_qvto aspectsUtils_qvto
 	@Inject VisualIDRegistry xptVisualIDRegistry;
 	@Inject ElementTypes xptElementTypes;
 	@Inject CreateLinkCommand xptCreateLinkCommand;
 
 	override createLinkCommands(GenLinkEnd it) '''
 		
-		«IF it.eResource.allContents.filter(typeof (GenerateUsingElementTypeCreationCommand)).size <1»
+		«IF it.eResource.allContents.filter(typeof (GenDiagram)).filter[genDiagram | genDiagram.usingElementTypeCreationCommand].size<1»
 
 		«generatedMemberComment()»
 		protected org.eclipse.gef.commands.Command getCreateRelationshipCommand(
@@ -163,16 +161,16 @@ import xpt.providers.ElementTypes
 	//This function writes only  : "case myLinkEditPart.VISUAL_ID:" 
 	//for the link which uses the ReorientCommand provided by the EditService 
 	def reorientLinkCommandWithService(GenLink it) '''
-		«IF it.eResource.allContents.filter(typeof(EditPartUsingReorientService)).filter[v| v.genView.contains(it)].size != 0»
+		«IF usingReorientService»
 			«xptVisualIDRegistry.caseVisualID(it)»
 		«ENDIF»
 	'''
 
 	// This function writes the code to call the ReorientCommand provided by the ReorientService
 	def callReorientCommand(GenLinkEnd it) '''
-		«var  rServiceNodes = it.eResource.allContents.filter(typeof (EditPartUsingReorientService))»
-		«IF !rServiceNodes.empty»
-			«IF !rServiceNodes.filter[rServiceNode|(!(rServiceNode.genView.filter[view|getReroutableTypeLinks(it).toList.contains(view)].empty))].empty»
+		«var  views = getReroutableTypeLinks(it)»
+		«IF views !== null && !views.empty»
+			«IF !views.filter[view| view.usingReorientService].empty»
 				org.eclipse.papyrus.infra.services.edit.service.IElementEditService provider =org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(req.getRelationship());
 				 if(provider == null) {
 				           return org.eclipse.gef.commands.UnexecutableCommand.INSTANCE;
@@ -189,7 +187,7 @@ import xpt.providers.ElementTypes
 
 	// This function writes the code for the Links which uses their own ReorientCommand (the initial code)
 	def reorientLinkCommandWithoutService(GenLink it) '''
-		«IF it.eResource.allContents.filter(EditPartUsingReorientService).filter[v|v.genView.contains(it)].size == 0»
+		«IF !usingReorientService»
 			«reorientLinkCommand(it)» 
 		«ENDIF»
 	'''

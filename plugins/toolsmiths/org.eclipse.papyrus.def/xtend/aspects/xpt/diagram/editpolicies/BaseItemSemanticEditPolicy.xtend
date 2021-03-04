@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2007, 2014 Borland Software Corporation, Christian W. Damus, and others.
+ * Copyright (c) 2007, 2014, 2021 Borland Software Corporation, Christian W. Damus, CEA LIST, Artal and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,6 +12,7 @@
  * Alexander Shatalin (Borland) - initial API and implementation
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Christian W. Damus - bug 451230
+ * Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : PapyrusGmfExtension epackage merge into gmfgen
  * 
  *****************************************************************************/
 package aspects.xpt.diagram.editpolicies
@@ -25,7 +26,6 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenFeature
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink
 import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeLinkModelFacet
-import org.eclipse.papyrus.gmf.codegen.genextension.GenerateUsingElementTypeCreationCommand
 import plugin.Activator
 import xpt.OclMigrationProblems_qvto
 import xpt.editor.VisualIDRegistry
@@ -164,10 +164,9 @@ override def addDestroyShortcutsCommand(GenDiagram it) '''
 	override getCreateRelationshipCommand(GenDiagram it) '''
 «generatedMemberComment()»
 protected org.eclipse.gef.commands.Command getCreateRelationshipCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest req) {
-	«IF it.eResource.allContents.filter(typeof(GenerateUsingElementTypeCreationCommand)).size < 1»
+	«IF !usingElementTypeCreationCommand»
 	return null;
-	«ENDIF»
-	«IF it.eResource.allContents.filter(typeof(GenerateUsingElementTypeCreationCommand)).size() > 0»
+	«ELSE»
 	org.eclipse.papyrus.infra.services.edit.service.IElementEditService commandService = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(((org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart)getHost()).resolveSemanticElement());
 	if(req.getElementType() != null) {
 		commandService = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(req.getElementType(), req.getClientContext());
@@ -334,7 +333,7 @@ public boolean canCreate«stringUniqueIdentifier()»(
 
 	// Generate generic method if using semantic creation command based on element types framework.
 	def getCreateSemanticServiceEditCommand(GenDiagram it) '''
-«IF it.eResource.allContents.filter(typeof(GenerateUsingElementTypeCreationCommand)).size > 0»
+«IF usingElementTypeCreationCommand»
 	«generatedMemberComment»
 	protected org.eclipse.gmf.runtime.common.core.command.ICommand getSemanticCreationCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req) {
 		org.eclipse.papyrus.infra.services.edit.service.IElementEditService commandService = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(req.getContainer());

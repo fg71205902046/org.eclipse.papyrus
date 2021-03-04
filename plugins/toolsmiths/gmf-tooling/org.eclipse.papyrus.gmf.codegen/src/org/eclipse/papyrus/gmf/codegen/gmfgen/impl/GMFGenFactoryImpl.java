@@ -180,6 +180,8 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 			case GMFGenPackage.GEN_CUSTOM_GENERATOR_EXTENSION: return createGenCustomGeneratorExtension();
 			case GMFGenPackage.GEN_TEMPLATE_INVOCATION: return createGenTemplateInvocation();
 			case GMFGenPackage.GEN_FIXED_INPUTS_TEMPLATE_INVOCATION: return createGenFixedInputsTemplateInvocation();
+			case GMFGenPackage.GEN_FLOATING_LABEL: return createGenFloatingLabel();
+			case GMFGenPackage.REFRESH_HOOK: return createRefreshHook();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -1428,6 +1430,28 @@ public class GMFGenFactoryImpl extends EFactoryImpl implements GMFGenFactory {
 	public GenFixedInputsTemplateInvocation createGenFixedInputsTemplateInvocation() {
 		GenFixedInputsTemplateInvocationImpl genFixedInputsTemplateInvocation = new GenFixedInputsTemplateInvocationImpl();
 		return genFixedInputsTemplateInvocation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public GenFloatingLabel createGenFloatingLabel() {
+		GenFloatingLabelImpl genFloatingLabel = new GenFloatingLabelImpl();
+		return genFloatingLabel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public RefreshHook createRefreshHook() {
+		RefreshHookImpl refreshHook = new RefreshHookImpl();
+		return refreshHook;
 	}
 
 	/**

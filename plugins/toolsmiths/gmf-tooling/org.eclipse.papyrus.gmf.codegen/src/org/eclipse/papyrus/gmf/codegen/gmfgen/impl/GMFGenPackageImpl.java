@@ -1098,6 +1098,20 @@ public class GMFGenPackageImpl extends EPackageImpl implements GMFGenPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass genFloatingLabelEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass refreshHookEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum standardPreferencePagesEEnum = null;
 
 	/**
@@ -1685,6 +1699,36 @@ public class GMFGenPackageImpl extends EPackageImpl implements GMFGenPackage {
 	@Override
 	public EReference getGenDiagram_PreferencePages() {
         return (EReference)getGenDiagram().getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getGenDiagram_BaseEditHelperPackage() {
+        return (EAttribute)getGenDiagram().getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getGenDiagram_UsingElementTypeCreationCommand() {
+        return (EAttribute)getGenDiagram().getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getGenDiagram_VisualTypeProvider() {
+        return (EAttribute)getGenDiagram().getEStructuralFeatures().get(12);
 	}
 
 	/**
@@ -3186,6 +3230,16 @@ public class GMFGenPackageImpl extends EPackageImpl implements GMFGenPackage {
 	 * @generated
 	 */
 	@Override
+	public EAttribute getGenDiagramUpdater_CustomDiagramUpdaterSingletonPath() {
+        return (EAttribute)getGenDiagramUpdater().getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getGenPlugin() {
 		if (genPluginEClass == null) {
 			genPluginEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(GMFGenPackage.eNS_URI).getEClassifiers().get(31);
@@ -3557,6 +3611,46 @@ public class GMFGenPackageImpl extends EPackageImpl implements GMFGenPackage {
 	 * @generated
 	 */
 	@Override
+	public EAttribute getGenCommonBase_SuperEditPart() {
+        return (EAttribute)getGenCommonBase().getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getGenCommonBase_VisualIDOverride() {
+        return (EAttribute)getGenCommonBase().getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getGenCommonBase_UsingDeleteService() {
+        return (EAttribute)getGenCommonBase().getEStructuralFeatures().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getGenCommonBase_UsingReorientService() {
+        return (EAttribute)getGenCommonBase().getEStructuralFeatures().get(13);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getBehaviour() {
 		if (behaviourEClass == null) {
 			behaviourEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(GMFGenPackage.eNS_URI).getEClassifiers().get(34);
@@ -3722,6 +3816,16 @@ public class GMFGenPackageImpl extends EPackageImpl implements GMFGenPackage {
 	 * @generated
 	 */
 	@Override
+	public EAttribute getGenContainerBase_SpecificDiagramUpdaterClassName() {
+        return (EAttribute)getGenContainerBase().getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getGenNode() {
 		if (genNodeEClass == null) {
 			genNodeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(GMFGenPackage.eNS_URI).getEClassifiers().get(40);
@@ -3787,6 +3891,26 @@ public class GMFGenPackageImpl extends EPackageImpl implements GMFGenPackage {
 	@Override
 	public EReference getGenNode_ReorientedIncomingLinks() {
         return (EReference)getGenNode().getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getGenNode_RefreshHook() {
+        return (EReference)getGenNode().getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getGenNode_SpecificNotificationEvent() {
+        return (EAttribute)getGenNode().getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -3866,6 +3990,16 @@ public class GMFGenPackageImpl extends EPackageImpl implements GMFGenPackage {
 	@Override
 	public EAttribute getGenChildSideAffixedNode_PreferredSideName() {
         return (EAttribute)getGenChildSideAffixedNode().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getGenChildSideAffixedNode_LocatorClassName() {
+        return (EAttribute)getGenChildSideAffixedNode().getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -4265,6 +4399,36 @@ public class GMFGenPackageImpl extends EPackageImpl implements GMFGenPackage {
 	 * @generated
 	 */
 	@Override
+	public EAttribute getGenExternalNodeLabel_Name() {
+        return (EAttribute)getGenExternalNodeLabel().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getGenExternalNodeLabel_LocatorClassName() {
+        return (EAttribute)getGenExternalNodeLabel().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getGenExternalNodeLabel_LabelVisibilityPreference() {
+        return (EReference)getGenExternalNodeLabel().getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getGenLinkLabel() {
 		if (genLinkLabelEClass == null) {
 			genLinkLabelEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(GMFGenPackage.eNS_URI).getEClassifiers().get(50);
@@ -4290,6 +4454,16 @@ public class GMFGenPackageImpl extends EPackageImpl implements GMFGenPackage {
 	@Override
 	public EAttribute getGenLinkLabel_Alignment() {
         return (EAttribute)getGenLinkLabel().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getGenLinkLabel_LabelVisibilityPreference() {
+        return (EReference)getGenLinkLabel().getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -8130,6 +8304,82 @@ public class GMFGenPackageImpl extends EPackageImpl implements GMFGenPackage {
 	@Override
 	public EReference getGenFixedInputsTemplateInvocation_FixedInputs() {
         return (EReference)getGenFixedInputsTemplateInvocation().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getGenFloatingLabel() {
+		if (genFloatingLabelEClass == null) {
+			genFloatingLabelEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(GMFGenPackage.eNS_URI).getEClassifiers().get(163);
+		}
+		return genFloatingLabelEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getGenFloatingLabel_Role() {
+        return (EAttribute)getGenFloatingLabel().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getGenFloatingLabel_IconPathRole() {
+        return (EAttribute)getGenFloatingLabel().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getGenFloatingLabel_VisibleByDefault() {
+        return (EAttribute)getGenFloatingLabel().getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getRefreshHook() {
+		if (refreshHookEClass == null) {
+			refreshHookEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(GMFGenPackage.eNS_URI).getEClassifiers().get(164);
+		}
+		return refreshHookEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getRefreshHook_RefreshCondition() {
+        return (EAttribute)getRefreshHook().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getRefreshHook_RefreshAction() {
+        return (EAttribute)getRefreshHook().getEStructuralFeatures().get(1);
 	}
 
 	/**

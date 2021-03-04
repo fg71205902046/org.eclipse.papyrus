@@ -67,6 +67,9 @@ import org.eclipse.papyrus.gmf.common.codegen.ImportAssistant;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram#isSynchronized <em>Synchronized</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram#getPreferences <em>Preferences</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram#getPreferencePages <em>Preference Pages</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram#getBaseEditHelperPackage <em>Base Edit Helper Package</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram#isUsingElementTypeCreationCommand <em>Using Element Type Creation Command</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram#getVisualTypeProvider <em>Visual Type Provider</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenDiagram()
@@ -288,6 +291,79 @@ public interface GenDiagram extends GenContainerBase, PackageNames, ProviderClas
 	 * @generated
 	 */
 	EList<GenPreferencePage> getPreferencePages();
+
+	/**
+	 * Returns the value of the '<em><b>Base Edit Helper Package</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Bug 569174 : from AdditionalEditPartCandies
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Base Edit Helper Package</em>' attribute.
+	 * @see #setBaseEditHelperPackage(String)
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenDiagram_BaseEditHelperPackage()
+	 * @model
+	 * @generated
+	 */
+	String getBaseEditHelperPackage();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram#getBaseEditHelperPackage <em>Base Edit Helper Package</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Base Edit Helper Package</em>' attribute.
+	 * @see #getBaseEditHelperPackage()
+	 * @generated
+	 */
+	void setBaseEditHelperPackage(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Using Element Type Creation Command</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Bug 569174 : from GenerateUsingElementTypeCreationCommand
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Using Element Type Creation Command</em>' attribute.
+	 * @see #setUsingElementTypeCreationCommand(boolean)
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenDiagram_UsingElementTypeCreationCommand()
+	 * @model
+	 * @generated
+	 */
+	boolean isUsingElementTypeCreationCommand();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram#isUsingElementTypeCreationCommand <em>Using Element Type Creation Command</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Using Element Type Creation Command</em>' attribute.
+	 * @see #isUsingElementTypeCreationCommand()
+	 * @generated
+	 */
+	void setUsingElementTypeCreationCommand(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Visual Type Provider</b></em>' attribute.
+	 * The default value is <code>"UMLVisualTypeProvider"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Visual Type Provider</em>' attribute.
+	 * @see #setVisualTypeProvider(String)
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenDiagram_VisualTypeProvider()
+	 * @model default="UMLVisualTypeProvider" required="true"
+	 * @generated
+	 */
+	String getVisualTypeProvider();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram#getVisualTypeProvider <em>Visual Type Provider</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Visual Type Provider</em>' attribute.
+	 * @see #getVisualTypeProvider()
+	 * @generated
+	 */
+	void setVisualTypeProvider(String value);
 
 	/**
 	 * <!-- begin-user-doc -->

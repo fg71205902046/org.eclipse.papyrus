@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagramUpdater#getLinkDescriptorClassName <em>Link Descriptor Class Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagramUpdater#getUpdateCommandClassName <em>Update Command Class Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagramUpdater#getUpdateCommandID <em>Update Command ID</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagramUpdater#getCustomDiagramUpdaterSingletonPath <em>Custom Diagram Updater Singleton Path</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenDiagramUpdater()
@@ -190,6 +191,31 @@ public interface GenDiagramUpdater extends EObject {
 	 * @generated
 	 */
 	void setUpdateCommandID(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Custom Diagram Updater Singleton Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Bug 569174 : from CustomDiagramUpdaterSingleton
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Custom Diagram Updater Singleton Path</em>' attribute.
+	 * @see #setCustomDiagramUpdaterSingletonPath(String)
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenDiagramUpdater_CustomDiagramUpdaterSingletonPath()
+	 * @model
+	 * @generated
+	 */
+	String getCustomDiagramUpdaterSingletonPath();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagramUpdater#getCustomDiagramUpdaterSingletonPath <em>Custom Diagram Updater Singleton Path</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Custom Diagram Updater Singleton Path</em>' attribute.
+	 * @see #getCustomDiagramUpdaterSingletonPath()
+	 * @generated
+	 */
+	void setCustomDiagramUpdaterSingletonPath(String value);
 
 	/**
 	 * <!-- begin-user-doc -->

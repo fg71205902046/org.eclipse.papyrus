@@ -78,6 +78,7 @@ import org.eclipse.papyrus.gmf.common.codegen.ImportAssistant;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenDiagramImpl#getContainedNodes <em>Contained Nodes</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenDiagramImpl#getCanonicalEditPolicyClassName <em>Canonical Edit Policy Class Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenDiagramImpl#getSpecificDiagramUpdaterClassName <em>Specific Diagram Updater Class Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenDiagramImpl#getEditCommandsPackageName <em>Edit Commands Package Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenDiagramImpl#getEditHelpersPackageName <em>Edit Helpers Package Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenDiagramImpl#getEditPartsPackageName <em>Edit Parts Package Name</em>}</li>
@@ -150,6 +151,9 @@ import org.eclipse.papyrus.gmf.common.codegen.ImportAssistant;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenDiagramImpl#isSynchronized <em>Synchronized</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenDiagramImpl#getPreferences <em>Preferences</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenDiagramImpl#getPreferencePages <em>Preference Pages</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenDiagramImpl#getBaseEditHelperPackage <em>Base Edit Helper Package</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenDiagramImpl#isUsingElementTypeCreationCommand <em>Using Element Type Creation Command</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenDiagramImpl#getVisualTypeProvider <em>Visual Type Provider</em>}</li>
  * </ul>
  *
  * @generated
@@ -175,6 +179,26 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * @ordered
 	 */
 	protected String canonicalEditPolicyClassName = CANONICAL_EDIT_POLICY_CLASS_NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getSpecificDiagramUpdaterClassName() <em>Specific Diagram Updater Class Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSpecificDiagramUpdaterClassName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getSpecificDiagramUpdaterClassName() <em>Specific Diagram Updater Class Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSpecificDiagramUpdaterClassName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String specificDiagramUpdaterClassName = SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getEditCommandsPackageName() <em>Edit Commands Package Name</em>}' attribute.
@@ -1487,6 +1511,66 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	protected EList<GenPreferencePage> preferencePages;
 
 	/**
+	 * The default value of the '{@link #getBaseEditHelperPackage() <em>Base Edit Helper Package</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBaseEditHelperPackage()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String BASE_EDIT_HELPER_PACKAGE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getBaseEditHelperPackage() <em>Base Edit Helper Package</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBaseEditHelperPackage()
+	 * @generated
+	 * @ordered
+	 */
+	protected String baseEditHelperPackage = BASE_EDIT_HELPER_PACKAGE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isUsingElementTypeCreationCommand() <em>Using Element Type Creation Command</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUsingElementTypeCreationCommand()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean USING_ELEMENT_TYPE_CREATION_COMMAND_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isUsingElementTypeCreationCommand() <em>Using Element Type Creation Command</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUsingElementTypeCreationCommand()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean usingElementTypeCreationCommand = USING_ELEMENT_TYPE_CREATION_COMMAND_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getVisualTypeProvider() <em>Visual Type Provider</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getVisualTypeProvider()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String VISUAL_TYPE_PROVIDER_EDEFAULT = "UMLVisualTypeProvider";
+
+	/**
+	 * The cached value of the '{@link #getVisualTypeProvider() <em>Visual Type Provider</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getVisualTypeProvider()
+	 * @generated
+	 * @ordered
+	 */
+	protected String visualTypeProvider = VISUAL_TYPE_PROVIDER_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1731,6 +1815,75 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 			preferencePages = new EObjectContainmentEList<GenPreferencePage>(GenPreferencePage.class, this, GMFGenPackage.GEN_DIAGRAM__PREFERENCE_PAGES);
 		}
 		return preferencePages;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getBaseEditHelperPackage() {
+		return baseEditHelperPackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setBaseEditHelperPackage(String newBaseEditHelperPackage) {
+		String oldBaseEditHelperPackage = baseEditHelperPackage;
+		baseEditHelperPackage = newBaseEditHelperPackage;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GMFGenPackage.GEN_DIAGRAM__BASE_EDIT_HELPER_PACKAGE, oldBaseEditHelperPackage, baseEditHelperPackage));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isUsingElementTypeCreationCommand() {
+		return usingElementTypeCreationCommand;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setUsingElementTypeCreationCommand(boolean newUsingElementTypeCreationCommand) {
+		boolean oldUsingElementTypeCreationCommand = usingElementTypeCreationCommand;
+		usingElementTypeCreationCommand = newUsingElementTypeCreationCommand;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GMFGenPackage.GEN_DIAGRAM__USING_ELEMENT_TYPE_CREATION_COMMAND, oldUsingElementTypeCreationCommand, usingElementTypeCreationCommand));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getVisualTypeProvider() {
+		return visualTypeProvider;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setVisualTypeProvider(String newVisualTypeProvider) {
+		String oldVisualTypeProvider = visualTypeProvider;
+		visualTypeProvider = newVisualTypeProvider;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GMFGenPackage.GEN_DIAGRAM__VISUAL_TYPE_PROVIDER, oldVisualTypeProvider, visualTypeProvider));
 	}
 
 	/**
@@ -2794,6 +2947,29 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public String getSpecificDiagramUpdaterClassName() {
+		return specificDiagramUpdaterClassName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSpecificDiagramUpdaterClassName(String newSpecificDiagramUpdaterClassName) {
+		String oldSpecificDiagramUpdaterClassName = specificDiagramUpdaterClassName;
+		specificDiagramUpdaterClassName = newSpecificDiagramUpdaterClassName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GMFGenPackage.GEN_DIAGRAM__SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME, oldSpecificDiagramUpdaterClassName, specificDiagramUpdaterClassName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getTextSelectionEditPolicyClassNameGen() {
 		return textSelectionEditPolicyClassName;
 	}
@@ -3814,6 +3990,8 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 				return getContainedNodes();
 			case GMFGenPackage.GEN_DIAGRAM__CANONICAL_EDIT_POLICY_CLASS_NAME:
 				return getCanonicalEditPolicyClassName();
+			case GMFGenPackage.GEN_DIAGRAM__SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME:
+				return getSpecificDiagramUpdaterClassName();
 			case GMFGenPackage.GEN_DIAGRAM__EDIT_COMMANDS_PACKAGE_NAME:
 				return getEditCommandsPackageName();
 			case GMFGenPackage.GEN_DIAGRAM__EDIT_HELPERS_PACKAGE_NAME:
@@ -3959,6 +4137,12 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 				return getPreferences();
 			case GMFGenPackage.GEN_DIAGRAM__PREFERENCE_PAGES:
 				return getPreferencePages();
+			case GMFGenPackage.GEN_DIAGRAM__BASE_EDIT_HELPER_PACKAGE:
+				return getBaseEditHelperPackage();
+			case GMFGenPackage.GEN_DIAGRAM__USING_ELEMENT_TYPE_CREATION_COMMAND:
+				return isUsingElementTypeCreationCommand();
+			case GMFGenPackage.GEN_DIAGRAM__VISUAL_TYPE_PROVIDER:
+				return getVisualTypeProvider();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -3974,6 +4158,9 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 		switch (featureID) {
 			case GMFGenPackage.GEN_DIAGRAM__CANONICAL_EDIT_POLICY_CLASS_NAME:
 				setCanonicalEditPolicyClassName((String)newValue);
+				return;
+			case GMFGenPackage.GEN_DIAGRAM__SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME:
+				setSpecificDiagramUpdaterClassName((String)newValue);
 				return;
 			case GMFGenPackage.GEN_DIAGRAM__EDIT_COMMANDS_PACKAGE_NAME:
 				setEditCommandsPackageName((String)newValue);
@@ -4192,6 +4379,15 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 				getPreferencePages().clear();
 				getPreferencePages().addAll((Collection<? extends GenPreferencePage>)newValue);
 				return;
+			case GMFGenPackage.GEN_DIAGRAM__BASE_EDIT_HELPER_PACKAGE:
+				setBaseEditHelperPackage((String)newValue);
+				return;
+			case GMFGenPackage.GEN_DIAGRAM__USING_ELEMENT_TYPE_CREATION_COMMAND:
+				setUsingElementTypeCreationCommand((Boolean)newValue);
+				return;
+			case GMFGenPackage.GEN_DIAGRAM__VISUAL_TYPE_PROVIDER:
+				setVisualTypeProvider((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -4206,6 +4402,9 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 		switch (featureID) {
 			case GMFGenPackage.GEN_DIAGRAM__CANONICAL_EDIT_POLICY_CLASS_NAME:
 				setCanonicalEditPolicyClassName(CANONICAL_EDIT_POLICY_CLASS_NAME_EDEFAULT);
+				return;
+			case GMFGenPackage.GEN_DIAGRAM__SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME:
+				setSpecificDiagramUpdaterClassName(SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME_EDEFAULT);
 				return;
 			case GMFGenPackage.GEN_DIAGRAM__EDIT_COMMANDS_PACKAGE_NAME:
 				setEditCommandsPackageName(EDIT_COMMANDS_PACKAGE_NAME_EDEFAULT);
@@ -4417,6 +4616,15 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 			case GMFGenPackage.GEN_DIAGRAM__PREFERENCE_PAGES:
 				getPreferencePages().clear();
 				return;
+			case GMFGenPackage.GEN_DIAGRAM__BASE_EDIT_HELPER_PACKAGE:
+				setBaseEditHelperPackage(BASE_EDIT_HELPER_PACKAGE_EDEFAULT);
+				return;
+			case GMFGenPackage.GEN_DIAGRAM__USING_ELEMENT_TYPE_CREATION_COMMAND:
+				setUsingElementTypeCreationCommand(USING_ELEMENT_TYPE_CREATION_COMMAND_EDEFAULT);
+				return;
+			case GMFGenPackage.GEN_DIAGRAM__VISUAL_TYPE_PROVIDER:
+				setVisualTypeProvider(VISUAL_TYPE_PROVIDER_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -4433,6 +4641,8 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 				return !getContainedNodes().isEmpty();
 			case GMFGenPackage.GEN_DIAGRAM__CANONICAL_EDIT_POLICY_CLASS_NAME:
 				return CANONICAL_EDIT_POLICY_CLASS_NAME_EDEFAULT == null ? canonicalEditPolicyClassName != null : !CANONICAL_EDIT_POLICY_CLASS_NAME_EDEFAULT.equals(canonicalEditPolicyClassName);
+			case GMFGenPackage.GEN_DIAGRAM__SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME:
+				return SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME_EDEFAULT == null ? specificDiagramUpdaterClassName != null : !SPECIFIC_DIAGRAM_UPDATER_CLASS_NAME_EDEFAULT.equals(specificDiagramUpdaterClassName);
 			case GMFGenPackage.GEN_DIAGRAM__EDIT_COMMANDS_PACKAGE_NAME:
 				return EDIT_COMMANDS_PACKAGE_NAME_EDEFAULT == null ? editCommandsPackageName != null : !EDIT_COMMANDS_PACKAGE_NAME_EDEFAULT.equals(editCommandsPackageName);
 			case GMFGenPackage.GEN_DIAGRAM__EDIT_HELPERS_PACKAGE_NAME:
@@ -4577,6 +4787,12 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 				return preferences != null;
 			case GMFGenPackage.GEN_DIAGRAM__PREFERENCE_PAGES:
 				return preferencePages != null && !preferencePages.isEmpty();
+			case GMFGenPackage.GEN_DIAGRAM__BASE_EDIT_HELPER_PACKAGE:
+				return BASE_EDIT_HELPER_PACKAGE_EDEFAULT == null ? baseEditHelperPackage != null : !BASE_EDIT_HELPER_PACKAGE_EDEFAULT.equals(baseEditHelperPackage);
+			case GMFGenPackage.GEN_DIAGRAM__USING_ELEMENT_TYPE_CREATION_COMMAND:
+				return usingElementTypeCreationCommand != USING_ELEMENT_TYPE_CREATION_COMMAND_EDEFAULT;
+			case GMFGenPackage.GEN_DIAGRAM__VISUAL_TYPE_PROVIDER:
+				return VISUAL_TYPE_PROVIDER_EDEFAULT == null ? visualTypeProvider != null : !VISUAL_TYPE_PROVIDER_EDEFAULT.equals(visualTypeProvider);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -5078,6 +5294,8 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (canonicalEditPolicyClassName: ");
 		result.append(canonicalEditPolicyClassName);
+		result.append(", specificDiagramUpdaterClassName: ");
+		result.append(specificDiagramUpdaterClassName);
 		result.append(", editCommandsPackageName: ");
 		result.append(editCommandsPackageName);
 		result.append(", editHelpersPackageName: ");
@@ -5202,6 +5420,12 @@ public class GenDiagramImpl extends GenCommonBaseImpl implements GenDiagram {
 		result.append(units);
 		result.append(", synchronized: ");
 		result.append(synchronized_);
+		result.append(", baseEditHelperPackage: ");
+		result.append(baseEditHelperPackage);
+		result.append(", usingElementTypeCreationCommand: ");
+		result.append(usingElementTypeCreationCommand);
+		result.append(", visualTypeProvider: ");
+		result.append(visualTypeProvider);
 		result.append(')');
 		return result.toString();
 	}
