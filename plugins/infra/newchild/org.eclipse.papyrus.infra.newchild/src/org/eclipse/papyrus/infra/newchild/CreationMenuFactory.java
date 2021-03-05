@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2011, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -9,12 +9,11 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *
  *  CEA LIST - Initial API and implementation
  *  Patrik Nandorf (Ericsson AB) patrik.nandorf@ericsson.com - Bug 425565
- *  Christian W. Damus - bug 485220
+ *  Christian W. Damus - bugs 485220, 571713
  *  Asma Smaoui  asma.smaoui@cea.fr - bug 528156
- *   
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.newchild;
 
@@ -173,7 +172,7 @@ public class CreationMenuFactory {
 
 	/**
 	 * Checks if the optional filter of the menu is matching or not the selected EObject
-	 * 
+	 *
 	 * @param menu
 	 *            the menu to filter
 	 * @param selectedObject
@@ -250,6 +249,7 @@ public class CreationMenuFactory {
 				}
 				if (topMenu.getItemCount() == 0) {
 					topMenu.dispose();
+					topMenuItem.dispose();
 					return false;
 				} else {
 					return true;
@@ -395,7 +395,7 @@ public class CreationMenuFactory {
 	 *            the string that represents the element type
 	 * @return the element type or null
 	 * @since 3.0
-	 * 
+	 *
 	 */
 	protected IElementType getElementType(ElementTypeConfiguration elementTypeConfiguration, IClientContext context) {
 		IElementType type = ElementTypeRegistry.getInstance().getType(elementTypeConfiguration.getIdentifier());
@@ -412,7 +412,7 @@ public class CreationMenuFactory {
 	 * @param container
 	 *            the container of the created elements
 	 * @param adviceCache
-	 * 
+	 *
 	 * @return a command that can be executed by the domain
 	 * @since 3.0
 	 */
@@ -460,7 +460,7 @@ public class CreationMenuFactory {
 	 *
 	 * @param adviceCache
 	 * @return
-	 * 		the creation request to use in this handler
+	 *         the creation request to use in this handler
 	 * @since 3.0
 	 */
 	protected CreateElementRequest buildRequest(EReference reference, EObject container, CreationMenu creationMenu, Map<?, ?> adviceCache, IClientContext context) {
@@ -487,7 +487,7 @@ public class CreationMenuFactory {
 	/**
 	 *
 	 * @return
-	 * 		the creation request to use in this handler
+	 *         the creation request to use in this handler
 	 * @since 3.0
 	 */
 	protected CreateElementRequest buildRequest(EReference reference, EObject container, CreationMenu creationMenu, IClientContext context) {
@@ -517,7 +517,7 @@ public class CreationMenuFactory {
 
 	/**
 	 * Creates a dialog for selecting the target element
-	 * 
+	 *
 	 * @param eobject
 	 * @param provider
 	 * @param ted
@@ -555,10 +555,10 @@ public class CreationMenuFactory {
 				.filter(Objects::nonNull)
 				.reduce(ISemanticContentProviderFactory::compose);
 
-		ResourceSet rs= eobject.eResource().getResourceSet();
+		ResourceSet rs = eobject.eResource().getResourceSet();
 		ITreeContentProvider delegate = factory.orElse(SemanticEMFContentProvider::new)
 				.createSemanticContentProvider(rs);
-		
+
 		ITreeContentProvider contentProvider = new DelegatingPapyrusContentProvider(delegate) {
 			@Override
 			public boolean isValidValue(Object element) {
@@ -584,8 +584,8 @@ public class CreationMenuFactory {
 			}
 		};
 
-		
-		EMFGraphicalContentProvider graphicalContentProvider  = ProviderHelper.encapsulateProvider(contentProvider, rs, "target");
+
+		EMFGraphicalContentProvider graphicalContentProvider = ProviderHelper.encapsulateProvider(contentProvider, rs, "target");
 
 		TreeSelectorDialog dialog = new TreeSelectorDialog(Display.getDefault().getActiveShell());
 		dialog.setContentProvider(graphicalContentProvider);
