@@ -11,7 +11,7 @@
  * Contributors:
  *  CEA LIST - Initial API and implementation
  *  Patrik Nandorf (Ericsson AB) patrik.nandorf@ericsson.com - Bug 425565
- *  Christian W. Damus - bugs 485220, 571713
+ *  Christian W. Damus - bugs 485220, 571713, 571715
  *  Asma Smaoui  asma.smaoui@cea.fr - bug 528156
  *
  *****************************************************************************/
@@ -20,6 +20,7 @@ package org.eclipse.papyrus.infra.newchild;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
@@ -81,6 +82,9 @@ public class CreationMenuFactory {
 
 	private TransactionalEditingDomain editingDomain;
 
+	/** Ensure uniqueness of top-level menu names. */
+	private Map<String, Menu> folderMenus = new HashMap<>();
+
 	/**
 	 *
 	 * Constructor.
@@ -102,65 +106,104 @@ public class CreationMenuFactory {
 	 * @param selectedObject
 	 *            the current selection
 	 * @param adviceCache
-	 * @return true if sub-menu has been added
+	 * @return {@code true} if a new sub-menu has been added. In the case that more content is added
+	 *         to an already existing menu, the result will be {@code false} because no
+	 *         new sub-menu was created
 	 */
 	public boolean populateMenu(Menu menu, Folder folder, EObject selectedObject, int index, Map<?, ?> adviceCache) {
-		if (selectedObject != null && folder != null && folder.isVisible() && filterMatches(folder, selectedObject)) {
-			org.eclipse.swt.widgets.MenuItem topMenuItem = new MenuItem(menu, SWT.CASCADE, index);
-			topMenuItem.setText(folder.getLabel());
-			if (folder.getIcon() != null && folder.getIcon().length() > 0) {
-				URL url = null;
-				try {
-					url = new URL(folder.getIcon());
-					ImageDescriptor imgDesc = ImageDescriptor.createFromURL(url);
-					topMenuItem.setImage(org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(imgDesc));
-				} catch (MalformedURLException e) {
-					// no exception thrown
-					Activator.log.debug("Impossible to find icon with URL " + url);
-				}
-			}
-			Menu topMenu = new Menu(menu);
-			topMenuItem.setMenu(topMenu);
-			boolean oneDisplayedMenu = false;
+		if (selectedObject == null || folder == null || !folder.isVisible() || !filterMatches(folder, selectedObject)) {
+			// Nothing to do, here
+			return false;
+		}
 
-			for (org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Menu currentMenu : folder.getMenu()) {
-				boolean result = false;
-				if (currentMenu instanceof Separator) {
-					constructSeparator(topMenu);
-				} else if (currentMenu instanceof Folder) {
-					result = populateMenu(topMenu, (Folder) currentMenu, selectedObject, topMenu.getItemCount(), adviceCache);
-				} else if (currentMenu instanceof CreationMenu && ((CreationMenu) currentMenu).isVisible() && filterMatches(currentMenu, selectedObject)) {
-					CreationMenu currentCreationMenu = (CreationMenu) currentMenu;
-					EReference reference = null;
-					String role = currentCreationMenu.getRole();
-					// the role is precised
-					if (role != null && !role.isEmpty()) {
-						EStructuralFeature feature = selectedObject.eClass().getEStructuralFeature(role);
-						if (feature instanceof EReference) {
-							reference = (EReference) feature;
-							result = constructMenu(selectedObject, topMenu, currentCreationMenu, reference, adviceCache);
-						}
-					} else {// no precisison
-							// test if all roles must be displayed
-						if (currentCreationMenu.isDisplayAllRoles()) {
-							result = constructMenu(selectedObject, topMenu, currentCreationMenu, adviceCache);
-						} else {
-							result = constructMenu(selectedObject, topMenu, currentCreationMenu, reference, adviceCache);
-						}
+		// If we don't yet have a menu to fill, we will optimistically create it and try to fill it.
+		// In the case that we created it and didn't fill it, we need to destroy it to clean up.
+		// But if we are reusing an existing menu, then it already has content and so should not
+		// be deleted even if we don't end up adding any content to it
+		final boolean createdNewMenu;
+
+		org.eclipse.swt.widgets.MenuItem topMenuItem;
+		Menu topMenu = folderMenus.get(folder.getLabel());
+		if (topMenu != null) {
+			// We did not build a new menu
+			createdNewMenu = false;
+
+			// And reuse its parent item
+			topMenuItem = topMenu.getParentItem();
+		} else {
+			// We created a new menu
+			createdNewMenu = true;
+
+			// create a new parent item and menu
+			topMenuItem = new MenuItem(menu, SWT.CASCADE, index);
+			topMenuItem.setText(folder.getLabel());
+
+			topMenu = new Menu(topMenuItem);
+			topMenuItem.setMenu(topMenu);
+
+			// Stash it for reuse next time
+			folderMenus.put(folder.getLabel(), topMenu);
+		}
+
+		if (topMenuItem.getImage() == null && folder.getIcon() != null && folder.getIcon().length() > 0) {
+			// Give the cascading menu item the first available folder icon
+			URL url = null;
+			try {
+				url = new URL(folder.getIcon());
+				ImageDescriptor imgDesc = ImageDescriptor.createFromURL(url);
+				topMenuItem.setImage(org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(imgDesc));
+			} catch (MalformedURLException e) {
+				// no exception thrown
+				Activator.log.debug("Impossible to find icon with URL " + url);
+			}
+		}
+
+		boolean addedItems = false; // Track whether we added anything to the menu
+		for (org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Menu currentMenu : folder.getMenu()) {
+			if (currentMenu instanceof Separator) {
+				constructSeparator(topMenu);
+			} else if (currentMenu instanceof Folder) {
+				// Maintain uniqueness of nested folders without interference from this level
+				Map<String, Menu> folderMenusAtThisLevel = folderMenus;
+				folderMenus = new HashMap<>();
+				try {
+					addedItems |= populateMenu(topMenu, (Folder) currentMenu, selectedObject, topMenu.getItemCount(), adviceCache);
+				} finally {
+					folderMenus = folderMenusAtThisLevel;
+				}
+			} else if (currentMenu instanceof CreationMenu && ((CreationMenu) currentMenu).isVisible() && filterMatches(currentMenu, selectedObject)) {
+				CreationMenu currentCreationMenu = (CreationMenu) currentMenu;
+				EReference reference = null;
+				String role = currentCreationMenu.getRole();
+				// the role is precised
+				if (role != null && !role.isEmpty()) {
+					EStructuralFeature feature = selectedObject.eClass().getEStructuralFeature(role);
+					if (feature instanceof EReference) {
+						reference = (EReference) feature;
+						addedItems |= constructMenu(selectedObject, topMenu, currentCreationMenu, reference, adviceCache);
+					}
+				} else {// no precisison
+						// test if all roles must be displayed
+					if (currentCreationMenu.isDisplayAllRoles()) {
+						addedItems |= constructMenu(selectedObject, topMenu, currentCreationMenu, adviceCache);
+					} else {
+						addedItems |= constructMenu(selectedObject, topMenu, currentCreationMenu, reference, adviceCache);
 					}
 				}
-				if (result) {
-					oneDisplayedMenu = true;
-				}
 			}
-			if (!oneDisplayedMenu) {
-				topMenuItem.dispose();
-			}
-			return oneDisplayedMenu;
-
 		}
-		return false;
 
+		if (createdNewMenu && !addedItems) {
+			// If created a new menu and we didn't add anything to it,
+			// then it is empty and is of no use, so destroy it
+			folderMenus.remove(folder.getLabel());
+			topMenu.dispose();
+			topMenuItem.dispose();
+		}
+
+		// If we reused the menu, we didn't create a new one, so don't report
+		// back to the caller that we added a new top menu
+		return createdNewMenu && addedItems;
 	}
 
 	/**
