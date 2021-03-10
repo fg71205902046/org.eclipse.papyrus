@@ -19,10 +19,6 @@
             file="target/generated-eclipse-help/properties_view_custom_dev-toc.xml"
             primary="false">
       </toc>
-      <toc
-            file="resource/properties_view_custom_dev-main-toc.xml"
-            primary="false">
-      </toc>
    </extension>
 
 </plugin>

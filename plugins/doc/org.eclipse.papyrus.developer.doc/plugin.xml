@@ -11,10 +11,6 @@
             file="target/generated-eclipse-help/guidelines-toc.xml"
             primary="false">
       </toc>
-      <toc
-            file="resource/guidelines-main-toc.xml"
-            primary="true">
-      </toc>
       
       <toc
             file="target/generated-eclipse-help/umledition-main-toc.xml"
@@ -23,10 +19,6 @@
       <toc
             file="target/generated-eclipse-help/umledition-toc.xml"
             primary="false">
-      </toc>
-      <toc
-            file="resource/umledition-main-toc.xml"
-            primary="true">
       </toc>
    </extension>
 

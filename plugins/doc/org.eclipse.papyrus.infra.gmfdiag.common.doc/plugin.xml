@@ -67,9 +67,5 @@
             file="target/generated-eclipse-help/modelExplorer-toc.xml"
             primary="false">
       </toc>
-      <toc
-            file="resource/modelExplorer-main-toc.xml"
-            primary="false">
-      </toc>
    </extension>
 </plugin>
