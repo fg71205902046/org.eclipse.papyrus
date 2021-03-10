@@ -7,7 +7,7 @@ include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable
 
 //updateFrom("EGit",0)
 
-location egit "https://download.eclipse.org/egit/staging/v5.11.0.202103031150-rc1" {
+location egit "https://download.eclipse.org/egit/updates-5.11" {
 	org.eclipse.egit.feature.group
 }
 
@@ -45,6 +45,6 @@ location emf "https://download.eclipse.org/modeling/emf/emf/builds/release/2.25"
 
 //updateFrom("EMF CDO",0) 
 
-location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20210203-0509" {
+location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20210308-1312" {
 	org.eclipse.emf.cdo.epp.feature.group
 }

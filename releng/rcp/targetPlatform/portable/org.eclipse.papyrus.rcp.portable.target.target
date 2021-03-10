@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
-<target name="Papyrus RCP" sequenceNumber="1615192519">
+<target name="Papyrus RCP" sequenceNumber="1615363795">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.nebula.widgets.richtext.feature.feature.group" version="1.2.0.201703081533"/>
@@ -33,8 +33,8 @@
       <repository id="xwt" location="https://download.eclipse.org/xwt/milestones-1.6.0/1.6.0-M2/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.10.3.v20210302-1249"/>
-      <repository id="qvto" location="https://download.eclipse.org/mmt/qvto/updates/milestones/3.10.3/S202103021249"/>
+      <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.10.3.v20210309-1855"/>
+      <repository id="qvto" location="https://download.eclipse.org/mmt/qvto/updates/releases/3.10.3"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.xpand.sdk.feature.group" version="2.2.0.v201605260315"/>
@@ -46,9 +46,9 @@
       <repository id="uml" location="https://download.eclipse.org/modeling/mdt/uml2/updates/5.5milestones"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.ocl.examples.classic.feature.group" version="5.14.0.v20210301-1325"/>
-      <unit id="org.eclipse.ocl.examples.feature.group" version="6.14.0.v20210301-1325"/>
-      <repository id="ocl" location="https://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.14.0/S202103011325"/>
+      <unit id="org.eclipse.ocl.examples.classic.feature.group" version="5.14.0.v20210310-0557"/>
+      <unit id="org.eclipse.ocl.examples.feature.group" version="6.14.0.v20210310-0557"/>
+      <repository id="ocl" location="https://download.eclipse.org/modeling/mdt/ocl/updates/releases/6.14.0"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.xtext.sdk.feature.group" version="2.25.0.v20210301-1429"/>
@@ -91,8 +91,8 @@
       <repository id="gef" location="https://download.eclipse.org/tools/gef/updates/legacy/releases/4.0.0_gef-master_1952"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.egit.feature.group" version="5.11.0.202103031150-rc1"/>
-      <repository id="egit" location="https://download.eclipse.org/egit/staging/v5.11.0.202103031150-rc1"/>
+      <unit id="org.eclipse.egit.feature.group" version="5.11.0.202103091610-r"/>
+      <repository id="egit" location="https://download.eclipse.org/egit/updates-5.11"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.e4.core.tools.feature.feature.group" version="4.19.0.v20210210-1828"/>
@@ -121,8 +121,8 @@
       <repository id="emf" location="https://download.eclipse.org/modeling/emf/emf/builds/release/2.25"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.emf.cdo.epp.feature.group" version="4.13.0.v20210203-1008"/>
-      <repository id="cdo" location="http://download.eclipse.org/modeling/emf/cdo/drops/S20210203-0509"/>
+      <unit id="org.eclipse.emf.cdo.epp.feature.group" version="4.13.0.v20210308-1811"/>
+      <repository id="cdo" location="http://download.eclipse.org/modeling/emf/cdo/drops/S20210308-1312"/>
     </location>
   </locations>
 </target>
