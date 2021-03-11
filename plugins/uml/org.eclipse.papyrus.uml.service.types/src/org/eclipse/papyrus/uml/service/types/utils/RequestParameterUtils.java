@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2018 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2012, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Christian W. Damus - bug 530201
+ *  Christian W. Damus - bugs 530201, 570542
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.utils;
@@ -39,10 +39,10 @@ public class RequestParameterUtils {
 
 	/**
 	 * Get the source graphical view provided as {@link IEditCommandRequest} parameter.
-	 * 
+	 *
 	 * @param req
 	 *            the edit command request
-	 * 
+	 *
 	 * @return the source view
 	 */
 	public static View getSourceView(IEditCommandRequest req) {
@@ -51,10 +51,10 @@ public class RequestParameterUtils {
 
 	/**
 	 * Get the target graphical view provided as {@link IEditCommandRequest} parameter.
-	 * 
+	 *
 	 * @param req
 	 *            the edit command request
-	 * 
+	 *
 	 * @return the target view
 	 */
 	public static View getTargetView(IEditCommandRequest req) {
@@ -63,10 +63,10 @@ public class RequestParameterUtils {
 
 	/**
 	 * Get the reconnected graphical edge provided as {@link IEditCommandRequest} parameter.
-	 * 
+	 *
 	 * @param req
 	 *            the edit command request
-	 * 
+	 *
 	 * @return the reconnected edge
 	 */
 	public static Edge getReconnectedEdge(IEditCommandRequest req) {
@@ -75,10 +75,10 @@ public class RequestParameterUtils {
 
 	/**
 	 * Get the reconnected graphical end view provided as {@link IEditCommandRequest} parameter.
-	 * 
+	 *
 	 * @param req
 	 *            the edit command request
-	 * 
+	 *
 	 * @return the reconnected end view
 	 */
 	public static View getReconnectedEndView(IEditCommandRequest req) {
@@ -87,24 +87,49 @@ public class RequestParameterUtils {
 
 	/**
 	 * Get the list of dependents that should not be destroyed during delete.
-	 * 
+	 *
 	 * @param req
 	 *            the edit command request
-	 * 
+	 *
 	 * @return the list of dependents to keep
 	 */
 	public static List<EObject> getDependentsToKeep(IEditCommandRequest req) {
-		return (List<EObject>) req.getParameter(RequestParameterConstants.DEPENDENTS_TO_KEEP);
+		return getDependentsToKeep(req, false);
+	}
+
+	/**
+	 * Get the list of dependents that should not be destroyed during delete, optionally creating
+	 * the parameter if it does not already exist. This is useful for clients that will add
+	 * objects to the list.
+	 *
+	 * @param req
+	 *            the edit command request
+	 * @param create
+	 *            whether to create the request parameter if it does not already exist
+	 *
+	 * @return the list of dependents to keep
+	 */
+	public static List<EObject> getDependentsToKeep(IEditCommandRequest req, boolean create) {
+		@SuppressWarnings("unchecked")
+		List<EObject> result = (List<EObject>) req.getParameter(RequestParameterConstants.DEPENDENTS_TO_KEEP);
+
+		if (result == null && create) {
+			result = new ArrayList<>();
+			req.setParameter(RequestParameterConstants.DEPENDENTS_TO_KEEP, result);
+		}
+
+		return result;
 	}
 
 	/**
 	 * Get the list of association related elements currently re-factored.
-	 * 
+	 *
 	 * @param req
 	 *            the edit command request
-	 * 
+	 *
 	 * @return the list of association related elements currently re-factored
 	 */
+	@SuppressWarnings("unchecked")
 	public static List<EObject> getAssociationRefactoredElements(IEditCommandRequest req) {
 		return (List<EObject>) req.getParameter(RequestParameterConstants.ASSOCIATION_REFACTORED_ELEMENTS);
 	}
@@ -116,14 +141,14 @@ public class RequestParameterUtils {
 	 *            the eObject to add
 	 */
 	public static void addAssociationRefactoredElement(IEditCommandRequest req, EObject eObject) {
-		List<EObject> refactoredElements = (getAssociationRefactoredElements(req) != null) ? getAssociationRefactoredElements(req) : new ArrayList<EObject>();
+		List<EObject> refactoredElements = (getAssociationRefactoredElements(req) != null) ? getAssociationRefactoredElements(req) : new ArrayList<>();
 		refactoredElements.add(eObject);
-		req.getParameters().put(RequestParameterConstants.ASSOCIATION_REFACTORED_ELEMENTS, refactoredElements);
+		req.setParameter(RequestParameterConstants.ASSOCIATION_REFACTORED_ELEMENTS, refactoredElements);
 	}
 
 	/**
 	 * Obtains the covered lifelines attached to a {@code request}.
-	 * 
+	 *
 	 * @param request
 	 *            an edit request
 	 * @return the covered lifelines parameter, or an empty iterable if none
@@ -145,7 +170,7 @@ public class RequestParameterUtils {
 
 	/**
 	 * Sets the covered lifelines attached to a {@code request}.
-	 * 
+	 *
 	 * @param request
 	 *            an edit request
 	 * @param coveredLifelines
