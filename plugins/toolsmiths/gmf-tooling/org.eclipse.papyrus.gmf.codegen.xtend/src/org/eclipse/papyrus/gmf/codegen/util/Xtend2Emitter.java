@@ -1,5 +1,5 @@
 /******************************************************************************
- * Copyright (c) 2015, 2020 Borland Software Corporation, CEA LIST, Artal and others
+ * Copyright (c) 2015, 2020, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,6 +11,7 @@
  * Contributors: 
  *    Svyatoslav Kovalsky (Montages) - initial API and implementation
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *    Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 - Use project or worksapce preference as new line characters
  *****************************************************************************/
 package org.eclipse.papyrus.gmf.codegen.util;
 
@@ -22,6 +23,7 @@ import java.util.List;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.papyrus.gmf.common.UnexpectedBehaviourException;
 import org.eclipse.papyrus.gmf.internal.common.codegen.TextEmitter;
+import org.eclipse.xtend2.lib.StringConcatenation;
 
 import com.google.inject.Injector;
 
@@ -40,11 +42,11 @@ public class Xtend2Emitter implements TextEmitter {
 	}
 
 	@Override
-	public String generate(IProgressMonitor monitor, Object[] arguments) throws InterruptedException, InvocationTargetException, UnexpectedBehaviourException {
-		return generate(monitor, myMethodName, arguments);
+	public String generate(IProgressMonitor monitor, Object[] arguments, String lineSeparator) throws InterruptedException, InvocationTargetException, UnexpectedBehaviourException {
+		return generate(monitor, myMethodName, arguments, lineSeparator);
 	}
 	
-	protected String generate(IProgressMonitor monitor, String methodName, Object[] arguments) throws InterruptedException, InvocationTargetException, UnexpectedBehaviourException {
+	protected String generate(IProgressMonitor monitor, String methodName, Object[] arguments, String lineSeparator) throws InterruptedException, InvocationTargetException, UnexpectedBehaviourException {
 		if (monitor != null && monitor.isCanceled()) {
 			throw new InterruptedException();
 		}
@@ -70,7 +72,13 @@ public class Xtend2Emitter implements TextEmitter {
 		if (result == null) {
 			throw new UnexpectedBehaviourException("Xtend generator returned null for " + this);
 		}
-		return String.valueOf(result);
+		
+		//  Bug 569174 - Use project or worksapce preference as new line characters
+		// - here it is at creation time (!= merge if already exist)
+		// -- --  use post processing instead of intrusive changes in APIs
+		StringConcatenation _builder = new StringConcatenation(lineSeparator);
+		_builder.append(result);
+		return _builder.toString();
 	}
 
 	private Object instantiateGenerator() throws UnexpectedBehaviourException {
@@ -112,11 +120,11 @@ public class Xtend2Emitter implements TextEmitter {
 		assert arguments != null && arguments.length > 0;
 		return arguments[0];
 	}
-	
+
 	protected Injector getInjector() {
 		return myInjector;
 	}
-	
+
 	protected Class<?> getTemplateClass() {
 		return myXtendGenerator;
 	}

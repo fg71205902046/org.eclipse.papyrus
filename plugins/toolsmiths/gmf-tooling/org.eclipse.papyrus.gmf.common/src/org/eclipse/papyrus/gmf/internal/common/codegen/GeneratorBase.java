@@ -1,5 +1,5 @@
 /******************************************************************************
- * Copyright (c) 2005, 2020 Borland Software Corporation, CEA LIST, Artal and others
+ * Copyright (c) 2005, 2020, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,6 +11,7 @@
  * Contributors: 
  *    Artem Tikhomirov (Borland) - initial API and implementation
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *    Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 - Use project or worksapce preference as new line characters
  *****************************************************************************/
 package org.eclipse.papyrus.gmf.internal.common.codegen;
 
@@ -57,6 +58,7 @@ import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.papyrus.gmf.common.UnexpectedBehaviourException;
 import org.eclipse.papyrus.gmf.common.codegen.ImportAssistant;
+import org.eclipse.papyrus.gmf.common.codegen.OutputFormatterUtil;
 import org.eclipse.papyrus.gmf.internal.common.Activator;
 import org.eclipse.text.edits.TextEdit;
 
@@ -272,7 +274,7 @@ public abstract class GeneratorBase implements Runnable {
 			pm.beginTask(null, 5);
 			IPath containerPath = myDestProject.getFullPath().append(filePath.removeLastSegments(1));
 			EclipseUtil.findOrCreateContainer(containerPath, false, (IPath) null, new SubProgressMonitor(pm, 1));
-			String genText = emitter.generate(new SubProgressMonitor(pm, 1), param);
+			String genText = emitter.generate(new SubProgressMonitor(pm, 1), param, getLocalLineSeparator());
 			IFile f = myDestProject.getFile(filePath);
 			final boolean propertyFile = "properties".equals(filePath.getFileExtension());
 			String charset = propertyFile ? "ISO-8859-1" : "UTF-8";
@@ -348,7 +350,7 @@ public abstract class GeneratorBase implements Runnable {
 
 	protected final void doGenerate(JavaClassEmitter emitter, Object... input) throws InterruptedException, UnexpectedBehaviourException {
 		if (emitter != null) {
-			doGenerateJavaClass(emitter, emitter.getQualifiedClassName(input), input);
+			doGenerateJavaClass(emitter, emitter.getQualifiedClassName(getLocalLineSeparator(), input), input);
 		}
 	}
 
@@ -372,7 +374,7 @@ public abstract class GeneratorBase implements Runnable {
 			return;
 		}
 		try {
-			String genText = emitter.generate(new SubProgressMonitor(pm, 2), input);
+			String genText = emitter.generate(new SubProgressMonitor(pm, 2), input, getLocalLineSeparator());
 			IPackageFragment pf = myDestRoot.createPackageFragment(packageName, true, new SubProgressMonitor(pm, 1));
 			ICompilationUnit cu = pf.getCompilationUnit(className + ".java"); //$NON-NLS-1$
 			if (cu.exists()) {
@@ -482,7 +484,16 @@ public abstract class GeneratorBase implements Runnable {
 	 * @return facility to perform merges, should never return null. 
 	 */
 	protected TextMerger createMergeService() {
-		return new TextMerger();
+		return new TextMerger(getLocalLineSeparator());
+	}
+
+	/**
+	 * Gets the right local line separator.
+	 *
+	 * @return the local line separator output project or workspace settings
+	 */
+	protected String getLocalLineSeparator() {
+		return OutputFormatterUtil.getDefaultLineSeparator(myDestProject);
 	}
 
 	protected void setProgressTaskName(String text) {
@@ -491,7 +502,7 @@ public abstract class GeneratorBase implements Runnable {
 
 	protected final String formatCode(String text) {
 		IDocument doc = new Document(text);
-		TextEdit edit = getCodeFormatter().format(CodeFormatter.K_COMPILATION_UNIT, doc.get(), 0, doc.get().length(), 0, null);
+		TextEdit edit = getCodeFormatter().format(CodeFormatter.K_COMPILATION_UNIT, doc.get(), 0, doc.get().length(), 0, getLocalLineSeparator());
 
 		try {
 			// check if text formatted successfully

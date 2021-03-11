@@ -11,6 +11,7 @@
  * Contributors: 
  *    Svyatoslav Kovalsky (Montages) - initial API and implementation
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *    Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 - newline characters preference api consistency
  *****************************************************************************/
 package org.eclipse.papyrus.gmf.internal.common.codegen;
 
@@ -20,7 +21,7 @@ import org.eclipse.papyrus.gmf.common.UnexpectedBehaviourException;
 
 public interface JavaClassEmitter extends TextEmitter {
 	
-	public String getQualifiedClassName(Object... input)  throws UnexpectedBehaviourException;
+	public String getQualifiedClassName(String lineSeparator, Object... input)  throws UnexpectedBehaviourException;
 	
-	public String getQualifiedClassName(String fqnMethodName, Object... input)  throws UnexpectedBehaviourException;
+	public String getQualifiedClassName(String fqnMethodName, String lineSeparator, Object... input)  throws UnexpectedBehaviourException;
 }

@@ -1,5 +1,5 @@
 /******************************************************************************
- * Copyright (c) 2006, 2020 Borland Software Corporation, CEA LIST, Artal
+ * Copyright (c) 2006, 2020, 2021 Borland Software Corporation, CEA LIST, Artal
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,6 +11,7 @@
  * Contributors: 
  *    Michael Golubev (Borland) - initial API and implementation
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *    Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 - newline characters preference api consistency
  *****************************************************************************/
 package org.eclipse.papyrus.gmf.graphdef.codegen;
 
@@ -168,7 +169,9 @@ public class StandaloneGenerator extends GeneratorBase {
 	@Override
 	protected TextMerger createMergeService() {
 		// jcontrol model that is not initialized can't merge, hence java merging won't happen
-		return new DefaultTextMerger(new JControlModel());
+		// -   workspace preference as new line characters
+
+		return new DefaultTextMerger(getLocalLineSeparator(), new JControlModel());
 	}
 	
 	protected void customRun() throws InterruptedException, UnexpectedBehaviourException {

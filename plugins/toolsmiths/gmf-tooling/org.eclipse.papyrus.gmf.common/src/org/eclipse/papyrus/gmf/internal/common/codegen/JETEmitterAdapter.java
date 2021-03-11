@@ -11,6 +11,7 @@
  * Contributors: 
  *    Artem Tikhomirov (Borland) - initial API and implementation
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *    Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 - newline characters preference api consistency
  *****************************************************************************/
 package org.eclipse.papyrus.gmf.internal.common.codegen;
 
@@ -30,7 +31,7 @@ public class JETEmitterAdapter implements TextEmitter {
 		myEmitter = emitter;
 	}
 	
-	public String generate(IProgressMonitor monitor, Object[] params) throws InterruptedException, InvocationTargetException {
+	public String generate(IProgressMonitor monitor, Object[] params, String lineSeparator) throws InterruptedException, InvocationTargetException {
 		try {
 			if (monitor != null && monitor.isCanceled()) {
 				throw new InterruptedException();

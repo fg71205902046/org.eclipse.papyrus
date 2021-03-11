@@ -1,5 +1,5 @@
 /******************************************************************************
- * Copyright (c) 2006, 2020 Borland Software Corporation, CEA LIST, Artal
+ * Copyright (c) 2006, 2020, 2021 Borland Software Corporation, CEA LIST, Artal
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,6 +11,7 @@
  * Contributors: 
  *    Artem Tikhomirov (Borland) - initial API and implementation
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *    Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 - Use project or worksapce preference as new line characters
  *****************************************************************************/
 package org.eclipse.papyrus.gmf.internal.common.codegen;
 
@@ -36,7 +37,8 @@ public class DefaultTextMerger extends TextMerger {
 
 	private final ManifestFileMerge myManifestMerge;
 
-	public DefaultTextMerger(JControlModel jModel) {
+	public DefaultTextMerger(String localLineSeparator, JControlModel jModel) {
+		super(localLineSeparator);
 		assert jModel != null;
 		myControlModel = jModel;
 		myXmlMerger = new TaggedTextMerger("<!-- " + BEGIN_TAG + " -->", "<!-- " + END_TAG + " -->");
@@ -53,7 +55,7 @@ public class DefaultTextMerger extends TextMerger {
 		jMerge.setSourceCompilationUnit(jMerge.createCompilationUnitForContents(newText));
 		jMerge.setTargetCompilationUnit(jMerge.createCompilationUnitForContents(oldText));
 		jMerge.merge();
-		return jMerge.getTargetCompilationUnitContents();
+		return toLocalLineSeparator(jMerge.getTargetCompilationUnitContents());
 	}
 
 	@Override
@@ -62,25 +64,25 @@ public class DefaultTextMerger extends TextMerger {
         propertyMerger.setSourceProperties(newText);
         propertyMerger.setTargetProperties(oldText);
         propertyMerger.merge();
-        return propertyMerger.getTargetProperties();
+        return toLocalLineSeparator(propertyMerger.getTargetProperties());
 	}
 
 	@Override
 	public String mergeXML(String oldText, String newText) {
-		return myXmlMerger.process(oldText, newText);
+		return toLocalLineSeparator(myXmlMerger.process(oldText, newText));
 	}
 
 	@Override
 	public String mergePluginXML(String oldText, String newText) {
 		if (myPluginXmlMerger.isRecognizedDocument(oldText)) {
-			return myPluginXmlMerger.process(oldText, newText);
+			return toLocalLineSeparator(myPluginXmlMerger.process(oldText, newText));
 		}
 		return mergeXML(oldText, newText);
 	}
 
 	@Override
 	public String mergeManifestMF(String oldText, String newText) {
-		return myManifestMerge.process(oldText, newText);
+		return toLocalLineSeparator(myManifestMerge.process(oldText, newText));
 	}
 
 	private JControlModel getJControlModel() {
