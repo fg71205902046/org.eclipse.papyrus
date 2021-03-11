@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017,2018 CEA LIST.
+ * Copyright (c) 2017, 2021 CEA LIST, Christian W. Damus, and others.
  *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License 2.0
@@ -11,6 +11,7 @@
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
  *  Benoit Maggi - Bug 535393
+ *  Christian W. Damus - bug 571881
  *
  */
 package org.eclipse.papyrus.infra.architecture;
@@ -152,14 +153,15 @@ public class ArchitectureDescriptionUtils {
 	 */
 	public Command createNewModel(final String contextId, final String[] viewpointIds) {
 		CompoundCommand cc = new CompoundCommand("Create New Model");
+		// Add a command to set the new context id to the model set. Do this first because creation of the
+		// model may depend on element type bindings in this context
+		cc.append(getSetContextCommand(contextId));
+		// Add a command to set the new viewpoint ids to the model set
+		cc.append(getSetViewpointCommand(viewpointIds));
 		// Add the main command to create the model
 		cc.append(getModelCreationCommand(contextId));
 		// Add commands from registered providers to create the model
 		cc.append(ModelCommandProviderRegistry.getInstance().getModelCreationCommand(modelSet, contextId));
-		// Add a command to set the new context id to the model set
-		cc.append(getSetContextCommand(contextId));
-		// Add a command to set the new viewpoint ids to the model set
-		cc.append(getSetViewpointCommand(viewpointIds));
 		return cc;
 	}
 
@@ -232,7 +234,7 @@ public class ArchitectureDescriptionUtils {
 			@Override
 			protected void doExecute() {
 				try {
-					IModelCreationCommand creationCommand = context.getCreationCommandClass().newInstance();
+					IModelCreationCommand creationCommand = context.getCreationCommandClass().getConstructor().newInstance();
 					creationCommand.createModel(modelSet);
 				} catch (Exception e) {
 					Activator.log.error(e);
@@ -257,7 +259,7 @@ public class ArchitectureDescriptionUtils {
 			@Override
 			protected void doExecute() {
 				try {
-					IModelConversionCommand conversionCommand = context.getConversionCommandClass().newInstance();
+					IModelConversionCommand conversionCommand = context.getConversionCommandClass().getConstructor().newInstance();
 					conversionCommand.convertModel(modelSet);
 				} catch (Exception e) {
 					Activator.log.error(e);
