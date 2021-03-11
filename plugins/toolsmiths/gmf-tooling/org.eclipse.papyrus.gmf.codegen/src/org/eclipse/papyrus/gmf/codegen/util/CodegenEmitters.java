@@ -1,5 +1,5 @@
 /******************************************************************************
- * Copyright (c) 2005, 2020 Borland Software Corporation, CEA LIST, Artal and others
+ * Copyright (c) 2005, 2020, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,6 +11,7 @@
  * Contributors: 
  *    Artem Tikhomirov (Borland) - initial API and implementation
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *    Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 - Use project or worksapce preference as new line characters
  *****************************************************************************/
 package org.eclipse.papyrus.gmf.codegen.util;
 
@@ -22,15 +23,10 @@ import java.util.Map;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.codegen.merge.java.JControlModel;
-import org.eclipse.emf.codegen.merge.java.JMerger;
-import org.eclipse.emf.codegen.util.CodeGenUtil;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.gmf.common.UnexpectedBehaviourException;
-import org.eclipse.papyrus.gmf.internal.common.codegen.DefaultTextMerger;
 import org.eclipse.papyrus.gmf.internal.common.codegen.JavaClassEmitter;
 import org.eclipse.papyrus.gmf.internal.common.codegen.TextEmitter;
-import org.eclipse.papyrus.gmf.internal.common.codegen.TextMerger;
 import org.eclipse.papyrus.gmf.internal.common.codegen.XpandClassEmitter;
 import org.eclipse.papyrus.gmf.internal.xpand.ResourceManager;
 import org.eclipse.papyrus.gmf.internal.xpand.util.BundleResourceManager;
@@ -69,21 +65,6 @@ public class CodegenEmitters {
 		myGlobals = globals;
 	}
 
-	/**
-	 * @return null if no merger is needed
-	 */
-	public TextMerger createMergeService() {
-		URL controlFile = getJMergeControlFile();
-		if (controlFile != null) {
-			JControlModel controlModel = new JControlModel();
-			controlModel.initialize(CodeGenUtil.instantiateFacadeHelper(JMerger.DEFAULT_FACADE_HELPER_CLASS), controlFile.toString());
-			if (!controlModel.canMerge()) {
-				throw new IllegalStateException("Can not initialize JControlModel");
-			}
-			return new DefaultTextMerger(controlModel);
-		}
-		return null;
-	}
 
 	private static Bundle getTemplatesBundle() {
 		return Platform.getBundle("org.eclipse.papyrus.gmf.codegen"); //$NON-NLS-1$

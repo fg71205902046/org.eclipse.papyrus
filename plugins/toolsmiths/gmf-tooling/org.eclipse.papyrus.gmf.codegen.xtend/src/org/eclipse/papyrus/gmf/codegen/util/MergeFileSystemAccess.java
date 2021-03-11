@@ -11,6 +11,7 @@
  * Contributors: 
  *    Guillaume Hillairet (Montages A.G.) : initial implementation
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *    Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 - Use project or worksapce preference as new line characters
  *****************************************************************************/
 package org.eclipse.papyrus.gmf.codegen.util;
 
@@ -36,6 +37,7 @@ import org.eclipse.emf.codegen.merge.java.JMerger;
 import org.eclipse.emf.codegen.util.CodeGenUtil;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.gmf.codegen.util.MergeFileSystemAccess;
+import org.eclipse.papyrus.gmf.common.codegen.OutputFormatterUtil;
 import org.eclipse.papyrus.gmf.internal.common.codegen.DefaultTextMerger;
 import org.eclipse.papyrus.gmf.internal.common.codegen.TextMerger;
 import org.eclipse.xtext.generator.AbstractFileSystemAccess;
@@ -49,7 +51,6 @@ import com.google.inject.Inject;
  * 
  * @author ghillairet
  */
-@SuppressWarnings("restriction")
 public class MergeFileSystemAccess extends AbstractFileSystemAccess {
 
 	@Inject
@@ -186,7 +187,7 @@ public class MergeFileSystemAccess extends AbstractFileSystemAccess {
 	}
 
 	private InputStream getMergedContent(IFile file, String newContentAsString, String defaultCharset) {
-		final TextMerger textMerger = createMergeService();
+		final TextMerger textMerger = createMergeService(file);
 		final String oldContentAsString = getStringContent(file, defaultCharset);
 		final String mergedString = textMerger.mergeJava(oldContentAsString, newContentAsString);
 		StringInputStream mergedContent = null;
@@ -198,7 +199,7 @@ public class MergeFileSystemAccess extends AbstractFileSystemAccess {
 		return mergedContent;
 	}
 
-	protected TextMerger createMergeService() {
+	protected TextMerger createMergeService(IFile file) {
 		URL controlFile = getJMergeControlFile();
 		if (controlFile != null) {
 			JControlModel controlModel = new JControlModel();
@@ -206,7 +207,8 @@ public class MergeFileSystemAccess extends AbstractFileSystemAccess {
 			if (!controlModel.canMerge()) {
 				throw new IllegalStateException("Can not initialize JControlModel");
 			}
-			return new DefaultTextMerger(controlModel);
+			 //Bug 569174 - Use project or worksapce preference as new line characters
+			return new DefaultTextMerger(OutputFormatterUtil.getDefaultLineSeparator(file.getProject()),controlModel);
 		}
 		return null;
 	}

@@ -11,9 +11,11 @@
  * Contributors: 
  *    Artem Tikhomirov (Borland) - initial API and implementation
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *    Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 - Use project or worksapce preference as new line characters
  *****************************************************************************/
 package org.eclipse.papyrus.gmf.codegen.util;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -30,6 +32,8 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.codegen.merge.java.JControlModel;
+import org.eclipse.emf.codegen.merge.java.JMerger;
 import org.eclipse.emf.codegen.util.CodeGenUtil;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -93,6 +97,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.StandardPreferencePages;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeLinkModelFacet;
 import org.eclipse.papyrus.gmf.common.UnexpectedBehaviourException;
 import org.eclipse.papyrus.gmf.internal.common.codegen.CodeFormatterFactory;
+import org.eclipse.papyrus.gmf.internal.common.codegen.DefaultTextMerger;
 import org.eclipse.papyrus.gmf.internal.common.codegen.GeneratorBase;
 import org.eclipse.papyrus.gmf.internal.common.codegen.JavaClassEmitter;
 import org.eclipse.papyrus.gmf.internal.common.codegen.TextEmitter;
@@ -136,9 +141,16 @@ public class Generator extends GeneratorBase implements Runnable {
 
 	@Override
 	protected TextMerger createMergeService() {
-		TextMerger service = myEmitters.createMergeService();
-		if (service != null) {
-			return service;
+		//  Bug 569174 - Use project or worksapce preference as new line characters
+		// don't delegate to emitter the merger configuration
+		URL controlFile = myEmitters.getJMergeControlFile();
+		if (controlFile != null) {
+			JControlModel controlModel = new JControlModel();
+			controlModel.initialize(CodeGenUtil.instantiateFacadeHelper(JMerger.DEFAULT_FACADE_HELPER_CLASS), controlFile.toString());
+			if (!controlModel.canMerge()) {
+				throw new IllegalStateException("Can not initialize JControlModel");
+			}
+			return new DefaultTextMerger(getLocalLineSeparator(), controlModel);
 		}
 		return super.createMergeService();
 	}
@@ -1068,7 +1080,7 @@ public class Generator extends GeneratorBase implements Runnable {
 		for (Object nextTemplateInput : templateInputs) {
 			String nextFqn;
 			try {
-				nextFqn = fqnEmitter.generate(new NullProgressMonitor(), new Object[] { nextTemplateInput });
+				nextFqn = fqnEmitter.generate(new NullProgressMonitor(), new Object[] { nextTemplateInput }, getLocalLineSeparator());
 			} catch (Exception e) {
 				handleException(new UnexpectedBehaviourException(//
 						"Error computing FQN for invocation " + invocation + //

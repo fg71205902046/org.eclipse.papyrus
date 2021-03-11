@@ -1,5 +1,5 @@
 /******************************************************************************
- * Copyright (c) 2015, 2020 Borland Software Corporation, CEA LIST, Artal and others
+ * Copyright (c) 2015, 2020, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,6 +11,7 @@
  * Contributors: 
  *    Svyatoslav Kovalsky (Montages) - initial API and implementation
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *    Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 - Use project or worksapce preference as new line characters
  *****************************************************************************/
 package org.eclipse.papyrus.gmf.codegen.util;
 
@@ -30,18 +31,19 @@ public class Xtend2ClassEmitter extends Xtend2Emitter implements JavaClassEmitte
 	}
 
 	@Override
-	public String getQualifiedClassName(Object... input) throws UnexpectedBehaviourException {
-		return getQualifiedClassName("qualifiedClassName", input);
+	public String getQualifiedClassName(String lineSeparator, Object... input) throws UnexpectedBehaviourException {
+		return getQualifiedClassName("qualifiedClassName", lineSeparator, input);
 	}
 
 	@Override
-	public String getQualifiedClassName(String FQNMethodName, Object... input) throws UnexpectedBehaviourException {
-		return getText(FQNMethodName, input);
+	public String getQualifiedClassName(String FQNMethodName, String lineSeparator, Object... input) throws UnexpectedBehaviourException {
+		return getText(FQNMethodName, lineSeparator, input);
 	}
 
-	private String getText(String method, Object... input) throws UnexpectedBehaviourException {
+	private String getText(String method, String lineSeparator, Object... input) throws UnexpectedBehaviourException {
 		try {
-			return this.generate(new NullProgressMonitor(), method, input);
+			// Use project or worksapce preference as new line characters
+			return this.generate(new NullProgressMonitor(), method, input, lineSeparator);
 		} catch (InvocationTargetException e) {
 			throw new UnexpectedBehaviourException("Invocation method exception "+ method + " on class " + getTemplateClass().getName(), e);
 		} catch (InterruptedException e) {

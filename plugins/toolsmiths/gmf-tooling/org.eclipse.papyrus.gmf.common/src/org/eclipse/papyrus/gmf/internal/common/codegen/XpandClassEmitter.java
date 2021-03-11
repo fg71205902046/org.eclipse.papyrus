@@ -1,5 +1,5 @@
 /******************************************************************************
- * Copyright (c) 2013, 2020 Borland Software Corporation, CEA LIST, Artal
+ * Copyright (c) 2013, 2020, 2021 Borland Software Corporation, CEA LIST, Artal
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,6 +11,7 @@
  * Contributors: 
  *    Svyatoslav Kovalsky (Montages) - initial API and implementation
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *    Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 - newline characters preference api consistency
  *****************************************************************************/
 package org.eclipse.papyrus.gmf.internal.common.codegen;
 
@@ -32,12 +33,12 @@ public class XpandClassEmitter extends XpandTextEmitter implements JavaClassEmit
 		super(manager, templateFQN, methodToInvoke, globals);
 	}
 
-	public String getQualifiedClassName(Object... input) throws UnexpectedBehaviourException {
-		return getQualifiedClassName("qualifiedClassName", input);
+	public String getQualifiedClassName(String lineSeparator, Object... input) throws UnexpectedBehaviourException {
+		return getQualifiedClassName("qualifiedClassName", lineSeparator, input);
 	}
 
-	public String getQualifiedClassName(String fqnMethodName, Object... input) throws UnexpectedBehaviourException {
-		return getText(fqnMethodName, input);
+	public String getQualifiedClassName(String fqnMethodName, String lineSeparator, Object... input) throws UnexpectedBehaviourException {
+		return getText(fqnMethodName, lineSeparator, input);
 	}
 	
 	private String getText(String method,Object... input) throws UnexpectedBehaviourException {

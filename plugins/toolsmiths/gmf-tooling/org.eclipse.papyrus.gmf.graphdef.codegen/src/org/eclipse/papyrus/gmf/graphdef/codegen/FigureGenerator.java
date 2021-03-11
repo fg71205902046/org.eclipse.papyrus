@@ -1,5 +1,5 @@
 /******************************************************************************
- * Copyright (c) 2006, 2020 Borland Software Corporation, CEA LIST, Artal
+ * Copyright (c) 2006, 2020, 2021 Borland Software Corporation, CEA LIST, Artal
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,6 +11,7 @@
  * Contributors: 
  *    Artem Tikhomirov (Borland) - initial API and implementation
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *    Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 - newline characters preference api consistency
  *****************************************************************************/
 package org.eclipse.papyrus.gmf.graphdef.codegen;
 
@@ -116,7 +117,7 @@ public class FigureGenerator implements TextEmitter {
 		return new XpandFacade(new Scope(resourceManager, globals, bufferOutput));
 	}
 
-	public String generate(IProgressMonitor monitor, Object[] arguments) throws InterruptedException, InvocationTargetException, UnexpectedBehaviourException {
+	public String generate(IProgressMonitor monitor, Object[] arguments, String lineSeparator) throws InterruptedException, InvocationTargetException, UnexpectedBehaviourException {
 		if (arguments == null || arguments.length != 1 || false == arguments[0] instanceof FigureDescriptor) {
 			throw new UnexpectedBehaviourException("(FigureDescriptor) expected as arguments, not " + arguments);
 		}
