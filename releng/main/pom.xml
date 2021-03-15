@@ -8,7 +8,7 @@
 		<artifactId>org.eclipse.papyrus.all.releng</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	
+
 	<artifactId>org.eclipse.papyrus.releng</artifactId>
 	<packaging>pom</packaging>
 
@@ -26,7 +26,6 @@
 		<module>../../features/papyrus-main-features</module>
 		<module>../../features/papyrus.user.examples-features</module>
 		<module>targetPlatform</module>
-		<module>site</module>
 	</modules>
 
 	<build>
@@ -80,6 +79,25 @@
 		</pluginManagement>
 
 		<plugins>
+			<!-- Test local parameters
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>3.0.0</version>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<echoproperties />
+							</target>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin-->
 			<!-- local plugins -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -175,6 +193,19 @@
 					</plugin>
 				</plugins>
 			</build>
+		</profile>
+
+		<!-- The update site is not needed during gerrit jobs -->
+		<profile>
+			<id>buildP2</id>
+			<activation>
+				<property>
+					<name>!GERRIT_EVENT_TYPE</name>
+				</property>
+			</activation>
+			<modules>
+				<module>site</module>
+			</modules>
 		</profile>
 
 		<profile>

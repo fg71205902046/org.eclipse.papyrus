@@ -21,7 +21,6 @@
 		<module>../../features/papyrus-toolsmiths-features</module>
 		<module>../../plugins/toolsmiths</module>
 		<module>../../tests/junit/framework</module>
-		<module>site</module>
 		<module>targetPlatform</module>
 	</modules>
 
@@ -127,10 +126,22 @@
 			</activation>
 		</profile>
 
+		<!-- The update site is not needed during gerrit jobs -->
+		<profile>
+			<id>buildP2</id>
+			<activation>
+				<property>
+					<name>!GERRIT_EVENT_TYPE</name>
+				</property>
+			</activation>
+			<modules>
+				<module>site</module>
+			</modules>
+		</profile>
+
 		<profile>
 			<id>buildAll</id>
-			<!-- Papyrus Update sites not included (They are included in the same 
-				build) -->
+			<!-- Papyrus Update sites not included (They are included in the same build) -->
 			<activation>
 				<property>
 					<name>buildAll</name>
