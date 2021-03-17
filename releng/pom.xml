@@ -23,9 +23,6 @@
 		<!-- https://repo.eclipse.org/content/repositories/cbi-releases/ -->
 		<jarSignerVersion>1.1.7</jarSignerVersion>
 
-		<!-- https://repository.jboss.org/ -->
-		<jboss.utils.version>1.7.0</jboss.utils.version>
-
 		<java.source.version>11</java.source.version>
 		<java.target.version>11</java.target.version>
 		<skipAllTests>false</skipAllTests>

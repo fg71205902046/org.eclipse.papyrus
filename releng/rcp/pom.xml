@@ -11,7 +11,7 @@
 	</parent>
 
 	<artifactId>org.eclipse.papyrus.rcp.releng</artifactId>
-	<version>5.1.0-SNAPSHOT</version>
+	<version>5.2.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<modules>
@@ -26,7 +26,7 @@
 		<eclipse.simultaneous.release.build>${maven.build.timestamp}</eclipse.simultaneous.release.build>
 		<!-- Human readable name of the release, e.g. used in the about dialog 
 			(see about.mappings)  -->
-		<eclipse.simultaneous.release.name>2021-03 (4.19)</eclipse.simultaneous.release.name>
+		<eclipse.simultaneous.release.name>2021-06 (4.20)</eclipse.simultaneous.release.name>
 		<target.platform>org.eclipse.papyrus.rcp.${target.suffix}.target</target.platform>
 	</properties>
 

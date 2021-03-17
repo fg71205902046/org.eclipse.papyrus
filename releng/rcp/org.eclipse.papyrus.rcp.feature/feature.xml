@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.papyrus.rcp.feature"
       label="%featureName"
-      version="5.1.0.qualifier"
+      version="5.2.0.qualifier"
       provider-name="%providerName"
       license-feature="org.eclipse.license"
       license-feature-version="2.0.2">
@@ -20,9 +20,8 @@
    </license>
 
    <url>
-      <discovery label="2020-12" url="http://download.eclipse.org/releases/2020-12/"/>
+      <discovery label="Eclipse latest" url="http://download.eclipse.org/releases/latest/"/>
       <discovery label="2021-03" url="http://download.eclipse.org/releases/2021-03/"/>
-      <discovery label="Eclipse Platform 4.18" url="http://download.eclipse.org/eclipse/updates/4.18"/>
       <discovery label="Eclipse Platform 4.19" url="http://download.eclipse.org/eclipse/updates/4.19"/>
    </url>
 
