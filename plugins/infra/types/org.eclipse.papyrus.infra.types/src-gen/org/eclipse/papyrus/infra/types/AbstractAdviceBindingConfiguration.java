@@ -22,7 +22,7 @@ package org.eclipse.papyrus.infra.types;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * not target.oclIsUndefined() implies not applyToAllTypes
+ * applyToAllTypes = target.oclIsUndefined()
  * <!-- end-model-doc -->
  *
  * <p>
@@ -42,7 +42,7 @@ package org.eclipse.papyrus.infra.types;
  * @see org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage#getAbstractAdviceBindingConfiguration()
  * @model abstract="true"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='apply_to_all_types'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL apply_to_all_types='not target.oclIsUndefined() implies not applyToAllTypes'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL apply_to_all_types='applyToAllTypes = target.oclIsUndefined()'"
  * @generated
  */
 public interface AbstractAdviceBindingConfiguration extends AdviceConfiguration, IdentifiedConfiguration {

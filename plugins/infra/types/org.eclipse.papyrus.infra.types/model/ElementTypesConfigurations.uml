@@ -98,8 +98,8 @@
         <specification xmi:type="uml:OpaqueExpression" xmi:id="_xIdksCXDEeueH428b_S_BA" name="constraintSpec">
           <language>OCL</language>
           <language>Natural language</language>
-          <body>not target.oclIsUndefined() implies not applyToAllTypes</body>
-          <body>applyToAllTypes must be false if any target type is referenced.</body>
+          <body>applyToAllTypes = target.oclIsUndefined()</body>
+          <body>applyToAllTypes must be false if any target type is specified and true if no target is specified.</body>
         </specification>
       </ownedRule>
       <generalization xmi:type="uml:Generalization" xmi:id="_VkhwWBLoEeeDV7UHoBIkeA" general="_VkhwYRLoEeeDV7UHoBIkeA"/>

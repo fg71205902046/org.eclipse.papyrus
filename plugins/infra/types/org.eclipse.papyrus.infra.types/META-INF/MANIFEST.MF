@@ -9,6 +9,7 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: org.eclipse.papyrus.infra.types,
  org.eclipse.papyrus.infra.types.impl,
+ org.eclipse.papyrus.infra.types.operations,
  org.eclipse.papyrus.infra.types.resource,
  org.eclipse.papyrus.infra.types.util
 Require-Bundle: org.eclipse.emf.ecore.xmi;bundle-version="[2.16.0,3.0.0)",
