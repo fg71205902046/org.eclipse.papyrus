@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568782
  */
 package org.eclipse.papyrus.infra.types.util;
 
@@ -108,18 +109,6 @@ public class ElementTypesConfigurationsSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ElementTypesConfigurationsPackage.IDENTIFIED_CONFIGURATION: {
-				IdentifiedConfiguration identifiedConfiguration = (IdentifiedConfiguration)theEObject;
-				T result = caseIdentifiedConfiguration(identifiedConfiguration);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ElementTypesConfigurationsPackage.NAMED_CONFIGURATION: {
-				NamedConfiguration namedConfiguration = (NamedConfiguration)theEObject;
-				T result = caseNamedConfiguration(namedConfiguration);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION: {
 				AbstractAdviceBindingConfiguration abstractAdviceBindingConfiguration = (AbstractAdviceBindingConfiguration)theEObject;
 				T result = caseAbstractAdviceBindingConfiguration(abstractAdviceBindingConfiguration);
@@ -145,6 +134,18 @@ public class ElementTypesConfigurationsSwitch<T> extends Switch<T> {
 			case ElementTypesConfigurationsPackage.ABSTRACT_MATCHER_CONFIGURATION: {
 				AbstractMatcherConfiguration abstractMatcherConfiguration = (AbstractMatcherConfiguration)theEObject;
 				T result = caseAbstractMatcherConfiguration(abstractMatcherConfiguration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ElementTypesConfigurationsPackage.IDENTIFIED_CONFIGURATION: {
+				IdentifiedConfiguration identifiedConfiguration = (IdentifiedConfiguration)theEObject;
+				T result = caseIdentifiedConfiguration(identifiedConfiguration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ElementTypesConfigurationsPackage.NAMED_CONFIGURATION: {
+				NamedConfiguration namedConfiguration = (NamedConfiguration)theEObject;
+				T result = caseNamedConfiguration(namedConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

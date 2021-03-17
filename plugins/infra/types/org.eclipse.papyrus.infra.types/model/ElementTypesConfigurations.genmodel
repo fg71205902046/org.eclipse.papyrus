@@ -16,7 +16,7 @@
     <details key="OPPOSITE_ROLE_NAMES" value="IGNORE"/>
     <details key="DUPLICATE_FEATURES" value="DISCARD"/>
     <details key="ANNOTATION_DETAILS" value="PROCESS"/>
-    <details key="PROPERTY_DEFAULT_EXPRESSIONS" value="IGNORE"/>
+    <details key="PROPERTY_DEFAULT_EXPRESSIONS" value="PROCESS"/>
     <details key="DUPLICATE_FEATURE_INHERITANCE" value="DISCARD"/>
     <details key="COMMENTS" value="PROCESS"/>
     <details key="DERIVED_FEATURES" value="PROCESS"/>
@@ -26,15 +26,15 @@
     <details key="INVARIANT_CONSTRAINTS" value="PROCESS"/>
     <details key="UNION_PROPERTIES" value="REPORT"/>
     <details key="DUPLICATE_OPERATIONS" value="DISCARD"/>
-    <details key="NON_API_INVARIANTS" value="IGNORE"/>
+    <details key="NON_API_INVARIANTS" value="PROCESS"/>
     <details key="CAMEL_CASE_NAMES" value="IGNORE"/>
-    <details key="SUBSETTING_PROPERTIES" value="REPORT"/>
-    <details key="OPERATION_BODIES" value="IGNORE"/>
+    <details key="SUBSETTING_PROPERTIES" value="PROCESS"/>
+    <details key="OPERATION_BODIES" value="PROCESS"/>
     <details key="ECORE_TAGGED_VALUES" value="PROCESS"/>
     <details key="UNTYPED_PROPERTIES" value="REPORT"/>
     <details key="REDEFINING_PROPERTIES" value="REPORT"/>
-    <details key="INVOCATION_DELEGATES" value="IGNORE"/>
-    <details key="VALIDATION_DELEGATES" value="IGNORE"/>
+    <details key="INVOCATION_DELEGATES" value="PROCESS"/>
+    <details key="VALIDATION_DELEGATES" value="PROCESS"/>
   </genAnnotations>
   <foreignModel>ElementTypesConfigurations.uml</foreignModel>
   <genPackages xsi:type="genmodel:GenPackage" prefix="ElementTypesConfigurations"
@@ -50,7 +50,10 @@
           createChild="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//ElementTypeSetConfiguration/elementTypeConfigurations"/>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
           createChild="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//ElementTypeSetConfiguration/adviceBindingsConfigurations"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
+          ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//ElementTypeSetConfiguration/allAdviceBindings"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//ElementTypeSetConfiguration/metamodelNsURI"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="ElementTypesConfigurations.ecore#//ElementTypeSetConfiguration/getAllAdviceBindings"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="ElementTypesConfigurations.ecore#//ConfigurationElement">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//ConfigurationElement/description"/>
@@ -60,16 +63,14 @@
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//ElementTypeConfiguration/kind"/>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
           createChild="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//ElementTypeConfiguration/iconEntry"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//ElementTypeConfiguration/ownedAdvice"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
+          ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//ElementTypeConfiguration/owningSet"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="ElementTypesConfigurations.ecore#//IconEntry">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//IconEntry/iconPath"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//IconEntry/bundleId"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="ElementTypesConfigurations.ecore#//IdentifiedConfiguration">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//IdentifiedConfiguration/identifier"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="ElementTypesConfigurations.ecore#//NamedConfiguration">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//NamedConfiguration/name"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="ElementTypesConfigurations.ecore#//AbstractAdviceBindingConfiguration"
         labelFeature="#//types/IdentifiedConfiguration/identifier">
@@ -81,6 +82,12 @@
           createChild="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//AbstractAdviceBindingConfiguration/matcherConfiguration"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//AbstractAdviceBindingConfiguration/inheritance"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//AbstractAdviceBindingConfiguration/applyToAllTypes"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
+          ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//AbstractAdviceBindingConfiguration/owningSet"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false"
+          createChild="false" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//AbstractAdviceBindingConfiguration/elementTypeSet"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//AbstractAdviceBindingConfiguration/owningTarget"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="ElementTypesConfigurations.ecore#//AbstractAdviceBindingConfiguration/getElementTypeSet"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="ElementTypesConfigurations.ecore#//AdviceConfiguration">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//AdviceConfiguration/before"/>
@@ -93,6 +100,12 @@
           propertySortChoices="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//ContainerConfiguration/eContainmentFeatures"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="ElementTypesConfigurations.ecore#//AbstractMatcherConfiguration"/>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="ElementTypesConfigurations.ecore#//IdentifiedConfiguration">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//IdentifiedConfiguration/identifier"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="ElementTypesConfigurations.ecore#//NamedConfiguration">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//NamedConfiguration/name"/>
+    </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="ElementTypesConfigurations.ecore#//SpecializationTypeConfiguration">
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
           createChild="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//SpecializationTypeConfiguration/editHelperAdviceConfiguration"/>

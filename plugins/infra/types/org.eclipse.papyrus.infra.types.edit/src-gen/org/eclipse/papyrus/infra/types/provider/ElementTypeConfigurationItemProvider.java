@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,18 +11,22 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568782
  */
 package org.eclipse.papyrus.infra.types.provider;
 
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-
+import org.eclipse.emf.edit.command.RemoveCommand;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
@@ -169,6 +173,7 @@ public class ElementTypeConfigurationItemProvider extends ConfigurationElementIt
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_CONFIGURATION__ICON_ENTRY);
+			childrenFeatures.add(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_CONFIGURATION__OWNED_ADVICE);
 		}
 		return childrenFeatures;
 	}
@@ -220,6 +225,7 @@ public class ElementTypeConfigurationItemProvider extends ConfigurationElementIt
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__ICON_ENTRY:
+			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNED_ADVICE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -241,6 +247,36 @@ public class ElementTypeConfigurationItemProvider extends ConfigurationElementIt
 			(createChildParameter
 				(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_CONFIGURATION__ICON_ENTRY,
 				 ElementTypesConfigurationsFactory.eINSTANCE.createIconEntry()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_CONFIGURATION__OWNED_ADVICE,
+				 ElementTypesConfigurationsFactory.eINSTANCE.createAdviceBindingConfiguration()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_CONFIGURATION__OWNED_ADVICE,
+				 ElementTypesConfigurationsFactory.eINSTANCE.createExternallyRegisteredAdvice()));
+	}
+
+	@Override
+	protected Command createAddCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Collection<?> collection, int index) {
+		Command result = super.createAddCommand(domain, owner, feature, collection, index);
+
+		if (feature == ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_CONFIGURATION__OWNED_ADVICE) {
+			// For any that are currently owned by the type set, explicitly remove then from previous container
+			// to remember where to put them back on undo
+			Collection<?> toRemove = collection.stream()
+					.map(EObject.class::cast)
+					.filter(e -> e.eContainmentFeature() == ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS)
+					.collect(Collectors.toList());
+			if (!toRemove.isEmpty()) {
+				Command remove = RemoveCommand.create(domain, toRemove);
+				result = remove.chain(result);
+			}
+		}
+
+		return result;
 	}
 
 }

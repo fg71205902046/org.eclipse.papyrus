@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 CEA LIST and others.
+ * Copyright (c) 2020 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - bug 568782
  *
  *****************************************************************************/
 
@@ -42,13 +43,9 @@ public class ElementTypesConfigurationsValidator extends AbstractEObjectDependen
 	 */
 	public static final ElementTypesConfigurationsValidator eINSTANCE = new ElementTypesConfigurationsValidator();
 
-	/**
-	 *
-	 * Constructor.
-	 *
-	 */
+	// private to prevent multiple instantiation
 	private ElementTypesConfigurationsValidator() {
-		// to prevent multiple instanciation
+		super(ElementTypesConfigurationsPackage.eINSTANCE);
 	}
 
 	/**

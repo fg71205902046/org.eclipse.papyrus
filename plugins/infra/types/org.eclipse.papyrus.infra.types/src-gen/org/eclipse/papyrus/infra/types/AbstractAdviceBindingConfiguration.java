@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568782
  */
 package org.eclipse.papyrus.infra.types;
 
@@ -19,6 +20,10 @@ package org.eclipse.papyrus.infra.types;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Abstract Advice Binding Configuration</b></em>'.
  * <!-- end-user-doc -->
+ *
+ * <!-- begin-model-doc -->
+ * not target.oclIsUndefined() implies not applyToAllTypes
+ * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
@@ -29,10 +34,15 @@ package org.eclipse.papyrus.infra.types;
  *   <li>{@link org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration#getMatcherConfiguration <em>Matcher Configuration</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration#getInheritance <em>Inheritance</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration#isApplyToAllTypes <em>Apply To All Types</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration#getOwningSet <em>Owning Set</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration#getElementTypeSet <em>Element Type Set</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration#getOwningTarget <em>Owning Target</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage#getAbstractAdviceBindingConfiguration()
  * @model abstract="true"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='apply_to_all_types'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL apply_to_all_types='not target.oclIsUndefined() implies not applyToAllTypes'"
  * @generated
  */
 public interface AbstractAdviceBindingConfiguration extends AdviceConfiguration, IdentifiedConfiguration {
@@ -168,5 +178,85 @@ public interface AbstractAdviceBindingConfiguration extends AdviceConfiguration,
 	 * @generated
 	 */
 	void setApplyToAllTypes(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Owning Set</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration#getAdviceBindingsConfigurations <em>Advice Bindings Configurations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owning Set</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owning Set</em>' container reference.
+	 * @see #setOwningSet(ElementTypeSetConfiguration)
+	 * @see org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage#getAbstractAdviceBindingConfiguration_OwningSet()
+	 * @see org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration#getAdviceBindingsConfigurations
+	 * @model opposite="adviceBindingsConfigurations" transient="false" ordered="false"
+	 * @generated
+	 */
+	ElementTypeSetConfiguration getOwningSet();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration#getOwningSet <em>Owning Set</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owning Set</em>' container reference.
+	 * @see #getOwningSet()
+	 * @generated
+	 */
+	void setOwningSet(ElementTypeSetConfiguration value);
+
+	/**
+	 * Returns the value of the '<em><b>Element Type Set</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration#getAllAdviceBindings <em>All Advice Bindings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Element Type Set</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Element Type Set</em>' reference.
+	 * @see org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage#getAbstractAdviceBindingConfiguration_ElementTypeSet()
+	 * @see org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration#getAllAdviceBindings
+	 * @model opposite="allAdviceBindings" required="true" transient="true" changeable="false" volatile="true" derived="true" ordered="false"
+	 * @generated
+	 */
+	ElementTypeSetConfiguration getElementTypeSet();
+
+	/**
+	 * Returns the value of the '<em><b>Owning Target</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.infra.types.ElementTypeConfiguration#getOwnedAdvice <em>Owned Advice</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration#getTarget() <em>Target</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owning Target</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owning Target</em>' container reference.
+	 * @see #setOwningTarget(ElementTypeConfiguration)
+	 * @see org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage#getAbstractAdviceBindingConfiguration_OwningTarget()
+	 * @see org.eclipse.papyrus.infra.types.ElementTypeConfiguration#getOwnedAdvice
+	 * @model opposite="ownedAdvice" transient="false" ordered="false"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	ElementTypeConfiguration getOwningTarget();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration#getOwningTarget <em>Owning Target</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owning Target</em>' container reference.
+	 * @see #getOwningTarget()
+	 * @generated
+	 */
+	void setOwningTarget(ElementTypeConfiguration value);
 
 } // AbstractAdviceBindingConfiguration

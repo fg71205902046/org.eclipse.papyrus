@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,18 +11,26 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568782
  */
 package org.eclipse.papyrus.infra.types.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
+import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 import org.eclipse.papyrus.infra.types.IconEntry;
 import org.eclipse.papyrus.infra.types.IdentifiedConfiguration;
@@ -41,6 +49,8 @@ import org.eclipse.papyrus.infra.types.NamedConfiguration;
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.ElementTypeConfigurationImpl#getHint <em>Hint</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.ElementTypeConfigurationImpl#getKind <em>Kind</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.ElementTypeConfigurationImpl#getIconEntry <em>Icon Entry</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.types.impl.ElementTypeConfigurationImpl#getOwnedAdvice <em>Owned Advice</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.types.impl.ElementTypeConfigurationImpl#getOwningSet <em>Owning Set</em>}</li>
  * </ul>
  *
  * @generated
@@ -135,6 +145,16 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	 * @ordered
 	 */
 	protected IconEntry iconEntry;
+
+	/**
+	 * The cached value of the '{@link #getOwnedAdvice() <em>Owned Advice</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedAdvice()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<AbstractAdviceBindingConfiguration> ownedAdvice;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -298,12 +318,105 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	 * @generated
 	 */
 	@Override
+	public EList<AbstractAdviceBindingConfiguration> getOwnedAdvice() {
+		if (ownedAdvice == null) {
+			ownedAdvice = new EObjectContainmentWithInverseEList<AbstractAdviceBindingConfiguration>(AbstractAdviceBindingConfiguration.class, this, ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNED_ADVICE, ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TARGET);
+		}
+		return ownedAdvice;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ElementTypeSetConfiguration getOwningSet() {
+		if (eContainerFeatureID() != ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNING_SET) return null;
+		return (ElementTypeSetConfiguration)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwningSet(ElementTypeSetConfiguration newOwningSet, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newOwningSet, ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNING_SET, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwningSet(ElementTypeSetConfiguration newOwningSet) {
+		if (newOwningSet != eInternalContainer() || (eContainerFeatureID() != ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNING_SET && newOwningSet != null)) {
+			if (EcoreUtil.isAncestor(this, newOwningSet))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwningSet != null)
+				msgs = ((InternalEObject)newOwningSet).eInverseAdd(this, ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS, ElementTypeSetConfiguration.class, msgs);
+			msgs = basicSetOwningSet(newOwningSet, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNING_SET, newOwningSet, newOwningSet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNED_ADVICE:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedAdvice()).basicAdd(otherEnd, msgs);
+			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNING_SET:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwningSet((ElementTypeSetConfiguration)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__ICON_ENTRY:
 				return basicSetIconEntry(null, msgs);
+			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNED_ADVICE:
+				return ((InternalEList<?>)getOwnedAdvice()).basicRemove(otherEnd, msgs);
+			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNING_SET:
+				return basicSetOwningSet(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNING_SET:
+				return eInternalContainer().eInverseRemove(this, ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS, ElementTypeSetConfiguration.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -324,6 +437,10 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 				return getKind();
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__ICON_ENTRY:
 				return getIconEntry();
+			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNED_ADVICE:
+				return getOwnedAdvice();
+			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNING_SET:
+				return getOwningSet();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -333,6 +450,7 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -350,6 +468,13 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 				return;
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__ICON_ENTRY:
 				setIconEntry((IconEntry)newValue);
+				return;
+			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNED_ADVICE:
+				getOwnedAdvice().clear();
+				getOwnedAdvice().addAll((Collection<? extends AbstractAdviceBindingConfiguration>)newValue);
+				return;
+			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNING_SET:
+				setOwningSet((ElementTypeSetConfiguration)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -378,6 +503,12 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__ICON_ENTRY:
 				setIconEntry((IconEntry)null);
 				return;
+			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNED_ADVICE:
+				getOwnedAdvice().clear();
+				return;
+			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNING_SET:
+				setOwningSet((ElementTypeSetConfiguration)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -400,6 +531,10 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 				return KIND_EDEFAULT == null ? kind != null : !KIND_EDEFAULT.equals(kind);
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__ICON_ENTRY:
 				return iconEntry != null;
+			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNED_ADVICE:
+				return ownedAdvice != null && !ownedAdvice.isEmpty();
+			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNING_SET:
+				return getOwningSet() != null;
 		}
 		return super.eIsSet(featureID);
 	}

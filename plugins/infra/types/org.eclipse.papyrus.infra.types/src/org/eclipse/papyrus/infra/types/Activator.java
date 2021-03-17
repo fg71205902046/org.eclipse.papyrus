@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 CEA LIST and others.
+ * Copyright (c) 2020 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,23 +10,26 @@
  *
  * Contributors:
  *   Vincent Lorenzo (CEA LIST) <vincent.lorenzo@cea.fr> - Initial API and implementation
+ *   Christian W. Damus - bug 568782
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.types;
 
+import org.eclipse.emf.common.EMFPlugin;
+import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EValidator;
-import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.papyrus.infra.types.validator.ElementTypesConfigurationsValidator;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
-public class Activator extends AbstractUIPlugin {
+public class Activator extends EMFPlugin {
 
 	/**
 	 * The plug-in ID
 	 */
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.infra.types"; //$NON-NLS-1$
+
+	public static final Activator INSTANCE = new Activator();
 
 	/**
 	 * The log
@@ -36,46 +39,23 @@ public class Activator extends AbstractUIPlugin {
 	/**
 	 * The shared instance
 	 */
-	private static Activator plugin;
+	private static EclipsePlugin plugin;
 
 	/**
 	 * The constructor
 	 */
 	public Activator() {
+		super(new ResourceLocator[] {});
 	}
 
 	/**
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
+	 * @see org.eclipse.emf.common.EMFPlugin#getPluginResourceLocator()
+	 *
+	 * @return
 	 */
 	@Override
-	public void start(BundleContext context) throws Exception {
-		super.start(context);
-		plugin = this;
-		log = new LogHelper(this);
-		// add a validator for stereotypeConfiguration
-		Object previouslValidator = EValidator.Registry.INSTANCE.get(ElementTypesConfigurationsPackage.eINSTANCE);
-		if (previouslValidator != null) {
-			throw new UnsupportedOperationException(NLS.bind("There is already a validator registered for {0}.", ElementTypesConfigurationsPackage.eINSTANCE));
-		}
-
-		EValidator.Registry.INSTANCE.put(ElementTypesConfigurationsPackage.eINSTANCE,
-				new EValidator.Descriptor() {
-					@Override
-					public EValidator getEValidator() {
-						return ElementTypesConfigurationsValidator.eINSTANCE;
-					}
-				});
-
-
-	}
-
-	/**
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
-	 */
-	@Override
-	public void stop(BundleContext context) throws Exception {
-		plugin = null;
-		super.stop(context);
+	public ResourceLocator getPluginResourceLocator() {
+		return plugin;
 	}
 
 	/**
@@ -84,7 +64,37 @@ public class Activator extends AbstractUIPlugin {
 	 * @return the shared instance
 	 */
 	public static Activator getDefault() {
-		return plugin;
+		return INSTANCE;
 	}
 
+	//
+	// Nested types
+	//
+
+	public static final class Implementation extends EclipsePlugin {
+
+		@Override
+		public void start(BundleContext context) throws Exception {
+			super.start(context);
+			plugin = this;
+			log = new LogHelper(this);
+
+			// add a validator for stereotypeConfiguration
+			final EValidator override = ElementTypesConfigurationsValidator.eINSTANCE;
+			EValidator.Registry.INSTANCE.put(ElementTypesConfigurationsPackage.eINSTANCE,
+					new EValidator.Descriptor() {
+						@Override
+						public EValidator getEValidator() {
+							return override;
+						}
+					});
+		}
+
+		@Override
+		public void stop(BundleContext context) throws Exception {
+			plugin = null;
+			super.stop(context);
+		}
+
+	}
 }
