@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568782
  */
 package org.eclipse.papyrus.infra.types.util;
 
@@ -96,14 +97,6 @@ public class ElementTypesConfigurationsAdapterFactory extends AdapterFactoryImpl
 				return createIconEntryAdapter();
 			}
 			@Override
-			public Adapter caseIdentifiedConfiguration(IdentifiedConfiguration object) {
-				return createIdentifiedConfigurationAdapter();
-			}
-			@Override
-			public Adapter caseNamedConfiguration(NamedConfiguration object) {
-				return createNamedConfigurationAdapter();
-			}
-			@Override
 			public Adapter caseAbstractAdviceBindingConfiguration(AbstractAdviceBindingConfiguration object) {
 				return createAbstractAdviceBindingConfigurationAdapter();
 			}
@@ -118,6 +111,14 @@ public class ElementTypesConfigurationsAdapterFactory extends AdapterFactoryImpl
 			@Override
 			public Adapter caseAbstractMatcherConfiguration(AbstractMatcherConfiguration object) {
 				return createAbstractMatcherConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseIdentifiedConfiguration(IdentifiedConfiguration object) {
+				return createIdentifiedConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseNamedConfiguration(NamedConfiguration object) {
+				return createNamedConfigurationAdapter();
 			}
 			@Override
 			public Adapter caseSpecializationTypeConfiguration(SpecializationTypeConfiguration object) {
