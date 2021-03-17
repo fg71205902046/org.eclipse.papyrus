@@ -12,7 +12,11 @@ Require-Bundle: org.eclipse.emf.edit.ui;bundle-version="[2.18.0,3.0.0)",
  org.eclipse.papyrus.junit.utils;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.papyrus.toolsmiths.validation.elementtypes;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.ui.views.properties.tabbed;bundle-version="[3.8.0,4.0.0)",
- org.junit;bundle-version="[4.13.0,5.0.0)"
+ org.junit;bundle-version="[4.13.0,5.0.0)",
+ org.eclipse.papyrus.toolsmiths.plugin.builder;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.papyrus.toolsmiths.validation.common;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.uml2.uml;bundle-version="[5.5.0,6.0.0)",
+ org.eclipse.papyrus.toolsmiths.validation.common.tests;bundle-version="[2.0.0,3.0.0)"
 Bundle-Activator: org.eclipse.papyrus.toolsmiths.validation.elementtypes.tests.Activator
 Export-Package: org.eclipse.papyrus.toolsmiths.validation.elementtypes.tests
 Automatic-Module-Name: org.eclipse.papyrus.toolsmiths.validation.elementtypes.tests
