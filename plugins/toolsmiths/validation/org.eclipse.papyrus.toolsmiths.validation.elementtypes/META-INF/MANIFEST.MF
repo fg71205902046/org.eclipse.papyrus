@@ -22,4 +22,4 @@ Bundle-ManifestVersion: 2
 Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.toolsmiths.validation.elementtypes;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-11
-Automatic-Module-Name: org.eclipse.papyrus.toolsmiths.validation.profile
+Automatic-Module-Name: org.eclipse.papyrus.toolsmiths.validation.elementtypes
