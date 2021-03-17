@@ -15,10 +15,7 @@
  */
 package org.eclipse.papyrus.infra.types.impl;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -28,7 +25,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration;
@@ -37,6 +33,7 @@ import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 import org.eclipse.papyrus.infra.types.IdentifiedConfiguration;
 import org.eclipse.papyrus.infra.types.NamedConfiguration;
+import org.eclipse.papyrus.infra.types.operations.ElementTypeSetConfigurationOperations;
 
 /**
  * <!-- begin-user-doc -->
@@ -231,17 +228,11 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generate not
+	 * @generated
 	 */
 	@Override
 	public EList<AbstractAdviceBindingConfiguration> getAllAdviceBindings() {
-		List<AbstractAdviceBindingConfiguration> result = new ArrayList<>(getAdviceBindingsConfigurations());
-
-		getElementTypeConfigurations().forEach(type -> result.addAll(type.getOwnedAdvice()));
-
-		// We know that the results are unique because they were collected from containment references only
-		return new EcoreEList.UnmodifiableEList<>(this, ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION__ALL_ADVICE_BINDINGS,
-				result.size(), result.toArray());
+		return ElementTypeSetConfigurationOperations.getAllAdviceBindings(this);
 	}
 
 	/**

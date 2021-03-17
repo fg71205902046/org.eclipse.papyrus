@@ -11,6 +11,7 @@
  * Contributors:
  *   Vincent Lorenzo (CEA LIST) <vincent.lorenzo@cea.fr> - Initial API and implementation
  *   Christian W. Damus - bug 568782
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.emf.validation;
@@ -76,18 +77,41 @@ public abstract class AbstractEObjectDependencyValidator extends EObjectValidato
 	}
 
 	@Override
-	public boolean validate(EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return delegate != null ? delegate.validate(eObject, diagnostics, context) : super.validate(eObject, diagnostics, context);
-	}
-
-	@Override
 	public boolean validate(EClass eClass, EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return delegate != null ? delegate.validate(eClass, eObject, diagnostics, context) : super.validate(eClass, eObject, diagnostics, context);
+		if (delegate == null) {
+			return super.validate(eClass, eObject, diagnostics, context);
+		}
+
+		boolean result = delegate.validate(eClass, eObject, diagnostics, context);
+
+		if ((result || diagnostics != null) && !eObject.eIsProxy() && (eClass.eContainer() == getEPackage())) {
+			// In case a subclass overrides this method. Dynamic EObjects and intrinsic model constraints were handled by the delegate
+			result = validate(eClass.getClassifierID(), eObject, diagnostics, context) && result;
+		}
+
+		return result;
 	}
 
 	@Override
 	public boolean validate(EDataType eDataType, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return delegate != null ? delegate.validate(eDataType, value, diagnostics, context) : super.validate(eDataType, value, diagnostics, context);
+		if (delegate == null) {
+			return super.validate(eDataType, value, diagnostics, context);
+		}
+
+		boolean result = delegate.validate(eDataType, value, diagnostics, context);
+
+		if ((result || diagnostics != null) && eDataType.isInstance(value) && (eDataType.eContainer() == getEPackage())) {
+			// In case a subclass overrides this method. Dynamic values and intrinsic model constraints were handled by the delegate
+			result = validate(eDataType.getClassifierID(), value, diagnostics, context) && result;
+		}
+
+		return result;
+	}
+
+	@Override
+	public boolean validate_EveryDefaultConstraint(EObject object, DiagnosticChain theDiagnostics, Map<Object, Object> context) {
+		// If we delegated validation, then that took care of the default constraints
+		return delegate != null || super.validate_EveryDefaultConstraint(object, theDiagnostics, context);
 	}
 
 	/**

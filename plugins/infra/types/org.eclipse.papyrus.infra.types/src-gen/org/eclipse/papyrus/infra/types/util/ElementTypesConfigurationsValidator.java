@@ -203,7 +203,7 @@ public class ElementTypesConfigurationsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String ABSTRACT_ADVICE_BINDING_CONFIGURATION__APPLY_TO_ALL_TYPES__EEXPRESSION = "not target.oclIsUndefined() implies not applyToAllTypes";
+	protected static final String ABSTRACT_ADVICE_BINDING_CONFIGURATION__APPLY_TO_ALL_TYPES__EEXPRESSION = "applyToAllTypes = target.oclIsUndefined()";
 
 	/**
 	 * Validates the apply_to_all_types constraint of '<em>Abstract Advice Binding Configuration</em>'.
@@ -388,13 +388,22 @@ public class ElementTypesConfigurationsValidator extends EObjectValidator {
 		switch (eClass.getClassifierID()) {
 		case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION:
 			switch (constraint) {
-			case "apply_to_all_types":
-				// Prefer warning to error severity
-				diagnostics.add(new BasicDiagnostic(Diagnostic.WARNING,
-						source,
-						code,
-						getString("_UI_apply_to_all_types_diagnostic", new Object[] { getObjectLabel(eObject, context) }),
-						new Object[] { eObject, ElementTypesConfigurationsPackage.Literals.ABSTRACT_ADVICE_BINDING_CONFIGURATION__APPLY_TO_ALL_TYPES }));
+			case "apply_to_all_types": //$NON-NLS-1$
+				// Prefer warning to error severity. And how exactly did the constraint fail?
+				AbstractAdviceBindingConfiguration advice = (AbstractAdviceBindingConfiguration) eObject;
+				if (advice.isApplyToAllTypes()) {
+					diagnostics.add(new BasicDiagnostic(Diagnostic.WARNING,
+							source,
+							code,
+							getString("_UI_apply_to_all_types_diagnostic", new Object[] { getObjectLabel(eObject, context) }), //$NON-NLS-1$
+							new Object[] { eObject, ElementTypesConfigurationsPackage.Literals.ABSTRACT_ADVICE_BINDING_CONFIGURATION__APPLY_TO_ALL_TYPES }));
+				} else {
+					diagnostics.add(new BasicDiagnostic(Diagnostic.WARNING,
+							source,
+							code,
+							getString("_UI_no_target_diagnostic", new Object[] { getObjectLabel(eObject, context) }), //$NON-NLS-1$
+							new Object[] { eObject, ElementTypesConfigurationsPackage.Literals.ABSTRACT_ADVICE_BINDING_CONFIGURATION__TARGET }));
+				}
 				break;
 			default:
 				super.reportConstraintDelegateViolation(eClass, eObject, diagnostics, context, constraint, severity, source, code);
