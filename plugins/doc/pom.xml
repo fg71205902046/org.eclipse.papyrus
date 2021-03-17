@@ -44,6 +44,7 @@
 		<module>org.eclipse.papyrus.toolsmiths.profilemigration.doc</module>
 		<module>org.eclipse.papyrus.toolsmiths.architecture.doc</module>
 		<module>org.eclipse.papyrus.toolsmiths.validation.doc</module>
+		<module>org.eclipse.papyrus.toolsmiths.plugin.builder.doc</module>
 <!-- 		<module>org.eclipse.papyrus.doctemplate.doc</module> -->
 	</modules>
 	
