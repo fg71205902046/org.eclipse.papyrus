@@ -26,12 +26,14 @@
    </extension>
 
    <extension point="org.eclipse.emf.ecore.content_parser">
+      <!-- @generated not ElementTypesConfigurations -->
       <parser
             contentTypeIdentifier="org.eclipse.papyrus.infra.types"
             class="org.eclipse.papyrus.infra.types.resource.CustomElementTypesConfigurationsResourceFactoryImpl"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated not ElementTypesConfigurations -->
       <parser
             type="elementtypesconfigurations"
             class="org.eclipse.papyrus.infra.types.resource.CustomElementTypesConfigurationsResourceFactoryImpl"/>
