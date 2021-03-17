@@ -77,7 +77,7 @@ public class ElementTypesPluginValidationTest extends AbstractPapyrusTest {
 		// Get the markers
 		List<IMarker> markers = null;
 		try {
-			markers = Arrays.asList(fixture.getProject().findMarkers(ElementTypesPluginValidationConstants.ELEMENTTYPES_PLUGIN_VALIDATION_TYPE, true, IResource.DEPTH_INFINITE));
+			markers = Arrays.asList(fixture.getProject().findMarkers(ElementTypesPluginValidationConstants.ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE, true, IResource.DEPTH_INFINITE));
 		} catch (CoreException e) {
 			Assert.fail("Error with resource"); //$NON-NLS-1$
 		}

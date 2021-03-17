@@ -10,16 +10,14 @@
  *
  * Contributors:
  *   Vincent Lorenzo (CEA LIST) <vincent.lorenzo@cea.fr> - Initial API and implementation
- *   Christian W. Damus - bug 568782
+ *   Christian W. Damus - bugs 568782, 569357
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.types;
 
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
-import org.eclipse.papyrus.infra.types.validator.ElementTypesConfigurationsValidator;
 import org.osgi.framework.BundleContext;
 
 public class Activator extends EMFPlugin {
@@ -78,16 +76,6 @@ public class Activator extends EMFPlugin {
 			super.start(context);
 			plugin = this;
 			log = new LogHelper(this);
-
-			// add a validator for stereotypeConfiguration
-			final EValidator override = ElementTypesConfigurationsValidator.eINSTANCE;
-			EValidator.Registry.INSTANCE.put(ElementTypesConfigurationsPackage.eINSTANCE,
-					new EValidator.Descriptor() {
-						@Override
-						public EValidator getEValidator() {
-							return override;
-						}
-					});
 		}
 
 		@Override

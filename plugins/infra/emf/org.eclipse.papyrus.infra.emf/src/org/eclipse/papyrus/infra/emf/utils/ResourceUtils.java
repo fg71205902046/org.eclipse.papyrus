@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2020 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 569357
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.utils;
@@ -23,7 +24,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -35,25 +35,21 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.URIConverter;
+import org.eclipse.emf.ecore.resource.impl.ExtensibleURIConverterImpl;
 import org.eclipse.emf.ecore.resource.impl.URIMappingRegistryImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.eclipse.pde.core.plugin.IPluginExtension;
-import org.eclipse.pde.core.plugin.IPluginModelBase;
-import org.eclipse.pde.core.plugin.IPluginObject;
-import org.eclipse.pde.core.plugin.PluginRegistry;
-import org.eclipse.pde.internal.core.text.plugin.PluginElementNode;
 
 /**
  *
  * This class provides methods for EMF Resource
  *
  */
-@SuppressWarnings("restriction")
 public class ResourceUtils {
 
-	private static final String ECORE_URI_MAPPING_EXTENSION_POINT = "org.eclipse.emf.ecore.uri_mapping"; //$NON-NLS-1$
 	private static final String PATH_SEPARATOR = "/";
 
 
@@ -155,23 +151,43 @@ public class ResourceUtils {
 		return getStringURI(relativePath);
 	}
 
-	/** Return the `org.eclipse.emf.ecore.uri_mapping` extension declarations in the given project. */
-	public static Map<String, String> getLocalUriMappings(IProject project) {
-		HashMap<String, String> localMappings = new HashMap<>();
-		final IPluginModelBase model = PluginRegistry.findModel(project.getName());
-		for (IPluginExtension extension : model.getExtensions().getExtensions()) {
-			if (!Objects.equals(extension.getPoint(), ECORE_URI_MAPPING_EXTENSION_POINT)) {
-				continue;
-			}
-			List<IPluginObject> pluginObjects = Arrays.stream(extension.getChildren()).filter(child -> Objects.equals("mapping", child.getName())).collect(Collectors.toList()); //$NON-NLS-1$
-			pluginObjects.forEach(pluginObject -> {
-				if ((pluginObject instanceof PluginElementNode)) {
-					PluginElementNode node = (PluginElementNode) pluginObject;
-					localMappings.put(node.getAttribute("source").getValue(), node.getAttribute("target").getValue()); //$NON-NLS-1$ //$NON-NLS-2$
+	/**
+	 * Create a URI converter that supports not only the registered URI mappings in the target platform, but
+	 * also {@linkplain #getLocalUriMappings(IProject) mappings in <tt>plugin.xml</tt> files in workspace projects}.
+	 * Mappings from the workspace supersede the same prefixes in mappings from the target platform.
+	 * And <tt>platform:/plugin</tt> URIs map into the workspace (and vice-versa) where applicable, per
+	 * the {@linkplain #computePlatformResourceMap() platform resource map}.
+	 *
+	 * @return the workspace-inclusive URI converter
+	 *
+	 * @see ExtensibleURIConverterImpl#getURIMap()
+	 * @see #getLocalUriMappings(IProject)
+	 * @see #computePlatformResourceMap()
+	 */
+	public static URIConverter createWorkspaceAwareURIConverter() {
+		URIConverter result = new ExtensibleURIConverterImpl();
+		Map<URI, URI> uriMap = result.getURIMap();
+
+		uriMap.putAll(computePlatformResourceMap());
+
+		for (IProject next : ResourcesPlugin.getWorkspace().getRoot().getProjects()) {
+			if (next.isAccessible()) {
+				Map<String, String> mappings = getLocalUriMappings(next);
+				for (Map.Entry<String, String> mapping : mappings.entrySet()) {
+					URI prefix = URI.createURI(mapping.getKey());
+					URI target = URI.createURI(mapping.getValue());
+
+					uriMap.put(prefix, target);
 				}
-			});
+			}
 		}
-		return localMappings;
+
+		return result;
+	}
+
+	/** Return the {@code org.eclipse.emf.ecore.uri_mapping} extension declarations in the given {@code project}. */
+	public static Map<String, String> getLocalUriMappings(IProject project) {
+		return PlatformHelper.INSTANCE.getLocalUriMappings(project);
 	}
 
 	/** Returns an encoded string representation of the path. */
@@ -179,6 +195,33 @@ public class ResourceUtils {
 		return Arrays.stream(path.segments())
 				.map(segment -> URI.encodeSegment(segment, false))
 				.collect(Collectors.joining(PATH_SEPARATOR));
+	}
+
+	/**
+	 * Compute a mapping of <tt>platform:</tt> scheme URIs for maximal portability of cross-document
+	 * references in resources that are saved (as almost always should be) using the
+	 * {@linkplain org.eclipse.emf.ecore.xmi.impl.URIHandlerImpl.PlatformSchemeAware platform-scheme-aware URI handler}.
+	 * That is the case for all resources saved using the {@linkplain #getSaveOptions() common Papyrus save options}.
+	 * The resulting mapping forwards <tt>platform:/plugin/</tt> URIs to </tt>platform:/resource/</tt> for
+	 * plug-in projects that are imported and open in the workspace and <tt>platform:/resource/</tt> to <tt>platform:/plugin/</tt>
+	 * for all other plug-ins in the PDE Target.
+	 *
+	 * @return the platform URI mappings
+	 *
+	 * @see getSaveOptions()
+	 * @see EcorePlugin#computePlatformPluginToPlatformResourceMap()
+	 * @see EcorePlugin#computePlatformResourceToPlatformPluginMap(Collection)
+	 */
+	public static Map<URI, URI> computePlatformResourceMap() {
+		Map<URI, URI> result = new HashMap<>();
+		result.putAll(EcorePlugin.computePlatformPluginToPlatformResourceMap());
+
+		List<URI> platform = PlatformHelper.INSTANCE.getPlatformBundleIDs().stream()
+				.map(name -> URI.createPlatformPluginURI(name, true))
+				.collect(Collectors.toList());
+		result.putAll(EcorePlugin.computePlatformResourceToPlatformPluginMap(platform));
+
+		return result;
 	}
 
 }
