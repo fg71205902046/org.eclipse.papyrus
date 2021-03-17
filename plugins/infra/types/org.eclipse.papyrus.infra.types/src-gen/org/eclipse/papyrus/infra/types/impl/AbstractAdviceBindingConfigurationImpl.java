@@ -33,6 +33,7 @@ import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 import org.eclipse.papyrus.infra.types.IdentifiedConfiguration;
 import org.eclipse.papyrus.infra.types.InheritanceKind;
+import org.eclipse.papyrus.infra.types.operations.AbstractAdviceBindingConfigurationOperations;
 
 /**
  * <!-- begin-user-doc -->
@@ -439,16 +440,10 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends AdviceConfi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated not
+	 * @generated
 	 */
 	public ElementTypeSetConfiguration basicGetElementTypeSet() {
-		if (getOwningSet() != null) {
-			return getOwningSet();
-		}
-		if (getOwningTarget() != null) {
-			return getOwningTarget().getOwningSet();
-		}
-		return null;
+		return AbstractAdviceBindingConfigurationOperations.getElementTypeSet(this);
 	}
 
 	/**

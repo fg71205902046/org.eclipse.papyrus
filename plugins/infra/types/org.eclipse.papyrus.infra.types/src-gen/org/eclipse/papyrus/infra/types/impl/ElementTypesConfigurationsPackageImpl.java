@@ -1098,8 +1098,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 		  (this,
 		   source,
 		   new String[] {
-			   "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL",
-			   "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL"
+			   "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL"
 		   });
 		addAnnotation
 		  (abstractAdviceBindingConfigurationEClass,
@@ -1118,22 +1117,10 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	protected void createOCLAnnotations() {
 		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL";
 		addAnnotation
-		  (getElementTypeSetConfiguration__GetAllAdviceBindings(),
-		   source,
-		   new String[] {
-			   "body", "adviceBindingsConfigurations->union(elementTypeConfigurations.ownedAdvice)->asSet()"
-		   });
-		addAnnotation
 		  (abstractAdviceBindingConfigurationEClass,
 		   source,
 		   new String[] {
-			   "apply_to_all_types", "not target.oclIsUndefined() implies not applyToAllTypes"
-		   });
-		addAnnotation
-		  (getAbstractAdviceBindingConfiguration__GetElementTypeSet(),
-		   source,
-		   new String[] {
-			   "body", "if owningSet.oclIsUndefined() then\n  owningTarget.owningSet\nelse\n  owningSet\nendif"
+			   "apply_to_all_types", "applyToAllTypes = target.oclIsUndefined()"
 		   });
 	}
 
