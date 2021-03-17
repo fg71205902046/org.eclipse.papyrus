@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014, 2015 CEA, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2020 CEA, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,12 +10,13 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
- *   Christian W. Damus - bug 451230
- *   Christian W. Damus - bug 468030
+ *   Christian W. Damus - bugs 451230, 468030, 569357
  *
  */
 package org.eclipse.papyrus.junit.utils.rules;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.fail;
@@ -75,6 +76,20 @@ public class ProjectFixture implements TestRule {
 
 	public IFile getFile(URI uri) {
 		return !uri.isPlatformResource() ? null : project.getWorkspace().getRoot().getFile(new Path(uri.toPlatformString(true)));
+	}
+
+	/**
+	 * Get the file in the test project at the given project-relative {@code path}.
+	 *
+	 * @param path
+	 *            a project-relative path
+	 * @return the file, if it exists (else fail the test)
+	 */
+	public IFile getFile(String path) {
+		IResource resource = getProject().findMember(path);
+		assertThat("No such file in project: " + path, resource, instanceOf(IFile.class)); //$NON-NLS-1$
+		assertThat("File not accessible: " + path, resource.isAccessible(), is(true)); //$NON-NLS-1$
+		return (IFile) resource;
 	}
 
 	/**

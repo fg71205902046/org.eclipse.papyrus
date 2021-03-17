@@ -1,35 +1,31 @@
 /*****************************************************************************
- * Copyright (c) 2019, 2020 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2020 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/
+ * http://www.eclipse.org/legal/epl-2.0/
  *
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
- *   Christian W. Damus - bug 569357
+ *   Christian W. Damus - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.toolsmiths.validation.elementtypes.tests;
+
+package org.eclipse.papyrus.toolsmiths.validation.common.tests;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
- * All tests for Element types plug-in validation
+ * Test suite for all Toolsmiths Common Validation tests.
  */
 @RunWith(Suite.class)
 @SuiteClasses({
-		ElementTypesPluginValidationTest.class,
-		ElementTypesPluginBuilderTest.class,
-		ElementTypesPluginXMLBuilderTest.class,
-		ElementTypesModelBuilderTest.class,
-		ElementTypesBuildPropertiesBuilderTest.class,
+		ModelDependenciesCheckerTest.class,
 })
 public class AllTests {
-
+	// Suite is specified in annotations
 }

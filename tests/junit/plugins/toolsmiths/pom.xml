@@ -18,6 +18,7 @@
 		<!-- Suites -->
 		<module>org.eclipse.papyrus.toolsmiths.suite.tests</module>
 
+		<module>org.eclipse.papyrus.toolsmiths.validation.common.tests</module>
 		<module>org.eclipse.papyrus.toolsmiths.profilemigration.tests</module>
 		<module>org.eclipse.papyrus.toolsmiths.validation.profile.tests</module>
 		<module>org.eclipse.papyrus.toolsmiths.validation.elementtypes.tests</module>
