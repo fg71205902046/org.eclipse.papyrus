@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017, 2019 CEA LIST.
+ * Copyright (c) 2017, 2020 CEA LIST, Christian W. Damus, and others.
  *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License 2.0
@@ -11,10 +11,12 @@
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
  *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 550359
+ *  Christian W. Damus - bug 569357
  *
  */
 package org.eclipse.papyrus.infra.core.architecture.merged;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
@@ -201,5 +203,14 @@ public class MergedADElement {
 		return elements.size();
 	}
 
+	/**
+	 * Obtain an unmodifiable set of the original elements that I merge.
+	 *
+	 * @return my merged elements
+	 * @since 3.0
+	 */
+	public Set<? extends ADElement> getMergedElements() {
+		return Collections.unmodifiableSet(elements);
+	}
 
 }

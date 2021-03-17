@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 CEA LIST, EclipseSource and others.
+ * Copyright (c) 2020 CEA LIST, EclipseSource, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *   Remi Schnekenburger - Initial API and implementation
+ *   Christian W. Damus - bug 569357
  *
  *****************************************************************************/
 
@@ -25,8 +26,9 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.toolsmiths.plugin.builder.helper.StaticProfileHelper;
-import org.eclipse.papyrus.toolsmiths.validation.profile.internal.checkers.ProfileBuildChecker;
-import org.eclipse.papyrus.toolsmiths.validation.profile.internal.checkers.ProfileDependenciesChecker;
+import org.eclipse.papyrus.toolsmiths.validation.common.checkers.BuildPropertiesChecker;
+import org.eclipse.papyrus.toolsmiths.validation.common.checkers.ModelDependenciesChecker;
+import org.eclipse.papyrus.toolsmiths.validation.profile.internal.checkers.ProfilePluginChecker;
 import org.eclipse.uml2.uml.Profile;
 
 /**
@@ -53,10 +55,10 @@ public class StaticProfileManifestBuilder extends AbstractPapyrusBuilder {
 			if (resource == null) {
 				return null;
 			}
-			ProfileDependenciesChecker profileDependenciesChecker = new ProfileDependenciesChecker(builtProject, entry.getKey(), resource);
+			ModelDependenciesChecker profileDependenciesChecker = ProfilePluginChecker.createProfileDependenciesChecker(builtProject, entry.getKey(), resource);
 			profileDependenciesChecker.check(monitor);
 
-			ProfileBuildChecker profileBuildChecker = new ProfileBuildChecker(builtProject, entry.getKey());
+			BuildPropertiesChecker profileBuildChecker = new BuildPropertiesChecker(builtProject, entry.getKey()).withEMFGeneratorModels();
 			profileBuildChecker.check(monitor);
 		}
 

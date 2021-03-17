@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 CEA LIST and others.
+ * Copyright (c) 2020 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *   Vincent Lorenzo (CEA LIST) <vincent.lorenzo@cea.fr> - Initial API and implementation
+ *   Christian W. Damus - bug 569357
  *
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.plugin.builder;
@@ -23,6 +24,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.papyrus.toolsmiths.plugin.builder.preferences.PluginBuilderPreferencesConstants;
 
 /**
@@ -74,8 +76,14 @@ public class PapyrusPluginBuilder extends IncrementalProjectBuilder {
 			return null;
 		}
 
+		SubMonitor subMonitor = SubMonitor.convert(monitor,
+				1 // Clean
+						+ (isPapyrusModelBuilderActivated() ? PapyrusPluginBuilder.modelBuilders.size() : 0) // Models
+						+ (isPapyrusManifestBuilderActivated() ? PapyrusPluginBuilder.manifestBuilders.size() : 0) // Manifests
+						+ PapyrusPluginBuilder.pluginBuilders.size()); // Rest
+
 		// remove all previously created marker
-		clean(monitor);
+		clean(subMonitor.newChild(1));
 
 		// TODO : we also remove all java marker
 		// getProject().deleteMarkers(IJavaModelMarker.JAVA_MODEL_PROBLEM_MARKER, true, -1);
@@ -84,7 +92,7 @@ public class PapyrusPluginBuilder extends IncrementalProjectBuilder {
 
 		if (isPapyrusModelBuilderActivated()) {
 			for (final AbstractPapyrusBuilder builder : PapyrusPluginBuilder.modelBuilders) {
-				IProject[] projects = builder.build(getProject(), this, kind, args, monitor);
+				IProject[] projects = builder.build(getProject(), this, kind, args, subMonitor.newChild(1));
 				if (projects != null && projects.length != 0) {
 					wantedDeltaProjects.addAll(Arrays.asList(projects));
 				}
@@ -93,7 +101,7 @@ public class PapyrusPluginBuilder extends IncrementalProjectBuilder {
 
 		if (isPapyrusManifestBuilderActivated()) {
 			for (final AbstractPapyrusBuilder builder : PapyrusPluginBuilder.manifestBuilders) {
-				IProject[] projects = builder.build(getProject(), this, kind, args, monitor);
+				IProject[] projects = builder.build(getProject(), this, kind, args, subMonitor.newChild(1));
 				if (projects != null && projects.length != 0) {
 					wantedDeltaProjects.addAll(Arrays.asList(projects));
 				}
@@ -101,34 +109,44 @@ public class PapyrusPluginBuilder extends IncrementalProjectBuilder {
 		}
 
 		for (final AbstractPapyrusBuilder builder : PapyrusPluginBuilder.pluginBuilders) {
-			IProject[] projects = builder.build(getProject(), this, kind, args, monitor);
+			IProject[] projects = builder.build(getProject(), this, kind, args, subMonitor.newChild(1));
 			if (projects != null && projects.length != 0) {
 				wantedDeltaProjects.addAll(Arrays.asList(projects));
 			}
 		}
+
+		SubMonitor.done(monitor);
 
 		return wantedDeltaProjects.toArray(new IProject[wantedDeltaProjects.size()]);
 	}
 
 	@Override
 	protected void clean(IProgressMonitor monitor) throws CoreException {
-		super.clean(monitor);
+		SubMonitor subMonitor = SubMonitor.convert(monitor,
+				1 // Super implementation
+						+ (isPapyrusModelBuilderActivated() ? PapyrusPluginBuilder.modelBuilders.size() : 0) // Models
+						+ (isPapyrusManifestBuilderActivated() ? PapyrusPluginBuilder.manifestBuilders.size() : 0) // Manifests
+						+ PapyrusPluginBuilder.pluginBuilders.size()); // Rest
+
+		super.clean(subMonitor.newChild(1));
+
 		if (isPapyrusModelBuilderActivated()) {
 			for (final AbstractPapyrusBuilder builder : PapyrusPluginBuilder.modelBuilders) {
-				builder.clean(monitor, getProject());
+				builder.clean(subMonitor.newChild(1), getProject());
 			}
 		}
 
 		if (isPapyrusManifestBuilderActivated()) {
 			for (final AbstractPapyrusBuilder builder : PapyrusPluginBuilder.manifestBuilders) {
-				builder.clean(monitor, getProject());
+				builder.clean(subMonitor.newChild(1), getProject());
 			}
 		}
 
 		for (final AbstractPapyrusBuilder builder : PapyrusPluginBuilder.pluginBuilders) {
-			builder.clean(monitor, getProject());
+			builder.clean(subMonitor.newChild(1), getProject());
 		}
 
+		SubMonitor.done(monitor);
 	}
 
 	/**

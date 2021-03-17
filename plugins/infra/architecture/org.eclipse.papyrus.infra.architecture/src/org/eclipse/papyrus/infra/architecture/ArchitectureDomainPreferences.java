@@ -1,26 +1,27 @@
 /**
- * Copyright (c) 2017 CEA LIST, Christian W. Damus, and others.
- * 
+ * Copyright (c) 2017, 2020 CEA LIST, Christian W. Damus, and others.
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License 2.0
  *  which accompanies this distribution, and is available at
  *  https://www.eclipse.org/legal/epl-2.0/
  *
  *  SPDX-License-Identifier: EPL-2.0
- *  
+ *
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
- *  Christian W. Damus - bug 518789
- *  
- * 
+ *  Christian W. Damus - bugs 518789, 569357
+ *
+ *
  */
 package org.eclipse.papyrus.infra.architecture;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences.IPreferenceChangeListener;
@@ -30,7 +31,7 @@ import org.osgi.service.prefs.BackingStoreException;
 
 /**
  * This class reads/writes the architecture domain preferences
- * 
+ *
  * @since 1.0
  */
 public class ArchitectureDomainPreferences implements Cloneable {
@@ -76,7 +77,7 @@ public class ArchitectureDomainPreferences implements Cloneable {
 	public ArchitectureDomainPreferences() {
 		read();
 	}
-	
+
 	/*
 	 * Gets the preferences node
 	 */
@@ -90,9 +91,9 @@ public class ArchitectureDomainPreferences implements Cloneable {
 	public void read() {
 		String value;
 		value = getPreferences().get(ArchitectureDomainPreferences.ADDED_MODELS, "");
-		addedModelURIs = value.equals("")? new ArrayList<>() : Arrays.asList(value.split(" "));
+		addedModelURIs = value.equals("") ? new ArrayList<>() : Stream.of(value.split(" ")).collect(Collectors.toList());
 		value = getPreferences().get(ArchitectureDomainPreferences.EXCLUDED_CONTEXTS, "");
-		excludedContextIds = value.equals("")? new HashSet<>() : new HashSet<>(Arrays.asList(value.split(",")));
+		excludedContextIds = value.equals("") ? new HashSet<>() : Stream.of(value.split(",")).collect(Collectors.toSet());
 		value = getPreferences().get(ArchitectureDomainPreferences.DEFAULT_CONTEXT, DEFAULT_DEFAULT_CONTEXT_ID);
 		defaultContextId = value;
 	}
@@ -122,7 +123,7 @@ public class ArchitectureDomainPreferences implements Cloneable {
 
 	/**
 	 * Adds the given preference change listener
-	 * 
+	 *
 	 * @param listener
 	 */
 	static void addListener(IPreferenceChangeListener listener) {
@@ -152,7 +153,7 @@ public class ArchitectureDomainPreferences implements Cloneable {
 
 	/**
 	 * Sets the default context id
-	 * 
+	 *
 	 * @param defaultContextId
 	 *            the default context id
 	 */
