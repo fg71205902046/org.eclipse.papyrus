@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 CEA LIST and others.
+ * Copyright (c) 2020 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,10 +10,13 @@
  *
  * Contributors:
  *   Vincent Lorenzo (CEA LIST) <vincent.lorenzo@cea.fr> - Initial API and implementation
+ *   Christian W. Damus - bug 569357
  *
  *****************************************************************************/
 
 package org.eclipse.papyrus.toolsmiths.plugin.builder;
+
+import static org.eclipse.papyrus.toolsmiths.validation.common.checkers.ModelValidationChecker.createSubstitutionLabelProvider;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,6 +42,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -48,13 +52,18 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.jdt.core.IJavaModelMarker;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.emf.helpers.BundleResourceURIHelper;
 import org.eclipse.papyrus.emf.validation.DependencyValidationUtils;
+import org.eclipse.papyrus.infra.emf.utils.ResourceUtils;
 import org.eclipse.papyrus.toolsmiths.plugin.builder.preferences.PluginBuilderPreferencesConstants;
+import org.eclipse.papyrus.toolsmiths.validation.common.utils.MarkersService;
+import org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.checkers.ElementTypesPluginChecker;
 import org.eclipse.uml2.uml.resource.UMLResource;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -140,7 +149,7 @@ public class GenericEMFModelBuilder extends AbstractPapyrusBuilder {
 
 		// we exclude this extension point because it requires a specific management
 		EXCLUDED_FILE_EXTENSION.add(ArchitectureModelBuilder.ARCHITECTURE_EXTENSION);
-		EXCLUDED_FILE_EXTENSION.add(ElementTypesConfigurationBuilder.ELEMENT_TYPES_CONFIGURATION_EXTENSION);
+		EXCLUDED_FILE_EXTENSION.add(ElementTypesPluginChecker.ELEMENT_TYPES_CONFIGURATION_EXTENSION);
 		EXCLUDED_FILE_EXTENSION.add(XWTModelBuilder.XWT_EXTENSION);
 		EXCLUDED_FILE_EXTENSION.add(XWTModelBuilder.CTX_EXTENSION);
 		EXCLUDED_FILE_EXTENSION.add(XWTModelBuilder.ENVIRONMENT_XMI_EXTENSION);
@@ -299,6 +308,11 @@ public class GenericEMFModelBuilder extends AbstractPapyrusBuilder {
 	 */
 	protected Resource loadIfPossibleAsEcoreResource(final IFile f) {
 		final ResourceSet set = new ResourceSetImpl();
+
+		// Ensure that cross-doc references saved with the platform-scheme-aware URI handler can resolve
+		// platform:/resource URIs to bundles in the target platform.
+		set.setURIConverter(ResourceUtils.createWorkspaceAwareURIConverter());
+
 		final URI uri = URI.createPlatformResourceURI(f.getFullPath().toOSString(), true);
 		try {
 			final Resource res = set.getResource(uri, true);
@@ -327,8 +341,6 @@ public class GenericEMFModelBuilder extends AbstractPapyrusBuilder {
 					dependencies.add(getBundleNameFromResource(current));
 					dependencies.addAll(getModelBundleDependenciesFromXML(resource));
 				} catch (Exception e) {
-					int i = 0;
-					i++;
 				}
 			}
 		}
@@ -446,13 +458,23 @@ public class GenericEMFModelBuilder extends AbstractPapyrusBuilder {
 	 *         launch the validation on this resource
 	 */
 	protected Collection<Diagnostic> validateResource(final Resource resource) {
-		final Collection<Diagnostic> diagnostics = new ArrayList<>();
-		for (final EObject current : resource.getContents()) {
-			org.eclipse.emf.common.util.Diagnostic diag = Diagnostician.INSTANCE.validate(current);
-			// the root diagnotic is useless for us
-			diagnostics.addAll(diag.getChildren());
+		final BasicDiagnostic result = new BasicDiagnostic();
+		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		final EValidator.SubstitutionLabelProvider labels = createSubstitutionLabelProvider(adapterFactory);
+
+		Map<Object, Object> context = new HashMap<>();
+		context.put(EValidator.SubstitutionLabelProvider.class, labels);
+
+		try {
+			for (final EObject current : resource.getContents()) {
+				Diagnostician.INSTANCE.validate(current, result, context);
+			}
+		} finally {
+			adapterFactory.dispose();
 		}
-		return diagnostics;
+
+		// the root diagnotic is useless for us
+		return result.getChildren();
 	}
 
 	/**
@@ -480,28 +502,25 @@ public class GenericEMFModelBuilder extends AbstractPapyrusBuilder {
 	 *            the {@link Diagnostic} build for this resource
 	 */
 	protected void createMarkerErrorFromDiagnostic(final IResource iResource, final Diagnostic diagnostic) {
-		if (Diagnostic.ERROR == diagnostic.getSeverity()) {
-			final IMarker marker = createErrorMarker(iResource, diagnostic.getMessage());
-
-			try {
-				System.err.println("Msg: " + diagnostic.getMessage());
-				marker.setAttribute(EValidator.URI_ATTRIBUTE, EcoreUtil.getURI((EObject) diagnostic.getData().get(0)).toString());
-			} catch (CoreException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+		try {
+			final IMarker marker = MarkersService.createMarker(iResource, getMarkerType(), diagnostic);
+			System.err.println("Msg: " + diagnostic.getMessage());
+			marker.setAttribute(EValidator.URI_ATTRIBUTE, EcoreUtil.getURI((EObject) diagnostic.getData().get(0)).toString());
 
 			int index = diagnostic.getData().indexOf(DependencyValidationUtils.MISSING_DEPENDENCIES);
 			if (index > 0) {
 				final String missingDependencies = (String) diagnostic.getData().get(index);
-				try {
-					marker.setAttribute(DependencyValidationUtils.MISSING_DEPENDENCIES, missingDependencies);
-				} catch (CoreException e) {
-					Activator.log.error(e);
-				}
+				marker.setAttribute(DependencyValidationUtils.MISSING_DEPENDENCIES, missingDependencies);
 			}
+		} catch (CoreException e) {
+			Activator.log.error(e);
 		}
+
 		createMarkerErrorFromDiagnostics(iResource, diagnostic.getChildren());
+	}
+
+	protected String getMarkerType() {
+		return IJavaModelMarker.JAVA_MODEL_PROBLEM_MARKER;
 	}
 
 	/**

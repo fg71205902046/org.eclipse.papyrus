@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 CEA LIST, EclipseSource and others.
+ * Copyright (c) 2020 CEA LIST, EclipseSource, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,14 +11,28 @@
  * Contributors:
  *   Vincent Lorenzo (CEA LIST) <vincent.lorenzo@cea.fr> - Initial API and implementation
  *   Remi Schnekenburger (EclipseSource) - Bug 568495
+ *   Christian W. Damus - bug 569357
  *
  *****************************************************************************/
 
 package org.eclipse.papyrus.toolsmiths.plugin.builder;
 
+import static org.eclipse.papyrus.toolsmiths.validation.common.utils.ModelResourceMapper.byExtension;
+import static org.eclipse.papyrus.toolsmiths.validation.common.utils.ModelResourceMapper.resourceSets;
+import static org.eclipse.papyrus.toolsmiths.validation.common.utils.ModelResourceMapper.rootsOfType;
+import static org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.ElementTypesPluginValidationConstants.ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE;
+import static org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.checkers.ElementTypesPluginChecker.ELEMENT_TYPES_CONFIGURATION_EXTENSION;
+
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
+import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
+import org.eclipse.papyrus.toolsmiths.validation.common.utils.ModelResourceMapper;
+import org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.checkers.ElementTypesPluginChecker;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+
+import com.google.common.collect.ListMultimap;
 
 public class Activator extends AbstractUIPlugin {
 
@@ -48,9 +62,6 @@ public class Activator extends AbstractUIPlugin {
 	public Activator() {
 	}
 
-	/**
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
-	 */
 	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
@@ -60,20 +71,24 @@ public class Activator extends AbstractUIPlugin {
 		// model builder
 		PapyrusPluginBuilder.addModelBuilder(new GenericEMFModelBuilder());
 		PapyrusPluginBuilder.addModelBuilder(new ArchitectureModelBuilder());
-		PapyrusPluginBuilder.addModelBuilder(new ElementTypesConfigurationBuilder());
 		PapyrusPluginBuilder.addModelBuilder(new XWTModelBuilder());
+		PapyrusPluginBuilder.addModelBuilder(new PluginCheckerBuilder(ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE, this::mapElementTypesResources)
+				.withChecker(ElementTypesPluginChecker.modelValidationCheckerFactory())
+				.withChecker(ElementTypesPluginChecker.customModelCheckerFactory()));
 
 		// manifest builder
 		PapyrusPluginBuilder.addManifestBuilder(new ManifestBuilder());
 		PapyrusPluginBuilder.addManifestBuilder(new StaticProfileManifestBuilder());
+		PapyrusPluginBuilder.addManifestBuilder(new PluginCheckerBuilder(ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE, this::mapElementTypesResources)
+				.withChecker(ElementTypesPluginChecker.modelDependenciesCheckerFactory())
+				.withChecker(ElementTypesPluginChecker.buildPropertiesCheckerFactory()));
 
 		// extension builder
 		PapyrusPluginBuilder.addPluginBuilder(new StaticProfileExtensionsBuilder());
+		PapyrusPluginBuilder.addPluginBuilder(new PluginCheckerBuilder(ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE, this::mapElementTypesResources)
+				.withChecker(ElementTypesPluginChecker.extensionsCheckerFactory()));
 	}
 
-	/**
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
-	 */
 	@Override
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
@@ -87,6 +102,11 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public static Activator getDefault() {
 		return plugin;
+	}
+
+	private ListMultimap<IFile, ElementTypeSetConfiguration> mapElementTypesResources(IProject project) {
+		ModelResourceMapper<ElementTypeSetConfiguration> mapper = new ModelResourceMapper<>(project);
+		return mapper.map(byExtension(ELEMENT_TYPES_CONFIGURATION_EXTENSION), resourceSets(), rootsOfType(ElementTypeSetConfiguration.class));
 	}
 
 }

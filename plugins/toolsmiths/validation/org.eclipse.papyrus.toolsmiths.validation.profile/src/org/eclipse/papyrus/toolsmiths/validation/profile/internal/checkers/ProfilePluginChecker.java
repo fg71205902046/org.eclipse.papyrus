@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2019 CEA LIST and others.
+ * Copyright (c) 2019, 2020 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
+ *   Christian W. Damus - bug 569357
  *
  *****************************************************************************/
 
@@ -27,7 +28,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.jdt.core.IJavaModelMarker;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.papyrus.toolsmiths.validation.common.checkers.BuildPropertiesChecker;
+import org.eclipse.papyrus.toolsmiths.validation.common.checkers.ModelDependenciesChecker;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.MarkersService;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.PluginValidationService;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.ProjectManagementService;
@@ -83,11 +87,12 @@ public class ProfilePluginChecker {
 						pluginValidationService.addPluginChecker(new ProfileDefinitionChecker(profileFile, profiles));
 
 						// Create the dependencies checker (depending to the external profile references)
-						pluginValidationService.addPluginChecker(new ProfileDependenciesChecker(project, profileFile, profiles.iterator().next().eResource()));
+						Resource resource = profiles.iterator().next().eResource();
+						pluginValidationService.addPluginChecker(createProfileDependenciesChecker(project, profileFile, resource));
 					}
 
 					// Create the build checker
-					pluginValidationService.addPluginChecker(new ProfileBuildChecker(project, profileFile));
+					pluginValidationService.addPluginChecker(new BuildPropertiesChecker(project, profileFile).withEMFGeneratorModels());
 				}
 
 				monitor.worked(1);
@@ -132,6 +137,12 @@ public class ProfilePluginChecker {
 		}
 
 		return profiles;
+	}
+
+	public static ModelDependenciesChecker createProfileDependenciesChecker(IProject project, IFile profileFile, Resource profileResource) {
+		// TODO(569357): For now, continue using the Java Model Marker for compatibility until this is all refactored
+		return new ModelDependenciesChecker(project, profileFile, profileResource, IJavaModelMarker.JAVA_MODEL_PROBLEM_MARKER)
+				.withSeverityFunction(ModelDependenciesChecker.warningsFor("org.eclipse.uml2.uml.resources")); //$NON-NLS-1$
 	}
 
 }

@@ -7,10 +7,19 @@ Require-Bundle: org.eclipse.core.expressions;bundle-version="[3.6.0,4.0.0)",
  org.eclipse.papyrus.toolsmiths.validation.common;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.pde.core;bundle-version="[3.13.0,4.0.0)",
  org.eclipse.ui.views.properties.tabbed;bundle-version="[3.8.0,4.0.0)",
- org.eclipse.uml2.uml;bundle-version="[5.5.0,6.0.0)"
+ org.eclipse.uml2.uml;bundle-version="[5.5.0,6.0.0)",
+ org.eclipse.papyrus.infra.types;bundle-version="[5.0.0,6.0.0)",
+ org.eclipse.papyrus.infra.architecture;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.papyrus.uml.types.core;bundle-version="[5.0.0,6.0.0)",
+ org.eclipse.papyrus.infra.core;bundle-version="[4.0.0,5.0.0)",
+ org.eclipse.papyrus.emf;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.infra.emf;bundle-version="[4.0.0,5.0.0)"
 Export-Package: org.eclipse.papyrus.toolsmiths.validation.elementtypes,
  org.eclipse.papyrus.toolsmiths.validation.elementtypes.checkers,
- org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants
+ org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants,
+ org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.checkers;x-friends:="org.eclipse.papyrus.toolsmiths.plugin.builder",
+ org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.handlers;x-internal:=true,
+ org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.testers;x-internal:=true
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
@@ -23,3 +32,4 @@ Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.toolsmiths.validation.elementtypes;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.eclipse.papyrus.toolsmiths.validation.elementtypes
+Import-Package: com.google.common.collect;version="[30.1.0,31.0.0)"

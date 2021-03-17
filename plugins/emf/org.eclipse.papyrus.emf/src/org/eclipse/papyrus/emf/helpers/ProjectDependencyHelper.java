@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 CEA LIST and others.
+ * Copyright (c) 2020 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *    Vincent Lorenzo (CEA LIST) <vincent.lorenzo@cea.fr> - Initial API and implementation
+ *    Christian W. Damus - bug 569357
  *
  *****************************************************************************/
 
@@ -73,11 +74,13 @@ public class ProjectDependencyHelper {
 	public Collection<String> getInheritedBundle(final String bundleName) {
 		final Set<String> currentDeclaredDependencies = new HashSet<>();
 		final IPluginModelBase pluginModelBase = PluginRegistry.findModel(bundleName);
-		for (BundleSpecification spec : pluginModelBase.getBundleDescription().getRequiredBundles()) {
-			if (spec.isExported()) {
-				final String bundleSymbolicName = spec.getName();
-				currentDeclaredDependencies.add(bundleSymbolicName);
-				currentDeclaredDependencies.addAll(getInheritedBundle(bundleSymbolicName));
+		if (pluginModelBase != null) { // The bundle may not exist
+			for (BundleSpecification spec : pluginModelBase.getBundleDescription().getRequiredBundles()) {
+				if (spec.isExported()) {
+					final String bundleSymbolicName = spec.getName();
+					currentDeclaredDependencies.add(bundleSymbolicName);
+					currentDeclaredDependencies.addAll(getInheritedBundle(bundleSymbolicName));
+				}
 			}
 		}
 
