@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,13 +10,14 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.profile.types.generator.tests;
 
 import static org.eclipse.papyrus.junit.matchers.MoreMatchers.isEmpty;
 import static org.eclipse.papyrus.junit.matchers.MoreMatchers.lessThan;
+import static org.eclipse.papyrus.uml.profile.types.generator.tests.GenOption.INCREMENTAL;
 import static org.eclipse.papyrus.uml.profile.types.generator.tests.GenOption.SUPPRESS_SEMANTIC_SUPERTYPE;
 import static org.eclipse.uml2.common.util.UML2Util.getValidJavaIdentifier;
 import static org.hamcrest.CoreMatchers.everyItem;
@@ -41,11 +42,15 @@ import org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration;
 import org.eclipse.papyrus.infra.types.core.registries.ElementTypeSetConfigurationRegistry;
 import org.eclipse.papyrus.junit.utils.JUnitUtils;
 import org.eclipse.papyrus.junit.utils.rules.ResourceSetFixture;
+import org.eclipse.papyrus.uml.profile.types.generator.DeltaStrategy;
 import org.eclipse.papyrus.uml.profile.types.generator.ElementTypesGenerator;
 import org.eclipse.papyrus.uml.profile.types.generator.Identifiers;
+import org.eclipse.papyrus.uml.profile.types.generator.strategy.SimpleDeltaStrategy;
 import org.eclipse.papyrus.uml.types.core.advices.applystereotype.ApplyStereotypeAdviceConfiguration;
 import org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeApplicationMatcherConfiguration;
+import org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeMatcherAdviceConfiguration;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.xtext.xbase.lib.Pair;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
@@ -66,7 +71,7 @@ public class ModelGenFixture extends ResourceSetFixture {
 
 	private static final String UMLDI_ELEMENT_TYPES = "org.eclipse.papyrus.umldi.service.types.UMLDIElementTypeSet";
 
-	protected final String prefix = "org.eclipse.papyrus.test";
+	public final String prefix = "org.eclipse.papyrus.test";
 
 	private String baseElementTypesSet = UML_ELEMENT_TYPES;
 
@@ -81,7 +86,7 @@ public class ModelGenFixture extends ResourceSetFixture {
 		String basename = inputURI.lastSegment();
 		basename = basename.substring(0, basename.indexOf('.'));
 
-		return inputURI.trimSegments(1).appendSegment(basename).appendFileExtension("elementtypesconfiguration");
+		return inputURI.trimSegments(1).appendSegment(basename).appendFileExtension("elementtypesconfigurations");
 	}
 
 	public ElementTypeSetConfiguration getElementTypeSet() {
@@ -90,7 +95,7 @@ public class ModelGenFixture extends ResourceSetFixture {
 	}
 
 	static Predicate<NamedElement> named(final String name) {
-		return new Predicate<NamedElement>() {
+		return new Predicate<>() {
 			@Override
 			public boolean apply(NamedElement input) {
 				return Objects.equal(name, input.getName());
@@ -142,8 +147,8 @@ public class ModelGenFixture extends ResourceSetFixture {
 
 	protected String getElementTypeID(org.eclipse.uml2.uml.Class metaclass) {
 		String metaclassName = getValidJavaIdentifier(metaclass.getName());
-		return baseElementTypesSet.equals(UML_ELEMENT_TYPES) ? "org.eclipse.papyrus.uml." + metaclassName : 
-			   baseElementTypesSet.equals(UMLDI_ELEMENT_TYPES) ? "org.eclipse.papyrus.umldi." + metaclassName : baseElementTypesSet.replaceFirst("\\w+$", metaclassName);
+		return baseElementTypesSet.equals(UML_ELEMENT_TYPES) ? "org.eclipse.papyrus.uml." + metaclassName
+				: baseElementTypesSet.equals(UMLDI_ELEMENT_TYPES) ? "org.eclipse.papyrus.umldi." + metaclassName : baseElementTypesSet.replaceFirst("\\w+$", metaclassName);
 	}
 
 	public ElementTypeConfiguration getElementTypeConfiguration(String id) {
@@ -216,7 +221,7 @@ public class ModelGenFixture extends ResourceSetFixture {
 	public AbstractAdviceBindingConfiguration getAdviceBindingConfiguration(String id) {
 		AbstractAdviceBindingConfiguration result = null;
 
-		for (AbstractAdviceBindingConfiguration next : getElementTypeSet().getAdviceBindingsConfigurations()) {
+		for (AbstractAdviceBindingConfiguration next : getElementTypeSet().getAllAdviceBindings()) {
 			if (id.equals(next.getIdentifier())) {
 				result = next;
 				break;
@@ -251,8 +256,8 @@ public class ModelGenFixture extends ResourceSetFixture {
 		return result;
 	}
 
-	public ApplyStereotypeAdviceConfiguration assertApplyStereotypeAdvice(Pair<Stereotype, org.eclipse.uml2.uml.Class> metaclassExtension) {
-		return getAdviceBindingConfiguration(metaclassExtension, ApplyStereotypeAdviceConfiguration.class);
+	public StereotypeMatcherAdviceConfiguration assertStereotypeMatcherAdvice(Pair<Stereotype, org.eclipse.uml2.uml.Class> metaclassExtension) {
+		return getAdviceBindingConfiguration(metaclassExtension, StereotypeMatcherAdviceConfiguration.class);
 	}
 
 	public List<ApplyStereotypeAdviceConfiguration> assertAllApplyStereotypeAdvices(Pair<Stereotype, org.eclipse.uml2.uml.Class> metaclassExtension) {
@@ -266,7 +271,7 @@ public class ModelGenFixture extends ResourceSetFixture {
 
 	/**
 	 * Extends the inherited method to run the profile-to-elementtypes transformation.
-	 * 
+	 *
 	 * @see #generateElementTypesConfiguration()
 	 */
 	@Override
@@ -308,8 +313,15 @@ public class ModelGenFixture extends ResourceSetFixture {
 	}
 
 	private void generateElementTypesConfiguration(Identifiers identifiers) {
-		ElementTypesGenerator elementTypesGenerator = new ElementTypesGenerator(identifiers);
-		IStatus status = elementTypesGenerator.generate(getModelURI(), getElementTypesResourceURI());
+		IStatus status;
+		if (genOptions.contains(INCREMENTAL)) {
+			DeltaStrategy.Diff diff = new SimpleDeltaStrategy().findDiffs((Profile) getModel(), getElementTypeSet());
+			ElementTypesGenerator elementTypesGenerator = new ElementTypesGenerator(identifiers, diff);
+			status = elementTypesGenerator.generate(getModelURI(), getElementTypesResourceURI());
+		} else {
+			ElementTypesGenerator elementTypesGenerator = new ElementTypesGenerator(identifiers);
+			status = elementTypesGenerator.generate(getModelURI(), getElementTypesResourceURI());
+		}
 		assertThat(status.getMessage(), status.getSeverity(), lessThan(IStatus.ERROR));
 	}
 }

@@ -44,6 +44,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
+import org.eclipse.papyrus.junit.utils.JUnitUtils;
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
@@ -234,6 +235,11 @@ public class ProjectFixture implements TestRule {
 	@Override
 	public Statement apply(final Statement base, Description description) {
 		String name = description.getMethodName();
+
+		ProjectName annotation = JUnitUtils.getAnnotation(description, ProjectName.class);
+		if (annotation != null && annotation.value() != null) {
+			name = annotation.value();
+		}
 		if (name == null) {
 			// We are used as a class rule, then
 			name = description.getClassName();
