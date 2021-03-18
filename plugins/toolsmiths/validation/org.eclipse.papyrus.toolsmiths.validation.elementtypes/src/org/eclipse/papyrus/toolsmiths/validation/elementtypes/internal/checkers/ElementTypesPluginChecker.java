@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2019, 2020 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2019, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
- *   Christian W. Damus - bug 569357
+ *   Christian W. Damus - bugs 569357, 570097
  *
  *****************************************************************************/
 
@@ -20,9 +20,7 @@ import static org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.E
 import static org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.ElementTypesPluginValidationConstants.ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE;
 
 import java.util.Collection;
-import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -32,7 +30,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.papyrus.emf.helpers.BundleResourceURIHelper;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.BuildPropertiesChecker;
@@ -46,6 +43,7 @@ import org.eclipse.papyrus.toolsmiths.validation.common.utils.MarkersService;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.PluginValidationService;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.ProjectManagementService;
 import org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.ElementTypesPluginValidationConstants;
+import org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.messages.Messages;
 import org.eclipse.papyrus.uml.types.core.advices.applystereotype.ApplyStereotypeAdvicePackage;
 import org.eclipse.papyrus.uml.types.core.advices.stereotypepropertyreferenceedgeadvice.StereotypePropertyReferenceEdgeAdvicePackage;
 import org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeApplicationMatcherPackage;
@@ -82,9 +80,9 @@ public class ElementTypesPluginChecker {
 	public static void checkElementTypesPlugin(final IProject project, IProgressMonitor monitor) {
 		// Open the progress monitor dialog
 		final Collection<IFile> elementTypesFiles = ProjectManagementService.getFilesFromProject(project, ELEMENT_TYPES_CONFIGURATION_EXTENSION, true);
-		monitor.beginTask("Validate Element Types plug-in", 1 + (elementTypesFiles.size() * 3)); // $NON-NLS-1$
+		monitor.beginTask(Messages.ElementTypesPluginChecker_0, 1 + (elementTypesFiles.size() * 3));
 
-		monitor.subTask("Prepare plug-in validation"); //$NON-NLS-1$
+		monitor.subTask(Messages.ElementTypesPluginChecker_1);
 		// First of all, delete the existing markers for project
 		MarkersService.deleteMarkers(project, ElementTypesPluginValidationConstants.ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE);
 
@@ -140,14 +138,7 @@ public class ElementTypesPluginChecker {
 
 	private static ModelDependenciesChecker createModelDependenciesChecker(IProject project, IFile modelFile, Resource resource) {
 		return new ModelDependenciesChecker(project, modelFile, resource, ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE)
-				.withAdditionalRequirements(ElementTypesPluginChecker::getBundlesFromMetamodelNSURI);
-	}
-
-	private static Collection<String> getBundlesFromMetamodelNSURI(Resource resource) {
-		return EcoreUtil.<ElementTypeSetConfiguration> getObjectsByType(resource.getContents(), ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION).stream()
-				.map(ElementTypeSetConfiguration::getMetamodelNsURI).filter(Objects::nonNull)
-				.map(BundleResourceURIHelper.INSTANCE::getBundleNameFromNS_URI).filter(Objects::nonNull)
-				.collect(Collectors.toSet());
+				.withAdditionalRequirements(new ElementTypesDependencies(project)::computeDependencies);
 	}
 
 	/**
@@ -174,7 +165,7 @@ public class ElementTypesPluginChecker {
 
 	private static BuildPropertiesChecker createBuildPropertiesChecker(IProject project, IFile modelFile, Resource resource) {
 		return new BuildPropertiesChecker(project, modelFile, ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE)
-				.withDependencies(file -> new ReferencedProfilesBuildPropertiesDependencies(resource).getDependencies());
+				.withDependencies(file -> new ElementTypesBuildPropertiesDependencies(resource).getDependencies());
 	}
 
 	/**

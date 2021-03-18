@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 Christian W. Damus, CEA LIST, and others.
+ * Copyright (c) 2020, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -33,6 +33,7 @@ import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -48,6 +49,7 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.toolsmiths.validation.common.Activator;
+import org.eclipse.papyrus.toolsmiths.validation.common.internal.messages.Messages;
 
 /**
  * <p>
@@ -103,7 +105,7 @@ public class CustomModelChecker extends AbstractPluginChecker {
 
 	@Override
 	public void check(final DiagnosticChain diagnostics, final IProgressMonitor monitor) {
-		SubMonitor subMonitor = SubMonitor.convert(monitor, "Check file '" + getModelFile().getName() + "'.", 1); //$NON-NLS-1$ //$NON-NLS-2$
+		SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(Messages.CustomModelChecker_0, getModelFile().getName()), 1);
 
 		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		final EValidator.SubstitutionLabelProvider labels = createSubstitutionLabelProvider(adapterFactory);
@@ -391,13 +393,14 @@ public class CustomModelChecker extends AbstractPluginChecker {
 			if (isValidatorFor(ePackage)) {
 				doValidate(eClass, eObject, diagnostics, context);
 
-				if (!eClass.getESuperTypes().isEmpty()) {
-					for (EClass superClass : eClass.getESuperTypes()) {
-						validate(superClass, eObject, diagnostics, context);
+				EList<EClass> allSuperTypes = eClass.getEAllSuperTypes();
+				if (!allSuperTypes.isEmpty()) {
+					for (EClass superClass : allSuperTypes) {
+						doValidate(superClass, eObject, diagnostics, context);
 					}
 				}
 
-				if (!isValidatorFor(EcorePackage.eINSTANCE)) {
+				if (!isValidatorFor(EcorePackage.eINSTANCE) && !allSuperTypes.contains(EcorePackage.Literals.EOBJECT)) {
 					// Try the default EObject case, too
 					doValidate(EcorePackage.Literals.EOBJECT, eObject, diagnostics, context);
 				}

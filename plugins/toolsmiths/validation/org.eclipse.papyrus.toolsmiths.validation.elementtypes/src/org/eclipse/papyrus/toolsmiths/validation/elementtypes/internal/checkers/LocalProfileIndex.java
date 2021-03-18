@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 Christian W. Damus, CEA LIST, and others.
+ * Copyright (c) 2020, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -253,7 +253,7 @@ public class LocalProfileIndex {
 			workspaceLoaded = true;
 
 			ModelResourceMapper<Profile> profileMapper = new ModelResourceMapper<>(ResourcesPlugin.getWorkspace().getRoot());
-			profileMapper.map(byExtension("uml"), __ -> resourceSet, rootsOfType(Profile.class))
+			profileMapper.map(byExtension("uml"), __ -> resourceSet, rootsOfType(Profile.class)) //$NON-NLS-1$
 					.values().stream().distinct().forEach(this::mapProfile);
 		}
 	}

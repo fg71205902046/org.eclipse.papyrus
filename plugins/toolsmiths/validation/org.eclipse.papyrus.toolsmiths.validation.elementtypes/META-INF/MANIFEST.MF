@@ -19,6 +19,7 @@ Export-Package: org.eclipse.papyrus.toolsmiths.validation.elementtypes,
  org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants,
  org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.checkers;x-friends:="org.eclipse.papyrus.toolsmiths.plugin.builder",
  org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.handlers;x-internal:=true,
+ org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.messages;x-internal:=true,
  org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.testers;x-internal:=true
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy

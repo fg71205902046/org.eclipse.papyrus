@@ -24,9 +24,9 @@
             locationURI="popup:org.eclipse.papyrus.dev.ui.menu?after=additions">
          <command
                commandId="org.eclipse.papyrus.toolsmiths.validation.architecture.validateCommand"
-               label="Validate Architecture plug-in"
+               label="%cmd.validate.label"
                style="push"
-               tooltip="Validate plug-in with Papyrus Architecture">
+               tooltip="%cmd.validate.tooltip">
             <visibleWhen
                   checkEnabled="false">
                <with
@@ -48,7 +48,7 @@
       <command
             defaultHandler="org.eclipse.papyrus.toolsmiths.validation.architecture.internal.handlers.ValidateArchitecturePluginHandler"
             id="org.eclipse.papyrus.toolsmiths.validation.architecture.validateCommand"
-            name="Validate Architecture plug-in">
+            name="%cmd.validate.name">
       </command>
    </extension>
    <extension
@@ -63,10 +63,13 @@
    </extension>
    <extension
          id="diagnostic"
-         name="Papyrus Toolsmiths Architecture Plug-in problems"
+         name="%marker.name"
          point="org.eclipse.core.resources.markers">
       <super
             type="org.eclipse.core.resources.problemmarker">
+      </super>
+      <super
+            type="org.eclipse.jdt.core.problem">
       </super>
       <persistent
             value="true">

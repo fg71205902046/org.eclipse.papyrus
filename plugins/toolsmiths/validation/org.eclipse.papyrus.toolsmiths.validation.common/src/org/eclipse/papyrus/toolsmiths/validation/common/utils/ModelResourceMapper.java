@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 CEA LIST, EclipseSource, Christian W. Damus, and others.
+ * Copyright (c) 2020, 2021 CEA LIST, EclipseSource, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Remi Schnekenburger - Initial API and implementation
- *   Christian W. Damus - bug 569357
+ *   Christian W. Damus - bugs 569357, 570097
  *
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.validation.common.utils;
@@ -33,6 +33,7 @@ import org.eclipse.emf.common.util.AbstractTreeIterator;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -157,15 +158,30 @@ public class ModelResourceMapper<T extends EObject> {
 	 * Create standard EMF resource sets with platform scheme support for cross-document references.
 	 */
 	public static Function<URI, ResourceSet> resourceSets() {
-		return ModelResourceMapper::createResourceSet;
+		return resourceSets(null);
 	}
 
-	private static ResourceSet createResourceSet(URI uri) {
+	/**
+	 * Create standard EMF resource sets with platform scheme support for cross-document references and
+	 * the given package registry.
+	 *
+	 * @param packageRegistry
+	 *            a package registry to be used by all resource sets created by the function
+	 * @return the resource set function
+	 */
+	public static Function<URI, ResourceSet> resourceSets(EPackage.Registry packageRegistry) {
+		return uri -> createResourceSet(uri, packageRegistry);
+	}
+
+	private static ResourceSet createResourceSet(URI uri, EPackage.Registry packageRegistry) {
 		ResourceSet result = new ResourceSetImpl();
 
 		// Ensure that cross-doc references saved with the platform-scheme-aware URI handler can resolve
 		// platform:/resource URIs to bundles in the target platform.
 		result.setURIConverter(ResourceUtils.createWorkspaceAwareURIConverter());
+		if (packageRegistry != null) {
+			result.setPackageRegistry(packageRegistry);
+		}
 
 		result.getResource(uri, true);
 

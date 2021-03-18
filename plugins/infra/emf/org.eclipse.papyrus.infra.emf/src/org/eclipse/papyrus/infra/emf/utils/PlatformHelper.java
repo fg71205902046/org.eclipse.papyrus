@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 Christian W. Damus, CEA LIST, and others.
+ * Copyright (c) 2020, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -32,6 +32,16 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.osgi.container.ModuleContainer;
 import org.eclipse.papyrus.infra.emf.Activator;
 import org.eclipse.pde.core.plugin.IPluginElement;
@@ -92,6 +102,15 @@ abstract class PlatformHelper {
 	 * @return its declared URI mappings
 	 */
 	abstract Map<String, String> getLocalUriMappings(IProject project);
+
+	/**
+	 * Create a package registry that, if possible, includes also packages registered by plug-ing projects in the workspace.
+	 *
+	 * @return a new workspace-aware (as much as possible) package registry
+	 */
+	EPackage.Registry createWorkspacePackageRegistry() {
+		return new EPackageRegistryImpl(EPackage.Registry.INSTANCE);
+	}
 
 	//
 	// Nested types
@@ -169,6 +188,18 @@ abstract class PlatformHelper {
 	 */
 	private static final class PDEHelper extends PlatformHelper {
 
+		private static final String GENERATED_PACKAGE_EXTPOINT = "org.eclipse.emf.ecore.generated_package"; //$NON-NLS-1$
+		private static final String DYNAMIC_PACKAGE_EXTPOINT = "org.eclipse.emf.ecore.dynamic_package"; //$NON-NLS-1$
+		private static final String PACKAGE_EXTELEM = "package"; //$NON-NLS-1$
+		private static final String RESOURCE_EXTELEM = "resource"; //$NON-NLS-1$
+		private static final String URI_EXTATT = "uri"; //$NON-NLS-1$
+		private static final String GEN_MODEL_EXTATT = "genModel"; //$NON-NLS-1$
+		private static final String LOCATION_EXTATT = "location"; //$NON-NLS-1$
+
+		private static final String GEN_MODEL = "GenModel"; //$NON-NLS-1$
+		private static final String GEN_PACKAGES = "genPackages"; //$NON-NLS-1$
+		private static final String ECORE_PACKAGE = "ecorePackage"; //$NON-NLS-1$
+
 		@Override
 		Collection<String> getPlatformBundleIDs() {
 			IPluginModelBase[] pluginModels = PluginRegistry.getActiveModels();
@@ -203,6 +234,124 @@ abstract class PlatformHelper {
 			}
 
 			return localMappings;
+		}
+
+		@Override
+		EPackage.Registry createWorkspacePackageRegistry() {
+			ResourceSet resourceSet = new ResourceSetImpl();
+			EPackage.Registry result = new EPackageRegistryImpl(EPackage.Registry.INSTANCE);
+
+			Map<String, URI> models = new HashMap<>();
+
+			for (IPluginModelBase model : PluginRegistry.getWorkspaceModels()) {
+				for (IPluginExtension extension : model.getExtensions().getExtensions()) {
+					switch (extension.getPoint()) {
+					case GENERATED_PACKAGE_EXTPOINT:
+						Arrays.stream(extension.getChildren())
+								.filter(IPluginElement.class::isInstance).map(IPluginElement.class::cast)
+								.filter(element -> Objects.equals(PACKAGE_EXTELEM, element.getName()))
+								.forEach(element -> models.put(element.getAttribute(URI_EXTATT).getValue(),
+										getURI(model, element.getAttribute(GEN_MODEL_EXTATT).getValue(), false)));
+						break;
+					case DYNAMIC_PACKAGE_EXTPOINT:
+						Arrays.stream(extension.getChildren())
+								.filter(IPluginElement.class::isInstance).map(IPluginElement.class::cast)
+								.filter(element -> Objects.equals(RESOURCE_EXTELEM, element.getName()))
+								.forEach(element -> models.put(element.getAttribute(URI_EXTATT).getValue(),
+										getURI(model, element.getAttribute(LOCATION_EXTATT).getValue(), true)));
+						break;
+					}
+				}
+			}
+
+			models.forEach((uri, modelURI) -> {
+				if (!EPackage.Registry.INSTANCE.containsKey(uri)) {
+					result.put(uri, createEPackageDescriptor(resourceSet, modelURI));
+				}
+			});
+
+			return result;
+		}
+
+		private URI getURI(IPluginModelBase plugin, String path, boolean withFragment) {
+			URI result;
+
+			while (!path.isEmpty() && (path.startsWith("/") || path.startsWith("\\"))) { //$NON-NLS-1$//$NON-NLS-2$
+				path = path.substring(1);
+			}
+
+			String fragment = null;
+			if (withFragment) {
+				// Don't encode this as part of the path!
+				int hash = path.lastIndexOf('#');
+				if (hash >= 0) {
+					fragment = path.substring(hash + 1);
+					path = path.substring(0, hash);
+				}
+			}
+
+			path = String.format("%s/%s", plugin.getPluginBase().getId(), path); //$NON-NLS-1$
+			result = URI.createPlatformResourceURI(path, true);
+
+			if (fragment != null) {
+				result = result.appendFragment(fragment);
+			}
+
+			return result;
+		}
+
+		private EPackage.Descriptor createEPackageDescriptor(ResourceSet resourceSet, URI modelURI) {
+			return new EPackage.Descriptor() {
+
+				@Override
+				public EPackage getEPackage() {
+					return loadEPackage(resourceSet, modelURI);
+				}
+
+				@Override
+				public EFactory getEFactory() {
+					EPackage ePackage = getEPackage();
+					return ePackage == null ? null : ePackage.getEFactoryInstance();
+				}
+			};
+		}
+
+		private EPackage loadEPackage(ResourceSet resourceSet, URI modelURI) {
+			EPackage result = null;
+
+			try {
+				if (modelURI.hasFragment()) {
+					// It's an explicit reference to an EPackage
+					EObject object = resourceSet.getEObject(modelURI, true);
+					if (object instanceof EPackage) {
+						result = (EPackage) object;
+					}
+				} else {
+					Resource resource = resourceSet.getResource(modelURI, true);
+					if (resource != null && resource.isLoaded() && !resource.getContents().isEmpty()) {
+						EObject object = resource.getContents().get(0);
+						if (object instanceof EPackage) {
+							result = (EPackage) object;
+						} else if (GEN_MODEL.equals(object.eClass().getName()) && object.eClass().getEStructuralFeature(GEN_PACKAGES) != null) {
+							EStructuralFeature genPackagesRef = object.eClass().getEStructuralFeature(GEN_PACKAGES);
+							@SuppressWarnings("unchecked")
+							EObject genPackage = ((EList<? extends EObject>) object.eGet(genPackagesRef)).get(0);
+							EStructuralFeature ecorePackageRef = genPackage.eClass().getEStructuralFeature(ECORE_PACKAGE);
+							result = (EPackage) genPackage.eGet(ecorePackageRef);
+						}
+					}
+				}
+
+				if (result != null) {
+					// Make it appear to be registered
+					result.eResource().setURI(URI.createURI(result.getNsURI()));
+				}
+			} catch (Exception e) {
+				// Cannot load the resource? It's not a package, then
+				Activator.log.error("Failed to load Ecore package from workspace.", e); //$NON-NLS-1$
+			}
+
+			return result;
 		}
 
 	}

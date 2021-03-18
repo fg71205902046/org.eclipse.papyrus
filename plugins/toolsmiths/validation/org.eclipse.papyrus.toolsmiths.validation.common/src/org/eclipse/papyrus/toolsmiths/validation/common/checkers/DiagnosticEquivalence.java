@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 Christian W. Damus, CEA LIST, and others.
+ * Copyright (c) 2020, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -166,27 +166,27 @@ public interface DiagnosticEquivalence {
 
 				switch (getSeverity()) {
 				case Diagnostic.OK:
-					result.append("OK");
+					result.append("OK"); //$NON-NLS-1$
 					break;
 				case Diagnostic.INFO:
-					result.append("Info");
+					result.append("Info"); //$NON-NLS-1$
 					break;
 				case Diagnostic.WARNING:
-					result.append("Warning");
+					result.append("Warning"); //$NON-NLS-1$
 					break;
 				case Diagnostic.CANCEL:
-					result.append("Cancel");
+					result.append("Cancel"); //$NON-NLS-1$
 					break;
 				default:
-					result.append("Error");
+					result.append("Error"); //$NON-NLS-1$
 					break;
 				}
 
 				result.append('(');
-				result.append(getSource()).append(", ");
-				result.append(getCode()).append(", ");
+				result.append(getSource()).append(", "); //$NON-NLS-1$
+				result.append(getCode()).append(", "); //$NON-NLS-1$
 				result.append(getData());
-				result.append("): ");
+				result.append("): "); //$NON-NLS-1$
 				result.append(getMessage());
 
 				return result.toString();
