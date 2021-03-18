@@ -193,6 +193,29 @@ public class ElementTypesConfigurationsItemProviderAdapterFactory extends Elemen
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.types.Annotation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AnnotationItemProvider annotationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.types.Annotation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAnnotationAdapter() {
+		if (annotationItemProvider == null) {
+			annotationItemProvider = new AnnotationItemProvider(this);
+		}
+
+		return annotationItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.types.MetamodelTypeConfiguration} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -466,6 +489,7 @@ public class ElementTypesConfigurationsItemProviderAdapterFactory extends Elemen
 		if (iconEntryItemProvider != null) iconEntryItemProvider.dispose();
 		if (containerConfigurationItemProvider != null) containerConfigurationItemProvider.dispose();
 		if (specializationTypeConfigurationItemProvider != null) specializationTypeConfigurationItemProvider.dispose();
+		if (annotationItemProvider != null) annotationItemProvider.dispose();
 		if (metamodelTypeConfigurationItemProvider != null) metamodelTypeConfigurationItemProvider.dispose();
 		if (editHelperAdviceConfigurationItemProvider != null) editHelperAdviceConfigurationItemProvider.dispose();
 		if (adviceBindingConfigurationItemProvider != null) adviceBindingConfigurationItemProvider.dispose();

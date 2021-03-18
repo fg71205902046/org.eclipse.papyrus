@@ -129,6 +129,8 @@ public class ElementTypesConfigurationsValidator extends EObjectValidator {
 				return validateIdentifiedConfiguration((IdentifiedConfiguration)value, diagnostics, context);
 			case ElementTypesConfigurationsPackage.NAMED_CONFIGURATION:
 				return validateNamedConfiguration((NamedConfiguration)value, diagnostics, context);
+			case ElementTypesConfigurationsPackage.ANNOTATION:
+				return validateAnnotation((Annotation)value, diagnostics, context);
 			case ElementTypesConfigurationsPackage.METAMODEL_TYPE_CONFIGURATION:
 				return validateMetamodelTypeConfiguration((MetamodelTypeConfiguration)value, diagnostics, context);
 			case ElementTypesConfigurationsPackage.EDIT_HELPER_ADVICE_CONFIGURATION:
@@ -275,6 +277,15 @@ public class ElementTypesConfigurationsValidator extends EObjectValidator {
 	 */
 	public boolean validateNamedConfiguration(NamedConfiguration namedConfiguration, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(namedConfiguration, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateAnnotation(Annotation annotation, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(annotation, diagnostics, context);
 	}
 
 	/**
