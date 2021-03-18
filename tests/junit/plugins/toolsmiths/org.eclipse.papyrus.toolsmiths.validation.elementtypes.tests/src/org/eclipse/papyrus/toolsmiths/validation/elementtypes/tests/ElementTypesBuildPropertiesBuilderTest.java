@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 Christian W. Damus, CEA LIST, and others.
+ * Copyright (c) 2020, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -61,6 +61,16 @@ public class ElementTypesBuildPropertiesBuilderTest extends AbstractPapyrusTest 
 		final List<IMarker> modelMarkers = fixture.getMarkers("build.properties"); //$NON-NLS-1$
 
 		assertThat(modelMarkers, hasItem(both(isMarkerSeverity(IMarker.SEVERITY_ERROR)).and(isMarkerMessage(containsString("BookStore.profile.uml"))))); //$NON-NLS-1$
+	}
+
+	/**
+	 * Test the reporting of an icon resource that is not included in the build.
+	 */
+	@Test
+	public void missingReferencedIcon() {
+		final List<IMarker> modelMarkers = fixture.getMarkers("build.properties"); //$NON-NLS-1$
+
+		assertThat(modelMarkers, hasItem(both(isMarkerSeverity(IMarker.SEVERITY_ERROR)).and(isMarkerMessage(containsString("Book.png"))))); //$NON-NLS-1$
 	}
 
 	/**

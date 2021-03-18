@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 Christian W. Damus, CEA LIST, and others.
+ * Copyright (c) 2020, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -60,6 +60,19 @@ public class ElementTypesPluginXMLBuilderTest extends AbstractPapyrusTest {
 		final List<IMarker> modelMarkers = fixture.getMarkers("plugin.xml"); //$NON-NLS-1$
 
 		assertThat(modelMarkers, hasItem(both(isMarkerSeverity(IMarker.SEVERITY_WARNING)).and(isMarkerMessage(containsString("Missing extension"))))); //$NON-NLS-1$
+	}
+
+	/**
+	 * Test that no problem is reported when the extension point is absent but a registered
+	 * architecture model references the element types configuration set.
+	 */
+	@Test
+	@OverlayFile(value = "bug569357-extensions/plugin-noExtension.xml", path = "plugin.xml")
+	@OverlayFile(value = "bug569357-extensions/BookStore.architecture", path = "resources/BookStore.architecture")
+	public void noExtensionButArchitectureReference() {
+		final List<IMarker> modelMarkers = fixture.getMarkers("plugin.xml"); //$NON-NLS-1$
+
+		assertThat(modelMarkers, not(hasItem(isMarkerMessage(containsString("Missing extension"))))); //$NON-NLS-1$
 	}
 
 	/**
