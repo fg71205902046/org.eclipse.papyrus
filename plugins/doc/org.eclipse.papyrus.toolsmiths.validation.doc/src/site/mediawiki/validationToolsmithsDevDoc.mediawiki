@@ -50,7 +50,7 @@ There are a number of options available to enable:
 ** check for the anti-pattern of dependency re-exports
 ** check for the recommended practice of constraining bundle dependencies with compatible version ranges
 
-===Where find the result?===
+===Where to find the result?===
 The result is display in the ''''Problems'''' view and are categorized by the type ''''Papyrus Toolsmiths Profile Plug-in problems''''.
 
 [[File:images/devDoc/Papyrus_ProblemsViewProfile.png|frame|none|Profile problems]]
@@ -59,22 +59,28 @@ Like others problems, you can double-click on one to open the concerning file. Y
 
 ==Element Types Plug-in Validation==
 ===What is checked?===
-To validate a element types plug-in, we have some points to check. Here are the checked points:
+Several validation rules are checked for any plug-in project that contains Element Types Configuration models, including:
 * Bundle manifest dependencies on core element-types framework bundles: '''WARNING'''
 ** 'org.eclipse.papyrus.infra.types.core'
 ** 'org.eclipse.papyrus.infra.types'
-* For each element types copnfiguration model found in the plug-in:
+* For each element types configuration model found in the plug-in:
 ** Validation of the element types file itself: errors or warnings as described for different elements, below
+*** an icon resource referenced by the element types configuration model does not exist: '''ERROR'''
 ** Validation of the element types model registration in the 'plugin.xml' file
 *** if there is a registration on the extension point, and it omits the client-context ID: '''ERROR'''
 *** if there is no registration extension and there is no architecture model that references it: '''WARNING'''
-** Validation of bundle dependencies in the 'MANIFEST.MF' file implied by the element-types configuration model:
+** Validation of bundle dependencies in the 'MANIFEST.MF' file implied by the element types configuration model:
 *** missing dependency on the bundle that deploys the metamodel referenced by NS URI: '''ERROR'''
 *** referenced metamodel NS URI that cannot be resolved to a bundle that provides the metamodel: '''ERROR'''
-*** missing dependency on the bundle that deploys a referenced element-types model: '''ERROR'''
+*** missing dependency on the bundle that deploys a referenced element types configuration model: '''ERROR'''
 *** missing dependency on the bundle that deploys a profile referenced by UML stereotype element-types: '''ERROR'''
+*** missing dependency on the bundle that deploys an icon referenced by the model: '''ERROR'''
+** Validation of the 'build.properties' file
+*** If any of the following resources is not included in the binary build: '''ERROR'''
+**** the element types configuration model file, itself
+**** any other element types configuration model or icon referenced by the model that is in the same plug-in
 
-There are special element-types configuration elements available for definition of element types on the basis of the
+There are special element types configuration model elements available for definition of element types on the basis of the
 stereotypes in UML profiles. These are validated for availability or suitability of the referenced UML profile constructs:
 * ''Apply Stereotype Advice''
 ** profile referenced by qualified name is not found in the workspace nor in the target platform: '''ERROR'''
@@ -97,42 +103,60 @@ for element types configurations are checked by the editor; they are described i
 
 ===How to do it?===
 When you create a plug-in containing an element types file, you can validate this one with the validation toolsmiths.
-To do this, select the project, then ''''Papyrus Developer''''>''''Validate Element types plug-in'''':
+To do this, select the project, then ''''Papyrus Developer''''>''''Validate Element Types Plug-in'''':
 
 [[File:images/devDoc/Papyrus_ValidationElementTypesMenu.png|frame|none|Menu to validate element types plug-in]]
 
-When you do a validation, the result of old element types plug-in validation are clean and the current problems are displayed in the corresponding view.
+When you do a validation, the results of a previous element types plug-in validation are cleaned and the current problems are displayed in the ''''Problems'''' view.
 
-===Where find the result?===
-The result is display in the ''''Problems'''' view and are categorized by the type ''''Papyrus Toolsmiths Element Types Plug-in problems''''.
+===Where to find the result?===
+The result is displayed in the ''''Problems'''' view and are categorized by the type ''''Papyrus Toolsmiths Element Types Plug-in Problem''''.
 
 [[File:images/devDoc/Papyrus_ProblemsViewElementTypes.png|frame|none|Element types problems]]
 
-Like others problems, you can double-click on one to open the concerning file. You can delete problem too when you think it is managed.
+Like others problems, you can double-click on one to open the relevant file. You may delete a problem that you think is resolved, but if it is not, then it will be presented again by the next validation.
 
 ==Architecture Plug-in Validation==
 ===What is checked?===
-To validate an architecture plug-in, we have some points to check. Here are the checked points:
-* Validation of the needed dependencies: '''ERROR'''
+Several validation rules are checked for any plug-in project that contains Architecture Context models, including:
+* Bundle manifest dependencies on core Architecture Framework bundles: '''WARNING'''
 ** 'org.eclipse.papyrus.infra.architecture'
-* For each architecture files found in the plug-in:
-** Validation of the architecture file itself: '''ERROR'''
-** Validation of the architecture definition into the 'plugin.xml' file: '''ERROR'''
-** Validation of the dependencies needed in the 'MANIFEST.MF' file for the external dependencies of the architecture file: '''WARNING''' (because maybe the dependency is not really needed (implicit dependence?))
-** Validation of the 'build.properties' file (it must contain the architecture file): '''ERROR'''
+* For each architecture context model found in the plug-in:
+** Validation of the architecture context model file itself: errors or warnings as described for different elements, below
+** an icon resource referenced by the architecture context model does not exist: '''ERROR'''
+** Validation of the architecture context model registration in the 'plugin.xml' file
+*** if there is no registration extension: '''ERROR'''
+** Validation of bundle dependencies in the 'MANIFEST.MF' file implied by the architecture context model:
+*** missing dependency on the bundle that deploys a metamodel or profile referenced by some Architecture Context: '''ERROR'''
+*** referenced metamodel that cannot be resolved to a bundle that provides the metamodel or profile: '''ERROR'''
+*** missing dependency on the bundle that deploys or defines an external resource: '''ERROR'''
+**** element types configuration model referenced by an Architecture Context
+**** palette configuration model referenced by a Representation Kind
+**** an icon resource referenced by the architecture context model
+**** a creation or conversion command class referenced by an Architecture Context or a Representation Kind
+** Validation of the 'build.properties' file
+*** If any of the following resources is not included in the binary build: '''ERROR'''
+**** the architecture context model file, itself
+**** any element types configuration model file, palette configuration model file, or icon referenced by the model that is in the same plug-in
+
+The rules above are not checked in the ''Architecture Model Editor'' while editing a model because they
+depend on the deployment of dependent resources in tooling bundles. Therefore, they are only checked by the
+tooling validation mechanisms described in this documentation. Other intrinsic model well-formedness constraints
+for architecture contexts are checked by the editor; they are described in the documentation of the
+''Architecture Context'' model.
 
 ===How to do it?===
 When you create a plug-in containing an architecture definition, you can validate this one with the validation toolsmiths.
-To do this, select the project, then ''''Papyrus Developer''''>''''Validate Architecture plug-in'''':
+To do this, select the project, then ''''Papyrus Developer''''>''''Validate Architecture Plug-in'''':
 
 [[File:images/devDoc/Papyrus_ValidationArchitectureMenu.png|frame|none|Menu to validate architecture plug-in]]
 
-When you do a validation, the result of old architecture plug-in validation are clean and the current problems are displayed in the corresponding view.
+When you do a validation, the results of a previous architecture plug-in validation are cleaned and the current problems are displayed in the ''''Problems'''' view.
 
-===Where find the result?===
-The result is display in the ''''Problems'''' view and are categorized by the type ''''Papyrus Toolsmiths Architecture Plug-in problems''''.
+===Where to find the result?===
+The result is displayed in the ''''Problems'''' view and are categorized by the type ''''Papyrus Toolsmiths Architecture Plug-in Problem''''.
 
 [[File:images/devDoc/Papyrus_ProblemsViewArchitecture.png|frame|none|Architecture problems]]
 
-Like others problems, you can double-click on one to open the concerning file. You can delete problem too when you think it is managed.
+Like others problems, you can double-click on one to open the relevant file. You may delete a problem that you think is resolved, but if it is not, then it will be presented again by the next validation.
 
