@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<feature 
-      id="org.eclipse.papyrus.tests.toolsmiths.feature" 
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.papyrus.tests.toolsmiths.feature"
+      label="%featureName"
       version="1.0.0.qualifier"
-      label="%featureName" 
-      provider-name="%providerName" 
+      provider-name="%providerName"
       license-feature="org.eclipse.license"
       license-feature-version="2.0.2">
-   
+
    <description url="https://eclipse.org/papyrus/">
       %description
    </description>
@@ -19,25 +19,39 @@
       %license
    </license>
 
-   <plugin 
-         download-size="0" 
-         id="org.eclipse.papyrus.toolsmiths.profilemigration.tests" 
-         install-size="0" 
-         unpack="false" 
-         version="0.0.0"/>
-         
-   <plugin 
-         download-size="0" 
-         id="org.eclipse.papyrus.toolsmiths.validation.profile.tests" 
-         install-size="0" 
-         unpack="false" 
-         version="0.0.0"/>
-         
-   <plugin 
-         download-size="0" 
-         id="org.eclipse.papyrus.toolsmiths.validation.elementtypes.tests" 
-         install-size="0" 
-         unpack="false" 
-         version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.toolsmiths.profilemigration.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.toolsmiths.validation.profile.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.toolsmiths.validation.elementtypes.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.toolsmiths.validation.architecture.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.toolsmiths.validation.common.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>

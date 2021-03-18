@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014, 2020 CEA, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2021 CEA, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
- *   Christian W. Damus - bugs 451230, 468030, 569357
+ *   Christian W. Damus - bugs 451230, 468030, 569357, 570097
  *
  */
 package org.eclipse.papyrus.junit.utils.rules;
@@ -175,6 +175,22 @@ public class ProjectFixture implements TestRule {
 	 *             On any problem while creating the files and folders.
 	 */
 	public void copyFolder(final Class<?> classFromBundle, final String folderPath) throws IOException {
+		copyFolder(classFromBundle, folderPath, project);
+	}
+
+	/**
+	 * Copy a folder into a container.
+	 *
+	 * @param classFromBundle
+	 *            The bundle in which its content is to be found.
+	 * @param folderPath
+	 *            The path in the context bundle of the folder to copy.
+	 * @param destination
+	 *            the destination container
+	 * @throws IOException
+	 *             On any problem while creating the files and folders.
+	 */
+	public void copyFolder(final Class<?> classFromBundle, final String folderPath, final IContainer destination) throws IOException {
 		// Get the bundle and check that the resource exists
 		final Bundle bundle = FrameworkUtil.getBundle(classFromBundle);
 		final URL resource = (bundle == null) ? null : bundle.getResource(folderPath);
@@ -191,7 +207,7 @@ public class ProjectFixture implements TestRule {
 		}
 		// Copy its content
 		try {
-			copyFiles(pluginFile, project);
+			copyFiles(pluginFile, destination);
 		} catch (Exception e) {
 			throw new IOException("Error while copying project files"); //$NON-NLS-1$
 		}
