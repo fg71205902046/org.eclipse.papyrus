@@ -32,6 +32,7 @@ import org.eclipse.papyrus.infra.types.AbstractEditHelperAdviceConfiguration;
 import org.eclipse.papyrus.infra.types.AbstractMatcherConfiguration;
 import org.eclipse.papyrus.infra.types.AdviceBindingConfiguration;
 import org.eclipse.papyrus.infra.types.AdviceConfiguration;
+import org.eclipse.papyrus.infra.types.Annotation;
 import org.eclipse.papyrus.infra.types.ConfigurationElement;
 import org.eclipse.papyrus.infra.types.ContainerConfiguration;
 import org.eclipse.papyrus.infra.types.EditHelperAdviceConfiguration;
@@ -98,6 +99,13 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * @generated
 	 */
 	private EClass namedConfigurationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass annotationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -360,6 +368,16 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * @generated
 	 */
 	@Override
+	public EReference getConfigurationElement_Annotations() {
+		return (EReference)configurationElementEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getElementTypeConfiguration() {
 		return elementTypeConfigurationEClass;
 	}
@@ -492,6 +510,46 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	@Override
 	public EAttribute getNamedConfiguration_Name() {
 		return (EAttribute)namedConfigurationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getAnnotation() {
+		return annotationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAnnotation_Source() {
+		return (EAttribute)annotationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAnnotation_Value() {
+		return (EAttribute)annotationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getAnnotation_ConfigurationElement() {
+		return (EReference)annotationEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -913,6 +971,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 		configurationElementEClass = createEClass(CONFIGURATION_ELEMENT);
 		createEAttribute(configurationElementEClass, CONFIGURATION_ELEMENT__DESCRIPTION);
 		createEReference(configurationElementEClass, CONFIGURATION_ELEMENT__OWNING_TYPE);
+		createEReference(configurationElementEClass, CONFIGURATION_ELEMENT__ANNOTATIONS);
 
 		elementTypeConfigurationEClass = createEClass(ELEMENT_TYPE_CONFIGURATION);
 		createEAttribute(elementTypeConfigurationEClass, ELEMENT_TYPE_CONFIGURATION__HINT);
@@ -963,6 +1022,11 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 
 		namedConfigurationEClass = createEClass(NAMED_CONFIGURATION);
 		createEAttribute(namedConfigurationEClass, NAMED_CONFIGURATION__NAME);
+
+		annotationEClass = createEClass(ANNOTATION);
+		createEAttribute(annotationEClass, ANNOTATION__SOURCE);
+		createEAttribute(annotationEClass, ANNOTATION__VALUE);
+		createEReference(annotationEClass, ANNOTATION__CONFIGURATION_ELEMENT);
 
 		metamodelTypeConfigurationEClass = createEClass(METAMODEL_TYPE_CONFIGURATION);
 		createEReference(metamodelTypeConfigurationEClass, METAMODEL_TYPE_CONFIGURATION__ECLASS);
@@ -1048,6 +1112,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 		initEClass(configurationElementEClass, ConfigurationElement.class, "ConfigurationElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getConfigurationElement_Description(), ecorePackage.getEString(), "description", null, 0, 1, ConfigurationElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConfigurationElement_OwningType(), this.getElementTypeConfiguration(), this.getElementTypeConfiguration_OwnedConfigurations(), "owningType", null, 0, 1, ConfigurationElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getConfigurationElement_Annotations(), this.getAnnotation(), this.getAnnotation_ConfigurationElement(), "annotations", null, 0, -1, ConfigurationElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(elementTypeConfigurationEClass, ElementTypeConfiguration.class, "ElementTypeConfiguration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getElementTypeConfiguration_Hint(), ecorePackage.getEString(), "hint", "", 0, 1, ElementTypeConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1099,6 +1164,11 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 
 		initEClass(namedConfigurationEClass, NamedConfiguration.class, "NamedConfiguration", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNamedConfiguration_Name(), ecorePackage.getEString(), "name", null, 1, 1, NamedConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(annotationEClass, Annotation.class, "Annotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAnnotation_Source(), ecorePackage.getEString(), "source", null, 0, 1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getAnnotation_Value(), ecorePackage.getEString(), "value", null, 0, 1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getAnnotation_ConfigurationElement(), this.getConfigurationElement(), this.getConfigurationElement_Annotations(), "configurationElement", null, 1, 1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(metamodelTypeConfigurationEClass, MetamodelTypeConfiguration.class, "MetamodelTypeConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMetamodelTypeConfiguration_EClass(), theEcorePackage.getEClass(), null, "eClass", null, 0, 1, MetamodelTypeConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

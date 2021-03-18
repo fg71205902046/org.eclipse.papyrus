@@ -15,6 +15,7 @@
  */
 package org.eclipse.papyrus.infra.types;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -28,6 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.types.ConfigurationElement#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.ConfigurationElement#getOwningType <em>Owning Type</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.types.ConfigurationElement#getAnnotations <em>Annotations</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage#getConfigurationElement()
@@ -88,5 +90,23 @@ public interface ConfigurationElement extends EObject {
 	 * @generated
 	 */
 	void setOwningType(ElementTypeConfiguration value);
+
+	/**
+	 * Returns the value of the '<em><b>Annotations</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.infra.types.Annotation}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.infra.types.Annotation#getConfigurationElement <em>Configuration Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Annotations</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Annotations</em>' containment reference list.
+	 * @see org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage#getConfigurationElement_Annotations()
+	 * @see org.eclipse.papyrus.infra.types.Annotation#getConfigurationElement
+	 * @model opposite="configurationElement" containment="true" ordered="false"
+	 * @generated
+	 */
+	EList<Annotation> getAnnotations();
 
 } // ConfigurationElement

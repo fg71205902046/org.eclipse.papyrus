@@ -70,6 +70,15 @@ public interface ElementTypesConfigurationsFactory extends EFactory {
 	SpecializationTypeConfiguration createSpecializationTypeConfiguration();
 
 	/**
+	 * Returns a new object of class '<em>Annotation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Annotation</em>'.
+	 * @generated
+	 */
+	Annotation createAnnotation();
+
+	/**
 	 * Returns a new object of class '<em>Metamodel Type Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

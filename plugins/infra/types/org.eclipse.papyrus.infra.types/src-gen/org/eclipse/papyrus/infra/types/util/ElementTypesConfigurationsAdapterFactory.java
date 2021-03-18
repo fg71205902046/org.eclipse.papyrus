@@ -129,6 +129,10 @@ public class ElementTypesConfigurationsAdapterFactory extends AdapterFactoryImpl
 				return createNamedConfigurationAdapter();
 			}
 			@Override
+			public Adapter caseAnnotation(Annotation object) {
+				return createAnnotationAdapter();
+			}
+			@Override
 			public Adapter caseMetamodelTypeConfiguration(MetamodelTypeConfiguration object) {
 				return createMetamodelTypeConfigurationAdapter();
 			}
@@ -253,6 +257,20 @@ public class ElementTypesConfigurationsAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createNamedConfigurationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.types.Annotation <em>Annotation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.types.Annotation
+	 * @generated
+	 */
+	public Adapter createAnnotationAdapter() {
 		return null;
 	}
 

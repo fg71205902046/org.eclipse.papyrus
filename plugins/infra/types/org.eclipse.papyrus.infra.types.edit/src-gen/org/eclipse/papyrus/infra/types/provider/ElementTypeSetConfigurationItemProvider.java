@@ -153,7 +153,7 @@ public class ElementTypeSetConfigurationItemProvider extends ConfigurationElemen
 	}
 	
 	@Override
-	protected Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			getChildrenFeaturesGen(object);
 

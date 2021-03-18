@@ -290,7 +290,7 @@ public class StereotypeMatcherAdviceConfigurationImpl extends AbstractAdviceBind
 					msgs = ((InternalEObject)matchedType).eInverseRemove(this, ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__MATCHER_CONFIGURATION, SpecializationTypeConfiguration.class, msgs);
 				return basicSetMatchedType((SpecializationTypeConfiguration)otherEnd, msgs);
 		}
-		return super.eInverseAddGen(otherEnd, featureID, msgs);
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 	
 	@Override

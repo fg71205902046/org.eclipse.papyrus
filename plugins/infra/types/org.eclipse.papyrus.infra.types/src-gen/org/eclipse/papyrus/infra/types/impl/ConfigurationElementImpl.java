@@ -15,16 +15,21 @@
  */
 package org.eclipse.papyrus.infra.types.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.papyrus.infra.types.Annotation;
 import org.eclipse.papyrus.infra.types.ConfigurationElement;
 import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
@@ -39,6 +44,7 @@ import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.ConfigurationElementImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.ConfigurationElementImpl#getOwningType <em>Owning Type</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.types.impl.ConfigurationElementImpl#getAnnotations <em>Annotations</em>}</li>
  * </ul>
  *
  * @generated
@@ -63,6 +69,16 @@ public abstract class ConfigurationElementImpl extends MinimalEObjectImpl.Contai
 	 * @ordered
 	 */
 	protected String description = DESCRIPTION_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getAnnotations() <em>Annotations</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAnnotations()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Annotation> annotations;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -155,12 +171,28 @@ public abstract class ConfigurationElementImpl extends MinimalEObjectImpl.Contai
 	 * @generated
 	 */
 	@Override
+	public EList<Annotation> getAnnotations() {
+		if (annotations == null) {
+			annotations = new EObjectContainmentWithInverseEList<Annotation>(Annotation.class, this, ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__ANNOTATIONS, ElementTypesConfigurationsPackage.ANNOTATION__CONFIGURATION_ELEMENT);
+		}
+		return annotations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__OWNING_TYPE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwningType((ElementTypeConfiguration)otherEnd, msgs);
+			case ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__ANNOTATIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAnnotations()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -175,6 +207,8 @@ public abstract class ConfigurationElementImpl extends MinimalEObjectImpl.Contai
 		switch (featureID) {
 			case ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__OWNING_TYPE:
 				return basicSetOwningType(null, msgs);
+			case ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__ANNOTATIONS:
+				return ((InternalEList<?>)getAnnotations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -205,6 +239,8 @@ public abstract class ConfigurationElementImpl extends MinimalEObjectImpl.Contai
 				return getDescription();
 			case ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__OWNING_TYPE:
 				return getOwningType();
+			case ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__ANNOTATIONS:
+				return getAnnotations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -214,6 +250,7 @@ public abstract class ConfigurationElementImpl extends MinimalEObjectImpl.Contai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -222,6 +259,10 @@ public abstract class ConfigurationElementImpl extends MinimalEObjectImpl.Contai
 				return;
 			case ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__OWNING_TYPE:
 				setOwningType((ElementTypeConfiguration)newValue);
+				return;
+			case ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__ANNOTATIONS:
+				getAnnotations().clear();
+				getAnnotations().addAll((Collection<? extends Annotation>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -241,6 +282,9 @@ public abstract class ConfigurationElementImpl extends MinimalEObjectImpl.Contai
 			case ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__OWNING_TYPE:
 				setOwningType((ElementTypeConfiguration)null);
 				return;
+			case ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__ANNOTATIONS:
+				getAnnotations().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -257,6 +301,8 @@ public abstract class ConfigurationElementImpl extends MinimalEObjectImpl.Contai
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 			case ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__OWNING_TYPE:
 				return getOwningType() != null;
+			case ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__ANNOTATIONS:
+				return annotations != null && !annotations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
