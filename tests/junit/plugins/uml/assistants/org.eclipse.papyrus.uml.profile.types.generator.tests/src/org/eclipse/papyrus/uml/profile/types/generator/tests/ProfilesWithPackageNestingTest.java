@@ -26,8 +26,8 @@ import org.eclipse.papyrus.infra.types.IconEntry;
 import org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
-import org.eclipse.papyrus.uml.types.core.advices.applystereotype.ApplyStereotypeAdviceConfiguration;
 import org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeApplicationMatcherConfiguration;
+import org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeMatcherAdviceConfiguration;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.edit.UMLEditPlugin;
@@ -119,28 +119,24 @@ public class ProfilesWithPackageNestingTest extends AbstractPapyrusTest {
 		Pair<Stereotype, Class> s12Generalization = fixture.getMetaclassExtension("S1_2", "Generalization");
 		Pair<Stereotype, Class> s22Generalization = fixture.getMetaclassExtension("S2_2", "Generalization");
 
-		ApplyStereotypeAdviceConfiguration advice = fixture.assertApplyStereotypeAdvice(s11Class);
+		StereotypeMatcherAdviceConfiguration advice = fixture.assertStereotypeMatcherAdvice(s11Class);
 		assertThat(advice.getTarget(), is(fixture.getElementTypeConfiguration(s11Class)));
-		assertThat(advice.getStereotypesToApply(), not(isEmpty()));
-		assertThat(advice.getStereotypesToApply().get(0).getRequiredProfiles(), hasItem("root::nestedProfile"));
-		assertThat(advice.getStereotypesToApply().get(0).getStereotypeQualifiedName(), is("root::nestedProfile::S1_1"));
+		assertThat(advice.getStereotypesQualifiedNames(), not(isEmpty()));
+		assertThat(advice.getStereotypesQualifiedNames().get(0), is("root::nestedProfile::S1_1"));
 
-		advice = fixture.assertApplyStereotypeAdvice(s12Generalization);
+		advice = fixture.assertStereotypeMatcherAdvice(s12Generalization);
 		assertThat(advice.getTarget(), is(fixture.getElementTypeConfiguration(s12Generalization)));
-		assertThat(advice.getStereotypesToApply(), not(isEmpty()));
-		assertThat(advice.getStereotypesToApply().get(0).getRequiredProfiles(), hasItem("root::nestedProfile"));
-		assertThat(advice.getStereotypesToApply().get(0).getStereotypeQualifiedName(), is("root::nestedProfile::S1_2"));
+		assertThat(advice.getStereotypesQualifiedNames(), not(isEmpty()));
+		assertThat(advice.getStereotypesQualifiedNames().get(0), is("root::nestedProfile::S1_2"));
 
-		advice = fixture.assertApplyStereotypeAdvice(s21Class);
+		advice = fixture.assertStereotypeMatcherAdvice(s21Class);
 		assertThat(advice.getTarget(), is(fixture.getElementTypeConfiguration(s21Class)));
-		assertThat(advice.getStereotypesToApply(), not(isEmpty()));
-		assertThat(advice.getStereotypesToApply().get(0).getRequiredProfiles(), hasItem("root"));
-		assertThat(advice.getStereotypesToApply().get(0).getStereotypeQualifiedName(), is("root::nestedPackage::S2_1"));
+		assertThat(advice.getStereotypesQualifiedNames(), not(isEmpty()));
+		assertThat(advice.getStereotypesQualifiedNames().get(0), is("root::nestedPackage::S2_1"));
 
-		advice = fixture.assertApplyStereotypeAdvice(s22Generalization);
+		advice = fixture.assertStereotypeMatcherAdvice(s22Generalization);
 		assertThat(advice.getTarget(), is(fixture.getElementTypeConfiguration(s22Generalization)));
-		assertThat(advice.getStereotypesToApply(), not(isEmpty()));
-		assertThat(advice.getStereotypesToApply().get(0).getRequiredProfiles(), hasItem("root"));
-		assertThat(advice.getStereotypesToApply().get(0).getStereotypeQualifiedName(), is("root::nestedPackage::S2_2"));
+		assertThat(advice.getStereotypesQualifiedNames(), not(isEmpty()));
+		assertThat(advice.getStereotypesQualifiedNames().get(0), is("root::nestedPackage::S2_2"));
 	}
 }
