@@ -28,16 +28,24 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.jface.dialogs.DialogSettings;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.infra.ui.util.UIUtil;
 import org.eclipse.papyrus.toolsmiths.types.generator.TypesPluginGenerator;
 import org.eclipse.papyrus.uml.profile.types.generator.AbstractGenerator;
+import org.eclipse.papyrus.uml.profile.types.generator.DeltaStrategy;
+import org.eclipse.papyrus.uml.profile.types.generator.DeltaStrategy.Diff;
 import org.eclipse.papyrus.uml.profile.types.generator.ElementTypesGenerator;
 import org.eclipse.papyrus.uml.profile.types.generator.Identifiers;
+import org.eclipse.papyrus.uml.profile.types.generator.strategy.SimpleDeltaStrategy;
 import org.eclipse.papyrus.uml.profile.types.generator.ui.internal.Activator;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
@@ -124,6 +132,25 @@ public class GeneratorWizard extends Wizard {
 		IStatus result = Status.OK_STATUS;
 
 		Identifiers identifiers = new Identifiers();
+
+		if (model.getOutputModelFile().exists() && model.isIncremental()) {
+			ResourceSet rs = new ResourceSetImpl();
+			Resource resource = rs.getResource(model.getOutputModelURI(), true);
+			EObject root = resource.getContents().get(0);
+			if (root instanceof ElementTypeSetConfiguration) {
+				ElementTypeSetConfiguration typeSet = (ElementTypeSetConfiguration) root;
+				DeltaStrategy strategy = new SimpleDeltaStrategy();
+				Diff diff = strategy.findDiffs(model.getProfile(), typeSet);
+				model.setDiff(diff);
+
+				if (!model.isDeleteObsoleteTypes()) {
+					// Ignore deleted stereotypes/extensions and simply preserve their corresponding element types
+					diff.getRemovedStereotypes().clear();
+					diff.getRemovedExtensions().clear();
+				}
+			}
+		}
+
 		if (model.isAddDiPostfixActive()) {
 			identifiers.setPrefix(model.getIdentifier() + Identifiers.diPostfix());
 			identifiers.setUseDiPostfix(true);
@@ -204,15 +231,15 @@ public class GeneratorWizard extends Wizard {
 	protected IStatus configurePlugin(URI outputModelURI, Identifiers identifiers) {
 		// Should always be a workspace project; but let's make sure
 		if (!outputModelURI.isPlatformResource()) {
-			return new Status(IStatus.WARNING, getClass(), "The target model is not located in a workspace project; impossible to configure the plug-in.");
+			return new Status(IStatus.WARNING, getClass(), "The target model is not located in a workspace project; cannot configure the plug-in.");
 		}
 
 		IPath modelPath = new Path(outputModelURI.toPlatformString(true));
-		return new TypesPluginGenerator().generate(Collections.singleton(modelPath), identifiers.getContextId());
+		return new TypesPluginGenerator().generate(Collections.singleton(modelPath), identifiers.getContextId(), model.isGenerateExtensionPoint());
 	}
 
 	protected void addGenerators(List<? super AbstractGenerator<Profile, ?>> generators, Identifiers identifiers, GeneratorWizardModel wizardModel) {
-		generators.add(new ElementTypesGenerator(identifiers));
+		generators.add(new ElementTypesGenerator(identifiers, wizardModel.getDiff()));
 	}
 
 	protected URI getOutputURI(AbstractGenerator<Profile, ?> generator, Identifiers identifiers, GeneratorWizardModel wizardModel) {

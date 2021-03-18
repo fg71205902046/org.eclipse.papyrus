@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2014, 2015 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,27 +10,37 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.profile.types.generator;
 
+import java.util.Optional;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
+import org.eclipse.papyrus.uml.profile.types.generator.DeltaStrategy.Diff;
 import org.eclipse.uml2.uml.UMLPackage;
 
 import com.google.inject.AbstractModule;
+import com.google.inject.TypeLiteral;
 
 /**
  * The base Guice injector module for the UML Profile to Element Types Set Configuration transformation.
  */
 public class GeneratorModule extends AbstractModule {
 	private final Identifiers identifiers;
+	private final Diff diff;
 
 	public GeneratorModule(Identifiers identifiers) {
+		this(identifiers, null);
+	}
+
+	public GeneratorModule(Identifiers identifiers, DeltaStrategy.Diff diff) {
 		super();
 
 		this.identifiers = identifiers;
+		this.diff = diff;
 	}
 
 	@Override
@@ -47,6 +57,14 @@ public class GeneratorModule extends AbstractModule {
 		bindConfigurationSetRule();
 		bindElementTypeRule();
 		bindApplyStereotypeAdviceRule();
+
+		// bind the profile difference we want to include, for incremental generation
+		bindDiff();
+	}
+
+	protected void bindDiff() {
+		bind(new TypeLiteral<Optional<Diff>>() {
+		}).toInstance(Optional.ofNullable(diff));
 	}
 
 	protected void bindInputType() {
