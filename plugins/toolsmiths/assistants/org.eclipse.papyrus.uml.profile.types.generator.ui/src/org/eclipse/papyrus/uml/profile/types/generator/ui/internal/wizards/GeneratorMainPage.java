@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2015 Christian W. Damus and others.
- * 
+ * Copyright (c) 2014, 2015, 2020, 2021 Christian W. Damus and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,8 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *   Camille Letavernier - Bug 569356 Incremental Generation
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.profile.types.generator.ui.internal.wizards;
@@ -31,6 +32,8 @@ public class GeneratorMainPage extends WizardNewFileCreationPage implements IGen
 
 	private GeneratorParametersBlock parametersBlock;
 	private BaseElementTypeSetBlock diagramBlock;
+	private GeneratorIncrementalBlock incrementalBlock;
+	private PluginConfigurationBlock pluginBlock;
 
 	public GeneratorMainPage(GeneratorWizardModel model, String title, String description, String fileExtension) {
 		super("main", model.getDefaultContainerSelection()); //$NON-NLS-1$
@@ -55,7 +58,12 @@ public class GeneratorMainPage extends WizardNewFileCreationPage implements IGen
 		parametersBlock.createControl(self);
 		diagramBlock = new BaseElementTypeSetBlock(model);
 		diagramBlock.createControl(self);
+		incrementalBlock = new GeneratorIncrementalBlock(model);
+		incrementalBlock.createControl(self);
+		pluginBlock = new PluginConfigurationBlock(model);
+		pluginBlock.createControl(self);
 
+		// File selection control
 		super.createControl(self);
 		getControl().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 
@@ -71,9 +79,22 @@ public class GeneratorMainPage extends WizardNewFileCreationPage implements IGen
 	}
 
 	@Override
+	public String getFileName() {
+		String fileName = super.getFileName();
+		if (fileName == null || fileName.isEmpty()) {
+			// Make sure we always return a valid file name, even during the Wizard
+			// initialization
+			return model.getDefaultFileName();
+		}
+		return fileName;
+	}
+
+	@Override
 	public boolean validatePage() {
 		model.setContainerPath(getContainerFullPath());
 		model.setFileName(getFileName());
+		pluginBlock.validatePage();
+		incrementalBlock.validatePage();
 
 		return super.validatePage() && model.validate();
 	}

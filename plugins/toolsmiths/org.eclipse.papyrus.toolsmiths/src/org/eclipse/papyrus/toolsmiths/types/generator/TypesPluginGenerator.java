@@ -31,6 +31,9 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.papyrus.eclipse.project.editors.project.PluginEditor;
 import org.eclipse.papyrus.toolsmiths.Activator;
+import org.eclipse.pde.core.plugin.IPluginModelBase;
+import org.eclipse.pde.core.plugin.PluginRegistry;
+import org.osgi.framework.Version;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -52,8 +55,6 @@ import org.w3c.dom.NodeList;
 public class TypesPluginGenerator {
 
 	public static final String TYPES_CORE_PLUGIN = "org.eclipse.papyrus.infra.types.core";
-	public static final String TYPES_CORE_PLUGIN_MIN = "5.0.0";
-	public static final String TYPES_CORE_PLUGIN_MAX = "6.0.0";
 
 	// Element Type Extension Point
 	private static final String EXTENSION_POINT = "org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration";
@@ -78,14 +79,17 @@ public class TypesPluginGenerator {
 	 *            The clientContextID for which the type models should be registered. For Papyrus, this is usually
 	 *            <code>org.eclipse.papyrus.infra.services.edit.TypeContext</code>, but this may vary in some
 	 *            specific applications / customization scenarios.
+	 * @param generateExtensionPoint
+	 *            Whether the element types configurations extension points should be created (or updated) to reference the model.
+	 *            This is optional, as element types configurations models may be contributed via the architecture model instead.
 	 * @return
 	 *         The status representing the result of this configuration operation.
 	 */
-	public IStatus generate(Collection<IPath> elementTypesConfigurationModels, String contextId) {
+	public IStatus generate(Collection<IPath> elementTypesConfigurationModels, String contextId, boolean generateExtensionPoint) {
 		Map<IProject, Collection<IPath>> paths = groupByProject(elementTypesConfigurationModels);
 		for (var entry : paths.entrySet()) {
 			IProject project = entry.getKey();
-			IStatus configurePlugin = configurePlugin(project, entry.getValue(), contextId);
+			IStatus configurePlugin = configurePlugin(project, entry.getValue(), contextId, generateExtensionPoint);
 		}
 		return Status.OK_STATUS;
 	}
@@ -109,17 +113,16 @@ public class TypesPluginGenerator {
 	 *            The clientContextID for which the type models should be registered. For Papyrus, this is usually
 	 *            <code>org.eclipse.papyrus.infra.services.edit.TypeContext</code>, but this may vary in some
 	 *            specific applications / customization scenarios.
+	 * @param generateExtensionPoint
+	 *            Whether the element types configurations extension points should be created (or updated) to reference the model.
+	 *            This is optional, as element types configurations models may be contributed via the architecture model instead.
 	 * @return
 	 *         The status representing the result of this configuration operation.
 	 */
-	protected IStatus configurePlugin(IProject project, Collection<IPath> modelPaths, String contextId) {
+	protected IStatus configurePlugin(IProject project, Collection<IPath> modelPaths, String contextId, boolean generateExtensionPoint) {
 		// Should always be a workspace project; but let's make sure
-		// if (!modelPath.isPlatformResource()) {
-		// return new Status(IStatus.WARNING, getClass(), "The target model is not located in a workspace project; impossible to configure the plug-in.");
-		// }
-
 		if (!project.exists()) {
-			return new Status(IStatus.WARNING, getClass(), "The target model is not located in a workspace project; impossible to configure the plug-in.");
+			return new Status(IStatus.WARNING, getClass(), "The target model is not located in a workspace project; cannot configure the plug-in.");
 		}
 
 		if (!project.isOpen()) {
@@ -140,7 +143,9 @@ public class TypesPluginGenerator {
 			}
 
 			addDependencies(editor);
-			addExtensions(editor, modelPaths, contextId);
+			if (generateExtensionPoint) {
+				addExtensions(editor, modelPaths, contextId);
+			}
 			for (IPath path : modelPaths) {
 				addBuildProperties(editor, path);
 			}
@@ -161,9 +166,28 @@ public class TypesPluginGenerator {
 	 */
 	protected void addDependencies(PluginEditor editor) {
 		if (!editor.hasDependency(TYPES_CORE_PLUGIN)) {
-			editor.addDependency(TYPES_CORE_PLUGIN, String.format("[%s, %s)", TYPES_CORE_PLUGIN_MIN, TYPES_CORE_PLUGIN_MAX));
+			Version currentVersion = getTypesCorePluginVersion();
+			editor.addDependency(TYPES_CORE_PLUGIN, String.format("[%s, %s)", getTypesCorePluginMin(currentVersion), getTypesCorePluginMax(currentVersion)));
 		}
 		// TODO Find and Add dependencies to plug-ins contributing the referenced models (e.g. UML, extended profiles)
+	}
+
+	private Version getTypesCorePluginVersion() {
+		IPluginModelBase[] pluginModels = PluginRegistry.findModels(TYPES_CORE_PLUGIN, null, null);
+		for (IPluginModelBase next : pluginModels) {
+			if (next.getBundleDescription() != null) {
+				return next.getBundleDescription().getVersion();
+			}
+		}
+		return null;
+	}
+
+	private String getTypesCorePluginMin(Version currentVersion) {
+		return new Version(currentVersion.getMajor(), currentVersion.getMinor(), 0).toString();
+	}
+
+	private String getTypesCorePluginMax(Version currentVersion) {
+		return new Version(currentVersion.getMajor() + 1, 0, 0).toString();
 	}
 
 	/**
