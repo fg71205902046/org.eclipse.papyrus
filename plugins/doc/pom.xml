@@ -36,6 +36,7 @@
 		<module>org.eclipse.papyrus.uml.modelrepair.doc</module>
 		<module>org.eclipse.papyrus.uml.profile.assistants.doc</module>
 		<module>org.eclipse.papyrus.uml.profile.customization.doc</module>
+		<module>org.eclipse.papyrus.uml.profile.types.doc</module>
 		<module>org.eclipse.papyrus.uml.search.ui.doc</module>
 		<module>org.eclipse.papyrus.views.properties.doc</module>
 		<module>org.eclipse.papyrus.views.references.doc</module>
