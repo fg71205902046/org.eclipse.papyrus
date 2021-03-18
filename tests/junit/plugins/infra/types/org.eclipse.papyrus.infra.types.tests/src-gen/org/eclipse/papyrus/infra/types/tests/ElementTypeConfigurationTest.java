@@ -62,7 +62,7 @@ public abstract class ElementTypeConfigurationTest extends ConfigurationElementT
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.papyrus.infra.types.ElementTypeConfiguration#getOwnedAdvice()
-	 * @generated
+	 * @generated NOT
 	 */
 	public void testGetOwnedAdvice() {
 		AdviceBindingConfiguration advice1 = ElementTypesConfigurationsFactory.eINSTANCE.createAdviceBindingConfiguration();
