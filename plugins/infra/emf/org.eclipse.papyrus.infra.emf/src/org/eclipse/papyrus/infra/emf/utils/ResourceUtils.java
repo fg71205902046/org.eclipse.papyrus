@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2020 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2012, 2021 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,7 +11,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
- *  Christian W. Damus - bug 569357
+ *  Christian W. Damus - bugs 569357, 570097
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.utils;
@@ -35,6 +35,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.URIConverter;
@@ -222,6 +223,15 @@ public class ResourceUtils {
 		result.putAll(EcorePlugin.computePlatformResourceToPlatformPluginMap(platform));
 
 		return result;
+	}
+
+	/**
+	 * Create a package registry that, if possible, includes also packages registered by plug-ing projects in the workspace.
+	 *
+	 * @return a new workspace-aware (as much as possible) package registry
+	 */
+	public static EPackage.Registry createWorkspaceAwarePackageRegistry() {
+		return PlatformHelper.INSTANCE.createWorkspacePackageRegistry();
 	}
 
 }

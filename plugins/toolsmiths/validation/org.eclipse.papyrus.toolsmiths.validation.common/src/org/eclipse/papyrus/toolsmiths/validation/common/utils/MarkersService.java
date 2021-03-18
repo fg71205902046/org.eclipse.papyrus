@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2019, 2020 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2019, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
- *   Christian W. Damus - bug 569357
+ *   Christian W. Damus - bugs 569357, 570097
  *
  *****************************************************************************/
 
@@ -122,7 +122,7 @@ public class MarkersService {
 				result.setAttribute(EValidator.RELATED_URIS_ATTRIBUTE, related.toString());
 			}
 		} catch (CoreException e) {
-			Activator.log.error("Failed to set attributes of problem marker.", e);
+			Activator.log.error("Failed to set attributes of problem marker.", e); //$NON-NLS-1$
 		}
 
 		return result;

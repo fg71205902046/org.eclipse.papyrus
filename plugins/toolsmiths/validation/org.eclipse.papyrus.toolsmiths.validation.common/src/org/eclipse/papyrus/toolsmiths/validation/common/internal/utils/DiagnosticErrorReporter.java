@@ -1,5 +1,5 @@
 /*******************************************************************************
- *  Copyright (c) 2018, 2020 Julian Honnen, EclipseSource, Christian W. Damus and others.
+ *  Copyright (c) 2018, 2021 Julian Honnen, EclipseSource, Christian W. Damus, CEA LIST, and others.
  *
  *  This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License 2.0
@@ -11,7 +11,7 @@
  *  Contributors:
  *     Julian Honnen <julian.honnen@vector.com> - initial API and implementation
  *     Remi Schnekenburger (EclipseSource) - Bug 568495
- *     Christian W. Damus - bug 569357
+ *     Christian W. Damus - bugs 569357, 570097
  *
  *******************************************************************************/
 package org.eclipse.papyrus.toolsmiths.validation.common.internal.utils;
@@ -37,7 +37,7 @@ import org.eclipse.pde.internal.core.builders.PDEMarkerFactory;
 @SuppressWarnings("restriction")
 public class DiagnosticErrorReporter extends IncrementalErrorReporter {
 
-	static final String SOURCE_ID = "source_id";
+	static final String SOURCE_ID = "source_id"; //$NON-NLS-1$
 
 	private final Collection<VirtualMarker> fReportedMarkers = new ArrayList<>();
 	private int fErrorCount;

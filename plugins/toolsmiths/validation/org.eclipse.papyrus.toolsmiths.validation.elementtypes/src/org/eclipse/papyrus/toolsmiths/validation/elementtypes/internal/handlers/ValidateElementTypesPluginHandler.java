@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2019, 2020 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2019, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
- *   Christian W. Damus - bug 569357
+ *   Christian W. Damus - bugs 569357, 570097
  *
  *****************************************************************************/
 
@@ -28,6 +28,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.toolsmiths.validation.elementtypes.Activator;
 import org.eclipse.papyrus.toolsmiths.validation.elementtypes.checkers.ElementTypesPluginCheckerService;
+import org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.messages.Messages;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.handlers.HandlerUtil;
 
@@ -55,7 +56,7 @@ public class ValidateElementTypesPluginHandler extends AbstractHandler {
 		try {
 			new ProgressMonitorDialog(shell).run(true, true, monitor -> {
 				final StructuredSelection structuredSelection = (StructuredSelection) selection;
-				monitor.beginTask("Validate Element Types", structuredSelection.size());
+				monitor.beginTask(Messages.ValidateElementTypesPluginHandler_0, structuredSelection.size());
 				for (final Object selectedElement : structuredSelection.toList()) {
 					if (monitor.isCanceled()) {
 						return;

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2020, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Vincent Lorenzo (CEA LIST) <vincent.lorenzo@cea.fr> - Initial API and implementation
- *   Christian W. Damus - bug 569357
+ *   Christian W. Damus - bugs 569357, 570097
  *
  *****************************************************************************/
 
@@ -62,6 +62,7 @@ import org.eclipse.papyrus.emf.helpers.BundleResourceURIHelper;
 import org.eclipse.papyrus.emf.validation.DependencyValidationUtils;
 import org.eclipse.papyrus.infra.emf.utils.ResourceUtils;
 import org.eclipse.papyrus.toolsmiths.plugin.builder.preferences.PluginBuilderPreferencesConstants;
+import org.eclipse.papyrus.toolsmiths.validation.architecture.internal.checkers.ArchitecturePluginChecker;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.MarkersService;
 import org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.checkers.ElementTypesPluginChecker;
 import org.eclipse.uml2.uml.resource.UMLResource;
@@ -148,7 +149,7 @@ public class GenericEMFModelBuilder extends AbstractPapyrusBuilder {
 		EXCLUDED_FILE_EXTENSION.add("qvto"); //$NON-NLS-1$
 
 		// we exclude this extension point because it requires a specific management
-		EXCLUDED_FILE_EXTENSION.add(ArchitectureModelBuilder.ARCHITECTURE_EXTENSION);
+		EXCLUDED_FILE_EXTENSION.add(ArchitecturePluginChecker.ARCHITECTURE_EXTENSION);
 		EXCLUDED_FILE_EXTENSION.add(ElementTypesPluginChecker.ELEMENT_TYPES_CONFIGURATION_EXTENSION);
 		EXCLUDED_FILE_EXTENSION.add(XWTModelBuilder.XWT_EXTENSION);
 		EXCLUDED_FILE_EXTENSION.add(XWTModelBuilder.CTX_EXTENSION);

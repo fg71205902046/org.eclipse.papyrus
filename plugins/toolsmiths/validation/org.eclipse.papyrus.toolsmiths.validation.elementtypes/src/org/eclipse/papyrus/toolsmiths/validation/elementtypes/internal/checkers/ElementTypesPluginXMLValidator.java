@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 Christian W. Damus, CEA LIST, and others.
+ * Copyright (c) 2020, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -24,6 +24,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.toolsmiths.validation.common.internal.utils.PluginErrorReporter;
+import org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.messages.Messages;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
@@ -79,7 +80,7 @@ final class ElementTypesPluginXMLValidator {
 		case ELEMENT_TYPE_SET:
 			String clientContextID = element.getAttribute(CLIENT_CONTEXT_ID);
 			if (clientContextID == null || clientContextID.isBlank()) {
-				problems.reportProblem(Diagnostic.ERROR, element, "Missing client context ID.", CATEGORY);
+				problems.reportProblem(Diagnostic.ERROR, element, Messages.ElementTypesPluginXMLValidator_0, CATEGORY);
 			}
 			break;
 		default:

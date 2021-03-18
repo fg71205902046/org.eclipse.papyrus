@@ -15,6 +15,8 @@
 
 package org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.checkers;
 
+import static org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.checkers.ElementTypesDependencies.getIconURI;
+
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -22,11 +24,17 @@ import java.util.Objects;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.papyrus.infra.emf.utils.ResourceUtils;
+import org.eclipse.papyrus.infra.types.IconEntry;
 import org.eclipse.papyrus.infra.types.util.ElementTypesConfigurationsSwitch;
 import org.eclipse.papyrus.uml.types.core.advices.applystereotype.StereotypeToApply;
 import org.eclipse.papyrus.uml.types.core.advices.applystereotype.util.ApplyStereotypeAdviceSwitch;
@@ -41,7 +49,7 @@ import org.eclipse.uml2.uml.Stereotype;
  * Computation of referenced UML profiles that need to be packaged in the <tt>build.properties</tt>
  * along with the <em>Element Types Configurations</em> model being validated.
  */
-class ReferencedProfilesBuildPropertiesDependencies {
+class ElementTypesBuildPropertiesDependencies {
 
 	private final Resource resource;
 
@@ -51,7 +59,7 @@ class ReferencedProfilesBuildPropertiesDependencies {
 	 * @param resource
 	 *            the element types model resource to scan
 	 */
-	ReferencedProfilesBuildPropertiesDependencies(Resource resource) {
+	ElementTypesBuildPropertiesDependencies(Resource resource) {
 		super();
 
 		this.resource = resource;
@@ -74,6 +82,19 @@ class ReferencedProfilesBuildPropertiesDependencies {
 			IFile profileFile = ResourceUtils.getFile(resource);
 			if (profileFile != null) {
 				result.add(profileFile);
+			}
+		}
+
+		Set<URI> iconURIs = collectIcons(resource.getContents());
+		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+		for (URI next : iconURIs) {
+			if (next.isPlatformPlugin() || next.isPlatformResource()) {
+				String projectName = next.segment(1);
+				IProject project = root.getProject(projectName);
+				if (project != null && project.isAccessible()) {
+					IResource icon = root.getFile(new Path(next.toPlatformString(false)));
+					result.add(icon);
+				}
 			}
 		}
 
@@ -153,6 +174,32 @@ class ReferencedProfilesBuildPropertiesDependencies {
 		};
 
 		objects.forEach(master::doSwitch);
+
+		return result;
+	}
+
+	private Set<URI> collectIcons(List<EObject> objects) {
+		Set<URI> result = new HashSet<>();
+
+		Switch<Set<URI>> iconsSwitch = new ElementTypesConfigurationsSwitch<>() {
+			public Set<URI> caseIconEntry(IconEntry object) {
+				try {
+					getIconURI(object).ifPresent(result::add);
+				} catch (Exception e) {
+					// Invalid URI? Doesn't need to be in the build.properties, then.
+					// And this will be reported separately
+				}
+				return null;
+			}
+
+			public Set<URI> defaultCase(EObject object) {
+				object.eContents().forEach(this::doSwitch);
+				return result;
+			}
+
+		};
+
+		objects.forEach(iconsSwitch::doSwitch);
 
 		return result;
 	}

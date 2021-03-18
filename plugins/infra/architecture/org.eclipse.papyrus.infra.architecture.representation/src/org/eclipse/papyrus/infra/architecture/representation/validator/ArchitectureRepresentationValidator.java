@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 CEA LIST and others.
+ * Copyright (c) 2020, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - bug 570097
  *
  *****************************************************************************/
 
@@ -133,7 +134,7 @@ public class ArchitectureRepresentationValidator extends AbstractEObjectDependen
 			}
 			return isOK;
 		} else {
-			Activator.log.warn(NLS.bind("The object {0} is not supported by the validation for {0} metamodel", ruleTovalidate, RepresentationPackage.eINSTANCE.getName()));
+			Activator.log.warn(NLS.bind("The object {0} is not supported by the validation for {1} metamodel", ruleTovalidate, RepresentationPackage.eINSTANCE.getName()));
 			return true;
 		}
 	}

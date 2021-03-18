@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 Christian W. Damus, CEA LIST, and others.
+ * Copyright (c) 2020, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -20,6 +20,7 @@ import java.util.Map;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.CustomModelChecker;
+import org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.messages.Messages;
 import org.eclipse.papyrus.uml.types.core.advices.applystereotype.FeatureToSet;
 import org.eclipse.papyrus.uml.types.core.advices.applystereotype.StereotypeToApply;
 import org.eclipse.uml2.uml.Profile;
@@ -47,14 +48,14 @@ public class ApplyStereotypeAdviceCustomValidator extends CustomModelChecker.Swi
 		LocalProfileIndex index = LocalProfileIndex.getInstance(stereotypeToApply, context);
 		Profile profile = index.getProfile(profileQualifiedName, stereotypeToApply);
 		if (profile == null) {
-			diagnostics.add(createDiagnostic(Diagnostic.ERROR, stereotypeToApply, format("Unresolved profile ''{1}'' in {0}.", context, stereotypeToApply, profileQualifiedName)));
+			diagnostics.add(createDiagnostic(Diagnostic.ERROR, stereotypeToApply, format(Messages.ApplyStereotypeAdviceCustomValidator_0, context, stereotypeToApply, profileQualifiedName)));
 		}
 	}
 
 	private void validateStereotypeName(StereotypeToApply stereotypeToApply, String qualifiedName, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		Stereotype stereotype = getStereotype(stereotypeToApply, context);
 		if (stereotype == null) {
-			diagnostics.add(createDiagnostic(Diagnostic.ERROR, stereotypeToApply, format("Unresolved stereotype in {0}.", context, stereotypeToApply)));
+			diagnostics.add(createDiagnostic(Diagnostic.ERROR, stereotypeToApply, format(Messages.ApplyStereotypeAdviceCustomValidator_1, context, stereotypeToApply)));
 		}
 	}
 
@@ -65,7 +66,7 @@ public class ApplyStereotypeAdviceCustomValidator extends CustomModelChecker.Swi
 
 	public void validate(FeatureToSet featureToSet, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!(featureToSet.eContainer() instanceof StereotypeToApply)) {
-			diagnostics.add(createDiagnostic(Diagnostic.ERROR, featureToSet, format("{0} must be contained in a StereotypeToApply.", context, featureToSet)));
+			diagnostics.add(createDiagnostic(Diagnostic.ERROR, featureToSet, format(Messages.ApplyStereotypeAdviceCustomValidator_2, context, featureToSet)));
 			return;
 		}
 
@@ -73,7 +74,7 @@ public class ApplyStereotypeAdviceCustomValidator extends CustomModelChecker.Swi
 		if (stereotype != null) {
 			String featureName = featureToSet.getFeatureName();
 			if (stereotype.getFeature(featureName) == null) {
-				diagnostics.add(createDiagnostic(Diagnostic.ERROR, featureToSet, format("No such feature ''{0}'' in stereotype of {1}.", context, featureName, featureToSet)));
+				diagnostics.add(createDiagnostic(Diagnostic.ERROR, featureToSet, format(Messages.ApplyStereotypeAdviceCustomValidator_3, context, featureName, featureToSet)));
 			}
 		}
 	}

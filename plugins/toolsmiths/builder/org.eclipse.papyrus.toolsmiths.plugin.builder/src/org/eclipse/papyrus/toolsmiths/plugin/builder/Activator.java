@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 CEA LIST, EclipseSource, Christian W. Damus, and others.
+ * Copyright (c) 2020, 2021 CEA LIST, EclipseSource, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,12 +11,14 @@
  * Contributors:
  *   Vincent Lorenzo (CEA LIST) <vincent.lorenzo@cea.fr> - Initial API and implementation
  *   Remi Schnekenburger (EclipseSource) - Bug 568495
- *   Christian W. Damus - bug 569357
+ *   Christian W. Damus - bugs 569357, 570097
  *
  *****************************************************************************/
 
 package org.eclipse.papyrus.toolsmiths.plugin.builder;
 
+import static org.eclipse.papyrus.toolsmiths.validation.architecture.constants.ArchitecturePluginValidationConstants.ARCHITECTURE_PLUGIN_VALIDATION_MARKER_TYPE;
+import static org.eclipse.papyrus.toolsmiths.validation.architecture.internal.checkers.ArchitecturePluginChecker.ARCHITECTURE_EXTENSION;
 import static org.eclipse.papyrus.toolsmiths.validation.common.utils.ModelResourceMapper.byExtension;
 import static org.eclipse.papyrus.toolsmiths.validation.common.utils.ModelResourceMapper.resourceSets;
 import static org.eclipse.papyrus.toolsmiths.validation.common.utils.ModelResourceMapper.rootsOfType;
@@ -25,8 +27,11 @@ import static org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.ch
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.papyrus.infra.core.architecture.ArchitectureDomain;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
+import org.eclipse.papyrus.infra.emf.utils.ResourceUtils;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
+import org.eclipse.papyrus.toolsmiths.validation.architecture.internal.checkers.ArchitecturePluginChecker;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.ModelResourceMapper;
 import org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.checkers.ElementTypesPluginChecker;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -70,11 +75,13 @@ public class Activator extends AbstractUIPlugin {
 
 		// model builder
 		PapyrusPluginBuilder.addModelBuilder(new GenericEMFModelBuilder());
-		PapyrusPluginBuilder.addModelBuilder(new ArchitectureModelBuilder());
 		PapyrusPluginBuilder.addModelBuilder(new XWTModelBuilder());
 		PapyrusPluginBuilder.addModelBuilder(new PluginCheckerBuilder(ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE, this::mapElementTypesResources)
 				.withChecker(ElementTypesPluginChecker.modelValidationCheckerFactory())
 				.withChecker(ElementTypesPluginChecker.customModelCheckerFactory()));
+		PapyrusPluginBuilder.addModelBuilder(new PluginCheckerBuilder(ARCHITECTURE_PLUGIN_VALIDATION_MARKER_TYPE, this::mapArchitectureResources)
+				.withChecker(ArchitecturePluginChecker.modelValidationCheckerFactory())
+				.withChecker(ArchitecturePluginChecker.customModelCheckerFactory()));
 
 		// manifest builder
 		PapyrusPluginBuilder.addManifestBuilder(new ManifestBuilder());
@@ -82,11 +89,16 @@ public class Activator extends AbstractUIPlugin {
 		PapyrusPluginBuilder.addManifestBuilder(new PluginCheckerBuilder(ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE, this::mapElementTypesResources)
 				.withChecker(ElementTypesPluginChecker.modelDependenciesCheckerFactory())
 				.withChecker(ElementTypesPluginChecker.buildPropertiesCheckerFactory()));
+		PapyrusPluginBuilder.addManifestBuilder(new PluginCheckerBuilder(ARCHITECTURE_PLUGIN_VALIDATION_MARKER_TYPE, this::mapArchitectureResources)
+				.withChecker(ArchitecturePluginChecker.buildPropertiesCheckerFactory())
+				.withChecker(ArchitecturePluginChecker.modelDependenciesCheckerFactory()));
 
 		// extension builder
 		PapyrusPluginBuilder.addPluginBuilder(new StaticProfileExtensionsBuilder());
 		PapyrusPluginBuilder.addPluginBuilder(new PluginCheckerBuilder(ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE, this::mapElementTypesResources)
 				.withChecker(ElementTypesPluginChecker.extensionsCheckerFactory()));
+		PapyrusPluginBuilder.addPluginBuilder(new PluginCheckerBuilder(ARCHITECTURE_PLUGIN_VALIDATION_MARKER_TYPE, this::mapArchitectureResources)
+				.withChecker(ArchitecturePluginChecker.extensionsCheckerFactory()));
 	}
 
 	@Override
@@ -107,6 +119,13 @@ public class Activator extends AbstractUIPlugin {
 	private ListMultimap<IFile, ElementTypeSetConfiguration> mapElementTypesResources(IProject project) {
 		ModelResourceMapper<ElementTypeSetConfiguration> mapper = new ModelResourceMapper<>(project);
 		return mapper.map(byExtension(ELEMENT_TYPES_CONFIGURATION_EXTENSION), resourceSets(), rootsOfType(ElementTypeSetConfiguration.class));
+	}
+
+	private ListMultimap<IFile, ArchitectureDomain> mapArchitectureResources(IProject project) {
+		ModelResourceMapper<ArchitectureDomain> mapper = new ModelResourceMapper<>(project);
+		return mapper.map(byExtension(ARCHITECTURE_EXTENSION),
+				resourceSets(ResourceUtils.createWorkspaceAwarePackageRegistry()),
+				rootsOfType(ArchitectureDomain.class));
 	}
 
 }
