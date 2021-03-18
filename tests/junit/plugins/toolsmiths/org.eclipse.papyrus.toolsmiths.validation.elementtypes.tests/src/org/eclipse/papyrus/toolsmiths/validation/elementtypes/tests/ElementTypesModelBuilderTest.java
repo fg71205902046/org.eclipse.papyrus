@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 Christian W. Damus, CEA LIST, and others.
+ * Copyright (c) 2020, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -67,6 +67,17 @@ public class ElementTypesModelBuilderTest extends AbstractPapyrusTest {
 			final List<IMarker> modelMarkers = fixture.getMarkers("resources/BookStore.elementtypesconfigurations"); //$NON-NLS-1$
 
 			assertThat(modelMarkers, hasItem(both(isMarkerSeverity(IMarker.SEVERITY_ERROR)).and(isMarkerMessage(containsString("Unresolved metamodel NS URI"))))); //$NON-NLS-1$
+		}
+
+		/**
+		 * Test the reporting of a non-existent icon.
+		 */
+		@Test
+		@OverlayFile(value = "bug569357-models/BookStore-iconNotFound.elementtypesconfigurations", path = "resources/BookStore.elementtypesconfigurations")
+		public void unresolvedIconReference() {
+			final List<IMarker> modelMarkers = fixture.getMarkers("resources/BookStore.elementtypesconfigurations"); //$NON-NLS-1$
+
+			assertThat(modelMarkers, hasItem(both(isMarkerSeverity(IMarker.SEVERITY_ERROR)).and(isMarkerMessage(containsString("Book_Class.png"))))); //$NON-NLS-1$
 		}
 	}
 

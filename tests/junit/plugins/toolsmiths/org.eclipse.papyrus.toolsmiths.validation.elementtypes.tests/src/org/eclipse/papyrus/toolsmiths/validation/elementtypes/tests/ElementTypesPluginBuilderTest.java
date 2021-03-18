@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2019, 2020 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2019, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,16 +10,19 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
- *   Christian W. Damus - bug 569357
+ *   Christian W. Damus - bugs 569357, 570097
  *
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.validation.elementtypes.tests;
 
 import static org.eclipse.papyrus.junit.matchers.MoreMatchers.greaterThanOrEqual;
 import static org.eclipse.papyrus.junit.matchers.MoreMatchers.hasAtLeast;
+import static org.eclipse.papyrus.junit.matchers.WorkspaceMatchers.isMarkerMessage;
 import static org.eclipse.papyrus.junit.matchers.WorkspaceMatchers.isMarkerSeverity;
 import static org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.ElementTypesPluginValidationConstants.ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE;
 import static org.hamcrest.CoreMatchers.anything;
+import static org.hamcrest.CoreMatchers.both;
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.everyItem;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.not;
@@ -29,6 +32,7 @@ import java.util.List;
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
+import org.eclipse.papyrus.toolsmiths.validation.common.tests.rules.AuxProject;
 import org.eclipse.papyrus.toolsmiths.validation.common.tests.rules.Build;
 import org.eclipse.papyrus.toolsmiths.validation.common.tests.rules.MarkerType;
 import org.eclipse.papyrus.toolsmiths.validation.common.tests.rules.OverlayFile;
@@ -73,6 +77,18 @@ public class ElementTypesPluginBuilderTest extends AbstractPapyrusTest {
 	}
 
 	/**
+	 * Test the reporting of a missing dependency on the bundle that deploys an icon referenced by the model.
+	 */
+	@Test
+	@OverlayFile(value = "bug569357-models/BookStore-iconBundleDependency.elementtypesconfigurations", path = "resources/BookStore.elementtypesconfigurations")
+	@AuxProject("org.eclipse.papyrus.toolsmiths.validation.elementtypes.resources")
+	public void iconBundleDependency() {
+		final List<IMarker> modelMarkers = fixture.getMarkers("META-INF/MANIFEST.MF"); //$NON-NLS-1$
+
+		assertThat(modelMarkers, hasItem(both(isMarkerSeverity(IMarker.SEVERITY_ERROR)).and(isMarkerMessage(containsString("elementtypes.resources"))))); //$NON-NLS-1$
+	}
+
+	/**
 	 * Test the reporting of problems on the <tt>build.properties</tt> file.
 	 */
 	@Test
@@ -97,6 +113,7 @@ public class ElementTypesPluginBuilderTest extends AbstractPapyrusTest {
 	 */
 	@Test
 	@OverlayFile("bug569357-ok/META-INF/MANIFEST.MF")
+	@AuxProject("org.eclipse.papyrus.toolsmiths.validation.elementtypes.resources")
 	public void dependencyValidationPasses() {
 		final List<IMarker> markers = fixture.getMarkers("META-INF/MANIFEST.MF"); //$NON-NLS-1$
 		assertThat(markers, not(hasItem(anything())));
