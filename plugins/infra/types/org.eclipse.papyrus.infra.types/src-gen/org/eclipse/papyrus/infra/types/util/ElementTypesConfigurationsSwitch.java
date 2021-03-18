@@ -169,6 +169,12 @@ public class ElementTypesConfigurationsSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ElementTypesConfigurationsPackage.ANNOTATION: {
+				Annotation annotation = (Annotation)theEObject;
+				T result = caseAnnotation(annotation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case ElementTypesConfigurationsPackage.METAMODEL_TYPE_CONFIGURATION: {
 				MetamodelTypeConfiguration metamodelTypeConfiguration = (MetamodelTypeConfiguration)theEObject;
 				T result = caseMetamodelTypeConfiguration(metamodelTypeConfiguration);
@@ -318,6 +324,21 @@ public class ElementTypesConfigurationsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNamedConfiguration(NamedConfiguration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Annotation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Annotation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAnnotation(Annotation object) {
 		return null;
 	}
 

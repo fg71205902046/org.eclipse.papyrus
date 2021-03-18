@@ -73,6 +73,7 @@ public class ElementTypesConfigurationsFactoryImpl extends EFactoryImpl implemen
 			case ElementTypesConfigurationsPackage.ICON_ENTRY: return createIconEntry();
 			case ElementTypesConfigurationsPackage.CONTAINER_CONFIGURATION: return createContainerConfiguration();
 			case ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION: return createSpecializationTypeConfiguration();
+			case ElementTypesConfigurationsPackage.ANNOTATION: return createAnnotation();
 			case ElementTypesConfigurationsPackage.METAMODEL_TYPE_CONFIGURATION: return createMetamodelTypeConfiguration();
 			case ElementTypesConfigurationsPackage.EDIT_HELPER_ADVICE_CONFIGURATION: return createEditHelperAdviceConfiguration();
 			case ElementTypesConfigurationsPackage.ADVICE_BINDING_CONFIGURATION: return createAdviceBindingConfiguration();
@@ -156,6 +157,17 @@ public class ElementTypesConfigurationsFactoryImpl extends EFactoryImpl implemen
 	public SpecializationTypeConfiguration createSpecializationTypeConfiguration() {
 		SpecializationTypeConfigurationImpl specializationTypeConfiguration = new SpecializationTypeConfigurationImpl();
 		return specializationTypeConfiguration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Annotation createAnnotation() {
+		AnnotationImpl annotation = new AnnotationImpl();
+		return annotation;
 	}
 
 	/**

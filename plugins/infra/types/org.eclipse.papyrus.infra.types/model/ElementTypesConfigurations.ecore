@@ -30,6 +30,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningType" ordered="false"
         eType="#//ElementTypeConfiguration" eOpposite="#//ElementTypeConfiguration/ownedConfigurations"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="annotations" ordered="false"
+        upperBound="-1" eType="#//Annotation" containment="true" eOpposite="#//Annotation/configurationElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ElementTypeConfiguration" abstract="true"
       eSuperTypes="#//ConfigurationElement #//IdentifiedConfiguration #//NamedConfiguration">
@@ -152,6 +154,14 @@
   <eClassifiers xsi:type="ecore:EClass" name="NamedConfiguration" abstract="true"
       interface="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Annotation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="source" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="configurationElement" ordered="false"
+        lowerBound="1" eType="#//ConfigurationElement" eOpposite="#//ConfigurationElement/annotations"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MetamodelTypeConfiguration" eSuperTypes="#//ElementTypeConfiguration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="eClass" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
