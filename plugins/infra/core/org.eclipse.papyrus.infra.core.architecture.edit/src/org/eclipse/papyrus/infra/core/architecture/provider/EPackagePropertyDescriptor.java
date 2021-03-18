@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2021 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,14 +11,21 @@
  *
  * Contributors:
  *  Maged Elaasar - Initial API and implementation
+ *  Christian W. Damus - bug 570097
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.architecture.provider;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 
+import org.eclipse.emf.common.util.UniqueEList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
@@ -35,29 +42,44 @@ public class EPackagePropertyDescriptor extends SurrogateItemPropertyDescriptor 
 
 	@Override
 	public Collection<?> getChoiceOfValues(Object object) {
-		EPackage.Registry reg = EPackage.Registry.INSTANCE;
-		Collection<EPackage> result = new ArrayList<EPackage>(reg.size());
-			Collection<String> keys = new ArrayList<String>(reg.keySet());
-			for (String key : keys) {
-				try {
-					EPackage pack = reg.getEPackage(key);
-					if (!result.contains(pack)) {
-						result.add(reg.getEPackage(key));
-					}
-				} catch (Throwable e) {
-					continue;
+		Collection<EPackage> result = new UniqueEList.FastCompare<>();
+
+		EPackage.Registry reg = Optional.ofNullable(object)
+				.filter(EObject.class::isInstance).map(EObject.class::cast)
+				.map(EObject::eResource).map(Resource::getResourceSet)
+				.map(ResourceSet::getPackageRegistry)
+				.orElse(EPackage.Registry.INSTANCE);
+
+		Set<String> keys = new HashSet<>();
+		keys.addAll(reg.keySet());
+		if (reg != EPackage.Registry.INSTANCE) {
+			// Assume it delegates
+			keys.addAll(EPackage.Registry.INSTANCE.keySet());
+		}
+
+		for (String key : keys) {
+			try {
+				EPackage pack = reg.getEPackage(key);
+				if (pack != null) {
+					result.add(pack);
 				}
+			} catch (Exception e) {
+				continue;
 			}
+		}
+
 		return result;
 	}
 
 	@Override
 	public IItemLabelProvider getLabelProvider(Object object) {
 		return new IItemLabelProvider() {
+			@Override
 			public String getText(Object object) {
 				return ((EPackage) object).getNsURI();
 			}
 
+			@Override
 			public Object getImage(Object object) {
 				return null;
 			}

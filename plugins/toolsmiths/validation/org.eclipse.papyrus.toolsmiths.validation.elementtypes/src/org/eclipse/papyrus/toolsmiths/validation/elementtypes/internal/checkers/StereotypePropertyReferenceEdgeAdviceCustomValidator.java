@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 Christian W. Damus, CEA LIST, and others.
+ * Copyright (c) 2020, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -20,6 +20,7 @@ import java.util.Map;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.CustomModelChecker;
+import org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.messages.Messages;
 import org.eclipse.papyrus.uml.types.core.advices.stereotypepropertyreferenceedgeadvice.StereotypePropertyReferenceEdgeAdviceConfiguration;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
@@ -49,7 +50,7 @@ public class StereotypePropertyReferenceEdgeAdviceCustomValidator extends Custom
 		boolean result = stereotype != null;
 
 		if (!result) {
-			diagnostics.add(createDiagnostic(Diagnostic.ERROR, stereotypeReference, format("Unresolved stereotype in {0}.", context, stereotypeReference)));
+			diagnostics.add(createDiagnostic(Diagnostic.ERROR, stereotypeReference, format(Messages.StereotypePropertyReferenceEdgeAdviceCustomValidator_0, context, stereotypeReference)));
 		}
 
 		return result;
@@ -63,9 +64,9 @@ public class StereotypePropertyReferenceEdgeAdviceCustomValidator extends Custom
 	private void validateFeatureToSet(StereotypePropertyReferenceEdgeAdviceConfiguration stereotypeReference, Stereotype stereotype, String featureName, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		Property property = stereotype.getAttribute(featureName, null);
 		if (property == null) {
-			diagnostics.add(createDiagnostic(Diagnostic.ERROR, stereotypeReference, format("Unresolved feature ''{1}'' to set in {0}.", context, stereotypeReference, featureName)));
+			diagnostics.add(createDiagnostic(Diagnostic.ERROR, stereotypeReference, format(Messages.StereotypePropertyReferenceEdgeAdviceCustomValidator_1, context, stereotypeReference, featureName)));
 		} else if (property.getType() == null) {
-			diagnostics.add(createDiagnostic(Diagnostic.ERROR, stereotypeReference, format("Cannot set feature ''{1}'' in {0} because it has no type.", context, stereotypeReference, featureName)));
+			diagnostics.add(createDiagnostic(Diagnostic.ERROR, stereotypeReference, format(Messages.StereotypePropertyReferenceEdgeAdviceCustomValidator_2, context, stereotypeReference, featureName)));
 		}
 	}
 

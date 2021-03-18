@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2019, 2020 CEA LIST and others.
+ * Copyright (c) 2019, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
+ *   Christian W. Damus - bug 570097
  *
  *****************************************************************************/
 
@@ -38,6 +39,8 @@ import org.eclipse.papyrus.architectureview.Activator;
 import org.eclipse.papyrus.architectureview.providers.ArchiectureViewLabelProvider;
 import org.eclipse.papyrus.architectureview.providers.ArchitectureViewContentProvider;
 import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.emf.utils.ResourceUtils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -65,11 +68,13 @@ public class ArchitectureView extends ViewPart {
 	 */
 	private ResourceSet resourceSet;
 
+	private ArchitectureDomainManager.Listener architectureListener = this::domainManagerChanged;
+
 	/**
 	 * Constructor.
 	 */
 	public ArchitectureView() {
-		// Do nothing here
+		super();
 	}
 
 	/**
@@ -157,12 +162,6 @@ public class ArchitectureView extends ViewPart {
 
 	}
 
-	/**
-	 * Create the tree viewer.
-	 * {@inheritDoc}
-	 *
-	 * @see org.eclipse.ui.part.WorkbenchPart#createPartControl(org.eclipse.swt.widgets.Composite)
-	 */
 	@Override
 	public void createPartControl(final Composite parent) {
 		viewer = new TreeViewer(createTree(parent));
@@ -236,21 +235,11 @@ public class ArchitectureView extends ViewPart {
 		});
 		createColumns();
 
-		// Create the resources corresponding to the architectures
-		resourceSet = new ResourceSetImpl();
-		final Collection<URI> registeredArchitectureModels = ArchitectureDomainManager.getInstance().getRegisteredArchitectureModels();
-		final Collection<Resource> inputResources = new ArrayList<>(registeredArchitectureModels.size());
-		for (final URI uri : registeredArchitectureModels) {
-			Resource testResource = resourceSet.createResource(uri);
-			try {
-				testResource.load(null);
-				inputResources.add(testResource);
-			} catch (IOException e) {
-				// Do nothing
-			}
-		}
+		// Populate the viewer
+		domainManagerChanged();
 
-		viewer.setInput(inputResources);
+		// Listen for updates
+		ArchitectureDomainManager.getInstance().addListener(architectureListener);
 	}
 
 	/**
@@ -271,11 +260,6 @@ public class ArchitectureView extends ViewPart {
 		return new ArchitectureViewContentProvider();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see org.eclipse.ui.part.WorkbenchPart#setFocus()
-	 */
 	@Override
 	public void setFocus() {
 		final Viewer viewer = getViewer();
@@ -284,14 +268,45 @@ public class ArchitectureView extends ViewPart {
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see org.eclipse.ui.part.WorkbenchPart#dispose()
-	 */
 	@Override
 	public void dispose() {
-		resourceSet = null;
+		ArchitectureDomainManager.getInstance().removeListener(architectureListener);
+		disposeResourceSet();
 		super.dispose();
 	}
+
+	/**
+	 * The architecture models in the resource set can reference UML models, especially via dynamic profile definitions.
+	 * Because the UML {@code CacheAdapter} is a static singleton, we need to unload resources explicitly to ensure
+	 * that models do not leak in the cache adapter.
+	 */
+	private void disposeResourceSet() {
+		if (resourceSet != null) {
+			EMFHelper.unload(resourceSet);
+			resourceSet = null;
+		}
+	}
+
+	private void domainManagerChanged() {
+		// Create the resources corresponding to the architectures
+		disposeResourceSet();
+		resourceSet = new ResourceSetImpl();
+		resourceSet.setPackageRegistry(ResourceUtils.createWorkspaceAwarePackageRegistry());
+		resourceSet.setURIConverter(ResourceUtils.createWorkspaceAwareURIConverter());
+
+		final Collection<URI> registeredArchitectureModels = ArchitectureDomainManager.getInstance().getRegisteredArchitectureModels();
+		final Collection<Resource> inputResources = new ArrayList<>(registeredArchitectureModels.size());
+		for (final URI uri : registeredArchitectureModels) {
+			Resource testResource = resourceSet.createResource(uri);
+			try {
+				testResource.load(null);
+				inputResources.add(testResource);
+			} catch (IOException e) {
+				// Do nothing
+			}
+		}
+
+		viewer.setInput(inputResources);
+	}
+
 }

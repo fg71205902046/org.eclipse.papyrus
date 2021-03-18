@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017 CEA LIST.
+ * Copyright (c) 2017, 2021 CEA LIST, Christian W. Damus, and others.
  * 
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *  
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
+ *  Christian W. Damus - bug 570097
  *  
  * 
  */
@@ -99,6 +100,7 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.infra.architecture.representation.provider.RepresentationItemProviderAdapterFactory;
 import org.eclipse.papyrus.infra.core.architecture.provider.ArchitectureItemProviderAdapterFactory;
+import org.eclipse.papyrus.infra.emf.utils.ResourceUtils;
 import org.eclipse.papyrus.infra.types.provider.ElementTypesConfigurationsItemProviderAdapterFactory;
 import org.eclipse.papyrus.infra.ui.architecture.ArchitectureUIPlugin;
 import org.eclipse.swt.SWT;
@@ -623,6 +625,7 @@ public class ArchitectureEditor
 		// Create the editing domain with a special command stack.
 		//
 		editingDomain = new AdapterFactoryEditingDomain(adapterFactory, commandStack, new HashMap<Resource, Boolean>());
+		editingDomain.getResourceSet().setPackageRegistry(ResourceUtils.createWorkspaceAwarePackageRegistry());
 	}
 
 	/**

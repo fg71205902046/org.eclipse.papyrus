@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 Christian W. Damus, CEA LIST, and others.
+ * Copyright (c) 2020, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -20,6 +20,7 @@ import java.util.Map;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.CustomModelChecker;
+import org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.messages.Messages;
 import org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeApplicationMatcherConfiguration;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
@@ -47,14 +48,14 @@ public class StereotypeApplicationMatcherCustomValidator extends CustomModelChec
 		LocalProfileIndex index = LocalProfileIndex.getInstance(stereotypeMatcher, context);
 		Profile profile = index.getProfileByURI(profileURI, stereotypeMatcher);
 		if (profile == null) {
-			diagnostics.add(createDiagnostic(Diagnostic.ERROR, stereotypeMatcher, format("Unresolved profile ''{1}'' in {0}.", context, stereotypeMatcher, profileURI)));
+			diagnostics.add(createDiagnostic(Diagnostic.ERROR, stereotypeMatcher, format(Messages.StereotypeApplicationMatcherCustomValidator_0, context, stereotypeMatcher, profileURI)));
 		}
 	}
 
 	private void validateStereotypeName(StereotypeApplicationMatcherConfiguration stereotypeMatcher, String qualifiedName, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		Stereotype stereotype = getStereotype(stereotypeMatcher, qualifiedName, context);
 		if (stereotype == null) {
-			diagnostics.add(createDiagnostic(Diagnostic.ERROR, stereotypeMatcher, format("Unresolved stereotype in {0}.", context, stereotypeMatcher)));
+			diagnostics.add(createDiagnostic(Diagnostic.ERROR, stereotypeMatcher, format(Messages.StereotypeApplicationMatcherCustomValidator_1, context, stereotypeMatcher)));
 		}
 	}
 

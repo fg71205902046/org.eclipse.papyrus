@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2019, 2020 CEA LIST, EclipseSource, Christian W. Damus, and others.
+ * Copyright (c) 2019, 2021 CEA LIST, EclipseSource, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,7 +11,7 @@
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
  *   Remi Schnekenburger (EclipseSource) - Bug 568495
- *   Christian W. Damus - bug 569357
+ *   Christian W. Damus - bugs 569357, 570097
  *
  *****************************************************************************/
 
@@ -24,10 +24,13 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Queue;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.filebuffers.FileBuffers;
 import org.eclipse.core.filebuffers.ITextFileBuffer;
@@ -36,8 +39,10 @@ import org.eclipse.core.filebuffers.LocationKind;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
@@ -52,7 +57,9 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.toolsmiths.validation.common.Activator;
+import org.eclipse.papyrus.toolsmiths.validation.common.internal.messages.Messages;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.ProjectManagementService;
 import org.eclipse.pde.core.build.IBuild;
 import org.eclipse.pde.core.build.IBuildEntry;
@@ -66,8 +73,10 @@ import org.eclipse.pde.internal.core.text.build.BuildModel;
 @SuppressWarnings("restriction")
 public class BuildPropertiesChecker extends AbstractPluginChecker {
 
-	private static final String GENMODEL_EXTENSION = "genmodel";
-	private static final String ECORE_EXTENSION = "ecore";
+	private static final String GENMODEL_EXTENSION = "genmodel"; //$NON-NLS-1$
+	private static final String ECORE_EXTENSION = "ecore"; //$NON-NLS-1$
+
+	private final Resource modelResource;
 
 	/**
 	 * Computation of the immediate dependencies of a model file. This is invoked recursively
@@ -84,7 +93,7 @@ public class BuildPropertiesChecker extends AbstractPluginChecker {
 	 *            The model file.
 	 */
 	public BuildPropertiesChecker(final IProject project, final IFile modelFile) {
-		super(project, modelFile);
+		this(project, modelFile, (Resource) null);
 	}
 
 	/**
@@ -98,7 +107,43 @@ public class BuildPropertiesChecker extends AbstractPluginChecker {
 	 *            The marker type.
 	 */
 	public BuildPropertiesChecker(final IProject project, final IFile modelFile, final String markerType) {
+		this(project, modelFile, null, markerType);
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * @param project
+	 *            The current project resource.
+	 * @param modelFile
+	 *            The model file.
+	 * @param modelResource
+	 *            the loaded EMF model resource to scan for cross-referenced model resources, or {@code null}
+	 *            if such scan is not needed
+	 */
+	public BuildPropertiesChecker(final IProject project, final IFile modelFile, Resource modelResource) {
+		super(project, modelFile);
+
+		this.modelResource = modelResource;
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * @param project
+	 *            The current project resource.
+	 * @param modelFile
+	 *            The model file.
+	 * @param modelResource
+	 *            the loaded EMF model resource to scan for cross-referenced model resources, or {@code null}
+	 *            if such scan is not needed
+	 * @param markerType
+	 *            The marker type.
+	 */
+	public BuildPropertiesChecker(final IProject project, final IFile modelFile, Resource modelResource, final String markerType) {
 		super(project, modelFile, markerType);
+
+		this.modelResource = modelResource;
 	}
 
 	/**
@@ -130,7 +175,7 @@ public class BuildPropertiesChecker extends AbstractPluginChecker {
 
 	@Override
 	public void check(DiagnosticChain diagnostics, final IProgressMonitor monitor) {
-		SubMonitor subMonitor = SubMonitor.convert(monitor, "Validate 'build.properties' file for '" + getModelFile().getName() + "'.", 1);
+		SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(Messages.BuildPropertiesChecker_2, getModelFile().getName()), 1);
 		if (subMonitor.isCanceled()) {
 			return;
 		}
@@ -139,7 +184,8 @@ public class BuildPropertiesChecker extends AbstractPluginChecker {
 		final IBuildModel buildModel = ProjectManagementService.getPluginBuild(getProject());
 		if (null != buildModel) {
 			// Calculate the closure of resources to get
-			Collection<IResource> requiredResources = computeRequiredResources(getModelFile());
+			Set<IResource> requiredResources = computeRequiredResources(getModelFile());
+			requiredResources.addAll(getCrossReferencedResources());
 
 			// And don't worry about resources in other projects, because those projects will package them
 			requiredResources.removeIf(Predicate.not(getProject()::contains));
@@ -162,7 +208,7 @@ public class BuildPropertiesChecker extends AbstractPluginChecker {
 
 					// Only accept folders as prefixes
 					if (path.startsWith(token)) {
-						if (token.endsWith("/")) {
+						if (token.endsWith("/")) { //$NON-NLS-1$
 							// It's a folder explicitly. Other required resources may also match it
 							iter.remove();
 						} else {
@@ -180,7 +226,7 @@ public class BuildPropertiesChecker extends AbstractPluginChecker {
 				// Create marker for every required resource that wasn't matched
 				List<BuildError> errors = new ArrayList<>(requiredResources.size());
 				for (IResource next : requiredResources) {
-					errors.add(new BuildError(getMarkerType(), "The build does not include '" + next.getProjectRelativePath() + "'", Diagnostic.ERROR, IBuildEntry.BIN_INCLUDES));
+					errors.add(new BuildError(getMarkerType(), NLS.bind(Messages.BuildPropertiesChecker_3, next.getProjectRelativePath()), Diagnostic.ERROR, IBuildEntry.BIN_INCLUDES));
 				}
 				reportErrors(diagnostics, errors);
 			}
@@ -234,7 +280,7 @@ public class BuildPropertiesChecker extends AbstractPluginChecker {
 		URI ecoreURI = ecoreImpl.eResource().getURI();
 		List<String> segments = new ArrayList<>(ecoreURI.segmentsList());
 		// return only relative path from plugin root (platform:/plugin/<plugin-id>/ is removed)
-		return String.join("/", segments.subList(2, segments.size()));
+		return String.join("/", segments.subList(2, segments.size())); //$NON-NLS-1$
 	}
 
 	/**
@@ -246,7 +292,7 @@ public class BuildPropertiesChecker extends AbstractPluginChecker {
 	 */
 	private static Optional<GenModel> loadGenModel(IProject project, String genModelPath) {
 		try {
-			URI uri = URI.createPlatformPluginURI(project.getName() + "/" + genModelPath, true);
+			URI uri = URI.createPlatformPluginURI(project.getName() + "/" + genModelPath, true); //$NON-NLS-1$
 			ResourceSet set = new ResourceSetImpl();
 			set.getURIConverter().getURIMap().putAll(EcorePlugin.computePlatformURIMap(true));
 			if (set.getURIConverter().exists(uri, null)) {
@@ -259,13 +305,13 @@ public class BuildPropertiesChecker extends AbstractPluginChecker {
 				}
 			}
 		} catch (Exception e) {
-			Activator.log.warn("Papyrus Build Checker (genmodel loading): " + e.getMessage());
+			Activator.log.error("Failed to load genmodel in Papyrus Build Checker.", e); //$NON-NLS-1$
 		}
 		return Optional.empty();
 	}
 
-	private Collection<IResource> computeRequiredResources(IResource root) {
-		Collection<IResource> result = new LinkedHashSet<>();
+	private Set<IResource> computeRequiredResources(IResource root) {
+		Set<IResource> result = new LinkedHashSet<>();
 
 		Queue<IResource> queue = new ArrayDeque<>();
 		queue.add(root);
@@ -278,6 +324,31 @@ public class BuildPropertiesChecker extends AbstractPluginChecker {
 			if (dependenciesFunction != null && next instanceof IFile) {
 				queue.addAll(dependenciesFunction.apply((IFile) next));
 			}
+		}
+
+		return result;
+	}
+
+	private Set<IResource> getCrossReferencedResources() {
+		Set<IResource> result = Set.of();
+
+		if (modelResource != null) {
+			Set<URI> xrefURIs = ModelDependenciesChecker.computeExternalCrossReferences(modelResource);
+			result = xrefURIs.stream().map(this::getResource).filter(Objects::nonNull).collect(Collectors.toSet());
+		}
+
+		return result;
+	}
+
+	private IResource getResource(URI uri) {
+		IResource result = null;
+
+		uri = modelResource.getResourceSet().getURIConverter().normalize(uri);
+		if (uri.isPlatformResource()) {
+			// If it's a platform plugin resource, then it is expected to be deployed independently
+			// and so needs not be considered in our build.properties validation
+			String uriPlatformString = uri.toPlatformString(true);
+			result = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(uriPlatformString));
 		}
 
 		return result;

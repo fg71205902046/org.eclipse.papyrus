@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 CEA LIST and others.
+ * Copyright (c) 2020, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - bug 570097
  *
  *****************************************************************************/
 
@@ -28,7 +29,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.DiagnosticEquivalence;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.IPluginChecker2;
-import org.eclipse.papyrus.toolsmiths.validation.common.checkers.IPluginChecker2.DynamicMessageArgument;
+import org.eclipse.papyrus.toolsmiths.validation.common.checkers.IPluginChecker2.MessageArgument;
 
 /**
  * A diagnostic chain implementation that supports the merging of {@link Diagnostic}s for
@@ -73,8 +74,8 @@ public final class CheckerDiagnosticChain implements DiagnosticChain, Iterable<D
 
 		existing.ifPresentOrElse(target -> {
 			// The diagnostics could not have been equivalent had they not the same number of arguments
-			List<DynamicMessageArgument> targetArgs = DynamicMessageArgument.stream(target).collect(Collectors.toList());
-			List<DynamicMessageArgument> sourceArgs = DynamicMessageArgument.stream(diagnostic).collect(Collectors.toList());
+			List<MessageArgument> targetArgs = MessageArgument.stream(target).collect(Collectors.toList());
+			List<MessageArgument> sourceArgs = MessageArgument.stream(diagnostic).collect(Collectors.toList());
 			IntStream.range(0, targetArgs.size()).forEach(i -> targetArgs.get(i).merge(sourceArgs.get(i)));
 		}, () -> {
 			// This is the first diagnostic on this dynamic message pattern

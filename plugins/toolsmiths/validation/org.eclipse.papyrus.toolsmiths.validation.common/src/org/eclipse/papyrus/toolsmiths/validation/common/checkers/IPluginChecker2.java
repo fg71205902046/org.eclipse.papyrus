@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 Christian W. Damus, CEA LIST, and others.
+ * Copyright (c) 2020, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -173,8 +173,8 @@ public interface IPluginChecker2 {
 	}
 
 	/**
-	 * Create a dynamic message argument to be plugged into the message when creating a marker from the diagnostic.
-	 * The power of dynamic messages comes from how they are accumulated: when appending a diagnostic that has dynamic
+	 * Create a collated message argument to be plugged into the message when creating a marker from the diagnostic.
+	 * The power of dynamic messages comes from how they are accumulated: when appending a diagnostic that has collated
 	 * message arguments to a {@code DiagnosticChain}, the message arguments will be merged with an existing dynamic-message
 	 * diagnostic that represents the same problem (is otherwise equivalent). Of course, this only works with the
 	 * diagnostic chain that is passed by the <em>Plugin Builder</em> and to its checkers.
@@ -186,8 +186,28 @@ public interface IPluginChecker2 {
 	 *
 	 * @return the dynamic message argument
 	 */
-	static DynamicMessageArgument dynamicMessageArgument(int index, Object value) {
-		return new DynamicMessageArgument(index, value);
+	static CollatedMessageArgument collatedMessageArgument(int index, Object value) {
+		return new CollatedMessageArgument(index, value);
+	}
+
+	/**
+	 * Create a static message argument to be plugged into the message when creating a marker from the diagnostic.
+	 * Unlike a {@linkplain #collatedMessageArgument(int, Object) collated message argument}, diagnostics that
+	 * have the same pattern are distinct if they have distinct static arguments; they are not collated with
+	 * an aggregation of these arguments. This allows pass-through of arguments into a translatable string
+	 * pattern, avoiding the necessity of multiple passes of message formatting, which would require complex
+	 * layering of escape sequences for single-quotes and backslash sequences.
+	 *
+	 * @param index
+	 *            the message parameter index to fill
+	 * @param value
+	 *            the value to fill it with
+	 *
+	 * @return the static message argument
+	 * @see #collatedMessageArgument(int, Object)
+	 */
+	static MessageArgument messageArgument(int index, Object value) {
+		return new MessageArgument(index, value);
 	}
 
 	/**
@@ -196,13 +216,14 @@ public interface IPluginChecker2 {
 	 *
 	 * @param diagnostic
 	 *            a diagnostic
-	 * @return whether it has any {@linkplain #dynamicMessageArgument(int, Object) dynamic message arguments}
+	 * @return whether it has any {@linkplain #messageArgument(int, Object) dynamic message arguments}
 	 *
-	 * @see #dynamicMessageArgument(int, Object)
+	 * @see #messageArgument(int, Object)
+	 * @see #collatedMessageArgument(int, Object)
 	 */
 	static boolean hasDynamicMessage(Diagnostic diagnostic) {
 		List<?> data = diagnostic.getData();
-		return data != null && data.stream().anyMatch(DynamicMessageArgument.class::isInstance);
+		return data != null && data.stream().anyMatch(MessageArgument.class::isInstance);
 	}
 
 	/**
@@ -213,11 +234,12 @@ public interface IPluginChecker2 {
 	 * @return the dynamic message
 	 *
 	 * @see #hasDynamicMessage(Diagnostic)
-	 * @see #dynamicMessageArgument(int, Object)
+	 * @see #messageArgument(int, Object)
+	 * @see #collatedMessageArgument(int, Object)
 	 */
 	static String getDynamicMessage(Diagnostic diagnostic) {
-		Object[] args = DynamicMessageArgument.stream(diagnostic)
-				.map(DynamicMessageArgument::getValueAsString)
+		Object[] args = MessageArgument.stream(diagnostic)
+				.map(MessageArgument::getValueAsString)
 				.toArray();
 		return NLS.bind(diagnostic.getMessage(), args);
 	}
@@ -356,7 +378,7 @@ public interface IPluginChecker2 {
 
 		@Override
 		public String toString() {
-			return String.format("@type=%s", type);
+			return String.format("@type=%s", type); //$NON-NLS-1$
 		}
 
 	}
@@ -455,48 +477,67 @@ public interface IPluginChecker2 {
 
 		@Override
 		public String toString() {
-			return String.format("%s=%s", name, value);
+			return String.format("%s=%s", name, value); //$NON-NLS-1$
 		}
 
 	}
 
 	/**
-	 * <p>
 	 * A token to put in the {@linkplain Diagnostic#getData() data list} of a {@link Diagnostic} to specify a positional
-	 * argument in a dynamic message that is composed when creating the marker from the message pattern.
-	 * </p>
-	 * <p>
-	 * The values of dynamic message arguments are ignored in the comparison of {@link Diagnostic}s because all values
-	 * in the same position from diagnostics of the same message pattern and severity (and other attributes) are combined
-	 * when generating the message for the marker.
-	 * </p>
+	 * argument in a message that is composed when creating the marker from the message pattern, not at the time of
+	 * creating the diagnostic. These are useful in combination with one or more {@link CollatedMessageArgument}s
+	 * that allow collation of multiple diagnostic messages into one problem marker.
 	 */
-	static final class DynamicMessageArgument implements Comparable<DynamicMessageArgument> {
+	static class MessageArgument implements Comparable<MessageArgument> {
 		private final int index;
 		private Object value;
 
 		/**
-		 * Create a new positional dynamic message argument.
+		 * Create a new positional message argument.
 		 *
 		 * @param index
 		 *            the index of the message parameter to substitute
 		 * @param value
 		 *            the value to substitute for that parameter
 		 */
-		public DynamicMessageArgument(int index, Object value) {
+		public MessageArgument(int index, Object value) {
+			super();
+
+			if (getClass() != MessageArgument.class && getClass() != CollatedMessageArgument.class) {
+				throw new AssertionError("Illegal subclass of MessageClass"); //$NON-NLS-1$
+			}
+
 			this.index = index;
 			this.value = value;
 		}
 
-		public int getIndex() {
+		/**
+		 * Query whether I am a collated argument, to be aggregated with other arguments at the same position
+		 * in other similar diagnostics.
+		 *
+		 * @return whether I am a collated argument
+		 */
+		public boolean isCollated() {
+			return false;
+		}
+
+		public final int getIndex() {
 			return index;
 		}
 
-		public Object getValue() {
+		public final Object getValue() {
 			return value;
 		}
 
-		public String getValueAsString() {
+		final void setValue(Object value) {
+			this.value = value;
+		}
+
+		public void merge(MessageArgument argument) {
+			// Static message arguments do not merge
+		}
+
+		public final String getValueAsString() {
 			if (value == null) {
 				return ""; //$NON-NLS-1$
 			}
@@ -509,22 +550,108 @@ public interface IPluginChecker2 {
 			return String.valueOf(value);
 		}
 
-		public void merge(DynamicMessageArgument argument) {
+		@Override
+		public final int compareTo(MessageArgument o) {
+			return Integer.compare(getIndex(), o.getIndex());
+		}
+
+		@Override
+		public final int hashCode() {
+			int result = Boolean.hashCode(isCollated());
+
+			result = result + 31 * getIndex();
+
+			if (!isCollated()) {
+				// We never change the value of a static message argument
+				result = result + 37 * (getValue() == null ? 0 : getValue().hashCode());
+			} // Collated arguments are differentiated only by index
+
+			return result;
+		}
+
+		@Override
+		public final boolean equals(Object obj) {
+			if (this == obj) {
+				return true;
+			}
+			if (!(obj instanceof MessageArgument)) {
+				return false;
+			}
+			MessageArgument other = (MessageArgument) obj;
+			return other.isCollated() == isCollated()
+					&& other.getIndex() == getIndex()
+					// Collated arguments are differentiated only by index
+					&& (isCollated()
+							// We never change the value of a static message argument
+							|| Objects.equals(getValue(), other.getValue()));
+		}
+
+		@Override
+		public String toString() {
+			return String.format("{%d}=\"%s\"", index, value); //$NON-NLS-1$
+		}
+
+		/**
+		 * Obtain a stream over the message arguments of a {@code diagnostic}, in position order.
+		 *
+		 * @param diagnostic
+		 *            a diagnostic
+		 * @return its message arguments, in order
+		 */
+		public static Stream<MessageArgument> stream(Diagnostic diagnostic) {
+			return diagnostic.getData().stream()
+					.filter(MessageArgument.class::isInstance).map(MessageArgument.class::cast)
+					.sorted();
+		}
+	}
+
+	/**
+	 * <p>
+	 * A token to put in the {@linkplain Diagnostic#getData() data list} of a {@link Diagnostic} to specify a positional
+	 * argument in a dynamic message that is composed when creating the marker from the message pattern.
+	 * </p>
+	 * <p>
+	 * The values of collated message arguments are ignored in the comparison of {@link Diagnostic}s because all values
+	 * in the same position from diagnostics of the same message pattern and severity (and other attributes) are combined
+	 * when generating the message for the marker.
+	 * </p>
+	 */
+	static final class CollatedMessageArgument extends MessageArgument {
+
+		/**
+		 * Create a new positional dynamic message argument.
+		 *
+		 * @param index
+		 *            the index of the message parameter to substitute
+		 * @param value
+		 *            the value to substitute for that parameter
+		 */
+		public CollatedMessageArgument(int index, Object value) {
+			super(index, value);
+		}
+
+		@Override
+		public final boolean isCollated() {
+			return true;
+		}
+
+		@Override
+		public final void merge(MessageArgument argument) {
 			if (argument.getIndex() != getIndex()) {
 				throw new IllegalArgumentException("attempt to merge arguments at different positions"); //$NON-NLS-1$
 			}
 
-			if (this.value == null) {
-				this.value = safeCopy(argument.getValue());
-			} else if (this.value instanceof Collection<?>) {
+			if (getValue() == null) {
+				setValue(safeCopy(argument.getValue()));
+			} else if (getValue() instanceof Collection<?>) {
 				@SuppressWarnings("unchecked")
-				Collection<Object> collection = (Collection<Object>) this.value;
+				Collection<Object> collection = (Collection<Object>) getValue();
 				merge(collection, safeCopy(argument.getValue()));
 			} else {
 				Collection<Object> collection = new ArrayList<>();
-				collection.add(this.value);
+				collection.add(getValue());
 				merge(collection, safeCopy(argument.getValue()));
-				this.value = collection;
+				setValue(collection);
 			}
 		}
 
@@ -544,46 +671,6 @@ public interface IPluginChecker2 {
 			} else {
 				collection.add(value);
 			}
-		}
-
-		@Override
-		public int compareTo(DynamicMessageArgument o) {
-			return Integer.compare(getIndex(), o.getIndex());
-		}
-
-		@Override
-		public int hashCode() {
-			return index;
-		}
-
-		@Override
-		public boolean equals(Object obj) {
-			if (this == obj) {
-				return true;
-			}
-			if (!(obj instanceof DynamicMessageArgument)) {
-				return false;
-			}
-			DynamicMessageArgument other = (DynamicMessageArgument) obj;
-			return other.getIndex() == getIndex();
-		}
-
-		@Override
-		public String toString() {
-			return String.format("{%d}=\"%s\"", index, value);
-		}
-
-		/**
-		 * Obtain a stream over the dynamic message arguments of a {@code diagnostic}, in position order.
-		 *
-		 * @param diagnostic
-		 *            a diagnostic
-		 * @return its dynamic message arguments, in order
-		 */
-		public static Stream<DynamicMessageArgument> stream(Diagnostic diagnostic) {
-			return diagnostic.getData().stream()
-					.filter(DynamicMessageArgument.class::isInstance).map(DynamicMessageArgument.class::cast)
-					.sorted();
 		}
 
 	}

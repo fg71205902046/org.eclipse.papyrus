@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2019, 2020 CEA LIST, EclipseSource, Christian W. Damus, and others.
+ * Copyright (c) 2019, 2021 CEA LIST, EclipseSource, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,7 +11,7 @@
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
  *   Remi Schnekenburger (EclipseSource) - Bug 568495
- *   Christian W. Damus - bug 569357
+ *   Christian W. Damus - bugs 569357, 570097
  *
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.validation.common.checkers;
@@ -26,6 +26,7 @@ import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.toolsmiths.validation.common.internal.messages.Messages;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.MarkersService;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.ProjectManagementService;
 import org.eclipse.pde.internal.core.builders.DefaultSAXParser;
@@ -97,12 +98,12 @@ public class ExtensionsChecker<T extends EObject, P extends DefaultHandler & IPl
 			return;
 		}
 
-		SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind("checking file: {0}", modelFile), existingModels.size());
+		SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(Messages.ExtensionsChecker_0, modelFile), existingModels.size());
 
 		final IFile pluginXML = ProjectManagementService.getPluginXMLFile(project);
 
 		if (pluginXML == null) {
-			MarkersService.createMarker(modelFile, PDEMarkerFactory.MARKER_ID, "No extensions are declared for " + modelFile.getName(), IMarker.SEVERITY_ERROR);
+			MarkersService.createMarker(modelFile, PDEMarkerFactory.MARKER_ID, NLS.bind(Messages.ExtensionsChecker_1, modelFile.getName()), IMarker.SEVERITY_ERROR);
 			return;
 		}
 

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 CEA LIST, EclipseSource, Christian W. Damus, and others.
+ * Copyright (c) 2020, 2021 CEA LIST, EclipseSource, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Remi SChnekenburger (EclipseSource) - Initial API and implementation
- *   Christian W. Damus - bug 569357
+ *   Christian W. Damus - bugs 569357, 570097
  *
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.validation.common.internal.utils;
@@ -40,6 +40,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.toolsmiths.validation.common.Activator;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.IPluginChecker2;
+import org.eclipse.papyrus.toolsmiths.validation.common.internal.messages.Messages;
 import org.eclipse.pde.internal.core.builders.CompilerFlags;
 import org.eclipse.pde.internal.core.builders.IncrementalErrorReporter.VirtualMarker;
 import org.eclipse.pde.internal.core.builders.ManifestErrorReporter;
@@ -61,11 +62,11 @@ import com.google.common.collect.Multimap;
 @SuppressWarnings("restriction")
 public class PluginErrorReporter<T extends EObject> extends ManifestErrorReporter implements IPluginChecker2 {
 
-	private static final String PLATFORM_PLUGIN = "platform:/plugin/";
+	private static final String PLATFORM_PLUGIN = "platform:/plugin/"; //$NON-NLS-1$
 
 	private static final String POINT = "point"; //$NON-NLS-1$
 
-	private static final String SEPARATOR = "_";
+	private static final String SEPARATOR = "_"; //$NON-NLS-1$
 
 	private final Map<String, ExtensionMatcher<? super T>> requiredExtensionPoints = new HashMap<>();
 	private final Multimap<String, ExtensionChecker<? super T>> extensionCheckers = HashMultimap.create();
@@ -274,7 +275,7 @@ public class PluginErrorReporter<T extends EObject> extends ManifestErrorReporte
 			severity = CompilerFlags.WARNING;
 		}
 
-		reportProblem(NLS.bind("Missing extension on point ''{0}'' for ''{1}''.", point, getModelFile().getProjectRelativePath()),
+		reportProblem(NLS.bind(Messages.PluginErrorReporter_0, point, getModelFile().getProjectRelativePath()),
 				1, severity, "missing_extensions"); //$NON-NLS-1$
 	}
 
@@ -339,7 +340,7 @@ public class PluginErrorReporter<T extends EObject> extends ManifestErrorReporte
 		}
 
 		// check pathmap, relative URI or platform based uri
-		if (path.startsWith("pathmap://")) {
+		if (path.startsWith("pathmap://")) { //$NON-NLS-1$
 			// try to decode using uri mappers extensions
 			return decodePathmapPath(path);
 		} else if (path.startsWith(PLATFORM_PLUGIN)) {
@@ -391,8 +392,8 @@ public class PluginErrorReporter<T extends EObject> extends ManifestErrorReporte
 
 	protected String replaceString(String path, String sourceURI, String targetURI) {
 		String newPath = path.substring(sourceURI.length(), path.length());
-		if (!targetURI.endsWith("/")) {
-			newPath = "/".concat(newPath);
+		if (!targetURI.endsWith("/")) { //$NON-NLS-1$
+			newPath = "/".concat(newPath); //$NON-NLS-1$
 		}
 		newPath = targetURI.concat(newPath);
 		return newPath;
