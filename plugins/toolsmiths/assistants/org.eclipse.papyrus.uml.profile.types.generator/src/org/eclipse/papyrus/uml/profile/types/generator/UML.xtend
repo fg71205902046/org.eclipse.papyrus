@@ -57,6 +57,11 @@ class UML {
             + package_.nestedPackages.map[allExtensions].flatten
     }
     
+    def Iterable<Stereotype> getAllStereotypes(org.eclipse.uml2.uml.Package package_) {
+    	package_.ownedTypes.filter(Stereotype)
+            + package_.nestedPackages.map[allStereotypes].flatten
+    }
+    
     def Iterable<ImpliedExtension> impliedExtensions(Stereotype stereotype) {
         stereotype.allExtendedMetaclasses.map[new ImpliedExtension(stereotype, it)]
     }

@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2015, 2018 Christian W. Damus and others.
- * 
+ * Copyright (c) 2014, 2015, 2018, 2020 Christian W. Damus and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -11,13 +11,15 @@
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
  *   Ansgar Radermacher - Bug 526155, re-generation from profile: use ID as XML-ID
- *   
+ *   Camille Letavernier - Bug 569356: support incremental generation
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.profile.types.generator;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Optional;
 import java.util.Set;
 
 import org.eclipse.core.resources.IContainer;
@@ -39,6 +41,7 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
+import org.eclipse.papyrus.uml.profile.types.generator.DeltaStrategy.Diff;
 import org.eclipse.papyrus.uml.profile.types.generator.internal.Activator;
 import org.eclipse.uml2.common.util.UML2Util;
 
@@ -50,9 +53,11 @@ import com.google.inject.Injector;
 
 /**
  * Scaffolding for an Xtend model-to-model transformation.
- * 
- * @param <T>
- *            the kind of model element that I generate from a UML profile
+ *
+ * @param <I>
+ *            the kind of model element input
+ * @param <O>
+ *            the kind of model element that I generate from &lt;I&gt;
  */
 public abstract class AbstractGenerator<I extends EObject, O extends EObject> {
 
@@ -69,8 +74,11 @@ public abstract class AbstractGenerator<I extends EObject, O extends EObject> {
 	@Inject
 	private Identifiers identifiers;
 
-	public AbstractGenerator(Identifiers identifiers) {
-		this(new GeneratorModule(identifiers));
+	@Inject
+	private Optional<Diff> diff;
+
+	public AbstractGenerator(Identifiers identifiers, DeltaStrategy.Diff diff) {
+		this(new GeneratorModule(identifiers, diff));
 	}
 
 	public AbstractGenerator(GeneratorModule module) {
@@ -102,10 +110,17 @@ public abstract class AbstractGenerator<I extends EObject, O extends EObject> {
 
 	public IStatus generate(I input, URI outputURI) {
 		IStatus result;
-		ResourceSet resourceSet = new ResourceSetImpl();
+		final ResourceSet resourceSet = new ResourceSetImpl();
 
 		try {
-			Resource output = resourceSet.createResource(outputURI);
+			final Resource output;
+			if (diff.isEmpty()) {
+				output = resourceSet.createResource(outputURI);
+			} else {
+				// TODO If Diff is set, we can probably successfully load this resource.
+				// However, adding a few checks wouldn't hurt...
+				output = resourceSet.getResource(outputURI, true);
+			}
 			result = generate(input, output.getContents());
 
 			// use Identifier as XML-ID. This implies that the same XML-ID is used when re-generating
@@ -115,7 +130,7 @@ public abstract class AbstractGenerator<I extends EObject, O extends EObject> {
 				String elementTypeSetId = elementTypeSet.getIdentifier();
 				if (elementTypeSetId != null && elementTypeSetId.length() > 0) {
 					((XMLResource) output).setID(elementTypeSet, escapeID(elementTypeSetId));
-				}				
+				}
 				for (ElementTypeConfiguration elemTypeConfig : elementTypeSet.getElementTypeConfigurations()) {
 					String id = elemTypeConfig.getIdentifier();
 					if (id != null && id.length() > 0) {
@@ -141,9 +156,10 @@ public abstract class AbstractGenerator<I extends EObject, O extends EObject> {
 
 	/**
 	 * Replace problematic characters in identifier with "_", before using it as XML-id
- 	 * in particular, the :: can be used by the generator.
- 	 * 
-	 * @param id an ID
+	 * in particular, the :: can be used by the generator.
+	 *
+	 * @param id
+	 *            an ID
 	 * @return
 	 * @since 2.1
 	 */
@@ -156,12 +172,21 @@ public abstract class AbstractGenerator<I extends EObject, O extends EObject> {
 	public IStatus generate(I input, EList<? super EObject> output) {
 		IStatus result = Status.OK_STATUS;
 
-		output.add(generate(input));
+		if (output.isEmpty()) {
+			output.add(generate(input));
+		} else {
+			regenerate(input, output);
+		}
 
 		return result;
 	}
 
 	protected abstract O generate(I input);
+
+	protected O regenerate(I input, EList<? super EObject> originalOutput) {
+		// Don't support incremental generation by default.
+		return generate(input);
+	}
 
 	protected void refreshContainer(URI resourceURI) throws CoreException {
 		if (resourceURI.isPlatformResource()) {
