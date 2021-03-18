@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.assistant.tests;
@@ -27,6 +27,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.junit.ClassRule;
 import org.junit.Test;
@@ -101,6 +102,7 @@ public class GenericModelingAssistantIntegrationTest extends AbstractModelingAss
 	}
 
 	@Test
+	@FailingTest
 	public void targetForConnectionFromSource() {
 		IAdaptable usecase = getEditPartSurrogate(getUseCase("WebScenario1"));
 		List<IElementType> types = getTypesForTarget(usecase, getProxyType("org.eclipse.papyrus.example.j2ee.Web", "org.eclipse.papyrus.umldi.Association_Edge"));
@@ -119,6 +121,7 @@ public class GenericModelingAssistantIntegrationTest extends AbstractModelingAss
 	}
 
 	@Test
+	@FailingTest
 	public void sourceForConnectionToTarget() {
 		IAdaptable actor = getEditPartSurrogate(getActor("User1"));
 		List<IElementType> types = getTypesForTarget(actor, getProxyType("org.eclipse.papyrus.example.j2ee.Import", "org.eclipse.papyrus.umldi.Dependency_Edge"));

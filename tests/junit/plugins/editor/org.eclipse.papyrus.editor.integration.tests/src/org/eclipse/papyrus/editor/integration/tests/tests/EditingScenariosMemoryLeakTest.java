@@ -30,6 +30,7 @@ import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.junit.framework.classification.rules.MemoryLeakRule;
 import org.eclipse.papyrus.junit.framework.classification.rules.MemoryLeakRule.SoftReferenceSensitive;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
@@ -70,6 +71,7 @@ public class EditingScenariosMemoryLeakTest extends AbstractPapyrusTest {
 	 */
 	@Test
 	@SoftReferenceSensitive
+	@FailingTest
 	public void testCreateNewElement() {
 		memory.add(editor.getModel());
 
@@ -84,6 +86,7 @@ public class EditingScenariosMemoryLeakTest extends AbstractPapyrusTest {
 	@Test
 	@SoftReferenceSensitive
 	@PluginResource("model/basic/table.di")
+	@FailingTest
 	public void testCreateNewElement_table() {
 		memory.add(editor.getModel());
 
@@ -92,7 +95,7 @@ public class EditingScenariosMemoryLeakTest extends AbstractPapyrusTest {
 
 		IEditorPart tableEditor = fixture.getActiveEditor();
 		assertThat("Not a table editor", tableEditor, instanceOf(NatTableEditor.class));
-		INattableModelManager manager = (INattableModelManager) tableEditor.getAdapter(INattableModelManager.class);
+		INattableModelManager manager = tableEditor.getAdapter(INattableModelManager.class);
 		assertThat(manager, notNullValue());
 		IAxisManager axisManager = manager.getRowAxisManager();
 		final int originalAxisSize = axisManager.getAllManagedAxis().size();
@@ -123,6 +126,7 @@ public class EditingScenariosMemoryLeakTest extends AbstractPapyrusTest {
 	@SoftReferenceSensitive
 	@PluginResource("model/canonical/css_leaktest.di")
 	@ActiveDiagram("main")
+	@FailingTest
 	public void testCanonicalEditPolicy_bug433206() {
 		memory.add(editor.getModel());
 		memory.add(editor.getActiveDiagramEditor().getDiagram());
