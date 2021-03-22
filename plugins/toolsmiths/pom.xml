@@ -36,7 +36,6 @@
 		<module>gmf-tooling</module>
 		<module>org.eclipse.papyrus.customization.nattableconfiguration</module>
 		<module>org.eclipse.papyrus.codegen</module>
-		<module>org.eclipse.papyrus.def</module>
 		<module>org.eclipse.papyrus.dev.assistants.codegen</module>
 		<module>org.eclipse.papyrus.dev.pluginexplorer</module>
 		<module>org.eclipse.papyrus.dev.project.management</module>

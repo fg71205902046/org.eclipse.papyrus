@@ -17,7 +17,6 @@
 		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<feature name="org.eclipse.papyrus.gmf.tooling.feature" version="3.3.0"/>
 		<plugin name="org.eclipse.papyrus.codegen" version="1.2.0"/>
-		<plugin name="org.eclipse.papyrus.def" version="1.3.100"/>
 		<plugin name="org.eclipse.papyrus.gmfgenextension" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.dev.assistants.codegen" version="1.2.100"/>
 		<plugin name="org.eclipse.papyrus.mwe2.utils" version="1.2.0"/>
@@ -88,7 +87,6 @@
 	<plugin name="org.eclipse.papyrus.bundles.tests" version="1.3.0"/>
 	<plugin name="org.eclipse.papyrus.codegen" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.customization.nattableconfiguration" version="2.0.100"/>
-	<plugin name="org.eclipse.papyrus.def" version="1.3.100"/>
 	<plugin name="org.eclipse.papyrus.dev.assistants.codegen" version="1.2.100"/>
 	<plugin name="org.eclipse.papyrus.dev.pluginexplorer" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.dev.project.management" version="1.3.0"/>

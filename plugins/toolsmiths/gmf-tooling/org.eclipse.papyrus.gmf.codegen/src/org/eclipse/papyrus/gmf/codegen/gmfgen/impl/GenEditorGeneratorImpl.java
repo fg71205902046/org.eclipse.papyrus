@@ -25,6 +25,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.codegen.ecore.genmodel.GenJDKLevel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.codegen.util.CodeGenUtil;
@@ -88,6 +89,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenPropertySheet;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenEditorGeneratorImpl#getContextMenus <em>Context Menus</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenEditorGeneratorImpl#getPluginDirectory <em>Plugin Directory</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenEditorGeneratorImpl#getExtensions <em>Extensions</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenEditorGeneratorImpl#getJdkComplianceLevel <em>Jdk Compliance Level</em>}</li>
  * </ul>
  *
  * @generated
@@ -422,6 +424,26 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 	 * @ordered
 	 */
 	protected EList<GenCustomGeneratorExtension> extensions;
+
+	/**
+	 * The default value of the '{@link #getJdkComplianceLevel() <em>Jdk Compliance Level</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getJdkComplianceLevel()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final GenJDKLevel JDK_COMPLIANCE_LEVEL_EDEFAULT = GenJDKLevel.JDK110_LITERAL;
+
+	/**
+	 * The cached value of the '{@link #getJdkComplianceLevel() <em>Jdk Compliance Level</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getJdkComplianceLevel()
+	 * @generated
+	 * @ordered
+	 */
+	protected GenJDKLevel jdkComplianceLevel = JDK_COMPLIANCE_LEVEL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1306,6 +1328,29 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 		return extensions;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public GenJDKLevel getJdkComplianceLevel() {
+		return jdkComplianceLevel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setJdkComplianceLevel(GenJDKLevel newJdkComplianceLevel) {
+		GenJDKLevel oldJdkComplianceLevel = jdkComplianceLevel;
+		jdkComplianceLevel = newJdkComplianceLevel == null ? JDK_COMPLIANCE_LEVEL_EDEFAULT : newJdkComplianceLevel;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GMFGenPackage.GEN_EDITOR_GENERATOR__JDK_COMPLIANCE_LEVEL, oldJdkComplianceLevel, jdkComplianceLevel));
+	}
+
 	public String getPluginDirectory() {
 		String value = getPluginDirectoryGen();
 		if (GenCommonBaseImpl.isEmpty(value)) {
@@ -1515,6 +1560,8 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 				return getPluginDirectory();
 			case GMFGenPackage.GEN_EDITOR_GENERATOR__EXTENSIONS:
 				return getExtensions();
+			case GMFGenPackage.GEN_EDITOR_GENERATOR__JDK_COMPLIANCE_LEVEL:
+				return getJdkComplianceLevel();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1602,6 +1649,9 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 				getExtensions().clear();
 				getExtensions().addAll((Collection<? extends GenCustomGeneratorExtension>)newValue);
 				return;
+			case GMFGenPackage.GEN_EDITOR_GENERATOR__JDK_COMPLIANCE_LEVEL:
+				setJdkComplianceLevel((GenJDKLevel)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -1686,6 +1736,9 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 			case GMFGenPackage.GEN_EDITOR_GENERATOR__EXTENSIONS:
 				getExtensions().clear();
 				return;
+			case GMFGenPackage.GEN_EDITOR_GENERATOR__JDK_COMPLIANCE_LEVEL:
+				setJdkComplianceLevel(JDK_COMPLIANCE_LEVEL_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1746,6 +1799,8 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 				return PLUGIN_DIRECTORY_EDEFAULT == null ? pluginDirectory != null : !PLUGIN_DIRECTORY_EDEFAULT.equals(pluginDirectory);
 			case GMFGenPackage.GEN_EDITOR_GENERATOR__EXTENSIONS:
 				return extensions != null && !extensions.isEmpty();
+			case GMFGenPackage.GEN_EDITOR_GENERATOR__JDK_COMPLIANCE_LEVEL:
+				return jdkComplianceLevel != JDK_COMPLIANCE_LEVEL_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1778,6 +1833,8 @@ public class GenEditorGeneratorImpl extends EObjectImpl implements GenEditorGene
 		result.append(copyrightText);
 		result.append(", pluginDirectory: ");
 		result.append(pluginDirectory);
+		result.append(", jdkComplianceLevel: ");
+		result.append(jdkComplianceLevel);
 		result.append(')');
 		return result.toString();
 	}

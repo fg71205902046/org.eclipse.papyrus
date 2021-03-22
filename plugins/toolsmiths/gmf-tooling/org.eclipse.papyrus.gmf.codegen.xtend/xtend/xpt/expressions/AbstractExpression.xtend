@@ -1,17 +1,18 @@
-/*******************************************************************************
- * Copyright (c) 2007, 2020 Borland Software Corporation, CEA LIST, Artal and others
+/*****************************************************************************
+ * Copyright (c) 2007, 2014 , 2021 Borland Software Corporation, Montages, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Dmitry Stadnik (Borland) - initial API and implementation
- * 	  Michael Golubev (Montages) - API extracted to GMF-T runtime, migrated to Xtend2 
- *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ * Contributors:
+ * Dmitry Stadnik (Borland) - initial API and implementation
+ * Michael Golubev (Montages) - API extracted to GMF-T runtime, migrated to Xtend2 
+ * Anatoliy Tischenko - Initial API and implementation
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  *****************************************************************************/
 package xpt.expressions
 
@@ -158,14 +159,30 @@ import plugin.Activator
 				return value;
 			}
 			if (Number.class.isAssignableFrom(targetWrapperClass)) {
-				if (targetWrapperClass.equals(Byte.class)) return new Byte(num.byteValue());
-				if (targetWrapperClass.equals(Integer.class)) return new Integer(num.intValue());
-				if (targetWrapperClass.equals(Short.class)) return new Short(num.shortValue());
-				if (targetWrapperClass.equals(Long.class)) return new Long(num.longValue());
-				if (targetWrapperClass.equals(java.math.BigInteger.class)) return java.math.BigInteger.valueOf(num.longValue());
-				if (targetWrapperClass.equals(Float.class)) return new Float(num.floatValue());
-				if (targetWrapperClass.equals(Double.class)) return new Double(num.doubleValue());
-				if (targetWrapperClass.equals(java.math.BigDecimal.class)) return new java.math.BigDecimal(num.doubleValue());
+				if (targetWrapperClass.equals(Byte.class)) {
+					return new Byte(num.byteValue());
+				}
+				if (targetWrapperClass.equals(Integer.class)) {
+					return new Integer(num.intValue());
+				}
+				if (targetWrapperClass.equals(Short.class)) {
+					return new Short(num.shortValue());
+				}
+				if (targetWrapperClass.equals(Long.class)) {
+					return new Long(num.longValue());
+				}
+				if (targetWrapperClass.equals(java.math.BigInteger.class)) {
+					return java.math.BigInteger.valueOf(num.longValue());
+				}
+				if (targetWrapperClass.equals(Float.class)) {
+					return new Float(num.floatValue());
+				}
+				if (targetWrapperClass.equals(Double.class)) {
+					return new Double(num.doubleValue());
+				}
+				if (targetWrapperClass.equals(java.math.BigDecimal.class)) {
+					return new java.math.BigDecimal(num.doubleValue());
+				}
 			}
 			return value;
 		}

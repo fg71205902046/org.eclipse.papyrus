@@ -1,17 +1,20 @@
-/*******************************************************************************
- * Copyright (c) 2006, 2020 Borland Software Corporation, CEA LIST, Artal and others
+/*****************************************************************************
+ * Copyright (c) 2006, 2014, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Dmitry Stadnik (Borland) - initial API and implementation
- *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
- */
+ * Contributors:
+ * Dmitry Stadnik (Borland) - initial API and implementation
+ * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Christian W. Damus - bug 451230
+ * Benoit Maggi (CEA LIST) -#510281 change dependency to replace gmft-runtime
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ *****************************************************************************/
 package xpt.providers
 
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase
@@ -41,7 +44,7 @@ import xpt.editor.VisualIDRegistry
 	@Inject MetaModel xptMetaModel;
 	@Inject VisualIDRegistry xptVisualIDRegistry;
 
-	@MetaDef def accessElementType(GenCommonBase it) '''«it.diagram.elementTypesQualifiedClassName».«it.uniqueIdentifier»'''
+	@MetaDef def accessElementType(GenCommonBase it) '''«it.diagram.elementTypesQualifiedClassName».«stringUniqueIdentifier»'''
 
 	def className(GenDiagram it) '''«it.elementTypesClassName»'''
 
@@ -99,7 +102,7 @@ import xpt.editor.VisualIDRegistry
 		private static java.util.Map<org.eclipse.gmf.runtime.emf.type.core.IElementType, org.eclipse.emf.ecore.ENamedElement> elements;
 		
 		«generatedMemberComment»
-		private static org.eclipse.gmf.tooling.runtime.providers.DiagramElementTypeImages elementTypeImages = new org.eclipse.gmf.tooling.runtime.providers.DiagramElementTypeImages(« //
+		private static org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.providers.DiagramElementTypeImages elementTypeImages = new org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.providers.DiagramElementTypeImages(« //
 		xptActivator.qualifiedClassName(editorGen.plugin)».getInstance().getItemProvidersAdapterFactory());
 		
 		«generatedMemberComment»
@@ -145,19 +148,19 @@ import xpt.editor.VisualIDRegistry
 
 	def getElement(GenDiagram it) '''
 		«generatedMemberComment('Returns \'type\' of the ecore object associated with the hint.\n')»
-		public static org.eclipse.emf.ecore.ENamedElement getElement(org.eclipse.core.runtime.IAdaptable hint) {
+		public static synchronized org.eclipse.emf.ecore.ENamedElement getElement(org.eclipse.core.runtime.IAdaptable hint) {
 			Object type = hint.getAdapter(org.eclipse.gmf.runtime.emf.type.core.IElementType.class);
 			if (elements == null) {
 				elements = new java.util.IdentityHashMap<org.eclipse.gmf.runtime.emf.type.core.IElementType, org.eclipse.emf.ecore.ENamedElement>();
-				«IF domainDiagramElement != null»«bindUniqueIdentifierToNamedElement(domainDiagramElement, getUniqueIdentifier())»«ENDIF»
+				«IF domainDiagramElement != null»«bindUniqueIdentifierToNamedElement(domainDiagramElement, stringUniqueIdentifier())»«ENDIF»
 				«FOR node : getAllNodes()»
-					«IF node.modelFacet != null»«bindUniqueIdentifierToNamedElement(node.modelFacet, node.getUniqueIdentifier())»«ENDIF»
+					«IF node.modelFacet != null»«bindUniqueIdentifierToNamedElement(node.modelFacet, node.stringUniqueIdentifier())»«ENDIF»
 				«ENDFOR»
 				«FOR link : it.links»
-					«IF link.modelFacet != null»«bindUniqueIdentifierToNamedElement(link.modelFacet, link.getUniqueIdentifier())»«ENDIF»
+					«IF link.modelFacet != null»«bindUniqueIdentifierToNamedElement(link.modelFacet, link.stringUniqueIdentifier())»«ENDIF»
 				«ENDFOR»
 			}
-			return (org.eclipse.emf.ecore.ENamedElement) elements.get(type);
+			return elements.get(type);
 		}
 	'''
 
@@ -183,44 +186,55 @@ import xpt.editor.VisualIDRegistry
 	def elementTypeField(GenCommonBase it) '''
 		«IF null != elementType»
 			«generatedMemberComment»
-			public static final org.eclipse.gmf.runtime.emf.type.core.IElementType «getUniqueIdentifier()» = getElementType("«elementType.
+			public static final org.eclipse.gmf.runtime.emf.type.core.IElementType «stringUniqueIdentifier» = getElementTypeByUniqueId("«elementType.
 			uniqueIdentifier»"); «nonNLS(1)»
 		«ENDIF»
 	'''
 
-	def getElementType(GenDiagram it) '''
+	def getElementType(GenDiagram it)'''
 		«generatedMemberComment»
-		private static org.eclipse.gmf.runtime.emf.type.core.IElementType getElementType(String id) {
+		private static org.eclipse.gmf.runtime.emf.type.core.IElementType getElementTypeByUniqueId(String id) {
 			return org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry.getInstance().getType(id);
 		}
 	'''
-
-	def isKnownElementType(GenDiagram it) '''
+	def isKnownElementType(GenDiagram it)  '''
 		«generatedMemberComment»
-		public static boolean isKnownElementType(org.eclipse.gmf.runtime.emf.type.core.IElementType elementType) {
+		public static synchronized boolean isKnownElementType(org.eclipse.gmf.runtime.emf.type.core.IElementType elementType) {
 			if (KNOWN_ELEMENT_TYPES == null) {
 				KNOWN_ELEMENT_TYPES = new java.util.HashSet<org.eclipse.gmf.runtime.emf.type.core.IElementType>();
 				«FOR e : it.getAllTypedElements()»
 					«addKnownElementType(e)»
 				«ENDFOR»
 			}
-			return KNOWN_ELEMENT_TYPES.contains(elementType);
+
+		    boolean result = KNOWN_ELEMENT_TYPES.contains(elementType);
+
+		    if (!result) {
+		        org.eclipse.gmf.runtime.emf.type.core.IElementType[] supertypes = elementType.getAllSuperTypes();
+		        for (int i = 0; !result && (i < supertypes.length); i++) {
+		            result = KNOWN_ELEMENT_TYPES.contains(supertypes[i]);
+		        }
+		    }
+		    
+		    return result;
 		}
 	'''
 
 	def addKnownElementType(GenCommonBase it) '''
 		«IF null != elementType»
-			KNOWN_ELEMENT_TYPES.add(«getUniqueIdentifier()»);
+			KNOWN_ELEMENT_TYPES.add(«stringUniqueIdentifier()»);
 		«ENDIF»
 	'''
 
 	def getElementTypeByVisualID(GenDiagram it) '''
 		«generatedMemberComment»
-		public static org.eclipse.gmf.runtime.emf.type.core.IElementType getElementType(int visualID) {
-			switch (visualID) {
-				«FOR e : it.getAllTypedElements().filter[el|el.elementType != null]»
-					«caseElementType(e)»
-				«ENDFOR»
+		public static org.eclipse.gmf.runtime.emf.type.core.IElementType getElementType(String visualID) {
+			if (visualID != null) {
+				switch (visualID) {
+					«FOR e : it.getAllTypedElements().filter[el|el.elementType != null]»
+						«caseElementType(e)»
+					«ENDFOR»
+				}
 			}
 			return null;
 		}
@@ -228,7 +242,7 @@ import xpt.editor.VisualIDRegistry
 
 	def caseElementType(GenCommonBase it) '''
 		«xptVisualIDRegistry.caseVisualID(it)»
-			return «getUniqueIdentifier()»;
+			return «stringUniqueIdentifier()»;
 	'''
 
 	@MetaDef def typedInstanceName(GenDiagram it) '''TYPED_INSTANCE'''
@@ -237,8 +251,8 @@ import xpt.editor.VisualIDRegistry
 
 	def typedInstance(GenDiagram it) '''
 		«generatedClassComment»
-		public static final org.eclipse.gmf.tooling.runtime.providers.DiagramElementTypes TYPED_INSTANCE 
-			= new org.eclipse.gmf.tooling.runtime.providers.DiagramElementTypes(elementTypeImages) {
+		public static final org.eclipse.papyrus.infra.gmfdiag.common.providers.DiagramElementTypes TYPED_INSTANCE 
+			= new org.eclipse.papyrus.infra.gmfdiag.common.providers.DiagramElementTypes(elementTypeImages) {
 			
 			«generatedMemberComment»
 			«xptCodeStyle.overrideC(it)»
@@ -248,7 +262,7 @@ import xpt.editor.VisualIDRegistry
 			
 			«generatedMemberComment»
 			«xptCodeStyle.overrideC(it)»
-			public org.eclipse.gmf.runtime.emf.type.core.IElementType getElementTypeForVisualId(int visualID) {
+			public org.eclipse.gmf.runtime.emf.type.core.IElementType getElementTypeForVisualId(String visualID) {
 				return «qualifiedClassName(it)».getElementType(visualID);
 			}
 			
@@ -260,6 +274,19 @@ import xpt.editor.VisualIDRegistry
 		}; 
 	'''
 
-	def additions(GenDiagram it) ''''''
+	def additions(GenDiagram it) '''
+	    «generatedMemberComment»
+        public static boolean isKindOf(org.eclipse.gmf.runtime.emf.type.core.IElementType subtype, org.eclipse.gmf.runtime.emf.type.core.IElementType supertype) {
+            boolean result = subtype == supertype;
 
+            if (!result) {
+                org.eclipse.gmf.runtime.emf.type.core.IElementType[] supertypes = subtype.getAllSuperTypes();
+                for (int i = 0; !result && (i < supertypes.length); i++) {
+                    result = supertype == supertypes[i];
+                }
+            }
+
+            return result;
+        }
+    '''
 }

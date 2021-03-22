@@ -1,26 +1,31 @@
-/*******************************************************************************
- * Copyright (c) 2007, 2020 Borland Software Corporation, CEA LIST, Artal and others
+/*****************************************************************************
+ * Copyright (c) 2007, 2015, 2021 Borland Software Corporation, Montages, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Alexander Shatalin (Borland) - initial API and implementation
- *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
- *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ * Contributors:
+ * Alexander Shatalin (Borland) - initial API and implementation
+ * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Anatoliy Tischenko  - Initial API and implementation
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  *****************************************************************************/
 package xpt.editor
 
 import com.google.inject.Inject
-import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
 import xpt.Common
+import xpt.CodeStyle
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
+import com.google.inject.Singleton
 
-@com.google.inject.Singleton class ResourceSetInfo {
+@Singleton class ResourceSetInfo {
+	
 	@Inject extension Common;
+	@Inject extension CodeStyle
 
 	/**
 	 * Inner class of DocumentProvider
@@ -293,6 +298,7 @@ import xpt.Common
 		public boolean handleResourceChanged(final org.eclipse.emf.ecore.resource.Resource resource) {
 			«updateSynchStateSD(it)»
 			org.eclipse.swt.widgets.Display.getDefault().asyncExec(new java.lang.Runnable() {
+				«overrideI»
 				public void run() {
 					handleElementChanged(ResourceSetInfo.this, resource, null);
 				}
@@ -301,11 +307,13 @@ import xpt.Common
 		}
 	'''
 
+
 	def handleResourceDeletedSD(GenDiagram it) '''
 		«generatedMemberComment»
 		public boolean handleResourceDeleted(org.eclipse.emf.ecore.resource.Resource resource) {
 			«updateSynchStateSD(it)»
 			org.eclipse.swt.widgets.Display.getDefault().asyncExec(new java.lang.Runnable() {
+				«overrideI»
 				public void run() {
 					fireElementDeleted(ResourceSetInfo.this.getEditorInput());
 				}
@@ -320,6 +328,7 @@ import xpt.Common
 			«updateSynchStateSD(it)»
 			if (myDocument.getDiagram().eResource() == resource) {
 				org.eclipse.swt.widgets.Display.getDefault().asyncExec(new java.lang.Runnable() {
+					«overrideI»
 					public void run() {
 						handleElementMoved(ResourceSetInfo.this.getEditorInput(), newURI);
 					}
@@ -343,5 +352,5 @@ import xpt.Common
 	def additionsSD(GenDiagram it) ''''''
 
 	def additions(GenDiagram it) ''''''	
-	
+
 }

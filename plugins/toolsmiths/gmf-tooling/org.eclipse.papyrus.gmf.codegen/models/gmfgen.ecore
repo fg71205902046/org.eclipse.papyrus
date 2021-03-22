@@ -102,6 +102,8 @@
         <details key="documentation" value="Custom extensions for this generator"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="jdkComplianceLevel" eType="ecore:EEnum platform:/plugin/org.eclipse.emf.codegen.ecore/model/GenModel.ecore#//GenJDKLevel"
+        defaultValueLiteral="11.0"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GenDiagram" eSuperTypes="#//GenContainerBase #//PackageNames #//ProviderClassNames #//LinkConstraints #//EditPartCandies #//EditorCandies #//Shortcuts #//BatchValidation #//MeasurementUnit">
     <eAnnotations source="http://www.eclipse.org/gmf/2005/constraints">
@@ -1092,8 +1094,7 @@
         <details key="documentation" value="Bug 569174 : from ExtendedGenView"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="locatorClassName"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="locatorClassName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Bug 569174 : from SpecificLocatorExternalLabel"/>
       </eAnnotations>

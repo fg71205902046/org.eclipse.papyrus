@@ -1,18 +1,19 @@
-/*******************************************************************************
- * Copyright (c) 2006, 2020 Borland Software Corporation, CEA LIST, Artal and others
+/*****************************************************************************
+ * Copyright (c) 2006, 2010, 2013, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Dmitry Stadnik (Borland) - initial API and implementation
- *    Alexander Shatalin (Borland) - initial API and implementation
- *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
- *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ * Contributors:
+ * Dmitry Stadnik (Borland) - initial API and implementation
+ * Alexander Shatalin (Borland) - initial API and implementation
+ * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Remi Schnekenburger (CEA LIST) - modification for Papyrus MDT
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  *****************************************************************************/
 package impl.diagram.editparts
 
@@ -27,7 +28,8 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ParentAssignedViewmap
 import org.eclipse.papyrus.gmf.codegen.gmfgen.SnippetViewmap
 import org.eclipse.papyrus.gmf.codegen.gmfgen.Viewmap
 import xpt.Common
-import xpt.Common_qvtoimport org.eclipse.papyrus.gmf.gmfgraph.DiagramLabel
+import xpt.Common_qvto
+import org.eclipse.papyrus.gmf.gmfgraph.DiagramLabel
 
 /**
  * Revisit: [MG]: @Inject extension same-named-api-class -> template extends api-class?
@@ -71,16 +73,16 @@ import xpt.Common_qvtoimport org.eclipse.papyrus.gmf.gmfgraph.DiagramLabel
 	 * FIXME: [MG] check counterpart for ModeledViewmap, 
 	 */
 	def addFixedChild(GenLink it) '''
-	«IF it.hasFixedLabels»
+	«IF labels.size > 0»
 		«generatedMemberComment»
 		protected boolean addFixedChild(org.eclipse.gef.EditPart childEditPart) {
 			«FOR label : labels»
-				«addLabel(label.viewmap, label)»
+				«addLabel(label.viewmap,label)»
 			«ENDFOR»
 			return false;
 		}
 	«ENDIF»
-	'''
+'''
 
 	// Note, condition in addFixedChild template above should be changed if addLabel support added for Viewmaps other than ParentAssignedViewmap
 	def dispatch addLabel(Viewmap it, GenLinkLabel label) ''''''
@@ -104,7 +106,7 @@ import xpt.Common_qvtoimport org.eclipse.papyrus.gmf.gmfgraph.DiagramLabel
 	'''
 
 	def removeFixedChild(GenLink it) '''
-	«IF it.hasFixedLabels»
+	«IF ! labels.empty»
 		«generatedMemberComment»
 		protected boolean removeFixedChild(org.eclipse.gef.EditPart childEditPart) {
 			«FOR label : labels»
@@ -133,19 +135,19 @@ import xpt.Common_qvtoimport org.eclipse.papyrus.gmf.gmfgraph.DiagramLabel
 	'''
 
 	def addChildVisual(GenLink it) '''
-	«IF it.hasFixedLabels»
+	«IF ! labels.empty»
 		«generatedMemberComment»
 		protected void addChildVisual(org.eclipse.gef.EditPart childEditPart, int index) {
 			if (addFixedChild(childEditPart)) {
 				return;
 			}
-			super.addChildVisual(childEditPart, index);
+			super.addChildVisual(childEditPart, -1);
 		}
 	«ENDIF»
 	'''
 
 	def removeChildVisual(GenLink it) '''
-	«IF it.hasFixedLabels»
+	«IF ! labels.empty»
 		«generatedMemberComment»
 		protected void removeChildVisual(org.eclipse.gef.EditPart childEditPart) {
 			if (removeFixedChild(childEditPart)) {
@@ -168,19 +170,22 @@ import xpt.Common_qvtoimport org.eclipse.papyrus.gmf.gmfgraph.DiagramLabel
 	def dispatch createLinkFigure(Viewmap it, GenLink link) '''«ERROR('Unknown viewmap: ' + it + ", for link: " + link)»'''
 
 	def dispatch createLinkFigure(ModeledViewmap it, GenLink link) '''
-		protected org.eclipse.draw2d.Connection createConnectionFigure() {
-			return new «modeledViewmapFigureFQN(it)»();
-		}
-		
-		«generatedMemberComment»
-		public «modeledViewmapFigureFQN(it)» getPrimaryShape() {
-			return («modeledViewmapFigureFQN(it)») getFigure();
-		}
-		
-		«xptModeledViewmapProducer.viewmapClassBody(it)»
+«««		«generatedMemberComment»
+«««		protected org.eclipse.draw2d.Connection createConnectionFigure() {
+«««			return new «modeledViewmapFigureFQN(it)»();
+«««		}
+«««		
+«««		«generatedMemberComment»
+«««		public «modeledViewmapFigureFQN(it)» getPrimaryShape() {
+«««			return («modeledViewmapFigureFQN(it)») getFigure();
+«««		}
+«««		
+«««		«xptModeledViewmapProducer.viewmapClassBody(it)»
 	'''
 
-	def modeledViewmapFigureFQN(ModeledViewmap it) '''«xptModeledViewmapProducer.viewmapFigureFQN(it)»'''
+	def modeledViewmapFigureFQN(ModeledViewmap it) '''
+«««	«xptModeledViewmapProducer.viewmapFigureFQN(it)»
+	'''
 
 	def dispatch createLinkFigure(FigureViewmap it, GenLink link) {
 		var fqn = if(figureQualifiedClassName == null) 'org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx' else figureQualifiedClassName
@@ -222,4 +227,20 @@ import xpt.Common_qvtoimport org.eclipse.papyrus.gmf.gmfgraph.DiagramLabel
 	def boolean hasFixedLabels(GenLink it){
 		labels.notEmpty && (labels.filter(l | l.viewmap.oclIsKindOf(typeof(ParentAssignedViewmap))).notEmpty || labels.filter(l | l.viewmap.oclIsKindOf(typeof(ModeledViewmap))).notEmpty)
 	}
+
+
+	
+	/**
+	 * computes super type of the link edit part in case the edit part manages a representation of a UML element
+	 */
+	def extendsListContents(GenLink it)'''
+	«IF superEditPart !== null»
+	«superEditPart»
+	«ELSE»
+	org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart
+	«ENDIF»
+	'''
 }
+
+
+

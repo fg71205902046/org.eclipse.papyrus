@@ -1,18 +1,19 @@
-/*******************************************************************************
- * Copyright (c) 2007-2020 Borland Software Corporation, CEA LIST, Artal and others
+/*****************************************************************************
+ * Copyright (c) 2007-2012, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Alexander Shatalin (Borland) - initial API and implementation
- *    Michael Golubev (Borland) - [243151] explicit source/target for links
- * 								- #386838 - migrate to Xtend2
- *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ * Contributors:
+ * Alexander Shatalin (Borland) - initial API and implementation
+ * Michael Golubev (Borland) - [243151] explicit source/target for links
+ *                           - #386838 - migrate to Xtend2
+ * Vincent Lorenzo (CEA-LIST) - 
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  *****************************************************************************/
 package xpt.diagram.editpolicies
 
@@ -24,6 +25,8 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.LinkModelFacet
 import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeLinkModelFacet
 import xpt.Common
 import xpt.Common_qvto
+import utils.UtilsItemSemanticEditPolicy
+
 
 @com.google.inject.Singleton class LinkItemSemanticEditPolicy {
 	@Inject extension Common;
@@ -33,6 +36,9 @@ import xpt.Common_qvto
 	@Inject BaseItemSemanticEditPolicy xptBaseItemSemanticEditPolicy;
 	@Inject linkCommands xptLinkCommands;
 	@Inject DeleteLinkCommand xptDeleteLinkCommand;
+	@Inject extension DeleteLinkCommand
+	@Inject extension UtilsItemSemanticEditPolicy
+	
 
 	def className(GenLink it) '''«it.itemSemanticEditPolicyClassName»'''
 
@@ -74,10 +80,25 @@ import xpt.Common_qvto
 	'''
 
 	def dispatch getDestroySemanticCommand(TypeLinkModelFacet it, GenLink genLink) '''
-		«generatedMemberComment()»
-		protected org.eclipse.gef.commands.Command getDestroyElementCommand(org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest req) {
-			return getGEFWrapper(«xptDeleteLinkCommand.newDeleteLinkWithClassCommand(it, genLink, 'req')»);
-		}
+		««« Test to know which delete command should be used in the generated code : "Traditional Delete Command" or the Delete Service
+
+		«IF genLink.usingDeleteService»
+		
+			«generatedMemberComment»
+			«getDestroyElementCommandByService(it)»
+		«ELSE»
+			«generatedMemberComment»
+			protected org.eclipse.gef.commands.Command getDestroyElementCommand(org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest req) {
+				org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand cmd = new org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand(getEditingDomain(), null);
+				cmd.setTransactionNestingEnabled(true);
+				java.util.List<org.eclipse.emf.ecore.EObject> todestroy=new java.util.ArrayList<org.eclipse.emf.ecore.EObject>();
+				todestroy.add(req.getElementToDestroy());
+				//cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
+				cmd.add(new org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper(new org.eclipse.emf.edit.command.DeleteCommand(getEditingDomain(),todestroy )));
+				return getGEFWrapper(cmd.reduce());
+				//return getGEFWrapper(«newDeleteLinkWithClassCommand(it,genLink, 'req')»);
+			}
+		«ENDIF»	
 	'''
 
 	def additions(GenLink it) ''''''

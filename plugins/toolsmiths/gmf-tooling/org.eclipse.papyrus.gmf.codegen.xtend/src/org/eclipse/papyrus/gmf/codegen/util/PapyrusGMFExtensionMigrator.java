@@ -61,9 +61,9 @@ public class PapyrusGMFExtensionMigrator extends GenExtensionSwitch<Boolean> {
 
 
 	/**
-	 * 
+	 *
 	 * Migrates {@link AdditionalEditPartCandies} to {@link GenDiagram}.
-	 * 
+	 *
 	 * @param object
 	 * @return
 	 */
@@ -79,7 +79,7 @@ public class PapyrusGMFExtensionMigrator extends GenExtensionSwitch<Boolean> {
 
 
 	/**
-	 * 
+	 *
 	 * Migrates {@link CustomDiagramUpdaterSingleton} to {@link GenDiagramUpdater}.
 	 * Resolve first from whole resource.
 	 *
@@ -233,7 +233,7 @@ public class PapyrusGMFExtensionMigrator extends GenExtensionSwitch<Boolean> {
 		extendedView.getGenView().forEach(node -> {
 			if (node instanceof GenNode) {
 				GenNode extenedNode = (GenNode) node;
-				
+
 				RefreshHook refreshHook = GMFGenFactory.eINSTANCE.createRefreshHook();
 				// @deprecated
 				// extenedNode.setRefreshComment(refreshHook.getComment());
@@ -269,7 +269,11 @@ public class PapyrusGMFExtensionMigrator extends GenExtensionSwitch<Boolean> {
 	@Override
 	public Boolean caseSpecificLocator(SpecificLocator object) {
 		object.getGenChildSideAffixedNode().forEach(node -> {
-			node.setLocatorClassName(object.getClasspath());
+			if (node.getLocatorClassName() == null) {
+				// keep only the first locator found
+				// multiplicity change
+				node.setLocatorClassName(object.getClasspath());
+			}
 		});
 		return true; // delete
 	}
@@ -283,12 +287,16 @@ public class PapyrusGMFExtensionMigrator extends GenExtensionSwitch<Boolean> {
 	@Override
 	public Boolean caseSpecificLocatorExternalLabel(SpecificLocatorExternalLabel object) {
 		object.getGenExternalNodeLabel().forEach(node -> {
-			node.setLocatorClassName(object.getClasspath());
+			if (node.getLocatorClassName() == null) {
+				// keep only the first locator found
+				// multiplicity change
+				node.setLocatorClassName(object.getClasspath());
+			}
 		});
 		return true; // delete
 	}
 
-	
+
 	/**
 	 * Migrates {@link VisualIDOverride} to {@link GenCommonBase}.
 	 *

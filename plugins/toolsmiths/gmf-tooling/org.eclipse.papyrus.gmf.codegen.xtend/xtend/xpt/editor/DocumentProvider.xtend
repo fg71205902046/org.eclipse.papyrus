@@ -1,20 +1,28 @@
-/*******************************************************************************
- * Copyright (c) 2007, 2020 Borland Software Corporation, CEA LIST, Artal and others
+/*****************************************************************************
+ * Copyright (c) 2007, 2010, 2013, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Alexander Shatalin (Borland) - initial API and implementation
- *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
- *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ * Contributors:
+ * Alexander Shatalin (Borland) - initial API and implementation
+ * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  *****************************************************************************/
 package xpt.editor
 
+import com.google.inject.Inject
+import com.google.inject.Singleton
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
+import plugin.Activator
+import xpt.Common
+import xpt.Externalizer
+import xpt.CodeStyle
+import xpt.editor.DiagramEditorUtil
 import com.google.inject.Inject
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
 import org.eclipse.papyrus.gmf.codegen.xtend.annotations.Localization
@@ -24,6 +32,7 @@ import plugin.Activator
 
 @com.google.inject.Singleton class DocumentProvider {
 	@Inject extension Common;
+	@Inject extension CodeStyle
 	
 	@Inject Activator xptActivator;
 	@Inject Externalizer xptExternalizer;
@@ -225,14 +234,17 @@ import plugin.Activator
 		
 				private org.eclipse.emf.common.notify.Notifier myTarger;
 		
+				«overrideI»
 				public org.eclipse.emf.common.notify.Notifier getTarget() {
 					return myTarger;
 				}
 		
+				«overrideI»
 				public boolean isAdapterForType(Object type) {
 					return false;
 				}
 		
+				«overrideI»
 				public void notifyChanged(org.eclipse.emf.common.notify.Notification notification) {
 					if (diagramResourceModifiedFilter.matches(notification)) {
 						Object value = notification.getNewValue();
@@ -242,6 +254,7 @@ import plugin.Activator
 					}
 				}
 		
+				«overrideI»
 				public void setTarget(org.eclipse.emf.common.notify.Notifier newTarget) {
 					myTarger = newTarget;
 				}
@@ -271,7 +284,8 @@ import plugin.Activator
 					}
 					if (!resource.isLoaded()) {
 						try {
-							java.util.Map options = new java.util.HashMap(org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory.getDefaultLoadOptions());
+							@SuppressWarnings({ "rawtypes", "unchecked" })
+							java.util.Map<?,?> options = new java.util.HashMap(org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory.getDefaultLoadOptions());
 							// @see 171060 
 							// options.put(org.eclipse.emf.ecore.xmi.XMLResource.OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
 							resource.load(options);
@@ -283,14 +297,14 @@ import plugin.Activator
 					if (uri.fragment() != null) {
 						org.eclipse.emf.ecore.EObject rootElement = resource.getEObject(uri.fragment());
 						if (rootElement instanceof org.eclipse.gmf.runtime.notation.Diagram) {
-							document.setContent((org.eclipse.gmf.runtime.notation.Diagram) rootElement);
+							document.setContent(rootElement);
 							return;
 						}
 					} else {
-						for (java.util.Iterator it = resource.getContents().iterator(); it.hasNext();) {
+						for (java.util.Iterator<org.eclipse.emf.ecore.EObject> it = resource.getContents().iterator(); it.hasNext();) {
 							Object rootElement = it.next();
 							if (rootElement instanceof org.eclipse.gmf.runtime.notation.Diagram) {
-								document.setContent((org.eclipse.gmf.runtime.notation.Diagram) rootElement);
+								document.setContent(rootElement);
 								return;
 							}
 						}
@@ -375,7 +389,7 @@ import plugin.Activator
 						files2Validate.add(file);
 					}
 				}
-				org.eclipse.core.resources.ResourcesPlugin.getWorkspace().validateEdit((org.eclipse.core.resources.IFile[]) files2Validate.toArray(new org.eclipse.core.resources.IFile[files2Validate.size()]), computationContext);
+				org.eclipse.core.resources.ResourcesPlugin.getWorkspace().validateEdit(files2Validate.toArray(new org.eclipse.core.resources.IFile[files2Validate.size()]), computationContext);
 			}
 			
 			super.doValidateState(element, computationContext);
@@ -470,7 +484,7 @@ import plugin.Activator
 		}
 	'''
 	
-	def getResetRule(GenDiagram it) '''
+	def getResetRule(GenDiagram it)'''
 		«generatedMemberComment»
 		protected org.eclipse.core.runtime.jobs.ISchedulingRule getResetRule(Object element) {
 			ResourceSetInfo info = getResourceSetInfo(element);
@@ -483,7 +497,7 @@ import plugin.Activator
 						rules.add(org.eclipse.core.resources.ResourcesPlugin.getWorkspace().getRuleFactory().modifyRule(file));
 					}
 				}
-				return new org.eclipse.core.runtime.jobs.MultiRule((org.eclipse.core.runtime.jobs.ISchedulingRule[]) rules.toArray(new org.eclipse.core.runtime.jobs.ISchedulingRule[rules.size()]));
+				return new org.eclipse.core.runtime.jobs.MultiRule(rules.toArray(new org.eclipse.core.runtime.jobs.ISchedulingRule[rules.size()]));
 			}
 			return null;
 		}
@@ -502,7 +516,7 @@ import plugin.Activator
 						rules.add(computeSchedulingRule(file));
 					}
 				}
-				return new org.eclipse.core.runtime.jobs.MultiRule((org.eclipse.core.runtime.jobs.ISchedulingRule[]) rules.toArray(new org.eclipse.core.runtime.jobs.ISchedulingRule[rules.size()]));
+				return new org.eclipse.core.runtime.jobs.MultiRule(rules.toArray(new org.eclipse.core.runtime.jobs.ISchedulingRule[rules.size()]));
 			}
 			return null;
 		}
@@ -521,7 +535,7 @@ import plugin.Activator
 						rules.add(org.eclipse.core.resources.ResourcesPlugin.getWorkspace().getRuleFactory().refreshRule(file));
 					}
 				}
-				return new org.eclipse.core.runtime.jobs.MultiRule((org.eclipse.core.runtime.jobs.ISchedulingRule[]) rules.toArray(new org.eclipse.core.runtime.jobs.ISchedulingRule[rules.size()]));
+				return new org.eclipse.core.runtime.jobs.MultiRule(rules.toArray(new org.eclipse.core.runtime.jobs.ISchedulingRule[rules.size()]));
 			}
 			return null;
 		}
@@ -540,7 +554,7 @@ import plugin.Activator
 						files.add(file);
 					}
 				}
-				return org.eclipse.core.resources.ResourcesPlugin.getWorkspace().getRuleFactory().validateEditRule((org.eclipse.core.resources.IFile[]) files.toArray(new org.eclipse.core.resources.IFile[files.size()]));
+				return org.eclipse.core.resources.ResourcesPlugin.getWorkspace().getRuleFactory().validateEditRule(files.toArray(new org.eclipse.core.resources.IFile[files.size()]));
 			}
 			return null;
 		}
@@ -549,9 +563,9 @@ import plugin.Activator
 	def computeSchedulingRule(GenDiagram it) '''
 		«generatedMemberComment»
 		private org.eclipse.core.runtime.jobs.ISchedulingRule computeSchedulingRule(org.eclipse.core.resources.IResource toCreateOrModify) {
-			if (toCreateOrModify.exists())
+			if (toCreateOrModify.exists()) {
 				return org.eclipse.core.resources.ResourcesPlugin.getWorkspace().getRuleFactory().modifyRule(toCreateOrModify);
-		
+			}
 			org.eclipse.core.resources.IResource parent = toCreateOrModify;
 			do {«/*FIXME [MG] the bug is closed long ago, still need? */»
 				/*
@@ -676,9 +690,10 @@ import plugin.Activator
 				}
 				org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument diagramDocument = (org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument) document;
 				final org.eclipse.emf.ecore.resource.Resource newResource = diagramDocument.getEditingDomain().getResourceSet().createResource(newResoruceURI);
-				final org.eclipse.gmf.runtime.notation.Diagram diagramCopy = (org.eclipse.gmf.runtime.notation.Diagram) org.eclipse.emf.ecore.util.EcoreUtil.copy(diagramDocument.getDiagram());
+				final org.eclipse.gmf.runtime.notation.Diagram diagramCopy = org.eclipse.emf.ecore.util.EcoreUtil.copy(diagramDocument.getDiagram());
 				try {
 					new org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand(diagramDocument.getEditingDomain(), org.eclipse.osgi.util.NLS.bind(«xptExternalizer.accessorCall(editorGen, i18nKeyForDocumentSaveAs(it))», diagramCopy.getName()), affectedFiles) {
+						«overrideC»
 						protected org.eclipse.gmf.runtime.common.core.command.CommandResult doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor monitor, org.eclipse.core.runtime.IAdaptable info) throws org.eclipse.core.commands.ExecutionException {
 							newResource.getContents().add(diagramCopy);					
 							return org.eclipse.gmf.runtime.common.core.command.CommandResult.newOKCommandResult();
@@ -695,7 +710,7 @@ import plugin.Activator
 				newResource.unload();
 			}
 		}
-	'''
+	'''	
 
 	def handleElementMoved(GenDiagram it) '''
 		«generatedMemberComment»

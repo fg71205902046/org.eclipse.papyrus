@@ -1,32 +1,36 @@
-/*******************************************************************************
- * Copyright (c) 2007, 2020 Borland Software Corporation, CEA LIST, Artal and others
- * 
+/*****************************************************************************
+ * Copyright (c) 2007, 2017, 2021 Borland Software Corporation, CEA LIST, Artal and others
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Artem Tikhomirov (Borland) - initial API and implementation
- *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
- *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ * Contributors:
+ * Artem Tikhomirov (Borland) - initial API and implementation
+ * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - #510281 change dependency to replace gmft-runtime
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  *****************************************************************************/
 package xpt.editor
 
 import com.google.inject.Inject
+import com.google.inject.Singleton
 import metamodel.MetaModel
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
 import org.eclipse.papyrus.gmf.codegen.xtend.annotations.Localization
 import org.eclipse.papyrus.gmf.codegen.xtend.annotations.MetaDef
 import plugin.Activator
+import xpt.CodeStyle
 import xpt.Common
 import xpt.Externalizer
 import xpt.ExternalizerUtils_qvto
 
-@com.google.inject.Singleton class DiagramEditorUtil {
+@Singleton class DiagramEditorUtil {
 	@Inject extension Common;
+	@Inject extension CodeStyle;
 	@Inject extension GenDiagram_qvto;
 	@Inject extension ExternalizerUtils_qvto;
 
@@ -193,8 +197,8 @@ import xpt.ExternalizerUtils_qvto
 	def getUniqueFileNameMethod(GenDiagram it) '''
 		«generatedMemberComment»
 		public static String getUniqueFileName(org.eclipse.core.runtime.IPath containerFullPath, String fileName, String extension) {
-			return org.eclipse.gmf.tooling.runtime.part.DefaultDiagramEditorUtil.getUniqueFileName(containerFullPath, fileName, extension, «»
-				org.eclipse.gmf.tooling.runtime.part.DefaultDiagramEditorUtil.«IF editorGen.application == null»EXISTS_IN_WORKSPACE«ELSE»EXISTS_AS_IO_FILE«ENDIF»);
+			return org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.part.DefaultDiagramEditorUtil.getUniqueFileName(containerFullPath, fileName, extension, «»
+				org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.part.DefaultDiagramEditorUtil.«IF editorGen.application == null»EXISTS_IN_WORKSPACE«ELSE»EXISTS_AS_IO_FILE«ENDIF»);
 		}
 	'''
 
@@ -203,7 +207,7 @@ import xpt.ExternalizerUtils_qvto
 			(if(editorGen.application == null) 'This method should be called within a workspace modify operation since it creates resources.' else ''))»
 		public static org.eclipse.emf.ecore.resource.Resource createDiagram(org.eclipse.emf.common.util.URI diagramURI,«IF standaloneDomainModel(
 			it)» org.eclipse.emf.common.util.URI modelURI,«ENDIF» org.eclipse.core.runtime.IProgressMonitor progressMonitor) {
-			org.eclipse.emf.transaction.TransactionalEditingDomain editingDomain = org.eclipse.gmf.runtime.emf.core.GMFEditingDomainFactory.INSTANCE.createEditingDomain();
+			org.eclipse.emf.transaction.TransactionalEditingDomain editingDomain = org.eclipse.emf.workspace.WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain();
 			progressMonitor.beginTask(«xptExternalizer.accessorCall(editorGen, i18nKeyForCreateDiagramProgressTask(it))», 3);
 			final org.eclipse.emf.ecore.resource.Resource diagramResource = editingDomain.getResourceSet().createResource(diagramURI);
 			«IF standaloneDomainModel(it)»
@@ -215,6 +219,7 @@ import xpt.ExternalizerUtils_qvto
 			final String diagramName = diagramURI.lastSegment();
 			org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand command = new org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand(editingDomain, «xptExternalizer.
 			accessorCall(editorGen, i18nKeyForCreateDiagramCommandLabel(it))», java.util.Collections.EMPTY_LIST) {
+				«overrideC»
 				protected org.eclipse.gmf.runtime.common.core.command.CommandResult doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor monitor, org.eclipse.core.runtime.IAdaptable info) throws org.eclipse.core.commands.ExecutionException {
 					«IF domainDiagramElement != null»
 						«xptMetaModel.QualifiedClassName(domainDiagramElement)» model = createInitialModel();

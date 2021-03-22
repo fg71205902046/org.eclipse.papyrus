@@ -1,31 +1,36 @@
-/*******************************************************************************
- * Copyright (c) 2007, 2020 Borland Software Corporation, CEA LIST, Artal and others
+/*****************************************************************************
+ * Copyright (c) 2007, 2010, 2013, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Alexander Shatalin (Borland) - initial API and implementation
- *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
- *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ * Contributors:
+ * Alexander Shatalin (Borland) - initial API and implementation
+ * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  *****************************************************************************/
 package xpt.editor
 
 import com.google.inject.Inject
+import com.google.inject.Singleton
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
 import org.eclipse.papyrus.gmf.codegen.xtend.annotations.Localization
-import plugin.Activator
-import xpt.Common
 import xpt.Externalizer
 import xpt.ExternalizerUtils_qvto
+import xpt.Common
+import xpt.editor.ModelElementSelectionPage
+import plugin.Activator
+import xpt.editor.DiagramContentInitializer
+import xpt.CodeStyle
 
-@com.google.inject.Singleton class NewDiagramFileWizard {
+@Singleton class NewDiagramFileWizard {
 	@Inject extension Common;
-
+	@Inject extension CodeStyle;
 	@Inject extension ExternalizerUtils_qvto;
 	@Inject Externalizer xptExternalizer;
 	@Inject Activator xptActivator;
@@ -123,11 +128,12 @@ import xpt.ExternalizerUtils_qvto
 				new org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand(
 					myEditingDomain, «xptExternalizer.accessorCall(editorGen, i18nKeyForNewDiagramFileWizardInitDiagramCommand(it))», affectedFiles) {
 	
+				«overrideC»
 				protected org.eclipse.gmf.runtime.common.core.command.CommandResult doExecuteWithResult(
 						org.eclipse.core.runtime.IProgressMonitor monitor, org.eclipse.core.runtime.IAdaptable info)
 							throws org.eclipse.core.commands.ExecutionException {
-					int diagramVID = «xptVisualIDRegistry.getDiagramVisualIDMethodCall(it)»(diagramRootElementSelectionPage.getModelElement());
-					if (diagramVID != «VisualIDRegistry::visualID(it)») {
+					String diagramVID = «xptVisualIDRegistry.getDiagramVisualIDMethodCall(it)»(diagramRootElementSelectionPage.getModelElement());
+					if (diagramVID.equals(«VisualIDRegistry::visualID(it)»)) {
 						return org.eclipse.gmf.runtime.common.core.command.CommandResult.newErrorCommandResult(
 							«xptExternalizer.accessorCall(editorGen, i18nKeyForNewDiagramFileWizardIncorrectRootError(it))»);
 					}
@@ -224,7 +230,7 @@ import xpt.ExternalizerUtils_qvto
 			'Select diagram root element')»
 		«xptExternalizer.messageEntry(titleKey(i18nKeyForNewDiagramFileWizardRootSelectionPage(it)), 'Diagram root element')»
 		«xptExternalizer.messageEntry(descriptionKey(i18nKeyForNewDiagramFileWizardRootSelectionPage(it)),
-			'Select semantic model element to be depicted on diagram')»"Select diagram root element:"
+			'Select semantic model element to be depicted on diagram')»
 		«xptExternalizer.messageEntry(i18nKeyForNewDiagramFileWizardRootSelectionPageSelectionTitle(it),
 			'Select diagram root element:')»
 		«xptExternalizer.messageEntry(i18nKeyForNewDiagramFileWizardRootSelectionPageNoSelectionMessage(it),
@@ -235,6 +241,7 @@ import xpt.ExternalizerUtils_qvto
 		«xptExternalizer.messageEntry(i18nKeyForNewDiagramFileWizardIncorrectRootError(it),
 			'Incorrect model object stored as a root resource object')»
 	'''
+
 
 	@Localization def String i18nKeyForNewDiagramFileWizard(GenDiagram diagram) {
 		return '' + className(diagram)

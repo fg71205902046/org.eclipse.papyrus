@@ -31,7 +31,6 @@ R:.*\.junit?\b
 # Don't analyze developer bundles
 org.eclipse.papyrus.dev.feature
 org.eclipse.papyrus.codegen
-org.eclipse.papyrus.def
 org.eclipse.papyrus.dev.assistants.codegen
 org.eclipse.papyrus.dev.java.utils
 org.eclipse.papyrus.dev.project.management

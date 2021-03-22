@@ -20,6 +20,7 @@
  */
 package org.eclipse.papyrus.gmf.codegen.gmfgen;
 
+import org.eclipse.emf.codegen.ecore.genmodel.GenJDKLevel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.common.util.EList;
@@ -73,6 +74,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenPropertySheet;
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator#getContextMenus <em>Context Menus</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator#getPluginDirectory <em>Plugin Directory</em>}</li>
  *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator#getExtensions <em>Extensions</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator#getJdkComplianceLevel <em>Jdk Compliance Level</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenEditorGenerator()
@@ -705,6 +707,32 @@ public interface GenEditorGenerator extends EObject {
 	 * @generated
 	 */
 	EList<GenCustomGeneratorExtension> getExtensions();
+
+	/**
+	 * Returns the value of the '<em><b>Jdk Compliance Level</b></em>' attribute.
+	 * The default value is <code>"11.0"</code>.
+	 * The literals are from the enumeration {@link org.eclipse.emf.codegen.ecore.genmodel.GenJDKLevel}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Jdk Compliance Level</em>' attribute.
+	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenJDKLevel
+	 * @see #setJdkComplianceLevel(GenJDKLevel)
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenEditorGenerator_JdkComplianceLevel()
+	 * @model default="11.0"
+	 * @generated
+	 */
+	GenJDKLevel getJdkComplianceLevel();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator#getJdkComplianceLevel <em>Jdk Compliance Level</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Jdk Compliance Level</em>' attribute.
+	 * @see org.eclipse.emf.codegen.ecore.genmodel.GenJDKLevel
+	 * @see #getJdkComplianceLevel()
+	 * @generated
+	 */
+	void setJdkComplianceLevel(GenJDKLevel value);
 
 	/**
 	 * <!-- begin-user-doc -->

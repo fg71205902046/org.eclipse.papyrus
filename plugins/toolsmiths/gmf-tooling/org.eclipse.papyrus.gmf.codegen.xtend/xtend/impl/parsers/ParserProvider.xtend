@@ -1,20 +1,20 @@
-/*******************************************************************************
- * Copyright (c) 2007-2020 Borland Software Corporation, CEA LIST, Artal and others
+/*****************************************************************************
+ * Copyright (c) 2007-2013, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Dmitry Stadnik (Borland) - initial API and implementation
- *    Artem Tikhomirov (Borland) - [235113] alternative parser access
+ * Contributors:
+ * Dmitry Stadnik (Borland) - initial API and implementation
+ * Artem Tikhomirov (Borland) - [235113] alternative parser access
  *                                 [244419] custom parsers
  *                                 [138179] expression-backed labels
- *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
- *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  *****************************************************************************/
 package impl.parsers
 
@@ -157,43 +157,45 @@ import plugin.Activator
 	'''
 
 	def HintAdapterClass(GenParsers it) '''
-		«generatedMemberComment()»
-		private static class HintAdapter extends org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter {
-	
 			«generatedMemberComment()»
-			private final org.eclipse.gmf.runtime.emf.type.core.IElementType elementType;
-	
-			«generatedMemberComment()»
-			public HintAdapter(org.eclipse.gmf.runtime.emf.type.core.IElementType type,
-					org.eclipse.emf.ecore.EObject object, String parserHint) {
+			private static class HintAdapter extends org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter {
+		
+				«generatedMemberComment()»
+				private final org.eclipse.gmf.runtime.emf.type.core.IElementType elementType;
+		
+				«generatedMemberComment()»
+				public HintAdapter(org.eclipse.gmf.runtime.emf.type.core.IElementType type,
+						org.eclipse.emf.ecore.EObject object, String parserHint) {
 				super(object, parserHint);
 				«_assert('type != null')»
 				elementType = type;
-			}
-	
-			«generatedMemberComment()»
-			public Object getAdapter(Class adapter) {
-				if (org.eclipse.gmf.runtime.emf.type.core.IElementType.class.equals(adapter)) {
-					return elementType;
 				}
-				return super.getAdapter(adapter);
+		
+				«generatedMemberComment()»
+				public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
+					if (org.eclipse.gmf.runtime.emf.type.core.IElementType.class.equals(adapter)) {
+						return elementType;
+					}
+					return super.getAdapter(adapter);
+				}
 			}
-		}
 	'''
 
-	def getParserByVisualIdMethod(GenParsers it) '''
+	def getParserByVisualIdMethod(GenParsers it)  '''
 		«generatedMemberComment()»
-		protected org.eclipse.gmf.runtime.common.ui.services.parser.IParser getParser(int visualID) {
-			switch (visualID) {
-				«FOR node : editorGen.diagram.topLevelNodes»
-					«dispatch_getParsers(node)»
-				«ENDFOR»
-				«FOR node : editorGen.diagram.childNodes»
-					«dispatch_getParsers(node)»
-				«ENDFOR»
-				«FOR link : editorGen.diagram.links»
-					«dispatch_getParsers(link)»
-				«ENDFOR»
+		protected org.eclipse.gmf.runtime.common.ui.services.parser.IParser getParser(String visualID) {
+			if (visualID != null) {
+				switch (visualID) {
+					«FOR node : editorGen.diagram.topLevelNodes»
+						«dispatch_getParsers(node)»
+					«ENDFOR»
+					«FOR node : editorGen.diagram.childNodes»
+						«dispatch_getParsers(node)»
+					«ENDFOR»
+					«FOR link : editorGen.diagram.links»
+						«dispatch_getParsers(link)»
+					«ENDFOR»
+				}
 			}
 			return null;
 		}
@@ -202,21 +204,28 @@ import plugin.Activator
 	def dispatch dispatch_getParsers(GenNode it) // 
 	'''
 		«FOR label : it.labels»
-			«doGetParser(label.modelFacet.parser, label)»
+			«IF label.modelFacet != null»
+				«doGetParser(label.modelFacet.parser, label)»
+			«ENDIF»
 		«ENDFOR»
+		
 	'''
 
-	def dispatch dispatch_getParsers(GenLink it) // 
+	def dispatch dispatch_getParsers(GenLink it)  // 
 	'''
 		«FOR label : it.labels»
-			«doGetParser(label.modelFacet.parser, label)»
+			«IF label.modelFacet != null»
+				«doGetParser(label.modelFacet.parser, label)»
+			«ENDIF»
 		«ENDFOR»
+		
 	'''
 
-	def dispatch dispatch_getParsers(GenChildLabelNode it) '''
-		«doGetParser(it.labelModelFacet.parser, it)»
+	def dispatch dispatch_getParsers(GenChildLabelNode it)'''
+		«IF it.modelFacet != null»
+			«doGetParser(it.labelModelFacet.parser, it)»
+		«ENDIF»
 	'''
-	
 	def doGetParser(GenParserImplementation parser, GenCommonBase element) '''
 		«IF parser.oclIsKindOf(typeof(PredefinedEnumParser)) || parser.oclIsKindOf(typeof(OclChoiceParser))»
 			«extraLineBreak»
@@ -229,16 +238,19 @@ import plugin.Activator
 
 	def dispatch dispatch_parsers(GenNode it) ''' 
 		«FOR label : it.labels»
-			«dispatch_parser(label.modelFacet.parser, label.modelFacet, label)»
+			«IF label.modelFacet != null»
+				«dispatch_parser(label.modelFacet.parser, label.modelFacet, label)»
+			«ENDIF»
 		«ENDFOR»
 	'''
 	
 	def dispatch dispatch_parsers(GenLink it) '''
 		«FOR label : it.labels»
-			«dispatch_parser(label.modelFacet.parser, label.modelFacet, label)»
+			«IF label.modelFacet != null»
+				«dispatch_parser(label.modelFacet.parser, label.modelFacet, label)»
+			«ENDIF»
 		«ENDFOR»
 	'''
-
 	def dispatch dispatch_parsers(GenChildLabelNode it) '''«dispatch_parser(it.labelModelFacet.parser, it.labelModelFacet, it)»'''
 
 	def dispatch dispatch_parser(GenParserImplementation it, LabelModelFacet modelFacet, GenCommonBase element) '''«ERROR("Abstract template for " + it + ", element: " + element)»'''

@@ -1,17 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2007, 2020 Borland Software Corporation, CEA LIST, Artal and others
+/*****************************************************************************
+ * Copyright (c) 2007, 2010, 2013, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Artem Tikhomirov (Borland) - initial API and implementation
- *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
- *   Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ * Contributors:
+ * Artem Tikhomirov (Borland) - initial API and implementation
+ * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  *****************************************************************************/
 package xpt.propsheet
 
@@ -103,7 +103,7 @@ import xpt.providers.ElementTypes
 		private org.eclipse.gmf.runtime.emf.type.core.IElementType getElementType(org.eclipse.gmf.runtime.notation.View view) {
 			// For intermediate views climb up the containment hierarchy to find the one associated with an element type.
 			while (view != null) {
-				int vid = «visualId.qualifiedClassName(editorGen.diagram)».getVisualID(view);
+				String vid = «visualId.qualifiedClassName(editorGen.diagram)».getVisualID(view);
 				org.eclipse.gmf.runtime.emf.type.core.IElementType etype =
 						«xptElementTypes.qualifiedClassName(editorGen.diagram)».getElementType(vid);
 				if (etype != null) {
@@ -117,5 +117,4 @@ import xpt.providers.ElementTypes
 	'''
 
 	def additions(GenPropertySheet it) ''''''
-
 }

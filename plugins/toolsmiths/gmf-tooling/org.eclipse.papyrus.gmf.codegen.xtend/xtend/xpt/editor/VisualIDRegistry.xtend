@@ -1,17 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2007, 2020 Borland Software Corporation, CEA LIST, Artal and others
+/*****************************************************************************
+ * Copyright (c) 2007, 2010, 2013, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Alexander Shatalin (Borland) - initial API and implementation
- * 	  Michael Golubev (Montages) - #372479, #386838
- *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ * Contributors:
+ * Alexander Shatalin (Borland) - initial API and implementation
+ * Michael Golubev (Montages) - #372479, #386838
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  *****************************************************************************/
 package xpt.editor
 
@@ -36,7 +36,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenExpressionInterpreter
 import xpt.diagram.updater.Utils_qvto
 import xpt.CodeStyle
 import xpt.diagram.editpolicies.LinkUtils_qvto
-import plugin.Activator
 
 //XXX: [MG] decide what to do with @MetaDef methods
 @com.google.inject.Singleton class VisualIDRegistry {
@@ -44,8 +43,8 @@ import plugin.Activator
 	@Inject extension Common_qvto;
 	@Inject extension Utils_qvto;
 	@Inject extension LinkUtils_qvto;
+	@Inject extension MetaModel;
 	
-	@Inject Activator xptActivator
 	@Inject CodeStyle xptCodeStyle;
 	@Inject MetaModel xptMetaModel;
 	@Inject xpt.expressions.getExpression xptGetExpression;
@@ -99,7 +98,7 @@ import plugin.Activator
 	
 	@MetaDef def getLinkWithClassVisualIDMethodName(GenDiagram it) '''getLinkWithClassVisualID'''
 	
-	@MetaDef def domainElementConstraintMethodName(GenCommonBase it) '''is«getUniqueIdentifier()»'''
+	@MetaDef def domainElementConstraintMethodName(GenCommonBase it) '''is«stringUniqueIdentifier()»'''
 	
 	@MetaDef def checkNodeVisualIDMethodName(GenDiagram it) '''checkNodeVisualID'''
 	
@@ -210,7 +209,7 @@ import plugin.Activator
 
 	def getViewVisualID(GenDiagram it) '''
 		«generatedMemberComment()»
-		public static int «getVisualIdMethodName(it)»(org.eclipse.gmf.runtime.notation.View view) {
+		public static String «getVisualIdMethodName(it)»(org.eclipse.gmf.runtime.notation.View view) {
 			if (view instanceof org.eclipse.gmf.runtime.notation.Diagram) {
 				if («modelID(it)».equals(view.getType())) {
 					return «visualID(it)»;
@@ -229,7 +228,7 @@ import plugin.Activator
 			while (view != diagram) {
 				org.eclipse.emf.ecore.EAnnotation annotation = view.getEAnnotation("Shortcut"); «nonNLS(1)»
 				if (annotation != null) {
-					return (String) annotation.getDetails().get("modelID"); «nonNLS(1)»
+					return annotation.getDetails().get("modelID"); «nonNLS(1)»
 				}
 				view = (org.eclipse.gmf.runtime.notation.View) view.eContainer();
 			}
@@ -239,35 +238,25 @@ import plugin.Activator
 
 	def getVisualID(GenDiagram it) '''
 		«generatedMemberComment()»
-		public static int «getVisualIdMethodName(it)»(String type) {
-			try {
-				return Integer.parseInt(type);
-			} catch (NumberFormatException e) {
-				if (Boolean.TRUE.toString().equalsIgnoreCase(org.eclipse.core.runtime.Platform.getDebugOption(DEBUG_KEY))) {
-					«xptActivator.qualifiedClassName(editorGen.plugin)».getInstance().logError("Unable to parse view type as a visualID number: " + type);
-				}
-			}
-			«unrecognizedVID(it)»
+		public static String «getVisualIdMethodName(it)»(String type) {
+			return type;
 		}
 	'''
 
 	def getType(GenDiagram it) '''
 	«generatedMemberComment()»
-	public static String «getTypeMethodName(it)»(int visualID) {
-		return Integer.toString(visualID);
+	public static String «getTypeMethodName(it)»(String visualID) {
+		return visualID;
 	}
 	'''
 
 	def getDiagramVisualID(GenDiagram it) '''
 		«generatedMemberComment()»
-		public static int «getDiagramVisualIDMethodName(it)»(org.eclipse.emf.ecore.EObject domainElement) {
+		public static String «getDiagramVisualIDMethodName(it)»(org.eclipse.emf.ecore.EObject domainElement) {
 			if (domainElement == null) {
 				«unrecognizedVID(it)»
 			}
-		«IF null != domainDiagramElement»
-			«returnVisualID(it)»
-		«ENDIF»
-			«unrecognizedVID(it)»
+			return «visualID(it)»;
 		}
 	'''
 
@@ -288,7 +277,23 @@ import plugin.Activator
 	def checkDomainElementMetaclass(GenClass it) '''«xptMetaModel.MetaClass(it)».isSuperTypeOf(domainElement.eClass())'''
 
 	def checkDomainElementConstraints(TypeModelFacet it, GenCommonBase commonBase) 
-	'''«IF null != modelElementSelector» && «domainElementConstraintMethodName(commonBase)»(«xptMetaModel.CastEObject(metaClass, 'domainElement')»)«ENDIF»'''
+	'''
+«««		«IF null != modelElementSelector»
+«««		//«it.eContainer»
+«««		//->«modelElementSelector»
+«««		«ENDIF»
+		«««	 [ExtendedConstraint] START Testing the kind of ModelFacet (GenLink or Default case)
+		«IF null != modelElementSelector»
+			«IF commonBase instanceof GenLink || !(modelElementSelector.provider instanceof GenJavaExpressionProvider)»
+				«««	[ExtendedConstraint] END   Testing the kind of ModelFacet (GenLink or Default case)
+				 && «domainElementConstraintMethodName(commonBase)»(«CastEObject(metaClass,'domainElement')»)
+				«««	[ExtendedConstraint] START Testing the kind of ModelFacet (GenLink or Default case) 
+			«ELSE»
+				 && «domainElementConstraintMethodName(commonBase)»(containerView, «CastEObject(metaClass, 'domainElement')»)
+		«ENDIF»
+		«ENDIF»
+		«««	[ExtendedConstraint] END   Testing the kind of ModelFacet (GenLink or Default case)
+	'''
 
 	def dispatch checkSemanticElement(LinkModelFacet it, GenLink genLink) '''«ERROR('checkSemanticElement is supported only for TypeLinkModelFacet: ' + it)»'''
 	def dispatch checkSemanticElement(TypeLinkModelFacet it, GenLink genLink) '''«checkDomainElementMetaclass(metaClass)»«checkDomainElementConstraints(it, genLink)»'''
@@ -296,7 +301,7 @@ import plugin.Activator
 
 	def getNodeVisualID(GenDiagram it) '''
 	«generatedMemberComment()»
-	public static int «getNodeVisualIDMethodName(it)»(org.eclipse.gmf.runtime.notation.View containerView, org.eclipse.emf.ecore.EObject domainElement) {
+	public static String «getNodeVisualIDMethodName(it)»(org.eclipse.gmf.runtime.notation.View containerView, org.eclipse.emf.ecore.EObject domainElement) {
 		if (domainElement == null) {
 			«unrecognizedVID(it)»
 		}
@@ -304,7 +309,7 @@ import plugin.Activator
 		if (!«modelID(it)».equals(containerModelID)«FOR spf : shortcutsProvidedFor»«checkContainerModelID(spf)»«ENDFOR») { «nonNLS_All(shortcutsProvidedFor)»
 			«unrecognizedVID(it)»
 		}
-		int containerVisualID;
+		String containerVisualID;
 		if («modelID(it)».equals(containerModelID)) {
 			containerVisualID = «getVisualIDMethodCall(it)»(containerView);
 		} else {
@@ -314,10 +319,12 @@ import plugin.Activator
 				«unrecognizedVID(it)»
 			}
 		}
-		switch (containerVisualID) {
-			«FOR container : allContainers»
-			«caseDomainContainerVisualID(container)»
-			«ENDFOR»
+		if (containerVisualID != null) {
+			switch (containerVisualID) {
+				«FOR container : allContainers»
+				«caseDomainContainerVisualID(container)»
+				«ENDFOR»
+			}
 		}
 		«unrecognizedVID(it)»
 	}
@@ -333,12 +340,12 @@ import plugin.Activator
 
 	def canCreateNode(GenDiagram it) '''
 	«generatedMemberComment()»
-	public static boolean «canCreateNodeMethodName(it)»(org.eclipse.gmf.runtime.notation.View containerView, int nodeVisualID) {
+	public static boolean «canCreateNodeMethodName(it)»(org.eclipse.gmf.runtime.notation.View containerView, String nodeVisualID) {
 		String containerModelID = «getModelIDMethodCall(it)»(containerView);
 		if (!«modelID(it)».equals(containerModelID)«FOR spf : shortcutsProvidedFor»«checkContainerModelID(spf)»«ENDFOR») { «nonNLS_All(shortcutsProvidedFor)»
 			return false;
 		}
-		int containerVisualID;
+		String containerVisualID;
 		if («modelID(it)».equals(containerModelID)) {
 			containerVisualID = «getVisualIDMethodCall(it)»(containerView);
 		} else {
@@ -348,9 +355,11 @@ import plugin.Activator
 				return false;
 			}
 		}
-		switch (containerVisualID) {
-			«FOR container : allContainers.filter[e|getEssentialVisualChildren(e).notEmpty]»«checkEssentialChildren(container)»«ENDFOR»
-			«FOR link : links.filter[l|getEssentialVisualChildren(l).notEmpty]»«checkEssentialChildren(link)»«ENDFOR»
+		if (containerVisualID != null) {
+			switch (containerVisualID) {
+				«FOR container : allContainers.filter[e|getEssentialVisualChildren(e).notEmpty]»«checkEssentialChildren(container)»«ENDFOR»
+				«FOR link : links.filter[l|getEssentialVisualChildren(l).notEmpty]»«checkEssentialChildren(link)»«ENDFOR»
+			}
 		}
 		return false;
 	}
@@ -365,14 +374,14 @@ import plugin.Activator
 	'''
 
 	def checkEssentialChild(GenCommonBase it) '''
-	if («visualID(it)» == nodeVisualID) {
+	if («visualID(it)».equals(nodeVisualID)) {
 		return true;
 	}
 	'''
 
 	def getLinkWithClassVisualID(GenDiagram it) '''
 	«generatedMemberComment()»
-	public static int «getLinkWithClassVisualIDMethodName(it)»(org.eclipse.emf.ecore.EObject domainElement) {
+	public static String «getLinkWithClassVisualIDMethodName(it)»(org.eclipse.emf.ecore.EObject domainElement) {
 		if (domainElement == null) {
 			«unrecognizedVID(it)»
 		}
@@ -402,12 +411,14 @@ import plugin.Activator
 	 * FIXME don't use static fields, replace with instance/separate cache (e.g. accessible from Activator)
 	 */		
 	def constraintMethods(GenDiagram it) '''
-	«IF null != editorGen.expressionProviders»
-		«FOR topNode : topLevelNodes.filter[n | n.modelFacet.modelElementSelector != null]»«constraintMethod(topNode)»«ENDFOR»
-		«FOR childNode : childNodes.filter[n | n.modelFacet.modelElementSelector != null]»«constraintMethod(childNode)»«ENDFOR»
-		«FOR link : links»«constraintMethod(link.modelFacet, link)»«ENDFOR»
-	«ENDIF»
-	'''
+			«IF null != editorGen.expressionProviders»
+				«FOR topNode : topLevelNodes.filter[n|!n.sansDomain].filter[n|n.modelFacet.modelElementSelector != null]»«constraintMethod(
+				topNode)»«ENDFOR»
+				«FOR childNode : childNodes.filter[n|!n.sansDomain].filter[n|n.modelFacet.modelElementSelector != null]»«constraintMethod(
+				childNode)»«ENDFOR»
+				«FOR link : links.filter[n|!n.sansDomain]»«constraintMethod(link.modelFacet, link)»«ENDFOR»
+			«ENDIF»
+		'''
 
 	def constraintMethod(GenNode it) 
 	'''«domainElementConstraintMethod(modelFacet.modelElementSelector.provider, it, modelFacet.modelElementSelector, modelFacet.metaClass)»'''
@@ -421,18 +432,27 @@ import plugin.Activator
 		'''«ERROR('Constraint method is not supported for ' + it)»'''
 
 	def dispatch domainElementConstraintMethod(GenJavaExpressionProvider it, GenCommonBase diagramElement, ValueExpression expression, GenClass context) '''
-		«generatedMemberComment()»
-		private static boolean «domainElementConstraintMethodName(diagramElement)»(«xptMetaModel.QualifiedClassName(context)» domainElement) {
-		«IF injectExpressionBody && (expression.body != null && !expression.body.empty)»
+		«generatedMemberComment»
+		«««	[ExtendedConstraint] START Testing the kind of ModelFacet (GenLink or Default case)
+		«IF diagramElement instanceof GenLink»
+			««« [ExtendedConstraint] END   Testing the kind of ModelFacet (GenLink or Default case)
+		private static boolean «domainElementConstraintMethodName(diagramElement)»(«QualifiedClassName(context)» domainElement) {
+		««« [ExtendedConstraint] START Testing the kind of ModelFacet (GenLink or Default case)
+		«ELSE»
+		private static boolean «domainElementConstraintMethodName(diagramElement)»(org.eclipse.gmf.runtime.notation.View containerView, «QualifiedClassName(
+		context)» domainElement) {
+		«ENDIF»
+		««« [ExtendedConstraint] END   Testing the kind of ModelFacet (GenLink or Default case)
+		«IF injectExpressionBody && (expression.body != null && expression.body.length() != 0)»
 			«expression.body»
-		«ELSEIF throwException || (injectExpressionBody && (expression.body == null || expression.body.empty))»
+		«ELSEIF throwException || (injectExpressionBody && (expression.body == null || expression.body.length() == 0))»
 			// FIXME: implement this method 
 			// Ensure that you remove @generated or mark it @generated NOT
-			throw new java.lang.UnsupportedOperationException("No java implementation provided in '«domainElementConstraintMethodName(diagramElement)»' operation");«nonNLS(1)»
+			throw new java.lang.UnsupportedOperationException("No java implementation provided in '« domainElementConstraintMethodName(diagramElement)»' operation");«nonNLS»
 		«ELSE»
 			return false;
 		«ENDIF»
-		}
+	}
 	'''
 
 	// FIXME move these methods to ElementInitializers or any other more suitable place
@@ -447,31 +467,31 @@ import plugin.Activator
 
 
 	def unrecognizedVID(GenDiagram it) '''
-	return -1;
+	return "";
 	'''
 	
 	def checkNodeVisualID(GenDiagram it) '''
 		«generatedMemberComment()»
-		public static boolean «checkNodeVisualIDMethodName(it)»(org.eclipse.gmf.runtime.notation.View containerView, org.eclipse.emf.ecore.EObject domainElement, int candidate) {
-			if (candidate == -1){
+		public static boolean «checkNodeVisualIDMethodName(it)»(org.eclipse.gmf.runtime.notation.View containerView, org.eclipse.emf.ecore.EObject domainElement, String candidate) {
+			if (candidate == null){
 				//unrecognized id is always bad
 				return false;
 			}
-			int basic = «getNodeVisualIDMethodName(it)»(containerView, domainElement);
-			return basic == candidate;
+			String basic = «getNodeVisualIDMethodName(it)»(containerView, domainElement);
+			return candidate.equals(basic);
 		}
 	'''
 
 
 	def isCompartmentVisualID(GenDiagram it) '''
 		«generatedMemberComment()»
-		public static boolean «isCompartmentVisualIDMethodName(it)»(int visualID) {
+		public static boolean «isCompartmentVisualIDMethodName(it)»(String visualID) {
 			«IF compartments.notEmpty»
-				switch (visualID) {
-					«FOR compartment : compartments»«caseVisualID(compartment)»«ENDFOR»
-						return true;
-					default:
-						break;
+				if (visualID != null) {
+					switch (visualID) {
+						«FOR compartment : compartments»«caseVisualID(compartment)»«ENDFOR»
+							return true;
+					}
 				}
 			«ENDIF»
 			return false;
@@ -482,17 +502,17 @@ import plugin.Activator
 		var leafs = it.allNodes.filter[n | getSemanticChildren(n).empty && n.compartments.forall[c | getSemanticChildren(c).empty]].sortBy[n|n.visualID]
 		return '''
 		«generatedMemberComment()»
-		public static boolean «isSemanticLeafVisualIDMethodName(it)»(int visualID) {
-			switch (visualID) {
-				«/*We need to ensure at last one case, this is legitimate way*/
-				caseVisualID(it)»
-					return false;
-				«IF leafs.notEmpty»
-				«FOR leaf : leafs»«caseVisualID(leaf)»«ENDFOR»
-					return true;
-				«ENDIF»
-				default:
-					break;
+		public static boolean «isSemanticLeafVisualIDMethodName(it)»(String visualID) {
+			if (visualID != null) {
+				switch (visualID) {
+					«/*We need to ensure at last one case, this is legitimate way*/
+					caseVisualID(it)»
+						return false;
+					«IF leafs.notEmpty»
+					«FOR leaf : leafs»«caseVisualID(leaf)»«ENDFOR»
+						return true;
+					«ENDIF»
+				}
 			}
 			return false;
 		}
@@ -501,40 +521,40 @@ import plugin.Activator
 
 	def runtimeTypedInstance(GenDiagram it) '''
 		«generatedClassComment()»
-		public static final org.eclipse.gmf.tooling.runtime.structure.DiagramStructure «runtimeTypedInstanceName(it)» = new org.eclipse.gmf.tooling.runtime.structure.DiagramStructure() {
+		public static final org.eclipse.papyrus.infra.gmfdiag.common.structure.DiagramStructure «runtimeTypedInstanceName(it)» = new org.eclipse.papyrus.infra.gmfdiag.common.structure.DiagramStructure() {
 			«generatedMemberComment()»
-			«xptCodeStyle.overrideI(it)»
-			public int «getVisualIdMethodName(it)»(org.eclipse.gmf.runtime.notation.View view) {
+			«xptCodeStyle.overrideC(it)»
+			public String «getVisualIdMethodName(it)»(org.eclipse.gmf.runtime.notation.View view) {
 				return «getVisualIDMethodCall(it)»(view);
 			}
 			
 			«generatedMemberComment()»
-			«xptCodeStyle.overrideI(it)»
+			«xptCodeStyle.overrideC(it)»
 			public String «getModelIDMethodName(it)»(org.eclipse.gmf.runtime.notation.View view) {
 				return «getModelIDMethodCall(it)»(view);
 			}
 			
 			«generatedMemberComment()»
-			«xptCodeStyle.overrideI(it)»
-			public int «getNodeVisualIDMethodName(it)»(org.eclipse.gmf.runtime.notation.View containerView, org.eclipse.emf.ecore.EObject domainElement) {
+			«xptCodeStyle.overrideC(it)»
+			public String «getNodeVisualIDMethodName(it)»(org.eclipse.gmf.runtime.notation.View containerView, org.eclipse.emf.ecore.EObject domainElement) {
 				return «getNodeVisualIDMethodCall(it)»(containerView, domainElement);
 			}
 			
 			«generatedMemberComment()»
-			«xptCodeStyle.overrideI(it)»
-			public boolean «checkNodeVisualIDMethodName(it)»(org.eclipse.gmf.runtime.notation.View containerView, org.eclipse.emf.ecore.EObject domainElement, int candidate) {
+			«xptCodeStyle.overrideC(it)»
+			public boolean «checkNodeVisualIDMethodName(it)»(org.eclipse.gmf.runtime.notation.View containerView, org.eclipse.emf.ecore.EObject domainElement, String candidate) {
 				return «checkNodeVisualIDMethodCall(it)»(containerView, domainElement, candidate);
 			}
 			
 			«generatedMemberComment()»
-			«xptCodeStyle.overrideI(it)»
-			public boolean «isCompartmentVisualIDMethodName(it)»(int visualID) {
+			«xptCodeStyle.overrideC(it)»
+			public boolean «isCompartmentVisualIDMethodName(it)»(String visualID) {
 				return «isCompartmentVisualIDMethodCall(it)»(visualID);
 			}
 			
 			«generatedMemberComment()»
-			«xptCodeStyle.overrideI(it)»
-			public boolean «isSemanticLeafVisualIDMethodName(it)»(int visualID) {
+			«xptCodeStyle.overrideC(it)»
+			public boolean «isSemanticLeafVisualIDMethodName(it)»(String visualID) {
 				return «isSemanticLeafVisualIDMethodCall(it)»(visualID);
 			}
 		};

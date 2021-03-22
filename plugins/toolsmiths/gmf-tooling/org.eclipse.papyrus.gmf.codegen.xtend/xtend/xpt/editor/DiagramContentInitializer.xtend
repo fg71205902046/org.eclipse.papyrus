@@ -1,17 +1,18 @@
-/*******************************************************************************
- * Copyright (c) 2007, 2020 Borland Software Corporation, CEA LIST, Artal and others
+/*****************************************************************************
+ * Copyright (c) 2007, 2016, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Alexander Shatalin (Borland) - initial API and implementation
- *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
- *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ * Contributors:
+ * Alexander Shatalin (Borland) - initial API and implementation
+ * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Florian Noyrit - Initial API and implementation
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  *****************************************************************************/
 package xpt.editor
 
@@ -102,7 +103,7 @@ import xpt.diagram.updater.LinkDescriptor
 		}
 	'''
 
-	@MetaDef def createChildrenMethodName(GenContainerBase it) '''create«it.uniqueIdentifier»Children'''
+	@MetaDef def createChildrenMethodName(GenContainerBase it) '''create«it.stringUniqueIdentifier»_Children'''
 
 	def createChildren(GenContainerBase it) '''
 		«generatedMemberComment»
@@ -202,7 +203,7 @@ import xpt.diagram.updater.LinkDescriptor
 
 	def getCompartment(GenDiagram it) '''
 		«generatedMemberComment»
-		private org.eclipse.gmf.runtime.notation.Node getCompartment(org.eclipse.gmf.runtime.notation.View node, int visualID) {
+		private org.eclipse.gmf.runtime.notation.Node getCompartment(org.eclipse.gmf.runtime.notation.View node, String visualID) {
 			String type = «xptVisualIDRegistry.typeMethodCall(it, 'visualID')»;
 			for (java.util.Iterator it = node.getChildren().iterator(); it.hasNext();) {
 				org.eclipse.gmf.runtime.notation.View nextView = (org.eclipse.gmf.runtime.notation.View) it.next();
@@ -215,5 +216,4 @@ import xpt.diagram.updater.LinkDescriptor
 	'''
 
 	def additions(GenDiagram it) ''''''
-
 }

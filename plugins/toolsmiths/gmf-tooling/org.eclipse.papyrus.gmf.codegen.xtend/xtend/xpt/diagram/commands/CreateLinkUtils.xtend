@@ -1,17 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2007-2020 Borland Software Corporation, CEA LIST, Artal and others
+/*****************************************************************************
+ * Copyright (c) 2007-2012, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Dmitry Stadnik (Borland) - initial API and implementation
- *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
- *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ * Contributors:
+ * Dmitry Stadnik (Borland) - initial API and implementation
+ * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  *****************************************************************************/
 package xpt.diagram.commands
 
@@ -77,23 +77,23 @@ import xpt.diagram.editpolicies.BaseItemSemanticEditPolicy
 	def dispatch fields(LinkModelFacet it) '''
 		«extraLineBreak»
 			«generatedMemberComment()» 
-			private final org.eclipse.emf.ecore.EObject source;
+			protected final org.eclipse.emf.ecore.EObject source;
 		
 			«generatedMemberComment()» 
-			private final org.eclipse.emf.ecore.EObject target;
+			protected final org.eclipse.emf.ecore.EObject target;
 	'''
 
 	def dispatch fields(TypeLinkModelFacet it) ''' 
 		«extraLineBreak»
 			«generatedMemberComment()» 
-			private final org.eclipse.emf.ecore.EObject source;
+			protected final org.eclipse.emf.ecore.EObject source;
 		
 			«generatedMemberComment()» 
-			private final org.eclipse.emf.ecore.EObject target;
+			protected final org.eclipse.emf.ecore.EObject target;
 		«IF hasContainerOtherThanSource(it)»
 			
 			«generatedMemberComment()» 
-			private final «xptMetaModel.QualifiedClassName(it.containmentMetaFeature.genClass)» container;
+			protected «xptMetaModel.QualifiedClassName(it.containmentMetaFeature.genClass)» container;
 		«ENDIF»
 	'''
 
@@ -117,30 +117,29 @@ import xpt.diagram.editpolicies.BaseItemSemanticEditPolicy
 
 	def dispatch containerAccessor(TypeLinkModelFacet it) ''' 
 		«IF hasContainerOtherThanSource(it)»
-		
-			«generatedMemberComment()» 
-			public «xptMetaModel.QualifiedClassName(it.containmentMetaFeature.genClass)» getContainer() {
-				return container;
-			}
-		
-			«generatedMemberComment(
-				'Default approach is to traverse ancestors of the source to find instance of container.\n' +
-					'Modify with appropriate logic.'
-			)»
-			private static «xptMetaModel.QualifiedClassName(it.containmentMetaFeature.genClass)» deduceContainer(org.eclipse.emf.ecore.EObject source, org.eclipse.emf.ecore.EObject target) {
-				// Find container element for the new link.
-				// Climb up by containment hierarchy starting from the source
-				// and return the first element that is instance of the container class.
-				for (org.eclipse.emf.ecore.EObject element = source; element != null; element = element.eContainer()) {
-					if («xptMetaModel.IsInstance(containmentMetaFeature.genClass, 'element')») {
-						return «xptMetaModel.CastEObject(it.containmentMetaFeature.genClass, 'element')»;
-					}
+			
+				«generatedMemberComment()» 
+				public «xptMetaModel.QualifiedClassName(it.containmentMetaFeature.genClass)» getContainer() {
+					return container;
 				}
-				return null;
-			}
+			
+				«generatedMemberComment(
+			'Default approach is to traverse ancestors of the source to find instance of container.\n' + 'Modify with appropriate logic.'
+		)»
+				protected «xptMetaModel.QualifiedClassName(it.containmentMetaFeature.genClass)» deduceContainer(org.eclipse.emf.ecore.EObject source, org.eclipse.emf.ecore.EObject target) {
+					// Find container element for the new link.
+					// Climb up by containment hierarchy starting from the source
+					// and return the first element that is instance of the container class.
+					for (org.eclipse.emf.ecore.EObject element = source; element != null; element = element.eContainer()) {
+						if («xptMetaModel.IsInstance(containmentMetaFeature.genClass, 'element')») {
+							return «xptMetaModel.CastEObject(it.containmentMetaFeature.genClass, 'element')»;
+						}
+					}
+					return null;
+				}
 		«ENDIF»
-
-'''
+		
+	'''
 
 	/**
 	 * Part of the constructor that performs initialization.

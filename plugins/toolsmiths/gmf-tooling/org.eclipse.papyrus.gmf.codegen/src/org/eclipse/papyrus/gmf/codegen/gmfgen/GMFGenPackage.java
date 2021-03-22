@@ -303,13 +303,22 @@ public interface GMFGenPackage extends EPackage {
 	int GEN_EDITOR_GENERATOR__EXTENSIONS = 23;
 
 	/**
+	 * The feature id for the '<em><b>Jdk Compliance Level</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_EDITOR_GENERATOR__JDK_COMPLIANCE_LEVEL = 24;
+
+	/**
 	 * The number of structural features of the '<em>Gen Editor Generator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEN_EDITOR_GENERATOR_FEATURE_COUNT = 24;
+	int GEN_EDITOR_GENERATOR_FEATURE_COUNT = 25;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.impl.GenCommonBaseImpl <em>Gen Common Base</em>}' class.
@@ -12766,6 +12775,17 @@ public interface GMFGenPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getGenEditorGenerator_Extensions();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator#getJdkComplianceLevel <em>Jdk Compliance Level</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Jdk Compliance Level</em>'.
+	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator#getJdkComplianceLevel()
+	 * @see #getGenEditorGenerator()
+	 * @generated
+	 */
+	EAttribute getGenEditorGenerator_JdkComplianceLevel();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram <em>Gen Diagram</em>}'.

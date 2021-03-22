@@ -173,6 +173,7 @@
       <genFeatures createChild="false" propertyDescription="The target directory for generated editor code"
           ecoreFeature="ecore:EAttribute gmfgen.ecore#//GenEditorGenerator/pluginDirectory"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gmfgen.ecore#//GenEditorGenerator/extensions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gmfgen.ecore#//GenEditorGenerator/jdkComplianceLevel"/>
       <genOperations ecoreOperation="gmfgen.ecore#//GenEditorGenerator/getAllDomainGenPackages">
         <genParameters ecoreParameter="gmfgen.ecore#//GenEditorGenerator/getAllDomainGenPackages/withUsed"/>
       </genOperations>

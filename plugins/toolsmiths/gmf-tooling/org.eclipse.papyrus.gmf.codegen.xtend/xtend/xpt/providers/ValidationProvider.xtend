@@ -1,22 +1,24 @@
-/*******************************************************************************
- * Copyright (c) 2007, 2020 Borland Software Corporation, CEA LIST, Artal and others
+/*****************************************************************************
+ * Copyright (c) 2007, 2010, 2013, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Dmitry Stadnik (Borland) - initial API and implementation
- *    Artem Tikhomirov (Borland) - introduced GenAuditContext entity
- *                                 straightforward and simple #validate() implementation
- * 	  Michael Golubev (Montages) - #386838 - migrate to Xtend2
- */
+ * Contributors:
+ * Dmitry Stadnik (Borland) - initial API and implementation
+ * Artem Tikhomirov (Borland) - introduced GenAuditContext entity
+ *                              straightforward and simple #validate() implementation
+ * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ *****************************************************************************/
 package xpt.providers
 
 import com.google.inject.Inject
+import com.google.inject.Singleton
 import metamodel.MetaModel
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenAuditRoot
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenAuditRule
@@ -29,14 +31,15 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenExpressionInterpreter
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenExpressionProviderBase
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenExpressionProviderContainer
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenJavaExpressionProvider
+import plugin.Activator
+import xpt.CodeStyle
 import xpt.Common
 import xpt.Common_qvto
 import xpt.GenAuditRoot_qvto
 import xpt.editor.VisualIDRegistry
 import xpt.expressions.getExpression
-import plugin.Activator
 
-@com.google.inject.Singleton class ValidationProvider {
+@Singleton class ValidationProvider {
 	@Inject extension Common;
 	@Inject extension Common_qvto;
 	@Inject extension GenAuditRoot_qvto; 
@@ -46,6 +49,8 @@ import plugin.Activator
 	@Inject getExpression xptGetExpression;
 	@Inject MetricProvider xptMetricProvider;
 	@Inject VisualIDRegistry xptVisualIDRegistry;
+	@Inject extension CodeStyle
+	
 
 	def className(GenDiagram it) '''«it.validationProviderClassName»'''
 
@@ -97,6 +102,7 @@ import plugin.Activator
 	public static void runWithConstraints(org.eclipse.emf.transaction.TransactionalEditingDomain editingDomain, Runnable operation) {
 		final Runnable op = operation;
 		Runnable task = new Runnable() {
+			«overrideI»
 			public void run() {
 				try {
 					constraintsActive = true;
@@ -121,6 +127,8 @@ import plugin.Activator
 	def additions(GenDiagram it) ''''''
 
 	def selectors(GenAuditRoot it) '''
+	«IF it !=null»
+	«IF it.clientContexts !=null»
 	«FOR ctx : it.clientContexts»
 		«generatedMemberComment»
 		public static class «ctx.className» implements org.eclipse.emf.validation.model.IClientSelector {
@@ -129,10 +137,10 @@ import plugin.Activator
 			public boolean selects(Object object) {
 			«IF ctx.ruleTargets.filter(typeof(GenDiagramElementTarget)).notEmpty»
 				if (isInDefaultEditorContext(object) && object instanceof org.eclipse.gmf.runtime.notation.View) {
-					final int id = «xptVisualIDRegistry.getVisualIDMethodCall(editorGen.diagram)»((org.eclipse.gmf.runtime.notation.View) object);
+					final String id = «xptVisualIDRegistry.getVisualIDMethodCall(editorGen.diagram)»((org.eclipse.gmf.runtime.notation.View) object);
 					boolean result = false;
 				«FOR e : getTargetDiagramElements(ctx)»
-					result = result || id == «VisualIDRegistry::visualID(e)»;
+					result = result || «VisualIDRegistry::visualID(e)».equals(id);
 				«ENDFOR»
 					return result;
 				}
@@ -143,6 +151,8 @@ import plugin.Activator
 			}
 		}
 	«ENDFOR»
+	«ENDIF»
+	«ENDIF»
 	'''
 
 	def isInDefaultEditorContext(GenDiagram it) '''
@@ -174,7 +184,7 @@ import plugin.Activator
 		private org.eclipse.emf.validation.service.ITraversalStrategy defaultStrategy;
 
 		«generatedMemberComment»
-		private int currentSemanticCtxId = -1;
+		private String currentSemanticCtxId;
 
 		«generatedMemberComment»
 		private boolean ctxChanged = true;
@@ -186,12 +196,12 @@ import plugin.Activator
 		private org.eclipse.emf.ecore.EObject preFetchedNextTarget;
 
 		«generatedMemberComment»
-		private final int[] contextSwitchingIdentifiers;
+		private final String[] contextSwitchingIdentifiers;
 
 		«generatedMemberComment»
 		CtxSwitchStrategy(org.eclipse.emf.validation.service.IBatchValidator validator) {
 			this.defaultStrategy = validator.getDefaultTraversalStrategy();
-			this.contextSwitchingIdentifiers = new int[] {
+			this.contextSwitchingIdentifiers = new String[] {
 				«FOR e : getAllTargetDiagramElements(editorGen.audits) SEPARATOR ','»«VisualIDRegistry::visualID(e)»«ENDFOR»
 			};
 			java.util.Arrays.sort(this.contextSwitchingIdentifiers);
@@ -236,17 +246,17 @@ import plugin.Activator
 		private void prepareNextClientContext(org.eclipse.emf.ecore.EObject nextTarget) { 
 			if (nextTarget != null && currentTarget != null) {
 				if (nextTarget instanceof org.eclipse.gmf.runtime.notation.View) {
-					final int id = «xptVisualIDRegistry.getVisualIDMethodCall(editorGen.diagram)»((org.eclipse.gmf.runtime.notation.View) nextTarget);
-					int nextSemanticId = (id != -1 && java.util.Arrays.binarySearch(contextSwitchingIdentifiers, id) >= 0) ? id : -1;
-					if ((currentSemanticCtxId != -1 && currentSemanticCtxId != nextSemanticId)
-							|| (nextSemanticId != -1 && nextSemanticId != currentSemanticCtxId)) {
+					final String id = «xptVisualIDRegistry.getVisualIDMethodCall(editorGen.diagram)»((org.eclipse.gmf.runtime.notation.View) nextTarget);
+					String nextSemanticId = (id != null && java.util.Arrays.binarySearch(contextSwitchingIdentifiers, id) >= 0) ? id : null;
+					if ((currentSemanticCtxId != null && currentSemanticCtxId != nextSemanticId)
+							|| (nextSemanticId != null && nextSemanticId != currentSemanticCtxId)) {
 						this.ctxChanged = true;
 					}«/*[artem] not sure why not ctxChanged = <expr>, is it intentional not to reset ctxChanged if condition did not match? I doubt. FIXME?*/»
 					currentSemanticCtxId = nextSemanticId;
 				} else {
 					// context of domain model
-					this.ctxChanged = currentSemanticCtxId != -1;
-					currentSemanticCtxId = -1;
+					this.ctxChanged = currentSemanticCtxId != null;
+					currentSemanticCtxId = null;
 				}
 			} else {
 				this.ctxChanged = false;
@@ -257,6 +267,7 @@ import plugin.Activator
 	'''
 
 	def constraintAdapters(GenAuditRoot it, GenDiagram diagram) '''
+		«IF it !=null»
 		«IF diagram.editorGen.expressionProviders != null»
 		«FOR next : it.rules.filter[a | a.requiresConstraintAdapter]»
 			«constraintAdapter(next, diagram.editorGen.expressionProviders)»
@@ -264,6 +275,7 @@ import plugin.Activator
 		
 		«IF it.rules.exists[a | a.requiresConstraintAdapter]»
 		«constraintAdapters_formatMethod(it)»
+		«ENDIF»
 		«ENDIF»
 		«ENDIF»
 	'''

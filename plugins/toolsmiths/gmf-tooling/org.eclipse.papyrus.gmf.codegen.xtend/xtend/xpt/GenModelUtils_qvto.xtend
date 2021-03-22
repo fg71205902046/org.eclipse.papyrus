@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2006-2020 Borland Software Corporation, CEA LIST, Artal and others
+ * Copyright (c) 2006-2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -9,9 +9,9 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors: 
- *    Dmitry Stadnik (Borland) - initial API and implementation
- *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
- *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ * Dmitry Stadnik (Borland) - initial API and implementation
+ * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  *****************************************************************************/
 package xpt
 
@@ -19,12 +19,11 @@ import java.util.Set
 import org.eclipse.emf.codegen.ecore.genmodel.GenClass
 import org.eclipse.emf.codegen.ecore.genmodel.GenClassifier
 import org.eclipse.emf.codegen.ecore.genmodel.GenFeature
-import org.eclipse.emf.codegen.ecore.genmodel.GenJDKLevel
 import org.eclipse.emf.codegen.ecore.genmodel.impl.GenFeatureImpl
 import org.eclipse.emf.ecore.EDataType
 
 @com.google.inject.Singleton class GenModelUtils_qvto {
-	private static final Set<String> PRIMITIVES = newHashSet('boolean', 'byte', 'char', 'double', 'float', 'int', 'long',
+	static final Set<String> PRIMITIVES = newHashSet('boolean', 'byte', 'char', 'double', 'float', 'int', 'long',
 		'short');
 
 	/**
@@ -90,19 +89,4 @@ import org.eclipse.emf.ecore.EDataType
 		}
 		return xptSelf.ecoreClass.isSuperTypeOf(subclassCandidate.ecoreClass)
 	}
-
-	/**
-	 * @returns 4 for Java1.4, 5 for JDK 5.0, 6 for JDK6.0 and 7 for JDK7.0
- 	*/
-	def int jdkComplianceLevel(GenClass xptSelf) {
-		var GenJDKLevel l = if (xptSelf == null) GenJDKLevel::JDK60_LITERAL else xptSelf.genPackage.genModel.complianceLevel;
-		switch (l) {
-			case GenJDKLevel::JDK14_LITERAL: 4
-			case GenJDKLevel::JDK50_LITERAL: 5
-			case GenJDKLevel::JDK60_LITERAL: 6
-			case GenJDKLevel::JDK70_LITERAL: 7
-			default: 6
-		}
-	}
-
 }

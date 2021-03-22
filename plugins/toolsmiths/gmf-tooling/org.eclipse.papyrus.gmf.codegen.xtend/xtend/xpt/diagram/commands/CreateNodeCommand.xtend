@@ -1,31 +1,33 @@
-/*******************************************************************************
- * Copyright (c) 2007, 2020 Borland Software Corporation, CEA LIST, Artal and others
+/*****************************************************************************
+ * Copyright (c) 2007, 2010, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Dmitry Stadnik (Borland) - initial API and implementation
- *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
- *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ * Contributors:
+ * Dmitry Stadnik (Borland) - initial API and implementation
+ * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  *****************************************************************************/
 package xpt.diagram.commands
 
 import com.google.inject.Inject
+import com.google.inject.Singleton
 import metamodel.MetaModel
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
 import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeModelFacet
 import xpt.Common
+import xpt.OclMigrationProblems_qvto
 import xpt.diagram.Utils_qvto
 import xpt.providers.ElementInitializers
-import xpt.OclMigrationProblems_qvto
 
-@com.google.inject.Singleton class CreateNodeCommand {
+@Singleton class CreateNodeCommand {
 	@Inject extension Common;
+	@Inject extension MetaModel
 	@Inject extension Utils_qvto;
 	@Inject extension OclMigrationProblems_qvto;
 
@@ -44,8 +46,15 @@ import xpt.OclMigrationProblems_qvto
 		«copyright(it.diagram.editorGen)»
 		package «packageName(it)»;
 		
+		
+		
 		«generatedClassComment()»
 		public class «className(it)» extends org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand {
+			
+			«IF ! it.modelFacet.isPhantomElement()»
+				«generatedMemberComment()»
+				private org.eclipse.gmf.runtime.notation.Diagram diagram = null;
+			«ENDIF»
 		
 			«_constructor(it)»
 		
@@ -61,10 +70,13 @@ import xpt.OclMigrationProblems_qvto
 		}
 	'''
 
-	def _constructor(GenNode it) '''
+	def _constructor(GenNode it)  '''
 		«generatedMemberComment()»
-		public «className(it)»(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req) {
+		public «className(it)»(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req, org.eclipse.gmf.runtime.notation.Diagram diagram) {
 			super(req.getLabel(), null, req);
+			«IF ! it.modelFacet.isPhantomElement()»
+			this.diagram = diagram;
+			«ENDIF»
 		}
 	'''
 
@@ -85,22 +97,32 @@ import xpt.OclMigrationProblems_qvto
 	def doExecuteWithResultMethod(GenNode it) '''
 		«generatedMemberComment()»
 		protected org.eclipse.gmf.runtime.common.core.command.CommandResult doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor monitor, org.eclipse.core.runtime.IAdaptable info) throws org.eclipse.core.commands.ExecutionException {
-		«IF it.modelFacet.isPhantomElement()»
-			«phantomElementCreation(it.modelFacet, it, 'newElement')»
+		«««	[AbstractElement] START	
+ 				
+ 		«IF it.modelFacet.metaClass.ecoreClass.abstract != true»
+		««« [AbstractElement] END
+			«IF it.modelFacet.isPhantomElement()»
+				«phantomElementCreation(it.modelFacet, it, 'newElement')»
+			«ELSE»
+				«normalElementCreation(it.modelFacet, it, 'newElement')»
+			«ENDIF»
+			«extraLineBreak»
+			«initialize(it.modelFacet, it, 'newElement')»
+			«IF true/*FIXME boolean needsExternalConfiguration*/»
+				«extraLineBreak»
+				doConfigure(newElement, monitor, info);
+				«extraLineBreak»
+			«ENDIF»
+				((org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest) getRequest()).setNewElement(«xptMetaModel.
+				DowncastToEObject(it.modelFacet.metaClass, 'newElement')»);
+				return org.eclipse.gmf.runtime.common.core.command.CommandResult.newOKCommandResult(newElement);
+			}
+		«««  [AbstractElement] START	
 		«ELSE»
-			«normalElementCreation(it.modelFacet, it, 'newElement')»
+				throw new UnsupportedOperationException("Unimplemented operation (abstract domain element).");
+			}
 		«ENDIF»
-		«extraLineBreak»
-		«initialize(it.modelFacet, it, 'newElement')»
-		«IF true/*FIXME boolean needsExternalConfiguration*/»
-			«extraLineBreak»
-			doConfigure(newElement, monitor, info);
-			«extraLineBreak»
-		«ENDIF»
-			((org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest) getRequest()).setNewElement(«xptMetaModel.
-			DowncastToEObject(it.modelFacet.metaClass, 'newElement')»);
-			return org.eclipse.gmf.runtime.common.core.command.CommandResult.newOKCommandResult(newElement);
-		}
+		««« [AbstractElement] END	
 	'''
 
 	/**
@@ -136,32 +158,37 @@ import xpt.OclMigrationProblems_qvto
 	'''
 
 	def canExecute_Normal(TypeModelFacet it) '''
-«IF !isUnbounded(it.containmentMetaFeature.ecoreFeature) ||
-		(childMetaFeature != containmentMetaFeature && !isUnbounded(it.childMetaFeature.ecoreFeature))»
-	«xptMetaModel.DeclareAndAssign(it.containmentMetaFeature.genClass, 'container', 'getElementToEdit()')»
-	«IF !isUnbounded(it.containmentMetaFeature.ecoreFeature)»
-		«IF isSingleValued(containmentMetaFeature.ecoreFeature)»
-		if («xptMetaModel.getFeatureValue(containmentMetaFeature, 'container', containmentMetaFeature.genClass)» != null) {
-		«ELSE»
-		if («xptMetaModel.getFeatureValue(containmentMetaFeature, 'container', containmentMetaFeature.genClass)».size() >= «containmentMetaFeature.
-		ecoreFeature.upperBound») {
+	«IF containmentMetaFeature != null»
+		«IF  containmentMetaFeature.ecoreFeature != null»
+			«IF ! isUnbounded(containmentMetaFeature.ecoreFeature) || (childMetaFeature != containmentMetaFeature && ! isUnbounded(childMetaFeature.ecoreFeature))»
+				«IF ! isUnbounded(containmentMetaFeature.ecoreFeature)»
+				«DeclareAndAssign(containmentMetaFeature.genClass,'container', 'getElementToEdit()') »
+						«IF isSingleValued(containmentMetaFeature.ecoreFeature)»
+						if («getFeatureValue(containmentMetaFeature,'container', containmentMetaFeature.genClass) » != null) {
+							«ELSE»
+						if (« getFeatureValue(containmentMetaFeature,'container', containmentMetaFeature.genClass)».size() >= «containmentMetaFeature.ecoreFeature.upperBound») {
+							«ENDIF»
+							return false;
+						}
+						«ENDIF»
+						«IF childMetaFeature != containmentMetaFeature && ! isUnbounded(childMetaFeature.ecoreFeature)»
+						«IF isSingleValued(childMetaFeature.ecoreFeature)»
+							if («getFeatureValue(childMetaFeature,'container', containmentMetaFeature.genClass)  » != null) {
+								«ELSE»
+								if («getFeatureValue(childMetaFeature,'container', containmentMetaFeature.genClass)  ».size() >= «childMetaFeature.ecoreFeature.upperBound») {
+								«ENDIF»
+								return false;
+							}
+						«ENDIF»
+			«ENDIF»
 		«ENDIF»
-			return false;
-		}
 	«ENDIF»
-	«IF childMetaFeature != containmentMetaFeature && !isUnbounded(childMetaFeature.ecoreFeature)»
-		«IF isSingleValued(childMetaFeature.ecoreFeature)»
-		if («xptMetaModel.getFeatureValue(childMetaFeature, 'container', containmentMetaFeature.genClass)» != null) {
-		«ELSE»
-		if («xptMetaModel.getFeatureValue(childMetaFeature, 'container', containmentMetaFeature.genClass)».size() >= «childMetaFeature.
-		ecoreFeature.upperBound») {
-		«ENDIF»
-			return false;
-		}
-	«ENDIF»
-«ENDIF»
-	return true;
-'''
+	
+	org.eclipse.emf.ecore.EObject target = getElementToEdit();
+	org.eclipse.papyrus.infra.viewpoints.policy.ModelAddData data = org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker.getFor(target).getChildAddData(diagram, target.eClass(), «MetaClass(metaClass)»);
+	return data.isPermitted();
+
+	'''
 
 	def phantomElementCreation(TypeModelFacet it, GenNode node, String varName) '''
 		// Uncomment to put "phantom" objects into the diagram file.		
@@ -177,15 +204,30 @@ import xpt.OclMigrationProblems_qvto
 
 	def normalElementCreation(TypeModelFacet it, GenNode node, String varName) '''
 		«xptMetaModel.NewInstance(it.metaClass, varName)»
+		
+		org.eclipse.emf.ecore.EObject target = getElementToEdit();
+				org.eclipse.papyrus.infra.viewpoints.policy.ModelAddData data = org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker.getFor(target).getChildAddData(diagram, target, «varName»);
+				if (data.isPermitted()) {
+					if (data.isPathDefined()) {
+						if (!data.execute(target, «varName»)) {
+							return org.eclipse.gmf.runtime.common.core.command.CommandResult.newErrorCommandResult("Failed to follow the policy-specified for the insertion of the new element");
+						}
+					} else {
 		«extraLineBreak»
 		«IF containmentMetaFeature != null»
-			«xptMetaModel.DeclareAndAssign(it.containmentMetaFeature.genClass, 'owner', 'getElementToEdit()')»
-			«xptMetaModel.modifyFeature(containmentMetaFeature, 'owner', containmentMetaFeature.genClass, varName)»
+			«xptMetaModel.DeclareAndAssign(it.containmentMetaFeature.genClass, 'qualifiedTarget', 'target')»
+			«xptMetaModel.modifyFeature(containmentMetaFeature, 'qualifiedTarget', containmentMetaFeature.genClass, varName)»
 		«ELSE»
 			//
 			// FIXME no containment feature found in the genmodel, toolsmith need to manually write code here to add «varName» to a parent
 			//
 		«ENDIF»
+		
+					}
+				} else {
+					return org.eclipse.gmf.runtime.common.core.command.CommandResult.newErrorCommandResult("The active policy restricts the addition of this element");
+				}
+
 		«IF hasExplicitChildFeature(it)»
 			«xptMetaModel.DeclareAndAssign(it.childMetaFeature.genClass, 'childHolder', 'getElementToEdit()')»
 			«xptMetaModel.modifyFeature(it.childMetaFeature, 'childHolder', childMetaFeature.genClass, varName)»
@@ -196,5 +238,4 @@ import xpt.OclMigrationProblems_qvto
 		'''«xptElementInitializers.initMethodCall(node, it, newElementVar)»'''
 
 	def additions(GenNode it) ''''''
-
 }

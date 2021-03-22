@@ -1594,6 +1594,16 @@ public class GMFGenPackageImpl extends EPackageImpl implements GMFGenPackage {
 	 * @generated
 	 */
 	@Override
+	public EAttribute getGenEditorGenerator_JdkComplianceLevel() {
+        return (EAttribute)getGenEditorGenerator().getEStructuralFeatures().get(24);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getGenDiagram() {
 		if (genDiagramEClass == null) {
 			genDiagramEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(GMFGenPackage.eNS_URI).getEClassifiers().get(1);

@@ -6,8 +6,6 @@
 	<gmfgen:GenEditorGenerator
 		packageNamePrefix="org.eclipse.papyrus.uml.diagram.clazz"
 		modelID="PapyrusUMLClassDiagram" domainFileExtension="PapyrusUMLClass"
-		dynamicTemplates="true"
-		templateDirectory="/org.eclipse.papyrus.def/xtend/"
 		copyrightText="Copyright (c) 2014 CEA LIST.&#xA;&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License 2.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-2.0&#xA;&#xA;SPDX-License-Identifier: EPL-2.0&#xA;&#xA;Contributors:&#xA; CEA LIST - Initial API and implementation"
 		pluginDirectory="/org.eclipse.papyrus.uml.diagram.clazz/src-gen">
 		<diagram visualID="1000" editPartClassName="ModelEditPart"
@@ -6687,7 +6685,7 @@
 			</preferencePages>
 		</diagram>
 		<plugin iD="org.eclipse.papyrus.uml.diagram.clazz"
-			name="PapyrusUMLClassDiagram" version="3.1.0.qualifier" />
+			name="PapyrusUMLClassDiagram" version="4.1.0.qualifier" />
 		<editor />
 		<navigator />
 		<diagramUpdater />
@@ -6781,7 +6779,7 @@
 			rootInput="PapyrusUMLClassDiagram">
 			<invocations xsi:type="gmfgen:GenTemplateInvocation"
 				description="VisualTypeProvider"
-				templateFqn="aspects::xpt::providers::VisualTypeProvider::VisualTypeProvider"
+				templateFqn="xpt::providers::VisualTypeProvider::VisualTypeProvider"
 				inputs="/0/@extensions.0" oclExpression="self.diagram" />
 		</extensions>
 	</gmfgen:GenEditorGenerator>

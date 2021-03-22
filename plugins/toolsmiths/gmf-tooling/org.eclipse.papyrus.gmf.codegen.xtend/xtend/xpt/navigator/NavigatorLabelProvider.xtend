@@ -1,17 +1,19 @@
-/*******************************************************************************
- * Copyright (c) 2006, 2020 Borland Software Corporation, CEA LIST, Artal and others
+/*****************************************************************************
+ * Copyright (c) 2006, 2010, 2013, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Alexander Shatalin (Borland) - initial API and implementation
- *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
- *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ * Contributors:
+ * Alexander Shatalin (Borland) - initial API and implementation
+ * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Modified by Patrick Tessier (CEA LIST)
+ * Emilien Perico (Atos Origin) - update template for GMF 2.2 compliance
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  *****************************************************************************/
 package xpt.navigator
 
@@ -284,7 +286,7 @@ import plugin.Activator
 			return «getTextMethodName(it)»(view);
 	'''
 	
-	@MetaDef def getTextMethodName(GenCommonBase it) '''get«getUniqueIdentifier()»Text'''
+	@MetaDef def getTextMethodName(GenCommonBase it) '''get«stringUniqueIdentifier»Text'''
 	
 	def getTextMethod(GenCommonBase it) '''
 		«generatedMemberComment()»
@@ -361,7 +363,7 @@ import plugin.Activator
 		if (parser != null) {
 			return parser.getPrintString(new org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter(view.getElement() != null ? view.getElement() : view), org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions.NONE.intValue());
 		} else {
-			«xptActivator.qualifiedClassName(getDiagram().editorGen.plugin)».getInstance().logError("Parser was not found for label " + «visualID»); «nonNLS(1)»
+			«xptActivator.qualifiedClassName(getDiagram().editorGen.plugin)».getInstance().logError("Parser was not found for label «stringVisualID»"); «nonNLS(1)»
 			«returnEmptyString()»
 		}
 	'''
@@ -371,9 +373,9 @@ import plugin.Activator
 		«IF null != genClass && null != genClass.labelFeature»
 			«xptMetaModel.DeclareAndAssign(genClass, 'domainModelElement', 'view.getElement()')»
 			if (domainModelElement != null) {
-				return «IF !isStringFeature(genClass.labelFeature)»String.valueOf(«ENDIF»«xptMetaModel.getFeatureValue(genClass.labelFeature, 'domainModelElement', genClass)»«IF !isStringFeature(genClass.labelFeature)»)«ENDIF»;
+				return «IF !isStringFeature(genClass.labelFeature)»String.valueOf(«ENDIF»UMLLabelInternationalization.getInstance().getLabel(domainModelElement)«IF !isStringFeature(genClass.labelFeature)»)«ENDIF»;
 			} else {
-				«xptActivator.qualifiedClassName(getDiagram().editorGen.plugin)».getInstance().logError("No domain element for view with visualID = " + «visualID»);  «nonNLS(1)»
+				«xptActivator.qualifiedClassName(getDiagram().editorGen.plugin)».getInstance().logError("No domain element for view with visualID = «stringVisualID»");  «nonNLS(1)»
 					«returnEmptyString()»
 			}
 		«ELSE»
@@ -485,5 +487,4 @@ import plugin.Activator
 	
 	def additions(GenNavigator it) ''''''
 
-	
 }

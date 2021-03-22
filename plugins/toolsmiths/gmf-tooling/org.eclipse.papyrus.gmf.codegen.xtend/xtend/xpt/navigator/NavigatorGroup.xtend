@@ -1,17 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2007, 2020 Borland Software Corporation, CEA LIST, Artal and others
+/*****************************************************************************
+ * Copyright (c) 2007, 2009, 2013, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Alexander Shatalin (Borland) - initial API and implementation
- *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
- *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ * Contributors:
+ * Alexander Shatalin (Borland) - initial API and implementation
+ * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  *****************************************************************************/
 package xpt.navigator
 
@@ -19,7 +19,8 @@ import com.google.inject.Inject
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigator
 import xpt.Common
 
-@com.google.inject.Singleton class NavigatorGroup {
+@com.google.inject.Singleton class NavigatorGroup{
+
 	@Inject extension Common;
 
 	def className(GenNavigator it) '''«it.navigatorGroupClassName»'''
@@ -71,7 +72,7 @@ import xpt.Common
 		private String myIcon;
 			
 		«generatedMemberComment()»
-		private java.util.Collection myChildren = new java.util.LinkedList();
+		private java.util.Collection<java.lang.Object> myChildren = new java.util.LinkedList<java.lang.Object>();
 	'''
 
 	def constructor(GenNavigator it) '''
@@ -104,9 +105,9 @@ import xpt.Common
 		}
 	'''
 
-	def addChildren(GenNavigator it) '''
+	def addChildren(GenNavigator it)  '''
 		«generatedMemberComment()»
-		public void addChildren(java.util.Collection children) {
+		public void addChildren(java.util.Collection<java.lang.Object> children) {
 			myChildren.addAll(children);
 		}
 	'''
@@ -146,5 +147,4 @@ import xpt.Common
 	'''
 
 	def additions(GenNavigator it) ''''''
-
 }
