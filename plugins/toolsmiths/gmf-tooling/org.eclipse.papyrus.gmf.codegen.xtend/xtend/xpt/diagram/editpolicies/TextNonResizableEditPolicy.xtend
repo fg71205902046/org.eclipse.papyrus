@@ -1,16 +1,17 @@
-/******************************************************************************
- * Copyright (c) 2013, 2020 Borland Software Corporation, CEA LIST, Artal and others
- * 
+/*****************************************************************************
+ * Copyright (c) 2013, 2017 , 2021 Borland Software Corporation, CEA LIST, Artal and others
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Svyatoslav Kovalsky (Montages) - initial API and implementation
- *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ * Contributors:
+ * Svyatoslav Kovalsky (Montages) - initial API and implementation
+ * Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - #510281 change dependency to replace gmft-runtime
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  *****************************************************************************/
 package xpt.diagram.editpolicies
 
@@ -55,11 +56,11 @@ import xpt.Common
 
 	def TextNonResizableEditPolicy_extendsClause(GenDiagram it) '''extends org.eclipse.gmf.runtime.diagram.ui.editpolicies.NonResizableEditPolicyEx'''
 
-	def TextNonResizableEditPolicy_implementsClause(GenDiagram it) '''implements org.eclipse.gmf.tooling.runtime.edit.policies.labels.IRefreshableFeedbackEditPolicy'''
+	def TextNonResizableEditPolicy_implementsClause(GenDiagram it)  '''implements org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.edit.policies.labels.IRefreshableFeedbackEditPolicy'''
 
 	def TextNonResizableEditPolicy_createSelectionHandles(GenDiagram it) '''
 		«generatedMemberComment»
-		protected java.util.List createSelectionHandles() {
+		protected java.util.List<?> createSelectionHandles() {
 			org.eclipse.gef.handles.MoveHandle moveHandle =
 				new org.eclipse.gef.handles.MoveHandle((org.eclipse.gef.GraphicalEditPart) getHost());
 			moveHandle.setBorder(null);
@@ -67,6 +68,6 @@ import xpt.Common
 			return java.util.Collections.singletonList(moveHandle);
 		}
 	'''
-
 	def TextNonResizableEditPolicy_additions(GenDiagram it) ''''''
+
 }

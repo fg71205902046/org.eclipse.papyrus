@@ -1,27 +1,28 @@
-/*******************************************************************************
- * Copyright (c) 2006, 2020 Borland Software Corporation, CEA LIST, Artal and others
+/*****************************************************************************
+ * Copyright (c) 2006, 2009, 2013, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Dmitry Stadnik (Borland) - initial API and implementation
- *    Alexander Shatalin (Borland) - initial API and implementation
- *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
- *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ * Contributors:
+ * Dmitry Stadnik (Borland) - initial API and implementation
+ * Alexander Shatalin (Borland) - initial API and implementation
+ * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  *****************************************************************************/
 package diagram.editparts
 
 import com.google.inject.Inject
+import com.google.inject.Singleton
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCompartment
 import xpt.Common
 import xpt.diagram.editparts.Utils_qvto
 
-@com.google.inject.Singleton class CompartmentEditPart {
+@Singleton class CompartmentEditPart {
 	@Inject extension Common;
 	@Inject extension Utils_qvto;
 
@@ -66,7 +67,15 @@ public class «xptCompartmentEditPartImpl.className(it)» «extendsList(it)» «
 '''
 
 	def extendsList(GenCompartment it) '''
-	extends «IF listLayout»org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart«ELSE»org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart«ENDIF»
+
+«««BEGIN: PapyrusGenCode
+«««Add own extension
+«IF superEditPart!== null»
+	extends «superEditPart»
+«««END: BEGIN: PapyrusGenCode
+«ELSE»
+  extends «IF listLayout»org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart«ELSE»org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.linklf.LinkLFShapeCompartmentEditPart«ENDIF»
+«ENDIF»
 	'''
 
 	def implementsList(GenCompartment it) ''''''
@@ -91,6 +100,47 @@ public class «xptCompartmentEditPartImpl.className(it)» «extendsList(it)» «
 		«ENDIF»
 	'''
 
-	def additions(GenCompartment it) ''''''
+	def additions(GenCompartment it) '''
+		«handleSize(it)»
+		«refreshbound(it)»
+		«refreshvisual(it)»
+	'''
 
+	def handleSize(GenCompartment it) '''
+	«generatedMemberComment»
+protected void handleNotificationEvent(org.eclipse.emf.common.notify.Notification notification) {
+		Object feature = notification.getFeature();
+		if (org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getSize_Width().equals(feature)
+			|| org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getSize_Height().equals(feature)
+			|| org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getLocation_X().equals(feature)
+			|| org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
+			refreshBounds();
+		}
+		super.handleNotificationEvent(notification);
+	} 
+'''
+
+	def refreshbound(GenCompartment it) '''
+		«generatedMemberComment»
+		protected void refreshBounds() {
+			int width = ((Integer) getStructuralFeatureValue(org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getSize_Width())).intValue();
+			int height = ((Integer) getStructuralFeatureValue(org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getSize_Height())).intValue();
+			org.eclipse.draw2d.geometry.Dimension size = new org.eclipse.draw2d.geometry.Dimension(width, height);
+			int x = ((Integer) getStructuralFeatureValue(org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getLocation_X())).intValue();
+			int y = ((Integer) getStructuralFeatureValue(org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getLocation_Y())).intValue();
+			org.eclipse.draw2d.geometry.Point loc = new org.eclipse.draw2d.geometry.Point(x, y);
+			((org.eclipse.gef.GraphicalEditPart) getParent()).setLayoutConstraint(
+				this,
+				getFigure(),
+				new org.eclipse.draw2d.geometry.Rectangle(loc, size));
+		}
+	'''
+
+	def refreshvisual(GenCompartment it) '''
+	«generatedMemberComment»
+protected void refreshVisuals() {
+		super.refreshVisuals();
+		refreshBounds();
+	}
+'''
 }

@@ -1,39 +1,46 @@
-/*******************************************************************************
- * Copyright (c) 2006, 2020 Borland Software Corporation, CEA LIST, Artal and others
+/*****************************************************************************
+ * Copyright (c) 2006, 2010, 2013, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Alexander Shatalin (Borland) - initial API and implementation
- *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
- *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ * Contributors:
+ * Alexander Shatalin (Borland) - initial API and implementation
+ * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Modified by Patrick Tessier (CEA LIST)
+ * Emilien Perico (Atos Origin) - update template for GMF 2.2 compliance
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  *****************************************************************************/
 package xpt.navigator
 
-import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigator
-import xpt.editor.VisualIDRegistry
 import com.google.inject.Inject
-import xpt.Externalizer
-import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorChildReference
-import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase
+import com.google.inject.Singleton
 import org.eclipse.emf.codegen.util.CodeGenUtil
-import org.eclipse.papyrus.gmf.codegen.xtend.annotations.Localization
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
-import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorReferenceType
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink
-import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigator
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorChildReference
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorPathSegment
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorReferenceType
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
+import org.eclipse.papyrus.gmf.codegen.xtend.annotations.Localization
+import xpt.CodeStyle
+import xpt.Common
+import xpt.Common_qvto
+import xpt.Externalizer
+import xpt.editor.VisualIDRegistry
 
-@com.google.inject.Singleton class NavigatorContentProvider {
-	@Inject extension xpt.Common;
-	@Inject extension xpt.Common_qvto;
-	@Inject extension xpt.navigator.Utils_qvto;
-
+@Singleton class NavigatorContentProvider {
+	@Inject extension Common;
+	@Inject extension Common_qvto;
+	@Inject extension Utils_qvto;
+	@Inject extension CodeStyle
+	
 	@Inject VisualIDRegistry xptVisualIDRegistry;
 	@Inject Externalizer xptExternalizer;
 	@Inject NavigatorGroup navigatorGroup;
@@ -58,6 +65,8 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorPathSegment
 			«attributes(it)»
 			
 			«constructor(it)»
+			
+			«genAllMethodNodeCase» 
 		
 			«iContentProvider(it)»
 			
@@ -72,7 +81,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorPathSegment
 			   «additions(it)»
 		}
 	'''
-
+	
 	def attributes(GenNavigator it) '''
 		«generatedMemberComment()»
 		private static final Object[] EMPTY_ARRAY = new Object[0];
@@ -92,7 +101,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorPathSegment
 
 	def constructor(GenNavigator it) '''
 		«generatedMemberComment()»
-		@SuppressWarnings({ "unchecked", "serial", "rawtypes" })
 		public «className(it)»() {
 			«initCommonAttributes(it)»
 		}
@@ -101,15 +109,23 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorPathSegment
 	def initCommonAttributes(GenNavigator it) '''
 		org.eclipse.emf.transaction.TransactionalEditingDomain editingDomain = «createEditingDomain(it)»;
 		myEditingDomain = (org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain) editingDomain;
-		myEditingDomain.setResourceToReadOnlyMap(new java.util.HashMap() {
-			public Object get(Object key) {
+		@SuppressWarnings("serial")
+		java.util.Map<org.eclipse.emf.ecore.resource.Resource, java.lang.Boolean> map = new java.util.HashMap<org.eclipse.emf.ecore.resource.Resource, java.lang.Boolean>() {
+			
+			«overrideI(it.editorGen.diagram)»
+			public java.lang.Boolean get(java.lang.Object key) {
 				if (!containsKey(key)) {
-					put(key, Boolean.TRUE);
+					if (key instanceof org.eclipse.emf.ecore.resource.Resource) {
+						put((org.eclipse.emf.ecore.resource.Resource) key, java.lang.Boolean.TRUE);
+					}
 				}
 				return super.get(key);
 			}
-		});
+		};
+		myEditingDomain.setResourceToReadOnlyMap(map);
 		myViewerRefreshRunnable = new Runnable() {
+			
+			«overrideI(it.editorGen.diagram)»
 			public void run() {
 				if (myViewer != null) {
 					myViewer.refresh();
@@ -117,17 +133,22 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorPathSegment
 			}
 		};
 		myWorkspaceSynchronizer = new org.eclipse.emf.workspace.util.WorkspaceSynchronizer(editingDomain, new org.eclipse.emf.workspace.util.WorkspaceSynchronizer.Delegate() {
+			
+			«overrideC(it.editorGen.diagram)»
 			public void dispose() {
 			}
 		
+			«overrideC(it.editorGen.diagram)»
 			public boolean handleResourceChanged(final org.eclipse.emf.ecore.resource.Resource resource) {
 				«processChanges(it)»
 			}
 			
+			«overrideC(it.editorGen.diagram)»
 			public boolean handleResourceDeleted(org.eclipse.emf.ecore.resource.Resource resource) {
 				«processChanges(it)»
 			}
 			
+			«overrideC(it.editorGen.diagram)»
 			public boolean handleResourceMoved(org.eclipse.emf.ecore.resource.Resource resource, final org.eclipse.emf.common.util.URI newURI) {
 				«processChanges(it)»
 			}
@@ -135,8 +156,13 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorPathSegment
 	'''
 
 	def processChanges(GenNavigator it) '''
-		unloadAllResources();
-		asyncRefresh();
+		for (java.util.Iterator<org.eclipse.emf.ecore.resource.Resource> it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
+			org.eclipse.emf.ecore.resource.Resource nextResource = it.next();
+				nextResource.unload();
+		}
+		if (myViewer != null) {
+			myViewer.getControl().getDisplay().asyncExec(myViewerRefreshRunnable);
+		}
 		return true;
 	'''
 
@@ -166,8 +192,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorPathSegment
 			myWorkspaceSynchronizer.dispose();
 			myWorkspaceSynchronizer = null;
 			myViewerRefreshRunnable = null;
-			myViewer = null;
-			unloadAllResources();
+			
+			for (java.util.Iterator<org.eclipse.emf.ecore.resource.Resource> it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
+				org.eclipse.emf.ecore.resource.Resource resource = it.next();
+				resource.unload();
+			}
+			
 			((org.eclipse.emf.transaction.TransactionalEditingDomain) myEditingDomain).dispose();
 			myEditingDomain = null;
 		}
@@ -258,19 +288,18 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorPathSegment
 	def getFileChildren(GenNavigator it) '''
 		«var references = getChildReferencesFrom(it, null)»
 		«getFileResource(it)»
-		java.util.ArrayList<«xptNavigatorItem.qualifiedClassName(it)»> result = new java.util.ArrayList<«xptNavigatorItem.qualifiedClassName(it)»>();
+		java.util.Collection<Object> result = new java.util.ArrayList<Object>();
 		«FOR groupName : getGroupNames(references)» 
 			«initGroupVariables(groupName, it, references, 'file', null)»
 		«ENDFOR»
-		java.util.ArrayList<org.eclipse.gmf.runtime.notation.View> topViews = new java.util.ArrayList<org.eclipse.gmf.runtime.notation.View>(resource.getContents().size());
+		java.util.List<org.eclipse.gmf.runtime.notation.View> topViews = new java.util.ArrayList<org.eclipse.gmf.runtime.notation.View>(resource.getContents().size());
 		for (org.eclipse.emf.ecore.EObject o : resource.getContents()) {
 			if (o instanceof org.eclipse.gmf.runtime.notation.View) {
 				topViews.add((org.eclipse.gmf.runtime.notation.View) o);
 			}
 		}
 		«FOR ref : references»
-			«addNavigatorItemsPrefix(ref)»selectViewsByType(topViews, «getChildViewType(ref.child)»)«addNavigatorItemsSuffix(ref,
-			'file', false)»
+			«addNavigatorItemsPrefix(ref)»selectViewsByType(resource.getContents(), «getChildViewType(ref.child)»)«addNavigatorItemsSuffix(ref, 'file', false)»
 		«ENDFOR»
 		«FOR groupName : getGroupNames(references)»
 			«addGroups(groupName, references)»
@@ -317,32 +346,41 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorPathSegment
 	def getViewChildren(GenNavigator it) '''
 		«generatedMemberComment()»
 		private Object[] getViewChildren(org.eclipse.gmf.runtime.notation.View view, Object parentElement) {
-		   	switch («xptVisualIDRegistry.getVisualIDMethodCall(it.editorGen.diagram)»(view)) {
-		   		«FOR node : getNavigatorContainerNodes(it)»
-		   			«caseNavigatorNode(node, it)»	
-		   		«ENDFOR»
+			String vid = «xptVisualIDRegistry.getVisualIDMethodCall(it.editorGen.diagram)»(view);
+			if (vid != null) { 
+			   	switch (vid) {
+					«««	BEGIN: PapyrusGenCode
+					««« Restructuration of the case 
+			   		«FOR node : getNavigatorContainerNodes(it)»
+			   			«caseNavigatorNode(node, it)»	
+			   		«ENDFOR»
+			   		«««BEGIN: PapyrusGenCode
+				}
 			}
 			return EMPTY_ARRAY;
 		}
 	'''
 
 	def utilityMethods(GenNavigator it) '''
-		«generatedMemberComment()»
-		private java.util.Collection<org.eclipse.gmf.runtime.notation.View> getLinksSourceByType(java.util.Collection<org.eclipse.gmf.runtime.notation.Edge> edges, String type) {
-			java.util.LinkedList<org.eclipse.gmf.runtime.notation.View> result = new java.util.LinkedList<org.eclipse.gmf.runtime.notation.View>();
-			for (org.eclipse.gmf.runtime.notation.Edge nextEdge : edges) {
-				org.eclipse.gmf.runtime.notation.View nextEdgeSource = nextEdge.getSource();
-				if (type.equals(nextEdgeSource.getType()) && isOwnView(nextEdgeSource)) {
-					result.add(nextEdgeSource);
-				}
-			}
-			return result;
+		«IF getNavigatorContainerNodes(it).notEmpty»
+		«generatedMemberComment»
+		private java.util.Collection getLinksSourceByType(java.util.Collection edges, String type) {
+			java.util.Collection result = new java.util.ArrayList();
+		 	for (java.util.Iterator it = edges.iterator(); it.hasNext();) {
+		 		org.eclipse.gmf.runtime.notation.Edge nextEdge = (org.eclipse.gmf.runtime.notation.Edge) it.next();
+		 		org.eclipse.gmf.runtime.notation.View nextEdgeSource = nextEdge.getSource();
+		 		if (type.equals(nextEdgeSource.getType()) && isOwnView(nextEdgeSource)) {
+		 			result.add(nextEdgeSource);
+		 		}
+		 	}
+		 	return result;
 		}
 			
-		«generatedMemberComment()»
-		 private java.util.Collection<org.eclipse.gmf.runtime.notation.View> getLinksTargetByType(java.util.Collection<org.eclipse.gmf.runtime.notation.Edge> edges, String type) {
-		 	java.util.LinkedList<org.eclipse.gmf.runtime.notation.View> result = new java.util.LinkedList<org.eclipse.gmf.runtime.notation.View>();
-		 	for (org.eclipse.gmf.runtime.notation.Edge nextEdge : edges) {
+		«generatedMemberComment»
+		 private java.util.Collection getLinksTargetByType(java.util.Collection edges, String type) {
+			java.util.Collection result = new java.util.ArrayList();
+		 	for (java.util.Iterator it = edges.iterator(); it.hasNext();) {
+		 		org.eclipse.gmf.runtime.notation.Edge nextEdge = (org.eclipse.gmf.runtime.notation.Edge) it.next();
 		 		org.eclipse.gmf.runtime.notation.View nextEdgeTarget = nextEdge.getTarget();
 		 		if (type.equals(nextEdgeTarget.getType()) && isOwnView(nextEdgeTarget)) {
 		 			result.add(nextEdgeTarget);
@@ -350,48 +388,50 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorPathSegment
 		 	}
 		 	return result;
 		}
-		
-		«generatedMemberComment()»
-		private java.util.Collection<org.eclipse.gmf.runtime.notation.View> getOutgoingLinksByType(java.util.Collection<? extends org.eclipse.gmf.runtime.notation.View> nodes, String type) {
-			java.util.LinkedList<org.eclipse.gmf.runtime.notation.View> result = new java.util.LinkedList<org.eclipse.gmf.runtime.notation.View>();
-		 	for (org.eclipse.gmf.runtime.notation.View nextNode : nodes) {
-			 	result.addAll(selectViewsByType(nextNode.getSourceEdges(), type));
+		«generatedMemberComment»
+		 private java.util.Collection getOutgoingLinksByType(java.util.Collection nodes, String type) {
+			java.util.Collection result = new java.util.ArrayList();
+		 	for (java.util.Iterator it = nodes.iterator(); it.hasNext();) {
+		 		org.eclipse.gmf.runtime.notation.View nextNode = (org.eclipse.gmf.runtime.notation.View) it.next();
+				result.addAll(selectViewsByType(nextNode.getSourceEdges(), type));
 		 	}
-			return result;
+		 	return result;
 		}
 			
-		«generatedMemberComment()»
-		private java.util.Collection<org.eclipse.gmf.runtime.notation.View> getIncomingLinksByType(java.util.Collection<? extends org.eclipse.gmf.runtime.notation.View> nodes, String type) {
-			java.util.LinkedList<org.eclipse.gmf.runtime.notation.View> result = new java.util.LinkedList<org.eclipse.gmf.runtime.notation.View>();
-			for (org.eclipse.gmf.runtime.notation.View nextNode : nodes) {
+		«generatedMemberComment»
+		private java.util.Collection getIncomingLinksByType(java.util.Collection nodes, String type) {
+			java.util.Collection result = new java.util.ArrayList();
+		 	for (java.util.Iterator it = nodes.iterator(); it.hasNext();) {
+		 		org.eclipse.gmf.runtime.notation.View nextNode = (org.eclipse.gmf.runtime.notation.View) it.next();
 				result.addAll(selectViewsByType(nextNode.getTargetEdges(), type));
-			}
-			return result;
+		 	}
+		 	return result;
 		}
-			
-		«generatedMemberComment()»
-		private java.util.Collection<org.eclipse.gmf.runtime.notation.View> getChildrenByType(java.util.Collection<? extends org.eclipse.gmf.runtime.notation.View> nodes, String type) {
-			java.util.LinkedList<org.eclipse.gmf.runtime.notation.View> result = new java.util.LinkedList<org.eclipse.gmf.runtime.notation.View>();
-			for (org.eclipse.gmf.runtime.notation.View nextNode : nodes) {
+«««			
+		«generatedMemberComment»
+		private java.util.Collection getChildrenByType(java.util.Collection nodes, String type) {
+			java.util.Collection result = new java.util.ArrayList();
+			for (java.util.Iterator it = nodes.iterator(); it.hasNext();) {
+				org.eclipse.gmf.runtime.notation.View nextNode = (org.eclipse.gmf.runtime.notation.View) it.next();
 				result.addAll(selectViewsByType(nextNode.getChildren(), type));
 			}
 			return result;
 		}
 			
-		«generatedMemberComment()»
-		private java.util.Collection<org.eclipse.gmf.runtime.notation.View> getDiagramLinksByType(java.util.Collection<org.eclipse.gmf.runtime.notation.Diagram> diagrams, String type) {
-			java.util.ArrayList<org.eclipse.gmf.runtime.notation.View> result = new java.util.ArrayList<org.eclipse.gmf.runtime.notation.View>();
-			for (org.eclipse.gmf.runtime.notation.Diagram nextDiagram : diagrams) {
+		«generatedMemberComment»
+		private java.util.Collection getDiagramLinksByType(java.util.Collection diagrams, String type) {
+			java.util.Collection result = new java.util.ArrayList();
+			for (java.util.Iterator it = diagrams.iterator(); it.hasNext();) {
+				org.eclipse.gmf.runtime.notation.Diagram nextDiagram = (org.eclipse.gmf.runtime.notation.Diagram) it.next();
 				result.addAll(selectViewsByType(nextDiagram.getEdges(), type));
 			}
 			return result;
 		}
-		
-		// TODO refactor as static method
-		«generatedMemberComment()»
-		private java.util.Collection<org.eclipse.gmf.runtime.notation.View> selectViewsByType(java.util.Collection<org.eclipse.gmf.runtime.notation.View> views, String type) {
-			java.util.ArrayList<org.eclipse.gmf.runtime.notation.View> result = new java.util.ArrayList<org.eclipse.gmf.runtime.notation.View>();
-			for (org.eclipse.gmf.runtime.notation.View nextView : views) {
+		«generatedMemberComment»
+		private java.util.Collection selectViewsByType(java.util.Collection views, String type) {
+			java.util.Collection result = new java.util.ArrayList();
+			for (java.util.Iterator it = views.iterator(); it.hasNext();) {
+				org.eclipse.gmf.runtime.notation.View nextView = (org.eclipse.gmf.runtime.notation.View) it.next();
 				if (type.equals(nextView.getType()) && isOwnView(nextView)) {
 					result.add(nextView);
 				}
@@ -399,20 +439,23 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorPathSegment
 			return result;
 		}
 			
-		«generatedMemberComment()»
-		private boolean isOwnView(org.eclipse.gmf.runtime.notation.View view) {
-			return «VisualIDRegistry::modelID(editorGen.diagram)».equals(«xptVisualIDRegistry.
-			getModelIDMethodCall(editorGen.diagram)»(view));
-		}
-			
-		«generatedMemberComment()»
-		private java.util.Collection<«xptNavigatorItem.qualifiedClassName(it)»> createNavigatorItems(java.util.Collection<org.eclipse.gmf.runtime.notation.View> views, Object parent, boolean isLeafs) {
-			java.util.ArrayList<«xptNavigatorItem.qualifiedClassName(it)»> result = new java.util.ArrayList<«xptNavigatorItem.qualifiedClassName(it)»>(views.size());
-			for (org.eclipse.gmf.runtime.notation.View nextView : views) {
-				result.add(new «xptNavigatorItem.qualifiedClassName(it)»(nextView, parent, isLeafs));
+		«generatedMemberComment»
+		private java.util.Collection createNavigatorItems(java.util.Collection views, Object parent, boolean isLeafs) {
+			java.util.Collection result = new java.util.ArrayList();
+			for (java.util.Iterator it = views.iterator(); it.hasNext();) {
+				result.add(new «getNavigatorItemQualifiedClassName()»((org.eclipse.gmf.runtime.notation.View) it.next(), parent, isLeafs));
 			}
 			return result;
 		}
+		«ENDIF»
+		
+				«generatedMemberComment()»
+				private boolean isOwnView(org.eclipse.gmf.runtime.notation.View view) {
+					return «VisualIDRegistry::modelID(editorGen.diagram)».equals(«xptVisualIDRegistry.
+					getModelIDMethodCall(editorGen.diagram)»(view));
+				}
+			
+		
 		«getForeignShortcuts(it)»
 	'''
 
@@ -420,11 +463,11 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorPathSegment
 		«IF editorGen.diagram.generateCreateShortcutAction() && getChildReferencesFrom(it, editorGen.diagram).notEmpty»
 			
 				«generatedMemberComment()»
-				private java.util.Collection<«xptNavigatorItem.qualifiedClassName(it)»> getForeignShortcuts(org.eclipse.gmf.runtime.notation.Diagram diagram, Object parent) {
-					java.util.LinkedList<org.eclipse.gmf.runtime.notation.View> result = new java.util.LinkedList<org.eclipse.gmf.runtime.notation.View>();
-					for (java.util.Iterator<org.eclipse.gmf.runtime.notation.View> it = diagram.getChildren().iterator(); it.hasNext();) {
-						org.eclipse.gmf.runtime.notation.View nextView = it.next();
-						if (!isOwnView(nextView) && nextView.getEAnnotation("Shortcut") != null) { «nonNLS(1)»
+				private java.util.Collection getForeignShortcuts(org.eclipse.gmf.runtime.notation.Diagram diagram, Object parent) {
+					java.util.Collection result = new java.util.ArrayList();
+					for (java.util.Iterator it = diagram.getChildren().iterator(); it.hasNext();) {
+						org.eclipse.gmf.runtime.notation.View nextView = (org.eclipse.gmf.runtime.notation.View) it.next();
+						if (!isOwnView(nextView) && nextView.getEAnnotation("Shortcut") != null) { «nonNLS»
 							result.add(nextView);
 						}
 					}
@@ -433,7 +476,16 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorPathSegment
 		«ENDIF»
 	'''
 
-	def createEditingDomain(GenNavigator it) '''org.eclipse.gmf.runtime.emf.core.GMFEditingDomainFactory.INSTANCE.createEditingDomain()'''
+	def createEditingDomain(GenNavigator it) '''org.eclipse.emf.workspace.WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain()'''
+	
+//BEGIN: PapyrusGenCode
+//Loop to call generator of each method
+def genAllMethodNodeCase(GenNavigator it)'''
+«FOR container :getNavigatorContainerNodes(it)»
+« caseMethodNodeNode(container,it) »
+«ENDFOR»
+
+'''
 
 	def initGroupVariables(String groupName, GenNavigator navigator, Iterable<GenNavigatorChildReference> references,
 		String parentVarName, GenCommonBase contextElement) '''
@@ -443,9 +495,9 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorPathSegment
 	'''
 
 	@Localization def String i18nKeyForGroup(String groupName, GenCommonBase contextElement) {
-		return 'NavigatorGroupName.' + (if(null != contextElement) contextElement.uniqueIdentifier else 'File') + '.' +
-			CodeGenUtil::validJavaIdentifier(groupName)
-	}
+	return 'NavigatorGroupName.' + (if(null != contextElement) contextElement.stringUniqueIdentifier else 'File') + '.' +
+		CodeGenUtil::validJavaIdentifier(groupName)
+}
 
 	def addNavigatorItemsPrefix(GenNavigatorChildReference it) '''«IF isInsideGroup()»«CodeGenUtil::validJavaIdentifier(
 		groupName)».addChildren(«ELSE»result.addAll(«ENDIF»createNavigatorItems('''
@@ -469,36 +521,14 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorPathSegment
 	def dispatch getChildViewType(GenCommonBase it) '''«xptVisualIDRegistry.typeMethodCall(it)»'''
 
 	def caseNavigatorNode(GenCommonBase it, GenNavigator navigator) '''
-	
-		case «VisualIDRegistry::visualID(it)»: {
-			java.util.LinkedList<«abstractNavigatorItem.qualifiedClassName(navigator)»> result = new java.util.LinkedList<«abstractNavigatorItem.
-			qualifiedClassName(navigator)»>(); 
-			«addForeignShortcuts(it)»
-			«nailedDownVariable(it, 'sv', 'view')»
-			«var references = getChildReferencesFrom(navigator, it)»
-			«FOR groupName : getGroupNames(references)»
-			«initGroupVariables(groupName, navigator, references, 'parentElement', it)»
-			«ENDFOR»
-			«IF references.notEmpty && references.map[r|r.findConnectionPaths()].flatten.notEmpty»
-			java.util.Collection<org.eclipse.gmf.runtime.notation.View> connectedViews;
-			«FOR reference : references»
-				«FOR path : reference.findConnectionPaths()»
-					«IF path.segments.notEmpty»
-						connectedViews = «childrenMethodName(path.segments.head.from, reference.referenceType, path.segments.head)»(java.util.Collections.singleton(sv), «xptVisualIDRegistry.typeMethodCall(path.segments.head.to)»);
-						«FOR segment : path.segments.drop(1)»
-						connectedViews = «childrenMethodName(segment.from, reference.referenceType, segment)»(connectedViews, «xptVisualIDRegistry.typeMethodCall(segment.to)»);
-						«ENDFOR»
-					«ENDIF»
-				«addNavigatorItemsPrefix(reference)»connectedViews«addNavigatorItemsSuffix(reference, 'parentElement',
-				reference.referenceType != GenNavigatorReferenceType::CHILDREN_LITERAL)»
-				«ENDFOR»
-			«ENDFOR»
-			«ENDIF»
-			«FOR groupName : getGroupNames(references)»
-			«addGroups(groupName, references)»
-			«ENDFOR»
-			return result.toArray();
-		}
+		
+			case «VisualIDRegistry::visualID(it)»: {
+				«««BEGIN: PapyrusGenCode
+				««« this code has been modified to call directly submethods
+				//modification of the template to avoid mistake of 65kb.
+				return getViewChildrenFor«it.editPartClassName»(view, parentElement);
+				«««END: PapyrusGenCode
+			}
 	'''
 
 	def dispatch nailedDownVariable(GenCommonBase it, String varName, String expressionToCast) '''«/* NO-OP, all specific subclasses should be handled */»'''
@@ -564,4 +594,55 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorPathSegment
 	@Localization def internal_i18nValues(String groupName, GenCommonBase contextElement) '''«IF null != groupName»«xptExternalizer.
 		messageEntry(i18nKeyForGroup(groupName, contextElement), groupName)»«ENDIF»'''
 
+//END: PapyrusGenCode
+//BEGIN: PapyrusGenCode
+//this template has been modified to fixe bug generation by GMF framework.
+//Is avoid generated method that are greater than 64Kb
+def caseMethodNodeNode(GenCommonBase it, GenNavigator navigator) '''
+/**
+ *
+ *Papyrus Template
+ *this method is a modification of gmf code in order to avoid  getViewChidreen() method becoming greater than 64kb.
+ *@generated
+**/
+private Object[] getViewChildrenFor«it.editPartClassName»(org.eclipse.gmf.runtime.notation.View view, Object parentElement){
+	java.util.Collection result = new java.util.ArrayList();
+	«addForeignShortcuts(it)»
+	«var _references = getChildReferencesFrom(navigator, it)»
+		«FOR groupNames : getGroupNames(_references)»
+			«initGroupVariables(groupNames,navigator, _references, 'parentElement', it)»
+		«ENDFOR»
+		
+
+
+		«IF ! _references.empty»
+		«FOR referencesIterator : 1.._references.size»
+		«var reference = _references.get(referencesIterator-1)»
+			«IF ! reference.findConnectionPaths.empty»
+			«FOR pathsIterator : 1..reference.findConnectionPaths.size»
+				«var path = reference.findConnectionPaths.get(pathsIterator-1)»
+				«IF ! path.segments.empty»
+				«FOR segmentsIterator : 1..path.segments.size»
+				«var segment = path.segments.get(segmentsIterator-1)»
+					«IF referencesIterator==1 && pathsIterator==1 && segmentsIterator==1»java.util.Collection «ENDIF»
+					connectedViews = «childrenMethodName(segment.from,reference.referenceType, segment) »
+					(«IF segmentsIterator==1»java.util.Collections.singleton(view)«ELSE»connectedViews«ENDIF»
+					, «xptVisualIDRegistry.typeMethodCall(segment.to)»);
+
+				«ENDFOR»
+				«ENDIF»
+				«addNavigatorItemsPrefix(reference)»connectedViews«addNavigatorItemsSuffix(reference,'parentElement', reference.referenceType != GenNavigatorReferenceType.CHILDREN_LITERAL) »
+			«ENDFOR»
+			«ENDIF»
+		«ENDFOR»
+		«ENDIF»
+		
+		«FOR groupNames : getGroupNames(_references)»
+		« addGroups(groupNames,_references) »
+		«ENDFOR»
+		
+
+	return result.toArray();
+}
+'''
 }

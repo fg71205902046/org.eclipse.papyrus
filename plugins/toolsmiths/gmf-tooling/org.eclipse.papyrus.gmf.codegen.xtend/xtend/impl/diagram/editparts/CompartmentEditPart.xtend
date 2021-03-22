@@ -1,18 +1,18 @@
-/*******************************************************************************
- * Copyright (c) 2006, 2020 Borland Software Corporation, CEA LIST, Artal
+/*****************************************************************************
+ * Copyright (c) 2006, 2009, 2021 Borland Software Corporation, CEA LIST, ARTAL and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Dmitry Stadnik (Borland) - initial API and implementation
- *    Alexander Shatalin (Borland) - initial API and implementation
- *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
- *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ * Contributors:
+ * Dmitry Stadnik (Borland) - initial API and implementation
+ * Alexander Shatalin (Borland) - initial API and implementation
+ * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  *****************************************************************************/
 package impl.diagram.editparts
 
@@ -25,7 +25,8 @@ import xpt.Common
 import xpt.Common_qvto
 import xpt.Externalizer
 import xpt.diagram.editparts.Utils_qvto
-import xpt.providers.ElementTypesimport org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink
+import xpt.providers.ElementTypes
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink
 @com.google.inject.Singleton class CompartmentEditPart {
 	@Inject extension Common;
 	@Inject extension Common_qvto;
@@ -63,16 +64,31 @@ import xpt.providers.ElementTypesimport org.eclipse.papyrus.gmf.codegen.gmfgen.
 		}
 	'''
 
-	def createFigure(GenCompartment it) '''
-		«IF !needsTitle»
-			«/*By default titles are shown even if there are no TitleStyle, we need to switch it off*/generatedMemberComment»
-			public org.eclipse.draw2d.IFigure createFigure() {
-				org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure result = (org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure) super.createFigure();
-				result.setTitleVisibility(false);
-				return result;
-			}
-		«ENDIF»
-	'''
+	def createFigure(GenCompartment it) {
+		if (hasExternalSuperClass(it,
+			'org.eclipse.papyrus.uml.diagram.activity.edit.part.ShapeCompartmentWithoutScrollbarsEditPart')) {
+			'''
+				@Override
+				public org.eclipse.draw2d.IFigure createFigure() {
+					return super.createFigure();
+				}
+			'''
+		} else {
+
+			'''
+				«IF !needsTitle»
+					«/*By default titles are shown even if there are no TitleStyle, we need to switch it off*/generatedMemberComment»
+					public org.eclipse.draw2d.IFigure createFigure() {
+						org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure result = (org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure) super.createFigure();
+						result.setTitleVisibility(false);
+						return result;
+					}
+				«ENDIF»
+			'''
+		}
+	}
+		
+	
 
 	def createDefaultEditPoliciesBody(GenCompartment it) '''
 		super.createDefaultEditPolicies();
@@ -80,13 +96,13 @@ import xpt.providers.ElementTypesimport org.eclipse.papyrus.gmf.codegen.gmfgen.
 			installEditPolicy(org.eclipse.gef.EditPolicy.PRIMARY_DRAG_ROLE, new org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableCompartmentEditPolicy());
 		«ENDIF»
 		«xptEditpartsCommon.installSemanticEditPolicy(it)»
-		«IF childNodes.notEmpty»
-			«xptEditpartsCommon.installCreationEditPolicy(it)»
+		«IF ! childNodes.empty»
+			installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE, new org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy());
 			installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE, new org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy());
+			installEditPolicy(org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy.PASTE_ROLE, new org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy());
 		«ENDIF»
 		«xptEditpartsCommon.installCanonicalEditPolicy(it)»
 		«xptEditpartsCommon.behaviour(it)»
-		«additionalEditPolicies(it)»
 	'''
 
 	def additionalEditPolicies(GenCompartment it) ''''''
@@ -142,32 +158,7 @@ import xpt.providers.ElementTypesimport org.eclipse.papyrus.gmf.codegen.gmfgen.
 	def getTargetEditPartMethod(GenCompartment it) '''
 		«generatedMemberComment»
 		public org.eclipse.gef.EditPart getTargetEditPart(org.eclipse.gef.Request request) {
-			«IF childNodes.notEmpty»
-			if (request instanceof org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest) {
-				org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter adapter = ((org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest) request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
-				org.eclipse.gmf.runtime.emf.type.core.IElementType type = (org.eclipse.gmf.runtime.emf.type.core.IElementType) adapter.getAdapter(org.eclipse.gmf.runtime.emf.type.core.IElementType.class);
-				«FOR childNode : it.childNodes»
-					if (type == «xptElementTypes.accessElementType(childNode)») {
-						return this;
-					}
-				«ENDFOR»
-				return getParent().getTargetEditPart(request);
-			}
-			if (request instanceof org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest) {
-				«IF haveOneOfChildNodesIncomimgLinks(it)»
-				if (org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_CONNECTION_END.equals(request.getType())) {
-					for (Object type : ((org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest) request).getElementTypes()) {
-						if (type instanceof org.eclipse.gmf.runtime.emf.type.core.IElementType) {
-							org.eclipse.gmf.runtime.emf.type.core.IElementType elementType = (org.eclipse.gmf.runtime.emf.type.core.IElementType) type;
-							if («FOR GenLink link : collectIncomingLinks(it) SEPARATOR " || "»elementType.equals(«xptElementTypes.accessElementType(link)»)«ENDFOR»)
-								return super.getTargetEditPart(request);
-						}
-					}
-				}
-				«ENDIF»
-				return getParent().getTargetEditPart(request);
-			}
-			«ENDIF»
+
 			return super.getTargetEditPart(request);
 		}
 	'''
@@ -194,6 +185,8 @@ import xpt.providers.ElementTypesimport org.eclipse.papyrus.gmf.codegen.gmfgen.
 	@Localization def String i18nKeyForCompartmentTitle(GenCompartment compartment) {
 		return className(compartment) + '.title'
 	}
-	
 
+	def boolean hasExternalSuperClass(GenCompartment it, String className) {
+		superEditPart == className
+	}
 }

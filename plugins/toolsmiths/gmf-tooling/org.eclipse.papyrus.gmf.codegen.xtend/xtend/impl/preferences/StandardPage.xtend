@@ -1,17 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2006, 2020 Borland Software Corporation, CEA LIST, Artal and others
+/*****************************************************************************
+ * Copyright (c) 2006, 2009, 2013, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Dmitry Stadnik (Borland) - initial API and implementation
- * 	  Michael Golubev (Montages) - #386838 - migrate to Xtend2
- *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ * Contributors:
+ * Dmitry Stadnik (Borland) - initial API and implementation
+ * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  *****************************************************************************/
 package impl.preferences
 
@@ -42,13 +42,16 @@ import xpt.Common
 			«generatedMemberComment»
 			public «className(it)»() {
 				setPreferenceStore(«getDiagram().editorGen.plugin.activatorQualifiedClassName».getInstance().getPreferenceStore());
+				«IF StandardPreferencePages.GENERAL_LITERAL == kind»
+					setPreferenceKey(«getDiagram().editPartsPackageName».«getDiagram().editPartClassName».MODEL_ID);
+				«ENDIF»
 			}
 		}
 	'''
 
 	def extendsList(GenStandardPreferencePage it) '''
 		«IF kind == StandardPreferencePages::GENERAL_LITERAL»
-			extends org.eclipse.gmf.runtime.diagram.ui.preferences.DiagramsPreferencePage«»
+			extends org.eclipse.papyrus.infra.gmfdiag.preferences.pages.DiagramPreferencePage«»
 		«ELSEIF kind == StandardPreferencePages::APPEARANCE_LITERAL»
 			extends org.eclipse.gmf.runtime.diagram.ui.preferences.AppearancePreferencePage«»
 		«ELSEIF kind == StandardPreferencePages::CONNECTIONS_LITERAL»

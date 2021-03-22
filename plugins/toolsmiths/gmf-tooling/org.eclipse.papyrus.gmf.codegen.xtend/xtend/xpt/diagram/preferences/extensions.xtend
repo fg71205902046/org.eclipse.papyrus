@@ -1,17 +1,18 @@
-/*******************************************************************************
- * Copyright (c) 2007, 2020 Borland Software Corporation, CEA LIST, Artal and others
+/*****************************************************************************
+ * Copyright (c) 2007, 2010, 2013, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Dmitry Stadnik (Borland) - initial API and implementation
- *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
- *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ * Contributors:
+ * Dmitry Stadnik (Borland) - initial API and implementation
+ * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Thibault Landre (Atos Origin) - initial API and implementation
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  *****************************************************************************/
 package xpt.diagram.preferences
 
@@ -26,11 +27,14 @@ import impl.preferences.CustomPage
 import impl.preferences.StandardPage
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCustomPreferencePage
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenStandardPreferencePage
+import utils.PrefsConstant_qvto
+import org.eclipse.papyrus.gmf.codegen.gmfgen.StandardPreferencePages
 
 @com.google.inject.Singleton class extensions {
 	@Inject extension Common;
 	@Inject extension Common_qvto;
 	@Inject extension Utils_qvto;
+	@Inject extension PrefsConstant_qvto;
 
 	@Inject PreferenceInitializer xptPreferenceInitializer;
 	@Inject CustomPage xptCustomPage;
@@ -43,13 +47,15 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenStandardPreferencePage
 		«tripleSpace(2)»<initializer class="«xptPreferenceInitializer.qualifiedClassName(it)»"/>
 		«tripleSpace(1)»</extension>
 		
-		«IF it.preferencePages.notEmpty»
-		«tripleSpace(1)»<extension point="org.eclipse.ui.preferencePages" id="prefpages">
-		«tripleSpace(2)»«xmlGeneratedTag»
-		      «FOR pref : allPreferencePages(it)»
-		«preferencePage(pref)»
-		      «ENDFOR»
-		«tripleSpace(1)»</extension>
+		«IF ! it.preferencePages.empty»
+			«tripleSpace(1)»<extension point="org.eclipse.ui.preferencePages" id="prefpages">
+			«tripleSpace(2)»«xmlGeneratedTag»
+			      «FOR pref : allPreferencePages(it)»
+			      	«IF pref instanceof GenStandardPreferencePage»
+					«papyrusPreferencePage(pref as GenStandardPreferencePage)»
+				«ENDIF»
+			«ENDFOR»
+			«tripleSpace(1)»</extension>
 		«ENDIF»
 	'''
 
@@ -76,4 +82,24 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenStandardPreferencePage
 	def dispatch getQualifiedPageName(GenPreferencePage it) ''''''
 	def dispatch getQualifiedPageName(GenCustomPreferencePage it) '''«xptCustomPage.qualifiedClassName(it)»'''
 	def dispatch getQualifiedPageName(GenStandardPreferencePage it) '''«xptStandardPage.qualifiedClassName(it)»'''
+
+	def papyrusPreferencePage(GenStandardPreferencePage it) '''
+		«IF StandardPreferencePages.GENERAL_LITERAL == kind»
+		      <page
+		            id="«getDiagramPreferencePageCategory()».«getDiagram().editorGen.modelID»"
+		            name="«getDiagram().editorGen.modelID» Diagram"
+		            category="«getDiagramPreferencePageCategory()»"
+		            class="«getQualifiedClassName()»">
+		      </page>
+		      «ELSEIF StandardPreferencePages.PRINTING_LITERAL == kind ||
+				StandardPreferencePages.RULERS_AND_GRID_LITERAL == kind»
+		      <page
+		            id="«getQualifiedClassName()»"
+		            name="%prefpage.«ID»"
+		            category="«getDiagramPreferencePageCategory()».«getDiagram().editorGen.modelID»"
+		            class="«getQualifiedClassName()»">
+		      </page>
+		«ENDIF»
+	'''
+
 }

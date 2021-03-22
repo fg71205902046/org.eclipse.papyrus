@@ -1,20 +1,22 @@
-/*******************************************************************************
- * Copyright (c) 2007, 2020 Borland Software Corporation, CEA LIST, Artal and others
+/*****************************************************************************
+ * Copyright (c) 2007, 2014, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Dmitry Stadnik (Borland) - initial API and implementation
- *    Artem Tikhomirov (Borland) - refactored javaInitilizers not to use methods from GMFGen model
+ * Contributors:
+ * Dmitry Stadnik (Borland) - initial API and implementation
+ * Artem Tikhomirov (Borland) - refactored javaInitilizers not to use methods from GMFGen model
  *                               [221347] Got rid of generated interfaces 
  *                               (IObjectInitializer, IFeatureInitializer) and implementation thereof
- *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
- */
+ * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Christian W. Damus (CEA) - bug 440263
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ *****************************************************************************/
 package xpt.providers
 
 import com.google.inject.Inject
@@ -58,7 +60,7 @@ import xpt.expressions.AbstractExpression
 
 	@MetaDef def initMethodCall(GenCommonBase linkOrNode, TypeModelFacet modelFacet, String newElementVar) '''
 		«IF modelFacet.modelElementInitializer != null»
-			«elementInitializersInstanceCall(linkOrNode)».init_«linkOrNode.uniqueIdentifier»(«newElementVar»);
+			«elementInitializersInstanceCall(linkOrNode)».init_«linkOrNode.stringUniqueIdentifier»(«newElementVar»);
 		«ENDIF»
 	'''
 
@@ -139,13 +141,13 @@ import xpt.expressions.AbstractExpression
 
 	def dispatch CharSequence initMethod(GenFeatureSeqInitializer it, GenCommonBase diagramElement) '''
 		«generatedMemberComment»
-		public void init_«diagramElement.getUniqueIdentifier()»(«xptMetaModel.QualifiedClassName(elementClass)» instance) {
+		public void init_«diagramElement.stringUniqueIdentifier()»(«xptMetaModel.QualifiedClassName(elementClass)» instance) {
 			try {
 				«FOR i : it.initializers»
 					«performInit(i, diagramElement, 'instance', elementClass, <Integer>newLinkedList(initializers.indexOf(i)))»
 				«ENDFOR»
 			} catch(RuntimeException e) {
-				«xptActivator.qualifiedClassName(diagramElement.getDiagram().editorGen.plugin)».getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+				«xptActivator.qualifiedClassName(diagramElement.getDiagram().editorGen.plugin)».getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
 			}
 		}
 	'''
@@ -158,45 +160,47 @@ import xpt.expressions.AbstractExpression
 	 */
 	def dispatch CharSequence performInit(GenFeatureValueSpec it, GenCommonBase diagramElement, String instanceVar,
 		GenClass instanceClass, List<Integer> counters) '''
-		«IF it.value.provider.getLanguage() == GenLanguage::LITERAL_LITERAL»
-			«xptMetaModel.modifyFeature(feature, instanceVar, instanceClass, value.body)»
-			«extraLineBreak»
-		«ELSE»
-			«var expressionVarName = getVariableName('value', counters)»
-			Object «expressionVarName» = «evaluateExpr(value.provider, diagramElement, it, instanceVar)»;
-			«IF feature.listType»
-				if («expressionVarName» instanceof java.util.Collection) {
-					«xptMetaModel.getFeatureValue(feature, instanceVar, instanceClass, true)».clear();
-					«IF feature.typeGenClassifier.expressionResultNeedsCast()»
-						for (java.util.Iterator it = ((java.util.Collection) «expressionVarName»).iterator(); it.hasNext(); ) {
-							Object next = «xptAbstractExpression.qualifiedClassName(diagramElement.getDiagram())».performCast(it.next(), «xptMetaModel.
-			MetaClass(feature.typeGenClassifier)»);
-							«xptMetaModel.getFeatureValue(feature, instanceVar, instanceClass, true)».add((«xptMetaModel.
-			QualifiedClassName(feature.typeGenClassifier/*XXX sorta hack, better would be MM::setFeatureValue that supports lists*/)») next);
-						}
-					«ELSE»
-						«xptMetaModel.getFeatureValue(feature, instanceVar, instanceClass, true)».addAll(((java.util.Collection) «expressionVarName»));
-					«ENDIF»
-				} else {
-					«IF feature.typeGenClassifier.expressionResultNeedsCast()»
-						«expressionVarName» = «xptAbstractExpression
-			.qualifiedClassName(diagramElement.getDiagram())».performCast(«expressionVarName», «xptMetaModel.MetaClass(
-			feature.typeGenClassifier)»);
-					«ENDIF»
-					«xptMetaModel.getFeatureValue(feature, instanceVar, instanceClass, true)».add((«xptMetaModel.
-			QualifiedClassName(feature.typeGenClassifier/*XXX sorta hack, better would be MM::setFeatureValue that supports lists*/)») «expressionVarName»);
-				}
-			«ELSE»
-				«IF feature.typeGenClassifier.expressionResultNeedsCast()»
-					«extraLineBreak»
-					«expressionVarName» = «
-			xptAbstractExpression.qualifiedClassName(diagramElement.getDiagram())».performCast(«expressionVarName», «xptMetaModel.MetaClass(
-			feature.typeGenClassifier)»);
-					«ENDIF»
-					«xptMetaModel.setFeatureValue(feature, instanceVar, instanceClass, expressionVarName, true)»;
-				«ENDIF/*isListType*/»
-			«ENDIF/*is literal expression*/»
-		'''
+        «IF it.value.provider.getLanguage() == GenLanguage::LITERAL_LITERAL»
+            «xptMetaModel.modifyFeature(feature, instanceVar, instanceClass, value.body)»
+            «extraLineBreak»
+        «ELSE»
+            «var expressionVarName = getVariableName('value', counters)»
+            Object «expressionVarName» = «evaluateExpr(value.provider, diagramElement, it, instanceVar)»;
+            «IF feature.listType»
+                if («expressionVarName» instanceof java.util.Collection) {
+                    «xptMetaModel.getFeatureValue(feature, instanceVar, instanceClass, true)».clear();
+                    «IF feature.typeGenClassifier.expressionResultNeedsCast()»
+                        for (java.util.Iterator it = ((java.util.Collection) «expressionVarName»).iterator(); it.hasNext(); ) {
+                            Object next = «xptAbstractExpression.qualifiedClassName(diagramElement.getDiagram())».performCast(it.next(), «xptMetaModel.
+            MetaClass(feature.typeGenClassifier)»);
+                            «xptMetaModel.getFeatureValue(feature, instanceVar, instanceClass, true)».add((«xptMetaModel.
+            QualifiedClassName(feature.typeGenClassifier/*XXX sorta hack, better would be MM::setFeatureValue that supports lists*/)») next);
+                        }
+                    «ELSE»
+                        «xptMetaModel.getFeatureValue(feature, instanceVar, instanceClass, true)».addAll(((java.util.Collection) «expressionVarName»));
+                    «ENDIF»
+                } else if(«expressionVarName» != null) {
+                    «IF feature.typeGenClassifier.expressionResultNeedsCast()»
+                        «expressionVarName» = «xptAbstractExpression
+            .qualifiedClassName(diagramElement.getDiagram())».performCast(«expressionVarName», «xptMetaModel.MetaClass(
+            feature.typeGenClassifier)»);
+                    «ENDIF»
+                    «xptMetaModel.getFeatureValue(feature, instanceVar, instanceClass, true)».add((«xptMetaModel.
+            QualifiedClassName(feature.typeGenClassifier/*XXX sorta hack, better would be MM::setFeatureValue that supports lists*/)») «expressionVarName»);
+                }
+            «ELSE»
+                if(«expressionVarName» != null) {
+                    «IF feature.typeGenClassifier.expressionResultNeedsCast()»
+                        «extraLineBreak»
+                        «expressionVarName» = «
+                xptAbstractExpression.qualifiedClassName(diagramElement.getDiagram())».performCast(«expressionVarName», «xptMetaModel.MetaClass(
+                feature.typeGenClassifier)»);
+                    «ENDIF»
+                        «xptMetaModel.setFeatureValue(feature, instanceVar, instanceClass, expressionVarName, true)»;
+                }
+            «ENDIF/*isListType*/»
+        «ENDIF/*is literal expression*/»
+    '''
 
 	def dispatch CharSequence performInit(GenReferenceNewElementSpec it, GenCommonBase diagramElement,
 		String instanceVar, GenClass instanceClass, List<Integer> counters) '''
@@ -233,9 +237,17 @@ import xpt.expressions.AbstractExpression
 	'''
 
 	/////////////////////////////////
-	def dispatch CharSequence javaMethod(GenNode it) '''«javaMethod(it.modelFacet, it)»'''
+	def dispatch CharSequence javaMethod(GenNode it) '''
+	«IF !it.sansDomain»
+	«javaMethod(it.modelFacet, it)»
+	«ENDIF»
+	'''
 
-	def dispatch CharSequence javaMethod(GenLink it) '''«javaMethod(it.modelFacet, it)»'''
+	def dispatch CharSequence javaMethod(GenLink it) '''
+	«IF !it.sansDomain»
+	«javaMethod(it.modelFacet, it)»
+	«ENDIF»
+	'''
 
 	def dispatch CharSequence javaMethod(ModelFacet it, GenCommonBase diagramElement) ''''''
 
@@ -274,5 +286,4 @@ import xpt.expressions.AbstractExpression
 		«ENDIF»	
 		}
 	'''
-
 }

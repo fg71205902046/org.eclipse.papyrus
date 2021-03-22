@@ -1,16 +1,17 @@
-/******************************************************************************
- * Copyright (c) 2014, 2020 Borland Software Corporation, CEA LIST, Artal and others
+/*****************************************************************************
+ * Copyright (c) 2015, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Svyatoslav Kovalsky (Montages) - initial API and implementation
- *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ * Contributors:
+ * Florian Noyrit - Initial API and implementation
+ * Svyatoslav Kovalsky (Montages) - initial API and implementation
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  *****************************************************************************/
 package xpt
 
@@ -38,10 +39,10 @@ import xpt.diagram.commands.CreateLinkCommand
 	@Inject CreateNodeCommand nodeCommand
 	
 	def dispatch getItemSemanticEditPolicyQualifiedClassName(GenCommonBase it) ''''''
-	def dispatch getItemSemanticEditPolicyQualifiedClassName(GenDiagram it) '''«diagramItemSemantic.qualifiedClassName(it)»'''
-	def dispatch getItemSemanticEditPolicyQualifiedClassName(GenCompartment it) '''«compItemSemantic.qualifiedClassName(it)»'''
-	def dispatch getItemSemanticEditPolicyQualifiedClassName(GenLink it) '''«linkItemSemantic.qualifiedClassName(it)»'''
-	def dispatch getItemSemanticEditPolicyQualifiedClassName(GenNode it) '''«nodeItemSemantic.qualifiedClassName(it)»'''
+	def dispatch getItemSemanticEditPolicyQualifiedClassName(GenDiagram it)'''org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCompartmentSemanticEditPolicy'''
+	def dispatch getItemSemanticEditPolicyQualifiedClassName(GenCompartment it) '''org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCompartmentSemanticEditPolicy'''
+	def dispatch getItemSemanticEditPolicyQualifiedClassName(GenLink it)  '''org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy'''
+	def dispatch getItemSemanticEditPolicyQualifiedClassName(GenNode it) '''org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy'''
 	
 	def dispatch getItemSemanticEditPolicyClassName(GenCommonBase it) ''''''
 	def dispatch getItemSemanticEditPolicyClassName(GenDiagram it) '''«diagramItemSemantic.className(it)»'''

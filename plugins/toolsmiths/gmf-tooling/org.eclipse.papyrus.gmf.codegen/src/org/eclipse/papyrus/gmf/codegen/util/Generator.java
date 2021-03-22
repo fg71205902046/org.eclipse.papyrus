@@ -90,7 +90,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenVisualEffect;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.InitDiagramAction;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.MetamodelType;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.OpenDiagramBehaviour;
-import org.eclipse.papyrus.gmf.codegen.gmfgen.PredefinedEnumParser;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.PredefinedParser;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.SpecializationType;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.StandardPreferencePages;
@@ -117,7 +116,7 @@ public class Generator extends GeneratorBase implements Runnable {
 	private final CodegenEmitters myEmitters;
 
 	private final BinaryEmitters myBinaryEmmiters;
-	
+
 	public Generator(GenEditorGenerator genModel, CodegenEmitters emitters) {
 		this(genModel, emitters, new BinaryEmitters());
 	}
@@ -126,7 +125,7 @@ public class Generator extends GeneratorBase implements Runnable {
 		this(genModel, emitters, new BinaryEmitters(), codeFormatterFactory);
 	}
 
-	public Generator(GenEditorGenerator genModel, CodegenEmitters emitters, BinaryEmitters binaryEmitters) { 
+	public Generator(GenEditorGenerator genModel, CodegenEmitters emitters, BinaryEmitters binaryEmitters) {
 		this(genModel, emitters, binaryEmitters, CodeFormatterFactory.DEFAULT);
 	}
 
@@ -141,7 +140,7 @@ public class Generator extends GeneratorBase implements Runnable {
 
 	@Override
 	protected TextMerger createMergeService() {
-		//  Bug 569174 - Use project or worksapce preference as new line characters
+		// Bug 569174 - Use project or worksapce preference as new line characters
 		// don't delegate to emitter the merger configuration
 		URL controlFile = myEmitters.getJMergeControlFile();
 		if (controlFile != null) {
@@ -270,17 +269,17 @@ public class Generator extends GeneratorBase implements Runnable {
 		generateActionBarContributor();
 		generateMatchingStrategy();
 		generateDocumentProvider();
-		if (myDiagram.generateInitDiagramAction() || myDiagram.generateCreateShortcutAction() /*FIXME use another condition here*/) {
+		if (myDiagram.generateInitDiagramAction() || myDiagram.generateCreateShortcutAction() /* FIXME use another condition here */) {
 			generateModelElementSelectionPage();
 		}
-		if (myDiagram.generateInitDiagramAction() /*FIXME use another condition here*/) {
+		if (myDiagram.generateInitDiagramAction() /* FIXME use another condition here */) {
 			// FIXME HACK!!! until I decide how to contribute action against IFile
 			InitDiagramAction fakeAction = GMFGenFactory.eINSTANCE.createInitDiagramAction();
 			fakeAction.setQualifiedClassName(myDiagram.getInitDiagramFileActionQualifiedClassName());
 			doGenerateJavaClass(myEmitters.getPredefinedActionEmitter(), fakeAction.getQualifiedClassName(), fakeAction, myEditorGen);
 			generateNewDiagramFileWizard();
 		}
-		if (myDiagram.generateCreateShortcutAction() /*FIXME use another condition here*/) {
+		if (myDiagram.generateCreateShortcutAction() /* FIXME use another condition here */) {
 			generateCreateShortcutDecorationsCommand();
 			if (myEditorGen.getApplication() == null) {
 				generateElementChooser();
@@ -530,7 +529,7 @@ public class Generator extends GeneratorBase implements Runnable {
 	}
 
 	/**
-	 * Generate classes for behaviours specified for the diagram element. 
+	 * Generate classes for behaviours specified for the diagram element.
 	 * As part of its job, this method tries not to generate shared policies more than once.
 	 */
 	private void generateBehaviours(GenCommonBase commonBase) throws UnexpectedBehaviourException, InterruptedException {
@@ -621,23 +620,31 @@ public class Generator extends GeneratorBase implements Runnable {
 		if (myEditorGen.getLabelParsers() == null) {
 			return;
 		}
-		boolean needsAbstractParser = false;
+		// BEGIN : don't generate AbstractParser
+		// boolean needsAbstractParser = false;
 		for (GenParserImplementation pi : myEditorGen.getLabelParsers().getImplementations()) {
 			if (pi instanceof PredefinedParser) {
-				needsAbstractParser = true;
+				// needsAbstractParser = true;
 				doGenerateJavaClass(myEmitters.getPredefinedParserEmitter(), ((PredefinedParser) pi).getQualifiedClassName(), pi);
-			} else if (pi instanceof PredefinedEnumParser) {
-				needsAbstractParser = true;
-			} else if (pi instanceof CustomParser && ((CustomParser) pi).isGenerateBoilerplate()) {
+			}
+			// else if (pi instanceof PredefinedEnumParser) {
+			// needsAbstractParser = true;
+			// }
+			else if (pi instanceof CustomParser && ((CustomParser) pi).isGenerateBoilerplate()) {
 				doGenerateJavaClass(myEmitters.getCustomParserEmitter(), ((CustomParser) pi).getQualifiedName(), pi);
 			} else if (pi instanceof ExpressionLabelParser) {
 				doGenerateJavaClass(myEmitters.getExpressionLabelParserEmitter(), ((ExpressionLabelParser) pi).getQualifiedClassName(), pi);
 			}
 		}
-		if (needsAbstractParser) {
-			JavaClassEmitter emitter = myEmitters.getAbstractParserEmitter();
-			doGenerateJavaClass(emitter, myEmitters.getAbstractParserName(myEditorGen.getLabelParsers()), myEditorGen.getLabelParsers());
-		}
+		// The generated AbstractParser.java class is empty (Only contains comment "Since GMFT 3.1 we don't generate class ...".
+		// - So template 'xtend/impl/parsers/AbstractParser.xtend' is deleted
+		// - so the call is deactivated too
+		//
+		// if (needsAbstractParser) {
+		// JavaClassEmitter emitter = myEmitters.getAbstractParserEmitter();
+		// doGenerateJavaClass(emitter, myEmitters.getAbstractParserName(myEditorGen.getLabelParsers()), myEditorGen.getLabelParsers());
+		// }
+		// END : don't generate AbstractParser
 	}
 
 	// providers
@@ -648,7 +655,7 @@ public class Generator extends GeneratorBase implements Runnable {
 		}
 	}
 
-	// if there's no other parser than external, and provider is not contributed as a Service - 
+	// if there's no other parser than external, and provider is not contributed as a Service -
 	// no need to generate class (only get() method would be there)
 	// XXX although adopters might want to change the logic - what if they generate smth reasonable?
 	// or if I add sort of getDescriptionParser common access method there?
@@ -777,7 +784,7 @@ public class Generator extends GeneratorBase implements Runnable {
 	}
 
 	private void generateShortcutCreationWizard() throws UnexpectedBehaviourException, InterruptedException {
-		JavaClassEmitter emitter = myEmitters.getShortcutCreationWizardEmitter(); 
+		JavaClassEmitter emitter = myEmitters.getShortcutCreationWizardEmitter();
 		doGenerate(emitter, myDiagram);
 	}
 
@@ -870,7 +877,7 @@ public class Generator extends GeneratorBase implements Runnable {
 		}
 	}
 
-	// property sheet 
+	// property sheet
 
 	protected void generatePropertySheetSections() throws UnexpectedBehaviourException, InterruptedException {
 		if (myEditorGen.getPropertySheet().isNeedsCaption()) {
@@ -924,7 +931,7 @@ public class Generator extends GeneratorBase implements Runnable {
 
 	private void generateDiagramIcon(String path) throws UnexpectedBehaviourException, InterruptedException {
 		// use genModel.prefix if available to match colors of model icons and diagram icons
-		// @see GenPackageImpl#generateEditor - it passes prefix to ModelGIFEmitter 
+		// @see GenPackageImpl#generateEditor - it passes prefix to ModelGIFEmitter
 		Object[] args = new Object[] { myDiagram.getDomainDiagramElement() == null ? myEditorGen.getDiagramFileExtension() : myDiagram.getDomainDiagramElement().getGenPackage().getPrefix() };
 		doGenerateBinaryFile(myBinaryEmmiters.getDiagramIconEmitter(), new Path(path), args);
 	}
@@ -1084,7 +1091,8 @@ public class Generator extends GeneratorBase implements Runnable {
 			} catch (Exception e) {
 				handleException(new UnexpectedBehaviourException(//
 						"Error computing FQN for invocation " + invocation + //
-								" on " + nextTemplateInput, e));
+								" on " + nextTemplateInput,
+						e));
 				continue;
 			}
 			if (nextFqn != null) {

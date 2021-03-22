@@ -1,27 +1,28 @@
-/*******************************************************************************
- * Copyright (c) 2007, 2020 Borland Software Corporation, CEA LIST, Artal and others
+/*****************************************************************************
+ * Copyright (c) 2007, 2009, 2013, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Dmitry Stadnik (Borland) - initial API and implementation
- * 	  Michael Golubev (Montages) - #386838 - migrate to Xtend2
- */
+ * Contributors:
+ * Dmitry Stadnik (Borland) - initial API and implementation
+ * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ *****************************************************************************/
 package xpt.providers
 
 import com.google.inject.Inject
+import com.google.inject.Singleton
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
 import xpt.Common
 
-@com.google.inject.Singleton class MarkerNavigationProvider {
+@Singleton class MarkerNavigationProvider {
 	@Inject extension Common;
-
-	def className(GenDiagram it) '''«it.markerNavigationProviderClassName»'''
+def className(GenDiagram it) '''«it.markerNavigationProviderClassName»'''
 
 	def packageName(GenDiagram it) '''«it.providersPackageName»'''
 
@@ -29,7 +30,7 @@ import xpt.Common
 
 	def fullPath(GenDiagram it) '''«qualifiedClassName(it)»'''
 
-	def MarkerNavigationProvider(GenDiagram it) '''
+	def  MarkerNavigationProvider(GenDiagram it) '''
 		«copyright(editorGen)»
 		package «packageName(it)»;
 		
@@ -49,7 +50,7 @@ import xpt.Common
 				}
 				org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor editor =
 						(org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor) getEditor();
-				java.util.Map editPartRegistry = editor.getDiagramGraphicalViewer().getEditPartRegistry();
+				java.util.Map<?, ?> editPartRegistry = editor.getDiagramGraphicalViewer().getEditPartRegistry();
 				org.eclipse.emf.ecore.EObject targetView = editor.getDiagram().eResource().getEObject(elementId);
 				if (targetView == null) {
 					return;
@@ -79,7 +80,7 @@ import xpt.Common
 				marker = file.createMarker(MARKER_TYPE);
 				marker.setAttribute(org.eclipse.core.resources.IMarker.MESSAGE, message);
 				marker.setAttribute(org.eclipse.core.resources.IMarker.LOCATION, location);
-				marker.setAttribute(org.eclipse.gmf.runtime.common.ui.resources.IMarker.ELEMENT_ID, elementId);
+				marker.setAttribute(org.eclipse.gmf.runtime.common.core.resources.IMarker.ELEMENT_ID, elementId);
 				int markerSeverity = org.eclipse.core.resources.IMarker.SEVERITY_INFO;
 				if (statusSeverity == org.eclipse.core.runtime.IStatus.WARNING) {
 					markerSeverity = org.eclipse.core.resources.IMarker.SEVERITY_WARNING;    						
@@ -99,5 +100,4 @@ import xpt.Common
 	'''
 
 	def additions(GenDiagram it) ''''''
-
 }

@@ -1,16 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2013, 2020 Borland Software Corporation, CEA LIST, Artal and others
+/*****************************************************************************
+ * Copyright (c) 2013, 2014, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *   Michael Golubev (Montages) - initial API and implementation
- *   Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ * Contributors:
+ * Michael Golubev (Montages) - initial API and implementation
+ * Florian Noyrit - Initial API and implementation
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  *****************************************************************************/
 package xpt.plugin
 
@@ -42,37 +43,39 @@ import xpt.providers.ElementInitializers
 		«generatedClassComment»
 		public class «xptActivator.className(it)» extends org.eclipse.ui.plugin.AbstractUIPlugin {
 
-		«attrs»
-		«constructor»
-		«start»
+		«attrs(it)»
+		«constructor(it)»
+		«start(it)»
 		«stop(editorGen)»
-		«getInstance»
-		«createAdapterFactory(editorGen.diagram)»
-		«fillItemProviderFactories(editorGen)»
-		«getItemProvidersAdaptorFactory»
-		«getItemImageDescriptor»
-		«getBundleDescriptorImage»
-		«findImageDescriptor»
-		«getBundleImage»
-		«getString»
+		«getInstance(it)»
+		
+		«getPreferenceStore»
+
+		«getItemProvidersAdaptorFactory(it)»
+		«getItemImageDescriptor(it)»
+		«getBundleDescriptorImage(it)»
+		«findImageDescriptor(it)»
+		«getBundleImage(it)»
+		«getString(it)»
 		«documentProviderGetter(editorGen.diagram)»
 		«linkConstraint(editorGen.diagram)»
 		«initializerGetter(editorGen.diagram)»
 		«initializerSetter(editorGen.diagram)»
-		«providersAccessMethods»
+		«providersAccessMethods(it)»
 		«logError(it)»
-		«logInfo»
+		«logInfo(it)»
 		«getLogError(it)»
-		«additions»
+		«additions(it)»
 	}
 '''
+
 
 def attrs(GenPlugin it)'''
 	«generatedMemberComment»
 	public static final String ID = "«ID»"; //$NON-NLS-1$
 
 	«generatedMemberComment»
-	private org.eclipse.gmf.tooling.runtime.LogHelper myLogHelper;
+	private org.eclipse.papyrus.infra.core.log.LogHelper myLogHelper;
 
 	«generatedMemberComment»
 	public static final org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint DIAGRAM_PREFERENCES_HINT =
@@ -82,7 +85,7 @@ def attrs(GenPlugin it)'''
 	private static «xptActivator.className(it)» instance;
 
 	«generatedMemberComment»
-	private org.eclipse.emf.edit.provider.ComposedAdapterFactory adapterFactory;	
+	private org.eclipse.emf.common.notify.AdapterFactory adapterFactory;
 
 	«generatedMemberComment»
 	private «xptDocProvider.qualifiedClassName(editorGen.diagram)» documentProvider;
@@ -114,29 +117,31 @@ def start(GenPlugin it)'''
 	public void start(org.osgi.framework.BundleContext context) throws Exception {
 		super.start(context);
 		instance = this;
-		myLogHelper = new org.eclipse.gmf.tooling.runtime.LogHelper(this);
+		myLogHelper = new org.eclipse.papyrus.infra.core.log.LogHelper(this);
 		org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint.registerPreferenceStore(DIAGRAM_PREFERENCES_HINT, getPreferenceStore());
-		adapterFactory = createAdapterFactory();
+		adapterFactory = org.eclipse.papyrus.infra.gmfdiag.common.Activator.getInstance().getItemProvidersAdapterFactory();
+		«it.editorGen.diagram.preferencesPackageName».DiagramPreferenceInitializer diagramPreferenceInitializer = new «it.editorGen.diagram.preferencesPackageName».DiagramPreferenceInitializer();
+		diagramPreferenceInitializer.initializeDefaultPreferences();
+		
 	}
 '''
 
 def stop(GenEditorGenerator it)'''
-	«generatedMemberComment»
-	public void stop(org.osgi.framework.BundleContext context) throws Exception {
-		adapterFactory.dispose();
-		adapterFactory = null;
-		«IF diagram.links.exists(l| !l.sansDomain)»
-			linkConstraints = null;
-		«ENDIF»
-		initializers = null;
-		«IF expressionProviders != null»
-			«FOR p : expressionProviders.providers.filter(typeof(GenExpressionInterpreter))»
-				«p.language»Factory = null;
-			«ENDFOR»
-		«ENDIF»
-		instance = null;
-		super.stop(context);
-	}
+    «generatedMemberComment»
+    public void stop(org.osgi.framework.BundleContext context) throws Exception {
+        adapterFactory = null;
+        «IF diagram.links.exists(l| !l.sansDomain)»
+            linkConstraints = null;
+        «ENDIF»
+        initializers = null;
+        «IF expressionProviders != null»
+            «FOR p : expressionProviders.providers.filter(typeof(GenExpressionInterpreter))»
+                «p.language»Factory = null;
+            «ENDFOR»
+        «ENDIF»
+        instance = null;
+        super.stop(context);
+    }
 '''
 
 def getInstance(GenPlugin it)'''
@@ -316,35 +321,35 @@ def providerSetter(GenExpressionInterpreter it)'''
 '''
 
 def logError(GenPlugin it)'''
-	«generatedMemberComment»
-	public void logError(String error) {
-		getLogHelper().logError(error, null);
-	}
+		«generatedMemberComment»
+		public void logError(String error) {
+			getLogHelper().warn(error);
+		}
+		
+		«generatedMemberComment»
+		public void logError(String error, Throwable throwable) {
+			getLogHelper().error(error, throwable);
+		}
+	'''
 	
-	«generatedMemberComment»
-	public void logError(String error, Throwable throwable) {
-		getLogHelper().logError(error, throwable);
-	}
-'''
-
 def logInfo(GenPlugin it)'''
-	«generatedMemberComment»
-	public void logInfo(String message) {
-		getLogHelper().logInfo(message, null);
-	}
-
-	«generatedMemberComment»
-	public void logInfo(String message, Throwable throwable) {
-		getLogHelper().logInfo(message, throwable);
-	}
-'''
+		«generatedMemberComment»
+		public void logInfo(String message) {
+			getLogHelper().info(message);
+		}
+		
+		«generatedMemberComment»
+		public void logInfo(String message, Throwable throwable) {
+			getLogHelper().error(message, throwable);
+		}
+	'''
 
 def getLogError(GenPlugin it) '''
-	«generatedMemberComment»
-	public org.eclipse.gmf.tooling.runtime.LogHelper getLogHelper() {
-		return myLogHelper;
-	}
-'''
+		«generatedMemberComment»
+		public org.eclipse.papyrus.infra.core.log.LogHelper getLogHelper() {
+			return myLogHelper;
+		}
+	'''
 
 // Perhaps, xpt:editor::Editor or some xpt::CommonCode would be better place for
 // this accessor.
@@ -352,4 +357,15 @@ def getLogError(GenPlugin it) '''
 def preferenceHintAccess(GenEditorGenerator it)'''«xptActivator.qualifiedClassName(plugin)».DIAGRAM_PREFERENCES_HINT'''
 
 def additions(GenPlugin it)''''''
+
+def getPreferenceStore()'''
+	«generatedMemberComment»
+	 public org.eclipse.jface.preference.IPreferenceStore getPreferenceStore() {
+	 	org.eclipse.jface.preference.IPreferenceStore store=org.eclipse.papyrus.infra.gmfdiag.preferences.Activator.getDefault().getPreferenceStore();
+	     return store;
+	    }
+
+'''
+
+
 }

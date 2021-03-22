@@ -1,17 +1,18 @@
-/*******************************************************************************
- * Copyright (c) 2007, 2020 Borland Software Corporation, CEA LIST, Artal and others
+/*****************************************************************************
+ * Copyright (c) 2014, 2021 Borland Software Corporation, Montages, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Dmitry Stadnik (Borland) - initial API and implementation
- *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
- *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ * Contributors:
+ * Dmitry Stadnik (Borland) - initial API and implementation
+ * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Anatloyi Tischenko - Initial API and implementation
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  *****************************************************************************/
 package xpt.editor
 
@@ -22,9 +23,11 @@ import xpt.Common
 import xpt.Externalizer
 import xpt.ExternalizerUtils_qvto
 import plugin.Activator
+import xpt.CodeStyle
 
 @com.google.inject.Singleton class CreationWizard {
 	@Inject extension Common;
+	@Inject extension CodeStyle;
 	@Inject extension GenDiagram_qvto;
 
 	@Inject extension ExternalizerUtils_qvto;
@@ -122,6 +125,7 @@ import plugin.Activator
 					domainModelFilePage = new «xptCreationWizardPage.qualifiedClassName(it)»(
 							"DomainModelFile", getSelection(), "«editorGen.domainFileExtension»") { //$NON-NLS-1$ //$NON-NLS-2$
 							
+					«overrideC»
 					public void setVisible(boolean visible) {
 						if (visible) {
 							String fileName = diagramModelFilePage.getFileName();
@@ -146,6 +150,7 @@ import plugin.Activator
 			«IF editorGen.application == null»
 				new org.eclipse.ui.actions.WorkspaceModifyOperation(null) {
 					
+					«overrideC»
 					protected void execute(org.eclipse.core.runtime.IProgressMonitor monitor)
 						throws org.eclipse.core.runtime.CoreException, InterruptedException {
 			«ELSE»

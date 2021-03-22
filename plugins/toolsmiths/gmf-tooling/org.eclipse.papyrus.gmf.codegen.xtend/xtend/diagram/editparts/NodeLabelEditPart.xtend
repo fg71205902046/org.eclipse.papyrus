@@ -1,18 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2006, 2020 Borland Software Corporation, CEA LIST, Artal and others
- * 
+/*****************************************************************************
+ * Copyright (c) 2006, 2009, 2013, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Dmitry Stadnik (Borland) - initial API and implementation
- *    Alexander Shatalin (Borland) - initial API and implementation
- *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
- *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ * Contributors:
+ * Dmitry Stadnik (Borland) - initial API and implementation
+ * Alexander Shatalin (Borland) - initial API and implementation
+ * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  *****************************************************************************/
 package diagram.editparts
 
@@ -62,9 +61,9 @@ import xpt.diagram.editparts.Utils_qvto
 		}
 	'''
 
-	def extendsList(GenNodeLabel it) '''extends org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart'''
+	def extendsList(GenNodeLabel it) '''extends org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusCompartmentEditPart'''
 
-	def implementsList(GenNodeLabel it) '''implements org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart'''
+	def implementsList(GenNodeLabel it) '''implements org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart, org.eclipse.papyrus.infra.gmfdiag.common.editpart.IControlParserForDirectEdit'''
 
 	def attributes(GenNodeLabel it) '''
 		«xptEditpartsCommon.visualIDConstant(it)»
@@ -82,9 +81,45 @@ import xpt.diagram.editparts.Utils_qvto
 	def handleNotificationEvent(GenNodeLabel it) '''
 		«generatedMemberComment»
 		protected void handleNotificationEvent(org.eclipse.emf.common.notify.Notification event) {
+			refreshLabel();
 			«xptNodeLabelEditPart.handleNotificationEventBody(it)»
 		}
 	'''
 
-	def additions(GenNodeLabel it) ''''''
+
+	def additions(GenNodeLabel it) '''
+	«««	Code to refresh icon
+	
+	«generatedMemberComment»
+	private static final String ADD_PARENT_MODEL = "AddParentModel";
+	
+		
+	«generatedMemberComment»
+		public void activate() {
+			super.activate();
+			addOwnerElementListeners();
+		}
+	
+		«generatedMemberComment»
+		protected void addOwnerElementListeners() {
+			addListenerFilter(ADD_PARENT_MODEL, this, ((org.eclipse.gmf.runtime.notation.View) getParent().getModel()));
+	
+		}
+	
+		«generatedMemberComment»
+		public void deactivate() {
+			removeOwnerElementListeners();
+			super.deactivate();
+	
+		}
+	
+	
+		«generatedMemberComment»
+		protected void removeOwnerElementListeners() {
+			removeListenerFilter(ADD_PARENT_MODEL);
+	
+		}
+	
+	«««END: PapyrusGenCode
+	'''
 }

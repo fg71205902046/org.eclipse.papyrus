@@ -1,26 +1,28 @@
-/*******************************************************************************
- * Copyright (c) 2007, 2020 Borland Software Corporation, CEA LIST, Artal and others
+/*****************************************************************************
+ * Copyright (c) 2007, 2009, 2013, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Alexander Shatalin (Borland) - initial API and implementation
- *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
- *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ * Contributors:
+ * Alexander Shatalin (Borland) - initial API and implementation
+ * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  *****************************************************************************/
 package xpt.navigator
 
 import com.google.inject.Inject
+import com.google.inject.Singleton
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigator
-import xpt.Common
+import xpt.Commonimport xpt.CodeStyle
 
-@com.google.inject.Singleton class AbstractNavigatorItem {
+@Singleton class AbstractNavigatorItem {
 	@Inject extension Common;
+	@Inject extension CodeStyle
 
 	def className(GenNavigator it) '''«it.abstractNavigatorItemClassName»'''
 
@@ -54,14 +56,18 @@ import xpt.Common
 	def registerAdapterFactory(GenNavigator it) '''
 		«generatedMemberComment()»
 		static {
+			@SuppressWarnings("rawtypes")
 			final Class[] supportedTypes = new Class[] { org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor.class };
 			final org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor propertySheetPageContributor = new org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor() {
+				«overrideI(it.editorGen.diagram)»
 				public String getContributorId() {
 					return "«editorGen.plugin.ID»";  «nonNLS(1)»
 				}
 			};
 			org.eclipse.core.runtime.Platform.getAdapterManager().registerAdapters(new org.eclipse.core.runtime.IAdapterFactory() {
 				
+				«overrideI(it.editorGen.diagram)»
+				@SuppressWarnings("rawtypes")
 				public Object getAdapter(Object adaptableObject, Class adapterType) {
 					if (adaptableObject instanceof «qualifiedClassName(it)» && adapterType == org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor.class) {
 						return propertySheetPageContributor;				
@@ -69,12 +75,15 @@ import xpt.Common
 					return null;
 				}
 		
+				«overrideI(it.editorGen.diagram)»
+				@SuppressWarnings("rawtypes")
 				public Class[] getAdapterList() {
 					return supportedTypes;
 				}
 			}, «qualifiedClassName(it)».class);
 		}
 	'''
+
 
 	def attributes(GenNavigator it) '''
 		«generatedMemberComment()»

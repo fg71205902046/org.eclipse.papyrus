@@ -1,17 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2006, 2020 Borland Software Corporation, CEA LIST, Artal and others
- * 
+/*****************************************************************************
+ * Copyright (c) 2006, 2010, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Dmitry Stadnik (Borland) - initial API and implementation
- *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
- *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ * Contributors:
+ * Dmitry Stadnik (Borland) - initial API and implementation
+ * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Patrick Tessier (CEA LIST)
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  *****************************************************************************/
 package xpt.diagram.editparts
 
@@ -33,19 +33,19 @@ import impl.diagram.editparts.viewmaps.modeledViewmapProducer
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.papyrus.gmf.gmfgraph.Label
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenContainerBase
-import xpt.editor.VisualIDRegistry
+import xpt.QualifiedClassNameProvider
 
 @com.google.inject.Singleton class Common {
 	@Inject extension xpt.Common;
 	@Inject extension Common_qvto;
+	@Inject QualifiedClassNameProvider qualifiedClassNameProvider;
 	
 	@Inject TextAware xptTextAware;
 	@Inject modeledViewmapProducer xptModeledViewmapProducer;
-	@Inject VisualIDRegistry xptVisualIDRegistry;
 	
 	def visualIDConstant(GenCommonBase it) '''
 		«generatedMemberComment»
-		public static final int VISUAL_ID = «visualID»;
+		public static final String VISUAL_ID = "«stringVisualID»";
 	'''
 
 	def behaviour(GenCommonBase it) '''
@@ -202,21 +202,25 @@ import xpt.editor.VisualIDRegistry
 	«IF sansDomain»
 	removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE);
 	«ELSE»
-	installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE, new «getItemSemanticEditPolicyQualifiedClassName()»());
+	installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE, new «qualifiedClassNameProvider.getItemSemanticEditPolicyQualifiedClassName(it)»());
 	«ENDIF»
 	'''
 
 	def installCanonicalEditPolicy(GenContainerBase it) '''
 	«IF it.needsCanonicalEditPolicy»
-	installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new «getCanonicalEditPolicyQualifiedClassName()»());
+		«««	BEGIN: PapyrusGenCode
+		«««	Used to remove at each time canonical editpolicies
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new «getCanonicalEditPolicyQualifiedClassName()»());
+		«««	END: PapyrusGenCode
+	
 	«ENDIF»
 	'''
-
 	def installCreationEditPolicy(GenCommonBase it) '''
 	installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE, «creationEditPolicyNewInstance»);
 	'''
 
 	def creationEditPolicyNewInstance(GenCommonBase it) 
-	'''new org.eclipse.gmf.tooling.runtime.edit.policies.reparent.CreationEditPolicyWithCustomReparent(«xptVisualIDRegistry.runtimeTypedInstanceCall(it.diagram)»)'''
+	'''new org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy()'''
 
 }

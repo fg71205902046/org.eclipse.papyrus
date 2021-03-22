@@ -88,6 +88,7 @@ public class GenEditorGeneratorItemProvider
 			addTemplateDirectoryPropertyDescriptor(object);
 			addCopyrightTextPropertyDescriptor(object);
 			addPluginDirectoryPropertyDescriptor(object);
+			addJdkComplianceLevelPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -313,6 +314,28 @@ public class GenEditorGeneratorItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Jdk Compliance Level feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addJdkComplianceLevelPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GenEditorGenerator_jdkComplianceLevel_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GenEditorGenerator_jdkComplianceLevel_feature", "_UI_GenEditorGenerator_type"),
+				 GMFGenPackage.eINSTANCE.getGenEditorGenerator_JdkComplianceLevel(),
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -411,6 +434,7 @@ public class GenEditorGeneratorItemProvider
 			case GMFGenPackage.GEN_EDITOR_GENERATOR__TEMPLATE_DIRECTORY:
 			case GMFGenPackage.GEN_EDITOR_GENERATOR__COPYRIGHT_TEXT:
 			case GMFGenPackage.GEN_EDITOR_GENERATOR__PLUGIN_DIRECTORY:
+			case GMFGenPackage.GEN_EDITOR_GENERATOR__JDK_COMPLIANCE_LEVEL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case GMFGenPackage.GEN_EDITOR_GENERATOR__AUDITS:

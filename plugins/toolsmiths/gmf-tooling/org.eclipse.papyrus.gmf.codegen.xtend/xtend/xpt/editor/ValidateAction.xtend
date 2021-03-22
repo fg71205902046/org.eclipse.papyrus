@@ -1,19 +1,28 @@
-/*******************************************************************************
- * Copyright (c) 2007, 2020 Borland Software Corporation, CEA LIST, Artal and others
+/*****************************************************************************
+ * Copyright (c) 2007, 2010, 2013, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Dmitry Stadnik (Borland) - initial API and implementation
- *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
- *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ * Contributors:
+ * Dmitry Stadnik (Borland) - initial API and implementation
+ * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  *****************************************************************************/
 package xpt.editor
+
+import com.google.inject.Inject
+import com.google.inject.Singleton
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
+import xpt.Common
+import xpt.editor.DiagramEditorUtil
+import xpt.CodeStyle
+import plugin.Activator
+import xpt.providers.ValidationProvider
 
 import com.google.inject.Inject
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
@@ -28,16 +37,19 @@ import xpt.providers.ValidationProvider
 import xpt.providers.MarkerNavigationProvider
 import xpt.providers.ValidationDecoratorProvider
 
-@com.google.inject.Singleton class ValidateAction {
+@Singleton class ValidateAction {
 	@Inject extension Common;
+	@Inject extension CodeStyle
+	
+	@Inject DiagramEditorUtil xptDiagramEditorUtil;
+	@Inject Activator xptActivator
+	@Inject ValidationProvider xptValidationProvider
+
 	@Inject extension GenAuditRoot_qvto;
 	@Inject extension ExternalizerUtils_qvto;
 
-	@Inject Activator xptActivator;
 	@Inject ValidationMarker xptValidationMarker;
 	@Inject Externalizer xptExternalizer;
-	@Inject DiagramEditorUtil xptDiagramEditorUtil;
-	@Inject ValidationProvider xptValidationProvider;
 	@Inject MarkerNavigationProvider xptMarkerNavigationProvider;
 	@Inject ValidationDecoratorProvider xptValidationDecoratorProvider;
 
@@ -101,6 +113,7 @@ import xpt.providers.ValidationDecoratorProvider
 					«ENDIF»
 					new org.eclipse.jface.operation.IRunnableWithProgress() {
 		
+						«overrideI»
 						public void run(org.eclipse.core.runtime.IProgressMonitor monitor)
 							throws InterruptedException, java.lang.reflect.InvocationTargetException {
 							runValidation(part.getDiagramEditPart(), part.getDiagram());
@@ -115,7 +128,7 @@ import xpt.providers.ValidationDecoratorProvider
 				}
 			}
 		}
-	'''
+	'''	
 
 	def runValidation(GenDiagram it) '''
 		
@@ -139,16 +152,22 @@ import xpt.providers.ValidationDecoratorProvider
 		}
 	'''
 
-	def runNonUIValidation(GenDiagram it) '''
+	def runNonUIValidation(GenDiagram it)'''
 		
 		«generatedMemberComment»
 		public static void runNonUIValidation(org.eclipse.gmf.runtime.notation.View view) {
+			org.eclipse.swt.widgets.Shell shell = org.eclipse.swt.widgets.Display.getCurrent().getActiveShell();
+			if (shell == null) {
+				shell = new org.eclipse.swt.widgets.Shell();
+			}
+			
 			org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart diagramEditPart =
 					org.eclipse.gmf.runtime.diagram.ui.OffscreenEditPartFactory.getInstance().createDiagramEditPart(
-							view.getDiagram());
+							view.getDiagram(),shell);
 			runValidation(diagramEditPart, view);
 		}		
 	'''
+
 
 	def runValidationWithEP(GenDiagram it) '''
 		
@@ -159,6 +178,7 @@ import xpt.providers.ValidationDecoratorProvider
 			org.eclipse.emf.transaction.TransactionalEditingDomain txDomain = org.eclipse.emf.transaction.util.TransactionUtil.getEditingDomain(view);
 			«xptValidationProvider.qualifiedClassName(it)».runWithConstraints(txDomain, new Runnable() {
 		
+			«overrideI»
 			public void run() {
 				validate(fpart, fview);
 			}
@@ -174,6 +194,7 @@ import xpt.providers.ValidationDecoratorProvider
 			if (target.isSetElement() && target.getElement() != null) {
 			return new org.eclipse.emf.ecore.util.Diagnostician() {
 		
+			«overrideC»
 			public String getObjectLabel(org.eclipse.emf.ecore.EObject eObject) {
 				return org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil.getQualifiedName(eObject, true);
 			}
@@ -242,9 +263,10 @@ import xpt.providers.ValidationDecoratorProvider
 			}
 			final org.eclipse.core.runtime.IStatus rootStatus = validationStatus;
 			java.util.List allStatuses = new java.util.ArrayList();
-			«xptDiagramEditorUtil.qualifiedClassName(it)».LazyElement2ViewMap element2ViewMap = new «xptDiagramEditorUtil.qualifiedClassName(it)».LazyElement2ViewMap(
-				diagramEditPart.getDiagramView(),
-				collectTargetElements(rootStatus, new java.util.HashSet<org.eclipse.emf.ecore.EObject>(), allStatuses));
+			«xptDiagramEditorUtil.qualifiedClassName(it)».LazyElement2ViewMap element2ViewMap = new «xptDiagramEditorUtil.
+			qualifiedClassName(it)».LazyElement2ViewMap(
+			diagramEditPart.getDiagramView(),
+			collectTargetElements(rootStatus, new java.util.HashSet<org.eclipse.emf.ecore.EObject>(), allStatuses));
 			for (java.util.Iterator it = allStatuses.iterator(); it.hasNext();) {
 			org.eclipse.emf.validation.model.IConstraintStatus nextStatus =
 			(org.eclipse.emf.validation.model.IConstraintStatus) it.next();
@@ -269,14 +291,14 @@ import xpt.providers.ValidationDecoratorProvider
 			return;
 			}
 			final org.eclipse.emf.common.util.Diagnostic rootStatus = emfValidationStatus;
-			java.util.List allDiagnostics = new java.util.ArrayList();
+			java.util.List<org.eclipse.emf.common.util.Diagnostic> allDiagnostics = new java.util.ArrayList<org.eclipse.emf.common.util.Diagnostic>();
 			«xptDiagramEditorUtil.qualifiedClassName(it)».LazyElement2ViewMap element2ViewMap =
 			new «xptDiagramEditorUtil.qualifiedClassName(it)».LazyElement2ViewMap(
 				diagramEditPart.getDiagramView(),
 				collectTargetElements(rootStatus, new java.util.HashSet<org.eclipse.emf.ecore.EObject>(), allDiagnostics));
-			for (java.util.Iterator it = emfValidationStatus.getChildren().iterator(); it.hasNext();) {
-			org.eclipse.emf.common.util.Diagnostic nextDiagnostic = (org.eclipse.emf.common.util.Diagnostic) it.next();
-			java.util.List data = nextDiagnostic.getData();
+			for (java.util.Iterator<org.eclipse.emf.common.util.Diagnostic> it = emfValidationStatus.getChildren().iterator(); it.hasNext();) {
+			org.eclipse.emf.common.util.Diagnostic nextDiagnostic = it.next();
+			java.util.List<?> data = nextDiagnostic.getData();
 			if (data != null && !data.isEmpty() && data.get(0) instanceof org.eclipse.emf.ecore.EObject) {
 			org.eclipse.emf.ecore.EObject element = (org.eclipse.emf.ecore.EObject) data.get(0);
 			org.eclipse.gmf.runtime.notation.View view = «xptDiagramEditorUtil.qualifiedClassName(it)».findView(
@@ -331,10 +353,10 @@ import xpt.providers.ValidationDecoratorProvider
 		
 		«generatedMemberComment»
 		private static java.util.Set<org.eclipse.emf.ecore.EObject> collectTargetElements(org.eclipse.core.runtime.IStatus status,
-				java.util.Set<org.eclipse.emf.ecore.EObject> targetElementCollector, java.util.List allConstraintStatuses) {
+				java.util.Set<org.eclipse.emf.ecore.EObject> targetElementCollector, java.util.List<org.eclipse.emf.validation.model.IConstraintStatus> allConstraintStatuses) {
 			if (status instanceof org.eclipse.emf.validation.model.IConstraintStatus) {
 			targetElementCollector.add(((org.eclipse.emf.validation.model.IConstraintStatus) status).getTarget());
-			allConstraintStatuses.add(status);
+			allConstraintStatuses.add((org.eclipse.emf.validation.model.IConstraintStatus)status);
 			}
 			if (status.isMultiStatus()) {
 			org.eclipse.core.runtime.IStatus[] children = status.getChildren();
@@ -350,19 +372,18 @@ import xpt.providers.ValidationDecoratorProvider
 		
 		«generatedMemberComment»
 		private static java.util.Set<org.eclipse.emf.ecore.EObject> collectTargetElements(org.eclipse.emf.common.util.Diagnostic diagnostic,
-				java.util.Set<org.eclipse.emf.ecore.EObject> targetElementCollector, java.util.List allDiagnostics) {
-			java.util.List data = diagnostic.getData();
+				java.util.Set<org.eclipse.emf.ecore.EObject> targetElementCollector, java.util.List<org.eclipse.emf.common.util.Diagnostic> allDiagnostics) {
+			java.util.List<?> data = diagnostic.getData();
 			org.eclipse.emf.ecore.EObject target = null;
 			if (data != null && !data.isEmpty() && data.get(0) instanceof org.eclipse.emf.ecore.EObject) {
-			target = (org.eclipse.emf.ecore.EObject) data.get(0);
-			targetElementCollector.add(target);	
-			allDiagnostics.add(diagnostic);
+				target = (org.eclipse.emf.ecore.EObject) data.get(0);
+				targetElementCollector.add(target);	
+				allDiagnostics.add(diagnostic);
 			}
 			if (diagnostic.getChildren() != null && !diagnostic.getChildren().isEmpty()) {
-			for (java.util.Iterator it = diagnostic.getChildren().iterator(); it.hasNext();) {
-			collectTargetElements((org.eclipse.emf.common.util.Diagnostic) it.next(),
-				targetElementCollector, allDiagnostics);
-			}
+				for (java.util.Iterator<org.eclipse.emf.common.util.Diagnostic> it = diagnostic.getChildren().iterator(); it.hasNext();) {
+					collectTargetElements(it.next(), targetElementCollector, allDiagnostics);
+				}
 			}
 			return targetElementCollector;
 		}
@@ -381,5 +402,4 @@ import xpt.providers.ValidationDecoratorProvider
 	@Localization def String i18nKeyForValidateAction(GenDiagram diagram) {
 		return className(diagram).toString
 	}
-
 }

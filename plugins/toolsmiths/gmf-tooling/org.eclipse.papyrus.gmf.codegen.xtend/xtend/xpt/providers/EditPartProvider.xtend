@@ -1,17 +1,23 @@
-/*******************************************************************************
- * Copyright (c) 2007, 2020 Borland Software Corporation, CEA LIST, Artal and others
+/*****************************************************************************
+ * Copyright (c) 2007, 2010, 2013, 2021 Borland Software Corporation, Montages, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Dmitry Stadnik (Borland) - initial API and implementation
- * 	  Michael Golubev (Montages) - API extracted to GMF-T runtime, migrated to Xtend2 
- */
+ * Contributors:
+ * Alexander Shatalin/Dmitry Stadnik (Borland) - initial API and implementation
+ * Michael Golubev (Montages) - API extracted to GMF-T runtime, migrated to Xtend2 
+ * Artem Tikhomirov (Borland) - [257119] Create views directly, not through ViewFactories
+ * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Thibault Landre (Atos Origin) - initial API and implementation
+ * Vincent Lorenzo (CEA-LIST) Add a line to initialize the display of the compartments to true
+ * Vincent Lorenzo (CEA-LIST) - Add lines to initialize the display of the labels - Bug 335987 [General][Enhancement] Show/Hide Connectors Labels and External Nodes Labels
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ *****************************************************************************/
 package xpt.providers
 
 import com.google.inject.Inject
@@ -47,7 +53,7 @@ import xpt.diagram.editparts.EditPartFactory
 		}
 	'''
 
-	def extendsList(GenDiagram it) '''extends org.eclipse.gmf.tooling.runtime.providers.DefaultEditPartProvider'''
+	def extendsList(GenDiagram it) '''extends org.eclipse.papyrus.infra.gmfdiag.common.providers.DefaultEditPartProvider'''
 
 	def implementsList(GenDiagram it) ''''''
 

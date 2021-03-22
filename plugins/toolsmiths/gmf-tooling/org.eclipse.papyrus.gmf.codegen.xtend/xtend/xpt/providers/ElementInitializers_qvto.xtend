@@ -1,35 +1,42 @@
-/*******************************************************************************
- * Copyright (c) 2008, 2020 Borland Software Corporation, CEA LIST, Artal and others
+/*****************************************************************************
+ * Copyright (c) 2007, 2008, 2014, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Artem Tikhomirov (Borland) - initial API and implementation
- * 	  Michael Golubev (Montages) - API extracted to GMF-T runtime, migrated to Xtend2 
- */
+ * Contributors:
+ * Dmitry Stadnik (Borland) - initial API and implementation
+ * Artem Tikhomirov (Borland) - refactored javaInitilizers not to use methods from GMFGen model
+ *                            [221347] Got rid of generated interfaces 
+ *                            (IObjectInitializer, IFeatureInitializer) and implementation thereof
+ * Michael Golubev (Montages) - API extracted to GMF-T runtime, #386838 migrate to Xtend2
+ * Christian W. Damus (CEA) - bug 440263
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ *****************************************************************************/
 package xpt.providers
 
-import org.eclipse.emf.codegen.ecore.genmodel.GenClassifier
+import com.google.inject.Inject
+import com.google.inject.Singleton
+import java.util.Collection
+import java.util.List
 import org.eclipse.emf.codegen.ecore.genmodel.GenClass
+import org.eclipse.emf.codegen.ecore.genmodel.GenClassifier
 import org.eclipse.emf.codegen.ecore.genmodel.GenDataType
 import org.eclipse.emf.codegen.ecore.genmodel.GenEnum
-import org.eclipse.papyrus.gmf.codegen.gmfgen.GenFeatureValueSpec
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenFeatureSeqInitializer
-import java.util.Collection
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenFeatureValueSpec
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenReferenceNewElementSpec
-import java.util.List
+import xpt.Common
 
-/**
- * FIXME: [MG] commented getSuffixes below
- */
-@com.google.inject.Singleton class ElementInitializers_qvto { // 
+@Singleton class ElementInitializers_qvto { // 
 
+	@Inject extension Common
+	
 	def List<Integer> newListAppending(List<Integer> list, int toAppend) {
 		var result = <Integer>newLinkedList()
 		result.addAll(list)
@@ -74,7 +81,7 @@ import java.util.List
 		if (valueSpec.featureSeqInitializer.creatingInitializer != null) {
 			middlePart = valueSpec.featureSeqInitializer.creatingInitializer.feature.ecoreFeature.name + '_'
 		}
-		return valueSpec.feature.ecoreFeature.name + '_' + middlePart + de.uniqueIdentifier
+		return valueSpec.feature.ecoreFeature.name + '_' + middlePart + de.stringUniqueIdentifier
 	}
 
 	def Iterable<GenFeatureValueSpec> recurseCollectValueSpec(GenFeatureSeqInitializer si) {
@@ -149,5 +156,4 @@ import java.util.List
 	def String combinedSuffix(Iterable<Integer> suffixes) {
 		return '_' + suffixes.join('_')
 	}
-
 }

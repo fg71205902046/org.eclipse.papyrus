@@ -233,19 +233,6 @@ public class CodegenEmitters {
 	}
 
 	// parsers
-
-	public JavaClassEmitter getAbstractParserEmitter() throws UnexpectedBehaviourException {
-		return createJavaClassEmitter("impl::parsers::AbstractParser", "Main"); //$NON-NLS-1$
-	}
-
-	/**
-	 * @deprecated we don't want to generate this class anymore, but the changes in i18n may create compilation errors if we don't explicitly clear the contents of generated file. 
-	 * @see comments in template impl::parsers::AbstractParser for details 
-	 */
-	public String getAbstractParserName(Object... input) throws UnexpectedBehaviourException {
-		return createPrimaryJavaClassEmitter("impl::parsers::AbstractParser").getQualifiedClassName("deprecatedQualifiedClassName", input); //$NON-NLS-1$
-	}
-
 	public JavaClassEmitter getPredefinedParserEmitter() throws UnexpectedBehaviourException {
 		return createJavaClassEmitter("parsers::PredefinedParser", "Main"); //$NON-NLS-1$
 	}

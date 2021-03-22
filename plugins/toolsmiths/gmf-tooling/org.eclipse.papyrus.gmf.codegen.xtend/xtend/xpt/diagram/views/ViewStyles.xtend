@@ -1,18 +1,18 @@
-/*******************************************************************************
- * Copyright (c) 2007, 2020 Borland Software Corporation, CEA LIST, Artal
+/*****************************************************************************
+ * Copyright (c) 2007, 2009, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Dmitry Stadnik (Borland) - initial API and implementation
- *    Artem Tikhomirov (Borland) - [257119] Create views directly, not through ViewFactories
- *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
- *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ * Contributors:
+ * Dmitry Stadnik (Borland) - initial API and implementation
+ * Artem Tikhomirov (Borland) - [257119] Create views directly, not through ViewFactories
+ * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  *****************************************************************************/
 package xpt.diagram.views
 
@@ -120,20 +120,24 @@ import xpt.diagram.ViewmapAttributesUtils_qvto
 	'''
 
 	def dispatch offset(GenExternalNodeLabel it, String viewVar) '''
-		«offset(viewVar, 0, 5)»
+		«IF labelOffsetX(viewmap, 0) != 0 || labelOffsetY(viewmap, 0) != 0»
+			«offset(it,viewVar, labelOffsetX(viewmap, 0), labelOffsetY(viewmap, 0))»
+		«ELSE»
+			«offset(it,viewVar, 0, 15)»
+		«ENDIF»
 	'''
-
 	/**
 	 * viewVar must be already inserted into a diagram (view.getDiagram() should be meaningful)
 	 */
 	def offset(GenLabel it, String viewVar, int x, int y) '''
-		org.eclipse.gmf.runtime.notation.Location location«visualID» = (org.eclipse.gmf.runtime.notation.Location) «viewVar».getLayoutConstraint();
+		«val location = stringUniqueIdentifier.toFirstLower+'_Location'»
+		org.eclipse.gmf.runtime.notation.Location «location» = (org.eclipse.gmf.runtime.notation.Location) «viewVar».getLayoutConstraint();
 		«IF it.getDiagram().isPixelMapMode()»
-			location«visualID».setX(«x»);
-			location«visualID».setY(«y»);
+			«location».setX(«x»);
+			«location».setY(«y»);
 		«ELSE»
-			location«visualID».setX(org.eclipse.gmf.runtime.diagram.ui.util.MeasurementUnitHelper.getMapMode(«viewVar».getDiagram().getMeasurementUnit()).DPtoLP(«x»));
-			location«visualID».setY(org.eclipse.gmf.runtime.diagram.ui.util.MeasurementUnitHelper.getMapMode(«viewVar».getDiagram().getMeasurementUnit()).DPtoLP(«y»));
+			«location».setX(org.eclipse.gmf.runtime.diagram.ui.util.MeasurementUnitHelper.getMapMode(«viewVar».getDiagram().getMeasurementUnit()).DPtoLP(«x»));
+			«location».setY(org.eclipse.gmf.runtime.diagram.ui.util.MeasurementUnitHelper.getMapMode(«viewVar».getDiagram().getMeasurementUnit()).DPtoLP(«y»));
 		«ENDIF»
 	'''
 

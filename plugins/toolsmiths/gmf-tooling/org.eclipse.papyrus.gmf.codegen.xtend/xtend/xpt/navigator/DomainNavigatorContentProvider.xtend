@@ -1,26 +1,27 @@
-/*******************************************************************************
- * Copyright (c) 2007, 2020 Borland Software Corporation, CEA LIST, Artal and others
+/*****************************************************************************
+ * Copyright (c) 2007, 2010, 2013, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Alexander Shatalin (Borland) - initial API and implementation
- *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
- *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ * Contributors:
+ * Alexander Shatalin (Borland) - initial API and implementation
+ * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  *****************************************************************************/
 package xpt.navigator
 
 import com.google.inject.Inject
+import com.google.inject.Singleton
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigator
-import xpt.Common
 import plugin.Activator
+import xpt.Common
 
-@com.google.inject.Singleton class DomainNavigatorContentProvider {
+@Singleton class DomainNavigatorContentProvider {
 	@Inject extension Common;
 
 	@Inject Activator xptActivator 
@@ -108,7 +109,7 @@ import plugin.Activator
 	def wrapEObjects(GenNavigator it) '''
 		«generatedMemberComment()»
 		public Object[] wrapEObjects(Object[] objects, Object parentElement) {
-			java.util.Collection result = new java.util.ArrayList();
+			java.util.Collection<«xptDomainNavigatorItem.qualifiedClassName(it)»> result = new java.util.ArrayList<«xptDomainNavigatorItem.qualifiedClassName(it)»>();
 			for (int i = 0; i < objects.length; i++) {
 				if (objects[i] instanceof org.eclipse.emf.ecore.EObject) {
 					result.add(new «xptDomainNavigatorItem.qualifiedClassName(it)»((org.eclipse.emf.ecore.EObject) objects[i], parentElement, myAdapterFctoryContentProvier));
@@ -119,5 +120,4 @@ import plugin.Activator
 	'''
 
 	def additions(GenNavigator it) ''''''
-
 }

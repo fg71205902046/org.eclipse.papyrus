@@ -1,18 +1,19 @@
-/*******************************************************************************
- * Copyright (c) 2007, 2020 Borland Software Corporation, CEA LIST, Artal and others
- * 
+/*****************************************************************************
+ * Copyright (c) 2007, 2017, 2021 Borland Software Corporation, CEA LIST, Artal and others
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Dmitry Stadnik (Borland) - initial API and implementation
- *    Svyatoslav Kovalsky (Montages) - #410477 "same-generated" code extracted to GMFT-runtime 
- *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
- *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ * Contributors:
+ * Dmitry Stadnik (Borland) - initial API and implementation
+ * Svyatoslav Kovalsky (Montages) - #410477 "same-generated" code extracted to GMFT-runtime 
+ * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial API and implementation
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  *****************************************************************************/
 package xpt.editor
 
@@ -39,7 +40,7 @@ import plugin.Activator
 
 	def fullPath(GenDiagram it) '''«qualifiedClassName(it)»'''
 
-	def extendsList(GenDiagram it) '''extends org.eclipse.gmf.tooling.runtime.part.DefaultModelElementSelectionPage'''
+	def extendsList(GenDiagram it) '''extends org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.part.DefaultModelElementSelectionPage'''
 
 	def ModelElementSelectionPage(GenDiagram it) '''
 		«copyright(editorGen)»
@@ -130,5 +131,4 @@ import plugin.Activator
 	@Localization def String i18nKeyForModelElementSelectionPage(GenDiagram diagram) {
 		return className(diagram).toString
 	}
-
 }

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2007, 2020 Borland Software Corporation, CEA LIST, Artal and others
+ * Copyright (c) 2007, 2021 Borland Software Corporation, CEA LIST, Artal and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -9,10 +9,10 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors: 
- *    Alexander Shatalin (Borland) - initial API and implementation
- *    Dmitry Stadnik (Borland) - rewritten in xpand
- *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
- *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ * Alexander Shatalin (Borland) - initial API and implementation
+ * Dmitry Stadnik (Borland) - rewritten in xpand
+ * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  *****************************************************************************/
 package xpt.editor
 
@@ -158,7 +158,7 @@ import plugin.Activator
 		«generatedMemberComment»
 		public void run(org.eclipse.jface.action.IAction action) {
 			org.eclipse.emf.transaction.TransactionalEditingDomain editingDomain =
-				org.eclipse.gmf.runtime.emf.core.GMFEditingDomainFactory.INSTANCE.createEditingDomain();
+				org.eclipse.emf.workspace.WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain();
 			«IF editorGen.sameFileForDiagramAndModel»
 				org.eclipse.emf.ecore.resource.ResourceSet resourceSet = new org.eclipse.emf.ecore.resource.impl.ResourceSetImpl();
 			«ELSE»
@@ -167,7 +167,7 @@ import plugin.Activator
 			org.eclipse.emf.ecore.EObject diagramRoot = null;
 			try {
 				org.eclipse.emf.ecore.resource.Resource resource = resourceSet.getResource(domainModelURI, true);
-				diagramRoot = (org.eclipse.emf.ecore.EObject) resource.getContents().get(0);
+				diagramRoot = resource.getContents().get(0);
 			} catch (org.eclipse.emf.common.util.WrappedException ex) {
 				«xptActivator.qualifiedClassName(editorGen.plugin)».getInstance().logError(
 					"Unable to load resource: " + domainModelURI, ex); «nonNLS(1)»
@@ -186,7 +186,6 @@ import plugin.Activator
 			1)»
 		}
 	'''
-
 	def i18nAccessors(GenDiagram it) '''
 		«xptExternalizer.accessorField(titleKey(i18nKeyForInitDiagramFileResourceErrorDialog()))»
 		«xptExternalizer.accessorField(messageKey(i18nKeyForInitDiagramFileResourceErrorDialog()))»
@@ -212,5 +211,4 @@ import plugin.Activator
 	@Localization def String i18nKeyForInitDiagramOpenFileDialogTitle() {
 		return 'InitDiagramFile.OpenModelFileDialogTitle'
 	}
-
 }
