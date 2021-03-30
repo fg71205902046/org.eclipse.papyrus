@@ -18,13 +18,10 @@ package org.eclipse.papyrus.toolsmiths.validation.architecture.internal.messages
 import org.eclipse.osgi.util.NLS;
 
 /**
- * @author damus
- *
+ * Externalized strings for the bundle.
  */
 public class Messages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.toolsmiths.validation.architecture.internal.messages.messages"; //$NON-NLS-1$
-	public static String ArchitectureCustomValidator_0;
-	public static String ArchitectureCustomValidator_1;
 	public static String ArchitectureCustomValidator_2;
 	public static String ArchitecturePluginChecker_0;
 	public static String ArchitecturePluginChecker_1;

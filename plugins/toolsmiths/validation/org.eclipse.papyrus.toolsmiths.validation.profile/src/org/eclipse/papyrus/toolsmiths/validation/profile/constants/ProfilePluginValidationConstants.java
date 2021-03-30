@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
- *   Christian W. Damus - bug 570097
+ *   Christian W. Damus - bugs 570097, 571125
  *
  *****************************************************************************/
 
@@ -32,6 +32,16 @@ public class ProfilePluginValidationConstants {
 	 * The UMLProfile extension point identifier.
 	 */
 	public static final String UMLPROFILE_EXTENSION_POINT = "org.eclipse.papyrus.uml.extensionpoints.UMLProfile"; //$NON-NLS-1$
+
+	/**
+	 * The UMLProfile extension point element name.
+	 */
+	public static final String ELEM_PROFILE = "profile"; //$NON-NLS-1$
+
+	/**
+	 * The UMLProfile extension point icon path attribute.
+	 */
+	public static final String ATTR_ICONPATH = "iconpath"; //$NON-NLS-1$
 
 	/**
 	 * The uml generated package extension point identifier.

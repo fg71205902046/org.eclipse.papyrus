@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 Christian W. Damus, CEA LIST, and others.
+ * Copyright (c) 2020, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -26,8 +26,11 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.osgi.service.resolver.BundleDescription;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.CheckerDiagnosticChain;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.MarkersService;
+import org.eclipse.pde.core.plugin.IPluginModelBase;
+import org.eclipse.pde.core.plugin.PluginRegistry;
 
 import com.google.common.collect.Lists;
 
@@ -133,6 +136,20 @@ public abstract class AbstractPluginChecker implements IPluginChecker, IPluginCh
 
 	private Stream<Diagnostic> wrap(Stream<Diagnostic> diagnostics) {
 		return diagnostics.map(this::wrap);
+	}
+
+	/**
+	 * Get the bundle symbolic name of a bundle project, or the best guest if it is not a bundle project.
+	 *
+	 * @param bundleProject
+	 *            a project in the workspace
+	 * @return the best-effort bundle name
+	 */
+	protected final String getBundleName(IProject bundleProject) {
+		return Optional.ofNullable(PluginRegistry.findModel(bundleProject))
+				.map(IPluginModelBase::getBundleDescription)
+				.map(BundleDescription::getSymbolicName)
+				.orElse(bundleProject.getName());
 	}
 
 }

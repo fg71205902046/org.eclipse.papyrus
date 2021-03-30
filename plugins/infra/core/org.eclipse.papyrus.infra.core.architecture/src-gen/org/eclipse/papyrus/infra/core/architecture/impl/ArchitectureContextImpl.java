@@ -406,13 +406,16 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 							? "_UI_creationCommandClassExists_diagnostic" : "_UI_creationCommandClassConforms_diagnostic"; //$NON-NLS-1$//$NON-NLS-2$
 					String expectedInterface = ArchitectureCommandUtils.getCommandType( ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS)
 							.map(Class::getSimpleName).orElse(ArchitecturePlugin.INSTANCE.getString("_UI_genericRequiredInterface_name")); //$NON-NLS-1$
+					Set<String> requiredBundleDependencies = ArchitectureCommandUtils.getRequiredCommandBundleDependencies(this);
+					String depsList = String.join(", ", requiredBundleDependencies); //$NON-NLS-1$
 					
 					diagnostics.add
 						(new BasicDiagnostic
 							(Diagnostic.ERROR,
 							 ArchitectureValidator.DIAGNOSTIC_SOURCE,
 							 ArchitectureValidator.ARCHITECTURE_CONTEXT__CEATION_COMMAND_CLASS_EXISTS,
-							 ArchitecturePlugin.INSTANCE.getString(problem, new Object[] { EObjectValidator.getObjectLabel(this, context), expectedInterface }),
+							 ArchitecturePlugin.INSTANCE.getString(problem, new Object[] {
+									 EObjectValidator.getObjectLabel(this, context), expectedInterface, requiredBundleDependencies.size(), depsList }),
 							 new Object [] { this, ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS }));
 				}
 				return false;
@@ -440,13 +443,16 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 							? "_UI_conversionCommandClassExists_diagnostic" : "_UI_conversionCommandClassConforms_diagnostic"; //$NON-NLS-1$//$NON-NLS-2$
 					String expectedInterface = ArchitectureCommandUtils.getCommandType( ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS)
 							.map(Class::getSimpleName).orElse(ArchitecturePlugin.INSTANCE.getString("_UI_genericRequiredInterface_name")); //$NON-NLS-1$
+					Set<String> requiredBundleDependencies = ArchitectureCommandUtils.getRequiredCommandBundleDependencies(this);
+					String depsList = String.join(", ", requiredBundleDependencies); //$NON-NLS-1$
 					
 					diagnostics.add
 						(new BasicDiagnostic
 							(Diagnostic.ERROR,
 							 ArchitectureValidator.DIAGNOSTIC_SOURCE,
 							 ArchitectureValidator.ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS_EXISTS,
-							 ArchitecturePlugin.INSTANCE.getString(problem, new Object[] { EObjectValidator.getObjectLabel(this, context), expectedInterface }),
+							 ArchitecturePlugin.INSTANCE.getString(problem, new Object[] {
+									 EObjectValidator.getObjectLabel(this, context), expectedInterface, requiredBundleDependencies.size(), depsList }),
 							 new Object [] { this, ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS }));
 				}
 				return false;

@@ -18,8 +18,7 @@ package org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.messages
 import org.eclipse.osgi.util.NLS;
 
 /**
- * @author damus
- *
+ * Externalized strings for the bundle.
  */
 public class Messages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.messages.messages"; //$NON-NLS-1$
@@ -28,8 +27,6 @@ public class Messages extends NLS {
 	public static String ApplyStereotypeAdviceCustomValidator_2;
 	public static String ApplyStereotypeAdviceCustomValidator_3;
 	public static String ElementTypesCustomValidator_0;
-	public static String ElementTypesCustomValidator_1;
-	public static String ElementTypesCustomValidator_2;
 	public static String ElementTypesPluginChecker_0;
 	public static String ElementTypesPluginChecker_1;
 	public static String ElementTypesPluginXMLValidator_0;

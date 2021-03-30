@@ -23,6 +23,10 @@ import org.eclipse.osgi.util.NLS;
  */
 public class Messages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.toolsmiths.validation.common.internal.messages.messages"; //$NON-NLS-1$
+	public static String BasicEMFResourceProvider_0;
+	public static String BasicEMFResourceProvider_1;
+	public static String BasicPluginXMLResourceProvider_0;
+	public static String BasicPluginXMLResourceProvider_1;
 	public static String BuildPropertiesChecker_2;
 	public static String BuildPropertiesChecker_3;
 	public static String CustomModelChecker_0;
@@ -34,6 +38,10 @@ public class Messages extends NLS {
 	public static String PluginErrorReporter_0;
 	public static String MissingDependenciesMarkerResolution_description;
 	public static String MissingDependenciesMarkerResolution_label;
+	public static String ResourceKind_0;
+	public static String ResourceKind_1;
+	public static String ResourceKind_2;
+	public static String ResourceKind_3;
 	public static String ResourceMissingFromBinaryBuildMarkerResolution_description;
 	public static String ResourceMissingFromBinaryBuildMarkerResolution_label;
 	public static String ResourceMissingFromBinaryBuildMarkerResolution_folder;

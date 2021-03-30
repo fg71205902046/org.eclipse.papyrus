@@ -19,6 +19,7 @@ package org.eclipse.papyrus.infra.gmfdiag.representation.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -265,13 +266,16 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 							? "_UI_creationCommandClassExists_diagnostic" : "_UI_creationCommandClassConforms_diagnostic"; //$NON-NLS-1$//$NON-NLS-2$
 					String expectedInterface = ArchitectureCommandUtils.getCommandType( RepresentationPackage.Literals.PAPYRUS_DIAGRAM__CREATION_COMMAND_CLASS)
 							.map(Class::getSimpleName).orElse(RepresentationPlugin.INSTANCE.getString("_UI_genericRequiredInterface_name")); //$NON-NLS-1$
+					Set<String> requiredBundleDependencies = ArchitectureCommandUtils.getRequiredCommandBundleDependencies(this);
+					String depsList = String.join(", ", requiredBundleDependencies); //$NON-NLS-1$
 					
 					diagnostics.add
 						(new BasicDiagnostic
 							(Diagnostic.ERROR,
 							 RepresentationValidator.DIAGNOSTIC_SOURCE,
 							 RepresentationValidator.PAPYRUS_DIAGRAM__CEATION_COMMAND_CLASS_EXISTS,
-							 RepresentationPlugin.INSTANCE.getString(problem, new Object[] { EObjectValidator.getObjectLabel(this, context), expectedInterface }),
+							 RepresentationPlugin.INSTANCE.getString(problem, new Object[] {
+									 EObjectValidator.getObjectLabel(this, context), expectedInterface, requiredBundleDependencies.size(), depsList }),
 							 new Object [] { this, RepresentationPackage.Literals.PAPYRUS_DIAGRAM__CREATION_COMMAND_CLASS }));
 				}
 				return false;

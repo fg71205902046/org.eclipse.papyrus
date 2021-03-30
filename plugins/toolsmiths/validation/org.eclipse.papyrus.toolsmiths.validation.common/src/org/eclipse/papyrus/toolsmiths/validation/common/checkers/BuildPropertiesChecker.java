@@ -11,7 +11,7 @@
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
  *   Remi Schnekenburger (EclipseSource) - Bug 568495
- *   Christian W. Damus - bugs 569357, 570097
+ *   Christian W. Damus - bugs 569357, 570097, 571125
  *
  *****************************************************************************/
 
@@ -59,6 +59,7 @@ import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.toolsmiths.validation.common.Activator;
+import org.eclipse.papyrus.toolsmiths.validation.common.checkers.OpaqueResourceProvider.ClassifiedURI;
 import org.eclipse.papyrus.toolsmiths.validation.common.internal.messages.Messages;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.ProjectManagementService;
 import org.eclipse.pde.core.build.IBuild;
@@ -83,6 +84,9 @@ public class BuildPropertiesChecker extends AbstractPluginChecker {
 	 * to trace the complete dependency graph.
 	 */
 	private Function<? super IFile, ? extends Collection<? extends IResource>> dependenciesFunction;
+
+	private OpaqueResourceProvider.EMF modelOpaqueResourceProvider;
+	private OpaqueResourceProvider.XML pluginXMLOpaqueResourceProvider;
 
 	/**
 	 * Constructor.
@@ -173,6 +177,31 @@ public class BuildPropertiesChecker extends AbstractPluginChecker {
 		return this;
 	}
 
+	/**
+	 * Add a function that computes additional requirements from the model that are encoded in some other
+	 * ways than cross-document references to other EMF resources in other bundles.
+	 *
+	 * @param opaqueReferenceProvider
+	 *            a provider of opaque resource references from the model
+	 * @return myself, for convenience of call chaining
+	 */
+	public BuildPropertiesChecker withReferencedResources(OpaqueResourceProvider.EMF opaqueReferenceProvider) {
+		this.modelOpaqueResourceProvider = OpaqueResourceProvider.and(opaqueReferenceProvider, this.modelOpaqueResourceProvider);
+		return this;
+	}
+
+	/**
+	 * Add a function that computes additional requirements from the <tt>plugin.xml</tt>.
+	 *
+	 * @param opaqueReferenceProvider
+	 *            a provider of opaque resource references from the <tt>plugin.xml</tt>
+	 * @return myself, for convenience of call chaining
+	 */
+	public BuildPropertiesChecker withReferencedResources(OpaqueResourceProvider.XML opaqueReferenceProvider) {
+		this.pluginXMLOpaqueResourceProvider = OpaqueResourceProvider.and(opaqueReferenceProvider, this.pluginXMLOpaqueResourceProvider);
+		return this;
+	}
+
 	@Override
 	public void check(DiagnosticChain diagnostics, final IProgressMonitor monitor) {
 		SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(Messages.BuildPropertiesChecker_2, getModelFile().getName()), 1);
@@ -186,6 +215,7 @@ public class BuildPropertiesChecker extends AbstractPluginChecker {
 			// Calculate the closure of resources to get
 			Set<IResource> requiredResources = computeRequiredResources(getModelFile());
 			requiredResources.addAll(getCrossReferencedResources());
+			requiredResources.addAll(getReferencedOpaqueResources(diagnostics));
 
 			// And don't worry about resources in other projects, because those projects will package them
 			requiredResources.removeIf(Predicate.not(getProject()::contains));
@@ -343,12 +373,37 @@ public class BuildPropertiesChecker extends AbstractPluginChecker {
 	private IResource getResource(URI uri) {
 		IResource result = null;
 
-		uri = modelResource.getResourceSet().getURIConverter().normalize(uri);
+		if (modelResource != null) {
+			uri = modelResource.getResourceSet().getURIConverter().normalize(uri);
+		}
+
 		if (uri.isPlatformResource()) {
 			// If it's a platform plugin resource, then it is expected to be deployed independently
 			// and so needs not be considered in our build.properties validation
 			String uriPlatformString = uri.toPlatformString(true);
 			result = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(uriPlatformString));
+		}
+
+		return result;
+	}
+
+	private Set<IResource> getReferencedOpaqueResources(DiagnosticChain diagnostics) {
+		Set<IResource> result = new LinkedHashSet<>();
+
+		Function<URI, IResource> resourceFunction = this::getResource;
+		if (modelOpaqueResourceProvider != null && modelResource != null) {
+			modelOpaqueResourceProvider.processModel(getProject(), getModelFile(), modelResource, diagnostics,
+					resourceFunction.compose(ClassifiedURI::uri), result::add);
+			result.remove(null); // Handle non-workspace resources
+		}
+
+		if (pluginXMLOpaqueResourceProvider != null) {
+			IFile pluginXML = ProjectManagementService.getPluginXMLFile(getProject());
+			if (pluginXML != null) {
+				pluginXMLOpaqueResourceProvider.processModel(getProject(), pluginXML, diagnostics,
+						resourceFunction.compose(ClassifiedURI::uri), result::add);
+				result.remove(null); // Handle non-workspace resources
+			}
 		}
 
 		return result;

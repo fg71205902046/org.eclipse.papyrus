@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2019, 2020 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2019, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,19 +10,20 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
- *   Christian W. Damus - bug 569357
+ *   Christian W. Damus - bugs 569357, 571125
  *
  *****************************************************************************/
 
 package org.eclipse.papyrus.toolsmiths.validation.profile.internal.checkers;
 
+import static org.eclipse.papyrus.toolsmiths.validation.profile.constants.ProfilePluginValidationConstants.ATTR_ICONPATH;
+import static org.eclipse.papyrus.toolsmiths.validation.profile.constants.ProfilePluginValidationConstants.ELEM_PROFILE;
 import static org.eclipse.papyrus.toolsmiths.validation.profile.constants.ProfilePluginValidationConstants.PROFILE_PLUGIN_VALIDATION_MARKER_TYPE;
+import static org.eclipse.papyrus.toolsmiths.validation.profile.constants.ProfilePluginValidationConstants.UMLPROFILE_EXTENSION_POINT;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -32,13 +33,14 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.papyrus.emf.helpers.BundleResourceURIHelper;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.BuildPropertiesChecker;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.CustomModelChecker;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.ExtensionsChecker;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.IPluginChecker2;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.ModelDependenciesChecker;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.ModelValidationChecker;
+import org.eclipse.papyrus.toolsmiths.validation.common.checkers.OpaqueResourceProvider;
+import org.eclipse.papyrus.toolsmiths.validation.common.checkers.OpaqueResourceProvider.ResourceKind;
 import org.eclipse.papyrus.toolsmiths.validation.common.internal.utils.PluginErrorReporter;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.MarkersService;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.PluginValidationService;
@@ -123,17 +125,7 @@ public class ProfilePluginChecker {
 	}
 
 	private static ModelDependenciesChecker createModelDependenciesChecker(IProject project, IFile modelFile, Resource resource) {
-		return new ModelDependenciesChecker(project, modelFile, resource, PROFILE_PLUGIN_VALIDATION_MARKER_TYPE)
-				.withAdditionalRequirements(r -> ProfilePluginChecker.getBundlesFromExternalResources(r, project));
-	}
-
-	private static Collection<String> getBundlesFromExternalResources(Resource resource, IProject project) {
-		EcoreUtil.resolveAll(resource);
-		return resource.getResourceSet().getResources().stream()
-				.map(BundleResourceURIHelper.INSTANCE::getBundleNameFromResource)
-				.filter(Objects::nonNull)
-				.filter(name -> !name.equals(project.getName())) // no self importing.
-				.collect(Collectors.toList());
+		return new ModelDependenciesChecker(project, modelFile, resource, PROFILE_PLUGIN_VALIDATION_MARKER_TYPE);
 	}
 
 	/**
@@ -160,7 +152,12 @@ public class ProfilePluginChecker {
 
 	private static BuildPropertiesChecker createBuildPropertiesChecker(IProject project, IFile modelFile, Resource resource) {
 		return new BuildPropertiesChecker(project, modelFile, PROFILE_PLUGIN_VALIDATION_MARKER_TYPE)
-				.withEMFGeneratorModels();
+				.withEMFGeneratorModels()
+				.withReferencedResources(createPluginXMLOpaqueResourceProvider(project, modelFile));
+	}
+
+	private static OpaqueResourceProvider.XML createPluginXMLOpaqueResourceProvider(IProject project, IFile modelFile) {
+		return OpaqueResourceProvider.XML.create(ResourceKind.ICON, UMLPackage.eNS_URI, UMLPROFILE_EXTENSION_POINT, ELEM_PROFILE, ATTR_ICONPATH);
 	}
 
 	/**

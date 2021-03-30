@@ -10,12 +10,15 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
- *   Christian W. Damus - bugs 569357, 570097
+ *   Christian W. Damus - bugs 569357, 570097, 571125
  *
  *****************************************************************************/
 
 package org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.checkers;
 
+import static org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION__METAMODEL_NS_URI;
+import static org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage.Literals.ICON_ENTRY__BUNDLE_ID;
+import static org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage.Literals.ICON_ENTRY__ICON_PATH;
 import static org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.ElementTypesPluginValidationConstants.ELEMENTTYPES_EXTENSION_POINT_IDENTIFIER;
 import static org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.ElementTypesPluginValidationConstants.ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE;
 
@@ -38,6 +41,8 @@ import org.eclipse.papyrus.toolsmiths.validation.common.checkers.ExtensionsCheck
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.IPluginChecker2;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.ModelDependenciesChecker;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.ModelValidationChecker;
+import org.eclipse.papyrus.toolsmiths.validation.common.checkers.OpaqueResourceProvider;
+import org.eclipse.papyrus.toolsmiths.validation.common.checkers.OpaqueResourceProvider.ResourceKind;
 import org.eclipse.papyrus.toolsmiths.validation.common.internal.utils.PluginErrorReporter;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.MarkersService;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.PluginValidationService;
@@ -138,7 +143,14 @@ public class ElementTypesPluginChecker {
 
 	private static ModelDependenciesChecker createModelDependenciesChecker(IProject project, IFile modelFile, Resource resource) {
 		return new ModelDependenciesChecker(project, modelFile, resource, ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE)
-				.withAdditionalRequirements(new ElementTypesDependencies(project)::computeDependencies);
+				.withReferencedResources(createOpaqueResourceProvider());
+	}
+
+	private static OpaqueResourceProvider.EMF createOpaqueResourceProvider() {
+		// Icon resources
+		return OpaqueResourceProvider.EMF.create(ResourceKind.ICON, ElementTypesConfigurationsPackage.eNS_URI, ICON_ENTRY__ICON_PATH, ICON_ENTRY__BUNDLE_ID)
+				// Metamodel resources by NS URI
+				.and(OpaqueResourceProvider.EMF.create(ResourceKind.METAMODEL, ElementTypesConfigurationsPackage.eNS_URI, ELEMENT_TYPE_SET_CONFIGURATION__METAMODEL_NS_URI));
 	}
 
 	/**
@@ -164,8 +176,9 @@ public class ElementTypesPluginChecker {
 	}
 
 	private static BuildPropertiesChecker createBuildPropertiesChecker(IProject project, IFile modelFile, Resource resource) {
-		return new BuildPropertiesChecker(project, modelFile, ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE)
-				.withDependencies(file -> new ElementTypesBuildPropertiesDependencies(resource).getDependencies());
+		return new BuildPropertiesChecker(project, modelFile, resource, ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE)
+				.withDependencies(file -> new ElementTypesBuildPropertiesDependencies(resource).getDependencies())
+				.withReferencedResources(createOpaqueResourceProvider());
 	}
 
 	/**

@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Remi Schnekenburger - Initial API and implementation
- *   Christian W. Damus - bug 570097
+ *   Christian W. Damus - bugs 570097, 571125
  *
  *****************************************************************************/
 
@@ -18,10 +18,7 @@ package org.eclipse.papyrus.toolsmiths.validation.profile.internal.checkers;
 
 import static org.eclipse.papyrus.toolsmiths.validation.common.checkers.CommonProblemConstants.MODEL_NAME;
 
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -32,17 +29,11 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.infra.emf.utils.ResourceUtils;
-import org.eclipse.papyrus.toolsmiths.validation.common.checkers.CommonProblemConstants;
 import org.eclipse.papyrus.toolsmiths.validation.common.internal.utils.PluginErrorReporter;
-import org.eclipse.papyrus.toolsmiths.validation.common.utils.ProjectManagementService;
 import org.eclipse.papyrus.toolsmiths.validation.profile.constants.ProfilePluginValidationConstants;
 import org.eclipse.papyrus.toolsmiths.validation.profile.internal.messages.Messages;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.papyrus.uml.tools.utils.StaticProfileUtil;
-import org.eclipse.pde.core.build.IBuild;
-import org.eclipse.pde.core.build.IBuildEntry;
-import org.eclipse.pde.core.build.IBuildModel;
 import org.eclipse.uml2.uml.Profile;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -61,7 +52,6 @@ final class ProfilePluginXMLValidator {
 	private static final String LOCATION = "location"; //$NON-NLS-1$
 	private static final String NAME = "name"; //$NON-NLS-1$
 	private static final String PATH = "path"; //$NON-NLS-1$
-	private static final String ICONPATH = "iconpath"; //$NON-NLS-1$
 	private static final String PATH_SEPARATOR = "/"; //$NON-NLS-1$
 
 	/** URIs */
@@ -205,20 +195,6 @@ final class ProfilePluginXMLValidator {
 						ProfilePluginValidationConstants.PAPYRUS_PROFILE_EXTENSION_NO_NAME_MARKER_ID,
 						CATEGORY, Collections.singletonMap(MODEL_NAME, profile.getLabel()));
 			}
-
-			// make sure icon is in the binary build
-			String iconPath = element.getAttribute(ICONPATH);
-			if (iconPath != null && !iconPath.isBlank()) {
-				IFile iconFile = profileFile.getProject().getFile(iconPath);
-				if (iconFile.exists() && !binaryBuildContains(iconFile.getProjectRelativePath())) {
-					final Map<String, String> data = new HashMap<>();
-					data.put(MODEL_NAME, profile.getLabel());
-					data.put(CommonProblemConstants.BINARY_BUILD_PATH, iconPath);
-					problems.reportProblem(Diagnostic.ERROR, element, ICONPATH, NLS.bind(Messages.StaticProfilePluginErrorReporter_resourceMissingFromBinaryBuild, iconPath),
-							CommonProblemConstants.MISSING_FROM_BINARY_BUILD_MARKER_ID,
-							CATEGORY, data);
-				}
-			}
 			break;
 		default:
 			break;
@@ -242,25 +218,6 @@ final class ProfilePluginXMLValidator {
 
 		}
 		return 0;
-	}
-
-
-
-
-	private boolean binaryBuildContains(IPath path) {
-		final IBuildModel buildModel = ProjectManagementService.getPluginBuild(profileFile.getProject());
-		final IBuild build = buildModel.getBuild();
-		final IBuildEntry buildEntry = build.getEntry(IBuildEntry.BIN_INCLUDES);
-		final String[] tokens = buildEntry.getTokens();
-
-		if (path.segmentCount() > 1) {
-			String containingFolder = path.removeLastSegments(1).addTrailingSeparator().toString();
-			boolean foundFolder = Arrays.stream(tokens).anyMatch(containingFolder::equals);
-			if (foundFolder) {
-				return true;
-			}
-		}
-		return Arrays.stream(tokens).anyMatch(path.toString()::equals);
 	}
 
 }

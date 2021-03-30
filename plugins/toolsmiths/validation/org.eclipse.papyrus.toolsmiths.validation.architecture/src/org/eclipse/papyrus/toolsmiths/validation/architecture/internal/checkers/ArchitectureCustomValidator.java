@@ -25,12 +25,10 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
-import org.eclipse.papyrus.infra.core.architecture.ADElement;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureContext;
 import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureViewpoint;
@@ -53,35 +51,8 @@ public class ArchitectureCustomValidator extends CustomModelChecker.SwitchValida
 		super(nsURI);
 	}
 
-	public void validate(ADElement element, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		validateIcon(element, element.getIcon(), diagnostics, context);
-	}
-
 	public void validate(RepresentationKind representation, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		validateIcon(representation, representation.getGrayedIcon(), diagnostics, context);
 		validateRepresentationKindUsed(representation, diagnostics, context);
-	}
-
-	private void validateIcon(EObject owner, String iconURI, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (iconURI == null) {
-			// Okay
-			return;
-		}
-
-		URI uri = null;
-
-		try {
-			uri = URI.createURI(iconURI);
-		} catch (Exception e) {
-			diagnostics.add(createDiagnostic(Diagnostic.ERROR, owner, format(Messages.ArchitectureCustomValidator_0, context, owner, iconURI)));
-		}
-
-		if (uri != null) {
-			ResourceSet rset = owner.eResource().getResourceSet();
-			if (!rset.getURIConverter().exists(uri, null)) {
-				diagnostics.add(createDiagnostic(Diagnostic.ERROR, owner, format(Messages.ArchitectureCustomValidator_1, context, owner, uri.lastSegment())));
-			}
-		}
 	}
 
 	public void validate(ArchitectureContext architecture, DiagnosticChain diagnostics, Map<Object, Object> context) {

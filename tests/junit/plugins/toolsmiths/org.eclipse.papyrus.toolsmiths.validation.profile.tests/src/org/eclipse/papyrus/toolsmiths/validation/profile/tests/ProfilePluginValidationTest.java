@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2019 CEA LIST, and others.
+ * Copyright (c) 2019, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,9 +10,13 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
+ *   Christian W. Damus - bug 571125
  *
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.validation.profile.tests;
+
+import static org.eclipse.papyrus.junit.matchers.MoreMatchers.greaterThan;
+import static org.eclipse.papyrus.junit.matchers.MoreMatchers.greaterThanOrEqual;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -26,6 +30,7 @@ import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusT
 import org.eclipse.papyrus.junit.utils.rules.ProjectFixture;
 import org.eclipse.papyrus.toolsmiths.validation.profile.checkers.ProfilePluginCheckerService;
 import org.eclipse.papyrus.toolsmiths.validation.profile.constants.ProfilePluginValidationConstants;
+import org.hamcrest.MatcherAssert;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -83,7 +88,7 @@ public class ProfilePluginValidationTest extends AbstractPapyrusTest {
 
 		// Now check the markers
 		Assert.assertNotNull("The markers have to be found", markers); //$NON-NLS-1$
-		Assert.assertEquals("The number of markers is not correct", 6, markers.size()); //$NON-NLS-1$
+		MatcherAssert.assertThat("The number of markers is not correct", markers.size(), greaterThanOrEqual(6)); //$NON-NLS-1$
 
 		// Check the profile.uml markers
 		final List<IMarker> profileFileMarkers = markers.stream().filter(marker -> marker.getResource().getFullPath().toString().endsWith("bookstore.profile.uml")).collect(Collectors.toList()); //$NON-NLS-1$
@@ -96,10 +101,10 @@ public class ProfilePluginValidationTest extends AbstractPapyrusTest {
 		Assert.assertEquals("The number of markers for dependencies is not correct", 4, manifestMarkers.size()); //$NON-NLS-1$
 		Assert.assertTrue("The severity of profile marker is not correct", isMarkerSeverity(manifestMarkers.get(0), IMarker.SEVERITY_WARNING)); //$NON-NLS-1$
 
-		// Check the build markers
+		// Check the build markers. The profile and genmodel need to be included in the binary build
 		final List<IMarker> buildMarkers = markers.stream().filter(marker -> marker.getResource().getFullPath().toString().endsWith("build.properties")).collect(Collectors.toList()); //$NON-NLS-1$
 		Assert.assertNotNull("Build markers are not found", buildMarkers); //$NON-NLS-1$
-		Assert.assertEquals("The number of markers for build is not correct", 0, buildMarkers.size()); //$NON-NLS-1$
+		MatcherAssert.assertThat("The number of markers for build is not correct", buildMarkers.size(), greaterThan(0)); //$NON-NLS-1$
 
 		// Check the extensions markers
 		final List<IMarker> extensionsMarkers = markers.stream().filter(marker -> marker.getResource().getFullPath().toString().endsWith("plugin.xml")).collect(Collectors.toList()); //$NON-NLS-1$

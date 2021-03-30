@@ -15,12 +15,19 @@
 
 package org.eclipse.papyrus.infra.core.architecture.util;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -76,6 +83,21 @@ public class ArchitectureCommandUtils {
 						result = fail(e);
 					}
 				}
+			}
+		}
+
+		return result;
+	}
+
+	private static String getClassBundleAnnotation(EObject owner, EStructuralFeature feature) {
+		String result = null;
+
+		if (owner.eIsSet(feature)) {
+			String classURI = EcoreUtil.getAnnotation(feature, ArchitecturePackage.eNS_URI, CLASS_CONSTRAINT);
+			URI uri = classURI == null ? null : URI.createURI(classURI);
+
+			if (uri != null && BUNDLECLASS.equals(uri.scheme())) {
+				result = uri.authority();
 			}
 		}
 
@@ -144,6 +166,54 @@ public class ArchitectureCommandUtils {
 	 */
 	public static Object getCommandClassUnconstrained(EObject modelObject, EStructuralFeature commandClassFeature) {
 		return getCommandClass(modelObject, commandClassFeature, Optional.empty());
+	}
+
+	/**
+	 * Search the content tree of a model object for bundle dependency requirements implied by features referencing
+	 * command classes.
+	 *
+	 * @param modelObject
+	 *            a model tree
+	 * @return the bundle dependencies implied by command class features set in the content of the tree
+	 */
+	public static Set<String> getRequiredCommandBundleDependencies(EObject modelObject) {
+		Set<String> result = new HashSet<>();
+
+		Map<EClass, List<EStructuralFeature>> commandClassFeatures = new HashMap<>();
+
+		for (Iterator<EObject> iter = EcoreUtil.getAllContents(Set.of(modelObject)); iter.hasNext();) {
+			EObject next = iter.next();
+			for (EStructuralFeature feature : getCommandClassFeatures(next.eClass(), commandClassFeatures)) {
+				String bundleDependency = getClassBundleAnnotation(next, feature);
+				if (bundleDependency != null) {
+					result.add(bundleDependency);
+				}
+			}
+		}
+
+		return result;
+	}
+
+	/**
+	 * Get the features of a model class that are constrained command class features.
+	 *
+	 * @param eClass
+	 *            an EClass
+	 * @param commandClassFeatures
+	 *            a cache of previously computed constrained command class features
+	 * @return the class's constrained command-class features
+	 */
+	private static Iterable<EStructuralFeature> getCommandClassFeatures(EClass eClass, Map<EClass, List<EStructuralFeature>> commandClassFeatures) {
+		List<EStructuralFeature> result = commandClassFeatures.get(eClass);
+
+		if (result == null) {
+			result = eClass.getEAllStructuralFeatures().stream()
+					.filter(f -> EcoreUtil.getAnnotation(f, ArchitecturePackage.eNS_URI, CLASS_CONSTRAINT) != null)
+					.collect(Collectors.toList());
+			commandClassFeatures.put(eClass, result);
+		}
+
+		return result;
 	}
 
 }
