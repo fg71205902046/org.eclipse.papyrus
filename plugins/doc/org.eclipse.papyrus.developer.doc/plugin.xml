@@ -22,4 +22,12 @@
       </toc>
    </extension>
 
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.papyrus.developer.doc.examples"
+            name="%doc.examples.name"
+            parentCategory="org.eclipse.ui.Examples">
+      </category>
+   </extension>
+   
 </plugin>
