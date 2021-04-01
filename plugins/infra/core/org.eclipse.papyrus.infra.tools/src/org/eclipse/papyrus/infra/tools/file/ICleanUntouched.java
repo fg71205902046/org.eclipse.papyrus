@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018 CEA LIST.
+ * Copyright (c) 2018, 2021 CEA LIST.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     CEA LIST - initial API and implementation
+ *     Ansgar Radermacher - Bug 572487
  *******************************************************************************/
 
 package org.eclipse.papyrus.infra.tools.file;
@@ -20,7 +21,9 @@ import org.eclipse.core.runtime.IProgressMonitor;
 /**
  * Manage the deletion of code that has not been access in the code generation
  * process and can be removed.
+ *
  * @since 3.0
+ * @Deprecated(since="4.2", forRemoval=true) Moved to designer (oep.designer.languages.common.base)
  */
 public interface ICleanUntouched {
 

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2018 CEA LIST and others.
+ * Copyright (c) 2014, 2018, 2021 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Ansgar Radermacher - Bug 572487
  *
  *****************************************************************************/
 
@@ -33,7 +34,9 @@ import org.eclipse.core.runtime.IProgressMonitor;
 /**
  * A simple class providing access to the file system relative to a specified project
  *
+ * @Deprecated(since="4.2", forRemoval=true) Moved to designer (oep.designer.languages.common.base)
  */
+@Deprecated
 public class ProjectBasedFileAccess implements IPFileSystemAccess, ICleanUntouched {
 
 	IProject project;
@@ -42,6 +45,7 @@ public class ProjectBasedFileAccess implements IPFileSystemAccess, ICleanUntouch
 
 	/**
 	 * Store information which files have been created in a hash map
+	 *
 	 * @since 3.0
 	 */
 	protected Map<String, Boolean> touched;
@@ -71,7 +75,7 @@ public class ProjectBasedFileAccess implements IPFileSystemAccess, ICleanUntouch
 	 */
 	public ProjectBasedFileAccess(IProject project, String subFolderName) {
 		setProject(project, subFolderName);
-		touched = new HashMap<String, Boolean>();
+		touched = new HashMap<>();
 	}
 
 	/**
@@ -106,6 +110,7 @@ public class ProjectBasedFileAccess implements IPFileSystemAccess, ICleanUntouch
 	 * @param contents
 	 *            the content to write
 	 */
+	@Override
 	public void generateFile(String fileName, String content) {
 		IFile file = getFile(fileName);
 		touched.put(file.getFullPath().toString(), true);
@@ -113,7 +118,7 @@ public class ProjectBasedFileAccess implements IPFileSystemAccess, ICleanUntouch
 		try {
 			boolean needsRefresh = false;
 			if (file.exists()) {
-				if (!IOUtils.contentEquals( file.getContents(), contentStream)) {
+				if (!IOUtils.contentEquals(file.getContents(), contentStream)) {
 					if (force) {
 						contentStream.reset();
 						file.setContents(contentStream, true, true, null);
@@ -144,6 +149,7 @@ public class ProjectBasedFileAccess implements IPFileSystemAccess, ICleanUntouch
 	 * @param fileName
 	 *            the filename relative to the project and sub-folder specified in the constructor
 	 */
+	@Override
 	public void deleteFile(String fileName) {
 		IFile file = getFile(fileName);
 		try {
