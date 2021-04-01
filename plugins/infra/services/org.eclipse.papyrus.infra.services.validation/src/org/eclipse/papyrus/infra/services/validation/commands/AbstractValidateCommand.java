@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2018 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2021 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -14,7 +14,7 @@
  *  Christian W. Damus (CEA) - refactor for non-workspace abstraction of problem markers (CDO)
  *  Patrick Tessier (CEA LIST) refacor to add allowing adding validation specific to UML
  *  Christian W. Damus (CEA) - bug 432813
- *  Christian W. Damus - bugs 497379, 533676
+ *  Christian W. Damus - bugs 497379, 533676, 572532
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.validation.commands;
@@ -137,15 +137,25 @@ public abstract class AbstractValidateCommand extends AbstractTransactionalComma
 
 	protected void runValidation(final EObject validateElement) {
 		final Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		ValidationRegistry.executeHooks(selectedElement, HookType.BEFORE);
-		if (diagnostician == null) {
-			diagnostician = ValidationRegistry.getDiagnostician(selectedElement);
-		}
 
-		ValidationOperation runValidationWithProgress = new ValidationOperation(validateElement, this);
+		ValidationOperation runValidationWithProgress = new ValidationOperation(validateElement, this) {
+			@Override
+			public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
+				// bug 572532: The OCL environment and the diagnostician that uses it need to be initialized
+				// on the same thread as performs validation (that being the Modal Context thread) because
+				// since the 2021-03 release, OCL Pivot maintains the environments on a per-thread basis
+				ValidationRegistry.executeHooks(selectedElement, HookType.BEFORE);
+				if (diagnostician == null) {
+					diagnostician = ValidationRegistry.getDiagnostician(selectedElement);
+				}
+
+				super.run(monitor);
+			}
+		};
 
 		IRunnableWithProgress createMarkersWithProgress = new IRunnableWithProgress() {
 
+			@Override
 			public void run(final IProgressMonitor progressMonitor) throws InvocationTargetException, InterruptedException {
 				try {
 					handleDiagnostic(progressMonitor, diagnostic, validateElement, shell);
