@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2017 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2017, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -13,6 +13,7 @@
  *  Christian W. Damus - bugs 493869, 513067
  *  Ansgar Radermacher - move & adapt from PapyrusRT to base Papyrus, bug 527181
  *  Asma Smaoui - bug 527181
+ *  Ansgar Radermacher - handle NPE in 527181
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.composite.custom.utils;
@@ -49,14 +50,14 @@ import org.eclipse.uml2.uml.Type;
 
 /**
  * Utility method for composite structure diagrams
- * 
+ *
  * @since 3.1
  */
 public class CompositeStructureDiagramUtils {
 
 	/**
 	 * Returns <code>true</code> if the diagram is a composite structure diagram (and has a class as base element)
-	 * 
+	 *
 	 * @param diagram
 	 *            the diagram to check
 	 * @return <code>true</code> if the diagram is a composite capsule structure diagram
@@ -76,7 +77,7 @@ public class CompositeStructureDiagramUtils {
 
 	/**
 	 * Obtains the Composite Structure Diagram for a class
-	 * 
+	 *
 	 * @param component
 	 *            b * @return its Composite Structure Diagram, or {@code null} if none is currently known (perhaps
 	 *            because it is in a resource that is not yet loaded)
@@ -87,10 +88,10 @@ public class CompositeStructureDiagramUtils {
 
 	/**
 	 * Obtains the first view of the Type (here the Class) in any diagrams
-	 * 
+	 *
 	 * @param typingClass:
 	 *            the type of the Part
-	 * 
+	 *
 	 */
 	public static View getPartTypeFirstView(Class typingClass) {
 		View view = null;
@@ -105,7 +106,8 @@ public class CompositeStructureDiagramUtils {
 			for (Diagram d : diagrams) {
 				for (Iterator children = d.getChildren().iterator(); children.hasNext();) {
 					View child = (View) children.next();
-					if (ViewUtil.resolveSemanticElement(child).equals(typingClass)) {
+					EObject semanticChild = ViewUtil.resolveSemanticElement(child);
+					if (semanticChild != null && semanticChild.equals(typingClass)) {
 						return child;
 					}
 				}
@@ -138,7 +140,7 @@ public class CompositeStructureDiagramUtils {
 
 	/**
 	 * Return the initial position of a port on a part.
-	 * 
+	 *
 	 * @param partEditPart
 	 *            edit part of the part within a composite (for which we want to display a port)
 	 * @param port
