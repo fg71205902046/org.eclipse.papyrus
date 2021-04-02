@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.internationalization.modelresource;
@@ -96,7 +96,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	/**
 	 * Set to keep deleted objects. Those ones must be ignored at the
 	 * {{@link #saveModel()} to avoid exceptions.
-	 * 
+	 *
 	 * The delete of objects does not remove the entries corresponding because
 	 * at the undo, the internationalization values must be not retrieve.
 	 */
@@ -130,7 +130,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	/**
 	 * This contains the resources created to manage the initial read-only resources replaced by 'fake' resources.
 	 */
-	protected Set<Resource> resourcesToNotSave = new HashSet<Resource>();
+	protected Set<Resource> resourcesToNotSave = new HashSet<>();
 
 	/**
 	 * The map of the InternationalizationLibrary by resource.
@@ -142,7 +142,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	 */
 	public InternationalizationModelResource() {
 		super();
-		propertiesByLocale = new HashMap<URI, Map<Locale, Resource>>();
+		propertiesByLocale = new HashMap<>();
 
 		if (InternationalizationPreferencesUtils.isInternationalizationNeedToBeLoaded()) {
 			Activator.getDefault().getPreferenceStore().addPropertyChangeListener(new IPropertyChangeListener() {
@@ -150,7 +150,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 				@Override
 				public void propertyChange(final PropertyChangeEvent event) {
 					if (event.getProperty().equals(InternationalizationPreferencesConstants.LANGUAGE_PREFERENCE)) {
-						Iterator<Resource> resourcesIterator = new HashSet<Resource>(getResources()).iterator();
+						Iterator<Resource> resourcesIterator = new HashSet<>(getResources()).iterator();
 						while (resourcesIterator.hasNext()) {
 							final Resource resource = resourcesIterator.next();
 							loadModel(getInitialURIForResource(resource).trimFileExtension());
@@ -160,14 +160,14 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 			});
 		}
-		deletedObjects = new HashSet<EObject>();
-		adapters = new HashMap<EObject, Adapter>();
-		resourceContents = new HashMap<Resource, InternationalizationLibrary>();
+		deletedObjects = new HashSet<>();
+		adapters = new HashMap<>();
+		resourceContents = new HashMap<>();
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.core.resource.AbstractModel#init(org.eclipse.papyrus.infra.core.resource.ModelSet)
 	 */
 	@Override
@@ -178,7 +178,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 	/**
 	 * This allows to create the key resolver.
-	 * 
+	 *
 	 * @return The created key resolver.
 	 */
 	protected InternationalizationKeyResolver createKeyResolver() {
@@ -187,7 +187,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResource#loadModel(org.eclipse.emf.common.util.URI)
 	 */
 	@Override
@@ -197,7 +197,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 	/**
 	 * Attach the model to its resource if this is not already done.
-	 * 
+	 *
 	 * @param uriWithoutExtension
 	 *            The uri of the resource to manage.
 	 * @param needToLoadOtherProperties
@@ -242,7 +242,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 	/**
 	 * This allows to define if the uri file was already loaded.
-	 * 
+	 *
 	 * @param uri
 	 *            The uri of the file to load.
 	 * @return <code>true</code> if the file was already loaded.
@@ -254,7 +254,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 	/**
 	 * This allows to add the resource in parameter in the model resources.
-	 * 
+	 *
 	 * @param uri
 	 *            The uri of the resource.
 	 * @param resource
@@ -269,7 +269,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 	/**
 	 * This allows to load others properties files in the project.
-	 * 
+	 *
 	 * @param uri
 	 *            The {@link URI}.
 	 * @param loadedResourceFile
@@ -350,7 +350,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	/**
 	 * This method allows to load the resource (or create it if necessary) and
 	 * load the internationalization content.
-	 * 
+	 *
 	 * @param uri
 	 *            The {@link URI}.
 	 * @param locale
@@ -364,7 +364,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 		if (null != resourceBundleAndURI) {
 
 			// Look for the resource
-			resource = getResourceSet().getResource(resourceBundleAndURI.getUri(), false);
+			resource = getResourceSet().getResource(resourceBundleAndURI.getUri(), true);
 
 			// Check if model is loaded.
 			if (null != resource) {
@@ -386,36 +386,36 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 			if (!resource.isLoaded()) {
 				// If this is a read-only resource, create a fake resource to get the internationalization content and read the needed entries
 				if (modelSet.getTransactionalEditingDomain().isReadOnly(resource)) {
-					
+
 					// Unload the resource and remove the created resource from the map and from the resource set
 					unload(resource);
 					getResources().remove(resource);
 					modelSet.getResources().remove(resource);
-					
-					if(InternationalizationPreferencesUtils.isInternationalizationExternalFilesNeedToBeLoaded()) {
-	
+
+					if (InternationalizationPreferencesUtils.isInternationalizationExternalFilesNeedToBeLoaded()) {
+
 						final URI initialResourceURI = resource.getURI();
 						final String lastSegment = initialResourceURI.lastSegment();
 						URI newResourceURI = modelSet.getURIWithoutExtension();
 						newResourceURI = newResourceURI.trimSegments(1);
 						newResourceURI = newResourceURI.appendSegment(lastSegment);
-	
+
 						// Create the resource with the ResourceSet but this one need to be removed from the ResourceSet
 						// Look for the resource
 						resource = getResourceSet().getResource(newResourceURI, false);
-	
+
 						// Check if model is loaded.
 						if (null == resource) {
 							resource = modelSet.createResource(newResourceURI);
 						}
 						configureResource(initialResourceURI, resource, locale);
-	
+
 						if (resource instanceof InternationalizationResource) {
 							final Map<Object, Object> defaultLoadOptions = ((InternationalizationResource) resource)
 									.getDefaultLoadOptions();
 							defaultLoadOptions.put(InternationalizationResourceOptionsConstants.LOAD_OPTION_UNSAFE_ADD_CONTENT, true);
 						}
-	
+
 						try {
 							resource.load(null);
 							final Object libraryContent = ((InternationalizationResource) resource).getDefaultSaveOptions().get(InternationalizationResourceOptionsConstants.LOAD_SAVE_OPTION_RESOURCE_CONTENT);
@@ -426,7 +426,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 							Activator.log.error("Error during load resource.", e); //$NON-NLS-1$
 						}
 					}
-					
+
 					// And add the temporary resource to the list of resources to not save
 					resourcesToNotSave.add(resource);
 					// The resource set don't need to have this file anymore
@@ -435,10 +435,13 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 					try {
 						resource.load(null);
 
-						final Object libraryContent = ((InternationalizationResource) resource).getDefaultSaveOptions().get(InternationalizationResourceOptionsConstants.LOAD_SAVE_OPTION_RESOURCE_CONTENT);
-						if (libraryContent instanceof InternationalizationLibrary) {
-							resourceContents.put(resource, (InternationalizationLibrary) libraryContent);
+						if (resource instanceof XMLResource) {
+							final Object libraryContent = ((XMLResource) resource).getDefaultSaveOptions().get(InternationalizationResourceOptionsConstants.LOAD_SAVE_OPTION_RESOURCE_CONTENT);
+							if (libraryContent instanceof InternationalizationLibrary) {
+								resourceContents.put(resource, (InternationalizationLibrary) libraryContent);
+							}
 						}
+
 					} catch (IOException e) {
 						Activator.log.error("Error during load resource.", e); //$NON-NLS-1$
 					}
@@ -456,7 +459,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResource#createModel(org.eclipse.emf.common.util.URI)
 	 */
 	@Override
@@ -465,13 +468,13 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 			super.createModel(uriWithoutExtension);
 
 			final URI uri = uriWithoutExtension.appendFileExtension(getModelFileExtension());
-			
-			// Retrieve the resource (do it because snippet can change the current resource variable) 
+
+			// Retrieve the resource (do it because snippet can change the current resource variable)
 			final Resource resource = getResourceSet().getResource(uri, false);
 			Locale locale = null;
-			if(resource != null){
+			if (resource != null) {
 				locale = InternationalizationPreferencesUtils.getLocalePreference(resource.getURI());
-				
+
 				// Fill the properties by locale map
 				configureResource(resourceURI, resource, locale);
 
@@ -491,7 +494,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 	/**
 	 * This allows to configure the resource.
-	 * 
+	 *
 	 * @param resourceToConfigure
 	 *            The resource to configure.
 	 * @param locale
@@ -518,7 +521,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	/**
 	 * This allows to through the internationalization library to manage
 	 * adapters for needed objects.
-	 * 
+	 *
 	 * @param uri
 	 *            The URI of the properties file with the extension.
 	 * @param locale
@@ -543,7 +546,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	/**
 	 * This allows to create the properties resource corresponding to the uri in
 	 * parameter.
-	 * 
+	 *
 	 * @param uri
 	 *            The URI of the properties resource to create.
 	 * @param locale
@@ -589,7 +592,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	/**
 	 * This allows to create the internationalization library for the resource
 	 * content.
-	 * 
+	 *
 	 * @param resource
 	 *            The resource where add the internationalization library.
 	 */
@@ -607,7 +610,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.core.resource.EMFLogicalModel#setModelURI(org.eclipse.emf.common.util.URI)
 	 */
 	@Override
@@ -624,7 +627,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.core.resource.EMFLogicalModel#updateURI(org.eclipse.emf.ecore.resource.Resource, org.eclipse.emf.common.util.URI)
 	 */
 	@Override
@@ -663,7 +666,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResource#saveModel()
 	 */
 	@Override
@@ -678,7 +681,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 	/**
 	 * This allows to save the resource.
-	 * 
+	 *
 	 * @param resource
 	 *            The resource to save.
 	 * @throws IOException
@@ -703,7 +706,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	/**
 	 * This allows to add an adapter to the EOBject to modified the properties
 	 * resource when the EObject has changed.
-	 * 
+	 *
 	 * @param eObject
 	 *            The EObject.
 	 * @param resource
@@ -736,7 +739,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 						Object newValue = notification.getNewValue();
 
 						if (newValue instanceof EObject && deletedObjects.contains(newValue)) {
-							deletedObjects.remove((EObject) newValue);
+							deletedObjects.remove(newValue);
 						}
 					}
 
@@ -769,7 +772,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResource#isModelRoot(org.eclipse.emf.ecore.EObject)
 	 */
 	@Override
@@ -779,7 +782,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.core.resource.AbstractBaseModel#getModelFileExtension()
 	 */
 	@Override
@@ -789,7 +792,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 	/**
 	 * Open this method. {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.core.resource.AbstractModel#getModelManager()
 	 */
 	@Override
@@ -799,7 +802,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 	/**
 	 * Open this method. {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.core.resource.EMFLogicalModel#isRelatedResource(org.eclipse.emf.ecore.resource.Resource)
 	 */
 	@Override
@@ -809,7 +812,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.core.resource.AbstractModel#getIdentifier()
 	 */
 	@Override
@@ -819,7 +822,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 	/**
 	 * Get the value for the key in parameter.
-	 * 
+	 *
 	 * @param uri
 	 *            The uri of the resource where search the key.
 	 * @param key
@@ -835,7 +838,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 	/**
 	 * Get the value for the key in parameter.
-	 * 
+	 *
 	 * @param uri
 	 *            The uri of the resource where search the key.
 	 * @param key
@@ -850,7 +853,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 	/**
 	 * Get the entry for the key in parameter.
-	 * 
+	 *
 	 * @param uri
 	 *            The uri of the resource where search the key.
 	 * @param key
@@ -891,7 +894,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 	/**
 	 * This allows to get the command to set internationalization value.
-	 * 
+	 *
 	 * @param domain
 	 *            The current editing domain.
 	 * @param uri
@@ -1022,7 +1025,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 	/**
 	 * This allows to add or update value of property with key in parameter.
-	 * 
+	 *
 	 * @param uri
 	 *            The uri of the resource where search the key.
 	 * @param key
@@ -1091,7 +1094,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	 * This allows to modify the name of the entry object when the label value
 	 * is modified to notify all the name listeners. When the label change, all
 	 * the name listeners need to be called.
-	 * 
+	 *
 	 * @param domain
 	 *            The current editing domain.
 	 * @param eObject
@@ -1134,7 +1137,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	 * This allows to modify the name of the entry object when the label value
 	 * is modified to notify all the name listeners. When the label change, all
 	 * the name listeners need to be called.
-	 * 
+	 *
 	 * @param eObject
 	 *            The eObject of the label to modify.
 	 */
@@ -1176,7 +1179,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	/**
 	 * This allows to determinate the properties locales files loaded for the
 	 * uri.
-	 * 
+	 *
 	 * @param uri
 	 *            The [{@link URI} to search.
 	 * @return The set of the locales.
@@ -1185,12 +1188,12 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 		final URI uriWithCorrectExtension = uri.trimFileExtension().appendFileExtension(getModelFileExtension());
 		return propertiesByLocale.containsKey(uriWithCorrectExtension)
 				? propertiesByLocale.get(uriWithCorrectExtension).keySet()
-				: new HashSet<Locale>(0);
+				: new HashSet<>(0);
 	}
 
 	/**
 	 * Get the locales and resources corresponding to the uri.
-	 * 
+	 *
 	 * @param uri
 	 *            The uri to search.
 	 * @return The collection of the resources corresponding to the uri or
@@ -1210,7 +1213,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 	/**
 	 * Get the resource corresponding to the URI and the locale.
-	 * 
+	 *
 	 * @param uri
 	 *            The initial URI.
 	 * @param locale
@@ -1234,7 +1237,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 	/**
 	 * Get the resource corresponding to the URI and the locale.
-	 * 
+	 *
 	 * @param uri
 	 *            The initial URI.
 	 * @param Resource
@@ -1258,7 +1261,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 	/**
 	 * Get the initial URI for the resource in parameter.
-	 * 
+	 *
 	 * @param resource
 	 *            The resource to search.
 	 * @return The initial URI of the resource in parameter.
@@ -1279,7 +1282,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 	/**
 	 * Get the eObject or diagram/table owner if needed.
-	 * 
+	 *
 	 * @param eObject
 	 *            The initial EObject.
 	 * @return The eObject or diagram/table owner.
@@ -1301,7 +1304,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	/**
 	 * Returns <code>true</code> if the URI was already loaded,
 	 * <code>false</code> otherwise.
-	 * 
+	 *
 	 * @param uri
 	 *            The URI to search.
 	 * @return <code>true</code> if the URI was already loaded,
@@ -1313,7 +1316,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.core.resource.EMFLogicalModel#unload()
 	 */
 	@Override
@@ -1371,7 +1374,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 	/**
 	 * This allows to unload the resource of the URI in parameter.
-	 * 
+	 *
 	 * @param uri
 	 *            The URI of the resource.
 	 */
@@ -1384,7 +1387,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 	/**
 	 * This allows to unload the resource from the properties by locale.
-	 * 
+	 *
 	 * @param resource
 	 *            The resource to unload.
 	 */
@@ -1458,7 +1461,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 		/**
 		 * {@inheritDoc}
-		 * 
+		 *
 		 * @see org.eclipse.emf.common.command.AbstractCommand#prepare()
 		 */
 		@Override
@@ -1468,7 +1471,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 		/**
 		 * {@inheritDoc}
-		 * 
+		 *
 		 * @see org.eclipse.emf.common.command.Command#execute()
 		 */
 		@Override
@@ -1487,7 +1490,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 		/**
 		 * {@inheritDoc}
-		 * 
+		 *
 		 * @see org.eclipse.emf.common.command.AbstractCommand#undo()
 		 */
 		@Override
@@ -1500,7 +1503,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 		/**
 		 * {@inheritDoc}
-		 * 
+		 *
 		 * @see org.eclipse.emf.common.command.Command#redo()
 		 */
 		@Override
@@ -1513,7 +1516,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	 * This must be called when an Editor Part that contains the label
 	 * internationalization will be opened. This allows to add the object and
 	 * the editor part corresponding to the object.
-	 * 
+	 *
 	 * @param eObject
 	 *            The object corresponding to a part which manage the label
 	 *            modification.
@@ -1523,7 +1526,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	public void addEditorPartForEObject(final EObject eObject, final IInternationalizationEditor editorPart) {
 		// Create the map if not existing
 		if (null == editorPartByEObject) {
-			editorPartByEObject = new HashMap<EObject, IInternationalizationEditor>();
+			editorPartByEObject = new HashMap<>();
 		}
 
 		// Add the eObject and editor part correspondance if not already
@@ -1548,7 +1551,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	/**
 	 * This allows to add a {@link EntryPartLabelSynchronizer} for the
 	 * {@link EObject} in parameter.
-	 * 
+	 *
 	 * @param eObject
 	 *            The object corresponding to a part which manage the label
 	 *            modification.
@@ -1559,7 +1562,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	protected void addPartLabelSynchronizerForEntry(final EObject eObject, final InternationalizationEntry entry) {
 		// Create the map if not existing
 		if (null == entriesLabelSynchronizerByEObject) {
-			entriesLabelSynchronizerByEObject = new HashMap<EObject, Map<InternationalizationEntry, EntryPartLabelSynchronizer>>();
+			entriesLabelSynchronizerByEObject = new HashMap<>();
 		}
 
 		// Get the map of entries and part label synchronizer for the
@@ -1568,7 +1571,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 		if (entriesLabelSynchronizerByEObject.containsKey(eObject)) {
 			entriesLabelSynchronizer = entriesLabelSynchronizerByEObject.get(eObject);
 		} else {
-			entriesLabelSynchronizer = new HashMap<InternationalizationEntry, EntryPartLabelSynchronizer>();
+			entriesLabelSynchronizer = new HashMap<>();
 			entriesLabelSynchronizerByEObject.put(eObject, entriesLabelSynchronizer);
 		}
 
@@ -1583,7 +1586,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	/**
 	 * This allows to manage a part label synchronizer for the object label when
 	 * the internationalization preference change.
-	 * 
+	 *
 	 * @param eObject
 	 *            The {@link EObject} corresponding to a part which manage the
 	 *            label modification.
@@ -1591,7 +1594,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 	protected void addPartLabelSynchronizerForPreferenceStore(final EObject eObject) {
 		// Create the map if not existing
 		if (null == preferencePartLabelSynchronizers) {
-			preferencePartLabelSynchronizers = new HashMap<EObject, PreferencePartLabelSynchronizer>();
+			preferencePartLabelSynchronizers = new HashMap<>();
 		}
 
 		// If the object is not already managed, create the part label
