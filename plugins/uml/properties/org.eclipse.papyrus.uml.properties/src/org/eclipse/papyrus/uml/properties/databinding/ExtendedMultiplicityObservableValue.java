@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2015, 2016, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,7 +11,7 @@
  * Contributors:
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
  *   Christian W. Damus - bug 491789
- *
+ *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Bug 572703
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.properties.databinding;
@@ -23,6 +23,8 @@ import java.util.List;
 import org.eclipse.core.databinding.observable.Diffs;
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.core.databinding.observable.value.IValueChangeListener;
+import org.eclipse.core.databinding.observable.value.ValueChangeEvent;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -50,6 +52,18 @@ public class ExtendedMultiplicityObservableValue extends ReferenceCountedObserva
 	 * The list of observable values for the multiplicity editors (simple mode, lower and upper values)
 	 */
 	private final List<IObservableValue> observableValues;
+
+	/**
+	 * value change listener required to propagate changes and force a property view refresh
+	 */
+	private IValueChangeListener<?> valueChangeListener = new IValueChangeListener() {
+
+		@Override
+		public void handleValueChange(ValueChangeEvent event) {
+			ExtendedMultiplicityObservableValue.this.fireValueChange(event.diff);
+		}
+
+	};
 
 	/**
 	 * The reference counted observable support.
@@ -96,6 +110,16 @@ public class ExtendedMultiplicityObservableValue extends ReferenceCountedObserva
 			observableValues.add(UMLDatabindingHelper.getObservableValue(eObject, lowerValueFeature, domain));
 			observableValues.add(UMLDatabindingHelper.getObservableValue(eObject, upperValueFeature, domain));
 		}
+		registerValueChangeListener();
+	}
+
+	/**
+	 * register a listener on the observable to propagate the changes and get a proeprty review
+	 */
+	private void registerValueChangeListener() {
+		for (final IObservableValue current : observableValues) {
+			current.addValueChangeListener(this.valueChangeListener);
+		}
 	}
 
 	/**
@@ -113,11 +137,11 @@ public class ExtendedMultiplicityObservableValue extends ReferenceCountedObserva
 
 				int count = 0;
 				while (count < NUMBER_OBSERVABLE_VALUES) {
-					final IObservableValue existingMultiplicityValues = observableValues.get(count);
-					final IObservableValue multiplicityValueToAggregate = ((List<IObservableValue>) value).get(count);
+					final IObservableValue<?> existingMultiplicityValues = observableValues.get(count);
+					final IObservableValue<?> multiplicityValueToAggregate = ((List<IObservableValue<?>>) value).get(count);
 					if (existingMultiplicityValues instanceof AggregatedObservable) {
-						final IObservableValue aggregatedObservable = (IObservableValue) ((AggregatedObservable) existingMultiplicityValues).aggregate(multiplicityValueToAggregate);
-						result.getObservableValues().add((IObservableValue) DelegatingObservable.wrap(aggregatedObservable));
+						final IObservableValue<?> aggregatedObservable = (IObservableValue<?>) ((AggregatedObservable) existingMultiplicityValues).aggregate(multiplicityValueToAggregate);
+						result.getObservableValues().add((IObservableValue<?>) DelegatingObservable.wrap(aggregatedObservable));
 					}
 					count++;
 				}
@@ -226,6 +250,7 @@ public class ExtendedMultiplicityObservableValue extends ReferenceCountedObserva
 	@Override
 	public synchronized void dispose() {
 		for (IObservableValue observableValue : observableValues) {
+			observableValue.removeValueChangeListener(this.valueChangeListener);
 			observableValue.dispose();
 		}
 		observableValues.clear();
@@ -249,7 +274,7 @@ public class ExtendedMultiplicityObservableValue extends ReferenceCountedObserva
 	}
 
 	/**
-	 * This auto-relreases the support.
+	 * This auto-releases the support.
 	 */
 	@Override
 	public void autorelease() {
