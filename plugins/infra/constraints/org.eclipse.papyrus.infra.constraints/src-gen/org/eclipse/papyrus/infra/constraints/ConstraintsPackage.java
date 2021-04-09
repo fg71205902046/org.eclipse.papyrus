@@ -107,6 +107,16 @@ public interface ConstraintsPackage extends EPackage {
 	int DISPLAY_UNIT_FEATURE_COUNT = 2;
 
 	/**
+	 * The number of operations of the '<em>Display Unit</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int DISPLAY_UNIT_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.constraints.impl.ConstraintDescriptorImpl <em>Constraint Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -128,16 +138,6 @@ public interface ConstraintsPackage extends EPackage {
 	int CONSTRAINT_DESCRIPTOR__NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Display</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT_DESCRIPTOR__DISPLAY = 1;
-
-	/**
 	 * The feature id for the '<em><b>Overrideable</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -145,7 +145,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_DESCRIPTOR__OVERRIDEABLE = 2;
+	int CONSTRAINT_DESCRIPTOR__OVERRIDEABLE = 1;
 
 	/**
 	 * The feature id for the '<em><b>Overridden Constraints</b></em>' reference list.
@@ -155,7 +155,17 @@ public interface ConstraintsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS = 3;
+	int CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS = 2;
+
+	/**
+	 * The feature id for the '<em><b>Display</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT_DESCRIPTOR__DISPLAY = 3;
 
 	/**
 	 * The number of structural features of the '<em>Constraint Descriptor</em>' class.
@@ -166,6 +176,16 @@ public interface ConstraintsPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONSTRAINT_DESCRIPTOR_FEATURE_COUNT = 4;
+
+	/**
+	 * The number of operations of the '<em>Constraint Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT_DESCRIPTOR_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.constraints.impl.SimpleConstraintImpl <em>Simple Constraint</em>}' class.
@@ -189,16 +209,6 @@ public interface ConstraintsPackage extends EPackage {
 	int SIMPLE_CONSTRAINT__NAME = CONSTRAINT_DESCRIPTOR__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Display</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 * @ordered
-	 */
-	int SIMPLE_CONSTRAINT__DISPLAY = CONSTRAINT_DESCRIPTOR__DISPLAY;
-
-	/**
 	 * The feature id for the '<em><b>Overrideable</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -217,6 +227,16 @@ public interface ConstraintsPackage extends EPackage {
 	 * @ordered
 	 */
 	int SIMPLE_CONSTRAINT__OVERRIDDEN_CONSTRAINTS = CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Display</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_CONSTRAINT__DISPLAY = CONSTRAINT_DESCRIPTOR__DISPLAY;
 
 	/**
 	 * The feature id for the '<em><b>Constraint Type</b></em>' reference.
@@ -249,6 +269,16 @@ public interface ConstraintsPackage extends EPackage {
 	int SIMPLE_CONSTRAINT_FEATURE_COUNT = CONSTRAINT_DESCRIPTOR_FEATURE_COUNT + 2;
 
 	/**
+	 * The number of operations of the '<em>Simple Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_CONSTRAINT_OPERATION_COUNT = CONSTRAINT_DESCRIPTOR_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.constraints.impl.CompositeConstraintImpl <em>Composite Constraint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -257,7 +287,48 @@ public interface ConstraintsPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.constraints.impl.ConstraintsPackageImpl#getCompositeConstraint()
 	 * @generated
 	 */
-	int COMPOSITE_CONSTRAINT = 3;
+	int COMPOSITE_CONSTRAINT = 4;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.constraints.impl.ConfigPropertyImpl <em>Config Property</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see org.eclipse.papyrus.infra.constraints.impl.ConfigPropertyImpl
+	 * @see org.eclipse.papyrus.infra.constraints.impl.ConstraintsPackageImpl#getConfigProperty()
+	 * @generated
+	 */
+	int CONFIG_PROPERTY = 3;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIG_PROPERTY__NAME = 0;
+
+	/**
+	 * The number of structural features of the '<em>Config Property</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIG_PROPERTY_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Config Property</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIG_PROPERTY_OPERATION_COUNT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -268,16 +339,6 @@ public interface ConstraintsPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPOSITE_CONSTRAINT__NAME = CONSTRAINT_DESCRIPTOR__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Display</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_CONSTRAINT__DISPLAY = CONSTRAINT_DESCRIPTOR__DISPLAY;
 
 	/**
 	 * The feature id for the '<em><b>Overrideable</b></em>' attribute.
@@ -300,6 +361,16 @@ public interface ConstraintsPackage extends EPackage {
 	int COMPOSITE_CONSTRAINT__OVERRIDDEN_CONSTRAINTS = CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS;
 
 	/**
+	 * The feature id for the '<em><b>Display</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_CONSTRAINT__DISPLAY = CONSTRAINT_DESCRIPTOR__DISPLAY;
+
+	/**
 	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -320,35 +391,14 @@ public interface ConstraintsPackage extends EPackage {
 	int COMPOSITE_CONSTRAINT_FEATURE_COUNT = CONSTRAINT_DESCRIPTOR_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.constraints.impl.ConfigPropertyImpl <em>Config Property</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @see org.eclipse.papyrus.infra.constraints.impl.ConfigPropertyImpl
-	 * @see org.eclipse.papyrus.infra.constraints.impl.ConstraintsPackageImpl#getConfigProperty()
-	 * @generated
-	 */
-	int CONFIG_PROPERTY = 4;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The number of operations of the '<em>Composite Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIG_PROPERTY__NAME = 0;
-
-	/**
-	 * The number of structural features of the '<em>Config Property</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIG_PROPERTY_FEATURE_COUNT = 1;
+	int COMPOSITE_CONSTRAINT_OPERATION_COUNT = CONSTRAINT_DESCRIPTOR_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.constraints.impl.ValuePropertyImpl <em>Value Property</em>}' class.
@@ -392,6 +442,16 @@ public interface ConstraintsPackage extends EPackage {
 	int VALUE_PROPERTY_FEATURE_COUNT = CONFIG_PROPERTY_FEATURE_COUNT + 1;
 
 	/**
+	 * The number of operations of the '<em>Value Property</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_PROPERTY_OPERATION_COUNT = CONFIG_PROPERTY_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.constraints.impl.ReferencePropertyImpl <em>Reference Property</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -431,6 +491,17 @@ public interface ConstraintsPackage extends EPackage {
 	 * @ordered
 	 */
 	int REFERENCE_PROPERTY_FEATURE_COUNT = CONFIG_PROPERTY_FEATURE_COUNT + 1;
+
+
+	/**
+	 * The number of operations of the '<em>Reference Property</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_PROPERTY_OPERATION_COUNT = CONFIG_PROPERTY_OPERATION_COUNT + 0;
 
 
 	/**

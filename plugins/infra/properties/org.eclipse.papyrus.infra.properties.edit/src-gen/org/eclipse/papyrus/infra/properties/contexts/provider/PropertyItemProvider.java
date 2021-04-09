@@ -94,8 +94,8 @@ public class PropertyItemProvider
 	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_Property_name_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_Property_name_feature", "_UI_Property_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				getString("_UI_Property_name_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Property_name_feature", "_UI_Property_type"),
 				ContextsPackage.Literals.PROPERTY__NAME,
 				true,
 				false,
@@ -115,8 +115,8 @@ public class PropertyItemProvider
 	protected void addLabelPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_Property_label_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_Property_label_feature", "_UI_Property_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				getString("_UI_Property_label_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Property_label_feature", "_UI_Property_type"),
 				ContextsPackage.Literals.PROPERTY__LABEL,
 				true,
 				false,
@@ -136,8 +136,8 @@ public class PropertyItemProvider
 	protected void addTypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_Property_type_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_Property_type_feature", "_UI_Property_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				getString("_UI_Property_type_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Property_type_feature", "_UI_Property_type"),
 				ContextsPackage.Literals.PROPERTY__TYPE,
 				true,
 				false,
@@ -157,8 +157,8 @@ public class PropertyItemProvider
 	protected void addMultiplicityPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_Property_multiplicity_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_Property_multiplicity_feature", "_UI_Property_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				getString("_UI_Property_multiplicity_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Property_multiplicity_feature", "_UI_Property_type"),
 				ContextsPackage.Literals.PROPERTY__MULTIPLICITY,
 				true,
 				false,
@@ -178,8 +178,8 @@ public class PropertyItemProvider
 	protected void addDescriptionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_Property_description_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_Property_description_feature", "_UI_Property_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				getString("_UI_Property_description_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Property_description_feature", "_UI_Property_type"),
 				ContextsPackage.Literals.PROPERTY__DESCRIPTION,
 				true,
 				false,
@@ -199,8 +199,8 @@ public class PropertyItemProvider
 	protected void addRedefinedPropertiesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_Property_redefinedProperties_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_Property_redefinedProperties_feature", "_UI_Property_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				getString("_UI_Property_redefinedProperties_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Property_redefinedProperties_feature", "_UI_Property_type"),
 				ContextsPackage.Literals.PROPERTY__REDEFINED_PROPERTIES,
 				true,
 				false,
@@ -220,8 +220,8 @@ public class PropertyItemProvider
 	protected void addRedefinedByPropertiesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_Property_redefinedByProperties_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_Property_redefinedByProperties_feature", "_UI_Property_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				getString("_UI_Property_redefinedByProperties_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Property_redefinedByProperties_feature", "_UI_Property_type"),
 				ContextsPackage.Literals.PROPERTY__REDEFINED_BY_PROPERTIES,
 				true,
 				false,
@@ -240,7 +240,7 @@ public class PropertyItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Property")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Property"));
 	}
 
 	/**
@@ -253,8 +253,7 @@ public class PropertyItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((Property) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Property_type") : //$NON-NLS-1$
-				getString("_UI_Property_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return label == null || label.length() == 0 ? getString("_UI_Property_type") : getString("_UI_Property_type") + " " + label;
 	}
 
 	/**

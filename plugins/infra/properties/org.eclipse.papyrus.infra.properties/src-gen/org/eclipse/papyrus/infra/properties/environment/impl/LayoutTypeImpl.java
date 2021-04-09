@@ -28,7 +28,7 @@ public class LayoutTypeImpl extends WidgetTypeImpl implements LayoutType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected LayoutTypeImpl() {
@@ -38,7 +38,7 @@ public class LayoutTypeImpl extends WidgetTypeImpl implements LayoutType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override

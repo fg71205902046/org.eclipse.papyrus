@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.constraints.ConstraintDescriptor;
@@ -28,17 +28,17 @@ import org.eclipse.papyrus.infra.constraints.SimpleConstraint;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.constraints.impl.ConstraintDescriptorImpl#getName <em>Name</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.constraints.impl.ConstraintDescriptorImpl#getDisplay <em>Display</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.constraints.impl.ConstraintDescriptorImpl#isOverrideable <em>Overrideable</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.constraints.impl.ConstraintDescriptorImpl#getOverriddenConstraints <em>Overridden Constraints</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.constraints.impl.ConstraintDescriptorImpl#getDisplay <em>Display</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public abstract class ConstraintDescriptorImpl extends EObjectImpl implements ConstraintDescriptor {
+public abstract class ConstraintDescriptorImpl extends MinimalEObjectImpl.Container implements ConstraintDescriptor {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -121,6 +121,7 @@ public abstract class ConstraintDescriptorImpl extends EObjectImpl implements Co
 	 *
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -131,6 +132,7 @@ public abstract class ConstraintDescriptorImpl extends EObjectImpl implements Co
 	 *
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -145,11 +147,12 @@ public abstract class ConstraintDescriptorImpl extends EObjectImpl implements Co
 	 *
 	 * @generated
 	 */
+	@Override
 	public DisplayUnit getDisplay() {
 		if (eContainerFeatureID() != ConstraintsPackage.CONSTRAINT_DESCRIPTOR__DISPLAY) {
 			return null;
 		}
-		return (DisplayUnit) eContainer();
+		return (DisplayUnit) eInternalContainer();
 	}
 
 	/**
@@ -169,6 +172,7 @@ public abstract class ConstraintDescriptorImpl extends EObjectImpl implements Co
 	 *
 	 * @generated
 	 */
+	@Override
 	public void setDisplay(DisplayUnit newDisplay) {
 		if (newDisplay != eInternalContainer() || (eContainerFeatureID() != ConstraintsPackage.CONSTRAINT_DESCRIPTOR__DISPLAY && newDisplay != null)) {
 			if (EcoreUtil.isAncestor(this, newDisplay)) {
@@ -185,8 +189,7 @@ public abstract class ConstraintDescriptorImpl extends EObjectImpl implements Co
 			if (msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, ConstraintsPackage.CONSTRAINT_DESCRIPTOR__DISPLAY, newDisplay, newDisplay));
 		}
 	}
@@ -197,6 +200,7 @@ public abstract class ConstraintDescriptorImpl extends EObjectImpl implements Co
 	 *
 	 * @generated
 	 */
+	@Override
 	public boolean isOverrideable() {
 		return overrideable;
 	}
@@ -207,6 +211,7 @@ public abstract class ConstraintDescriptorImpl extends EObjectImpl implements Co
 	 *
 	 * @generated
 	 */
+	@Override
 	public void setOverrideable(boolean newOverrideable) {
 		boolean oldOverrideable = overrideable;
 		overrideable = newOverrideable;
@@ -221,9 +226,10 @@ public abstract class ConstraintDescriptorImpl extends EObjectImpl implements Co
 	 *
 	 * @generated
 	 */
+	@Override
 	public EList<SimpleConstraint> getOverriddenConstraints() {
 		if (overriddenConstraints == null) {
-			overriddenConstraints = new EObjectResolvingEList<SimpleConstraint>(SimpleConstraint.class, this, ConstraintsPackage.CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS);
+			overriddenConstraints = new EObjectResolvingEList<>(SimpleConstraint.class, this, ConstraintsPackage.CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS);
 		}
 		return overriddenConstraints;
 	}
@@ -287,12 +293,12 @@ public abstract class ConstraintDescriptorImpl extends EObjectImpl implements Co
 		switch (featureID) {
 		case ConstraintsPackage.CONSTRAINT_DESCRIPTOR__NAME:
 			return getName();
-		case ConstraintsPackage.CONSTRAINT_DESCRIPTOR__DISPLAY:
-			return getDisplay();
 		case ConstraintsPackage.CONSTRAINT_DESCRIPTOR__OVERRIDEABLE:
 			return isOverrideable();
 		case ConstraintsPackage.CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS:
 			return getOverriddenConstraints();
+		case ConstraintsPackage.CONSTRAINT_DESCRIPTOR__DISPLAY:
+			return getDisplay();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -310,15 +316,15 @@ public abstract class ConstraintDescriptorImpl extends EObjectImpl implements Co
 		case ConstraintsPackage.CONSTRAINT_DESCRIPTOR__NAME:
 			setName((String) newValue);
 			return;
-		case ConstraintsPackage.CONSTRAINT_DESCRIPTOR__DISPLAY:
-			setDisplay((DisplayUnit) newValue);
-			return;
 		case ConstraintsPackage.CONSTRAINT_DESCRIPTOR__OVERRIDEABLE:
 			setOverrideable((Boolean) newValue);
 			return;
 		case ConstraintsPackage.CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS:
 			getOverriddenConstraints().clear();
 			getOverriddenConstraints().addAll((Collection<? extends SimpleConstraint>) newValue);
+			return;
+		case ConstraintsPackage.CONSTRAINT_DESCRIPTOR__DISPLAY:
+			setDisplay((DisplayUnit) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -336,14 +342,14 @@ public abstract class ConstraintDescriptorImpl extends EObjectImpl implements Co
 		case ConstraintsPackage.CONSTRAINT_DESCRIPTOR__NAME:
 			setName(NAME_EDEFAULT);
 			return;
-		case ConstraintsPackage.CONSTRAINT_DESCRIPTOR__DISPLAY:
-			setDisplay((DisplayUnit) null);
-			return;
 		case ConstraintsPackage.CONSTRAINT_DESCRIPTOR__OVERRIDEABLE:
 			setOverrideable(OVERRIDEABLE_EDEFAULT);
 			return;
 		case ConstraintsPackage.CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS:
 			getOverriddenConstraints().clear();
+			return;
+		case ConstraintsPackage.CONSTRAINT_DESCRIPTOR__DISPLAY:
+			setDisplay((DisplayUnit) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -360,12 +366,12 @@ public abstract class ConstraintDescriptorImpl extends EObjectImpl implements Co
 		switch (featureID) {
 		case ConstraintsPackage.CONSTRAINT_DESCRIPTOR__NAME:
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case ConstraintsPackage.CONSTRAINT_DESCRIPTOR__DISPLAY:
-			return getDisplay() != null;
 		case ConstraintsPackage.CONSTRAINT_DESCRIPTOR__OVERRIDEABLE:
 			return overrideable != OVERRIDEABLE_EDEFAULT;
 		case ConstraintsPackage.CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS:
 			return overriddenConstraints != null && !overriddenConstraints.isEmpty();
+		case ConstraintsPackage.CONSTRAINT_DESCRIPTOR__DISPLAY:
+			return getDisplay() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -382,7 +388,7 @@ public abstract class ConstraintDescriptorImpl extends EObjectImpl implements Co
 			return super.toString();
 		}
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
 		result.append(", overrideable: ");

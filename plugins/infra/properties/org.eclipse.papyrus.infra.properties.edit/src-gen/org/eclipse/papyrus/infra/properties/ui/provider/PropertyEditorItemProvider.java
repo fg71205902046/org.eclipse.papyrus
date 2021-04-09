@@ -80,8 +80,8 @@ public class PropertyEditorItemProvider
 	protected void addPropertyPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_PropertyEditor_property_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_PropertyEditor_property_feature", "_UI_PropertyEditor_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				getString("_UI_PropertyEditor_property_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_PropertyEditor_property_feature", "_UI_PropertyEditor_type"),
 				UiPackage.Literals.PROPERTY_EDITOR__PROPERTY,
 				true,
 				false,
@@ -101,8 +101,8 @@ public class PropertyEditorItemProvider
 	protected void addReadOnlyPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_PropertyEditor_readOnly_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_PropertyEditor_readOnly_feature", "_UI_PropertyEditor_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				getString("_UI_PropertyEditor_readOnly_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_PropertyEditor_readOnly_feature", "_UI_PropertyEditor_type"),
 				UiPackage.Literals.PROPERTY_EDITOR__READ_ONLY,
 				true,
 				false,
@@ -122,8 +122,8 @@ public class PropertyEditorItemProvider
 	protected void addWidgetTypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_PropertyEditor_widgetType_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_PropertyEditor_widgetType_feature", "_UI_PropertyEditor_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				getString("_UI_PropertyEditor_widgetType_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_PropertyEditor_widgetType_feature", "_UI_PropertyEditor_type"),
 				UiPackage.Literals.PROPERTY_EDITOR__WIDGET_TYPE,
 				true,
 				false,
@@ -143,8 +143,8 @@ public class PropertyEditorItemProvider
 	protected void addContentProviderClassPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_PropertyEditor_contentProviderClass_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_PropertyEditor_contentProviderClass_feature", "_UI_PropertyEditor_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				getString("_UI_PropertyEditor_contentProviderClass_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_PropertyEditor_contentProviderClass_feature", "_UI_PropertyEditor_type"),
 				UiPackage.Literals.PROPERTY_EDITOR__CONTENT_PROVIDER_CLASS,
 				true,
 				false,
@@ -164,8 +164,8 @@ public class PropertyEditorItemProvider
 	protected void addShowLabelPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_PropertyEditor_showLabel_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_PropertyEditor_showLabel_feature", "_UI_PropertyEditor_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				getString("_UI_PropertyEditor_showLabel_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_PropertyEditor_showLabel_feature", "_UI_PropertyEditor_type"),
 				UiPackage.Literals.PROPERTY_EDITOR__SHOW_LABEL,
 				true,
 				false,
@@ -185,8 +185,8 @@ public class PropertyEditorItemProvider
 	protected void addCustomLabelPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_PropertyEditor_customLabel_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_PropertyEditor_customLabel_feature", "_UI_PropertyEditor_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				getString("_UI_PropertyEditor_customLabel_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_PropertyEditor_customLabel_feature", "_UI_PropertyEditor_type"),
 				UiPackage.Literals.PROPERTY_EDITOR__CUSTOM_LABEL,
 				true,
 				false,
@@ -237,7 +237,7 @@ public class PropertyEditorItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/PropertyEditor")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/PropertyEditor"));
 	}
 
 	/**
@@ -250,7 +250,7 @@ public class PropertyEditorItemProvider
 	@Override
 	public String getText(Object object) {
 		PropertyEditor propertyEditor = (PropertyEditor) object;
-		return getString("_UI_PropertyEditor_type") + " " + propertyEditor.isReadOnly(); //$NON-NLS-1$ //$NON-NLS-2$
+		return getString("_UI_PropertyEditor_type") + " " + propertyEditor.isReadOnly();
 	}
 
 	/**

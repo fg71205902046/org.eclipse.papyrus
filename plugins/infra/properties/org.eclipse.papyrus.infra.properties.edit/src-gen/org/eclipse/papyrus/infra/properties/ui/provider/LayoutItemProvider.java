@@ -70,8 +70,8 @@ public class LayoutItemProvider
 	protected void addLayoutTypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_Layout_layoutType_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_Layout_layoutType_feature", "_UI_Layout_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				getString("_UI_Layout_layoutType_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Layout_layoutType_feature", "_UI_Layout_type"),
 				UiPackage.Literals.LAYOUT__LAYOUT_TYPE,
 				true,
 				false,
@@ -90,7 +90,7 @@ public class LayoutItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Layout")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Layout"));
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class LayoutItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_Layout_type"); //$NON-NLS-1$
+		return getString("_UI_Layout_type");
 	}
 
 	/**

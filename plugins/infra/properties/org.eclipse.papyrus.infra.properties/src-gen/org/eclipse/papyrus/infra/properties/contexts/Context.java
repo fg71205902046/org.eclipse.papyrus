@@ -53,7 +53,7 @@ public interface Context extends EModelElement {
 	 * An unique name for the context, which is used in various components to
 	 * identify it.
 	 * <!-- end-model-doc -->
-	 * 
+	 *
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getContext_Name()
@@ -66,7 +66,7 @@ public interface Context extends EModelElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.contexts.Context#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @param value
 	 *            the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
@@ -82,7 +82,7 @@ public interface Context extends EModelElement {
 	 * If the meaning of the '<em>Dependencies</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @return the value of the '<em>Dependencies</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getContext_Dependencies()
 	 * @model ordered="false"
@@ -98,7 +98,7 @@ public interface Context extends EModelElement {
 	 * If the meaning of the '<em>Tabs</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @return the value of the '<em>Tabs</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getContext_Tabs()
 	 * @model containment="true"
@@ -115,7 +115,7 @@ public interface Context extends EModelElement {
 	 * If the meaning of the '<em>Views</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @return the value of the '<em>Views</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getContext_Views()
 	 * @see org.eclipse.papyrus.infra.properties.contexts.View#getContext
@@ -132,7 +132,7 @@ public interface Context extends EModelElement {
 	 * If the meaning of the '<em>Data Contexts</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @return the value of the '<em>Data Contexts</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getContext_DataContexts()
 	 * @model containment="true"
@@ -147,7 +147,7 @@ public interface Context extends EModelElement {
 	 * <!-- begin-model-doc -->
 	 * References the context from which a context was copied. The context manager caches the prototype reference so that it can enable a prototype when the copied context is not available.
 	 * <!-- end-model-doc -->
-	 * 
+	 *
 	 * @return the value of the '<em>Prototype</em>' reference.
 	 * @see #setPrototype(Context)
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getContext_Prototype()
@@ -160,7 +160,7 @@ public interface Context extends EModelElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.contexts.Context#getPrototype <em>Prototype</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @param value
 	 *            the new value of the '<em>Prototype</em>' reference.
 	 * @see #getPrototype()
@@ -176,7 +176,7 @@ public interface Context extends EModelElement {
 	 * A potentially translatable (localizable) label for presentation of the context
 	 * in the user interface. If absent, the name should be used in its place.
 	 * <!-- end-model-doc -->
-	 * 
+	 *
 	 * @return the value of the '<em>Label</em>' attribute.
 	 * @see #setLabel(String)
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getContext_Label()
@@ -189,7 +189,7 @@ public interface Context extends EModelElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.contexts.Context#getLabel <em>Label</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @param value
 	 *            the new value of the '<em>Label</em>' attribute.
 	 * @see #getLabel()
@@ -205,7 +205,7 @@ public interface Context extends EModelElement {
 	 * A computed label for presentation to the user: the label, if available, otherwise
 	 * just the name of the context.
 	 * <!-- end-model-doc -->
-	 * 
+	 *
 	 * @return the value of the '<em>User Label</em>' attribute.
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getContext_UserLabel()
 	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"

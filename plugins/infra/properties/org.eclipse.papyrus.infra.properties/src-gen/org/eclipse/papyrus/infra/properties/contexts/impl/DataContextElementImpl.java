@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -41,14 +41,14 @@ import org.eclipse.papyrus.infra.properties.contexts.Property;
  * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.DataContextElementImpl#getName <em>Name</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.DataContextElementImpl#getProperties <em>Properties</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.DataContextElementImpl#getPackage <em>Package</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.DataContextElementImpl#getSupertypes <em>Supertypes</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.DataContextElementImpl#getProperties <em>Properties</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class DataContextElementImpl extends EObjectImpl implements DataContextElement {
+public class DataContextElementImpl extends MinimalEObjectImpl.Container implements DataContextElement {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -72,17 +72,6 @@ public class DataContextElementImpl extends EObjectImpl implements DataContextEl
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @see #getProperties()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Property> properties;
-
-	/**
 	 * The cached value of the '{@link #getSupertypes() <em>Supertypes</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -92,6 +81,17 @@ public class DataContextElementImpl extends EObjectImpl implements DataContextEl
 	 * @ordered
 	 */
 	protected EList<DataContextElement> supertypes;
+
+	/**
+	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see #getProperties()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Property> properties;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -189,7 +189,7 @@ public class DataContextElementImpl extends EObjectImpl implements DataContextEl
 	public void setPackage(DataContextPackage newPackage) {
 		if (newPackage != eInternalContainer() || (eContainerFeatureID() != ContextsPackage.DATA_CONTEXT_ELEMENT__PACKAGE && newPackage != null)) {
 			if (EcoreUtil.isAncestor(this, newPackage)) {
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			}
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null) {
@@ -231,13 +231,13 @@ public class DataContextElementImpl extends EObjectImpl implements DataContextEl
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ContextsPackage.DATA_CONTEXT_ELEMENT__PROPERTIES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getProperties()).basicAdd(otherEnd, msgs);
 		case ContextsPackage.DATA_CONTEXT_ELEMENT__PACKAGE:
 			if (eInternalContainer() != null) {
 				msgs = eBasicRemoveFromContainer(msgs);
 			}
 			return basicSetPackage((DataContextPackage) otherEnd, msgs);
+		case ContextsPackage.DATA_CONTEXT_ELEMENT__PROPERTIES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getProperties()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -251,10 +251,10 @@ public class DataContextElementImpl extends EObjectImpl implements DataContextEl
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ContextsPackage.DATA_CONTEXT_ELEMENT__PROPERTIES:
-			return ((InternalEList<?>) getProperties()).basicRemove(otherEnd, msgs);
 		case ContextsPackage.DATA_CONTEXT_ELEMENT__PACKAGE:
 			return basicSetPackage(null, msgs);
+		case ContextsPackage.DATA_CONTEXT_ELEMENT__PROPERTIES:
+			return ((InternalEList<?>) getProperties()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -285,12 +285,12 @@ public class DataContextElementImpl extends EObjectImpl implements DataContextEl
 		switch (featureID) {
 		case ContextsPackage.DATA_CONTEXT_ELEMENT__NAME:
 			return getName();
-		case ContextsPackage.DATA_CONTEXT_ELEMENT__PROPERTIES:
-			return getProperties();
 		case ContextsPackage.DATA_CONTEXT_ELEMENT__PACKAGE:
 			return getPackage();
 		case ContextsPackage.DATA_CONTEXT_ELEMENT__SUPERTYPES:
 			return getSupertypes();
+		case ContextsPackage.DATA_CONTEXT_ELEMENT__PROPERTIES:
+			return getProperties();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -308,16 +308,16 @@ public class DataContextElementImpl extends EObjectImpl implements DataContextEl
 		case ContextsPackage.DATA_CONTEXT_ELEMENT__NAME:
 			setName((String) newValue);
 			return;
-		case ContextsPackage.DATA_CONTEXT_ELEMENT__PROPERTIES:
-			getProperties().clear();
-			getProperties().addAll((Collection<? extends Property>) newValue);
-			return;
 		case ContextsPackage.DATA_CONTEXT_ELEMENT__PACKAGE:
 			setPackage((DataContextPackage) newValue);
 			return;
 		case ContextsPackage.DATA_CONTEXT_ELEMENT__SUPERTYPES:
 			getSupertypes().clear();
 			getSupertypes().addAll((Collection<? extends DataContextElement>) newValue);
+			return;
+		case ContextsPackage.DATA_CONTEXT_ELEMENT__PROPERTIES:
+			getProperties().clear();
+			getProperties().addAll((Collection<? extends Property>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -335,14 +335,14 @@ public class DataContextElementImpl extends EObjectImpl implements DataContextEl
 		case ContextsPackage.DATA_CONTEXT_ELEMENT__NAME:
 			setName(NAME_EDEFAULT);
 			return;
-		case ContextsPackage.DATA_CONTEXT_ELEMENT__PROPERTIES:
-			getProperties().clear();
-			return;
 		case ContextsPackage.DATA_CONTEXT_ELEMENT__PACKAGE:
 			setPackage((DataContextPackage) null);
 			return;
 		case ContextsPackage.DATA_CONTEXT_ELEMENT__SUPERTYPES:
 			getSupertypes().clear();
+			return;
+		case ContextsPackage.DATA_CONTEXT_ELEMENT__PROPERTIES:
+			getProperties().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -359,12 +359,12 @@ public class DataContextElementImpl extends EObjectImpl implements DataContextEl
 		switch (featureID) {
 		case ContextsPackage.DATA_CONTEXT_ELEMENT__NAME:
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case ContextsPackage.DATA_CONTEXT_ELEMENT__PROPERTIES:
-			return properties != null && !properties.isEmpty();
 		case ContextsPackage.DATA_CONTEXT_ELEMENT__PACKAGE:
 			return getPackage() != null;
 		case ContextsPackage.DATA_CONTEXT_ELEMENT__SUPERTYPES:
 			return supertypes != null && !supertypes.isEmpty();
+		case ContextsPackage.DATA_CONTEXT_ELEMENT__PROPERTIES:
+			return properties != null && !properties.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -381,8 +381,8 @@ public class DataContextElementImpl extends EObjectImpl implements DataContextEl
 			return super.toString();
 		}
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: "); //$NON-NLS-1$
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (name: ");
 		result.append(name);
 		result.append(')');
 		return result.toString();

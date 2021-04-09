@@ -103,7 +103,7 @@ public class ReferenceAttributeItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ReferenceAttribute")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ReferenceAttribute"));
 	}
 
 	/**
@@ -116,8 +116,7 @@ public class ReferenceAttributeItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((ReferenceAttribute) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_ReferenceAttribute_type") : //$NON-NLS-1$
-				getString("_UI_ReferenceAttribute_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return label == null || label.length() == 0 ? getString("_UI_ReferenceAttribute_type") : getString("_UI_ReferenceAttribute_type") + " " + label;
 	}
 
 	/**
@@ -159,13 +158,13 @@ public class ReferenceAttributeItemProvider
 				UiFactory.eINSTANCE.createPropertyEditor()));
 
 		newChildDescriptors.add(createChildParameter(UiPackage.Literals.REFERENCE_ATTRIBUTE__VALUE,
-				UiFactory.eINSTANCE.createCompositeWidget()));
-
-		newChildDescriptors.add(createChildParameter(UiPackage.Literals.REFERENCE_ATTRIBUTE__VALUE,
 				UiFactory.eINSTANCE.createUnknownComponent()));
 
 		newChildDescriptors.add(createChildParameter(UiPackage.Literals.REFERENCE_ATTRIBUTE__VALUE,
 				UiFactory.eINSTANCE.createLayout()));
+
+		newChildDescriptors.add(createChildParameter(UiPackage.Literals.REFERENCE_ATTRIBUTE__VALUE,
+				UiFactory.eINSTANCE.createCompositeWidget()));
 	}
 
 }

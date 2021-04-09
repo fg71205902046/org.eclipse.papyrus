@@ -20,10 +20,10 @@ import org.eclipse.papyrus.infra.constraints.ReferenceProperty;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.constraints.impl.ReferencePropertyImpl#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -66,6 +66,7 @@ public class ReferencePropertyImpl extends ConfigPropertyImpl implements Referen
 	 *
 	 * @generated
 	 */
+	@Override
 	public EObject getValue() {
 		if (value != null && value.eIsProxy()) {
 			InternalEObject oldValue = (InternalEObject) value;
@@ -95,6 +96,7 @@ public class ReferencePropertyImpl extends ConfigPropertyImpl implements Referen
 	 *
 	 * @generated
 	 */
+	@Override
 	public void setValue(EObject newValue) {
 		EObject oldValue = value;
 		value = newValue;

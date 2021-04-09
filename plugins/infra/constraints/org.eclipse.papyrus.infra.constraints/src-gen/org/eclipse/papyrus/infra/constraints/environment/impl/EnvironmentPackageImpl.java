@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.papyrus.infra.constraints.ConstraintsPackage;
 import org.eclipse.papyrus.infra.constraints.environment.ConstraintEnvironment;
@@ -44,10 +45,15 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 	private EClass constraintTypeEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
 	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.infra.constraints.environment.EnvironmentPackage#eNS_URI
@@ -70,7 +76,9 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 *
 	 * <p>
-	 * This method is used to initialize {@link EnvironmentPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This method is used to initialize {@link EnvironmentPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
@@ -83,13 +91,17 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 		}
 
 		// Obtain or create and register package
-		EnvironmentPackageImpl theEnvironmentPackage = (EnvironmentPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof EnvironmentPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new EnvironmentPackageImpl());
+		Object registeredEnvironmentPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		EnvironmentPackageImpl theEnvironmentPackage = registeredEnvironmentPackage instanceof EnvironmentPackageImpl ? (EnvironmentPackageImpl) registeredEnvironmentPackage : new EnvironmentPackageImpl();
 
 		isInited = true;
 
+		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
+
 		// Obtain or create and register interdependencies
-		ConstraintsPackageImpl theConstraintsPackage = (ConstraintsPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(ConstraintsPackage.eNS_URI) instanceof ConstraintsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ConstraintsPackage.eNS_URI)
-				: ConstraintsPackage.eINSTANCE);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ConstraintsPackage.eNS_URI);
+		ConstraintsPackageImpl theConstraintsPackage = (ConstraintsPackageImpl) (registeredPackage instanceof ConstraintsPackageImpl ? registeredPackage : ConstraintsPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theEnvironmentPackage.createPackageContents();
@@ -102,7 +114,6 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 		// Mark meta-data to indicate it can't be changed
 		theEnvironmentPackage.freeze();
 
-
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(EnvironmentPackage.eNS_URI, theEnvironmentPackage);
 		return theEnvironmentPackage;
@@ -114,6 +125,7 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 	 *
 	 * @generated
 	 */
+	@Override
 	public EClass getConstraintEnvironment() {
 		return constraintEnvironmentEClass;
 	}
@@ -124,6 +136,7 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 	 *
 	 * @generated
 	 */
+	@Override
 	public EReference getConstraintEnvironment_ConstraintTypes() {
 		return (EReference) constraintEnvironmentEClass.getEStructuralFeatures().get(0);
 	}
@@ -134,6 +147,7 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 	 *
 	 * @generated
 	 */
+	@Override
 	public EClass getConstraintType() {
 		return constraintTypeEClass;
 	}
@@ -144,6 +158,7 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 	 *
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConstraintType_Label() {
 		return (EAttribute) constraintTypeEClass.getEStructuralFeatures().get(0);
 	}
@@ -154,6 +169,7 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 	 *
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConstraintType_ConstraintClass() {
 		return (EAttribute) constraintTypeEClass.getEStructuralFeatures().get(1);
 	}
@@ -164,6 +180,7 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 	 *
 	 * @generated
 	 */
+	@Override
 	public EnvironmentFactory getEnvironmentFactory() {
 		return (EnvironmentFactory) getEFactoryInstance();
 	}
@@ -232,7 +249,7 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 
 		// Add supertypes to classes
 
-		// Initialize classes and features; add operations and parameters
+		// Initialize classes, features, and operations; add parameters
 		initEClass(constraintEnvironmentEClass, ConstraintEnvironment.class, "ConstraintEnvironment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConstraintEnvironment_ConstraintTypes(), this.getConstraintType(), null, "constraintTypes", null, 0, -1, ConstraintEnvironment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -67,7 +67,7 @@ public class StandardWidgetTypeItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/StandardWidgetType")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/StandardWidgetType"));
 	}
 
 	/**
@@ -80,8 +80,7 @@ public class StandardWidgetTypeItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((StandardWidgetType) object).getLabel();
-		return label == null || label.length() == 0 ? getString("_UI_StandardWidgetType_type") : //$NON-NLS-1$
-				getString("_UI_StandardWidgetType_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return label == null || label.length() == 0 ? getString("_UI_StandardWidgetType_type") : getString("_UI_StandardWidgetType_type") + " " + label;
 	}
 
 	/**

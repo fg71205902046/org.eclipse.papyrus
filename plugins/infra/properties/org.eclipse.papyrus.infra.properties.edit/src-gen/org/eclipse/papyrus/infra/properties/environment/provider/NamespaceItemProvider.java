@@ -88,8 +88,8 @@ public class NamespaceItemProvider
 	protected void addPrefixPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_Namespace_prefix_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_Namespace_prefix_feature", "_UI_Namespace_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				getString("_UI_Namespace_prefix_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Namespace_prefix_feature", "_UI_Namespace_type"),
 				EnvironmentPackage.Literals.NAMESPACE__PREFIX,
 				true,
 				false,
@@ -109,8 +109,8 @@ public class NamespaceItemProvider
 	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_Namespace_name_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_Namespace_name_feature", "_UI_Namespace_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				getString("_UI_Namespace_name_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Namespace_name_feature", "_UI_Namespace_type"),
 				EnvironmentPackage.Literals.NAMESPACE__NAME,
 				true,
 				false,
@@ -130,8 +130,8 @@ public class NamespaceItemProvider
 	protected void addValuePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_Namespace_value_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_Namespace_value_feature", "_UI_Namespace_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				getString("_UI_Namespace_value_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Namespace_value_feature", "_UI_Namespace_type"),
 				EnvironmentPackage.Literals.NAMESPACE__VALUE,
 				true,
 				false,
@@ -150,7 +150,7 @@ public class NamespaceItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Namespace")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Namespace"));
 	}
 
 	/**
@@ -163,8 +163,7 @@ public class NamespaceItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((Namespace) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Namespace_type") : //$NON-NLS-1$
-				getString("_UI_Namespace_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return label == null || label.length() == 0 ? getString("_UI_Namespace_type") : getString("_UI_Namespace_type") + " " + label;
 	}
 
 	/**

@@ -39,7 +39,7 @@ public class LayoutImpl extends UIComponentImpl implements Layout {
 	 * The cached value of the '{@link #getLayoutType() <em>Layout Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getLayoutType()
 	 * @generated
 	 * @ordered
@@ -49,7 +49,7 @@ public class LayoutImpl extends UIComponentImpl implements Layout {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected LayoutImpl() {
@@ -59,7 +59,7 @@ public class LayoutImpl extends UIComponentImpl implements Layout {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -70,7 +70,7 @@ public class LayoutImpl extends UIComponentImpl implements Layout {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -79,8 +79,9 @@ public class LayoutImpl extends UIComponentImpl implements Layout {
 			InternalEObject oldLayoutType = (InternalEObject) layoutType;
 			layoutType = (LayoutType) eResolveProxy(oldLayoutType);
 			if (layoutType != oldLayoutType) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UiPackage.LAYOUT__LAYOUT_TYPE, oldLayoutType, layoutType));
+				}
 			}
 		}
 		return layoutType;
@@ -89,7 +90,7 @@ public class LayoutImpl extends UIComponentImpl implements Layout {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public LayoutType basicGetLayoutType() {
@@ -99,29 +100,31 @@ public class LayoutImpl extends UIComponentImpl implements Layout {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
 	public void setLayoutType(LayoutType newLayoutType) {
 		LayoutType oldLayoutType = layoutType;
 		layoutType = newLayoutType;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UiPackage.LAYOUT__LAYOUT_TYPE, oldLayoutType, layoutType));
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case UiPackage.LAYOUT__LAYOUT_TYPE:
-			if (resolve)
+			if (resolve) {
 				return getLayoutType();
+			}
 			return basicGetLayoutType();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -130,7 +133,7 @@ public class LayoutImpl extends UIComponentImpl implements Layout {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -146,7 +149,7 @@ public class LayoutImpl extends UIComponentImpl implements Layout {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -162,7 +165,7 @@ public class LayoutImpl extends UIComponentImpl implements Layout {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override

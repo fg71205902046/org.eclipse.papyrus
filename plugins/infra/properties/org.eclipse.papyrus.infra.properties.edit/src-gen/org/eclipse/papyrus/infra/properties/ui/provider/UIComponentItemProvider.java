@@ -103,7 +103,7 @@ public class UIComponentItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_UIComponent_type"); //$NON-NLS-1$
+		return getString("_UI_UIComponent_type");
 	}
 
 	/**

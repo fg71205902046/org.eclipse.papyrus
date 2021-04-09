@@ -37,7 +37,7 @@ public class UnknownComponentImpl extends WidgetImpl implements UnknownComponent
 	 * The default value of the '{@link #getTypeName() <em>Type Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getTypeName()
 	 * @generated
 	 * @ordered
@@ -48,7 +48,7 @@ public class UnknownComponentImpl extends WidgetImpl implements UnknownComponent
 	 * The cached value of the '{@link #getTypeName() <em>Type Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getTypeName()
 	 * @generated
 	 * @ordered
@@ -58,7 +58,7 @@ public class UnknownComponentImpl extends WidgetImpl implements UnknownComponent
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected UnknownComponentImpl() {
@@ -68,7 +68,7 @@ public class UnknownComponentImpl extends WidgetImpl implements UnknownComponent
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -79,7 +79,7 @@ public class UnknownComponentImpl extends WidgetImpl implements UnknownComponent
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -90,21 +90,22 @@ public class UnknownComponentImpl extends WidgetImpl implements UnknownComponent
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
 	public void setTypeName(String newTypeName) {
 		String oldTypeName = typeName;
 		typeName = newTypeName;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UiPackage.UNKNOWN_COMPONENT__TYPE_NAME, oldTypeName, typeName));
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -119,7 +120,7 @@ public class UnknownComponentImpl extends WidgetImpl implements UnknownComponent
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -135,7 +136,7 @@ public class UnknownComponentImpl extends WidgetImpl implements UnknownComponent
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -151,7 +152,7 @@ public class UnknownComponentImpl extends WidgetImpl implements UnknownComponent
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -166,16 +167,17 @@ public class UnknownComponentImpl extends WidgetImpl implements UnknownComponent
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
+		if (eIsProxy()) {
 			return super.toString();
+		}
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (typeName: "); //$NON-NLS-1$
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (typeName: ");
 		result.append(typeName);
 		result.append(')');
 		return result.toString();

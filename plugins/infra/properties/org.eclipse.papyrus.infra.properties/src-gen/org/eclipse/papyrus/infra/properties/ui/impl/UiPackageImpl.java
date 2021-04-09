@@ -42,14 +42,14 @@ import org.eclipse.papyrus.infra.properties.ui.WidgetAttribute;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
- * 
+ *
  * @generated
  */
 public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass elementEClass = null;
@@ -57,7 +57,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass uiComponentEClass = null;
@@ -65,7 +65,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass widgetEClass = null;
@@ -73,7 +73,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass standardWidgetEClass = null;
@@ -81,7 +81,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass propertyEditorEClass = null;
@@ -89,7 +89,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass compositeWidgetEClass = null;
@@ -97,7 +97,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass unknownComponentEClass = null;
@@ -105,7 +105,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass layoutEClass = null;
@@ -113,7 +113,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass widgetAttributeEClass = null;
@@ -121,7 +121,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass valueAttributeEClass = null;
@@ -129,7 +129,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass referenceAttributeEClass = null;
@@ -144,7 +144,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	 * initialization of the package, or returns the registered package,
 	 * if one already exists.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.infra.properties.ui.UiPackage#eNS_URI
 	 * @see #init()
@@ -157,30 +157,32 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>
 	 * This method is used to initialize {@link UiPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static UiPackage init() {
-		if (isInited)
+		if (isInited) {
 			return (UiPackage) EPackage.Registry.INSTANCE.getEPackage(UiPackage.eNS_URI);
+		}
 
 		// Obtain or create and register package
-		UiPackageImpl theUiPackage = (UiPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof UiPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new UiPackageImpl());
+		Object registeredUiPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		UiPackageImpl theUiPackage = registeredUiPackage instanceof UiPackageImpl ? (UiPackageImpl) registeredUiPackage : new UiPackageImpl();
 
 		isInited = true;
 
@@ -189,10 +191,10 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 		EcorePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		EnvironmentPackageImpl theEnvironmentPackage = (EnvironmentPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(EnvironmentPackage.eNS_URI) instanceof EnvironmentPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EnvironmentPackage.eNS_URI)
-				: EnvironmentPackage.eINSTANCE);
-		ContextsPackageImpl theContextsPackage = (ContextsPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(ContextsPackage.eNS_URI) instanceof ContextsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ContextsPackage.eNS_URI)
-				: ContextsPackage.eINSTANCE);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(EnvironmentPackage.eNS_URI);
+		EnvironmentPackageImpl theEnvironmentPackage = (EnvironmentPackageImpl) (registeredPackage instanceof EnvironmentPackageImpl ? registeredPackage : EnvironmentPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ContextsPackage.eNS_URI);
+		ContextsPackageImpl theContextsPackage = (ContextsPackageImpl) (registeredPackage instanceof ContextsPackageImpl ? registeredPackage : ContextsPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theUiPackage.createPackageContents();
@@ -207,7 +209,6 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 		// Mark meta-data to indicate it can't be changed
 		theUiPackage.freeze();
 
-
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(UiPackage.eNS_URI, theUiPackage);
 		return theUiPackage;
@@ -216,7 +217,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -227,7 +228,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -238,7 +239,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -249,7 +250,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -260,7 +261,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -271,7 +272,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -282,7 +283,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -293,7 +294,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -304,7 +305,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -315,7 +316,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -326,7 +327,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -337,7 +338,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -348,7 +349,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -359,7 +360,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -370,7 +371,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -381,7 +382,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -392,7 +393,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -403,7 +404,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -414,7 +415,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -425,7 +426,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -436,7 +437,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -447,7 +448,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -458,7 +459,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -469,7 +470,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -480,7 +481,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -491,7 +492,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -502,7 +503,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -513,7 +514,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -524,7 +525,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -535,7 +536,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private boolean isCreated = false;
@@ -545,12 +546,13 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated)
+		if (isCreated) {
 			return;
+		}
 		isCreated = true;
 
 		// Create classes and their features
@@ -558,6 +560,9 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 
 		uiComponentEClass = createEClass(UI_COMPONENT);
 		createEReference(uiComponentEClass, UI_COMPONENT__ATTRIBUTES);
+
+		widgetAttributeEClass = createEClass(WIDGET_ATTRIBUTE);
+		createEAttribute(widgetAttributeEClass, WIDGET_ATTRIBUTE__NAME);
 
 		widgetEClass = createEClass(WIDGET);
 
@@ -573,31 +578,28 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 		createEAttribute(propertyEditorEClass, PROPERTY_EDITOR__SHOW_LABEL);
 		createEAttribute(propertyEditorEClass, PROPERTY_EDITOR__CUSTOM_LABEL);
 
-		compositeWidgetEClass = createEClass(COMPOSITE_WIDGET);
-		createEReference(compositeWidgetEClass, COMPOSITE_WIDGET__LAYOUT);
-		createEReference(compositeWidgetEClass, COMPOSITE_WIDGET__WIDGETS);
-		createEReference(compositeWidgetEClass, COMPOSITE_WIDGET__WIDGET_TYPE);
-
 		unknownComponentEClass = createEClass(UNKNOWN_COMPONENT);
 		createEAttribute(unknownComponentEClass, UNKNOWN_COMPONENT__TYPE_NAME);
 
 		layoutEClass = createEClass(LAYOUT);
 		createEReference(layoutEClass, LAYOUT__LAYOUT_TYPE);
 
-		widgetAttributeEClass = createEClass(WIDGET_ATTRIBUTE);
-		createEAttribute(widgetAttributeEClass, WIDGET_ATTRIBUTE__NAME);
-
 		valueAttributeEClass = createEClass(VALUE_ATTRIBUTE);
 		createEAttribute(valueAttributeEClass, VALUE_ATTRIBUTE__VALUE);
 
 		referenceAttributeEClass = createEClass(REFERENCE_ATTRIBUTE);
 		createEReference(referenceAttributeEClass, REFERENCE_ATTRIBUTE__VALUE);
+
+		compositeWidgetEClass = createEClass(COMPOSITE_WIDGET);
+		createEReference(compositeWidgetEClass, COMPOSITE_WIDGET__LAYOUT);
+		createEReference(compositeWidgetEClass, COMPOSITE_WIDGET__WIDGETS);
+		createEReference(compositeWidgetEClass, COMPOSITE_WIDGET__WIDGET_TYPE);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private boolean isInitialized = false;
@@ -607,12 +609,13 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized)
+		if (isInitialized) {
 			return;
+		}
 		isInitialized = true;
 
 		// Initialize package
@@ -630,63 +633,63 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 
 		// Add supertypes to classes
 		uiComponentEClass.getESuperTypes().add(this.getElement());
+		widgetAttributeEClass.getESuperTypes().add(this.getElement());
 		widgetEClass.getESuperTypes().add(this.getUIComponent());
 		standardWidgetEClass.getESuperTypes().add(this.getWidget());
 		propertyEditorEClass.getESuperTypes().add(this.getWidget());
-		compositeWidgetEClass.getESuperTypes().add(this.getWidget());
 		unknownComponentEClass.getESuperTypes().add(this.getWidget());
 		layoutEClass.getESuperTypes().add(this.getUIComponent());
-		widgetAttributeEClass.getESuperTypes().add(this.getElement());
 		valueAttributeEClass.getESuperTypes().add(this.getWidgetAttribute());
 		referenceAttributeEClass.getESuperTypes().add(this.getWidgetAttribute());
+		compositeWidgetEClass.getESuperTypes().add(this.getWidget());
 
-		// Initialize classes and features; add operations and parameters
-		initEClass(elementEClass, Element.class, "Element", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		// Initialize classes, features, and operations; add parameters
+		initEClass(elementEClass, Element.class, "Element", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(uiComponentEClass, UIComponent.class, "UIComponent", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getUIComponent_Attributes(), this.getWidgetAttribute(), null, "attributes", null, 0, -1, UIComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, //$NON-NLS-1$
+		initEClass(uiComponentEClass, UIComponent.class, "UIComponent", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getUIComponent_Attributes(), this.getWidgetAttribute(), null, "attributes", null, 0, -1, UIComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 
-		initEClass(widgetEClass, Widget.class, "Widget", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(widgetAttributeEClass, WidgetAttribute.class, "WidgetAttribute", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getWidgetAttribute_Name(), ecorePackage.getEString(), "name", null, 1, 1, WidgetAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(standardWidgetEClass, StandardWidget.class, "StandardWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getStandardWidget_WidgetType(), theEnvironmentPackage.getStandardWidgetType(), null, "widgetType", null, 1, 1, StandardWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, //$NON-NLS-1$
+		initEClass(widgetEClass, Widget.class, "Widget", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(standardWidgetEClass, StandardWidget.class, "StandardWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getStandardWidget_WidgetType(), theEnvironmentPackage.getStandardWidgetType(), null, "widgetType", null, 1, 1, StandardWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(propertyEditorEClass, PropertyEditor.class, "PropertyEditor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getPropertyEditor_Property(), theContextsPackage.getProperty(), null, "property", null, 1, 1, PropertyEditor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, //$NON-NLS-1$
+		initEClass(propertyEditorEClass, PropertyEditor.class, "PropertyEditor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPropertyEditor_Property(), theContextsPackage.getProperty(), null, "property", null, 1, 1, PropertyEditor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
-		initEAttribute(getPropertyEditor_ReadOnly(), ecorePackage.getEBoolean(), "readOnly", "false", 1, 1, PropertyEditor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-		initEReference(getPropertyEditor_WidgetType(), theEnvironmentPackage.getPropertyEditorType(), null, "widgetType", null, 1, 1, PropertyEditor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, //$NON-NLS-1$
+		initEAttribute(getPropertyEditor_ReadOnly(), ecorePackage.getEBoolean(), "readOnly", "false", 1, 1, PropertyEditor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPropertyEditor_WidgetType(), theEnvironmentPackage.getPropertyEditorType(), null, "widgetType", null, 1, 1, PropertyEditor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPropertyEditor_UnresolvedProperty(), theContextsPackage.getUnknownProperty(), null, "unresolvedProperty", null, 0, 1, PropertyEditor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, //$NON-NLS-1$
+		initEReference(getPropertyEditor_UnresolvedProperty(), theContextsPackage.getUnknownProperty(), null, "unresolvedProperty", null, 0, 1, PropertyEditor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPropertyEditor_ContentProviderClass(), ecorePackage.getEString(), "contentProviderClass", null, 0, 1, PropertyEditor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getPropertyEditor_ShowLabel(), ecorePackage.getEBoolean(), "showLabel", "true", 1, 1, PropertyEditor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-		initEAttribute(getPropertyEditor_CustomLabel(), ecorePackage.getEString(), "customLabel", null, 0, 1, PropertyEditor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getPropertyEditor_ContentProviderClass(), ecorePackage.getEString(), "contentProviderClass", null, 0, 1, PropertyEditor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPropertyEditor_ShowLabel(), ecorePackage.getEBoolean(), "showLabel", "true", 1, 1, PropertyEditor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPropertyEditor_CustomLabel(), ecorePackage.getEString(), "customLabel", null, 0, 1, PropertyEditor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(compositeWidgetEClass, CompositeWidget.class, "CompositeWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getCompositeWidget_Layout(), this.getLayout(), null, "layout", null, 1, 1, CompositeWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getCompositeWidget_Widgets(), this.getWidget(), null, "widgets", null, 0, -1, CompositeWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getCompositeWidget_WidgetType(), theEnvironmentPackage.getCompositeWidgetType(), null, "widgetType", null, 1, 1, CompositeWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, //$NON-NLS-1$
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(unknownComponentEClass, UnknownComponent.class, "UnknownComponent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getUnknownComponent_TypeName(), ecorePackage.getEString(), "typeName", null, 1, 1, UnknownComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(unknownComponentEClass, UnknownComponent.class, "UnknownComponent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getUnknownComponent_TypeName(), ecorePackage.getEString(), "typeName", null, 1, 1, UnknownComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(layoutEClass, Layout.class, "Layout", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getLayout_LayoutType(), theEnvironmentPackage.getLayoutType(), null, "layoutType", null, 1, 1, Layout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, //$NON-NLS-1$
+		initEClass(layoutEClass, Layout.class, "Layout", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getLayout_LayoutType(), theEnvironmentPackage.getLayoutType(), null, "layoutType", null, 1, 1, Layout.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 
-		initEClass(widgetAttributeEClass, WidgetAttribute.class, "WidgetAttribute", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getWidgetAttribute_Name(), ecorePackage.getEString(), "name", null, 1, 1, WidgetAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEClass(valueAttributeEClass, ValueAttribute.class, "ValueAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getValueAttribute_Value(), ecorePackage.getEString(), "value", null, 1, 1, ValueAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(valueAttributeEClass, ValueAttribute.class, "ValueAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getValueAttribute_Value(), ecorePackage.getEString(), "value", null, 1, 1, ValueAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(referenceAttributeEClass, ReferenceAttribute.class, "ReferenceAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getReferenceAttribute_Value(), this.getUIComponent(), null, "value", null, 1, 1, ReferenceAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, //$NON-NLS-1$
+		initEClass(referenceAttributeEClass, ReferenceAttribute.class, "ReferenceAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getReferenceAttribute_Value(), this.getUIComponent(), null, "value", null, 1, 1, ReferenceAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+
+		initEClass(compositeWidgetEClass, CompositeWidget.class, "CompositeWidget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCompositeWidget_Layout(), this.getLayout(), null, "layout", null, 1, 1, CompositeWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCompositeWidget_Widgets(), this.getWidget(), null, "widgets", null, 0, -1, CompositeWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCompositeWidget_WidgetType(), theEnvironmentPackage.getCompositeWidgetType(), null, "widgetType", null, 1, 1, CompositeWidget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

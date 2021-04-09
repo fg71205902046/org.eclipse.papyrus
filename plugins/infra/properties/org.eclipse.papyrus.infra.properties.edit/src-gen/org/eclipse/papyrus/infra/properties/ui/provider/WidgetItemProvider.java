@@ -66,7 +66,7 @@ public class WidgetItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_Widget_type"); //$NON-NLS-1$
+		return getString("_UI_Widget_type");
 	}
 
 	/**

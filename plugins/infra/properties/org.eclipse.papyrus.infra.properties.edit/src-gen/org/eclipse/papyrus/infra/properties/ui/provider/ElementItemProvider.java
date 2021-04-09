@@ -80,7 +80,7 @@ public class ElementItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Element")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Element"));
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class ElementItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_Element_type"); //$NON-NLS-1$
+		return getString("_UI_Element_type");
 	}
 
 	/**

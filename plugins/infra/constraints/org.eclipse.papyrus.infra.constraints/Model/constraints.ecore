@@ -10,12 +10,12 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConstraintDescriptor" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="display" eType="#//DisplayUnit"
-        eOpposite="#//DisplayUnit/constraints"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="overrideable" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="overriddenConstraints"
         upperBound="-1" eType="#//SimpleConstraint"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="display" eType="#//DisplayUnit"
+        eOpposite="#//DisplayUnit/constraints"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SimpleConstraint" eSuperTypes="#//ConstraintDescriptor">
     <eStructuralFeatures xsi:type="ecore:EReference" name="constraintType" lowerBound="1"
@@ -23,18 +23,18 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
         eType="#//ConfigProperty" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConfigProperty" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompositeConstraint" eSuperTypes="#//ConstraintDescriptor">
     <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
         eType="#//SimpleConstraint" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ConfigProperty" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ValueProperty" eSuperTypes="#//ConfigProperty">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ReferenceProperty" eSuperTypes="#//ConfigProperty">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
   </eClassifiers>
   <eSubpackages name="environment" nsURI="http://www.eclipse.org/papyrus/constraints/environment/0.9"
       nsPrefix="environment">

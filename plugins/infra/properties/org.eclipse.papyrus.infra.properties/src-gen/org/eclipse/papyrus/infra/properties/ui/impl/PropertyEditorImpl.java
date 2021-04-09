@@ -48,7 +48,7 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	 * The cached value of the '{@link #getProperty() <em>Property</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getProperty()
 	 * @generated
 	 * @ordered
@@ -59,7 +59,7 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	 * The default value of the '{@link #isReadOnly() <em>Read Only</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #isReadOnly()
 	 * @generated
 	 * @ordered
@@ -70,7 +70,7 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	 * The cached value of the '{@link #isReadOnly() <em>Read Only</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #isReadOnly()
 	 * @generated
 	 * @ordered
@@ -81,7 +81,7 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	 * The cached value of the '{@link #getWidgetType() <em>Widget Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getWidgetType()
 	 * @generated
 	 * @ordered
@@ -92,7 +92,7 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	 * The cached value of the '{@link #getUnresolvedProperty() <em>Unresolved Property</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getUnresolvedProperty()
 	 * @generated
 	 * @ordered
@@ -103,7 +103,7 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	 * The default value of the '{@link #getContentProviderClass() <em>Content Provider Class</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getContentProviderClass()
 	 * @generated
 	 * @ordered
@@ -114,7 +114,7 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	 * The cached value of the '{@link #getContentProviderClass() <em>Content Provider Class</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getContentProviderClass()
 	 * @generated
 	 * @ordered
@@ -125,7 +125,7 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	 * The default value of the '{@link #isShowLabel() <em>Show Label</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #isShowLabel()
 	 * @generated
 	 * @ordered
@@ -136,7 +136,7 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	 * The cached value of the '{@link #isShowLabel() <em>Show Label</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #isShowLabel()
 	 * @generated
 	 * @ordered
@@ -147,7 +147,7 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	 * The default value of the '{@link #getCustomLabel() <em>Custom Label</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getCustomLabel()
 	 * @generated
 	 * @ordered
@@ -158,7 +158,7 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	 * The cached value of the '{@link #getCustomLabel() <em>Custom Label</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getCustomLabel()
 	 * @generated
 	 * @ordered
@@ -168,7 +168,7 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected PropertyEditorImpl() {
@@ -178,7 +178,7 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -189,7 +189,7 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -198,8 +198,9 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 			InternalEObject oldProperty = (InternalEObject) property;
 			property = (Property) eResolveProxy(oldProperty);
 			if (property != oldProperty) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UiPackage.PROPERTY_EDITOR__PROPERTY, oldProperty, property));
+				}
 			}
 		}
 		return property;
@@ -208,7 +209,7 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public Property basicGetProperty() {
@@ -218,21 +219,22 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
 	public void setProperty(Property newProperty) {
 		Property oldProperty = property;
 		property = newProperty;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UiPackage.PROPERTY_EDITOR__PROPERTY, oldProperty, property));
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -243,21 +245,22 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
 	public void setReadOnly(boolean newReadOnly) {
 		boolean oldReadOnly = readOnly;
 		readOnly = newReadOnly;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UiPackage.PROPERTY_EDITOR__READ_ONLY, oldReadOnly, readOnly));
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -266,8 +269,9 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 			InternalEObject oldWidgetType = (InternalEObject) widgetType;
 			widgetType = (PropertyEditorType) eResolveProxy(oldWidgetType);
 			if (widgetType != oldWidgetType) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UiPackage.PROPERTY_EDITOR__WIDGET_TYPE, oldWidgetType, widgetType));
+				}
 			}
 		}
 		return widgetType;
@@ -276,7 +280,7 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public PropertyEditorType basicGetWidgetType() {
@@ -286,21 +290,22 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
 	public void setWidgetType(PropertyEditorType newWidgetType) {
 		PropertyEditorType oldWidgetType = widgetType;
 		widgetType = newWidgetType;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UiPackage.PROPERTY_EDITOR__WIDGET_TYPE, oldWidgetType, widgetType));
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -311,7 +316,7 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public NotificationChain basicSetUnresolvedProperty(UnknownProperty newUnresolvedProperty, NotificationChain msgs) {
@@ -319,10 +324,11 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 		unresolvedProperty = newUnresolvedProperty;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UiPackage.PROPERTY_EDITOR__UNRESOLVED_PROPERTY, oldUnresolvedProperty, newUnresolvedProperty);
-			if (msgs == null)
+			if (msgs == null) {
 				msgs = notification;
-			else
+			} else {
 				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -330,28 +336,32 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
 	public void setUnresolvedProperty(UnknownProperty newUnresolvedProperty) {
 		if (newUnresolvedProperty != unresolvedProperty) {
 			NotificationChain msgs = null;
-			if (unresolvedProperty != null)
+			if (unresolvedProperty != null) {
 				msgs = ((InternalEObject) unresolvedProperty).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UiPackage.PROPERTY_EDITOR__UNRESOLVED_PROPERTY, null, msgs);
-			if (newUnresolvedProperty != null)
+			}
+			if (newUnresolvedProperty != null) {
 				msgs = ((InternalEObject) newUnresolvedProperty).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UiPackage.PROPERTY_EDITOR__UNRESOLVED_PROPERTY, null, msgs);
+			}
 			msgs = basicSetUnresolvedProperty(newUnresolvedProperty, msgs);
-			if (msgs != null)
+			if (msgs != null) {
 				msgs.dispatch();
-		} else if (eNotificationRequired())
+			}
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UiPackage.PROPERTY_EDITOR__UNRESOLVED_PROPERTY, newUnresolvedProperty, newUnresolvedProperty));
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -362,21 +372,22 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
 	public void setContentProviderClass(String newContentProviderClass) {
 		String oldContentProviderClass = contentProviderClass;
 		contentProviderClass = newContentProviderClass;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UiPackage.PROPERTY_EDITOR__CONTENT_PROVIDER_CLASS, oldContentProviderClass, contentProviderClass));
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -387,21 +398,22 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
 	public void setShowLabel(boolean newShowLabel) {
 		boolean oldShowLabel = showLabel;
 		showLabel = newShowLabel;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UiPackage.PROPERTY_EDITOR__SHOW_LABEL, oldShowLabel, showLabel));
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -412,21 +424,22 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
 	public void setCustomLabel(String newCustomLabel) {
 		String oldCustomLabel = customLabel;
 		customLabel = newCustomLabel;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UiPackage.PROPERTY_EDITOR__CUSTOM_LABEL, oldCustomLabel, customLabel));
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -441,21 +454,23 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case UiPackage.PROPERTY_EDITOR__PROPERTY:
-			if (resolve)
+			if (resolve) {
 				return getProperty();
+			}
 			return basicGetProperty();
 		case UiPackage.PROPERTY_EDITOR__READ_ONLY:
 			return isReadOnly();
 		case UiPackage.PROPERTY_EDITOR__WIDGET_TYPE:
-			if (resolve)
+			if (resolve) {
 				return getWidgetType();
+			}
 			return basicGetWidgetType();
 		case UiPackage.PROPERTY_EDITOR__UNRESOLVED_PROPERTY:
 			return getUnresolvedProperty();
@@ -472,7 +487,7 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -506,7 +521,7 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -540,7 +555,7 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -567,22 +582,23 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
+		if (eIsProxy()) {
 			return super.toString();
+		}
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (readOnly: "); //$NON-NLS-1$
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (readOnly: ");
 		result.append(readOnly);
-		result.append(", contentProviderClass: "); //$NON-NLS-1$
+		result.append(", contentProviderClass: ");
 		result.append(contentProviderClass);
-		result.append(", showLabel: "); //$NON-NLS-1$
+		result.append(", showLabel: ");
 		result.append(showLabel);
-		result.append(", customLabel: "); //$NON-NLS-1$
+		result.append(", customLabel: ");
 		result.append(customLabel);
 		result.append(')');
 		return result.toString();

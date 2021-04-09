@@ -21,12 +21,14 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.papyrus.infra.properties.contexts.AbstractSection;
 import org.eclipse.papyrus.infra.properties.contexts.ContextsPackage;
 import org.eclipse.papyrus.infra.properties.contexts.Section;
 import org.eclipse.papyrus.infra.properties.contexts.Tab;
+import org.eclipse.uml2.common.util.DerivedSubsetEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,6 +38,7 @@ import org.eclipse.papyrus.infra.properties.contexts.Tab;
  * The following features are implemented:
  * </p>
  * <ul>
+ * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.TabImpl#getAllSections <em>All Sections</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.TabImpl#getLabel <em>Label</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.TabImpl#getId <em>Id</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.TabImpl#getCategory <em>Category</em>}</li>
@@ -48,7 +51,18 @@ import org.eclipse.papyrus.infra.properties.contexts.Tab;
  *
  * @generated
  */
-public class TabImpl extends EObjectImpl implements Tab {
+public class TabImpl extends MinimalEObjectImpl.Container implements Tab {
+	/**
+	 * The cached value of the '{@link #getAllSections() <em>All Sections</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see #getAllSections()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<AbstractSection> allSections;
+
 	/**
 	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -147,17 +161,6 @@ public class TabImpl extends EObjectImpl implements Tab {
 	 * @ordered
 	 */
 	protected Tab afterTab;
-
-	/**
-	 * The cached value of the '{@link #getSections() <em>Sections</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @see #getSections()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Section> sections;
 
 	/**
 	 * The default value of the '{@link #isIndented() <em>Indented</em>}' attribute.
@@ -377,15 +380,39 @@ public class TabImpl extends EObjectImpl implements Tab {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Section> getSections() {
-		if (sections == null) {
-			sections = new EObjectContainmentWithInverseEList<>(Section.class, this, ContextsPackage.TAB__SECTIONS, ContextsPackage.SECTION__TAB);
-		}
-		return sections;
+		return new DerivedSubsetEObjectEList<>(Section.class,
+				this, ContextsPackage.TAB__ALL_SECTIONS,
+				SECTIONS_ESUPERSETS);
 	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EList<AbstractSection> getAllSections() {
+		if (allSections == null) {
+			allSections = new EObjectContainmentWithInverseEList<>(AbstractSection.class, this, ContextsPackage.TAB__ALL_SECTIONS, ContextsPackage.ABSTRACT_SECTION__TAB);
+		}
+		return allSections;
+	}
+
+	/**
+	 * The array of superset feature identifiers for the '{@link #getSections() <em>Sections</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see #getSections()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] SECTIONS_ESUPERSETS = new int[] { ContextsPackage.TAB__ALL_SECTIONS };
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -449,8 +476,8 @@ public class TabImpl extends EObjectImpl implements Tab {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ContextsPackage.TAB__SECTIONS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSections()).basicAdd(otherEnd, msgs);
+		case ContextsPackage.TAB__ALL_SECTIONS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAllSections()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -464,8 +491,8 @@ public class TabImpl extends EObjectImpl implements Tab {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ContextsPackage.TAB__SECTIONS:
-			return ((InternalEList<?>) getSections()).basicRemove(otherEnd, msgs);
+		case ContextsPackage.TAB__ALL_SECTIONS:
+			return ((InternalEList<?>) getAllSections()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -479,6 +506,8 @@ public class TabImpl extends EObjectImpl implements Tab {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+		case ContextsPackage.TAB__ALL_SECTIONS:
+			return getAllSections();
 		case ContextsPackage.TAB__LABEL:
 			return getLabel();
 		case ContextsPackage.TAB__ID:
@@ -512,6 +541,10 @@ public class TabImpl extends EObjectImpl implements Tab {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+		case ContextsPackage.TAB__ALL_SECTIONS:
+			getAllSections().clear();
+			getAllSections().addAll((Collection<? extends AbstractSection>) newValue);
+			return;
 		case ContextsPackage.TAB__LABEL:
 			setLabel((String) newValue);
 			return;
@@ -550,6 +583,9 @@ public class TabImpl extends EObjectImpl implements Tab {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+		case ContextsPackage.TAB__ALL_SECTIONS:
+			getAllSections().clear();
+			return;
 		case ContextsPackage.TAB__LABEL:
 			setLabel(LABEL_EDEFAULT);
 			return;
@@ -587,6 +623,8 @@ public class TabImpl extends EObjectImpl implements Tab {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+		case ContextsPackage.TAB__ALL_SECTIONS:
+			return allSections != null && !allSections.isEmpty();
 		case ContextsPackage.TAB__LABEL:
 			return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
 		case ContextsPackage.TAB__ID:
@@ -598,7 +636,7 @@ public class TabImpl extends EObjectImpl implements Tab {
 		case ContextsPackage.TAB__AFTER_TAB:
 			return afterTab != null;
 		case ContextsPackage.TAB__SECTIONS:
-			return sections != null && !sections.isEmpty();
+			return !getSections().isEmpty();
 		case ContextsPackage.TAB__INDENTED:
 			return indented != INDENTED_EDEFAULT;
 		case ContextsPackage.TAB__PRIORITY:
@@ -619,18 +657,18 @@ public class TabImpl extends EObjectImpl implements Tab {
 			return super.toString();
 		}
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (label: "); //$NON-NLS-1$
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (label: ");
 		result.append(label);
-		result.append(", id: "); //$NON-NLS-1$
+		result.append(", id: ");
 		result.append(id);
-		result.append(", category: "); //$NON-NLS-1$
+		result.append(", category: ");
 		result.append(category);
-		result.append(", image: "); //$NON-NLS-1$
+		result.append(", image: ");
 		result.append(image);
-		result.append(", indented: "); //$NON-NLS-1$
+		result.append(", indented: ");
 		result.append(indented);
-		result.append(", priority: "); //$NON-NLS-1$
+		result.append(", priority: ");
 		result.append(priority);
 		result.append(')');
 		return result.toString();

@@ -16,13 +16,13 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.constraints.ConstraintDescriptor#getName <em>Name</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.constraints.ConstraintDescriptor#getDisplay <em>Display</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.constraints.ConstraintDescriptor#isOverrideable <em>Overrideable</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.constraints.ConstraintDescriptor#getOverriddenConstraints <em>Overridden Constraints</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.constraints.ConstraintDescriptor#getDisplay <em>Display</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.infra.constraints.ConstraintsPackage#getConstraintDescriptor()
  * @model abstract="true"

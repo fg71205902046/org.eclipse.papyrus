@@ -96,6 +96,16 @@ public interface EnvironmentPackage extends EPackage {
 	int CONSTRAINT_ENVIRONMENT_FEATURE_COUNT = 1;
 
 	/**
+	 * The number of operations of the '<em>Constraint Environment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT_ENVIRONMENT_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.constraints.environment.impl.ConstraintTypeImpl <em>Constraint Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -135,6 +145,17 @@ public interface EnvironmentPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONSTRAINT_TYPE_FEATURE_COUNT = 2;
+
+
+	/**
+	 * The number of operations of the '<em>Constraint Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT_TYPE_OPERATION_COUNT = 0;
 
 
 	/**

@@ -68,7 +68,7 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 	 *
 	 * @generated
 	 */
-	protected Collection<Object> supportedTypes = new ArrayList<Object>();
+	protected Collection<Object> supportedTypes = new ArrayList<>();
 
 	/**
 	 * This constructs an instance.
@@ -402,15 +402,6 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 		if (environmentItemProvider != null) {
 			environmentItemProvider.dispose();
 		}
-		if (propertyEditorTypeItemProvider != null) {
-			propertyEditorTypeItemProvider.dispose();
-		}
-		if (compositeWidgetTypeItemProvider != null) {
-			compositeWidgetTypeItemProvider.dispose();
-		}
-		if (layoutTypeItemProvider != null) {
-			layoutTypeItemProvider.dispose();
-		}
 		if (modelElementFactoryDescriptorItemProvider != null) {
 			modelElementFactoryDescriptorItemProvider.dispose();
 		}
@@ -419,6 +410,15 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 		}
 		if (namespaceItemProvider != null) {
 			namespaceItemProvider.dispose();
+		}
+		if (propertyEditorTypeItemProvider != null) {
+			propertyEditorTypeItemProvider.dispose();
+		}
+		if (compositeWidgetTypeItemProvider != null) {
+			compositeWidgetTypeItemProvider.dispose();
+		}
+		if (layoutTypeItemProvider != null) {
+			layoutTypeItemProvider.dispose();
 		}
 		if (miscClassItemProvider != null) {
 			miscClassItemProvider.dispose();

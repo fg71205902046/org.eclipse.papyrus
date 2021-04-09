@@ -88,8 +88,8 @@ public class WidgetTypeItemProvider
 	protected void addLabelPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_WidgetType_label_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_WidgetType_label_feature", "_UI_WidgetType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				getString("_UI_WidgetType_label_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_WidgetType_label_feature", "_UI_WidgetType_type"),
 				EnvironmentPackage.Literals.WIDGET_TYPE__LABEL,
 				true,
 				false,
@@ -109,8 +109,8 @@ public class WidgetTypeItemProvider
 	protected void addWidgetClassPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_WidgetType_widgetClass_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_WidgetType_widgetClass_feature", "_UI_WidgetType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				getString("_UI_WidgetType_widgetClass_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_WidgetType_widgetClass_feature", "_UI_WidgetType_type"),
 				EnvironmentPackage.Literals.WIDGET_TYPE__WIDGET_CLASS,
 				true,
 				false,
@@ -130,8 +130,8 @@ public class WidgetTypeItemProvider
 	protected void addNamespacePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_WidgetType_namespace_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_WidgetType_namespace_feature", "_UI_WidgetType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				getString("_UI_WidgetType_namespace_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_WidgetType_namespace_feature", "_UI_WidgetType_type"),
 				EnvironmentPackage.Literals.WIDGET_TYPE__NAMESPACE,
 				true,
 				false,
@@ -151,8 +151,7 @@ public class WidgetTypeItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((WidgetType) object).getLabel();
-		return label == null || label.length() == 0 ? getString("_UI_WidgetType_type") : //$NON-NLS-1$
-				getString("_UI_WidgetType_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return label == null || label.length() == 0 ? getString("_UI_WidgetType_type") : getString("_UI_WidgetType_type") + " " + label;
 	}
 
 	/**

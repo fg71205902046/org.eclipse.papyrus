@@ -74,8 +74,8 @@ public class CompositeWidgetItemProvider
 	protected void addWidgetTypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_CompositeWidget_widgetType_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_CompositeWidget_widgetType_feature", "_UI_CompositeWidget_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				getString("_UI_CompositeWidget_widgetType_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_CompositeWidget_widgetType_feature", "_UI_CompositeWidget_type"),
 				UiPackage.Literals.COMPOSITE_WIDGET__WIDGET_TYPE,
 				true,
 				false,
@@ -127,7 +127,7 @@ public class CompositeWidgetItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/CompositeWidget")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/CompositeWidget"));
 	}
 
 	/**
@@ -139,7 +139,7 @@ public class CompositeWidgetItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_CompositeWidget_type"); //$NON-NLS-1$
+		return getString("_UI_CompositeWidget_type");
 	}
 
 	/**
@@ -185,10 +185,10 @@ public class CompositeWidgetItemProvider
 				UiFactory.eINSTANCE.createPropertyEditor()));
 
 		newChildDescriptors.add(createChildParameter(UiPackage.Literals.COMPOSITE_WIDGET__WIDGETS,
-				UiFactory.eINSTANCE.createCompositeWidget()));
+				UiFactory.eINSTANCE.createUnknownComponent()));
 
 		newChildDescriptors.add(createChildParameter(UiPackage.Literals.COMPOSITE_WIDGET__WIDGETS,
-				UiFactory.eINSTANCE.createUnknownComponent()));
+				UiFactory.eINSTANCE.createCompositeWidget()));
 	}
 
 }

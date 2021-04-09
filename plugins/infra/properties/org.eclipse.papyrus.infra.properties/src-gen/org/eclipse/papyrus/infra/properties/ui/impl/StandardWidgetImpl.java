@@ -39,7 +39,7 @@ public class StandardWidgetImpl extends WidgetImpl implements StandardWidget {
 	 * The cached value of the '{@link #getWidgetType() <em>Widget Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getWidgetType()
 	 * @generated
 	 * @ordered
@@ -49,7 +49,7 @@ public class StandardWidgetImpl extends WidgetImpl implements StandardWidget {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected StandardWidgetImpl() {
@@ -59,7 +59,7 @@ public class StandardWidgetImpl extends WidgetImpl implements StandardWidget {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -70,7 +70,7 @@ public class StandardWidgetImpl extends WidgetImpl implements StandardWidget {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -79,8 +79,9 @@ public class StandardWidgetImpl extends WidgetImpl implements StandardWidget {
 			InternalEObject oldWidgetType = (InternalEObject) widgetType;
 			widgetType = (StandardWidgetType) eResolveProxy(oldWidgetType);
 			if (widgetType != oldWidgetType) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UiPackage.STANDARD_WIDGET__WIDGET_TYPE, oldWidgetType, widgetType));
+				}
 			}
 		}
 		return widgetType;
@@ -89,7 +90,7 @@ public class StandardWidgetImpl extends WidgetImpl implements StandardWidget {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public StandardWidgetType basicGetWidgetType() {
@@ -99,29 +100,31 @@ public class StandardWidgetImpl extends WidgetImpl implements StandardWidget {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
 	public void setWidgetType(StandardWidgetType newWidgetType) {
 		StandardWidgetType oldWidgetType = widgetType;
 		widgetType = newWidgetType;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UiPackage.STANDARD_WIDGET__WIDGET_TYPE, oldWidgetType, widgetType));
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case UiPackage.STANDARD_WIDGET__WIDGET_TYPE:
-			if (resolve)
+			if (resolve) {
 				return getWidgetType();
+			}
 			return basicGetWidgetType();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -130,7 +133,7 @@ public class StandardWidgetImpl extends WidgetImpl implements StandardWidget {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -146,7 +149,7 @@ public class StandardWidgetImpl extends WidgetImpl implements StandardWidget {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -162,7 +165,7 @@ public class StandardWidgetImpl extends WidgetImpl implements StandardWidget {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override

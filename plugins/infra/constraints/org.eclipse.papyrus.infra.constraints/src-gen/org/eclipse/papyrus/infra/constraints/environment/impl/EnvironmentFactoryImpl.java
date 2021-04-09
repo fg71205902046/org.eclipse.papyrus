@@ -33,7 +33,7 @@ public class EnvironmentFactoryImpl extends EFactoryImpl implements EnvironmentF
 	 */
 	public static EnvironmentFactory init() {
 		try {
-			EnvironmentFactory theEnvironmentFactory = (EnvironmentFactory) EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/constraints/environment/0.9");
+			EnvironmentFactory theEnvironmentFactory = (EnvironmentFactory) EPackage.Registry.INSTANCE.getEFactory(EnvironmentPackage.eNS_URI);
 			if (theEnvironmentFactory != null) {
 				return theEnvironmentFactory;
 			}
@@ -78,6 +78,7 @@ public class EnvironmentFactoryImpl extends EFactoryImpl implements EnvironmentF
 	 *
 	 * @generated
 	 */
+	@Override
 	public ConstraintEnvironment createConstraintEnvironment() {
 		ConstraintEnvironmentImpl constraintEnvironment = new ConstraintEnvironmentImpl();
 		return constraintEnvironment;
@@ -89,6 +90,7 @@ public class EnvironmentFactoryImpl extends EFactoryImpl implements EnvironmentF
 	 *
 	 * @generated
 	 */
+	@Override
 	public ConstraintType createConstraintType() {
 		ConstraintTypeImpl constraintType = new ConstraintTypeImpl();
 		return constraintType;
@@ -100,6 +102,7 @@ public class EnvironmentFactoryImpl extends EFactoryImpl implements EnvironmentF
 	 *
 	 * @generated
 	 */
+	@Override
 	public EnvironmentPackage getEnvironmentPackage() {
 		return (EnvironmentPackage) getEPackage();
 	}

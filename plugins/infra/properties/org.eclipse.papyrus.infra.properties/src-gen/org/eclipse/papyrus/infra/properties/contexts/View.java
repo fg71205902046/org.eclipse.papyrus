@@ -27,9 +27,9 @@ import org.eclipse.papyrus.infra.constraints.DisplayUnit;
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.View#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.View#getSections <em>Sections</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.properties.contexts.View#getContext <em>Context</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.View#isAutomaticContext <em>Automatic Context</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.View#getDatacontexts <em>Datacontexts</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.properties.contexts.View#getContext <em>Context</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getView()
@@ -44,7 +44,7 @@ public interface View extends DisplayUnit {
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getView_Name()
@@ -57,7 +57,7 @@ public interface View extends DisplayUnit {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.contexts.View#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @param value
 	 *            the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
@@ -73,7 +73,7 @@ public interface View extends DisplayUnit {
 	 * If the meaning of the '<em>Sections</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @return the value of the '<em>Sections</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getView_Sections()
 	 * @model
@@ -89,7 +89,7 @@ public interface View extends DisplayUnit {
 	 * If the meaning of the '<em>Context</em>' container reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @return the value of the '<em>Context</em>' container reference.
 	 * @see #setContext(Context)
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getView_Context()
@@ -103,7 +103,7 @@ public interface View extends DisplayUnit {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.contexts.View#getContext <em>Context</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @param value
 	 *            the new value of the '<em>Context</em>' container reference.
 	 * @see #getContext()
@@ -118,7 +118,7 @@ public interface View extends DisplayUnit {
 	 * If the meaning of the '<em>Automatic Context</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @return the value of the '<em>Automatic Context</em>' attribute.
 	 * @see #setAutomaticContext(boolean)
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getView_AutomaticContext()
@@ -131,7 +131,7 @@ public interface View extends DisplayUnit {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.contexts.View#isAutomaticContext <em>Automatic Context</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @param value
 	 *            the new value of the '<em>Automatic Context</em>' attribute.
 	 * @see #isAutomaticContext()
@@ -147,7 +147,7 @@ public interface View extends DisplayUnit {
 	 * If the meaning of the '<em>Datacontexts</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @return the value of the '<em>Datacontexts</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getView_Datacontexts()
 	 * @model

@@ -16,6 +16,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.contexts.impl;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -23,6 +24,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.papyrus.infra.constraints.ConstraintsPackage;
+import org.eclipse.papyrus.infra.properties.contexts.AbstractSection;
 import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.papyrus.infra.properties.contexts.ContextsFactory;
 import org.eclipse.papyrus.infra.properties.contexts.ContextsPackage;
@@ -70,6 +72,14 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 * @generated
 	 */
 	private EClass viewEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	private EClass abstractSectionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -166,7 +176,8 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		}
 
 		// Obtain or create and register package
-		ContextsPackageImpl theContextsPackage = (ContextsPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ContextsPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ContextsPackageImpl());
+		Object registeredContextsPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		ContextsPackageImpl theContextsPackage = registeredContextsPackage instanceof ContextsPackageImpl ? (ContextsPackageImpl) registeredContextsPackage : new ContextsPackageImpl();
 
 		isInited = true;
 
@@ -175,9 +186,10 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		EcorePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		EnvironmentPackageImpl theEnvironmentPackage = (EnvironmentPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(EnvironmentPackage.eNS_URI) instanceof EnvironmentPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EnvironmentPackage.eNS_URI)
-				: EnvironmentPackage.eINSTANCE);
-		UiPackageImpl theUiPackage = (UiPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(UiPackage.eNS_URI) instanceof UiPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(UiPackage.eNS_URI) : UiPackage.eINSTANCE);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(EnvironmentPackage.eNS_URI);
+		EnvironmentPackageImpl theEnvironmentPackage = (EnvironmentPackageImpl) (registeredPackage instanceof EnvironmentPackageImpl ? registeredPackage : EnvironmentPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(UiPackage.eNS_URI);
+		UiPackageImpl theUiPackage = (UiPackageImpl) (registeredPackage instanceof UiPackageImpl ? registeredPackage : UiPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theContextsPackage.createPackageContents();
@@ -191,7 +203,6 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 
 		// Mark meta-data to indicate it can't be changed
 		theContextsPackage.freeze();
-
 
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(ContextsPackage.eNS_URI, theContextsPackage);
@@ -381,8 +392,19 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 * @generated
 	 */
 	@Override
+	public EReference getTab_AllSections() {
+		return (EReference) tabEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
 	public EAttribute getTab_Indented() {
-		return (EAttribute) tabEClass.getEStructuralFeatures().get(6);
+		return (EAttribute) tabEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -393,7 +415,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 */
 	@Override
 	public EAttribute getTab_Priority() {
-		return (EAttribute) tabEClass.getEStructuralFeatures().get(7);
+		return (EAttribute) tabEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -437,7 +459,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 */
 	@Override
 	public EReference getView_Context() {
-		return (EReference) viewEClass.getEStructuralFeatures().get(2);
+		return (EReference) viewEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -448,7 +470,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 */
 	@Override
 	public EAttribute getView_AutomaticContext() {
-		return (EAttribute) viewEClass.getEStructuralFeatures().get(3);
+		return (EAttribute) viewEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -459,7 +481,40 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 */
 	@Override
 	public EReference getView_Datacontexts() {
-		return (EReference) viewEClass.getEStructuralFeatures().get(4);
+		return (EReference) viewEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EClass getAbstractSection() {
+		return abstractSectionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAbstractSection_Name() {
+		return (EAttribute) abstractSectionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EReference getAbstractSection_Tab() {
+		return (EReference) abstractSectionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -480,7 +535,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getSection_Name() {
+	public EAttribute getSection_SectionFile() {
 		return (EAttribute) sectionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -491,7 +546,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getSection_Tab() {
+	public EReference getSection_Widget() {
 		return (EReference) sectionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -502,19 +557,8 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getSection_SectionFile() {
-		return (EAttribute) sectionEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public EReference getSection_Widget() {
-		return (EReference) sectionEClass.getEStructuralFeatures().get(3);
+	public EReference getSection_Owner() {
+		return (EReference) sectionEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -547,7 +591,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 */
 	@Override
 	public EReference getDataContextElement_Properties() {
-		return (EReference) dataContextElementEClass.getEStructuralFeatures().get(1);
+		return (EReference) dataContextElementEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -558,7 +602,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 */
 	@Override
 	public EReference getDataContextElement_Package() {
-		return (EReference) dataContextElementEClass.getEStructuralFeatures().get(2);
+		return (EReference) dataContextElementEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -569,7 +613,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 */
 	@Override
 	public EReference getDataContextElement_Supertypes() {
-		return (EReference) dataContextElementEClass.getEStructuralFeatures().get(3);
+		return (EReference) dataContextElementEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -788,27 +832,18 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		createEAttribute(tabEClass, TAB__IMAGE);
 		createEReference(tabEClass, TAB__AFTER_TAB);
 		createEReference(tabEClass, TAB__SECTIONS);
+		createEReference(tabEClass, TAB__ALL_SECTIONS);
 		createEAttribute(tabEClass, TAB__INDENTED);
 		createEAttribute(tabEClass, TAB__PRIORITY);
 
-		viewEClass = createEClass(VIEW);
-		createEAttribute(viewEClass, VIEW__NAME);
-		createEReference(viewEClass, VIEW__SECTIONS);
-		createEReference(viewEClass, VIEW__CONTEXT);
-		createEAttribute(viewEClass, VIEW__AUTOMATIC_CONTEXT);
-		createEReference(viewEClass, VIEW__DATACONTEXTS);
-
 		sectionEClass = createEClass(SECTION);
-		createEAttribute(sectionEClass, SECTION__NAME);
-		createEReference(sectionEClass, SECTION__TAB);
 		createEAttribute(sectionEClass, SECTION__SECTION_FILE);
 		createEReference(sectionEClass, SECTION__WIDGET);
+		createEReference(sectionEClass, SECTION__OWNER);
 
-		dataContextElementEClass = createEClass(DATA_CONTEXT_ELEMENT);
-		createEAttribute(dataContextElementEClass, DATA_CONTEXT_ELEMENT__NAME);
-		createEReference(dataContextElementEClass, DATA_CONTEXT_ELEMENT__PROPERTIES);
-		createEReference(dataContextElementEClass, DATA_CONTEXT_ELEMENT__PACKAGE);
-		createEReference(dataContextElementEClass, DATA_CONTEXT_ELEMENT__SUPERTYPES);
+		abstractSectionEClass = createEClass(ABSTRACT_SECTION);
+		createEAttribute(abstractSectionEClass, ABSTRACT_SECTION__NAME);
+		createEReference(abstractSectionEClass, ABSTRACT_SECTION__TAB);
 
 		propertyEClass = createEClass(PROPERTY);
 		createEAttribute(propertyEClass, PROPERTY__NAME);
@@ -820,10 +855,23 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		createEReference(propertyEClass, PROPERTY__REDEFINED_PROPERTIES);
 		createEReference(propertyEClass, PROPERTY__REDEFINED_BY_PROPERTIES);
 
-		unknownPropertyEClass = createEClass(UNKNOWN_PROPERTY);
+		dataContextElementEClass = createEClass(DATA_CONTEXT_ELEMENT);
+		createEAttribute(dataContextElementEClass, DATA_CONTEXT_ELEMENT__NAME);
+		createEReference(dataContextElementEClass, DATA_CONTEXT_ELEMENT__PACKAGE);
+		createEReference(dataContextElementEClass, DATA_CONTEXT_ELEMENT__SUPERTYPES);
+		createEReference(dataContextElementEClass, DATA_CONTEXT_ELEMENT__PROPERTIES);
 
 		dataContextPackageEClass = createEClass(DATA_CONTEXT_PACKAGE);
 		createEReference(dataContextPackageEClass, DATA_CONTEXT_PACKAGE__ELEMENTS);
+
+		unknownPropertyEClass = createEClass(UNKNOWN_PROPERTY);
+
+		viewEClass = createEClass(VIEW);
+		createEAttribute(viewEClass, VIEW__NAME);
+		createEReference(viewEClass, VIEW__SECTIONS);
+		createEAttribute(viewEClass, VIEW__AUTOMATIC_CONTEXT);
+		createEReference(viewEClass, VIEW__DATACONTEXTS);
+		createEReference(viewEClass, VIEW__CONTEXT);
 
 		dataContextRootEClass = createEClass(DATA_CONTEXT_ROOT);
 		createEAttribute(dataContextRootEClass, DATA_CONTEXT_ROOT__LABEL);
@@ -859,8 +907,8 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 
 		// Obtain other dependent packages
 		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
-		ConstraintsPackage theConstraintsPackage = (ConstraintsPackage) EPackage.Registry.INSTANCE.getEPackage(ConstraintsPackage.eNS_URI);
 		UiPackage theUiPackage = (UiPackage) EPackage.Registry.INSTANCE.getEPackage(UiPackage.eNS_URI);
+		ConstraintsPackage theConstraintsPackage = (ConstraintsPackage) EPackage.Registry.INSTANCE.getEPackage(ConstraintsPackage.eNS_URI);
 		EnvironmentPackage theEnvironmentPackage = (EnvironmentPackage) EPackage.Registry.INSTANCE.getEPackage(EnvironmentPackage.eNS_URI);
 
 		// Create type parameters
@@ -869,81 +917,117 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 
 		// Add supertypes to classes
 		contextEClass.getESuperTypes().add(theEcorePackage.getEModelElement());
-		viewEClass.getESuperTypes().add(theConstraintsPackage.getDisplayUnit());
-		sectionEClass.getESuperTypes().add(theConstraintsPackage.getDisplayUnit());
-		unknownPropertyEClass.getESuperTypes().add(this.getProperty());
+		sectionEClass.getESuperTypes().add(this.getAbstractSection());
+		abstractSectionEClass.getESuperTypes().add(theConstraintsPackage.getDisplayUnit());
 		dataContextPackageEClass.getESuperTypes().add(this.getDataContextElement());
+		unknownPropertyEClass.getESuperTypes().add(this.getProperty());
+		viewEClass.getESuperTypes().add(theConstraintsPackage.getDisplayUnit());
 		dataContextRootEClass.getESuperTypes().add(this.getDataContextPackage());
 
-		// Initialize classes and features; add operations and parameters
-		initEClass(contextEClass, Context.class, "Context", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getContext_Name(), ecorePackage.getEString(), "name", null, 1, 1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getContext_Dependencies(), this.getContext(), null, "dependencies", null, 0, -1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEReference(getContext_Tabs(), this.getTab(), null, "tabs", null, 0, -1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getContext_Views(), this.getView(), this.getView_Context(), "views", null, 0, -1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getContext_DataContexts(), this.getDataContextRoot(), null, "dataContexts", null, 0, -1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getContext_Prototype(), this.getContext(), null, "prototype", null, 0, 1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getContext_Label(), ecorePackage.getEString(), "label", null, 0, 1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getContext_UserLabel(), ecorePackage.getEString(), "userLabel", null, 1, 1, Context.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		// Initialize classes, features, and operations; add parameters
+		initEClass(contextEClass, Context.class, "Context", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getContext_Name(), ecorePackage.getEString(), "name", null, 1, 1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getContext_Dependencies(), this.getContext(), null, "dependencies", null, 0, -1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getContext_Tabs(), this.getTab(), null, "tabs", null, 0, -1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getContext_Views(), this.getView(), this.getView_Context(), "views", null, 0, -1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getContext_DataContexts(), this.getDataContextRoot(), null, "dataContexts", null, 0, -1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getContext_Prototype(), this.getContext(), null, "prototype", null, 0, 1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getContext_Label(), ecorePackage.getEString(), "label", null, 0, 1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getContext_UserLabel(), ecorePackage.getEString(), "userLabel", null, 1, 1, Context.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
-		initEClass(tabEClass, Tab.class, "Tab", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getTab_Label(), ecorePackage.getEString(), "label", null, 1, 1, Tab.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getTab_Id(), ecorePackage.getEString(), "id", null, 1, 1, Tab.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getTab_Category(), ecorePackage.getEString(), "category", null, 0, 1, Tab.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getTab_Image(), ecorePackage.getEString(), "image", null, 0, 1, Tab.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getTab_AfterTab(), this.getTab(), null, "afterTab", null, 0, 1, Tab.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getTab_Sections(), this.getSection(), this.getSection_Tab(), "sections", null, 0, -1, Tab.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getTab_Indented(), ecorePackage.getEBoolean(), "indented", "false", 1, 1, Tab.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-		initEAttribute(getTab_Priority(), ecorePackage.getEInt(), "priority", null, 0, 1, Tab.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEClass(tabEClass, Tab.class, "Tab", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTab_Label(), ecorePackage.getEString(), "label", null, 1, 1, Tab.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTab_Id(), ecorePackage.getEString(), "id", null, 1, 1, Tab.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTab_Category(), ecorePackage.getEString(), "category", null, 0, 1, Tab.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTab_Image(), ecorePackage.getEString(), "image", null, 0, 1, Tab.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTab_AfterTab(), this.getTab(), null, "afterTab", null, 0, 1, Tab.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTab_Sections(), this.getSection(), this.getSection_Owner(), "sections", null, 0, -1, Tab.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getTab_AllSections(), this.getAbstractSection(), this.getAbstractSection_Tab(), "allSections", null, 0, -1, Tab.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getTab_Indented(), ecorePackage.getEBoolean(), "indented", "false", 1, 1, Tab.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTab_Priority(), ecorePackage.getEInt(), "priority", null, 0, 1, Tab.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(viewEClass, View.class, "View", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getView_Name(), ecorePackage.getEString(), "name", null, 1, 1, View.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getView_Sections(), this.getSection(), null, "sections", null, 0, -1, View.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getView_Context(), this.getContext(), this.getContext_Views(), "context", null, 1, 1, View.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getView_AutomaticContext(), ecorePackage.getEBoolean(), "automaticContext", null, 1, 1, View.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getView_Datacontexts(), this.getDataContextElement(), null, "datacontexts", null, 0, -1, View.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEClass(sectionEClass, Section.class, "Section", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSection_SectionFile(), ecorePackage.getEString(), "sectionFile", null, 1, 1, Section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSection_Widget(), theUiPackage.getCompositeWidget(), null, "widget", null, 1, 1, Section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSection_Owner(), this.getTab(), this.getTab_Sections(), "owner", null, 1, 1, Section.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
-		initEClass(sectionEClass, Section.class, "Section", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getSection_Name(), ecorePackage.getEString(), "name", null, 1, 1, Section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getSection_Tab(), this.getTab(), this.getTab_Sections(), "tab", null, 1, 1, Section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getSection_SectionFile(), ecorePackage.getEString(), "sectionFile", null, 1, 1, Section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getSection_Widget(), theUiPackage.getCompositeWidget(), null, "widget", null, 1, 1, Section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEClass(abstractSectionEClass, AbstractSection.class, "AbstractSection", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAbstractSection_Name(), ecorePackage.getEString(), "name", null, 1, 1, AbstractSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAbstractSection_Tab(), this.getTab(), this.getTab_AllSections(), "tab", null, 1, 1, AbstractSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
-		initEClass(dataContextElementEClass, DataContextElement.class, "DataContextElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getDataContextElement_Name(), ecorePackage.getEString(), "name", null, 1, 1, DataContextElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getDataContextElement_Properties(), this.getProperty(), this.getProperty_ContextElement(), "properties", null, 0, -1, DataContextElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, //$NON-NLS-1$
+		initEClass(propertyEClass, Property.class, "Property", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getProperty_Name(), ecorePackage.getEString(), "name", null, 1, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProperty_Label(), ecorePackage.getEString(), "label", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProperty_Type(), theEnvironmentPackage.getType(), "type", null, 1, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProperty_ContextElement(), this.getDataContextElement(), this.getDataContextElement_Properties(), "contextElement", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDataContextElement_Package(), this.getDataContextPackage(), this.getDataContextPackage_Elements(), "package", null, 0, 1, DataContextElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, //$NON-NLS-1$
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDataContextElement_Supertypes(), this.getDataContextElement(), null, "supertypes", null, 0, -1, DataContextElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, //$NON-NLS-1$
-				!IS_DERIVED, IS_ORDERED);
-
-		initEClass(propertyEClass, Property.class, "Property", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getProperty_Name(), ecorePackage.getEString(), "name", null, 1, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getProperty_Label(), ecorePackage.getEString(), "label", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getProperty_Type(), theEnvironmentPackage.getType(), "type", null, 1, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getProperty_ContextElement(), this.getDataContextElement(), this.getDataContextElement_Properties(), "contextElement", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, //$NON-NLS-1$
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getProperty_Multiplicity(), ecorePackage.getEInt(), "multiplicity", "1", 1, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-		initEAttribute(getProperty_Description(), ecorePackage.getEString(), "description", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getProperty_RedefinedProperties(), this.getProperty(), this.getProperty_RedefinedByProperties(), "redefinedProperties", null, 0, -1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, //$NON-NLS-1$
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProperty_RedefinedByProperties(), this.getProperty(), this.getProperty_RedefinedProperties(), "redefinedByProperties", null, 0, -1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, //$NON-NLS-1$
+		initEAttribute(getProperty_Multiplicity(), ecorePackage.getEInt(), "multiplicity", "1", 1, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProperty_Description(), ecorePackage.getEString(), "description", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProperty_RedefinedProperties(), this.getProperty(), this.getProperty_RedefinedByProperties(), "redefinedProperties", null, 0, -1, Property.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getProperty_RedefinedByProperties(), this.getProperty(), this.getProperty_RedefinedProperties(), "redefinedByProperties", null, 0, -1, Property.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
-		initEClass(unknownPropertyEClass, UnknownProperty.class, "UnknownProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		initEClass(dataContextPackageEClass, DataContextPackage.class, "DataContextPackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getDataContextPackage_Elements(), this.getDataContextElement(), this.getDataContextElement_Package(), "elements", null, 0, -1, DataContextPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, //$NON-NLS-1$
+		initEClass(dataContextElementEClass, DataContextElement.class, "DataContextElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDataContextElement_Name(), ecorePackage.getEString(), "name", null, 1, 1, DataContextElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDataContextElement_Package(), this.getDataContextPackage(), this.getDataContextPackage_Elements(), "package", null, 0, 1, DataContextElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDataContextElement_Supertypes(), this.getDataContextElement(), null, "supertypes", null, 0, -1, DataContextElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEReference(getDataContextElement_Properties(), this.getProperty(), this.getProperty_ContextElement(), "properties", null, 0, -1, DataContextElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(dataContextRootEClass, DataContextRoot.class, "DataContextRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getDataContextRoot_Label(), ecorePackage.getEString(), "label", null, 1, 1, DataContextRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getDataContextRoot_ModelElementFactory(), theEnvironmentPackage.getModelElementFactoryDescriptor(), null, "modelElementFactory", null, 1, 1, DataContextRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, //$NON-NLS-1$
+		initEClass(dataContextPackageEClass, DataContextPackage.class, "DataContextPackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDataContextPackage_Elements(), this.getDataContextElement(), this.getDataContextElement_Package(), "elements", null, 0, -1, DataContextPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(unknownPropertyEClass, UnknownProperty.class, "UnknownProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(viewEClass, View.class, "View", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getView_Name(), ecorePackage.getEString(), "name", null, 1, 1, View.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getView_Sections(), this.getSection(), null, "sections", null, 0, -1, View.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getView_AutomaticContext(), ecorePackage.getEBoolean(), "automaticContext", null, 1, 1, View.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getView_Datacontexts(), this.getDataContextElement(), null, "datacontexts", null, 0, -1, View.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getView_Context(), this.getContext(), this.getContext_Views(), "context", null, 1, 1, View.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(dataContextRootEClass, DataContextRoot.class, "DataContextRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDataContextRoot_Label(), ecorePackage.getEString(), "label", null, 1, 1, DataContextRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDataContextRoot_ModelElementFactory(), theEnvironmentPackage.getModelElementFactoryDescriptor(), null, "modelElementFactory", null, 1, 1, DataContextRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
+
+		// Create annotations
+		// subsets
+		createSubsetsAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>subsets</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	protected void createSubsetsAnnotations() {
+		String source = "subsets";
+		addAnnotation(getTab_Sections(),
+				source,
+				new String[] {
+				},
+				new URI[] {
+						URI.createURI(eNS_URI).appendFragment("//contexts/Tab/allSections")
+				});
+		addAnnotation(getSection_Owner(),
+				source,
+				new String[] {
+				},
+				new URI[] {
+						URI.createURI(eNS_URI).appendFragment("//contexts/AbstractSection/tab")
+				});
 	}
 
 } // ContextsPackageImpl

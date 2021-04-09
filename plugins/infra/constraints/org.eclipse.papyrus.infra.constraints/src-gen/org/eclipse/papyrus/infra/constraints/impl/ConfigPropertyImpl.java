@@ -9,7 +9,7 @@ package org.eclipse.papyrus.infra.constraints.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.papyrus.infra.constraints.ConfigProperty;
 import org.eclipse.papyrus.infra.constraints.ConstraintsPackage;
 
@@ -19,14 +19,14 @@ import org.eclipse.papyrus.infra.constraints.ConstraintsPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.constraints.impl.ConfigPropertyImpl#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public abstract class ConfigPropertyImpl extends EObjectImpl implements ConfigProperty {
+public abstract class ConfigPropertyImpl extends MinimalEObjectImpl.Container implements ConfigProperty {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -76,6 +76,7 @@ public abstract class ConfigPropertyImpl extends EObjectImpl implements ConfigPr
 	 *
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -86,6 +87,7 @@ public abstract class ConfigPropertyImpl extends EObjectImpl implements ConfigPr
 	 *
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -168,7 +170,7 @@ public abstract class ConfigPropertyImpl extends EObjectImpl implements ConfigPr
 			return super.toString();
 		}
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
 		result.append(')');

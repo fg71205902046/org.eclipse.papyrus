@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.papyrus.infra.constraints.CompositeConstraint;
 import org.eclipse.papyrus.infra.constraints.ConfigProperty;
@@ -88,10 +89,15 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 	private EClass referencePropertyEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
 	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.infra.constraints.ConstraintsPackage#eNS_URI
@@ -114,7 +120,9 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 *
 	 * <p>
-	 * This method is used to initialize {@link ConstraintsPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This method is used to initialize {@link ConstraintsPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
@@ -127,13 +135,17 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 		}
 
 		// Obtain or create and register package
-		ConstraintsPackageImpl theConstraintsPackage = (ConstraintsPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ConstraintsPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ConstraintsPackageImpl());
+		Object registeredConstraintsPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		ConstraintsPackageImpl theConstraintsPackage = registeredConstraintsPackage instanceof ConstraintsPackageImpl ? (ConstraintsPackageImpl) registeredConstraintsPackage : new ConstraintsPackageImpl();
 
 		isInited = true;
 
+		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
+
 		// Obtain or create and register interdependencies
-		EnvironmentPackageImpl theEnvironmentPackage = (EnvironmentPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(EnvironmentPackage.eNS_URI) instanceof EnvironmentPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EnvironmentPackage.eNS_URI)
-				: EnvironmentPackage.eINSTANCE);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(EnvironmentPackage.eNS_URI);
+		EnvironmentPackageImpl theEnvironmentPackage = (EnvironmentPackageImpl) (registeredPackage instanceof EnvironmentPackageImpl ? registeredPackage : EnvironmentPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theConstraintsPackage.createPackageContents();
@@ -146,7 +158,6 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 		// Mark meta-data to indicate it can't be changed
 		theConstraintsPackage.freeze();
 
-
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(ConstraintsPackage.eNS_URI, theConstraintsPackage);
 		return theConstraintsPackage;
@@ -158,6 +169,7 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 	 *
 	 * @generated
 	 */
+	@Override
 	public EClass getDisplayUnit() {
 		return displayUnitEClass;
 	}
@@ -168,6 +180,7 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 	 *
 	 * @generated
 	 */
+	@Override
 	public EReference getDisplayUnit_Constraints() {
 		return (EReference) displayUnitEClass.getEStructuralFeatures().get(0);
 	}
@@ -178,6 +191,7 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 	 *
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDisplayUnit_ElementMultiplicity() {
 		return (EAttribute) displayUnitEClass.getEStructuralFeatures().get(1);
 	}
@@ -188,6 +202,7 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 	 *
 	 * @generated
 	 */
+	@Override
 	public EClass getConstraintDescriptor() {
 		return constraintDescriptorEClass;
 	}
@@ -198,6 +213,7 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 	 *
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConstraintDescriptor_Name() {
 		return (EAttribute) constraintDescriptorEClass.getEStructuralFeatures().get(0);
 	}
@@ -208,27 +224,8 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 	 *
 	 * @generated
 	 */
+	@Override
 	public EReference getConstraintDescriptor_Display() {
-		return (EReference) constraintDescriptorEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	public EAttribute getConstraintDescriptor_Overrideable() {
-		return (EAttribute) constraintDescriptorEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	public EReference getConstraintDescriptor_OverriddenConstraints() {
 		return (EReference) constraintDescriptorEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -238,6 +235,29 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 	 *
 	 * @generated
 	 */
+	@Override
+	public EAttribute getConstraintDescriptor_Overrideable() {
+		return (EAttribute) constraintDescriptorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EReference getConstraintDescriptor_OverriddenConstraints() {
+		return (EReference) constraintDescriptorEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
 	public EClass getSimpleConstraint() {
 		return simpleConstraintEClass;
 	}
@@ -248,6 +268,7 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 	 *
 	 * @generated
 	 */
+	@Override
 	public EReference getSimpleConstraint_ConstraintType() {
 		return (EReference) simpleConstraintEClass.getEStructuralFeatures().get(0);
 	}
@@ -258,6 +279,7 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 	 *
 	 * @generated
 	 */
+	@Override
 	public EReference getSimpleConstraint_Properties() {
 		return (EReference) simpleConstraintEClass.getEStructuralFeatures().get(1);
 	}
@@ -268,6 +290,7 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 	 *
 	 * @generated
 	 */
+	@Override
 	public EClass getCompositeConstraint() {
 		return compositeConstraintEClass;
 	}
@@ -278,6 +301,7 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 	 *
 	 * @generated
 	 */
+	@Override
 	public EReference getCompositeConstraint_Constraints() {
 		return (EReference) compositeConstraintEClass.getEStructuralFeatures().get(0);
 	}
@@ -288,6 +312,7 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 	 *
 	 * @generated
 	 */
+	@Override
 	public EClass getConfigProperty() {
 		return configPropertyEClass;
 	}
@@ -298,6 +323,7 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 	 *
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConfigProperty_Name() {
 		return (EAttribute) configPropertyEClass.getEStructuralFeatures().get(0);
 	}
@@ -308,6 +334,7 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 	 *
 	 * @generated
 	 */
+	@Override
 	public EClass getValueProperty() {
 		return valuePropertyEClass;
 	}
@@ -318,6 +345,7 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 	 *
 	 * @generated
 	 */
+	@Override
 	public EAttribute getValueProperty_Value() {
 		return (EAttribute) valuePropertyEClass.getEStructuralFeatures().get(0);
 	}
@@ -328,6 +356,7 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 	 *
 	 * @generated
 	 */
+	@Override
 	public EClass getReferenceProperty() {
 		return referencePropertyEClass;
 	}
@@ -338,6 +367,7 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 	 *
 	 * @generated
 	 */
+	@Override
 	public EReference getReferenceProperty_Value() {
 		return (EReference) referencePropertyEClass.getEStructuralFeatures().get(0);
 	}
@@ -348,6 +378,7 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 	 *
 	 * @generated
 	 */
+	@Override
 	public ConstraintsFactory getConstraintsFactory() {
 		return (ConstraintsFactory) getEFactoryInstance();
 	}
@@ -381,19 +412,19 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 
 		constraintDescriptorEClass = createEClass(CONSTRAINT_DESCRIPTOR);
 		createEAttribute(constraintDescriptorEClass, CONSTRAINT_DESCRIPTOR__NAME);
-		createEReference(constraintDescriptorEClass, CONSTRAINT_DESCRIPTOR__DISPLAY);
 		createEAttribute(constraintDescriptorEClass, CONSTRAINT_DESCRIPTOR__OVERRIDEABLE);
 		createEReference(constraintDescriptorEClass, CONSTRAINT_DESCRIPTOR__OVERRIDDEN_CONSTRAINTS);
+		createEReference(constraintDescriptorEClass, CONSTRAINT_DESCRIPTOR__DISPLAY);
 
 		simpleConstraintEClass = createEClass(SIMPLE_CONSTRAINT);
 		createEReference(simpleConstraintEClass, SIMPLE_CONSTRAINT__CONSTRAINT_TYPE);
 		createEReference(simpleConstraintEClass, SIMPLE_CONSTRAINT__PROPERTIES);
 
-		compositeConstraintEClass = createEClass(COMPOSITE_CONSTRAINT);
-		createEReference(compositeConstraintEClass, COMPOSITE_CONSTRAINT__CONSTRAINTS);
-
 		configPropertyEClass = createEClass(CONFIG_PROPERTY);
 		createEAttribute(configPropertyEClass, CONFIG_PROPERTY__NAME);
+
+		compositeConstraintEClass = createEClass(COMPOSITE_CONSTRAINT);
+		createEReference(compositeConstraintEClass, COMPOSITE_CONSTRAINT__CONSTRAINTS);
 
 		valuePropertyEClass = createEClass(VALUE_PROPERTY);
 		createEAttribute(valuePropertyEClass, VALUE_PROPERTY__VALUE);
@@ -431,6 +462,7 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 
 		// Obtain other dependent packages
 		EnvironmentPackage theEnvironmentPackage = (EnvironmentPackage) EPackage.Registry.INSTANCE.getEPackage(EnvironmentPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theEnvironmentPackage);
@@ -445,7 +477,7 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 		valuePropertyEClass.getESuperTypes().add(this.getConfigProperty());
 		referencePropertyEClass.getESuperTypes().add(this.getConfigProperty());
 
-		// Initialize classes and features; add operations and parameters
+		// Initialize classes, features, and operations; add parameters
 		initEClass(displayUnitEClass, DisplayUnit.class, "DisplayUnit", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDisplayUnit_Constraints(), this.getConstraintDescriptor(), this.getConstraintDescriptor_Display(), "constraints", null, 0, -1, DisplayUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -453,10 +485,10 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 
 		initEClass(constraintDescriptorEClass, ConstraintDescriptor.class, "ConstraintDescriptor", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getConstraintDescriptor_Name(), ecorePackage.getEString(), "name", null, 1, 1, ConstraintDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getConstraintDescriptor_Display(), this.getDisplayUnit(), this.getDisplayUnit_Constraints(), "display", null, 0, 1, ConstraintDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConstraintDescriptor_Overrideable(), ecorePackage.getEBoolean(), "overrideable", "true", 1, 1, ConstraintDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConstraintDescriptor_OverriddenConstraints(), this.getSimpleConstraint(), null, "overriddenConstraints", null, 0, -1, ConstraintDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConstraintDescriptor_Display(), this.getDisplayUnit(), this.getDisplayUnit_Constraints(), "display", null, 0, 1, ConstraintDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(simpleConstraintEClass, SimpleConstraint.class, "SimpleConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -465,18 +497,18 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 		initEReference(getSimpleConstraint_Properties(), this.getConfigProperty(), null, "properties", null, 0, -1, SimpleConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 
+		initEClass(configPropertyEClass, ConfigProperty.class, "ConfigProperty", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getConfigProperty_Name(), ecorePackage.getEString(), "name", null, 1, 1, ConfigProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(compositeConstraintEClass, CompositeConstraint.class, "CompositeConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCompositeConstraint_Constraints(), this.getSimpleConstraint(), null, "constraints", null, 0, -1, CompositeConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-
-		initEClass(configPropertyEClass, ConfigProperty.class, "ConfigProperty", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getConfigProperty_Name(), ecorePackage.getEString(), "name", null, 1, 1, ConfigProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(valuePropertyEClass, ValueProperty.class, "ValueProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getValueProperty_Value(), ecorePackage.getEString(), "value", null, 1, 1, ValueProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(referencePropertyEClass, ReferenceProperty.class, "ReferenceProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getReferenceProperty_Value(), ecorePackage.getEObject(), null, "value", null, 1, 1, ReferenceProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+		initEReference(getReferenceProperty_Value(), theEcorePackage.getEObject(), null, "value", null, 1, 1, ReferenceProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 
 		// Create resource

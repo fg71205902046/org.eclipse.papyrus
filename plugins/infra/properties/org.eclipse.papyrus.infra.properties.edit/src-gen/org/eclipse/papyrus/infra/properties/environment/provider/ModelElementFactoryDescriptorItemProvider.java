@@ -87,8 +87,8 @@ public class ModelElementFactoryDescriptorItemProvider
 	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_ModelElementFactoryDescriptor_name_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_ModelElementFactoryDescriptor_name_feature", "_UI_ModelElementFactoryDescriptor_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				getString("_UI_ModelElementFactoryDescriptor_name_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_ModelElementFactoryDescriptor_name_feature", "_UI_ModelElementFactoryDescriptor_type"),
 				EnvironmentPackage.Literals.MODEL_ELEMENT_FACTORY_DESCRIPTOR__NAME,
 				true,
 				false,
@@ -108,8 +108,8 @@ public class ModelElementFactoryDescriptorItemProvider
 	protected void addFactoryClassPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_ModelElementFactoryDescriptor_factoryClass_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_ModelElementFactoryDescriptor_factoryClass_feature", "_UI_ModelElementFactoryDescriptor_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				getString("_UI_ModelElementFactoryDescriptor_factoryClass_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_ModelElementFactoryDescriptor_factoryClass_feature", "_UI_ModelElementFactoryDescriptor_type"),
 				EnvironmentPackage.Literals.MODEL_ELEMENT_FACTORY_DESCRIPTOR__FACTORY_CLASS,
 				true,
 				false,
@@ -128,7 +128,7 @@ public class ModelElementFactoryDescriptorItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ModelElementFactoryDescriptor")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ModelElementFactoryDescriptor"));
 	}
 
 	/**
@@ -141,8 +141,7 @@ public class ModelElementFactoryDescriptorItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((ModelElementFactoryDescriptor) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_ModelElementFactoryDescriptor_type") : //$NON-NLS-1$
-				getString("_UI_ModelElementFactoryDescriptor_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return label == null || label.length() == 0 ? getString("_UI_ModelElementFactoryDescriptor_type") : getString("_UI_ModelElementFactoryDescriptor_type") + " " + label;
 	}
 
 	/**

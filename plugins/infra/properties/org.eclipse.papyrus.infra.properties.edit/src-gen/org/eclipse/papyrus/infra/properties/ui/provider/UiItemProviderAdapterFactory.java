@@ -68,7 +68,7 @@ public class UiItemProviderAdapterFactory extends UiAdapterFactory implements Co
 	 *
 	 * @generated
 	 */
-	protected Collection<Object> supportedTypes = new ArrayList<Object>();
+	protected Collection<Object> supportedTypes = new ArrayList<>();
 
 	/**
 	 * This constructs an instance.
@@ -408,9 +408,6 @@ public class UiItemProviderAdapterFactory extends UiAdapterFactory implements Co
 		if (propertyEditorItemProvider != null) {
 			propertyEditorItemProvider.dispose();
 		}
-		if (compositeWidgetItemProvider != null) {
-			compositeWidgetItemProvider.dispose();
-		}
 		if (unknownComponentItemProvider != null) {
 			unknownComponentItemProvider.dispose();
 		}
@@ -422,6 +419,9 @@ public class UiItemProviderAdapterFactory extends UiAdapterFactory implements Co
 		}
 		if (referenceAttributeItemProvider != null) {
 			referenceAttributeItemProvider.dispose();
+		}
+		if (compositeWidgetItemProvider != null) {
+			compositeWidgetItemProvider.dispose();
 		}
 	}
 

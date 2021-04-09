@@ -73,23 +73,22 @@ public class EnvironmentAdapterFactory extends AdapterFactoryImpl {
 	 *
 	 * @generated
 	 */
-	protected EnvironmentSwitch<Adapter> modelSwitch =
-			new EnvironmentSwitch<Adapter>() {
-				@Override
-				public Adapter caseConstraintEnvironment(ConstraintEnvironment object) {
-					return createConstraintEnvironmentAdapter();
-				}
+	protected EnvironmentSwitch<Adapter> modelSwitch = new EnvironmentSwitch<>() {
+		@Override
+		public Adapter caseConstraintEnvironment(ConstraintEnvironment object) {
+			return createConstraintEnvironmentAdapter();
+		}
 
-				@Override
-				public Adapter caseConstraintType(ConstraintType object) {
-					return createConstraintTypeAdapter();
-				}
+		@Override
+		public Adapter caseConstraintType(ConstraintType object) {
+			return createConstraintTypeAdapter();
+		}
 
-				@Override
-				public Adapter defaultCase(EObject object) {
-					return createEObjectAdapter();
-				}
-			};
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.

@@ -35,7 +35,7 @@ import org.eclipse.papyrus.infra.properties.environment.Type;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
- * 
+ *
  * @generated
  */
 public class EnvironmentFactoryImpl extends EFactoryImpl implements EnvironmentFactory {
@@ -44,7 +44,7 @@ public class EnvironmentFactoryImpl extends EFactoryImpl implements EnvironmentF
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public static EnvironmentFactory init() {
@@ -63,7 +63,7 @@ public class EnvironmentFactoryImpl extends EFactoryImpl implements EnvironmentF
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public EnvironmentFactoryImpl() {
@@ -73,7 +73,7 @@ public class EnvironmentFactoryImpl extends EFactoryImpl implements EnvironmentF
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -81,29 +81,29 @@ public class EnvironmentFactoryImpl extends EFactoryImpl implements EnvironmentF
 		switch (eClass.getClassifierID()) {
 		case EnvironmentPackage.ENVIRONMENT:
 			return createEnvironment();
-		case EnvironmentPackage.PROPERTY_EDITOR_TYPE:
-			return createPropertyEditorType();
-		case EnvironmentPackage.COMPOSITE_WIDGET_TYPE:
-			return createCompositeWidgetType();
-		case EnvironmentPackage.LAYOUT_TYPE:
-			return createLayoutType();
 		case EnvironmentPackage.MODEL_ELEMENT_FACTORY_DESCRIPTOR:
 			return createModelElementFactoryDescriptor();
 		case EnvironmentPackage.STANDARD_WIDGET_TYPE:
 			return createStandardWidgetType();
 		case EnvironmentPackage.NAMESPACE:
 			return createNamespace();
+		case EnvironmentPackage.PROPERTY_EDITOR_TYPE:
+			return createPropertyEditorType();
+		case EnvironmentPackage.COMPOSITE_WIDGET_TYPE:
+			return createCompositeWidgetType();
+		case EnvironmentPackage.LAYOUT_TYPE:
+			return createLayoutType();
 		case EnvironmentPackage.MISC_CLASS:
 			return createMiscClass();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -112,14 +112,14 @@ public class EnvironmentFactoryImpl extends EFactoryImpl implements EnvironmentF
 		case EnvironmentPackage.TYPE:
 			return createTypeFromString(eDataType, initialValue);
 		default:
-			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -128,14 +128,14 @@ public class EnvironmentFactoryImpl extends EFactoryImpl implements EnvironmentF
 		case EnvironmentPackage.TYPE:
 			return convertTypeToString(eDataType, instanceValue);
 		default:
-			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -147,7 +147,7 @@ public class EnvironmentFactoryImpl extends EFactoryImpl implements EnvironmentF
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -159,7 +159,7 @@ public class EnvironmentFactoryImpl extends EFactoryImpl implements EnvironmentF
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -171,7 +171,7 @@ public class EnvironmentFactoryImpl extends EFactoryImpl implements EnvironmentF
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -183,7 +183,7 @@ public class EnvironmentFactoryImpl extends EFactoryImpl implements EnvironmentF
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -195,7 +195,7 @@ public class EnvironmentFactoryImpl extends EFactoryImpl implements EnvironmentF
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -207,7 +207,7 @@ public class EnvironmentFactoryImpl extends EFactoryImpl implements EnvironmentF
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -219,7 +219,7 @@ public class EnvironmentFactoryImpl extends EFactoryImpl implements EnvironmentF
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -231,20 +231,21 @@ public class EnvironmentFactoryImpl extends EFactoryImpl implements EnvironmentF
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public Type createTypeFromString(EDataType eDataType, String initialValue) {
 		Type result = Type.get(initialValue);
-		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		if (result == null) {
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		}
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public String convertTypeToString(EDataType eDataType, Object instanceValue) {
@@ -254,7 +255,7 @@ public class EnvironmentFactoryImpl extends EFactoryImpl implements EnvironmentF
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -265,7 +266,7 @@ public class EnvironmentFactoryImpl extends EFactoryImpl implements EnvironmentF
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @deprecated
 	 * @generated
 	 */

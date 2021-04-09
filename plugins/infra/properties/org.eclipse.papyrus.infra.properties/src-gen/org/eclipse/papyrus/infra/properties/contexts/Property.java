@@ -230,7 +230,7 @@ public interface Property extends EObject {
 	 * @return the value of the '<em>Redefined Properties</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getProperty_RedefinedProperties()
 	 * @see org.eclipse.papyrus.infra.properties.contexts.Property#getRedefinedByProperties
-	 * @model opposite="redefinedByProperties"
+	 * @model opposite="redefinedByProperties" transient="true" volatile="true" derived="true"
 	 * @generated
 	 */
 	EList<Property> getRedefinedProperties();
@@ -249,7 +249,7 @@ public interface Property extends EObject {
 	 * @return the value of the '<em>Redefined By Properties</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getProperty_RedefinedByProperties()
 	 * @see org.eclipse.papyrus.infra.properties.contexts.Property#getRedefinedProperties
-	 * @model opposite="redefinedProperties" derived="true"
+	 * @model opposite="redefinedProperties" transient="true" volatile="true" derived="true"
 	 * @generated
 	 */
 	EList<Property> getRedefinedByProperties();

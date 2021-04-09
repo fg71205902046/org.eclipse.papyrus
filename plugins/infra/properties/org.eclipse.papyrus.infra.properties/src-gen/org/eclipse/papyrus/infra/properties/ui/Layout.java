@@ -39,7 +39,7 @@ public interface Layout extends UIComponent {
 	 * If the meaning of the '<em>Layout Type</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @return the value of the '<em>Layout Type</em>' reference.
 	 * @see #setLayoutType(LayoutType)
 	 * @see org.eclipse.papyrus.infra.properties.ui.UiPackage#getLayout_LayoutType()
@@ -52,7 +52,7 @@ public interface Layout extends UIComponent {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.ui.Layout#getLayoutType <em>Layout Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @param value
 	 *            the new value of the '<em>Layout Type</em>' reference.
 	 * @see #getLayoutType()

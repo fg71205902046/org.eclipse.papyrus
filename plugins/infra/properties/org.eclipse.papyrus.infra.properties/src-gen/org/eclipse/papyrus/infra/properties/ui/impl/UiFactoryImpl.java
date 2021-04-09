@@ -33,7 +33,7 @@ import org.eclipse.papyrus.infra.properties.ui.ValueAttribute;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
- * 
+ *
  * @generated
  */
 public class UiFactoryImpl extends EFactoryImpl implements UiFactory {
@@ -41,7 +41,7 @@ public class UiFactoryImpl extends EFactoryImpl implements UiFactory {
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public static UiFactory init() {
@@ -60,7 +60,7 @@ public class UiFactoryImpl extends EFactoryImpl implements UiFactory {
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public UiFactoryImpl() {
@@ -70,7 +70,7 @@ public class UiFactoryImpl extends EFactoryImpl implements UiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -82,8 +82,6 @@ public class UiFactoryImpl extends EFactoryImpl implements UiFactory {
 			return createStandardWidget();
 		case UiPackage.PROPERTY_EDITOR:
 			return createPropertyEditor();
-		case UiPackage.COMPOSITE_WIDGET:
-			return createCompositeWidget();
 		case UiPackage.UNKNOWN_COMPONENT:
 			return createUnknownComponent();
 		case UiPackage.LAYOUT:
@@ -92,15 +90,17 @@ public class UiFactoryImpl extends EFactoryImpl implements UiFactory {
 			return createValueAttribute();
 		case UiPackage.REFERENCE_ATTRIBUTE:
 			return createReferenceAttribute();
+		case UiPackage.COMPOSITE_WIDGET:
+			return createCompositeWidget();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -112,7 +112,7 @@ public class UiFactoryImpl extends EFactoryImpl implements UiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -124,7 +124,7 @@ public class UiFactoryImpl extends EFactoryImpl implements UiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -136,7 +136,7 @@ public class UiFactoryImpl extends EFactoryImpl implements UiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -148,7 +148,7 @@ public class UiFactoryImpl extends EFactoryImpl implements UiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -160,7 +160,7 @@ public class UiFactoryImpl extends EFactoryImpl implements UiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -172,7 +172,7 @@ public class UiFactoryImpl extends EFactoryImpl implements UiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -184,7 +184,7 @@ public class UiFactoryImpl extends EFactoryImpl implements UiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -196,7 +196,7 @@ public class UiFactoryImpl extends EFactoryImpl implements UiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -207,7 +207,7 @@ public class UiFactoryImpl extends EFactoryImpl implements UiFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @deprecated
 	 * @generated
 	 */

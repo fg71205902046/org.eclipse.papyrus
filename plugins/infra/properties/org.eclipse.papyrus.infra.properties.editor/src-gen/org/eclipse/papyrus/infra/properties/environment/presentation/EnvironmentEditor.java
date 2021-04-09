@@ -108,6 +108,7 @@ import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
@@ -197,7 +198,7 @@ public class EnvironmentEditor
 	 *
 	 * @generated
 	 */
-	protected List<PropertySheetPage> propertySheetPages = new ArrayList<PropertySheetPage>();
+	protected List<PropertySheetPage> propertySheetPages = new ArrayList<>();
 
 	/**
 	 * This is the viewer that shadows the selection in the content outline.
@@ -290,7 +291,7 @@ public class EnvironmentEditor
 	 *
 	 * @generated
 	 */
-	protected Collection<ISelectionChangedListener> selectionChangedListeners = new ArrayList<ISelectionChangedListener>();
+	protected Collection<ISelectionChangedListener> selectionChangedListeners = new ArrayList<>();
 
 	/**
 	 * This keeps track of the selection of the editor as a whole.
@@ -365,7 +366,7 @@ public class EnvironmentEditor
 	 *
 	 * @generated
 	 */
-	protected Collection<Resource> removedResources = new ArrayList<Resource>();
+	protected Collection<Resource> removedResources = new ArrayList<>();
 
 	/**
 	 * Resources that have been changed since last activation.
@@ -374,7 +375,7 @@ public class EnvironmentEditor
 	 *
 	 * @generated
 	 */
-	protected Collection<Resource> changedResources = new ArrayList<Resource>();
+	protected Collection<Resource> changedResources = new ArrayList<>();
 
 	/**
 	 * Resources that have been saved.
@@ -383,7 +384,7 @@ public class EnvironmentEditor
 	 *
 	 * @generated
 	 */
-	protected Collection<Resource> savedResources = new ArrayList<Resource>();
+	protected Collection<Resource> savedResources = new ArrayList<>();
 
 	/**
 	 * Map to store the diagnostic associated with a resource.
@@ -392,7 +393,7 @@ public class EnvironmentEditor
 	 *
 	 * @generated
 	 */
-	protected Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
+	protected Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<>();
 
 	/**
 	 * Controls whether the problem indication should be updated.
@@ -476,8 +477,8 @@ public class EnvironmentEditor
 			try {
 				class ResourceDeltaVisitor implements IResourceDeltaVisitor {
 					protected ResourceSet resourceSet = editingDomain.getResourceSet();
-					protected Collection<Resource> changedResources = new ArrayList<Resource>();
-					protected Collection<Resource> removedResources = new ArrayList<Resource>();
+					protected Collection<Resource> changedResources = new ArrayList<>();
+					protected Collection<Resource> removedResources = new ArrayList<>();
 
 					@Override
 					public boolean visit(IResourceDelta delta) {
@@ -583,8 +584,9 @@ public class EnvironmentEditor
 	 */
 	protected void handleChangedResources() {
 		if (!changedResources.isEmpty() && (!isDirty() || handleDirtyConflict())) {
+			ResourceSet resourceSet = editingDomain.getResourceSet();
 			if (isDirty()) {
-				changedResources.addAll(editingDomain.getResourceSet().getResources());
+				changedResources.addAll(resourceSet.getResources());
 			}
 			editingDomain.getCommandStack().flush();
 
@@ -593,7 +595,7 @@ public class EnvironmentEditor
 				if (resource.isLoaded()) {
 					resource.unload();
 					try {
-						resource.load(Collections.EMPTY_MAP);
+						resource.load(resourceSet.getLoadOptions());
 					} catch (IOException exception) {
 						if (!resourceToDiagnosticMap.containsKey(resource)) {
 							resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
@@ -621,7 +623,7 @@ public class EnvironmentEditor
 	protected void updateProblemIndication() {
 		if (updateProblemIndication) {
 			BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.OK,
-					"org.eclipse.papyrus.infra.properties.editor", //$NON-NLS-1$
+					"org.eclipse.papyrus.infra.properties.editor",
 					0,
 					null,
 					new Object[] { editingDomain.getResourceSet() });
@@ -652,13 +654,10 @@ public class EnvironmentEditor
 			}
 
 			if (markerHelper.hasMarkers(editingDomain.getResourceSet())) {
-				markerHelper.deleteMarkers(editingDomain.getResourceSet());
-				if (diagnostic.getSeverity() != Diagnostic.OK) {
-					try {
-						markerHelper.createMarkers(diagnostic);
-					} catch (CoreException exception) {
-						PropertiesEditorPlugin.INSTANCE.log(exception);
-					}
+				try {
+					markerHelper.updateMarkers(diagnostic);
+				} catch (CoreException exception) {
+					PropertiesEditorPlugin.INSTANCE.log(exception);
 				}
 			}
 		}
@@ -673,8 +672,8 @@ public class EnvironmentEditor
 	 */
 	protected boolean handleDirtyConflict() {
 		return MessageDialog.openQuestion(getSite().getShell(),
-				getString("_UI_FileConflict_label"), //$NON-NLS-1$
-				getString("_WARN_FileConflict")); //$NON-NLS-1$
+				getString("_UI_FileConflict_label"),
+				getString("_WARN_FileConflict"));
 	}
 
 	/**
@@ -732,7 +731,7 @@ public class EnvironmentEditor
 						}
 						for (Iterator<PropertySheetPage> i = propertySheetPages.iterator(); i.hasNext();) {
 							PropertySheetPage propertySheetPage = i.next();
-							if (propertySheetPage.getControl().isDisposed()) {
+							if (propertySheetPage.getControl() == null || propertySheetPage.getControl().isDisposed()) {
 								i.remove();
 							} else {
 								propertySheetPage.refresh();
@@ -948,8 +947,8 @@ public class EnvironmentEditor
 	 * @generated
 	 */
 	protected void createContextMenuFor(StructuredViewer viewer) {
-		MenuManager contextMenu = new MenuManager("#PopUp"); //$NON-NLS-1$
-		contextMenu.add(new Separator("additions")); //$NON-NLS-1$
+		MenuManager contextMenu = new MenuManager("#PopUp");
+		contextMenu.add(new Separator("additions"));
 		contextMenu.setRemoveAllWhenShown(true);
 		contextMenu.addMenuListener(this);
 		Menu menu = contextMenu.createContextMenu(viewer.getControl());
@@ -970,7 +969,7 @@ public class EnvironmentEditor
 	 * @generated
 	 */
 	public void createModel() {
-		URI resourceURI = EditUIUtil.getURI(getEditorInput());
+		URI resourceURI = EditUIUtil.getURI(getEditorInput(), editingDomain.getResourceSet().getURIConverter());
 		Exception exception = null;
 		Resource resource = null;
 		try {
@@ -1001,17 +1000,17 @@ public class EnvironmentEditor
 		boolean hasErrors = !resource.getErrors().isEmpty();
 		if (hasErrors || !resource.getWarnings().isEmpty()) {
 			BasicDiagnostic basicDiagnostic = new BasicDiagnostic(hasErrors ? Diagnostic.ERROR : Diagnostic.WARNING,
-					"org.eclipse.papyrus.infra.properties.editor", //$NON-NLS-1$
+					"org.eclipse.papyrus.infra.properties.editor",
 					0,
-					getString("_UI_CreateModelError_message", resource.getURI()), //$NON-NLS-1$
+					getString("_UI_CreateModelError_message", resource.getURI()),
 					new Object[] { exception == null ? (Object) resource : exception });
 			basicDiagnostic.merge(EcoreUtil.computeDiagnostic(resource, true));
 			return basicDiagnostic;
 		} else if (exception != null) {
 			return new BasicDiagnostic(Diagnostic.ERROR,
-					"org.eclipse.papyrus.infra.properties.editor", //$NON-NLS-1$
+					"org.eclipse.papyrus.infra.properties.editor",
 					0,
-					getString("_UI_CreateModelError_message", resource.getURI()), //$NON-NLS-1$
+					getString("_UI_CreateModelError_message", resource.getURI()),
 					new Object[] { exception });
 		} else {
 			return Diagnostic.OK_INSTANCE;
@@ -1066,7 +1065,7 @@ public class EnvironmentEditor
 
 				createContextMenuFor(selectionViewer);
 				int pageIndex = addPage(viewerPane.getControl());
-				setPageText(pageIndex, getString("_UI_SelectionPage_label")); //$NON-NLS-1$
+				setPageText(pageIndex, getString("_UI_SelectionPage_label"));
 			}
 
 			// Create a page for the parent tree view.
@@ -1095,7 +1094,7 @@ public class EnvironmentEditor
 
 				createContextMenuFor(parentViewer);
 				int pageIndex = addPage(viewerPane.getControl());
-				setPageText(pageIndex, getString("_UI_ParentPage_label")); //$NON-NLS-1$
+				setPageText(pageIndex, getString("_UI_ParentPage_label"));
 			}
 
 			// This is the page for the list viewer
@@ -1120,7 +1119,7 @@ public class EnvironmentEditor
 
 				createContextMenuFor(listViewer);
 				int pageIndex = addPage(viewerPane.getControl());
-				setPageText(pageIndex, getString("_UI_ListPage_label")); //$NON-NLS-1$
+				setPageText(pageIndex, getString("_UI_ListPage_label"));
 			}
 
 			// This is the page for the tree viewer
@@ -1147,7 +1146,7 @@ public class EnvironmentEditor
 
 				createContextMenuFor(treeViewer);
 				int pageIndex = addPage(viewerPane.getControl());
-				setPageText(pageIndex, getString("_UI_TreePage_label")); //$NON-NLS-1$
+				setPageText(pageIndex, getString("_UI_TreePage_label"));
 			}
 
 			// This is the page for the table viewer.
@@ -1176,21 +1175,21 @@ public class EnvironmentEditor
 
 				TableColumn objectColumn = new TableColumn(table, SWT.NONE);
 				layout.addColumnData(new ColumnWeightData(3, 100, true));
-				objectColumn.setText(getString("_UI_ObjectColumn_label")); //$NON-NLS-1$
+				objectColumn.setText(getString("_UI_ObjectColumn_label"));
 				objectColumn.setResizable(true);
 
 				TableColumn selfColumn = new TableColumn(table, SWT.NONE);
 				layout.addColumnData(new ColumnWeightData(2, 100, true));
-				selfColumn.setText(getString("_UI_SelfColumn_label")); //$NON-NLS-1$
+				selfColumn.setText(getString("_UI_SelfColumn_label"));
 				selfColumn.setResizable(true);
 
-				tableViewer.setColumnProperties(new String[] { "a", "b" }); //$NON-NLS-1$ //$NON-NLS-2$
+				tableViewer.setColumnProperties(new String[] { "a", "b" });
 				tableViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 				tableViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
 				createContextMenuFor(tableViewer);
 				int pageIndex = addPage(viewerPane.getControl());
-				setPageText(pageIndex, getString("_UI_TablePage_label")); //$NON-NLS-1$
+				setPageText(pageIndex, getString("_UI_TablePage_label"));
 			}
 
 			// This is the page for the table tree viewer.
@@ -1218,28 +1217,30 @@ public class EnvironmentEditor
 				tree.setLinesVisible(true);
 
 				TreeColumn objectColumn = new TreeColumn(tree, SWT.NONE);
-				objectColumn.setText(getString("_UI_ObjectColumn_label")); //$NON-NLS-1$
+				objectColumn.setText(getString("_UI_ObjectColumn_label"));
 				objectColumn.setResizable(true);
 				objectColumn.setWidth(250);
 
 				TreeColumn selfColumn = new TreeColumn(tree, SWT.NONE);
-				selfColumn.setText(getString("_UI_SelfColumn_label")); //$NON-NLS-1$
+				selfColumn.setText(getString("_UI_SelfColumn_label"));
 				selfColumn.setResizable(true);
 				selfColumn.setWidth(200);
 
-				treeViewerWithColumns.setColumnProperties(new String[] { "a", "b" }); //$NON-NLS-1$ //$NON-NLS-2$
+				treeViewerWithColumns.setColumnProperties(new String[] { "a", "b" });
 				treeViewerWithColumns.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 				treeViewerWithColumns.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
 				createContextMenuFor(treeViewerWithColumns);
 				int pageIndex = addPage(viewerPane.getControl());
-				setPageText(pageIndex, getString("_UI_TreeWithColumnsPage_label")); //$NON-NLS-1$
+				setPageText(pageIndex, getString("_UI_TreeWithColumnsPage_label"));
 			}
 
 			getSite().getShell().getDisplay().asyncExec(new Runnable() {
 				@Override
 				public void run() {
-					setActivePage(0);
+					if (!getContainer().isDisposed()) {
+						setActivePage(0);
+					}
 				}
 			});
 		}
@@ -1278,11 +1279,11 @@ public class EnvironmentEditor
 	 */
 	protected void hideTabs() {
 		if (getPageCount() <= 1) {
-			setPageText(0, ""); //$NON-NLS-1$
+			setPageText(0, "");
 			if (getContainer() instanceof CTabFolder) {
-				((CTabFolder) getContainer()).setTabHeight(1);
 				Point point = getContainer().getSize();
-				getContainer().setSize(point.x, point.y + 6);
+				Rectangle clientArea = getContainer().getClientArea();
+				getContainer().setSize(point.x, 2 * point.y - clientArea.height - clientArea.y);
 			}
 		}
 	}
@@ -1297,11 +1298,11 @@ public class EnvironmentEditor
 	 */
 	protected void showTabs() {
 		if (getPageCount() > 1) {
-			setPageText(0, getString("_UI_SelectionPage_label")); //$NON-NLS-1$
+			setPageText(0, getString("_UI_SelectionPage_label"));
 			if (getContainer() instanceof CTabFolder) {
-				((CTabFolder) getContainer()).setTabHeight(SWT.DEFAULT);
 				Point point = getContainer().getSize();
-				getContainer().setSize(point.x, point.y - 6);
+				Rectangle clientArea = getContainer().getClientArea();
+				getContainer().setSize(point.x, clientArea.height + clientArea.y);
 			}
 		}
 	}
@@ -1331,13 +1332,13 @@ public class EnvironmentEditor
 	 */
 	@SuppressWarnings("rawtypes")
 	@Override
-	public Object getAdapter(Class key) {
+	public <T> T getAdapter(Class<T> key) {
 		if (key.equals(IContentOutlinePage.class)) {
-			return showOutlineView() ? getContentOutlinePage() : null;
+			return showOutlineView() ? key.cast(getContentOutlinePage()) : null;
 		} else if (key.equals(IPropertySheetPage.class)) {
-			return getPropertySheetPage();
+			return key.cast(getPropertySheetPage());
 		} else if (key.equals(IGotoMarker.class)) {
-			return this;
+			return key.cast(this);
 		} else {
 			return super.getAdapter(key);
 		}
@@ -1417,7 +1418,7 @@ public class EnvironmentEditor
 	 * @generated
 	 */
 	public IPropertySheetPage getPropertySheetPage() {
-		PropertySheetPage propertySheetPage = new ExtendedPropertySheetPage(editingDomain) {
+		PropertySheetPage propertySheetPage = new ExtendedPropertySheetPage(editingDomain, ExtendedPropertySheetPage.Decoration.NONE, null, 0, false) {
 			@Override
 			public void setSelectionToViewer(List<?> selection) {
 				EnvironmentEditor.this.setSelectionToViewer(selection);
@@ -1454,7 +1455,7 @@ public class EnvironmentEditor
 				// If it's the selection viewer, then we want it to select the same selection as this selection.
 				//
 				if (currentViewerPane.getViewer() == selectionViewer) {
-					ArrayList<Object> selectionList = new ArrayList<Object>();
+					ArrayList<Object> selectionList = new ArrayList<>();
 					selectionList.add(selectedElement);
 					while (selectedElements.hasNext()) {
 						selectionList.add(selectedElements.next());
@@ -1498,7 +1499,7 @@ public class EnvironmentEditor
 	public void doSave(IProgressMonitor progressMonitor) {
 		// Save only resources that have actually changed.
 		//
-		final Map<Object, Object> saveOptions = new HashMap<Object, Object>();
+		final Map<Object, Object> saveOptions = new HashMap<>();
 		saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
 		saveOptions.put(Resource.OPTION_LINE_DELIMITER, Resource.OPTION_LINE_DELIMITER_UNSPECIFIED);
 
@@ -1732,21 +1733,21 @@ public class EnvironmentEditor
 				Collection<?> collection = ((IStructuredSelection) selection).toList();
 				switch (collection.size()) {
 				case 0: {
-					statusLineManager.setMessage(getString("_UI_NoObjectSelected")); //$NON-NLS-1$
+					statusLineManager.setMessage(getString("_UI_NoObjectSelected"));
 					break;
 				}
 				case 1: {
 					String text = new AdapterFactoryItemDelegator(adapterFactory).getText(collection.iterator().next());
-					statusLineManager.setMessage(getString("_UI_SingleObjectSelected", text)); //$NON-NLS-1$
+					statusLineManager.setMessage(getString("_UI_SingleObjectSelected", text));
 					break;
 				}
 				default: {
-					statusLineManager.setMessage(getString("_UI_MultiObjectSelected", Integer.toString(collection.size()))); //$NON-NLS-1$
+					statusLineManager.setMessage(getString("_UI_MultiObjectSelected", Integer.toString(collection.size())));
 					break;
 				}
 				}
 			} else {
-				statusLineManager.setMessage(""); //$NON-NLS-1$
+				statusLineManager.setMessage("");
 			}
 		}
 	}

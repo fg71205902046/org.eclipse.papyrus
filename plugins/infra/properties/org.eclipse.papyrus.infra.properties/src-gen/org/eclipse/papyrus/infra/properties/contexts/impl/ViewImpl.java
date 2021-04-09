@@ -41,9 +41,9 @@ import org.eclipse.papyrus.infra.properties.contexts.View;
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.ViewImpl#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.ViewImpl#getSections <em>Sections</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.ViewImpl#getContext <em>Context</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.ViewImpl#isAutomaticContext <em>Automatic Context</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.ViewImpl#getDatacontexts <em>Datacontexts</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.ViewImpl#getContext <em>Context</em>}</li>
  * </ul>
  *
  * @generated
@@ -211,7 +211,7 @@ public class ViewImpl extends DisplayUnitImpl implements View {
 	public void setContext(Context newContext) {
 		if (newContext != eInternalContainer() || (eContainerFeatureID() != ContextsPackage.VIEW__CONTEXT && newContext != null)) {
 			if (EcoreUtil.isAncestor(this, newContext)) {
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			}
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null) {
@@ -330,12 +330,12 @@ public class ViewImpl extends DisplayUnitImpl implements View {
 			return getName();
 		case ContextsPackage.VIEW__SECTIONS:
 			return getSections();
-		case ContextsPackage.VIEW__CONTEXT:
-			return getContext();
 		case ContextsPackage.VIEW__AUTOMATIC_CONTEXT:
 			return isAutomaticContext();
 		case ContextsPackage.VIEW__DATACONTEXTS:
 			return getDatacontexts();
+		case ContextsPackage.VIEW__CONTEXT:
+			return getContext();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -357,15 +357,15 @@ public class ViewImpl extends DisplayUnitImpl implements View {
 			getSections().clear();
 			getSections().addAll((Collection<? extends Section>) newValue);
 			return;
-		case ContextsPackage.VIEW__CONTEXT:
-			setContext((Context) newValue);
-			return;
 		case ContextsPackage.VIEW__AUTOMATIC_CONTEXT:
 			setAutomaticContext((Boolean) newValue);
 			return;
 		case ContextsPackage.VIEW__DATACONTEXTS:
 			getDatacontexts().clear();
 			getDatacontexts().addAll((Collection<? extends DataContextElement>) newValue);
+			return;
+		case ContextsPackage.VIEW__CONTEXT:
+			setContext((Context) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -386,14 +386,14 @@ public class ViewImpl extends DisplayUnitImpl implements View {
 		case ContextsPackage.VIEW__SECTIONS:
 			getSections().clear();
 			return;
-		case ContextsPackage.VIEW__CONTEXT:
-			setContext((Context) null);
-			return;
 		case ContextsPackage.VIEW__AUTOMATIC_CONTEXT:
 			setAutomaticContext(AUTOMATIC_CONTEXT_EDEFAULT);
 			return;
 		case ContextsPackage.VIEW__DATACONTEXTS:
 			getDatacontexts().clear();
+			return;
+		case ContextsPackage.VIEW__CONTEXT:
+			setContext((Context) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -412,12 +412,12 @@ public class ViewImpl extends DisplayUnitImpl implements View {
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case ContextsPackage.VIEW__SECTIONS:
 			return sections != null && !sections.isEmpty();
-		case ContextsPackage.VIEW__CONTEXT:
-			return getContext() != null;
 		case ContextsPackage.VIEW__AUTOMATIC_CONTEXT:
 			return automaticContext != AUTOMATIC_CONTEXT_EDEFAULT;
 		case ContextsPackage.VIEW__DATACONTEXTS:
 			return datacontexts != null && !datacontexts.isEmpty();
+		case ContextsPackage.VIEW__CONTEXT:
+			return getContext() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -434,10 +434,10 @@ public class ViewImpl extends DisplayUnitImpl implements View {
 			return super.toString();
 		}
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: "); //$NON-NLS-1$
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (name: ");
 		result.append(name);
-		result.append(", automaticContext: "); //$NON-NLS-1$
+		result.append(", automaticContext: ");
 		result.append(automaticContext);
 		result.append(')');
 		return result.toString();

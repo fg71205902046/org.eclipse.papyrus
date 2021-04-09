@@ -70,8 +70,8 @@ public class StandardWidgetItemProvider
 	protected void addWidgetTypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_StandardWidget_widgetType_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_StandardWidget_widgetType_feature", "_UI_StandardWidget_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				getString("_UI_StandardWidget_widgetType_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_StandardWidget_widgetType_feature", "_UI_StandardWidget_type"),
 				UiPackage.Literals.STANDARD_WIDGET__WIDGET_TYPE,
 				true,
 				false,
@@ -90,7 +90,7 @@ public class StandardWidgetItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/StandardWidget")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/StandardWidget"));
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class StandardWidgetItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_StandardWidget_type"); //$NON-NLS-1$
+		return getString("_UI_StandardWidget_type");
 	}
 
 	/**

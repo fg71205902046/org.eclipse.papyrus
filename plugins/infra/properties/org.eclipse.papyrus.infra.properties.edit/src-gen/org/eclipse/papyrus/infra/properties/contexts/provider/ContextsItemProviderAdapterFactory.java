@@ -68,7 +68,7 @@ public class ContextsItemProviderAdapterFactory extends ContextsAdapterFactory i
 	 *
 	 * @generated
 	 */
-	protected Collection<Object> supportedTypes = new ArrayList<Object>();
+	protected Collection<Object> supportedTypes = new ArrayList<>();
 
 	/**
 	 * This constructs an instance.
@@ -430,23 +430,23 @@ public class ContextsItemProviderAdapterFactory extends ContextsAdapterFactory i
 		if (tabItemProvider != null) {
 			tabItemProvider.dispose();
 		}
-		if (viewItemProvider != null) {
-			viewItemProvider.dispose();
-		}
 		if (sectionItemProvider != null) {
 			sectionItemProvider.dispose();
-		}
-		if (dataContextElementItemProvider != null) {
-			dataContextElementItemProvider.dispose();
 		}
 		if (propertyItemProvider != null) {
 			propertyItemProvider.dispose();
 		}
-		if (unknownPropertyItemProvider != null) {
-			unknownPropertyItemProvider.dispose();
+		if (dataContextElementItemProvider != null) {
+			dataContextElementItemProvider.dispose();
 		}
 		if (dataContextPackageItemProvider != null) {
 			dataContextPackageItemProvider.dispose();
+		}
+		if (unknownPropertyItemProvider != null) {
+			unknownPropertyItemProvider.dispose();
+		}
+		if (viewItemProvider != null) {
+			viewItemProvider.dispose();
 		}
 		if (dataContextRootItemProvider != null) {
 			dataContextRootItemProvider.dispose();

@@ -40,7 +40,7 @@ public interface ModelElementFactoryDescriptor extends EObject {
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.papyrus.infra.properties.environment.EnvironmentPackage#getModelElementFactoryDescriptor_Name()
@@ -53,7 +53,7 @@ public interface ModelElementFactoryDescriptor extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.environment.ModelElementFactoryDescriptor#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @param value
 	 *            the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
@@ -68,7 +68,7 @@ public interface ModelElementFactoryDescriptor extends EObject {
 	 * If the meaning of the '<em>Factory Class</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @return the value of the '<em>Factory Class</em>' attribute.
 	 * @see #setFactoryClass(String)
 	 * @see org.eclipse.papyrus.infra.properties.environment.EnvironmentPackage#getModelElementFactoryDescriptor_FactoryClass()
@@ -81,7 +81,7 @@ public interface ModelElementFactoryDescriptor extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.environment.ModelElementFactoryDescriptor#getFactoryClass <em>Factory Class</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @param value
 	 *            the new value of the '<em>Factory Class</em>' attribute.
 	 * @see #getFactoryClass()

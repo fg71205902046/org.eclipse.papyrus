@@ -90,8 +90,8 @@ public class DataContextElementItemProvider
 	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_DataContextElement_name_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_DataContextElement_name_feature", "_UI_DataContextElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				getString("_UI_DataContextElement_name_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_DataContextElement_name_feature", "_UI_DataContextElement_type"),
 				ContextsPackage.Literals.DATA_CONTEXT_ELEMENT__NAME,
 				true,
 				false,
@@ -111,8 +111,8 @@ public class DataContextElementItemProvider
 	protected void addSupertypesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_DataContextElement_supertypes_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_DataContextElement_supertypes_feature", "_UI_DataContextElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				getString("_UI_DataContextElement_supertypes_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_DataContextElement_supertypes_feature", "_UI_DataContextElement_type"),
 				ContextsPackage.Literals.DATA_CONTEXT_ELEMENT__SUPERTYPES,
 				true,
 				false,
@@ -163,7 +163,7 @@ public class DataContextElementItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/DataContextElement")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/DataContextElement"));
 	}
 
 	/**
@@ -176,8 +176,7 @@ public class DataContextElementItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((DataContextElement) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_DataContextElement_type") : //$NON-NLS-1$
-				getString("_UI_DataContextElement_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return label == null || label.length() == 0 ? getString("_UI_DataContextElement_type") : getString("_UI_DataContextElement_type") + " " + label;
 	}
 
 	/**

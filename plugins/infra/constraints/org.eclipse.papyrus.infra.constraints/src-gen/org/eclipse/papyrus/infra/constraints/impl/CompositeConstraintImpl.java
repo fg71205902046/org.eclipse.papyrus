@@ -24,10 +24,10 @@ import org.eclipse.papyrus.infra.constraints.SimpleConstraint;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.constraints.impl.CompositeConstraintImpl#getConstraints <em>Constraints</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -70,9 +70,10 @@ public class CompositeConstraintImpl extends ConstraintDescriptorImpl implements
 	 *
 	 * @generated
 	 */
+	@Override
 	public EList<SimpleConstraint> getConstraints() {
 		if (constraints == null) {
-			constraints = new EObjectContainmentEList<SimpleConstraint>(SimpleConstraint.class, this, ConstraintsPackage.COMPOSITE_CONSTRAINT__CONSTRAINTS);
+			constraints = new EObjectContainmentEList<>(SimpleConstraint.class, this, ConstraintsPackage.COMPOSITE_CONSTRAINT__CONSTRAINTS);
 		}
 		return constraints;
 	}

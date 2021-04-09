@@ -11,21 +11,20 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus - add prototype reference to Context (CDO)
- *   Vincent Lorenzo - Bug 520271   
+ *   Vincent Lorenzo - Bug 520271
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.contexts.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.papyrus.infra.properties.contexts.ContextsPackage;
 import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.infra.properties.contexts.Property;
@@ -51,7 +50,7 @@ import org.eclipse.papyrus.infra.properties.environment.Type;
  *
  * @generated
  */
-public class PropertyImpl extends EObjectImpl implements Property {
+public class PropertyImpl extends MinimalEObjectImpl.Container implements Property {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -161,28 +160,6 @@ public class PropertyImpl extends EObjectImpl implements Property {
 	 * @ordered
 	 */
 	protected String description = DESCRIPTION_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getRedefinedProperties() <em>Redefined Properties</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @see #getRedefinedProperties()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Property> redefinedProperties;
-
-	/**
-	 * The cached value of the '{@link #getRedefinedByProperties() <em>Redefined By Properties</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @see #getRedefinedByProperties()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Property> redefinedByProperties;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -318,7 +295,7 @@ public class PropertyImpl extends EObjectImpl implements Property {
 	public void setContextElement(DataContextElement newContextElement) {
 		if (newContextElement != eInternalContainer() || (eContainerFeatureID() != ContextsPackage.PROPERTY__CONTEXT_ELEMENT && newContextElement != null)) {
 			if (EcoreUtil.isAncestor(this, newContextElement)) {
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			}
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null) {
@@ -396,10 +373,9 @@ public class PropertyImpl extends EObjectImpl implements Property {
 	 */
 	@Override
 	public EList<Property> getRedefinedProperties() {
-		if (redefinedProperties == null) {
-			redefinedProperties = new EObjectWithInverseResolvingEList.ManyInverse<>(Property.class, this, ContextsPackage.PROPERTY__REDEFINED_PROPERTIES, ContextsPackage.PROPERTY__REDEFINED_BY_PROPERTIES);
-		}
-		return redefinedProperties;
+		// TODO: implement this method to return the 'Redefined Properties' reference list
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -410,10 +386,9 @@ public class PropertyImpl extends EObjectImpl implements Property {
 	 */
 	@Override
 	public EList<Property> getRedefinedByProperties() {
-		if (redefinedByProperties == null) {
-			redefinedByProperties = new EObjectWithInverseResolvingEList.ManyInverse<>(Property.class, this, ContextsPackage.PROPERTY__REDEFINED_BY_PROPERTIES, ContextsPackage.PROPERTY__REDEFINED_PROPERTIES);
-		}
-		return redefinedByProperties;
+		// TODO: implement this method to return the 'Redefined By Properties' reference list
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -431,10 +406,6 @@ public class PropertyImpl extends EObjectImpl implements Property {
 				msgs = eBasicRemoveFromContainer(msgs);
 			}
 			return basicSetContextElement((DataContextElement) otherEnd, msgs);
-		case ContextsPackage.PROPERTY__REDEFINED_PROPERTIES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getRedefinedProperties()).basicAdd(otherEnd, msgs);
-		case ContextsPackage.PROPERTY__REDEFINED_BY_PROPERTIES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getRedefinedByProperties()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -450,10 +421,6 @@ public class PropertyImpl extends EObjectImpl implements Property {
 		switch (featureID) {
 		case ContextsPackage.PROPERTY__CONTEXT_ELEMENT:
 			return basicSetContextElement(null, msgs);
-		case ContextsPackage.PROPERTY__REDEFINED_PROPERTIES:
-			return ((InternalEList<?>) getRedefinedProperties()).basicRemove(otherEnd, msgs);
-		case ContextsPackage.PROPERTY__REDEFINED_BY_PROPERTIES:
-			return ((InternalEList<?>) getRedefinedByProperties()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -601,9 +568,9 @@ public class PropertyImpl extends EObjectImpl implements Property {
 		case ContextsPackage.PROPERTY__DESCRIPTION:
 			return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 		case ContextsPackage.PROPERTY__REDEFINED_PROPERTIES:
-			return redefinedProperties != null && !redefinedProperties.isEmpty();
+			return !getRedefinedProperties().isEmpty();
 		case ContextsPackage.PROPERTY__REDEFINED_BY_PROPERTIES:
-			return redefinedByProperties != null && !redefinedByProperties.isEmpty();
+			return !getRedefinedByProperties().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -620,16 +587,16 @@ public class PropertyImpl extends EObjectImpl implements Property {
 			return super.toString();
 		}
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: "); //$NON-NLS-1$
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (name: ");
 		result.append(name);
-		result.append(", label: "); //$NON-NLS-1$
+		result.append(", label: ");
 		result.append(label);
-		result.append(", type: "); //$NON-NLS-1$
+		result.append(", type: ");
 		result.append(type);
-		result.append(", multiplicity: "); //$NON-NLS-1$
+		result.append(", multiplicity: ");
 		result.append(multiplicity);
-		result.append(", description: "); //$NON-NLS-1$
+		result.append(", description: ");
 		result.append(description);
 		result.append(')');
 		return result.toString();

@@ -189,6 +189,26 @@ public interface ContextsPackage extends EPackage {
 	int CONTEXT_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
+	 * The operation id for the '<em>Get EAnnotation</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXT___GET_EANNOTATION__STRING = EcorePackage.EMODEL_ELEMENT___GET_EANNOTATION__STRING;
+
+	/**
+	 * The number of operations of the '<em>Context</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXT_OPERATION_COUNT = EcorePackage.EMODEL_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.properties.contexts.impl.TabImpl <em>Tab</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -250,7 +270,7 @@ public interface ContextsPackage extends EPackage {
 	int TAB__AFTER_TAB = 4;
 
 	/**
-	 * The feature id for the '<em><b>Sections</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Sections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -260,6 +280,16 @@ public interface ContextsPackage extends EPackage {
 	int TAB__SECTIONS = 5;
 
 	/**
+	 * The feature id for the '<em><b>All Sections</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int TAB__ALL_SECTIONS = 6;
+
+	/**
 	 * The feature id for the '<em><b>Indented</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -267,7 +297,7 @@ public interface ContextsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TAB__INDENTED = 6;
+	int TAB__INDENTED = 7;
 
 	/**
 	 * The feature id for the '<em><b>Priority</b></em>' attribute.
@@ -277,7 +307,7 @@ public interface ContextsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TAB__PRIORITY = 7;
+	int TAB__PRIORITY = 8;
 
 	/**
 	 * The number of structural features of the '<em>Tab</em>' class.
@@ -287,7 +317,17 @@ public interface ContextsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TAB_FEATURE_COUNT = 8;
+	int TAB_FEATURE_COUNT = 9;
+
+	/**
+	 * The number of operations of the '<em>Tab</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int TAB_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.properties.contexts.impl.ViewImpl <em>View</em>}' class.
@@ -298,7 +338,18 @@ public interface ContextsPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.properties.contexts.impl.ContextsPackageImpl#getView()
 	 * @generated
 	 */
-	int VIEW = 2;
+	int VIEW = 8;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.properties.contexts.impl.AbstractSectionImpl <em>Abstract Section</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see org.eclipse.papyrus.infra.properties.contexts.impl.AbstractSectionImpl
+	 * @see org.eclipse.papyrus.infra.properties.contexts.impl.ContextsPackageImpl#getAbstractSection()
+	 * @generated
+	 */
+	int ABSTRACT_SECTION = 3;
 
 	/**
 	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
@@ -308,7 +359,7 @@ public interface ContextsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VIEW__CONSTRAINTS = ConstraintsPackage.DISPLAY_UNIT__CONSTRAINTS;
+	int ABSTRACT_SECTION__CONSTRAINTS = ConstraintsPackage.DISPLAY_UNIT__CONSTRAINTS;
 
 	/**
 	 * The feature id for the '<em><b>Element Multiplicity</b></em>' attribute.
@@ -318,7 +369,7 @@ public interface ContextsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VIEW__ELEMENT_MULTIPLICITY = ConstraintsPackage.DISPLAY_UNIT__ELEMENT_MULTIPLICITY;
+	int ABSTRACT_SECTION__ELEMENT_MULTIPLICITY = ConstraintsPackage.DISPLAY_UNIT__ELEMENT_MULTIPLICITY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -328,57 +379,37 @@ public interface ContextsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VIEW__NAME = ConstraintsPackage.DISPLAY_UNIT_FEATURE_COUNT + 0;
+	int ABSTRACT_SECTION__NAME = ConstraintsPackage.DISPLAY_UNIT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Sections</b></em>' reference list.
+	 * The feature id for the '<em><b>Tab</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated
 	 * @ordered
 	 */
-	int VIEW__SECTIONS = ConstraintsPackage.DISPLAY_UNIT_FEATURE_COUNT + 1;
+	int ABSTRACT_SECTION__TAB = ConstraintsPackage.DISPLAY_UNIT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Context</b></em>' container reference.
+	 * The number of structural features of the '<em>Abstract Section</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated
 	 * @ordered
 	 */
-	int VIEW__CONTEXT = ConstraintsPackage.DISPLAY_UNIT_FEATURE_COUNT + 2;
+	int ABSTRACT_SECTION_FEATURE_COUNT = ConstraintsPackage.DISPLAY_UNIT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Automatic Context</b></em>' attribute.
+	 * The number of operations of the '<em>Abstract Section</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated
 	 * @ordered
 	 */
-	int VIEW__AUTOMATIC_CONTEXT = ConstraintsPackage.DISPLAY_UNIT_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Datacontexts</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 * @ordered
-	 */
-	int VIEW__DATACONTEXTS = ConstraintsPackage.DISPLAY_UNIT_FEATURE_COUNT + 4;
-
-	/**
-	 * The number of structural features of the '<em>View</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 * @ordered
-	 */
-	int VIEW_FEATURE_COUNT = ConstraintsPackage.DISPLAY_UNIT_FEATURE_COUNT + 5;
+	int ABSTRACT_SECTION_OPERATION_COUNT = ConstraintsPackage.DISPLAY_UNIT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.properties.contexts.impl.SectionImpl <em>Section</em>}' class.
@@ -389,7 +420,7 @@ public interface ContextsPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.properties.contexts.impl.ContextsPackageImpl#getSection()
 	 * @generated
 	 */
-	int SECTION = 3;
+	int SECTION = 2;
 
 	/**
 	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
@@ -399,7 +430,7 @@ public interface ContextsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION__CONSTRAINTS = ConstraintsPackage.DISPLAY_UNIT__CONSTRAINTS;
+	int SECTION__CONSTRAINTS = ABSTRACT_SECTION__CONSTRAINTS;
 
 	/**
 	 * The feature id for the '<em><b>Element Multiplicity</b></em>' attribute.
@@ -409,7 +440,7 @@ public interface ContextsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION__ELEMENT_MULTIPLICITY = ConstraintsPackage.DISPLAY_UNIT__ELEMENT_MULTIPLICITY;
+	int SECTION__ELEMENT_MULTIPLICITY = ABSTRACT_SECTION__ELEMENT_MULTIPLICITY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -419,7 +450,7 @@ public interface ContextsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION__NAME = ConstraintsPackage.DISPLAY_UNIT_FEATURE_COUNT + 0;
+	int SECTION__NAME = ABSTRACT_SECTION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Tab</b></em>' container reference.
@@ -429,7 +460,7 @@ public interface ContextsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION__TAB = ConstraintsPackage.DISPLAY_UNIT_FEATURE_COUNT + 1;
+	int SECTION__TAB = ABSTRACT_SECTION__TAB;
 
 	/**
 	 * The feature id for the '<em><b>Section File</b></em>' attribute.
@@ -439,7 +470,7 @@ public interface ContextsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION__SECTION_FILE = ConstraintsPackage.DISPLAY_UNIT_FEATURE_COUNT + 2;
+	int SECTION__SECTION_FILE = ABSTRACT_SECTION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Widget</b></em>' reference.
@@ -449,7 +480,17 @@ public interface ContextsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION__WIDGET = ConstraintsPackage.DISPLAY_UNIT_FEATURE_COUNT + 3;
+	int SECTION__WIDGET = ABSTRACT_SECTION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int SECTION__OWNER = ABSTRACT_SECTION_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Section</em>' class.
@@ -459,7 +500,17 @@ public interface ContextsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION_FEATURE_COUNT = ConstraintsPackage.DISPLAY_UNIT_FEATURE_COUNT + 4;
+	int SECTION_FEATURE_COUNT = ABSTRACT_SECTION_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Section</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int SECTION_OPERATION_COUNT = ABSTRACT_SECTION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.properties.contexts.impl.DataContextElementImpl <em>Data Context Element</em>}' class.
@@ -470,57 +521,7 @@ public interface ContextsPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.properties.contexts.impl.ContextsPackageImpl#getDataContextElement()
 	 * @generated
 	 */
-	int DATA_CONTEXT_ELEMENT = 4;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_CONTEXT_ELEMENT__NAME = 0;
-
-	/**
-	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_CONTEXT_ELEMENT__PROPERTIES = 1;
-
-	/**
-	 * The feature id for the '<em><b>Package</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_CONTEXT_ELEMENT__PACKAGE = 2;
-
-	/**
-	 * The feature id for the '<em><b>Supertypes</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_CONTEXT_ELEMENT__SUPERTYPES = 3;
-
-	/**
-	 * The number of structural features of the '<em>Data Context Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_CONTEXT_ELEMENT_FEATURE_COUNT = 4;
+	int DATA_CONTEXT_ELEMENT = 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.properties.contexts.impl.PropertyImpl <em>Property</em>}' class.
@@ -531,7 +532,7 @@ public interface ContextsPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.properties.contexts.impl.ContextsPackageImpl#getProperty()
 	 * @generated
 	 */
-	int PROPERTY = 5;
+	int PROPERTY = 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -624,6 +625,76 @@ public interface ContextsPackage extends EPackage {
 	int PROPERTY_FEATURE_COUNT = 8;
 
 	/**
+	 * The number of operations of the '<em>Property</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_CONTEXT_ELEMENT__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Package</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_CONTEXT_ELEMENT__PACKAGE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Supertypes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_CONTEXT_ELEMENT__SUPERTYPES = 2;
+
+	/**
+	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_CONTEXT_ELEMENT__PROPERTIES = 3;
+
+	/**
+	 * The number of structural features of the '<em>Data Context Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_CONTEXT_ELEMENT_FEATURE_COUNT = 4;
+
+	/**
+	 * The number of operations of the '<em>Data Context Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_CONTEXT_ELEMENT_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.properties.contexts.impl.UnknownPropertyImpl <em>Unknown Property</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -632,7 +703,88 @@ public interface ContextsPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.properties.contexts.impl.ContextsPackageImpl#getUnknownProperty()
 	 * @generated
 	 */
-	int UNKNOWN_PROPERTY = 6;
+	int UNKNOWN_PROPERTY = 7;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.properties.contexts.impl.DataContextPackageImpl <em>Data Context Package</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see org.eclipse.papyrus.infra.properties.contexts.impl.DataContextPackageImpl
+	 * @see org.eclipse.papyrus.infra.properties.contexts.impl.ContextsPackageImpl#getDataContextPackage()
+	 * @generated
+	 */
+	int DATA_CONTEXT_PACKAGE = 6;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_CONTEXT_PACKAGE__NAME = DATA_CONTEXT_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Package</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_CONTEXT_PACKAGE__PACKAGE = DATA_CONTEXT_ELEMENT__PACKAGE;
+
+	/**
+	 * The feature id for the '<em><b>Supertypes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_CONTEXT_PACKAGE__SUPERTYPES = DATA_CONTEXT_ELEMENT__SUPERTYPES;
+
+	/**
+	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_CONTEXT_PACKAGE__PROPERTIES = DATA_CONTEXT_ELEMENT__PROPERTIES;
+
+	/**
+	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_CONTEXT_PACKAGE__ELEMENTS = DATA_CONTEXT_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Data Context Package</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_CONTEXT_PACKAGE_FEATURE_COUNT = DATA_CONTEXT_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Data Context Package</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_CONTEXT_PACKAGE_OPERATION_COUNT = DATA_CONTEXT_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -725,15 +877,34 @@ public interface ContextsPackage extends EPackage {
 	int UNKNOWN_PROPERTY_FEATURE_COUNT = PROPERTY_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.properties.contexts.impl.DataContextPackageImpl <em>Data Context Package</em>}' class.
+	 * The number of operations of the '<em>Unknown Property</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
-	 * @see org.eclipse.papyrus.infra.properties.contexts.impl.DataContextPackageImpl
-	 * @see org.eclipse.papyrus.infra.properties.contexts.impl.ContextsPackageImpl#getDataContextPackage()
 	 * @generated
+	 * @ordered
 	 */
-	int DATA_CONTEXT_PACKAGE = 7;
+	int UNKNOWN_PROPERTY_OPERATION_COUNT = PROPERTY_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW__CONSTRAINTS = ConstraintsPackage.DISPLAY_UNIT__CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Element Multiplicity</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW__ELEMENT_MULTIPLICITY = ConstraintsPackage.DISPLAY_UNIT__ELEMENT_MULTIPLICITY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -743,57 +914,67 @@ public interface ContextsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_CONTEXT_PACKAGE__NAME = DATA_CONTEXT_ELEMENT__NAME;
+	int VIEW__NAME = ConstraintsPackage.DISPLAY_UNIT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Sections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_CONTEXT_PACKAGE__PROPERTIES = DATA_CONTEXT_ELEMENT__PROPERTIES;
+	int VIEW__SECTIONS = ConstraintsPackage.DISPLAY_UNIT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Package</b></em>' container reference.
+	 * The feature id for the '<em><b>Automatic Context</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_CONTEXT_PACKAGE__PACKAGE = DATA_CONTEXT_ELEMENT__PACKAGE;
+	int VIEW__AUTOMATIC_CONTEXT = ConstraintsPackage.DISPLAY_UNIT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Supertypes</b></em>' reference list.
+	 * The feature id for the '<em><b>Datacontexts</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_CONTEXT_PACKAGE__SUPERTYPES = DATA_CONTEXT_ELEMENT__SUPERTYPES;
+	int VIEW__DATACONTEXTS = ConstraintsPackage.DISPLAY_UNIT_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Context</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_CONTEXT_PACKAGE__ELEMENTS = DATA_CONTEXT_ELEMENT_FEATURE_COUNT + 0;
+	int VIEW__CONTEXT = ConstraintsPackage.DISPLAY_UNIT_FEATURE_COUNT + 4;
 
 	/**
-	 * The number of structural features of the '<em>Data Context Package</em>' class.
+	 * The number of structural features of the '<em>View</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_CONTEXT_PACKAGE_FEATURE_COUNT = DATA_CONTEXT_ELEMENT_FEATURE_COUNT + 1;
+	int VIEW_FEATURE_COUNT = ConstraintsPackage.DISPLAY_UNIT_FEATURE_COUNT + 5;
+
+	/**
+	 * The number of operations of the '<em>View</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW_OPERATION_COUNT = ConstraintsPackage.DISPLAY_UNIT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.properties.contexts.impl.DataContextRootImpl <em>Data Context Root</em>}' class.
@@ -804,7 +985,7 @@ public interface ContextsPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.properties.contexts.impl.ContextsPackageImpl#getDataContextRoot()
 	 * @generated
 	 */
-	int DATA_CONTEXT_ROOT = 8;
+	int DATA_CONTEXT_ROOT = 9;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -815,16 +996,6 @@ public interface ContextsPackage extends EPackage {
 	 * @ordered
 	 */
 	int DATA_CONTEXT_ROOT__NAME = DATA_CONTEXT_PACKAGE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_CONTEXT_ROOT__PROPERTIES = DATA_CONTEXT_PACKAGE__PROPERTIES;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' container reference.
@@ -845,6 +1016,16 @@ public interface ContextsPackage extends EPackage {
 	 * @ordered
 	 */
 	int DATA_CONTEXT_ROOT__SUPERTYPES = DATA_CONTEXT_PACKAGE__SUPERTYPES;
+
+	/**
+	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_CONTEXT_ROOT__PROPERTIES = DATA_CONTEXT_PACKAGE__PROPERTIES;
 
 	/**
 	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
@@ -885,6 +1066,17 @@ public interface ContextsPackage extends EPackage {
 	 * @ordered
 	 */
 	int DATA_CONTEXT_ROOT_FEATURE_COUNT = DATA_CONTEXT_PACKAGE_FEATURE_COUNT + 2;
+
+
+	/**
+	 * The number of operations of the '<em>Data Context Root</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_CONTEXT_ROOT_OPERATION_COUNT = DATA_CONTEXT_PACKAGE_OPERATION_COUNT + 0;
 
 
 	/**
@@ -1066,16 +1258,28 @@ public interface ContextsPackage extends EPackage {
 	EReference getTab_AfterTab();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.infra.properties.contexts.Tab#getSections <em>Sections</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.infra.properties.contexts.Tab#getSections <em>Sections</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
-	 * @return the meta object for the containment reference list '<em>Sections</em>'.
+	 * @return the meta object for the reference list '<em>Sections</em>'.
 	 * @see org.eclipse.papyrus.infra.properties.contexts.Tab#getSections()
 	 * @see #getTab()
 	 * @generated
 	 */
 	EReference getTab_Sections();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.infra.properties.contexts.Tab#getAllSections <em>All Sections</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the containment reference list '<em>All Sections</em>'.
+	 * @see org.eclipse.papyrus.infra.properties.contexts.Tab#getAllSections()
+	 * @see #getTab()
+	 * @generated
+	 */
+	EReference getTab_AllSections();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.properties.contexts.Tab#isIndented <em>Indented</em>}'.
@@ -1173,6 +1377,41 @@ public interface ContextsPackage extends EPackage {
 	EReference getView_Datacontexts();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.properties.contexts.AbstractSection <em>Abstract Section</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for class '<em>Abstract Section</em>'.
+	 * @see org.eclipse.papyrus.infra.properties.contexts.AbstractSection
+	 * @generated
+	 */
+	EClass getAbstractSection();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.properties.contexts.AbstractSection#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.eclipse.papyrus.infra.properties.contexts.AbstractSection#getName()
+	 * @see #getAbstractSection()
+	 * @generated
+	 */
+	EAttribute getAbstractSection_Name();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.infra.properties.contexts.AbstractSection#getTab <em>Tab</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the container reference '<em>Tab</em>'.
+	 * @see org.eclipse.papyrus.infra.properties.contexts.AbstractSection#getTab()
+	 * @see #getAbstractSection()
+	 * @generated
+	 */
+	EReference getAbstractSection_Tab();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.properties.contexts.Section <em>Section</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1182,30 +1421,6 @@ public interface ContextsPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getSection();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.properties.contexts.Section#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.eclipse.papyrus.infra.properties.contexts.Section#getName()
-	 * @see #getSection()
-	 * @generated
-	 */
-	EAttribute getSection_Name();
-
-	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.infra.properties.contexts.Section#getTab <em>Tab</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @return the meta object for the container reference '<em>Tab</em>'.
-	 * @see org.eclipse.papyrus.infra.properties.contexts.Section#getTab()
-	 * @see #getSection()
-	 * @generated
-	 */
-	EReference getSection_Tab();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.properties.contexts.Section#getSectionFile <em>Section File</em>}'.
@@ -1230,6 +1445,18 @@ public interface ContextsPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSection_Widget();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.properties.contexts.Section#getOwner <em>Owner</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the reference '<em>Owner</em>'.
+	 * @see org.eclipse.papyrus.infra.properties.contexts.Section#getOwner()
+	 * @see #getSection()
+	 * @generated
+	 */
+	EReference getSection_Owner();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.properties.contexts.DataContextElement <em>Data Context Element</em>}'.
@@ -1631,13 +1858,22 @@ public interface ContextsPackage extends EPackage {
 		EReference TAB__AFTER_TAB = eINSTANCE.getTab_AfterTab();
 
 		/**
-		 * The meta object literal for the '<em><b>Sections</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Sections</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
 		 * @generated
 		 */
 		EReference TAB__SECTIONS = eINSTANCE.getTab_Sections();
+
+		/**
+		 * The meta object literal for the '<em><b>All Sections</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EReference TAB__ALL_SECTIONS = eINSTANCE.getTab_AllSections();
 
 		/**
 		 * The meta object literal for the '<em><b>Indented</b></em>' attribute feature.
@@ -1714,6 +1950,35 @@ public interface ContextsPackage extends EPackage {
 		EReference VIEW__DATACONTEXTS = eINSTANCE.getView_Datacontexts();
 
 		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.properties.contexts.impl.AbstractSectionImpl <em>Abstract Section</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @see org.eclipse.papyrus.infra.properties.contexts.impl.AbstractSectionImpl
+		 * @see org.eclipse.papyrus.infra.properties.contexts.impl.ContextsPackageImpl#getAbstractSection()
+		 * @generated
+		 */
+		EClass ABSTRACT_SECTION = eINSTANCE.getAbstractSection();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EAttribute ABSTRACT_SECTION__NAME = eINSTANCE.getAbstractSection_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Tab</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EReference ABSTRACT_SECTION__TAB = eINSTANCE.getAbstractSection_Tab();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.properties.contexts.impl.SectionImpl <em>Section</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1723,24 +1988,6 @@ public interface ContextsPackage extends EPackage {
 		 * @generated
 		 */
 		EClass SECTION = eINSTANCE.getSection();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 *
-		 * @generated
-		 */
-		EAttribute SECTION__NAME = eINSTANCE.getSection_Name();
-
-		/**
-		 * The meta object literal for the '<em><b>Tab</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 *
-		 * @generated
-		 */
-		EReference SECTION__TAB = eINSTANCE.getSection_Tab();
 
 		/**
 		 * The meta object literal for the '<em><b>Section File</b></em>' attribute feature.
@@ -1759,6 +2006,15 @@ public interface ContextsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SECTION__WIDGET = eINSTANCE.getSection_Widget();
+
+		/**
+		 * The meta object literal for the '<em><b>Owner</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EReference SECTION__OWNER = eINSTANCE.getSection_Owner();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.properties.contexts.impl.DataContextElementImpl <em>Data Context Element</em>}' class.

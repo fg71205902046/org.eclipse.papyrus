@@ -40,7 +40,7 @@ public class ReferenceAttributeImpl extends WidgetAttributeImpl implements Refer
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
@@ -50,7 +50,7 @@ public class ReferenceAttributeImpl extends WidgetAttributeImpl implements Refer
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected ReferenceAttributeImpl() {
@@ -60,7 +60,7 @@ public class ReferenceAttributeImpl extends WidgetAttributeImpl implements Refer
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -71,7 +71,7 @@ public class ReferenceAttributeImpl extends WidgetAttributeImpl implements Refer
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -82,7 +82,7 @@ public class ReferenceAttributeImpl extends WidgetAttributeImpl implements Refer
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public NotificationChain basicSetValue(UIComponent newValue, NotificationChain msgs) {
@@ -90,10 +90,11 @@ public class ReferenceAttributeImpl extends WidgetAttributeImpl implements Refer
 		value = newValue;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UiPackage.REFERENCE_ATTRIBUTE__VALUE, oldValue, newValue);
-			if (msgs == null)
+			if (msgs == null) {
 				msgs = notification;
-			else
+			} else {
 				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -101,28 +102,32 @@ public class ReferenceAttributeImpl extends WidgetAttributeImpl implements Refer
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
 	public void setValue(UIComponent newValue) {
 		if (newValue != value) {
 			NotificationChain msgs = null;
-			if (value != null)
+			if (value != null) {
 				msgs = ((InternalEObject) value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UiPackage.REFERENCE_ATTRIBUTE__VALUE, null, msgs);
-			if (newValue != null)
+			}
+			if (newValue != null) {
 				msgs = ((InternalEObject) newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UiPackage.REFERENCE_ATTRIBUTE__VALUE, null, msgs);
+			}
 			msgs = basicSetValue(newValue, msgs);
-			if (msgs != null)
+			if (msgs != null) {
 				msgs.dispatch();
-		} else if (eNotificationRequired())
+			}
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UiPackage.REFERENCE_ATTRIBUTE__VALUE, newValue, newValue));
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -137,7 +142,7 @@ public class ReferenceAttributeImpl extends WidgetAttributeImpl implements Refer
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -152,7 +157,7 @@ public class ReferenceAttributeImpl extends WidgetAttributeImpl implements Refer
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -168,7 +173,7 @@ public class ReferenceAttributeImpl extends WidgetAttributeImpl implements Refer
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -184,7 +189,7 @@ public class ReferenceAttributeImpl extends WidgetAttributeImpl implements Refer
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override

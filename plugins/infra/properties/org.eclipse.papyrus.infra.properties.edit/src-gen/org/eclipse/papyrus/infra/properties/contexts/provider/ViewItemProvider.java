@@ -79,8 +79,8 @@ public class ViewItemProvider
 	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_View_name_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_View_name_feature", "_UI_View_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				getString("_UI_View_name_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_View_name_feature", "_UI_View_type"),
 				ContextsPackage.Literals.VIEW__NAME,
 				true,
 				false,
@@ -100,8 +100,8 @@ public class ViewItemProvider
 	protected void addSectionsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_View_sections_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_View_sections_feature", "_UI_View_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				getString("_UI_View_sections_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_View_sections_feature", "_UI_View_type"),
 				ContextsPackage.Literals.VIEW__SECTIONS,
 				true,
 				false,
@@ -121,8 +121,8 @@ public class ViewItemProvider
 	protected void addAutomaticContextPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_View_automaticContext_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_View_automaticContext_feature", "_UI_View_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				getString("_UI_View_automaticContext_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_View_automaticContext_feature", "_UI_View_type"),
 				ContextsPackage.Literals.VIEW__AUTOMATIC_CONTEXT,
 				true,
 				false,
@@ -142,8 +142,8 @@ public class ViewItemProvider
 	protected void addDatacontextsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_View_datacontexts_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_View_datacontexts_feature", "_UI_View_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				getString("_UI_View_datacontexts_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_View_datacontexts_feature", "_UI_View_type"),
 				ContextsPackage.Literals.VIEW__DATACONTEXTS,
 				true,
 				false,
@@ -162,7 +162,7 @@ public class ViewItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/View")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/View"));
 	}
 
 	/**
@@ -175,8 +175,7 @@ public class ViewItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((View) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_View_type") : //$NON-NLS-1$
-				getString("_UI_View_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return label == null || label.length() == 0 ? getString("_UI_View_type") : getString("_UI_View_type") + " " + label;
 	}
 
 	/**
