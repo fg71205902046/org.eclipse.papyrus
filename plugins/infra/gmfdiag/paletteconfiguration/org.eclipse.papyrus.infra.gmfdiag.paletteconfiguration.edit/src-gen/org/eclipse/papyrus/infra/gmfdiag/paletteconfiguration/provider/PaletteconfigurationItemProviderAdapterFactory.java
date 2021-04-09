@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2015 CEA LIST.
+ * Copyright (c) 2015, 2021 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 572712
  */
 package org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.provider;
 
@@ -70,7 +71,6 @@ public class PaletteconfigurationItemProviderAdapterFactory extends Paletteconfi
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @since 3.1
 	 */
 	protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(PaletteConfigurationEditPlugin.INSTANCE, PaletteconfigurationPackage.eNS_URI);
 
@@ -263,6 +263,7 @@ public class PaletteconfigurationItemProviderAdapterFactory extends Paletteconfi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ComposeableAdapterFactory getRootAdapterFactory() {
 		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
 	}
@@ -273,6 +274,7 @@ public class PaletteconfigurationItemProviderAdapterFactory extends Paletteconfi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
 		this.parentAdapterFactory = parentAdapterFactory;
 	}
@@ -319,7 +321,6 @@ public class PaletteconfigurationItemProviderAdapterFactory extends Paletteconfi
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @since 3.1
 	 */
 	public List<IChildCreationExtender> getChildCreationExtenders() {
 		return childCreationExtenderManager.getChildCreationExtenders();
@@ -349,6 +350,7 @@ public class PaletteconfigurationItemProviderAdapterFactory extends Paletteconfi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void addListener(INotifyChangedListener notifyChangedListener) {
 		changeNotifier.addListener(notifyChangedListener);
 	}
@@ -359,6 +361,7 @@ public class PaletteconfigurationItemProviderAdapterFactory extends Paletteconfi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
 		changeNotifier.removeListener(notifyChangedListener);
 	}
@@ -369,6 +372,7 @@ public class PaletteconfigurationItemProviderAdapterFactory extends Paletteconfi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void fireNotifyChanged(Notification notification) {
 		changeNotifier.fireNotifyChanged(notification);
 
@@ -383,6 +387,7 @@ public class PaletteconfigurationItemProviderAdapterFactory extends Paletteconfi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void dispose() {
 		if (paletteConfigurationItemProvider != null) paletteConfigurationItemProvider.dispose();
 		if (iconDescriptorItemProvider != null) iconDescriptorItemProvider.dispose();

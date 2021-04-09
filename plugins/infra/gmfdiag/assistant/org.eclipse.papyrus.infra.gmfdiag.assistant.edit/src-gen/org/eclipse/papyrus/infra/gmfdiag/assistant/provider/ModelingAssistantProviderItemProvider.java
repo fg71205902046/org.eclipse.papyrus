@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014, 2015 Christian W. Damus and others.
+ * Copyright (c) 2014, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -458,6 +458,9 @@ public class ModelingAssistantProviderItemProvider extends ItemProviderAdapter i
 
 		newChildDescriptors.add(createChildParameter(AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__OWNED_FILTER,
 				AssistantFactory.eINSTANCE.createElementTypeFilter()));
+
+		newChildDescriptors.add(createChildParameter(AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__OWNED_FILTER,
+				FiltersFactory.eINSTANCE.createFilterReference()));
 
 		newChildDescriptors.add(createChildParameter(AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__OWNED_FILTER,
 				FiltersFactory.eINSTANCE.createCompoundFilter()));

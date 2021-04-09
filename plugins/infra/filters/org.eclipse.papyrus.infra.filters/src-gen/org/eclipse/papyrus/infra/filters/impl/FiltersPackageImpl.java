@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.papyrus.infra.filters.CompoundFilter;
 import org.eclipse.papyrus.infra.filters.Equals;
 import org.eclipse.papyrus.infra.filters.Filter;
+import org.eclipse.papyrus.infra.filters.FilterReference;
 import org.eclipse.papyrus.infra.filters.FilteredElement;
 import org.eclipse.papyrus.infra.filters.FiltersFactory;
 import org.eclipse.papyrus.infra.filters.FiltersPackage;
@@ -73,6 +74,14 @@ public class FiltersPackageImpl extends EPackageImpl implements FiltersPackage {
 	 * @generated
 	 */
 	private EClass filteredElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	private EClass filterReferenceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -137,7 +146,8 @@ public class FiltersPackageImpl extends EPackageImpl implements FiltersPackage {
 		}
 
 		// Obtain or create and register package
-		FiltersPackageImpl theFiltersPackage = (FiltersPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof FiltersPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new FiltersPackageImpl());
+		Object registeredFiltersPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		FiltersPackageImpl theFiltersPackage = registeredFiltersPackage instanceof FiltersPackageImpl ? (FiltersPackageImpl) registeredFiltersPackage : new FiltersPackageImpl();
 
 		isInited = true;
 
@@ -161,7 +171,6 @@ public class FiltersPackageImpl extends EPackageImpl implements FiltersPackage {
 
 		// Mark meta-data to indicate it can't be changed
 		theFiltersPackage.freeze();
-
 
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(FiltersPackage.eNS_URI, theFiltersPackage);
@@ -307,6 +316,39 @@ public class FiltersPackageImpl extends EPackageImpl implements FiltersPackage {
 	 * @generated
 	 */
 	@Override
+	public EClass getFilterReference() {
+		return filterReferenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EReference getFilterReference_Filter() {
+		return (EReference) filterReferenceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EReference getFilterReference_OwnedFilter() {
+		return (EReference) filterReferenceEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
 	public EEnum getOperatorKind() {
 		return operatorKindEEnum;
 	}
@@ -356,15 +398,19 @@ public class FiltersPackageImpl extends EPackageImpl implements FiltersPackage {
 		isCreated = true;
 
 		// Create classes and their features
+		filterReferenceEClass = createEClass(FILTER_REFERENCE);
+		createEReference(filterReferenceEClass, FILTER_REFERENCE__FILTER);
+		createEReference(filterReferenceEClass, FILTER_REFERENCE__OWNED_FILTER);
+
+		filterEClass = createEClass(FILTER);
+		createEAttribute(filterEClass, FILTER__NAME);
+		createEOperation(filterEClass, FILTER___MATCHES__OBJECT);
+
 		compoundFilterEClass = createEClass(COMPOUND_FILTER);
 		createEReference(compoundFilterEClass, COMPOUND_FILTER__FILTER);
 		createEReference(compoundFilterEClass, COMPOUND_FILTER__OWNED_FILTER);
 		createEAttribute(compoundFilterEClass, COMPOUND_FILTER__OPERATOR);
 		createEOperation(compoundFilterEClass, COMPOUND_FILTER___VALIDATE_ACYCLIC__DIAGNOSTICCHAIN_MAP);
-
-		filterEClass = createEClass(FILTER);
-		createEAttribute(filterEClass, FILTER__NAME);
-		createEOperation(filterEClass, FILTER___MATCHES__OBJECT);
 
 		equalsEClass = createEClass(EQUALS);
 		createEAttribute(equalsEClass, EQUALS__OBJECT);
@@ -414,17 +460,29 @@ public class FiltersPackageImpl extends EPackageImpl implements FiltersPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		filterReferenceEClass.getESuperTypes().add(this.getFilter());
 		compoundFilterEClass.getESuperTypes().add(this.getFilter());
 		equalsEClass.getESuperTypes().add(this.getFilter());
 
 		// Initialize classes, features, and operations; add parameters
+		initEClass(filterReferenceEClass, FilterReference.class, "FilterReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getFilterReference_Filter(), this.getFilter(), null, "filter", null, 1, 1, FilterReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getFilterReference_OwnedFilter(), this.getFilter(), null, "ownedFilter", null, 0, 1, FilterReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, //$NON-NLS-1$
+				!IS_ORDERED);
+
+		initEClass(filterEClass, Filter.class, "Filter", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getFilter_Name(), theTypesPackage.getString(), "name", null, 0, 1, Filter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
+		EOperation op = initEOperation(getFilter__Matches__Object(), theTypesPackage.getBoolean(), "matches", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, this.getObject(), "input", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+
 		initEClass(compoundFilterEClass, CompoundFilter.class, "CompoundFilter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getCompoundFilter_Filter(), this.getFilter(), null, "filter", null, 1, -1, CompoundFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getCompoundFilter_OwnedFilter(), this.getFilter(), null, "ownedFilter", null, 0, -1, CompoundFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, //$NON-NLS-1$
 				!IS_ORDERED);
 		initEAttribute(getCompoundFilter_Operator(), this.getOperatorKind(), "operator", null, 1, 1, CompoundFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		EOperation op = initEOperation(getCompoundFilter__ValidateAcyclic__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateAcyclic", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = initEOperation(getCompoundFilter__ValidateAcyclic__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateAcyclic", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
 		EGenericType g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -432,12 +490,6 @@ public class FiltersPackageImpl extends EPackageImpl implements FiltersPackage {
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(filterEClass, Filter.class, "Filter", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getFilter_Name(), theTypesPackage.getString(), "name", null, 0, 1, Filter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-
-		op = initEOperation(getFilter__Matches__Object(), theTypesPackage.getBoolean(), "matches", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
-		addEParameter(op, this.getObject(), "input", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(equalsEClass, Equals.class, "Equals", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getEquals_Object(), this.getObject(), "object", null, 1, 1, Equals.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
@@ -472,6 +524,13 @@ public class FiltersPackageImpl extends EPackageImpl implements FiltersPackage {
 	 */
 	protected void createSubsetsAnnotations() {
 		String source = "subsets"; //$NON-NLS-1$
+		addAnnotation(getFilterReference_OwnedFilter(),
+				source,
+				new String[] {
+				},
+				new URI[] {
+						URI.createURI(eNS_URI).appendFragment("//FilterReference/filter") //$NON-NLS-1$
+				});
 		addAnnotation(getCompoundFilter_OwnedFilter(),
 				source,
 				new String[] {

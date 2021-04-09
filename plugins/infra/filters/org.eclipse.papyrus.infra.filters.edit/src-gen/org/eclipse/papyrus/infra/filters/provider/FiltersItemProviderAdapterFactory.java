@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -159,7 +159,6 @@ public class FiltersItemProviderAdapterFactory extends FiltersAdapterFactory imp
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated
-	 * @since 1.4
 	 */
 	protected FilteredElementItemProvider filteredElementItemProvider;
 
@@ -177,6 +176,31 @@ public class FiltersItemProviderAdapterFactory extends FiltersAdapterFactory imp
 		}
 
 		return filteredElementItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.filters.FilterReference} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	protected FilterReferenceItemProvider filterReferenceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.filters.FilterReference}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public Adapter createFilterReferenceAdapter() {
+		if (filterReferenceItemProvider == null) {
+			filterReferenceItemProvider = new FilterReferenceItemProvider(this);
+		}
+
+		return filterReferenceItemProvider;
 	}
 
 	/**
@@ -325,6 +349,9 @@ public class FiltersItemProviderAdapterFactory extends FiltersAdapterFactory imp
 	 */
 	@Override
 	public void dispose() {
+		if (filterReferenceItemProvider != null) {
+			filterReferenceItemProvider.dispose();
+		}
 		if (compoundFilterItemProvider != null) {
 			compoundFilterItemProvider.dispose();
 		}

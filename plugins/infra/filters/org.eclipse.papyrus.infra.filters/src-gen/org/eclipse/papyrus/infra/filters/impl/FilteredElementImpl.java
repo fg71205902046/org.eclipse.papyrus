@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -41,7 +41,6 @@ import org.eclipse.papyrus.infra.filters.FiltersPackage;
  * </ul>
  *
  * @generated
- * @since 1.3
  */
 public class FilteredElementImpl extends MinimalEObjectImpl.Container implements FilteredElement {
 	/**
@@ -241,7 +240,7 @@ public class FilteredElementImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 *
 	 * @param eClass
-	 *            The Ecore class of the instance to create.
+	 *                   The Ecore class of the instance to create.
 	 * @return The new instance.
 	 * @generated
 	 */

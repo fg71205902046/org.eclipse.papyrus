@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017 CEA LIST.
+ * Copyright (c) 2017, 2021 CEA LIST, Christian W. Damus, and others.
  *  
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *  
  * Contributors:
  * 	CEA LIST - Initial API and implementation
+ * 	Christian W. Damus - bug 572712
  * 
  */
 package org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.impl;
@@ -115,6 +116,7 @@ public class CreationMenuImpl extends MenuImpl implements CreationMenu {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ElementTypeConfiguration getElementType() {
 		if (elementType != null && elementType.eIsProxy()) {
 			InternalEObject oldElementType = (InternalEObject)elementType;
@@ -141,6 +143,7 @@ public class CreationMenuImpl extends MenuImpl implements CreationMenu {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setElementType(ElementTypeConfiguration newElementType) {
 		ElementTypeConfiguration oldElementType = elementType;
 		elementType = newElementType;
@@ -153,6 +156,7 @@ public class CreationMenuImpl extends MenuImpl implements CreationMenu {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getRole() {
 		return role;
 	}
@@ -162,6 +166,7 @@ public class CreationMenuImpl extends MenuImpl implements CreationMenu {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRole(String newRole) {
 		String oldRole = role;
 		role = newRole;
@@ -174,6 +179,7 @@ public class CreationMenuImpl extends MenuImpl implements CreationMenu {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isDisplayAllRoles() {
 		return displayAllRoles;
 	}
@@ -183,6 +189,7 @@ public class CreationMenuImpl extends MenuImpl implements CreationMenu {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDisplayAllRoles(boolean newDisplayAllRoles) {
 		boolean oldDisplayAllRoles = displayAllRoles;
 		displayAllRoles = newDisplayAllRoles;
@@ -278,7 +285,7 @@ public class CreationMenuImpl extends MenuImpl implements CreationMenu {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (role: ");
 		result.append(role);
 		result.append(", displayAllRoles: ");

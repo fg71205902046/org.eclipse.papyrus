@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -71,6 +71,8 @@ public class FiltersFactoryImpl extends EFactoryImpl implements FiltersFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
+		case FiltersPackage.FILTER_REFERENCE:
+			return createFilterReference();
 		case FiltersPackage.COMPOUND_FILTER:
 			return createCompoundFilter();
 		case FiltersPackage.EQUALS:
@@ -152,6 +154,18 @@ public class FiltersFactoryImpl extends EFactoryImpl implements FiltersFactory {
 	public FilteredElement createFilteredElement() {
 		FilteredElementImpl filteredElement = new FilteredElementImpl();
 		return filteredElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public FilterReference createFilterReference() {
+		FilterReferenceImpl filterReference = new FilterReferenceImpl();
+		return filterReference;
 	}
 
 	/**

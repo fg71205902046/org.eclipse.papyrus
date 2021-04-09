@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017 CEA LIST.
+ * Copyright (c) 2017, 2021 CEA LIST, Christian W. Damus, and others.
  *  
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *  
  * Contributors:
  * 	CEA LIST - Initial API and implementation
+ * 	Christian W. Damus - bug 572712
  * 
  */
 package org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.impl;
@@ -101,7 +102,7 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link ElementCreationMenuModelPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -115,7 +116,8 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 		if (isInited) return (ElementCreationMenuModelPackage)EPackage.Registry.INSTANCE.getEPackage(ElementCreationMenuModelPackage.eNS_URI);
 
 		// Obtain or create and register package
-		ElementCreationMenuModelPackageImpl theElementCreationMenuModelPackage = (ElementCreationMenuModelPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ElementCreationMenuModelPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ElementCreationMenuModelPackageImpl());
+		Object registeredElementCreationMenuModelPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		ElementCreationMenuModelPackageImpl theElementCreationMenuModelPackage = registeredElementCreationMenuModelPackage instanceof ElementCreationMenuModelPackageImpl ? (ElementCreationMenuModelPackageImpl)registeredElementCreationMenuModelPackage : new ElementCreationMenuModelPackageImpl();
 
 		isInited = true;
 
@@ -134,7 +136,6 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 		// Mark meta-data to indicate it can't be changed
 		theElementCreationMenuModelPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(ElementCreationMenuModelPackage.eNS_URI, theElementCreationMenuModelPackage);
 		return theElementCreationMenuModelPackage;
@@ -145,6 +146,7 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFolder() {
 		return folderEClass;
 	}
@@ -154,6 +156,7 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFolder_Menu() {
 		return (EReference)folderEClass.getEStructuralFeatures().get(0);
 	}
@@ -163,6 +166,7 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMenu() {
 		return menuEClass;
 	}
@@ -172,6 +176,7 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getMenu_Label() {
 		return (EAttribute)menuEClass.getEStructuralFeatures().get(0);
 	}
@@ -181,6 +186,7 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getMenu_Icon() {
 		return (EAttribute)menuEClass.getEStructuralFeatures().get(1);
 	}
@@ -190,6 +196,7 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getMenu_Visible() {
 		return (EAttribute)menuEClass.getEStructuralFeatures().get(2);
 	}
@@ -199,6 +206,7 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMenu_Filter() {
 		return (EReference)menuEClass.getEStructuralFeatures().get(3);
 	}
@@ -208,6 +216,7 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCreationMenu() {
 		return creationMenuEClass;
 	}
@@ -217,6 +226,7 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCreationMenu_ElementType() {
 		return (EReference)creationMenuEClass.getEStructuralFeatures().get(0);
 	}
@@ -226,6 +236,7 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getCreationMenu_Role() {
 		return (EAttribute)creationMenuEClass.getEStructuralFeatures().get(1);
 	}
@@ -235,6 +246,7 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getCreationMenu_DisplayAllRoles() {
 		return (EAttribute)creationMenuEClass.getEStructuralFeatures().get(2);
 	}
@@ -244,6 +256,7 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCreateRelationshipMenu() {
 		return createRelationshipMenuEClass;
 	}
@@ -253,6 +266,7 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSeparator() {
 		return separatorEClass;
 	}
@@ -262,6 +276,7 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ElementCreationMenuModelFactory getElementCreationMenuModelFactory() {
 		return (ElementCreationMenuModelFactory)getEFactoryInstance();
 	}

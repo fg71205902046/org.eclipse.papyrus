@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017 CEA LIST.
+ * Copyright (c) 2017, 2021 CEA LIST, Christian W. Damus, and others.
  *  
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *  
  * Contributors:
  * 	CEA LIST - Initial API and implementation
+ * 	Christian W. Damus - bug 572712
  * 
  */
 package org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.impl;
@@ -82,6 +83,7 @@ public class ElementCreationMenuModelFactoryImpl extends EFactoryImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Folder createFolder() {
 		FolderImpl folder = new FolderImpl();
 		return folder;
@@ -92,6 +94,7 @@ public class ElementCreationMenuModelFactoryImpl extends EFactoryImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CreationMenu createCreationMenu() {
 		CreationMenuImpl creationMenu = new CreationMenuImpl();
 		return creationMenu;
@@ -102,6 +105,7 @@ public class ElementCreationMenuModelFactoryImpl extends EFactoryImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CreateRelationshipMenu createCreateRelationshipMenu() {
 		CreateRelationshipMenuImpl createRelationshipMenu = new CreateRelationshipMenuImpl();
 		return createRelationshipMenu;
@@ -112,6 +116,7 @@ public class ElementCreationMenuModelFactoryImpl extends EFactoryImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Separator createSeparator() {
 		SeparatorImpl separator = new SeparatorImpl();
 		return separator;
@@ -122,6 +127,7 @@ public class ElementCreationMenuModelFactoryImpl extends EFactoryImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ElementCreationMenuModelPackage getElementCreationMenuModelPackage() {
 		return (ElementCreationMenuModelPackage)getEPackage();
 	}

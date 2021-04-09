@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -116,10 +116,12 @@ public class FiltersValidator extends EObjectValidator {
 	@Override
 	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		switch (classifierID) {
-		case FiltersPackage.COMPOUND_FILTER:
-			return validateCompoundFilter((CompoundFilter) value, diagnostics, context);
+		case FiltersPackage.FILTER_REFERENCE:
+			return validateFilterReference((FilterReference) value, diagnostics, context);
 		case FiltersPackage.FILTER:
 			return validateFilter((Filter) value, diagnostics, context);
+		case FiltersPackage.COMPOUND_FILTER:
+			return validateCompoundFilter((CompoundFilter) value, diagnostics, context);
 		case FiltersPackage.EQUALS:
 			return validateEquals((Equals) value, diagnostics, context);
 		case FiltersPackage.FILTERED_ELEMENT:
@@ -207,10 +209,19 @@ public class FiltersValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated
-	 * @since 1.3
 	 */
 	public boolean validateFilteredElement(FilteredElement filteredElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(filteredElement, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	public boolean validateFilterReference(FilterReference filterReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(filterReference, diagnostics, context);
 	}
 
 	/**

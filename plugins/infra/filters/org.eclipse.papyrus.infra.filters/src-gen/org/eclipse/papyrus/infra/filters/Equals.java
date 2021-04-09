@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -53,7 +53,7 @@ public interface Equals extends Filter {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Object</em>' attribute.
+	 *                  the new value of the '<em>Object</em>' attribute.
 	 * @see #getObject()
 	 * @generated
 	 */

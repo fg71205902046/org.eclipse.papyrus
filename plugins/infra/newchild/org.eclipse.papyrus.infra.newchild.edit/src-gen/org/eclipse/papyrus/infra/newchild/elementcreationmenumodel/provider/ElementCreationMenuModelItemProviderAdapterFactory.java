@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017, 2018 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2017, 2021 CEA LIST, Christian W. Damus, and others.
  *  
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,7 +10,7 @@
  *  
  * Contributors:
  * 	CEA LIST - Initial API and implementation
- * 	Christian W. Damus - bug 536405
+ * 	Christian W. Damus - bugs 536405, 572712
  * 
  */
 package org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.provider;
@@ -73,7 +73,6 @@ public class ElementCreationMenuModelItemProviderAdapterFactory extends ElementC
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @since 4.1
 	 */
 	protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(ElementCreationMenuModelEditPlugin.INSTANCE, ElementCreationMenuModelPackage.eNS_URI);
 
@@ -197,6 +196,7 @@ public class ElementCreationMenuModelItemProviderAdapterFactory extends ElementC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ComposeableAdapterFactory getRootAdapterFactory() {
 		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
 	}
@@ -207,6 +207,7 @@ public class ElementCreationMenuModelItemProviderAdapterFactory extends ElementC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
 		this.parentAdapterFactory = parentAdapterFactory;
 	}
@@ -253,7 +254,6 @@ public class ElementCreationMenuModelItemProviderAdapterFactory extends ElementC
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @since 4.1
 	 */
 	public List<IChildCreationExtender> getChildCreationExtenders() {
 		return childCreationExtenderManager.getChildCreationExtenders();
@@ -283,6 +283,7 @@ public class ElementCreationMenuModelItemProviderAdapterFactory extends ElementC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void addListener(INotifyChangedListener notifyChangedListener) {
 		changeNotifier.addListener(notifyChangedListener);
 	}
@@ -293,6 +294,7 @@ public class ElementCreationMenuModelItemProviderAdapterFactory extends ElementC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
 		changeNotifier.removeListener(notifyChangedListener);
 	}
@@ -303,6 +305,7 @@ public class ElementCreationMenuModelItemProviderAdapterFactory extends ElementC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void fireNotifyChanged(Notification notification) {
 		changeNotifier.fireNotifyChanged(notification);
 
@@ -317,6 +320,7 @@ public class ElementCreationMenuModelItemProviderAdapterFactory extends ElementC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void dispose() {
 		if (folderItemProvider != null) folderItemProvider.dispose();
 		if (creationMenuItemProvider != null) creationMenuItemProvider.dispose();

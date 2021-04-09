@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -31,7 +31,6 @@ import org.eclipse.emf.ecore.EObject;
  * @see org.eclipse.papyrus.infra.filters.FiltersPackage#getFilteredElement()
  * @model
  * @generated
- * @since 1.3
  */
 public interface FilteredElement extends EObject {
 	/**
@@ -57,7 +56,7 @@ public interface FilteredElement extends EObject {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Filter</em>' containment reference.
+	 *                  the new value of the '<em>Filter</em>' containment reference.
 	 * @see #getFilter()
 	 * @generated
 	 */
@@ -69,9 +68,9 @@ public interface FilteredElement extends EObject {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param name
-	 *            The '<em><b>Name</b></em>' for the new {@link org.eclipse.papyrus.infra.filters.Filter}, or <code>null</code>.
+	 *                   The '<em><b>Name</b></em>' for the new {@link org.eclipse.papyrus.infra.filters.Filter}, or <code>null</code>.
 	 * @param eClass
-	 *            The Ecore class of the {@link org.eclipse.papyrus.infra.filters.Filter} to create.
+	 *                   The Ecore class of the {@link org.eclipse.papyrus.infra.filters.Filter} to create.
 	 * @return The new {@link org.eclipse.papyrus.infra.filters.Filter}.
 	 * @see #getFilter()
 	 * @generated

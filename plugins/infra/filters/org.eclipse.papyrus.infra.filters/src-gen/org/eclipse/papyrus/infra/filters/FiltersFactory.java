@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -61,9 +61,18 @@ public interface FiltersFactory extends EFactory {
 	 *
 	 * @return a new object of class '<em>Filtered Element</em>'.
 	 * @generated
-	 * @since 1.3
 	 */
 	FilteredElement createFilteredElement();
+
+	/**
+	 * Returns a new object of class '<em>Filter Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return a new object of class '<em>Filter Reference</em>'.
+	 * @generated
+	 */
+	FilterReference createFilterReference();
 
 	/**
 	 * Returns the package supported by this factory.

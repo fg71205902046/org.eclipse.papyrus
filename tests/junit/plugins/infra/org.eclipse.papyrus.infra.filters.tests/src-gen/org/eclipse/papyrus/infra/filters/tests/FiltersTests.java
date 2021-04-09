@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -47,6 +47,7 @@ public class FiltersTests extends TestSuite {
 		TestSuite suite = new FiltersTests("filters Tests"); //$NON-NLS-1$
 		suite.addTestSuite(CompoundFilterTest.class);
 		suite.addTestSuite(EqualsTest.class);
+		suite.addTestSuite(FilterReferenceTest.class);
 		return suite;
 	}
 

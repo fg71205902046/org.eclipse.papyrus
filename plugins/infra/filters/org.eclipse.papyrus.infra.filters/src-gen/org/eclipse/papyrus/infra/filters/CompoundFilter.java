@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -60,7 +60,7 @@ public interface CompoundFilter extends Filter {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param name
-	 *            The '<em><b>Name</b></em>' of the {@link org.eclipse.papyrus.infra.filters.Filter} to retrieve, or <code>null</code>.
+	 *                 The '<em><b>Name</b></em>' of the {@link org.eclipse.papyrus.infra.filters.Filter} to retrieve, or <code>null</code>.
 	 * @return The first {@link org.eclipse.papyrus.infra.filters.Filter} with the specified '<em><b>Name</b></em>', or <code>null</code>.
 	 * @see #getFilters()
 	 * @generated
@@ -73,11 +73,11 @@ public interface CompoundFilter extends Filter {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param name
-	 *            The '<em><b>Name</b></em>' of the {@link org.eclipse.papyrus.infra.filters.Filter} to retrieve, or <code>null</code>.
+	 *                       The '<em><b>Name</b></em>' of the {@link org.eclipse.papyrus.infra.filters.Filter} to retrieve, or <code>null</code>.
 	 * @param ignoreCase
-	 *            Whether to ignore case in {@link java.lang.String} comparisons.
+	 *                       Whether to ignore case in {@link java.lang.String} comparisons.
 	 * @param eClass
-	 *            The Ecore class of the {@link org.eclipse.papyrus.infra.filters.Filter} to retrieve, or <code>null</code>.
+	 *                       The Ecore class of the {@link org.eclipse.papyrus.infra.filters.Filter} to retrieve, or <code>null</code>.
 	 * @return The first {@link org.eclipse.papyrus.infra.filters.Filter} with the specified '<em><b>Name</b></em>', or <code>null</code>.
 	 * @see #getFilters()
 	 * @generated
@@ -102,6 +102,7 @@ public interface CompoundFilter extends Filter {
 	 * @return the value of the '<em>Owned Filter</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.filters.FiltersPackage#getCompoundFilter_OwnedFilter()
 	 * @model containment="true" ordered="false"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<Filter> getOwnedFilters();
@@ -112,9 +113,9 @@ public interface CompoundFilter extends Filter {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param name
-	 *            The '<em><b>Name</b></em>' for the new {@link org.eclipse.papyrus.infra.filters.Filter}, or <code>null</code>.
+	 *                   The '<em><b>Name</b></em>' for the new {@link org.eclipse.papyrus.infra.filters.Filter}, or <code>null</code>.
 	 * @param eClass
-	 *            The Ecore class of the {@link org.eclipse.papyrus.infra.filters.Filter} to create.
+	 *                   The Ecore class of the {@link org.eclipse.papyrus.infra.filters.Filter} to create.
 	 * @return The new {@link org.eclipse.papyrus.infra.filters.Filter}.
 	 * @see #getOwnedFilters()
 	 * @generated
@@ -127,7 +128,7 @@ public interface CompoundFilter extends Filter {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param name
-	 *            The '<em><b>Name</b></em>' of the {@link org.eclipse.papyrus.infra.filters.Filter} to retrieve, or <code>null</code>.
+	 *                 The '<em><b>Name</b></em>' of the {@link org.eclipse.papyrus.infra.filters.Filter} to retrieve, or <code>null</code>.
 	 * @return The first {@link org.eclipse.papyrus.infra.filters.Filter} with the specified '<em><b>Name</b></em>', or <code>null</code>.
 	 * @see #getOwnedFilters()
 	 * @generated
@@ -140,13 +141,13 @@ public interface CompoundFilter extends Filter {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param name
-	 *            The '<em><b>Name</b></em>' of the {@link org.eclipse.papyrus.infra.filters.Filter} to retrieve, or <code>null</code>.
+	 *                           The '<em><b>Name</b></em>' of the {@link org.eclipse.papyrus.infra.filters.Filter} to retrieve, or <code>null</code>.
 	 * @param ignoreCase
-	 *            Whether to ignore case in {@link java.lang.String} comparisons.
+	 *                           Whether to ignore case in {@link java.lang.String} comparisons.
 	 * @param eClass
-	 *            The Ecore class of the {@link org.eclipse.papyrus.infra.filters.Filter} to retrieve, or <code>null</code>.
+	 *                           The Ecore class of the {@link org.eclipse.papyrus.infra.filters.Filter} to retrieve, or <code>null</code>.
 	 * @param createOnDemand
-	 *            Whether to create a {@link org.eclipse.papyrus.infra.filters.Filter} on demand if not found.
+	 *                           Whether to create a {@link org.eclipse.papyrus.infra.filters.Filter} on demand if not found.
 	 * @return The first {@link org.eclipse.papyrus.infra.filters.Filter} with the specified '<em><b>Name</b></em>', or <code>null</code>.
 	 * @see #getOwnedFilters()
 	 * @generated
@@ -177,7 +178,7 @@ public interface CompoundFilter extends Filter {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Operator</em>' attribute.
+	 *                  the new value of the '<em>Operator</em>' attribute.
 	 * @see org.eclipse.papyrus.infra.filters.OperatorKind
 	 * @see #getOperator()
 	 * @generated
@@ -191,10 +192,10 @@ public interface CompoundFilter extends Filter {
 	 * A filter may not directly or indirectly compose itself.
 	 *
 	 * @param diagnostics
-	 *            The chain of diagnostics to which problems are to be appended.
+	 *                        The chain of diagnostics to which problems are to be appended.
 	 * @param context
-	 *            The cache of context-specific information.
-	 *            <!-- end-model-doc -->
+	 *                        The cache of context-specific information.
+	 *                        <!-- end-model-doc -->
 	 * @model
 	 * @generated
 	 */

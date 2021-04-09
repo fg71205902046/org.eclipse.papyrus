@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -44,7 +44,6 @@ import org.eclipse.papyrus.infra.filters.FiltersPackage;
  * <!-- end-user-doc -->
  *
  * @generated
- * @since 1.4
  */
 public class FilteredElementItemProvider
 		extends ItemProviderAdapter
@@ -168,6 +167,9 @@ public class FilteredElementItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add(createChildParameter(FiltersPackage.Literals.FILTERED_ELEMENT__FILTER,
+				FiltersFactory.eINSTANCE.createFilterReference()));
 
 		newChildDescriptors.add(createChildParameter(FiltersPackage.Literals.FILTERED_ELEMENT__FILTER,
 				FiltersFactory.eINSTANCE.createCompoundFilter()));

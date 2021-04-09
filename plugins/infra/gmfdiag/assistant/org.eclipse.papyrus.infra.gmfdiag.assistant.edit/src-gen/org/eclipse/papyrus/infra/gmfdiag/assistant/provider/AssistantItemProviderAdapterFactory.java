@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -44,6 +44,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 import org.eclipse.papyrus.infra.filters.CompoundFilter;
+import org.eclipse.papyrus.infra.filters.FilterReference;
 import org.eclipse.papyrus.infra.filters.FilteredElement;
 import org.eclipse.papyrus.infra.filters.FiltersPackage;
 
@@ -451,6 +452,23 @@ public class AssistantItemProviderAdapterFactory extends AssistantAdapterFactory
 			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) {
 				this.newChildDescriptors = newChildDescriptors;
 				this.editingDomain = editingDomain;
+			}
+
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 *
+			 * @generated
+			 */
+			@Override
+			public Object caseFilterReference(FilterReference object) {
+				newChildDescriptors.add(createChildParameter(FiltersPackage.Literals.FILTER_REFERENCE__OWNED_FILTER,
+						AssistantFactory.eINSTANCE.createAssistedElementTypeFilter()));
+
+				newChildDescriptors.add(createChildParameter(FiltersPackage.Literals.FILTER_REFERENCE__OWNED_FILTER,
+						AssistantFactory.eINSTANCE.createElementTypeFilter()));
+
+				return null;
 			}
 
 			/**

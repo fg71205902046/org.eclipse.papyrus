@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017 CEA LIST.
+ * Copyright (c) 2017, 2021 CEA LIST, Christian W. Damus, and others.
  *  
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *  
  * Contributors:
  * 	CEA LIST - Initial API and implementation
+ * 	Christian W. Damus - bug 572712
  * 
  */
 package org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.impl;
@@ -137,6 +138,7 @@ public abstract class MenuImpl extends MinimalEObjectImpl.Container implements M
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLabel() {
 		return label;
 	}
@@ -146,6 +148,7 @@ public abstract class MenuImpl extends MinimalEObjectImpl.Container implements M
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLabel(String newLabel) {
 		String oldLabel = label;
 		label = newLabel;
@@ -158,6 +161,7 @@ public abstract class MenuImpl extends MinimalEObjectImpl.Container implements M
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getIcon() {
 		return icon;
 	}
@@ -167,6 +171,7 @@ public abstract class MenuImpl extends MinimalEObjectImpl.Container implements M
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIcon(String newIcon) {
 		String oldIcon = icon;
 		icon = newIcon;
@@ -179,6 +184,7 @@ public abstract class MenuImpl extends MinimalEObjectImpl.Container implements M
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isVisible() {
 		return visible;
 	}
@@ -188,6 +194,7 @@ public abstract class MenuImpl extends MinimalEObjectImpl.Container implements M
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVisible(boolean newVisible) {
 		boolean oldVisible = visible;
 		visible = newVisible;
@@ -200,6 +207,7 @@ public abstract class MenuImpl extends MinimalEObjectImpl.Container implements M
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Filter getFilter() {
 		return filter;
 	}
@@ -224,6 +232,7 @@ public abstract class MenuImpl extends MinimalEObjectImpl.Container implements M
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFilter(Filter newFilter) {
 		if (newFilter != filter) {
 			NotificationChain msgs = null;
@@ -349,7 +358,7 @@ public abstract class MenuImpl extends MinimalEObjectImpl.Container implements M
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (label: ");
 		result.append(label);
 		result.append(", icon: ");

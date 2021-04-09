@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -115,18 +115,18 @@ public class CompoundFilterOperations {
 	 * A filter may not directly or indirectly compose itself.
 	 *
 	 * @param compoundFilter
-	 *            The receiving '<em><b>Composite Filter</b></em>' model object.
+	 *                           The receiving '<em><b>Composite Filter</b></em>' model object.
 	 * @param diagnostics
-	 *            The chain of diagnostics to which problems are to be appended.
+	 *                           The chain of diagnostics to which problems are to be appended.
 	 * @param context
-	 *            The cache of context-specific information.
-	 *            <!-- end-model-doc -->
+	 *                           The cache of context-specific information.
+	 *                           <!-- end-model-doc -->
 	 * @generated NOT
 	 */
 	public static boolean validateAcyclic(final CompoundFilter compoundFilter, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		boolean result = true;
 
-		Iterator<Filter> allFilters = new AbstractTreeIterator<Filter>(compoundFilter, false) {
+		Iterator<Filter> allFilters = new AbstractTreeIterator<>(compoundFilter, false) {
 			private static final long serialVersionUID = 1L;
 
 			@Override

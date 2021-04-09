@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -252,6 +252,9 @@ public class ConnectionAssistantItemProvider extends AssistantItemProvider {
 				AssistantFactory.eINSTANCE.createElementTypeFilter()));
 
 		newChildDescriptors.add(createChildParameter(AssistantPackage.Literals.CONNECTION_ASSISTANT__OWNED_SOURCE_FILTER,
+				FiltersFactory.eINSTANCE.createFilterReference()));
+
+		newChildDescriptors.add(createChildParameter(AssistantPackage.Literals.CONNECTION_ASSISTANT__OWNED_SOURCE_FILTER,
 				FiltersFactory.eINSTANCE.createCompoundFilter()));
 
 		newChildDescriptors.add(createChildParameter(AssistantPackage.Literals.CONNECTION_ASSISTANT__OWNED_SOURCE_FILTER,
@@ -262,6 +265,9 @@ public class ConnectionAssistantItemProvider extends AssistantItemProvider {
 
 		newChildDescriptors.add(createChildParameter(AssistantPackage.Literals.CONNECTION_ASSISTANT__OWNED_TARGET_FILTER,
 				AssistantFactory.eINSTANCE.createElementTypeFilter()));
+
+		newChildDescriptors.add(createChildParameter(AssistantPackage.Literals.CONNECTION_ASSISTANT__OWNED_TARGET_FILTER,
+				FiltersFactory.eINSTANCE.createFilterReference()));
 
 		newChildDescriptors.add(createChildParameter(AssistantPackage.Literals.CONNECTION_ASSISTANT__OWNED_TARGET_FILTER,
 				FiltersFactory.eINSTANCE.createCompoundFilter()));

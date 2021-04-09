@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017, 2018 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2017, 2021 CEA LIST, Christian W. Damus, and others.
  *  
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,7 +10,7 @@
  *  
  * Contributors:
  * 	CEA LIST - Initial API and implementation
- * 	Christian W. Damus - bug 536405
+ * 	Christian W. Damus - bugs 536405, 572712
  * 
  */
 package org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.provider;
@@ -181,6 +181,16 @@ public class MenuItemProvider
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
+	}
+
+	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -229,6 +239,11 @@ public class MenuItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ElementCreationMenuModelPackage.Literals.MENU__FILTER,
+				 FiltersFactory.eINSTANCE.createFilterReference()));
 
 		newChildDescriptors.add
 			(createChildParameter

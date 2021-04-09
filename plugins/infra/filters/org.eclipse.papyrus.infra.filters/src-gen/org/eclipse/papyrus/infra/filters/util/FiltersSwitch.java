@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -62,7 +62,7 @@ public class FiltersSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param ePackage
-	 *            the package in question.
+	 *                     the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
@@ -82,11 +82,11 @@ public class FiltersSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-		case FiltersPackage.COMPOUND_FILTER: {
-			CompoundFilter compoundFilter = (CompoundFilter) theEObject;
-			T result = caseCompoundFilter(compoundFilter);
+		case FiltersPackage.FILTER_REFERENCE: {
+			FilterReference filterReference = (FilterReference) theEObject;
+			T result = caseFilterReference(filterReference);
 			if (result == null) {
-				result = caseFilter(compoundFilter);
+				result = caseFilter(filterReference);
 			}
 			if (result == null) {
 				result = defaultCase(theEObject);
@@ -96,6 +96,17 @@ public class FiltersSwitch<T> extends Switch<T> {
 		case FiltersPackage.FILTER: {
 			Filter filter = (Filter) theEObject;
 			T result = caseFilter(filter);
+			if (result == null) {
+				result = defaultCase(theEObject);
+			}
+			return result;
+		}
+		case FiltersPackage.COMPOUND_FILTER: {
+			CompoundFilter compoundFilter = (CompoundFilter) theEObject;
+			T result = caseCompoundFilter(compoundFilter);
+			if (result == null) {
+				result = caseFilter(compoundFilter);
+			}
 			if (result == null) {
 				result = defaultCase(theEObject);
 			}
@@ -133,7 +144,7 @@ public class FiltersSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *                   the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Compound Filter</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -150,7 +161,7 @@ public class FiltersSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *                   the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Filter</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -167,7 +178,7 @@ public class FiltersSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *                   the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Equals</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -184,13 +195,29 @@ public class FiltersSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *                   the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Filtered Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
-	 * @since 1.3
 	 */
 	public T caseFilteredElement(FilteredElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Filter Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 *
+	 * @param object
+	 *                   the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Filter Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFilterReference(FilterReference object) {
 		return null;
 	}
 
@@ -202,7 +229,7 @@ public class FiltersSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *                   the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated

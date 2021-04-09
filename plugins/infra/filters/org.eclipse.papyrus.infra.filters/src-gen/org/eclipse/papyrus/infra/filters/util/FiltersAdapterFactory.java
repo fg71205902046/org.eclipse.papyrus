@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -81,15 +81,20 @@ public class FiltersAdapterFactory extends AdapterFactoryImpl {
 	 *
 	 * @generated
 	 */
-	protected FiltersSwitch<Adapter> modelSwitch = new FiltersSwitch<Adapter>() {
+	protected FiltersSwitch<Adapter> modelSwitch = new FiltersSwitch<>() {
 		@Override
-		public Adapter caseCompoundFilter(CompoundFilter object) {
-			return createCompoundFilterAdapter();
+		public Adapter caseFilterReference(FilterReference object) {
+			return createFilterReferenceAdapter();
 		}
 
 		@Override
 		public Adapter caseFilter(Filter object) {
 			return createFilterAdapter();
+		}
+
+		@Override
+		public Adapter caseCompoundFilter(CompoundFilter object) {
+			return createCompoundFilterAdapter();
 		}
 
 		@Override
@@ -114,7 +119,7 @@ public class FiltersAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param target
-	 *            the object to adapt.
+	 *                   the object to adapt.
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
@@ -179,9 +184,23 @@ public class FiltersAdapterFactory extends AdapterFactoryImpl {
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.filters.FilteredElement
 	 * @generated
-	 * @since 1.3
 	 */
 	public Adapter createFilteredElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.filters.FilterReference <em>Filter Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.filters.FilterReference
+	 * @generated
+	 */
+	public Adapter createFilterReferenceAdapter() {
 		return null;
 	}
 

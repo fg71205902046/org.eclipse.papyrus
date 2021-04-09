@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -135,7 +135,100 @@ public interface FiltersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.filters.impl.FiltersPackageImpl#getCompoundFilter()
 	 * @generated
 	 */
-	int COMPOUND_FILTER = 0;
+	int COMPOUND_FILTER = 2;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.filters.impl.EqualsImpl <em>Equals</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see org.eclipse.papyrus.infra.filters.impl.EqualsImpl
+	 * @see org.eclipse.papyrus.infra.filters.impl.FiltersPackageImpl#getEquals()
+	 * @generated
+	 */
+	int EQUALS = 3;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.filters.impl.FilteredElementImpl <em>Filtered Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see org.eclipse.papyrus.infra.filters.impl.FilteredElementImpl
+	 * @see org.eclipse.papyrus.infra.filters.impl.FiltersPackageImpl#getFilteredElement()
+	 * @generated
+	 */
+	int FILTERED_ELEMENT = 4;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.filters.impl.FilterReferenceImpl <em>Filter Reference</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see org.eclipse.papyrus.infra.filters.impl.FilterReferenceImpl
+	 * @see org.eclipse.papyrus.infra.filters.impl.FiltersPackageImpl#getFilterReference()
+	 * @generated
+	 */
+	int FILTER_REFERENCE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int FILTER_REFERENCE__NAME = FILTER__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Filter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int FILTER_REFERENCE__FILTER = FILTER_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owned Filter</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int FILTER_REFERENCE__OWNED_FILTER = FILTER_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Filter Reference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int FILTER_REFERENCE_FEATURE_COUNT = FILTER_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Matches</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int FILTER_REFERENCE___MATCHES__OBJECT = FILTER___MATCHES__OBJECT;
+
+	/**
+	 * The number of operations of the '<em>Filter Reference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int FILTER_REFERENCE_OPERATION_COUNT = FILTER_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -218,17 +311,6 @@ public interface FiltersPackage extends EPackage {
 	int COMPOUND_FILTER_OPERATION_COUNT = FILTER_OPERATION_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.filters.impl.EqualsImpl <em>Equals</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @see org.eclipse.papyrus.infra.filters.impl.EqualsImpl
-	 * @see org.eclipse.papyrus.infra.filters.impl.FiltersPackageImpl#getEquals()
-	 * @generated
-	 */
-	int EQUALS = 2;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -279,25 +361,12 @@ public interface FiltersPackage extends EPackage {
 	int EQUALS_OPERATION_COUNT = FILTER_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.filters.impl.FilteredElementImpl <em>Filtered Element</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @see org.eclipse.papyrus.infra.filters.impl.FilteredElementImpl
-	 * @see org.eclipse.papyrus.infra.filters.impl.FiltersPackageImpl#getFilteredElement()
-	 * @generated
-	 * @since 1.3
-	 */
-	int FILTERED_ELEMENT = 3;
-
-	/**
 	 * The feature id for the '<em><b>Filter</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated
 	 * @ordered
-	 * @since 1.3
 	 */
 	int FILTERED_ELEMENT__FILTER = 0;
 
@@ -308,7 +377,6 @@ public interface FiltersPackage extends EPackage {
 	 *
 	 * @generated
 	 * @ordered
-	 * @since 1.3
 	 */
 	int FILTERED_ELEMENT_FEATURE_COUNT = 1;
 
@@ -319,7 +387,6 @@ public interface FiltersPackage extends EPackage {
 	 *
 	 * @generated
 	 * @ordered
-	 * @since 1.3
 	 */
 	int FILTERED_ELEMENT_OPERATION_COUNT = 0;
 
@@ -332,7 +399,7 @@ public interface FiltersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.filters.impl.FiltersPackageImpl#getOperatorKind()
 	 * @generated
 	 */
-	int OPERATOR_KIND = 4;
+	int OPERATOR_KIND = 5;
 
 	/**
 	 * The meta object id for the '<em>Object</em>' data type.
@@ -343,7 +410,7 @@ public interface FiltersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.filters.impl.FiltersPackageImpl#getObject()
 	 * @generated
 	 */
-	int OBJECT = 5;
+	int OBJECT = 6;
 
 
 	/**
@@ -469,7 +536,6 @@ public interface FiltersPackage extends EPackage {
 	 * @return the meta object for class '<em>Filtered Element</em>'.
 	 * @see org.eclipse.papyrus.infra.filters.FilteredElement
 	 * @generated
-	 * @since 1.3
 	 */
 	EClass getFilteredElement();
 
@@ -482,9 +548,43 @@ public interface FiltersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.filters.FilteredElement#getFilter()
 	 * @see #getFilteredElement()
 	 * @generated
-	 * @since 1.3
 	 */
 	EReference getFilteredElement_Filter();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.filters.FilterReference <em>Filter Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for class '<em>Filter Reference</em>'.
+	 * @see org.eclipse.papyrus.infra.filters.FilterReference
+	 * @generated
+	 */
+	EClass getFilterReference();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.filters.FilterReference#getFilter <em>Filter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the reference '<em>Filter</em>'.
+	 * @see org.eclipse.papyrus.infra.filters.FilterReference#getFilter()
+	 * @see #getFilterReference()
+	 * @generated
+	 */
+	EReference getFilterReference_Filter();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.filters.FilterReference#getOwnedFilter <em>Owned Filter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the containment reference '<em>Owned Filter</em>'.
+	 * @see org.eclipse.papyrus.infra.filters.FilterReference#getOwnedFilter()
+	 * @see #getFilterReference()
+	 * @generated
+	 */
+	EReference getFilterReference_OwnedFilter();
 
 	/**
 	 * Returns the meta object for enum '{@link org.eclipse.papyrus.infra.filters.OperatorKind <em>Operator Kind</em>}'.
@@ -638,7 +738,6 @@ public interface FiltersPackage extends EPackage {
 		 * @see org.eclipse.papyrus.infra.filters.impl.FilteredElementImpl
 		 * @see org.eclipse.papyrus.infra.filters.impl.FiltersPackageImpl#getFilteredElement()
 		 * @generated
-		 * @since 1.3
 		 */
 		EClass FILTERED_ELEMENT = eINSTANCE.getFilteredElement();
 
@@ -648,9 +747,37 @@ public interface FiltersPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 *
 		 * @generated
-		 * @since 1.3
 		 */
 		EReference FILTERED_ELEMENT__FILTER = eINSTANCE.getFilteredElement_Filter();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.filters.impl.FilterReferenceImpl <em>Filter Reference</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @see org.eclipse.papyrus.infra.filters.impl.FilterReferenceImpl
+		 * @see org.eclipse.papyrus.infra.filters.impl.FiltersPackageImpl#getFilterReference()
+		 * @generated
+		 */
+		EClass FILTER_REFERENCE = eINSTANCE.getFilterReference();
+
+		/**
+		 * The meta object literal for the '<em><b>Filter</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EReference FILTER_REFERENCE__FILTER = eINSTANCE.getFilterReference_Filter();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Filter</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EReference FILTER_REFERENCE__OWNED_FILTER = eINSTANCE.getFilterReference_OwnedFilter();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.filters.OperatorKind <em>Operator Kind</em>}' enum.

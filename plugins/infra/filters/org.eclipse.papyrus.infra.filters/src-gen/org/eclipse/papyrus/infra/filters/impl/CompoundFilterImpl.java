@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -525,7 +525,7 @@ public class CompoundFilterImpl extends MinimalEObjectImpl.Container implements 
 			return super.toString();
 		}
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: "); //$NON-NLS-1$
 		result.append(name);
 		result.append(", operator: "); //$NON-NLS-1$
@@ -540,7 +540,7 @@ public class CompoundFilterImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 *
 	 * @param eClass
-	 *            The Ecore class of the instance to create.
+	 *                   The Ecore class of the instance to create.
 	 * @return The new instance.
 	 * @generated
 	 */

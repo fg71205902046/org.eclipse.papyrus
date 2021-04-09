@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2015 CEA LIST.
+ * Copyright (c) 2015, 2021 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 572712
  */
 package org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.provider;
 
@@ -123,6 +124,16 @@ public class PaletteConfigurationItemProvider extends ConfigurationItemProvider 
 	@Override
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage("full/obj16/PaletteConfiguration"));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
 	}
 
 	/**
