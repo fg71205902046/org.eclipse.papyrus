@@ -23,7 +23,7 @@ package org.eclipse.papyrus.infra.properties.ui;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.properties.ui.UnknownComponent#getTypeName <em>Type Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.properties.ui.UnknownComponent#getTypeName <em>Type Name</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.properties.ui.UiPackage#getUnknownComponent()
@@ -38,7 +38,6 @@ public interface UnknownComponent extends Widget {
 	 * If the meaning of the '<em>Type Name</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Type Name</em>' attribute.
 	 * @see #setTypeName(String)
 	 * @see org.eclipse.papyrus.infra.properties.ui.UiPackage#getUnknownComponent_TypeName()
@@ -51,9 +50,7 @@ public interface UnknownComponent extends Widget {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.ui.UnknownComponent#getTypeName <em>Type Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Type Name</em>' attribute.
+	 * @param value the new value of the '<em>Type Name</em>' attribute.
 	 * @see #getTypeName()
 	 * @generated
 	 */

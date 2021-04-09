@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.contexts;
 
-import org.eclipse.papyrus.infra.constraints.DisplayUnit;
 import org.eclipse.papyrus.infra.properties.ui.CompositeWidget;
 
 /**
@@ -25,75 +24,16 @@ import org.eclipse.papyrus.infra.properties.ui.CompositeWidget;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.properties.contexts.Section#getName <em>Name</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.properties.contexts.Section#getTab <em>Tab</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.properties.contexts.Section#getSectionFile <em>Section File</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.properties.contexts.Section#getWidget <em>Widget</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.properties.contexts.Section#getSectionFile <em>Section File</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.properties.contexts.Section#getWidget <em>Widget</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.properties.contexts.Section#getOwner <em>Owner</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getSection()
  * @model
  * @generated
  */
-public interface Section extends DisplayUnit {
-	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getSection_Name()
-	 * @model required="true"
-	 * @generated
-	 */
-	String getName();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.contexts.Section#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Tab</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.infra.properties.contexts.Tab#getSections <em>Sections</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Tab</em>' container reference isn't clear, there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Tab</em>' container reference.
-	 * @see #setTab(Tab)
-	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getSection_Tab()
-	 * @see org.eclipse.papyrus.infra.properties.contexts.Tab#getSections
-	 * @model opposite="sections" required="true" transient="false"
-	 * @generated
-	 */
-	Tab getTab();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.contexts.Section#getTab <em>Tab</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Tab</em>' container reference.
-	 * @see #getTab()
-	 * @generated
-	 */
-	void setTab(Tab value);
-
+public interface Section extends AbstractSection {
 	/**
 	 * Returns the value of the '<em><b>Section File</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -101,7 +41,6 @@ public interface Section extends DisplayUnit {
 	 * If the meaning of the '<em>Section File</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Section File</em>' attribute.
 	 * @see #setSectionFile(String)
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getSection_SectionFile()
@@ -114,9 +53,7 @@ public interface Section extends DisplayUnit {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.contexts.Section#getSectionFile <em>Section File</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Section File</em>' attribute.
+	 * @param value the new value of the '<em>Section File</em>' attribute.
 	 * @see #getSectionFile()
 	 * @generated
 	 */
@@ -129,7 +66,6 @@ public interface Section extends DisplayUnit {
 	 * If the meaning of the '<em>Widget</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Widget</em>' reference.
 	 * @see #setWidget(CompositeWidget)
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getSection_Widget()
@@ -142,12 +78,45 @@ public interface Section extends DisplayUnit {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.contexts.Section#getWidget <em>Widget</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Widget</em>' reference.
+	 * @param value the new value of the '<em>Widget</em>' reference.
 	 * @see #getWidget()
 	 * @generated
 	 */
 	void setWidget(CompositeWidget value);
+
+	/**
+	 * Returns the value of the '<em><b>Owner</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.infra.properties.contexts.Tab#getSections <em>Sections</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.eclipse.papyrus.infra.properties.contexts.AbstractSection#getTab() <em>Tab</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owner</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owner</em>' reference.
+	 * @see #setOwner(Tab)
+	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getSection_Owner()
+	 * @see org.eclipse.papyrus.infra.properties.contexts.Tab#getSections
+	 * @model opposite="sections" required="true" transient="true" volatile="true" derived="true"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	Tab getOwner();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.contexts.Section#getOwner <em>Owner</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owner</em>' reference.
+	 * @see #getOwner()
+	 * @generated
+	 */
+	void setOwner(Tab value);
 
 } // Section

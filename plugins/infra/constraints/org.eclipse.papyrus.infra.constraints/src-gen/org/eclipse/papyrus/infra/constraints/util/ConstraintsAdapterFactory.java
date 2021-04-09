@@ -78,48 +78,47 @@ public class ConstraintsAdapterFactory extends AdapterFactoryImpl {
 	 *
 	 * @generated
 	 */
-	protected ConstraintsSwitch<Adapter> modelSwitch =
-			new ConstraintsSwitch<Adapter>() {
-				@Override
-				public Adapter caseDisplayUnit(DisplayUnit object) {
-					return createDisplayUnitAdapter();
-				}
+	protected ConstraintsSwitch<Adapter> modelSwitch = new ConstraintsSwitch<>() {
+		@Override
+		public Adapter caseDisplayUnit(DisplayUnit object) {
+			return createDisplayUnitAdapter();
+		}
 
-				@Override
-				public Adapter caseConstraintDescriptor(ConstraintDescriptor object) {
-					return createConstraintDescriptorAdapter();
-				}
+		@Override
+		public Adapter caseConstraintDescriptor(ConstraintDescriptor object) {
+			return createConstraintDescriptorAdapter();
+		}
 
-				@Override
-				public Adapter caseSimpleConstraint(SimpleConstraint object) {
-					return createSimpleConstraintAdapter();
-				}
+		@Override
+		public Adapter caseSimpleConstraint(SimpleConstraint object) {
+			return createSimpleConstraintAdapter();
+		}
 
-				@Override
-				public Adapter caseCompositeConstraint(CompositeConstraint object) {
-					return createCompositeConstraintAdapter();
-				}
+		@Override
+		public Adapter caseConfigProperty(ConfigProperty object) {
+			return createConfigPropertyAdapter();
+		}
 
-				@Override
-				public Adapter caseConfigProperty(ConfigProperty object) {
-					return createConfigPropertyAdapter();
-				}
+		@Override
+		public Adapter caseCompositeConstraint(CompositeConstraint object) {
+			return createCompositeConstraintAdapter();
+		}
 
-				@Override
-				public Adapter caseValueProperty(ValueProperty object) {
-					return createValuePropertyAdapter();
-				}
+		@Override
+		public Adapter caseValueProperty(ValueProperty object) {
+			return createValuePropertyAdapter();
+		}
 
-				@Override
-				public Adapter caseReferenceProperty(ReferenceProperty object) {
-					return createReferencePropertyAdapter();
-				}
+		@Override
+		public Adapter caseReferenceProperty(ReferenceProperty object) {
+			return createReferencePropertyAdapter();
+		}
 
-				@Override
-				public Adapter defaultCase(EObject object) {
-					return createEObjectAdapter();
-				}
-			};
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.

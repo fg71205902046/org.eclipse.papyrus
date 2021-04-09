@@ -35,7 +35,6 @@ import org.eclipse.papyrus.infra.properties.contexts.View;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory {
@@ -44,16 +43,16 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static ContextsFactory init() {
 		try {
-			ContextsFactory theContextsFactory = (ContextsFactory) EPackage.Registry.INSTANCE.getEFactory(ContextsPackage.eNS_URI);
+			ContextsFactory theContextsFactory = (ContextsFactory)EPackage.Registry.INSTANCE.getEFactory(ContextsPackage.eNS_URI);
 			if (theContextsFactory != null) {
 				return theContextsFactory;
 			}
-		} catch (Exception exception) {
+		}
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new ContextsFactoryImpl();
@@ -63,7 +62,6 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ContextsFactoryImpl() {
@@ -73,39 +71,28 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case ContextsPackage.CONTEXT:
-			return createContext();
-		case ContextsPackage.TAB:
-			return createTab();
-		case ContextsPackage.VIEW:
-			return createView();
-		case ContextsPackage.SECTION:
-			return createSection();
-		case ContextsPackage.DATA_CONTEXT_ELEMENT:
-			return createDataContextElement();
-		case ContextsPackage.PROPERTY:
-			return createProperty();
-		case ContextsPackage.UNKNOWN_PROPERTY:
-			return createUnknownProperty();
-		case ContextsPackage.DATA_CONTEXT_PACKAGE:
-			return createDataContextPackage();
-		case ContextsPackage.DATA_CONTEXT_ROOT:
-			return createDataContextRoot();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+			case ContextsPackage.CONTEXT: return createContext();
+			case ContextsPackage.TAB: return createTab();
+			case ContextsPackage.SECTION: return createSection();
+			case ContextsPackage.PROPERTY: return createProperty();
+			case ContextsPackage.DATA_CONTEXT_ELEMENT: return createDataContextElement();
+			case ContextsPackage.DATA_CONTEXT_PACKAGE: return createDataContextPackage();
+			case ContextsPackage.UNKNOWN_PROPERTY: return createUnknownProperty();
+			case ContextsPackage.VIEW: return createView();
+			case ContextsPackage.DATA_CONTEXT_ROOT: return createDataContextRoot();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -117,7 +104,6 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -129,7 +115,6 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -141,7 +126,6 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -153,7 +137,6 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -165,7 +148,6 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -177,7 +159,6 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -189,7 +170,6 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -201,7 +181,6 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -213,18 +192,16 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public ContextsPackage getContextsPackage() {
-		return (ContextsPackage) getEPackage();
+		return (ContextsPackage)getEPackage();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

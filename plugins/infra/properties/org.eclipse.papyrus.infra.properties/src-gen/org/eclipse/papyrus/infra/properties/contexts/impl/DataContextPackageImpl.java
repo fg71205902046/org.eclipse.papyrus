@@ -33,7 +33,7 @@ import org.eclipse.papyrus.infra.properties.contexts.DataContextPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.DataContextPackageImpl#getElements <em>Elements</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.DataContextPackageImpl#getElements <em>Elements</em>}</li>
  * </ul>
  *
  * @generated
@@ -43,7 +43,6 @@ public class DataContextPackageImpl extends DataContextElementImpl implements Da
 	 * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getElements()
 	 * @generated
 	 * @ordered
@@ -53,7 +52,6 @@ public class DataContextPackageImpl extends DataContextElementImpl implements Da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected DataContextPackageImpl() {
@@ -63,7 +61,6 @@ public class DataContextPackageImpl extends DataContextElementImpl implements Da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -74,13 +71,12 @@ public class DataContextPackageImpl extends DataContextElementImpl implements Da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public EList<DataContextElement> getElements() {
 		if (elements == null) {
-			elements = new EObjectContainmentWithInverseEList<>(DataContextElement.class, this, ContextsPackage.DATA_CONTEXT_PACKAGE__ELEMENTS, ContextsPackage.DATA_CONTEXT_ELEMENT__PACKAGE);
+			elements = new EObjectContainmentWithInverseEList<DataContextElement>(DataContextElement.class, this, ContextsPackage.DATA_CONTEXT_PACKAGE__ELEMENTS, ContextsPackage.DATA_CONTEXT_ELEMENT__PACKAGE);
 		}
 		return elements;
 	}
@@ -88,15 +84,14 @@ public class DataContextPackageImpl extends DataContextElementImpl implements Da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ContextsPackage.DATA_CONTEXT_PACKAGE__ELEMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getElements()).basicAdd(otherEnd, msgs);
+			case ContextsPackage.DATA_CONTEXT_PACKAGE__ELEMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getElements()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -104,14 +99,13 @@ public class DataContextPackageImpl extends DataContextElementImpl implements Da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ContextsPackage.DATA_CONTEXT_PACKAGE__ELEMENTS:
-			return ((InternalEList<?>) getElements()).basicRemove(otherEnd, msgs);
+			case ContextsPackage.DATA_CONTEXT_PACKAGE__ELEMENTS:
+				return ((InternalEList<?>)getElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -119,14 +113,13 @@ public class DataContextPackageImpl extends DataContextElementImpl implements Da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case ContextsPackage.DATA_CONTEXT_PACKAGE__ELEMENTS:
-			return getElements();
+			case ContextsPackage.DATA_CONTEXT_PACKAGE__ELEMENTS:
+				return getElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -134,17 +127,16 @@ public class DataContextPackageImpl extends DataContextElementImpl implements Da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case ContextsPackage.DATA_CONTEXT_PACKAGE__ELEMENTS:
-			getElements().clear();
-			getElements().addAll((Collection<? extends DataContextElement>) newValue);
-			return;
+			case ContextsPackage.DATA_CONTEXT_PACKAGE__ELEMENTS:
+				getElements().clear();
+				getElements().addAll((Collection<? extends DataContextElement>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -152,15 +144,14 @@ public class DataContextPackageImpl extends DataContextElementImpl implements Da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case ContextsPackage.DATA_CONTEXT_PACKAGE__ELEMENTS:
-			getElements().clear();
-			return;
+			case ContextsPackage.DATA_CONTEXT_PACKAGE__ELEMENTS:
+				getElements().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -168,14 +159,13 @@ public class DataContextPackageImpl extends DataContextElementImpl implements Da
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case ContextsPackage.DATA_CONTEXT_PACKAGE__ELEMENTS:
-			return elements != null && !elements.isEmpty();
+			case ContextsPackage.DATA_CONTEXT_PACKAGE__ELEMENTS:
+				return elements != null && !elements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

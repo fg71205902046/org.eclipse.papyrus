@@ -24,7 +24,6 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>Type</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.papyrus.infra.properties.environment.EnvironmentPackage#getType()
  * @model
  * @generated
@@ -34,7 +33,6 @@ public enum Type implements Enumerator {
 	 * The '<em><b>String</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #STRING_VALUE
 	 * @generated
 	 * @ordered
@@ -45,7 +43,6 @@ public enum Type implements Enumerator {
 	 * The '<em><b>Boolean</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #BOOLEAN_VALUE
 	 * @generated
 	 * @ordered
@@ -56,7 +53,6 @@ public enum Type implements Enumerator {
 	 * The '<em><b>Integer</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #INTEGER_VALUE
 	 * @generated
 	 * @ordered
@@ -67,7 +63,6 @@ public enum Type implements Enumerator {
 	 * The '<em><b>Reference</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #REFERENCE_VALUE
 	 * @generated
 	 * @ordered
@@ -78,7 +73,6 @@ public enum Type implements Enumerator {
 	 * The '<em><b>Enumeration</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #ENUMERATION_VALUE
 	 * @generated
 	 * @ordered
@@ -88,7 +82,6 @@ public enum Type implements Enumerator {
 	 * The '<em><b>Double</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #DOUBLE_VALUE
 	 * @generated
 	 * @ordered
@@ -102,7 +95,6 @@ public enum Type implements Enumerator {
 	 * If the meaning of '<em><b>String</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #STRING
 	 * @model name="String"
 	 * @generated
@@ -117,7 +109,6 @@ public enum Type implements Enumerator {
 	 * If the meaning of '<em><b>Boolean</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #BOOLEAN
 	 * @model name="Boolean"
 	 * @generated
@@ -132,7 +123,6 @@ public enum Type implements Enumerator {
 	 * If the meaning of '<em><b>Integer</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #INTEGER
 	 * @model name="Integer"
 	 * @generated
@@ -147,7 +137,6 @@ public enum Type implements Enumerator {
 	 * If the meaning of '<em><b>Reference</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #REFERENCE
 	 * @model name="Reference"
 	 * @generated
@@ -162,7 +151,6 @@ public enum Type implements Enumerator {
 	 * If the meaning of '<em><b>Enumeration</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #ENUMERATION
 	 * @model name="Enumeration"
 	 * @generated
@@ -177,7 +165,6 @@ public enum Type implements Enumerator {
 	 * If the meaning of '<em><b>Double</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #DOUBLE
 	 * @model name="Double"
 	 * @generated
@@ -189,7 +176,6 @@ public enum Type implements Enumerator {
 	 * An array of all the '<em><b>Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static final Type[] VALUES_ARRAY = new Type[] {
@@ -199,13 +185,12 @@ public enum Type implements Enumerator {
 			REFERENCE,
 			ENUMERATION,
 			DOUBLE,
-	};
+		};
 
 	/**
 	 * A public read-only list of all the '<em><b>Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static final List<Type> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
@@ -214,9 +199,7 @@ public enum Type implements Enumerator {
 	 * Returns the '<em><b>Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param literal
-	 *            the literal.
+	 * @param literal the literal.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
@@ -234,9 +217,7 @@ public enum Type implements Enumerator {
 	 * Returns the '<em><b>Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param name
-	 *            the name.
+	 * @param name the name.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
@@ -254,26 +235,18 @@ public enum Type implements Enumerator {
 	 * Returns the '<em><b>Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the integer value.
+	 * @param value the integer value.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static Type get(int value) {
 		switch (value) {
-		case STRING_VALUE:
-			return STRING;
-		case BOOLEAN_VALUE:
-			return BOOLEAN;
-		case INTEGER_VALUE:
-			return INTEGER;
-		case REFERENCE_VALUE:
-			return REFERENCE;
-		case ENUMERATION_VALUE:
-			return ENUMERATION;
-		case DOUBLE_VALUE:
-			return DOUBLE;
+			case STRING_VALUE: return STRING;
+			case BOOLEAN_VALUE: return BOOLEAN;
+			case INTEGER_VALUE: return INTEGER;
+			case REFERENCE_VALUE: return REFERENCE;
+			case ENUMERATION_VALUE: return ENUMERATION;
+			case DOUBLE_VALUE: return DOUBLE;
 		}
 		return null;
 	}
@@ -281,7 +254,6 @@ public enum Type implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private final int value;
@@ -289,7 +261,6 @@ public enum Type implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private final String name;
@@ -297,7 +268,6 @@ public enum Type implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private final String literal;
@@ -306,7 +276,6 @@ public enum Type implements Enumerator {
 	 * Only this class can construct instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private Type(int value, String name, String literal) {
@@ -318,41 +287,37 @@ public enum Type implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public int getValue() {
-		return value;
+	  return value;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getName() {
-		return name;
+	  return name;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getLiteral() {
-		return literal;
+	  return literal;
 	}
 
 	/**
 	 * Returns the literal value of the enumerator, which is its string representation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

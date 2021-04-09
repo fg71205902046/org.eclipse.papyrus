@@ -36,7 +36,7 @@ public class ConstraintsFactoryImpl extends EFactoryImpl implements ConstraintsF
 	 */
 	public static ConstraintsFactory init() {
 		try {
-			ConstraintsFactory theConstraintsFactory = (ConstraintsFactory) EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/constraints/0.9");
+			ConstraintsFactory theConstraintsFactory = (ConstraintsFactory) EPackage.Registry.INSTANCE.getEFactory(ConstraintsPackage.eNS_URI);
 			if (theConstraintsFactory != null) {
 				return theConstraintsFactory;
 			}
@@ -85,6 +85,7 @@ public class ConstraintsFactoryImpl extends EFactoryImpl implements ConstraintsF
 	 *
 	 * @generated
 	 */
+	@Override
 	public SimpleConstraint createSimpleConstraint() {
 		SimpleConstraintImpl simpleConstraint = new SimpleConstraintImpl();
 		return simpleConstraint;
@@ -96,6 +97,7 @@ public class ConstraintsFactoryImpl extends EFactoryImpl implements ConstraintsF
 	 *
 	 * @generated
 	 */
+	@Override
 	public CompositeConstraint createCompositeConstraint() {
 		CompositeConstraintImpl compositeConstraint = new CompositeConstraintImpl();
 		return compositeConstraint;
@@ -107,6 +109,7 @@ public class ConstraintsFactoryImpl extends EFactoryImpl implements ConstraintsF
 	 *
 	 * @generated
 	 */
+	@Override
 	public ValueProperty createValueProperty() {
 		ValuePropertyImpl valueProperty = new ValuePropertyImpl();
 		return valueProperty;
@@ -118,6 +121,7 @@ public class ConstraintsFactoryImpl extends EFactoryImpl implements ConstraintsF
 	 *
 	 * @generated
 	 */
+	@Override
 	public ReferenceProperty createReferenceProperty() {
 		ReferencePropertyImpl referenceProperty = new ReferencePropertyImpl();
 		return referenceProperty;
@@ -129,6 +133,7 @@ public class ConstraintsFactoryImpl extends EFactoryImpl implements ConstraintsF
 	 *
 	 * @generated
 	 */
+	@Override
 	public ConstraintsPackage getConstraintsPackage() {
 		return (ConstraintsPackage) getEPackage();
 	}

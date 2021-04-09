@@ -16,11 +16,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.constraints.DisplayUnit#getConstraints <em>Constraints</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.constraints.DisplayUnit#getElementMultiplicity <em>Element Multiplicity</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.infra.constraints.ConstraintsPackage#getDisplayUnit()
  * @model abstract="true"

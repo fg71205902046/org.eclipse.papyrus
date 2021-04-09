@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST and others.
+ * Copyright (c) 2010, 2021 CEA LIST, EclipseSource and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,6 +11,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 417409
+ *  EclipseSource - Bug 572530
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.xwt;
@@ -21,9 +22,11 @@ import org.eclipse.papyrus.infra.properties.contexts.Section;
 import org.eclipse.papyrus.infra.properties.contexts.Tab;
 import org.eclipse.papyrus.infra.properties.contexts.View;
 import org.eclipse.papyrus.infra.properties.internal.ui.Activator;
+import org.eclipse.papyrus.infra.properties.ui.renderers.SectionRendererService;
 import org.eclipse.papyrus.infra.properties.ui.runtime.DisplayEngine;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.views.properties.tabbed.AbstractTabDescriptor;
+import org.eclipse.ui.views.properties.tabbed.ISectionDescriptor;
 
 /**
  * A Tab descriptor implementation for the TabbedPropertyView.
@@ -34,15 +37,19 @@ import org.eclipse.ui.views.properties.tabbed.AbstractTabDescriptor;
 public class XWTTabDescriptor extends AbstractTabDescriptor {
 
 	private Tab tab;
+	private SectionRendererService sectionRendererService;
 
 	/**
 	 * Constructor.
 	 *
 	 * @param tab
 	 *            The Tab model object containing the Metadata for the tab
+	 * @param sectionRendererService
+	 *            The service used to render the Sections
 	 */
-	public XWTTabDescriptor(Tab tab) {
+	public XWTTabDescriptor(Tab tab, SectionRendererService sectionRendererService) {
 		this.tab = tab;
+		this.sectionRendererService = sectionRendererService;
 	}
 
 	/**
@@ -57,18 +64,25 @@ public class XWTTabDescriptor extends AbstractTabDescriptor {
 	 */
 	@SuppressWarnings("unchecked")
 	public void addSection(Section section, View view, DisplayEngine display) {
-		super.getSectionDescriptors().add(new XWTSectionDescriptor(section, view, display));
+		super.getSectionDescriptors().add(createDescriptor(section, view, display));
 	}
 
+	private ISectionDescriptor createDescriptor(Section section, View view, DisplayEngine display) {
+		return sectionRendererService.getSectionDescriptor(section, view, display);
+	}
+
+	@Override
 	public String getCategory() {
 		String category = tab.getCategory();
 		return category == null ? "" : category; //$NON-NLS-1$
 	}
 
+	@Override
 	public String getId() {
 		return tab.getId();
 	}
 
+	@Override
 	public String getLabel() {
 		return tab.getLabel();
 	}

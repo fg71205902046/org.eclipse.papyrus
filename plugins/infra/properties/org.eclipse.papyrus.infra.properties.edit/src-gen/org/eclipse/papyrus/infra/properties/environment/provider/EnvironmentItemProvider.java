@@ -32,7 +32,6 @@ import org.eclipse.papyrus.infra.properties.environment.EnvironmentPackage;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.properties.environment.Environment} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- *
  * @generated
  */
 public class EnvironmentItemProvider
@@ -41,7 +40,6 @@ public class EnvironmentItemProvider
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public EnvironmentItemProvider(AdapterFactory adapterFactory) {
@@ -52,7 +50,6 @@ public class EnvironmentItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -70,7 +67,6 @@ public class EnvironmentItemProvider
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -91,7 +87,6 @@ public class EnvironmentItemProvider
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -106,7 +101,6 @@ public class EnvironmentItemProvider
 	 * This returns Environment.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -118,7 +112,6 @@ public class EnvironmentItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -131,7 +124,6 @@ public class EnvironmentItemProvider
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -139,15 +131,15 @@ public class EnvironmentItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Environment.class)) {
-		case EnvironmentPackage.ENVIRONMENT__MODEL_ELEMENT_FACTORIES:
-		case EnvironmentPackage.ENVIRONMENT__WIDGET_TYPES:
-		case EnvironmentPackage.ENVIRONMENT__PROPERTY_EDITOR_TYPES:
-		case EnvironmentPackage.ENVIRONMENT__COMPOSITE_WIDGET_TYPES:
-		case EnvironmentPackage.ENVIRONMENT__LAYOUT_TYPES:
-		case EnvironmentPackage.ENVIRONMENT__NAMESPACES:
-		case EnvironmentPackage.ENVIRONMENT__MISC_CLASSES:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case EnvironmentPackage.ENVIRONMENT__MODEL_ELEMENT_FACTORIES:
+			case EnvironmentPackage.ENVIRONMENT__WIDGET_TYPES:
+			case EnvironmentPackage.ENVIRONMENT__PROPERTY_EDITOR_TYPES:
+			case EnvironmentPackage.ENVIRONMENT__COMPOSITE_WIDGET_TYPES:
+			case EnvironmentPackage.ENVIRONMENT__LAYOUT_TYPES:
+			case EnvironmentPackage.ENVIRONMENT__NAMESPACES:
+			case EnvironmentPackage.ENVIRONMENT__MISC_CLASSES:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -157,40 +149,52 @@ public class EnvironmentItemProvider
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(EnvironmentPackage.Literals.ENVIRONMENT__MODEL_ELEMENT_FACTORIES,
-				EnvironmentFactory.eINSTANCE.createModelElementFactoryDescriptor()));
+		newChildDescriptors.add
+			(createChildParameter
+				(EnvironmentPackage.Literals.ENVIRONMENT__MODEL_ELEMENT_FACTORIES,
+				 EnvironmentFactory.eINSTANCE.createModelElementFactoryDescriptor()));
 
-		newChildDescriptors.add(createChildParameter(EnvironmentPackage.Literals.ENVIRONMENT__WIDGET_TYPES,
-				EnvironmentFactory.eINSTANCE.createStandardWidgetType()));
+		newChildDescriptors.add
+			(createChildParameter
+				(EnvironmentPackage.Literals.ENVIRONMENT__WIDGET_TYPES,
+				 EnvironmentFactory.eINSTANCE.createStandardWidgetType()));
 
-		newChildDescriptors.add(createChildParameter(EnvironmentPackage.Literals.ENVIRONMENT__PROPERTY_EDITOR_TYPES,
-				EnvironmentFactory.eINSTANCE.createPropertyEditorType()));
+		newChildDescriptors.add
+			(createChildParameter
+				(EnvironmentPackage.Literals.ENVIRONMENT__PROPERTY_EDITOR_TYPES,
+				 EnvironmentFactory.eINSTANCE.createPropertyEditorType()));
 
-		newChildDescriptors.add(createChildParameter(EnvironmentPackage.Literals.ENVIRONMENT__COMPOSITE_WIDGET_TYPES,
-				EnvironmentFactory.eINSTANCE.createCompositeWidgetType()));
+		newChildDescriptors.add
+			(createChildParameter
+				(EnvironmentPackage.Literals.ENVIRONMENT__COMPOSITE_WIDGET_TYPES,
+				 EnvironmentFactory.eINSTANCE.createCompositeWidgetType()));
 
-		newChildDescriptors.add(createChildParameter(EnvironmentPackage.Literals.ENVIRONMENT__LAYOUT_TYPES,
-				EnvironmentFactory.eINSTANCE.createLayoutType()));
+		newChildDescriptors.add
+			(createChildParameter
+				(EnvironmentPackage.Literals.ENVIRONMENT__LAYOUT_TYPES,
+				 EnvironmentFactory.eINSTANCE.createLayoutType()));
 
-		newChildDescriptors.add(createChildParameter(EnvironmentPackage.Literals.ENVIRONMENT__NAMESPACES,
-				EnvironmentFactory.eINSTANCE.createNamespace()));
+		newChildDescriptors.add
+			(createChildParameter
+				(EnvironmentPackage.Literals.ENVIRONMENT__NAMESPACES,
+				 EnvironmentFactory.eINSTANCE.createNamespace()));
 
-		newChildDescriptors.add(createChildParameter(EnvironmentPackage.Literals.ENVIRONMENT__MISC_CLASSES,
-				EnvironmentFactory.eINSTANCE.createMiscClass()));
+		newChildDescriptors.add
+			(createChildParameter
+				(EnvironmentPackage.Literals.ENVIRONMENT__MISC_CLASSES,
+				 EnvironmentFactory.eINSTANCE.createMiscClass()));
 	}
 
 	/**
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override

@@ -14,10 +14,10 @@ package org.eclipse.papyrus.infra.constraints;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.constraints.ValueProperty#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.infra.constraints.ConstraintsPackage#getValueProperty()
  * @model

@@ -4449,7 +4449,7 @@
       <properties xmi:id="_690yX6DJEeSZxfCXzZz3-w" name="nestedClassifier" type="Reference" description="References all the Classifiers that are defined (nested) within the Class."/>
       <properties xmi:id="_690yYKDJEeSZxfCXzZz3-w" name="ownedOperation" type="Reference" description="The operations owned by the class."/>
       <properties xmi:id="_690yYaDJEeSZxfCXzZz3-w" name="superClass" type="Reference" description="This gives the superclasses of a class."/>
-      <properties xmi:id="_690yYqDJEeSZxfCXzZz3-w" name="isActive" description="Determines whether an object specified by this class is active or not. If true, then the owning class is referred to as an active class. If false, then such a class is referred to as a passive class."/>
+      <properties xmi:id="_690yYqDJEeSZxfCXzZz3-w" name="isActive" type="Boolean" description="Determines whether an object specified by this class is active or not. If true, then the owning class is referred to as an active class. If false, then such a class is referred to as a passive class."/>
       <properties xmi:id="_690yY6DJEeSZxfCXzZz3-w" name="ownedReception" type="Reference" description="Receptions that objects of this class are willing to accept."/>
       <properties xmi:id="_690yZKDJEeSZxfCXzZz3-w" name="extension" type="Reference" description="References the Extensions that specify additional properties of the metaclass. The property is derived from the extensions whose memberEnds are typed by the Class."/>
     </elements>

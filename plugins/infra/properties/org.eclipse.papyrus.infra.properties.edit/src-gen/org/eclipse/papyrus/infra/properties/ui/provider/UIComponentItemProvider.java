@@ -30,7 +30,6 @@ import org.eclipse.papyrus.infra.properties.ui.UiPackage;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.properties.ui.UIComponent} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- *
  * @generated
  */
 public class UIComponentItemProvider
@@ -39,7 +38,6 @@ public class UIComponentItemProvider
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public UIComponentItemProvider(AdapterFactory adapterFactory) {
@@ -50,7 +48,6 @@ public class UIComponentItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -68,7 +65,6 @@ public class UIComponentItemProvider
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -83,7 +79,6 @@ public class UIComponentItemProvider
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -98,7 +93,6 @@ public class UIComponentItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -111,7 +105,6 @@ public class UIComponentItemProvider
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -119,9 +112,9 @@ public class UIComponentItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(UIComponent.class)) {
-		case UiPackage.UI_COMPONENT__ATTRIBUTES:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case UiPackage.UI_COMPONENT__ATTRIBUTES:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -131,18 +124,21 @@ public class UIComponentItemProvider
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(UiPackage.Literals.UI_COMPONENT__ATTRIBUTES,
-				UiFactory.eINSTANCE.createValueAttribute()));
+		newChildDescriptors.add
+			(createChildParameter
+				(UiPackage.Literals.UI_COMPONENT__ATTRIBUTES,
+				 UiFactory.eINSTANCE.createValueAttribute()));
 
-		newChildDescriptors.add(createChildParameter(UiPackage.Literals.UI_COMPONENT__ATTRIBUTES,
-				UiFactory.eINSTANCE.createReferenceAttribute()));
+		newChildDescriptors.add
+			(createChildParameter
+				(UiPackage.Literals.UI_COMPONENT__ATTRIBUTES,
+				 UiFactory.eINSTANCE.createReferenceAttribute()));
 	}
 
 }

@@ -39,7 +39,6 @@ import org.eclipse.papyrus.infra.properties.environment.util.EnvironmentAdapterF
  * Note that most of the adapters are shared among multiple instances.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- *
  * @generated
  */
 public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
@@ -47,7 +46,6 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected ComposedAdapterFactory parentAdapterFactory;
@@ -56,7 +54,6 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
@@ -65,7 +62,6 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected Collection<Object> supportedTypes = new ArrayList<Object>();
@@ -74,7 +70,6 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 	 * This constructs an instance.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public EnvironmentItemProviderAdapterFactory() {
@@ -89,7 +84,6 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.properties.environment.Environment} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected EnvironmentItemProvider environmentItemProvider;
@@ -98,7 +92,6 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.properties.environment.Environment}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -114,7 +107,6 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.properties.environment.PropertyEditorType} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected PropertyEditorTypeItemProvider propertyEditorTypeItemProvider;
@@ -123,7 +115,6 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.properties.environment.PropertyEditorType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -139,7 +130,6 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.properties.environment.CompositeWidgetType} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected CompositeWidgetTypeItemProvider compositeWidgetTypeItemProvider;
@@ -148,7 +138,6 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.properties.environment.CompositeWidgetType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -164,7 +153,6 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.properties.environment.LayoutType} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected LayoutTypeItemProvider layoutTypeItemProvider;
@@ -173,7 +161,6 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.properties.environment.LayoutType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -189,7 +176,6 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.properties.environment.ModelElementFactoryDescriptor} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected ModelElementFactoryDescriptorItemProvider modelElementFactoryDescriptorItemProvider;
@@ -198,7 +184,6 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.properties.environment.ModelElementFactoryDescriptor}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -214,7 +199,6 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.properties.environment.StandardWidgetType} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected StandardWidgetTypeItemProvider standardWidgetTypeItemProvider;
@@ -223,7 +207,6 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.properties.environment.StandardWidgetType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -239,7 +222,6 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.properties.environment.Namespace} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected NamespaceItemProvider namespaceItemProvider;
@@ -248,7 +230,6 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.properties.environment.Namespace}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -264,7 +245,6 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.properties.environment.MiscClass} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected MiscClassItemProvider miscClassItemProvider;
@@ -273,7 +253,6 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.properties.environment.MiscClass}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -289,7 +268,6 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -301,7 +279,6 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 	 * This sets the composed adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -312,7 +289,6 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -324,7 +300,6 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 	 * This implementation substitutes the factory itself as the key for the adapter.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -335,14 +310,13 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -354,7 +328,6 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 	 * This adds a listener.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -366,7 +339,6 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 	 * This removes a listener.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -378,7 +350,6 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -391,38 +362,21 @@ public class EnvironmentItemProviderAdapterFactory extends EnvironmentAdapterFac
 	}
 
 	/**
-	 * This disposes all of the item providers created by this factory.
+	 * This disposes all of the item providers created by this factory. 
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void dispose() {
-		if (environmentItemProvider != null) {
-			environmentItemProvider.dispose();
-		}
-		if (propertyEditorTypeItemProvider != null) {
-			propertyEditorTypeItemProvider.dispose();
-		}
-		if (compositeWidgetTypeItemProvider != null) {
-			compositeWidgetTypeItemProvider.dispose();
-		}
-		if (layoutTypeItemProvider != null) {
-			layoutTypeItemProvider.dispose();
-		}
-		if (modelElementFactoryDescriptorItemProvider != null) {
-			modelElementFactoryDescriptorItemProvider.dispose();
-		}
-		if (standardWidgetTypeItemProvider != null) {
-			standardWidgetTypeItemProvider.dispose();
-		}
-		if (namespaceItemProvider != null) {
-			namespaceItemProvider.dispose();
-		}
-		if (miscClassItemProvider != null) {
-			miscClassItemProvider.dispose();
-		}
+		if (environmentItemProvider != null) environmentItemProvider.dispose();
+		if (modelElementFactoryDescriptorItemProvider != null) modelElementFactoryDescriptorItemProvider.dispose();
+		if (standardWidgetTypeItemProvider != null) standardWidgetTypeItemProvider.dispose();
+		if (namespaceItemProvider != null) namespaceItemProvider.dispose();
+		if (propertyEditorTypeItemProvider != null) propertyEditorTypeItemProvider.dispose();
+		if (compositeWidgetTypeItemProvider != null) compositeWidgetTypeItemProvider.dispose();
+		if (layoutTypeItemProvider != null) layoutTypeItemProvider.dispose();
+		if (miscClassItemProvider != null) miscClassItemProvider.dispose();
 	}
 
 }

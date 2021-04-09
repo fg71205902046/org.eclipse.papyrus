@@ -37,7 +37,6 @@ import org.eclipse.papyrus.infra.properties.environment.WidgetType;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.properties.environment.WidgetType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- *
  * @generated
  */
 public class WidgetTypeItemProvider
@@ -52,7 +51,6 @@ public class WidgetTypeItemProvider
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public WidgetTypeItemProvider(AdapterFactory adapterFactory) {
@@ -63,7 +61,6 @@ public class WidgetTypeItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -82,77 +79,80 @@ public class WidgetTypeItemProvider
 	 * This adds a property descriptor for the Label feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected void addLabelPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_WidgetType_label_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_WidgetType_label_feature", "_UI_WidgetType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				EnvironmentPackage.Literals.WIDGET_TYPE__LABEL,
-				true,
-				false,
-				false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				null,
-				null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_WidgetType_label_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_WidgetType_label_feature", "_UI_WidgetType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 EnvironmentPackage.Literals.WIDGET_TYPE__LABEL,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Widget Class feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected void addWidgetClassPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_WidgetType_widgetClass_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_WidgetType_widgetClass_feature", "_UI_WidgetType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				EnvironmentPackage.Literals.WIDGET_TYPE__WIDGET_CLASS,
-				true,
-				false,
-				false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				null,
-				null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_WidgetType_widgetClass_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_WidgetType_widgetClass_feature", "_UI_WidgetType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 EnvironmentPackage.Literals.WIDGET_TYPE__WIDGET_CLASS,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Namespace feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected void addNamespacePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_WidgetType_namespace_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_WidgetType_namespace_feature", "_UI_WidgetType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				EnvironmentPackage.Literals.WIDGET_TYPE__NAMESPACE,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_WidgetType_namespace_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_WidgetType_namespace_feature", "_UI_WidgetType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 EnvironmentPackage.Literals.WIDGET_TYPE__NAMESPACE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((WidgetType) object).getLabel();
-		return label == null || label.length() == 0 ? getString("_UI_WidgetType_type") : //$NON-NLS-1$
-				getString("_UI_WidgetType_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		String label = ((WidgetType)object).getLabel();
+		return label == null || label.length() == 0 ?
+			getString("_UI_WidgetType_type") : //$NON-NLS-1$
+			getString("_UI_WidgetType_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -160,7 +160,6 @@ public class WidgetTypeItemProvider
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -168,10 +167,10 @@ public class WidgetTypeItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(WidgetType.class)) {
-		case EnvironmentPackage.WIDGET_TYPE__LABEL:
-		case EnvironmentPackage.WIDGET_TYPE__WIDGET_CLASS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case EnvironmentPackage.WIDGET_TYPE__LABEL:
+			case EnvironmentPackage.WIDGET_TYPE__WIDGET_CLASS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -181,7 +180,6 @@ public class WidgetTypeItemProvider
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -193,7 +191,6 @@ public class WidgetTypeItemProvider
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override

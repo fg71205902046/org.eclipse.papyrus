@@ -22,7 +22,7 @@
       <package
             uri="http://www.eclipse.org/papyrus/properties/environment/0.9"
             class="org.eclipse.papyrus.infra.properties.environment.EnvironmentPackage"
-            genModel="Model/Properties.genmodel"/>
+            genModel="Model/properties.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
@@ -36,7 +36,7 @@
       <package
             uri="http://www.eclipse.org/papyrus/properties/contexts/0.9"
             class="org.eclipse.papyrus.infra.properties.contexts.ContextsPackage"
-            genModel="Model/Properties.genmodel"/>
+            genModel="Model/properties.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
@@ -50,7 +50,7 @@
       <package
             uri="http://www.eclipse.org/papyrus/properties/ui/0.9"
             class="org.eclipse.papyrus.infra.properties.ui.UiPackage"
-            genModel="Model/Properties.genmodel"/>
+            genModel="Model/properties.genmodel"/>
    </extension>
 
    <extension

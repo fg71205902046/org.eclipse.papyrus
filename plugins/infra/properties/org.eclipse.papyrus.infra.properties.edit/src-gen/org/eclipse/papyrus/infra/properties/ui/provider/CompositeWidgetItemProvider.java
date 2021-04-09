@@ -31,7 +31,6 @@ import org.eclipse.papyrus.infra.properties.ui.UiPackage;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.properties.ui.CompositeWidget} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- *
  * @generated
  */
 public class CompositeWidgetItemProvider
@@ -40,7 +39,6 @@ public class CompositeWidgetItemProvider
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public CompositeWidgetItemProvider(AdapterFactory adapterFactory) {
@@ -51,7 +49,6 @@ public class CompositeWidgetItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -68,21 +65,22 @@ public class CompositeWidgetItemProvider
 	 * This adds a property descriptor for the Widget Type feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected void addWidgetTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_CompositeWidget_widgetType_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_CompositeWidget_widgetType_feature", "_UI_CompositeWidget_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				UiPackage.Literals.COMPOSITE_WIDGET__WIDGET_TYPE,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_CompositeWidget_widgetType_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_CompositeWidget_widgetType_feature", "_UI_CompositeWidget_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 UiPackage.Literals.COMPOSITE_WIDGET__WIDGET_TYPE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -91,7 +89,6 @@ public class CompositeWidgetItemProvider
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -107,7 +104,6 @@ public class CompositeWidgetItemProvider
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -122,7 +118,6 @@ public class CompositeWidgetItemProvider
 	 * This returns CompositeWidget.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -134,7 +129,6 @@ public class CompositeWidgetItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -147,7 +141,6 @@ public class CompositeWidgetItemProvider
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -155,10 +148,10 @@ public class CompositeWidgetItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(CompositeWidget.class)) {
-		case UiPackage.COMPOSITE_WIDGET__LAYOUT:
-		case UiPackage.COMPOSITE_WIDGET__WIDGETS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case UiPackage.COMPOSITE_WIDGET__LAYOUT:
+			case UiPackage.COMPOSITE_WIDGET__WIDGETS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -168,27 +161,36 @@ public class CompositeWidgetItemProvider
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(UiPackage.Literals.COMPOSITE_WIDGET__LAYOUT,
-				UiFactory.eINSTANCE.createLayout()));
+		newChildDescriptors.add
+			(createChildParameter
+				(UiPackage.Literals.COMPOSITE_WIDGET__LAYOUT,
+				 UiFactory.eINSTANCE.createLayout()));
 
-		newChildDescriptors.add(createChildParameter(UiPackage.Literals.COMPOSITE_WIDGET__WIDGETS,
-				UiFactory.eINSTANCE.createStandardWidget()));
+		newChildDescriptors.add
+			(createChildParameter
+				(UiPackage.Literals.COMPOSITE_WIDGET__WIDGETS,
+				 UiFactory.eINSTANCE.createStandardWidget()));
 
-		newChildDescriptors.add(createChildParameter(UiPackage.Literals.COMPOSITE_WIDGET__WIDGETS,
-				UiFactory.eINSTANCE.createPropertyEditor()));
+		newChildDescriptors.add
+			(createChildParameter
+				(UiPackage.Literals.COMPOSITE_WIDGET__WIDGETS,
+				 UiFactory.eINSTANCE.createPropertyEditor()));
 
-		newChildDescriptors.add(createChildParameter(UiPackage.Literals.COMPOSITE_WIDGET__WIDGETS,
-				UiFactory.eINSTANCE.createCompositeWidget()));
+		newChildDescriptors.add
+			(createChildParameter
+				(UiPackage.Literals.COMPOSITE_WIDGET__WIDGETS,
+				 UiFactory.eINSTANCE.createUnknownComponent()));
 
-		newChildDescriptors.add(createChildParameter(UiPackage.Literals.COMPOSITE_WIDGET__WIDGETS,
-				UiFactory.eINSTANCE.createUnknownComponent()));
+		newChildDescriptors.add
+			(createChildParameter
+				(UiPackage.Literals.COMPOSITE_WIDGET__WIDGETS,
+				 UiFactory.eINSTANCE.createCompositeWidget()));
 	}
 
 }

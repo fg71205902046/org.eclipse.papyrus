@@ -35,7 +35,6 @@ import org.eclipse.papyrus.infra.properties.ui.WidgetAttribute;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.papyrus.infra.properties.ui.UiPackage
  * @generated
  */
@@ -44,7 +43,6 @@ public class UiAdapterFactory extends AdapterFactoryImpl {
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected static UiPackage modelPackage;
@@ -53,7 +51,6 @@ public class UiAdapterFactory extends AdapterFactoryImpl {
 	 * Creates an instance of the adapter factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public UiAdapterFactory() {
@@ -67,7 +64,6 @@ public class UiAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
@@ -77,7 +73,7 @@ public class UiAdapterFactory extends AdapterFactoryImpl {
 			return true;
 		}
 		if (object instanceof EObject) {
-			return ((EObject) object).eClass().getEPackage() == modelPackage;
+			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -86,84 +82,70 @@ public class UiAdapterFactory extends AdapterFactoryImpl {
 	 * The switch that delegates to the <code>createXXX</code> methods.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected UiSwitch<Adapter> modelSwitch = new UiSwitch<Adapter>() {
-		@Override
-		public Adapter caseElement(Element object) {
-			return createElementAdapter();
-		}
-
-		@Override
-		public Adapter caseUIComponent(UIComponent object) {
-			return createUIComponentAdapter();
-		}
-
-		@Override
-		public Adapter caseWidget(Widget object) {
-			return createWidgetAdapter();
-		}
-
-		@Override
-		public Adapter caseStandardWidget(StandardWidget object) {
-			return createStandardWidgetAdapter();
-		}
-
-		@Override
-		public Adapter casePropertyEditor(PropertyEditor object) {
-			return createPropertyEditorAdapter();
-		}
-
-		@Override
-		public Adapter caseCompositeWidget(CompositeWidget object) {
-			return createCompositeWidgetAdapter();
-		}
-
-		@Override
-		public Adapter caseUnknownComponent(UnknownComponent object) {
-			return createUnknownComponentAdapter();
-		}
-
-		@Override
-		public Adapter caseLayout(Layout object) {
-			return createLayoutAdapter();
-		}
-
-		@Override
-		public Adapter caseWidgetAttribute(WidgetAttribute object) {
-			return createWidgetAttributeAdapter();
-		}
-
-		@Override
-		public Adapter caseValueAttribute(ValueAttribute object) {
-			return createValueAttributeAdapter();
-		}
-
-		@Override
-		public Adapter caseReferenceAttribute(ReferenceAttribute object) {
-			return createReferenceAttributeAdapter();
-		}
-
-		@Override
-		public Adapter defaultCase(EObject object) {
-			return createEObjectAdapter();
-		}
-	};
+			@Override
+			public Adapter caseElement(Element object) {
+				return createElementAdapter();
+			}
+			@Override
+			public Adapter caseUIComponent(UIComponent object) {
+				return createUIComponentAdapter();
+			}
+			@Override
+			public Adapter caseWidgetAttribute(WidgetAttribute object) {
+				return createWidgetAttributeAdapter();
+			}
+			@Override
+			public Adapter caseWidget(Widget object) {
+				return createWidgetAdapter();
+			}
+			@Override
+			public Adapter caseStandardWidget(StandardWidget object) {
+				return createStandardWidgetAdapter();
+			}
+			@Override
+			public Adapter casePropertyEditor(PropertyEditor object) {
+				return createPropertyEditorAdapter();
+			}
+			@Override
+			public Adapter caseUnknownComponent(UnknownComponent object) {
+				return createUnknownComponentAdapter();
+			}
+			@Override
+			public Adapter caseLayout(Layout object) {
+				return createLayoutAdapter();
+			}
+			@Override
+			public Adapter caseValueAttribute(ValueAttribute object) {
+				return createValueAttributeAdapter();
+			}
+			@Override
+			public Adapter caseReferenceAttribute(ReferenceAttribute object) {
+				return createReferenceAttributeAdapter();
+			}
+			@Override
+			public Adapter caseCompositeWidget(CompositeWidget object) {
+				return createCompositeWidgetAdapter();
+			}
+			@Override
+			public Adapter defaultCase(EObject object) {
+				return createEObjectAdapter();
+			}
+		};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param target
-	 *            the object to adapt.
+	 * @param target the object to adapt.
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject) target);
+		return modelSwitch.doSwitch((EObject)target);
 	}
 
 
@@ -173,7 +155,6 @@ public class UiAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.properties.ui.Element
 	 * @generated
@@ -188,7 +169,6 @@ public class UiAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.properties.ui.UIComponent
 	 * @generated
@@ -203,7 +183,6 @@ public class UiAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.properties.ui.Widget
 	 * @generated
@@ -218,7 +197,6 @@ public class UiAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.properties.ui.StandardWidget
 	 * @generated
@@ -233,7 +211,6 @@ public class UiAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.properties.ui.PropertyEditor
 	 * @generated
@@ -248,7 +225,6 @@ public class UiAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.properties.ui.CompositeWidget
 	 * @generated
@@ -263,7 +239,6 @@ public class UiAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.properties.ui.UnknownComponent
 	 * @generated
@@ -278,7 +253,6 @@ public class UiAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.properties.ui.Layout
 	 * @generated
@@ -293,7 +267,6 @@ public class UiAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.properties.ui.WidgetAttribute
 	 * @generated
@@ -308,7 +281,6 @@ public class UiAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.properties.ui.ValueAttribute
 	 * @generated
@@ -323,7 +295,6 @@ public class UiAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.properties.ui.ReferenceAttribute
 	 * @generated
@@ -337,7 +308,6 @@ public class UiAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null.
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @generated
 	 */

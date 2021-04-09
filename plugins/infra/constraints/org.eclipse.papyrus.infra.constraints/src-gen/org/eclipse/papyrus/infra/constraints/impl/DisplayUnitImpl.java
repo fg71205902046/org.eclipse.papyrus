@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.papyrus.infra.constraints.ConstraintDescriptor;
@@ -27,15 +27,15 @@ import org.eclipse.papyrus.infra.constraints.DisplayUnit;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.constraints.impl.DisplayUnitImpl#getConstraints <em>Constraints</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.constraints.impl.DisplayUnitImpl#getElementMultiplicity <em>Element Multiplicity</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public abstract class DisplayUnitImpl extends EObjectImpl implements DisplayUnit {
+public abstract class DisplayUnitImpl extends MinimalEObjectImpl.Container implements DisplayUnit {
 	/**
 	 * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -95,9 +95,10 @@ public abstract class DisplayUnitImpl extends EObjectImpl implements DisplayUnit
 	 *
 	 * @generated
 	 */
+	@Override
 	public EList<ConstraintDescriptor> getConstraints() {
 		if (constraints == null) {
-			constraints = new EObjectContainmentWithInverseEList<ConstraintDescriptor>(ConstraintDescriptor.class, this, ConstraintsPackage.DISPLAY_UNIT__CONSTRAINTS, ConstraintsPackage.CONSTRAINT_DESCRIPTOR__DISPLAY);
+			constraints = new EObjectContainmentWithInverseEList<>(ConstraintDescriptor.class, this, ConstraintsPackage.DISPLAY_UNIT__CONSTRAINTS, ConstraintsPackage.CONSTRAINT_DESCRIPTOR__DISPLAY);
 		}
 		return constraints;
 	}
@@ -108,6 +109,7 @@ public abstract class DisplayUnitImpl extends EObjectImpl implements DisplayUnit
 	 *
 	 * @generated
 	 */
+	@Override
 	public int getElementMultiplicity() {
 		return elementMultiplicity;
 	}
@@ -118,6 +120,7 @@ public abstract class DisplayUnitImpl extends EObjectImpl implements DisplayUnit
 	 *
 	 * @generated
 	 */
+	@Override
 	public void setElementMultiplicity(int newElementMultiplicity) {
 		int oldElementMultiplicity = elementMultiplicity;
 		elementMultiplicity = newElementMultiplicity;
@@ -243,7 +246,7 @@ public abstract class DisplayUnitImpl extends EObjectImpl implements DisplayUnit
 			return super.toString();
 		}
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (elementMultiplicity: ");
 		result.append(elementMultiplicity);
 		result.append(')');

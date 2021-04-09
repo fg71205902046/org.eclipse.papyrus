@@ -16,11 +16,11 @@ import org.eclipse.papyrus.infra.constraints.environment.ConstraintType;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.constraints.SimpleConstraint#getConstraintType <em>Constraint Type</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.constraints.SimpleConstraint#getProperties <em>Properties</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.infra.constraints.ConstraintsPackage#getSimpleConstraint()
  * @model

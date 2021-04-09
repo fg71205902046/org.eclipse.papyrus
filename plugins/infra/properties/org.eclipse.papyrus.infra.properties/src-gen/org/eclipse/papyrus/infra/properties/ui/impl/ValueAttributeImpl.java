@@ -27,7 +27,7 @@ import org.eclipse.papyrus.infra.properties.ui.ValueAttribute;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.properties.ui.impl.ValueAttributeImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.properties.ui.impl.ValueAttributeImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
@@ -37,7 +37,6 @@ public class ValueAttributeImpl extends WidgetAttributeImpl implements ValueAttr
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
@@ -48,7 +47,6 @@ public class ValueAttributeImpl extends WidgetAttributeImpl implements ValueAttr
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
@@ -58,7 +56,6 @@ public class ValueAttributeImpl extends WidgetAttributeImpl implements ValueAttr
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ValueAttributeImpl() {
@@ -68,7 +65,6 @@ public class ValueAttributeImpl extends WidgetAttributeImpl implements ValueAttr
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -79,7 +75,6 @@ public class ValueAttributeImpl extends WidgetAttributeImpl implements ValueAttr
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -90,7 +85,6 @@ public class ValueAttributeImpl extends WidgetAttributeImpl implements ValueAttr
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -104,14 +98,13 @@ public class ValueAttributeImpl extends WidgetAttributeImpl implements ValueAttr
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case UiPackage.VALUE_ATTRIBUTE__VALUE:
-			return getValue();
+			case UiPackage.VALUE_ATTRIBUTE__VALUE:
+				return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -119,15 +112,14 @@ public class ValueAttributeImpl extends WidgetAttributeImpl implements ValueAttr
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case UiPackage.VALUE_ATTRIBUTE__VALUE:
-			setValue((String) newValue);
-			return;
+			case UiPackage.VALUE_ATTRIBUTE__VALUE:
+				setValue((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -135,15 +127,14 @@ public class ValueAttributeImpl extends WidgetAttributeImpl implements ValueAttr
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case UiPackage.VALUE_ATTRIBUTE__VALUE:
-			setValue(VALUE_EDEFAULT);
-			return;
+			case UiPackage.VALUE_ATTRIBUTE__VALUE:
+				setValue(VALUE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -151,14 +142,13 @@ public class ValueAttributeImpl extends WidgetAttributeImpl implements ValueAttr
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case UiPackage.VALUE_ATTRIBUTE__VALUE:
-			return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+			case UiPackage.VALUE_ATTRIBUTE__VALUE:
+				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -166,15 +156,13 @@ public class ValueAttributeImpl extends WidgetAttributeImpl implements ValueAttr
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (value: "); //$NON-NLS-1$
 		result.append(value);
 		result.append(')');

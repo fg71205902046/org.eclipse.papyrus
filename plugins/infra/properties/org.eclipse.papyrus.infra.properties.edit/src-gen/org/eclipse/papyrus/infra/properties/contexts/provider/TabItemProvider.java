@@ -40,7 +40,6 @@ import org.eclipse.papyrus.infra.properties.environment.provider.PropertiesEditP
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.properties.contexts.Tab} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- *
  * @generated
  */
 public class TabItemProvider
@@ -55,7 +54,6 @@ public class TabItemProvider
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public TabItemProvider(AdapterFactory adapterFactory) {
@@ -66,7 +64,6 @@ public class TabItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -79,6 +76,7 @@ public class TabItemProvider
 			addCategoryPropertyDescriptor(object);
 			addImagePropertyDescriptor(object);
 			addAfterTabPropertyDescriptor(object);
+			addAllSectionsPropertyDescriptor(object);
 			addIndentedPropertyDescriptor(object);
 			addPriorityPropertyDescriptor(object);
 		}
@@ -89,147 +87,176 @@ public class TabItemProvider
 	 * This adds a property descriptor for the Label feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected void addLabelPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Tab_label_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_Tab_label_feature", "_UI_Tab_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				ContextsPackage.Literals.TAB__LABEL,
-				true,
-				false,
-				false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				null,
-				null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Tab_label_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_Tab_label_feature", "_UI_Tab_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 ContextsPackage.Literals.TAB__LABEL,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Id feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected void addIdPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Tab_id_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_Tab_id_feature", "_UI_Tab_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				ContextsPackage.Literals.TAB__ID,
-				true,
-				false,
-				false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				null,
-				null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Tab_id_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_Tab_id_feature", "_UI_Tab_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 ContextsPackage.Literals.TAB__ID,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Category feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected void addCategoryPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Tab_category_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_Tab_category_feature", "_UI_Tab_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				ContextsPackage.Literals.TAB__CATEGORY,
-				true,
-				false,
-				false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				null,
-				null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Tab_category_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_Tab_category_feature", "_UI_Tab_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 ContextsPackage.Literals.TAB__CATEGORY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Image feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected void addImagePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Tab_image_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_Tab_image_feature", "_UI_Tab_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				ContextsPackage.Literals.TAB__IMAGE,
-				true,
-				false,
-				false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				null,
-				null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Tab_image_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_Tab_image_feature", "_UI_Tab_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 ContextsPackage.Literals.TAB__IMAGE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the After Tab feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected void addAfterTabPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Tab_afterTab_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_Tab_afterTab_feature", "_UI_Tab_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				ContextsPackage.Literals.TAB__AFTER_TAB,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Tab_afterTab_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_Tab_afterTab_feature", "_UI_Tab_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 ContextsPackage.Literals.TAB__AFTER_TAB,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the All Sections feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAllSectionsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Tab_allSections_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_Tab_allSections_feature", "_UI_Tab_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 ContextsPackage.Literals.TAB__ALL_SECTIONS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Indented feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected void addIndentedPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Tab_indented_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_Tab_indented_feature", "_UI_Tab_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				ContextsPackage.Literals.TAB__INDENTED,
-				true,
-				false,
-				false,
-				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				null,
-				null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Tab_indented_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_Tab_indented_feature", "_UI_Tab_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 ContextsPackage.Literals.TAB__INDENTED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Priority feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected void addPriorityPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Tab_priority_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_Tab_priority_feature", "_UI_Tab_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				ContextsPackage.Literals.TAB__PRIORITY,
-				true,
-				false,
-				false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				null,
-				null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Tab_priority_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_Tab_priority_feature", "_UI_Tab_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 ContextsPackage.Literals.TAB__PRIORITY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -238,14 +265,13 @@ public class TabItemProvider
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ContextsPackage.Literals.TAB__SECTIONS);
+			childrenFeatures.add(ContextsPackage.Literals.TAB__ALL_SECTIONS);
 		}
 		return childrenFeatures;
 	}
@@ -253,7 +279,6 @@ public class TabItemProvider
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -268,7 +293,6 @@ public class TabItemProvider
 	 * This returns Tab.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -280,14 +304,14 @@ public class TabItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Tab) object).getId();
-		return label == null || label.length() == 0 ? getString("_UI_Tab_type") : //$NON-NLS-1$
-				getString("_UI_Tab_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		String label = ((Tab)object).getId();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Tab_type") : //$NON-NLS-1$
+			getString("_UI_Tab_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -295,7 +319,6 @@ public class TabItemProvider
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -303,17 +326,18 @@ public class TabItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Tab.class)) {
-		case ContextsPackage.TAB__LABEL:
-		case ContextsPackage.TAB__ID:
-		case ContextsPackage.TAB__CATEGORY:
-		case ContextsPackage.TAB__IMAGE:
-		case ContextsPackage.TAB__INDENTED:
-		case ContextsPackage.TAB__PRIORITY:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case ContextsPackage.TAB__SECTIONS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case ContextsPackage.TAB__LABEL:
+			case ContextsPackage.TAB__ID:
+			case ContextsPackage.TAB__CATEGORY:
+			case ContextsPackage.TAB__IMAGE:
+			case ContextsPackage.TAB__SECTIONS:
+			case ContextsPackage.TAB__INDENTED:
+			case ContextsPackage.TAB__PRIORITY:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case ContextsPackage.TAB__ALL_SECTIONS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -323,22 +347,22 @@ public class TabItemProvider
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(ContextsPackage.Literals.TAB__SECTIONS,
-				ContextsFactory.eINSTANCE.createSection()));
+		newChildDescriptors.add
+			(createChildParameter
+				(ContextsPackage.Literals.TAB__ALL_SECTIONS,
+				 ContextsFactory.eINSTANCE.createSection()));
 	}
 
 	/**
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override

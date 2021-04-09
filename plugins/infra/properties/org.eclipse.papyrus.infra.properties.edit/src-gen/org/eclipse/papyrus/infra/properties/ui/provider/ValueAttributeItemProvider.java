@@ -30,7 +30,6 @@ import org.eclipse.papyrus.infra.properties.ui.ValueAttribute;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.properties.ui.ValueAttribute} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- *
  * @generated
  */
 public class ValueAttributeItemProvider
@@ -39,7 +38,6 @@ public class ValueAttributeItemProvider
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public ValueAttributeItemProvider(AdapterFactory adapterFactory) {
@@ -50,7 +48,6 @@ public class ValueAttributeItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -67,28 +64,28 @@ public class ValueAttributeItemProvider
 	 * This adds a property descriptor for the Value feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected void addValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ValueAttribute_value_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_ValueAttribute_value_feature", "_UI_ValueAttribute_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				UiPackage.Literals.VALUE_ATTRIBUTE__VALUE,
-				true,
-				false,
-				false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				null,
-				null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ValueAttribute_value_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_ValueAttribute_value_feature", "_UI_ValueAttribute_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 UiPackage.Literals.VALUE_ATTRIBUTE__VALUE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This returns ValueAttribute.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -100,14 +97,14 @@ public class ValueAttributeItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ValueAttribute) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_ValueAttribute_type") : //$NON-NLS-1$
-				getString("_UI_ValueAttribute_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		String label = ((ValueAttribute)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ValueAttribute_type") : //$NON-NLS-1$
+			getString("_UI_ValueAttribute_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -115,7 +112,6 @@ public class ValueAttributeItemProvider
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -123,9 +119,9 @@ public class ValueAttributeItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ValueAttribute.class)) {
-		case UiPackage.VALUE_ATTRIBUTE__VALUE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case UiPackage.VALUE_ATTRIBUTE__VALUE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -135,7 +131,6 @@ public class ValueAttributeItemProvider
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override

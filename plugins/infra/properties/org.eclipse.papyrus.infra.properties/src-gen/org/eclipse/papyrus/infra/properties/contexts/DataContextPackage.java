@@ -24,7 +24,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.properties.contexts.DataContextPackage#getElements <em>Elements</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.properties.contexts.DataContextPackage#getElements <em>Elements</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getDataContextPackage()
@@ -41,7 +41,6 @@ public interface DataContextPackage extends DataContextElement {
 	 * If the meaning of the '<em>Elements</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Elements</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getDataContextPackage_Elements()
 	 * @see org.eclipse.papyrus.infra.properties.contexts.DataContextElement#getPackage

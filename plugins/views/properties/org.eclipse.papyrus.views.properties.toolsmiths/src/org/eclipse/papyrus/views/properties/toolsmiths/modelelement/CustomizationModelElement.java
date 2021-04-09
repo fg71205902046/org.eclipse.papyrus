@@ -24,7 +24,6 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
-import org.eclipse.papyrus.views.properties.toolsmiths.modelelement.SectionNameObservableValue;
 import org.eclipse.papyrus.infra.constraints.ConstraintsPackage;
 import org.eclipse.papyrus.infra.constraints.ui.providers.ConstraintTypeContentProvider;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
@@ -90,7 +89,7 @@ public class CustomizationModelElement extends AbstractModelElement {
 	}
 
 	private static void initializeProviders() {
-		providers = new HashMap<EClassifier, IStaticContentProvider>();
+		providers = new HashMap<>();
 		providers.put(EnvironmentPackage.eINSTANCE.getCompositeWidgetType(), new EnvironmentContentProvider(EnvironmentPackage.eINSTANCE.getEnvironment_CompositeWidgetTypes()));
 		providers.put(EnvironmentPackage.eINSTANCE.getStandardWidgetType(), new EnvironmentContentProvider(EnvironmentPackage.eINSTANCE.getEnvironment_WidgetTypes()));
 		providers.put(EnvironmentPackage.eINSTANCE.getLayoutType(), new EnvironmentContentProvider(EnvironmentPackage.eINSTANCE.getEnvironment_LayoutTypes()));
@@ -103,7 +102,7 @@ public class CustomizationModelElement extends AbstractModelElement {
 	@Override
 	public IObservable doGetObservable(String propertyPath) {
 		EStructuralFeature feature = delegate.getFeature(propertyPath);
-		if (ContextsPackage.eINSTANCE.getSection_Name() == feature) {
+		if (ContextsPackage.Literals.ABSTRACT_SECTION__NAME == feature) {
 			return new SectionNameObservableValue(delegate.getSource(), feature, delegate.getDomain());
 		}
 		return delegate.getObservable(propertyPath);

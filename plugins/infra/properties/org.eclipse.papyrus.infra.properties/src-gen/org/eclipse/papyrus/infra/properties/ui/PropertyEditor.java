@@ -26,13 +26,13 @@ import org.eclipse.papyrus.infra.properties.environment.PropertyEditorType;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.properties.ui.PropertyEditor#getProperty <em>Property</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.properties.ui.PropertyEditor#isReadOnly <em>Read Only</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.properties.ui.PropertyEditor#getWidgetType <em>Widget Type</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.properties.ui.PropertyEditor#getUnresolvedProperty <em>Unresolved Property</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.properties.ui.PropertyEditor#getContentProviderClass <em>Content Provider Class</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.properties.ui.PropertyEditor#isShowLabel <em>Show Label</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.properties.ui.PropertyEditor#getCustomLabel <em>Custom Label</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.properties.ui.PropertyEditor#getProperty <em>Property</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.properties.ui.PropertyEditor#isReadOnly <em>Read Only</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.properties.ui.PropertyEditor#getWidgetType <em>Widget Type</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.properties.ui.PropertyEditor#getUnresolvedProperty <em>Unresolved Property</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.properties.ui.PropertyEditor#getContentProviderClass <em>Content Provider Class</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.properties.ui.PropertyEditor#isShowLabel <em>Show Label</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.properties.ui.PropertyEditor#getCustomLabel <em>Custom Label</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.properties.ui.UiPackage#getPropertyEditor()
@@ -47,7 +47,6 @@ public interface PropertyEditor extends Widget {
 	 * If the meaning of the '<em>Property</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Property</em>' reference.
 	 * @see #setProperty(Property)
 	 * @see org.eclipse.papyrus.infra.properties.ui.UiPackage#getPropertyEditor_Property()
@@ -60,9 +59,7 @@ public interface PropertyEditor extends Widget {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.ui.PropertyEditor#getProperty <em>Property</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Property</em>' reference.
+	 * @param value the new value of the '<em>Property</em>' reference.
 	 * @see #getProperty()
 	 * @generated
 	 */
@@ -76,7 +73,6 @@ public interface PropertyEditor extends Widget {
 	 * If the meaning of the '<em>Read Only</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Read Only</em>' attribute.
 	 * @see #setReadOnly(boolean)
 	 * @see org.eclipse.papyrus.infra.properties.ui.UiPackage#getPropertyEditor_ReadOnly()
@@ -89,9 +85,7 @@ public interface PropertyEditor extends Widget {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.ui.PropertyEditor#isReadOnly <em>Read Only</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Read Only</em>' attribute.
+	 * @param value the new value of the '<em>Read Only</em>' attribute.
 	 * @see #isReadOnly()
 	 * @generated
 	 */
@@ -104,7 +98,6 @@ public interface PropertyEditor extends Widget {
 	 * If the meaning of the '<em>Widget Type</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Widget Type</em>' reference.
 	 * @see #setWidgetType(PropertyEditorType)
 	 * @see org.eclipse.papyrus.infra.properties.ui.UiPackage#getPropertyEditor_WidgetType()
@@ -117,9 +110,7 @@ public interface PropertyEditor extends Widget {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.ui.PropertyEditor#getWidgetType <em>Widget Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Widget Type</em>' reference.
+	 * @param value the new value of the '<em>Widget Type</em>' reference.
 	 * @see #getWidgetType()
 	 * @generated
 	 */
@@ -132,7 +123,6 @@ public interface PropertyEditor extends Widget {
 	 * If the meaning of the '<em>Unresolved Property</em>' containment reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Unresolved Property</em>' containment reference.
 	 * @see #setUnresolvedProperty(UnknownProperty)
 	 * @see org.eclipse.papyrus.infra.properties.ui.UiPackage#getPropertyEditor_UnresolvedProperty()
@@ -145,9 +135,7 @@ public interface PropertyEditor extends Widget {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.ui.PropertyEditor#getUnresolvedProperty <em>Unresolved Property</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Unresolved Property</em>' containment reference.
+	 * @param value the new value of the '<em>Unresolved Property</em>' containment reference.
 	 * @see #getUnresolvedProperty()
 	 * @generated
 	 */
@@ -160,7 +148,6 @@ public interface PropertyEditor extends Widget {
 	 * If the meaning of the '<em>Content Provider Class</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Content Provider Class</em>' attribute.
 	 * @see #setContentProviderClass(String)
 	 * @see org.eclipse.papyrus.infra.properties.ui.UiPackage#getPropertyEditor_ContentProviderClass()
@@ -173,9 +160,7 @@ public interface PropertyEditor extends Widget {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.ui.PropertyEditor#getContentProviderClass <em>Content Provider Class</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Content Provider Class</em>' attribute.
+	 * @param value the new value of the '<em>Content Provider Class</em>' attribute.
 	 * @see #getContentProviderClass()
 	 * @generated
 	 */
@@ -189,7 +174,6 @@ public interface PropertyEditor extends Widget {
 	 * If the meaning of the '<em>Show Label</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Show Label</em>' attribute.
 	 * @see #setShowLabel(boolean)
 	 * @see org.eclipse.papyrus.infra.properties.ui.UiPackage#getPropertyEditor_ShowLabel()
@@ -202,9 +186,7 @@ public interface PropertyEditor extends Widget {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.ui.PropertyEditor#isShowLabel <em>Show Label</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Show Label</em>' attribute.
+	 * @param value the new value of the '<em>Show Label</em>' attribute.
 	 * @see #isShowLabel()
 	 * @generated
 	 */
@@ -217,7 +199,6 @@ public interface PropertyEditor extends Widget {
 	 * If the meaning of the '<em>Custom Label</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Custom Label</em>' attribute.
 	 * @see #setCustomLabel(String)
 	 * @see org.eclipse.papyrus.infra.properties.ui.UiPackage#getPropertyEditor_CustomLabel()
@@ -230,9 +211,7 @@ public interface PropertyEditor extends Widget {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.ui.PropertyEditor#getCustomLabel <em>Custom Label</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Custom Label</em>' attribute.
+	 * @param value the new value of the '<em>Custom Label</em>' attribute.
 	 * @see #getCustomLabel()
 	 * @generated
 	 */

@@ -59,7 +59,8 @@ public class ConstraintsSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
-	 * @parameter ePackage the package in question.
+	 * @param ePackage
+	 *            the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
@@ -106,20 +107,20 @@ public class ConstraintsSwitch<T> extends Switch<T> {
 			}
 			return result;
 		}
+		case ConstraintsPackage.CONFIG_PROPERTY: {
+			ConfigProperty configProperty = (ConfigProperty) theEObject;
+			T result = caseConfigProperty(configProperty);
+			if (result == null) {
+				result = defaultCase(theEObject);
+			}
+			return result;
+		}
 		case ConstraintsPackage.COMPOSITE_CONSTRAINT: {
 			CompositeConstraint compositeConstraint = (CompositeConstraint) theEObject;
 			T result = caseCompositeConstraint(compositeConstraint);
 			if (result == null) {
 				result = caseConstraintDescriptor(compositeConstraint);
 			}
-			if (result == null) {
-				result = defaultCase(theEObject);
-			}
-			return result;
-		}
-		case ConstraintsPackage.CONFIG_PROPERTY: {
-			ConfigProperty configProperty = (ConfigProperty) theEObject;
-			T result = caseConfigProperty(configProperty);
 			if (result == null) {
 				result = defaultCase(theEObject);
 			}

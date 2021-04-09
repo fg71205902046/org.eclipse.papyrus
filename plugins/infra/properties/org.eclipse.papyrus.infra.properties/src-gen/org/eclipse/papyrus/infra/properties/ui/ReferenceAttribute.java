@@ -23,7 +23,7 @@ package org.eclipse.papyrus.infra.properties.ui;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.properties.ui.ReferenceAttribute#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.properties.ui.ReferenceAttribute#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.properties.ui.UiPackage#getReferenceAttribute()
@@ -38,7 +38,6 @@ public interface ReferenceAttribute extends WidgetAttribute {
 	 * If the meaning of the '<em>Value</em>' containment reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Value</em>' containment reference.
 	 * @see #setValue(UIComponent)
 	 * @see org.eclipse.papyrus.infra.properties.ui.UiPackage#getReferenceAttribute_Value()
@@ -51,9 +50,7 @@ public interface ReferenceAttribute extends WidgetAttribute {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.ui.ReferenceAttribute#getValue <em>Value</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Value</em>' containment reference.
+	 * @param value the new value of the '<em>Value</em>' containment reference.
 	 * @see #getValue()
 	 * @generated
 	 */

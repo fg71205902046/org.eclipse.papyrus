@@ -24,8 +24,8 @@ import org.eclipse.papyrus.infra.properties.environment.ModelElementFactoryDescr
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.properties.contexts.DataContextRoot#getLabel <em>Label</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.properties.contexts.DataContextRoot#getModelElementFactory <em>Model Element Factory</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.properties.contexts.DataContextRoot#getLabel <em>Label</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.properties.contexts.DataContextRoot#getModelElementFactory <em>Model Element Factory</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getDataContextRoot()
@@ -40,7 +40,6 @@ public interface DataContextRoot extends DataContextPackage {
 	 * If the meaning of the '<em>Label</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Label</em>' attribute.
 	 * @see #setLabel(String)
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getDataContextRoot_Label()
@@ -53,9 +52,7 @@ public interface DataContextRoot extends DataContextPackage {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.contexts.DataContextRoot#getLabel <em>Label</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Label</em>' attribute.
+	 * @param value the new value of the '<em>Label</em>' attribute.
 	 * @see #getLabel()
 	 * @generated
 	 */
@@ -68,7 +65,6 @@ public interface DataContextRoot extends DataContextPackage {
 	 * If the meaning of the '<em>Model Element Factory</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Model Element Factory</em>' reference.
 	 * @see #setModelElementFactory(ModelElementFactoryDescriptor)
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getDataContextRoot_ModelElementFactory()
@@ -81,9 +77,7 @@ public interface DataContextRoot extends DataContextPackage {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.contexts.DataContextRoot#getModelElementFactory <em>Model Element Factory</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Model Element Factory</em>' reference.
+	 * @param value the new value of the '<em>Model Element Factory</em>' reference.
 	 * @see #getModelElementFactory()
 	 * @generated
 	 */

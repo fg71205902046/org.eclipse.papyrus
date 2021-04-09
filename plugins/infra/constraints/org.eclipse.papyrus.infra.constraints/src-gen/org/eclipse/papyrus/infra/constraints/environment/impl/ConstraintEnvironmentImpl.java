@@ -12,7 +12,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.papyrus.infra.constraints.environment.ConstraintEnvironment;
@@ -25,14 +25,14 @@ import org.eclipse.papyrus.infra.constraints.environment.EnvironmentPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.constraints.environment.impl.ConstraintEnvironmentImpl#getConstraintTypes <em>Constraint Types</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class ConstraintEnvironmentImpl extends EObjectImpl implements ConstraintEnvironment {
+public class ConstraintEnvironmentImpl extends MinimalEObjectImpl.Container implements ConstraintEnvironment {
 	/**
 	 * The cached value of the '{@link #getConstraintTypes() <em>Constraint Types</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -71,9 +71,10 @@ public class ConstraintEnvironmentImpl extends EObjectImpl implements Constraint
 	 *
 	 * @generated
 	 */
+	@Override
 	public EList<ConstraintType> getConstraintTypes() {
 		if (constraintTypes == null) {
-			constraintTypes = new EObjectContainmentEList<ConstraintType>(ConstraintType.class, this, EnvironmentPackage.CONSTRAINT_ENVIRONMENT__CONSTRAINT_TYPES);
+			constraintTypes = new EObjectContainmentEList<>(ConstraintType.class, this, EnvironmentPackage.CONSTRAINT_ENVIRONMENT__CONSTRAINT_TYPES);
 		}
 		return constraintTypes;
 	}

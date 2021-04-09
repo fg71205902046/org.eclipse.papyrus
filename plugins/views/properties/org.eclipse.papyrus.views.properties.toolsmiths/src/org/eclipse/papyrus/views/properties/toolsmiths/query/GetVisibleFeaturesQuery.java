@@ -43,7 +43,7 @@ import org.eclipse.papyrus.views.properties.toolsmiths.editor.actions.ToggleData
  */
 public class GetVisibleFeaturesQuery implements IJavaQuery2<EObject, List<EReference>> {
 
-	static Set<EReference> allExcludedReferences = new HashSet<EReference>();
+	static Set<EReference> allExcludedReferences = new HashSet<>();
 
 	static {
 		allExcludedReferences.add(ConstraintsPackage.Literals.DISPLAY_UNIT__CONSTRAINTS);
@@ -54,9 +54,11 @@ public class GetVisibleFeaturesQuery implements IJavaQuery2<EObject, List<ERefer
 		allExcludedReferences.add(ContextsPackage.Literals.DATA_CONTEXT_ELEMENT__PACKAGE);
 		allExcludedReferences.add(ContextsPackage.Literals.DATA_CONTEXT_ELEMENT__SUPERTYPES);
 		allExcludedReferences.add(ContextsPackage.Literals.PROPERTY__CONTEXT_ELEMENT);
-		allExcludedReferences.add(ContextsPackage.Literals.SECTION__TAB);
+		allExcludedReferences.add(ContextsPackage.Literals.ABSTRACT_SECTION__TAB);
+		allExcludedReferences.add(ContextsPackage.Literals.SECTION__OWNER);
 		allExcludedReferences.add(ContextsPackage.Literals.TAB__AFTER_TAB);
 		allExcludedReferences.add(ContextsPackage.Literals.TAB__SECTIONS);
+		allExcludedReferences.add(ContextsPackage.Literals.TAB__ALL_SECTIONS);
 		allExcludedReferences.add(ContextsPackage.Literals.VIEW__CONTEXT);
 		allExcludedReferences.add(ContextsPackage.Literals.VIEW__DATACONTEXTS);
 

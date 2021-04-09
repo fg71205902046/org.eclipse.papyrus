@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.infra.properties.ui.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.papyrus.infra.properties.ui.Element;
 import org.eclipse.papyrus.infra.properties.ui.UiPackage;
 
@@ -25,11 +25,10 @@ import org.eclipse.papyrus.infra.properties.ui.UiPackage;
  *
  * @generated
  */
-public class ElementImpl extends EObjectImpl implements Element {
+public class ElementImpl extends MinimalEObjectImpl.Container implements Element {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ElementImpl() {
@@ -39,7 +38,6 @@ public class ElementImpl extends EObjectImpl implements Element {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

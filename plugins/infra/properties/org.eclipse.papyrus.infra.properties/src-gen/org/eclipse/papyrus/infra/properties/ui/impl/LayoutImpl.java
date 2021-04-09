@@ -29,7 +29,7 @@ import org.eclipse.papyrus.infra.properties.ui.UiPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.properties.ui.impl.LayoutImpl#getLayoutType <em>Layout Type</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.properties.ui.impl.LayoutImpl#getLayoutType <em>Layout Type</em>}</li>
  * </ul>
  *
  * @generated
@@ -39,7 +39,6 @@ public class LayoutImpl extends UIComponentImpl implements Layout {
 	 * The cached value of the '{@link #getLayoutType() <em>Layout Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getLayoutType()
 	 * @generated
 	 * @ordered
@@ -49,7 +48,6 @@ public class LayoutImpl extends UIComponentImpl implements Layout {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected LayoutImpl() {
@@ -59,7 +57,6 @@ public class LayoutImpl extends UIComponentImpl implements Layout {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -70,14 +67,13 @@ public class LayoutImpl extends UIComponentImpl implements Layout {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public LayoutType getLayoutType() {
 		if (layoutType != null && layoutType.eIsProxy()) {
-			InternalEObject oldLayoutType = (InternalEObject) layoutType;
-			layoutType = (LayoutType) eResolveProxy(oldLayoutType);
+			InternalEObject oldLayoutType = (InternalEObject)layoutType;
+			layoutType = (LayoutType)eResolveProxy(oldLayoutType);
 			if (layoutType != oldLayoutType) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UiPackage.LAYOUT__LAYOUT_TYPE, oldLayoutType, layoutType));
@@ -89,7 +85,6 @@ public class LayoutImpl extends UIComponentImpl implements Layout {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public LayoutType basicGetLayoutType() {
@@ -99,7 +94,6 @@ public class LayoutImpl extends UIComponentImpl implements Layout {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -113,16 +107,14 @@ public class LayoutImpl extends UIComponentImpl implements Layout {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case UiPackage.LAYOUT__LAYOUT_TYPE:
-			if (resolve)
-				return getLayoutType();
-			return basicGetLayoutType();
+			case UiPackage.LAYOUT__LAYOUT_TYPE:
+				if (resolve) return getLayoutType();
+				return basicGetLayoutType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -130,15 +122,14 @@ public class LayoutImpl extends UIComponentImpl implements Layout {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case UiPackage.LAYOUT__LAYOUT_TYPE:
-			setLayoutType((LayoutType) newValue);
-			return;
+			case UiPackage.LAYOUT__LAYOUT_TYPE:
+				setLayoutType((LayoutType)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -146,15 +137,14 @@ public class LayoutImpl extends UIComponentImpl implements Layout {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case UiPackage.LAYOUT__LAYOUT_TYPE:
-			setLayoutType((LayoutType) null);
-			return;
+			case UiPackage.LAYOUT__LAYOUT_TYPE:
+				setLayoutType((LayoutType)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -162,14 +152,13 @@ public class LayoutImpl extends UIComponentImpl implements Layout {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case UiPackage.LAYOUT__LAYOUT_TYPE:
-			return layoutType != null;
+			case UiPackage.LAYOUT__LAYOUT_TYPE:
+				return layoutType != null;
 		}
 		return super.eIsSet(featureID);
 	}

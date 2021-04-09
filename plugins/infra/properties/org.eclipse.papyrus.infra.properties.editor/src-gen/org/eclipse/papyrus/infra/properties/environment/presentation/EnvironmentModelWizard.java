@@ -171,8 +171,8 @@ public class EnvironmentModelWizard extends Wizard implements INewWizard {
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.workbench = workbench;
 		this.selection = selection;
-		setWindowTitle(PropertiesEditorPlugin.INSTANCE.getString("_UI_Wizard_label")); //$NON-NLS-1$
-		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(PropertiesEditorPlugin.INSTANCE.getImage("full/wizban/NewEnvironment"))); //$NON-NLS-1$
+		setWindowTitle(PropertiesEditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
+		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(PropertiesEditorPlugin.INSTANCE.getImage("full/wizban/NewEnvironment")));
 	}
 
 	/**
@@ -184,7 +184,7 @@ public class EnvironmentModelWizard extends Wizard implements INewWizard {
 	 */
 	protected Collection<String> getInitialObjectNames() {
 		if (initialObjectNames == null) {
-			initialObjectNames = new ArrayList<String>();
+			initialObjectNames = new ArrayList<>();
 			for (EClassifier eClassifier : environmentPackage.getEClassifiers()) {
 				if (eClassifier instanceof EClass) {
 					EClass eClass = (EClass) eClassifier;
@@ -252,7 +252,7 @@ public class EnvironmentModelWizard extends Wizard implements INewWizard {
 
 						// Save the contents of the resource to the file system.
 						//
-						Map<Object, Object> options = new HashMap<Object, Object>();
+						Map<Object, Object> options = new HashMap<>();
 						options.put(XMLResource.OPTION_ENCODING, initialObjectCreationPage.getEncoding());
 						resource.save(options);
 					} catch (Exception exception) {
@@ -286,7 +286,7 @@ public class EnvironmentModelWizard extends Wizard implements INewWizard {
 				page.openEditor(new FileEditorInput(modelFile),
 						workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());
 			} catch (PartInitException exception) {
-				MessageDialog.openError(workbenchWindow.getShell(), PropertiesEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage()); //$NON-NLS-1$
+				MessageDialog.openError(workbenchWindow.getShell(), PropertiesEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
 				return false;
 			}
 
@@ -328,7 +328,7 @@ public class EnvironmentModelWizard extends Wizard implements INewWizard {
 			if (super.validatePage()) {
 				String extension = new Path(getFileName()).getFileExtension();
 				if (extension == null || !FILE_EXTENSIONS.contains(extension)) {
-					String key = FILE_EXTENSIONS.size() > 1 ? "_WARN_FilenameExtensions" : "_WARN_FilenameExtension"; //$NON-NLS-1$ //$NON-NLS-2$
+					String key = FILE_EXTENSIONS.size() > 1 ? "_WARN_FilenameExtensions" : "_WARN_FilenameExtension";
 					setErrorMessage(PropertiesEditorPlugin.INSTANCE.getString(key, new Object[] { FORMATTED_FILE_EXTENSIONS }));
 					return false;
 				}
@@ -366,7 +366,7 @@ public class EnvironmentModelWizard extends Wizard implements INewWizard {
 
 		/**
 		 * @generated
-		 * 			<!-- begin-user-doc -->
+		 *            <!-- begin-user-doc -->
 		 *            <!-- end-user-doc -->
 		 */
 		protected List<String> encodings;
@@ -414,7 +414,7 @@ public class EnvironmentModelWizard extends Wizard implements INewWizard {
 
 			Label containerLabel = new Label(composite, SWT.LEFT);
 			{
-				containerLabel.setText(PropertiesEditorPlugin.INSTANCE.getString("_UI_ModelObject")); //$NON-NLS-1$
+				containerLabel.setText(PropertiesEditorPlugin.INSTANCE.getString("_UI_ModelObject"));
 
 				GridData data = new GridData();
 				data.horizontalAlignment = GridData.FILL;
@@ -440,7 +440,7 @@ public class EnvironmentModelWizard extends Wizard implements INewWizard {
 
 			Label encodingLabel = new Label(composite, SWT.LEFT);
 			{
-				encodingLabel.setText(PropertiesEditorPlugin.INSTANCE.getString("_UI_XMLEncoding")); //$NON-NLS-1$
+				encodingLabel.setText(PropertiesEditorPlugin.INSTANCE.getString("_UI_XMLEncoding"));
 
 				GridData data = new GridData();
 				data.horizontalAlignment = GridData.FILL;
@@ -544,7 +544,7 @@ public class EnvironmentModelWizard extends Wizard implements INewWizard {
 		 */
 		protected String getLabel(String typeName) {
 			try {
-				return PropertiesEditPlugin.INSTANCE.getString("_UI_" + typeName + "_type"); //$NON-NLS-1$ //$NON-NLS-2$
+				return PropertiesEditPlugin.INSTANCE.getString("_UI_" + typeName + "_type");
 			} catch (MissingResourceException mre) {
 				PropertiesEditorPlugin.INSTANCE.log(mre);
 			}
@@ -559,9 +559,8 @@ public class EnvironmentModelWizard extends Wizard implements INewWizard {
 		 */
 		protected Collection<String> getEncodings() {
 			if (encodings == null) {
-				encodings = new ArrayList<String>();
-				for (StringTokenizer stringTokenizer = new StringTokenizer(PropertiesEditorPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens();) //$NON-NLS-1$
-				{
+				encodings = new ArrayList<>();
+				for (StringTokenizer stringTokenizer = new StringTokenizer(PropertiesEditorPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens();) {
 					encodings.add(stringTokenizer.nextToken());
 				}
 			}
@@ -580,10 +579,10 @@ public class EnvironmentModelWizard extends Wizard implements INewWizard {
 	public void addPages() {
 		// Create a page, set the title, and the initial model file name.
 		//
-		newFileCreationPage = new EnvironmentModelWizardNewFileCreationPage("Whatever", selection); //$NON-NLS-1$
-		newFileCreationPage.setTitle(PropertiesEditorPlugin.INSTANCE.getString("_UI_EnvironmentModelWizard_label")); //$NON-NLS-1$
-		newFileCreationPage.setDescription(PropertiesEditorPlugin.INSTANCE.getString("_UI_EnvironmentModelWizard_description")); //$NON-NLS-1$
-		newFileCreationPage.setFileName(PropertiesEditorPlugin.INSTANCE.getString("_UI_EnvironmentEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0)); //$NON-NLS-1$ //$NON-NLS-2$
+		newFileCreationPage = new EnvironmentModelWizardNewFileCreationPage("Whatever", selection);
+		newFileCreationPage.setTitle(PropertiesEditorPlugin.INSTANCE.getString("_UI_EnvironmentModelWizard_label"));
+		newFileCreationPage.setDescription(PropertiesEditorPlugin.INSTANCE.getString("_UI_EnvironmentModelWizard_description"));
+		newFileCreationPage.setFileName(PropertiesEditorPlugin.INSTANCE.getString("_UI_EnvironmentEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
 		addPage(newFileCreationPage);
 
 		// Try and get the resource selection to determine a current directory for the file dialog.
@@ -609,19 +608,19 @@ public class EnvironmentModelWizard extends Wizard implements INewWizard {
 
 					// Make up a unique new name here.
 					//
-					String defaultModelBaseFilename = PropertiesEditorPlugin.INSTANCE.getString("_UI_EnvironmentEditorFilenameDefaultBase"); //$NON-NLS-1$
+					String defaultModelBaseFilename = PropertiesEditorPlugin.INSTANCE.getString("_UI_EnvironmentEditorFilenameDefaultBase");
 					String defaultModelFilenameExtension = FILE_EXTENSIONS.get(0);
-					String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension; //$NON-NLS-1$
+					String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
 					for (int i = 1; ((IContainer) selectedResource).findMember(modelFilename) != null; ++i) {
-						modelFilename = defaultModelBaseFilename + i + "." + defaultModelFilenameExtension; //$NON-NLS-1$
+						modelFilename = defaultModelBaseFilename + i + "." + defaultModelFilenameExtension;
 					}
 					newFileCreationPage.setFileName(modelFilename);
 				}
 			}
 		}
-		initialObjectCreationPage = new EnvironmentModelWizardInitialObjectCreationPage("Whatever2"); //$NON-NLS-1$
-		initialObjectCreationPage.setTitle(PropertiesEditorPlugin.INSTANCE.getString("_UI_EnvironmentModelWizard_label")); //$NON-NLS-1$
-		initialObjectCreationPage.setDescription(PropertiesEditorPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description")); //$NON-NLS-1$
+		initialObjectCreationPage = new EnvironmentModelWizardInitialObjectCreationPage("Whatever2");
+		initialObjectCreationPage.setTitle(PropertiesEditorPlugin.INSTANCE.getString("_UI_EnvironmentModelWizard_label"));
+		initialObjectCreationPage.setDescription(PropertiesEditorPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));
 		addPage(initialObjectCreationPage);
 	}
 

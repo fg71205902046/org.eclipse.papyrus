@@ -15,11 +15,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.constraints.environment.ConstraintType#getLabel <em>Label</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.constraints.environment.ConstraintType#getConstraintClass <em>Constraint Class</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.infra.constraints.environment.EnvironmentPackage#getConstraintType()
  * @model

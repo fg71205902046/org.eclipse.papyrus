@@ -49,12 +49,12 @@ public abstract class DefaultConstraintEngine<E extends DisplayUnit> implements 
 
 	private static final Method NO_CONVERTER = Object.class.getMethods()[0];
 
-	private final ListenerList listeners = new ListenerList(ListenerList.IDENTITY);
+	private final ListenerList<ConstraintEngineListener> listeners = new ListenerList<>(ListenerList.IDENTITY);
 
 	/**
 	 * The constraints instantiated by this Engine
 	 */
-	protected final Set<Constraint> constraints = new LinkedHashSet<Constraint>();
+	protected final Set<Constraint> constraints = new LinkedHashSet<>();
 
 	private final Class<? extends E> displayUnitType;
 
@@ -93,7 +93,7 @@ public abstract class DefaultConstraintEngine<E extends DisplayUnit> implements 
 	}
 
 	private Set<Constraint> match(final Collection<?> selection) {
-		Set<Constraint> matchedConstraints = new LinkedHashSet<Constraint>();
+		Set<Constraint> matchedConstraints = new LinkedHashSet<>();
 
 		if (selection.isEmpty()) {
 			return matchedConstraints;
@@ -132,7 +132,7 @@ public abstract class DefaultConstraintEngine<E extends DisplayUnit> implements 
 	}
 
 	private void resolveConstraintConflicts(final Set<Constraint> matchedConstraints) {
-		Set<Constraint> constraintsSet = new HashSet<Constraint>(matchedConstraints);
+		Set<Constraint> constraintsSet = new HashSet<>(matchedConstraints);
 		for (Constraint c : constraintsSet) {
 			for (Constraint c2 : constraintsSet) {
 				if (c == c2) {
@@ -153,7 +153,7 @@ public abstract class DefaultConstraintEngine<E extends DisplayUnit> implements 
 	}
 
 	private Set<E> getDisplayUnits(final Set<Constraint> matchedConstraints) {
-		Set<E> displayUnits = new LinkedHashSet<E>();
+		Set<E> displayUnits = new LinkedHashSet<>();
 		for (Constraint c : matchedConstraints) {
 			displayUnits.add(displayUnitType.cast(c.getDescriptor().getDisplay()));
 		}

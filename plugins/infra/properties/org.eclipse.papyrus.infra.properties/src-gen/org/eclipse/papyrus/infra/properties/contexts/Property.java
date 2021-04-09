@@ -27,14 +27,14 @@ import org.eclipse.papyrus.infra.properties.environment.Type;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.properties.contexts.Property#getName <em>Name</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.properties.contexts.Property#getLabel <em>Label</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.properties.contexts.Property#getType <em>Type</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.properties.contexts.Property#getContextElement <em>Context Element</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.properties.contexts.Property#getMultiplicity <em>Multiplicity</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.properties.contexts.Property#getDescription <em>Description</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.properties.contexts.Property#getRedefinedProperties <em>Redefined Properties</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.properties.contexts.Property#getRedefinedByProperties <em>Redefined By Properties</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.properties.contexts.Property#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.properties.contexts.Property#getLabel <em>Label</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.properties.contexts.Property#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.properties.contexts.Property#getContextElement <em>Context Element</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.properties.contexts.Property#getMultiplicity <em>Multiplicity</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.properties.contexts.Property#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.properties.contexts.Property#getRedefinedProperties <em>Redefined Properties</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.properties.contexts.Property#getRedefinedByProperties <em>Redefined By Properties</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getProperty()
@@ -49,7 +49,6 @@ public interface Property extends EObject {
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getProperty_Name()
@@ -62,9 +61,7 @@ public interface Property extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.contexts.Property#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Name</em>' attribute.
+	 * @param value the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
 	 * @generated
 	 */
@@ -77,7 +74,6 @@ public interface Property extends EObject {
 	 * If the meaning of the '<em>Label</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Label</em>' attribute.
 	 * @see #setLabel(String)
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getProperty_Label()
@@ -90,9 +86,7 @@ public interface Property extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.contexts.Property#getLabel <em>Label</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Label</em>' attribute.
+	 * @param value the new value of the '<em>Label</em>' attribute.
 	 * @see #getLabel()
 	 * @generated
 	 */
@@ -106,7 +100,6 @@ public interface Property extends EObject {
 	 * If the meaning of the '<em>Type</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Type</em>' attribute.
 	 * @see org.eclipse.papyrus.infra.properties.environment.Type
 	 * @see #setType(Type)
@@ -120,9 +113,7 @@ public interface Property extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.contexts.Property#getType <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Type</em>' attribute.
+	 * @param value the new value of the '<em>Type</em>' attribute.
 	 * @see org.eclipse.papyrus.infra.properties.environment.Type
 	 * @see #getType()
 	 * @generated
@@ -137,7 +128,6 @@ public interface Property extends EObject {
 	 * If the meaning of the '<em>Context Element</em>' container reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Context Element</em>' container reference.
 	 * @see #setContextElement(DataContextElement)
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getProperty_ContextElement()
@@ -151,9 +141,7 @@ public interface Property extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.contexts.Property#getContextElement <em>Context Element</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Context Element</em>' container reference.
+	 * @param value the new value of the '<em>Context Element</em>' container reference.
 	 * @see #getContextElement()
 	 * @generated
 	 */
@@ -167,7 +155,6 @@ public interface Property extends EObject {
 	 * If the meaning of the '<em>Multiplicity</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Multiplicity</em>' attribute.
 	 * @see #setMultiplicity(int)
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getProperty_Multiplicity()
@@ -180,9 +167,7 @@ public interface Property extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.contexts.Property#getMultiplicity <em>Multiplicity</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Multiplicity</em>' attribute.
+	 * @param value the new value of the '<em>Multiplicity</em>' attribute.
 	 * @see #getMultiplicity()
 	 * @generated
 	 */
@@ -195,7 +180,6 @@ public interface Property extends EObject {
 	 * If the meaning of the '<em>Description</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Description</em>' attribute.
 	 * @see #setDescription(String)
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getProperty_Description()
@@ -208,9 +192,7 @@ public interface Property extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.properties.contexts.Property#getDescription <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Description</em>' attribute.
+	 * @param value the new value of the '<em>Description</em>' attribute.
 	 * @see #getDescription()
 	 * @generated
 	 */
@@ -226,7 +208,6 @@ public interface Property extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Redefined Properties</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getProperty_RedefinedProperties()
 	 * @see org.eclipse.papyrus.infra.properties.contexts.Property#getRedefinedByProperties
@@ -245,11 +226,10 @@ public interface Property extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Redefined By Properties</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getProperty_RedefinedByProperties()
 	 * @see org.eclipse.papyrus.infra.properties.contexts.Property#getRedefinedProperties
-	 * @model opposite="redefinedProperties" derived="true"
+	 * @model opposite="redefinedProperties"
 	 * @generated
 	 */
 	EList<Property> getRedefinedByProperties();

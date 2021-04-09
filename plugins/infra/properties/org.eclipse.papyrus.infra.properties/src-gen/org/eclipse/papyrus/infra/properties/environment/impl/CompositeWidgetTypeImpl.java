@@ -28,7 +28,6 @@ public class CompositeWidgetTypeImpl extends WidgetTypeImpl implements Composite
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected CompositeWidgetTypeImpl() {
@@ -38,7 +37,6 @@ public class CompositeWidgetTypeImpl extends WidgetTypeImpl implements Composite
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

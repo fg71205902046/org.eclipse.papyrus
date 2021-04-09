@@ -27,11 +27,11 @@ import org.eclipse.papyrus.infra.constraints.environment.ConstraintType;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.constraints.impl.SimpleConstraintImpl#getConstraintType <em>Constraint Type</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.constraints.impl.SimpleConstraintImpl#getProperties <em>Properties</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -85,6 +85,7 @@ public class SimpleConstraintImpl extends ConstraintDescriptorImpl implements Si
 	 *
 	 * @generated
 	 */
+	@Override
 	public ConstraintType getConstraintType() {
 		if (constraintType != null && constraintType.eIsProxy()) {
 			InternalEObject oldConstraintType = (InternalEObject) constraintType;
@@ -114,6 +115,7 @@ public class SimpleConstraintImpl extends ConstraintDescriptorImpl implements Si
 	 *
 	 * @generated
 	 */
+	@Override
 	public void setConstraintType(ConstraintType newConstraintType) {
 		ConstraintType oldConstraintType = constraintType;
 		constraintType = newConstraintType;
@@ -128,9 +130,10 @@ public class SimpleConstraintImpl extends ConstraintDescriptorImpl implements Si
 	 *
 	 * @generated
 	 */
+	@Override
 	public EList<ConfigProperty> getProperties() {
 		if (properties == null) {
-			properties = new EObjectContainmentEList<ConfigProperty>(ConfigProperty.class, this, ConstraintsPackage.SIMPLE_CONSTRAINT__PROPERTIES);
+			properties = new EObjectContainmentEList<>(ConfigProperty.class, this, ConstraintsPackage.SIMPLE_CONSTRAINT__PROPERTIES);
 		}
 		return properties;
 	}

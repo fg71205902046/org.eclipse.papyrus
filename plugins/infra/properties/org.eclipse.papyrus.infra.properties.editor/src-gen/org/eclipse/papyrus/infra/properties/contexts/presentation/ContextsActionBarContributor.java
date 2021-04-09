@@ -81,12 +81,11 @@ public class ContextsActionBarContributor
 	 *
 	 * @generated
 	 */
-	protected IAction showPropertiesViewAction = new Action(PropertiesEditorPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) //$NON-NLS-1$
-	{
+	protected IAction showPropertiesViewAction = new Action(PropertiesEditorPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) {
 		@Override
 		public void run() {
 			try {
-				getPage().showView("org.eclipse.ui.views.PropertySheet"); //$NON-NLS-1$
+				getPage().showView("org.eclipse.ui.views.PropertySheet");
 			} catch (PartInitException exception) {
 				PropertiesEditorPlugin.INSTANCE.log(exception);
 			}
@@ -101,8 +100,7 @@ public class ContextsActionBarContributor
 	 *
 	 * @generated
 	 */
-	protected IAction refreshViewerAction = new Action(PropertiesEditorPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) //$NON-NLS-1$
-	{
+	protected IAction refreshViewerAction = new Action(PropertiesEditorPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) {
 		@Override
 		public boolean isEnabled() {
 			return activeEditorPart instanceof IViewerProvider;
@@ -180,8 +178,9 @@ public class ContextsActionBarContributor
 	 */
 	@Override
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
-		toolBarManager.add(new Separator("contexts-settings")); //$NON-NLS-1$
-		toolBarManager.add(new Separator("contexts-additions")); //$NON-NLS-1$
+		super.contributeToToolBar(toolBarManager);
+		toolBarManager.add(new Separator("contexts-settings"));
+		toolBarManager.add(new Separator("contexts-additions"));
 	}
 
 	/**
@@ -196,22 +195,22 @@ public class ContextsActionBarContributor
 	public void contributeToMenu(IMenuManager menuManager) {
 		super.contributeToMenu(menuManager);
 
-		IMenuManager submenuManager = new MenuManager(PropertiesEditorPlugin.INSTANCE.getString("_UI_ContextsEditor_menu"), "org.eclipse.papyrus.infra.properties.contextsMenuID"); //$NON-NLS-1$ //$NON-NLS-2$
-		menuManager.insertAfter("additions", submenuManager); //$NON-NLS-1$
-		submenuManager.add(new Separator("settings")); //$NON-NLS-1$
-		submenuManager.add(new Separator("actions")); //$NON-NLS-1$
-		submenuManager.add(new Separator("additions")); //$NON-NLS-1$
-		submenuManager.add(new Separator("additions-end")); //$NON-NLS-1$
+		IMenuManager submenuManager = new MenuManager(PropertiesEditorPlugin.INSTANCE.getString("_UI_ContextsEditor_menu"), "org.eclipse.papyrus.infra.properties.contextsMenuID");
+		menuManager.insertAfter("additions", submenuManager);
+		submenuManager.add(new Separator("settings"));
+		submenuManager.add(new Separator("actions"));
+		submenuManager.add(new Separator("additions"));
+		submenuManager.add(new Separator("additions-end"));
 
 		// Prepare for CreateChild item addition or removal.
 		//
-		createChildMenuManager = new MenuManager(PropertiesEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item")); //$NON-NLS-1$
-		submenuManager.insertBefore("additions", createChildMenuManager); //$NON-NLS-1$
+		createChildMenuManager = new MenuManager(PropertiesEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
+		submenuManager.insertBefore("additions", createChildMenuManager);
 
 		// Prepare for CreateSibling item addition or removal.
 		//
-		createSiblingMenuManager = new MenuManager(PropertiesEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item")); //$NON-NLS-1$
-		submenuManager.insertBefore("additions", createSiblingMenuManager); //$NON-NLS-1$
+		createSiblingMenuManager = new MenuManager(PropertiesEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
+		submenuManager.insertBefore("additions", createSiblingMenuManager);
 
 		// Force an update because Eclipse hides empty menus now.
 		//
@@ -315,7 +314,7 @@ public class ContextsActionBarContributor
 	 * @generated
 	 */
 	protected Collection<IAction> generateCreateChildActions(Collection<?> descriptors, ISelection selection) {
-		Collection<IAction> actions = new ArrayList<IAction>();
+		Collection<IAction> actions = new ArrayList<>();
 		if (descriptors != null) {
 			for (Object descriptor : descriptors) {
 				actions.add(new CreateChildAction(activeEditorPart, selection, descriptor));
@@ -333,7 +332,7 @@ public class ContextsActionBarContributor
 	 * @generated
 	 */
 	protected Collection<IAction> generateCreateSiblingActions(Collection<?> descriptors, ISelection selection) {
-		Collection<IAction> actions = new ArrayList<IAction>();
+		Collection<IAction> actions = new ArrayList<>();
 		if (descriptors != null) {
 			for (Object descriptor : descriptors) {
 				actions.add(new CreateSiblingAction(activeEditorPart, selection, descriptor));
@@ -407,13 +406,13 @@ public class ContextsActionBarContributor
 		super.menuAboutToShow(menuManager);
 		MenuManager submenuManager = null;
 
-		submenuManager = new MenuManager(PropertiesEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item")); //$NON-NLS-1$
+		submenuManager = new MenuManager(PropertiesEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
 		populateManager(submenuManager, createChildActions, null);
-		menuManager.insertBefore("edit", submenuManager); //$NON-NLS-1$
+		menuManager.insertBefore("edit", submenuManager);
 
-		submenuManager = new MenuManager(PropertiesEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item")); //$NON-NLS-1$
+		submenuManager = new MenuManager(PropertiesEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
 		populateManager(submenuManager, createSiblingActions, null);
-		menuManager.insertBefore("edit", submenuManager); //$NON-NLS-1$
+		menuManager.insertBefore("edit", submenuManager);
 	}
 
 	/**
@@ -425,11 +424,11 @@ public class ContextsActionBarContributor
 	 */
 	@Override
 	protected void addGlobalActions(IMenuManager menuManager) {
-		menuManager.insertAfter("additions-end", new Separator("ui-actions")); //$NON-NLS-1$ //$NON-NLS-2$
-		menuManager.insertAfter("ui-actions", showPropertiesViewAction); //$NON-NLS-1$
+		menuManager.insertAfter("additions-end", new Separator("ui-actions"));
+		menuManager.insertAfter("ui-actions", showPropertiesViewAction);
 
 		refreshViewerAction.setEnabled(refreshViewerAction.isEnabled());
-		menuManager.insertAfter("ui-actions", refreshViewerAction); //$NON-NLS-1$
+		menuManager.insertAfter("ui-actions", refreshViewerAction);
 
 		super.addGlobalActions(menuManager);
 	}

@@ -16,7 +16,7 @@ package org.eclipse.papyrus.infra.properties.environment.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.papyrus.infra.properties.environment.EnvironmentPackage;
 import org.eclipse.papyrus.infra.properties.environment.Namespace;
 
@@ -28,19 +28,18 @@ import org.eclipse.papyrus.infra.properties.environment.Namespace;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.properties.environment.impl.NamespaceImpl#getPrefix <em>Prefix</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.properties.environment.impl.NamespaceImpl#getName <em>Name</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.properties.environment.impl.NamespaceImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.properties.environment.impl.NamespaceImpl#getPrefix <em>Prefix</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.properties.environment.impl.NamespaceImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.properties.environment.impl.NamespaceImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class NamespaceImpl extends EObjectImpl implements Namespace {
+public class NamespaceImpl extends MinimalEObjectImpl.Container implements Namespace {
 	/**
 	 * The default value of the '{@link #getPrefix() <em>Prefix</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getPrefix()
 	 * @generated
 	 * @ordered
@@ -51,7 +50,6 @@ public class NamespaceImpl extends EObjectImpl implements Namespace {
 	 * The cached value of the '{@link #getPrefix() <em>Prefix</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getPrefix()
 	 * @generated
 	 * @ordered
@@ -62,7 +60,6 @@ public class NamespaceImpl extends EObjectImpl implements Namespace {
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -73,7 +70,6 @@ public class NamespaceImpl extends EObjectImpl implements Namespace {
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -84,7 +80,6 @@ public class NamespaceImpl extends EObjectImpl implements Namespace {
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
@@ -95,7 +90,6 @@ public class NamespaceImpl extends EObjectImpl implements Namespace {
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
@@ -105,7 +99,6 @@ public class NamespaceImpl extends EObjectImpl implements Namespace {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected NamespaceImpl() {
@@ -115,7 +108,6 @@ public class NamespaceImpl extends EObjectImpl implements Namespace {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -126,7 +118,6 @@ public class NamespaceImpl extends EObjectImpl implements Namespace {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -137,7 +128,6 @@ public class NamespaceImpl extends EObjectImpl implements Namespace {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -151,7 +141,6 @@ public class NamespaceImpl extends EObjectImpl implements Namespace {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -162,7 +151,6 @@ public class NamespaceImpl extends EObjectImpl implements Namespace {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -176,7 +164,6 @@ public class NamespaceImpl extends EObjectImpl implements Namespace {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -187,7 +174,6 @@ public class NamespaceImpl extends EObjectImpl implements Namespace {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -201,18 +187,17 @@ public class NamespaceImpl extends EObjectImpl implements Namespace {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case EnvironmentPackage.NAMESPACE__PREFIX:
-			return getPrefix();
-		case EnvironmentPackage.NAMESPACE__NAME:
-			return getName();
-		case EnvironmentPackage.NAMESPACE__VALUE:
-			return getValue();
+			case EnvironmentPackage.NAMESPACE__PREFIX:
+				return getPrefix();
+			case EnvironmentPackage.NAMESPACE__NAME:
+				return getName();
+			case EnvironmentPackage.NAMESPACE__VALUE:
+				return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -220,21 +205,20 @@ public class NamespaceImpl extends EObjectImpl implements Namespace {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case EnvironmentPackage.NAMESPACE__PREFIX:
-			setPrefix((String) newValue);
-			return;
-		case EnvironmentPackage.NAMESPACE__NAME:
-			setName((String) newValue);
-			return;
-		case EnvironmentPackage.NAMESPACE__VALUE:
-			setValue((String) newValue);
-			return;
+			case EnvironmentPackage.NAMESPACE__PREFIX:
+				setPrefix((String)newValue);
+				return;
+			case EnvironmentPackage.NAMESPACE__NAME:
+				setName((String)newValue);
+				return;
+			case EnvironmentPackage.NAMESPACE__VALUE:
+				setValue((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -242,21 +226,20 @@ public class NamespaceImpl extends EObjectImpl implements Namespace {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case EnvironmentPackage.NAMESPACE__PREFIX:
-			setPrefix(PREFIX_EDEFAULT);
-			return;
-		case EnvironmentPackage.NAMESPACE__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case EnvironmentPackage.NAMESPACE__VALUE:
-			setValue(VALUE_EDEFAULT);
-			return;
+			case EnvironmentPackage.NAMESPACE__PREFIX:
+				setPrefix(PREFIX_EDEFAULT);
+				return;
+			case EnvironmentPackage.NAMESPACE__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case EnvironmentPackage.NAMESPACE__VALUE:
+				setValue(VALUE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -264,18 +247,17 @@ public class NamespaceImpl extends EObjectImpl implements Namespace {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case EnvironmentPackage.NAMESPACE__PREFIX:
-			return PREFIX_EDEFAULT == null ? prefix != null : !PREFIX_EDEFAULT.equals(prefix);
-		case EnvironmentPackage.NAMESPACE__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case EnvironmentPackage.NAMESPACE__VALUE:
-			return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+			case EnvironmentPackage.NAMESPACE__PREFIX:
+				return PREFIX_EDEFAULT == null ? prefix != null : !PREFIX_EDEFAULT.equals(prefix);
+			case EnvironmentPackage.NAMESPACE__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case EnvironmentPackage.NAMESPACE__VALUE:
+				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -283,15 +265,13 @@ public class NamespaceImpl extends EObjectImpl implements Namespace {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (prefix: "); //$NON-NLS-1$
 		result.append(prefix);
 		result.append(", name: "); //$NON-NLS-1$

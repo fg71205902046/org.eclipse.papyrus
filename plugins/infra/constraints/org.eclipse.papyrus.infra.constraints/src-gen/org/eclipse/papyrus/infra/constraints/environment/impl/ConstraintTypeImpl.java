@@ -9,7 +9,7 @@ package org.eclipse.papyrus.infra.constraints.environment.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.papyrus.infra.constraints.environment.ConstraintType;
 import org.eclipse.papyrus.infra.constraints.environment.EnvironmentPackage;
 
@@ -19,15 +19,15 @@ import org.eclipse.papyrus.infra.constraints.environment.EnvironmentPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.constraints.environment.impl.ConstraintTypeImpl#getLabel <em>Label</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.constraints.environment.impl.ConstraintTypeImpl#getConstraintClass <em>Constraint Class</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class ConstraintTypeImpl extends EObjectImpl implements ConstraintType {
+public class ConstraintTypeImpl extends MinimalEObjectImpl.Container implements ConstraintType {
 	/**
 	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -99,6 +99,7 @@ public class ConstraintTypeImpl extends EObjectImpl implements ConstraintType {
 	 *
 	 * @generated
 	 */
+	@Override
 	public String getLabel() {
 		return label;
 	}
@@ -109,6 +110,7 @@ public class ConstraintTypeImpl extends EObjectImpl implements ConstraintType {
 	 *
 	 * @generated
 	 */
+	@Override
 	public void setLabel(String newLabel) {
 		String oldLabel = label;
 		label = newLabel;
@@ -123,6 +125,7 @@ public class ConstraintTypeImpl extends EObjectImpl implements ConstraintType {
 	 *
 	 * @generated
 	 */
+	@Override
 	public String getConstraintClass() {
 		return constraintClass;
 	}
@@ -133,6 +136,7 @@ public class ConstraintTypeImpl extends EObjectImpl implements ConstraintType {
 	 *
 	 * @generated
 	 */
+	@Override
 	public void setConstraintClass(String newConstraintClass) {
 		String oldConstraintClass = constraintClass;
 		constraintClass = newConstraintClass;
@@ -225,7 +229,7 @@ public class ConstraintTypeImpl extends EObjectImpl implements ConstraintType {
 			return super.toString();
 		}
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (label: ");
 		result.append(label);
 		result.append(", constraintClass: ");

@@ -18,10 +18,10 @@ import org.eclipse.papyrus.infra.constraints.ValueProperty;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.constraints.impl.ValuePropertyImpl#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -75,6 +75,7 @@ public class ValuePropertyImpl extends ConfigPropertyImpl implements ValueProper
 	 *
 	 * @generated
 	 */
+	@Override
 	public String getValue() {
 		return value;
 	}
@@ -85,6 +86,7 @@ public class ValuePropertyImpl extends ConfigPropertyImpl implements ValueProper
 	 *
 	 * @generated
 	 */
+	@Override
 	public void setValue(String newValue) {
 		String oldValue = value;
 		value = newValue;
@@ -167,7 +169,7 @@ public class ValuePropertyImpl extends ConfigPropertyImpl implements ValueProper
 			return super.toString();
 		}
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (value: ");
 		result.append(value);
 		result.append(')');
