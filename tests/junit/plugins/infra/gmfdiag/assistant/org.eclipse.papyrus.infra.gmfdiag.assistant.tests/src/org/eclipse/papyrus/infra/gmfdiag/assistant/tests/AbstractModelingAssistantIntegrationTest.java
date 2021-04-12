@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
- * 
+ * Copyright (c) 2015, 2021 Christian W. Damus, CEA LIST, and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.assistant.tests;
@@ -106,7 +106,7 @@ public class AbstractModelingAssistantIntegrationTest {
 	@SuppressWarnings("restriction")
 	IElementType getProxyType(String semanticTypeID, String visualTypeID) {
 		IElementType semanticType = ElementTypesUtil.requireType(semanticTypeID);
-		IElementType visualType = ElementTypesUtil.requireType(semanticTypeID);
+		IElementType visualType = ElementTypesUtil.requireType(visualTypeID);
 		return org.eclipse.papyrus.infra.gmfdiag.assistant.internal.core.util.ProxyElementType.create(semanticType, (IHintedType) visualType, true);
 	}
 

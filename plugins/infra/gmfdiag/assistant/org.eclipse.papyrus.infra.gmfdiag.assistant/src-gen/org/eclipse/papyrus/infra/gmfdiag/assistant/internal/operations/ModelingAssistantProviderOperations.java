@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014, 2015, 2020 Christian W. Damus and others.
+ * Copyright (c) 2014, 2021, 2020 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,6 +11,7 @@
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
  *   Remi Schnekenburger (EclipseSource) - Bug 563126
+ *   Christian W. Damus - bug 570716
  */
 package org.eclipse.papyrus.infra.gmfdiag.assistant.internal.operations;
 
@@ -305,7 +306,7 @@ public class ModelingAssistantProviderOperations {
 					ModelingAssistantUtil.notSpecializationOfAny(modelingAssistantProvider.getExcludedElementTypes())));
 
 			for (ConnectionAssistant next : modelingAssistantProvider.getConnectionAssistants()) {
-				if (Objects.equal(relationshipType, next.getElementType())) {
+				if (ModelingAssistantUtil.isSubtype(relationshipType, next.getElementType())) {
 					if ((next.getTargetFilter() == null) || next.getTargetFilter().matches(target)) {
 						for (IElementType sourceType : validTypes) {
 							// The filter, if any, needs to match but we also don't want to propose connections
@@ -358,7 +359,7 @@ public class ModelingAssistantProviderOperations {
 					ModelingAssistantUtil.notSpecializationOfAny(modelingAssistantProvider.getExcludedElementTypes())));
 
 			for (ConnectionAssistant next : modelingAssistantProvider.getConnectionAssistants()) {
-				if (Objects.equal(relationshipType, next.getElementType())) {
+				if (ModelingAssistantUtil.isSubtype(relationshipType, next.getElementType())) {
 					if ((next.getSourceFilter() == null) || next.getSourceFilter().matches(source)) {
 						for (IElementType targetType : validTypes) {
 							// The filter, if any, needs to match but we also don't want to propose connections
