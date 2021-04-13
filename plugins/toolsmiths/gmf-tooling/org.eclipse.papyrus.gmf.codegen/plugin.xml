@@ -136,49 +136,4 @@
      </content-type>
   </extension>
 
-  <extension point="org.eclipse.m2m.qvt.oml.javaBlackboxUnits">
-     <unit name="GenModelUtils" namespace="gmf">
-       <library class="org.eclipse.papyrus.gmf.internal.codegen.util.GenModelUtils">
-             <metamodel nsURI="http://www.eclipse.org/emf/2002/GenModel"/>
-             <metamodel nsURI="http://www.eclipse.org/emf/2002/Ecore"/>
-       </library>
-    </unit>
-    <unit name="EMFUtils" namespace="gmf">
-       <library class="org.eclipse.papyrus.gmf.internal.codegen.util.EMFUtils">
-             <metamodel nsURI="http://www.eclipse.org/emf/2002/Ecore"/>
-       </library>
-    </unit>
-    <unit name="CodeGenerationUtils" namespace="gmf">
-       <library class="org.eclipse.papyrus.gmf.internal.codegen.util.CodeGenerationUtils"/>
-    </unit>
-    <unit
-          description="GMF utulities to access EMF GenModels"
-          name="GenModelAccess"
-          namespace="gmf">
-       <library
-             class="org.eclipse.papyrus.gmf.internal.codegen.util.GenModelAccessHelpers">
-          <metamodel nsURI="http://www.eclipse.org/emf/2002/Ecore"/>
-          <metamodel nsURI="http://www.eclipse.org/emf/2002/GenModel"/>
-       </library>
-    </unit>
-    <unit
-          description="Access to GMF Xpand templates through QVTO"
-          name="XpandFacade"
-          namespace="xpt">
-       <library class="org.eclipse.papyrus.gmf.internal.codegen.util.XpandFacadeAccess"/>
-    </unit>
-    <unit
-          name="GenPackageUtils"
-          namespace="gmf">
-       <library
-             class="org.eclipse.papyrus.gmf.internal.codegen.util.GenPackageUtils">
-          <metamodel
-                nsURI="http://www.eclipse.org/emf/2002/GenModel">
-          </metamodel>
-          <metamodel
-                nsURI="http://www.eclipse.org/emf/2002/Ecore">
-          </metamodel>
-       </library>
-    </unit>
-  </extension>
 </plugin>

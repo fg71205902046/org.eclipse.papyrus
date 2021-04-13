@@ -24,18 +24,6 @@
 
 	<modules>
 		<!-- plugins -->
-		<module>org.eclipse.papyrus.gmf.graphdef</module>
-		<module>org.eclipse.papyrus.gmf.graphdef.codegen</module>
-		<module>org.eclipse.papyrus.gmf.graphdef.codegen.ui</module>
-		<module>org.eclipse.papyrus.gmf.graphdef.edit</module>
-		<module>org.eclipse.papyrus.gmf.tooldef</module>
-		<module>org.eclipse.papyrus.gmf.tooldef.edit</module>
-		<module>org.eclipse.papyrus.gmf.map</module>
-		<module>org.eclipse.papyrus.gmf.map.edit</module>
-		<module>org.eclipse.papyrus.gmf.bridge</module>
-		<module>org.eclipse.papyrus.gmf.bridge.trace</module>
-		<module>org.eclipse.papyrus.gmf.bridge.ui</module>
-		<module>org.eclipse.papyrus.gmf.bridge.ui.dashboard</module>
 		<module>org.eclipse.papyrus.gmf.codegen</module>
 		<module>org.eclipse.papyrus.gmf.codegen.edit</module>
 		<module>org.eclipse.papyrus.gmf.codegen.ui</module>
@@ -43,9 +31,6 @@
 	    <module>org.eclipse.papyrus.gmf.codegen.xtend.ui</module>
 		<module>org.eclipse.papyrus.gmf.common</module>
 		<module>org.eclipse.papyrus.gmf.validate</module>
-		<module>org.eclipse.papyrus.gmf.xpand</module>
-		<module>org.eclipse.papyrus.gmf.xpand.qvtlibrary</module>
-
 	</modules>
 
 </project>

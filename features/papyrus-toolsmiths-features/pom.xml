@@ -21,7 +21,6 @@
 		<module>org.eclipse.papyrus.releng.feature</module>
 		<module>org.eclipse.papyrus.toolsmiths.builder.feature</module>
 		<module>org.eclipse.papyrus.toolsmiths.feature</module>
-		<module>org.eclipse.papyrus.gmf.tooling.feature</module>
 		<module>org.eclipse.papyrus.uml.assistants.feature</module>
 		<module>org.eclipse.papyrus.uml.m2m.qvto.tests.tools.feature</module>
 		<module>org.eclipse.papyrus.toolsmiths.validation.feature</module>

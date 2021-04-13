@@ -14,11 +14,12 @@
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Remi Schnekenburger (CEA LIST) - modification for Papyrus MDT
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : Remove reference to gmfgraph and ModelViewMap
  *****************************************************************************/
 package impl.diagram.editparts
 
 import com.google.inject.Inject
-import impl.diagram.editparts.viewmaps.modeledViewmapProducer
+import com.google.inject.Singleton
 import org.eclipse.papyrus.gmf.codegen.gmfgen.FigureViewmap
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLinkLabel
@@ -29,19 +30,16 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.SnippetViewmap
 import org.eclipse.papyrus.gmf.codegen.gmfgen.Viewmap
 import xpt.Common
 import xpt.Common_qvto
-import org.eclipse.papyrus.gmf.gmfgraph.DiagramLabel
 
 /**
  * Revisit: [MG]: @Inject extension same-named-api-class -> template extends api-class?
  */
-@com.google.inject.Singleton class LinkEditPart {
+@Singleton class LinkEditPart {
 	@Inject extension Common;
 	@Inject extension Common_qvto;
 	
 	@Inject xpt.diagram.editparts.Common xptEditpartsCommon;
 	@Inject TextAware xptTextAware;
-	@Inject modeledViewmapProducer xptModeledViewmapProducer;
-	@Inject diagram.editparts.LinkLabelEditPart linkLabelEditPart;
 
 	def className(GenLink it) '''«editPartClassName»'''
 
@@ -89,13 +87,6 @@ import org.eclipse.papyrus.gmf.gmfgraph.DiagramLabel
 
 	def dispatch addLabel(ParentAssignedViewmap it, GenLinkLabel label) '''
 		«it.commonAddLabel(getterName,label)»
-	'''
-
-	def dispatch addLabel(ModeledViewmap it, GenLinkLabel label) '''
-		«var labelAccessor = (figureModel as DiagramLabel).accessor»
-		«IF labelAccessor != null && labelAccessor.accessor != null»
-			«it.commonAddLabel(labelAccessor.accessor,label)»
-		«ENDIF»
 	'''
 
 	def commonAddLabel(Viewmap it, String getterName, GenLinkLabel label) '''

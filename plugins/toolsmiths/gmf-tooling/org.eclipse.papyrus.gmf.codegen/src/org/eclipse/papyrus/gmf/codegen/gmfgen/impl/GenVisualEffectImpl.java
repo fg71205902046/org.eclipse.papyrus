@@ -27,11 +27,9 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.helper.OCLHelper;
-import org.eclipse.ocl.types.TypeType;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenVisualEffect;
 import org.eclipse.papyrus.gmf.internal.common.codegen.Conversions;
-import org.eclipse.papyrus.gmf.internal.xpand.util.ParserException;
 
 /**
  * <!-- begin-user-doc -->

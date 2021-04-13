@@ -47,6 +47,10 @@ public class Messages extends NLS {
 
 	public static String PredefinedModelExtensionPredefinedModels;
 
+	public static String ValidationHelper_e_marker_creation;
+
+	public static String ValidationHelper_task_validate;
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

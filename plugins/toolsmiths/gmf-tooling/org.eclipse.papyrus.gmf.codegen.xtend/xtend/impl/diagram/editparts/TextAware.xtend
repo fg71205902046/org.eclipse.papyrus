@@ -13,6 +13,7 @@
  *  Alexander Shatalin (Borland) - initial API and implementation
  *  Michael Golubev (Montages) - #386838 - migrate to Xtend2
  *  Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ *  Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : Remove reference to gmfgraph and ModelViewMap
  *****************************************************************************/
 package impl.diagram.editparts
 
@@ -34,8 +35,6 @@ import xpt.providers.ElementTypes
 	@Inject extension CodeStyle
 	@Inject extension ViewmapAttributesUtils_qvto
 	@Inject extension ChoiceUtils_qvto
-	@Inject extension RuntimeLabelsSupport_qvto
-
 	@Inject EditPartFactory xptEditPartFactory
 	@Inject ElementTypes xptElementTypes;
 
@@ -208,22 +207,6 @@ def labelSetterName(Viewmap it)'''setLabel'''
 	}
 '''
 
-	def getLabelDelegate(GenCommonBase it) '''
-		«generatedMemberComment()»
-		private org.eclipse.gmf.runtime.diagram.ui.label.ILabelDelegate getLabelDelegate(){
-			if (labelDelegate == null){
-				org.eclipse.draw2d.IFigure label = getFigure();
-				if (label instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel){
-					labelDelegate = new org.eclipse.gmf.runtime.diagram.ui.label.WrappingLabelDelegate((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)label);
-				} «IF isVerticalLabel(it)» else if (label instanceof «getVerticalLabelFQN()») {
-						labelDelegate = new «getVerticalLabelDelegateFQN()»((«getVerticalLabelFQN()»)label); 
-				} «ENDIF» else {
-					labelDelegate = new «getSimpleLabelDelegateFQN()»((org.eclipse.draw2d.Label)label);
-				}
-			}
-			return labelDelegate;
-		}
-	'''
 
 	def getAdapter(GenCommonBase it) '''
 		«generatedMemberComment()»

@@ -13,15 +13,15 @@ Export-Package: org.eclipse.papyrus.gmf.codegen.genextension.presentation,
  org.eclipse.papyrus.gmf.codegen.gmfgen.presentation,
  org.eclipse.papyrus.gmf.codegen.gmfgen.provider
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.3.0,4.0.0)",
- org.eclipse.core.resources;bundle-version="[3.3.0,4.0.0)";visibility:=reexport,
- org.eclipse.papyrus.gmf.codegen;bundle-version="[2.9.0,4.0.0)";visibility:=reexport,
- org.eclipse.emf.edit;bundle-version="[2.4.0,3.0.0)";visibility:=reexport,
- org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.emf.ecore.edit;visibility:=reexport,
- org.eclipse.emf.codegen.ecore;visibility:=reexport,
- org.eclipse.emf.ecore.xmi;bundle-version="[2.4.0,3.0.0)";visibility:=reexport,
- org.eclipse.emf.edit.ui;bundle-version="[2.4.0,3.0.0)";visibility:=reexport,
- org.eclipse.ui.ide;bundle-version="[3.3.0,4.0.0)";visibility:=reexport,
- org.eclipse.emf.codegen.ecore.ui;bundle-version="[2.3.0,3.0.0)";visibility:=reexport
+ org.eclipse.core.resources;bundle-version="[3.3.0,4.0.0)",
+ org.eclipse.papyrus.gmf.codegen;bundle-version="[2.9.0,4.0.0)",
+ org.eclipse.emf.edit;bundle-version="[2.16.0,3.0.0)",
+ org.eclipse.emf.ecore;bundle-version="[2.16.0,3.0.0)",
+ org.eclipse.emf.ecore.edit;bundle-version="[2.13.0,3.0.0)",
+ org.eclipse.emf.codegen.ecore;bundle-version="[2.16.0,3.0.0)",
+ org.eclipse.emf.ecore.xmi;bundle-version="[2.4.0,3.0.0)",
+ org.eclipse.emf.edit.ui;bundle-version="[2.4.0,3.0.0)",
+ org.eclipse.ui.ide;bundle-version="[3.3.0,4.0.0)",
+ org.eclipse.emf.codegen.ecore.ui;bundle-version="[2.3.0,3.0.0)"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-11

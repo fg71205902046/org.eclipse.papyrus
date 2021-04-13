@@ -12,36 +12,31 @@
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Patrick Tessier (CEA LIST)
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : Remove reference to xpand/qvto
  *****************************************************************************/
 package xpt.diagram.editparts
 
-import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase
 import com.google.inject.Inject
+import com.google.inject.Singleton
+import impl.diagram.editparts.TextAware
 import org.eclipse.papyrus.gmf.codegen.gmfgen.Behaviour
 import org.eclipse.papyrus.gmf.codegen.gmfgen.CustomBehaviour
-import xpt.Common_qvto
+import org.eclipse.papyrus.gmf.codegen.gmfgen.FigureViewmap
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenContainerBase
+import org.eclipse.papyrus.gmf.codegen.gmfgen.InnerClassViewmap
 import org.eclipse.papyrus.gmf.codegen.gmfgen.OpenDiagramBehaviour
 import org.eclipse.papyrus.gmf.codegen.gmfgen.ParentAssignedViewmap
-import impl.diagram.editparts.TextAware
-import org.eclipse.papyrus.gmf.codegen.gmfgen.ModeledViewmap
-import org.eclipse.papyrus.gmf.gmfgraph.DiagramLabel
-import org.eclipse.papyrus.gmf.codegen.gmfgen.Viewmap
-import org.eclipse.papyrus.gmf.codegen.gmfgen.FigureViewmap
 import org.eclipse.papyrus.gmf.codegen.gmfgen.SnippetViewmap
-import org.eclipse.papyrus.gmf.codegen.gmfgen.InnerClassViewmap
-import impl.diagram.editparts.viewmaps.modeledViewmapProducer
-import org.eclipse.emf.ecore.EObject
-import org.eclipse.papyrus.gmf.gmfgraph.Label
-import org.eclipse.papyrus.gmf.codegen.gmfgen.GenContainerBase
+import org.eclipse.papyrus.gmf.codegen.gmfgen.Viewmap
+import xpt.Common_qvto
 import xpt.QualifiedClassNameProvider
 
-@com.google.inject.Singleton class Common {
+@Singleton class Common {
 	@Inject extension xpt.Common;
 	@Inject extension Common_qvto;
 	@Inject QualifiedClassNameProvider qualifiedClassNameProvider;
-	
 	@Inject TextAware xptTextAware;
-	@Inject modeledViewmapProducer xptModeledViewmapProducer;
 	
 	def visualIDConstant(GenCommonBase it) '''
 		«generatedMemberComment»
@@ -75,18 +70,6 @@ import xpt.QualifiedClassNameProvider
 			// Parent should assign one using «xptTextAware.labelSetterName(it)»() method
 			return null;
 		}
-	'''
-
-	def dispatch labelFigure(ModeledViewmap it) '''
-		«IF figureModel.oclIsKindOf(typeof(DiagramLabel)) && (figureModel as DiagramLabel).accessor != null»
-		«generatedMemberComment»
-		protected org.eclipse.draw2d.IFigure createFigure() {
-			// Parent should assign one using «xptTextAware.labelSetterName(it)»() method
-			return null;
-		}
-		«ELSE»
-			«labelFigureDelegateToPrim(it)»
-		«ENDIF»
 	'''
 
 	def dispatch labelFigure(Viewmap it) '''
@@ -125,23 +108,6 @@ import xpt.QualifiedClassNameProvider
 		}
 
 		«classBody»
-	'''
-
-	def dispatch labelFigurePrim(ModeledViewmap it) '''
-		return new «xptModeledViewmapProducer.viewmapFigureFQN(it)»(«labelTextDefaultValue(figureModel)»);
-		}
-	'''
-
-	def dispatch labelTextDefaultValue(EObject it) ''''''
-
-	def dispatch labelTextDefaultValue(DiagramLabel it) '''
-		«IF it.figure != null && it.figure.actualFigure.oclIsKindOf(typeof(Label)) && (it.figure.actualFigure as Label).text != null»
-			"«(it.figure.actualFigure as Label).text»"
-		«ENDIF»
-	'''
-
-	def dispatch labelFigurePrim(Viewmap it) '''
-		«ERROR('Unknown viewmap: ' + it)»
 	'''
 
 	def notationalListeners(GenCommonBase it) '''
