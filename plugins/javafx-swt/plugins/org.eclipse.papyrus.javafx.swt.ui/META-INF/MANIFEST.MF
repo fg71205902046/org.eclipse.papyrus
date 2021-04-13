@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: JavaFX to SWT UI Integration
+Bundle-SymbolicName: org.eclipse.papyrus.javafx.swt.ui
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Eclipse Modeling Project
+Automatic-Module-Name: org.eclipse.papyrus.javafx.ui
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Require-Bundle: org.eclipse.swt;bundle-version="3.116.0";visibility:=reexport,
+ org.eclipse.gef.fx.swt;bundle-version="5.0.2",
+ org.eclipse.papyrus.javafx.swt
+Export-Package: org.eclipse.papyrus.javafx.swt.ui
+Bundle-ActivationPolicy: lazy
+Service-Component: OSGI-INF/org.eclipse.papyrus.javafx.swt.ui.FXCanvasExWrapper.xml
+Import-Package: org.osgi.service.component.annotations;version="1.3.0";resolution:=optional
