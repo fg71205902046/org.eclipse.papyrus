@@ -11,6 +11,7 @@
  * Contributors: 
  *    Artem Tikhomirov (Borland) - initial API and implementation
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *    Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : Obsolete plugins (graphdef /bridge, etc.) /external 'x-friends' removed
  *****************************************************************************/
 package org.eclipse.papyrus.gmf.internal.codegen.popup.actions;
 
@@ -28,7 +29,7 @@ import org.eclipse.ui.IWorkbenchPart;
  * 
  * @author artem
  */
-public class ExecuteTemplatesAction implements IObjectActionDelegate {
+public abstract class ExecuteTemplatesAction implements IObjectActionDelegate {
 
 	private IFile gmFile;
 
@@ -50,9 +51,7 @@ public class ExecuteTemplatesAction implements IObjectActionDelegate {
 		op.run();
 	}
 
-	protected ExecuteTemplatesOperation createOperation() {
-		return new ExecuteTemplatesOperation();
-	}
+	protected abstract ExecuteTemplatesOperation createOperation();
 
 	private Shell getShell() {
 		return myPart.getSite().getShell();

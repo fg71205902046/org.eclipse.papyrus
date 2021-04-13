@@ -10,6 +10,7 @@
  * Contributors: 
  *     Borland Software Corporation - initial API and implementation
  *     Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *     Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : Remove reference to xpand and bridge
  *****************************************************************************/
 package org.eclipse.papyrus.gmf.internal.codegen.popup.actions;
 
@@ -30,8 +31,8 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.papyrus.gmf.internal.bridge.ui.Plugin;
-import org.eclipse.papyrus.gmf.internal.bridge.wizards.WizardUtil;
+import org.eclipse.papyrus.gmf.internal.codegen.CodeGenUIPlugin;
+import org.eclipse.papyrus.gmf.internal.codegen.WizardUtil;
 import org.eclipse.papyrus.gmf.internal.common.ui.ElementSelectorExtension;
 import org.eclipse.papyrus.gmf.internal.common.ui.ExtensibleModelSelectionPage;
 import org.eclipse.papyrus.gmf.internal.common.ui.ListElementSelectorExtension;
@@ -143,7 +144,7 @@ public class GMFGenExtensionModelWizard extends Wizard implements IWorkbenchWiza
 						addExtensionMetamodelRootToGmfgen(nextGmfgenURI, instantiated);
 					}
 				} catch (Exception ex) {
-					Plugin.log(ex);
+					CodeGenUIPlugin.log(ex);
 				} finally {
 					progressMonitor.done();
 				}
@@ -162,7 +163,7 @@ public class GMFGenExtensionModelWizard extends Wizard implements IWorkbenchWiza
 		} catch (InterruptedException ex) {
 			return false;
 		} catch (PartInitException ex) {
-			Plugin.log(ex);
+			CodeGenUIPlugin.log(ex);
 		}
 		return true;
 	}

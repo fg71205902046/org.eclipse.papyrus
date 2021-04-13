@@ -12,80 +12,24 @@
  *    Artem Tikhomirov (Borland) - initial API and implementation
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
  *    Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 - Use project or worksapce preference as new line characters
+ *    Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : Remove reference to xpand/qvto
  *****************************************************************************/
 package org.eclipse.papyrus.gmf.codegen.util;
 
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Map;
 
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Platform;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.gmf.common.UnexpectedBehaviourException;
 import org.eclipse.papyrus.gmf.internal.common.codegen.JavaClassEmitter;
 import org.eclipse.papyrus.gmf.internal.common.codegen.TextEmitter;
-import org.eclipse.papyrus.gmf.internal.common.codegen.XpandClassEmitter;
-import org.eclipse.papyrus.gmf.internal.xpand.ResourceManager;
-import org.eclipse.papyrus.gmf.internal.xpand.util.BundleResourceManager;
-import org.osgi.framework.Bundle;
 
 /**
  * @author artem
  */
-public class CodegenEmitters {
+public abstract class CodegenEmitters {
 
 	protected static final String PATH_SEPARATOR = "::"; //$NON-NLS-1$
-
-	private final ResourceManager myResourceManager;
-
-	private final URL[] myLocations;
-
-	private Map<String, Object> myGlobals;
-
-	public CodegenEmitters(boolean useBaseTemplatesOnly, String templateDirectory, boolean includeDynamicModelTemplates) {
-		ArrayList<URL> urls = new ArrayList<URL>(5);
-		if (!useBaseTemplatesOnly) {
-			urls.add(getDynamicTemplatesURL(templateDirectory));
-		}
-		if (includeDynamicModelTemplates) {
-			urls.add(getTemplatesBundle().getEntry("/templates-dynmodel/")); //$NON-NLS-1$
-		}
-		urls.add(getTemplatesBundle().getEntry("/templates/")); //$NON-NLS-1$
-
-		urls.add(Platform.getBundle("org.eclipse.papyrus.gmf.graphdef.codegen").getEntry("/templates/")); //$NON-NLS-1$ //$NON-NLS-2$
-
-		myLocations = urls.toArray(new URL[urls.size()]);
-		myResourceManager = new BundleResourceManager(myLocations);
-	}
-
-	/* package */void setGlobals(Map<String, Object> globals) {
-		myGlobals = globals;
-	}
-
-
-	private static Bundle getTemplatesBundle() {
-		return Platform.getBundle("org.eclipse.papyrus.gmf.codegen"); //$NON-NLS-1$
-	}
-
-	private static URL getDynamicTemplatesURL(String templateDirectory) {
-		if (templateDirectory != null) {
-			URI templatesURI = templateDirectory.indexOf(":") == -1 ? URI.createPlatformResourceURI(templateDirectory, true) : URI.createURI(templateDirectory); //$NON-NLS-1$
-			try {
-				return new URL(templatesURI.toString());
-			} catch (MalformedURLException e) {
-				Platform.getLog(getTemplatesBundle()).log(new Status(IStatus.ERROR, getTemplatesBundle().getSymbolicName(), 0, "Incorrecct dynamic templates location", e)); //$NON-NLS-1$
-			}
-		}
-		return null;
-	}
-
-	public URL getJMergeControlFile() {
-		return getTemplatesBundle().getEntry("/templates/emf-merge.xml"); //$NON-NLS-1$
-	}
-
+	
+	public abstract URL getJMergeControlFile();
 	// commands
 
 	public JavaClassEmitter getCreateNodeCommandEmitter() throws UnexpectedBehaviourException {
@@ -206,9 +150,7 @@ public class CodegenEmitters {
 		return createJavaClassEmitter("xpt::diagram::editpolicies::TextFeedback", "TextSelectionEditPolicy"); //$NON-NLS-1$
 	}
 
-	public JavaClassEmitter getTextNonResizableEditPolicyEmitter() throws UnexpectedBehaviourException {
-		return createJavaClassEmitter("xpt::diagram::editpolicies::TextFeedback", "TextNonResizableEditPolicy"); //$NON-NLS-1$
-	}
+	public abstract JavaClassEmitter getTextNonResizableEditPolicyEmitter() throws UnexpectedBehaviourException;
 
 	public JavaClassEmitter getVisualEffectEditPolicyEmitter() {
 		return createPrimaryJavaClassEmitter("xpt::diagram::editpolicies::VisualEffectEditPolicy"); //$NON-NLS-1$
@@ -542,9 +484,7 @@ public class CodegenEmitters {
 
 	// util
 
-	protected JavaClassEmitter createJavaClassEmitter(String templateName, String mainMethod) {
-		return new XpandClassEmitter(myResourceManager, templateName, mainMethod, myGlobals);
-	}
+	protected abstract JavaClassEmitter createJavaClassEmitter(String templateName, String mainMethod);
 
 	public TextEmitter getQualifiedClassNameEmitterForPrimaryTemplate(String templateFQN) {
 		return createJavaClassEmitter(getTemplateFQNWithoutLastSegment(templateFQN), "qualifiedClassName");

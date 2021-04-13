@@ -11,6 +11,7 @@
  * Contributors:
  *    dvorak - initial API and implementation
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *    Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : Obsolete plugins (graphdef /bridge, etc.) /external 'x-friends' removed
  *****************************************************************************/
 package org.eclipse.papyrus.gmf.internal.codegen.popup.actions;
 
@@ -39,9 +40,9 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.gmf.internal.bridge.transform.ValidationHelper;
-import org.eclipse.papyrus.gmf.internal.bridge.transform.ValidationHelper.DiagnosticMarkerMap;
 import org.eclipse.papyrus.gmf.internal.codegen.CodeGenUIPlugin;
+import org.eclipse.papyrus.gmf.internal.common.ui.ValidationHelper;
+import org.eclipse.papyrus.gmf.internal.common.ui.ValidationHelper.DiagnosticMarkerMap;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.Clipboard;
 import org.eclipse.swt.dnd.TextTransfer;
@@ -80,7 +81,6 @@ import org.eclipse.ui.part.FileEditorInput;
  * 
  * @see org.eclipse.emf.common.util.Diagnostic
  */
-@SuppressWarnings("synthetic-access")
 public class DiagnosticsDialog extends IconAndMessageDialog {
 
     private static class DiagnosticLabelProvider extends LabelProvider {

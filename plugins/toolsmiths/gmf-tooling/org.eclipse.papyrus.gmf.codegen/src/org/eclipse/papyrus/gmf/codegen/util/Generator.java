@@ -12,6 +12,7 @@
  *    Artem Tikhomirov (Borland) - initial API and implementation
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
  *    Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 - Use project or worksapce preference as new line characters
+ *    Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : Remove reference to xpand/qvto
  *****************************************************************************/
 package org.eclipse.papyrus.gmf.codegen.util;
 
@@ -107,27 +108,16 @@ import org.eclipse.papyrus.gmf.internal.common.codegen.TextMerger;
  * 
  * @author artem
  */
-public class Generator extends GeneratorBase implements Runnable {
+public abstract class Generator extends GeneratorBase implements Runnable {
 
 	private final GenEditorGenerator myEditorGen;
 
 	private final GenDiagram myDiagram;
 
-	private final CodegenEmitters myEmitters;
+	protected final CodegenEmitters myEmitters;
 
 	private final BinaryEmitters myBinaryEmmiters;
 
-	public Generator(GenEditorGenerator genModel, CodegenEmitters emitters) {
-		this(genModel, emitters, new BinaryEmitters());
-	}
-
-	public Generator(GenEditorGenerator genModel, CodegenEmitters emitters, CodeFormatterFactory codeFormatterFactory) {
-		this(genModel, emitters, new BinaryEmitters(), codeFormatterFactory);
-	}
-
-	public Generator(GenEditorGenerator genModel, CodegenEmitters emitters, BinaryEmitters binaryEmitters) {
-		this(genModel, emitters, binaryEmitters, CodeFormatterFactory.DEFAULT);
-	}
 
 	public Generator(GenEditorGenerator genModel, CodegenEmitters emitters, BinaryEmitters binaryEmitters, CodeFormatterFactory codeFormatterFactory) {
 		super(codeFormatterFactory);
@@ -157,11 +147,6 @@ public class Generator extends GeneratorBase implements Runnable {
 	protected void customRun() throws InterruptedException, UnexpectedBehaviourException {
 		final Path pluginDirectory = new Path(myEditorGen.getPluginDirectory());
 		initializeEditorProject(pluginDirectory, guessProjectLocation(pluginDirectory.segment(0)), Collections.<IProject> emptyList());
-
-		if (myEditorGen.getModelAccess() != null) {
-			myEmitters.setGlobals(Collections.<String, Object> singletonMap("DynamicModelAccess", myEditorGen.getModelAccess()));
-			generateModelAccessFacility();
-		}
 
 		// draft for messages
 		generateExternalizationSupport();
@@ -915,10 +900,6 @@ public class Generator extends GeneratorBase implements Runnable {
 			// so that if there are only literal initializers, do not generate any extra class
 			doGenerateJavaClass(myEmitters.getAbstractExpressionEmitter(), providerContainer.getAbstractExpressionQualifiedClassName(), myDiagram);
 		}
-	}
-
-	private void generateModelAccessFacility() throws UnexpectedBehaviourException, InterruptedException {
-		doGenerateJavaClass(myEmitters.getModelAccessFacilityEmitter(), myEditorGen.getModelAccess().getQualifiedClassName(), myEditorGen.getModelAccess());
 	}
 
 	private void generateShortcutIcon() throws UnexpectedBehaviourException, InterruptedException {

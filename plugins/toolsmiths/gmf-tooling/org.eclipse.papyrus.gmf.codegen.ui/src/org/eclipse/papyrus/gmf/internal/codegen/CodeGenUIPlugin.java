@@ -11,11 +11,13 @@
  * Contributors: 
  *    Artem Tikhomirov (Borland) - initial API and implementation
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *    Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : Obsolete plugins (graphdef /bridge, etc.) /external 'x-friends' removed
  *****************************************************************************/
 package org.eclipse.papyrus.gmf.internal.codegen;
 
 import java.text.MessageFormat;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
@@ -80,15 +82,21 @@ public class CodeGenUIPlugin extends AbstractUIPlugin {
 		return getDefault().getBundle().getSymbolicName();
 	}
 
-	public CodegenEmitters getEmitters(GenEditorGenerator genModel) {
-		if (emitterSource == null) {
-			emitterSource = new EmitterSource<GenEditorGenerator, CodegenEmitters>() {
-				@Override
-				protected CodegenEmitters newEmitters(GenEditorGenerator genModel) {
-					return new CodegenEmitters(!genModel.isDynamicTemplates(), genModel.getTemplateDirectory(), genModel.getModelAccess() != null);
-				}
-			};
-		}
-		return emitterSource.getEmitters(genModel, genModel.isDynamicTemplates());
+	
+	public static void log(CoreException ex) {
+		log(ex.getStatus());
 	}
+
+	public static void log(Exception ex) {
+		if (ex instanceof CoreException) {
+			log((CoreException) ex);
+		} else {
+			log(createError(ex.getMessage(), ex));
+		}
+	}
+
+	public static void log(IStatus s) {
+		getDefault().getLog().log(s);
+	}
+	
 }

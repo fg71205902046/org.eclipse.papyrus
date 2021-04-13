@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="ASCII"?>
-<uriMap:MappingContainer xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:uriMap="http:///www.eclipse.org/m2m/qvt/oml/MModelUriMap/1.0.0">
-  <mapping sourceURI="http://www.eclipse.org/papyrus/gmf/2020/GenModel" targetURI="platform:/plugin/org.eclipse.papyrus.gmf.codegen/models/gmfgen.ecore"/>
-  <mapping sourceURI="http://www.eclipse.org/gmf/runtime/1.0.2/notation" targetURI="platform:/resource/org.eclipse.gmf.runtime.notation/model/notation.ecore"/>
-  <mapping sourceURI="http://www.eclipse.org/papyrus/gmf/2020/GraphicalDefinition" targetURI="platform:/plugin/org.eclipse.papyrus.gmf.graphdef/models/gmfgraph.ecore"/>
-</uriMap:MappingContainer>

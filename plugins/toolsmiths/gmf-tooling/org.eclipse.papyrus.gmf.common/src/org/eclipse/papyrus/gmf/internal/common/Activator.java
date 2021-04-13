@@ -11,6 +11,7 @@
  * Contributors: 
  *    Artem Tikhomirov (Borland) - initial API and implementation
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *    Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : Remove reference to gmfgraph and ModelViewMap
  *****************************************************************************/
 package org.eclipse.papyrus.gmf.internal.common;
 import org.eclipse.core.runtime.IStatus;
@@ -52,4 +53,14 @@ public class Activator extends Plugin {
 		}
 		log(new Status(IStatus.ERROR, getID(), 0, message, ex));
 	}
+	
+
+	public static IStatus createStatus(int statusCode, String message, Throwable ex) {
+		return new Status(statusCode, getID(), 0, message, ex);
+	}
+
+	public static IStatus createError(String message, Throwable ex) {
+		return createStatus(IStatus.ERROR, message, ex);
+	}
+
 }

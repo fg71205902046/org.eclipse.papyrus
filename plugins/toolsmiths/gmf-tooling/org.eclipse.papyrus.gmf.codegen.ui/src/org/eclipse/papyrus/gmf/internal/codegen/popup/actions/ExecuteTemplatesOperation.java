@@ -12,6 +12,7 @@
  *    Dmitry Stadnik (Borland) - initial API and implementation
  *    Artem Tikhomirov (independent) - [304421] allow code generation to run in background 
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *    Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : Obsolete plugins (graphdef /bridge, etc.) /external 'x-friends' removed
  *****************************************************************************/
 package org.eclipse.papyrus.gmf.internal.codegen.popup.actions;
 
@@ -33,12 +34,10 @@ import org.eclipse.jface.dialogs.MessageDialogWithToggle;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator;
-import org.eclipse.papyrus.gmf.codegen.util.Generator;
-import org.eclipse.papyrus.gmf.internal.bridge.transform.ValidationHelper;
 import org.eclipse.papyrus.gmf.internal.codegen.CodeGenUIPlugin;
 import org.eclipse.papyrus.gmf.internal.common.codegen.GeneratorBase;
 import org.eclipse.papyrus.gmf.internal.common.migrate.ModelLoadHelper;
-import org.eclipse.papyrus.gmf.internal.xpand.Activator;
+import org.eclipse.papyrus.gmf.internal.common.ui.ValidationHelper;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
@@ -53,7 +52,7 @@ import org.eclipse.ui.progress.IProgressConstants;
  * 
  * @author dstadnik
  */
-public class ExecuteTemplatesOperation {
+public abstract class ExecuteTemplatesOperation {
 
 	private static final String ASK_OK = "ask_ok"; //$NON-NLS-1$
 
@@ -230,18 +229,15 @@ public class ExecuteTemplatesOperation {
 		return g.getRunStatus();
 	}
 
-	protected GeneratorBase createGenerator() {
-		return new Generator(getGenModel(), CodeGenUIPlugin.getDefault().getEmitters(getGenModel()));
-	}
-
+	protected abstract GeneratorBase createGenerator();
+	
 	protected final GenEditorGenerator getGenModel() {
 		return myGenModel;
 	}
 
 	private Diagnostic loadGenModel() {
 		ResourceSet srcResSet = new ResourceSetImpl();
-		srcResSet.getURIConverter().getURIMap().putAll(EcorePlugin.computePlatformURIMap());
-		Activator.fillWorkspaceMetaModelsMap(srcResSet.getPackageRegistry());
+		srcResSet.getURIConverter().getURIMap().putAll(EcorePlugin.computePlatformURIMap(false));
 		ModelLoadHelper loadHelper = new ModelLoadHelper(srcResSet, getGenModelURI());
 		Object root = loadHelper.getContentsRoot();
 		if (root instanceof GenDiagram) {

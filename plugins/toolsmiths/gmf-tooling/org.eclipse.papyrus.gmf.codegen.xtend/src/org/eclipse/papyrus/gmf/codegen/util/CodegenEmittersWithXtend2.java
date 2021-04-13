@@ -11,41 +11,32 @@
  * Contributors: 
  *    Svyatoslav Kovalsky (Montages) - initial API and implementation
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *    Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : Remove reference to xpand/qvto
  *****************************************************************************/
 package org.eclipse.papyrus.gmf.codegen.util;
 
 import java.util.List;
 
-import org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator;
-import org.eclipse.papyrus.gmf.codegen.util.CodegenEmitters;
-import org.eclipse.papyrus.gmf.codegen.util.ExtensionTemplatesProviderImpl;
-import org.eclipse.papyrus.gmf.codegen.util.GMFGeneratorModule;
-import org.eclipse.papyrus.gmf.codegen.util.IExtensionTemplatesProvider;
 import org.eclipse.papyrus.gmf.common.UnexpectedBehaviourException;
 import org.eclipse.papyrus.gmf.internal.common.codegen.JavaClassEmitter;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-public class CodegenEmittersWithXtend2 extends CodegenEmitters {
+public abstract class CodegenEmittersWithXtend2 extends CodegenEmitters {
 
 	private final Injector myInjector;
 
 	private IExtensionTemplatesProvider myExtensionTemplateProvider = null;
 
-	public CodegenEmittersWithXtend2(GenEditorGenerator genModel) {
-		this(!genModel.isDynamicTemplates(), genModel.getTemplateDirectory(), genModel.getModelAccess() != null);
-	}
-
-	public CodegenEmittersWithXtend2(boolean useBaseTemplatesOnly, String templateDirectory, boolean includeDynamicModelTemplates) {
-		super(useBaseTemplatesOnly, templateDirectory, includeDynamicModelTemplates);
+	public CodegenEmittersWithXtend2(boolean useBaseTemplatesOnly, String templateDirectory) {
 		if (templateDirectory != null && !templateDirectory.isEmpty()) {
-			myExtensionTemplateProvider = new ExtensionTemplatesProviderImpl(templateDirectory,!useBaseTemplatesOnly);
+			myExtensionTemplateProvider = new ExtensionTemplatesProviderImpl(templateDirectory, !useBaseTemplatesOnly);
 		}
 		myInjector = Guice.createInjector(new GMFGeneratorModule(myExtensionTemplateProvider));
 	}
 
-	//-----------------------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------------------
 
 	/**
 	 * FIXME: [MG] make separate xtend templates calling shared code, not vise versa
@@ -67,17 +58,17 @@ public class CodegenEmittersWithXtend2 extends CodegenEmitters {
 	public JavaClassEmitter getPropertySheetLabelProviderEmitter() throws UnexpectedBehaviourException {
 		return getXtendEmitter("xpt::propsheet::LabelProvider", "LabelProvider"); //$NON-NLS-1$
 	}
-	
+
 	@Override
 	public JavaClassEmitter getPropertySectionEmitter() throws UnexpectedBehaviourException {
-		return  getXtendEmitter("xpt::propsheet::PropertySection", "PropertySection"); //$NON-NLS-1$
+		return getXtendEmitter("xpt::propsheet::PropertySection", "PropertySection"); //$NON-NLS-1$
 	}
-	
+
 	@Override
 	public JavaClassEmitter getModelAccessFacilityEmitter() {
 		return getXtendEmitter("metamodel::Facility", "Main");
 	}
-	
+
 	private JavaClassEmitter getXtendEmitter(String templateFqn, String mainMethod) {
 		String classFqn = templateFqn.replace("::", ".");
 		Class<?> clazz = null;
@@ -106,7 +97,7 @@ public class CodegenEmittersWithXtend2 extends CodegenEmitters {
 			myExtensionTemplateProvider.dispose();
 		}
 	}
-	
+
 	@Override
 	protected JavaClassEmitter createJavaClassEmitter(String templateName, String mainMethod) {
 		return getXtendEmitter(templateName, mainMethod);

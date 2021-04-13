@@ -17,12 +17,12 @@
  * Vincent Lorenzo (CEA-LIST) - Bug 335987 [General][Enhancement] Show/Hide Connectors Labels and External Nodes Labels
  * Christian W. Damus - bug 451230
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : Remove reference to gmfgraph and ModelViewMap
  *****************************************************************************/
 package impl.diagram.editparts
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import impl.diagram.editparts.viewmaps.modeledViewmapProducer
 import org.eclipse.papyrus.gmf.codegen.gmfgen.FigureViewmap
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenChildSideAffixedNode
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase
@@ -31,14 +31,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigatorChildReference
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenTopLevelNode
 import org.eclipse.papyrus.gmf.codegen.gmfgen.InnerClassViewmap
-import org.eclipse.papyrus.gmf.codegen.gmfgen.ModeledViewmap
 import org.eclipse.papyrus.gmf.codegen.gmfgen.ParentAssignedViewmap
 import org.eclipse.papyrus.gmf.codegen.gmfgen.RefreshHook
 import org.eclipse.papyrus.gmf.codegen.gmfgen.SnippetViewmap
 import org.eclipse.papyrus.gmf.codegen.gmfgen.ToolEntry
 import org.eclipse.papyrus.gmf.codegen.gmfgen.Viewmap
 import org.eclipse.papyrus.gmf.codegen.gmfgen.ViewmapLayoutType
-import org.eclipse.papyrus.gmf.gmfgraph.Compartment
 import utils.EditPartsUtils_qvto
 import xpt.CodeStyle
 import xpt.Common
@@ -60,7 +58,6 @@ import xpt.providers.ElementTypes
 	@Inject extension VisualIDRegistry
 	@Inject extension EditPartsUtils_qvto;
 	@Inject xpt.diagram.editparts.Common xptEditpartsCommon;
-	@Inject modeledViewmapProducer xptModeledViewmapProducer;
 	@Inject TextAware xptTextAware;
 	@Inject VisualIDRegistry xptVisualIDRegistry;
 	@Inject ElementTypes xptElementTypes;
@@ -292,20 +289,6 @@ import xpt.providers.ElementTypes
 		«ERROR('Unknown viewmap: ' + it + " for node: " + node)»
 	'''
 
-	def dispatch createNodeShape(ModeledViewmap it, GenNode node) '''
-		«generatedMemberComment»
-		protected org.eclipse.draw2d.IFigure createNodeShape() {
-			return primaryShape = new «modeledViewmapFigureFQN(it)»()«forceUseLocalCoordinatesAnonymousClassBody(node)»;
-		}
-		
-		«generatedMemberComment»
-		public «modeledViewmapFigureFQN(it)» getPrimaryShape() {
-			return («modeledViewmapFigureFQN(it)») primaryShape;
-		}
-'''
-
-	def modeledViewmapFigureFQN(ModeledViewmap it) '''«xptModeledViewmapProducer.viewmapFigureFQN(it)»'''
-
 	def dispatch createNodeShape(FigureViewmap it, GenNode node) {
 		var fqn = if (it.figureQualifiedClassName == null) 'org.eclipse.draw2d.RectangleFigure' else figureQualifiedClassName;
 		'''
@@ -401,24 +384,10 @@ import xpt.providers.ElementTypes
 			return true;
 		}
 	«ENDFOR»
-	«FOR label : getInnerFixedLabelsWithModeledViewmaps(it)»
-		if (childEditPart instanceof «xptEditPartFactory.getEditPartQualifiedClassName(label)») {
-			return true;
-		}
-	«ENDFOR»
 	«FOR compartment : getPinnedCompartments(it)»
 	«var childViewmap = compartment.viewmap as ParentAssignedViewmap»
 		if (childEditPart instanceof «xptEditPartFactory.getEditPartQualifiedClassName(compartment)») {
 			org.eclipse.draw2d.IFigure pane = getPrimaryShape().«childViewmap.getterName»();
-			pane.remove(((«xptEditPartFactory.getEditPartQualifiedClassName(compartment)») childEditPart).getFigure());
-			return true;
-		}	
-	«ENDFOR»
-	«FOR compartment : getPinnedCompartmentsWithModeledViewmaps(it)»
-	«var childViewmap = compartment.viewmap as ModeledViewmap»
-	«var getterName = (childViewmap.figureModel as Compartment).accessor.accessor»
-		if (childEditPart instanceof «xptEditPartFactory.getEditPartQualifiedClassName(compartment)») {
-			org.eclipse.draw2d.IFigure pane = getPrimaryShape().«getterName»();
 			pane.remove(((«xptEditPartFactory.getEditPartQualifiedClassName(compartment)») childEditPart).getFigure());
 			return true;
 		}	
@@ -463,13 +432,6 @@ import xpt.providers.ElementTypes
 				return getPrimaryShape().«childViewmap.getterName»();
 			}	
 			«ENDFOR»
-			«FOR compartment : getPinnedCompartmentsWithModeledViewmaps(it)»
-			«var childViewmap = compartment.viewmap as ModeledViewmap»
-			«var getterName = (childViewmap.figureModel as Compartment).accessor.accessor»
-			if (editPart instanceof «xptEditPartFactory.getEditPartQualifiedClassName(compartment)») {
-				return getPrimaryShape().«getterName»();
-			}	
-		«ENDFOR»
 		«IF hasBorderItems(it)»
 			if (editPart instanceof org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart) {
 				return getBorderedFigure().getBorderItemContainer();
@@ -682,9 +644,6 @@ def setupNodePlate (GenNode it) ''''''
 
 	def dispatch innerClassDeclaration(InnerClassViewmap it) '''«classBody»'''
 
-	def dispatch innerClassDeclaration(ModeledViewmap it) '''
-		«xptModeledViewmapProducer.viewmapClassBody(it)»
-	'''
 
 	def getTargetEditPartMethod(GenNode it) '''
     «generatedMemberComment»

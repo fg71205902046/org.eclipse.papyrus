@@ -11,29 +11,19 @@
  * Contributors: 
  *    Svyatoslav Kovalsky (Montages) - initial API and implementation
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *    Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : Remove reference to xpand/qvto
  *****************************************************************************/
 package org.eclipse.papyrus.gmf.codegen.util;
 
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator;
-import org.eclipse.papyrus.gmf.codegen.util.CodegenEmittersWithXtend2;
 import org.eclipse.papyrus.gmf.common.UnexpectedBehaviourException;
 import org.eclipse.papyrus.gmf.internal.common.codegen.CodeFormatterFactory;
 
-public class GeneratorWithXtend2 extends Generator {
+public abstract class GeneratorWithXtend2 extends Generator {
 
-	private CodegenEmittersWithXtend2 myEmitters;
 
-	public GeneratorWithXtend2(GenEditorGenerator genModel) {
-		this(genModel, new CodegenEmittersWithXtend2(genModel));
-	}
-
-	public GeneratorWithXtend2(GenEditorGenerator genModel, CodegenEmittersWithXtend2 codegenEmitters) {
-		this(genModel, codegenEmitters, CodeFormatterFactory.DEFAULT);
-	}
-
-	public GeneratorWithXtend2(GenEditorGenerator genModel, CodegenEmittersWithXtend2 codegenEmitters, CodeFormatterFactory codeFormatterFactory) {
-		super(genModel, codegenEmitters, codeFormatterFactory);
-		myEmitters = codegenEmitters;
+	public GeneratorWithXtend2(GenEditorGenerator genModel, CodegenEmitters emitters) {
+		super(genModel, emitters,  new BinaryEmitters(), CodeFormatterFactory.DEFAULT);
 	}
 
 	protected void customRun() throws InterruptedException, UnexpectedBehaviourException {
@@ -45,11 +35,11 @@ public class GeneratorWithXtend2 extends Generator {
 	}
 
 	protected CodegenEmittersWithXtend2 getEmitters() {
-		return myEmitters;
+		return (CodegenEmittersWithXtend2) myEmitters;
 	}
 
 	protected void hookGenerationCompleted() {
-		myEmitters.disposeEmitters();
+		getEmitters().disposeEmitters();
 	}
 
 }

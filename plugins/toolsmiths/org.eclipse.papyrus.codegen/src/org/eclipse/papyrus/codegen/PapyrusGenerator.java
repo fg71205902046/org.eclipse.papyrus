@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST,ALL4TEC and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and implementation
+ *   Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : Remove reference to xpand/qvto
  *****************************************************************************/
 
 package org.eclipse.papyrus.codegen;
@@ -20,7 +21,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator;
-import org.eclipse.papyrus.gmf.codegen.xtend.ui.handlers.GeneratorWithXtend2;
+import org.eclipse.papyrus.gmf.codegen.util.GeneratorWithXtend2;
 import org.eclipse.papyrus.gmf.common.UnexpectedBehaviourException;
 
 /**
@@ -61,7 +62,7 @@ public class PapyrusGenerator extends GeneratorWithXtend2 {
 
 	/**
 	 * Generate palette configuration model.
-	 * 
+	 *
 	 * @throws UnexpectedBehaviourException
 	 * @throws InterruptedException
 	 */

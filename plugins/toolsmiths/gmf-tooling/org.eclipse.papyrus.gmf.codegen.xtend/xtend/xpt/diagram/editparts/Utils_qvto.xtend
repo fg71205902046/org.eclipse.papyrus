@@ -12,12 +12,16 @@
  *    Dmitry Stadnik (Borland) - initial API and implementation
  * 	  Michael Golubev (Montages) - #386838 - migrate to Xtend2
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *    Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : Remove reference to gmfgraph and ModelViewMap
  *****************************************************************************/
 package xpt.diagram.editparts;
 
 import com.google.inject.Inject
+import com.google.inject.Singleton
+import java.util.HashSet
+import java.util.List
+import java.util.Set
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenChildSideAffixedNode
-import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCompartment
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenExternalNodeLabel
@@ -25,34 +29,13 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLabel
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLinkEnd
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
-import org.eclipse.papyrus.gmf.codegen.gmfgen.ModeledViewmap
 import org.eclipse.papyrus.gmf.codegen.gmfgen.ParentAssignedViewmap
 import org.eclipse.papyrus.gmf.codegen.gmfgen.ViewmapLayoutType
-import org.eclipse.papyrus.gmf.gmfgraph.Compartment
-import org.eclipse.papyrus.gmf.gmfgraph.DiagramElement
-import org.eclipse.papyrus.gmf.gmfgraph.DiagramLabel
-import xpt.Common_qvtoimport java.util.List
-import java.util.Set
-import java.util.HashSet
 
-@com.google.inject.Singleton class Utils_qvto {
+import xpt.Common_qvto
+
+@Singleton class Utils_qvto {
 	@Inject extension Common_qvto
-
-	private def <T extends DiagramElement> modeledDiagramElement(GenCommonBase gc, Class<? extends T> clazz) {
-		val viewmap = gc.viewmap;
-		switch (viewmap) {
-			ModeledViewmap case viewmap.figureModel.oclIsKindOf(clazz): return viewmap.figureModel
-			default: return null
-		}
-	}
-
-	private def DiagramLabel modeledDiagramLabel(GenCommonBase gc) {
-		return modeledDiagramElement(gc, typeof(DiagramLabel)) as DiagramLabel
-	}
-
-	private def Compartment modeledCompartment(GenCommonBase gc) {
-		return modeledDiagramElement(gc, typeof(Compartment)) as Compartment
-	}
 
 	def boolean isStoringChildPositions(GenNode node) {
 		node.getLayoutType() == ViewmapLayoutType::XY_LAYOUT
@@ -75,29 +58,14 @@ import java.util.HashSet
 		return innerLabels.filter[e|e.viewmap.oclIsKindOf(typeof(ParentAssignedViewmap))];
 	}
 
-	def Iterable<? extends GenLabel> getInnerFixedLabelsWithModeledViewmaps(GenNode node) {
-		val innerLabels = getInnerLabels(node);
-		return innerLabels.filter[e| //
-			modeledDiagramLabel(e) != null && //
-			modeledDiagramLabel(e).accessor != null];
-	}
-
 	def Iterable<GenCompartment> getPinnedCompartments(GenNode node) {
 		return node.compartments.filter[e|e.viewmap.oclIsKindOf(typeof(ParentAssignedViewmap))]
-	}
-
-	def Iterable<GenCompartment> getPinnedCompartmentsWithModeledViewmaps(GenNode node) {
-		return node.compartments.filter[c| //
-			modeledCompartment(c) != null && // 
-			modeledCompartment(c).accessor != null]
 	}
 
 	def boolean hasFixedChildren(GenNode node) {
 		return //
 		getInnerFixedLabels(node).size > 0 || // 
-		getPinnedCompartments(node).size > 0 || //
-		getInnerFixedLabelsWithModeledViewmaps(node).size > 0 || //
-			getPinnedCompartmentsWithModeledViewmaps(node).size > 0 //
+		getPinnedCompartments(node).size > 0
 		;
 	}
 
