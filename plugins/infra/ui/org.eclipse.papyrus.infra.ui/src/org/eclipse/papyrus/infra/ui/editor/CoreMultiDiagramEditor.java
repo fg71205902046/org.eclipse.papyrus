@@ -495,43 +495,55 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	@Override
 	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
 		loadingStatusService.trigger(new BeginStatusEvent(Messages.CoreMultiDiagramEditor_StatisDialog_Title, Messages.CoreMultiDiagramEditor_StatisDialog_LoadingPapyrusMessage, 4));
-		// Init super
-		super.init(site, input);
+		try {
+			// Init super
+			super.init(site, input);
 
-		// Set editor name
-		setPartName(input.getName());
-
-		initContents();
+			// Set editor name
+			setPartName(input.getName());
+			initContents();
+		} catch (Exception e) {
+			if (loadingStatusService != null) {
+				loadingStatusService.trigger(new EndStatusEvent());
+			}
+			throw e;
+		}
 	}
 
 	@Override
 	public void createPartControl(Composite parent) {
-		loadingStatusService.trigger(new StepStatusEvent(Messages.CoreMultiDiagramEditor_StatisDialog_CreatePartControlMessage));
-		super.createPartControl(parent);
+		try {
+			loadingStatusService.trigger(new StepStatusEvent(Messages.CoreMultiDiagramEditor_StatisDialog_CreatePartControlMessage));
+			super.createPartControl(parent);
 
-		// Fire the PreDisplay event synchronously, so that listeners can continue
-		// setting up the UI before the contents are actually rendered fully
-		getLifecycleManager().firePreDisplay(this);
+			// Fire the PreDisplay event synchronously, so that listeners can continue
+			// setting up the UI before the contents are actually rendered fully
+			getLifecycleManager().firePreDisplay(this);
 
-		// Fire the PostDisplay event asynchronously, to leave time to the Eclipse
-		// framework to actually display the contents of the editor
-		Display.getDefault().asyncExec(new Runnable() {
+			// Fire the PostDisplay event asynchronously, to leave time to the Eclipse
+			// framework to actually display the contents of the editor
+			Display.getDefault().asyncExec(new Runnable() {
 
-			@Override
-			public void run() {
-				// Because we are asynchronous, the editor may already have been disposed
-				// (Especially in the case of tests running in the UI Thread)
-				try {
-					if (servicesRegistry == null) {
-						return;
+				@Override
+				public void run() {
+					// Because we are asynchronous, the editor may already have been disposed
+					// (Especially in the case of tests running in the UI Thread)
+					try {
+						if (servicesRegistry == null) {
+							return;
+						}
+						getLifecycleManager().firePostDisplay(CoreMultiDiagramEditor.this);
+					} finally {
+						loadingStatusService.trigger(new EndStatusEvent());
 					}
-					getLifecycleManager().firePostDisplay(CoreMultiDiagramEditor.this);
-				} finally {
-					loadingStatusService.trigger(new EndStatusEvent());
 				}
+			});
+		} catch (Exception e) {
+			if (loadingStatusService != null) {
+				loadingStatusService.trigger(new EndStatusEvent());
 			}
-		});
-
+			throw e;
+		}
 	}
 
 	protected void loadModelAndServices() throws PartInitException {
@@ -916,6 +928,11 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 	@Override
 	protected void deactivate() {
+		// Make sure we close the progress dialog if it is deactivate because an exception has been catch (Bug 571948)
+		if (loadingStatusService != null) {
+			loadingStatusService.trigger(new EndStatusEvent());
+		}
+
 		getLifecycleManager().fireBeforeClose(this);
 		if (sashModelMngr != null) {
 			sashModelMngr.getSashModelContentChangedProvider().removeListener(contentChangedListener);

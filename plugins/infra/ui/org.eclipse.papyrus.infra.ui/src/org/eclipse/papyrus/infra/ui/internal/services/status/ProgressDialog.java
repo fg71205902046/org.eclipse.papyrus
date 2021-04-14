@@ -51,7 +51,7 @@ public class ProgressDialog extends IconAndMessageDialog {
 		this.message = message;
 		this.title = title;
 		setShellStyle(getDefaultOrientation() | SWT.BORDER | SWT.TITLE
-				| SWT.APPLICATION_MODAL);
+				| SWT.APPLICATION_MODAL | SWT.CLOSE);
 		setBlockOnOpen(false);
 	}
 
