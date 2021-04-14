@@ -3,13 +3,13 @@ Export-Package: org.eclipse.papyrus.infra.properties.internal.ui;x-internal:=tru
  org.eclipse.papyrus.infra.properties.internal.ui.extensions;x-friends:="org.eclipse.papyrus.views.properties",
  org.eclipse.papyrus.infra.properties.internal.ui.messages;x-internal:=true,
  org.eclipse.papyrus.infra.properties.internal.ui.observable;x-internal:=true,
- org.eclipse.papyrus.infra.properties.internal.ui.runtime;x-friends:="org.eclipse.papyrus.views.properties.toolsmiths,
- org.eclipse.papyrus.views.properties",
+ org.eclipse.papyrus.infra.properties.internal.ui.runtime;x-friends:="org.eclipse.papyrus.views.properties.toolsmiths,org.eclipse.papyrus.views.properties",
  org.eclipse.papyrus.infra.properties.ui.creation,
  org.eclipse.papyrus.infra.properties.ui.listeners,
  org.eclipse.papyrus.infra.properties.ui.modelelement,
  org.eclipse.papyrus.infra.properties.ui.preferences,
  org.eclipse.papyrus.infra.properties.ui.providers,
+ org.eclipse.papyrus.infra.properties.ui.renderers,
  org.eclipse.papyrus.infra.properties.ui.runtime,
  org.eclipse.papyrus.infra.properties.ui.util,
  org.eclipse.papyrus.infra.properties.ui.widgets,
@@ -48,3 +48,5 @@ Bundle-ManifestVersion: 2
 Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.infra.properties.ui;singleton:=true
 Automatic-Module-Name: org.eclipse.papyrus.infra.properties.ui
+Service-Component: OSGI-INF/org.eclipse.papyrus.infra.properties.ui.renderers.impl.SectionRendererServiceImpl.xml,
+ OSGI-INF/org.eclipse.papyrus.infra.properties.ui.renderers.impl.XWTSectionProvider.xml

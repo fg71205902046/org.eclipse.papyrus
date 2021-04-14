@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2017,2020 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -14,6 +14,7 @@
  *  Christian W. Damus (CEA) - bugs 417409, 444227
  *  Christian W. Damus - bugs 450478, 454536, 515257
  *  Patrick Tessier (CEA LIST)- bug 568329
+ *  EclipseSource - Bug 572530
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.runtime;
@@ -42,6 +43,7 @@ import org.eclipse.papyrus.infra.properties.contexts.Tab;
 import org.eclipse.papyrus.infra.properties.contexts.View;
 import org.eclipse.papyrus.infra.properties.internal.ui.Activator;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.DataSource;
+import org.eclipse.papyrus.infra.properties.ui.renderers.SectionRendererService;
 import org.eclipse.papyrus.infra.properties.ui.util.EMFURLStreamHandler;
 import org.eclipse.papyrus.infra.properties.ui.xwt.PapyrusXWTCore;
 import org.eclipse.papyrus.infra.properties.ui.xwt.XWTTabDescriptor;
@@ -58,6 +60,9 @@ import org.eclipse.xwt.ILoadingContext;
 import org.eclipse.xwt.IXWTLoader;
 import org.eclipse.xwt.XWT;
 import org.eclipse.xwt.XWTLoaderManager;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.framework.ServiceReference;
 
 /**
  * A default implementation for {@link DisplayEngine}
@@ -82,6 +87,8 @@ public class DefaultDisplayEngine implements DisplayEngine {
 	private List<DataSource> dataSourceCache = new ArrayList<>();
 	// Cache about evaluation of set of constraint linked to a data source.
 	private HashMap<ConstraintEvaluationKey, Boolean> constraintEvaluationCache = new HashMap<>();
+	private SectionRendererService sectionRendererService;
+	private final List<Runnable> toDispose = new ArrayList<>();
 
 	/**
 	 * Constructs a new DisplayEnginet that doesn't allow the duplication of sections
@@ -101,6 +108,11 @@ public class DefaultDisplayEngine implements DisplayEngine {
 	 */
 	public DefaultDisplayEngine(boolean allowDuplicate) {
 		this.allowDuplicate = allowDuplicate;
+
+		BundleContext bundleContext = FrameworkUtil.getBundle(DefaultDisplayEngine.class).getBundleContext();
+		ServiceReference<SectionRendererService> serviceReference = bundleContext.getServiceReference(SectionRendererService.class);
+		this.sectionRendererService = bundleContext.getService(serviceReference);
+		toDispose.add(() -> bundleContext.ungetService(serviceReference));
 	}
 
 	@Override
@@ -127,7 +139,7 @@ public class DefaultDisplayEngine implements DisplayEngine {
 				if (result.containsKey(tab.getId())) {
 					descriptor = result.get(tab.getId());
 				} else {
-					descriptor = new XWTTabDescriptor(tab);
+					descriptor = new XWTTabDescriptor(tab, sectionRendererService);
 					result.put(tab.getId(), descriptor);
 				}
 
@@ -191,6 +203,8 @@ public class DefaultDisplayEngine implements DisplayEngine {
 	@Override
 	public void dispose() {
 		disposeControls();
+		toDispose.forEach(Runnable::run);
+		toDispose.clear();
 	}
 
 	/**
