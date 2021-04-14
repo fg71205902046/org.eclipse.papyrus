@@ -16,5 +16,7 @@
 		<module>org.eclipse.papyrus.infra.properties.edit</module>
 		<module>org.eclipse.papyrus.infra.properties.editor</module>
 		<module>org.eclipse.papyrus.infra.properties.ui</module>
+		<module>org.eclipse.papyrus.infra.properties.viewmodel</module>
+		<module>org.eclipse.papyrus.infra.properties.ui.fx</module>
 	</modules>
 </project>

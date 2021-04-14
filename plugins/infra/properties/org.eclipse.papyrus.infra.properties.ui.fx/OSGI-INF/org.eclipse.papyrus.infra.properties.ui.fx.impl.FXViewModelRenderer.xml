@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.papyrus.infra.properties.ui.fx.impl.FXViewModelRenderer">
+   <service>
+      <provide interface="org.eclipse.papyrus.infra.properties.ui.fx.ViewModelRenderer"/>
+   </service>
+   <reference bind="setUIElementRenderer" cardinality="1..1" interface="org.eclipse.papyrus.infra.properties.ui.fx.UIElementRenderer" name="UIElementRenderer" unbind="unsetUIElementRenderer"/>
+   <implementation class="org.eclipse.papyrus.infra.properties.ui.fx.impl.FXViewModelRenderer"/>
+</scr:component>

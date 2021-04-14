@@ -146,6 +146,24 @@
 						<showWarnings>true</showWarnings>
 						<!-- Tycho build using the project's JDT settings. -->
 						<useProjectSettings>true</useProjectSettings>
+						<extraClasspathElements>
+							<!-- Add JavaFX to the classpath -->
+							<extraClasspathElement>
+								<groupId>org.openjfx</groupId>
+								<artifactId>javafx-graphics</artifactId>
+								<version>11.0.2</version>
+							</extraClasspathElement>
+							<extraClasspathElement>
+								<groupId>org.openjfx</groupId>
+								<artifactId>javafx-controls</artifactId>
+								<version>11.0.1</version>
+							</extraClasspathElement>
+							<extraClasspathElement>
+								<groupId>org.openjfx</groupId>
+								<artifactId>javafx-swing</artifactId>
+								<version>11.0.1</version>
+							</extraClasspathElement>
+						</extraClasspathElements>
 					</configuration>
 				</plugin>
 				<plugin>
@@ -180,6 +198,23 @@
 								<arch>x86_64</arch>
 							</environment>
 						</environments>
+						<configuration>
+							<!-- Add JavaFX to the Classpath -->
+							<dependency-resolution>
+								<extraRequirements>
+									<requirement>
+										<type>eclipse-feature</type>
+										<id>openjfx.standard.feature</id>
+										<versionRange>0.0.0</versionRange>
+									</requirement>
+									<requirement>
+										<type>eclipse-feature</type>
+										<id>org.eclipse.fx.runtime.min.feature</id>
+										<versionRange>0.0.0</versionRange>
+									</requirement>
+								</extraRequirements>
+							</dependency-resolution>
+						</configuration>
 						<target>
 							<artifact>
 								<groupId>org.eclipse.papyrus</groupId>

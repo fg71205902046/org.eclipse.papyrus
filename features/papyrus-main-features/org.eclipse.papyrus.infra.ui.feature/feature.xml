@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.infra.ui.feature"
-      version="3.0.0.qualifier"
       label="%featureName"
-      provider-name="%providerName" 
+      version="3.0.0.qualifier"
+      provider-name="%providerName"
       license-feature="org.eclipse.license"
       license-feature-version="2.0.2">
 
@@ -126,6 +126,13 @@
 
    <plugin
          id="org.eclipse.papyrus.infra.ui.fonts"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.infra.properties.ui.fx"
          download-size="0"
          install-size="0"
          version="0.0.0"
