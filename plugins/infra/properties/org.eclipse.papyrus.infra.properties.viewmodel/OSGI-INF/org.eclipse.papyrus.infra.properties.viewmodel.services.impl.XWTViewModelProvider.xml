@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.papyrus.infra.properties.viewmodel.services.impl.XWTViewModelProvider">
+   <service>
+      <provide interface="org.eclipse.papyrus.infra.properties.viewmodel.services.ViewModelProvider"/>
+   </service>
+   <implementation class="org.eclipse.papyrus.infra.properties.viewmodel.services.impl.XWTViewModelProvider"/>
+</scr:component>

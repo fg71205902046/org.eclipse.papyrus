@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pvm:ViewModel xmi:version="2.0"
+	xmlns:xmi="http://www.omg.org/XMI"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:pvm="http://www.eclipse.org/papyrus/properties/viewmodel/1.0.0"
+	xsi:schemaLocation="http://www.eclipse.org/papyrus/properties/viewmodel/1.0.0 PropertiesViewModel.ecore">
+	<children xsi:type="pvm:VerticalLayout">
+		<children xsi:type="pvm:Control"
+			property="UML:NamedElement:name" />
+		<children xsi:type="pvm:Control"
+			property="UML:NamedElement:label" />
+		<children xsi:type="pvm:Control"
+			property="UML:NamedElement:qualifiedName" />
+		<children xsi:type="pvm:GridLayout">
+			<children xsi:type="pvm:Control"
+				property="UML:Classifier:isAbstract" />
+			<children xsi:type="pvm:Control"
+				property="UML:Class:isActive" />
+		</children>
+		<children xsi:type="pvm:Control"
+			property="UML:NamedElement:visibility" />
+		<children xsi:type="pvm:Control"
+			property="UML:Class:ownedOperation" />
+		<children xsi:type="pvm:Control"
+			property="UML:Class:ownedReception" />
+
+	</children>
+</pvm:ViewModel>

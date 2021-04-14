@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.papyrus.infra.properties.viewmodel.services.impl.ViewModelServiceImpl">
+   <service>
+      <provide interface="org.eclipse.papyrus.infra.properties.viewmodel.services.ViewModelService"/>
+   </service>
+   <reference bind="registerControlFilter" cardinality="0..n" interface="org.eclipse.papyrus.infra.properties.viewmodel.services.ControlFilter" name="registerControlFilter" unbind="unregisterControlFilter"/>
+   <reference bind="registerViewModelProcessor" cardinality="0..n" interface="org.eclipse.papyrus.infra.properties.viewmodel.services.ViewModelProcessor" name="registerViewModelProcessor" unbind="unregisterViewModelProcessor"/>
+   <reference bind="registerViewModelProvider" cardinality="0..n" interface="org.eclipse.papyrus.infra.properties.viewmodel.services.ViewModelProvider" name="registerViewModelProvider" unbind="unregisterViewModelProvider"/>
+   <implementation class="org.eclipse.papyrus.infra.properties.viewmodel.services.impl.ViewModelServiceImpl"/>
+</scr:component>

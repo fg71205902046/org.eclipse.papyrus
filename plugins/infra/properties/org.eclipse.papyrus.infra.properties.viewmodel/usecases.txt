@@ -1,0 +1,1 @@
+Renderer-independent view model. Includes the Model itself, as well as some services to create/modify/configure the model before rendering.
