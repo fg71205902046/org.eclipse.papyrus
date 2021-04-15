@@ -32,51 +32,51 @@
     <details key="INVOCATION_DELEGATES" value="IGNORE"/>
     <details key="VALIDATION_DELEGATES" value="IGNORE"/>
   </genAnnotations>
-  <foreignModel>constraints.uml</foreignModel>
+  <foreignModel>Constraints.uml</foreignModel>
   <genPackages xsi:type="genmodel:GenPackage" prefix="Constraints" basePackage="org.eclipse.papyrus.infra"
-      disposableProviderFactory="true" ecorePackage="constraints.ecore#/">
-    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="constraints.ecore#//DisplayUnit">
+      disposableProviderFactory="true" ecorePackage="Constraints.ecore#/">
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="Constraints.ecore#//DisplayUnit">
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
-          createChild="true" ecoreFeature="ecore:EReference constraints.ecore#//DisplayUnit/constraints"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute constraints.ecore#//DisplayUnit/elementMultiplicity"/>
+          createChild="true" ecoreFeature="ecore:EReference Constraints.ecore#//DisplayUnit/constraints"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute Constraints.ecore#//DisplayUnit/elementMultiplicity"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="constraints.ecore#//ConstraintDescriptor">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute constraints.ecore#//ConstraintDescriptor/name"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute constraints.ecore#//ConstraintDescriptor/overrideable"/>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="Constraints.ecore#//ConstraintDescriptor">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute Constraints.ecore#//ConstraintDescriptor/name"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute Constraints.ecore#//ConstraintDescriptor/overrideable"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference constraints.ecore#//ConstraintDescriptor/overriddenConstraints"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference Constraints.ecore#//ConstraintDescriptor/overriddenConstraints"/>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
-          ecoreFeature="ecore:EReference constraints.ecore#//ConstraintDescriptor/display"/>
+          ecoreFeature="ecore:EReference Constraints.ecore#//ConstraintDescriptor/display"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="constraints.ecore#//SimpleConstraint">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="Constraints.ecore#//SimpleConstraint">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference constraints.ecore#//SimpleConstraint/constraintType"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference Constraints.ecore#//SimpleConstraint/constraintType"/>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
-          createChild="true" ecoreFeature="ecore:EReference constraints.ecore#//SimpleConstraint/properties"/>
+          createChild="true" ecoreFeature="ecore:EReference Constraints.ecore#//SimpleConstraint/properties"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="constraints.ecore#//ConfigProperty">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute constraints.ecore#//ConfigProperty/name"/>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="Constraints.ecore#//ConfigProperty">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute Constraints.ecore#//ConfigProperty/name"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="constraints.ecore#//CompositeConstraint">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="Constraints.ecore#//CompositeConstraint">
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
-          createChild="true" ecoreFeature="ecore:EReference constraints.ecore#//CompositeConstraint/constraints"/>
+          createChild="true" ecoreFeature="ecore:EReference Constraints.ecore#//CompositeConstraint/constraints"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="constraints.ecore#//ValueProperty">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute constraints.ecore#//ValueProperty/value"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="Constraints.ecore#//ValueProperty">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute Constraints.ecore#//ValueProperty/value"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="constraints.ecore#//ReferenceProperty">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="Constraints.ecore#//ReferenceProperty">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference constraints.ecore#//ReferenceProperty/value"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference Constraints.ecore#//ReferenceProperty/value"/>
     </genClasses>
-    <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Environment" disposableProviderFactory="true"
-        ecorePackage="constraints.ecore#//environment">
-      <genClasses xsi:type="genmodel:GenClass" ecoreClass="constraints.ecore#//environment/ConstraintEnvironment">
+    <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Environment" basePackage="org.eclipse.papyrus.infra.constraints"
+        disposableProviderFactory="true" ecorePackage="Constraints.ecore#//environment">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="Constraints.ecore#//environment/ConstraintEnvironment">
         <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
-            createChild="true" ecoreFeature="ecore:EReference constraints.ecore#//environment/ConstraintEnvironment/constraintTypes"/>
+            createChild="true" ecoreFeature="ecore:EReference Constraints.ecore#//environment/ConstraintEnvironment/constraintTypes"/>
       </genClasses>
-      <genClasses xsi:type="genmodel:GenClass" ecoreClass="constraints.ecore#//environment/ConstraintType">
-        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute constraints.ecore#//environment/ConstraintType/label"/>
-        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute constraints.ecore#//environment/ConstraintType/constraintClass"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="Constraints.ecore#//environment/ConstraintType">
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute Constraints.ecore#//environment/ConstraintType/label"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute Constraints.ecore#//environment/ConstraintType/constraintClass"/>
       </genClasses>
     </nestedGenPackages>
   </genPackages>

@@ -4,7 +4,7 @@
     nsPrefix="properties">
   <eSubpackages name="environment" nsURI="http://www.eclipse.org/papyrus/properties/environment/0.9"
       nsPrefix="environment">
-    <eClassifiers xsi:type="ecore:EClass" name="Environment" eSuperTypes="../../org.eclipse.papyrus.infra.constraints/Model/constraints.ecore#//environment/ConstraintEnvironment">
+    <eClassifiers xsi:type="ecore:EClass" name="Environment" eSuperTypes="../../org.eclipse.papyrus.infra.constraints/Model/Constraints.ecore#//environment/ConstraintEnvironment">
       <eStructuralFeatures xsi:type="ecore:EReference" name="modelElementFactories"
           upperBound="-1" eType="#//environment/ModelElementFactoryDescriptor" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="widgetTypes" upperBound="-1"
@@ -129,7 +129,7 @@
         <eAnnotations source="subsets" references="#//contexts/AbstractSection/tab"/>
       </eStructuralFeatures>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="AbstractSection" abstract="true" eSuperTypes="../../org.eclipse.papyrus.infra.constraints/Model/constraints.ecore#//DisplayUnit">
+    <eClassifiers xsi:type="ecore:EClass" name="AbstractSection" abstract="true" eSuperTypes="../../org.eclipse.papyrus.infra.constraints/Model/Constraints.ecore#//DisplayUnit">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="tab" lowerBound="1" eType="#//contexts/Tab"
@@ -168,7 +168,7 @@
           eType="#//contexts/DataContextElement" containment="true" eOpposite="#//contexts/DataContextElement/package"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="UnknownProperty" eSuperTypes="#//contexts/Property"/>
-    <eClassifiers xsi:type="ecore:EClass" name="View" eSuperTypes="../../org.eclipse.papyrus.infra.constraints/Model/constraints.ecore#//DisplayUnit">
+    <eClassifiers xsi:type="ecore:EClass" name="View" eSuperTypes="../../org.eclipse.papyrus.infra.constraints/Model/Constraints.ecore#//DisplayUnit">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="sections" upperBound="-1"

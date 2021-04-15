@@ -7,7 +7,7 @@
     <packagedElement xmi:type="uml:Package" xmi:id="_jfIcYZxgEeu216dzZOP2Cw" name="environment" URI="http://www.eclipse.org/papyrus/properties/environment/0.9">
       <packagedElement xmi:type="uml:Class" xmi:id="_jfIcYpxgEeu216dzZOP2Cw" name="Environment">
         <generalization xmi:type="uml:Generalization" xmi:id="_jfIcY5xgEeu216dzZOP2Cw">
-          <general xmi:type="uml:Class" href="../../org.eclipse.papyrus.infra.constraints/Model/constraints.uml#_zg0XUpxgEeu216dzZOP2Cw"/>
+          <general xmi:type="uml:Class" href="../../org.eclipse.papyrus.infra.constraints/Model/Constraints.uml#_zg0XUpxgEeu216dzZOP2Cw"/>
         </generalization>
         <ownedAttribute xmi:type="uml:Property" xmi:id="_jfIcZJxgEeu216dzZOP2Cw" name="modelElementFactories" type="_jfIceZxgEeu216dzZOP2Cw" isOrdered="true" aggregation="composite" association="_jfIcfJxgEeu216dzZOP2Cw">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_jfIcZZxgEeu216dzZOP2Cw"/>
@@ -243,7 +243,7 @@ just the name of the context.</body>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_jfIc6JxgEeu216dzZOP2Cw" name="AbstractSection" isAbstract="true">
         <generalization xmi:type="uml:Generalization" xmi:id="_jfIc6ZxgEeu216dzZOP2Cw">
-          <general xmi:type="uml:Class" href="../../org.eclipse.papyrus.infra.constraints/Model/constraints.uml#_zg0XW5xgEeu216dzZOP2Cw"/>
+          <general xmi:type="uml:Class" href="../../org.eclipse.papyrus.infra.constraints/Model/Constraints.uml#_zg0XW5xgEeu216dzZOP2Cw"/>
         </generalization>
         <ownedAttribute xmi:type="uml:Property" xmi:id="_jfIc6pxgEeu216dzZOP2Cw" name="name" visibility="public" isOrdered="true">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
@@ -323,7 +323,7 @@ just the name of the context.</body>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_jfJDiZxgEeu216dzZOP2Cw" name="View">
         <generalization xmi:type="uml:Generalization" xmi:id="_jfJDipxgEeu216dzZOP2Cw">
-          <general xmi:type="uml:Class" href="../../org.eclipse.papyrus.infra.constraints/Model/constraints.uml#_zg0XW5xgEeu216dzZOP2Cw"/>
+          <general xmi:type="uml:Class" href="../../org.eclipse.papyrus.infra.constraints/Model/Constraints.uml#_zg0XW5xgEeu216dzZOP2Cw"/>
         </generalization>
         <ownedAttribute xmi:type="uml:Property" xmi:id="_jfJDi5xgEeu216dzZOP2Cw" name="name" visibility="public" isOrdered="true">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>

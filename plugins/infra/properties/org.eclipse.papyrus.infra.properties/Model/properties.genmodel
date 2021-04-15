@@ -5,7 +5,7 @@
     editDirectory="/org.eclipse.papyrus.infra.properties.edit/src-gen" editorDirectory="/org.eclipse.papyrus.infra.properties.editor/src-gen"
     modelPluginID="org.eclipse.papyrus.infra.properties" modelName="Properties" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.uml2.uml.ecore.importer" complianceLevel="11.0" copyrightFields="false"
-    usedGenPackages="../../org.eclipse.papyrus.infra.constraints/Model/constraints.genmodel#//constraints ../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"
+    usedGenPackages="../../org.eclipse.papyrus.infra.constraints/Model/Constraints.genmodel#//constraints ../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"
     operationReflection="true" importOrganizing="true">
   <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
     <details key="OPPOSITE_ROLE_NAMES" value="IGNORE"/>

@@ -89,11 +89,11 @@
         <layoutConstraint xmi:type="notation:Location" xmi:id="_wIHAAZxpEeu216dzZOP2Cw"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_wIHAApxpEeu216dzZOP2Cw" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="platform:/resource/org.eclipse.papyrus.infra.constraints/Model/constraints.uml#_zg0XXJxgEeu216dzZOP2Cw"/>
+        <element xmi:type="uml:Property" href="platform:/resource/org.eclipse.papyrus.infra.constraints/Model/Constraints.uml#_zg0XXJxgEeu216dzZOP2Cw"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_wIHAA5xpEeu216dzZOP2Cw"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_wIHABJxpEeu216dzZOP2Cw" type="Property_ClassAttributeLabel">
-        <element xmi:type="uml:Property" href="platform:/resource/org.eclipse.papyrus.infra.constraints/Model/constraints.uml#_zg0XX5xgEeu216dzZOP2Cw"/>
+        <element xmi:type="uml:Property" href="platform:/resource/org.eclipse.papyrus.infra.constraints/Model/Constraints.uml#_zg0XX5xgEeu216dzZOP2Cw"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_wIHABZxpEeu216dzZOP2Cw"/>
       </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_CBH3s5xkEeu216dzZOP2Cw"/>
