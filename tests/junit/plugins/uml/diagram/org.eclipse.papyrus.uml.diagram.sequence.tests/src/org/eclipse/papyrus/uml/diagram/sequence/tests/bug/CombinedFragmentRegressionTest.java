@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2018-2019 Christian W. Damus and others.
+ * Copyright (c) 2018-2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,6 +11,7 @@
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 547864 (Remove useless tests)
+ *   Christian W. Damus - bug 570716
  *
  *****************************************************************************/
 
@@ -66,6 +67,7 @@ import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
+import org.eclipse.ocl.pivot.utilities.ThreadLocalExecutor;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.matchers.CommandMatchers;
 import org.eclipse.papyrus.junit.matchers.DiagramMatchers;
@@ -92,7 +94,6 @@ import org.hamcrest.CoreMatchers;
 import org.hamcrest.CustomTypeSafeMatcher;
 import org.hamcrest.Matcher;
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.RuleChain;
@@ -133,19 +134,13 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 	}
 
 	/**
-	 * Before test initialization with preference initialization.
-	 */
-	@Before
-	public void init() {
-		UMLDiagramEditorPlugin.getInstance().getPreferenceStore().setValue(CustomDiagramGeneralPreferencePage.PREF_TRIGGER_ASYNC_VALIDATION, true);
-	}
-
-	/**
-	 * After test with preference modification.
+	 * These tests rely on the OCL environment which since OCL 6.14 is maintained on a thread-local basis
+	 * and can get broken when some test attempts to attach an environment factory for the thread when
+	 * one is already attached. After that, no OCL validation works and tests fail.
 	 */
 	@After
 	public void cleanUp() {
-		UMLDiagramEditorPlugin.getInstance().getPreferenceStore().setValue(CustomDiagramGeneralPreferencePage.PREF_TRIGGER_ASYNC_VALIDATION, false);
+		ThreadLocalExecutor.reset();
 	}
 
 	/**
@@ -854,7 +849,7 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 	//
 
 	static Matcher<EObject> isDeleted() {
-		return new CustomTypeSafeMatcher<EObject>("is deleted") {
+		return new CustomTypeSafeMatcher<>("is deleted") {
 			@Override
 			protected boolean matchesSafely(EObject item) {
 				return item.eResource() == null;
@@ -870,7 +865,7 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 	 * @return the geometry matcher
 	 */
 	static Matcher<Object> equalGeometry(Object geometry) {
-		return new CustomTypeSafeMatcher<Object>("equals " + geometry) {
+		return new CustomTypeSafeMatcher<>("equals " + geometry) {
 			@Override
 			protected boolean matchesSafely(Object item) {
 
