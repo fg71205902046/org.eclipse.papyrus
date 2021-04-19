@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2021 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,6 +11,8 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Thibault Le Ouay t.leouay@sherpa-eng.com - Add binding implementation
+ *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Bug 572969
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
@@ -102,6 +104,8 @@ public class StringLabel extends AbstractValueEditor implements IChangeListener 
 
 		this.valueLabel.setText(text);
 		this.valueLabel.setImage(image);
+
+		this.valueLabel.getParent().pack();
 	}
 
 	@Override
