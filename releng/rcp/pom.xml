@@ -15,9 +15,6 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>org.eclipse.papyrus.rcp</module>
-		<module>org.eclipse.papyrus.rcp.feature</module>
-		<module>org.eclipse.papyrus.rcp.product</module>
 		<module>targetPlatform</module>
 	</modules>
 
@@ -25,9 +22,10 @@
 		<!-- Timestamp used in various places, e.g. the about dialog (see about.mappings) -->
 		<eclipse.simultaneous.release.build>${maven.build.timestamp}</eclipse.simultaneous.release.build>
 		<!-- Human readable name of the release, e.g. used in the about dialog 
-			(see about.mappings)  -->
+			(see about.mappings) -->
 		<eclipse.simultaneous.release.name>2021-06 (4.20)</eclipse.simultaneous.release.name>
 		<target.platform>org.eclipse.papyrus.rcp.targetplatform</target.platform>
+		<download.maven.version>1.4.2</download.maven.version>
 	</properties>
 
 	<repositories>
@@ -135,6 +133,34 @@
 					</plugin>
 				</plugins>
 			</build>
+		</profile>
+
+		<!-- Include JDK -->
+
+		<profile>
+			<id>default</id>
+			<activation>
+				<property>
+					<name>!jdkRCP</name>
+				</property>
+			</activation>
+			<modules>
+				<module>org.eclipse.papyrus.rcp</module>
+				<module>org.eclipse.papyrus.rcp.feature</module>
+				<module>org.eclipse.papyrus.rcp.product</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>jdkRCP</id>
+			<activation>
+				<property>
+					<name>jdkRCP</name>
+				</property>
+			</activation>
+			<modules>
+				<module>org.eclipse.papyrus.rcp</module>
+				<module>jdk</module>
+			</modules>
 		</profile>
 	</profiles>
 </project>

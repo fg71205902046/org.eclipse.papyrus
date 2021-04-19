@@ -17,3 +17,6 @@ tests/**/.metadata/
 # All .project that are not in a Papyrus plugin
 .project
 !**/org.eclipse.papyrus.*/.project
+
+# Workspace metadata folder created when building rcp
+releng/rcp/workspace/.metadata/

@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.papyrus.rcp.macosx.jdk;singleton:=true
+Bundle-Version: 5.2.0.qualifier
+Bundle-Vendor: %providerName
+Automatic-Module-Name: org.eclipse.papyrus.rcp.macosx.jdk
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-ActivationPolicy: lazy
+Eclipse-BundleShape: dir

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<artifactId>org.eclipse.papyrus.rcp.releng</artifactId>
+		<groupId>org.eclipse.papyrus</groupId>
+		<version>5.2.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>org.eclipse.papyrus.rcp.jdk</artifactId>
+	<packaging>pom</packaging>
+
+<!-- 	<modules> -->
+<!-- 		<module>win32</module> -->
+<!-- 		<module>linux</module> -->
+<!-- 		<module>macosx</module> -->
+<!-- 	</modules> -->
+
+	<profiles>
+		<profile>
+			<id>win32RCP</id>
+			<!-- <activation> -->
+			<!-- <property>win32RCP</property> -->
+			<!-- </activation> -->
+			<modules>
+				<module>win32</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>linuxRCP</id>
+			<!-- <activation> -->
+			<!-- <property>win32RCP</property> -->
+			<!-- </activation> -->
+			<modules>
+				<module>linux</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>macosxRCP</id>
+			<!-- <activation> -->
+			<!-- <property>win32RCP</property> -->
+			<!-- </activation> -->
+			<modules>
+				<module>macosx</module>
+			</modules>
+		</profile>
+	</profiles>
+
+</project>
