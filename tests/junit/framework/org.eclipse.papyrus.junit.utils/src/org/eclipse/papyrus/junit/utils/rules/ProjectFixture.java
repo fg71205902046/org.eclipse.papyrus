@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
- *   Christian W. Damus - bugs 451230, 468030, 569357, 570097
+ *   Christian W. Damus - bugs 451230, 468030, 569357, 570097, 572865
  *
  */
 package org.eclipse.papyrus.junit.utils.rules;
@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.function.Function;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
@@ -51,6 +52,10 @@ import org.junit.runners.model.Statement;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 
+import com.google.common.base.Charsets;
+import com.google.common.io.CharSource;
+import com.google.common.io.Resources;
+
 
 /**
  * A self-creating and self-destroying workspace project named according to the current test case.
@@ -58,6 +63,7 @@ import org.osgi.framework.FrameworkUtil;
 public class ProjectFixture implements TestRule {
 
 	private IProject project;
+	private Class<?> testClass;
 
 	public ProjectFixture() {
 		super();
@@ -109,6 +115,45 @@ public class ProjectFixture implements TestRule {
 	 *             on any problem in creating the file
 	 */
 	public IFile createFile(String relativeFilePath, Class<?> classFromBundle, String resourcePath) throws IOException {
+		return createFile(relativeFilePath, classFromBundle, resourcePath, null);
+	}
+
+	/**
+	 * Creates a new file at the specified project-relative path with the contents of a bundle resource.
+	 *
+	 * @param relativeFilePath
+	 *            the project-relative path of the file to create
+	 * @param resourcePath
+	 *            the path in the context bundle of the resource to copy
+	 *
+	 * @return the new file
+	 *
+	 * @throws IOException
+	 *             on any problem in creating the file
+	 */
+	public IFile createFile(String relativeFilePath, String resourcePath) throws IOException {
+		return createFile(relativeFilePath, testClass, resourcePath, null);
+	}
+
+	/**
+	 * Creates a new text file at the specified project-relative path with the contents of a bundle resource, filtered
+	 * through the given text transformation.
+	 *
+	 * @param relativeFilePath
+	 *            the project-relative path of the file to create
+	 * @param classFromBundle
+	 *            the bundle in which its content is to be found
+	 * @param resourcePath
+	 *            the path in the context bundle of the resource to copy
+	 * @param textFilter
+	 *            a transformation to apply to text content of the resource, or {@code null} if none
+	 *
+	 * @return the new file
+	 *
+	 * @throws IOException
+	 *             on any problem in creating the file
+	 */
+	public IFile createFile(String relativeFilePath, Class<?> classFromBundle, String resourcePath, Function<String, String> textFilter) throws IOException {
 		IFile result;
 
 		Bundle bundle = FrameworkUtil.getBundle(classFromBundle);
@@ -119,7 +164,16 @@ public class ProjectFixture implements TestRule {
 
 		IPath path = new Path(relativeFilePath);
 
-		try (InputStream input = resource.openStream()) {
+		InputStream input;
+		if (textFilter != null) {
+			String content = Resources.toString(resource, Charsets.UTF_8);
+			content = textFilter.apply(content);
+			input = CharSource.wrap(content).asByteSource(Charsets.UTF_8).openStream();
+		} else {
+			input = resource.openStream();
+		}
+
+		try (input) {
 			createFolders(path.removeLastSegments(1));
 			result = project.getFile(path);
 			result.create(input, false, null);
@@ -133,6 +187,44 @@ public class ProjectFixture implements TestRule {
 		}
 
 		return result;
+	}
+
+	/**
+	 * Creates a new text file at the specified project-relative path with the contents of a bundle resource, filtered
+	 * through the given text transformation.
+	 *
+	 * @param relativeFilePath
+	 *            the project-relative path of the file to create
+	 * @param resourcePath
+	 *            the path in the context bundle of the resource to copy
+	 * @param textFilter
+	 *            a transformation to apply to text content of the resource, or {@code null} if none
+	 *
+	 * @return the new file
+	 *
+	 * @throws IOException
+	 *             on any problem in creating the file
+	 */
+	public IFile createFile(String relativeFilePath, String resourcePath, Function<String, String> textFilter) throws IOException {
+		return createFile(relativeFilePath, testClass, resourcePath, textFilter);
+	}
+
+	/**
+	 * Replace tokens in a file. Tokens in the template file look like <tt>{{TOKEN}}</tt> where <tt>TOKEN</tt> is the
+	 * {@code token} string supplied to this method.
+	 *
+	 * @param token
+	 *            the token string to replace, without the surrounding braces
+	 * @param replacement
+	 *            the replacement text for the token
+	 * @return the token replacement function
+	 *
+	 * @see #createFile(String, Class, String, Function)
+	 * @see #createFile(String, String, Function)
+	 */
+	public static Function<String, String> replaceTokens(String token, String replacement) {
+		String delimitedToken = String.format("{{%s}}", token); //$NON-NLS-1$
+		return input -> input.replace(delimitedToken, replacement);
 	}
 
 	private void createFolders(IPath folderPath) throws CoreException {
@@ -269,12 +361,16 @@ public class ProjectFixture implements TestRule {
 
 			@Override
 			public void evaluate() throws Throwable {
+				testClass = JUnitUtils.getTestClass(description);
+
 				createProject(projectName);
 
 				try {
 					base.evaluate();
 				} finally {
 					deleteProject();
+
+					testClass = null;
 				}
 			}
 		};
@@ -366,4 +462,5 @@ public class ProjectFixture implements TestRule {
 			}
 		}
 	}
+
 }

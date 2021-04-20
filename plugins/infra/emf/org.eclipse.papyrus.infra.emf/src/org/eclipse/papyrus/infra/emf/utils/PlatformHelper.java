@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParserFactory;
@@ -44,6 +45,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.osgi.container.ModuleContainer;
 import org.eclipse.papyrus.infra.emf.Activator;
+import org.eclipse.pde.core.plugin.IPluginAttribute;
 import org.eclipse.pde.core.plugin.IPluginElement;
 import org.eclipse.pde.core.plugin.IPluginExtension;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
@@ -230,10 +232,18 @@ abstract class PlatformHelper {
 				Arrays.stream(extension.getChildren())
 						.filter(IPluginElement.class::isInstance).map(IPluginElement.class::cast)
 						.filter(element -> Objects.equals(E_MAPPING, element.getName()))
-						.forEach(element -> localMappings.put(element.getAttribute(A_SOURCE).getValue(), element.getAttribute(A_TARGET).getValue()));
+						.forEach(element -> mapURI(localMappings, element));
 			}
 
 			return localMappings;
+		}
+
+		private void mapURI(Map<String, String> mappings, IPluginElement element) {
+			String source = getAttribute(element, A_SOURCE);
+			String target = getAttribute(element, A_TARGET);
+			if (source != null && target != null) {
+				mappings.put(source, target);
+			}
 		}
 
 		@Override
@@ -250,15 +260,15 @@ abstract class PlatformHelper {
 						Arrays.stream(extension.getChildren())
 								.filter(IPluginElement.class::isInstance).map(IPluginElement.class::cast)
 								.filter(element -> Objects.equals(PACKAGE_EXTELEM, element.getName()))
-								.forEach(element -> models.put(element.getAttribute(URI_EXTATT).getValue(),
-										getURI(model, element.getAttribute(GEN_MODEL_EXTATT).getValue(), false)));
+								.forEach(element -> mapPackageRegistration(models, element, URI_EXTATT, GEN_MODEL_EXTATT,
+										genmodel -> getURI(model, genmodel, false)));
 						break;
 					case DYNAMIC_PACKAGE_EXTPOINT:
 						Arrays.stream(extension.getChildren())
 								.filter(IPluginElement.class::isInstance).map(IPluginElement.class::cast)
 								.filter(element -> Objects.equals(RESOURCE_EXTELEM, element.getName()))
-								.forEach(element -> models.put(element.getAttribute(URI_EXTATT).getValue(),
-										getURI(model, element.getAttribute(LOCATION_EXTATT).getValue(), true)));
+								.forEach(element -> mapPackageRegistration(models, element, URI_EXTATT, LOCATION_EXTATT,
+										location -> getURI(model, location, true)));
 						break;
 					}
 				}
@@ -273,8 +283,37 @@ abstract class PlatformHelper {
 			return result;
 		}
 
+		private void mapPackageRegistration(Map<String, URI> models, IPluginElement element, String nsURIAttribute, String modelAttribute, Function<String, URI> uriFunction) {
+			String nsURI = getAttribute(element, nsURIAttribute);
+			String modelLocation = getAttribute(element, modelAttribute);
+			URI modelURI = null;
+
+			if (modelLocation != null && nsURI != null) {
+				modelURI = uriFunction.apply(modelLocation);
+			}
+
+			if (modelURI != null) {
+				models.put(nsURI, modelURI);
+			}
+		}
+
+		private String getAttribute(IPluginElement element, String name) {
+			IPluginAttribute attribute = element.getAttribute(name);
+			return attribute == null ? null : attribute.getValue();
+		}
+
 		private URI getURI(IPluginModelBase plugin, String path, boolean withFragment) {
 			URI result;
+
+			try {
+				result = URI.createURI(path, true);
+				if (!result.isRelative()) {
+					// Nothing to resolve against the workspace project location
+					return result;
+				}
+			} catch (Exception e) {
+				// This can be expected for some inputs that manifestly are not absolute URIs
+			}
 
 			while (!path.isEmpty() && (path.startsWith("/") || path.startsWith("\\"))) { //$NON-NLS-1$//$NON-NLS-2$
 				path = path.substring(1);

@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
- *   Christian W. Damus - bugs 399859, 465416, 485220, 496299, 551740
+ *   Christian W. Damus - bugs 399859, 465416, 485220, 496299, 551740, 572865
  *
  */
 package org.eclipse.papyrus.infra.emf.tests;
@@ -22,6 +22,7 @@ import org.eclipse.papyrus.infra.emf.resource.ShardResourceHelperTest;
 import org.eclipse.papyrus.infra.emf.resource.ShardResourceLocatorTest;
 import org.eclipse.papyrus.infra.emf.resource.index.WorkspaceModelIndexTest;
 import org.eclipse.papyrus.infra.emf.utils.InternalCrossReferencerTest;
+import org.eclipse.papyrus.infra.emf.utils.ResourceUtilsTest;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceTest;
 import org.eclipse.papyrus.infra.types.core.registries.ElementTypeSetConfigurationRegistry;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
@@ -46,6 +47,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		// oep.infra.emf.utils
 		InternalCrossReferencerTest.class,
 		ServiceUtilsForResourceTest.class,
+		ResourceUtilsTest.class,
 		// oep.infra.emf.resource
 		ShardResourceHelperTest.class, ShardResourceLocatorTest.class, CrossReferenceIndexTest.class,
 		// oep.infra.emf.resource.index
