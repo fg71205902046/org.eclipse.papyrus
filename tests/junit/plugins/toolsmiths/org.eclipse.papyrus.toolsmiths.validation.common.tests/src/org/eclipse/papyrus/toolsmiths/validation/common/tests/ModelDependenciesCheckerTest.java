@@ -77,7 +77,7 @@ public class ModelDependenciesCheckerTest {
 	 * not imply a bundle name, even if the authority looks like one.
 	 */
 	@Test
-	@OverlayFile(value = "bug569357/Bookstore-weirdHREF.profile.uml", path = BOOKSTORE_PROFILE)
+	@OverlayFile(value = "bug569357/BookStore-weirdHREF.profile.uml", path = BOOKSTORE_PROFILE)
 	public void unresolvedNonBundleDeployedURI() {
 		List<Diagnostic> diagnostics = checkModel(BOOKSTORE_PROFILE,
 				// Pre-resolve the HREF that doesn't imply bundle deployment

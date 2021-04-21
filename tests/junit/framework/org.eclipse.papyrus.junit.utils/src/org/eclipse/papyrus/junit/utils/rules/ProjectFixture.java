@@ -399,21 +399,23 @@ public class ProjectFixture implements TestRule {
 		try {
 			project.refreshLocal(IResource.DEPTH_INFINITE, null);
 
-			// Make sure that we can delete everything
-			project.accept(new IResourceVisitor() {
+			if (project.isAccessible()) {
+				// Make sure that we can delete everything
+				project.accept(new IResourceVisitor() {
 
-				@Override
-				public boolean visit(IResource resource) throws CoreException {
-					switch (resource.getType()) {
-					case IResource.FILE:
-					case IResource.FOLDER:
-						ensureWritable(resource);
-						break;
+					@Override
+					public boolean visit(IResource resource) throws CoreException {
+						switch (resource.getType()) {
+						case IResource.FILE:
+						case IResource.FOLDER:
+							ensureWritable(resource);
+							break;
+						}
+
+						return true;
 					}
-
-					return true;
-				}
-			});
+				});
+			}
 
 			project.delete(true, null);
 		} catch (CoreException e) {

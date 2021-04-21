@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2017 CEA LIST.
+ * Copyright (c) 2017, 2021 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *
  * Contributors:
  *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 572677
  *
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.suite.tests;
@@ -39,6 +40,10 @@ public class AllTests {
 
 		/* **************** plugins *********************** */
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.toolsmiths.profilemigration.tests.AllTests.class));
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.toolsmiths.validation.common.tests.AllTests.class));
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.toolsmiths.validation.architecture.tests.AllTests.class));
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.toolsmiths.validation.elementtypes.tests.AllTests.class));
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.toolsmiths.validation.profile.tests.AllTests.class));
 
 
 		// end

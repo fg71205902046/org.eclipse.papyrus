@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Alexandra Buzila (EclipseSource) - Initial API and implementation
- *   Christian W. Damus - bug 570097
+ *   Christian W. Damus - bugs 570097, 572677
  *
  *****************************************************************************/
 
@@ -23,6 +23,8 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.papyrus.toolsmiths.validation.common.Activator;
 import org.eclipse.pde.core.IBaseModel;
@@ -60,7 +62,7 @@ public abstract class AbstractMissingExtensionMarkerResolution extends AbstractP
 		PDEModelUtility.modifyModel(modification, null);
 	}
 
-	private void addExtension(IPluginModelBase model, IMarker marker) {
+	private void addExtension(IPluginModelBase model, IMarker marker) throws CoreException {
 		try {
 			String extensionPoint = getExtensionPoint(marker);
 			IExtensions extensions = model.getExtensions(true); // We will need the extensions one way or another
@@ -71,10 +73,20 @@ public abstract class AbstractMissingExtensionMarkerResolution extends AbstractP
 					.orElseGet(() -> createNewExtension(extensions, extensionPoint));
 
 			configureExtension(extension, marker);
+
+			// If we created a new extension, add it to the model now. If we had added it immediately
+			// upon creation, the plugin.xml text would have accumulated all the partial states of
+			// its configuration (bug 572677)
+			if (extension.getParent() == null) {
+				extensions.add(extension);
+			}
 		} catch (WrappedException e) {
-			Activator.log.error(e.exception());
-		} catch (CoreException e) {
-			Activator.log.error(e);
+			if (e.exception() instanceof CoreException) {
+				throw (CoreException) e.exception();
+			}
+			IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID,
+					"Uncaught exception in marker resolution.", e.exception()); //$NON-NLS-1$
+			throw new CoreException(status);
 		}
 	}
 
@@ -83,7 +95,6 @@ public abstract class AbstractMissingExtensionMarkerResolution extends AbstractP
 
 		try {
 			result.setPoint(point);
-			extensions.add(result);
 		} catch (CoreException e) {
 			throw new WrappedException(e);
 		}
@@ -95,7 +106,7 @@ public abstract class AbstractMissingExtensionMarkerResolution extends AbstractP
 		return true;
 	}
 
-	protected abstract String getExtensionPoint(IMarker marker);
+	protected abstract String getExtensionPoint(IMarker marker) throws CoreException;
 
 	protected abstract void configureExtension(IPluginExtension extension, IMarker marker) throws CoreException;
 

@@ -26,6 +26,8 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({
 		ModelDependenciesCheckerTest.class,
 		ProjectManagementUtilsTest.class,
+		AbstractMissingExtensionMarkerResolutionTest.class,
+		AbstractMissingAttributeMarkerResolutionTest.class,
 })
 public class AllTests {
 	// Suite is specified in annotations

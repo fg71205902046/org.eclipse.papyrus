@@ -22,7 +22,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Proxy;
 import java.net.URL;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -62,6 +66,8 @@ import org.eclipse.papyrus.toolsmiths.validation.common.checkers.IPluginChecker2
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.ModelResourceMapper;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
+
+import junit.framework.AssertionFailedError;
 
 /**
  * <p>
@@ -352,6 +358,55 @@ public class TestProjectFixture extends ProjectFixture {
 			// models that are added to the manager by the preferences
 			prefs.write();
 		}
+	}
+
+	/**
+	 * Get the contents of a {@code file} as a string.
+	 *
+	 * @param file
+	 *            a file
+	 * @return its contents
+	 */
+	public final String getContent(IFile file) {
+		try {
+			return Files.readString(Paths.get(file.getLocationURI()), Charset.forName("UTF-8"));
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new AssertionFailedError("Failed to read contents of test file: " + e.getMessage());
+		}
+	}
+
+	/**
+	 * Create a mock marker with string-valued {@code attributes}.
+	 *
+	 * @param resource
+	 *            the marker owner
+	 * @param attributes
+	 *            the marker attributes
+	 * @return a mock marker that knows how to answer {@link IMarker#getResource()},
+	 *         {@link IMarker#getAttribute(String)}, and {@link IMarker#getAttribute(String, String)}.
+	 */
+	public IMarker mockMarker(IResource resource, Map<String, String> attributes) {
+		return (IMarker) Proxy.newProxyInstance(getClass().getClassLoader(), new Class<?>[] { IMarker.class },
+				(proxy, method, args) -> {
+					switch (method.getName()) {
+					case "getResource": //$NON-NLS-1$
+						return resource;
+					case "getAttribute": //$NON-NLS-1$
+						if (method.getReturnType() == String.class && args.length == 2) {
+							String result = attributes.get(args[0]);
+							if (result == null) {
+								result = (String) args[1];
+							}
+							return result;
+						}
+						if (args.length == 1) {
+							return attributes.get(args[0]);
+						}
+						break;
+					}
+					return null;
+				});
 	}
 
 	//
