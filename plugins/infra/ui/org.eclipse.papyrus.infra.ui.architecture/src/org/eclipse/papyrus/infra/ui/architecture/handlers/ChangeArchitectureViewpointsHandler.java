@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017, 2019 CEA LIST.
+ * Copyright (c) 2017, 2021 CEA LIST, Christian W. Damus, and others.
  *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License 2.0
@@ -11,6 +11,7 @@
  *  Contributors:
  *   Maged Elaasar - Initial API and implementation
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 550535
+ *   Christian W. Damus - bug 570486
  *
  */
 package org.eclipse.papyrus.infra.ui.architecture.handlers;
@@ -62,6 +63,13 @@ public class ChangeArchitectureViewpointsHandler extends CompoundContributionIte
 	}
 
 	@Override
+	public void dispose() {
+		provider.dispose();
+
+		super.dispose();
+	}
+
+	@Override
 	protected IContributionItem[] getContributionItems() {
 		final EObject selection = getSelection();
 		if (selection == null) {
@@ -77,9 +85,8 @@ public class ChangeArchitectureViewpointsHandler extends CompoundContributionIte
 
 		List<IContributionItem> items = new ArrayList<>();
 		for (MergedArchitectureViewpoint viewpoint : context.getViewpoints()) {
-			Object imageObject = viewpoint.getImageObject();
-			ImageDescriptor desc = ExtendedImageRegistry.getInstance().getImageDescriptor(provider.getImage(imageObject));
-			items.add(new ActionContributionItem(new Action(viewpoint.getName(), desc) {
+			ImageDescriptor desc = ExtendedImageRegistry.getInstance().getImageDescriptor(provider.getImage(viewpoint));
+			items.add(new ActionContributionItem(new Action(provider.getText(viewpoint), desc) {
 				{
 					setChecked(viewpointIds.contains(viewpoint.getId()));
 				}

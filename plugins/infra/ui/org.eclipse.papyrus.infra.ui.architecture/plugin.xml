@@ -119,5 +119,18 @@
             class="org.eclipse.papyrus.infra.ui.architecture.validators.ArchitecturePageAddValidator">
       </validator>
    </extension>
+   
+   <extension
+         point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <factory
+            uri="org.eclipse.papyrus.infra.core.architecture.merged"
+            class="org.eclipse.papyrus.infra.ui.architecture.providers.MergedArchitectureItemProviderAdapterFactory"
+            supportedTypes="org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemStyledLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource">
+      </factory>
+   </extension>
     
 </plugin>

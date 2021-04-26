@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2018 CEA LIST and others.
+ * Copyright (c) 2018, 2021 CEA LIST, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - bug 570486
  *   
  *****************************************************************************/
 
@@ -27,7 +28,7 @@ import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureView
 
 /**
  * @author melaasar
- *
+ * @deprecated An item provider factory is registered for the <em>Merged Architecture Description</em> façade API.
  */
 public class MergedItemPropertyDescriptor extends ItemPropertyDescriptor {
 

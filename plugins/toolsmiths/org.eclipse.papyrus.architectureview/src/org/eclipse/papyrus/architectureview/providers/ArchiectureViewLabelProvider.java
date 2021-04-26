@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2019 CEA LIST and others.
+ * Copyright (c) 2019, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
+ *   Christian W. Damus - bug 570486
  *
  *****************************************************************************/
 
@@ -119,10 +120,10 @@ public class ArchiectureViewLabelProvider implements ITableLabelProvider {
 		ADElement adElement = merged.getAdapter(ADElement.class);
 
 		if (0 == columnIndex) {
-			IItemLabelProvider itemProvider = (IItemLabelProvider) adapterFactory.adapt(adElement, IItemLabelProvider.class);
+			IItemLabelProvider itemProvider = (IItemLabelProvider) adapterFactory.adapt(merged, IItemLabelProvider.class);
 
 			if (null != itemProvider) {
-				return ExtendedImageRegistry.getInstance().getImage(itemProvider.getImage(adElement));
+				return ExtendedImageRegistry.getInstance().getImage(itemProvider.getImage(merged));
 			}
 		}
 

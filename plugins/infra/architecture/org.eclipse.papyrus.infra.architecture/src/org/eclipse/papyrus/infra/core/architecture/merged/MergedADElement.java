@@ -18,6 +18,7 @@ package org.eclipse.papyrus.infra.core.architecture.merged;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.notify.impl.NotifierImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -38,7 +39,7 @@ import com.google.common.base.Objects;
  * @see org.eclipse.papyrus.infra.core.architecture.ADElement
  * @since 1.0
  */
-public class MergedADElement implements IAdaptable {
+public class MergedADElement extends NotifierImpl implements IAdaptable {
 
 	/**
 	 * The merged parent of this element
@@ -156,7 +157,10 @@ public class MergedADElement implements IAdaptable {
 	 *
 	 * @return a merge increment
 	 * @since 2.0
+	 * @deprecated Since version 3.1 of the bundle, the merged model façade API is supported by an EMF.Edit item provider
+	 * @see <a href="https://eclip.se/573168">bug 573168</a> to follow removal of this API in a future release
 	 */
+	@Deprecated(since = "3.1", forRemoval = true)
 	public ADElement getImageObject() {
 		return element;
 	}

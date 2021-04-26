@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *
+ * Copyright (c) 2013, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,6 +10,7 @@
  *
  * Contributors:
  *  Maged Elaasar - Initial API and implementation
+ *  Christian W. Damus - bug 570486
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.architecture.provider;
@@ -34,9 +34,10 @@ public class ProfilePropertyDescriptor extends EPackagePropertyDescriptor {
 	@Override
 	public IItemLabelProvider getLabelProvider(Object object) {
 		return new IItemLabelProvider() {
+			@Override
 			public String getText(Object object) {
 				if (object instanceof EPackage) {
-					return ((EPackage) object).getNsURI();
+					return ((EPackage) unwrap(object)).getNsURI();
 				}
 				if (object instanceof EList<?>) {
 					EList<?> list = (EList<?>) object;
@@ -48,7 +49,7 @@ public class ProfilePropertyDescriptor extends EPackagePropertyDescriptor {
 						if (i != 0) {
 							builder.append(", ");
 						}
-						builder.append(((EPackage) list.get(i)).getNsURI());
+						builder.append(((EPackage) unwrap(list.get(i))).getNsURI());
 					}
 					builder.append("}");
 					return builder.toString();
@@ -56,6 +57,7 @@ public class ProfilePropertyDescriptor extends EPackagePropertyDescriptor {
 				return "";
 			}
 
+			@Override
 			public Object getImage(Object object) {
 				return null;
 			}

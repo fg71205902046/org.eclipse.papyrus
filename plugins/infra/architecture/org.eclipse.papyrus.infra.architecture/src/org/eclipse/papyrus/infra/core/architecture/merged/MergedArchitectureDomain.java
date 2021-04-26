@@ -190,10 +190,11 @@ public class MergedArchitectureDomain extends MergedADElement {
 	}
 
 	/**
-	 * @deprecated the merged model façade API is supported by an EMF.Edit item provider
+	 * @deprecated Since version 3.1 of the bundle, the merged model façade API is supported by an EMF.Edit item provider
+	 * @see <a href="https://eclip.se/573168">bug 573168</a> to follow removal of this API in a future release
 	 */
 	@Override
-	@Deprecated
+	@Deprecated(since = "3.1", forRemoval = true)
 	public ADElement getImageObject() {
 		checkMerge();
 		return super.getImageObject();
