@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
- *   Christian W. Damus - bug 542945
+ *   Christian W. Damus - bugs 542945, 573197
  *
  *****************************************************************************/
 
@@ -20,7 +20,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -114,23 +113,26 @@ public class ProjectManagementUtils {
 	 * @return The corresponding file or <code>null</code>.
 	 */
 	public static boolean existFileFromProject(final IContainer container, final String foundFile, final boolean isExtensionCheck) {
-		boolean result = false;
+		boolean result[] = { false };
 
-		try {
-			final Iterator<IResource> members = Arrays.asList(container.members()).iterator();
-			while (members.hasNext() && !result) {
-				final IResource member = members.next();
-				if (member instanceof IFile && isCorrespondingFile((IFile) member, foundFile, isExtensionCheck)) {
-					result = true;
-				} else if (member instanceof IContainer) {
-					result = existFileFromProject((IContainer) member, foundFile, isExtensionCheck);
-				}
+		if (container.isAccessible()) {
+			try {
+				container.accept(resource -> {
+					switch (resource.getType()) {
+					case IResource.FILE:
+						result[0] = result[0] || isCorrespondingFile((IFile) resource, foundFile, isExtensionCheck);
+						break;
+					default:
+						break;
+					}
+					return !result[0];
+				});
+			} catch (final CoreException e) {
+				Activator.log.error(e);
 			}
-		} catch (final CoreException e) {
-			Activator.log.error(e);
 		}
 
-		return result;
+		return result[0];
 	}
 
 	/**
@@ -147,18 +149,23 @@ public class ProjectManagementUtils {
 	public static Collection<IFile> getFilesFromProject(final IContainer container, final String foundFile, final boolean isExtensionCheck) {
 		final Collection<IFile> result = new HashSet<>();
 
-		try {
-			final Iterator<IResource> members = Arrays.asList(container.members()).iterator();
-			while (members.hasNext()) {
-				final IResource member = members.next();
-				if (member instanceof IFile && isCorrespondingFile((IFile) member, foundFile, isExtensionCheck)) {
-					result.add((IFile) member);
-				} else if (member instanceof IContainer) {
-					result.addAll(getFilesFromProject((IContainer) member, foundFile, isExtensionCheck));
-				}
+		if (container.isAccessible()) {
+			try {
+				container.accept(resource -> {
+					switch (resource.getType()) {
+					case IResource.FILE:
+						if (isCorrespondingFile((IFile) resource, foundFile, isExtensionCheck)) {
+							result.add((IFile) resource);
+						}
+						break;
+					default:
+						break;
+					}
+					return true;
+				});
+			} catch (final CoreException e) {
+				Activator.log.error(e);
 			}
-		} catch (final CoreException e) {
-			Activator.log.error(e);
 		}
 
 		return result;
