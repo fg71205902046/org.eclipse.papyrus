@@ -17,6 +17,7 @@ package org.eclipse.papyrus.toolsmiths.validation.common.internal.utils;
 
 import java.util.Collection;
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -30,6 +31,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -40,11 +42,13 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
 import org.eclipse.papyrus.infra.core.architecture.ADElement;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureDomain;
+import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
 import org.eclipse.papyrus.infra.core.utils.JobExecutorService;
 import org.eclipse.papyrus.infra.emf.utils.InternalCrossReferencer;
 import org.eclipse.papyrus.toolsmiths.validation.common.Activator;
 
 import com.google.common.collect.ImmutableListMultimap;
+import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 
 /**
@@ -62,6 +66,11 @@ public class ArchitectureIndex {
 	private final Map<Mode, Computation<Multimap<EObject, EStructuralFeature.Setting>>> crossReferences = new EnumMap<>(Map.of(
 			Mode.EXTERNAL_CROSS_REFERENCE, new Computation<>(this::computeExternalCrossReferences),
 			Mode.INTERNAL_CROSS_REFERENCE, new Computation<>(this::computeInternalCrossReferences)));
+
+	private final Map<EClass, Computation<Multimap<String, ADElement>>> elementsByQualifiedName = ArchitecturePackage.eINSTANCE.getEClassifiers().stream()
+			.filter(EClass.class::isInstance).map(EClass.class::cast)
+			.filter(ArchitecturePackage.Literals.AD_ELEMENT::isSuperTypeOf)
+			.collect(Collectors.toMap(Function.identity(), eClass -> new Computation<>(() -> computeQualifiedNameMap(eClass))));
 
 	/**
 	 * Not instantiable by clients.
@@ -143,6 +152,7 @@ public class ArchitectureIndex {
 	 */
 	private void domainManagerChanged() {
 		crossReferences.values().forEach(Computation::reset);
+		elementsByQualifiedName.values().forEach(Computation::reset);
 	}
 
 	/**
@@ -299,6 +309,108 @@ public class ArchitectureIndex {
 				.anyMatch(uri::equals);
 
 		return getCrossReferences(crossReferenceMode).thenApply(isReferenced::test);
+	}
+
+	/**
+	 * Obtain a mapping of instances of the given {@link EClass} by name.
+	 *
+	 * @param <T>
+	 *            the type of elements requested, according to the given {@link EClass}
+	 * @param eClass
+	 *            the {@link EClass} of elements for which to get the name map. It should conform to
+	 *            {@link ArchitecturePackage.Literals#AD_ELEMENT ADElement} to be useful
+	 * @return the name map, which may be empty, especially in the case that the requested {@link EClass} is of an inapplicable type
+	 *
+	 * @see #getElementsByQualifiedNameAsync(EClass, String)
+	 * @see #getElementsByName(EClass, String)
+	 */
+	public <T extends ADElement> CompletableFuture<Multimap<String, T>> getElementsByQualifiedName(EClass eClass) {
+		if (ArchitecturePackage.Literals.AD_ELEMENT.isSuperTypeOf(eClass)) {
+			// The actual EClass may not be one from the Architecture Package that we have enumerated
+			eClass = findArchitectureEClass(eClass);
+			if (eClass != null) {
+				// The maps computed are immutable, so the cast is safe because we know a priori that all
+				// elements of the map conform and none can be added
+				@SuppressWarnings({ "unchecked", "rawtypes" })
+				CompletableFuture<Multimap<String, T>> result = (CompletableFuture) elementsByQualifiedName.get(eClass).get();
+				return result;
+			}
+		}
+
+		return CompletableFuture.completedFuture(ImmutableMultimap.of());
+	}
+
+	private EClass findArchitectureEClass(EClass eClass) {
+		if (eClass.getEPackage() == ArchitecturePackage.eINSTANCE) {
+			return eClass;
+		}
+		for (EClass next : eClass.getEAllSuperTypes()) {
+			if (next.getEPackage() == ArchitecturePackage.eINSTANCE) {
+				return next;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Obtain the instances of the given {@link EClass} having some qualified {@code name}.
+	 *
+	 * @param <T>
+	 *            the type of elements requested, according to the given {@link EClass}
+	 * @param eClass
+	 *            the {@link EClass} of elements to query. It should conform to
+	 *            {@link ArchitecturePackage.Literals#AD_ELEMENT ADElement} to be useful
+	 * @param name
+	 *            the qualified name to search for
+	 * @return the elements having the given qualified {@code name}
+	 *
+	 * @see #getElementsByName(EClass)
+	 * @see #getElementsByQualifiedNameAsync(EClass, String)
+	 */
+	public <T extends ADElement> Collection<T> getElementsByQualifiedName(EClass eClass, String name) {
+		Collection<T> result;
+
+		try {
+			result = this.<T> getElementsByQualifiedNameAsync(eClass, name).get();
+		} catch (ExecutionException | InterruptedException e) {
+			// Cannot access the architecture index? Then we didn't find anything
+			Activator.log.error("Error querying Architecture Context models.", e); //$NON-NLS-1$
+			result = List.of();
+		}
+
+		return result;
+	}
+
+	/**
+	 * Obtain the instances of the given {@link EClass} having some qualified {@code name}.
+	 *
+	 * @param <T>
+	 *            the type of elements requested, according to the given {@link EClass}
+	 * @param eClass
+	 *            the {@link EClass} of elements to query. It should conform to
+	 *            {@link ArchitecturePackage.Literals#AD_ELEMENT ADElement} to be useful
+	 * @param name
+	 *            the qualified name to search for
+	 * @return the elements having the given qualified {@code name}
+	 *
+	 * @see #getElementsByName(EClass)
+	 * @see #getElementsByQualifiedName(EClass, String)
+	 */
+	public <T extends ADElement> CompletableFuture<Collection<T>> getElementsByQualifiedNameAsync(EClass eClass, String name) {
+		return this.<T> getElementsByQualifiedName(eClass).thenApply(map -> map.get(name));
+	}
+
+	private Multimap<String, ADElement> computeQualifiedNameMap(EClass eClass) {
+		ImmutableListMultimap.Builder<String, ADElement> result = ImmutableListMultimap.builder();
+
+		EcoreUtil.getAllContents(ArchitectureDomainManager.getInstance().getRegisteredArchitectureDomains()).forEachRemaining(object -> {
+			if (eClass.isInstance(object)) {
+				ADElement element = (ADElement) object;
+				result.put(element.getQualifiedName(), element);
+			}
+		});
+
+		return result.build();
 	}
 
 	//

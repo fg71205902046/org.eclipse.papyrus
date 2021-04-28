@@ -191,6 +191,46 @@ public class ArchitectureModelBuilderTest extends AbstractPapyrusTest {
 			assertThat(modelMarkers, not(hasItem(isMarkerMessage(containsString("No viewpoint includes"))))); //$NON-NLS-1$
 		}
 
+		/**
+		 * Test the reporting of an implicitly merged context.
+		 *
+		 * @see <a href="http://eclip.se/570486">bug 570486</a>
+		 */
+		@Test
+		@OverlayFile("bug570486-models/resources/ImplicitMergeBookStore.architecture")
+		@OverlayFile(value = "bug570486-models/plugin-implicitMerge.xml", path = "plugin.xml")
+		public void implicitMergeWarning() {
+			List<IMarker> modelMarkers = fixture.getMarkers("resources/ImplicitMergeBookStore.architecture"); //$NON-NLS-1$
+
+			assertThat(modelMarkers, hasItem(both(isMarkerSeverity(IMarker.SEVERITY_WARNING)).and(
+					isMarkerMessage(containsString("will be merged implicitly"))))); //$NON-NLS-1$
+
+			// Same applies to the other, also
+			modelMarkers = fixture.getMarkers("resources/BookStore.architecture"); //$NON-NLS-1$
+
+			assertThat(modelMarkers, hasItem(both(isMarkerSeverity(IMarker.SEVERITY_WARNING)).and(
+					isMarkerMessage(containsString("will be merged implicitly"))))); //$NON-NLS-1$
+		}
+
+		/**
+		 * Test that an explicitly merged context does not report any warning even when it matches some other registered
+		 * context by name.
+		 *
+		 * @see <a href="http://eclip.se/570486">bug 570486</a>
+		 */
+		@Test
+		@OverlayFile("bug570486-models/resources/ExplicitMergeBookStore.architecture")
+		@OverlayFile(value = "bug570486-models/plugin-explicitMerge.xml", path = "plugin.xml")
+		public void explicitMergeNotWarned() {
+			List<IMarker> modelMarkers = fixture.getMarkers("resources/BookStore.architecture"); //$NON-NLS-1$
+
+			assertThat(modelMarkers, not(hasItem(isMarkerMessage(containsString("will be merged implicitly"))))); //$NON-NLS-1$
+
+			// Same applies to the other, also
+			modelMarkers = fixture.getMarkers("resources/BookStore.architecture"); //$NON-NLS-1$
+
+			assertThat(modelMarkers, not(hasItem(isMarkerMessage(containsString("will be merged implicitly"))))); //$NON-NLS-1$
+		}
 	}
 
 }

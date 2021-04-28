@@ -23,6 +23,8 @@ import org.eclipse.osgi.util.NLS;
 public class Messages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.toolsmiths.validation.architecture.internal.messages.messages"; //$NON-NLS-1$
 	public static String ArchitectureCustomValidator_2;
+	public static String ArchitectureCustomValidator_3;
+	public static String ArchitectureCustomValidator_4;
 	public static String ArchitecturePluginChecker_0;
 	public static String ArchitecturePluginChecker_1;
 	public static String MissingArchitectureExtension_0;

@@ -29,10 +29,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
+import org.eclipse.papyrus.infra.core.architecture.ADElement;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureContext;
+import org.eclipse.papyrus.infra.core.architecture.ArchitectureDomain;
 import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureViewpoint;
+import org.eclipse.papyrus.infra.core.architecture.Concern;
 import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
+import org.eclipse.papyrus.infra.core.architecture.Stakeholder;
+import org.eclipse.papyrus.infra.core.architecture.util.ArchitectureSwitch;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.infra.types.core.extensionpoints.IElementTypeSetExtensionPoint;
 import org.eclipse.papyrus.toolsmiths.validation.architecture.internal.messages.Messages;
@@ -47,8 +52,14 @@ public class ArchitectureCustomValidator extends CustomModelChecker.SwitchValida
 
 	private static final String ELEM_ELEMENT_TYPE_SET = "elementTypeSet"; //$NON-NLS-1$
 
+	private final ArchitectureSwitch<Boolean> explicitMergeTester = new ExplicitMergeTester();
+
 	public ArchitectureCustomValidator(String nsURI) {
 		super(nsURI);
+	}
+
+	public void validate(ADElement element, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		validateImplicitMerge(element, diagnostics, context);
 	}
 
 	public void validate(RepresentationKind representation, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -73,7 +84,7 @@ public class ArchitectureCustomValidator extends CustomModelChecker.SwitchValida
 
 	private void validateRepresentationKindUsed(RepresentationKind representation, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!findArchitectureContextReference(representation)) {
-			diagnostics.add(createDiagnostic(Diagnostic.WARNING, representation, format("No viewpoint includes ''{0}'', so it is not accessible.", context, representation)));
+			diagnostics.add(createDiagnostic(Diagnostic.WARNING, representation, format(Messages.ArchitectureCustomValidator_3, context, representation)));
 		}
 	}
 
@@ -116,4 +127,67 @@ public class ArchitectureCustomValidator extends CustomModelChecker.SwitchValida
 
 		return result;
 	}
+
+	private void validateImplicitMerge(ADElement element, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		String name = element.getQualifiedName();
+		if (name != null // Otherwise, that's a different problem reported separately
+				&& !isExplicitlyMerged(element)) { // We're only checking for accidental implicit merges
+			Collection<ADElement> all = ArchitectureIndex.getInstance().getElementsByQualifiedName(element.eClass(), element.getQualifiedName());
+			if (all.size() > 1) {
+				diagnostics.add(createDiagnostic(Diagnostic.WARNING, element, format(Messages.ArchitectureCustomValidator_4, context, element)));
+			}
+		}
+	}
+
+	private boolean isExplicitlyMerged(ADElement element) {
+		return explicitMergeTester.doSwitch(element);
+	}
+
+	boolean hasSpecializations(ArchitectureContext context) {
+		return ArchitectureIndex.getInstance().isReferenced(context, ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__GENERAL_CONTEXT);
+	}
+
+	boolean hasExtensions(ArchitectureContext context) {
+		return ArchitectureIndex.getInstance().isReferenced(context, ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__EXTENDED_CONTEXTS);
+	}
+
+	//
+	// Nested types
+	//
+
+	private final class ExplicitMergeTester extends ArchitectureSwitch<Boolean> {
+
+		@Override
+		public Boolean defaultCase(EObject object) {
+			return false;
+		}
+
+		@Override
+		public Boolean caseArchitectureContext(ArchitectureContext object) {
+			return object.getGeneralContext() != null || object.isExtension()
+					|| hasSpecializations(object) || hasExtensions(object);
+		}
+
+		@Override
+		public Boolean caseArchitectureDomain(ArchitectureDomain object) {
+			return object.getContexts().stream().anyMatch(this::doSwitch);
+		}
+
+		@Override
+		public Boolean caseConcern(Concern object) {
+			return object.getDomain() != null && doSwitch(object.getDomain());
+		}
+
+		@Override
+		public Boolean caseStakeholder(Stakeholder object) {
+			return object.getDomain() != null && doSwitch(object.getDomain());
+		}
+
+		@Override
+		public Boolean caseArchitectureViewpoint(ArchitectureViewpoint object) {
+			return object.getContext() != null && doSwitch(object.getContext());
+		}
+
+	}
+
 }
