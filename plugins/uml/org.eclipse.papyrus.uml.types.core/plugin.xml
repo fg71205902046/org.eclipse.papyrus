@@ -131,9 +131,13 @@
    <extension point="org.eclipse.emf.edit.childCreationExtenders">
       <!-- @generated StereotypeMatcher -->
       <extender
+            uri="http://www.eclipse.org/Papyrus/2021/types/constraints"
+            class="org.eclipse.papyrus.uml.types.core.matchers.stereotype.provider.StereotypeApplicationMatcherItemProviderAdapterFactory$ConstraintAdviceChildCreationExtender"/>
+      <extender
             uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2"
             class="org.eclipse.papyrus.uml.types.core.matchers.stereotype.provider.StereotypeApplicationMatcherItemProviderAdapterFactory$ElementTypesConfigurationsChildCreationExtender"/>
    </extension>
+
    <extension
          point="org.eclipse.papyrus.infra.types.core.adviceConfigurationKind">
       <adviceConfigurationKind

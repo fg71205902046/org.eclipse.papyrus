@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2021 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,7 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Christian W. Damus - bug 568853
+ *  Christian W. Damus - bugs 568853, 570542
  */
 package org.eclipse.papyrus.uml.types.core.matchers.stereotype.util;
 
@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
+import org.eclipse.papyrus.infra.emf.types.constraints.AdviceConstraint;
 import org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration;
 import org.eclipse.papyrus.infra.types.AbstractMatcherConfiguration;
 
@@ -105,6 +106,13 @@ public class StereotypeApplicationMatcherSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case StereotypeApplicationMatcherPackage.REQUIRED_STEREOTYPE_CONSTRAINT_CONFIGURATION: {
+				RequiredStereotypeConstraintConfiguration requiredStereotypeConstraintConfiguration = (RequiredStereotypeConstraintConfiguration)theEObject;
+				T result = caseRequiredStereotypeConstraintConfiguration(requiredStereotypeConstraintConfiguration);
+				if (result == null) result = caseAdviceConstraint(requiredStereotypeConstraintConfiguration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -136,6 +144,21 @@ public class StereotypeApplicationMatcherSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseStereotypeMatcherAdviceConfiguration(StereotypeMatcherAdviceConfiguration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Required Stereotype Constraint Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Required Stereotype Constraint Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRequiredStereotypeConstraintConfiguration(RequiredStereotypeConstraintConfiguration object) {
 		return null;
 	}
 
@@ -211,6 +234,21 @@ public class StereotypeApplicationMatcherSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseAbstractAdviceBindingConfiguration(AbstractAdviceBindingConfiguration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Advice Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Advice Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAdviceConstraint(AdviceConstraint object) {
 		return null;
 	}
 

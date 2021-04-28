@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2021 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,7 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Christian W. Damus - bug 568853
+ *  Christian W. Damus - bugs 568853, 570542
  */
 package org.eclipse.papyrus.uml.types.core.matchers.stereotype;
 
@@ -51,6 +51,15 @@ public interface StereotypeApplicationMatcherFactory extends EFactory {
 	 * @generated
 	 */
 	StereotypeMatcherAdviceConfiguration createStereotypeMatcherAdviceConfiguration();
+
+	/**
+	 * Returns a new object of class '<em>Required Stereotype Constraint Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Required Stereotype Constraint Configuration</em>'.
+	 * @generated
+	 */
+	RequiredStereotypeConstraintConfiguration createRequiredStereotypeConstraintConfiguration();
 
 	/**
 	 * Returns the package supported by this factory.

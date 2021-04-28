@@ -18,19 +18,6 @@
 
 <plugin>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated InvariantContainerRule -->
       <package
@@ -100,6 +87,37 @@
             uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2"
             class="org.eclipse.papyrus.infra.emf.types.advices.values.provider.SetValuesAdviceItemProviderAdapterFactory$ElementTypesConfigurationsChildCreationExtender"/>
    </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated ConstraintAdvice -->
+      <package
+            uri="http://www.eclipse.org/Papyrus/2021/types/constraints"
+            class="org.eclipse.papyrus.infra.emf.types.constraints.ConstraintAdvicePackage"
+            genModel="model/ConstraintAdvice.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated ConstraintAdvice -->
+      <factory
+            uri="http://www.eclipse.org/Papyrus/2021/types/constraints"
+            class="org.eclipse.papyrus.infra.emf.types.constraints.provider.ConstraintAdviceItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.childCreationExtenders">
+      <!-- @generated ConstraintAdvice -->
+      <extender
+            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2"
+            class="org.eclipse.papyrus.infra.emf.types.constraints.provider.ConstraintAdviceItemProviderAdapterFactory$ElementTypesConfigurationsChildCreationExtender"/>
+      <extender
+            uri="http://www.eclipse.org/Papyrus/2014/common/filters"
+            class="org.eclipse.papyrus.infra.emf.types.constraints.provider.ConstraintAdviceItemProviderAdapterFactory$FiltersChildCreationExtender"/>
+   </extension>
+
    <extension
          point="org.eclipse.papyrus.infra.types.core.adviceConfigurationKind">
       <adviceConfigurationKind
@@ -114,5 +132,13 @@
             configurationClass="org.eclipse.papyrus.infra.emf.types.rules.container.InvariantContainerRuleConfiguration"
             ruleClass="org.eclipse.papyrus.infra.emf.types.rules.container.InvariantContainerRule">
       </ruleKind>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.types.core.adviceConfigurationKind">
+      <adviceConfigurationKind
+            configurationClass="org.eclipse.papyrus.infra.emf.types.constraints.ConstraintAdviceConfiguration"
+            factoryClass="org.eclipse.papyrus.infra.emf.types.advices.constraints.ConstraintAdviceEditHelperAdviceFactory"
+            icon="icons/Values.gif">
+      </adviceConfigurationKind>
    </extension>
 </plugin>

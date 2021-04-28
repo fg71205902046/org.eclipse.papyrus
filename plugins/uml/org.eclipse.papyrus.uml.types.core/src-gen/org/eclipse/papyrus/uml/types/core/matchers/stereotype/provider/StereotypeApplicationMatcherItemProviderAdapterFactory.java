@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2021 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,7 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Christian W. Damus - bug 568853
+ *  Christian W. Damus - bugs 568853, 570542
  */
 package org.eclipse.papyrus.uml.types.core.matchers.stereotype.provider;
 
@@ -44,6 +44,10 @@ import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
+import org.eclipse.papyrus.infra.emf.types.constraints.CompositeConstraint;
+import org.eclipse.papyrus.infra.emf.types.constraints.ConstraintAdviceConfiguration;
+import org.eclipse.papyrus.infra.emf.types.constraints.ConstraintAdvicePackage;
+import org.eclipse.papyrus.infra.emf.types.constraints.util.ConstraintAdviceSwitch;
 import org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration;
 import org.eclipse.papyrus.infra.types.ContainerConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
@@ -148,6 +152,29 @@ public class StereotypeApplicationMatcherItemProviderAdapterFactory extends Ster
 		}
 
 		return stereotypeMatcherAdviceConfigurationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.uml.types.core.matchers.stereotype.RequiredStereotypeConstraintConfiguration} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected RequiredStereotypeConstraintConfigurationItemProvider requiredStereotypeConstraintConfigurationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.uml.types.core.matchers.stereotype.RequiredStereotypeConstraintConfiguration}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createRequiredStereotypeConstraintConfigurationAdapter() {
+		if (requiredStereotypeConstraintConfigurationItemProvider == null) {
+			requiredStereotypeConstraintConfigurationItemProvider = new RequiredStereotypeConstraintConfigurationItemProvider(this);
+		}
+
+		return requiredStereotypeConstraintConfigurationItemProvider;
 	}
 
 	/**
@@ -257,6 +284,109 @@ public class StereotypeApplicationMatcherItemProviderAdapterFactory extends Ster
 	public void dispose() {
 		if (stereotypeApplicationMatcherConfigurationItemProvider != null) stereotypeApplicationMatcherConfigurationItemProvider.dispose();
 		if (stereotypeMatcherAdviceConfigurationItemProvider != null) stereotypeMatcherAdviceConfigurationItemProvider.dispose();
+		if (requiredStereotypeConstraintConfigurationItemProvider != null) requiredStereotypeConstraintConfigurationItemProvider.dispose();
+	}
+
+	/**
+	 * A child creation extender for the {@link ConstraintAdvicePackage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static class ConstraintAdviceChildCreationExtender implements IChildCreationExtender {
+		/**
+		 * The switch for creating child descriptors specific to each extended class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		protected static class CreationSwitch extends ConstraintAdviceSwitch<Object> {
+			/**
+			 * The child descriptors being populated.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected List<Object> newChildDescriptors;
+
+			/**
+			 * The domain in which to create the children.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected EditingDomain editingDomain;
+
+			/**
+			 * Creates the a switch for populating child descriptors in the given domain.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) {
+				this.newChildDescriptors = newChildDescriptors;
+				this.editingDomain = editingDomain;
+			}
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseConstraintAdviceConfiguration(ConstraintAdviceConfiguration object) {
+				newChildDescriptors.add
+					(createChildParameter
+						(ConstraintAdvicePackage.Literals.CONSTRAINT_ADVICE_CONFIGURATION__CONSTRAINT,
+						 StereotypeApplicationMatcherFactory.eINSTANCE.createRequiredStereotypeConstraintConfiguration()));
+
+				return null;
+			}
+ 
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseCompositeConstraint(CompositeConstraint object) {
+				newChildDescriptors.add
+					(createChildParameter
+						(ConstraintAdvicePackage.Literals.COMPOSITE_CONSTRAINT__CONSTRAINT,
+						 StereotypeApplicationMatcherFactory.eINSTANCE.createRequiredStereotypeConstraintConfiguration()));
+
+				return null;
+			}
+ 
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected CommandParameter createChildParameter(Object feature, Object child) {
+				return new CommandParameter(null, feature, child);
+			}
+
+		}
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
+			ArrayList<Object> result = new ArrayList<Object>();
+			new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
+			return result;
+		}
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public ResourceLocator getResourceLocator() {
+			return StereotypeApplicationMatcherConfigurationEditPlugin.INSTANCE;
+		}
 	}
 
 	/**

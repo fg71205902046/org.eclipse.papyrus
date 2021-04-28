@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2021 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,7 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Christian W. Damus - bug 568853
+ *  Christian W. Damus - bugs 568853, 570542
  */
 package org.eclipse.papyrus.uml.types.core.matchers.stereotype.util;
 
@@ -22,6 +22,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.eclipse.papyrus.infra.emf.types.constraints.AdviceConstraint;
 import org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration;
 import org.eclipse.papyrus.infra.types.AbstractMatcherConfiguration;
 
@@ -95,6 +96,10 @@ public class StereotypeApplicationMatcherAdapterFactory extends AdapterFactoryIm
 				return createStereotypeMatcherAdviceConfigurationAdapter();
 			}
 			@Override
+			public Adapter caseRequiredStereotypeConstraintConfiguration(RequiredStereotypeConstraintConfiguration object) {
+				return createRequiredStereotypeConstraintConfigurationAdapter();
+			}
+			@Override
 			public Adapter caseConfigurationElement(ConfigurationElement object) {
 				return createConfigurationElementAdapter();
 			}
@@ -113,6 +118,10 @@ public class StereotypeApplicationMatcherAdapterFactory extends AdapterFactoryIm
 			@Override
 			public Adapter caseAbstractAdviceBindingConfiguration(AbstractAdviceBindingConfiguration object) {
 				return createAbstractAdviceBindingConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseAdviceConstraint(AdviceConstraint object) {
+				return createAdviceConstraintAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -159,6 +168,20 @@ public class StereotypeApplicationMatcherAdapterFactory extends AdapterFactoryIm
 	 * @generated
 	 */
 	public Adapter createStereotypeMatcherAdviceConfigurationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.uml.types.core.matchers.stereotype.RequiredStereotypeConstraintConfiguration <em>Required Stereotype Constraint Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.uml.types.core.matchers.stereotype.RequiredStereotypeConstraintConfiguration
+	 * @generated
+	 */
+	public Adapter createRequiredStereotypeConstraintConfigurationAdapter() {
 		return null;
 	}
 
@@ -229,6 +252,20 @@ public class StereotypeApplicationMatcherAdapterFactory extends AdapterFactoryIm
 	 * @generated
 	 */
 	public Adapter createAbstractAdviceBindingConfigurationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.emf.types.constraints.AdviceConstraint <em>Advice Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.emf.types.constraints.AdviceConstraint
+	 * @generated
+	 */
+	public Adapter createAdviceConstraintAdapter() {
 		return null;
 	}
 

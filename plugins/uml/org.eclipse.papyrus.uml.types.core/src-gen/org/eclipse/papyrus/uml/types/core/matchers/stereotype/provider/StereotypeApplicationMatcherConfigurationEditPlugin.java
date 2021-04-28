@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2021 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 570542
  */
 package org.eclipse.papyrus.uml.types.core.matchers.stereotype.provider;
 
@@ -20,6 +21,8 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 
+import org.eclipse.papyrus.infra.emf.types.constraints.provider.ConstraintAdviceEditPlugin;
+import org.eclipse.papyrus.infra.filters.provider.FiltersEditPlugin;
 import org.eclipse.papyrus.infra.types.provider.TypesConfigurationsEditPlugin;
 
 /**
@@ -54,8 +57,10 @@ public final class StereotypeApplicationMatcherConfigurationEditPlugin extends E
 	public StereotypeApplicationMatcherConfigurationEditPlugin() {
 		super
 		  (new ResourceLocator [] {
+		     ConstraintAdviceEditPlugin.INSTANCE,
 		     EcoreEditPlugin.INSTANCE,
 		     TypesConfigurationsEditPlugin.INSTANCE,
+		     FiltersEditPlugin.INSTANCE,
 		   });
 	}
 

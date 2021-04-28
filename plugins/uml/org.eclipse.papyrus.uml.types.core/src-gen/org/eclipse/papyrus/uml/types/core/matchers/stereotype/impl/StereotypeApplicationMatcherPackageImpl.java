@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2021 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,7 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Christian W. Damus - bug 568853
+ *  Christian W. Damus - bugs 568853, 570542
  */
 package org.eclipse.papyrus.uml.types.core.matchers.stereotype.impl;
 
@@ -22,12 +22,16 @@ import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.eclipse.papyrus.infra.emf.types.constraints.ConstraintAdvicePackage;
+import org.eclipse.papyrus.infra.filters.FiltersPackage;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 
+import org.eclipse.papyrus.uml.types.core.matchers.stereotype.RequiredStereotypeConstraintConfiguration;
 import org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeApplicationMatcherConfiguration;
 import org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeApplicationMatcherFactory;
 import org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeApplicationMatcherPackage;
 import org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeMatcherAdviceConfiguration;
+import org.eclipse.uml2.types.TypesPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -49,6 +53,13 @@ public class StereotypeApplicationMatcherPackageImpl extends EPackageImpl implem
 	 * @generated
 	 */
 	private EClass stereotypeMatcherAdviceConfigurationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass requiredStereotypeConstraintConfigurationEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -98,8 +109,11 @@ public class StereotypeApplicationMatcherPackageImpl extends EPackageImpl implem
 		isInited = true;
 
 		// Initialize simple dependencies
+		ConstraintAdvicePackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
 		ElementTypesConfigurationsPackage.eINSTANCE.eClass();
+		FiltersPackage.eINSTANCE.eClass();
+		TypesPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theStereotypeApplicationMatcherPackage.createPackageContents();
@@ -161,6 +175,16 @@ public class StereotypeApplicationMatcherPackageImpl extends EPackageImpl implem
 	 * @generated
 	 */
 	@Override
+	public EClass getRequiredStereotypeConstraintConfiguration() {
+		return requiredStereotypeConstraintConfigurationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public StereotypeApplicationMatcherFactory getStereotypeApplicationMatcherFactory() {
 		return (StereotypeApplicationMatcherFactory)getEFactoryInstance();
 	}
@@ -189,6 +213,8 @@ public class StereotypeApplicationMatcherPackageImpl extends EPackageImpl implem
 		createEAttribute(stereotypeApplicationMatcherConfigurationEClass, STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION__PROFILE_URI);
 
 		stereotypeMatcherAdviceConfigurationEClass = createEClass(STEREOTYPE_MATCHER_ADVICE_CONFIGURATION);
+
+		requiredStereotypeConstraintConfigurationEClass = createEClass(REQUIRED_STEREOTYPE_CONSTRAINT_CONFIGURATION);
 	}
 
 	/**
@@ -216,6 +242,7 @@ public class StereotypeApplicationMatcherPackageImpl extends EPackageImpl implem
 
 		// Obtain other dependent packages
 		ElementTypesConfigurationsPackage theElementTypesConfigurationsPackage = (ElementTypesConfigurationsPackage)EPackage.Registry.INSTANCE.getEPackage(ElementTypesConfigurationsPackage.eNS_URI);
+		ConstraintAdvicePackage theConstraintAdvicePackage = (ConstraintAdvicePackage)EPackage.Registry.INSTANCE.getEPackage(ConstraintAdvicePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -225,6 +252,7 @@ public class StereotypeApplicationMatcherPackageImpl extends EPackageImpl implem
 		stereotypeApplicationMatcherConfigurationEClass.getESuperTypes().add(theElementTypesConfigurationsPackage.getAbstractMatcherConfiguration());
 		stereotypeMatcherAdviceConfigurationEClass.getESuperTypes().add(theElementTypesConfigurationsPackage.getAbstractAdviceBindingConfiguration());
 		stereotypeMatcherAdviceConfigurationEClass.getESuperTypes().add(this.getStereotypeApplicationMatcherConfiguration());
+		requiredStereotypeConstraintConfigurationEClass.getESuperTypes().add(theConstraintAdvicePackage.getAdviceConstraint());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(stereotypeApplicationMatcherConfigurationEClass, StereotypeApplicationMatcherConfiguration.class, "StereotypeApplicationMatcherConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -233,8 +261,29 @@ public class StereotypeApplicationMatcherPackageImpl extends EPackageImpl implem
 
 		initEClass(stereotypeMatcherAdviceConfigurationEClass, StereotypeMatcherAdviceConfiguration.class, "StereotypeMatcherAdviceConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+		initEClass(requiredStereotypeConstraintConfigurationEClass, RequiredStereotypeConstraintConfiguration.class, "RequiredStereotypeConstraintConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
 		// Create resource
 		createResource(eNS_URI);
+
+		// Create annotations
+		// duplicates
+		createDuplicatesAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>duplicates</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createDuplicatesAnnotations() {
+		String source = "duplicates";
+		addAnnotation
+		  (requiredStereotypeConstraintConfigurationEClass,
+		   source,
+		   new String[] {
+		   });
 	}
 
 } //StereotypeApplicationMatcherPackageImpl

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2021 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,7 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Christian W. Damus - bug 568853
+ *  Christian W. Damus - bugs 568853, 570542
  */
 package org.eclipse.papyrus.uml.types.core.matchers.stereotype.impl;
 
@@ -71,6 +71,7 @@ public class StereotypeApplicationMatcherFactoryImpl extends EFactoryImpl implem
 		switch (eClass.getClassifierID()) {
 			case StereotypeApplicationMatcherPackage.STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION: return createStereotypeApplicationMatcherConfiguration();
 			case StereotypeApplicationMatcherPackage.STEREOTYPE_MATCHER_ADVICE_CONFIGURATION: return createStereotypeMatcherAdviceConfiguration();
+			case StereotypeApplicationMatcherPackage.REQUIRED_STEREOTYPE_CONSTRAINT_CONFIGURATION: return createRequiredStereotypeConstraintConfiguration();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -96,6 +97,17 @@ public class StereotypeApplicationMatcherFactoryImpl extends EFactoryImpl implem
 	public StereotypeMatcherAdviceConfiguration createStereotypeMatcherAdviceConfiguration() {
 		StereotypeMatcherAdviceConfigurationImpl stereotypeMatcherAdviceConfiguration = new StereotypeMatcherAdviceConfigurationImpl();
 		return stereotypeMatcherAdviceConfiguration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public RequiredStereotypeConstraintConfiguration createRequiredStereotypeConstraintConfiguration() {
+		RequiredStereotypeConstraintConfigurationImpl requiredStereotypeConstraintConfiguration = new RequiredStereotypeConstraintConfigurationImpl();
+		return requiredStereotypeConstraintConfiguration;
 	}
 
 	/**

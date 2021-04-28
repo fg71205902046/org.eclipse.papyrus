@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2021 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,7 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Christian W. Damus - bug 568853
+ *  Christian W. Damus - bugs 568853, 570542
  */
 package org.eclipse.papyrus.uml.types.core.matchers.stereotype;
 
@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 
+import org.eclipse.papyrus.infra.emf.types.constraints.ConstraintAdvicePackage;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 
 /**
@@ -345,6 +346,44 @@ public interface StereotypeApplicationMatcherPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.uml.types.core.matchers.stereotype.impl.RequiredStereotypeConstraintConfigurationImpl <em>Required Stereotype Constraint Configuration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.uml.types.core.matchers.stereotype.impl.RequiredStereotypeConstraintConfigurationImpl
+	 * @see org.eclipse.papyrus.uml.types.core.matchers.stereotype.impl.StereotypeApplicationMatcherPackageImpl#getRequiredStereotypeConstraintConfiguration()
+	 * @generated
+	 */
+	int REQUIRED_STEREOTYPE_CONSTRAINT_CONFIGURATION = 2;
+
+	/**
+	 * The number of structural features of the '<em>Required Stereotype Constraint Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIRED_STEREOTYPE_CONSTRAINT_CONFIGURATION_FEATURE_COUNT = ConstraintAdvicePackage.ADVICE_CONSTRAINT_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Approve Request</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIRED_STEREOTYPE_CONSTRAINT_CONFIGURATION___APPROVE_REQUEST__IEDITCOMMANDREQUEST = ConstraintAdvicePackage.ADVICE_CONSTRAINT___APPROVE_REQUEST__IEDITCOMMANDREQUEST;
+
+	/**
+	 * The number of operations of the '<em>Required Stereotype Constraint Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIRED_STEREOTYPE_CONSTRAINT_CONFIGURATION_OPERATION_COUNT = ConstraintAdvicePackage.ADVICE_CONSTRAINT_OPERATION_COUNT + 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeApplicationMatcherConfiguration <em>Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -385,6 +424,16 @@ public interface StereotypeApplicationMatcherPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getStereotypeMatcherAdviceConfiguration();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.uml.types.core.matchers.stereotype.RequiredStereotypeConstraintConfiguration <em>Required Stereotype Constraint Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Required Stereotype Constraint Configuration</em>'.
+	 * @see org.eclipse.papyrus.uml.types.core.matchers.stereotype.RequiredStereotypeConstraintConfiguration
+	 * @generated
+	 */
+	EClass getRequiredStereotypeConstraintConfiguration();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -444,6 +493,16 @@ public interface StereotypeApplicationMatcherPackage extends EPackage {
 		 * @generated
 		 */
 		EClass STEREOTYPE_MATCHER_ADVICE_CONFIGURATION = eINSTANCE.getStereotypeMatcherAdviceConfiguration();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.uml.types.core.matchers.stereotype.impl.RequiredStereotypeConstraintConfigurationImpl <em>Required Stereotype Constraint Configuration</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.uml.types.core.matchers.stereotype.impl.RequiredStereotypeConstraintConfigurationImpl
+		 * @see org.eclipse.papyrus.uml.types.core.matchers.stereotype.impl.StereotypeApplicationMatcherPackageImpl#getRequiredStereotypeConstraintConfiguration()
+		 * @generated
+		 */
+		EClass REQUIRED_STEREOTYPE_CONSTRAINT_CONFIGURATION = eINSTANCE.getRequiredStereotypeConstraintConfiguration();
 
 	}
 
