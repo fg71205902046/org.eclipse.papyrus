@@ -44,11 +44,11 @@ class RepresentationKindRule {
 	 * to other architecture model elements are rewritten to reference merged elements
 	 * in the merge result model.
 	 */
-	def merged(RepresentationKind representation) {
+	def RepresentationKind merged(RepresentationKind representation) {
 		representation.merged(currentScope) // Unique merge per domain scope
 	}
 	
-	private def create result: EcoreUtil.copy(representation) merged(RepresentationKind representation, Object scope) {
+	private def create result: EcoreUtil.<RepresentationKind> copy(representation) merged(RepresentationKind representation, Object scope) {
 		// Replace the concerns with the merged copies. Also, any other cross-references to
 		// architecture elements, e.g. PapyrusDiagram::parent reference. Do this reflectively
 		// because we don't know the specifics of the representation kind model
