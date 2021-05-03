@@ -1,6 +1,6 @@
 target "Papyrus Toolsmiths" with requirements source
 
-include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable.target.tpd"
+include "../../main/targetPlatform/org.eclipse.papyrus.main.targetplatform.tpd"
 
 
 /*** Manual referencing ***/
@@ -23,7 +23,7 @@ location cbiAggregator "https://download.eclipse.org/cbi/updates/aggregator/ide/
 
 //updateFrom("Oomph",0) 
 
-location oomph "https://download.eclipse.org/oomph/drops/release/1.20.0-a" {
+location oomph "http://download.eclipse.org/oomph/drops/milestone/S20210524-032332-1.21.0-M3" {
 	org.eclipse.oomph.version.feature.group
 	org.eclipse.oomph.setup.workingsets.feature.group
 	org.eclipse.oomph.projectconfig.feature.group
@@ -44,7 +44,7 @@ location oomph "https://download.eclipse.org/oomph/drops/release/1.20.0-a" {
 
 //updateFrom("EGit",0) 
 
-location egit "https://download.eclipse.org/egit/updates-5.11" // oomph
+location egit "https://download.eclipse.org/egit/staging/v5.12.0.202105051250-m2" // oomph
 
 //updateFrom("m2e",0)
 

@@ -27,7 +27,7 @@
 		<!-- Human readable name of the release, e.g. used in the about dialog 
 			(see about.mappings)  -->
 		<eclipse.simultaneous.release.name>2021-06 (4.20)</eclipse.simultaneous.release.name>
-		<target.platform>org.eclipse.papyrus.rcp.${target.suffix}.target</target.platform>
+		<target.platform>org.eclipse.papyrus.rcp.targetplatform</target.platform>
 	</properties>
 
 	<repositories>
@@ -65,6 +65,12 @@
 						<id>plugin-source</id>
 						<goals>
 							<goal>plugin-source</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>feature-source</id>
+						<goals>
+							<goal>feature-source</goal>
 						</goals>
 					</execution>
 				</executions>

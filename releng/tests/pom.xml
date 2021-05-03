@@ -143,7 +143,7 @@
 				</property>
 			</activation>
 			<properties>
-				<target.platform>org.eclipse.papyrus.main.tests.${target.suffix}.target</target.platform>
+				<target.platform>org.eclipse.papyrus.main.tests.targetplatform</target.platform>
 			</properties>
 			<modules>
 				<module>main-tests</module>
@@ -159,7 +159,7 @@
 				</property>
 			</activation>
 			<properties>
-				<target.platform>org.eclipse.papyrus.main.tests.cdo.${target.suffix}.target</target.platform>
+				<target.platform>org.eclipse.papyrus.main.tests.cdo.targetplatform</target.platform>
 			</properties>
 			<modules>
 				<module>../../tests/compatibility/cdo</module>
@@ -201,8 +201,7 @@
 					<value>true</value>
 				</property>
 			</activation>
-			<!-- Papyrus Update sites not included (They are included in the same 
-				build) -->
+			<!-- Papyrus Update sites not included (They are included in the same build) -->
 
 			<build>
 				<plugins>

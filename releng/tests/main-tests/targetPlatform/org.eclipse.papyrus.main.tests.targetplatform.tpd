@@ -1,6 +1,6 @@
 target "Papyrus Tests" with source requirements
 
-include "../../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable.target.tpd"
+include "../../../main/targetPlatform/org.eclipse.papyrus.main.targetplatform.tpd"
 
 //updateFrom("EMF Compare",0)
 

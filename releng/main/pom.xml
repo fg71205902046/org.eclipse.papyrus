@@ -9,15 +9,15 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>org.eclipse.papyrus.releng</artifactId>
+	<artifactId>org.eclipse.papyrus.main.releng</artifactId>
 	<packaging>pom</packaging>
 
 	<properties>
 		<!-- https://repo.maven.apache.org/maven2/ -->
 		<mojo.buildhelper.version>3.2.0</mojo.buildhelper.version>
 		<mylyn.wikitext.version>3.0.38</mylyn.wikitext.version>
-
-		<target.platform>org.eclipse.papyrus.main.${target.suffix}.target</target.platform>
+		
+		<target.platform>org.eclipse.papyrus.main.targetplatform</target.platform>
 	</properties>
 
 	<modules>
@@ -32,6 +32,24 @@
 		<pluginManagement>
 			<!-- redistributed plugins -->
 			<plugins>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-p2-plugin</artifactId>
+					<version>${tycho-version}</version>
+					<executions>
+						<execution>
+							<id>attach-p2-metadata</id>
+							<phase>package</phase>
+							<goals>
+								<goal>p2-metadata</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<defaultP2Metadata>false</defaultP2Metadata>
+					</configuration>
+				</plugin>
+				
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>build-helper-maven-plugin</artifactId>
@@ -128,18 +146,10 @@
 							<goal>plugin-source</goal>
 						</goals>
 					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.eclipse.tycho.extras</groupId>
-				<artifactId>tycho-source-feature-plugin</artifactId>
-				<version>${tychoExtrasVersion}</version>
-				<executions>
 					<execution>
-						<id>source-feature</id>
-						<phase>package</phase>
+						<id>feature-source</id>
 						<goals>
-							<goal>source-feature</goal>
+							<goal>feature-source</goal>
 						</goals>
 					</execution>
 				</executions>
@@ -170,31 +180,7 @@
 		only. Activation: SIGN=true pack: produce a simple update site (Packed). 
 		Used for nightly or feature branch builds. Activation: SIGN=false -->
 	<profiles>
-		<profile>
-			<id>defaultProfile</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.eclipse.tycho</groupId>
-						<artifactId>tycho-p2-plugin</artifactId>
-						<version>${tycho-version}</version>
-						<executions>
-							<execution>
-								<id>attach-p2-metadata</id>
-								<phase>package</phase>
-								<goals>
-									<goal>p2-metadata</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-
+	
 		<!-- The update site is not needed during gerrit jobs -->
 		<profile>
 			<id>buildP2</id>
@@ -236,8 +222,7 @@
 			</build>
 		</profile>
 
-		<!-- nightly profile is useful for developers that want to link to nightly 
-			build -->
+		<!-- nightly profile is useful for developers that want to link to nightly build -->
 		<profile>
 			<id>nightly</id>
 			<activation>

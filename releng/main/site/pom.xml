@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<artifactId>org.eclipse.papyrus.releng</artifactId>
+		<artifactId>org.eclipse.papyrus.main.releng</artifactId>
 		<groupId>org.eclipse.papyrus</groupId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>

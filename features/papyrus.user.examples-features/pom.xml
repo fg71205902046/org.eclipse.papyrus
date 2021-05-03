@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 	    <groupId>org.eclipse.papyrus</groupId>
-	    <artifactId>org.eclipse.papyrus.releng</artifactId>
+	    <artifactId>org.eclipse.papyrus.main.releng</artifactId>
 	    <version>0.0.1-SNAPSHOT</version>
 	    <relativePath>../../releng/main/pom.xml</relativePath>
     </parent>

@@ -10,32 +10,7 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>org.eclipse.papyrus.toolsmiths.targetplatform.parent</artifactId>
+	<artifactId>org.eclipse.papyrus.toolsmiths.targetplatform</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>pom</packaging>
-
-	<profiles>
-		<profile>
-			<id>portable</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<modules>
-				<module>portable</module>
-			</modules>
-		</profile>
-		<profile>
-			<id>eclipse</id>
-			<activation>
-				<property>
-					<name>target.suffix</name>
-					<value>eclipse</value>
-				</property>
-			</activation>
-			<modules>
-				<module>eclipse</module>
-			</modules>
-		</profile>
-	</profiles>
+	<packaging>eclipse-target-definition</packaging>
 </project>
-

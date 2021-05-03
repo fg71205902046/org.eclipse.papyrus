@@ -31,7 +31,6 @@
 			individual components). This will disable Papyrus Update Sites (Since they 
 			are being built by this POM). -->
 		<buildAll>false</buildAll>
-		<target.suffix>portable</target.suffix>
 
 		<!-- Papyrus repositories. Used when we're building individual components 
 			(vs building the parent pom including everything) -->
@@ -160,19 +159,9 @@
 								<arch>x86_64</arch>
 							</environment>
 							<environment>
-								<os>linux</os>
-								<ws>gtk</ws>
-								<arch>x86</arch>
-							</environment>
-							<environment>
 								<os>win32</os>
 								<ws>win32</ws>
 								<arch>x86_64</arch>
-							</environment>
-							<environment>
-								<os>win32</os>
-								<ws>win32</ws>
-								<arch>x86</arch>
 							</environment>
 							<environment>
 								<os>macosx</os>
@@ -192,30 +181,4 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-
-	<profiles>
-		<profile>
-			<activation>
-				<property>
-					<name>Gerrit</name>
-				</property>
-			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-compiler-plugin</artifactId>
-						<version>${maven.compiler.version}</version>
-						<configuration>
-							<source>${java.source.version}</source>
-							<target>${java.target.version}</target>
-							<compilerArgs>
-								<main.argLine>-Xms512m -Xmx4096m -XX:SoftRefLRUPolicyMSPerMB=100</main.argLine>
-							</compilerArgs>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 </project>

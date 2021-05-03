@@ -5,7 +5,7 @@
 	<packaging>pom</packaging>
 	<parent>
 	    <groupId>org.eclipse.papyrus</groupId>
-	    <artifactId>org.eclipse.papyrus.releng</artifactId>
+	    <artifactId>org.eclipse.papyrus.main.releng</artifactId>
 	    <version>0.0.1-SNAPSHOT</version>
 	    <relativePath>../releng/main</relativePath>
     </parent>

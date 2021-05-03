@@ -1,19 +1,19 @@
 target "Papyrus RCP" with requirements source
 
-include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable.target.tpd"
+include "../../main/targetPlatform/org.eclipse.papyrus.main.targetplatform.tpd"
 
 
 /*** Updates from the Simrel repository ***/
 
 //updateFrom("EGit",0)
 
-location egit "https://download.eclipse.org/egit/updates-5.11" {
+location egit "https://download.eclipse.org/egit/staging/v5.12.0.202105051250-m2" {
 	org.eclipse.egit.feature.group
 }
 
 //updateFrom("Eclipse",0)
 
-location platform "https://download.eclipse.org/eclipse/updates/4.19/R-4.19-202103031800/" {
+location platform "https://download.eclipse.org/eclipse/updates/4.20-I-builds/I20210519-1800/" {
 	org.eclipse.e4.core.tools.feature.feature.group 
 	org.eclipse.rcp.configuration.feature.group
 	org.eclipse.equinox.executable.feature.group
@@ -39,12 +39,12 @@ location emfCompare "https://download.eclipse.org/modeling/emf/compare/updates/m
 
 //updateFrom("EMF (Core)",0)
 
-location emf "https://download.eclipse.org/modeling/emf/emf/builds/release/2.25" {
+location emf "https://download.eclipse.org/modeling/emf/emf/builds/milestone/S202105150126" {
 	org.eclipse.xsd.sdk.feature.group
 }
 
 //updateFrom("EMF CDO",0) 
 
-location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20210308-1312" {
+location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20210505-0559" {
 	org.eclipse.emf.cdo.epp.feature.group
 }
