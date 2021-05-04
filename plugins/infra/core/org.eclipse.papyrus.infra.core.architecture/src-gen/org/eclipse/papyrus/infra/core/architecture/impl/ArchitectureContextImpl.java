@@ -15,26 +15,12 @@
  */
 package org.eclipse.papyrus.infra.core.architecture.impl;
 
-import static java.util.function.Predicate.not;
-
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-import java.util.Queue;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -42,15 +28,13 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureContext;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureDomain;
 import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureViewpoint;
-import org.eclipse.papyrus.infra.core.architecture.util.ArchitectureCommandUtils;
-import org.eclipse.papyrus.infra.core.architecture.util.ArchitectureValidator;
+import org.eclipse.papyrus.infra.core.architecture.internal.operations.ArchitectureContextOperations;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 
 /**
@@ -383,8 +367,7 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 	 */
 	@Override
 	public boolean isExtension() {
-		// This happens to have the same semantics
-		return eIsSet(ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__EXTENDED_CONTEXTS);
+		return ArchitectureContextOperations.isExtension(this);
 	}
 
 	/**
@@ -393,35 +376,7 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 	 * @generated NOT
 	 */
 	public boolean ceationCommandClassExists(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (creationCommandClass != null) {
-			boolean exists = false;
-			
-			Object javaClass = ArchitectureCommandUtils.getCommandClass(this, ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS);
-			exists = javaClass != null;
-			
-			if (!exists) {
-				if (diagnostics != null) {
-					// Further narrow the problem
-					String problem = ArchitectureCommandUtils.getCommandClassUnconstrained(this, ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS) == null
-							? "_UI_creationCommandClassExists_diagnostic" : "_UI_creationCommandClassConforms_diagnostic"; //$NON-NLS-1$//$NON-NLS-2$
-					String expectedInterface = ArchitectureCommandUtils.getCommandType( ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS)
-							.map(Class::getSimpleName).orElse(ArchitecturePlugin.INSTANCE.getString("_UI_genericRequiredInterface_name")); //$NON-NLS-1$
-					Set<String> requiredBundleDependencies = ArchitectureCommandUtils.getRequiredCommandBundleDependencies(this);
-					String depsList = String.join(", ", requiredBundleDependencies); //$NON-NLS-1$
-					
-					diagnostics.add
-						(new BasicDiagnostic
-							(Diagnostic.ERROR,
-							 ArchitectureValidator.DIAGNOSTIC_SOURCE,
-							 ArchitectureValidator.ARCHITECTURE_CONTEXT__CEATION_COMMAND_CLASS_EXISTS,
-							 ArchitecturePlugin.INSTANCE.getString(problem, new Object[] {
-									 EObjectValidator.getObjectLabel(this, context), expectedInterface, requiredBundleDependencies.size(), depsList }),
-							 new Object [] { this, ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS }));
-				}
-				return false;
-			}
-		}
-		return true;
+		return ArchitectureContextOperations.ceationCommandClassExists(this, diagnostics, context);
 	}
 
 	/**
@@ -430,35 +385,7 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 	 * @generated NOT
 	 */
 	public boolean conversionCommandClassExists(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (conversionCommandClass != null) {
-			boolean exists = false;
-			
-			Object javaClass = ArchitectureCommandUtils.getCommandClass(this, ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS);
-			exists = javaClass != null;
-			
-			if (!exists) {
-				if (diagnostics != null) {
-					// Further narrow the problem
-					String problem = ArchitectureCommandUtils.getCommandClassUnconstrained(this, ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS) == null
-							? "_UI_conversionCommandClassExists_diagnostic" : "_UI_conversionCommandClassConforms_diagnostic"; //$NON-NLS-1$//$NON-NLS-2$
-					String expectedInterface = ArchitectureCommandUtils.getCommandType( ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS)
-							.map(Class::getSimpleName).orElse(ArchitecturePlugin.INSTANCE.getString("_UI_genericRequiredInterface_name")); //$NON-NLS-1$
-					Set<String> requiredBundleDependencies = ArchitectureCommandUtils.getRequiredCommandBundleDependencies(this);
-					String depsList = String.join(", ", requiredBundleDependencies); //$NON-NLS-1$
-					
-					diagnostics.add
-						(new BasicDiagnostic
-							(Diagnostic.ERROR,
-							 ArchitectureValidator.DIAGNOSTIC_SOURCE,
-							 ArchitectureValidator.ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS_EXISTS,
-							 ArchitecturePlugin.INSTANCE.getString(problem, new Object[] {
-									 EObjectValidator.getObjectLabel(this, context), expectedInterface, requiredBundleDependencies.size(), depsList }),
-							 new Object [] { this, ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS }));
-				}
-				return false;
-			}
-		}
-		return true;
+		return ArchitectureContextOperations.conversionCommandClassExists(this, diagnostics, context);
 	}
 
 	/**
@@ -468,7 +395,7 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 	 */
 	@Override
 	public boolean isConsistentWith(ArchitectureContext context) {
-		return context != null && context.eClass() == this.eClass();
+		return ArchitectureContextOperations.isConsistentWith(this, context);
 	}
 
 	/**
@@ -478,29 +405,7 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 	 */
 	@Override
 	public boolean contextExtensionsAreConsistent(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		List<ArchitectureContext> inconsistent = !isExtension()
-				? List.of() 
-				: allExtendedContexts().stream().filter(other -> !isConsistentWith(other)).collect(Collectors.toList());
-		
-		if (!inconsistent.isEmpty()) {
-				if (diagnostics != null) {
-				String us = EObjectValidator.getObjectLabel(this, context);
-				String them = inconsistent.stream().map(e -> EObjectValidator.getObjectLabel(e, context)).collect(Collectors.joining(", ")); //$NON-NLS-1$
-				List<Object> data = new ArrayList<>(List.of(this, ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__EXTENDED_CONTEXTS));
-				data.addAll(inconsistent);
-				
-				diagnostics.add
-					(new BasicDiagnostic
-						(Diagnostic.ERROR,
-						 ArchitectureValidator.DIAGNOSTIC_SOURCE,
-						 ArchitectureValidator.ARCHITECTURE_CONTEXT__CONTEXT_EXTENSIONS_ARE_CONSISTENT,
-						 ArchitecturePlugin.INSTANCE.getString("_UI_contextExtensionsAreConsistent_diagnostic", //$NON-NLS-1$
-								 new Object[] { us, them }),
-						 data.toArray()));
-			}
-			return false;
-		}
-		return true;
+		return ArchitectureContextOperations.contextExtensionsAreConsistent(this, diagnostics, context);
 	}
 
 	/**
@@ -510,24 +415,7 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 	 */
 	@Override
 	public boolean contextGeneralizationIsConsistent(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		Optional<ArchitectureContext> inconsistent = getGeneralContext() == null
-				? Optional.empty()
-				: allGeneralContexts().stream().filter(not(this::isConsistentWith)).findAny();
-		if (inconsistent.isPresent()) {
-			if (diagnostics != null) {
-				diagnostics.add
-					(new BasicDiagnostic
-						(Diagnostic.ERROR,
-						 ArchitectureValidator.DIAGNOSTIC_SOURCE,
-						 ArchitectureValidator.ARCHITECTURE_CONTEXT__CONTEXT_GENERALIZATION_IS_CONSISTENT,
-						 ArchitecturePlugin.INSTANCE.getString("_UI_contextGeneralizationIsConsistent_diagnostic", //$NON-NLS-1$
-								 new Object[] { EObjectValidator.getObjectLabel(this, context),
-										 EObjectValidator.getObjectLabel(inconsistent.get(), context) }),
-						 new Object [] { this, ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__GENERAL_CONTEXT, inconsistent.get() }));
-			}
-			return false;
-		}
-		return true;
+		return ArchitectureContextOperations.contextGeneralizationIsConsistent(this, diagnostics, context);
 	}
 
 	/**
@@ -537,20 +425,7 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 	 */
 	@Override
 	public boolean creationCommandClassRequired(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!isExtension() && getCreationCommandClass() == null) {
-			if (diagnostics != null) {
-				diagnostics.add
-					(new BasicDiagnostic
-						(Diagnostic.ERROR,
-						 ArchitectureValidator.DIAGNOSTIC_SOURCE,
-						 ArchitectureValidator.ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS_REQUIRED,
-						 ArchitecturePlugin.INSTANCE.getString("_UI_creationCommandClassRequired_diagnostic", //$NON-NLS-1$
-								 new Object[] { EObjectValidator.getObjectLabel(this, context) }), //$NON-NLS-1$ //$NON-NLS-2$
-						 new Object [] { this, ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS }));
-			}
-			return false;
-		}
-		return true;
+		return ArchitectureContextOperations.creationCommandClassRequired(this, diagnostics, context);
 	}
 
 	/**
@@ -560,16 +435,7 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 	 */
 	@Override
 	public EList<ArchitectureContext> allExtendedContexts() {
-		Set<ArchitectureContext> result = new LinkedHashSet<>();
-		Queue<ArchitectureContext> queue = new ArrayDeque<>(getExtendedContexts());
-		
-		for (ArchitectureContext extended = queue.poll(); extended != null; extended = queue.poll()) {
-			if (result.add(extended)) {
-				queue.addAll(extended.getExtendedContexts());
-			} // Cycle detected
-		}
-		
-		return new BasicEList.UnmodifiableEList.FastCompare<>(result);
+		return ArchitectureContextOperations.allExtendedContexts(this);
 	}
 
 	/**
@@ -579,16 +445,7 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 	 */
 	@Override
 	public EList<ArchitectureContext> allGeneralContexts() {
-		Set<ArchitectureContext> result = new LinkedHashSet<>();
-		
-		for (ArchitectureContext general = getGeneralContext(); general != null; general = general.getGeneralContext()) {
-			if (!result.add(general)) {
-				// Cycle detected.
-				break;
-			}
-		}
-		
-		return new BasicEList.UnmodifiableEList.FastCompare<>(result);
+		return ArchitectureContextOperations.allGeneralContexts(this);
 	}
 
 	/**
@@ -598,20 +455,7 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 	 */
 	@Override
 	public boolean extensionCycle(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (allExtendedContexts().contains(this)) {
-			if (diagnostics != null) {
-				diagnostics.add
-					(new BasicDiagnostic
-						(Diagnostic.ERROR,
-						 ArchitectureValidator.DIAGNOSTIC_SOURCE,
-						 ArchitectureValidator.ARCHITECTURE_CONTEXT__EXTENSION_CYCLE,
-						 ArchitecturePlugin.INSTANCE.getString("_UI_extensionCycle_diagnostic", //$NON-NLS-1$
-								 new Object[] { EObjectValidator.getObjectLabel(this, context) }), 
-						 new Object [] { this, ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__EXTENDED_CONTEXTS }));
-			}
-			return false;
-		}
-		return true;
+		return ArchitectureContextOperations.extensionCycle(this, diagnostics, context);
 	}
 					
 	/**
@@ -621,20 +465,7 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 	 */
 	@Override
 	public boolean generalizationCycle(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (allGeneralContexts().contains(this)) {
-			if (diagnostics != null) {
-					diagnostics.add
-						(new BasicDiagnostic
-							(Diagnostic.ERROR,
-							 ArchitectureValidator.DIAGNOSTIC_SOURCE,
-						 ArchitectureValidator.ARCHITECTURE_CONTEXT__GENERALIZATION_CYCLE,
-						 ArchitecturePlugin.INSTANCE.getString("_UI_generalizationCycle_diagnostic", //$NON-NLS-1$
-								 new Object[] { EObjectValidator.getObjectLabel(this, context) }), 
-						 new Object [] { this, ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__GENERAL_CONTEXT }));
-				}
-				return false;
-		}
-		return true;
+		return ArchitectureContextOperations.generalizationCycle(this, diagnostics, context);
 	}
 
 	/**
@@ -644,21 +475,7 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 	 */
 	@Override
 	public boolean generalNotExtended(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		Set<ArchitectureContext> allGenerals = new HashSet<>(allGeneralContexts());
-		if (allGenerals.removeAll(allExtendedContexts())) {
-			if (diagnostics != null) {
-				diagnostics.add
-					(new BasicDiagnostic
-						(Diagnostic.ERROR,
-						 ArchitectureValidator.DIAGNOSTIC_SOURCE,
-						 ArchitectureValidator.ARCHITECTURE_CONTEXT__GENERAL_NOT_EXTENDED,
-						 ArchitecturePlugin.INSTANCE.getString("_UI_generalNotExtended_diagnostic", //$NON-NLS-1$
-								 new Object[] { EObjectValidator.getObjectLabel(this, context) }),
-						 new Object [] { this, ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__EXTENDED_CONTEXTS }));
-			}
-			return false;
-		}
-		return true;
+		return ArchitectureContextOperations.generalNotExtended(this, diagnostics, context);
 	}
 
 	/**
