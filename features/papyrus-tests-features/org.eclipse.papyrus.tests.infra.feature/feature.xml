@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.tests.infra.feature"
-      version="1.2.0.qualifier"
       label="%featureName"
+      version="1.2.0.qualifier"
       provider-name="%providerName"
       license-feature="org.eclipse.license"
       license-feature-version="2.0.2">
@@ -147,6 +147,13 @@
 
    <plugin
          id="org.eclipse.papyrus.infra.viewpoints.policy.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.infra.gmfdiag.expansion.tests"
          download-size="0"
          install-size="0"
          version="0.0.0"

@@ -16,6 +16,7 @@
 	<module>org.eclipse.papyrus.infra.gmfdiag.commands.tests</module>
 	<module>org.eclipse.papyrus.infra.gmfdiag.common.tests</module>
 	<module>org.eclipse.papyrus.infra.gmfdiag.canonical.tests</module>
+	<module>org.eclipse.papyrus.infra.gmfdiag.expansion.tests</module>
 	<module>org.eclipse.papyrus.infra.gmfdiag.welcome.tests</module>
 	<module>org.eclipse.papyrus.infra.gmfdiag.css.tests</module>
 	<module>org.eclipse.papyrus.infra.gmfdiag.menu.tests</module>
