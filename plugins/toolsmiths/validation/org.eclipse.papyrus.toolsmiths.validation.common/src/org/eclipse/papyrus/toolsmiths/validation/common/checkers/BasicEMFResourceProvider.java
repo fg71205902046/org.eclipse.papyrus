@@ -91,7 +91,8 @@ class BasicEMFResourceProvider implements OpaqueResourceProvider.EMF {
 				.map(IPluginModelBase::getBundleDescription)
 				.map(BundleDescription::getSymbolicName)
 				.orElse(project.getName());
-		BiFunction<EObject, IProject, URI> projectBase = (object, project) -> URI.createPlatformPluginURI(projectBundle.apply(project), true);
+		BiFunction<EObject, IProject, URI> projectBase = (object, project) -> URI.createPlatformPluginURI(projectBundle.apply(project), true)
+				.appendSegment(""); // Ensure a trailing path separator //$NON-NLS-1$
 		if (bundleQualifier == null) {
 			this.baseURIFunction = projectBase;
 		} else {

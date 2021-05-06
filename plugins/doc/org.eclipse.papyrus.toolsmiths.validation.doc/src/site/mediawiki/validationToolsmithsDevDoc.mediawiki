@@ -4,6 +4,7 @@ Papyrus provides for validation of tooling models for DSML and other customizati
 * Validation of a UML '''profiles''', both static (generated) and dynamic
 * Validation of '''element types configurations'''
 * Validation of '''architecture domain''' models
+* Validation of '''element creation menu''' models
 
 Validation is provided on-demand via the '''Papyrus Developer''' context menu and optionally also as a project builder.
 
@@ -157,6 +158,42 @@ When you do a validation, the results of a previous architecture plug-in validat
 The result is displayed in the ''''Problems'''' view and are categorized by the type ''''Papyrus Toolsmiths Architecture Plug-in Problem''''.
 
 [[File:images/devDoc/Papyrus_ProblemsViewArchitecture.png|frame|none|Architecture problems]]
+
+Like others problems, you can double-click on one to open the relevant file. You may delete a problem that you think is resolved, but if it is not, then it will be presented again by the next validation.
+
+==Element Creation Menu Plug-in Validation==
+
+This section describes the validation checks performed by the '''Papyrus Plug-in Builder''' on ''Element Creation Menus''.
+
+===What is checked?===
+Several validation rules are checked for any plug-in project that contains Element Creation Menu models, including:
+* Bundle manifest dependencies on core Element Creation Menu bundles: '''WARNING'''
+** 'org.eclipse.papyrus.infra.newchild'
+* For each element creation menu model found in the plug-in:
+** Validation of the element creation menu model file itself: errors or warnings as described for different elements, below
+** an icon resource referenced by the element creation menu model does not exist: '''ERROR'''
+** a ''role'' name configured on a ''creation menu'' does not appear to exist in any known registered ''element type configuration'': '''WARNING'''
+** Validation of the element creation menu model registration in the 'plugin.xml' file
+*** if there is no registration extension: '''ERROR'''
+** Validation of bundle dependencies in the 'MANIFEST.MF' file implied by the element creation menu model:
+*** missing dependency on the bundle that provides any of the items, below: '''ERROR'''
+**** an ''element type'' referenced by some creation menu
+**** an icon resource referenced by the creation menu model
+** Validation of the 'build.properties' file
+*** If any of the following resources is not included in the binary build: '''ERROR'''
+**** the element creation menu model file, itself
+**** any element types configuration model file or icon referenced by the model that is in the same plug-in
+
+The rules above are not checked in the ''Element Creation Menu Model Editor'' while editing a model because they
+depend on the deployment of dependent resources in tooling bundles. Therefore, they are only checked by the
+tooling validation mechanisms described in this documentation. Other intrinsic model well-formedness constraints
+for element creation menu models are checked by the editor; they are described in the documentation of the
+''Element Creation Menu'' model.
+
+===Where to find the result?===
+The result is displayed in the ''''Problems'''' view and are categorized by the type ''''Papyrus Toolsmiths Element Creation Menu Plug-in Problem''''.
+
+[[File:images/devDoc/Papyrus_ProblemsViewNewChild.png|frame|none|Element Creation Menu problems]]
 
 Like others problems, you can double-click on one to open the relevant file. You may delete a problem that you think is resolved, but if it is not, then it will be presented again by the next validation.
 

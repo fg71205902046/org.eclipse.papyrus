@@ -46,7 +46,10 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceProxy;
 import org.eclipse.core.resources.IResourceProxyVisitor;
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.IWorkspaceDescription;
 import org.eclipse.core.resources.IncrementalProjectBuilder;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -489,6 +492,16 @@ public class TestProjectFixture extends ProjectFixture {
 				throw new IllegalStateException("No @TestProject annotation found."); //$NON-NLS-1$
 			}
 
+			// Turn off autobuild so that we do not trigger builds while setting up resources
+			// in the test project
+			IWorkspace workspace = ResourcesPlugin.getWorkspace();
+			IWorkspaceDescription wsDesc = null;
+			if (workspace.isAutoBuilding()) {
+				wsDesc = workspace.getDescription();
+				wsDesc.setAutoBuilding(false);
+				workspace.setDescription(wsDesc);
+			}
+
 			Set<URI> architectureModels = null;
 
 			try {
@@ -503,6 +516,10 @@ public class TestProjectFixture extends ProjectFixture {
 			} finally {
 				if (architectureModels != null) {
 					unregisterArchitectureModels(architectureModels);
+				}
+				if (wsDesc != null) {
+					wsDesc.setAutoBuilding(true);
+					workspace.setDescription(wsDesc);
 				}
 			}
 		}
@@ -530,14 +547,20 @@ public class TestProjectFixture extends ProjectFixture {
 		public void evaluate() throws Throwable {
 			Class<?> testClass = JUnitUtils.getTestClass(description);
 
+			// Only process the first overlay of a file, which lets a test method annotation
+			// override an annotation on the class for the same destination path
+			Set<IPath> overlaid = new HashSet<>();
 			for (OverlayFile overlay : overlayFiles) {
-				URL resource = testClass.getClassLoader().getResource("resources/" + overlay.value()); //$NON-NLS-1$
-				try (InputStream input = resource.openStream()) {
-					IFile file = getProject().getFile(getTargetPath(overlay));
-					if (file.exists()) {
-						file.setContents(input, true, false, null);
-					} else {
-						file.create(input, true, null);
+				IPath targetPath = getTargetPath(overlay);
+				if (overlaid.add(targetPath)) {
+					URL resource = testClass.getClassLoader().getResource("resources/" + overlay.value()); //$NON-NLS-1$
+					try (InputStream input = resource.openStream()) {
+						IFile file = getProject().getFile(targetPath);
+						if (file.exists()) {
+							file.setContents(input, true, false, null);
+						} else {
+							file.create(input, true, null);
+						}
 					}
 				}
 			}

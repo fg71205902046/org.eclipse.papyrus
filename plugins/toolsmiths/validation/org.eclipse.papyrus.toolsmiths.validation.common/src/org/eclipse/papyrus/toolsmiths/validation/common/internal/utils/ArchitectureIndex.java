@@ -23,11 +23,8 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executor;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Function;
 import java.util.function.Predicate;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.URI;
@@ -43,7 +40,6 @@ import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
 import org.eclipse.papyrus.infra.core.architecture.ADElement;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureDomain;
 import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
-import org.eclipse.papyrus.infra.core.utils.JobExecutorService;
 import org.eclipse.papyrus.infra.emf.utils.InternalCrossReferencer;
 import org.eclipse.papyrus.toolsmiths.validation.common.Activator;
 
@@ -55,22 +51,15 @@ import com.google.common.collect.Multimap;
  * An index of references to tooling models from the {@link ArchitectureDomain} models available
  * in the current context (installation, target, and workspace).
  */
-public class ArchitectureIndex {
+public class ArchitectureIndex extends AbstractIndex {
 
 	private static final ArchitectureIndex INSTANCE = new ArchitectureIndex();
 
 	private final ArchitectureDomainManager domainManager;
 
-	private final Executor executor = new JobExecutorService();
+	private final Map<Mode, Computation<Multimap<EObject, EStructuralFeature.Setting>>> crossReferences;
 
-	private final Map<Mode, Computation<Multimap<EObject, EStructuralFeature.Setting>>> crossReferences = new EnumMap<>(Map.of(
-			Mode.EXTERNAL_CROSS_REFERENCE, new Computation<>(this::computeExternalCrossReferences),
-			Mode.INTERNAL_CROSS_REFERENCE, new Computation<>(this::computeInternalCrossReferences)));
-
-	private final Map<EClass, Computation<Multimap<String, ADElement>>> elementsByQualifiedName = ArchitecturePackage.eINSTANCE.getEClassifiers().stream()
-			.filter(EClass.class::isInstance).map(EClass.class::cast)
-			.filter(ArchitecturePackage.Literals.AD_ELEMENT::isSuperTypeOf)
-			.collect(Collectors.toMap(Function.identity(), eClass -> new Computation<>(() -> computeQualifiedNameMap(eClass))));
+	private final Map<EClass, Computation<Multimap<String, ADElement>>> elementsByQualifiedName;
 
 	/**
 	 * Not instantiable by clients.
@@ -79,6 +68,15 @@ public class ArchitectureIndex {
 		super();
 
 		domainManager = ArchitectureDomainManager.getInstance();
+
+		crossReferences = new EnumMap<>(Map.of(
+				Mode.EXTERNAL_CROSS_REFERENCE, new Computation<>(this::computeExternalCrossReferences),
+				Mode.INTERNAL_CROSS_REFERENCE, new Computation<>(this::computeInternalCrossReferences)));
+		elementsByQualifiedName = ArchitecturePackage.eINSTANCE.getEClassifiers().stream()
+				.filter(EClass.class::isInstance).map(EClass.class::cast)
+				.filter(ArchitecturePackage.Literals.AD_ELEMENT::isSuperTypeOf)
+				.collect(Collectors.toMap(Function.identity(), eClass -> new Computation<>(() -> computeQualifiedNameMap(eClass))));
+
 		domainManager.addListener(this::domainManagerChanged);
 	}
 
@@ -100,7 +98,11 @@ public class ArchitectureIndex {
 	 * @return the external cross-references of the current architecture domain models
 	 */
 	public CompletableFuture<Multimap<EObject, EStructuralFeature.Setting>> getCrossReferences(Mode crossReferenceMode) {
-		return crossReferences.get(crossReferenceMode).get();
+		return asyncGet(crossReference(crossReferenceMode));
+	}
+
+	private Computation<Multimap<EObject, EStructuralFeature.Setting>> crossReference(Mode mode) {
+		return crossReferences.get(mode);
 	}
 
 	/**
@@ -151,8 +153,7 @@ public class ArchitectureIndex {
 	 * Cancel any pending index calculations; forget all index calculations.
 	 */
 	private void domainManagerChanged() {
-		crossReferences.values().forEach(Computation::reset);
-		elementsByQualifiedName.values().forEach(Computation::reset);
+		resetComputations();
 	}
 
 	/**
@@ -264,17 +265,8 @@ public class ArchitectureIndex {
 	 * @return whether any registered architecture has an HREF matching the given URI in the {@code reference}
 	 */
 	public boolean isReferenced(Mode crossReferenceMode, URI uri, EReference reference, ResourceSet context) {
-		boolean result = false;
-
-		try {
-			CompletableFuture<Boolean> futureResult = isReferencedAsync(crossReferenceMode, uri, reference, context);
-			result = Boolean.TRUE.equals(futureResult.get());
-		} catch (ExecutionException | InterruptedException e) {
-			// Cannot access the architecture index? Then we didn't find anything
-			Activator.log.error("Error querying Architecture Context models.", e); //$NON-NLS-1$
-		}
-
-		return result;
+		return transform(crossReference(crossReferenceMode), ImmutableMultimap.of(),
+				isReferencedFunction(crossReferenceMode, uri, reference, context));
 	}
 
 	/**
@@ -292,6 +284,10 @@ public class ArchitectureIndex {
 	 * @return whether any registered architecture has an HREF matching the given URI in the {@code reference}
 	 */
 	public CompletableFuture<Boolean> isReferencedAsync(Mode crossReferenceMode, URI uri, EReference reference, ResourceSet context) {
+		return asyncTransform(crossReference(crossReferenceMode), isReferencedFunction(crossReferenceMode, uri, reference, context));
+	}
+
+	private Function<Multimap<EObject, EStructuralFeature.Setting>, Boolean> isReferencedFunction(Mode crossReferenceMode, URI uri, EReference reference, ResourceSet context) {
 		URIConverter converter = context.getURIConverter();
 		Function<URI, URI> uriTrimmer = uri.hasFragment() ? Function.identity() : URI::trimFragment;
 		Predicate<Map.Entry<EObject, EStructuralFeature.Setting>> referenceFilter = (reference == null)
@@ -308,7 +304,7 @@ public class ArchitectureIndex {
 				.map(converter::normalize)
 				.anyMatch(uri::equals);
 
-		return getCrossReferences(crossReferenceMode).thenApply(isReferenced::test);
+		return isReferenced::test;
 	}
 
 	/**
@@ -332,7 +328,7 @@ public class ArchitectureIndex {
 				// The maps computed are immutable, so the cast is safe because we know a priori that all
 				// elements of the map conform and none can be added
 				@SuppressWarnings({ "unchecked", "rawtypes" })
-				CompletableFuture<Multimap<String, T>> result = (CompletableFuture) elementsByQualifiedName.get(eClass).get();
+				CompletableFuture<Multimap<String, T>> result = (CompletableFuture) asyncGet(elementsByQualifiedName.get(eClass));
 				return result;
 			}
 		}
@@ -425,43 +421,6 @@ public class ArchitectureIndex {
 		EXTERNAL_CROSS_REFERENCE,
 		/** Search cross-references wihin and between architecture models only. */
 		INTERNAL_CROSS_REFERENCE;
-	}
-
-	/**
-	 * A potentially long-running computation that provides for thread-safe initiation
-	 * and cancellation/reset to re-compute when inputs change.
-	 *
-	 * @param <T>
-	 *            the type of the computation
-	 */
-	private final class Computation<T> implements Supplier<CompletableFuture<T>> {
-		private final AtomicReference<CompletableFuture<T>> computation = new AtomicReference<>();
-		private final Supplier<T> computer;
-
-		Computation(Supplier<T> computer) {
-			super();
-
-			this.computer = computer;
-		}
-
-		@Override
-		public CompletableFuture<T> get() {
-			CompletableFuture<T> newResult = new CompletableFuture<>();
-			CompletableFuture<T> result = computation.compareAndExchange(null, newResult);
-
-			if (result == null) {
-				// We made the exchange, so should initiate the computation
-				result = newResult;
-				result.completeAsync(computer, executor);
-			}
-
-			return result;
-		}
-
-		void reset() {
-			Optional.ofNullable(computation.getAndSet(null)).ifPresent(future -> future.cancel(false));
-		}
-
 	}
 
 }

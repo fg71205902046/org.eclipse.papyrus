@@ -11,7 +11,7 @@
  *
  * Contributors:
  *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Initial API and implementation
- *  Christian W. Damus - bug 572677
+ *  Christian W. Damus - bugs 572677, 572633
  *
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.suite.tests;
@@ -44,6 +44,7 @@ public class AllTests {
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.toolsmiths.validation.architecture.tests.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.toolsmiths.validation.elementtypes.tests.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.toolsmiths.validation.profile.tests.AllTests.class));
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.toolsmiths.validation.newchild.tests.AllTests.class));
 
 
 		// end

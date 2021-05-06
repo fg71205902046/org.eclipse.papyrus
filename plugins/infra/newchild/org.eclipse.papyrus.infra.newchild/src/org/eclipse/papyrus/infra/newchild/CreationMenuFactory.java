@@ -11,7 +11,7 @@
  * Contributors:
  *  CEA LIST - Initial API and implementation
  *  Patrik Nandorf (Ericsson AB) patrik.nandorf@ericsson.com - Bug 425565
- *  Christian W. Damus - bugs 485220, 571713, 571715
+ *  Christian W. Damus - bugs 485220, 571713, 571715, 572633
  *  Asma Smaoui  asma.smaoui@cea.fr - bug 528156
  *
  *****************************************************************************/
@@ -30,6 +30,7 @@ import java.util.stream.Stream;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -147,14 +148,15 @@ public class CreationMenuFactory {
 
 		if (topMenuItem.getImage() == null && folder.getIcon() != null && folder.getIcon().length() > 0) {
 			// Give the cascading menu item the first available folder icon
+			URI iconURI = EMFHelper.getImageURI(folder, folder.getIcon());
 			URL url = null;
 			try {
-				url = new URL(folder.getIcon());
+				url = new URL(iconURI.toString());
 				ImageDescriptor imgDesc = ImageDescriptor.createFromURL(url);
 				topMenuItem.setImage(org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(imgDesc));
 			} catch (MalformedURLException e) {
 				// no exception thrown
-				Activator.log.debug("Impossible to find icon with URL " + url);
+				Activator.log.debug(String.format("Invalid folder icon URL '%s': %s", folder.getIcon(), e.getMessage()));
 			}
 		}
 
@@ -312,15 +314,16 @@ public class CreationMenuFactory {
 	 * @since 3.0
 	 */
 	protected void fillIcon(CreationMenu currentCreationMenu, MenuItem item, IClientContext context) {
-		if (currentCreationMenu.getIcon() != null && !"".equals(currentCreationMenu.getIcon())) {
+		if (currentCreationMenu.getIcon() != null && !currentCreationMenu.getIcon().isBlank()) {
+			URI iconURI = EMFHelper.getImageURI(currentCreationMenu, currentCreationMenu.getIcon());
 			URL url;
 			try {
-				url = new URL(currentCreationMenu.getIcon());
+				url = new URL(iconURI.toString());
 				ImageDescriptor imgDesc = ImageDescriptor.createFromURL(url);
 				item.setImage(org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(imgDesc));
 			} catch (MalformedURLException e) {
 				// no icon found
-				Activator.log.debug("Impossible to find icon" + e);
+				Activator.log.debug(String.format("Invalid creation menu icon URL '%s': %s", currentCreationMenu.getIcon(), e.getMessage()));
 			}
 		} else {
 			createIconFromElementType(currentCreationMenu, item, context);

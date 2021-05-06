@@ -14,10 +14,18 @@ Require-Bundle: org.eclipse.emf.transaction;bundle-version="[1.9.0,2.0.0)",
  org.eclipse.papyrus.emf;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.ui.ide;bundle-version="[3.18.0,4.0.0)",
  org.eclipse.papyrus.eclipse.project.editors;bundle-version="[3.0.0,4.0.0)",
- org.eclipse.pde.ui;bundle-version="[3.12.100,4.0.0)"
+ org.eclipse.pde.ui;bundle-version="[3.12.100,4.0.0)",
+ org.eclipse.papyrus.infra.types.core;bundle-version="[5.1.0,6.0.0)",
+ org.eclipse.papyrus.infra.types;bundle-version="[5.0.0,6.0.0)",
+ org.eclipse.gmf.runtime.emf.type.core;bundle-version="[1.9.0,2.0.0)",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="[4.1.0,5.0.0)"
 Export-Package: org.eclipse.papyrus.toolsmiths.validation.common,
  org.eclipse.papyrus.toolsmiths.validation.common.checkers,
- org.eclipse.papyrus.toolsmiths.validation.common.internal.utils;x-friends:="org.eclipse.papyrus.toolsmiths.validation.elementtypes,org.eclipse.papyrus.toolsmiths.validation.architecture,org.eclipse.papyrus.toolsmiths.validation.profile",
+ org.eclipse.papyrus.toolsmiths.validation.common.internal.utils;
+  x-friends:="org.eclipse.papyrus.toolsmiths.validation.elementtypes,
+   org.eclipse.papyrus.toolsmiths.validation.architecture,
+   org.eclipse.papyrus.toolsmiths.validation.profile,
+   org.eclipse.papyrus.toolsmiths.validation.newchild",
  org.eclipse.papyrus.toolsmiths.validation.common.quickfix,
  org.eclipse.papyrus.toolsmiths.validation.common.utils
 Bundle-Vendor: %providerName

@@ -17,5 +17,6 @@
 		<module>org.eclipse.papyrus.toolsmiths.validation.profile</module>
 		<module>org.eclipse.papyrus.toolsmiths.validation.elementtypes</module>
 		<module>org.eclipse.papyrus.toolsmiths.validation.architecture</module>
+		<module>org.eclipse.papyrus.toolsmiths.validation.newchild</module>
 	</modules>
 </project>
