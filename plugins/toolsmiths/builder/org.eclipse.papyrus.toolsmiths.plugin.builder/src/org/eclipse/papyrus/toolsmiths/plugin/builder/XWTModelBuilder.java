@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 CEA LIST and others.
+ * Copyright (c) 2020, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *   Vincent Lorenzo (CEA LIST) <vincent.lorenzo@cea.fr> - Initial API and implementation
+ *   Christian W. Damus - bug 572644
  *
  *****************************************************************************/
 
@@ -23,6 +24,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.toolsmiths.plugin.internal.builder.XWTModelBuilderProvider;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.PluginRegistry;
 
@@ -31,22 +33,10 @@ import org.eclipse.pde.core.plugin.PluginRegistry;
  */
 public class XWTModelBuilder extends GenericEMFModelBuilder {
 
-	static final String XWT_EXTENSION = "xwt";//$NON-NLS-1$
-
-	static final String ENVIRONMENT_XMI_EXTENSION = "xmi"; //$NON-NLS-1$
-
-	static final String CTX_EXTENSION = "ctx"; //$NON-NLS-1$
-
 	private static final String XWT_URI = "http://www.eclipse.org/xwt"; //$NON-NLS-1$
 
 	private static final String XWT_PRESENTATION_URI = "http://www.eclipse.org/xwt/presentation"; //$NON-NLS-1$
 
-	/**
-	 * @see org.eclipse.papyrus.toolsmiths.plugin.builder.GenericEMFModelBuilder#getModelBundleDependenciesFromXML(org.eclipse.emf.ecore.resource.Resource)
-	 *
-	 * @param resource
-	 * @return
-	 */
 	@Override
 	protected Set<String> getModelBundleDependenciesFromXML(Resource resource) {
 		final Set<String> importedMetamodels_NS_URI = getXMLImportedMetamodelNsURI(resource);
@@ -112,12 +102,6 @@ public class XWTModelBuilder extends GenericEMFModelBuilder {
 		return dependencies;
 	}
 
-	/**
-	 * @see org.eclipse.papyrus.toolsmiths.plugin.builder.GenericEMFModelBuilder#getBundleNameFromResource(org.eclipse.emf.ecore.resource.Resource)
-	 *
-	 * @param resource
-	 * @return
-	 */
 	@Override
 	protected String getBundleNameFromResource(Resource resource) {
 		String str = super.getBundleNameFromResource(resource);
@@ -130,23 +114,11 @@ public class XWTModelBuilder extends GenericEMFModelBuilder {
 		return str;
 	}
 
-	/**
-	 * @see org.eclipse.papyrus.toolsmiths.plugin.builder.GenericEMFModelBuilder#isIgnoredFileExtension(java.lang.String)
-	 *
-	 * @param fileExtension
-	 * @return
-	 */
 	@Override
 	protected boolean managedFileExtension(String fileExtension) {
-		return XWT_EXTENSION.equals(fileExtension) || CTX_EXTENSION.equals(fileExtension) || ENVIRONMENT_XMI_EXTENSION.equals(fileExtension);
+		return XWTModelBuilderProvider.MODEL_FILE_EXTENSIONS.contains(fileExtension);
 	}
 
-	/**
-	 * @see org.eclipse.papyrus.toolsmiths.plugin.builder.GenericEMFModelBuilder#isIgnoredNS_URI(java.lang.String)
-	 *
-	 * @param ns_URI
-	 * @return
-	 */
 	@Override
 	protected boolean isIgnoredNS_URI(String ns_URI) {
 		return super.isIgnoredNS_URI(ns_URI) || "clr-namespace:java.lang".equals(ns_URI); //$NON-NLS-1$

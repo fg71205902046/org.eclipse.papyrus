@@ -23,7 +23,7 @@ package org.eclipse.papyrus.toolsmiths.plugin.builder.helper;
  * <li>to calculate the dependency range to declare in the manifest</li>
  * </ul>
  *
- * @deprecated Use the {@link org.eclipse.papyrus.toolsmiths.validation.common.utils.BundleVersionHelper} class, instead.
+ * @deprecated Since version 1.1 of the bundle, use the {@link org.eclipse.papyrus.toolsmiths.validation.common.utils.BundleVersionHelper} class, instead.
  */
 @Deprecated
 public class BundleVersionHelper extends org.eclipse.papyrus.toolsmiths.validation.common.utils.BundleVersionHelper {
@@ -34,9 +34,7 @@ public class BundleVersionHelper extends org.eclipse.papyrus.toolsmiths.validati
 	 *
 	 * @param bundleName
 	 *            the name of the bundle
-	 * @deprecated Use the {@link org.eclipse.papyrus.toolsmiths.validation.common.utils.BundleVersionHelper} class, instead.
 	 */
-	@Deprecated
 	public BundleVersionHelper(final String bundleName) {
 		super(bundleName);
 	}

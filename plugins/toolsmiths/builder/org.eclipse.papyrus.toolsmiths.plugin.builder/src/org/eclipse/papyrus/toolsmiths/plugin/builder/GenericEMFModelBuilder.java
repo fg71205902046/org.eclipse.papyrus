@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Vincent Lorenzo (CEA LIST) <vincent.lorenzo@cea.fr> - Initial API and implementation
- *   Christian W. Damus - bugs 569357, 570097
+ *   Christian W. Damus - bugs 569357, 570097, 572644
  *
  *****************************************************************************/
 
@@ -62,9 +62,7 @@ import org.eclipse.papyrus.emf.helpers.BundleResourceURIHelper;
 import org.eclipse.papyrus.emf.validation.DependencyValidationUtils;
 import org.eclipse.papyrus.infra.emf.utils.ResourceUtils;
 import org.eclipse.papyrus.toolsmiths.plugin.builder.preferences.PluginBuilderPreferencesConstants;
-import org.eclipse.papyrus.toolsmiths.validation.architecture.internal.checkers.ArchitecturePluginChecker;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.MarkersService;
-import org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.checkers.ElementTypesPluginChecker;
 import org.eclipse.uml2.uml.resource.UMLResource;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -142,18 +140,11 @@ public class GenericEMFModelBuilder extends AbstractPapyrusBuilder {
 		EXCLUDED_FILE_EXTENSION.add("html"); //$NON-NLS-1$
 		EXCLUDED_FILE_EXTENSION.add("mediawiki"); //$NON-NLS-1$
 
-		// we exclude these files coming from Papyru model from the check
+		// we exclude these files coming from Papyrus models from the check
 		EXCLUDED_FILE_EXTENSION.add("notation"); //$NON-NLS-1$
 		EXCLUDED_FILE_EXTENSION.add("di"); //$NON-NLS-1$
 		EXCLUDED_FILE_EXTENSION.add("properties"); //$NON-NLS-1$
 		EXCLUDED_FILE_EXTENSION.add("qvto"); //$NON-NLS-1$
-
-		// we exclude this extension point because it requires a specific management
-		EXCLUDED_FILE_EXTENSION.add(ArchitecturePluginChecker.ARCHITECTURE_EXTENSION);
-		EXCLUDED_FILE_EXTENSION.add(ElementTypesPluginChecker.ELEMENT_TYPES_CONFIGURATION_EXTENSION);
-		EXCLUDED_FILE_EXTENSION.add(XWTModelBuilder.XWT_EXTENSION);
-		EXCLUDED_FILE_EXTENSION.add(XWTModelBuilder.CTX_EXTENSION);
-		EXCLUDED_FILE_EXTENSION.add(XWTModelBuilder.ENVIRONMENT_XMI_EXTENSION);
 
 		IGNORED_NS_URI.add("http://www.w3.org/2001/XMLSchema-instance"); //$NON-NLS-1$
 		IGNORED_NS_URI.add("http://www.omg.org/XMI"); //$NON-NLS-1$
@@ -277,7 +268,7 @@ public class GenericEMFModelBuilder extends AbstractPapyrusBuilder {
 		Map<Resource, IFile> resources = new HashMap<>();
 		if (container instanceof IFile) {
 			final IFile f = (IFile) container;
-			if ((managedFileExtension(f.getFileExtension()))
+			if ((managedFileExtension(f.getFileExtension()) && !hasSpecificBuilder(f))
 					&& !EXCLUDED_FILE_NAME.contains(f.getName())) {
 				final Resource res = loadIfPossibleAsEcoreResource(f);
 				if (res != null) {
@@ -337,7 +328,8 @@ public class GenericEMFModelBuilder extends AbstractPapyrusBuilder {
 		EcoreUtil.resolveAll(resource);
 		final Set<String> dependencies = new TreeSet<>();
 		for (final Resource current : resource.getResourceSet().getResources()) {
-			if (!isIgnoredNS_URI(current.getURI().toString()) && managedFileExtension(current.getURI().fileExtension())) {
+			if (!isIgnoredNS_URI(current.getURI().toString()) && managedFileExtension(current.getURI().fileExtension())
+					&& !hasSpecificBuilder(current.getURI())) {
 				try {
 					dependencies.add(getBundleNameFromResource(current));
 					dependencies.addAll(getModelBundleDependenciesFromXML(resource));
@@ -505,7 +497,6 @@ public class GenericEMFModelBuilder extends AbstractPapyrusBuilder {
 	protected void createMarkerErrorFromDiagnostic(final IResource iResource, final Diagnostic diagnostic) {
 		try {
 			final IMarker marker = MarkersService.createMarker(iResource, getMarkerType(), diagnostic);
-			System.err.println("Msg: " + diagnostic.getMessage());
 			marker.setAttribute(EValidator.URI_ATTRIBUTE, EcoreUtil.getURI((EObject) diagnostic.getData().get(0)).toString());
 
 			int index = diagnostic.getData().indexOf(DependencyValidationUtils.MISSING_DEPENDENCIES);
@@ -549,4 +540,29 @@ public class GenericEMFModelBuilder extends AbstractPapyrusBuilder {
 	protected boolean isIgnoredNS_URI(final String ns_URI) {
 		return IGNORED_NS_URI.contains(ns_URI);
 	}
+
+	/**
+	 * Query whether any registered Papyrus builder provider covers this model resource.
+	 *
+	 * @param resourceURI
+	 *            the model resource URI
+	 * @return whether it has a specific builder that means I can ignore it
+	 */
+	private boolean hasSpecificBuilder(URI resourceURI) {
+		return Activator.getDefault().getBuilderProviders().stream()
+				.anyMatch(provider -> provider.providesBuilder(PapyrusBuilderKind.MODEL_RESOURCE, resourceURI));
+	}
+
+	/**
+	 * Query whether any registered Papyrus builder provider covers this model resource.
+	 *
+	 * @param resource
+	 *            the model resource
+	 * @return whether it has a specific builder that means I can ignore it
+	 */
+	private boolean hasSpecificBuilder(IResource resource) {
+		return Activator.getDefault().getBuilderProviders().stream()
+				.anyMatch(provider -> provider.providesBuilder(PapyrusBuilderKind.MODEL_RESOURCE, resource));
+	}
+
 }

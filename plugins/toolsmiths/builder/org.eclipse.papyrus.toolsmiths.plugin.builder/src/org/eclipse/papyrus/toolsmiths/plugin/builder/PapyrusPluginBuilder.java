@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2020, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,15 +10,17 @@
  *
  * Contributors:
  *   Vincent Lorenzo (CEA LIST) <vincent.lorenzo@cea.fr> - Initial API and implementation
- *   Christian W. Damus - bug 569357
+ *   Christian W. Damus - bugs 569357, 572644
  *
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.plugin.builder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IncrementalProjectBuilder;
@@ -28,7 +30,7 @@ import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.papyrus.toolsmiths.plugin.builder.preferences.PluginBuilderPreferencesConstants;
 
 /**
- * The main Papyrus builder in charge to delegate build to sub-builder
+ * The main Papyrus builder in charge to delegate build to sub-builders.
  */
 public class PapyrusPluginBuilder extends IncrementalProjectBuilder {
 
@@ -37,34 +39,39 @@ public class PapyrusPluginBuilder extends IncrementalProjectBuilder {
 	 */
 	public static final String BUILDER_ID = "org.eclipse.papyrus.plugin.builder"; //$NON-NLS-1$
 
+	@Deprecated
 	private static final List<AbstractPapyrusBuilder> modelBuilders = new ArrayList<>();
 
+	@Deprecated
 	private static final List<AbstractPapyrusBuilder> pluginBuilders = new ArrayList<>();
 
+	@Deprecated
 	private static final List<AbstractPapyrusBuilder> manifestBuilders = new ArrayList<>();
 
+	/**
+	 * @deprecated Since version 1.1 of this bundle, register an {@link IPapyrusBuilderProvider}, instead.
+	 */
+	@Deprecated(since = "1.1")
 	public static final void addModelBuilder(final AbstractPapyrusBuilder modelBuilder) {
 		modelBuilders.add(modelBuilder);
 	}
 
+	/**
+	 * @deprecated Since version 1.1 of this bundle, register an {@link IPapyrusBuilderProvider}, instead.
+	 */
+	@Deprecated(since = "1.1")
 	public static final void addPluginBuilder(final AbstractPapyrusBuilder pluginBuilder) {
 		pluginBuilders.add(pluginBuilder);
 	}
 
+	/**
+	 * @deprecated Since version 1.1 of this bundle, register an {@link IPapyrusBuilderProvider}, instead.
+	 */
+	@Deprecated(since = "1.1")
 	public static final void addManifestBuilder(final AbstractPapyrusBuilder pluginBuilder) {
 		manifestBuilders.add(pluginBuilder);
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.core.resources.IncrementalProjectBuilder#build(int, java.util.Map, org.eclipse.core.runtime.IProgressMonitor)
-	 *
-	 * @param kind
-	 * @param args
-	 * @param monitor
-	 * @return
-	 * @throws CoreException
-	 */
 	@Override
 	protected IProject[] build(final int kind, final Map<String, String> args, final IProgressMonitor monitor)
 			throws CoreException {
@@ -76,42 +83,24 @@ public class PapyrusPluginBuilder extends IncrementalProjectBuilder {
 			return null;
 		}
 
+		List<AbstractPapyrusBuilder> delegates = getDelegates();
+
 		SubMonitor subMonitor = SubMonitor.convert(monitor,
-				1 // Clean
-						+ (isPapyrusModelBuilderActivated() ? PapyrusPluginBuilder.modelBuilders.size() : 0) // Models
-						+ (isPapyrusManifestBuilderActivated() ? PapyrusPluginBuilder.manifestBuilders.size() : 0) // Manifests
-						+ PapyrusPluginBuilder.pluginBuilders.size()); // Rest
+				/* Clean */ 1 + /* Pluggable builders */ delegates.size());
 
 		// remove all previously created marker
 		clean(subMonitor.newChild(1));
 
-		// TODO : we also remove all java marker
-		// getProject().deleteMarkers(IJavaModelMarker.JAVA_MODEL_PROBLEM_MARKER, true, -1);
-
 		final List<IProject> wantedDeltaProjects = new ArrayList<>();
 
-		if (isPapyrusModelBuilderActivated()) {
-			for (final AbstractPapyrusBuilder builder : PapyrusPluginBuilder.modelBuilders) {
+		for (final AbstractPapyrusBuilder builder : delegates) {
+			try {
 				IProject[] projects = builder.build(getProject(), this, kind, args, subMonitor.newChild(1));
 				if (projects != null && projects.length != 0) {
 					wantedDeltaProjects.addAll(Arrays.asList(projects));
 				}
-			}
-		}
-
-		if (isPapyrusManifestBuilderActivated()) {
-			for (final AbstractPapyrusBuilder builder : PapyrusPluginBuilder.manifestBuilders) {
-				IProject[] projects = builder.build(getProject(), this, kind, args, subMonitor.newChild(1));
-				if (projects != null && projects.length != 0) {
-					wantedDeltaProjects.addAll(Arrays.asList(projects));
-				}
-			}
-		}
-
-		for (final AbstractPapyrusBuilder builder : PapyrusPluginBuilder.pluginBuilders) {
-			IProject[] projects = builder.build(getProject(), this, kind, args, subMonitor.newChild(1));
-			if (projects != null && projects.length != 0) {
-				wantedDeltaProjects.addAll(Arrays.asList(projects));
+			} catch (Exception e) {
+				Activator.log.error("Uncaught exception in Papyrus project builder delegate.", e); //$NON-NLS-1$
 			}
 		}
 
@@ -122,28 +111,19 @@ public class PapyrusPluginBuilder extends IncrementalProjectBuilder {
 
 	@Override
 	protected void clean(IProgressMonitor monitor) throws CoreException {
+		List<AbstractPapyrusBuilder> delegates = getDelegates();
+
 		SubMonitor subMonitor = SubMonitor.convert(monitor,
-				1 // Super implementation
-						+ (isPapyrusModelBuilderActivated() ? PapyrusPluginBuilder.modelBuilders.size() : 0) // Models
-						+ (isPapyrusManifestBuilderActivated() ? PapyrusPluginBuilder.manifestBuilders.size() : 0) // Manifests
-						+ PapyrusPluginBuilder.pluginBuilders.size()); // Rest
+				/* Super implementation */ 1 + /* Pluggable builders */ delegates.size());
 
 		super.clean(subMonitor.newChild(1));
 
-		if (isPapyrusModelBuilderActivated()) {
-			for (final AbstractPapyrusBuilder builder : PapyrusPluginBuilder.modelBuilders) {
+		for (final AbstractPapyrusBuilder builder : delegates) {
+			try {
 				builder.clean(subMonitor.newChild(1), getProject());
+			} catch (Exception e) {
+				Activator.log.error("Uncaught exception in Papyrus project builder delegate.", e); //$NON-NLS-1$
 			}
-		}
-
-		if (isPapyrusManifestBuilderActivated()) {
-			for (final AbstractPapyrusBuilder builder : PapyrusPluginBuilder.manifestBuilders) {
-				builder.clean(subMonitor.newChild(1), getProject());
-			}
-		}
-
-		for (final AbstractPapyrusBuilder builder : PapyrusPluginBuilder.pluginBuilders) {
-			builder.clean(subMonitor.newChild(1), getProject());
 		}
 
 		SubMonitor.done(monitor);
@@ -190,4 +170,27 @@ public class PapyrusPluginBuilder extends IncrementalProjectBuilder {
 		return result;
 	}
 
+	private List<AbstractPapyrusBuilder> getDelegates() {
+		List<AbstractPapyrusBuilder> result = new ArrayList<>();
+		Collection<IPapyrusBuilderProvider> providers = Activator.getDefault().getBuilderProviders();
+
+		if (isPapyrusModelBuilderActivated()) {
+			result.addAll(modelBuilders); // Legacy case
+			providers.stream().map(p -> provide(p, PapyrusBuilderKind.MODEL_RESOURCE)).filter(Objects::nonNull).forEach(result::add);
+		}
+
+		if (isPapyrusManifestBuilderActivated()) {
+			result.addAll(manifestBuilders); // Legacy case
+			providers.stream().map(p -> provide(p, PapyrusBuilderKind.BUNDLE_MANIFEST)).filter(Objects::nonNull).forEach(result::add);
+		}
+
+		result.addAll(pluginBuilders); // Legacy case
+		providers.stream().map(p -> provide(p, PapyrusBuilderKind.PLUGIN_MANIFEST)).filter(Objects::nonNull).forEach(result::add);
+
+		return result;
+	}
+
+	private AbstractPapyrusBuilder provide(IPapyrusBuilderProvider provider, PapyrusBuilderKind builderKind) {
+		return provider.getBuilder(builderKind, getProject());
+	}
 }
