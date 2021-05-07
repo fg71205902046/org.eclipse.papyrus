@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
- * 
+ * Copyright (c) 2015, 2021 Christian W. Damus and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,8 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *   Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Bug 573429
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.editor.welcome.internal;
@@ -84,8 +85,6 @@ import org.eclipse.ui.forms.widgets.Hyperlink;
  *
  */
 class WelcomeLayout {
-	private static final String PREFERENCE_PAGE_ID = "org.eclipse.papyrus.infra.editor.welcome.content"; //$NON-NLS-1$
-
 	private static final int NUM_ROWS = 2;
 
 	private static final int SASH_OFFEST = 5;
@@ -385,7 +384,7 @@ class WelcomeLayout {
 			hyperlink.addHyperlinkListener(new HyperlinkAdapter() {
 				@Override
 				public void linkActivated(HyperlinkEvent e) {
-					PreferencesUtil.createPreferenceDialogOn(hyperlink.getShell(), PREFERENCE_PAGE_ID, null, null).open();
+					PreferencesUtil.createPreferenceDialogOn(hyperlink.getShell(), WelcomeConstants.WELCOME_PAGE_ID, null, null).open();
 				}
 			});
 		}

@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
- * 
+ * Copyright (c) 2015, 2021 Christian W. Damus and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,8 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *   Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Bug 573429
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.editor.welcome.internal;
@@ -29,6 +30,7 @@ import org.eclipse.papyrus.infra.constraints.runtime.ConstraintEngine;
 import org.eclipse.papyrus.infra.constraints.runtime.ConstraintEngineListener;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ICloseablePart;
 import org.eclipse.papyrus.infra.editor.welcome.IWelcomePageService;
+import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.papyrus.infra.properties.contexts.Section;
 import org.eclipse.papyrus.infra.properties.contexts.View;
 import org.eclipse.papyrus.infra.properties.ui.runtime.DefaultDisplayEngine;
@@ -46,6 +48,7 @@ import org.eclipse.ui.views.properties.tabbed.ISection;
  * The extensible <em>Welcome Page</em> of the Papyrus Editor.
  */
 public class WelcomePage implements ICloseablePart {
+
 	private final IWelcomePageService service;
 
 	private final Object model;
@@ -152,9 +155,12 @@ public class WelcomePage implements ICloseablePart {
 	protected void createSections(Composite parent) {
 		Set<View> views = constraintEngine.getDisplayUnits(model);
 
+		List<Context> welcomeContexts = PropertiesRuntime.getConfigurationManager().getContextsForPreferencePage(WelcomeConstants.WELCOME_PAGE_ID);
+
 		// Get the unique tabs
 		Map<String, WelcomeTab> tabProxies = new HashMap<>();
 		views.stream()
+				.filter(v -> welcomeContexts.contains(v.getContext())) // Remove views that are not welcome content
 				.flatMap(v -> v.getSections().stream())
 				.map(s -> s.getTab())
 				.forEach(tab -> {
