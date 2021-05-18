@@ -18,7 +18,9 @@ package org.eclipse.papyrus.uml.diagram.common.locator;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.tools.CellEditorLocator;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.jface.viewers.CellEditor;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.directedit.locator.CellEditorLocatorAccess;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IMultilineEditableFigure;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
@@ -28,15 +30,33 @@ import org.eclipse.swt.widgets.Text;
  */
 public class MultilineCellEditorLocator implements CellEditorLocator {
 
+	/** The multiline editable figure. */
 	private IMultilineEditableFigure multilineEditableFigure;
 
+	/**
+	 * Instantiates a new multiline cell editor locator.
+	 *
+	 * @param figure
+	 *            the figure
+	 */
 	public MultilineCellEditorLocator(IMultilineEditableFigure figure) {
 		this.multilineEditableFigure = figure;
 	}
 
+	/**
+	 * Gets the multiline editable figure.
+	 *
+	 * @return the multiline editable figure
+	 */
 	public IMultilineEditableFigure getMultilineEditableFigure() {
 		return multilineEditableFigure;
 	}
+
+	/**
+	 * @see org.eclipse.gef.tools.CellEditorLocator#relocate(org.eclipse.jface.viewers.CellEditor)
+	 *
+	 * @param celleditor
+	 */
 
 	@Override
 	public void relocate(CellEditor celleditor) {
@@ -50,6 +70,24 @@ public class MultilineCellEditorLocator implements CellEditorLocator {
 		}
 		if (!rect.equals(new Rectangle(text.getBounds()))) {
 			text.setBounds(rect.x, rect.y, rect.width, rect.height);
+		}
+	}
+
+
+	/**
+	 * Gets the text cell editor locator.
+	 *
+	 * @param source
+	 *            the source
+	 * @return the text cell editor locator
+	 */
+	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
+		if (source.getFigure() instanceof IMultilineEditableFigure) {
+			return new MultilineCellEditorLocator(
+					(IMultilineEditableFigure) source.getFigure());
+		} else {
+			return CellEditorLocatorAccess.INSTANCE.getTextCellEditorLocator(source);
+
 		}
 	}
 }

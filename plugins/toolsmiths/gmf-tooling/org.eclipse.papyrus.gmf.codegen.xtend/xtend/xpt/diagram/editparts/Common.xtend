@@ -176,8 +176,8 @@ import xpt.QualifiedClassNameProvider
 	«IF it.needsCanonicalEditPolicy»
 		«««	BEGIN: PapyrusGenCode
 		«««	Used to remove at each time canonical editpolicies
-		//in Papyrus diagrams are not strongly synchronised
-		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new «getCanonicalEditPolicyQualifiedClassName()»());
+		// in Papyrus diagrams are not strongly synchronised
+		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new «getCanonicalEditPolicyQualifiedClassName()»());
 		«««	END: PapyrusGenCode
 	
 	«ENDIF»

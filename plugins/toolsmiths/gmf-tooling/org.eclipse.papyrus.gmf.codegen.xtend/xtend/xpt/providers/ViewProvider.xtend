@@ -89,8 +89,8 @@ import xpt.editor.VisualIDRegistry
 				
 				/* we check this view provider is the good one for the currently edited diagram */
 				if (operation instanceof org.eclipse.gmf.runtime.diagram.core.services.view.CreateChildViewOperation) {
-					View container = ((org.eclipse.gmf.runtime.diagram.core.services.view.CreateChildViewOperation) operation).getContainerView();
-					Diagram diagram = container.getDiagram();
+					org.eclipse.gmf.runtime.notation.View container = ((org.eclipse.gmf.runtime.diagram.core.services.view.CreateChildViewOperation) operation).getContainerView();
+					org.eclipse.gmf.runtime.notation.Diagram diagram = container.getDiagram();
 					if(!getDiagramProvidedId().equals(diagram.getType())) {
 						return false;
 					}

@@ -16,110 +16,94 @@
 package diagram.editparts
 
 import com.google.inject.Inject
-import impl.diagram.editparts.TextAware
+import com.google.inject.Singleton
+import impl.diagram.editparts.TextAwareExtent
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNodeLabel
 import xpt.Common
 import xpt.diagram.editparts.Utils_qvto
+import xpt.diagram.editpolicies.TextSelectionEditPolicy
+import xpt.CodeStyle
 
-@com.google.inject.Singleton class NodeLabelEditPart {
+@Singleton class NodeLabelEditPart {
 	@Inject extension Common;
+	@Inject extension CodeStyle;
+	
 	@Inject extension Utils_qvto;
 
-	@Inject impl.diagram.editparts.NodeLabelEditPart xptNodeLabelEditPart;
-	@Inject TextAware xptTextAware;
+	@Inject TextAwareExtent	 xptTextAware;
 	@Inject xpt.diagram.editparts.Common xptEditpartsCommon;
 
-	def qualifiedClassName(GenNodeLabel it) '''«xptNodeLabelEditPart.packageName(it)».«xptNodeLabelEditPart.className(it)»'''
+	@Inject TextSelectionEditPolicy textSelection;
 
-	def fullPath(GenNodeLabel it) '''«qualifiedClassName(it)»'''
 
 	def Main(GenNodeLabel it) '''
 		«copyright(getDiagram().editorGen)»
-		package «xptNodeLabelEditPart.packageName(it)»;
+		package «packageName(it)»;
 		
 		«generatedClassComment»
-		public class «xptNodeLabelEditPart.className(it)» «extendsList(it)» «implementsList(it)» {
+		public class «className(it)» «extendsList(it)» {
 		
 			«attributes(it)»
-			
-			«xptNodeLabelEditPart.constructor(it)»
-			
+			«constructor(it)»
 			«createDefaultEditPolicies(it)»
-			
-			«xptTextAware.methods(it, isStoringChildPositions(node), readOnly, elementIcon, viewmap, modelFacet, node,
-			getDiagram())»
-		
-			«xptEditpartsCommon.notationalListeners(it)»
-			
-			«xptNodeLabelEditPart.refreshBounds(it)»
-			
-			«handleNotificationEvent(it)»
-			
-			«xptEditpartsCommon.labelFigure(it.viewmap)»
-			
-			«additions(it)»
+			«xptTextAware.getLabelIconNotUseElementIcon(it, elementIcon, diagram)»
+			«xptTextAware.methodsExtent(it, isStoringChildPositions(node), readOnly,  modelFacet, node)»
+			«handleNotificationEventOverriden(it)»
 		}
 	'''
 
-	def extendsList(GenNodeLabel it) '''extends org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusCompartmentEditPart'''
+	def className(GenNodeLabel it) '''«editPartClassName»'''
 
-	def implementsList(GenNodeLabel it) '''implements org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart, org.eclipse.papyrus.infra.gmfdiag.common.editpart.IControlParserForDirectEdit'''
+	def packageName(GenNodeLabel it) '''«getDiagram().editPartsPackageName»'''
+
+	def constructor(GenNodeLabel it) '''
+		«generatedMemberComment»
+		public «className(it)»(org.eclipse.gmf.runtime.notation.View view) {
+			super(view);
+		}
+	'''
+
+	def qualifiedClassName(GenNodeLabel it) '''«packageName(it)».«className(it)»'''
+
+	def fullPath(GenNodeLabel it) '''«qualifiedClassName(it)»'''
+
+	def extendsList(GenNodeLabel it) '''extends org.eclipse.papyrus.uml.diagram.common.editparts.AbstractNodeLabelEditPart'''
+
 
 	def attributes(GenNodeLabel it) '''
 		«xptEditpartsCommon.visualIDConstant(it)»
-		
-		«xptTextAware.fields(it)»
 	'''
 
 	def createDefaultEditPolicies(GenNodeLabel it) '''
 		«generatedMemberComment»
+		«overrideC»
 		protected void createDefaultEditPolicies() {
-			«xptNodeLabelEditPart.createDefaultEditPoliciesBody(it)»
+			super.createDefaultEditPolicies();
+			installEditPolicy(org.eclipse.gef.EditPolicy.SELECTION_FEEDBACK_ROLE, new «textSelection.qualifiedClassName(getDiagram())»());
+			installEditPolicy(org.eclipse.gef.EditPolicy.DIRECT_EDIT_ROLE, new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy());
+			installEditPolicy(org.eclipse.gef.EditPolicy.PRIMARY_DRAG_ROLE, new org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.edit.policies.DefaultNodeLabelDragPolicy());
+			«xptEditpartsCommon.behaviour(it)»
 		}
 	'''
 
-	def handleNotificationEvent(GenNodeLabel it) '''
-		«generatedMemberComment»
-		protected void handleNotificationEvent(org.eclipse.emf.common.notify.Notification event) {
-			refreshLabel();
-			«xptNodeLabelEditPart.handleNotificationEventBody(it)»
-		}
-	'''
-
-
-	def additions(GenNodeLabel it) '''
-	«««	Code to refresh icon
-	
-	«generatedMemberComment»
-	private static final String ADD_PARENT_MODEL = "AddParentModel";
-	
-		
-	«generatedMemberComment»
-		public void activate() {
-			super.activate();
-			addOwnerElementListeners();
-		}
-	
-		«generatedMemberComment»
-		protected void addOwnerElementListeners() {
-			addListenerFilter(ADD_PARENT_MODEL, this, ((org.eclipse.gmf.runtime.notation.View) getParent().getModel()));
-	
-		}
-	
-		«generatedMemberComment»
-		public void deactivate() {
-			removeOwnerElementListeners();
-			super.deactivate();
-	
-		}
-	
-	
-		«generatedMemberComment»
-		protected void removeOwnerElementListeners() {
-			removeListenerFilter(ADD_PARENT_MODEL);
-	
-		}
-	
-	«««END: PapyrusGenCode
+	def handleNotificationEventOverriden(GenNodeLabel it) '''
+		«IF isStoringChildPositions(node) || elementIcon»
+			«generatedMemberComment»
+			«overrideC»
+			protected void handleNotificationEvent(org.eclipse.emf.common.notify.Notification event) {
+				«IF isStoringChildPositions(node)»
+					Object feature = event.getFeature();
+					«xptEditpartsCommon.handleBounds(it)»
+				«ENDIF»
+				«««	START Papyrus Code
+				«IF elementIcon»
+					if(event.getNewValue() instanceof org.eclipse.emf.ecore.EAnnotation && org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants.DISPLAY_NAMELABELICON.equals(((org.eclipse.emf.ecore.EAnnotation)event.getNewValue()).getSource())){	
+						refreshLabel();
+					}
+				«ENDIF»
+				«««	End Papyrus Code
+				super.handleNotificationEvent(event);
+			}
+		«ENDIF»
 	'''
 }

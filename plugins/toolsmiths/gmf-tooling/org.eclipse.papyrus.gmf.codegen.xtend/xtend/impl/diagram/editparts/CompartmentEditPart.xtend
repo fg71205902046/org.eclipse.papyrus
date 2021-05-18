@@ -17,25 +17,25 @@
 package impl.diagram.editparts
 
 import com.google.inject.Inject
+import com.google.inject.Singleton
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCompartment
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
 import org.eclipse.papyrus.gmf.codegen.gmfgen.ViewmapLayoutType
 import org.eclipse.papyrus.gmf.codegen.xtend.annotations.Localization
 import xpt.Common
-import xpt.Common_qvto
 import xpt.Externalizer
 import xpt.diagram.editparts.Utils_qvto
-import xpt.providers.ElementTypes
-import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink
-@com.google.inject.Singleton class CompartmentEditPart {
+import xpt.CodeStyle
+
+@Singleton class CompartmentEditPart {
 	@Inject extension Common;
-	@Inject extension Common_qvto;
+	@Inject extension CodeStyle;
+
 
 	@Inject extension Utils_qvto;
 
 	@Inject Externalizer xptExternalizer;
 	@Inject xpt.diagram.editparts.Common xptEditpartsCommon;
-	@Inject ElementTypes xptElementTypes;
 
 	def className(GenCompartment it) '''«editPartClassName»'''
 
@@ -51,6 +51,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink
 	def hasModelChildrenChanged(GenCompartment it) '''
 		«IF listLayout»
 			«generatedMemberComment»
+			«overrideC»
 			protected boolean hasModelChildrenChanged(org.eclipse.emf.common.notify.Notification evt) {
 				return false;
 			}
@@ -59,6 +60,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink
 
 	def getCompartmentName(GenCompartment it) '''
 		«generatedMemberComment»
+		«overrideC»
 		public String getCompartmentName() {
 			return «xptExternalizer.accessorCall(diagram.editorGen, i18nKeyForCompartmentTitle(it))»;
 		}
@@ -68,7 +70,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink
 		if (hasExternalSuperClass(it,
 			'org.eclipse.papyrus.uml.diagram.activity.edit.part.ShapeCompartmentWithoutScrollbarsEditPart')) {
 			'''
-				@Override
+				«overrideC»
 				public org.eclipse.draw2d.IFigure createFigure() {
 					return super.createFigure();
 				}
@@ -110,6 +112,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink
 	def refreshVisuals(GenCompartment it) '''
 		«IF isStoringChildPositions(node)»
 			«generatedMemberComment»
+			«overrideC»
 			protected void refreshVisuals() {
 				super.refreshVisuals();
 				refreshBounds();
@@ -131,6 +134,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink
 	def refreshBounds(GenCompartment it) '''
 		«IF isStoringChildPositions(node)»
 			«generatedMemberComment»
+			«overrideC»
 			protected void refreshBounds() {
 				int x = ((Integer) getStructuralFeatureValue(org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getLocation_X())).intValue();
 				int y = ((Integer) getStructuralFeatureValue(org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getLocation_Y())).intValue();
@@ -143,6 +147,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink
 
 	def setRatio(GenCompartment it) '''
 		«generatedMemberComment»
+		«overrideC»
 		protected void setRatio(Double ratio) {
 			«IF ViewmapLayoutType::UNKNOWN_LITERAL == node.layoutType»
 				if (getFigure().getParent().getLayoutManager() instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout) {
@@ -157,8 +162,8 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink
 
 	def getTargetEditPartMethod(GenCompartment it) '''
 		«generatedMemberComment»
+		«overrideC»
 		public org.eclipse.gef.EditPart getTargetEditPart(org.eclipse.gef.Request request) {
-
 			return super.getTargetEditPart(request);
 		}
 	'''
@@ -170,7 +175,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink
 	'''
 
 	@Localization def internal_i18nAccessors(GenCompartment it) //
-	'''«IF null != title»«xptExternalizer.accessorField(i18nKeyForCompartmentTitle(it))»«ENDIF»'''
+	'''«IF null !== title»«xptExternalizer.accessorField(i18nKeyForCompartmentTitle(it))»«ENDIF»'''
 
 	@Localization def i18nValues(GenDiagram it) '''
 		«FOR compartment : it.compartments»
@@ -179,7 +184,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink
 	'''
 
 	@Localization def internal_i18nValues(GenCompartment it) '''
-		«IF null != title»«xptExternalizer.messageEntry(i18nKeyForCompartmentTitle(it), title)»«ENDIF»
+		«IF null !== title»«xptExternalizer.messageEntry(i18nKeyForCompartmentTitle(it), title)»«ENDIF»
 	'''
 
 	@Localization def String i18nKeyForCompartmentTitle(GenCompartment compartment) {

@@ -12,7 +12,7 @@
  * Dmitry Stadnik (Borland) - initial API and implementation
  * Alexander Shatalin (Borland) - initial API and implementation
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
- * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 generate less dead or duplicate code
  *****************************************************************************/
 package diagram.editparts
 
@@ -34,51 +34,40 @@ import xpt.diagram.editparts.Utils_qvto
 	def fullPath(GenCompartment it) '''«qualifiedClassName(it)»'''
 
 	def Main(GenCompartment it) '''
-«copyright(getDiagram().editorGen)»
-package «xptCompartmentEditPartImpl.packageName(it)»;
+		«copyright(getDiagram().editorGen)»
+		package «xptCompartmentEditPartImpl.packageName(it)»;
 
-«generatedClassComment»
-public class «xptCompartmentEditPartImpl.className(it)» «extendsList(it)» «implementsList(it)» {
+		«generatedClassComment»
+		public class «xptCompartmentEditPartImpl.className(it)» «extendsList(it)» {
 
-	«attributes(it)»
-	
-	«xptCompartmentEditPartImpl.constructor(it)»
-	
-	«xptCompartmentEditPartImpl.hasModelChildrenChanged(it)»
-	
-	«xptCompartmentEditPartImpl.getCompartmentName(it)»
-	
-	«xptCompartmentEditPartImpl.createFigure(it)»
-	
-	«createDefaultEditPolicies(it)»
-	
-	«xptCompartmentEditPartImpl.refreshVisuals(it)»
-	
-	«handleNotificationEvent(it)»
-	
-	«xptCompartmentEditPartImpl.refreshBounds(it)»
-	
-	«xptCompartmentEditPartImpl.setRatio(it)»
-	
-	«xptCompartmentEditPartImpl.getTargetEditPartMethod(it)»
-	
-	«additions(it)»
-}
-'''
+			«attributes(it)»
 
-	def extendsList(GenCompartment it) '''
-
-«««BEGIN: PapyrusGenCode
-«««Add own extension
-«IF superEditPart!== null»
-	extends «superEditPart»
-«««END: BEGIN: PapyrusGenCode
-«ELSE»
-  extends «IF listLayout»org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart«ELSE»org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.linklf.LinkLFShapeCompartmentEditPart«ENDIF»
-«ENDIF»
+			«xptCompartmentEditPartImpl.constructor(it)»
+			«xptCompartmentEditPartImpl.hasModelChildrenChanged(it)»
+			«xptCompartmentEditPartImpl.getCompartmentName(it)»
+			«xptCompartmentEditPartImpl.createFigure(it)»
+			«createDefaultEditPolicies(it)»
+			«xptCompartmentEditPartImpl.refreshVisuals(it)»
+			«handleNotificationEvent(it)»
+			«xptCompartmentEditPartImpl.refreshBounds(it)»
+			«IF !commonResizableCompartment && superEditPart !== null»
+				«xptCompartmentEditPartImpl.setRatio(it)»
+				«xptCompartmentEditPartImpl.getTargetEditPartMethod(it)»
+				«additions(it)»
+			«ENDIF»
+		}
 	'''
 
-	def implementsList(GenCompartment it) ''''''
+	def extendsList(GenCompartment it) '''
+		«IF commonResizableCompartment»
+			extends org.eclipse.papyrus.uml.diagram.common.editparts.AbstractResizableCompartmentEditPart
+		«ELSEIF superEditPart!== null»
+			extends «superEditPart»
+		«ELSE»
+			extends «IF listLayout»org.eclipse.papyrus.uml.diagram.common.editparts.AbstractListCompartmentEditPart«ELSE»org.eclipse.papyrus.uml.diagram.common.editparts.AbstractShapeCompartmentEditPart«ENDIF»
+		«ENDIF»
+	'''
+
 
 	def attributes(GenCompartment it) '''
 		«xptEditpartsCommon.visualIDConstant(it)»
@@ -107,18 +96,18 @@ public class «xptCompartmentEditPartImpl.className(it)» «extendsList(it)» «
 	'''
 
 	def handleSize(GenCompartment it) '''
-	«generatedMemberComment»
-protected void handleNotificationEvent(org.eclipse.emf.common.notify.Notification notification) {
-		Object feature = notification.getFeature();
-		if (org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getSize_Width().equals(feature)
-			|| org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getSize_Height().equals(feature)
-			|| org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getLocation_X().equals(feature)
-			|| org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
-			refreshBounds();
-		}
-		super.handleNotificationEvent(notification);
-	} 
-'''
+		«generatedMemberComment»
+		protected void handleNotificationEvent(org.eclipse.emf.common.notify.Notification notification) {
+			Object feature = notification.getFeature();
+			if (org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getSize_Width().equals(feature)
+				|| org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getSize_Height().equals(feature)
+				|| org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getLocation_X().equals(feature)
+				|| org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
+				refreshBounds();
+			}
+			super.handleNotificationEvent(notification);
+		} 
+	'''
 
 	def refreshbound(GenCompartment it) '''
 		«generatedMemberComment»
@@ -137,10 +126,17 @@ protected void handleNotificationEvent(org.eclipse.emf.common.notify.Notificatio
 	'''
 
 	def refreshvisual(GenCompartment it) '''
-	«generatedMemberComment»
-protected void refreshVisuals() {
-		super.refreshVisuals();
-		refreshBounds();
+		«generatedMemberComment»
+		protected void refreshVisuals() {
+			super.refreshVisuals();
+			refreshBounds();
+		}
+	'''
+
+	// Bug 569174 : L1.2 generate less dead or duplicate code : 
+	//  - Common generated methods from ResizeableListCompartmentEditPart
+	//  - moved to intermediate class AbstractResizableCompartmentEditPart
+	def boolean isCommonResizableCompartment(GenCompartment node) {
+		return 'org.eclipse.papyrus.infra.gmfdiag.common.editpart.ResizeableListCompartmentEditPart' == node.superEditPart
 	}
-'''
 }
