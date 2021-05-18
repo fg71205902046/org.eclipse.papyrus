@@ -24,7 +24,9 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -70,6 +72,13 @@ public class MigrateGMFGenFileHandler extends AbstractHandler {
 			for (Object root : roots) {
 				// migrate recursivelly
 				migrator.migrate((EObject) root);
+			}
+			if(inputResource.getContents().size() == 1)
+			{
+				// FIXME => keep structure for format after migration
+				EAnnotation annotation = EcoreFactory.eINSTANCE.createEAnnotation();
+				annotation.setSource("genextension_migration"); //$NON-NLS-1$
+				inputResource.getContents().add(annotation);
 			}
 			try {
 				inputResource.save(Collections.EMPTY_MAP);

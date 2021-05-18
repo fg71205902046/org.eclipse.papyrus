@@ -37,8 +37,10 @@ import org.eclipse.papyrus.gmf.codegen.genextension.SpecificLocatorExternalLabel
 import org.eclipse.papyrus.gmf.codegen.genextension.VisualIDOverride;
 import org.eclipse.papyrus.gmf.codegen.genextension.util.GenExtensionSwitch;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenFactory;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenChildLabelNode;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenChildSideAffixedNode;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCompartment;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenContainerBase;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagramUpdater;
@@ -50,15 +52,14 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.RefreshHook;
 
 /**
  * Migrates the data formerly contained in the "PAPYRUSGMFEXTENSION" into the new single generation model (papyrus/gmfgen/2020)
+ * 
  * <ul>
  * <li>Migration is based on a set of mappings (Addition of new attributes to the formerly extended class).</li>
  * <li>Once the gmfgen file is migrated, it is then possible to regenerate the code of the corresponding UML diagram.</li>
  * </ul>
- *
- *
+ * 
  */
 public class PapyrusGMFExtensionMigrator extends GenExtensionSwitch<Boolean> {
-
 
 	/**
 	 *
@@ -76,7 +77,6 @@ public class PapyrusGMFExtensionMigrator extends GenExtensionSwitch<Boolean> {
 		}
 		return true; // delete
 	}
-
 
 	/**
 	 *
@@ -114,7 +114,6 @@ public class PapyrusGMFExtensionMigrator extends GenExtensionSwitch<Boolean> {
 		return true; // delete
 	}
 
-
 	/**
 	 * Migrates {@link EditPartUsingReorientService} to {@link GenCommonBase}.
 	 *
@@ -137,9 +136,8 @@ public class PapyrusGMFExtensionMigrator extends GenExtensionSwitch<Boolean> {
 	public Boolean caseExtendedGenView(ExtendedGenView extendedGenView) {
 		EList<GenCommonBase> extendedElements = extendedGenView.getGenView();
 		for (GenCommonBase extendedElement : extendedElements) {
-
 			if (extendedElement.getSuperEditPart() == null && extendedGenView.getSuperOwnedEditPart() != null && !extendedGenView.getSuperOwnedEditPart().isBlank()) {
-				// first oon null extension win (old behavior)
+				// first non null extension win (old behavior)
 				// migrate extended attributes
 				extendedElement.setSuperEditPart(extendedGenView.getSuperOwnedEditPart());
 			}
@@ -153,7 +151,6 @@ public class PapyrusGMFExtensionMigrator extends GenExtensionSwitch<Boolean> {
 			if (extendedElement instanceof GenNode) {
 				((GenNode) extendedElement).setSpecificNotificationEvent(true);
 			}
-
 		}
 
 		// migrate PropertyRefreshHook
@@ -163,7 +160,6 @@ public class PapyrusGMFExtensionMigrator extends GenExtensionSwitch<Boolean> {
 		}
 		return true; // delete
 	}
-
 
 	/**
 	 * Migrates {@link GenerateUsingElementTypeCreationCommand} to {@link GenDiagram}.
@@ -349,7 +345,6 @@ public class PapyrusGMFExtensionMigrator extends GenExtensionSwitch<Boolean> {
 		}
 	}
 
-
 	/**
 	 * Resolve gen diagram in whole resource
 	 *
@@ -367,5 +362,4 @@ public class PapyrusGMFExtensionMigrator extends GenExtensionSwitch<Boolean> {
 		}
 		return null;
 	}
-
 }

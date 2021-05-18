@@ -20,9 +20,11 @@ import com.google.inject.Inject
 import impl.diagram.editparts.TextAware
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenExternalNodeLabel
 import xpt.Common
+import xpt.CodeStyle
 
 @com.google.inject.Singleton class ExternalNodeLabelEditPart {
 	@Inject extension Common;
+	@Inject extension CodeStyle;
 
 	@Inject xpt.diagram.editparts.Common xptEditpartsCommon;
 	@Inject impl.diagram.editparts.ExternalNodeLabelEditPart xptExternalNodeLabelEditPart;
@@ -105,11 +107,13 @@ public class «xptExternalNodeLabelEditPart.className(it)» «extendsList(it)» 
 	«««	BEGIN: PapyrusGenCode
 	«IF labelVisibilityPreference !== null»
 		«generatedClassComment»
+		«overrideI»
 		public String getLabelRole(){
 		return "«labelVisibilityPreference.role»";//$NON-NLS-1$
 		}
 		
 		«generatedClassComment»
+		«overrideI»
 		public String getIconPathRole(){
 		return "«labelVisibilityPreference.iconPathRole»";//$NON-NLS-1$
 		}
