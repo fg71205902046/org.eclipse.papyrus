@@ -25,6 +25,8 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.ISafeRunnable;
+import org.eclipse.core.runtime.SafeRunner;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.RollbackException;
@@ -388,7 +390,7 @@ public class TransactionHelper {
 	/**
 	 * Queries whether a {@code transaction} is one that is executing or that executed triggers, or is perhaps
 	 * the read-only post-commit transaction that tells listeners about the changes made by a trigger transaction.
-	 * 
+	 *
 	 * @param transaction
 	 *            a transaction
 	 * @return whether it is a trigger transaction
@@ -401,7 +403,7 @@ public class TransactionHelper {
 	/**
 	 * Creates an {@link Executor} that executes {@link Runnable}s at the pre-commit phase of the active write
 	 * transaction of the specified editing {@code domain} or at some other time if no write transaction is active.
-	 * 
+	 *
 	 * @param domain
 	 *            a transactional editing domain. May not be {@code null}
 	 * @param fallback
@@ -418,7 +420,7 @@ public class TransactionHelper {
 	 * The specified {@code policy}, if any, may determine whether for some task the {@code fallback} should be preferred
 	 * over the transaction executor or vice-versa (such as to handle special requirements like tasks needing to run
 	 * on the UI thread).
-	 * 
+	 *
 	 * @param domain
 	 *            a transactional editing domain. May not be {@code null}
 	 * @param fallback
@@ -436,7 +438,7 @@ public class TransactionHelper {
 	/**
 	 * Creates an {@link Executor} that executes {@link Runnable}s at the pre-commit phase of the active write
 	 * transaction of the specified editing {@code domain} or at some other time if no write transaction is active.
-	 * 
+	 *
 	 * @param domain
 	 *            a transactional editing domain. May not be {@code null}
 	 * @param fallback
@@ -455,7 +457,7 @@ public class TransactionHelper {
 	 * The specified {@code policy}, if any, may determine whether for some task the {@code fallback} should be preferred
 	 * over the transaction executor or vice-versa (such as to handle special requirements like tasks needing to run
 	 * on the UI thread).
-	 * 
+	 *
 	 * @param domain
 	 *            a transactional editing domain. May not be {@code null}
 	 * @param fallback
@@ -479,10 +481,10 @@ public class TransactionHelper {
 	/**
 	 * Disposes of a {@linkplain #createTransactionExecutor(TransactionalEditingDomain, Executor) transaction executor}
 	 * that is no longer needed on an editing domain that is still in use.
-	 * 
+	 *
 	 * @param executor
 	 *            a transaction executor to dispose
-	 * 
+	 *
 	 * @throws IllegalArgumentException
 	 *             if the {@code executor} is not a transaction executor
 	 * @throws NullPointerException
@@ -497,6 +499,39 @@ public class TransactionHelper {
 	}
 
 	/**
+	 * Wrap a {@code read} action in exclusive read-only access on the given {@code domain}.
+	 *
+	 * @param domain
+	 *            a transactional editing domain
+	 * @param read
+	 *            a runnable that will read from the {@code domain}
+	 * @return a runnable that wraps the given {@code read} action in a read-only transaction on the {@code domain}
+	 *
+	 * @since 4.2
+	 * @see #safe(TransactionalEditingDomain, Runnable)
+	 */
+	public static Runnable wrap(TransactionalEditingDomain domain, Runnable read) {
+		return () -> SafeRunner.run(safe(domain, read));
+	}
+
+	/**
+	 * Wrap a {@code read} action in exclusive read-only access on the given {@code domain}
+	 * as a <em>safe runnable</em>.
+	 *
+	 * @param domain
+	 *            a transactional editing domain
+	 * @param read
+	 *            a runnable that will read from the {@code domain}
+	 * @return a <em>safe runnable</em> that wraps the given {@code read} action in a read-only transaction on the {@code domain}
+	 *
+	 * @since 4.2
+	 * @see #wrap(TransactionalEditingDomain, Runnable)
+	 */
+	public static ISafeRunnable safe(TransactionalEditingDomain domain, Runnable read) {
+		return () -> domain.runExclusive(read);
+	}
+
+	/**
 	 * <p>
 	 * Create a privileged progress runnable, which is like a regular {@linkplain TransactionalEditingDomain#createPrivilegedRunnable(Runnable)
 	 * privileged runnable} except that it is given a progress monitor for progress reporting.
@@ -506,7 +541,7 @@ public class TransactionHelper {
 	 * transaction context will have expired. Attempting to run a privileged runnable a second
 	 * time will throw an {@link IllegalStateException}.
 	 * </p>
-	 * 
+	 *
 	 * @param domain
 	 *            an editing domain
 	 * @param runnable
@@ -533,7 +568,7 @@ public class TransactionHelper {
 	 * transaction context will have expired. Attempting to run a privileged callable a second
 	 * time will throw an {@link IllegalStateException}.
 	 * </p>
-	 * 
+	 *
 	 * @param callable
 	 *            an editing domain
 	 * @param callable

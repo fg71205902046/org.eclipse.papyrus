@@ -21,6 +21,7 @@ package org.eclipse.papyrus.infra.core.resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Executor;
 import java.util.function.Predicate;
 
 import org.eclipse.emf.common.command.Command;
@@ -38,6 +39,7 @@ import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.infra.core.utils.TransactionHelper;
 
 import com.google.common.collect.ImmutableList;
 
@@ -292,7 +294,7 @@ public abstract class ResourceAdapter extends AdapterImpl {
 
 		/**
 		 * Initializes me as a pre- or post-commit resource notification handler.
-		 * 
+		 *
 		 * @param isPrecommit
 		 *            {@code true} to react to pre-commit notifications; {@code false} to react to post-commit notifications
 		 */
@@ -318,7 +320,7 @@ public abstract class ResourceAdapter extends AdapterImpl {
 		/**
 		 * Subclasses may override/extend this method to create custom filters, perhaps based on the default filter create by the superclass.
 		 * <b>Note</b> that this method is invoked by the superclass constructor, so subclasses must not attempt to access their own state.
-		 * 
+		 *
 		 * @return my notification filter
 		 */
 		protected NotificationFilter createFilter() {
@@ -347,7 +349,7 @@ public abstract class ResourceAdapter extends AdapterImpl {
 		 * {@link #handleResourceAdded(Resource)} and (for resources that are already loaded)
 		 * {@link #handleResourceLoaded(Resource)} call-backs. Clients that do not want this initial
 		 * discovery step should just add me directly to the editing domain as a listener.
-		 * 
+		 *
 		 * @param editingDomain
 		 *            an editing domain in which to install me
 		 */
@@ -369,7 +371,7 @@ public abstract class ResourceAdapter extends AdapterImpl {
 		 * {@link #handleResourceRemoved(Resource)} call-back. Loaded resources are still loaded, so they are
 		 * not run through {@link #handleResourceUnloaded(Resource)}: this is not symmetric with {@link #install(TransactionalEditingDomain)}.
 		 * Clients that do not want this un-discovery step should just remove me directly fromthe editing domain.
-		 * 
+		 *
 		 * @param editingDomain
 		 *            an editing domain from which to uninstall me
 		 */
@@ -403,6 +405,39 @@ public abstract class ResourceAdapter extends AdapterImpl {
 		protected void handleResourceSetChangeEvent(ResourceSetChangeEvent event) {
 			for (Notification next : event.getNotifications()) {
 				notifyChanged(next);
+			}
+		}
+
+		/**
+		 * Process a list of notifications that occurred during a transaction asynchronously
+		 * on the given {@code executor}. The {@code executor} should be one that runs
+		 * actions in <em>read-only transactions</em> on the {@code event}'s source editing
+		 * domain, such as may be obtained from the
+		 * {@link TransactionHelper#createTransactionExecutor(TransactionalEditingDomain, Executor)} APIs.
+		 *
+		 * @param event
+		 *            the event bearing notifications to process
+		 * @param executor
+		 *            an executor on which to process the events
+		 *
+		 * @since 4.2
+		 * @see #handleResourceSetChangeEvent0(ResourceSetChangeEvent)
+		 * @see TransactionHelper#createTransactionExecutor(TransactionalEditingDomain, Executor)
+		 */
+		protected final void handleResourceSetChangeEvent(ResourceSetChangeEvent event, Executor executor) {
+			final List<Notification> notifications = List.copyOf(event.getNotifications());
+			executor.execute(TransactionHelper.wrap(event.getEditingDomain(), () -> handleResourceSetChanges(notifications)));
+		}
+
+		private void handleResourceSetChanges(final List<Notification> notifications) {
+			try {
+				this.notifications = notifications;
+				for (Notification next : notifications) {
+					notifyChanged(next);
+				}
+			} finally {
+				this.notifications = null;
+				loadingState = null;
 			}
 		}
 

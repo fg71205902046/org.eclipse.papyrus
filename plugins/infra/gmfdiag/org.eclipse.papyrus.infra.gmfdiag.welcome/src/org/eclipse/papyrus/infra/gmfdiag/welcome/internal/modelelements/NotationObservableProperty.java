@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015, 2016 Christian W. Damus and others.
+ * Copyright (c) 2015, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -23,12 +23,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
-import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ResourceAdapter;
 import org.eclipse.papyrus.infra.tools.databinding.WritableListWithIterator;
+import org.eclipse.papyrus.infra.ui.util.TransactionUIHelper;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.swt.widgets.Display;
 
@@ -72,19 +71,11 @@ public class NotationObservableProperty implements Supplier<IObservableList<Nota
 				if (Display.getCurrent() != null) {
 					basicResourceSetChanged(event);
 				} else {
-					try {
-						Display.getDefault().asyncExec(TransactionUtil.createPrivilegedRunnable(domain,
-								new RunnableWithResult.Impl<Void>() {
-									@Override
-									public void run() {
-										basicResourceSetChanged(event);
-									}
-								}));
-					} catch (InterruptedException e) {
-						// This can't actually happen (appears to be an error in the
-						// specification of the API)
-						basicResourceSetChanged(event); // Try, anyways
-					}
+					// This cannot use a PrivilegedRunnable because the update needs
+					// to be asynchronous to avoid deadlock (bug 568307). Use the same
+					// executor for an asynchronous update on the UI thread as diagram
+					// editors use for edit-part refresh
+					handleResourceSetChangeEvent(event, TransactionUIHelper.getExecutor(domain));
 				}
 			}
 
