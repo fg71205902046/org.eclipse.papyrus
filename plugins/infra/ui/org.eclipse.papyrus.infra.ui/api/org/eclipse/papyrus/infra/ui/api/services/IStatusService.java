@@ -13,11 +13,21 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.infra.ui.internal.services.status;
+package org.eclipse.papyrus.infra.ui.api.services;
 
 /**
- * Events used by the status service
+ * This OSGI service should be use to display a dialog with ProgressBar and trace the evolution of an operation
+ *
+ * @since 3.2
  */
-public interface StatusServiceEvent {
+public interface IStatusService {
+
+	/**
+	 * Trigger and event for example (begin or end event)
+	 *
+	 * @param event
+	 *            an event reflecting the operation evolution
+	 */
+	public void trigger(StatusServiceEvent event);
 
 }

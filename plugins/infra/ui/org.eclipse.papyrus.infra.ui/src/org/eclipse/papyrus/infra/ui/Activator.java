@@ -23,7 +23,7 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.services.spi.IContextualServiceRegistryTracker;
 import org.eclipse.papyrus.infra.tools.spi.IExecutorServiceFactory;
 import org.eclipse.papyrus.infra.tools.spi.INotificationBuilderFactory;
-import org.eclipse.papyrus.infra.ui.internal.services.status.IStatusService;
+import org.eclipse.papyrus.infra.ui.api.services.IStatusService;
 import org.eclipse.papyrus.infra.ui.internal.services.status.StatusService;
 import org.eclipse.papyrus.infra.ui.util.UIUtil;
 import org.eclipse.papyrus.infra.ui.util.WorkbenchPartHelper;

@@ -16,6 +16,8 @@
 package org.eclipse.papyrus.infra.ui.internal.services.status;
 
 import org.eclipse.papyrus.infra.ui.Activator;
+import org.eclipse.papyrus.infra.ui.api.services.IStatusService;
+import org.eclipse.papyrus.infra.ui.api.services.StatusServiceEvent;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
@@ -33,7 +35,7 @@ public class StatusService implements IStatusService {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.ui.internal.services.status.IStatusService#trigger(org.eclipse.papyrus.infra.ui.internal.services.status.StatusServiceEvent)
+	 * @see org.eclipse.papyrus.infra.ui.api.services.IStatusService#trigger(org.eclipse.papyrus.infra.ui.api.services.StatusServiceEvent)
 	 *
 	 * @param event
 	 */

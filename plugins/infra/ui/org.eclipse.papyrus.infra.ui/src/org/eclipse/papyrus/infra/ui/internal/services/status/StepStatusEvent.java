@@ -15,6 +15,8 @@
 
 package org.eclipse.papyrus.infra.ui.internal.services.status;
 
+import org.eclipse.papyrus.infra.ui.api.services.StatusServiceEvent;
+
 /**
  * This is an event send during an execution to trace a step of it
  */
