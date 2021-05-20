@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2019 CEA LIST, and others.
+ * Copyright (c) 2019, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
+ *   Christian W. Damus - bug 572676
  *
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.validation.profile.tests;
@@ -22,7 +23,9 @@ import org.junit.runners.Suite.SuiteClasses;
  * All tests for Profile plug-in validation
  */
 @RunWith(Suite.class)
-@SuiteClasses({ ProfilePluginValidationTest.class
+@SuiteClasses({
+		ProfilePluginValidationTest.class,
+		ProfilePluginXMLBuilderTest.class,
 })
 public class AllTests {
 
