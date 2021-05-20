@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Vincent Lorenzo (CEA LIST) <vincent.lorenzo@cea.fr> - Initial API and implementation
- *   Christian W. Damus - bugs 569357, 570097, 572644
+ *   Christian W. Damus - bugs 569357, 570097, 572644, 573408
  *
  *****************************************************************************/
 
@@ -19,6 +19,7 @@ package org.eclipse.papyrus.toolsmiths.plugin.builder;
 import static org.eclipse.papyrus.toolsmiths.validation.common.checkers.ModelValidationChecker.createSubstitutionLabelProvider;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -29,19 +30,20 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeSet;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
@@ -49,9 +51,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.jdt.core.IJavaModelMarker;
 import org.eclipse.jdt.core.IJavaProject;
@@ -60,15 +64,14 @@ import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.emf.helpers.BundleResourceURIHelper;
 import org.eclipse.papyrus.emf.validation.DependencyValidationUtils;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ResourceUtils;
 import org.eclipse.papyrus.toolsmiths.plugin.builder.preferences.PluginBuilderPreferencesConstants;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.MarkersService;
 import org.eclipse.uml2.uml.resource.UMLResource;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
+import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * Generic builder for all EMF model/metamodel
@@ -83,11 +86,6 @@ public class GenericEMFModelBuilder extends AbstractPapyrusBuilder {
 	 * helper used to find bundle associated to a resource or a URI
 	 */
 	private BundleResourceURIHelper RESOURCE_HELPER = BundleResourceURIHelper.INSTANCE;
-
-	/**
-	 * xmlns field in an XML file
-	 */
-	private static final String XMLNS = "xmlns"; //$NON-NLS-1$
 
 	/**
 	 * the list of excluded folder by name
@@ -139,6 +137,7 @@ public class GenericEMFModelBuilder extends AbstractPapyrusBuilder {
 		EXCLUDED_FILE_EXTENSION.add("genmodel"); //$NON-NLS-1$
 		EXCLUDED_FILE_EXTENSION.add("html"); //$NON-NLS-1$
 		EXCLUDED_FILE_EXTENSION.add("mediawiki"); //$NON-NLS-1$
+		EXCLUDED_FILE_EXTENSION.add("css"); //$NON-NLS-1$
 
 		// we exclude these files coming from Papyrus models from the check
 		EXCLUDED_FILE_EXTENSION.add("notation"); //$NON-NLS-1$
@@ -152,17 +151,6 @@ public class GenericEMFModelBuilder extends AbstractPapyrusBuilder {
 		// IGNORED_NS_URI.add("http://www.eclipse.org/uml2/schemas/Ecore/5");
 	}
 
-	/**
-	 * @see org.eclipse.papyrus.toolsmiths.plugin.builder.AbstractPapyrusBuilder#build(org.eclipse.core.resources.IProject, org.eclipse.papyrus.toolsmiths.plugin.builder.PapyrusPluginBuilder, int, java.util.Map, org.eclipse.core.runtime.IProgressMonitor)
-	 *
-	 * @param builtProject
-	 * @param papyrusBuilder
-	 * @param kind
-	 * @param args
-	 * @param monitor
-	 * @return
-	 * @throws CoreException
-	 */
 	@Override
 	public IProject[] build(IProject builtProject, PapyrusPluginBuilder papyrusBuilder, int kind, Map<String, String> args, IProgressMonitor monitor) throws CoreException {
 		if (true) {
@@ -172,19 +160,45 @@ public class GenericEMFModelBuilder extends AbstractPapyrusBuilder {
 
 			final IJavaProject javaProject = JavaCore.create(builtProject);
 
-			// 1. get all ecore resource file owned by the project
-			final Map<Resource, IFile> resources = getEcoreResources(javaProject);
+			Map<Resource, IFile> resources = null;
 
-			// 2. launch validation on each resource
-			if (isModelValidationActivated()) {
-				validateModel(resources);
-			}
+			try {
+				// 1. get all ecore resource file owned by the project
+				resources = getEcoreResources(javaProject);
 
-			/*
-			 * check the required dependencies
-			 */
-			if (isCheckModelDependencyActivated()) {
-				checkModelDependencies(resources, builtProject);
+				// 2. launch validation on each resource
+				if (isModelValidationActivated()) {
+					validateModel(resources);
+				}
+
+				/*
+				 * check the required dependencies
+				 */
+				if (isCheckModelDependencyActivated()) {
+					checkModelDependencies(resources, builtProject);
+				}
+			} finally {
+				// Make sure to unload resource sets because if any of them load UML content either directly
+				// or by cross-document reference, then the static CacheAdapter may be retaining them
+				if (resources != null) {
+					Exception thrown = null;
+
+					for (Resource res : resources.keySet()) {
+						try {
+							EMFHelper.unload(res.getResourceSet());
+						} catch (Exception e) {
+							if (thrown == null) {
+								thrown = e;
+							} else {
+								thrown.addSuppressed(e);
+							}
+						}
+					}
+
+					if (thrown != null) {
+						throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Uncaught exception in unloading validated EMF resources.", thrown)); //$NON-NLS-1$
+					}
+				}
 			}
 		}
 		return null;
@@ -372,38 +386,41 @@ public class GenericEMFModelBuilder extends AbstractPapyrusBuilder {
 	 *         the list of imported metamodel in this resource, identified by their nsURI
 	 */
 	protected Set<String> getXMLImportedMetamodelNsURI(final Resource resource) {
-		String libraryFile = null;
-		if (resource.getURI().isPlatform()) {
-			// TODO : improve me ?
-			// works on linux or not ?
-			libraryFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(resource.getURI().toPlatformString(true))).getRawLocation().toOSString();
-		} else {
-			// TODO
-			// libraryFile = resource.resourceSet.URIConverter.normalize(theRelativeFile).toFileString
-			throw new UnsupportedOperationException();
+		if (!(resource instanceof XMLResource)) {
+			// There will be no XML namespaces
+			return Set.of();
 		}
-		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 
-		Set<String> uris = new HashSet<>();
-		try {
-			final DocumentBuilder dBuilder = factory.newDocumentBuilder();
-			final Document doc = dBuilder.parse(libraryFile);
-			final Element docElement = doc.getDocumentElement();
-			final NamedNodeMap attr = docElement.getAttributes();
-			for (int i = 0; i < attr.getLength(); i++) {
-				Node item = attr.item(i);
-				if (item.getNodeName().startsWith(XMLNS)) {
-					uris.add(item.getNodeValue());
+		Set<String> result = new HashSet<>();
+
+		try (InputStream input = URIConverter.INSTANCE.createInputStream(resource.getURI())) {
+			SAXParserFactory factory = SAXParserFactory.newInstance();
+			factory.setNamespaceAware(true);
+			SAXParser parser = factory.newSAXParser();
+
+			parser.parse(input, new DefaultHandler() {
+				@Override
+				public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+					// We only want namespace declarations from the root element
+					throw new OperationCanceledException();
 				}
+
+				@Override
+				public void startPrefixMapping(String prefix, String uri) throws SAXException {
+					result.add(uri);
+				}
+			});
+		} catch (OperationCanceledException e) {
+			// This is normal
+		} catch (SAXException | IOException | ParserConfigurationException e) {
+			if (e.getCause() instanceof OperationCanceledException) {
+				// This also is normal, if the run-time exception is wrapped by the parser in a SAXException
+			} else {
+				Activator.log.error("Failed to parse XML resource for namespace URIs.", e); //$NON-NLS-1$
 			}
-		} catch (ParserConfigurationException e) {
-			Activator.log.error(e);
-		} catch (SAXException e) {
-			Activator.log.error(e);
-		} catch (IOException e) {
-			Activator.log.error(e);
 		}
-		return uris;
+
+		return result;
 	}
 
 	/**

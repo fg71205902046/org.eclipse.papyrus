@@ -34,10 +34,12 @@ import org.eclipse.papyrus.toolsmiths.validation.common.tests.rules.MarkerType;
 import org.eclipse.papyrus.toolsmiths.validation.common.tests.rules.OverlayFile;
 import org.eclipse.papyrus.toolsmiths.validation.common.tests.rules.TestProject;
 import org.eclipse.papyrus.toolsmiths.validation.common.tests.rules.TestProjectFixture;
+import org.junit.FixMethodOrder;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 
 /**
  * Test cases for the <em>Architecture Domain Model</em> validation of the model resource
@@ -99,6 +101,7 @@ public class ArchitectureModelBuilderTest extends AbstractPapyrusTest {
 	@TestProject("org.eclipse.papyrus.toolsmiths.validation.architecture.example")
 	@MarkerType(ARCHITECTURE_PLUGIN_VALIDATION_MARKER_TYPE)
 	@Build
+	@FixMethodOrder(MethodSorters.JVM)
 	public static class Custom {
 		/**
 		 * The project fixture to manage easily the project.
