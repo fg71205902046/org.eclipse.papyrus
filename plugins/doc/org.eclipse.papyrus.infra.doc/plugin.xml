@@ -9,4 +9,11 @@
             primary="true">
       </toc>
    </extension>
+   <extension
+         point="org.eclipse.help.webapp.contentFilter">
+      <filter
+            class="org.eclipse.papyrus.infra.doc.internal.filters.PapyrusContentFilter"
+            priority="1">
+      </filter>
+   </extension>
 </plugin>

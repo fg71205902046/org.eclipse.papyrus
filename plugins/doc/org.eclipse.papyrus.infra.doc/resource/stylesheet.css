@@ -1,8 +1,21 @@
 h1 {
-	font-weight:darkblue
+	color: darkblue;
+}
+
+h1, h2, h3, h4 {
+	font-family: Georgia, Garamond, serif;
+}
+
+/* Papyrus banner logo. */
+.papyrus-banner {
+	float: right;
+	margin-top: -2em;
+	margin-bottom: -2em;
+	padding-left: 2em;
+	padding-right: 1em;
+	clear: both;
 }
 
 body {
-    background: url(PapyrusLeftBanner.gif) left no-repeat fixed;
-    padding-left: 300px;
+    font-family: Helvetica, Verdana, sans-serif;
 }
