@@ -11,6 +11,8 @@ Code instruction: - org.eclipse.papyrus.toolsmiths.validation.common/src/org/ecl
 Requirement: ReqTechnical_Manage_Easily_Validation_CommonValidation_003: The concept of validation for a papyrus plug-in should be easy (one called method)
 Code instruction: - org.eclipse.papyrus.toolsmiths.validation.common/src/org/eclipse/papyrus/toolsmiths/validation/common/utils/PluginValidationService.java
 
+** This requirement is rescinded by bug 573245 in which the project builder approach is now preferred. cf. https://eclip.se/573245
+
 Requirement: ReqTechnical_Checker_Creation_CommonValidation_004: The concept of checker must be implement to manage easily the validation
 Code instruction: - org.eclipse.papyrus.toolsmiths.validation.common/src/org/eclipse/papyrus/toolsmiths/validation/common/checkers/IPluginChecker.java
 
@@ -21,3 +23,4 @@ Requirement: ReqTechnical_Validation_Dialog_CommonValidation_006: During the val
 Code instruction: - org.eclipse.papyrus.toolsmiths.validation.common/src/org/eclipse/papyrus/toolsmiths/validation/common/checkers/PluginValidationService.java
 - org.eclipse.papyrus.toolsmiths.validation.common/src/org/eclipse/papyrus/toolsmiths/validation/common/checkers/IPluginChecker.java
 
+** This requirement is rescinded by bug 573245 in which the project builder approach is now preferred. cf. https://eclip.se/573245

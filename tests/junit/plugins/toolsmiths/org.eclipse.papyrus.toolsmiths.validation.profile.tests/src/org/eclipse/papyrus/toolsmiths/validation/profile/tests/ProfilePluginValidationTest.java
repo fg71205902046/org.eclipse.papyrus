@@ -10,16 +10,14 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
- *   Christian W. Damus - bugs 571125, 572677
+ *   Christian W. Damus - bugs 571125, 573245, 572677
  *
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.validation.profile.tests;
 
-import static org.eclipse.papyrus.junit.matchers.MoreMatchers.greaterThan;
 import static org.eclipse.papyrus.junit.matchers.MoreMatchers.greaterThanOrEqual;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,11 +27,12 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.ProjectFixture;
+import org.eclipse.papyrus.toolsmiths.validation.common.tests.rules.MarkerType;
+import org.eclipse.papyrus.toolsmiths.validation.common.tests.rules.TestProject;
+import org.eclipse.papyrus.toolsmiths.validation.common.tests.rules.TestProjectFixture;
 import org.eclipse.papyrus.toolsmiths.validation.profile.checkers.ProfilePluginCheckerService;
 import org.eclipse.papyrus.toolsmiths.validation.profile.constants.ProfilePluginValidationConstants;
-import org.hamcrest.MatcherAssert;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -41,12 +40,10 @@ import org.junit.Test;
  * This class allows to test the profile plug-in validation.
  * This will check the markers resulting from a failing profile plug-in definition.
  */
+@TestProject("org.eclipse.papyrus.toolsmiths.validation.profile.example")
+@MarkerType(ProfilePluginValidationConstants.PROFILE_PLUGIN_VALIDATION_MARKER_TYPE)
+@SuppressWarnings("removal")
 public class ProfilePluginValidationTest extends AbstractPapyrusTest {
-
-	/**
-	 * The plug-in path to copy into the project fixture
-	 */
-	private static final String PLUGIN_PATH = "resources/org.eclipse.papyrus.toolsmiths.validation.profile.example";//$NON-NLS-1$
 
 	/**
 	 * The severity attribute identifier.
@@ -57,19 +54,7 @@ public class ProfilePluginValidationTest extends AbstractPapyrusTest {
 	 * The project fixture to manage easily the project.
 	 */
 	@Rule
-	public final ProjectFixture fixture = new ProjectFixture();
-
-	/**
-	 * This allows to copy the project into the fixture project.
-	 */
-	@Before
-	public void init() {
-		try {
-			fixture.copyFolder(ProfilePluginValidationTest.class, PLUGIN_PATH);
-		} catch (IOException e) {
-			Assert.fail("Error while copying project"); //$NON-NLS-1$
-		}
-	}
+	public final ProjectFixture fixture = new TestProjectFixture();
 
 	/**
 	 * This allows to test the profile plug-in validation.

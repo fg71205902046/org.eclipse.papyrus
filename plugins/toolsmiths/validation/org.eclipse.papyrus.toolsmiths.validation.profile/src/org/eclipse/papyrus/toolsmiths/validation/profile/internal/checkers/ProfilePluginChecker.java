@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
- *   Christian W. Damus - bugs 569357, 571125
+ *   Christian W. Damus - bugs 569357, 571125, 573245
  *
  *****************************************************************************/
 
@@ -27,11 +27,8 @@ import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.BuildPropertiesChecker;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.CustomModelChecker;
@@ -42,9 +39,6 @@ import org.eclipse.papyrus.toolsmiths.validation.common.checkers.ModelValidation
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.OpaqueResourceProvider;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.OpaqueResourceProvider.ResourceKind;
 import org.eclipse.papyrus.toolsmiths.validation.common.internal.utils.PluginErrorReporter;
-import org.eclipse.papyrus.toolsmiths.validation.common.utils.MarkersService;
-import org.eclipse.papyrus.toolsmiths.validation.common.utils.PluginValidationService;
-import org.eclipse.papyrus.toolsmiths.validation.common.utils.ProjectManagementService;
 import org.eclipse.papyrus.toolsmiths.validation.profile.constants.ProfilePluginValidationConstants;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.uml2.uml.Profile;
@@ -56,55 +50,6 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class ProfilePluginChecker {
 
 	private static final Set<String> ADDITIONAL_REQUIREMENTS = Set.of("org.eclipse.uml2.uml.resources"); //$NON-NLS-1$
-
-	/**
-	 * This allows to check the profile plug-in.
-	 *
-	 * @param project
-	 *            The current project to check.
-	 * @param A
-	 *            monitor to report progress
-	 */
-	public static void checkProfilePlugin(final IProject project, IProgressMonitor monitor) {
-		final Collection<IFile> profileFiles = ProjectManagementService.getFilesFromProject(project, "profile.uml", true); //$NON-NLS-1$
-		monitor.beginTask("Validate Profile plug-in", 1 + (profileFiles.size() * 3)); // $NON-NLS-1$
-
-		monitor.subTask("Prepare plug-in validation"); //$NON-NLS-1$
-		// First of all, delete the existing markers for project
-		MarkersService.deleteMarkers(project, PROFILE_PLUGIN_VALIDATION_MARKER_TYPE);
-
-		// Create the plug-in validation service
-		final PluginValidationService pluginValidationService = new PluginValidationService();
-
-		// First, check the static dependencies needed
-		pluginValidationService.addPluginChecker(createModelDependenciesChecker(project));
-
-		// For all profile files in the plug-in
-		for (final IFile profileFile : profileFiles) {
-			if (monitor.isCanceled()) {
-				return;
-			}
-
-			// Get the resource
-			final URI profileFileURI = URI.createPlatformResourceURI(profileFile.getFullPath().toOSString(), true);
-			final Resource resource = new ResourceSetImpl().getResource(profileFileURI, true);
-
-			// Check the validation of the element types file
-			pluginValidationService.addPluginChecker(createModelValidationChecker(project, profileFile, resource));
-
-			// Check the extension point
-			pluginValidationService.addPluginChecker(createExtensionsChecker(project, profileFile, resource));
-
-			// Check the external dependencies needed
-			pluginValidationService.addPluginChecker(createModelDependenciesChecker(project, profileFile, resource));
-			pluginValidationService.addPluginChecker(createBuildPropertiesChecker(project, profileFile, resource));
-		}
-
-		monitor.worked(1);
-
-		// Call the validate
-		pluginValidationService.validate(monitor);
-	}
 
 	/**
 	 * Obtain a dependencies checker factory for the specified bundle dependencies validation.

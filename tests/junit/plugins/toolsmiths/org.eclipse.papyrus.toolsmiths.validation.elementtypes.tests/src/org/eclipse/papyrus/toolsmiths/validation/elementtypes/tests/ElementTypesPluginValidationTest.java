@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2019, 2020 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2019, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
- *   Christian W. Damus - bug 569357
+ *   Christian W. Damus - bugs 569357, 573245
  *
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.validation.elementtypes.tests;
@@ -18,11 +18,11 @@ package org.eclipse.papyrus.toolsmiths.validation.elementtypes.tests;
 import static org.eclipse.papyrus.junit.matchers.MoreMatchers.greaterThanOrEqual;
 import static org.eclipse.papyrus.junit.matchers.MoreMatchers.hasAtLeast;
 import static org.eclipse.papyrus.junit.matchers.WorkspaceMatchers.isMarkerSeverity;
+import static org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.ElementTypesPluginValidationConstants.ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE;
 import static org.hamcrest.CoreMatchers.everyItem;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,10 +33,12 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.ProjectFixture;
+import org.eclipse.papyrus.toolsmiths.validation.common.tests.rules.MarkerType;
+import org.eclipse.papyrus.toolsmiths.validation.common.tests.rules.TestProject;
+import org.eclipse.papyrus.toolsmiths.validation.common.tests.rules.TestProjectFixture;
 import org.eclipse.papyrus.toolsmiths.validation.elementtypes.checkers.ElementTypesPluginCheckerService;
 import org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.ElementTypesPluginValidationConstants;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -44,30 +46,16 @@ import org.junit.Test;
  * This class allows to test the profile plug-in validation.
  * This will check the markers resulting from a failing profile plug-in definition.
  */
+@TestProject("org.eclipse.papyrus.toolsmiths.validation.elementtypes.example")
+@MarkerType(ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE)
+@SuppressWarnings("removal")
 public class ElementTypesPluginValidationTest extends AbstractPapyrusTest {
-
-	/**
-	 * The plug-in path to copy into the project fixture
-	 */
-	private static final String PLUGIN_PATH = "resources/org.eclipse.papyrus.toolsmiths.validation.elementtypes.example";//$NON-NLS-1$
 
 	/**
 	 * The project fixture to manage easily the project.
 	 */
 	@Rule
-	public final ProjectFixture fixture = new ProjectFixture();
-
-	/**
-	 * This allows to copy the project into the fixture project.
-	 */
-	@Before
-	public void init() {
-		try {
-			fixture.copyFolder(ElementTypesPluginValidationTest.class, PLUGIN_PATH);
-		} catch (IOException e) {
-			Assert.fail("Error while copying project"); //$NON-NLS-1$
-		}
-	}
+	public final ProjectFixture fixture = new TestProjectFixture();
 
 	/**
 	 * This allows to test the profile plug-in validation.

@@ -2,7 +2,7 @@
 <?eclipse version="3.0"?>
 
 <!--
- Copyright (c) 2019 CEA LIST.
+ Copyright (c) 2019, 2021 CEA LIST and others.
  
   All rights reserved. This program and the accompanying materials
   are made available under the terms of the Eclipse Public License 2.0
@@ -13,54 +13,11 @@
  
  Contributors:
    Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
+   Christian W. Damus - bug 573245
  
 -->
 
 <plugin>
-   <extension
-         point="org.eclipse.ui.menus">
-      <menuContribution
-            allPopups="false"
-            locationURI="popup:org.eclipse.papyrus.dev.ui.menu?after=additions">
-         <command
-               commandId="org.eclipse.papyrus.toolsmiths.validation.architecture.validateCommand"
-               label="%cmd.validate.label"
-               style="push"
-               tooltip="%cmd.validate.tooltip">
-            <visibleWhen
-                  checkEnabled="false">
-               <with
-                     variable="selection">
-                  <iterate>
-                     <test
-                           forcePluginActivation="true"
-                           property="org.eclipse.papyrus.toolsmiths.validation.architecture.canValidateArchitecturePlugin"
-                           value="true">
-                     </test>
-                  </iterate>
-               </with>
-            </visibleWhen>
-         </command>
-      </menuContribution>
-   </extension>
-   <extension
-         point="org.eclipse.ui.commands">
-      <command
-            defaultHandler="org.eclipse.papyrus.toolsmiths.validation.architecture.internal.handlers.ValidateArchitecturePluginHandler"
-            id="org.eclipse.papyrus.toolsmiths.validation.architecture.validateCommand"
-            name="%cmd.validate.name">
-      </command>
-   </extension>
-   <extension
-         point="org.eclipse.core.expressions.propertyTesters">
-      <propertyTester
-            class="org.eclipse.papyrus.toolsmiths.validation.architecture.internal.testers.ValidateArchitecturePluginTester"
-            id="org.eclipse.papyrus.toolsmiths.validation.architecture.canValidateArchitecturePlugin"
-            namespace="org.eclipse.papyrus.toolsmiths.validation.architecture"
-            properties="canValidateArchitecturePlugin"
-            type="org.eclipse.core.resources.IProject">
-      </propertyTester>
-   </extension>
    <extension
          id="diagnostic"
          name="%marker.name"

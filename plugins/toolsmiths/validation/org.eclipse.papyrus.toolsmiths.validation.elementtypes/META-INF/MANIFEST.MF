@@ -1,6 +1,5 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.core.expressions;bundle-version="[3.6.0,4.0.0)",
- org.eclipse.emf.databinding;bundle-version="[1.5.0,2.0.0)",
+Require-Bundle: org.eclipse.emf.databinding;bundle-version="[1.5.0,2.0.0)",
  org.eclipse.emf.edit.ui;bundle-version="[2.18.0,3.0.0)",
  org.eclipse.gmf.runtime.emf.type.core;bundle-version="[1.9.0,2.0.0)",
  org.eclipse.papyrus.infra.core.log;bundle-version="[2.0.0,3.0.0)",
@@ -14,7 +13,6 @@ Require-Bundle: org.eclipse.core.expressions;bundle-version="[3.6.0,4.0.0)",
  org.eclipse.papyrus.infra.core;bundle-version="[4.0.0,5.0.0)",
  org.eclipse.papyrus.emf;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.infra.emf;bundle-version="[4.0.0,5.0.0)",
- org.eclipse.papyrus.uml.architecture;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.infra.emf.types;bundle-version="[5.0.0,6.0.0)",
  org.eclipse.papyrus.infra.services.edit;bundle-version="[4.0.0,5.0.0)",
  org.eclipse.ui.ide;bundle-version="[3.18.0,4.0.0)",
@@ -25,14 +23,12 @@ Export-Package: org.eclipse.papyrus.toolsmiths.validation.elementtypes,
  org.eclipse.papyrus.toolsmiths.validation.elementtypes.checkers,
  org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants,
  org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.checkers;x-internal:=true,
- org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.handlers;x-internal:=true,
  org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.messages;x-internal:=true,
- org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.quickfix;x-internal:=true,
- org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.testers;x-internal:=true
+ org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.quickfix;x-internal:=true
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Version: 2.0.0.qualifier
+Bundle-Version: 2.1.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.toolsmiths.validation.elementtypes.Activator

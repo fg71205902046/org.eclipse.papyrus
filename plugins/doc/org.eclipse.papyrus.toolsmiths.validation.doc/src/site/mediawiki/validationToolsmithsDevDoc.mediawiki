@@ -6,38 +6,16 @@ Papyrus provides for validation of tooling models for DSML and other customizati
 * Validation of '''architecture domain''' models
 * Validation of '''element creation menu''' models
 
-Validation is provided on-demand via the '''Papyrus Developer''' context menu and optionally also as a project builder.
+Validation is provided as a project builder that is optionally enabled by the user.
 
 ==Papyrus Plug-in Builder==
 
 To enable automatic validation of tooling models in your customization plug-ins, configure the '''Papyrus Plug-in''' nature on
-your customization plug-in projects. In the context menu for your project, select the '''Configure &rarr; COnvert to Papyrus Plugin''' action:
+your customization plug-in projects. In the context menu for your project, select the '''Configure &rarr; Convert to Papyrus Plugin''' action:
 
 [[File:images/devDoc/Papyrus_ConfigurePluginNature.png|frame|none|Configure the Papyrus Plug-in project nature]]
 
 What is checked by the builder depends on settings in the '''Preferences'''. By default, the '''Papyrus Plug-in Builder''' performs no validation.
-To configure it, open the '''
-
-==Profile Plug-in Validation==
-
-All checks described in this section apply equally to on-demand validation via the context menu and
-automatic validation by the '''Papyrus Plug-in Builder'''.
-
-===What is checked?===
-To validate a profile plug-in, we have some points to check. Here are the checked points:
-* For each profile found in the plug-in:
-** Validation of the profile definition into the 'plugin.xml' file: '''ERROR''' (for 'generated_package' extension) and '''WARNING''' (for 'UMLProfile' extension)
-** Validate that the profile has no definition because it's not working with static profile: '''ERROR'''
-** Validation of the dependencies needed in the 'MANIFEST.MF' file for the external dependencies of the profile file: '''WARNING''' (because maybe the dependency is not really needed (implicit dependence?))
-** Validation of the 'build.properties' file (it must contain the profile file): '''ERROR'''
-
-===How to do it?===
-When you create a plug-in containing a profile, you can validate this one with the validation toolsmiths.
-To do this, select the project, then ''''Papyrus Developer''''>''''Validate Profile plug-in'''':
-
-[[File:images/devDoc/Papyrus_ValidationProfileMenu.png|frame|none|Menu to validate profile plug-in]]
-
-When you do a validation, the result of old profile plug-in validation are clean and the current problems are displayed in the corresponding view.
 
 [[File:images/devDoc/Papyrus_PluginBuilderPreferences.png|frame|none|Papyrus plug-in builder preferences]]
 
@@ -51,6 +29,18 @@ There are a number of options available to enable:
 ** check for the anti-pattern of dependency re-exports
 ** check for the recommended practice of constraining bundle dependencies with compatible version ranges
 
+==Profile Plug-in Validation==
+
+This section describes the validation checks performed by the '''Papyrus Plug-in Builder''' on ''UML Profiles''.
+
+===What is checked?===
+To validate a profile plug-in, we have some points to check. Here are the checked points:
+* For each profile found in the plug-in:
+** Validation of the profile definition into the 'plugin.xml' file: '''ERROR''' (for 'generated_package' extension) and '''WARNING''' (for 'UMLProfile' extension)
+** Validate that the profile has no definition because it's not working with static profile: '''ERROR'''
+** Validation of the dependencies needed in the 'MANIFEST.MF' file for the external dependencies of the profile file: '''WARNING''' (because maybe the dependency is not really needed (implicit dependence?))
+** Validation of the 'build.properties' file (it must contain the profile file): '''ERROR'''
+
 ===Where to find the result?===
 The result is display in the ''''Problems'''' view and are categorized by the type ''''Papyrus Toolsmiths Profile Plug-in problems''''.
 
@@ -59,6 +49,9 @@ The result is display in the ''''Problems'''' view and are categorized by the ty
 Like others problems, you can double-click on one to open the concerning file. You can delete problem too when you think it is managed.
 
 ==Element Types Plug-in Validation==
+
+This section describes the validation checks performed by the '''Papyrus Plug-in Builder''' on ''Element Types Configurations''.
+
 ===What is checked?===
 Several validation rules are checked for any plug-in project that contains Element Types Configuration models, including:
 * Bundle manifest dependencies on core element-types framework bundles: '''WARNING'''
@@ -102,14 +95,6 @@ tooling validation mechanisms described in this documentation. Other intrinsic m
 for element types configurations are checked by the editor; they are described in the documentation of the
 ''Element Types Configurations'' model.
 
-===How to do it?===
-When you create a plug-in containing an element types file, you can validate this one with the validation toolsmiths.
-To do this, select the project, then ''''Papyrus Developer''''>''''Validate Element Types Plug-in'''':
-
-[[File:images/devDoc/Papyrus_ValidationElementTypesMenu.png|frame|none|Menu to validate element types plug-in]]
-
-When you do a validation, the results of a previous element types plug-in validation are cleaned and the current problems are displayed in the ''''Problems'''' view.
-
 ===Where to find the result?===
 The result is displayed in the ''''Problems'''' view and are categorized by the type ''''Papyrus Toolsmiths Element Types Plug-in Problem''''.
 
@@ -118,6 +103,9 @@ The result is displayed in the ''''Problems'''' view and are categorized by the 
 Like others problems, you can double-click on one to open the relevant file. You may delete a problem that you think is resolved, but if it is not, then it will be presented again by the next validation.
 
 ==Architecture Plug-in Validation==
+
+This section describes the validation checks performed by the '''Papyrus Plug-in Builder''' on ''Architecture Models''.
+
 ===What is checked?===
 Several validation rules are checked for any plug-in project that contains Architecture Context models, including:
 * Bundle manifest dependencies on core Architecture Framework bundles: '''WARNING'''
@@ -145,14 +133,6 @@ depend on the deployment of dependent resources in tooling bundles. Therefore, t
 tooling validation mechanisms described in this documentation. Other intrinsic model well-formedness constraints
 for architecture contexts are checked by the editor; they are described in the documentation of the
 ''Architecture Context'' model.
-
-===How to do it?===
-When you create a plug-in containing an architecture definition, you can validate this one with the validation toolsmiths.
-To do this, select the project, then ''''Papyrus Developer''''>''''Validate Architecture Plug-in'''':
-
-[[File:images/devDoc/Papyrus_ValidationArchitectureMenu.png|frame|none|Menu to validate architecture plug-in]]
-
-When you do a validation, the results of a previous architecture plug-in validation are cleaned and the current problems are displayed in the ''''Problems'''' view.
 
 ===Where to find the result?===
 The result is displayed in the ''''Problems'''' view and are categorized by the type ''''Papyrus Toolsmiths Architecture Plug-in Problem''''.

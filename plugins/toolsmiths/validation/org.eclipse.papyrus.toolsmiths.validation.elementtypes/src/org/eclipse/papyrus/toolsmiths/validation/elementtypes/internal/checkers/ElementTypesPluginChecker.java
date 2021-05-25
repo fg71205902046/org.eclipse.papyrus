@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
- *   Christian W. Damus - bugs 569357, 570097, 571125
+ *   Christian W. Damus - bugs 569357, 570097, 571125, 573245
  *
  *****************************************************************************/
 
@@ -27,11 +27,8 @@ import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
@@ -44,11 +41,6 @@ import org.eclipse.papyrus.toolsmiths.validation.common.checkers.ModelValidation
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.OpaqueResourceProvider;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.OpaqueResourceProvider.ResourceKind;
 import org.eclipse.papyrus.toolsmiths.validation.common.internal.utils.PluginErrorReporter;
-import org.eclipse.papyrus.toolsmiths.validation.common.utils.MarkersService;
-import org.eclipse.papyrus.toolsmiths.validation.common.utils.PluginValidationService;
-import org.eclipse.papyrus.toolsmiths.validation.common.utils.ProjectManagementService;
-import org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.ElementTypesPluginValidationConstants;
-import org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.messages.Messages;
 import org.eclipse.papyrus.uml.types.core.advices.applystereotype.ApplyStereotypeAdvicePackage;
 import org.eclipse.papyrus.uml.types.core.advices.stereotypepropertyreferenceedgeadvice.StereotypePropertyReferenceEdgeAdvicePackage;
 import org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeApplicationMatcherPackage;
@@ -73,55 +65,6 @@ public class ElementTypesPluginChecker {
 			"org.eclipse.papyrus.infra.types.core", //$NON-NLS-1$
 			"org.eclipse.papyrus.infra.types" //$NON-NLS-1$
 	);
-
-	/**
-	 * This allows to check the element types plug-in.
-	 *
-	 * @param project
-	 *            The current project to check.
-	 * @param A
-	 *            monitor to report progress
-	 */
-	public static void checkElementTypesPlugin(final IProject project, IProgressMonitor monitor) {
-		// Open the progress monitor dialog
-		final Collection<IFile> elementTypesFiles = ProjectManagementService.getFilesFromProject(project, ELEMENT_TYPES_CONFIGURATION_EXTENSION, true);
-		monitor.beginTask(Messages.ElementTypesPluginChecker_0, 1 + (elementTypesFiles.size() * 3));
-
-		monitor.subTask(Messages.ElementTypesPluginChecker_1);
-		// First of all, delete the existing markers for project
-		MarkersService.deleteMarkers(project, ElementTypesPluginValidationConstants.ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE);
-
-		// Create the plug-in validation service
-		final PluginValidationService pluginValidationService = new PluginValidationService();
-
-		// First, check the static dependencies needed
-		pluginValidationService.addPluginChecker(createModelDependenciesChecker(project));
-
-		// For all element types files in the plug-in
-		for (final IFile elementTypesFile : elementTypesFiles) {
-			if (monitor.isCanceled()) {
-				return;
-			}
-
-			// Get the resource
-			final URI elementTypesFileURI = URI.createPlatformResourceURI(elementTypesFile.getFullPath().toOSString(), true);
-			final Resource resource = new ResourceSetImpl().getResource(elementTypesFileURI, true);
-
-			// Check the validation of the element types file
-			pluginValidationService.addPluginChecker(createModelValidationChecker(project, elementTypesFile, resource));
-
-			// Check the extension point
-			pluginValidationService.addPluginChecker(createExtensionsChecker(project, elementTypesFile, resource));
-
-			// Check the external dependencies needed
-			pluginValidationService.addPluginChecker(createModelDependenciesChecker(project, elementTypesFile, resource));
-		}
-
-		monitor.worked(1);
-
-		// Call the validate
-		pluginValidationService.validate(monitor);
-	}
 
 	/**
 	 * Obtain a dependencies checker factory for the specified bundle dependencies validation.

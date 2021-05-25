@@ -7,8 +7,12 @@ Code instruction: - org.eclipse.papyrus.toolsmiths.validation.profile/src/org/ec
 - org.eclipse.papyrus.toolsmiths.validation.profile/src/org/eclipse/papyrus/toolsmiths/validation/profile/testers/ValidateProfilePluginTester.java
 - org.eclipse.papyrus.toolsmiths.validation.profile/plugin.xml
 
+** This requirement is rescinded by bug 573245. cf. https://eclip.se/573245
+
 Requirement: Req_Validation_Dialog_ProfileValidation_002: During the validation, a progress monitor must be opened with correct explanations
 Code instruction: - org.eclipse.papyrus.toolsmiths.validation.profile/src/org/eclipse/papyrus/toolsmiths/validation/profile/handlers/ValidateProfilePluginHandler.java
+
+** This requirement is rescinded by bug 573245. cf. https://eclip.se/573245
 
 # General Technical Requirements
 Requirement: ReqTechnical_Extensions_Checker_ProfileValidation_001: A checker for the extensions must be implemented
