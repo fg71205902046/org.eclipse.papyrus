@@ -25,10 +25,14 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.core.architecture.ADElement;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureContext;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureDomain;
@@ -38,10 +42,13 @@ import org.eclipse.papyrus.infra.core.architecture.Concern;
 import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
 import org.eclipse.papyrus.infra.core.architecture.Stakeholder;
 import org.eclipse.papyrus.infra.core.architecture.util.ArchitectureSwitch;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.infra.types.core.extensionpoints.IElementTypeSetExtensionPoint;
+import org.eclipse.papyrus.toolsmiths.validation.architecture.constants.ArchitecturePluginValidationConstants;
 import org.eclipse.papyrus.toolsmiths.validation.architecture.internal.messages.Messages;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.CustomModelChecker;
+import org.eclipse.papyrus.toolsmiths.validation.common.checkers.IPluginChecker2;
 import org.eclipse.papyrus.toolsmiths.validation.common.internal.utils.ArchitectureIndex;
 import org.eclipse.pde.core.plugin.IPluginElement;
 
@@ -69,6 +76,9 @@ public class ArchitectureCustomValidator extends CustomModelChecker.SwitchValida
 	public void validate(ArchitectureContext architecture, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (architecture.getId() != null) { // Missing ID is reported separately
 			architecture.getElementTypes().forEach(typeSet -> validateElementTypesContextID(architecture, typeSet, diagnostics, context));
+		}
+		if (!architecture.isExtension()) {
+			validateContextHasRepresentationsAdvice(architecture, diagnostics, context);
 		}
 	}
 
@@ -149,6 +159,44 @@ public class ArchitectureCustomValidator extends CustomModelChecker.SwitchValida
 
 	boolean hasExtensions(ArchitectureContext context) {
 		return ArchitectureIndex.getInstance().isReferenced(context, ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__EXTENDED_CONTEXTS);
+	}
+
+	/**
+	 * Check whether an {@code architecture} references the <em>Element Types Configurations</em> model that provides the
+	 * representations advice, whether itself, or by inheritance or extension.
+	 */
+	void validateContextHasRepresentationsAdvice(ArchitectureContext architecture, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		boolean hasAdvice = hasRepresentationsAdvice(architecture);
+		if (!hasAdvice && architecture.getGeneralContext() != null) {
+			// Does not need to be recursive because extension content is not inherited
+			hasAdvice = architecture.allGeneralContexts().stream().anyMatch(this::hasRepresentationsAdvice);
+		}
+		if (!hasAdvice && hasExtensions(architecture)) {
+			hasAdvice = ArchitectureIndex.getInstance().getAllExtensions(architecture).stream().anyMatch(this::hasOrInheritsRepresentationsAdvice);
+		}
+
+		if (!hasAdvice) {
+			diagnostics.add(createDiagnostic(Diagnostic.WARNING, architecture, ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__ELEMENT_TYPES,
+					format(Messages.ArchitectureCustomValidator_0, context, architecture),
+					IPluginChecker2.problem(ArchitecturePluginValidationConstants.MISSING_REPRESENTATIONS_ADVICE_ID)));
+		}
+	}
+
+	private boolean hasOrInheritsRepresentationsAdvice(ArchitectureContext architecture) {
+		boolean result = hasRepresentationsAdvice(architecture);
+		if (!result && architecture.getGeneralContext() != null) {
+			result = architecture.allGeneralContexts().stream().anyMatch(this::hasRepresentationsAdvice);
+		}
+		return result;
+	}
+
+	private boolean hasRepresentationsAdvice(ArchitectureContext architecture) {
+		URIConverter converter = EMFHelper.getResourceSet(architecture).getURIConverter();
+		URI normalized = converter.normalize(ArchitecturePluginValidationConstants.REPRESENTATIONS_ADVICE_URI);
+
+		@SuppressWarnings("unchecked")
+		EList<? extends EObject> representations = (EList<? extends EObject>) architecture.eGet(ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__ELEMENT_TYPES, false);
+		return representations.stream().map(EcoreUtil::getURI).map(URI::trimFragment).map(converter::normalize).anyMatch(normalized::equals);
 	}
 
 	//

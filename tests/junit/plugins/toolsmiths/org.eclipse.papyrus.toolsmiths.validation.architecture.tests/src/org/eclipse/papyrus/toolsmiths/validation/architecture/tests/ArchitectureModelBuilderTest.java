@@ -231,6 +231,65 @@ public class ArchitectureModelBuilderTest extends AbstractPapyrusTest {
 
 			assertThat(modelMarkers, not(hasItem(isMarkerMessage(containsString("will be merged implicitly"))))); //$NON-NLS-1$
 		}
+
+		/**
+		 * Test that validation reports a warning for an architecture context that does not
+		 * reference the <em>Element Types Set Configuration</em> defining the representations advice.
+		 *
+		 * @see <a href="https://eclip.se/573788">bug 573788</a>
+		 */
+		@OverlayFile(value = "bug573788-models/BookStore-noRepresentationsAdvice.architecture", path = "resources/BookStore.architecture")
+		@Test
+		public void representationsAdviceNotIncluded() {
+			List<IMarker> modelMarkers = fixture.getMarkers("resources/BookStore.architecture"); //$NON-NLS-1$
+
+			assertThat(modelMarkers, hasItem(both(isMarkerSeverity(IMarker.SEVERITY_WARNING)).and(
+					isMarkerMessage(containsString("Representations Advice")))));
+		}
+
+		/**
+		 * Test that validation does not report a warning for an architecture context that does not
+		 * have the <em>Element Types Set Configuration</em> defining the representations advice
+		 * by any mechanism when the context in question is an extension context.
+		 *
+		 * @see <a href="https://eclip.se/573788">bug 573788</a>
+		 */
+		@OverlayFile(value = "bug573788-models/BookStore-noRepresentationsAdvice-extension.architecture", path = "resources/BookStore.architecture")
+		@Test
+		public void representationsAdviceNotIncluded_extension() {
+			List<IMarker> modelMarkers = fixture.getMarkers("resources/BookStore.architecture"); //$NON-NLS-1$
+
+			assertThat(modelMarkers, not(hasItem(isMarkerMessage(containsString("Representations Advice"))))); //$NON-NLS-1$
+		}
+
+		/**
+		 * Test that validation does not report a warning for an architecture context that inherits a
+		 * reference the <em>Element Types Set Configuration</em> defining the representations advice.
+		 *
+		 * @see <a href="https://eclip.se/573788">bug 573788</a>
+		 */
+		@OverlayFile(value = "bug573788-models/BookStore-representationsAdviceInherited.architecture", path = "resources/BookStore.architecture")
+		@Test
+		public void representationsAdvice_inherited() {
+			List<IMarker> modelMarkers = fixture.getMarkers("resources/BookStore.architecture"); //$NON-NLS-1$
+
+			assertThat(modelMarkers, not(hasItem(isMarkerMessage(containsString("Representations Advice"))))); //$NON-NLS-1$
+		}
+
+		/**
+		 * Test that validation reports a warning for an architecture context that has a
+		 * reference to the <em>Element Types Set Configuration</em> defining the representations
+		 * advice contributed by an extension.
+		 *
+		 * @see <a href="https://eclip.se/573788">bug 573788</a>
+		 */
+		@OverlayFile(value = "bug573788-models/BookStore-representationsAdviceByExtension.architecture", path = "resources/BookStore.architecture")
+		@Test
+		public void representationsAdvice_byExtension() {
+			List<IMarker> modelMarkers = fixture.getMarkers("resources/BookStore.architecture"); //$NON-NLS-1$
+
+			assertThat(modelMarkers, not(hasItem(isMarkerMessage(containsString("Representations Advice"))))); //$NON-NLS-1$
+		}
 	}
 
 }

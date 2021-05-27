@@ -2,6 +2,7 @@ Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.infra.viewpoints.configuration,
  org.eclipse.papyrus.infra.viewpoints.configuration.impl,
  org.eclipse.papyrus.infra.viewpoints.configuration.util,
+ org.eclipse.papyrus.infra.viewpoints.internal.policy.advice;x-internal:=true,
  org.eclipse.papyrus.infra.viewpoints.policy,
  org.eclipse.papyrus.infra.viewpoints.policy.providers,
  org.eclipse.papyrus.infra.viewpoints.policy.query,

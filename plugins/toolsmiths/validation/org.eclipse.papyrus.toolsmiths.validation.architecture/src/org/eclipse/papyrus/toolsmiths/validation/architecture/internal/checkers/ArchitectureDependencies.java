@@ -94,7 +94,7 @@ class ArchitectureDependencies {
 			bundleName = Optional.empty();
 		}
 
-		return URI.createURI(String.format("bundleclass://%s/%s", bundleName.orElse(hostBundle), className));
+		return URI.createURI(String.format("bundleclass://%s/%s", bundleName.orElse(hostBundle), className)); //$NON-NLS-1$
 	}
 
 }
