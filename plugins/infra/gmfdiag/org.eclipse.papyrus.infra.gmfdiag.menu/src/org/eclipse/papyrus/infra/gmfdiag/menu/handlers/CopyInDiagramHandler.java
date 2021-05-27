@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST and others.
+ * Copyright (c) 2014, 2021 CEA LIST and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -12,7 +12,9 @@
  * Contributors:
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 430701
- *	Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net  - bug 441318, bug 455305 
+ *	Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net  - bug 441318, bug 455305
+ *  Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr - bug 573807
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.menu.handlers;
 
@@ -159,7 +161,7 @@ public class CopyInDiagramHandler extends AbstractGraphicalCommandHandler {
 		Control focusControl = null;
 		if (activeShell instanceof Shell) {
 			Shell shell = (Shell) activeShell;
-			Display display = shell.getDisplay();
+			Display display = !shell.isDisposed() ? shell.getDisplay() : null;
 			if (display != null) {
 				focusControl = display.getFocusControl();
 			}
@@ -176,7 +178,7 @@ public class CopyInDiagramHandler extends AbstractGraphicalCommandHandler {
 
 	/**
 	 * Papyrus implementation of {@link CopyImageCommand}.
-	 * 
+	 *
 	 * <p>
 	 * Bug 441318 :<br/>
 	 * Fix override {@link CopyImageCommand} to permit Undo. This workaround is used by GMF.
