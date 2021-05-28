@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2011, 2016, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,9 +10,9 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Vincent Lorenzot (CEA-LIST) vincent.lorenzo@cea.fr
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr
  *  Christian W. Damus - bug 485220
- *  
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 571814
  *****************************************************************************/
 package org.eclipse.papyrus.eclipse.project.editors.project;
 
@@ -93,7 +93,7 @@ public class PluginProjectEditor extends ProjectEditor implements IPluginProject
 			DocumentBuilder documentBuilder;
 			try {
 				documentBuilder = documentFactory.newDocumentBuilder();
-				this.pluginXML = documentBuilder.parse(this.pluginFile.getLocation().toOSString());
+				this.pluginXML = documentBuilder.parse(this.pluginFile.getLocation().toFile());
 				this.pluginRoot = this.pluginXML.getDocumentElement();
 			} catch (ParserConfigurationException e) {
 				Activator.log.error(e);
@@ -152,13 +152,13 @@ public class PluginProjectEditor extends ProjectEditor implements IPluginProject
 	 * @param extensionPoint
 	 *            the name of an extension point
 	 * @return
-	 * 		the list of the registered extension with this extension point
+	 *         the list of the registered extension with this extension point
 	 */
 	@Override
 	public List<Node> getExtensions(final String extensionPoint) {
 		if (exists()) {
 			NodeList nodes = this.pluginRoot.getChildNodes();
-			List<Node> extensions = new ArrayList<Node>();
+			List<Node> extensions = new ArrayList<>();
 			for (int i = 0; i < nodes.getLength(); i++) {
 				Node item = nodes.item(i);
 				if (item instanceof NodeList) {

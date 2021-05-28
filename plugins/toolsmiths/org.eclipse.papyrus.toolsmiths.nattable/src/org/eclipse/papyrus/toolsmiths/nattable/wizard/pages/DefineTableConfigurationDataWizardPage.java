@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2019 CEA LIST and others.
+ * Copyright (c) 2019, 2021 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 571814
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.nattable.wizard.pages;
 
@@ -118,6 +118,7 @@ public class DefineTableConfigurationDataWizardPage extends AbstractExportTableA
 		this.tableNameField.setLayoutData(new GridData(GridData.FILL, SWT.FILL, true, false));
 		this.tableNameField.addModifyListener(this);
 
+
 		final Label tableTypeLabel = new Label(outputGroup, SWT.NONE);
 		tableTypeLabel.setText(Messages.DefineTableConfigurationDataWizardPage_DefineTableType);
 		tableTypeLabel.setLayoutData(new GridData(GridData.FILL, SWT.FILL, true, false));
@@ -156,7 +157,7 @@ public class DefineTableConfigurationDataWizardPage extends AbstractExportTableA
 	 *         the initial name proposed in the wizard
 	 */
 	private String buildNewTableName() {
-		return null != getExportedTable().getName() ? getExportedTable().getName() : ""; //$NON-NLS-1$
+		return null != getExportedTable().getName() ? getExportedTable().getName().replaceAll("\\s+", "") : ""; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
 	/**
@@ -213,6 +214,8 @@ public class DefineTableConfigurationDataWizardPage extends AbstractExportTableA
 			if (DefineTableConfigurationDataWizardPage.forbiddenIDs.contains(this.newTableType)) {
 				res = false;
 				setErrorMessage(Messages.DefineTableConfigurationDataWizardPage_TableTypeAlreadyExists);
+			} else if (this.newTableType != null && this.newTableType.contains(" ")) { //$NON-NLS-1$
+				setErrorMessage("The type field must not contains space."); //$NON-NLS-1$
 			}
 		} else {
 			setErrorMessage(Messages.DefineTableConfigurationDataWizardPage_PleaseSetAType);
@@ -328,4 +331,5 @@ public class DefineTableConfigurationDataWizardPage extends AbstractExportTableA
 	public String getFileName() {
 		return getNewTableType();
 	}
+
 }
