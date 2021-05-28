@@ -136,6 +136,13 @@ public class PapyrusGMFExtensionMigrator extends GenExtensionSwitch<Boolean> {
 	public Boolean caseExtendedGenView(ExtendedGenView extendedGenView) {
 		EList<GenCommonBase> extendedElements = extendedGenView.getGenView();
 		for (GenCommonBase extendedElement : extendedElements) {
+			final String superOwnedEditPart = extendedGenView.getSuperOwnedEditPart();
+			if (extendedElement instanceof GenChildLabelNode && "org.eclipse.papyrus.uml.diagram.common.editparts.UMLCompartmentEditPart".equals(superOwnedEditPart)) { //$NON-NLS-1$
+				extendedElement.setSuperEditPart("org.eclipse.papyrus.uml.diagram.common.editparts.AbstractCompartmentEditPart"); //$NON-NLS-1$
+			}else if(extendedElement instanceof GenCompartment && "org.eclipse.papyrus.infra.gmfdiag.common.editpart.ResizeableListCompartmentEditPart".equals(superOwnedEditPart)) { //$NON-NLS-1$
+				extendedElement.setSuperEditPart("org.eclipse.papyrus.uml.diagram.common.editparts.AbstractResizableCompartmentEditPart"); //$NON-NLS-1$
+			}
+			
 			if (extendedElement.getSuperEditPart() == null && extendedGenView.getSuperOwnedEditPart() != null && !extendedGenView.getSuperOwnedEditPart().isBlank()) {
 				// first non null extension win (old behavior)
 				// migrate extended attributes

@@ -146,6 +146,8 @@ import xpt.Common
 	//  - Common generated methods from UMLCompartmentEditPart 
 	//  - moved to intermediate class AbstractCompartmentEditPart
 	def boolean isCommonUmlCompartment(GenChildLabelNode it) {
-		return superEditPart === null || 'org.eclipse.papyrus.uml.diagram.common.editparts.UMLCompartmentEditPart' == superEditPart
+		return superEditPart === null 
+		|| 'org.eclipse.papyrus.uml.diagram.common.editparts.AbstractCompartmentEditPart' == superEditPart
+		|| 'org.eclipse.papyrus.uml.diagram.common.editparts.UMLCompartmentEditPart' == superEditPart
 	}
 }
