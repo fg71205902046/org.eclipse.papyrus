@@ -59,9 +59,7 @@ import xpt.diagram.editparts.Utils_qvto
 	'''
 
 	def extendsList(GenCompartment it) '''
-		«IF commonResizableCompartment»
-			extends org.eclipse.papyrus.uml.diagram.common.editparts.AbstractResizableCompartmentEditPart
-		«ELSEIF superEditPart!== null»
+		«IF superEditPart!== null»
 			extends «superEditPart»
 		«ELSE»
 			extends «IF listLayout»org.eclipse.papyrus.uml.diagram.common.editparts.AbstractListCompartmentEditPart«ELSE»org.eclipse.papyrus.uml.diagram.common.editparts.AbstractShapeCompartmentEditPart«ENDIF»
@@ -138,5 +136,6 @@ import xpt.diagram.editparts.Utils_qvto
 	//  - moved to intermediate class AbstractResizableCompartmentEditPart
 	def boolean isCommonResizableCompartment(GenCompartment node) {
 		return 'org.eclipse.papyrus.infra.gmfdiag.common.editpart.ResizeableListCompartmentEditPart' == node.superEditPart
+		|| 'org.eclipse.papyrus.uml.diagram.common.editparts.AbstractResizableCompartmentEditPart' == node.superEditPart
 	}
 }
