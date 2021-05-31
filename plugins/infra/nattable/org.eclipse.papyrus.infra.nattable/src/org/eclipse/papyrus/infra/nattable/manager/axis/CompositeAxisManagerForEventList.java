@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2016 CEA LIST, Esterel Technologies SAS and others.
+ * Copyright (c) 2014, 2016, 2021 CEA LIST, Esterel Technologies SAS and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,6 +11,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Sebastien Bordes (Esterel Technologies SAS) - Bug 497738
+ *   Asma SMAOUI (CEA LIST) - Bug 573839
  *
  *****************************************************************************/
 
@@ -104,6 +105,10 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 		if (null != getTableEditingDomain()) {
 			getTableEditingDomain().addResourceSetListener(this.resourceSetListener);
 		}
+		// to be able to update the table when the table is in the properties view
+		if (getContextEditingDomain() != null && getTableEditingDomain() != getContextEditingDomain()) {
+			getContextEditingDomain().addResourceSetListener(this.resourceSetListener);
+		}
 	}
 
 
@@ -171,6 +176,9 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 	protected void removeListeners() {
 		if (null != getTableEditingDomain() && null != resourceSetListener) {
 			getTableEditingDomain().removeResourceSetListener(this.resourceSetListener);
+		}
+		if (getContextEditingDomain() != null && this.resourceSetListener != null && getTableEditingDomain() != getContextEditingDomain()) {
+			getContextEditingDomain().removeResourceSetListener(this.resourceSetListener);
 		}
 		this.resourceSetListener = null;
 		super.removeListeners();
