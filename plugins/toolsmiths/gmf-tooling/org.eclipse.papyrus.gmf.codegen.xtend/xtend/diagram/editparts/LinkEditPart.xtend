@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2006, 2009, 2013, 2021 Borland Software Corporation, CEA LIST, Artal and others
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -19,9 +19,11 @@ package diagram.editparts
 import com.google.inject.Inject
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink
 import xpt.Common
+import xpt.CodeStyle
 
 @com.google.inject.Singleton class LinkEditPart {
 	@Inject extension Common;
+	@Inject extension CodeStyle;
 
 	@Inject impl.diagram.editparts.LinkEditPart xptLinkEditPart;
 	@Inject xpt.diagram.editparts.Common xptEditpartsCommon;
@@ -32,29 +34,21 @@ import xpt.Common
 
 	def Main(GenLink it) '''
 	«copyright(getDiagram().editorGen)»
-		package «xptLinkEditPart.packageName(it)»;
+	package «xptLinkEditPart.packageName(it)»;
+
+	«generatedClassComment»
+	public class «xptLinkEditPart.className(it)» «extendsList(it)» «implementsList(it)» {
+
+		«attributes(it)»
 		
-		«generatedClassComment»
-		public class «xptLinkEditPart.className(it)» «extendsList(it)» «implementsList(it)» {
-		
-			«attributes(it)»
-			
-			«xptLinkEditPart.constructor(it)»
-			
-			«createDefaultEditPolicies(it)»
-		
-			«xptLinkEditPart.addFixedChild(it)»
-		
-			«xptLinkEditPart.addChildVisual(it)»
-		
-			«xptLinkEditPart.removeFixedChild(it)»
-		
-			«xptLinkEditPart.removeChildVisual(it)»
-			
-			«xptLinkEditPart.createLinkFigure(it)»
-			
-			«additions(it)»
-		}
+		«xptLinkEditPart.constructor(it)»
+		«createDefaultEditPolicies(it)»
+		«xptLinkEditPart.addFixedChild(it)»
+		«xptLinkEditPart.addChildVisual(it)»
+		«xptLinkEditPart.removeFixedChild(it)»
+		«xptLinkEditPart.removeChildVisual(it)»
+		«xptLinkEditPart.createLinkFigure(it)»
+	}
 	'''
 
 	def extendsList(GenLink it) '''extends «xptLinkEditPart.extendsListContents(it)»'''
@@ -69,10 +63,9 @@ import xpt.Common
 
 	def createDefaultEditPolicies(GenLink it) '''
 		«generatedMemberComment»
+		«overrideC»
 		protected void createDefaultEditPolicies() {
 			«xptLinkEditPart.createDefaultEditPoliciesBody(it)»
 		}
 	'''
-
-	def additions(GenLink it) ''''''
 }

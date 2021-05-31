@@ -35,11 +35,11 @@ import xpt.GenModelUtils_qvto
 	}
 
 	def String getContainerVariable(TypeLinkModelFacet modelFacet) {
-		if(modelFacet.sourceMetaFeature != null) 'container' else 'source'
+		if(modelFacet.sourceMetaFeature !== null) 'container' else 'source'
 	}
 
 	def Iterable<GenLinkConstraints> getValidLinkConstraints(GenDiagram diagram) {
-		var goodLinks = diagram.links.filter[l|l.creationConstraints != null && l.creationConstraints.isValid()]; 
+		var goodLinks = diagram.links.filter[l|l.creationConstraints !== null && l.creationConstraints.isValid()]; 
 		return goodLinks.map[l | l.creationConstraints];
 	}
 
@@ -72,7 +72,7 @@ import xpt.GenModelUtils_qvto
 	}
 
 	def boolean isCreationAllowed(GenLink link) {
-		link.modelFacet != null && (link.outgoingCreationAllowed || link.incomingCreationAllowed)
+		link.modelFacet !== null && (link.outgoingCreationAllowed || link.incomingCreationAllowed)
 	}
 
 	def boolean createStartLinkCommand(GenLink link, GenLinkEnd linkEnd) {
@@ -124,8 +124,8 @@ import xpt.GenModelUtils_qvto
 	 */
 	def boolean isDirectlyOwned(GenChildNode child, GenNode genNode) {
 		var childFacet = child.modelFacet;
-		if (childFacet == null || genNode.modelFacet == null) return false;
-		if (childFacet.containmentMetaFeature == null) return false;
+		if (childFacet === null || genNode.modelFacet === null) return false;
+		if (childFacet.containmentMetaFeature === null) return false;
 		return childFacet.containmentMetaFeature.genClass.isSuperTypeOf(genNode.modelFacet.metaClass)
 	}
 

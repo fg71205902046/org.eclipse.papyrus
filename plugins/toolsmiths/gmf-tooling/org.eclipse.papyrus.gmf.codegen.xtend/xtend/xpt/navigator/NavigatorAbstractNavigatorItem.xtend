@@ -12,6 +12,7 @@
  * Alexander Shatalin (Borland) - initial API and implementation
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up
  *****************************************************************************/
 package xpt.navigator
 
@@ -20,7 +21,7 @@ import com.google.inject.Singleton
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigator
 import xpt.Commonimport xpt.CodeStyle
 
-@Singleton class AbstractNavigatorItem {
+@Singleton class NavigatorAbstractNavigatorItem {
 	@Inject extension Common;
 	@Inject extension CodeStyle
 
@@ -32,24 +33,20 @@ import xpt.Commonimport xpt.CodeStyle
 
 	def fullPath(GenNavigator it) '''«qualifiedClassName(it)»'''
 
-	def AbstractNavigatorItem(GenNavigator it) '''
+	def NavigatorAbstractNavigatorItem(GenNavigator it) '''
 		«copyright(editorGen)»
 		package «packageName(it)»;
-		
+
 		«generatedClassComment()»
 		public abstract class «className(it)» extends org.eclipse.core.runtime.PlatformObject {
-			
-			«IF null != editorGen.propertySheet»
+
+			«IF null !== editorGen.propertySheet »
 				«registerAdapterFactory(it)»
 			«ENDIF»
-			
+
 			«attributes(it)»
-			
 			«constructor(it)»
-			
 			«getParent(it)»
-			
-			«additions(it)»
 		}
 	'''
 
@@ -59,31 +56,29 @@ import xpt.Commonimport xpt.CodeStyle
 			@SuppressWarnings("rawtypes")
 			final Class[] supportedTypes = new Class[] { org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor.class };
 			final org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor propertySheetPageContributor = new org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor() {
-				«overrideI(it.editorGen.diagram)»
+				«overrideI»
 				public String getContributorId() {
 					return "«editorGen.plugin.ID»";  «nonNLS(1)»
 				}
 			};
 			org.eclipse.core.runtime.Platform.getAdapterManager().registerAdapters(new org.eclipse.core.runtime.IAdapterFactory() {
-				
-				«overrideI(it.editorGen.diagram)»
-				@SuppressWarnings("rawtypes")
+				«overrideI»
+				@SuppressWarnings({"rawtypes", "unchecked"})
 				public Object getAdapter(Object adaptableObject, Class adapterType) {
 					if (adaptableObject instanceof «qualifiedClassName(it)» && adapterType == org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor.class) {
 						return propertySheetPageContributor;				
 					}
 					return null;
 				}
-		
-				«overrideI(it.editorGen.diagram)»
-				@SuppressWarnings("rawtypes")
+
+				«overrideI»
+				@SuppressWarnings({"rawtypes", "unchecked"})
 				public Class[] getAdapterList() {
 					return supportedTypes;
 				}
 			}, «qualifiedClassName(it)».class);
 		}
 	'''
-
 
 	def attributes(GenNavigator it) '''
 		«generatedMemberComment()»
@@ -103,6 +98,4 @@ import xpt.Commonimport xpt.CodeStyle
 			return myParent;
 		}
 	'''
-
-	def additions(GenNavigator it) ''''''
 }

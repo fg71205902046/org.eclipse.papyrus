@@ -1,17 +1,18 @@
 /*******************************************************************************
  * Copyright (c) 2011 - 2020 Montages AG, CEA LIST, Artal
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors: 
  *    Svyatoslav Kovalsky (Montages) - initial API and implementation
  *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *    Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up parsers
  *****************************************************************************/
 package impl.parsers
 
@@ -30,11 +31,11 @@ import xpt.Common_qvto
 
 	def boolean isViewExpressionDefinedAndOcl(GenCommonBase xptSelf) {
 		var LabelModelFacet labelModelFacet = getLabelModelfacet(xptSelf)
-		return labelModelFacet != null && labelModelFacet.parser.isParserViewExpressionDefinedAndOcl();
+		return labelModelFacet !== null && labelModelFacet.parser.isParserViewExpressionDefinedAndOcl();
 	}
 
 	def dispatch boolean isParserViewExpressionDefinedAndOcl(ExpressionLabelParser xptSelf) {
-		return xptSelf.viewExpression != null && xptSelf.viewExpression.provider.oclIsKindOf(typeof(GenExpressionInterpreter));
+		return xptSelf.viewExpression !== null && xptSelf.viewExpression.provider.oclIsKindOf(typeof(GenExpressionInterpreter));
 	}
 
 	def dispatch boolean isParserViewExpressionDefinedAndOcl(GenParserImplementation xptSelf) {

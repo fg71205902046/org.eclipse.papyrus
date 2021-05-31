@@ -11,7 +11,7 @@
  *
  * Contributors:
  *  Patrick Tessier(CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
- *
+*   Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : generate less dead or duplicate code
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editparts;
 
@@ -21,14 +21,13 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 
 /**
  * this edit part has in charge to display the name of a diagram for a short cut
  *
  */
-public abstract class AbstractShortcutDiagramNameEditPart extends PapyrusLabelEditPart implements Adapter {
+public abstract class AbstractShortcutDiagramNameEditPart extends AbstractExternalLabelEditPart implements Adapter {
 
 	public AbstractShortcutDiagramNameEditPart(View view) {
 		super(view);

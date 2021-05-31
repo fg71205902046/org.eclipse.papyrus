@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2007, 2014, 2021 Borland Software Corporation, CEA LIST, Artal and others
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -11,12 +11,13 @@
  * Contributors:
  * Dmitry Stadnik (Borland) - initial API and implementation
  * Artem Tikhomirov (Borland) - refactored javaInitilizers not to use methods from GMFGen model
- *                               [221347] Got rid of generated interfaces 
- *                               (IObjectInitializer, IFeatureInitializer) and implementation thereof
+ *								[221347] Got rid of generated interfaces
+ *								(IObjectInitializer, IFeatureInitializer) and implementation thereof
  * Michael Golubev (Montages) - [407332] common API for XXXElementTypes extracted to GMFT-runtime
- *                            - [386838] migration to Xtend2
+ *							- [386838] migration to Xtend2
  * Christian W. Damus (CEA) - bug 440263
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up providers
  *****************************************************************************/
 package xpt.providers
 
@@ -41,18 +42,16 @@ import xpt.Common
 	def IconProvider(GenDiagram it) '''
 		«copyright(editorGen)»
 		package «packageName(it)»;
-		
+
 		«generatedClassComment»
 		public class «className(it)» «extendsList(it)» «implementsList(it)» {
-			
+
 			«constructor(it)»
-			
-			«additions(it)»
 		}
 	'''
 
 	def extendsList(GenDiagram it) '''extends org.eclipse.papyrus.infra.gmfdiag.common.providers.DefaultElementTypeIconProvider'''
-	
+
 	def implementsList(GenDiagram it) '''implements org.eclipse.gmf.runtime.common.ui.services.icon.IIconProvider'''
 
 	def constructor(GenDiagram it) '''
@@ -61,7 +60,4 @@ import xpt.Common
 			super(«xptElementTypes.typedInstanceCall(it)»);
 		}
 	'''
-
-	def additions(GenDiagram it) ''''''
-	
 }

@@ -50,7 +50,7 @@ import xpt.CodeStyle
 			«initializer(it)»
 			«constructor(it)»
 			«createDefaultEditPolicies(it)»
-			«getKeyPointOverriden(it)»
+			«getKeyPointExtent(it)»
 			«xptTextAware.getLabelIconNotUseElementIcon(it, elementIcon, diagram)»
 			«xptTextAware.methodsExtent(it, false, readOnly, modelFacet, link)»
 			«handleNotificationEvent(it)»
@@ -93,7 +93,7 @@ import xpt.CodeStyle
 	'''
 
 
-	def getKeyPointOverriden(GenLinkLabel it) '''
+	def getKeyPointExtent(GenLinkLabel it) '''
 		«IF alignment != LinkLabelAlignment.MIDDLE_LITERAL»
 			«generatedMemberComment»
 			«overrideC»
@@ -111,7 +111,7 @@ import xpt.CodeStyle
 		protected void createDefaultEditPolicies() {	
 			super.createDefaultEditPolicies();
 			installEditPolicy(org.eclipse.gef.EditPolicy.DIRECT_EDIT_ROLE, new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy());
-			installEditPolicy(org.eclipse.gef.EditPolicy.SELECTION_FEEDBACK_ROLE, new «diagram.getTextSelectionEditPolicyQualifiedClassName()»());
+			installEditPolicy(org.eclipse.gef.EditPolicy.SELECTION_FEEDBACK_ROLE, new org.eclipse.papyrus.uml.diagram.common.editpolicies.UMLTextSelectionEditPolicy());
 			installEditPolicy(org.eclipse.gef.EditPolicy.PRIMARY_DRAG_ROLE, new org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.PapyrusLinkLabelDragPolicy());
 			«FOR CustomBehaviour:it.behaviour.filter(typeof (CustomBehaviour))
 			// Get the added custom behavoir

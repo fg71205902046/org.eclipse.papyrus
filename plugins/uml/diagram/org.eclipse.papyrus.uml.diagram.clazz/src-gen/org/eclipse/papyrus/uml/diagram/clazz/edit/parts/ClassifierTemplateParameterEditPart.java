@@ -71,11 +71,11 @@ import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.utils.IDirectEd
 import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.AbstractTemplateParameterEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.figure.TemplateParameterFigure;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.TemplateParamaterDisplayEditPolicy;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.UMLTextNonResizableEditPolicy;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.UMLTextNonResizableEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
@@ -91,9 +91,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class ClassifierTemplateParameterEditPart extends AbstractTemplateParameterEditPart
-		implements ITextAwareEditPart, IPrimaryEditPart, IControlParserForDirectEdit {
-
+public class ClassifierTemplateParameterEditPart extends AbstractTemplateParameterEditPart implements ITextAwareEditPart, IPrimaryEditPart, IControlParserForDirectEdit {
 	/**
 	 * @generated
 	 */
@@ -132,6 +130,7 @@ public class ClassifierTemplateParameterEditPart extends AbstractTemplateParamet
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
+
 
 	/**
 	 * @generated
@@ -272,9 +271,7 @@ public class ClassifierTemplateParameterEditPart extends AbstractTemplateParamet
 		String text = null;
 		EObject parserElement = getParserElement();
 		if (parserElement != null && getParser() != null) {
-			text = getParser().getPrintString(
-					ParserUtil.getParserAdapter(getParserElement(), this),
-					getParserOptions().intValue());
+			text = getParser().getPrintString(ParserUtil.getParserAdapter(getParserElement(), this), getParserOptions().intValue());
 		}
 		if (text == null || text.length() == 0) {
 			text = defaultText;
@@ -306,9 +303,7 @@ public class ClassifierTemplateParameterEditPart extends AbstractTemplateParamet
 		if (getParserElement() == null || getParser() == null) {
 			return ""; //$NON-NLS-1$
 		}
-		return getParser().getEditString(
-				ParserUtil.getParserAdapter(getParserElement(), this),
-				getParserOptions().intValue());
+		return getParser().getEditString(ParserUtil.getParserAdapter(getParserElement(), this), getParserOptions().intValue());
 	}
 
 	/**
@@ -328,17 +323,14 @@ public class ClassifierTemplateParameterEditPart extends AbstractTemplateParamet
 			@Override
 			public String isValid(final Object value) {
 				if (value instanceof String) {
-					final EObject element = getParserElement();
 					final IParser parser = getParser();
 					try {
-						IParserEditStatus valid = (IParserEditStatus) getEditingDomain().runExclusive(
-								new RunnableWithResult.Impl<>() {
-
-									@Override
-									public void run() {
-										setResult(parser.isValidEditString(ParserUtil.getParserAdapter(getParserElement(), ClassifierTemplateParameterEditPart.this), (String) value));
-									}
-								});
+						IParserEditStatus valid = (IParserEditStatus) getEditingDomain().runExclusive(new RunnableWithResult.Impl<>() {
+							@Override
+							public void run() {
+								setResult(parser.isValidEditString(ParserUtil.getParserAdapter(getParserElement(), ClassifierTemplateParameterEditPart.this), (String) value));
+							}
+						});
 						return valid.getCode() == IParserEditStatus.EDITABLE ? null : valid.getMessage();
 					} catch (InterruptedException ie) {
 						ie.printStackTrace();
@@ -386,9 +378,7 @@ public class ClassifierTemplateParameterEditPart extends AbstractTemplateParamet
 	 */
 	protected DirectEditManager getManager() {
 		if (manager == null) {
-			setManager(new MultilineLabelDirectEditManager(this,
-					MultilineLabelDirectEditManager.getTextCellEditorClass(this),
-					UMLEditPartFactory.getTextCellEditorLocator(this)));
+			setManager(new MultilineLabelDirectEditManager(this, MultilineLabelDirectEditManager.getTextCellEditorClass(this), UMLEditPartFactory.getTextCellEditorLocator(this)));
 		}
 		return manager;
 	}
@@ -452,9 +442,7 @@ public class ClassifierTemplateParameterEditPart extends AbstractTemplateParamet
 			updateExtendedEditorConfiguration();
 			if (configuration == null || configuration.getLanguage() == null) {
 				// Create default edit manager
-				setManager(new MultilineLabelDirectEditManager(this,
-						MultilineLabelDirectEditManager.getTextCellEditorClass(this),
-						UMLEditPartFactory.getTextCellEditorLocator(this)));
+				setManager(new MultilineLabelDirectEditManager(this, MultilineLabelDirectEditManager.getTextCellEditorClass(this), UMLEditPartFactory.getTextCellEditorLocator(this)));
 				performDefaultDirectEditorEdit(theRequest);
 			} else {
 				configuration.preEditAction(resolveSemanticElement());
@@ -508,8 +496,7 @@ public class ClassifierTemplateParameterEditPart extends AbstractTemplateParamet
 				@Override
 				public void run() {
 					if (isActive() && isEditable()) {
-						if (request.getExtendedData().get(
-								RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+						if (request.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
 							Character initialChar = (Character) request.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
 						} else {
@@ -568,8 +555,7 @@ public class ClassifierTemplateParameterEditPart extends AbstractTemplateParamet
 	 * @generated
 	 */
 	protected void refreshUnderline() {
-		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
-				NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getFigure()).setTextUnderline(style.isUnderline());
 		}
@@ -586,8 +572,7 @@ public class ClassifierTemplateParameterEditPart extends AbstractTemplateParamet
 	 * @generated
 	 */
 	protected void refreshStrikeThrough() {
-		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
-				NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getFigure()).setTextStrikeThrough(style.isStrikeThrough());
 		}
@@ -598,13 +583,9 @@ public class ClassifierTemplateParameterEditPart extends AbstractTemplateParamet
 	 */
 	@Override
 	protected void refreshFont() {
-		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
-				NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null) {
-			FontData fontData = new FontData(
-					style.getFontName(), style.getFontHeight(),
-					(style.isBold() ? SWT.BOLD : SWT.NORMAL) |
-							(style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
+			FontData fontData = new FontData(style.getFontName(), style.getFontHeight(), (style.isBold() ? SWT.BOLD : SWT.NORMAL) | (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
 			setFont(fontData);
 		}
 	}
@@ -735,8 +716,7 @@ public class ClassifierTemplateParameterEditPart extends AbstractTemplateParamet
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
-		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(
-				IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
+		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
 		if (languagePreferred != null && !languagePreferred.equals("") && !languagePreferred.equals(configuration.getLanguage())) {
 			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement(), this);
 		} else if (IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
@@ -760,8 +740,7 @@ public class ClassifierTemplateParameterEditPart extends AbstractTemplateParamet
 				public void run() {
 					if (isActive() && isEditable()) {
 						if (theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
-							Character initialChar = (Character) theRequest.getExtendedData().get(
-									RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+							Character initialChar = (Character) theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
 						} else if ((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
 							DirectEditRequest editRequest = (DirectEditRequest) theRequest;
@@ -858,5 +837,4 @@ public class ClassifierTemplateParameterEditPart extends AbstractTemplateParamet
 	public boolean isSelectable() {
 		return getFigure().isShowing();
 	}
-
 }

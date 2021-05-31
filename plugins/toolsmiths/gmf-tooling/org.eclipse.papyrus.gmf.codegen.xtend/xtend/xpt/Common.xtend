@@ -12,6 +12,7 @@
  * Dmitry Stadnik (Borland) - initial API and implementation
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up
  *****************************************************************************/
 package xpt
 
@@ -30,28 +31,28 @@ import xpt.editor.VisualIDRegistry
 	'''
 	«IF copyrightText !== null»
 	/**
-	 * «copyrightText.replaceAll('\n', '\n * ')»
+	 * «copyrightText.replaceAll('\n', '\n * ').replaceAll('\\* \n', '*\n')»
 	 */
  	«ENDIF»
 	'''
-	
+
 	def xcopyright(GenEditorGenerator it) 
 	'''
-	«IF copyrightText != null»
+	«IF copyrightText !== null»
 	<!--
 	«escapeXML(it.copyrightText)»
 	-->
 	«ENDIF»
 	'''
-	
+
 	def escapeXML(CharSequence forXML) {
 		Conversions::escapeXML(forXML.toString) 
 	}
-	
+
 	def generatedClassComment(){
 		generatedClassComment('')
 	}
-	
+
 	def generatedClassComment(String comment) {
 		doGeneratedComment(comment, '')
 	} 
@@ -74,27 +75,27 @@ import xpt.editor.VisualIDRegistry
 	def doGeneratedComment(String comment, String comment2) 
 	'''
 	/**
-	«IF comment.length > 0» * «comment.replaceAll('\n', '\n * ')»«ENDIF»
+	«IF comment.length > 0» * «comment.replaceAll('\n', '\n * ').replaceAll('\\* \n', '*\n')»
+	 *«ENDIF»
 	 * @generated
-	«IF comment2.length > 0» * «comment2.replaceAll('\n', '\n * ')»«ENDIF»
+	«IF comment2.length > 0» * «comment2.replaceAll('\n', '\n * ').replaceAll('\\* \n', '*\n ')»«ENDIF»
 	 */
 	'''
 
 	def xmlGeneratedTag() '''<?gmfgen generated="true"?>'''
-	
+
 	def nonNLS_All(Iterable<?> list) '''«IF !list.empty»«FOR i : 1..list.size SEPARATOR ' '»«nonNLS(i)»«ENDFOR»«ENDIF»'''
-	
+
 	def nonNLS() '''«nonNLS(1)»'''
-	
+
 	def nonNLS(Object xptSelf, int i) '''«nonNLS(i)»'''
 
 	def nonNLS(int xptSelf) '''//$NON-NLS-«xptSelf»$'''
-	
+
 	/**
 	 * XXX:[MG] move this to VIDRegistry(?)
 	 */
-	
-	
+
 	/**
 	 * Provides handy single point to override generation of assert statements
 	 * TODO refactor this Common.xpt into different flavours - like CommonCodeStyle (nls, assert), CommonSnippets(pkgStmt, setCharset, getSaveOptions) and so on
@@ -102,25 +103,15 @@ import xpt.editor.VisualIDRegistry
 	 */ 
 	def _assert(String condition) //
 	'''assert «condition»;«IF condition.indexOf('\"') > 0» «nonNLS»«ENDIF»'''
-	
-	def addShortcutAnnotation(GenDiagram it, String viewVar) '''
+
+	def CharSequence addShortcutAnnotation(GenDiagram it, String viewVar) '''
 		org.eclipse.emf.ecore.EAnnotation shortcutAnnotation = org.eclipse.emf.ecore.EcoreFactory.eINSTANCE.createEAnnotation();
 		shortcutAnnotation.setSource("Shortcut"); «nonNLS()»
 		shortcutAnnotation.getDetails().put("modelID", «VisualIDRegistry::modelID(it)»); «nonNLS()»
 		«viewVar».getEAnnotations().add(shortcutAnnotation);
 	'''
-	
-	/**
-	 * FIXME: [MG] in some cases old xpand template generated artificial extra line break
-	 * For now we want to preserve evrything including new line, to simplify checking the diff's against old generated code 
-	 * In future this extra lines should be removed, this is single point of removal 
-	 */
-	def extraLineBreak() '''
-«/*FIXME: artificially inserting new line break to reduce diff against xpand templates */»
-	'''
-	
-	def hackTripleSpace() '''   '''
-	
+
+
 	def tripleSpace(int amount) {
 		var b = new StringBuilder;
 		var counter = 0;

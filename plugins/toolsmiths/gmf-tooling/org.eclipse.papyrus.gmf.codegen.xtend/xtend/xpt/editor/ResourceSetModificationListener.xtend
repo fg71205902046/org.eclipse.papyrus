@@ -12,6 +12,7 @@
  * Alexander Shatalin (Borland) - initial API and implementation
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up
  *****************************************************************************/
 package xpt.editor
 
@@ -19,9 +20,11 @@ import com.google.inject.Inject
 import com.google.inject.Singleton
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
 import xpt.Common
+import xpt.CodeStyle
 
 @Singleton class ResourceSetModificationListener {
 
+	@Inject extension CodeStyle;
 	@Inject extension Common;
 
 	def extendsList(GenDiagram it) '''extends org.eclipse.emf.ecore.util.EContentAdapter'''
@@ -32,21 +35,19 @@ import xpt.Common
 	def ResourceSetModificationListener(GenDiagram it) '''
 		«generatedClassComment»	
 		private class ResourceSetModificationListener «extendsList(it)» {
-		
+
 			«attributes(it)»
-			
+
 			«constructor(it)»
-			
+
 			«notifyChanged(it)»
-		
-			«additions(it)»
 		}
 	'''
 
 	def attributes(GenDiagram it) '''
 		«generatedMemberComment»	
 		private org.eclipse.emf.transaction.NotificationFilter myModifiedFilter;
-		
+
 		«generatedMemberComment»	
 		private ResourceSetInfo myInfo;
 	'''
@@ -60,7 +61,8 @@ import xpt.Common
 	'''
 
 	def notifyChanged(GenDiagram it) '''
-		«generatedMemberComment»	
+		«generatedMemberComment»
+		«overrideC»
 		public void notifyChanged(org.eclipse.emf.common.notify.Notification notification) {
 			if (notification.getNotifier() instanceof org.eclipse.emf.ecore.resource.ResourceSet) {
 				super.notifyChanged(notification);
@@ -82,15 +84,14 @@ import xpt.Common
 								myInfo.fCanBeSaved = modified;
 								dirtyStateChanged = true;
 							}
-							«IF null == editorGen.application»
-							if (!resource.isModified()) {
-								myInfo.setSynchronized(resource);
-							}
+							«IF null === editorGen.application »
+								if (!resource.isModified()) {
+									myInfo.setSynchronized(resource);
+								}
 							«ENDIF»
 						}
 						if (dirtyStateChanged) {
 							fireElementDirtyStateChanged(myInfo.getEditorInput(), modified);
-			
 							if (!modified) {
 								myInfo.setModificationStamp(computeModificationStamp(myInfo));
 							}
@@ -100,7 +101,4 @@ import xpt.Common
 			}
 		}
 	'''
-
-	def additions(GenDiagram it) '''
-'''
 }

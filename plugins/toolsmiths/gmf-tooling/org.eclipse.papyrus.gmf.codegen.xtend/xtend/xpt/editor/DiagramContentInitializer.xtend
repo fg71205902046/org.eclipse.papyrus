@@ -13,6 +13,7 @@
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Florian Noyrit - Initial API and implementation
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up
  *****************************************************************************/
 package xpt.editor
 
@@ -35,7 +36,7 @@ import xpt.diagram.updater.LinkDescriptor
 	@Inject extension Common;
 	@Inject extension Common_qvto;
 	@Inject extension Utils_qvto;
-	
+
 	@Inject MetaModel xptMetaModel;
 	@Inject VisualIDRegistry xptVisualIDRegistry;
 	@Inject DiagramUpdater xptDiagramUpdater;
@@ -54,34 +55,31 @@ import xpt.diagram.updater.LinkDescriptor
 	def DiagramContentInitializer(GenDiagram it) '''
 		«copyright(getDiagram().editorGen)»
 		package «packageName(it)»;
-		
-			«generatedClassComment»
+
+		«generatedClassComment»
 		public class «className(it)» {
-		
+
 			«attributes(it)»
-		
+
 			«initDiagramContent(it)»
-			
+
 			«FOR container : getAllContainers().filter[container|!container.sansDomain]»
 				«createChildren(container)»
 			«ENDFOR»
-			
+
 			«createNode(it)»
-			
+
 			«createLinks(it)»
 			«IF getAllContainers().filter(typeof(GenCompartment)).notEmpty»
-				
 				«getCompartment(it)»
 			«ENDIF»
-		
-			«additions(it)»
 		}
 	'''
 
 	def attributes(GenDiagram it) '''
 			«generatedMemberComment»
 			private java.util.Map myDomain2NotationMap = new java.util.HashMap();
-		
+
 			«generatedMemberComment»
 			private java.util.Collection myLinkDescriptors = new java.util.LinkedList();
 	'''
@@ -187,7 +185,7 @@ import xpt.diagram.updater.LinkDescriptor
 						continueLinkCreation = true;
 						switch (nextLinkDescriptor.getVisualID()) {
 							«FOR link : it.links»
-								«IF link.metaClass != null»
+								«IF link.metaClass !== null»
 								case «VisualIDRegistry::visualID(link)»:
 								additionalDescriptors.addAll(«xptDiagramUpdater.getOutgoingLinksMethodCall(link)»(edge));
 								break;
@@ -214,6 +212,4 @@ import xpt.diagram.updater.LinkDescriptor
 			return null;
 		}
 	'''
-
-	def additions(GenDiagram it) ''''''
 }

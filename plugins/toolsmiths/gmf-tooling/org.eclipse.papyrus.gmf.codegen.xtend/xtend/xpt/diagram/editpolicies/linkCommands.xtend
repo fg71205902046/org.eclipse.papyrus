@@ -24,7 +24,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLinkEnd
 import xpt.Common
-import xpt.QualifiedClassNameProvider
 import xpt.diagram.commands.CreateLinkCommand
 import xpt.diagram.commands.ReorientLinkCommand
 import xpt.editor.VisualIDRegistry
@@ -52,11 +51,9 @@ import xpt.providers.ElementTypes
  *
 */
 @Singleton class linkCommands {
-		@Inject extension Utils_qvto;
-	
+	@Inject extension Utils_qvto;
 	@Inject extension Common;
-	@Inject extension QualifiedClassNameProvider;
-	
+
 	@Inject ElementTypes xptElementTypes;
 	@Inject ReorientLinkCommand xptReorientLinkCommand;
 	@Inject VisualIDRegistry xptVisualIDRegistry;

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015, 2021 Christian W. Damus, CEA LIST, Artal and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -11,6 +11,7 @@
  * Contributors:
  * Christian W. Damus - Initial API and implementation
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up providers
  *****************************************************************************/
 package xpt.providers
 
@@ -27,17 +28,16 @@ import xpt.providers.ElementTypes
  * into the {@code VisualTypeService}.
  */
 @Singleton class VisualTypeProvider {
-	
+
 	@Inject extension Common
 	@Inject extension CodeStyle
 	@Inject VisualIDRegistry visualIDs
 	@Inject ElementTypes elementTypes
-	
+
 	def packageName(GenDiagram it) '''«it.providersPackageName»'''
-	
-	
+
 	def qualifiedClassName(GenDiagram it) '''«packageName(it)».«visualTypeProvider»'''
-	
+
 	protected def constructor(GenDiagram it) '''
 		«generatedMemberComment»
 		public «visualTypeProvider»() {
@@ -50,13 +50,11 @@ import xpt.providers.ElementTypes
 		«overrideI»
 		public org.eclipse.gmf.runtime.emf.type.core.IElementType getElementType(org.eclipse.gmf.runtime.notation.Diagram diagram, String viewType) {
 			org.eclipse.gmf.runtime.emf.type.core.IElementType result = null;
-			
 			try {
 				result = «elementTypes.qualifiedClassName(it)».getElementType(viewType);
 			} catch (NumberFormatException e) {
 				// Not supported by this diagram
 			}
-			
 			return result;
 		}
 	'''
@@ -77,21 +75,17 @@ import xpt.providers.ElementTypes
 		}
 	'''
 
-	public def VisualTypeProvider(GenDiagram it) '''
+	def VisualTypeProvider(GenDiagram it) '''
 		«editorGen.copyright»
 		package «packageName»;
-		
+
 		«generatedClassComment»
 		public class «visualTypeProvider» extends org.eclipse.papyrus.infra.gmfdiag.common.service.visualtype.AbstractVisualTypeProvider {
-		
+
 			«constructor»
-			
 			«getElementType_»
-			
 			«getNodeType»
-			
 			«getLinkType»
-			
 		}
 	'''
 }

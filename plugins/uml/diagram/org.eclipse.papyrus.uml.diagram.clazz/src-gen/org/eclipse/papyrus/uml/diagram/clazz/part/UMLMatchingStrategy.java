@@ -44,5 +44,4 @@ public class UMLMatchingStrategy implements IEditorMatchingStrategy {
 		}
 		return false;
 	}
-
 }

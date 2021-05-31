@@ -28,11 +28,11 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEd
 import org.eclipse.papyrus.infra.gmfdiag.common.parsers.ParserUtil;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.figure.PropertyFigure;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.AppliedStereotypePropertyDisplayEditPolicy;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.UMLTextNonResizableEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.editparts.AbstractCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PropertyLabelEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.UMLTextNonResizableEditPolicy;
 
 /**
  * @generated

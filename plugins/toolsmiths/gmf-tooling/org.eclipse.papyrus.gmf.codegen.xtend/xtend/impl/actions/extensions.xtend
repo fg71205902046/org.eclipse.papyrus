@@ -11,7 +11,8 @@
  * Contributors: 
  *	 Artem Tikhomirov (Borland) - initial API and implementation
  *	 Michael Golubev (Montages) - #386838 - migrate to Xtend2
- *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *	 Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *	 Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up providers 
  *****************************************************************************/
 package impl.actions
 
@@ -43,7 +44,6 @@ import xpt.diagram.editparts.EditPartFactory
 	@Inject PredefinedAction predefinedAction;
 	
 	def Main(GenEditorGenerator it) '''
-		«extraLineBreak»
 		«tripleSpace(1)»<extension point="org.eclipse.ui.menus" id="context-menus">
 		«tripleSpace(2)»«xmlGeneratedTag»
 		«tripleSpace(2)»<!-- menuContribution locationURI="menu:org.eclipse.ui.main.menu?after=">
@@ -65,7 +65,6 @@ import xpt.diagram.editparts.EditPartFactory
 			«tripleSpace(1)»</extension>
 		«ENDIF»
 		«IF hasHandlersToContribute(it)»
-			«extraLineBreak»
 			«tripleSpace(1)»<extension point="org.eclipse.ui.handlers" id="menu-handlers">
 			«tripleSpace(2)»«xmlGeneratedTag»
 				«FOR cm : contextMenus»
@@ -153,7 +152,7 @@ import xpt.diagram.editparts.EditPartFactory
 	def dispatch CharSequence menuEntry(GenContributionItem it, GenContextMenu contextMenu) '''«/* NO-OP XXX or ERROR? */»'''
 
 	def dispatch CharSequence menuEntry(GenSeparator it, GenContextMenu contextMenu) '''
-		<separator name=«IF groupName != null»"«groupName»"«ELSE»"withoutname"«ENDIF» visible="true"/>
+		<separator name=«IF groupName !== null»"«groupName»"«ELSE»"withoutname"«ENDIF» visible="true"/>
 	'''
 
 	def dispatch CharSequence menuEntry(GenGroupMarker it, GenContextMenu contextMenu) '''
@@ -209,7 +208,6 @@ import xpt.diagram.editparts.EditPartFactory
 			cmdcategory.name=«modelID» Editor Commands
 			cmdcategory.desc=«modelID» Editor Commands
 		«ENDIF»
-		«extraLineBreak»
 	'''
 
 }

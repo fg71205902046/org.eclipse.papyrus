@@ -13,6 +13,7 @@
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Mickael ADAM (ALL4TEC) - mickael.adam@all4tec.net - Bug 510587
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up
  *****************************************************************************/
 package xpt.editor.palette
 
@@ -63,18 +64,18 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.EntryBase
 			default : rv
 		}
 	}
-	
+
 	@Localization def String i18nTitleKey(EntryBase group) {
 		return i18nKey(group) + '_title'
 	}
-	
+
 	@Localization def String i18nDescKey(EntryBase group) {
 		return i18nKey(group) + '_desc'
 	}
 
 	def Iterable<ToolGroup> collectGroups(Palette palette) {
 		var result = <ToolGroup>newLinkedHashSet()
-		if (palette != null) {
+		if (palette !== null) {
 			result.addAll(palette.groups)
 			for (group : palette.groups) {
 				result.addAll(collectSubGroups(group))
@@ -112,11 +113,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.EntryBase
 		return collectTools(palette).filter(typeof(ToolEntry)).exists[e|e.genLinks.notEmpty]
 	}
 
-
 	def boolean isValidTool(AbstractToolEntry entry) {
 
 		if (entry instanceof ToolEntry) {
-			if (null != entry.qualifiedToolName && !entry.qualifiedToolName.empty) {
+			if (null !== entry.qualifiedToolName && !entry.qualifiedToolName.empty) {
 				return true;
 			}
 
@@ -143,7 +143,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.EntryBase
 
 	def boolean isQuoted(String source, String quoteStr) {
 
-		if (quoteStr == null) {
+		if (quoteStr === null) {
 			return false;
 		}
 
@@ -213,7 +213,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.EntryBase
 	 * 
 	 * @param it
 	 *            the EObject to get the relative path
-	 
+
 	 */
 	def String getRelativePath(EObject it) {
 		var String path = null;
@@ -234,10 +234,10 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.EntryBase
 	 * Get the href string for the elementTypeConfiguration model of the unique identifier.
 	 */
 	def String getElementTypeConfHRef(String uniqueIdentifier, XMLResource resource) {
-		
+
 		//Load element type registry
 		org.eclipse.papyrus.infra.types.core.registries.ElementTypeSetConfigurationRegistry.getInstance().getClass()
-		
+
 		var String href = null
 		val type = ElementTypeRegistry.getInstance().getType(uniqueIdentifier)
 

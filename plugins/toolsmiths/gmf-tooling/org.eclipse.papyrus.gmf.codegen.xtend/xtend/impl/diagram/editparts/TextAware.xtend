@@ -50,7 +50,7 @@ import xpt.providers.ElementTypes
 
 	«generatedMemberComment»
 	private String defaultText;
-	
+
 	«««	BEGIN: PapyrusGenCode
 	«««	Add attributes to manage extended editors
 	«generatedMemberComment('direct edition mode (default, undefined, registered editor, etc.)')»
@@ -59,101 +59,98 @@ import xpt.providers.ElementTypes
 	«generatedMemberComment('configuration from a registered edit dialog')»
 	protected org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.configuration.IDirectEditorConfiguration configuration;
 	«««	END: BEGIN: PapyrusGenCode
-	
+
 ''' 
 
-	def methods(GenCommonBase it, boolean needsRefreshBounds, boolean readOnly, boolean useElementIcon, Viewmap viewmap,
-		LabelModelFacet modelFacet, GenCommonBase host, GenDiagram diagram) '''
-		
+	def methods(GenCommonBase it, boolean needsRefreshBounds, boolean readOnly, boolean useElementIcon, Viewmap viewmap, LabelModelFacet modelFacet, GenCommonBase host, GenDiagram diagram) '''
 	«getLabelTextHelper(it)»
-	
+
 	«setLabelTextHelper(it)»
-	
+
 	«getLabelIconHelper(it)»
-	
+
 	«setLabelIconHelper(it)»
-	
+
 	« labelSetter(it)»
-	
+
 	« getModelChildren(it)»
-	
+
 	« getChildBySemanticHint(it)»
 «««	ITEMIS CHANGES
 	« setParser (it)»
 «««	ITEMIS CHANGES END
 	« getParserElement(it,modelFacet)»
-	
+
 	« getLabelIcon(it,useElementIcon, diagram)»
-	
+
 	« getLabelText(it)»
-	
+
 	« setLabelText(it,diagram)»
-	
+
 	« getEditText(it)»
-	
+
 	« isEditable(it,readOnly)»
-	
+
 	« getEditTextValidator(it)»
-	
+
 	« getCompletionProcessor(it)»
-	
+
 	« getParserOptions(it)»
-	
+
 	« getParser(it,modelFacet, diagram, host)»
-	
+
 	« getManager(it,diagram)»
-	
+
 	« setManager(it)»
-	
+
 	« performDirectEdit(it)»
-	
+
 	« performDirectEditAtPoint(it)»
-	
+
 	« performDirectEditWithInitialChar(it)»
-	
+
 	« performDirectEditRequest(it,diagram)»
-	
+
 	« initializeDirectEditManager(it)»
-	
+
 	« refreshVisuals(it,needsRefreshBounds)»
-	
+
 	« refreshLabel(it,diagram)»
-	
+
 	« refreshUnderline(it)»
-	
+
 	« refreshStrikeThrough(it)»
-	
+
 	« refreshFont(it)»
-	
+
 	« setFontColor(it)»
-	
+
 	« addSemanticListeners(it)»
-	
+
 	« removeSemanticListeners(it)»
-	
+
 	« getAccessibleEditPart(it)»
-	
+
 	« getFontStyleOwnerView(it,viewmap)»
-	
+
 	«««	BEGIN: PapyrusGenCode
 	«««	Add extended editors management for direct edit
 	« getDirectEditionType(it,readOnly)»
-	
+
 	« checkExtendedEditor(it)»
 
 	« checkDefaultEdition(it)»
 
 	« initExtendedEditorConfiguration(it)»
-	
+
 	« updateExtendedEditorConfiguration(it)»
-	
+
 	« performDefaultDirectEditorEdit(it)»
-	
+
 	«««END: PapyrusGenCode
 '''
 
 def labelSetterName(Viewmap it)'''setLabel'''
-
 
 	def getLabelTextHelper(GenCommonBase it) '''
 	« generatedMemberComment»
@@ -207,7 +204,6 @@ def labelSetterName(Viewmap it)'''setLabel'''
 	}
 '''
 
-
 	def getAdapter(GenCommonBase it) '''
 		«generatedMemberComment()»
 		«overrideC(it)»
@@ -230,12 +226,12 @@ def labelSetterName(Viewmap it)'''setLabel'''
 	}
 '''
 
-
 def labelSetterFigureClassName (Viewmap it)'''
 	org.eclipse.draw2d.IFigure
 '''
 	def getModelChildren(GenCommonBase it) '''
 	«generatedMemberComment»
+	«overrideC»
 	protected java.util.List<?> getModelChildren() {
 		return java.util.Collections.EMPTY_LIST;
 	}
@@ -243,6 +239,7 @@ def labelSetterFigureClassName (Viewmap it)'''
 
 	def getChildBySemanticHint(GenCommonBase it) '''
 	«generatedMemberComment»
+	«overrideC»
 	public org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart getChildBySemanticHint(String semanticHint) {
 		return null;
 	}
@@ -285,9 +282,7 @@ def labelSetterFigureClassName (Viewmap it)'''
 		String text = null;
 		org.eclipse.emf.ecore.EObject parserElement = getParserElement();
 		if (parserElement != null && getParser() != null) {
-			text = getParser().getPrintString(
-				org.eclipse.papyrus.infra.gmfdiag.common.parsers.ParserUtil.getParserAdapter(getParserElement(), this),
-				getParserOptions().intValue());
+			text = getParser().getPrintString(org.eclipse.papyrus.infra.gmfdiag.common.parsers.ParserUtil.getParserAdapter(getParserElement(), this), getParserOptions().intValue());
 		}
 		if (text == null || text.length() == 0) {
 			text = defaultText;
@@ -298,28 +293,28 @@ def labelSetterFigureClassName (Viewmap it)'''
 
 	def setLabelText(GenCommonBase it, GenDiagram diagram) '''
 	«generatedMemberComment»
+	«overrideI»
 	public void setLabelText(String text) {
 		setLabelTextHelper(getFigure(), text);
 		Object pdEditPolicy = getEditPolicy(org.eclipse.gef.EditPolicy.PRIMARY_DRAG_ROLE);
-		if (pdEditPolicy instanceof «diagram.getTextSelectionEditPolicyQualifiedClassName()») {
-			((«diagram.getTextSelectionEditPolicyQualifiedClassName()») pdEditPolicy).refreshFeedback();
+		if (pdEditPolicy instanceof org.eclipse.papyrus.uml.diagram.common.editpolicies.UMLTextSelectionEditPolicy) {
+			((org.eclipse.papyrus.uml.diagram.common.editpolicies.UMLTextSelectionEditPolicy) pdEditPolicy).refreshFeedback();
 		}
 		Object sfEditPolicy = getEditPolicy(org.eclipse.gef.EditPolicy.SELECTION_FEEDBACK_ROLE);
-		if (sfEditPolicy instanceof «diagram.getTextSelectionEditPolicyQualifiedClassName()») {
-			((«diagram.getTextSelectionEditPolicyQualifiedClassName()») sfEditPolicy).refreshFeedback();
+		if (sfEditPolicy instanceof org.eclipse.papyrus.uml.diagram.common.editpolicies.UMLTextSelectionEditPolicy) {
+			((org.eclipse.papyrus.uml.diagram.common.editpolicies.UMLTextSelectionEditPolicy) sfEditPolicy).refreshFeedback();
 		}
 	}
 '''
 
 	def getEditText(GenCommonBase it) '''
 	«generatedMemberComment»
+	«overrideI»
 	public String getEditText() {
 		if (getParserElement() == null || getParser() == null) {
 			return ""; «nonNLS»
 		}
-		return getParser().getEditString(
-			org.eclipse.papyrus.infra.gmfdiag.common.parsers.ParserUtil.getParserAdapter(getParserElement(), this),
-			getParserOptions().intValue());
+		return getParser().getEditString(org.eclipse.papyrus.infra.gmfdiag.common.parsers.ParserUtil.getParserAdapter(getParserElement(), this), getParserOptions().intValue());
 	}
 '''
 
@@ -336,19 +331,16 @@ def labelSetterFigureClassName (Viewmap it)'''
 
 	def getEditTextValidator(GenCommonBase it) '''
 	«generatedMemberComment»
+	«overrideI»
 	public org.eclipse.jface.viewers.ICellEditorValidator getEditTextValidator() {
 		return new org.eclipse.jface.viewers.ICellEditorValidator() {
 
 			«overrideI»
 			public String isValid(final Object value) {
 				if (value instanceof String) {
-					final org.eclipse.emf.ecore.EObject element = getParserElement();
 					final org.eclipse.gmf.runtime.common.ui.services.parser.IParser parser = getParser();
 					try {
-						org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus valid =
-							(org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus) getEditingDomain().runExclusive(
-								new org.eclipse.emf.transaction.RunnableWithResult.Impl<java.lang.Object>() {
-
+						org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus valid = (org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus) getEditingDomain().runExclusive(new org.eclipse.emf.transaction.RunnableWithResult.Impl<«diamondOp("java.lang.Object")»>() {
 							«overrideI»
 							public void run() {
 								setResult(parser.isValidEditString(org.eclipse.papyrus.infra.gmfdiag.common.parsers.ParserUtil.getParserAdapter(getParserElement(), «editPartClassName».this), (String) value));
@@ -369,6 +361,7 @@ def labelSetterFigureClassName (Viewmap it)'''
 
 	def getCompletionProcessor(GenCommonBase it) '''
 	«generatedMemberComment»
+	«overrideI»
 	public org.eclipse.jface.text.contentassist.IContentAssistProcessor getCompletionProcessor() {
 		if (getParserElement() == null || getParser() == null) {
 			return null;
@@ -377,9 +370,9 @@ def labelSetterFigureClassName (Viewmap it)'''
 	}
 '''
 
-
 	def getParserOptions(GenCommonBase it) '''
 	«generatedMemberComment»
+	«overrideI»
 	public org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions getParserOptions() {
 		return org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions.NONE;
 	}
@@ -387,6 +380,7 @@ def labelSetterFigureClassName (Viewmap it)'''
 
 	def getParser(GenCommonBase it, LabelModelFacet modelFacet, GenDiagram diagram, GenCommonBase host) '''
 	«generatedMemberComment»
+	«overrideI»
 	public org.eclipse.gmf.runtime.common.ui.services.parser.IParser getParser() {
 		if (parser == null) {
 			parser = org.eclipse.papyrus.infra.gmfdiag.common.parsers.ParserUtil.getParser(«xptElementTypes.accessElementType(host)», getParserElement(), this, VISUAL_ID);
@@ -399,9 +393,7 @@ def labelSetterFigureClassName (Viewmap it)'''
 		«generatedMemberComment()»
 		protected org.eclipse.gef.tools.DirectEditManager getManager() {
 			if (manager == null) {
-				setManager(new «getDirectManagerFQN(modelFacet)»(this,
-					null,
-					«xptEditPartFactory.qualifiedClassName(diagram)».getTextCellEditorLocator(this)));
+				setManager(new «getDirectManagerFQN(modelFacet)»(this, null, «xptEditPartFactory.qualifiedClassName(diagram)».getTextCellEditorLocator(this)));
 			}
 			return manager;
 		}
@@ -418,7 +410,7 @@ def labelSetterFigureClassName (Viewmap it)'''
 	«generatedMemberComment»
 	protected void performDirectEdit() {
 		org.eclipse.swt.custom.BusyIndicator.showWhile(org.eclipse.swt.widgets.Display.getDefault(), new java.lang.Runnable() {
-					
+
 			«overrideI»
 			public void run() {
 				getManager().show();
@@ -453,24 +445,23 @@ def labelSetterFigureClassName (Viewmap it)'''
 			final org.eclipse.gef.Request theRequest = request;
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
-		
-			public void run() {
-				if (isActive() && isEditable()) {
-					«IF !isChoiceLabel(modelFacet)»
-						if (theRequest.getExtendedData().get(org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
-							Character initialChar = (Character) theRequest.getExtendedData().get(org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
-							performDirectEdit(initialChar.charValue());
-					} else «ENDIF» if ((theRequest instanceof org.eclipse.gef.requests.DirectEditRequest) && (getEditText().equals(getLabelText()))) {
-						org.eclipse.gef.requests.DirectEditRequest editRequest = (org.eclipse.gef.requests.DirectEditRequest) theRequest;
-						performDirectEdit(editRequest.getLocation());
-					} else {
-						performDirectEdit();
+					public void run() {
+						if (isActive() && isEditable()) {
+							«IF !isChoiceLabel(modelFacet)»
+							if (theRequest.getExtendedData().get(org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+								Character initialChar = (Character) theRequest.getExtendedData().get(org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+								performDirectEdit(initialChar.charValue());
+							} else «ENDIF»if ((theRequest instanceof org.eclipse.gef.requests.DirectEditRequest) && (getEditText().equals(getLabelText()))) {
+								org.eclipse.gef.requests.DirectEditRequest editRequest = (org.eclipse.gef.requests.DirectEditRequest) theRequest;
+								performDirectEdit(editRequest.getLocation());
+							} else {
+								performDirectEdit();
+							}
+						}
 					}
-				}
-			}
 				});
 			} catch (InterruptedException e) {
-			e.printStackTrace();
+				e.printStackTrace();
 			}
 		}
 	'''
@@ -509,12 +500,12 @@ def labelSetterFigureClassName (Viewmap it)'''
 			}	
 		}
 		Object pdEditPolicy = getEditPolicy(org.eclipse.gef.EditPolicy.PRIMARY_DRAG_ROLE);
-		if (pdEditPolicy instanceof «diagram.getTextSelectionEditPolicyQualifiedClassName()») {
-			((«diagram.getTextSelectionEditPolicyQualifiedClassName()») pdEditPolicy).refreshFeedback();
+		if (pdEditPolicy instanceof org.eclipse.papyrus.uml.diagram.common.editpolicies.UMLTextSelectionEditPolicy) {
+			((org.eclipse.papyrus.uml.diagram.common.editpolicies.UMLTextSelectionEditPolicy) pdEditPolicy).refreshFeedback();
 		}
 		Object sfEditPolicy = getEditPolicy(org.eclipse.gef.EditPolicy.SELECTION_FEEDBACK_ROLE);
-		if (sfEditPolicy instanceof «diagram.getTextSelectionEditPolicyQualifiedClassName()») {
-			((«diagram.getTextSelectionEditPolicyQualifiedClassName()») sfEditPolicy).refreshFeedback();
+		if (sfEditPolicy instanceof org.eclipse.papyrus.uml.diagram.common.editpolicies.UMLTextSelectionEditPolicy) {
+			((org.eclipse.papyrus.uml.diagram.common.editpolicies.UMLTextSelectionEditPolicy) sfEditPolicy).refreshFeedback();
 		}
 	}
 '''
@@ -523,8 +514,7 @@ def labelSetterFigureClassName (Viewmap it)'''
 	«generatedMemberComment»
 	protected void refreshUnderline() {
 		org.eclipse.gmf.runtime.notation.FontStyle style =
-			(org.eclipse.gmf.runtime.notation.FontStyle) getFontStyleOwnerView().getStyle(
-				org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getFontStyle());
+			(org.eclipse.gmf.runtime.notation.FontStyle) getFontStyleOwnerView().getStyle(org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null && getFigure() instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
 			((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) getFigure()).setTextUnderline(style.isUnderline());
 		}
@@ -541,8 +531,7 @@ def labelSetterFigureClassName (Viewmap it)'''
 	«generatedMemberComment»
 	protected void refreshStrikeThrough() {
 		org.eclipse.gmf.runtime.notation.FontStyle style =
-			(org.eclipse.gmf.runtime.notation.FontStyle) getFontStyleOwnerView().getStyle(
-				org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getFontStyle());
+			(org.eclipse.gmf.runtime.notation.FontStyle) getFontStyleOwnerView().getStyle(org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null && getFigure() instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
 			((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) getFigure()).setTextStrikeThrough(style.isStrikeThrough());
 		}
@@ -551,15 +540,11 @@ def labelSetterFigureClassName (Viewmap it)'''
 
 	def refreshFont(GenCommonBase it)'''
 	«generatedMemberComment»
+	«overrideC»
 	protected void refreshFont() {
-		org.eclipse.gmf.runtime.notation.FontStyle style =
-			(org.eclipse.gmf.runtime.notation.FontStyle) getFontStyleOwnerView().getStyle(
-				org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getFontStyle());
+		org.eclipse.gmf.runtime.notation.FontStyle style = (org.eclipse.gmf.runtime.notation.FontStyle) getFontStyleOwnerView().getStyle(org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null) {
-			org.eclipse.swt.graphics.FontData fontData = new org.eclipse.swt.graphics.FontData(
-				style.getFontName(), style.getFontHeight(),
-				(style.isBold() ? org.eclipse.swt.SWT.BOLD : org.eclipse.swt.SWT.NORMAL) |
-				(style.isItalic() ? org.eclipse.swt.SWT.ITALIC : org.eclipse.swt.SWT.NORMAL));
+			org.eclipse.swt.graphics.FontData fontData = new org.eclipse.swt.graphics.FontData(style.getFontName(), style.getFontHeight(), (style.isBold() ? org.eclipse.swt.SWT.BOLD : org.eclipse.swt.SWT.NORMAL) | (style.isItalic() ? org.eclipse.swt.SWT.ITALIC : org.eclipse.swt.SWT.NORMAL));
 			setFont(fontData);
 		}
 	}
@@ -571,7 +556,7 @@ def labelSetterFigureClassName (Viewmap it)'''
 			requestEditPolicyFeedbackRefresh(org.eclipse.gef.EditPolicy.PRIMARY_DRAG_ROLE);
 			requestEditPolicyFeedbackRefresh(org.eclipse.gef.EditPolicy.SELECTION_FEEDBACK_ROLE);
 		}
-		
+
 		«generatedMemberComment()»
 		private void requestEditPolicyFeedbackRefresh(String editPolicyKey) {
 			Object editPolicy = getEditPolicy(editPolicyKey);
@@ -583,6 +568,7 @@ def labelSetterFigureClassName (Viewmap it)'''
 
 	def setFontColor(GenCommonBase it) '''
 	«generatedMemberComment»
+	«overrideC»
 	protected void setFontColor(org.eclipse.swt.graphics.Color color) {
 		getFigure().setForegroundColor(color);
 	}
@@ -590,6 +576,7 @@ def labelSetterFigureClassName (Viewmap it)'''
 
 	def addSemanticListeners(GenCommonBase it) '''
 	«generatedMemberComment»
+	«overrideC»
 	protected void addSemanticListeners() {
 		if (getParser() instanceof org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser) {
 			org.eclipse.emf.ecore.EObject element = resolveSemanticElement();
@@ -605,6 +592,7 @@ def labelSetterFigureClassName (Viewmap it)'''
 
 	def removeSemanticListeners(GenCommonBase it) '''
 	«generatedMemberComment»
+	«overrideC»
 	protected void removeSemanticListeners() {
 		if (parserElements != null) {
 			for (int i = 0; i < parserElements.size(); i++) {
@@ -618,6 +606,7 @@ def labelSetterFigureClassName (Viewmap it)'''
 
 	def getAccessibleEditPart(GenCommonBase it) '''
 	«generatedMemberComment»
+	«overrideC»
 	protected org.eclipse.gef.AccessibleEditPart getAccessibleEditPart() {
 		if (accessibleEP == null) {
 			accessibleEP = new AccessibleGraphicalEditPart() {
@@ -655,12 +644,12 @@ def labelSetterFigureClassName (Viewmap it)'''
 		private org.eclipse.gmf.tooling.runtime.ocl.tracker.OclTracker.Registrator getOclRegistrator() {
 			if (myOclRegistrator == null) {
 				myOclRegistrator = new org.eclipse.gmf.tooling.runtime.ocl.tracker.OclTracker.Registrator() {
-					
+
 					«overrideI(it)»
 					public void registerListener(String filterId, org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener listener, org.eclipse.emf.ecore.EObject element) {
 						addListenerFilter(filterId, listener, element);
 					}
-					
+
 					«overrideI(it)»
 					public void unregisterListener(String filterId) {
 						removeListenerFilter(filterId);
@@ -683,15 +672,12 @@ def labelSetterFigureClassName (Viewmap it)'''
 //	«ENDIF»
 //'''
 
-
-
 def setParser (GenCommonBase it)'''
 	«generatedMemberComment»
 	public void setParser(org.eclipse.gmf.runtime.common.ui.services.parser.IParser parser) {
 		this.parser = parser;
 	}
 '''
-
 
 def getParserElement (LabelModelFacet it)'''
 		return resolveSemanticElement();
@@ -700,7 +686,6 @@ def getParserElement (LabelModelFacet it)'''
 def getParserElement (DesignLabelModelFacet it)'''
 		return (org.eclipse.gmf.runtime.notation.View) getModel();
 '''
-
 
 def isEditable(GenCommonBase it, boolean readOnly ) '''
 	«generatedMemberComment»
@@ -717,16 +702,12 @@ def getManager(GenCommonBase it,GenDiagram diagram) '''
 	«generatedMemberComment»
 	protected org.eclipse.gef.tools.DirectEditManager getManager() {
 		if (manager == null) {
-			setManager(new org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager(this,
-				org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager.getTextCellEditorClass(this),
-				«diagram.getEditPartFactoryQualifiedClassName()».getTextCellEditorLocator(this)));
+			setManager(new org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager(this, org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager.getTextCellEditorClass(this), «diagram.getEditPartFactoryQualifiedClassName()».getTextCellEditorLocator(this)));
 		}
 		return manager;
 	}
 '''
 
-
-	
 def performDirectEditAtPoint (GenCommonBase it)'''
 	«generatedMemberComment»
 	protected void performDirectEdit(org.eclipse.draw2d.geometry.Point eventLocation) {
@@ -735,12 +716,12 @@ def performDirectEditAtPoint (GenCommonBase it)'''
 		}
 	}
 '''
-	
-	
+
 def performDirectEditRequest(GenCommonBase it, GenDiagram diagram ) '''
 	«generatedMemberComment»
+	«overrideC»
 	protected void performDirectEditRequest(org.eclipse.gef.Request request) {
-		
+
 		final org.eclipse.gef.Request theRequest = request;
 
 		if (org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
@@ -754,9 +735,7 @@ def performDirectEditRequest(GenCommonBase it, GenDiagram diagram ) '''
 			updateExtendedEditorConfiguration();
 			if (configuration == null || configuration.getLanguage() == null) {
 				// Create default edit manager
-				setManager(new org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager(this,
-				org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager.getTextCellEditorClass(this),
-				«diagram.getEditPartFactoryQualifiedClassName()».getTextCellEditorLocator(this)));
+				setManager(new org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager(this, org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager.getTextCellEditorClass(this), «diagram.getEditPartFactoryQualifiedClassName()».getTextCellEditorLocator(this)));
 				performDefaultDirectEditorEdit(theRequest);
 			} else {
 				configuration.preEditAction(resolveSemanticElement());
@@ -778,15 +757,15 @@ def performDirectEditRequest(GenCommonBase it, GenDiagram diagram ) '''
 					return;
 				}
 				final org.eclipse.jface.dialogs.Dialog finalDialog = dialog;
-				
+
 				if (org.eclipse.jface.window.Window.OK == dialog.open()) {
 					org.eclipse.emf.transaction.TransactionalEditingDomain domain = getEditingDomain();
 					org.eclipse.emf.transaction.RecordingCommand command = new org.eclipse.emf.transaction.RecordingCommand(domain, "Edit Label") {
-		
+
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.ui.ILabelEditorDialog)finalDialog).getValue());
-		
+
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -811,8 +790,7 @@ def initializeDirectEditManager (GenCommonBase it)'''
 				«overrideI»
 				public void run() {
 					if (isActive() && isEditable()) {
-						if (request.getExtendedData().get(
-							org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+						if (request.getExtendedData().get(org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
 							Character initialChar = (Character) request.getExtendedData().get(org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
 						}
@@ -827,9 +805,10 @@ def initializeDirectEditManager (GenCommonBase it)'''
 		}
 	}
 '''
-	
+
 def refreshVisuals(GenCommonBase it, boolean needsRefreshBounds ) '''
 	«generatedMemberComment»
+	«overrideC»
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshLabel();
@@ -842,7 +821,6 @@ def refreshVisuals(GenCommonBase it, boolean needsRefreshBounds ) '''
 		«ENDIF»
 	}
 '''
-	
 
 //BEGIN: PapyrusGenCode
 //Methods for advanced direct edition
@@ -850,7 +828,7 @@ def refreshVisuals(GenCommonBase it, boolean needsRefreshBounds ) '''
 def getDirectEditionType(GenCommonBase it, Boolean readOnly) '''
 	/**
 	 * Returns the kind of associated editor for direct edition.
-	 * 
+	 *
 	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
@@ -876,7 +854,7 @@ def getDirectEditionType(GenCommonBase it, Boolean readOnly) '''
 def checkExtendedEditor (GenCommonBase it)'''
 	/**
 	 * Checks if an extended editor is present.
-	 * 
+	 *
 	 * @return <code>true</code> if an extended editor is present.
 	 * @generated
 	 */
@@ -891,7 +869,7 @@ def checkExtendedEditor (GenCommonBase it)'''
 def checkDefaultEdition (GenCommonBase it)'''
 	/**
 	 * Checks if a default direct edition is available
-	 * 
+	 *
 	 * @return <code>true</code> if a default direct edition is available
 	 * @generated
 	 */
@@ -903,6 +881,7 @@ def checkDefaultEdition (GenCommonBase it)'''
 def initExtendedEditorConfiguration (GenCommonBase it)'''
 	/**
 	 * Initializes the extended editor configuration
+	 *
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -920,11 +899,11 @@ def initExtendedEditorConfiguration (GenCommonBase it)'''
 def updateExtendedEditorConfiguration (GenCommonBase it)'''
 	/**
 	 * Updates the preference configuration
+	 *
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
-		String languagePreferred = org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.Activator.getDefault().getPreferenceStore().getString(
-				org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.utils.IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
+		String languagePreferred = org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.Activator.getDefault().getPreferenceStore().getString(org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.utils.IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
 		if (languagePreferred != null && !languagePreferred.equals("") && !languagePreferred.equals(configuration.getLanguage())) {
 			configuration = org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.utils.DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement(),this);
 		} else if (org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.utils.IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
@@ -935,10 +914,12 @@ def updateExtendedEditorConfiguration (GenCommonBase it)'''
 
 def performDefaultDirectEditorEdit (GenCommonBase it)'''
 	/**
-	* Performs the direct edit usually used by GMF editors.
-	* @param theRequest the direct edit request that starts the direct edit system
-	* @generated
-	*/
+	 * Performs the direct edit usually used by GMF editors.
+	 *
+	 * @param theRequest
+	 *            the direct edit request that starts the direct edit system
+	 * @generated
+	 */
 	protected void performDefaultDirectEditorEdit(final org.eclipse.gef.Request theRequest) {
 		// initialize the direct edit manager
 		try {
@@ -948,8 +929,7 @@ def performDefaultDirectEditorEdit (GenCommonBase it)'''
 				public void run() {
 					if (isActive() && isEditable()) {
 						if (theRequest.getExtendedData().get(org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
-							Character initialChar = (Character) theRequest.getExtendedData().get(
-									org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+							Character initialChar = (Character) theRequest.getExtendedData().get(org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
 						} else if ((theRequest instanceof org.eclipse.gef.requests.DirectEditRequest) && (getEditText().equals(getLabelText()))) {
 							org.eclipse.gef.requests.DirectEditRequest editRequest = (org.eclipse.gef.requests.DirectEditRequest) theRequest;

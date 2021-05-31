@@ -82,7 +82,7 @@ import xpt.Common_qvto
 	}
 
 	def boolean needsGraphicalNodeEditPolicy(GenNode node) {
-		return node.modelFacet != null && node.reorientedIncomingLinks.size > 0
+		return node.modelFacet !== null && node.reorientedIncomingLinks.size > 0
 	}
 
 	def boolean shouldGenerateDiagramViewmap(GenDiagram genDiagram) {

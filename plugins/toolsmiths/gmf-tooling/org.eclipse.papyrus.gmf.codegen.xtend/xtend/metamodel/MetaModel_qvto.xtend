@@ -12,6 +12,7 @@
  *    Artem Tikhomirov (Borland) - initial API and implementation
  *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *    Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean
  *****************************************************************************/
 package metamodel
 
@@ -111,7 +112,7 @@ import xpt.GenModelUtils_qvto
 	 */
 	def String unparenthesizedCast(String what, GenClass source, GenClass target) {
 		return (if (needsCast(source, target))
-			(if (target == null)
+			(if (target === null)
 				'(org.eclipse.emf.ecore.EObject)' + what
 			else
 				'(' + getQualifiedInterfaceName(target) + ')' + what)
@@ -124,9 +125,9 @@ import xpt.GenModelUtils_qvto
 		if (source == target) {
 			return false;
 		}
-		if (target == null) {
-			return source != null && source.externalInterface
+		if (target === null) {
+			return source !== null && source.externalInterface
 		}
-		return source == null || source.externalInterface || target.externalInterface || !target.isSuperTypeOf(source)
+		return source === null || source.externalInterface || target.externalInterface || !target.isSuperTypeOf(source)
 	}
 }

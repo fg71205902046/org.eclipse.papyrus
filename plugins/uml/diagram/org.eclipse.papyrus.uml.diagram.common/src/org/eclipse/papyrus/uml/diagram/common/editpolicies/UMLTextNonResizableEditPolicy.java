@@ -31,12 +31,13 @@ import org.eclipse.gef.handles.MoveHandle;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.NonResizableEditPolicyEx;
 import org.eclipse.gmf.runtime.diagram.ui.tools.DragEditPartsTrackerEx;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.edit.policies.labels.IRefreshableFeedbackEditPolicy;
 
 /**
  * this class is a copy of generated classes that is present in each diagram
  * We have added this class because somme editpart in the common use it.
  */
-public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx {
+public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx implements IRefreshableFeedbackEditPolicy {
 
 	/**
 	 * @generated
@@ -238,7 +239,7 @@ public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx {
 	 * @generated
 	 */
 	@Override
-	protected List createSelectionHandles() {
+	protected List<?> createSelectionHandles() {
 		MoveHandle moveHandle = new MoveHandle((GraphicalEditPart) getHost());
 		moveHandle.setBorder(null);
 		moveHandle.setDragTracker(new DragEditPartsTrackerEx(getHost()));

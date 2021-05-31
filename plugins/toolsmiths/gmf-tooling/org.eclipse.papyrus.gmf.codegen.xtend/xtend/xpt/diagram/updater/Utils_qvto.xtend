@@ -77,7 +77,7 @@ enum UpdaterLinkType {
 	}
 
 	def boolean isOutgoingLink(GenLink link) {
-		return null != link.modelFacet && link.modelFacet.isOutgoingLinkModelFacet()
+		return null !== link.modelFacet && link.modelFacet.isOutgoingLinkModelFacet()
 	}
 
 	def dispatch boolean isOutgoingLinkModelFacet(LinkModelFacet facet) {
@@ -85,18 +85,18 @@ enum UpdaterLinkType {
 	}
 
 	def dispatch boolean isOutgoingLinkModelFacet(TypeLinkModelFacet facet) {
-		return null != facet.sourceMetaFeature
+		return null !== facet.sourceMetaFeature
 	}
 
 	def Iterable<GenLinkEnd> getAllSemanticDiagramElements(GenDiagram diagram) {
 		var result = <GenLinkEnd>newLinkedList();
 		result.addAll(diagram.allNodes)
 		result.addAll(diagram.links)
-		return result.filter[linkEnd|linkEnd.metaClass != null]
+		return result.filter[linkEnd|linkEnd.metaClass !== null]
 	}
 
 	def Iterable<GenCommonBase> getAllSemanticElements(GenDiagram diagram) {
-		if (diagram.domainDiagramElement != null) {
+		if (diagram.domainDiagramElement !== null) {
 			var result = <GenCommonBase>newLinkedList(diagram)
 			result.addAll(getAllSemanticDiagramElements(diagram))
 			return result;
@@ -114,11 +114,11 @@ enum UpdaterLinkType {
 	}
 
 	def dispatch GenClass getMetaClass(GenNode some) {
-		return if (some.modelFacet == null) null else some.modelFacet.metaClass
+		return if (some.modelFacet === null) null else some.modelFacet.metaClass
 	}
 
 	def dispatch GenClass getMetaClass(GenLink some) {
-		return if(some.modelFacet == null) null else getMetaClass(some.modelFacet)
+		return if(some.modelFacet === null) null else getMetaClass(some.modelFacet)
 	}
 
 	def dispatch GenClass getMetaClass(LinkModelFacet facet) {
@@ -197,7 +197,7 @@ enum UpdaterLinkType {
 	}
 
 	def Iterable<GenNode> getSemanticChildren(GenContainerBase containerBase) {
-		return containerBase.containedNodes.filter[node|node.modelFacet != null]
+		return containerBase.containedNodes.filter[node|node.modelFacet !== null]
 	}
 
 	/**
@@ -224,8 +224,8 @@ enum UpdaterLinkType {
 
 	def dispatch GenClass getLinkEndType(TypeLinkModelFacet facet, UpdaterLinkType type) {
 		if(type == UpdaterLinkType::INCOMING) return facet.targetType;
-		if(type == UpdaterLinkType::OUTGOING && facet.sourceMetaFeature != null) return facet.sourceType;
-		if(facet.containmentMetaFeature == null) return null;
+		if(type == UpdaterLinkType::OUTGOING && facet.sourceMetaFeature !== null) return facet.sourceType;
+		if(facet.containmentMetaFeature === null) return null;
 		return facet.containmentMetaFeature.genClass;
 	}
 

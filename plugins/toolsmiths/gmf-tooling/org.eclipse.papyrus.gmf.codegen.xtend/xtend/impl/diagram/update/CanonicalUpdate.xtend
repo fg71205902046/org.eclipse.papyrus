@@ -341,7 +341,7 @@ def refreshConnectionsBody(GenDiagram it) '''
 		for (java.util.Iterator<org.eclipse.gmf.runtime.notation.View> linksIterator = existingLinks.iterator(); linksIterator.hasNext();) {
 			org.eclipse.gmf.runtime.notation.Edge nextDiagramLink = (org.eclipse.gmf.runtime.notation.Edge) linksIterator.next();
 			int diagramLinkVisualID = «xptVisualIDRegistry.getVisualIDMethodCall(it)»(nextDiagramLink);
-			if (diagramLinkVisualID == -1«FOR link : links.filter[gl|gl.modelFacet == null]»«compareLinkVisualID(link)»«ENDFOR») {
+			if (diagramLinkVisualID == -1«FOR link : links.filter[gl|gl.modelFacet === null]»«compareLinkVisualID(link)»«ENDFOR») {
 				if (nextDiagramLink.getSource() != null && nextDiagramLink.getTarget() != null) {
 					linksIterator.remove();
 				}

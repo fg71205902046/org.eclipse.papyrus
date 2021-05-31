@@ -70,5 +70,4 @@ public class CommentAnnotatedElementEditPart extends UMLConnectionNodeEditPart i
 	public SimpleDashedEdgeFigure getPrimaryShape() {
 		return (SimpleDashedEdgeFigure) getFigure();
 	}
-
 }

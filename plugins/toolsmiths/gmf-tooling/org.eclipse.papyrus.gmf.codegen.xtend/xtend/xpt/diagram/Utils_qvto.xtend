@@ -50,7 +50,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeModelFacet
 	* 
 	*/
 	def boolean hasContainerOtherThanSource(TypeLinkModelFacet facet) {
-		return facet.sourceMetaFeature != null || facet.childMetaFeature != facet.containmentMetaFeature
+		return facet.sourceMetaFeature !== null || facet.childMetaFeature != facet.containmentMetaFeature
 	}
 
 	def List<GenPreferencePage> allPreferencePages(GenDiagram genDiagram) {

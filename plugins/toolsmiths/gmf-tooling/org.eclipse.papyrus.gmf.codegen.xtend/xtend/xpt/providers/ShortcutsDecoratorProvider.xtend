@@ -1,16 +1,17 @@
 /*******************************************************************************
  * Copyright (c) 2006, 2020 Borland Software Corporation, CEA LIST, Artal and others
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Alexander Shatalin (Borland) - initial API and implementation
+ * Contributors:
+ *	Alexander Shatalin (Borland) - initial API and implementation
  * 	  Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ *	Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up providers
  */
 package xpt.providers
 
@@ -42,19 +43,17 @@ import plugin.Activator
 	def ShortcutsDecoratorProvider(GenDiagram it) '''
 		«copyright(editorGen)»
 		package «packageName(it)»;
-		
+
 		«generatedClassComment»
 		public class «className(it)» «extendsList(it)» «implementsList(it)» {
-			
+
 			«attributes(it)»
-			
+
 			«provides(it)»
-			
+
 			«createDecorators(it)»
-			
+
 			«ShortcutsDecorator(it)»
-			
-			«additions(it)»
 		}
 	'''
 
@@ -70,7 +69,7 @@ import plugin.Activator
 				return false;
 			}
 			org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorTarget decoratorTarget = ((org.eclipse.gmf.runtime.diagram.ui.services.decorator.CreateDecoratorsOperation) operation).getDecoratorTarget();
-			org.eclipse.gmf.runtime.notation.View view = (org.eclipse.gmf.runtime.notation.View) decoratorTarget.getAdapter(org.eclipse.gmf.runtime.notation.View.class);
+			org.eclipse.gmf.runtime.notation.View view = decoratorTarget.getAdapter(org.eclipse.gmf.runtime.notation.View.class);
 			return view != null && «VisualIDRegistry::modelID(it)».equals(«xptVisualIDRegistry.getModelIDMethodCall(it)»(view));
 		}
 	'''
@@ -78,7 +77,7 @@ import plugin.Activator
 	def createDecorators(GenDiagram it) '''
 		«generatedMemberComment»
 		public void createDecorators(org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorTarget decoratorTarget) {
-			org.eclipse.gmf.runtime.notation.View view = (org.eclipse.gmf.runtime.notation.View) decoratorTarget.getAdapter(org.eclipse.gmf.runtime.notation.View.class);
+			org.eclipse.gmf.runtime.notation.View view = decoratorTarget.getAdapter(org.eclipse.gmf.runtime.notation.View.class);
 			if (view != null) {
 				org.eclipse.emf.ecore.EAnnotation annotation = view.getEAnnotation("Shortcut"); «nonNLS(1)»
 				if (annotation != null) {
@@ -92,12 +91,10 @@ import plugin.Activator
 		«generatedClassComment»
 		protected class ShortcutsDecorator «SD_extendsList(it)» {
 			«SD_constructor(it)»
-			
+
 			«SD_activate(it)»
-			
+
 			«SD_refresh(it)»
-			
-			«SD_additions(it)»
 		}
 	'''
 
@@ -130,8 +127,4 @@ import plugin.Activator
 			}
 		}
 	'''
-
-	def SD_additions(GenDiagram it) ''''''
-
-	def additions(GenDiagram it) ''''''
 }

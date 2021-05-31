@@ -12,6 +12,7 @@
  *    Alexander Shatalin (Borland) - initial API and implementation
  *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *    Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up
  *****************************************************************************/
 package xpt.navigator
 
@@ -27,7 +28,7 @@ import xpt.Common
 		«generatedMemberComment»
 		private static org.eclipse.ui.IEditorInput getEditorInput(org.eclipse.gmf.runtime.notation.Diagram diagram) {
 			org.eclipse.emf.ecore.resource.Resource diagramResource = diagram.eResource();
-		«IF null == it.application»
+		«IF null === it.application »
 			for (org.eclipse.emf.ecore.EObject nextEObject : diagramResource.getContents()) {
 				if (nextEObject == diagram) {
 					return new org.eclipse.ui.part.FileEditorInput(org.eclipse.emf.workspace.util.WorkspaceSynchronizer.getFile(diagramResource));

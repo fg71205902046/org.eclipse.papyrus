@@ -12,6 +12,7 @@
  *    Alexander Shatalin (Borland) - initial API and implementation
  *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *    Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up
  *****************************************************************************/
 package xpt.navigator
 
@@ -55,10 +56,10 @@ import xpt.Common_qvto
 	}
 
 	def Iterable<GenNavigatorChildReference> getChildReferencesFrom(GenNavigator navigator, GenCommonBase parent) {
-		return if (parent == null) //
-			navigator.childReferences.filter[r|r.parent == null] //
+		return if (parent === null) //
+			navigator.childReferences.filter[r|r.parent === null] //
 		else
-			navigator.childReferences.filter[r|r.parent != null && parent.visualID == r.parent.visualID]
+			navigator.childReferences.filter[r|r.parent !== null && parent.visualID == r.parent.visualID]
 	}
 
 	def Iterable<GenNavigatorChildReference> getChildReferencesTo(GenNavigator navigator, GenCommonBase child) {
@@ -66,7 +67,7 @@ import xpt.Common_qvto
 	}
 
 	def GenNavigatorChildReference getDiagramTopReference(GenNavigator navigator) {
-		return navigator.childReferences.filter[cr|null == cr.parent].filter[cr|cr.child == navigator.editorGen.diagram].
+		return navigator.childReferences.filter[cr|null === cr.parent].filter[cr|cr.child == navigator.editorGen.diagram].
 			head;
 	}
 

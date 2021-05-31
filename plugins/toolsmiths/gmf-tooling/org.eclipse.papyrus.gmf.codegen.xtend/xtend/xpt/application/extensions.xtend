@@ -27,7 +27,7 @@ import xpt.Common
 
 
 	def extensions(GenApplication it) '''
-	«IF it != null»
+	«IF it !== null »
 		«tripleSpace(1)»<extension id="«ID»" point="org.eclipse.core.runtime.applications">
 		«tripleSpace(2)»«xmlGeneratedTag»
 		«tripleSpace(2)»<application>

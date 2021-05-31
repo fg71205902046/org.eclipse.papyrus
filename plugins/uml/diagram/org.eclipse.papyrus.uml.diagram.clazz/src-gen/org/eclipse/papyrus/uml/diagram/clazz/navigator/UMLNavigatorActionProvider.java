@@ -179,7 +179,5 @@ public class UMLNavigatorActionProvider extends CommonActionProvider {
 			IEditorInput editorInput = new URIEditorInput(uri, editorName);
 			return editorInput;
 		}
-
 	}
-
 }

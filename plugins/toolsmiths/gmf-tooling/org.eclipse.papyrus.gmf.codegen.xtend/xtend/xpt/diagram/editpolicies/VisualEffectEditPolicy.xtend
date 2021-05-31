@@ -12,6 +12,7 @@
  *    Svyatoslav Kovalsky - initial API and implementation
  *    Michael Golubev (Borland) - #386838 - migrate to Xtend2
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *    Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up
  *****************************************************************************/
 package xpt.diagram.editpolicies
 
@@ -136,7 +137,7 @@ public class «className(it)» «extendsList(it)» {
 		«IF metaFeature.ecoreFeature.upperBound == 1»
 			«expressionLinkEnds(it, '', '.' + metaFeature.ecoreFeature.name)»
 		«ELSE»
-			«IF metaFeature.reverse != null»
+			«IF metaFeature.reverse !== null »
 				«expressionLinkEnds(it, '.' + metaFeature.reverse.ecoreFeature.name, '')»				
 			«ELSEIF (metaFeature.ecoreFeature as EReference).containment»
 				«expressionLinkEnds(it, '.oclAsType(ecore::EObject).eContainer().oclAsType(' + sourceType.ecoreClass.name + ')', '')»
@@ -169,7 +170,6 @@ public class «className(it)» «extendsList(it)» {
 
 	def setVisualEffectValueOnCustomPin(GenVisualEffect it) '''
 		«setVisualEffectValueOfType(it.operationRuntimeType, it)»
-		«extraLineBreak»
 	'''
 
 	def dispatch setVisualEffectValueOfType(EClassifier it, GenVisualEffect visualEffect) '''
@@ -182,7 +182,6 @@ public class «className(it)» «extendsList(it)» {
 
 	def dispatch setVisualEffectValueOfType(TupleType it, GenVisualEffect visualEffect) '''
 		«defineTupleParts(it)»
-		«extraLineBreak»
 		«callOperation(visualEffect)»
 		(«»
 			«enumerateTupleParts(it)»
@@ -218,7 +217,7 @@ public class «className(it)» «extendsList(it)» {
 		«IF metaFeature.ecoreFeature.upperBound == 1»
 			«getContextBody(it, 'source', 'target', getSourceType(), getTargetType(), metaFeature)»
 		«ELSE»	
-			«IF it.metaFeature.reverse != null || (metaFeature.ecoreFeature as EReference).containment»
+			«IF it.metaFeature.reverse !== null || (metaFeature.ecoreFeature as EReference).containment»
 				«getContextBody(it, 'target', 'source', getTargetType(), getSourceType(), it.metaFeature.reverse)»
 			«ELSE»
 				// unable to pass both link ends 
@@ -240,12 +239,12 @@ public class «className(it)» «extendsList(it)» {
 		
 		org.eclipse.emf.ecore.EObject «selfName»SemanticModel = org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.resolveSemanticElement(«selfName»Model);
 		// need to check actual opposite of the semantic element, since diagram opposite could be not up to date
-		«/* (selfFeature = null) if link is multiplicity containment without opposite */IF selfFeature != null»		 
+		«/* (selfFeature = null) if link is multiplicity containment without opposite */IF selfFeature !== null »		 
 			«xptMetaModel.QualifiedClassName(selfType)» «selfName»TypedModel = «xptMetaModel.CastEObject(selfType,
 			selfName + 'SemanticModel')»;
 		«ENDIF»
 		org.eclipse.emf.ecore.EObject «oppositeName»SemanticModel =
-			«IF selfFeature != null»«xptMetaModel.getFeatureValue(selfFeature, selfName + 'TypedModel', oppositeType)»«ELSE»«selfName»SemanticModel.eContainer()«ENDIF»;
+			«IF selfFeature !== null »«xptMetaModel.getFeatureValue(selfFeature, selfName + 'TypedModel', oppositeType)»«ELSE»«selfName»SemanticModel.eContainer()«ENDIF»;
 		
 		if («oppositeName»SemanticModel == null) {
 			return null;

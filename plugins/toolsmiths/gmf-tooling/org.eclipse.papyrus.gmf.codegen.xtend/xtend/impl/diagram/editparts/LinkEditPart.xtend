@@ -30,6 +30,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.SnippetViewmap
 import org.eclipse.papyrus.gmf.codegen.gmfgen.Viewmap
 import xpt.Common
 import xpt.Common_qvto
+import xpt.CodeStyle
 
 /**
  * Revisit: [MG]: @Inject extension same-named-api-class -> template extends api-class?
@@ -37,7 +38,8 @@ import xpt.Common_qvto
 @Singleton class LinkEditPart {
 	@Inject extension Common;
 	@Inject extension Common_qvto;
-	
+	@Inject extension CodeStyle;
+
 	@Inject xpt.diagram.editparts.Common xptEditpartsCommon;
 	@Inject TextAware xptTextAware;
 
@@ -54,33 +56,26 @@ import xpt.Common_qvto
 
 	def createDefaultEditPoliciesBody(GenLink it) '''
 		super.createDefaultEditPolicies();
-		«IF null == modelFacet»
+		«IF null === modelFacet»
 			installEditPolicy(org.eclipse.gef.EditPolicy.COMPONENT_ROLE, new org.eclipse.gmf.runtime.diagram.ui.editpolicies.ViewComponentEditPolicy());
 		«ENDIF»
 		«xptEditpartsCommon.installSemanticEditPolicy(it)»
-		«installGraphicalNodeEditPolicy(it)»
 		«xptEditpartsCommon.behaviour(it)»
-		«additionalEditPolicies(it)»
 	'''
-	
-	def installGraphicalNodeEditPolicy(GenLink it) ''''''
-
-	def additionalEditPolicies(GenLink it) ''''''
 
 	/**
-	 * FIXME: [MG] check counterpart for ModeledViewmap, 
-	 */
+	 * FIXME: [MG] check counterpart for ModeledViewmap, */
 	def addFixedChild(GenLink it) '''
-	«IF labels.size > 0»
-		«generatedMemberComment»
-		protected boolean addFixedChild(org.eclipse.gef.EditPart childEditPart) {
-			«FOR label : labels»
-				«addLabel(label.viewmap,label)»
-			«ENDFOR»
-			return false;
-		}
-	«ENDIF»
-'''
+		«IF labels.size > 0»
+			«generatedMemberComment»
+			protected boolean addFixedChild(org.eclipse.gef.EditPart childEditPart) {
+				«FOR label : labels»
+					«addLabel(label.viewmap,label)»
+				«ENDFOR»
+				return false;
+			}
+		«ENDIF»
+	'''
 
 	// Note, condition in addFixedChild template above should be changed if addLabel support added for Viewmaps other than ParentAssignedViewmap
 	def dispatch addLabel(Viewmap it, GenLinkLabel label) ''''''
@@ -91,22 +86,23 @@ import xpt.Common_qvto
 
 	def commonAddLabel(Viewmap it, String getterName, GenLinkLabel label) '''
 		if (childEditPart instanceof «label.getEditPartQualifiedClassName()») {
-			((«label.getEditPartQualifiedClassName()») childEditPart).«xptTextAware.labelSetterName(it)»(
-					getPrimaryShape().«getterName»());
+			((«label.getEditPartQualifiedClassName()») childEditPart).«xptTextAware.labelSetterName(it)»(getPrimaryShape().«getterName»());
 		}
 	'''
 
-	def removeFixedChild(GenLink it) '''
-	«IF ! labels.empty»
-		«generatedMemberComment»
-		protected boolean removeFixedChild(org.eclipse.gef.EditPart childEditPart) {
-			«FOR label : labels»
-				«removeLabel(label.viewmap, label)»
-			«ENDFOR»
-			return false;
+	def CharSequence /*Bug 569174 : L1.2 - remove extra blank lines*/removeFixedChild(GenLink it) {
+		if(!labels.empty) {
+			'''
+				«generatedMemberComment»
+				protected boolean removeFixedChild(org.eclipse.gef.EditPart childEditPart) {
+					«FOR label : labels»
+						«removeLabel(label.viewmap, label)»
+					«ENDFOR»
+					return false;
+				}
+			'''
 		}
-	«ENDIF»
-	'''
+	}
 
 	// Note, condition in removeFixedChild template above should be changed if removeLabel support added for Viewmaps other than ParentAssignedViewmap
 	def dispatch removeLabel(Viewmap it, GenLinkLabel label) ''''''
@@ -126,66 +122,50 @@ import xpt.Common_qvto
 	'''
 
 	def addChildVisual(GenLink it) '''
-	«IF ! labels.empty»
-		«generatedMemberComment»
-		protected void addChildVisual(org.eclipse.gef.EditPart childEditPart, int index) {
-			if (addFixedChild(childEditPart)) {
-				return;
+		«IF ! labels.empty»
+			«generatedMemberComment»
+			«overrideC»
+			protected void addChildVisual(org.eclipse.gef.EditPart childEditPart, int index) {
+				if (addFixedChild(childEditPart)) {
+					return;
+				}
+				super.addChildVisual(childEditPart, -1);
 			}
-			super.addChildVisual(childEditPart, -1);
-		}
-	«ENDIF»
+		«ENDIF»
 	'''
 
 	def removeChildVisual(GenLink it) '''
-	«IF ! labels.empty»
-		«generatedMemberComment»
-		protected void removeChildVisual(org.eclipse.gef.EditPart childEditPart) {
-			if (removeFixedChild(childEditPart)) {
-				return;
+		«IF ! labels.empty»
+			«generatedMemberComment»
+			«overrideC»
+			protected void removeChildVisual(org.eclipse.gef.EditPart childEditPart) {
+				if (removeFixedChild(childEditPart)) {
+					return;
+				}
+				super.removeChildVisual(childEditPart);
 			}
-			super.removeChildVisual(childEditPart);
-		}
-	«ENDIF»
+		«ENDIF»
 	'''
 
 	def createLinkFigure(GenLink it) '''
-		«generatedMemberComment(
-			'Creates figure for this edit part.\n' + '\n' +
+		«generatedMemberComment('Creates figure for this edit part.\n' + '\n' +
 				'Body of this method does not depend on settings in generation model\n' +
-				'so you may safely remove <i>generated</i> tag and modify it.\n'
-		)»
+				'so you may safely remove <i>generated</i> tag and modify it.')»
 		«createLinkFigure(it.viewmap, it)»
 	'''
 
 	def dispatch createLinkFigure(Viewmap it, GenLink link) '''«ERROR('Unknown viewmap: ' + it + ", for link: " + link)»'''
 
-	def dispatch createLinkFigure(ModeledViewmap it, GenLink link) '''
-«««		«generatedMemberComment»
-«««		protected org.eclipse.draw2d.Connection createConnectionFigure() {
-«««			return new «modeledViewmapFigureFQN(it)»();
-«««		}
-«««		
-«««		«generatedMemberComment»
-«««		public «modeledViewmapFigureFQN(it)» getPrimaryShape() {
-«««			return («modeledViewmapFigureFQN(it)») getFigure();
-«««		}
-«««		
-«««		«xptModeledViewmapProducer.viewmapClassBody(it)»
-	'''
-
-	def modeledViewmapFigureFQN(ModeledViewmap it) '''
-«««	«xptModeledViewmapProducer.viewmapFigureFQN(it)»
-	'''
-
 	def dispatch createLinkFigure(FigureViewmap it, GenLink link) {
-		var fqn = if(figureQualifiedClassName == null) 'org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx' else figureQualifiedClassName
+		var fqn = if(figureQualifiedClassName === null) 'org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx' else figureQualifiedClassName
 		'''
+			«link.overrideC»
 			protected org.eclipse.draw2d.Connection createConnectionFigure() {
 				return new «fqn»();
 			}
-			
+
 			«generatedMemberComment»
+			«link.overrideI»
 			public «fqn» getPrimaryShape() {
 				return («fqn») getFigure();
 			}
@@ -193,45 +173,42 @@ import xpt.Common_qvto
 	}
 
 	def dispatch createLinkFigure(SnippetViewmap it, GenLink link) '''
+		«link.overrideC»
 		protected org.eclipse.draw2d.Connection createConnectionFigure() {
 			return «body»;
 		}
 	'''
 
 	def dispatch createLinkFigure(InnerClassViewmap it, GenLink link) '''
+		«link.overrideC»
 		protected org.eclipse.draw2d.Connection createConnectionFigure() {
 			return new «className»();
 		}
-		
+
 		«generatedMemberComment»
+		«link.overrideI»
 		public «className» getPrimaryShape() {
 			return («className») getFigure();
 		}
-		
+
 		«classBody»
 	'''
-	
+
 	/**
 	 * FIXME: [MG] it looks like the ModeledViewmap is fixed, check that
 	 * FIXME: [MG] and add the dispatch for modeled viewmaps then 
 	 */
-	def boolean hasFixedLabels(GenLink it){
+	def boolean hasFixedLabels(GenLink it) {
 		labels.notEmpty && (labels.filter(l | l.viewmap.oclIsKindOf(typeof(ParentAssignedViewmap))).notEmpty || labels.filter(l | l.viewmap.oclIsKindOf(typeof(ModeledViewmap))).notEmpty)
 	}
 
-
-	
 	/**
 	 * computes super type of the link edit part in case the edit part manages a representation of a UML element
 	 */
-	def extendsListContents(GenLink it)'''
-	«IF superEditPart !== null»
-	«superEditPart»
-	«ELSE»
-	org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart
-	«ENDIF»
-	'''
+	def extendsListContents(GenLink it) {
+		if(superEditPart !== null)
+			return '''«superEditPart»'''
+		else
+			return '''org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart'''
+	}
 }
-
-
-

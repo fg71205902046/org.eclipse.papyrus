@@ -13,6 +13,7 @@
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Anatolyi Tischenko - Initial API and implementation
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up providers
  *****************************************************************************/
 package xpt.diagram.commands
 
@@ -80,7 +81,6 @@ import xpt.diagram.editpolicies.BaseItemSemanticEditPolicy
 	'''
 
 	def oldTargetAccessor(LinkModelFacet xptSelf) '''
-		«extraLineBreak»
 		«generatedMemberComment()»
 		protected «xptMetaModel.QualifiedClassName(xptSelf.targetType)» getOldTarget() {
 		return «xptMetaModel.CastEObject(xptSelf.targetType, 'oldEnd')»; 
@@ -88,7 +88,6 @@ import xpt.diagram.editpolicies.BaseItemSemanticEditPolicy
 	'''
 
 	def newTargetAccessor(LinkModelFacet xptSelf) '''
-		«extraLineBreak»
 		«generatedMemberComment()»
 		protected «xptMetaModel.QualifiedClassName(xptSelf.targetType)» getNewTarget() {
 			return «xptMetaModel.CastEObject(xptSelf.targetType, 'newEnd')»;
@@ -163,7 +162,7 @@ import xpt.diagram.editpolicies.BaseItemSemanticEditPolicy
 		if (!(«xptMetaModel.IsInstance(it.targetType, 'oldEnd')» && «xptMetaModel.IsInstance(targetType, 'newEnd')»)) {
 			return false;
 		}
-		«IF (it.sourceMetaFeature != null)»
+		«IF (it.sourceMetaFeature !== null) »
 			«extractFeatureWithCheck(it.sourceMetaFeature, 'getLink()', metaClass, 'source', getSourceType())»
 		«ELSE»
 			if (!(«xptMetaModel.IsContainerInstance(it.sourceType, 'getLink()', metaClass)»)) {
@@ -245,8 +244,8 @@ import xpt.diagram.editpolicies.BaseItemSemanticEditPolicy
 	 * makes sense to deduceContainer() using new source?
 	**/
 	def dispatch reorientSource(TypeLinkModelFacet it) '''
-		«IF (if(sourceMetaFeature == null) containmentMetaFeature else sourceMetaFeature).ecoreFeature.changeable»
-			«IF sourceMetaFeature != null»
+		«IF (if( sourceMetaFeature === null ) containmentMetaFeature else sourceMetaFeature).ecoreFeature.changeable»
+			«IF sourceMetaFeature !== null »
 				«changeTarget(sourceMetaFeature, 'getLink()', metaClass, 'getOldSource()', 'getNewSource()')»
 			«ELSE»
 				«changeSource(if(hasExplicitChildFeature(it)) childMetaFeature else containmentMetaFeature, 'getLink()',

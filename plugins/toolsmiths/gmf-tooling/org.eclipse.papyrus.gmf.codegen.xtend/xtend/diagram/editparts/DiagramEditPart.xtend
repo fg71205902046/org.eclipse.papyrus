@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2006, 2010, 2013, 2021 Borland Software Corporation and others, CEA LIST, Artal and others
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -17,14 +17,17 @@
 package diagram.editparts
 
 import com.google.inject.Inject
-import com.google.inject.Singleton
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
+import xpt.CodeStyle
 import xpt.Common
 
-@Singleton class DiagramEditPart {
+class DiagramEditPart {
 
 	@Inject extension Common;
+	@Inject extension CodeStyle;
+
 	@Inject impl.diagram.editparts.DiagramEditPart xptDiagramEditPart;
+
 	@Inject xpt.diagram.editparts.Common xptEditpartsCommon;
 
 	def qualifiedClassName(GenDiagram it) '''«xptDiagramEditPart.packageName(it)».«xptDiagramEditPart.className(it)»'''
@@ -36,13 +39,13 @@ import xpt.Common
 		package «xptDiagramEditPart.packageName(it)»;
 
 		«generatedClassComment»
-		public class «xptDiagramEditPart.className(it)» «extendsList(it)» «implementsList(it)» {
+		public class «xptDiagramEditPart.className(it)» «extendsList(it)» {
 
 			«attributes(it)»
 
-				«xptDiagramEditPart.constructor(it)»
+			«xptDiagramEditPart.constructor(it)»
 
-				«createDefaultEditPolicies(it)»
+			«createDefaultEditPolicies(it)»
 
 			«xptDiagramEditPart.createFigure(it)»
 		}
@@ -50,19 +53,19 @@ import xpt.Common
 
 	def extendsList(GenDiagram it) '''extends «xptDiagramEditPart.extendsListContents(it)»'''
 
-	def implementsList(GenDiagram it) ''''''
-
 	def attributes(GenDiagram it) '''
 		«generatedMemberComment»
 		public final static String MODEL_ID = "«editorGen.modelID»"; «nonNLS(1)»
-		
+
 		«xptEditpartsCommon.visualIDConstant(it)»
 	'''
 
 	def createDefaultEditPolicies(GenDiagram it) '''
 		«generatedMemberComment»
+		«overrideC»
 		protected void createDefaultEditPolicies() {
 			«xptDiagramEditPart.createDefaultEditPoliciesBody(it)»
 		}
 	'''
+
 }

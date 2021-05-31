@@ -12,6 +12,7 @@
  * Dmitry Stadnik (Borland) - initial API and implementation
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up providers
  *****************************************************************************/
 package xpt.diagram.commands
 
@@ -75,7 +76,6 @@ import xpt.diagram.editpolicies.BaseItemSemanticEditPolicy
 	 *	Fields of command that creates link.
 	 */
 	def dispatch fields(LinkModelFacet it) '''
-		«extraLineBreak»
 			«generatedMemberComment()» 
 			protected final org.eclipse.emf.ecore.EObject source;
 		
@@ -83,8 +83,7 @@ import xpt.diagram.editpolicies.BaseItemSemanticEditPolicy
 			protected final org.eclipse.emf.ecore.EObject target;
 	'''
 
-	def dispatch fields(TypeLinkModelFacet it) ''' 
-		«extraLineBreak»
+	def dispatch fields(TypeLinkModelFacet it) '''
 			«generatedMemberComment()» 
 			protected final org.eclipse.emf.ecore.EObject source;
 		

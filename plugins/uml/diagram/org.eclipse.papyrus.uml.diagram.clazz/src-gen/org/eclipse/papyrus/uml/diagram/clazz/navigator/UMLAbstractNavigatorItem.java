@@ -36,9 +36,8 @@ public abstract class UMLAbstractNavigatorItem extends PlatformObject {
 			}
 		};
 		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
-
 			@Override
-			@SuppressWarnings("rawtypes")
+			@SuppressWarnings({ "rawtypes", "unchecked" })
 			public Object getAdapter(Object adaptableObject, Class adapterType) {
 				if (adaptableObject instanceof org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLAbstractNavigatorItem && adapterType == ITabbedPropertySheetPageContributor.class) {
 					return propertySheetPageContributor;
@@ -47,7 +46,7 @@ public abstract class UMLAbstractNavigatorItem extends PlatformObject {
 			}
 
 			@Override
-			@SuppressWarnings("rawtypes")
+			@SuppressWarnings({ "rawtypes", "unchecked" })
 			public Class[] getAdapterList() {
 				return supportedTypes;
 			}
@@ -72,5 +71,4 @@ public abstract class UMLAbstractNavigatorItem extends PlatformObject {
 	public Object getParent() {
 		return myParent;
 	}
-
 }

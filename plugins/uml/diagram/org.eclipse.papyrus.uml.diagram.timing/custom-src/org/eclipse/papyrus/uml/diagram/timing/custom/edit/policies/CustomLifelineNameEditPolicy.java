@@ -12,8 +12,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.timing.custom.edit.policies;
 
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.timing.custom.figures.LifelineVerticalLabel;
-import org.eclipse.papyrus.uml.diagram.timing.edit.policies.UMLTextSelectionEditPolicy;
 
 /** Shows feedback for the selection of a Lifeline name vertical label. */
 public class CustomLifelineNameEditPolicy extends UMLTextSelectionEditPolicy {

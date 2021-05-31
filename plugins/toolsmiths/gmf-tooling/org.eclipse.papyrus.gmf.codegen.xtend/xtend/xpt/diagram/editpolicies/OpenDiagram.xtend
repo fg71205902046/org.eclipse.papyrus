@@ -168,7 +168,7 @@ import xpt.editor.DiagramEditorUtil
 				container = container.eContainer();
 			}
 			try {
-			«IF null == subject.diagram.editorGen.application»
+			«IF null === subject.diagram.editorGen.application »
 				new org.eclipse.ui.actions.WorkspaceModifyOperation() {
 					protected void execute(org.eclipse.core.runtime.IProgressMonitor monitor) throws org.eclipse.core.runtime.CoreException, java.lang.reflect.InvocationTargetException, InterruptedException {
 						try {
@@ -179,7 +179,7 @@ import xpt.editor.DiagramEditorUtil
 					nextResource.save(«xptDiagramEditorUtil.qualifiedClassName(subject.diagram)».getSaveOptions());
 				}
 			}
-			«IF null == subject.diagram.editorGen.application»
+			«IF null === subject.diagram.editorGen.application »
 				} catch (java.io.IOException ex) {
 					throw new java.lang.reflect.InvocationTargetException(ex, "Save operation failed");
 				}		
@@ -219,14 +219,14 @@ import xpt.editor.DiagramEditorUtil
 	def openCommandClass_getDiagramKind(OpenDiagramBehaviour it) '''
 		«generatedMemberComment»
 		protected String getDiagramKind() {
-			return «IF diagramKind == null»«VisualIDRegistry::modelID(subject.diagram)»«ELSE»"«diagramKind»"«ENDIF»;
+			return «IF diagramKind === null »«VisualIDRegistry::modelID(subject.diagram)»«ELSE»"«diagramKind»"«ENDIF»;
 		}
 	'''
 
 	def openCommandClass_getEditorID(OpenDiagramBehaviour it) '''
 		«generatedMemberComment»
 		protected String getEditorID() {
-			return «IF editorID == null»«xptEditor.qualifiedClassName(subject.diagram.editorGen.editor)».ID«ELSE»"«editorID»"«ENDIF»;
+			return «IF editorID === null »«xptEditor.qualifiedClassName(subject.diagram.editorGen.editor)».ID«ELSE»"«editorID»"«ENDIF»;
 		}
 	'''
 

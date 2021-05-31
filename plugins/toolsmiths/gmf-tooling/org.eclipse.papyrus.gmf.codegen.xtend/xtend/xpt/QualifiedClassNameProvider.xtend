@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015, 2021 Borland Software Corporation, CEA LIST, Artal and others
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -34,22 +34,22 @@ import xpt.diagram.commands.CreateLinkCommand
 	@Inject DiagramItemSemanticEditPolicy diagramItemSemantic;
 	@Inject LinkItemSemanticEditPolicy linkItemSemantic;
 	@Inject NodeItemSemanticEditPolicy nodeItemSemantic;
-	
+
 	@Inject CreateLinkCommand linkCommand
 	@Inject CreateNodeCommand nodeCommand
-	
+
 	def dispatch getItemSemanticEditPolicyQualifiedClassName(GenCommonBase it) ''''''
 	def dispatch getItemSemanticEditPolicyQualifiedClassName(GenDiagram it)'''org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCompartmentSemanticEditPolicy'''
 	def dispatch getItemSemanticEditPolicyQualifiedClassName(GenCompartment it) '''org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCompartmentSemanticEditPolicy'''
 	def dispatch getItemSemanticEditPolicyQualifiedClassName(GenLink it)  '''org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy'''
 	def dispatch getItemSemanticEditPolicyQualifiedClassName(GenNode it) '''org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy'''
-	
-	def dispatch getItemSemanticEditPolicyClassName(GenCommonBase it) ''''''
-	def dispatch getItemSemanticEditPolicyClassName(GenDiagram it) '''«diagramItemSemantic.className(it)»'''
-	def dispatch getItemSemanticEditPolicyClassName(GenCompartment it) '''«compItemSemantic.className(it)»'''
-	def dispatch getItemSemanticEditPolicyClassName(GenLink it) '''«linkItemSemantic.className(it)»'''
-	def dispatch getItemSemanticEditPolicyClassName(GenNode it) '''«nodeItemSemantic.className(it)»'''
-	
+
+	def dispatch CharSequence getItemSemanticEditPolicyClassName(GenCommonBase it) ''''''
+	def dispatch CharSequence getItemSemanticEditPolicyClassName(GenDiagram it) '''«diagramItemSemantic.className(it)»'''
+	def dispatch CharSequence getItemSemanticEditPolicyClassName(GenLink it) '''«linkItemSemantic.className(it)»'''
+	def dispatch CharSequence getItemSemanticEditPolicyClassName(GenNode it) '''«nodeItemSemantic.className(it)»'''
+	def dispatch CharSequence getItemSemanticEditPolicyClassName(GenCompartment it) '''«compItemSemantic.className(it)»'''
+
 	def dispatch getCreateCommandQualifiedClassName(GenCommonBase it) ''''''
 	def dispatch getCreateCommandQualifiedClassName(GenNode it) '''«nodeCommand.qualifiedClassName(it)»'''
 	def dispatch getCreateCommandQualifiedClassName(GenLink it) '''«linkCommand.qualifiedClassName(it)»'''

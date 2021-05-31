@@ -17,30 +17,24 @@
 package impl.actions
 
 import com.google.inject.Inject
+import com.google.inject.Singleton
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
 import org.eclipse.papyrus.gmf.codegen.xtend.annotations.Localization
 import plugin.Activator
+import xpt.CodeStyle
 import xpt.Common
 import xpt.Common_qvto
 import xpt.Externalizer
 import xpt.ExternalizerUtils_qvto
-import xpt.diagram.commands.CreateShortcutDecorationsCommand
-import xpt.editor.ShortcutCreationWizard
-import xpt.editor.ElementChooser
-import xpt.editor.DiagramEditorUtilimport xpt.CodeStyle
 
-@com.google.inject.Singleton class CreateShortcutAction {
+@Singleton class CreateShortcutAction {
 	@Inject extension Common;
 	@Inject extension Common_qvto;
 	@Inject extension CodeStyle;
 	@Inject extension ExternalizerUtils_qvto;
 
-	@Inject ShortcutCreationWizard xptShortcutCreationWizard;
 	@Inject Externalizer xptExternalizer;
 	@Inject Activator xptActivator;
-	@Inject CreateShortcutDecorationsCommand xptCreateShortcutDecorationCommand;
-	@Inject ElementChooser xptElementChooser;
-	@Inject DiagramEditorUtil xptDiagramEditorUtil;
 
 	def className(org.eclipse.papyrus.gmf.codegen.gmfgen.CreateShortcutAction it) '''«lastSegment(qualifiedClassName)»'''
 
@@ -98,14 +92,14 @@ def createChooserDialog(org.eclipse.papyrus.gmf.codegen.gmfgen.CreateShortcutAct
 	def additions(org.eclipse.papyrus.gmf.codegen.gmfgen.CreateShortcutAction it) ''''''
 
 	def i18nValues(GenDiagram it) '''
-		«IF null != editorGen.application»
+		«IF null !== editorGen.application»
 			«xptExternalizer.messageEntry(titleKey(i18nKeyForCreateShortcutOpenModel()), 'Select model to reference')»
 			«xptExternalizer.messageEntry(titleKey(i18nKeyForCreateShortcutWizard()), 'Create shortcut')»
 		«ENDIF»
 	'''
 
 	def i18nAccessors(GenDiagram it) '''
-		«IF null != editorGen.application»
+		«IF null !== editorGen.application»
 			«xptExternalizer.accessorField(titleKey(i18nKeyForCreateShortcutOpenModel()))»
 			«xptExternalizer.accessorField(titleKey(i18nKeyForCreateShortcutWizard()))»
 		«ENDIF»

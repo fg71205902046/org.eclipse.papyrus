@@ -1,17 +1,18 @@
 /*******************************************************************************
  * Copyright (c) 2007, 2020 Borland Software Corporation, CEA LIST, Artal and others
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Dmitry Stadnik (Borland) - initial API and implementation
- *    Michael Golubev (Borland) - #244970 (GenChildLabelNode can't be link's source/target)
+ * Contributors:
+ *	Dmitry Stadnik (Borland) - initial API and implementation
+ *	Michael Golubev (Borland) - #244970 (GenChildLabelNode can't be link's source/target)
  * 	  Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ *	Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up providers
  */
 package xpt.providers
 
@@ -22,10 +23,13 @@ import plugin.Activator
 import xpt.Common
 import xpt.Externalizer
 import xpt.ExternalizerUtils_qvto
+import xpt.CodeStyle
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase
 
 @com.google.inject.Singleton class ModelingAssistantProvider {
 	@Inject extension Common;
 	@Inject extension ExternalizerUtils_qvto;
+	@Inject extension CodeStyle;
 
 	@Inject Activator xptActivator;
 	@Inject Externalizer xptExternalizer;
@@ -43,58 +47,50 @@ import xpt.ExternalizerUtils_qvto
 	def ModelingAssistantProvider(GenDiagram it) '''
 		«copyright(editorGen)»
 		package «packageName(it)»;
-		
+
 		«generatedClassComment»
 		public class «className(it)» «extendsList(it)» {
-		
+
 			«selectExistingElementForSource(it)»
-		
+
 			«selectExistingElementForTarget(it)»
-		
+
 			«selectExistingElement(it)»
-		
+
 			«isApplicableElement(it)»
-		
+
 			«selectElement(it)»
-		
-			«additions(it)»
 		}
 	'''
 
 	def selectExistingElementForSource(GenDiagram it) '''
 		«generatedMemberComment»
-		public org.eclipse.emf.ecore.EObject selectExistingElementForSource(
-				org.eclipse.core.runtime.IAdaptable target,
-				org.eclipse.gmf.runtime.emf.type.core.IElementType relationshipType) {
+		public org.eclipse.emf.ecore.EObject selectExistingElementForSource(org.eclipse.core.runtime.IAdaptable target, org.eclipse.gmf.runtime.emf.type.core.IElementType relationshipType) {
 			return selectExistingElement(target, getTypesForSource(target, relationshipType));
 		}
 	'''
 
 	def selectExistingElementForTarget(GenDiagram it) '''
 		«generatedMemberComment»
-		public org.eclipse.emf.ecore.EObject selectExistingElementForTarget(
-				org.eclipse.core.runtime.IAdaptable source,
-				org.eclipse.gmf.runtime.emf.type.core.IElementType relationshipType) {
+		public org.eclipse.emf.ecore.EObject selectExistingElementForTarget(org.eclipse.core.runtime.IAdaptable source, org.eclipse.gmf.runtime.emf.type.core.IElementType relationshipType) {
 			return selectExistingElement(source, getTypesForTarget(source, relationshipType));
 		}
 	'''
 
 	def selectExistingElement(GenDiagram it) '''
 		«generatedMemberComment»
-		protected org.eclipse.emf.ecore.EObject selectExistingElement(
-				org.eclipse.core.runtime.IAdaptable host, java.util.Collection types) {
+		protected org.eclipse.emf.ecore.EObject selectExistingElement(org.eclipse.core.runtime.IAdaptable host, java.util.Collection types) {
 			if (types.isEmpty()) {
 			return null;
 			}
 			org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart editPart =
-			(org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart) host.getAdapter(
-				org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart.class);
+			host.getAdapter(org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart.class);
 			if (editPart == null) {
 			return null;
 			}
 			org.eclipse.gmf.runtime.notation.Diagram diagram =
 			(org.eclipse.gmf.runtime.notation.Diagram) editPart.getRoot().getContents().getModel();
-			java.util.HashSet<org.eclipse.emf.ecore.EObject> elements = new java.util.HashSet<org.eclipse.emf.ecore.EObject>();
+			java.util.HashSet<org.eclipse.emf.ecore.EObject> elements = new java.util.HashSet<«diamondOp('org.eclipse.emf.ecore.EObject')»>();
 			for (java.util.Iterator<org.eclipse.emf.ecore.EObject> it = diagram.getElement().eAllContents(); it.hasNext();) {
 			org.eclipse.emf.ecore.EObject element = it.next();
 			if (isApplicableElement(element, types)) {
@@ -104,8 +100,7 @@ import xpt.ExternalizerUtils_qvto
 			if (elements.isEmpty()) {
 			return null;
 			}
-			return selectElement((org.eclipse.emf.ecore.EObject[]) elements.toArray(
-			new org.eclipse.emf.ecore.EObject[elements.size()]));
+			return selectElement((org.eclipse.emf.ecore.EObject[]) elements.toArray(new org.eclipse.emf.ecore.EObject[elements.size()]));
 		}
 	'''
 
@@ -123,8 +118,7 @@ import xpt.ExternalizerUtils_qvto
 		protected org.eclipse.emf.ecore.EObject selectElement(org.eclipse.emf.ecore.EObject[] elements) {
 			org.eclipse.swt.widgets.Shell shell = org.eclipse.swt.widgets.Display.getCurrent().getActiveShell();
 			org.eclipse.jface.viewers.ILabelProvider labelProvider =
-				new org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider(
-					«xptActivator.qualifiedClassName(editorGen.plugin)».getInstance().getItemProvidersAdapterFactory());
+				new org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider(«xptActivator.qualifiedClassName(editorGen.plugin)».getInstance().getItemProvidersAdapterFactory());
 			org.eclipse.ui.dialogs.ElementListSelectionDialog dialog =
 					new org.eclipse.ui.dialogs.ElementListSelectionDialog(shell, labelProvider);
 			dialog.setMessage(«xptExternalizer.accessorCall(editorGen, messageKey(i18nKeyForModelingAssistantProvider(it)))»);
@@ -139,10 +133,8 @@ import xpt.ExternalizerUtils_qvto
 		}
 	'''
 
-	def additions(GenDiagram it) ''''''
-
-	def newArrayListOfElementTypes(String varName) '''
-		java.util.ArrayList<org.eclipse.gmf.runtime.emf.type.core.IElementType> «varName» = new java.util.ArrayList<org.eclipse.gmf.runtime.emf.type.core.IElementType>
+	def newArrayListOfElementTypes(GenCommonBase it, String varName) '''
+		java.util.ArrayList<org.eclipse.gmf.runtime.emf.type.core.IElementType> «varName» = new java.util.ArrayList<«diamondOp('org.eclipse.gmf.runtime.emf.type.core.IElementType')»>
 	'''
 
 	@Localization protected def String i18nKeyForModelingAssistantProvider(GenDiagram it) {

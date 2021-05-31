@@ -13,6 +13,7 @@
  * Artem Tikhomirov (Borland) - initial API and implementation
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up providers
  *****************************************************************************/
 package metamodel
 
@@ -76,8 +77,13 @@ import xpt.GenModelUtils_qvto
 	«IF genClass.externalInterface»«IF needsCastToResultType»((«featureTargetType(it)») «ENDIF»«parenthesizedCast(containerVar, container, null)».eGet(«MetaFeature(it)»)«IF needsCastToResultType»)«ENDIF»«ELSE»«parenthesizedCast(containerVar, container, genClass)».«it.getAccessor»()«ENDIF»
 	'''
 
-	def modifyFeature(GenFeature it, String targetVar, GenClass targetType, String value) //
-	'''«IF it.listType»«getFeatureValue(it, targetVar, targetType)».add(«value»);«ELSE»«setFeatureValue(it, targetVar, targetType, value)»;«ENDIF»'''
+	def modifyFeature(GenFeature it, String targetVar, GenClass targetType, String value)'''
+		«IF it.listType»«getFeatureValue(it, targetVar, targetType)»
+			.add(«value»);
+		«ELSE»
+			«setFeatureValue(it, targetVar, targetType, value)»;
+		«ENDIF»
+	'''
 
 	def replaceFeatureValue(GenFeature it, String targetVar, GenClass targetType, String oldValue, String newValue) //
 	'''
@@ -91,24 +97,27 @@ import xpt.GenModelUtils_qvto
 	«modifyFeature(it, newTarget, targetType, value)»
 	'''
 
-	def setFeatureValue(GenFeature it, String targetVar, GenClass targetType, String valueVar) //
-	'''«setFeatureValue(it, targetVar, targetType, valueVar, false)»'''
+	def setFeatureValue(GenFeature it, String targetVar, GenClass targetType, String valueVar)'''«setFeatureValue(it, targetVar, targetType, valueVar, false)»'''
 
 	// FIXME support list features as well, i.e. do .add() instead of eSet
-	def setFeatureValue(GenFeature it, String targetVar, GenClass targetType, String valueVar, boolean isPlainObjectValue) //
-	'''
-	«IF targetType.externalInterface»
-		((org.eclipse.emf.ecore.EObject) «targetVar»).eSet(«MetaFeature(it)», «valueVar»)
-	«ELSE»
-		«targetVar».set«it.accessorName»(
-			«IF !isPlainObjectValue»«valueVar»
-			«ELSE»
-				«IF isPrimitiveType(it)»«unwrapObjectToPrimitiveValue(it, valueVar)»
-				«ELSE»(«featureTargetType(it)») «valueVar»
-				«ENDIF»
-			«ENDIF»)
-	«ENDIF»
-	'''
+	def setFeatureValue(GenFeature it, String targetVar, GenClass targetType, String valueVar, boolean isPlainObjectValue) {
+		if(targetType.externalInterface) {
+			'''((org.eclipse.emf.ecore.EObject) «targetVar»).eSet(«MetaFeature(it)», «valueVar»)'''
+		} else {
+			'''«targetVar».set«it.accessorName»(«setFeatureArgs(it, valueVar, isPlainObjectValue)»)'''
+		}
+	}
+	
+	protected def setFeatureArgs(GenFeature it, String valueVar, boolean isPlainObjectValue){
+		if(!isPlainObjectValue) {
+			'''«valueVar»'''
+		} else if (isPrimitiveType(it)) {
+			'''«unwrapObjectToPrimitiveValue(it, valueVar)»'''
+		} else {
+			'''(«featureTargetType(it)»)«valueVar»'''
+		}
+	}
+	
 
 	protected def unwrapObjectToPrimitiveValue(GenFeature it, String valueVar) '''((«featureTargetType(it)») «valueVar»).«ecoreFeature.EType.instanceClassName»Value()'''
 

@@ -12,6 +12,7 @@
  * Dmitry Stadnik (Borland) - initial API and implementation
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up providers
  *****************************************************************************/
 package xpt.diagram.editparts
 
@@ -35,10 +36,13 @@ import diagram.editparts.ExternalNodeLabelEditPart
 import diagram.editparts.CompartmentEditPart
 import diagram.editparts.NodeLabelEditPart
 import diagram.editparts.DiagramEditPart
+import xpt.CodeStyle
 
 @com.google.inject.Singleton class EditPartFactory {
 
 	@Inject extension Common;
+	@Inject extension CodeStyle;
+	
 	@Inject ChildNodeLabelEditPart childNodeLabelEditPart;
 	@Inject NodeEditPart nodeEditPart;
 	@Inject LinkEditPart linkEditPart;
@@ -61,22 +65,21 @@ import diagram.editparts.DiagramEditPart
 	def EditPartFactory(GenDiagram it) '''
 		«copyright(getDiagram().editorGen)»
 		package «packageName(it)»;
-		
+
 		«generatedClassComment()»
 		public class «className(it)» implements org.eclipse.gef.EditPartFactory {
-		
+
 			«createEditPartMethod(it)»
-			
+
 			«createUnrecognizedEditPart(it)»
 
 			«getTextCellEditorLocator(it)»
-			
-			«additions(it)»
 		}
 	'''
 
 	def createEditPartMethod(GenDiagram it) '''
 		«generatedMemberComment()»
+		«overrideI»
 		public org.eclipse.gef.EditPart createEditPart(org.eclipse.gef.EditPart context, Object model) {
 			if (model instanceof org.eclipse.gmf.runtime.notation.View) {
 				org.eclipse.gmf.runtime.notation.View view = (org.eclipse.gmf.runtime.notation.View) model;
@@ -96,7 +99,6 @@ import diagram.editparts.DiagramEditPart
 					«FOR label : link.labels»
 						«createEditPart(label)»
 					«ENDFOR»
-					«extraLineBreak»
 				«ENDFOR»
 				}
 			}
@@ -105,7 +107,6 @@ import diagram.editparts.DiagramEditPart
 	'''
 
 	private def createEditPart(GenCommonBase it) '''
-		«extraLineBreak»
 		«xptVisualIDRegistry.caseVisualID(it)»
 			return new «getEditPartQualifiedClassName(it)»(view);
 	'''
@@ -120,63 +121,57 @@ import diagram.editparts.DiagramEditPart
 
 	def getTextCellEditorLocator(GenDiagram it) '''
 		«generatedMemberComment»
-		public static org.eclipse.gef.tools.CellEditorLocator getTextCellEditorLocator(
-				org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart source) {
-				      if (source.getFigure() instanceof org.eclipse.papyrus.uml.diagram.common.figure.node.IMultilineEditableFigure){
-				return new MultilineCellEditorLocator(
-						(org.eclipse.papyrus.uml.diagram.common.figure.node.IMultilineEditableFigure) source.getFigure());
-						}
-						   else {
-						      return org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.directedit.locator.CellEditorLocatorAccess.INSTANCE.getTextCellEditorLocator(source);
-		
-		       }
-		   }
-		   
-		   
-		   «generatedClassComment»
-		   static private class MultilineCellEditorLocator implements org.eclipse.gef.tools.CellEditorLocator {
-		
+		public static org.eclipse.gef.tools.CellEditorLocator getTextCellEditorLocator(org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart source) {
+			if (source.getFigure() instanceof org.eclipse.papyrus.uml.diagram.common.figure.node.IMultilineEditableFigure){
+				return new MultilineCellEditorLocator((org.eclipse.papyrus.uml.diagram.common.figure.node.IMultilineEditableFigure) source.getFigure());
+			}
+			else {
+				return org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.directedit.locator.CellEditorLocatorAccess.INSTANCE.getTextCellEditorLocator(source);
+			}
+		}
+
+		«generatedClassComment»
+		static private class MultilineCellEditorLocator implements org.eclipse.gef.tools.CellEditorLocator {
+
 			«generatedClassComment»
 			private org.eclipse.papyrus.uml.diagram.common.figure.node.IMultilineEditableFigure multilineEditableFigure;
-		
+
 			«generatedClassComment»
 			public MultilineCellEditorLocator(org.eclipse.papyrus.uml.diagram.common.figure.node.IMultilineEditableFigure figure) {
-			this.multilineEditableFigure = figure;
+				this.multilineEditableFigure = figure;
 			}
-		
+
 			«generatedClassComment»
 			public org.eclipse.papyrus.uml.diagram.common.figure.node.IMultilineEditableFigure getMultilineEditableFigure() {
-			return multilineEditableFigure;
+				return multilineEditableFigure;
 			}
-		
+
 			«generatedClassComment»
+			«overrideI»
 			public void relocate(org.eclipse.jface.viewers.CellEditor celleditor) {
-			org.eclipse.swt.widgets.Text text = (org.eclipse.swt.widgets.Text) celleditor.getControl();
-			org.eclipse.draw2d.geometry.Rectangle rect = getMultilineEditableFigure().getBounds().getCopy();
-			rect.x=getMultilineEditableFigure().getEditionLocation().x;
-			rect.y=getMultilineEditableFigure().getEditionLocation().y;
-			getMultilineEditableFigure().translateToAbsolute(rect);
-			if (getMultilineEditableFigure().getText().length() > 0) {
-				rect.setSize(new org.eclipse.draw2d.geometry.Dimension(text.computeSize(rect.width,
-						org.eclipse.swt.SWT.DEFAULT)));
-			}
-			if (!rect.equals(new org.eclipse.draw2d.geometry.Rectangle(text.getBounds()))) {
-				text.setBounds(rect.x, rect.y, rect.width, rect.height);
-			}
+				org.eclipse.swt.widgets.Text text = (org.eclipse.swt.widgets.Text) celleditor.getControl();
+				org.eclipse.draw2d.geometry.Rectangle rect = getMultilineEditableFigure().getBounds().getCopy();
+				rect.x=getMultilineEditableFigure().getEditionLocation().x;
+				rect.y=getMultilineEditableFigure().getEditionLocation().y;
+				getMultilineEditableFigure().translateToAbsolute(rect);
+				if (getMultilineEditableFigure().getText().length() > 0) {
+					rect.setSize(new org.eclipse.draw2d.geometry.Dimension(text.computeSize(rect.width, org.eclipse.swt.SWT.DEFAULT)));
+				}
+				if (!rect.equals(new org.eclipse.draw2d.geometry.Rectangle(text.getBounds()))) {
+					text.setBounds(rect.x, rect.y, rect.width, rect.height);
+				}
 			}
 		}
 	'''
 
-	def dispatch getEditPartQualifiedClassName(GenCommonBase it) ''''''
-	def dispatch getEditPartQualifiedClassName(GenNode it) '''«nodeEditPart.qualifiedClassName(it)»'''
-	def dispatch getEditPartQualifiedClassName(GenLink it) '''«linkEditPart.qualifiedClassName(it)»'''
-	def dispatch getEditPartQualifiedClassName(GenCompartment it) '''«compartmentEditPart.qualifiedClassName(it)»'''
-	def dispatch getEditPartQualifiedClassName(GenDiagram it) '''«diagramEditPart.qualifiedClassName(it)»'''
-	def dispatch getEditPartQualifiedClassName(GenExternalNodeLabel it) '''«externalNodeLabelEditPart.qualifiedClassName(it)»'''
-	def dispatch getEditPartQualifiedClassName(GenNodeLabel it) '''«nodeLabelEditPart.qualifiedClassName(it)»'''
-	def dispatch getEditPartQualifiedClassName(GenLinkLabel it) '''«linkLabelEditPart.qualifiedClassName(it)»'''
-	def dispatch getEditPartQualifiedClassName(GenChildLabelNode it) '''«childNodeLabelEditPart.qualifiedClassName(it)»'''
-
-	def additions(GenDiagram it) ''''''
+	def dispatch CharSequence getEditPartQualifiedClassName(GenCommonBase it) ''''''
+	def dispatch CharSequence getEditPartQualifiedClassName(GenNode it) '''«nodeEditPart.qualifiedClassName(it)»'''
+	def dispatch CharSequence getEditPartQualifiedClassName(GenLink it) '''«linkEditPart.qualifiedClassName(it)»'''
+	def dispatch CharSequence getEditPartQualifiedClassName(GenCompartment it) '''«compartmentEditPart.qualifiedClassName(it)»'''
+	def dispatch CharSequence getEditPartQualifiedClassName(GenDiagram it) '''«diagramEditPart.qualifiedClassName(it)»'''
+	def dispatch CharSequence getEditPartQualifiedClassName(GenExternalNodeLabel it) '''«externalNodeLabelEditPart.qualifiedClassName(it)»'''
+	def dispatch CharSequence getEditPartQualifiedClassName(GenNodeLabel it) '''«nodeLabelEditPart.qualifiedClassName(it)»'''
+	def dispatch CharSequence getEditPartQualifiedClassName(GenLinkLabel it) '''«linkLabelEditPart.qualifiedClassName(it)»'''
+	def dispatch CharSequence getEditPartQualifiedClassName(GenChildLabelNode it) '''«childNodeLabelEditPart.qualifiedClassName(it)»'''
 
 }

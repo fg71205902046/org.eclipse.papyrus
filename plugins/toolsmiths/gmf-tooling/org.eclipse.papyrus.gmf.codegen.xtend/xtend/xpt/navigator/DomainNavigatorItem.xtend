@@ -12,6 +12,7 @@
  * Alexander Shatalin (Borland) - initial API and implementation
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up
  *****************************************************************************/
 package xpt.navigator
 
@@ -23,7 +24,7 @@ import xpt.CodeStyle
 @com.google.inject.Singleton class DomainNavigatorItem {
 	@Inject extension Common;
 
-	@Inject AbstractNavigatorItem xptAbstractNavigatorItem;
+	@Inject NavigatorAbstractNavigatorItem xptAbstractNavigatorItem;
 	@Inject extension CodeStyle
 
 	def className(GenNavigator it) '''«it.domainNavigatorItemClassName»'''
@@ -37,29 +38,27 @@ import xpt.CodeStyle
 	def DomainNavigatorItem(GenNavigator it) '''
 		«copyright(editorGen)»
 		package «packageName(it)»;
-		
+
 		«generatedClassComment()»
 		public class «className(it)» extends org.eclipse.core.runtime.PlatformObject {
-		
+
 			«registerAdapterFactory(it)»
-			
+
 			«xptAbstractNavigatorItem.attributes(it)»
-			
+
 			«attributes(it)»
-			
+
 			«constructor(it)»
-			
+
 			«xptAbstractNavigatorItem.getParent(it)»
-			
+
 			«getEObject(it)»
-			
+
 			«getPropertySourceProvider(it)»
-			
-			«equals(it)»
-			
+
+			«equalsMethod(it)»
+
 			«hashCode(it)»
-		
-			«additions(it)»
 		}
 	'''
 
@@ -69,9 +68,9 @@ import xpt.CodeStyle
 			@SuppressWarnings("rawtypes")
 			final Class[] supportedTypes = new Class[] { org.eclipse.emf.ecore.EObject.class, org.eclipse.ui.views.properties.IPropertySource.class };
 			org.eclipse.core.runtime.Platform.getAdapterManager().registerAdapters(new org.eclipse.core.runtime.IAdapterFactory() {
-				
-				«overrideI(it.editorGen.diagram)»
-				@SuppressWarnings("rawtypes")
+
+				«overrideI»
+				@SuppressWarnings({ "rawtypes", "unchecked" })
 				public Object getAdapter(Object adaptableObject, Class adapterType) {
 					if (adaptableObject instanceof «qualifiedClassName(it)») {
 						«qualifiedClassName(it)» domainNavigatorItem = («qualifiedClassName(it)») adaptableObject;
@@ -83,12 +82,12 @@ import xpt.CodeStyle
 							return domainNavigatorItem.getPropertySourceProvider().getPropertySource(eObject);
 						}
 					}
-				
+
 					return null;
 				}
-		
-				«overrideI(it.editorGen.diagram)»
-				@SuppressWarnings("rawtypes")
+
+				«overrideI»
+				@SuppressWarnings({ "rawtypes", "unchecked" })
 				public Class[] getAdapterList() {
 					return supportedTypes;
 				}
@@ -99,7 +98,7 @@ import xpt.CodeStyle
 	def attributes(GenNavigator it) '''
 		«generatedMemberComment()»
 		private org.eclipse.emf.ecore.EObject myEObject;
-		
+
 		«generatedMemberComment()»
 		private org.eclipse.ui.views.properties.IPropertySourceProvider myPropertySourceProvider;
 	'''
@@ -127,8 +126,9 @@ import xpt.CodeStyle
 		}
 	'''
 
-	def equals(GenNavigator it) '''
+	def equalsMethod(GenNavigator it) '''
 		«generatedMemberComment()»
+		«overrideC»
 		public boolean equals(Object obj) {
 			if (obj instanceof «qualifiedClassName(it)») {
 				return org.eclipse.emf.ecore.util.EcoreUtil.getURI(getEObject()).equals(org.eclipse.emf.ecore.util.EcoreUtil.getURI(((«qualifiedClassName(it)») obj).getEObject()));
@@ -139,11 +139,9 @@ import xpt.CodeStyle
 
 	def hashCode(GenNavigator it) '''
 		«generatedMemberComment()»
+		«overrideC»
 		public int hashCode() {
 			return org.eclipse.emf.ecore.util.EcoreUtil.getURI(getEObject()).hashCode();
 		}
 	'''
-
-	def additions(GenNavigator it) ''''''
-
 }

@@ -60,7 +60,6 @@ public abstract class AbstractListCompartmentEditPart extends ListCompartmentEdi
 	 *
 	 * @param notification
 	 */
-
 	@Override
 	protected void handleNotificationEvent(org.eclipse.emf.common.notify.Notification notification) {
 		Object feature = notification.getFeature();

@@ -139,10 +139,19 @@ public class PapyrusGMFExtensionMigrator extends GenExtensionSwitch<Boolean> {
 			final String superOwnedEditPart = extendedGenView.getSuperOwnedEditPart();
 			if (extendedElement instanceof GenChildLabelNode && "org.eclipse.papyrus.uml.diagram.common.editparts.UMLCompartmentEditPart".equals(superOwnedEditPart)) { //$NON-NLS-1$
 				extendedElement.setSuperEditPart("org.eclipse.papyrus.uml.diagram.common.editparts.AbstractCompartmentEditPart"); //$NON-NLS-1$
-			}else if(extendedElement instanceof GenCompartment && "org.eclipse.papyrus.infra.gmfdiag.common.editpart.ResizeableListCompartmentEditPart".equals(superOwnedEditPart)) { //$NON-NLS-1$
+			} else if (extendedElement instanceof GenCompartment && "org.eclipse.papyrus.infra.gmfdiag.common.editpart.ResizeableListCompartmentEditPart".equals(superOwnedEditPart)) { //$NON-NLS-1$
 				extendedElement.setSuperEditPart("org.eclipse.papyrus.uml.diagram.common.editparts.AbstractResizableCompartmentEditPart"); //$NON-NLS-1$
+			} else if (extendedElement instanceof GenExternalNodeLabel) {
+				if ("org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusLabelEditPart".equals(superOwnedEditPart)) { //$NON-NLS-1$
+					extendedElement.setSuperEditPart("org.eclipse.papyrus.uml.diagram.common.editparts.AbstractExternalLabelEditPart"); //$NON-NLS-1$
+				} else if ("org.eclipse.papyrus.uml.diagram.common.editparts.FloatingLabelEditPart".equals(superOwnedEditPart)) { //$NON-NLS-1$
+					extendedElement.setSuperEditPart("org.eclipse.papyrus.uml.diagram.common.editparts.AbstractFloatingLabelEditPart"); //$NON-NLS-1$
+				}
+				else if ("org.eclipse.papyrus.uml.diagram.common.editparts.AbstractLabelEditPart".equals(superOwnedEditPart)) { //$NON-NLS-1$
+					extendedElement.setSuperEditPart("org.eclipse.papyrus.uml.diagram.common.editparts.AbstractWrappingLabelEditPart"); //$NON-NLS-1$
+				}
 			}
-			
+
 			if (extendedElement.getSuperEditPart() == null && extendedGenView.getSuperOwnedEditPart() != null && !extendedGenView.getSuperOwnedEditPart().isBlank()) {
 				// first non null extension win (old behavior)
 				// migrate extended attributes

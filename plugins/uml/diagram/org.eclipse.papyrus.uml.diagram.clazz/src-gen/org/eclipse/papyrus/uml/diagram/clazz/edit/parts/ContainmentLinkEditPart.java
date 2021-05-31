@@ -69,5 +69,4 @@ public class ContainmentLinkEditPart extends UMLConnectionNodeEditPart implement
 	public AddedLinkFigure getPrimaryShape() {
 		return (AddedLinkFigure) getFigure();
 	}
-
 }

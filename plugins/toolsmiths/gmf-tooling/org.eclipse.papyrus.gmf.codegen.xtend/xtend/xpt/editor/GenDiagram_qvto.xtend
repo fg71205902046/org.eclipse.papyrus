@@ -12,6 +12,7 @@
  *    Artem Tikhomirov (Borland) - initial API and implementation
  *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *    Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up
  *****************************************************************************/
 package xpt.editor
 
@@ -23,15 +24,15 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
 
 @com.google.inject.Singleton class GenDiagram_qvto {
 	def boolean standaloneDomainModel(GenDiagram genDiagram) {
-		return !genDiagram.editorGen.sameFileForDiagramAndModel && genDiagram.domainDiagramElement != null
+		return !genDiagram.editorGen.sameFileForDiagramAndModel && genDiagram.domainDiagramElement !== null
 	}
 
 	def boolean hasDocumentRoot(GenDiagram genDiagram) {
-		return getDocumentRoot(genDiagram) != null
+		return getDocumentRoot(genDiagram) !== null
 	}
 
 	def GenClass getDocumentRoot(GenDiagram genDiagram) {
-		if (genDiagram.domainDiagramElement == null) {
+		if (genDiagram.domainDiagramElement === null) {
 			return null;
 		}
 		return genDiagram.domainDiagramElement.genPackage.documentRoot;
@@ -39,7 +40,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
 
 	def GenFeature getDocumentRootSetFeature(GenDiagram genDiagram) {
 		var root = getDocumentRoot(genDiagram);
-		if (root == null) {
+		if (root === null) {
 			return null;
 		}
 		return root.genFeatures.findFirst[f|isDocRootSetFeature(f, genDiagram.domainDiagramElement.ecoreClass)]
@@ -47,7 +48,8 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
 
 	def boolean isDocRootSetFeature(GenFeature gf, EClass eType) {
 		return !gf.listType && //
-			gf.ecoreFeature != null && // 
+		//
+		gf.ecoreFeature !== null && // 
 			gf.ecoreFeature.changeable && //
 			gf.ecoreFeature.upperBound == ETypedElement::UNSPECIFIED_MULTIPLICITY && //
 			gf.ecoreFeature.eClass.name == 'EReference' && //

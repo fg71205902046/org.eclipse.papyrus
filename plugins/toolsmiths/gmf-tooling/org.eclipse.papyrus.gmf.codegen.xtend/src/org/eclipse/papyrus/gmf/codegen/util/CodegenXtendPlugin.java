@@ -14,8 +14,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.gmf.codegen.util;
 
-import org.eclipse.papyrus.gmf.codegen.util.CodegenXtendPlugin;
-import org.eclipse.papyrus.gmf.codegen.util.DefaultActivator;
 import org.osgi.framework.BundleContext;
 
 public class CodegenXtendPlugin extends DefaultActivator {

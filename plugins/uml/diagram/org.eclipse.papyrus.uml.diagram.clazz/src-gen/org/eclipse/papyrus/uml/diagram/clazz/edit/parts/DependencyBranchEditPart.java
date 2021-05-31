@@ -70,5 +70,4 @@ public class DependencyBranchEditPart extends ConnectionEditPart implements ITre
 	public DashedEdgeFigure getPrimaryShape() {
 		return (DashedEdgeFigure) getFigure();
 	}
-
 }

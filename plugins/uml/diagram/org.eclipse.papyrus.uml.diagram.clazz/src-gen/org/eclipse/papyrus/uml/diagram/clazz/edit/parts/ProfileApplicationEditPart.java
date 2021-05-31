@@ -73,5 +73,4 @@ public class ProfileApplicationEditPart extends UMLConnectionNodeEditPart implem
 	public DashedEdgeFigure getPrimaryShape() {
 		return (DashedEdgeFigure) getFigure();
 	}
-
 }

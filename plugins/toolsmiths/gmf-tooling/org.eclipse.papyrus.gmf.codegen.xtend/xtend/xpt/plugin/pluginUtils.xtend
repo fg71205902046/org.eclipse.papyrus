@@ -11,6 +11,7 @@
  * Contributors: 
  *   Michael Golubev (Montages) - initial API and implementation
  *   Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *   Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up
  *****************************************************************************/
 package xpt.plugin
 
@@ -18,10 +19,9 @@ import com.google.inject.Inject
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator
 
 @com.google.inject.Singleton class pluginUtils {
-	
-	
+
 	@Inject extension xpt.ConstraintProviders
-	
+
 	def extensionsConstraintProviders (GenEditorGenerator it) '''
 		«extensions(it)»
 	'''

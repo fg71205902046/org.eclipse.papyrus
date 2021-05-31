@@ -503,299 +503,105 @@ public class UMLElementTypes {
 		Object type = hint.getAdapter(IElementType.class);
 		if (elements == null) {
 			elements = new IdentityHashMap<>();
-
 			elements.put(Package_ClassDiagram, UMLPackage.eINSTANCE.getPackage());
-
-
 			elements.put(Dependency_Shape, UMLPackage.eINSTANCE.getDependency());
-
-
 			elements.put(AssociationClass_Shape, UMLPackage.eINSTANCE.getAssociationClass());
-
-
 			elements.put(Association_Shape, UMLPackage.eINSTANCE.getAssociation());
-
-
 			elements.put(InstanceSpecification_Shape, UMLPackage.eINSTANCE.getInstanceSpecification());
-
-
 			elements.put(Component_Shape, UMLPackage.eINSTANCE.getComponent());
-
-
 			elements.put(Signal_Shape, UMLPackage.eINSTANCE.getSignal());
-
-
 			elements.put(Interface_Shape, UMLPackage.eINSTANCE.getInterface());
-
-
 			elements.put(Model_Shape, UMLPackage.eINSTANCE.getModel());
-
-
 			elements.put(Enumeration_Shape, UMLPackage.eINSTANCE.getEnumeration());
-
-
 			elements.put(Package_Shape, UMLPackage.eINSTANCE.getPackage());
-
-
 			elements.put(InformationItem_Shape, UMLPackage.eINSTANCE.getInformationItem());
-
-
 			elements.put(Class_Shape, UMLPackage.eINSTANCE.getClass_());
-
-
 			elements.put(PrimitiveType_Shape, UMLPackage.eINSTANCE.getPrimitiveType());
-
-
 			elements.put(DataType_Shape, UMLPackage.eINSTANCE.getDataType());
-
-
 			elements.put(Constraint_PackagedElementShape, UMLPackage.eINSTANCE.getConstraint());
-
-
 			elements.put(Comment_Shape, UMLPackage.eINSTANCE.getComment());
-
-
 			elements.put(Diagram_ShortcutShape, NotationPackage.eINSTANCE.getDiagram());
-
-
 			elements.put(DurationObservation_Shape, UMLPackage.eINSTANCE.getDurationObservation());
-
-
 			elements.put(TimeObservation_Shape, UMLPackage.eINSTANCE.getTimeObservation());
-
-
 			elements.put(NamedElement_DefaultShape, UMLPackage.eINSTANCE.getNamedElement());
-
-
 			elements.put(Property_ClassAttributeLabel, UMLPackage.eINSTANCE.getProperty());
-
-
 			elements.put(Property_ComponentAttributeLabel, UMLPackage.eINSTANCE.getProperty());
-
-
 			elements.put(Property_SignalAttributeLabel, UMLPackage.eINSTANCE.getProperty());
-
-
 			elements.put(Property_InterfaceAttributeLabel, UMLPackage.eINSTANCE.getProperty());
-
-
 			elements.put(Property_PrimitiveTypeAttributeLabel, UMLPackage.eINSTANCE.getProperty());
-
-
 			elements.put(Property_DataTypeAttributeLabel, UMLPackage.eINSTANCE.getProperty());
-
-
 			elements.put(Class_ClassNestedClassifierLabel, UMLPackage.eINSTANCE.getClass_());
-
-
 			elements.put(Class_ComponentNestedClassifierLabel, UMLPackage.eINSTANCE.getClass_());
-
-
 			elements.put(Class_InterfaceNestedClassifierLabel, UMLPackage.eINSTANCE.getClass_());
-
-
 			elements.put(Operation_ClassOperationLabel, UMLPackage.eINSTANCE.getOperation());
-
-
 			elements.put(Operation_ComponentOperationLabel, UMLPackage.eINSTANCE.getOperation());
-
-
 			elements.put(Operation_InterfaceOperationLabel, UMLPackage.eINSTANCE.getOperation());
-
-
 			elements.put(Operation_PrimitiveTypeOperationLabel, UMLPackage.eINSTANCE.getOperation());
-
-
 			elements.put(Operation_DataTypeOperationLabel, UMLPackage.eINSTANCE.getOperation());
-
-
 			elements.put(ConnectableElementTemplateParameter_TemplateParameterLabel, UMLPackage.eINSTANCE.getConnectableElementTemplateParameter());
-
-
 			elements.put(OperationTemplateParameter_TemplateParameterLabel, UMLPackage.eINSTANCE.getOperationTemplateParameter());
-
-
 			elements.put(ClassifierTemplateParameter_TemplateParameterLabel, UMLPackage.eINSTANCE.getClassifierTemplateParameter());
-
-
 			elements.put(TemplateParameter_TemplateParameterLabel, UMLPackage.eINSTANCE.getTemplateParameter());
-
-
 			elements.put(EnumerationLiteral_LiteralLabel, UMLPackage.eINSTANCE.getEnumerationLiteral());
-
-
 			elements.put(Reception_ReceptionLabel, UMLPackage.eINSTANCE.getReception());
-
-
 			elements.put(Reception_InterfaceReceptionLabel, UMLPackage.eINSTANCE.getReception());
-
-
 			elements.put(Slot_SlotLabel, UMLPackage.eINSTANCE.getSlot());
-
-
 			elements.put(RedefinableTemplateSignature_Shape, UMLPackage.eINSTANCE.getRedefinableTemplateSignature());
-
-
 			elements.put(TemplateSignature_Shape, UMLPackage.eINSTANCE.getTemplateSignature());
-
-
 			elements.put(InstanceSpecification_Shape_CN, UMLPackage.eINSTANCE.getInstanceSpecification());
-
-
 			elements.put(Component_Shape_CN, UMLPackage.eINSTANCE.getComponent());
-
-
 			elements.put(Signal_Shape_CN, UMLPackage.eINSTANCE.getSignal());
-
-
 			elements.put(Interface_Shape_CN, UMLPackage.eINSTANCE.getInterface());
-
-
 			elements.put(Model_Shape_CN, UMLPackage.eINSTANCE.getModel());
-
-
 			elements.put(Enumeration_Shape_CN, UMLPackage.eINSTANCE.getEnumeration());
-
-
 			elements.put(Package_Shape_CN, UMLPackage.eINSTANCE.getPackage());
-
-
 			elements.put(InformationItem_Shape_CN, UMLPackage.eINSTANCE.getInformationItem());
-
-
 			elements.put(Class_Shape_CN, UMLPackage.eINSTANCE.getClass_());
-
-
 			elements.put(PrimitiveType_Shape_CN, UMLPackage.eINSTANCE.getPrimitiveType());
-
-
 			elements.put(DataType_Shape_CN, UMLPackage.eINSTANCE.getDataType());
-
-
 			elements.put(Comment_Shape_CN, UMLPackage.eINSTANCE.getComment());
-
-
 			elements.put(Constraint_PackagedElementShape_CN, UMLPackage.eINSTANCE.getConstraint());
-
-
 			elements.put(Interface_ClassNestedClassifierLabel, UMLPackage.eINSTANCE.getInterface());
-
-
 			elements.put(Interface_ComponentNestedClassifierLabel, UMLPackage.eINSTANCE.getInterface());
-
-
 			elements.put(Interface_InterfaceNestedClassifierLabel, UMLPackage.eINSTANCE.getInterface());
-
-
 			elements.put(Enumeration_ClassNestedClassifierLabel, UMLPackage.eINSTANCE.getEnumeration());
-
-
 			elements.put(Enumeration_ComponentNestedClassifierLabel, UMLPackage.eINSTANCE.getEnumeration());
-
-
 			elements.put(Enumeration_InterfaceNestedClassifierLabel, UMLPackage.eINSTANCE.getEnumeration());
-
-
 			elements.put(PrimitiveType_ClassNestedClassifierLabel, UMLPackage.eINSTANCE.getPrimitiveType());
-
-
 			elements.put(PrimitiveType_ComponentNestedClassifierLabel, UMLPackage.eINSTANCE.getPrimitiveType());
-
-
 			elements.put(PrimitiveType_InterfaceNestedClassifierLabel, UMLPackage.eINSTANCE.getPrimitiveType());
-
-
 			elements.put(DataType_ClassNestedClassifierLabel, UMLPackage.eINSTANCE.getDataType());
-
-
 			elements.put(DataType_ComponentNestedClassifierLabel, UMLPackage.eINSTANCE.getDataType());
-
-
 			elements.put(DataType_InterfaceNestedClassifierLabel, UMLPackage.eINSTANCE.getDataType());
-
-
 			elements.put(Signal_ClassNestedClassifierLabel, UMLPackage.eINSTANCE.getSignal());
-
-
 			elements.put(Signal_ComponentNestedClassifierLabel, UMLPackage.eINSTANCE.getSignal());
-
-
 			elements.put(Signal_InterfaceNestedClassifierLabel, UMLPackage.eINSTANCE.getSignal());
-
-
 			elements.put(Component_ClassNestedClassifierLabel, UMLPackage.eINSTANCE.getComponent());
-
-
 			elements.put(Component_InterfaceNestedClassifierLabel, UMLPackage.eINSTANCE.getComponent());
-
-
 			elements.put(Component_ComponentNestedClassifierLabel, UMLPackage.eINSTANCE.getComponent());
-
-
 			elements.put(AssociationClass_Edge, UMLPackage.eINSTANCE.getAssociationClass());
-
-
 			elements.put(Association_Edge, UMLPackage.eINSTANCE.getAssociation());
-
-
 			elements.put(Association_BranchEdge, UMLPackage.eINSTANCE.getAssociation());
-
-
 			elements.put(Generalization_Edge, UMLPackage.eINSTANCE.getGeneralization());
-
-
 			elements.put(InterfaceRealization_Edge, UMLPackage.eINSTANCE.getInterfaceRealization());
-
-
 			elements.put(Substitution_Edge, UMLPackage.eINSTANCE.getSubstitution());
-
-
 			elements.put(Realization_Edge, UMLPackage.eINSTANCE.getRealization());
-
-
 			elements.put(Abstraction_Edge, UMLPackage.eINSTANCE.getAbstraction());
-
-
 			elements.put(Usage_Edge, UMLPackage.eINSTANCE.getUsage());
-
-
 			elements.put(Dependency_Edge, UMLPackage.eINSTANCE.getDependency());
-
-
 			elements.put(Dependency_BranchEdge, UMLPackage.eINSTANCE.getDependency());
-
-
 			elements.put(ElementImport_Edge, UMLPackage.eINSTANCE.getElementImport());
-
-
 			elements.put(PackageImport_Edge, UMLPackage.eINSTANCE.getPackageImport());
-
-
 			elements.put(PackageMerge_Edge, UMLPackage.eINSTANCE.getPackageMerge());
-
-
 			elements.put(ProfileApplication_Edge, UMLPackage.eINSTANCE.getProfileApplication());
-
 			elements.put(Comment_AnnotatedElementEdge, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
-
 			elements.put(Constraint_ConstrainedElementEdge, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
-
-
 			elements.put(TemplateBinding_Edge, UMLPackage.eINSTANCE.getTemplateBinding());
-
-
 			elements.put(GeneralizationSet_Edge, UMLPackage.eINSTANCE.getGeneralizationSet());
-
-
 			elements.put(InstanceSpecification_Edge, UMLPackage.eINSTANCE.getInstanceSpecification());
-
 			elements.put(TimeObservation_EventEdge, UMLPackage.eINSTANCE.getTimeObservation_Event());
-
 			elements.put(DurationObservation_EventEdge, UMLPackage.eINSTANCE.getDurationObservation_Event());
-
-
 			elements.put(InformationFlow_Edge, UMLPackage.eINSTANCE.getInformationFlow());
-
 			elements.put(Constraint_ContextEdge, UMLPackage.eINSTANCE.getConstraint_Context());
 		}
 		return elements.get(type);

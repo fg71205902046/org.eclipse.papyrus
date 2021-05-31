@@ -12,6 +12,7 @@
  * Dmitry Stadnik (Borland) - initial API and implementation
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up
  *****************************************************************************/
 package xpt.editor
 
@@ -23,9 +24,7 @@ import xpt.Common
 @Singleton class extensions {
 	@Inject extension Common;
 
-
 	def extensions(GenEditorGenerator it) '''
-		«extraLineBreak»
 		«««		YT (not used): 
 		«««		«tripleSpace(1)»<extension point="org.eclipse.ui.editors" id="gmf-editor">
 		«««		«tripleSpace(2)»«xmlGeneratedTag()»
@@ -40,8 +39,8 @@ import xpt.Common
 		«««		«tripleSpace(3)»contributorClass="«xptActionBarContributor.qualifiedClassName(editor)»">
 		«««		«tripleSpace(2)»</editor>
 		«««		«tripleSpace(1)»</extension>
-		
-		«extraLineBreak»«outTab»
+
+		«outTab»
 		«tripleSpace(1)»<extension point="org.eclipse.ui.contexts" id="ui-context">
 		«tripleSpace(2)»«xmlGeneratedTag()»
 		«tripleSpace(2)»<context
@@ -51,7 +50,7 @@ import xpt.Common
 		«tripleSpace(3)»parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
 		«tripleSpace(2)»</context>
 		«tripleSpace(1)»</extension>
-		
+
 		«««		YT (not used): 
 		«««		«tripleSpace(1)»<extension point="org.eclipse.ui.newWizards" id="creation-wizard">
 		«««		«tripleSpace(2)»«xmlGeneratedTag()»

@@ -12,16 +12,19 @@
  * Alexander Shatalin (Borland) - initial API and implementation
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up
  *****************************************************************************/
 package xpt.navigator
 
 import com.google.inject.Inject
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigator
+import xpt.CodeStyle
 import xpt.Common
 
 @com.google.inject.Singleton class NavigatorGroup{
 
 	@Inject extension Common;
+	@Inject extension CodeStyle;
 
 	def className(GenNavigator it) '''«it.navigatorGroupClassName»'''
 
@@ -36,43 +39,41 @@ import xpt.Common
 	def NavigatorGroup(GenNavigator it) '''
 		«copyright(editorGen)»
 		package «packageName(it)»;
-		
+
 		«generatedClassComment()»
 		public class «className(it)» «extendsList(it)» {
-		
+
 			«attributes(it)»
-		
+
 			«constructor(it)»
-			
+
 			«getGroupName(it)»
-			
+
 			«getIcon(it)»
-			
+
 			«getChildren(it)»
-			
+
 			«addChildren(it)»
-			
+
 			«addChild(it)»
-			
+
 			«isEmpty(it)»
-			
-			«equals(it)»
-			
+
+			«equalsMethod(it)»
+
 			«hashCode(it)»
-		
-			«additions(it)»
 		}
 	'''
 
 	def attributes(GenNavigator it) '''
 		«generatedMemberComment()»
 		private String myGroupName;
-			
+
 		«generatedMemberComment()»
 		private String myIcon;
-			
+
 		«generatedMemberComment()»
-		private java.util.Collection<java.lang.Object> myChildren = new java.util.LinkedList<java.lang.Object>();
+		private java.util.Collection<java.lang.Object> myChildren = new java.util.LinkedList<«editorGen.diagram.diamondOp('java.lang.Object')»>();
 	'''
 
 	def constructor(GenNavigator it) '''
@@ -126,8 +127,9 @@ import xpt.Common
 		}
 	'''
 
-	def equals(GenNavigator it) '''
+	def equalsMethod(GenNavigator it) '''
 		«generatedMemberComment()»
+		«overrideC»
 		public boolean equals(Object obj) {
 			if (obj instanceof «qualifiedClassName(it)») {
 				«qualifiedClassName(it)» anotherGroup = («qualifiedClassName(it)») obj;
@@ -141,10 +143,9 @@ import xpt.Common
 
 	def hashCode(GenNavigator it) '''
 		«generatedMemberComment()»
+		«overrideC»
 		public int hashCode() {
 			return getGroupName().hashCode();
 		}
 	'''
-
-	def additions(GenNavigator it) ''''''
 }

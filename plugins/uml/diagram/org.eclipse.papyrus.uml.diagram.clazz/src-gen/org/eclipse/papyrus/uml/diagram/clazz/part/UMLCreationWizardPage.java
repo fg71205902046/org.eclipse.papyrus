@@ -76,8 +76,7 @@ public class UMLCreationWizardPage extends WizardNewFileCreationPage {
 	@Override
 	public void createControl(Composite parent) {
 		super.createControl(parent);
-		setFileName(UMLDiagramEditorUtil.getUniqueFileName(
-				getContainerFullPath(), getFileName(), getExtension()));
+		setFileName(UMLDiagramEditorUtil.getUniqueFileName(getContainerFullPath(), getFileName(), getExtension()));
 		setPageComplete(validatePage());
 	}
 
@@ -91,8 +90,7 @@ public class UMLCreationWizardPage extends WizardNewFileCreationPage {
 		}
 		String extension = getExtension();
 		if (extension != null && !getFilePath().toString().endsWith("." + extension)) {
-			setErrorMessage(NLS.bind(
-					Messages.UMLCreationWizardPageExtensionError, extension));
+			setErrorMessage(NLS.bind(Messages.UMLCreationWizardPageExtensionError, extension));
 			return false;
 		}
 		return true;

@@ -1,54 +1,60 @@
 /*******************************************************************************
  * Copyright (c) 2007, 2020 Borland Software Corporation, CEA LIST, Artal and others
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
- *    Dmitry Stadnik (Borland) - initial API and implementation
- *    Artem Tikhomirov (Borland) - refactoring (https://bugs.eclipse.org/230014)
- * 	  Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Contributors:
+ *	Dmitry Stadnik (Borland) - initial API and implementation
+ *	Artem Tikhomirov (Borland) - refactoring (https://bugs.eclipse.org/230014)
+ * 	Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ *	Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up providers
  */
 package xpt.providers
 
 import com.google.inject.Inject
+import com.google.inject.Singleton
 import metamodel.MetaModel
 import org.eclipse.emf.codegen.ecore.genmodel.GenClass
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
-import org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator
-import org.eclipse.papyrus.gmf.codegen.gmfgen.GenMetricRule
-import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNotationElementTarget
-import org.eclipse.papyrus.gmf.codegen.xtend.annotations.MetaDef
-import xpt.Common
-import xpt.Common_qvto
-import xpt.editor.VisualIDRegistry
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagramElementTarget
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDomainElementTarget
-import org.eclipse.papyrus.gmf.codegen.gmfgen.GenMeasurable
-import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
-import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase
-import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink
-import org.eclipse.papyrus.gmf.codegen.gmfgen.GenExpressionProviderBase
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenExpressionInterpreter
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenExpressionProviderBase
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenJavaExpressionProvider
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenMeasurable
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenMetricContainer
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenMetricRule
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNotationElementTarget
+import org.eclipse.papyrus.gmf.codegen.xtend.annotations.MetaDef
+import org.eclipse.papyrus.gmf.internal.common.codegen.Conversions
 import plugin.Activator
+import xpt.CodeStyle
+import xpt.Common
+import xpt.Common_qvto
 import xpt.editor.DiagramEditorUtil
+import xpt.editor.VisualIDRegistry
+import xpt.expressions.getExpression
 
-@com.google.inject.Singleton class MetricProvider {
+@Singleton class MetricProvider {
 	@Inject extension Common;
 	@Inject extension Common_qvto;
 	@Inject extension Metrics_qvto;
+	@Inject extension CodeStyle;
 
 	@Inject Activator xptActivator;
 	@Inject MetaModel xptMetaModel;
 	@Inject MetricsResultView xptMetricsResultView;
 	@Inject VisualIDRegistry xptVisualIDRegistry;
-	@Inject xpt.expressions.getExpression xptGetExpression;
+	@Inject getExpression xptGetExpression;
 	@Inject ElementTypes xptElementTypes;
 	@Inject DiagramEditorUtil xptDiagramEditorUtil;
 
@@ -68,22 +74,22 @@ import xpt.editor.DiagramEditorUtil
 	def MetricProvider(GenDiagram it) '''
 	«copyright(editorGen)»
 	package «packageName(it)»;
-	
+
 	«generatedClassComment»
 	public class «className(it)» {
-	
+
 		«generatedMemberComment»
 		public static class MetricsAction extends org.eclipse.jface.action.Action {
-	
+
 			«generatedMemberComment»
 			private org.eclipse.ui.IWorkbenchPage page;
-	
+
 			«generatedMemberComment»
 			public MetricsAction(org.eclipse.ui.IWorkbenchPage page) {
 				setText("Metrics");
 				this.page = page;
 			}
-	
+
 			«generatedMemberComment»
 			public void run() {
 				org.eclipse.ui.IWorkbenchPart workbenchPart = page.getActivePart();
@@ -100,28 +106,24 @@ import xpt.editor.DiagramEditorUtil
 						page.activate(metricsView);
 					}
 				} catch (org.eclipse.ui.PartInitException e) {
-					«xptActivator.qualifiedClassName(editorGen.plugin)».getInstance().logError("Diagram metric view failure", e); «nonNLS(
-			1)»
+					«xptActivator.qualifiedClassName(editorGen.plugin)».getInstance().logError("Diagram metric view failure", e); «nonNLS(1)»
 				}
 			}
 		}
-	
+
 	«calculateMetricsMethods(it)»
-	
+
 	«formatNotationElementNameMethod(it)»
 	«formatSemanticElementNameMethod(it)»
-	
+
 	«metricsClasses(it)»
-	
+
 	«keysAndToolTipsMethods(editorGen.metrics)»
-	
-	«FOR m : editorGen.metrics.metrics.filter[m|m.rule != null && m.target != null && m.target.context != null]»
+
+	«FOR m : editorGen.metrics.metrics.filter[m| m.rule !== null && m.target !== null && m.target.context !== null ]»
 	«metricCalcMethod(m)»
 	«ENDFOR»
-	
-	«xptMetricsResultView.Class(it)»
-	
-	«additions(it)»
+		«xptMetricsResultView.MetricsResultView(it)»
 	}
 	'''
 
@@ -136,12 +138,11 @@ import xpt.editor.DiagramEditorUtil
 		static java.util.List calculateMetrics(org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart diagramPart) {
 			final org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart diagramEditPart = diagramPart.getDiagramEditPart();
 			try {
-				return (java.util.List) diagramPart.getDiagramEditPart().getEditingDomain().runExclusive(
-					new org.eclipse.emf.transaction.RunnableWithResult.Impl() {
-		
+				return (java.util.List) diagramPart.getDiagramEditPart().getEditingDomain().runExclusive(new org.eclipse.emf.transaction.RunnableWithResult.Impl() {
+
 			public void run() {
 				org.eclipse.gmf.runtime.notation.Diagram diagram = diagramEditPart.getDiagramView();
-				java.util.ArrayList<ElementMetrics> metrics = new java.util.ArrayList<ElementMetrics>(50); 
+				java.util.ArrayList<ElementMetrics> metrics = new java.util.ArrayList<«diamondOp('ElementMetrics')»>(50);
 				«IF getNotationMetrics(editorGen.metrics).notEmpty»
 					calculateNotationElementMetrics(diagram, metrics);
 				«ENDIF»
@@ -158,7 +159,7 @@ import xpt.editor.DiagramEditorUtil
 			return java.util.Collections.EMPTY_LIST;
 			}
 		}
-		
+
 		«IF getNotationMetrics(editorGen.metrics).notEmpty»«calcNotationMetricsMethod(editorGen)»«ENDIF»
 		«IF getDiagramMetrics(editorGen.metrics).notEmpty»«calcDiagramMetricsMethod(editorGen)»«ENDIF»
 		«IF getDomainMetrics(editorGen.metrics).notEmpty»«calcDomainMetricsMethod(editorGen)»«ENDIF»
@@ -167,24 +168,24 @@ import xpt.editor.DiagramEditorUtil
 	def metricsClasses(GenDiagram it) '''
 		«generatedMemberComment»
 		private static class ElementMetrics {
-		
+
 			«generatedMemberComment»
 			final Metric[] metrics;
-		
+
 			«generatedMemberComment»
 			final String targetElementQName;
-		
+
 			«generatedMemberComment»
 			final org.eclipse.swt.graphics.Image elementImage;
-		
+
 			«generatedMemberComment»
 			String diagramElementID; «/* FIXME add specific constructor for View elements, set diagramElementID from there */»
-		
+
 			«generatedMemberComment»
 			ElementMetrics(org.eclipse.emf.ecore.EObject target, String name, Metric[] metrics) {
 			«_assert('metrics.length > 0')»
 			«_assert('name != null')»
-			this.metrics = metrics;	
+			this.metrics = metrics;
 			this.targetElementQName = name;
 			org.eclipse.emf.ecore.EClass imageTarget = target.eClass();
 			if (target instanceof org.eclipse.gmf.runtime.notation.View) {
@@ -195,41 +196,41 @@ import xpt.editor.DiagramEditorUtil
 			}
 			this.elementImage = «getImageAccessor(it, 'imageTarget')»;
 			}
-		
+
 			«generatedMemberComment»
 			Metric getMetricByKey(String key) {
 			for (int i = 0; i < metrics.length; i++) {
 				if (metrics[i].key.equals(key)) {
-					return metrics[i]; 
+					return metrics[i];
 				}
 			}
 			return null;
 			}
 		}
-		
+
 		«generatedMemberComment»
 		private static class Metric implements Comparable {
-		
+
 			«generatedMemberComment»
 			final String key;
-		
+
 			«generatedMemberComment»
 			final Double value;
-		
+
 			«generatedMemberComment»
 			final Double lowLimit;
-		
+
 			«generatedMemberComment»
 			final Double highLimit;
-		
+
 			«generatedMemberComment»
 			final String displayValue;
-		
+
 			«generatedMemberComment»
 			Metric(String key, Double value) {
 			this(key, value, null, null);
 			}
-		
+
 			«generatedMemberComment»
 			Metric(String key, Double value, Double low, Double high) {
 			«_assert('key != null')»
@@ -239,7 +240,7 @@ import xpt.editor.DiagramEditorUtil
 			this.highLimit = high;
 			this.displayValue = (value != null) ? java.text.NumberFormat.getInstance().format(value) : "null"; //$NON-NLS-1$
 			}
-		
+
 			«generatedMemberComment»
 			public int compareTo(Object other) {
 			Metric otherMetric = (Metric) other;
@@ -324,18 +325,17 @@ import xpt.editor.DiagramEditorUtil
 	 * 		for now, keep approach from old implementation, i.e. iterate content
 	 *		of element associated with diagram. Smarter approach would be
 	 *		iteration over diagram elements, then accessing their respective
-	 *		semantic elements (if set), and collecting metrics for them.  
+	 *		semantic elements (if set), and collecting metrics for them.
 	 */
 	def calcDomainMetricsMethod(GenEditorGenerator it) '''
-		«generatedMemberComment(
-			'NOTE: metrics are being collected for domain elements contained in the semantic element associated with diagram view, actual diagram content (elements present there) is not taken into account.')»
+		«generatedMemberComment('NOTE: metrics are being collected for domain elements contained in the semantic element associated with diagram view, actual diagram content (elements present there) is not taken into account.')»
 		static void calculateSemanticElementMetrics(org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart diagramEditPart, java.util.List<ElementMetrics> metricsList) {
 			org.eclipse.gmf.runtime.notation.Diagram diagram = diagramEditPart.getDiagramView();
 			org.eclipse.emf.ecore.EObject next = diagram.getElement();
 			java.util.Iterator/*<EObject>*/ it = next != null ? next.eAllContents() : java.util.Collections.EMPTY_LIST.iterator();
-			java.util.HashMap<org.eclipse.emf.ecore.EObject, ElementMetrics> target2row = new java.util.HashMap<org.eclipse.emf.ecore.EObject, ElementMetrics>(); 
+			java.util.HashMap<org.eclipse.emf.ecore.EObject, ElementMetrics> target2row = new java.util.HashMap<org.eclipse.emf.ecore.EObject, ElementMetrics>();
 			while (next != null) {
-				java.util.ArrayList<Metric> res = new java.util.ArrayList<Metric>(5); 
+				java.util.ArrayList<Metric> res = new java.util.ArrayList<«diagram.diamondOp('Metric')»>(5);
 				«FOR e : metrics.metrics.map[m|m.target].filter(typeof(GenDomainElementTarget)).map[t|t.element]»
 					if («xptMetaModel.MetaClass(e)».isInstance(next)) {
 					«FOR m : metrics.metrics.filter[m|m.target.context == e]»
@@ -388,8 +388,7 @@ import xpt.editor.DiagramEditorUtil
 
 	def metricCalcMethod(GenMetricRule it) '''
 		«generatedMemberComment»
-		public static«/* FIXME: (1) refactor to get rid of statics (2) 'public' only those referenced from audits */» Double «calcMethodName(
-			it)»(«calcMethodArgs(it.target, it)») {
+		public static«/* FIXME: (1) refactor to get rid of statics (2) 'public' only those referenced from audits */» Double «calcMethodName(it)»(«calcMethodArgs(it.target, it)») {
 			«calcMethodBody(it.rule.provider, it)»
 		}
 	'''
@@ -404,8 +403,7 @@ import xpt.editor.DiagramEditorUtil
 	 * However, GenDiagramElementTargetImpl#getContext uses first element's notation class only
 	 */
 	def dispatch calcMethodArgs(GenDiagramElementTarget it, GenMetricRule metric) //
-	'''org.eclipse.gmf.runtime.notation.«IF allOfType(typeof(GenNode))»Node«ELSEIF allOfType(typeof(GenLink))»Edge«ELSEIF allOfType(
-		typeof(GenDiagram))»Diagram«ELSE»View«ENDIF» target'''
+	'''org.eclipse.gmf.runtime.notation.«IF allOfType(typeof(GenNode))»Node«ELSEIF allOfType(typeof(GenLink))»Edge«ELSEIF allOfType(typeof(GenDiagram))»Diagram«ELSE»View«ENDIF» target'''
 
 	def boolean allOfType(GenDiagramElementTarget it, Class<? extends GenCommonBase> type) {
 		return it.element.forall[e|e.oclIsKindOf(type)]
@@ -417,8 +415,7 @@ import xpt.editor.DiagramEditorUtil
 	def dispatch calcMethodArgs(GenNotationElementTarget it, GenMetricRule metric) '''«xptMetaModel.
 		QualifiedClassName(element)» target'''
 
-	def dispatch calcMethodBody(GenExpressionProviderBase it, GenMetricRule metric) '''«ERROR(
-		'No idea how to calculate metric\'s value for ' + it)»'''
+	def dispatch calcMethodBody(GenExpressionProviderBase it, GenMetricRule metric) '''«ERROR('No idea how to calculate metric\'s value for ' + it)»'''
 
 	def dispatch calcMethodBody(GenExpressionInterpreter it, GenMetricRule metric) '''
 		Object val = «xptGetExpression.getExpression(it, metric.rule, metric.target.getContext())».evaluate(target);
@@ -450,38 +447,35 @@ import xpt.editor.DiagramEditorUtil
 				«FOR m : it.metrics SEPARATOR ',\n'»«toStringLiteral(m.key)»«ENDFOR»
 			};
 		}
-		
+
 		«generatedMemberComment»
 		private static String[] getMetricToolTips() {
 			return new String[] {
 				«FOR m : it.metrics SEPARATOR ',\n'»«singleMetricTooltip(m)»«ENDFOR»
 			};
-		} 
+		}
 	'''
-	
-	def singleMetricTooltip(GenMetricRule m) 
-	'''«toStringLiteral(nameOrKey(m))»«IF m.description != null» + '\n' + «toStringLiteral(m.description)» + '\n'«ENDIF //
-	»«IF null != m.lowLimit» + «toStringLiteral('low: ' + m.lowLimit)»«ENDIF //
-	»«IF null != m.highLimit» + «toStringLiteral('high: ' + m.highLimit)»«ENDIF»'''
+
+	def singleMetricTooltip(GenMetricRule m)
+	'''«toStringLiteral(nameOrKey(m))»«IF m.description !== null » + '\n' + «toStringLiteral(m.description)» + '\n'«ENDIF //
+	»«IF null !== m.lowLimit » + «toStringLiteral('low: ' + m.lowLimit)»«ENDIF //
+	»«IF null !== m.highLimit » + «toStringLiteral('high: ' + m.highLimit)»«ENDIF»'''
 
 	def protected String nameOrKey(GenMetricRule metric) {
-		return if(metric.name == null) metric.key else metric.name
+		return if(metric.name === null) metric.key else metric.name
 	}
 
-	def protected doubleOrNull(Double d) '''«IF d == null»null«ELSE»new Double(«d»)«ENDIF»'''
+	def protected doubleOrNull(Double d) '''«IF d === null »null«ELSE»new Double(«d»)«ENDIF»'''
 
 	def protected castIfNeeded(GenMetricRule it, String targetAccessor, boolean isJustEObject) '''«IF isJustEObject &&
 		target.context.oclIsKindOf(typeof(GenClass))»«xptMetaModel.CastEObject(target.context as GenClass, targetAccessor)»«ELSE»«targetAccessor»«ENDIF»'''
 
 	def String toStringLiteral(String key) {
-		return org::eclipse::papyrus::gmf::internal::common::codegen::Conversions::toStringLiteral(key)
+		return Conversions::toStringLiteral(key)
 	}
 
 	def metricResult(GenMetricRule it, String targetAccessor, boolean isJustEObject) '''
-		new Metric(«toStringLiteral(key)», «calcMethodName(it)»(«castIfNeeded(it, targetAccessor, isJustEObject)»), «doubleOrNull(
-			it.lowLimit)», «doubleOrNull(it.highLimit)»)
+		new Metric(«toStringLiteral(key)», «calcMethodName(it)»(«castIfNeeded(it, targetAccessor, isJustEObject)»), «doubleOrNull(it.lowLimit)», «doubleOrNull(it.highLimit)»)
 	'''
-
-	def additions(GenDiagram it) ''''''
 
 }

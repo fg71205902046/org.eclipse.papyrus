@@ -59,8 +59,7 @@ public class PackageMergeEditPart extends UMLConnectionNodeEditPart implements I
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof AppliedStereotypePackageMergeEditPart) {
-			((AppliedStereotypePackageMergeEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAppliedStereotypeLabel());
+			((AppliedStereotypePackageMergeEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -117,5 +116,4 @@ public class PackageMergeEditPart extends UMLConnectionNodeEditPart implements I
 	public DashedEdgeFigure getPrimaryShape() {
 		return (DashedEdgeFigure) getFigure();
 	}
-
 }

@@ -71,5 +71,4 @@ public class AssociationClassDashedLinkEditPart extends ConnectionEditPart imple
 	public SimpleDashedEdgeFigure getPrimaryShape() {
 		return (SimpleDashedEdgeFigure) getFigure();
 	}
-
 }

@@ -1,17 +1,18 @@
 /*******************************************************************************
  * Copyright (c) 2007, 2020 Borland Software Corporation, CEA LIST, Artal and others
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors: 
  *    Dmitry Stadnik (Borland) - initial API and implementation
  *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *    Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up
  *****************************************************************************/
 package xpt.editor
 
@@ -43,15 +44,13 @@ import xpt.ExternalizerUtils_qvtoimport xpt.CodeStyle
 	def ElementChooser(GenDiagram it) '''
 		«copyright(editorGen)»
 		package «packageName(it)»;
-		
+
 		«generatedClassComment»
 		public class «className(it)» «extendsList(it)» {
-			
+
 			«constructors(it)»
-			
+
 			«context(it)»
-			
-			«additions(it)»
 		}
 	'''
 
@@ -70,29 +69,26 @@ import xpt.ExternalizerUtils_qvtoimport xpt.CodeStyle
 	def contextClassName(GenDiagram it)'''«className(it)»ContextImpl'''
 
 	def context(GenDiagram it)'''
-	«generatedClassComment»
-	private static class «contextClassName(it)» implements org.eclipse.gmf.tooling.runtime.part.DefaultElementChooserDialog.Context {
-			
-		«context_attributes(it)»
-			
-		«context_constructors(it)»
-			
-		«getItemProvidersAdapterFactory(it)»
-			
-		«getDiagramPreferencesHint(it)»
-			
-		«getFileExtensions(it)»
-			
-		«getDialogTitle(it)»
-			
-		«getTreeContentProvider(it)»
-			
-		«allowMultiSelection(it)»
-		
-		«context_additions(it)»
-			
-	}
-'''
+		«generatedClassComment»
+		private static class «contextClassName(it)» implements org.eclipse.gmf.tooling.runtime.part.DefaultElementChooserDialog.Context {
+
+			«context_attributes(it)»
+
+			«context_constructors(it)»
+
+			«getItemProvidersAdapterFactory(it)»
+
+			«getDiagramPreferencesHint(it)»
+
+			«getFileExtensions(it)»
+
+			«getDialogTitle(it)»
+
+			«getTreeContentProvider(it)»
+
+			«allowMultiSelection(it)»
+		}
+	'''
 
 	def context_attributes(GenDiagram it)'''
 		«generatedMemberComment»
@@ -147,21 +143,17 @@ import xpt.ExternalizerUtils_qvtoimport xpt.CodeStyle
 		«generatedMemberComment»
 		«overrideI(it)»
 		public org.eclipse.jface.viewers.ITreeContentProvider getTreeContentProvider() {
-			return new «IF it.editorGen.application != null»new org.eclipse.ui.model.WorkbenchContentProvider«ELSE»
+			return new «IF it.editorGen.application !== null »new org.eclipse.ui.model.WorkbenchContentProvider«ELSE»
 			 org.eclipse.ui.model.BaseWorkbenchContentProvider«ENDIF»();
 		}
 	'''
-	
+
 	def allowMultiSelection(GenDiagram it)'''
 		«generatedMemberComment»
 		public boolean allowMultiSelection() {
 			return myAllowMultiSelection;
 		}
 	'''
-
-	def context_additions(GenDiagram it)''''''
-
-	def additions(GenDiagram it) ''''''
 
 	@Localization def i18nValues(GenDiagram it) '''
 		«xptExternalizer.messageEntry(titleKey(i18nKeyForSelectModelElement(it)), 'Select model element')»

@@ -35,7 +35,7 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
 
 			@Override
-			@SuppressWarnings("rawtypes")
+			@SuppressWarnings({ "rawtypes", "unchecked" })
 			public Object getAdapter(Object adaptableObject, Class adapterType) {
 				if (adaptableObject instanceof org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLDomainNavigatorItem) {
 					org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLDomainNavigatorItem domainNavigatorItem = (org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLDomainNavigatorItem) adaptableObject;
@@ -52,7 +52,7 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 			}
 
 			@Override
-			@SuppressWarnings("rawtypes")
+			@SuppressWarnings({ "rawtypes", "unchecked" })
 			public Class[] getAdapterList() {
 				return supportedTypes;
 			}
@@ -122,5 +122,4 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 	public int hashCode() {
 		return EcoreUtil.getURI(getEObject()).hashCode();
 	}
-
 }

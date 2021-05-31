@@ -67,5 +67,4 @@ public class ConnectorTimeObservationEditPart extends ConnectionEditPart impleme
 	public SimpleDashedEdgeFigure getPrimaryShape() {
 		return (SimpleDashedEdgeFigure) getFigure();
 	}
-
 }

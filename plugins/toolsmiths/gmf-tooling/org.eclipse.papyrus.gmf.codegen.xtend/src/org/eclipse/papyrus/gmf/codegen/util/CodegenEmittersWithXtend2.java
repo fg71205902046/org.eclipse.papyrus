@@ -11,7 +11,8 @@
  * Contributors: 
  *    Svyatoslav Kovalsky (Montages) - initial API and implementation
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
- *    Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : Remove reference to xpand/qvto
+ *    Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.1 Remove reference to xpand/qvto
+ *    Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 generate less dead or duplicate code
  *****************************************************************************/
 package org.eclipse.papyrus.gmf.codegen.util;
 
@@ -37,22 +38,6 @@ public abstract class CodegenEmittersWithXtend2 extends CodegenEmitters {
 	}
 
 	// -----------------------------------------------------------------------------------------
-
-	/**
-	 * FIXME: [MG] make separate xtend templates calling shared code, not vise versa
-	 */
-	@Override
-	public JavaClassEmitter getTextNonResizableEditPolicyEmitter() throws UnexpectedBehaviourException {
-		return getXtendEmitter("xpt::diagram::editpolicies::TextNonResizableEditPolicy", "TextNonResizableEditPolicy"); //$NON-NLS-1$ //$NON-NLS-2$
-	}
-
-	/**
-	 * FIXME: [MG] make separate xtend templates calling shared code, not vise versa
-	 */
-	@Override
-	public JavaClassEmitter getTextSelectionEditPolicyEmitter() throws UnexpectedBehaviourException {
-		return getXtendEmitter("xpt::diagram::editpolicies::TextSelectionEditPolicy", "TextSelectionEditPolicy"); //$NON-NLS-1$ //$NON-NLS-2$
-	}
 
 	@Override
 	public JavaClassEmitter getPropertySheetLabelProviderEmitter() throws UnexpectedBehaviourException {

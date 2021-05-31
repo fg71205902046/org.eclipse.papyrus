@@ -12,6 +12,7 @@
  * Dmitry Stadnik (Borland) - initial API and implementation
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up
  *****************************************************************************/
 package xpt.editor
 
@@ -39,59 +40,38 @@ import xpt.Common
 
 	def fullPath(GenDiagram it) '''«qualifiedClassName(it)»'''
 
-
 	def DiagramEditorContextMenuProvider(GenDiagram it) '''
 		«copyright(editorGen)»
 		package «packageName(it)»;
-		
+
 		«generatedClassComment»
 		public class «className(it)» extends org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider {
-		
+
 			«generatedMemberComment»
 			private org.eclipse.ui.IWorkbenchPart part;
-		
-		«««			«generatedMemberComment»
-		«««			private «xptDeleteElementAction.qualifiedClassName(it)» deleteAction;
-		
+
 			«generatedMemberComment»
 			public DiagramEditorContextMenuProvider(org.eclipse.ui.IWorkbenchPart part, org.eclipse.gef.EditPartViewer viewer) {
 				super(part, viewer);
 				this.part = part;
-				«««				deleteAction = new «xptDeleteElementAction.qualifiedClassName(it)»(part);
-				«««				deleteAction.init();
 			}
-		
-		«««			«generatedMemberComment»
-		«««			public void dispose() {
-		«««				if (deleteAction != null) {
-		«««					deleteAction.dispose();
-		«««					deleteAction = null;
-		«««				}
-		«««				super.dispose();
-		«««			}
-		
+
 			«generatedMemberComment»
+			«overrideI»
 			public void buildContextMenu(final org.eclipse.jface.action.IMenuManager menu) {
 				getViewer().flush();
 				try {
-					org.eclipse.emf.transaction.util.TransactionUtil.getEditingDomain(
-							(org.eclipse.emf.ecore.EObject) getViewer().getContents().getModel()).runExclusive(new Runnable() {
-		
+					org.eclipse.emf.transaction.util.TransactionUtil.getEditingDomain((org.eclipse.emf.ecore.EObject) getViewer().getContents().getModel()).runExclusive(new Runnable() {
 						«overrideI(it.editorGen.diagram)»
 						public void run() {
-							org.eclipse.gmf.runtime.common.ui.services.action.contributionitem.ContributionItemService.getInstance().contributeToPopupMenu(
-									DiagramEditorContextMenuProvider.this, part);
+							org.eclipse.gmf.runtime.common.ui.services.action.contributionitem.ContributionItemService.getInstance().contributeToPopupMenu(DiagramEditorContextMenuProvider.this, part);
 							menu.remove(org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds.ACTION_DELETE_FROM_MODEL);
-		«««							menu.appendToGroup("editGroup", deleteAction);
 						}
 					});
 				} catch (Exception e) {
-			«xptActivator.qualifiedClassName(editorGen.plugin)».getInstance().logError("Error building context menu", e);
+					«xptActivator.qualifiedClassName(editorGen.plugin)».getInstance().logError("Error building context menu", e);
 			}
 			}
-			«additions(it)»
 		}
 	'''
-	def additions(GenDiagram it) ''''''
-	
 }

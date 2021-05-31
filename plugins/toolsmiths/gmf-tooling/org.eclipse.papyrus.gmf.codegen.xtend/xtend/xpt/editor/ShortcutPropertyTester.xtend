@@ -1,17 +1,18 @@
 /*******************************************************************************
  * Copyright (c) 2007, 2020 Borland Software Corporation, CEA LIST, Artal and others
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors: 
  *    Alexander Shatalin (Borland) - initial API and implementation
  *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *    Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up
  *****************************************************************************/
 package xpt.editor
 
@@ -33,15 +34,13 @@ import xpt.Common
 	def ShortcutPropertyTester(GenDiagram it) '''
 		«copyright(editorGen)»
 		package «packageName(it)»;
-		
+
 		«generatedClassComment»
 		public class «className(it)» extends org.eclipse.core.expressions.PropertyTester {
-			
+
 			«attributes(it)»
-			
+
 			«test(it)»
-			
-			«additions(it)»
 		}
 	'''
 
@@ -66,6 +65,4 @@ import xpt.Common
 			return false;
 		}
 	'''
-
-	def additions(GenDiagram it) ''''''
 }

@@ -11,6 +11,7 @@
  * Contributors: 
  *   Michael Golubev (Montages) - initial API and implementation
  *   Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *   Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up
  *****************************************************************************/
 package xpt.plugin
 
@@ -18,16 +19,16 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenPlugin
 
 @com.google.inject.Singleton class options {
 
-def qualifiedClassName(GenPlugin it) '''.options'''
-def fullPath(GenPlugin it) '''«qualifiedClassName(it)»'''
+	def qualifiedClassName(GenPlugin it) '''.options'''
+	def fullPath(GenPlugin it) '''«qualifiedClassName(it)»'''
 
-def options(GenPlugin it) '''
-# Tracing options for the «ID» plug-in
+	def options(GenPlugin it) '''
+		# Tracing options for the «ID» plug-in
 
-# Common issues
-«ID»/debug=false
+		# Common issues
+		«ID»/debug=false
 
-# Visual IDs
-«ID»/debug/visualID=false
-'''
+		# Visual IDs
+		«ID»/debug/visualID=false
+	'''
 }

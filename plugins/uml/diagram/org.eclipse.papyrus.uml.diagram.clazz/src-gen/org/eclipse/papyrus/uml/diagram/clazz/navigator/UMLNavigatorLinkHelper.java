@@ -110,5 +110,4 @@ public class UMLNavigatorLinkHelper implements ILinkHelper {
 			}
 		}
 	}
-
 }

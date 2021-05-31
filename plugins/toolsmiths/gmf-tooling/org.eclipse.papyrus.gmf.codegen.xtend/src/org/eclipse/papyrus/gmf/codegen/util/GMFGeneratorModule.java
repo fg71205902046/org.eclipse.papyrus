@@ -16,7 +16,6 @@ package org.eclipse.papyrus.gmf.codegen.util;
 
 import java.util.List;
 
-import org.eclipse.papyrus.gmf.codegen.util.IExtensionTemplatesProvider;
 import org.eclipse.xtext.service.AbstractGenericModule;
 
 public class GMFGeneratorModule extends AbstractGenericModule {

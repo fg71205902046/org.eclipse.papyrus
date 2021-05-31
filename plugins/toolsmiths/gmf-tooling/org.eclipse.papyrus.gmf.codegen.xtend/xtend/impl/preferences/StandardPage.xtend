@@ -12,6 +12,7 @@
  * Dmitry Stadnik (Borland) - initial API and implementation
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 explicit call to the parent page on clean up
  *****************************************************************************/
 package impl.preferences
 
@@ -35,10 +36,10 @@ import xpt.Common
 	def Main(GenStandardPreferencePage it) '''
 		«copyright(it.diagram.editorGen)»
 		package «packageName(it)»;
-		
+
 		«generatedClassComment»
-		public class «className(it)» «extendsList(it)» «implementsList(it)» {
-		
+		public class «className(it)» «extendsList(it)» {
+
 			«generatedMemberComment»
 			public «className(it)»() {
 				setPreferenceStore(«getDiagram().editorGen.plugin.activatorQualifiedClassName».getInstance().getPreferenceStore());
@@ -62,10 +63,24 @@ import xpt.Common
 			extends org.eclipse.gmf.runtime.diagram.ui.preferences.RulerGridPreferencePage«»
 		«ENDIF»
 	'''
-
-	def implementsList(GenStandardPreferencePage it) '''«/* no-op */»'''
+	
+	/**
+	 *  Bug 569174 : L1.2 clean up will generate an explicit call to the parent page on call_initDefaults
+	 */
+	def getParentPage(GenStandardPreferencePage it) {
+		if (kind == StandardPreferencePages::GENERAL_LITERAL) {
+			'org.eclipse.gmf.runtime.diagram.ui.preferences.DiagramsPreferencePage'
+		} else if (kind == StandardPreferencePages::APPEARANCE_LITERAL) {
+			'org.eclipse.gmf.runtime.diagram.ui.preferences.AppearancePreferencePage'
+		} else if (kind == StandardPreferencePages::CONNECTIONS_LITERAL) {
+			'org.eclipse.gmf.runtime.diagram.ui.preferences.ConnectionsPreferencePage'
+		} else if (kind == StandardPreferencePages::PRINTING_LITERAL) {
+			'org.eclipse.gmf.runtime.diagram.ui.preferences.PrintingPreferencePage'
+		} else if (kind == StandardPreferencePages::RULERS_AND_GRID_LITERAL) {
+			'org.eclipse.gmf.runtime.diagram.ui.preferences.RulerGridPreferencePage'
+		}
+	}
 
 	@MetaDef def call_initDefaults(GenStandardPreferencePage it, String storeVarName) //
-	'''«IF kind != StandardPreferencePages::PATHMAPS_LITERAL»«qualifiedClassName(it)».initDefaults(«storeVarName»);«ENDIF»'''
-
+	'''«IF kind != StandardPreferencePages::PATHMAPS_LITERAL»«parentPage».initDefaults(«storeVarName»);«ENDIF»''' // explicit call to the parent page on clean up
 }

@@ -46,6 +46,7 @@ public class MessageFormatParser extends AbstractElementTypeBasedAttributeParser
 	 * @generated
 	 */
 	private String defaultPattern;
+
 	/**
 	 * @generated
 	 */
@@ -192,12 +193,7 @@ public class MessageFormatParser extends AbstractElementTypeBasedAttributeParser
 		ParsePosition pos = new ParsePosition(0);
 		Object[] values = getEditProcessor().parse(editString, pos);
 		if (values == null) {
-			return new ParserEditStatus(
-					UMLDiagramEditorPlugin.ID,
-					IParserEditStatus.UNEDITABLE,
-					NLS.bind(
-							Messages.MessageFormatParser_InvalidInputError,
-							new Integer(pos.getErrorIndex())));
+			return new ParserEditStatus(UMLDiagramEditorPlugin.ID, IParserEditStatus.UNEDITABLE, NLS.bind(Messages.MessageFormatParser_InvalidInputError, pos.getErrorIndex()));
 		}
 		return validateNewValues(values);
 	}
@@ -226,10 +222,8 @@ public class MessageFormatParser extends AbstractElementTypeBasedAttributeParser
 	 * @see AbstractFeatureParser#getModificationCommand(EObject, EStructuralFeature, java.lang.Object)
 	 */
 	@Override
-	protected ICommand getModificationCommand(final EObject element, final EStructuralFeature feature,
-			final Object value) {
+	protected ICommand getModificationCommand(final EObject element, final EStructuralFeature feature, final Object value) {
 		ICommand result = null;
-
 		// If the feature to edit is the name, check that this is not really the internationalization to edit and not the name
 		if (feature.equals(UMLPackage.eINSTANCE.getNamedElement_Name())) {
 			if (InternationalizationPreferencesUtils.getInternationalizationPreference(element) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML((NamedElement) element)) {
@@ -239,7 +233,6 @@ public class MessageFormatParser extends AbstractElementTypeBasedAttributeParser
 				}
 			}
 		}
-
 		return null != result ? result : super.getModificationCommand(element, feature, value);
 	}
 
@@ -251,13 +244,11 @@ public class MessageFormatParser extends AbstractElementTypeBasedAttributeParser
 	@Override
 	protected Object getValue(final EObject element, final EStructuralFeature feature) {
 		Object result = null;
-
 		if (element instanceof NamedElement && feature.equals(UMLPackage.eINSTANCE.getNamedElement_Name())) {
 			if (InternationalizationPreferencesUtils.getInternationalizationPreference(element) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML((NamedElement) element)) {
 				result = UMLLabelInternationalization.getInstance().getLabelWithoutUML((NamedElement) element);
 			}
 		}
-
 		return null != result ? result : super.getValue(element, feature);
 	}
 }

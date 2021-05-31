@@ -23,12 +23,12 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.PapyrusLinkLabelDra
 import org.eclipse.papyrus.infra.gmfdiag.common.parsers.ParserUtil;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ISRoleSourceDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.InstanceSpecificationRoleDisplayEditPolicy;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.editparts.AbstractLinkLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editparts.ILabelRoleProvider;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.UMLTextSelectionEditPolicy;
 import org.eclipse.swt.graphics.Image;
 
 /**

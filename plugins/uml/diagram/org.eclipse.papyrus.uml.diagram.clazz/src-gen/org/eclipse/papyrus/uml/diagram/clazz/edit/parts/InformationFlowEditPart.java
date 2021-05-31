@@ -56,16 +56,13 @@ public class InformationFlowEditPart extends UMLConnectionNodeEditPart implement
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof InformationFlowConveyedLabelEditPart) {
-			((InformationFlowConveyedLabelEditPart) childEditPart).setLabel(
-					getPrimaryShape().getConveyedLabel());
+			((InformationFlowConveyedLabelEditPart) childEditPart).setLabel(getPrimaryShape().getConveyedLabel());
 		}
 		if (childEditPart instanceof InformationFlowAppliedStereotypeEditPart) {
-			((InformationFlowAppliedStereotypeEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAppliedStereotypeLabel());
+			((InformationFlowAppliedStereotypeEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		if (childEditPart instanceof InformationFlowNameEditPart) {
-			((InformationFlowNameEditPart) childEditPart).setLabel(
-					getPrimaryShape().getNameLabel());
+			((InformationFlowNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 		}
 		return false;
 	}
@@ -128,5 +125,4 @@ public class InformationFlowEditPart extends UMLConnectionNodeEditPart implement
 	public InformationFlowFigure getPrimaryShape() {
 		return (InformationFlowFigure) getFigure();
 	}
-
 }

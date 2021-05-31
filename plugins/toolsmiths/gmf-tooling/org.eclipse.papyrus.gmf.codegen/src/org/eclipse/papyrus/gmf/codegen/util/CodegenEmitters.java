@@ -11,8 +11,9 @@
  * Contributors: 
  *    Artem Tikhomirov (Borland) - initial API and implementation
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
- *    Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 - Use project or worksapce preference as new line characters
- *    Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : Remove reference to xpand/qvto
+ *    Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 Use project or worksapce preference as new line characters
+ *    Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.1 Remove reference to xpand/qvto
+ *    Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 generate less dead or duplicate code
  *****************************************************************************/
 package org.eclipse.papyrus.gmf.codegen.util;
 
@@ -28,7 +29,7 @@ import org.eclipse.papyrus.gmf.internal.common.codegen.TextEmitter;
 public abstract class CodegenEmitters {
 
 	protected static final String PATH_SEPARATOR = "::"; //$NON-NLS-1$
-	
+
 	public abstract URL getJMergeControlFile();
 	// commands
 
@@ -119,7 +120,7 @@ public abstract class CodegenEmitters {
 	}
 
 	public JavaClassEmitter getDiagramCanonicalEditPolicyEmitter() {
-		return createJavaClassEmitter("diagram::editpolicies::DiagramCanonicalEditPolicy","Main"); //$NON-NLS-1$
+		return createJavaClassEmitter("diagram::editpolicies::DiagramCanonicalEditPolicy", "Main"); //$NON-NLS-1$
 	}
 
 	public JavaClassEmitter getChildContainerCanonicalEditPolicyEmitter() {
@@ -146,11 +147,11 @@ public abstract class CodegenEmitters {
 		return createPrimaryJavaClassEmitter("xpt::diagram::editpolicies::LinkItemSemanticEditPolicy"); //$NON-NLS-1$
 	}
 
-	public JavaClassEmitter getTextSelectionEditPolicyEmitter() throws UnexpectedBehaviourException {
-		return createJavaClassEmitter("xpt::diagram::editpolicies::TextFeedback", "TextSelectionEditPolicy"); //$NON-NLS-1$
-	}
-
-	public abstract JavaClassEmitter getTextNonResizableEditPolicyEmitter() throws UnexpectedBehaviourException;
+	// Bug 569174 : L1.2 => moved to common -
+	// public JavaClassEmitter getTextSelectionEditPolicyEmitter() throws UnexpectedBehaviourException {
+	// return createJavaClassEmitter("xpt::diagram::editpolicies::TextFeedback", "TextSelectionEditPolicy"); //$NON-NLS-1$
+	// }
+	// public abstract JavaClassEmitter getTextNonResizableEditPolicyEmitter() throws UnexpectedBehaviourException;
 
 	public JavaClassEmitter getVisualEffectEditPolicyEmitter() {
 		return createPrimaryJavaClassEmitter("xpt::diagram::editpolicies::VisualEffectEditPolicy"); //$NON-NLS-1$
@@ -245,7 +246,7 @@ public abstract class CodegenEmitters {
 	}
 
 	public JavaClassEmitter getAbstractExpressionEmitter() throws UnexpectedBehaviourException {
-		return createPrimaryJavaClassEmitter("xpt::expressions::AbstractExpression"); //$NON-NLS-1$
+		return createPrimaryJavaClassEmitter("xpt::expressions::ExpressionAbstractExpression"); //$NON-NLS-1$
 	}
 
 	public JavaClassEmitter getOCLExpressionFactoryEmitter() throws UnexpectedBehaviourException {
@@ -387,7 +388,7 @@ public abstract class CodegenEmitters {
 	}
 
 	public JavaClassEmitter getAbstractNavigatorItemEmitter() {
-		return createPrimaryJavaClassEmitter("xpt::navigator::AbstractNavigatorItem"); //$NON-NLS-1$
+		return createPrimaryJavaClassEmitter("xpt::navigator::NavigatorAbstractNavigatorItem"); //$NON-NLS-1$
 	}
 
 	public JavaClassEmitter getNavigatorGroupEmitter() {
@@ -439,7 +440,7 @@ public abstract class CodegenEmitters {
 	}
 
 	public JavaClassEmitter getExternalizeEmitter() {
-		return createJavaClassEmitter("xpt::Externalizer","Access"); //$NON-NLS-1$
+		return createJavaClassEmitter("xpt::Externalizer", "Access"); //$NON-NLS-1$
 	}
 
 	public JavaClassEmitter getMessagesEmitter() {
@@ -489,32 +490,33 @@ public abstract class CodegenEmitters {
 	public TextEmitter getQualifiedClassNameEmitterForPrimaryTemplate(String templateFQN) {
 		return createJavaClassEmitter(getTemplateFQNWithoutLastSegment(templateFQN), "qualifiedClassName");
 	}
-	
+
 	/**
 	 * Use when template name equals main method
+	 * 
 	 * @param templateName
 	 * @return
 	 */
 	protected JavaClassEmitter createPrimaryJavaClassEmitter(String templateName) {
 		String parts[] = templateName.split(PATH_SEPARATOR);
-		return createJavaClassEmitter(templateName, parts[parts.length-1]);
+		return createJavaClassEmitter(templateName, parts[parts.length - 1]);
 	}
-	
+
 	public JavaClassEmitter createFullTemplateInvocation(String templateFQN) {
 		String[] parts = templateFQN.split(PATH_SEPARATOR);
 		return createJavaClassEmitter(getTemplateFQNWithoutLastSegment(templateFQN), parts[parts.length - 1]);
 	}
-	
+
 	private TextEmitter createTextEmitter(String templateName, String mainMethod) {
-		return createJavaClassEmitter(templateName, mainMethod); 
+		return createJavaClassEmitter(templateName, mainMethod);
 	}
-	
+
 	private String getTemplateFQNWithoutLastSegment(String templateFQN) {
 		String[] parts = templateFQN.split(PATH_SEPARATOR);
-		int methodNamePartLength = parts[parts.length-1].length() + PATH_SEPARATOR.length();
+		int methodNamePartLength = parts[parts.length - 1].length() + PATH_SEPARATOR.length();
 		return templateFQN.substring(0, templateFQN.length() - methodNamePartLength);
 	}
-	
+
 	/**
 	 * Returns "Main" emitter for the specified template file.
 	 */

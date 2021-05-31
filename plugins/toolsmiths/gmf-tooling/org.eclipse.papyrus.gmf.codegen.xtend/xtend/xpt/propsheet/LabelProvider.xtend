@@ -21,9 +21,11 @@ import xpt.Common
 import xpt.navigator.NavigatorGroup
 import xpt.editor.VisualIDRegistry
 import xpt.providers.ElementTypes
+import xpt.CodeStyle
 
 @com.google.inject.Singleton class LabelProvider {
 	@Inject extension Common;
+	@Inject extension CodeStyle;
 
 	@Inject ElementTypes xptElementTypes;
 	@Inject NavigatorGroup group;
@@ -44,23 +46,23 @@ import xpt.providers.ElementTypes
 	def LabelProvider(GenPropertySheet it) '''
 		«copyright(editorGen)»
 		package «packageName(it)»;
-		
+
 		«generatedClassComment»
 		public class «className(it)» «extendsList(it)» «implementsList(it)» {
-		
+
 			«getTextMethod(it)»
 			«getImageMethod(it)»
 			«unwrapMethods(it)»
-		
-			«additions(it)»
+
 		}
 	'''
 
 	def getTextMethod(GenPropertySheet it) '''
 		«generatedMemberComment»
+		«overrideI»
 		public String getText(Object element) {
 			element = unwrap(element);
-			«IF editorGen.navigator != null»
+			«IF editorGen.navigator !== null»
 				if (element instanceof «group.qualifiedClassName(editorGen.navigator)») {
 					return ((«group.qualifiedClassName(editorGen.navigator)») element).getGroupName();
 				}
@@ -72,6 +74,7 @@ import xpt.providers.ElementTypes
 
 	def getImageMethod(GenPropertySheet it) '''
 		«generatedMemberComment»
+		«overrideI»
 		public org.eclipse.swt.graphics.Image getImage(Object element) {
 			org.eclipse.gmf.runtime.emf.type.core.IElementType etype = getElementType(getView(unwrap(element)));
 			return etype == null ? null : «xptElementTypes.qualifiedClassName(editorGen.diagram)».getImage(etype);
@@ -86,19 +89,18 @@ import xpt.providers.ElementTypes
 		}
 		return element;
 		}
-		
+
 		«generatedMemberComment»
 		private org.eclipse.gmf.runtime.notation.View getView(Object element) {
 			if (element instanceof org.eclipse.gmf.runtime.notation.View) {
 				return (org.eclipse.gmf.runtime.notation.View) element;
 			}
 			if (element instanceof org.eclipse.core.runtime.IAdaptable) {
-				return (org.eclipse.gmf.runtime.notation.View)
-						((org.eclipse.core.runtime.IAdaptable) element).getAdapter(org.eclipse.gmf.runtime.notation.View.class);
+				return ((org.eclipse.core.runtime.IAdaptable) element).getAdapter(org.eclipse.gmf.runtime.notation.View.class);
 			}
 			return null;
 		}
-		
+
 		«generatedMemberComment»
 		private org.eclipse.gmf.runtime.emf.type.core.IElementType getElementType(org.eclipse.gmf.runtime.notation.View view) {
 			// For intermediate views climb up the containment hierarchy to find the one associated with an element type.
@@ -115,6 +117,4 @@ import xpt.providers.ElementTypes
 			return null;
 		}
 	'''
-
-	def additions(GenPropertySheet it) ''''''
 }

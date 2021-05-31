@@ -76,17 +76,14 @@ import xpt.Common
 		}
 	'''
 
-	def extendsList(GenChildLabelNode it) '''
-		«IF commonUmlCompartment»
-			extends org.eclipse.papyrus.uml.diagram.common.editparts.AbstractCompartmentEditPart
-		«ELSE»
-			extends «superEditPart»
-		«ENDIF»
-	'''
+	def extendsList(GenChildLabelNode it) {
+		if(commonUmlCompartment)
+			'''extends org.eclipse.papyrus.uml.diagram.common.editparts.AbstractCompartmentEditPart'''
+		else
+			'''extends «superEditPart» '''
+	}
 
-	def implementsList(GenChildLabelNode it) '''
-		implements org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart, org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart, org.eclipse.papyrus.infra.gmfdiag.common.editpart.IControlParserForDirectEdit
-	'''
+	def implementsList(GenChildLabelNode it) '''implements org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart, org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart, org.eclipse.papyrus.infra.gmfdiag.common.editpart.IControlParserForDirectEdit'''
 
 	def attributes(GenChildLabelNode it) '''
 		«xptEditpartsCommon.visualIDConstant(it)»
@@ -103,6 +100,7 @@ import xpt.Common
 
 	def createDefaultEditPolicies(GenChildLabelNode it) '''
 		«generatedMemberComment»
+		«overrideC»
 		protected void createDefaultEditPolicies() {
 			«xptChildNodeLabelEditPart.createDefaultEditPoliciesBody(it)»
 		}

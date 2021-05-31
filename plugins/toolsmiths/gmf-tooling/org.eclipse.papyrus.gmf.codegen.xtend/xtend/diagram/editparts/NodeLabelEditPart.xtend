@@ -12,6 +12,7 @@
  * Alexander Shatalin (Borland) - initial API and implementation
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - L1.2 generate less dead or duplicate code
  *****************************************************************************/
 package diagram.editparts
 
@@ -21,7 +22,6 @@ import impl.diagram.editparts.TextAwareExtent
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNodeLabel
 import xpt.Common
 import xpt.diagram.editparts.Utils_qvto
-import xpt.diagram.editpolicies.TextSelectionEditPolicy
 import xpt.CodeStyle
 
 @Singleton class NodeLabelEditPart {
@@ -32,9 +32,6 @@ import xpt.CodeStyle
 
 	@Inject TextAwareExtent	 xptTextAware;
 	@Inject xpt.diagram.editparts.Common xptEditpartsCommon;
-
-	@Inject TextSelectionEditPolicy textSelection;
-
 
 	def Main(GenNodeLabel it) '''
 		«copyright(getDiagram().editorGen)»
@@ -48,7 +45,7 @@ import xpt.CodeStyle
 			«createDefaultEditPolicies(it)»
 			«xptTextAware.getLabelIconNotUseElementIcon(it, elementIcon, diagram)»
 			«xptTextAware.methodsExtent(it, isStoringChildPositions(node), readOnly,  modelFacet, node)»
-			«handleNotificationEventOverriden(it)»
+			«handleNotificationEventExtent(it)»
 		}
 	'''
 
@@ -79,14 +76,14 @@ import xpt.CodeStyle
 		«overrideC»
 		protected void createDefaultEditPolicies() {
 			super.createDefaultEditPolicies();
-			installEditPolicy(org.eclipse.gef.EditPolicy.SELECTION_FEEDBACK_ROLE, new «textSelection.qualifiedClassName(getDiagram())»());
+			installEditPolicy(org.eclipse.gef.EditPolicy.SELECTION_FEEDBACK_ROLE, new org.eclipse.papyrus.uml.diagram.common.editpolicies.UMLTextSelectionEditPolicy());
 			installEditPolicy(org.eclipse.gef.EditPolicy.DIRECT_EDIT_ROLE, new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy());
 			installEditPolicy(org.eclipse.gef.EditPolicy.PRIMARY_DRAG_ROLE, new org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.edit.policies.DefaultNodeLabelDragPolicy());
 			«xptEditpartsCommon.behaviour(it)»
 		}
 	'''
 
-	def handleNotificationEventOverriden(GenNodeLabel it) '''
+	def handleNotificationEventExtent(GenNodeLabel it) '''
 		«IF isStoringChildPositions(node) || elementIcon»
 			«generatedMemberComment»
 			«overrideC»

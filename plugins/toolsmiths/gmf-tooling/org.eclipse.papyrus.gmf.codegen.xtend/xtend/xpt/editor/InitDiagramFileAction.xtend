@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors: 
@@ -13,6 +13,7 @@
  * Dmitry Stadnik (Borland) - rewritten in xpand
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up
  *****************************************************************************/
 package xpt.editor
 
@@ -26,18 +27,20 @@ import xpt.Common_qvto
 import xpt.Externalizer
 import xpt.ExternalizerUtils_qvto
 import plugin.Activator
+import xpt.CodeStyle
 
 @com.google.inject.Singleton class InitDiagramFileAction {
 
+	@Inject extension CodeStyle;
 	@Inject extension Common;
 	@Inject extension Common_qvto;
 	@Inject extension ExternalizerUtils_qvto;
-	
+
 	@Inject Externalizer xptExternalizer;
 	@Inject DiagramEditorUtil xptDiagramEditorUtil;
 	@Inject Activator xptActivator
 	@Inject NewDiagramFileWizard xptNewDiagramFileWizard;
-	
+
 	def className(GenDiagram it) '''«lastSegment(it.initDiagramFileActionQualifiedClassName)»'''
 
 	def packageName(GenDiagram it) '''«withoutLastSegment(it.initDiagramFileActionQualifiedClassName)»'''
@@ -51,17 +54,14 @@ import plugin.Activator
 	'''
 
 	/**
-	 * HACK to deal with the InitDiagramAction instance being constructed at codegen time, 
-	 * and Ant being capable of supplying (existing!) target object only
+	 * HACK to deal with the InitDiagramAction instance being constructed at codegen time, * and Ant being capable of supplying (existing!) target object only
 	 */
 	def Hack(GenEditorGenerator it) '''
 		«InitDiagramFileAction(it, diagram.initDiagramFileActionQualifiedClassName)»
 	'''
 
-	def extendsList(GenEditorGenerator it) ''''''
-
 	def implementsList(GenEditorGenerator it) // 
-	'''«IF it.application == null»«implementsList_PDE(it)»«ELSE»«implementsList_RCP(it)»«ENDIF»'''
+	'''«IF it.application === null »«implementsList_PDE(it)»«ELSE»«implementsList_RCP(it)»«ENDIF»'''
 
 	def implementsList_PDE(GenEditorGenerator it) '''implements org.eclipse.ui.IObjectActionDelegate'''
 
@@ -70,11 +70,11 @@ import plugin.Activator
 	def InitDiagramFileAction(GenEditorGenerator editorGen, String qualifiedClassName) '''
 		«copyright(editorGen)»
 		package «packageName(editorGen.diagram)»;
-		
+
 		«generatedClassComment»
 		public class «className(editorGen.diagram)» «implementsList(editorGen)» {
-			«IF editorGen.application == null»
-			
+			«IF editorGen.application === null »
+
 				«classBody_PDE(editorGen.diagram)»
 			«ELSE»
 				«classBody_RCP(editorGen.diagram)»
@@ -85,59 +85,59 @@ import plugin.Activator
 	def classBody_RCP(GenDiagram it) '''
 		«generatedMemberComment»
 		private org.eclipse.ui.IWorkbenchWindow window;
-		
+
 		«generatedMemberComment»
 		public void init(org.eclipse.ui.IWorkbenchWindow window) {
 			this.window = window;
 		}
-		
+
 		«generatedMemberComment»
 		public void dispose() {
 			window = null;
 		}
-		
+
 		«generatedMemberComment»
+		«overrideI»
 		public void selectionChanged(org.eclipse.jface.action.IAction action, org.eclipse.jface.viewers.ISelection selection) {
 		}
-		
+
 		«generatedMemberComment»
 		private org.eclipse.swt.widgets.Shell getShell() {
 			return window.getShell();
 		}
-		
+
 		«generatedMemberComment»
+		«overrideI»
 		public void run(org.eclipse.jface.action.IAction action) {
 			org.eclipse.emf.transaction.TransactionalEditingDomain editingDomain =
 				org.eclipse.gmf.runtime.emf.core.GMFEditingDomainFactory.INSTANCE.createEditingDomain();
 			org.eclipse.emf.ecore.resource.Resource resource =
-					«xptDiagramEditorUtil.qualifiedClassName(editorGen.diagram)».openModel(getShell(), 
-						«xptExternalizer.accessorCall(editorGen, i18nKeyForInitDiagramOpenFileDialogTitle())», editingDomain);
+					«xptDiagramEditorUtil.qualifiedClassName(editorGen.diagram)».openModel(getShell(), «xptExternalizer.accessorCall(editorGen, i18nKeyForInitDiagramOpenFileDialogTitle())», editingDomain);
 			if (resource == null || resource.getContents().isEmpty()) {
 				return;
 			}
 			org.eclipse.emf.ecore.EObject diagramRoot = (org.eclipse.emf.ecore.EObject) resource.getContents().get(0);
 			org.eclipse.jface.wizard.Wizard wizard = new «xptNewDiagramFileWizard.qualifiedClassName(editorGen.diagram)»(resource.getURI(), diagramRoot, editingDomain);
-			wizard.setWindowTitle(org.eclipse.osgi.util.NLS.bind(
-					    «xptExternalizer.accessorCall(editorGen, i18nKeyForInitDiagramFileWizardTitle())»,
-					    «VisualIDRegistry::modelID(editorGen.diagram)»));
-			«xptDiagramEditorUtil.qualifiedClassName(editorGen.diagram)».runWizard(getShell(), wizard, "InitDiagramFile"); «nonNLS(
-			1)»
+			wizard.setWindowTitle(org.eclipse.osgi.util.NLS.bind(«xptExternalizer.accessorCall(editorGen, i18nKeyForInitDiagramFileWizardTitle())», «VisualIDRegistry::modelID(editorGen.diagram)»));
+			«xptDiagramEditorUtil.qualifiedClassName(editorGen.diagram)».runWizard(getShell(), wizard, "InitDiagramFile"); «nonNLS(1)»
 		}
 	'''
 
 	def classBody_PDE(GenDiagram it) '''
-			«generatedMemberComment»
+		«generatedMemberComment»
 		private org.eclipse.ui.IWorkbenchPart targetPart;
-		
+
 		«generatedMemberComment»
 		private org.eclipse.emf.common.util.URI domainModelURI;
-		
+
 		«generatedMemberComment»
+		«overrideI»
 		public void setActivePart(org.eclipse.jface.action.IAction action, org.eclipse.ui.IWorkbenchPart targetPart) {
 			this.targetPart = targetPart;
 		}
-		
+
 		«generatedMemberComment»
+		«overrideI»
 		public void selectionChanged(org.eclipse.jface.action.IAction action, org.eclipse.jface.viewers.ISelection selection) {
 			domainModelURI = null;
 			action.setEnabled(false);
@@ -149,13 +149,14 @@ import plugin.Activator
 			domainModelURI = org.eclipse.emf.common.util.URI.createPlatformResourceURI(file.getFullPath().toString(), true);
 			action.setEnabled(true);
 		}
-		
+
 		«generatedMemberComment»
 		private org.eclipse.swt.widgets.Shell getShell() {
 			return targetPart.getSite().getShell();
 		}
-		
+
 		«generatedMemberComment»
+		«overrideI»
 		public void run(org.eclipse.jface.action.IAction action) {
 			org.eclipse.emf.transaction.TransactionalEditingDomain editingDomain =
 				org.eclipse.emf.workspace.WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain();
@@ -169,21 +170,15 @@ import plugin.Activator
 				org.eclipse.emf.ecore.resource.Resource resource = resourceSet.getResource(domainModelURI, true);
 				diagramRoot = resource.getContents().get(0);
 			} catch (org.eclipse.emf.common.util.WrappedException ex) {
-				«xptActivator.qualifiedClassName(editorGen.plugin)».getInstance().logError(
-					"Unable to load resource: " + domainModelURI, ex); «nonNLS(1)»
+				«xptActivator.qualifiedClassName(editorGen.plugin)».getInstance().logError("Unable to load resource: " + domainModelURI, ex); «nonNLS(1)»
 			}
 			if (diagramRoot == null) {
-				org.eclipse.jface.dialogs.MessageDialog.openError(getShell(), 
-				             «xptExternalizer.accessorCall(editorGen, titleKey(i18nKeyForInitDiagramFileResourceErrorDialog()))»,
-				             «xptExternalizer.accessorCall(editorGen, messageKey(i18nKeyForInitDiagramFileResourceErrorDialog()))»);
+				org.eclipse.jface.dialogs.MessageDialog.openError(getShell(), «xptExternalizer.accessorCall(editorGen, titleKey(i18nKeyForInitDiagramFileResourceErrorDialog()))», «xptExternalizer.accessorCall(editorGen, messageKey(i18nKeyForInitDiagramFileResourceErrorDialog()))»);
 				return;
 			}
 			org.eclipse.jface.wizard.Wizard wizard = new «editorGen.diagram.getNewDiagramFileWizardQualifiedClassName()»(domainModelURI, diagramRoot, editingDomain);
-			wizard.setWindowTitle(org.eclipse.osgi.util.NLS.bind(
-					    «xptExternalizer.accessorCall(editorGen, i18nKeyForInitDiagramFileWizardTitle())»,
-					    «VisualIDRegistry::modelID(editorGen.diagram)»));
-			«xptDiagramEditorUtil.qualifiedClassName(editorGen.diagram)».runWizard(getShell(), wizard, "InitDiagramFile"); «nonNLS(
-			1)»
+			wizard.setWindowTitle(org.eclipse.osgi.util.NLS.bind(«xptExternalizer.accessorCall(editorGen, i18nKeyForInitDiagramFileWizardTitle())», «VisualIDRegistry::modelID(editorGen.diagram)»));
+			«xptDiagramEditorUtil.qualifiedClassName(editorGen.diagram)».runWizard(getShell(), wizard, "InitDiagramFile"); «nonNLS(1)»
 		}
 	'''
 	def i18nAccessors(GenDiagram it) '''

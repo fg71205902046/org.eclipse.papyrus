@@ -59,12 +59,10 @@ public class RealizationEditPart extends UMLConnectionNodeEditPart implements IT
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof AppliedStereotypeRealizationEditPart) {
-			((AppliedStereotypeRealizationEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAppliedStereotypeLabel());
+			((AppliedStereotypeRealizationEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		if (childEditPart instanceof RealizationNameEditPart) {
-			((RealizationNameEditPart) childEditPart).setLabel(
-					getPrimaryShape().getNameLabel());
+			((RealizationNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 		}
 		return false;
 	}
@@ -124,5 +122,4 @@ public class RealizationEditPart extends UMLConnectionNodeEditPart implements IT
 	public InterfaceRealizationFigure getPrimaryShape() {
 		return (InterfaceRealizationFigure) getFigure();
 	}
-
 }

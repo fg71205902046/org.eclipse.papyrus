@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2007-2013, 2021 Borland Software Corporation, CEA LIST, Artal and others
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -15,6 +15,7 @@
  *                                 [138179] expression-backed labels
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up parsers
  *****************************************************************************/
 package impl.parsers
 
@@ -48,25 +49,27 @@ import xpt.expressions.getExpression
 import xpt.providers.ElementTypes
 import xpt.providers.ParserUtils_qvto
 import plugin.Activator
+import xpt.CodeStyle
 
 @com.google.inject.Singleton class ParserProvider {
 	@Inject extension Common
 	@Inject extension Common_qvto
+	@Inject extension CodeStyle
 
 	@Inject extension OclTracker_qvto
 	@Inject extension ParserUtils_qvto
 	@Inject extension expression_qvto
-	
+
 	@Inject extension parsers.ExpressionLabelParser;
 	@Inject extension parsers.PredefinedParser;
-	
+
 	@Inject getExpression xptGetExpression;
 	@Inject MetaModel xptMetaModel;
 	@Inject VisualIDRegistry xptVisualIDRegistry;
 	@Inject ElementTypes xptElementTypes; 
 	@Inject parsers.ParserProvider xptParsers;
 	@Inject Activator xptActivator;
-	
+
 	def accessorMethod_delegate2providers(GenParsers it) '''
 		«generatedMemberComment('Utility method that consults ParserService')»
 		public static org.eclipse.gmf.runtime.common.ui.services.parser.IParser getParser(org.eclipse.gmf.runtime.emf.type.core.IElementType type, org.eclipse.emf.ecore.EObject object, String parserHint) {
@@ -78,24 +81,22 @@ import plugin.Activator
 	 * invokes method generated with accessorMethod_delegate2providers template
 	 */
 	@MetaDef def accessorCall_delegate2providers(GenCommonBase it, GenCommonBase elementTypeHolder, LabelModelFacet labelModelFacet, String parsedElement) // 
-		'''«it.diagram.editorGen.labelParsers.qualifiedClassName».getParser(«xptElementTypes.accessElementType(elementTypeHolder)», «parsedElement», «IF labelModelFacet == null»«xptVisualIDRegistry.typeMethodCall(it)»«ELSE»«dispatch4_parserHint(labelModelFacet.parser, labelModelFacet, it)»«ENDIF»)'''
-	
+		'''«it.diagram.editorGen.labelParsers.qualifiedClassName».getParser(«xptElementTypes.accessElementType(elementTypeHolder)», «parsedElement», «IF labelModelFacet === null »«xptVisualIDRegistry.typeMethodCall(it)»«ELSE»«dispatch4_parserHint(labelModelFacet.parser, labelModelFacet, it)»«ENDIF»)'''
+
 	protected def dispatch dispatch4_parserHint(GenParserImplementation it, LabelModelFacet labelFacet, GenCommonBase hintHolder) //
 		'''«xptVisualIDRegistry.typeMethodCall(hintHolder)»'''
-	
+
 	/**
 	 * ExternalParser may override hint
 	 */
 	protected def dispatch dispatch4_parserHint(ExternalParser it, LabelModelFacet labelFacet, GenCommonBase hintHolder) //
-		'''«IF it.hint == null»«xptVisualIDRegistry.typeMethodCall(hintHolder)»«ELSE»«it.hint»«ENDIF»'''
-	
+		'''«IF it.hint === null »«xptVisualIDRegistry.typeMethodCall(hintHolder)»«ELSE»«it.hint»«ENDIF»'''
+
 	protected def dispatch dispatch4_parserHint(ExternalParser it, DesignLabelModelFacet labelFacet, GenCommonBase hintHolder) // 
-		'''«IF it.hint == null»org.eclipse.gmf.runtime.common.ui.services.parser.CommonParserHint.DESCRIPTION«ELSE»«it.hint»«ENDIF»'''
-	
+		'''«IF it.hint === null »org.eclipse.gmf.runtime.common.ui.services.parser.CommonParserHint.DESCRIPTION«ELSE»«it.hint»«ENDIF»'''
+
 	protected def dispatch dispatch4_parserHint(GenParserImplementation it, DesignLabelModelFacet labelFacet, GenCommonBase hintHolder) //
 		'''org.eclipse.gmf.runtime.common.ui.services.parser.CommonParserHint.DESCRIPTION'''
-
-
 
 	/**
 	 * FIXME refactor static field to an instance registered within Activator
@@ -103,7 +104,7 @@ import plugin.Activator
 	 */
 	def accessorMethod_direct(GenParsers it) '''
 		private static «xptParsers.className(it)» ourInstance;
-		
+
 		public static «xptParsers.className(it)» get() {
 			if (ourInstance == null) {
 				ourInstance = new «xptParsers.qualifiedClassName(it)»();
@@ -117,23 +118,23 @@ import plugin.Activator
 	 * XXX do I really need GenCommonBase elementTypeHolder, why not use elementType reference directly?
 	 */
 	def accessorCall_direct(GenCommonBase it, GenCommonBase elementTypeHolder, LabelModelFacet labelModelFacet, String parsedElement) '''
-	«IF labelModelFacet == null || labelModelFacet.parser.oclIsKindOf(typeof(ExternalParser))»
-	org.eclipse.gmf.runtime.common.ui.services.parser.ParserService.getInstance().getParser(new org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter(/*«xptElementTypes.accessElementType(elementTypeHolder)», */«parsedElement», «IF labelModelFacet == null»«xptVisualIDRegistry.typeMethodCall(it)»«ELSE»«dispatch4_parserHint(labelModelFacet.parser, labelModelFacet, it)»«ENDIF»))
-	«ELSE»
-	«xptParsers.qualifiedClassName(getDiagram().editorGen.labelParsers)».get().«parserAccessorName(it)»()
-	«ENDIF»
+		«IF labelModelFacet === null || labelModelFacet.parser.oclIsKindOf(typeof(ExternalParser))»
+			org.eclipse.gmf.runtime.common.ui.services.parser.ParserService.getInstance().getParser(new org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter(/*«xptElementTypes.accessElementType(elementTypeHolder)», */«parsedElement», «IF labelModelFacet === null »«xptVisualIDRegistry.typeMethodCall(it)»«ELSE»«dispatch4_parserHint(labelModelFacet.parser, labelModelFacet, it)»«ENDIF»))
+		«ELSE»
+			«xptParsers.qualifiedClassName(getDiagram().editorGen.labelParsers)».get().«parserAccessorName(it)»()
+		«ENDIF»
 	'''
 
 	def provider_getParserMethod(GenParsers it) '''
 		«generatedMemberComment()»
-		public org.eclipse.gmf.runtime.common.ui.services.parser.IParser getParser(
-				org.eclipse.core.runtime.IAdaptable hint) {
-			String vid = (String) hint.getAdapter(String.class);
+		«overrideI»
+		public org.eclipse.gmf.runtime.common.ui.services.parser.IParser getParser(org.eclipse.core.runtime.IAdaptable hint) {
+			String vid = hint.getAdapter(String.class);
 			if (vid != null) {
 				return getParser(«xptVisualIDRegistry.getVisualIDMethodCall(editorGen.diagram)»(vid));
 			}
 			org.eclipse.gmf.runtime.notation.View view =
-					(org.eclipse.gmf.runtime.notation.View) hint.getAdapter(org.eclipse.gmf.runtime.notation.View.class);
+					hint.getAdapter(org.eclipse.gmf.runtime.notation.View.class);
 			if (view != null) {
 				return getParser(«xptVisualIDRegistry.getVisualIDMethodCall(editorGen.diagram)»(view));
 			}
@@ -143,6 +144,7 @@ import plugin.Activator
 
 	def provider_providesMethod(GenParsers it) '''
 		«generatedMemberComment()»
+		«overrideI»
 		public boolean provides(org.eclipse.gmf.runtime.common.core.service.IOperation operation) {
 			if (operation instanceof org.eclipse.gmf.runtime.common.ui.services.parser.GetParserOperation) {
 				org.eclipse.core.runtime.IAdaptable hint =
@@ -157,28 +159,28 @@ import plugin.Activator
 	'''
 
 	def HintAdapterClass(GenParsers it) '''
+		«generatedMemberComment()»
+		private static class HintAdapter extends org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter {
+
 			«generatedMemberComment()»
-			private static class HintAdapter extends org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter {
-		
-				«generatedMemberComment()»
-				private final org.eclipse.gmf.runtime.emf.type.core.IElementType elementType;
-		
-				«generatedMemberComment()»
-				public HintAdapter(org.eclipse.gmf.runtime.emf.type.core.IElementType type,
-						org.eclipse.emf.ecore.EObject object, String parserHint) {
+			private final org.eclipse.gmf.runtime.emf.type.core.IElementType elementType;
+
+			«generatedMemberComment()»
+			public HintAdapter(org.eclipse.gmf.runtime.emf.type.core.IElementType type, org.eclipse.emf.ecore.EObject object, String parserHint) {
 				super(object, parserHint);
 				«_assert('type != null')»
 				elementType = type;
-				}
-		
-				«generatedMemberComment()»
-				public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
-					if (org.eclipse.gmf.runtime.emf.type.core.IElementType.class.equals(adapter)) {
-						return elementType;
-					}
-					return super.getAdapter(adapter);
-				}
 			}
+
+			«generatedMemberComment()»
+			«editorGen.diagram.overrideC»
+			public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
+				if (org.eclipse.gmf.runtime.emf.type.core.IElementType.class.equals(adapter)) {
+					return elementType;
+				}
+				return super.getAdapter(adapter);
+			}
+		}
 	'''
 
 	def getParserByVisualIdMethod(GenParsers it)  '''
@@ -201,52 +203,45 @@ import plugin.Activator
 		}
 	'''
 
-	def dispatch dispatch_getParsers(GenNode it) // 
-	'''
+	def dispatch dispatch_getParsers(GenNode it) '''
 		«FOR label : it.labels»
-			«IF label.modelFacet != null»
+			«IF label.modelFacet !== null »
 				«doGetParser(label.modelFacet.parser, label)»
 			«ENDIF»
 		«ENDFOR»
-		
 	'''
 
-	def dispatch dispatch_getParsers(GenLink it)  // 
-	'''
+	def dispatch dispatch_getParsers(GenLink it) '''
 		«FOR label : it.labels»
-			«IF label.modelFacet != null»
+			«IF label.modelFacet !== null »
 				«doGetParser(label.modelFacet.parser, label)»
 			«ENDIF»
 		«ENDFOR»
-		
 	'''
 
-	def dispatch dispatch_getParsers(GenChildLabelNode it)'''
-		«IF it.modelFacet != null»
-			«doGetParser(it.labelModelFacet.parser, it)»
-		«ENDIF»
-	'''
-	def doGetParser(GenParserImplementation parser, GenCommonBase element) '''
-		«IF parser.oclIsKindOf(typeof(PredefinedEnumParser)) || parser.oclIsKindOf(typeof(OclChoiceParser))»
-			«extraLineBreak»
-		«ENDIF»
-		«IF parser == null || parser.oclIsKindOf(typeof(ExternalParser))»«/* NOTHING TO DO */»
-		«ELSE»
-			«xptVisualIDRegistry.caseVisualID(element)» return «parserAccessorName(element)»();
-		«ENDIF»
-	'''
+	def dispatch dispatch_getParsers(GenChildLabelNode it) {
+		if(modelFacet !== null) {
+			'''«doGetParser(it.labelModelFacet.parser, it)»'''
+		}
+	}
+	
+	def doGetParser(GenParserImplementation parser, GenCommonBase element) { 
+		if (!( parser === null || parser.oclIsKindOf(typeof(ExternalParser)))) {
+			return '''«xptVisualIDRegistry.caseVisualID(element)» return «parserAccessorName(element)»();'''
+		}
+	}
 
 	def dispatch dispatch_parsers(GenNode it) ''' 
 		«FOR label : it.labels»
-			«IF label.modelFacet != null»
+			«IF label.modelFacet !== null »
 				«dispatch_parser(label.modelFacet.parser, label.modelFacet, label)»
 			«ENDIF»
 		«ENDFOR»
 	'''
-	
+
 	def dispatch dispatch_parsers(GenLink it) '''
 		«FOR label : it.labels»
-			«IF label.modelFacet != null»
+			«IF label.modelFacet !== null »
 				«dispatch_parser(label.modelFacet.parser, label.modelFacet, label)»
 			«ENDIF»
 		«ENDFOR»
@@ -280,7 +275,7 @@ import plugin.Activator
 	def dispatch dispatch_parser(OclChoiceParser it, FeatureLabelModelFacet modelFacet, GenCommonBase element) '''
 		«doPredefinedParser(it, modelFacet, element)»
 	'''
-		
+
 	/**
 	 * Intentionally modelFacet typed as general LMF, because ExpressionLabelModelFacet is merely a marker
 	 **/
@@ -305,7 +300,6 @@ import plugin.Activator
 	'''		
 
 	def doPredefinedParser(GenParserImplementation it, FeatureLabelModelFacet modelFacet, GenCommonBase element) '''
-		«extraLineBreak»
 		«generatedMemberComment()»
 		private org.eclipse.gmf.runtime.common.ui.services.parser.IParser «parserFieldName(element)»;
 
@@ -340,7 +334,6 @@ import plugin.Activator
 			«setPatterns(modelFacet, viewMethod, editMethod, parserVar)»
 	'''
 
-
 	def dispatch dispatch_createPredefinedParser(PredefinedEnumParser it, FeatureLabelModelFacet modelFacet, String parserVar) '''
 		org.eclipse.emf.ecore.EAttribute editableFeature = «xptMetaModel.MetaFeature(notNullOf(modelFacet.editableMetaFeatures.head, modelFacet.metaFeatures.head))»;
 		«it.qualifiedClassName» «parserVar» = new «it.qualifiedClassName»(editableFeature);
@@ -354,7 +347,7 @@ import plugin.Activator
 	def createOclChoiceParser(OclChoiceParser it, FeatureLabelModelFacet modelFacet, String parserVar, GenFeature feature, GenClass context) '''
 		org.eclipse.emf.ecore.EStructuralFeature editableFeature = «xptMetaModel.MetaFeature(feature)»;
 		org.eclipse.gmf.tooling.runtime.parsers.ChoiceParserBase «parserVar» = «»
-		«IF it.showExpression != null»
+		«IF it.showExpression !== null »
 			new org.eclipse.gmf.tooling.runtime.parsers.OclTrackerChoiceParser( //
 				editableFeature, «safeItemExpression(it, feature)», «xptGetExpression.getExpressionBody(showExpression)», «itemProviderAdapterFactory(it)», «optionalOclTrackerFactoryTypeHint(showExpression)»);
 		«ELSE»
@@ -366,7 +359,7 @@ import plugin.Activator
 	def itemProviderAdapterFactory(OclChoiceParser it) '''«xptActivator.qualifiedClassName(it.holder.editorGen.plugin)».getInstance().getItemProvidersAdapterFactory()''' 
 
 	def safeItemExpression(OclChoiceParser it, GenFeature feature) 
-		'''«IF itemsExpression == null»"«feature.ecoreFeature.EType.name».allInstances()"«ELSE»«xptGetExpression.getExpressionBody(itemsExpression)»«ENDIF»'''
+		'''«IF itemsExpression === null »"«feature.ecoreFeature.EType.name».allInstances()"«ELSE»«xptGetExpression.getExpressionBody(itemsExpression)»«ENDIF»'''
 
 	def optionalOclTrackerFactoryTypeHint(ValueExpression it) '''«IF isForcedImpactAnalyzerKind(body)», org.eclipse.gmf.tooling.runtime.ocl.tracker.OclTrackerFactory.Type.IMPACT_ANALYZER«ENDIF»'''
 

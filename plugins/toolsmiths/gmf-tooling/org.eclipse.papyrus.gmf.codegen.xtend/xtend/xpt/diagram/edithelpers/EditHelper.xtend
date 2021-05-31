@@ -20,12 +20,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.MetamodelType
 import xpt.Common
 import utils.EditHelperUtils_qvto
 
-public class EditHelper {
+class EditHelper {
 	@Inject extension Common;
 	@Inject extension EditHelperUtils_qvto
 
 	def className(MetamodelType it) '''«it.editHelperClassName»'''
-	
+
 	def packageName(MetamodelType it) '''«it.diagramElement.getDiagram().editHelpersPackageName»'''
 
 	def qualifiedClassName(MetamodelType it) '''«packageName(it)».«className(it)»'''
@@ -35,13 +35,11 @@ public class EditHelper {
 	def EditHelper(MetamodelType it) '''
 		«copyright(diagramElement.diagram.editorGen)»
 		package «packageName(it)»;
-		
+
 		«generatedClassComment»
 		public class «editHelperClassName» extends «getBaseEditHelperFullName(diagramElement.getDiagram())» {
-		«additions(it)»
+
 		}
 	'''
-
-	def additions(MetamodelType it) ''''''
 
 }

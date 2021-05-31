@@ -37,7 +37,7 @@ import xpt.QualifiedClassNameProvider
 	@Inject extension Common_qvto;
 	@Inject QualifiedClassNameProvider qualifiedClassNameProvider;
 	@Inject TextAware xptTextAware;
-	
+
 	def visualIDConstant(GenCommonBase it) '''
 		«generatedMemberComment»
 		public static final String VISUAL_ID = "«stringVisualID»";
@@ -52,11 +52,11 @@ import xpt.QualifiedClassNameProvider
 	def dispatch dispatchBehaviour(Behaviour it) ''''''
 
 	def dispatch dispatchBehaviour(CustomBehaviour it) '''
-	«IF editPolicyQualifiedClassName.nullOrSpaces»
-		removeEditPolicy(«key»); «IF key.startsWith('\"') && key.endsWith('\"')»«nonNLS(1)»«ENDIF»
-	«ELSE»
-		installEditPolicy(«key», new «getEditPolicyQualifiedClassName()»()); «IF key.startsWith('\"') && key.endsWith('\"')»«nonNLS(1)»«ENDIF»
-	«ENDIF»
+		«IF editPolicyQualifiedClassName.nullOrSpaces»
+			removeEditPolicy(«key»); «IF key.startsWith('\"') && key.endsWith('\"')»«nonNLS(1)»«ENDIF»
+		«ELSE»
+			installEditPolicy(«key», new «getEditPolicyQualifiedClassName()»()); «IF key.startsWith('\"') && key.endsWith('\"')»«nonNLS(1)»«ENDIF»
+		«ENDIF»
 	'''
 	
 	def dispatch dispatchBehaviour(OpenDiagramBehaviour it) '''
@@ -64,7 +64,7 @@ import xpt.QualifiedClassNameProvider
 			new «it.getEditPolicyQualifiedClassName»());
 	'''
 
-	def dispatch labelFigure(ParentAssignedViewmap it) '''
+	def dispatch CharSequence labelFigure(ParentAssignedViewmap it) '''
 		«generatedMemberComment»
 		protected org.eclipse.draw2d.IFigure createFigure() {
 			// Parent should assign one using «xptTextAware.labelSetterName(it)»() method
@@ -72,7 +72,7 @@ import xpt.QualifiedClassNameProvider
 		}
 	'''
 
-	def dispatch labelFigure(Viewmap it) '''
+	def dispatch CharSequence labelFigure(Viewmap it) '''
 		«labelFigureDelegateToPrim(it)»
 	'''
 
@@ -90,11 +90,11 @@ import xpt.QualifiedClassNameProvider
 	'''
 
 	def dispatch labelFigurePrim(FigureViewmap it) '''
-	«IF figureQualifiedClassName == null»
-		return new org.eclipse.draw2d.Label();
-	«ELSE»
-		return new «figureQualifiedClassName»();
-	«ENDIF»
+		«IF figureQualifiedClassName === null »
+			return new org.eclipse.draw2d.Label();
+		«ELSE»
+			return new «figureQualifiedClassName»();
+		«ENDIF»
 		}
 	'''
 
@@ -165,28 +165,28 @@ import xpt.QualifiedClassNameProvider
 	'''
 
 	def installSemanticEditPolicy(GenCommonBase it) '''
-	«IF sansDomain»
-	removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE);
-	«ELSE»
-	installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE, new «qualifiedClassNameProvider.getItemSemanticEditPolicyQualifiedClassName(it)»());
-	«ENDIF»
+		«IF sansDomain»
+			removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE);
+		«ELSE»
+			installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE, new «qualifiedClassNameProvider.getItemSemanticEditPolicyQualifiedClassName(it)»());
+		«ENDIF»
 	'''
 
 	def installCanonicalEditPolicy(GenContainerBase it) '''
-	«IF it.needsCanonicalEditPolicy»
-		«««	BEGIN: PapyrusGenCode
-		«««	Used to remove at each time canonical editpolicies
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new «getCanonicalEditPolicyQualifiedClassName()»());
-		«««	END: PapyrusGenCode
-	
-	«ENDIF»
+		«IF it.needsCanonicalEditPolicy»
+			«««	BEGIN: PapyrusGenCode
+			«««	Used to remove at each time canonical editpolicies
+			// in Papyrus diagrams are not strongly synchronised
+			// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new «getCanonicalEditPolicyQualifiedClassName()»());
+			«««	END: PapyrusGenCode
+		«ENDIF»
 	'''
 	def installCreationEditPolicy(GenCommonBase it) '''
-	installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE, «creationEditPolicyNewInstance»);
+		installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE, «creationEditPolicyNewInstance»);
 	'''
 
-	def creationEditPolicyNewInstance(GenCommonBase it) 
-	'''new org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy()'''
+	def creationEditPolicyNewInstance(GenCommonBase it) '''
+		new org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy()
+	'''
 
 }

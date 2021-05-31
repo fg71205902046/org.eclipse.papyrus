@@ -74,9 +74,7 @@ public class ConstraintEditPartCN extends AbstractConstraintEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
@@ -120,7 +118,6 @@ public class ConstraintEditPartCN extends AbstractConstraintEditPart {
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -153,8 +150,6 @@ public class ConstraintEditPartCN extends AbstractConstraintEditPart {
 			((ConstraintBodyEditPartCN) childEditPart).setLabel(getPrimaryShape().getConstraintFigure());
 			return true;
 		}
-
-
 		return false;
 	}
 
@@ -204,6 +199,7 @@ public class ConstraintEditPartCN extends AbstractConstraintEditPart {
 	/**
 	 * @generated
 	 */
+
 	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
@@ -230,6 +226,7 @@ public class ConstraintEditPartCN extends AbstractConstraintEditPart {
 	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
+	 *
 	 * @generated
 	 */
 	@Override
@@ -288,5 +285,4 @@ public class ConstraintEditPartCN extends AbstractConstraintEditPart {
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ConstraintNameEditPartCN.VISUAL_ID));
 	}
-
 }

@@ -1,17 +1,18 @@
 /*******************************************************************************
  * Copyright (c) 2007, 2020 Borland Software Corporation, CEA LIST, Artal and others
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors: 
  *    Alexander Shatalin (Borland) - initial API and implementation
  *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *    Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up
  *****************************************************************************/
 package xpt.navigator
 
@@ -19,8 +20,10 @@ import com.google.inject.Inject
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigator
 import xpt.Common
 import plugin.Activator
+import xpt.CodeStyle
 
 @com.google.inject.Singleton class DomainNavigatorLabelProvider {
+	@Inject extension CodeStyle;
 	@Inject extension Common;
 
 	@Inject	Activator xptActivator
@@ -32,31 +35,24 @@ import plugin.Activator
 	def packageName(GenNavigator it) '''«it.packageName»'''
 
 	def qualifiedClassName(GenNavigator it) '''«packageName(it)».«className(it)»'''
-	
+
 	def fullPath(GenNavigator it) '''«qualifiedClassName(it)»'''
-	
+
 	def implementsList(GenNavigator it) '''implements org.eclipse.ui.navigator.ICommonLabelProvider'''
 
 	def DomainNavigatorLabelProvider(GenNavigator it) '''
 		«copyright(editorGen)»
 		package «packageName(it)»;
-		
+
 		«generatedClassComment()»
 		public class «className(it)» «implementsList(it)» {
-			
+
 			«attributes(it)»
-			
 			«iCommonLabelProvider(it)»
-			
 			«iLabelProvider(it)»
-			
 			«iBaseLabelProvider(it)»
-			
 			«xptNavigatorContentProvider.iMementoAware(it)»
-			
 			«iDescriptionProvider(it)»
-			
-			   «additions(it)»
 		}
 	'''
 
@@ -68,28 +64,29 @@ import plugin.Activator
 
 	def iCommonLabelProvider(GenNavigator it) '''
 		«generatedMemberComment()»
+		«overrideI»
 		public void init(org.eclipse.ui.navigator.ICommonContentExtensionSite aConfig) {
 		}
 	'''
 
 	def iLabelProvider(GenNavigator it) '''
 		«getImage(it)»
-		
 		«getText(it)»
 	'''
 
 	def iBaseLabelProvider(GenNavigator it) '''
 		«addListener(it)»
-		
+
 		«dispose(it)»
-		
+
 		«isLabelProperty(it)»
-		
+
 		«removeListener(it)»
 	'''
 
 	def iDescriptionProvider(GenNavigator it) '''
 		«generatedMemberComment()»
+		«overrideI»
 		public String getDescription(Object anElement) {
 			return null;
 		}
@@ -97,6 +94,7 @@ import plugin.Activator
 
 	def addListener(GenNavigator it) '''
 		«generatedMemberComment()»
+		«overrideI»
 		public void addListener(org.eclipse.jface.viewers.ILabelProviderListener listener) {
 			myAdapterFactoryLabelProvider.addListener(listener);
 		}
@@ -104,6 +102,7 @@ import plugin.Activator
 
 	def dispose(GenNavigator it) '''
 		«generatedMemberComment()»
+		«overrideI»
 		public void dispose() {
 			myAdapterFactoryLabelProvider.dispose();
 		}
@@ -111,6 +110,7 @@ import plugin.Activator
 
 	def isLabelProperty(GenNavigator it) '''
 		«generatedMemberComment()»
+		«overrideI»
 		public boolean isLabelProperty(Object element, String property) {
 			return myAdapterFactoryLabelProvider.isLabelProperty(element, property);
 		}
@@ -118,6 +118,7 @@ import plugin.Activator
 
 	def removeListener(GenNavigator it) '''
 		«generatedMemberComment()»
+		«overrideI»
 		public void removeListener(org.eclipse.jface.viewers.ILabelProviderListener listener) {
 			myAdapterFactoryLabelProvider.removeListener(listener);
 		}
@@ -125,6 +126,7 @@ import plugin.Activator
 
 	def getImage(GenNavigator it) '''
 		«generatedMemberComment()»
+		«overrideI»
 		public org.eclipse.swt.graphics.Image getImage(Object element) {
 			if (element instanceof «xptDomainNavigatorItem.qualifiedClassName(it)») {
 				return myAdapterFactoryLabelProvider.getImage(«getEObject(it)»);
@@ -137,6 +139,7 @@ import plugin.Activator
 
 	def getText(GenNavigator it) '''
 		«generatedMemberComment()»
+		«overrideI»
 		public String getText(Object element) {
 			if (element instanceof «xptDomainNavigatorItem.qualifiedClassName(it)») {
 				return myAdapterFactoryLabelProvider.getText(«getEObject(it)»);
@@ -144,7 +147,5 @@ import plugin.Activator
 			return null;
 		}
 	'''
-
-	def additions(GenNavigator it) ''''''
 
 }

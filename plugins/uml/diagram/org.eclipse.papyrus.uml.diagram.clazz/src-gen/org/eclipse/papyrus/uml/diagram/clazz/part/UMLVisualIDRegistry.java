@@ -22,7 +22,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.structure.DiagramStructure;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.*;
 import org.eclipse.papyrus.uml.diagram.clazz.expressions.UMLOCLFactory;
 import org.eclipse.uml2.uml.InstanceSpecification;
-import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -34,10 +33,11 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class UMLVisualIDRegistry {
 
-	/**
-	 * @generated
-	 */
-	private static final String DEBUG_KEY = "org.eclipse.papyrus.uml.diagram.clazz/debug/visualID"; //$NON-NLS-1$
+	// Uncomment for debug puprose ?
+	// /**
+	// * @generated
+	// */
+	// private static final String DEBUG_KEY = "org.eclipse.papyrus.uml.diagram.clazz/debug/visualID"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -1995,15 +1995,16 @@ public class UMLVisualIDRegistry {
 		return "";
 	}
 
-	/**
-	 * User can change implementation of this method to handle some specific
-	 * situations not covered by default logic.
-	 *
-	 * @generated
-	 */
-	private static boolean isDiagram(Package element) {
-		return true;
-	}
+	// Uncomment for debug puprose ?
+	// /**
+	// * User can change implementation of this method to handle some specific
+	// * situations not covered by default logic.
+	// *
+	// * @generated
+	// */
+	// private static boolean isDiagram(Package element) {
+	// return true;
+	// }
 
 	/**
 	 * @generated
@@ -2212,5 +2213,4 @@ public class UMLVisualIDRegistry {
 			return org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry.isSemanticLeafVisualID(visualID);
 		}
 	};
-
 }

@@ -21,8 +21,10 @@ import com.google.inject.Singleton
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCompartment
 import xpt.Common
 import xpt.diagram.editparts.Utils_qvto
+import xpt.CodeStyle
 
 @Singleton class CompartmentEditPart {
+	@Inject extension CodeStyle;
 	@Inject extension Common;
 	@Inject extension Utils_qvto;
 
@@ -73,6 +75,7 @@ import xpt.diagram.editparts.Utils_qvto
 
 	def createDefaultEditPolicies(GenCompartment it) '''
 		«generatedMemberComment»
+		«overrideC»
 		protected void createDefaultEditPolicies() {
 			«xptCompartmentEditPartImpl.createDefaultEditPoliciesBody(it)»
 		}
@@ -137,5 +140,6 @@ import xpt.diagram.editparts.Utils_qvto
 	def boolean isCommonResizableCompartment(GenCompartment node) {
 		return 'org.eclipse.papyrus.infra.gmfdiag.common.editpart.ResizeableListCompartmentEditPart' == node.superEditPart
 		|| 'org.eclipse.papyrus.uml.diagram.common.editparts.AbstractResizableCompartmentEditPart' == node.superEditPart
+		|| 'org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.AbstractPackageableElementCompartmentEditPart' == node.superEditPart
 	}
 }

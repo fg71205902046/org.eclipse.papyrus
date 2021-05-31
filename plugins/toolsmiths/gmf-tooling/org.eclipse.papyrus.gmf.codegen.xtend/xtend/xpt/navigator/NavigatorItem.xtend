@@ -12,6 +12,7 @@
  * Alexander Shatalin (Borland) - initial API and implementation
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up
  *****************************************************************************/
 package xpt.navigator
 
@@ -21,10 +22,9 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigator
 import xpt.Commonimport xpt.CodeStyle
 
 @Singleton class NavigatorItem {
-	
+
 	@Inject extension Common;
 	@Inject extension CodeStyle
-	
 
 	def className(GenNavigator it) '''«it.navigatorItemClassName»'''
 
@@ -39,25 +39,23 @@ import xpt.Commonimport xpt.CodeStyle
 	def NavigatorItem(GenNavigator it) '''
 		«copyright(editorGen)»
 		package «packageName(it)»;
-		
-			«generatedClassComment()»
+
+		«generatedClassComment()»
 		public class «className(it)» «extendsList(it)» {
-			
+
 			«registerAdapterFactory(it)»
-			
+
 			«attributes(it)»
-			
+
 			«constructor(it)»
-			
+
 			«getView(it)»
-			
+
 			«isLeaf(it)»
-			
-			«equals(it)»
-			
+
+			«equalsMethod(it)»
+
 			«hashCode(it)»
-			
-			«additions(it)»
 		}
 	'''
 
@@ -67,18 +65,18 @@ import xpt.Commonimport xpt.CodeStyle
 			@SuppressWarnings("rawtypes")
 			final Class[] supportedTypes = new Class[] { org.eclipse.gmf.runtime.notation.View.class, org.eclipse.emf.ecore.EObject.class };
 			org.eclipse.core.runtime.Platform.getAdapterManager().registerAdapters(new org.eclipse.core.runtime.IAdapterFactory() {
-				
-				«overrideI(it.editorGen.diagram)»
-				@SuppressWarnings("rawtypes")
+
+				«overrideI»
+				@SuppressWarnings({ "rawtypes", "unchecked" })
 				public Object getAdapter(Object adaptableObject, Class adapterType) {
 					if (adaptableObject instanceof «qualifiedClassName(it)» && (adapterType == org.eclipse.gmf.runtime.notation.View.class || adapterType == org.eclipse.emf.ecore.EObject.class)) {
 						return ((«qualifiedClassName(it)») adaptableObject).getView();
 					}
 					return null;
 				}
-				
-				«overrideI(it.editorGen.diagram)»
-				@SuppressWarnings("rawtypes")
+
+				«overrideI»
+				@SuppressWarnings({ "rawtypes", "unchecked" })
 				public Class[] getAdapterList() {
 					return supportedTypes;
 				}
@@ -89,7 +87,7 @@ import xpt.Commonimport xpt.CodeStyle
 	def attributes(GenNavigator it) '''
 		«generatedMemberComment()»
 		private org.eclipse.gmf.runtime.notation.View myView;
-			
+
 		«generatedMemberComment()»
 		private boolean myLeaf = false;	
 	'''
@@ -117,8 +115,9 @@ import xpt.Commonimport xpt.CodeStyle
 		}
 	'''
 
-	def equals(GenNavigator it) '''
+	def equalsMethod(GenNavigator it) '''
 		«generatedMemberComment()»
+		«overrideC»
 		public boolean equals(Object obj) {
 			if (obj instanceof «qualifiedClassName(it)») {
 				return org.eclipse.emf.ecore.util.EcoreUtil.getURI(getView()).equals(org.eclipse.emf.ecore.util.EcoreUtil.getURI(((«getNavigatorItemQualifiedClassName()») obj).getView()));
@@ -129,11 +128,10 @@ import xpt.Commonimport xpt.CodeStyle
 
 	def hashCode(GenNavigator it) '''
 		«generatedMemberComment()»
+		«overrideC»
 		public int hashCode() {
 			return org.eclipse.emf.ecore.util.EcoreUtil.getURI(getView()).hashCode();
 		}
 	'''
-
-	def additions(GenNavigator it) ''''''
 
 }

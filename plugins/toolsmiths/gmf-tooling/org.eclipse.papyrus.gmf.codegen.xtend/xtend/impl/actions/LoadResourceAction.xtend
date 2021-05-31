@@ -12,6 +12,7 @@
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial API and implementation
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up providers
  *****************************************************************************/
 package impl.actions
 
@@ -30,33 +31,17 @@ import xpt.Common_qvto
 
 	def qualifiedClassName(org.eclipse.papyrus.gmf.codegen.gmfgen.LoadResourceAction it) '''«packageName(it)».«className(it)»'''
 
-	def fullPath(org.eclipse.papyrus.gmf.codegen.gmfgen.LoadResourceAction it) '''«qualifiedClassName(it)»'''
-
 	def Main(org.eclipse.papyrus.gmf.codegen.gmfgen.LoadResourceAction it) '''
 		«copyright(it.owner.editorGen)»
 		package «packageName(it)»;
 		
 		«generatedClassComment()»
-		public class «className(it)» «extendsList(it)» «implementsList(it)» {
-			«executeMethod(it)»
-			«additions(it)»
-			«extraLineBreak»
+		public class «className(it)» «extendsList(it)» {
+
 		}
 	'''
 
-	def extendsList(org.eclipse.papyrus.gmf.codegen.gmfgen.LoadResourceAction it) //
-	''' extends org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.actions.DefaultLoadResourceAction'''
-
-	def implementsList(org.eclipse.papyrus.gmf.codegen.gmfgen.LoadResourceAction it) //
-	''''''
-
-	def executeMethod(org.eclipse.papyrus.gmf.codegen.gmfgen.LoadResourceAction it) '''
-		«generatedMemberComment()»
-		public Object execute(org.eclipse.core.commands.ExecutionEvent event) throws org.eclipse.core.commands.ExecutionException {
-			return super.execute(event);
-		}
+	def extendsList(org.eclipse.papyrus.gmf.codegen.gmfgen.LoadResourceAction it) '''
+		extends org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.actions.DefaultLoadResourceAction
 	'''
-
-	def additions(org.eclipse.papyrus.gmf.codegen.gmfgen.LoadResourceAction it) ''''''	
-
 }

@@ -19,6 +19,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
 /**
  * @generated
  */
+@SuppressWarnings("deprecation")
 public class UMLNavigatorSorter extends ViewerSorter {
 
 	/**
@@ -37,5 +38,4 @@ public class UMLNavigatorSorter extends ViewerSorter {
 		}
 		return GROUP_CATEGORY;
 	}
-
 }

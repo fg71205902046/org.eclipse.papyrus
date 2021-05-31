@@ -12,6 +12,7 @@
  *    Dmitry Stadnik (Borland) - initial API and implementation
  * 	  Michael Golubev (Montages) - #386838 - migrate to Xtend2
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *    Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up providers
  *****************************************************************************/
 package xpt.application
 
@@ -143,12 +144,10 @@ import xpt.editor.CreationWizard
 	'''
 
 	def dispatch makeAction(GenActionFactoryContributionItem it, String windowVar) '''
-		«extraLineBreak»
 		register(org.eclipse.ui.actions.ActionFactory.«name».create(«windowVar»));
 	'''
 
 	def fill(GenContributionManager it, String managerVar) '''
-		«extraLineBreak»
 		«FOR i : items»
 			«contribute(i, managerVar)»
 		«ENDFOR»
@@ -159,21 +158,18 @@ import xpt.editor.CreationWizard
 	'''
 
 	def dispatch CharSequence contribute(GenGroupMarker it, String managerVar) '''
-		«extraLineBreak»
 		«managerVar».add(new org.eclipse.jface.action.GroupMarker(«groupName»));
 	'''
 
 	def dispatch CharSequence contribute(GenSeparator it, String managerVar) '''
-		«extraLineBreak»
-		«managerVar».add(new org.eclipse.jface.action.Separator(«IF null != groupName»«groupName»«ENDIF»));
+		«managerVar».add(new org.eclipse.jface.action.Separator(«IF null !== groupName »«groupName»«ENDIF»));
 	'''
 
 	def dispatch CharSequence contribute(GenMenuManager it, String managerVar) '''
-		«extraLineBreak»
 		«var menuVar = managerVar + 'X'»
 		{
 			org.eclipse.jface.action.IMenuManager «menuVar» = new  org.eclipse.jface.action.MenuManager(
-			«IF null != name»«xptExternalizer.accessorCall(it.editorGen, i18nKeyForMenu(it))»«ELSE»null«ENDIF»«IF null != ID», «ID»«ENDIF»);
+			«IF null !== name »«xptExternalizer.accessorCall(it.editorGen, i18nKeyForMenu(it))»«ELSE»null«ENDIF»«IF null !== ID », «ID»«ENDIF»);
 			«FOR i : it.items»
 				«contribute(i, menuVar)»
 			«ENDFOR»
@@ -182,19 +178,17 @@ import xpt.editor.CreationWizard
 	'''
 
 	def dispatch CharSequence contribute(GenToolBarManager it, String managerVar) '''
-		«extraLineBreak»
 		«var toolBarVar = managerVar + 'X'»
 		{
 			org.eclipse.jface.action.IToolBarManager «toolBarVar» = new  org.eclipse.jface.action.ToolBarManager();
 			«FOR i : it.items»
 				«contribute(i, toolBarVar)»
 			«ENDFOR»
-			«managerVar».add(new org.eclipse.jface.action.ToolBarContributionItem(«toolBarVar»«IF null != ID», «ID»«ENDIF»));
+			«managerVar».add(new org.eclipse.jface.action.ToolBarContributionItem(«toolBarVar»«IF null !== ID », «ID»«ENDIF»));
 		}
 	'''
 
 	def dispatch CharSequence contribute(GenSharedContributionItem it, String managerVar) '''
-		«extraLineBreak»
 		«contributeShared(actualItem, managerVar)»
 	'''
 
@@ -203,7 +197,6 @@ import xpt.editor.CreationWizard
 	'''
 
 	def dispatch contributeShared(GenActionFactoryContributionItem it, String managerVar) '''
-		«extraLineBreak»
 		«managerVar».add(getAction(org.eclipse.ui.actions.ActionFactory.«name».getId()));
 	'''
 
@@ -288,7 +281,7 @@ import xpt.editor.CreationWizard
 		«xptExternalizer.accessorField(titleKey(i18nKeyForDefaultEditorOpenErrorDialog(it)))»
 		«xptExternalizer.accessorField(titleKey(i18nKeyForAboutDialog(it)))»
 		«xptExternalizer.accessorField(messageKey(i18nKeyForAboutDialog(it)))»
-		«IF null != mainMenu»
+		«IF null !== mainMenu »
 			«internal_i18nAccessors(mainMenu)»
 			«FOR gmm : collectGenMenuManagers(mainMenu.items)»
 				«internal_i18nAccessors(gmm)»
@@ -300,7 +293,7 @@ import xpt.editor.CreationWizard
 	'''
 
 	@Localization def internal_i18nAccessors(GenMenuManager it) '''
-		«IF null != name»«xptExternalizer.accessorField(i18nKeyForMenu(it))»«ENDIF»
+		«IF null !== name »«xptExternalizer.accessorField(i18nKeyForMenu(it))»«ENDIF»
 	'''
 
 	@Localization def i18nValues(GenApplication it) '''
@@ -310,7 +303,7 @@ import xpt.editor.CreationWizard
 		«xptExternalizer.messageEntry(titleKey(i18nKeyForDefaultEditorOpenErrorDialog(it)), 'Open Editor')»
 		«xptExternalizer.messageEntry(titleKey(i18nKeyForAboutDialog(it)), 'About')»
 		«xptExternalizer.messageEntry(messageKey(i18nKeyForAboutDialog(it)), editorGen.modelID + ' Diagram Editor')»
-		«IF null != mainMenu»
+		«IF null !== mainMenu »
 			«internal_i18nValues(mainMenu)»
 			«FOR gmm : collectGenMenuManagers(mainMenu.items)»
 				«internal_i18nValues(gmm)»
@@ -322,7 +315,7 @@ import xpt.editor.CreationWizard
 	'''
 
 	@Localization def internal_i18nValues(GenMenuManager it) '''
-		«IF null != name»«xptExternalizer.messageEntry(i18nKeyForMenu(it), name)»«ENDIF»
+		«IF null !== name »«xptExternalizer.messageEntry(i18nKeyForMenu(it), name)»«ENDIF»
 	'''
 
 	protected def Iterable<GenMenuManager> collectGenMenuManagers(Iterable<GenContributionItem> allItems) {

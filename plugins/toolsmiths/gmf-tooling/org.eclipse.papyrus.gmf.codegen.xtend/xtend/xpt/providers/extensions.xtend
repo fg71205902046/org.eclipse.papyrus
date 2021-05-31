@@ -1,17 +1,18 @@
 /*******************************************************************************
  * Copyright (c) 2007, 2021 Borland Software Corporation, CEA LIST, Artal and others
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
+ * Contributors:
  * Dmitry Stadnik (Borland) - initial API and implementation
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up providers
  *****************************************************************************/
 package xpt.providers
 
@@ -47,9 +48,8 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
 	@Inject VisualTypeProvider visualTypeProvider;
 	@Inject EditHelper editHelper;
 	@Inject EditHelperAdvice editHelperAdvice;
-	
+
 	def extensions(GenDiagram it) '''
-		«extraLineBreak»
 		«tripleSpace(1)»<extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
 		«tripleSpace(2)»«xmlGeneratedTag»
 		«tripleSpace(2)»<viewProvider class="«viewProvider.qualifiedClassName(it)»">
@@ -67,7 +67,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
 				«ENDIF»
 		«tripleSpace(2)»</viewProvider>
 		«tripleSpace(1)»</extension>
-		
+
 		«tripleSpace(1)»<extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders" id="ep-provider">
 		«tripleSpace(2)»«xmlGeneratedTag»
 		«tripleSpace(2)»<editpartProvider class="«editPartProvider.qualifiedClassName(it)»">
@@ -89,18 +89,17 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
 		«tripleSpace(3)»</object>
 		«tripleSpace(3)»<context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
 		«tripleSpace(2)»</editpartProvider>
-		«tripleSpace(1)»</extension>		
-		
+		«tripleSpace(1)»</extension>
+
 «««		«modelingAssistantProvider(it)»
-		
+
 		«tripleSpace(1)»<extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
 		«tripleSpace(2)»«xmlGeneratedTag»
 		«tripleSpace(2)»<IconProvider class="«iconProvider.qualifiedClassName(it)»">
 		«tripleSpace(3)»<Priority name="«iconProviderPriority»"/>
 		«tripleSpace(2)»</IconProvider>
 		«tripleSpace(1)»</extension>
-		«IF editorGen.labelParsers != null && editorGen.labelParsers.extensibleViaService»
-		«extraLineBreak»
+		«IF editorGen.labelParsers !== null && editorGen.labelParsers.extensibleViaService»
 		«tripleSpace(1)»<extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders" id="parser-provider">
 		«tripleSpace(2)»«xmlGeneratedTag»
 		«tripleSpace(2)»<ParserProvider class="«labelParsers.qualifiedClassName(editorGen.labelParsers)»">
@@ -109,7 +108,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
 		«tripleSpace(1)»</extension>
 		«ENDIF»
 		«IF generateShortcutIcon()»
-		«extraLineBreak»
 		«tripleSpace(1)»<extension point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders" id="decorator-provider">
 		«tripleSpace(2)»«xmlGeneratedTag»
 		«tripleSpace(2)»<decoratorProvider class="«shorcutProvider.qualifiedClassName(it)»">
@@ -121,7 +119,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
 		«tripleSpace(2)»</decoratorProvider>
 		«tripleSpace(1)»</extension>
 		«ENDIF»
-	
+
 «««		commented for bug 520882
 «««		«IF !getLocalDefineTypedElements(it).empty»
 «««		«tripleSpace(1)»<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
@@ -131,7 +129,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
 «««			«ENDFOR»
 «««		«tripleSpace(1)»</extension>
 «««		«ENDIF»
-«««		
+«««
 «««		«tripleSpace(1)»<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
 «««		«tripleSpace(2)»«xmlGeneratedTag»
 «««		«IF it.eResource.allContents.filter(typeof (GenerateUsingElementTypeCreationCommand)).size<1»
@@ -141,21 +139,19 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
 «««			«tripleSpace(5)»property="org.eclipse.gmf.runtime.emf.core.editingDomain"
 «««			«tripleSpace(5)»value="«editingDomainID»"/>
 «««			«tripleSpace(3)»</enablement>
-«««			«tripleSpace(2)»</clientContext> 
+«««			«tripleSpace(2)»</clientContext>
 «««			«tripleSpace(2)»<binding context="«editorGen.plugin.ID».TypeContext">
 «««		«ENDIF»
 «««		«IF it.eResource.allContents.filter(typeof (GenerateUsingElementTypeCreationCommand)).size>0»
 «««
-«««        <binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">
-«««        «ENDIF»
+«««		<binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">
+«««		«ENDIF»
 «««		«FOR e : getLocalDefineTypedElements(it)»
 «««		«tripleSpace(3)»<elementType ref="«e.elementType.uniqueIdentifier»"/>
 «««				«ENDFOR»
 «««		«tripleSpace(3)»<advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
 «««		«tripleSpace(2)»</binding>
 «««		«tripleSpace(1)»</extension>
-
-		«extraLineBreak»
 		«tripleSpace(1)»<extension point="org.eclipse.papyrus.infra.gmfdiag.common.visualTypeProviders">
 		«tripleSpace(2)»«xmlGeneratedTag»
 		«tripleSpace(2)»<visualTypeProvider
@@ -177,7 +173,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
 		«tripleSpace(2)»<metamodel nsURI="«getMetaClass().genPackage.getEcorePackage.nsURI»">
 		«tripleSpace(3)»<metamodelType
 		«tripleSpace(5)»id="«uniqueIdentifier»"
-				«IF null != displayName»
+				«IF null !== displayName»
 		«tripleSpace(5)»name="%metatype.name.«diagramElement.stringUniqueIdentifier»"
 				«ENDIF»
 		«tripleSpace(5)»kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
@@ -189,7 +185,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
 	'''
 
 	def dispatch elementType(SpecializationType it) '''
-		«IF null == getMetamodelClass()»
+		«IF null === getMetamodelClass()»
 			«specializationType(it)»
 		«ELSE»
 			«tripleSpace(2)»<metamodel nsURI="«getMetamodelClass().genPackage.getEcorePackage.nsURI»">
@@ -201,12 +197,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
 	def specializationType(SpecializationType it) '''
 		«tripleSpace(3)»<specializationType
 		«tripleSpace(5)»id="«uniqueIdentifier»"
-			«IF null != displayName»
+			«IF null !== displayName»
 		«tripleSpace(5)»name="%metatype.name.«diagramElement.stringUniqueIdentifier»"
 			«ENDIF»
-		«tripleSpace(5)»kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"«IF editHelperAdviceClassName != null»
+		«tripleSpace(5)»kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"«IF editHelperAdviceClassName !== null»
 		«tripleSpace(5)»edithelperadvice="«editHelperAdvice.qualifiedClassName(it)»"«ENDIF»>
-		«tripleSpace(4)»<specializes id="«IF (null == metamodelType)»org.eclipse.gmf.runtime.emf.type.core.null«ELSE»«metamodelType.
+		«tripleSpace(4)»<specializes id="«IF (null === metamodelType)»org.eclipse.gmf.runtime.emf.type.core.null«ELSE»«metamodelType.
 				uniqueIdentifier»«ENDIF»"/>
 		«tripleSpace(4)»<param name="semanticHint" value="«diagramElement.stringVisualID»"/>
 		«tripleSpace(3)»</specializationType>
@@ -215,7 +211,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
 	def dispatch elementType(NotationType it) '''
 		«tripleSpace(2)»<specializationType
 		«tripleSpace(4)»id="«uniqueIdentifier»"
-			«IF null != displayName»
+			«IF null !== displayName»
 		«tripleSpace(4)»name="%metatype.name.«diagramElement.stringUniqueIdentifier»"
 			«ENDIF»
 		«tripleSpace(4)»kind="org.eclipse.gmf.runtime.diagram.ui.util.INotationType">
@@ -223,7 +219,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
 		«tripleSpace(3)»<param name="semanticHint" value="«diagramElement.stringVisualID»"/>
 		«tripleSpace(2)»</specializationType>
 	'''
-	
+
 	def modelingAssistantProvider(GenDiagram it) '''
 		<extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
 			«xmlGeneratedTag»
@@ -243,26 +239,23 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
 	'''
 
 	@MetaDef def dispatch modelingAssistantProviderQualifiedClassName(GenContainerBase it)'''«/*NO-OP, all specific subclasses should be handled*/»'''
-	
+
 	@MetaDef def dispatch modelingAssistantProviderQualifiedClassName(GenDiagram it)'''«xptEditPartModelingAssistant.qualifiedClassName(it)»'''
-	
+
 	@MetaDef def dispatch modelingAssistantProviderQualifiedClassName(GenNode it)'''«xptEditPartModelingAssistant.qualifiedClassName(it)»'''
 
 	def commaSeparatedVisualIDs(Iterable<? extends GenCommonBase> list) '''«FOR gcb : list SEPARATOR ','»«gcb.stringUniqueIdentifier»«ENDFOR»'''
 
 	@Localization def i18n(GenDiagram it) '''
-		
 		# Providers
 		«FOR next : getAllTypedElements().map[t|t.elementType]»
-			«internal_i18n(next)»«ENDFOR»«extraLineBreak»
+			«internal_i18n(next)»«ENDFOR»
 	'''
 
 	@Localization def internal_i18n(ElementType it) '''
-		«IF null != displayName && !definedExternally»metatype.name.«diagramElement.uniqueIdentifier»=«displayName»«ENDIF»
+		«IF null !== displayName && !definedExternally»metatype.name.«diagramElement.uniqueIdentifier»=«displayName»«ENDIF»
 	'''
 
-
-	
 	def getLocalDefineTypedElements(GenDiagram it) {
 		getAllTypedElements(it).filter[et| false == et.elementType.definedExternally]
 	}

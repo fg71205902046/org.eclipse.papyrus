@@ -19,7 +19,6 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.OrderedLayout;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.layout.SwimlanesCompartmentLayout;
 

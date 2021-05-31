@@ -12,6 +12,7 @@
  * Alexander Shatalin (Borland) - initial API and implementation
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up
  *****************************************************************************/
 
 package xpt.navigator
@@ -24,17 +25,19 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenPlugin
 import xpt.Common
 import xpt.editor.VisualIDRegistry
 import plugin.Activator
+import xpt.CodeStyle
 
 @com.google.inject.Singleton class NavigatorLinkHelper {
+	@Inject extension CodeStyle;
 	@Inject extension Common;
 	@Inject extension Utils_qvto;
 
 	@Inject Activator xptActivator;
 	@Inject getEditorInput xptGetEditorInput;
-	@Inject AbstractNavigatorItem abstractNavigatorItem;
+	@Inject NavigatorAbstractNavigatorItem abstractNavigatorItem;
 	@Inject NavigatorGroup navigatorGroup;
 	@Inject NavigatorItem xptNavigatorItem;
-	
+
 	def className(GenNavigator it) '''«it.linkHelperClassName»'''
 
 	def packageName(GenNavigator it) '''«it.packageName»'''
@@ -46,24 +49,23 @@ import plugin.Activator
 	def NavigatorLinkHelper(GenNavigator it) '''
 		«copyright(editorGen)»
 		package «packageName(it)»;
-		
+
 		«generatedClassComment()»
 		public class «className(it)» implements org.eclipse.ui.navigator.ILinkHelper {
-		
+
 			«xptGetEditorInput.getEditorInput(editorGen)»
-		
+
 			«findSelection(it)»
-			
+
 			«activateEditor(it)»
-			
-			«additions(it)»
 		}
 	'''
 
 	def findSelection(GenNavigator it) '''
 		«generatedMemberComment()»
+		«overrideI»
 		public org.eclipse.jface.viewers.IStructuredSelection findSelection(org.eclipse.ui.IEditorInput anInput) {
-			«IF getDiagramTopReference(it) !=null»
+			«IF getDiagramTopReference(it) !==null »
 			«defineDiagramDocument(editorGen.plugin)»
 			«ENDIF»
 			«findSelectionBody(it)»
@@ -75,7 +77,7 @@ import plugin.Activator
 	'''
 
 	def findSelectionBody(GenNavigator it) '''
-		«IF getDiagramTopReference(it) !=null»
+		«IF getDiagramTopReference(it) !==null »
 		«getDiagramSelection(getDiagramTopReference(it))»
 		«ENDIF»
 		return org.eclipse.jface.viewers.StructuredSelection.EMPTY;
@@ -94,8 +96,7 @@ import plugin.Activator
 		if (file != null) {
 			«IF isInsideGroup()»
 				«navigatorGroup.qualifiedClassName(navigator)» parentGroup = new «navigatorGroup.
-				qualifiedClassName(navigator)»("«groupName»", "«groupIcon»", «VisualIDRegistry::modelID(
-			navigator.editorGen.diagram)», file);
+				qualifiedClassName(navigator)»("«groupName»", "«groupIcon»", «VisualIDRegistry::modelID(navigator.editorGen.diagram)», file);
 			«ENDIF»
 			«xptNavigatorItem.qualifiedClassName(navigator)» item = new «xptNavigatorItem.qualifiedClassName(navigator)»(diagram, «IF isInsideGroup()»parentGroup«ELSE»file«ENDIF», false);
 			«IF isInsideGroup()»
@@ -114,6 +115,7 @@ import plugin.Activator
 
 	def activateEditor(GenNavigator it) '''
 		«generatedMemberComment()»
+		«overrideI»
 		public void activateEditor(org.eclipse.ui.IWorkbenchPage aPage, org.eclipse.jface.viewers.IStructuredSelection aSelection) {
 			if (aSelection == null || aSelection.isEmpty()) {
 				return;
@@ -121,7 +123,7 @@ import plugin.Activator
 			if (false == aSelection.getFirstElement() instanceof «abstractNavigatorItem.qualifiedClassName(it)») {
 				return;
 			}
-				
+
 			«abstractNavigatorItem.qualifiedClassName(it)» abstractNavigatorItem = («abstractNavigatorItem.qualifiedClassName(it)») aSelection.getFirstElement();
 			org.eclipse.gmf.runtime.notation.View navigatorView = null;
 			if (abstractNavigatorItem instanceof «xptNavigatorItem.qualifiedClassName(it)») {
@@ -166,7 +168,5 @@ import plugin.Activator
 	'''
 
 	def diagramEditorClassFQName(GenNavigator it) '''org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor'''
-
-	def additions(GenNavigator it) ''''''
 
 }

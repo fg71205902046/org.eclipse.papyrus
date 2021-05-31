@@ -13,6 +13,7 @@
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Thibault Landre (Atos Origin) - initial API and implementation
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up
  *****************************************************************************/
 package xpt.diagram.preferences
 
@@ -21,7 +22,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenPreferencePage
 import org.eclipse.papyrus.gmf.codegen.xtend.annotations.Localization
 import xpt.Common
-import xpt.Common_qvto
 import xpt.diagram.Utils_qvto
 import impl.preferences.CustomPage
 import impl.preferences.StandardPage
@@ -32,7 +32,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.StandardPreferencePages
 
 @com.google.inject.Singleton class extensions {
 	@Inject extension Common;
-	@Inject extension Common_qvto;
 	@Inject extension Utils_qvto;
 	@Inject extension PrefsConstant_qvto;
 
@@ -41,17 +40,17 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.StandardPreferencePages
 	@Inject StandardPage xptStandardPage;
 
 	def extensions(GenDiagram it) '''
-		
+
 		«tripleSpace(1)»<extension point="org.eclipse.core.runtime.preferences" id="prefs">
 		«tripleSpace(2)»«xmlGeneratedTag»
 		«tripleSpace(2)»<initializer class="«xptPreferenceInitializer.qualifiedClassName(it)»"/>
 		«tripleSpace(1)»</extension>
-		
+
 		«IF ! it.preferencePages.empty»
 			«tripleSpace(1)»<extension point="org.eclipse.ui.preferencePages" id="prefpages">
 			«tripleSpace(2)»«xmlGeneratedTag»
-			      «FOR pref : allPreferencePages(it)»
-			      	«IF pref instanceof GenStandardPreferencePage»
+					«FOR pref : allPreferencePages(it)»
+						«IF pref instanceof GenStandardPreferencePage»
 					«papyrusPreferencePage(pref as GenStandardPreferencePage)»
 				«ENDIF»
 			«ENDFOR»
@@ -63,7 +62,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.StandardPreferencePages
 		«tripleSpace(2)»<page
 		«tripleSpace(4)»id="«ID»"
 		«tripleSpace(4)»name="%prefpage.«ID»"
-			«IF null != parent»
+			«IF null !== parent »
 		«tripleSpace(4)»category="«parent.ID»"
 			«ELSEIF !parentCategory.nullOrEmpty»
 		«tripleSpace(4)»category="«parentCategory»"
@@ -77,7 +76,6 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.StandardPreferencePages
 		«FOR pref : allPreferencePages(it)»
 			prefpage.«pref.ID»=«pref.name»
 		«ENDFOR»
-		«extraLineBreak»
 	'''
 	def dispatch getQualifiedPageName(GenPreferencePage it) ''''''
 	def dispatch getQualifiedPageName(GenCustomPreferencePage it) '''«xptCustomPage.qualifiedClassName(it)»'''
@@ -85,20 +83,19 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.StandardPreferencePages
 
 	def papyrusPreferencePage(GenStandardPreferencePage it) '''
 		«IF StandardPreferencePages.GENERAL_LITERAL == kind»
-		      <page
-		            id="«getDiagramPreferencePageCategory()».«getDiagram().editorGen.modelID»"
-		            name="«getDiagram().editorGen.modelID» Diagram"
-		            category="«getDiagramPreferencePageCategory()»"
-		            class="«getQualifiedClassName()»">
-		      </page>
-		      «ELSEIF StandardPreferencePages.PRINTING_LITERAL == kind ||
-				StandardPreferencePages.RULERS_AND_GRID_LITERAL == kind»
-		      <page
-		            id="«getQualifiedClassName()»"
-		            name="%prefpage.«ID»"
-		            category="«getDiagramPreferencePageCategory()».«getDiagram().editorGen.modelID»"
-		            class="«getQualifiedClassName()»">
-		      </page>
+				<page
+						id="«getDiagramPreferencePageCategory()».«getDiagram().editorGen.modelID»"
+						name="«getDiagram().editorGen.modelID» Diagram"
+						category="«getDiagramPreferencePageCategory()»"
+						class="«getQualifiedClassName()»">
+				</page>
+				«ELSEIF StandardPreferencePages.PRINTING_LITERAL == kind || StandardPreferencePages.RULERS_AND_GRID_LITERAL == kind»
+				<page
+						id="«getQualifiedClassName()»"
+						name="%prefpage.«ID»"
+						category="«getDiagramPreferencePageCategory()».«getDiagram().editorGen.modelID»"
+						class="«getQualifiedClassName()»">
+				</page>
 		«ENDIF»
 	'''
 

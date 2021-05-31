@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2007, 2013, 2015, 2021 Borland Software Corporation, Christian W. Damus, CEA LIST, Artal and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -26,45 +26,43 @@ import xpt.GenEditorGenerator_qvto
 
 @Singleton class manifest {
 
-@Inject extension GenEditorGenerator_qvto
+	@Inject extension GenEditorGenerator_qvto
 
-def qualifiedClassName(GenPlugin it) '''META-INF/MANIFEST.MF'''
-def fullPath(GenPlugin it) '''«qualifiedClassName(it)»'''
+	def qualifiedClassName(GenPlugin it) '''META-INF/MANIFEST.MF'''
+	def fullPath(GenPlugin it) '''«qualifiedClassName(it)»'''
 
-def manifest (GenPlugin it)'''
-«manifestVersion(it)»
-«bundleManifestVersion(it)»
-«bundleName(it)»
-«symbolicName(it)»
-«bundleVersion(it)»
-«bundleClassPath(it)»
-«bundleActivator(it)»
-«bundleVendor(it)»
-«bundleLocalization(it)»
-«exportPackages()»
-«requireBundle()»
-«bundleActivatorPolicy(it)»
-«executionEnvironment()»
-«additions()»
-'''
-def manifestVersion(GenPlugin it) '''Manifest-Version: 1.0'''
-def bundleManifestVersion(GenPlugin it) '''Bundle-ManifestVersion: 2'''
-def bundleName(GenPlugin it) '''Bundle-Name: %pluginName'''
-def symbolicName(GenPlugin it) '''Bundle-SymbolicName: «ID»; singleton:=true'''
-def bundleVersion(GenPlugin it) '''Bundle-Version: «version»'''
-def bundleClassPath(GenPlugin it) '''Bundle-ClassPath: .'''
-def bundleActivator(GenPlugin it) '''Bundle-Activator: «getActivatorQualifiedClassName()»'''
-def bundleVendor(GenPlugin it) '''Bundle-Vendor: %providerName'''
-def bundleLocalization(GenPlugin it) '''Bundle-Localization: plugin'''
-def bundleActivatorPolicy(GenPlugin it) '''Bundle-ActivationPolicy: lazy'''
+	def manifest (GenPlugin it)'''
+		«manifestVersion(it)»
+		«bundleManifestVersion(it)»
+		«bundleName(it)»
+		«symbolicName(it)»
+		«bundleVersion(it)»
+		«bundleClassPath(it)»
+		«bundleActivator(it)»
+		«bundleVendor(it)»
+		«bundleLocalization(it)»
+		«exportPackages()»
+		«requireBundle()»
+		«bundleActivatorPolicy(it)»
+		«executionEnvironment()»
+	'''
 
-def additions(GenPlugin it)''''''
+	def manifestVersion(GenPlugin it) '''Manifest-Version: 1.0'''
+	def bundleManifestVersion(GenPlugin it) '''Bundle-ManifestVersion: 2'''
+	def bundleName(GenPlugin it) '''Bundle-Name: %pluginName'''
+	def symbolicName(GenPlugin it) '''Bundle-SymbolicName: «ID»; singleton:=true'''
+	def bundleVersion(GenPlugin it) '''Bundle-Version: «version»'''
+	def bundleClassPath(GenPlugin it) '''Bundle-ClassPath: .'''
+	def bundleActivator(GenPlugin it) '''Bundle-Activator: «getActivatorQualifiedClassName()»'''
+	def bundleVendor(GenPlugin it) '''Bundle-Vendor: %providerName'''
+	def bundleLocalization(GenPlugin it) '''Bundle-Localization: plugin'''
+	def bundleActivatorPolicy(GenPlugin it) '''Bundle-ActivationPolicy: lazy'''
 
-def exportPackages(GenPlugin it)'''
-Export-Package: «editorGen.diagram.editPartsPackageName», 
- «editorGen.editor.packageName»,
- «editorGen.diagram.providersPackageName»
-'''
+	def exportPackages(GenPlugin it)'''
+		Export-Package: «editorGen.diagram.editPartsPackageName»,
+		 «editorGen.editor.packageName»,
+		 «editorGen.diagram.providersPackageName»
+	'''
 
 	def requireBundle(GenPlugin it)'''
 		Require-Bundle: com.google.guava;bundle-version="[30.0.0,31.0.0)",

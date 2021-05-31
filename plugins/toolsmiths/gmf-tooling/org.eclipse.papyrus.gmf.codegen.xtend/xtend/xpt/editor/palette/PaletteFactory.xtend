@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2006, 2010, 2013, 2021 Borland Software Corporation, CEA LIST, Artal and others
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -12,30 +12,35 @@
  * Artem Tikhomirov (Borland) - initial API and implementation
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up
  *****************************************************************************/
 package xpt.editor.palette
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import org.eclipse.papyrus.gmf.codegen.gmfgen.AbstractToolEntry
-import org.eclipse.papyrus.gmf.codegen.gmfgen.Palette
-import org.eclipse.papyrus.gmf.codegen.gmfgen.ToolEntry
-import xpt.Common
-import xpt.Common_qvto
-import xpt.providers.ElementTypes
 import java.util.Map
+import org.eclipse.papyrus.gmf.codegen.gmfgen.AbstractToolEntry
 import org.eclipse.papyrus.gmf.codegen.gmfgen.EntryBase
+import org.eclipse.papyrus.gmf.codegen.gmfgen.Palette
 import org.eclipse.papyrus.gmf.codegen.gmfgen.Separator
 import org.eclipse.papyrus.gmf.codegen.gmfgen.StandardEntry
 import org.eclipse.papyrus.gmf.codegen.gmfgen.StandardEntryKind
+import org.eclipse.papyrus.gmf.codegen.gmfgen.ToolEntry
 import org.eclipse.papyrus.gmf.codegen.gmfgen.ToolGroup
 import org.eclipse.papyrus.gmf.codegen.gmfgen.ToolGroupItem
 import org.eclipse.papyrus.gmf.codegen.xtend.annotations.Localization
+import xpt.CodeStyle
+import xpt.Common
+import xpt.Common_qvto
 import xpt.Externalizer
+import xpt.providers.ElementTypes
+
 @Singleton class PaletteFactory {
 	@Inject extension Common;
 	@Inject extension Common_qvto;
 	@Inject extension Utils_qvto;
+	@Inject extension CodeStyle;
+
 	@Inject ElementTypes xptElementTypes;
 	@Inject Externalizer xptExternalizer;
 
@@ -49,39 +54,39 @@ import xpt.Externalizer
 
 	@Deprecated
 	def Factory(Palette it) '''«PaletteFactory(it)»'''
-	
+
 	def PaletteFactory(Palette it) '''
 		«copyright(diagram.editorGen)»
 		package «packageName»;
-		
+
 		«generatedClassComment»
 		public class «factoryClassName» extends org.eclipse.gmf.runtime.diagram.ui.services.palette.PaletteFactory.Adapter {
 			//RS: New Palette generation
-		
+
 		//Generates the ID for the tool elements
 		//Generate the tool factory (if(ID) createtool...)
 		«FOR tool : collectTools(it)»
 			«generateIDAttribute(tool)»
 		«ENDFOR»
-		
+
 		«««Generates the default constructor
 		«generatedMemberComment»
 			public «factoryClassName»() {
-			
+
 			}
-			
+
 		«««Generates the main method to create tool
 		«generateCreateTool(it)»
-		
+
 		«««Generates the main method to create template
 		«generateGetTemplate(it)»
-		
+
 		«««Generates each method for tool creation
-		
+
 		«FOR tool : collectTools(it)»
 			«createTool(tool)»
 		«ENDFOR»
-		
+
 		}
 	'''
 
@@ -111,7 +116,7 @@ import xpt.Externalizer
 	'''
 
 	def setDescription(ToolGroup gr, String varName) '''
-		«IF gr.description != null»
+		«IF gr.description !== null »
 		«varName».setDescription(«i18nDesc(gr)»);
 		«ENDIF»
 	'''
@@ -192,7 +197,7 @@ import xpt.Externalizer
 		«IF it.elements.empty»
 			org.eclipse.gef.palette.ToolEntry «toolVarName» = new org.eclipse.gef.palette.ToolEntry(«i18nTitle(it)», «i18nDesc(it)», null, null) {};
 		«ELSEIF it.elements.size() > 1»
-			java.util.ArrayList<org.eclipse.gmf.runtime.emf.type.core.IElementType> types = new java.util.ArrayList<org.eclipse.gmf.runtime.emf.type.core.IElementType>(«elements.
+			java.util.ArrayList<org.eclipse.gmf.runtime.emf.type.core.IElementType> types = new java.util.ArrayList<«elements.get(0).diamondOp('org.eclipse.gmf.runtime.emf.type.core.IElementType')»>(«elements.
 			size»);
 			«FOR e : elements»
 				types.add(«xptElementTypes.accessElementType(e)»);
@@ -233,27 +238,27 @@ import xpt.Externalizer
 	'''
 
 	def setSmallImage(EntryBase it, String toolVarName, Palette palette) '''
-	«IF null != smallIconPath»
+	«IF null !== smallIconPath »
 		«toolVarName».setSmallIcon(«palette.activatorFQN».findImageDescriptor("«smallIconPath»")); «nonNLS(1)»
 	«ELSEIF it.oclIsKindOf(typeof(ToolEntry))»
-		«IF (it as ToolEntry).elements.head != null»
+		«IF (it as ToolEntry).elements.head !== null »
 			«toolVarName».setSmallIcon(«xptElementTypes.qualifiedClassName(palette.diagram)».getImageDescriptor(«xptElementTypes.accessElementType((it as ToolEntry).elements.head)»));
 		«ENDIF»
 	«ENDIF»
 	'''
 
 	def setLargeImage(EntryBase it, String toolVarName, Palette palette) '''
-	«IF null != largeIconPath»
+	«IF null !== largeIconPath »
 		«toolVarName».setLargeIcon(«palette.activatorFQN».findImageDescriptor("«largeIconPath»")); «nonNLS(1)»
 	«ELSEIF it.oclIsKindOf(typeof(ToolEntry))»
-		«IF (it as ToolEntry).elements.head != null»
+		«IF (it as ToolEntry).elements.head !== null »
 			«toolVarName».setLargeIcon(«toolVarName».getSmallIcon());
 		«ENDIF»
 	«ENDIF»
 	'''
 
 	def setToolClass(AbstractToolEntry it, String toolVarName) '''
-	«IF null != qualifiedToolName»
+	«IF null !== qualifiedToolName »
 		«toolVarName».setToolClass(«qualifiedToolName».class);
 	«ENDIF»
 	'''
@@ -263,16 +268,16 @@ import xpt.Externalizer
 	'''
 
 	@Localization def dispatch i18nTitle(ToolEntry it) // 
-	'''«IF title == null»null«ELSE»«xptExternalizer.accessorCall(group.palette.diagram.editorGen, i18nTitleKey(it))»«ENDIF»'''
+	'''«IF title === null »null«ELSE»«xptExternalizer.accessorCall(group.palette.diagram.editorGen, i18nTitleKey(it))»«ENDIF»'''
 
 	@Localization def dispatch i18nTitle(ToolGroup it) //
-	'''«IF title == null»null«ELSE»«xptExternalizer.accessorCall(palette.diagram.editorGen, i18nTitleKey(it))»«ENDIF»'''
+	'''«IF title === null »null«ELSE»«xptExternalizer.accessorCall(palette.diagram.editorGen, i18nTitleKey(it))»«ENDIF»'''
 
 	@Localization def dispatch i18nDesc(ToolEntry it) //
-	'''«IF description == null»null«ELSE»«xptExternalizer.accessorCall(group.palette.diagram.editorGen, i18nDescKey(it))»«ENDIF»'''
+	'''«IF description === null »null«ELSE»«xptExternalizer.accessorCall(group.palette.diagram.editorGen, i18nDescKey(it))»«ENDIF»'''
 
 	@Localization def dispatch i18nDesc(ToolGroup it) //
-	'''«IF description == null»null«ELSE»«xptExternalizer.accessorCall(palette.diagram.editorGen, i18nDescKey(it))»«ENDIF»'''
+	'''«IF description === null »null«ELSE»«xptExternalizer.accessorCall(palette.diagram.editorGen, i18nDescKey(it))»«ENDIF»'''
 
 	@Localization def i18nAccessors(Palette it) '''
 	«FOR group : collectGroups(it)»
@@ -293,13 +298,13 @@ import xpt.Externalizer
 	'''
 
 	@Localization protected def internal_i18n_accessors(EntryBase it) '''
-	«IF null != title»«xptExternalizer.accessorField(i18nTitleKey(it))»«ENDIF»
-	«IF null != description»«xptExternalizer.accessorField(i18nDescKey(it))»«ENDIF»
+	«IF null !== title »«xptExternalizer.accessorField(i18nTitleKey(it))»«ENDIF»
+	«IF null !== description »«xptExternalizer.accessorField(i18nDescKey(it))»«ENDIF»
 	'''
 
 	@Localization protected def internal_i18n_values(EntryBase it) '''
-	«IF null != title»«xptExternalizer.messageEntry(i18nTitleKey(it), title)»«ENDIF»
-	«IF null != description»«xptExternalizer.messageEntry(i18nDescKey(it), description)»«ENDIF»
+	«IF null !== title »«xptExternalizer.messageEntry(i18nTitleKey(it), title)»«ENDIF»
+	«IF null !== description »«xptExternalizer.messageEntry(i18nDescKey(it), description)»«ENDIF»
 	'''
 
 	def cleanStandardToolsHack(Palette it) '''
@@ -330,24 +335,24 @@ import xpt.Externalizer
 	def nodeToolEntry(Palette it) '''
 		«generatedClassComment»
 		private static class «getNodeToolEntryGeneratedClassName()» extends «getDefaultNodeToolEntryClassName()» {
-			
+
 			«generatedClassComment»
 			private NodeToolEntry(String title, String description, java.util.List<org.eclipse.gmf.runtime.emf.type.core.IElementType> elementTypes) {
 				super(title, description, elementTypes);
 			}
-			
+
 		}
 	'''
 
 	def linkToolEntry(Palette it) '''
 		«generatedClassComment»
 		private static class «getLinkToolEntryGeneratedClassName()» extends «getDefaultLinkToolEntryClassName()» {
-			
+
 			«generatedClassComment»
 			private LinkToolEntry(String title, String description, java.util.List<org.eclipse.gmf.runtime.emf.type.core.IElementType> elementTypes) {
 				super(title, description, elementTypes);
 			}
-			
+
 		}
 	'''
 
@@ -360,9 +365,6 @@ import xpt.Externalizer
 		 «toolVarName».setId(«id»);«IF id.startsWith('\"') && id.endsWith('\"')» «nonNLS(1)»«ENDIF»
 	«ENDIF»
 	'''
-
-	def additions(Palette it) ''''''
-
 
 	def generateCreateTool(Palette it) '''
 		«generatedMemberComment»
@@ -384,7 +386,7 @@ import xpt.Externalizer
 	def generateGetTemplate(Palette it) '''
 		«generatedMemberComment»
 			public Object getTemplate(String templateId) {
-				
+
 				// default return: null
 				return null;
 			}
@@ -406,7 +408,7 @@ import xpt.Externalizer
 		«IF elements.isEmpty()»
 			«ERROR('no elements for tool generation (Palette)')»
 		«ELSE»
-			java.util.List<org.eclipse.gmf.runtime.emf.type.core.IElementType> types = new java.util.ArrayList<org.eclipse.gmf.runtime.emf.type.core.IElementType>(«elements.size»);
+			java.util.List<org.eclipse.gmf.runtime.emf.type.core.IElementType> types = new java.util.ArrayList<«elements.get(0).diamondOp('org.eclipse.gmf.runtime.emf.type.core.IElementType')»>(«elements.size»);
 				«FOR e : elements»
 					types.add(«xptElementTypes.accessElementType(e)»);
 				«ENDFOR»

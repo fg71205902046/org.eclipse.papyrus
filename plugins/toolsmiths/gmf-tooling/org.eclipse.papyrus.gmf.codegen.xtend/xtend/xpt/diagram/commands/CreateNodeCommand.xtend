@@ -12,6 +12,7 @@
  * Dmitry Stadnik (Borland) - initial API and implementation
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up providers
  *****************************************************************************/
 package xpt.diagram.commands
 
@@ -97,32 +98,22 @@ import xpt.providers.ElementInitializers
 	def doExecuteWithResultMethod(GenNode it) '''
 		«generatedMemberComment()»
 		protected org.eclipse.gmf.runtime.common.core.command.CommandResult doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor monitor, org.eclipse.core.runtime.IAdaptable info) throws org.eclipse.core.commands.ExecutionException {
-		«««	[AbstractElement] START	
- 				
- 		«IF it.modelFacet.metaClass.ecoreClass.abstract != true»
-		««« [AbstractElement] END
-			«IF it.modelFacet.isPhantomElement()»
-				«phantomElementCreation(it.modelFacet, it, 'newElement')»
-			«ELSE»
-				«normalElementCreation(it.modelFacet, it, 'newElement')»
-			«ENDIF»
-			«extraLineBreak»
-			«initialize(it.modelFacet, it, 'newElement')»
-			«IF true/*FIXME boolean needsExternalConfiguration*/»
-				«extraLineBreak»
-				doConfigure(newElement, monitor, info);
-				«extraLineBreak»
-			«ENDIF»
-				((org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest) getRequest()).setNewElement(«xptMetaModel.
-				DowncastToEObject(it.modelFacet.metaClass, 'newElement')»);
+			«IF it.modelFacet.metaClass.ecoreClass.abstract != true »
+				«IF it.modelFacet.isPhantomElement()»
+					«phantomElementCreation(it.modelFacet, it, 'newElement')»
+				«ELSE»
+					«normalElementCreation(it.modelFacet, it, 'newElement')»
+				«ENDIF»
+				«initialize(it.modelFacet, it, 'newElement')»
+				«IF true/*FIXME boolean needsExternalConfiguration*/»
+					doConfigure(newElement, monitor, info);
+				«ENDIF»
+				((org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest) getRequest()).setNewElement(«xptMetaModel.DowncastToEObject(it.modelFacet.metaClass, 'newElement')»);
 				return org.eclipse.gmf.runtime.common.core.command.CommandResult.newOKCommandResult(newElement);
-			}
-		«««  [AbstractElement] START	
 		«ELSE»
-				throw new UnsupportedOperationException("Unimplemented operation (abstract domain element).");
-			}
+			throw new UnsupportedOperationException("Unimplemented operation (abstract domain element).");
 		«ENDIF»
-		««« [AbstractElement] END	
+		}
 	'''
 
 	/**
@@ -152,14 +143,13 @@ import xpt.providers.ElementInitializers
 			return true;
 		«ELSE»
 			«canExecute_Normal(it.modelFacet)»
-			«extraLineBreak»
 		«ENDIF»
 		}
 	'''
 
 	def canExecute_Normal(TypeModelFacet it) '''
-	«IF containmentMetaFeature != null»
-		«IF  containmentMetaFeature.ecoreFeature != null»
+	«IF containmentMetaFeature !== null »
+		«IF  containmentMetaFeature.ecoreFeature !== null »
 			«IF ! isUnbounded(containmentMetaFeature.ecoreFeature) || (childMetaFeature != containmentMetaFeature && ! isUnbounded(childMetaFeature.ecoreFeature))»
 				«IF ! isUnbounded(containmentMetaFeature.ecoreFeature)»
 				«DeclareAndAssign(containmentMetaFeature.genClass,'container', 'getElementToEdit()') »
@@ -213,8 +203,7 @@ import xpt.providers.ElementInitializers
 							return org.eclipse.gmf.runtime.common.core.command.CommandResult.newErrorCommandResult("Failed to follow the policy-specified for the insertion of the new element");
 						}
 					} else {
-		«extraLineBreak»
-		«IF containmentMetaFeature != null»
+		«IF containmentMetaFeature !== null »
 			«xptMetaModel.DeclareAndAssign(it.containmentMetaFeature.genClass, 'qualifiedTarget', 'target')»
 			«xptMetaModel.modifyFeature(containmentMetaFeature, 'qualifiedTarget', containmentMetaFeature.genClass, varName)»
 		«ELSE»

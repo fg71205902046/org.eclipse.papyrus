@@ -11,6 +11,7 @@
  * Contributors: 
  *    Michael Golubev (Montages) - initial API and implementation
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *    Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up
  *****************************************************************************/
 package xpt.expressions
 
@@ -19,7 +20,7 @@ package xpt.expressions
  */ 
 @com.google.inject.Singleton class OclTracker_qvto {
 	def boolean isForcedImpactAnalyzerKind(String oclExpression) {
-		return null != oclExpression && oclExpression.startsWith('--IA');
+		return null !== oclExpression && oclExpression.startsWith('--IA');
 	}
 
 }

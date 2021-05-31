@@ -14,6 +14,7 @@
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial API and implementation
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up
  *****************************************************************************/
 package xpt.editor
 
@@ -24,8 +25,11 @@ import xpt.Common
 import xpt.Externalizer
 import xpt.ExternalizerUtils_qvto
 import plugin.Activator
+import xpt.CodeStyle
 
 @com.google.inject.Singleton class ModelElementSelectionPage {
+
+	@Inject extension CodeStyle;
 	@Inject extension Common;
 	@Inject extension ExternalizerUtils_qvto;
 
@@ -45,26 +49,12 @@ import plugin.Activator
 	def ModelElementSelectionPage(GenDiagram it) '''
 		«copyright(editorGen)»
 		package «packageName(it)»;
-		
+
 		«generatedClassComment('Wizard page that allows to select element from model.')»
 		public class «className(it)» «extendsList(it)» {
-			«attributes(it)»
-		
+
 			«constructor(it)»
-		
-			«getModelElement(it)»
-		
-			«setModelElement(it)»
-		
-			«createControl(it)»
-		
 			«getSelectionTitle(it)»
-		
-			«updateSelection(it)»
-		
-			«validatePage(it)»
-		
-			«additions(it)»
 		}
 	'''
 
@@ -77,6 +67,7 @@ import plugin.Activator
 
 	def getSelectionTitle(GenDiagram it) '''
 		«generatedMemberComment('Override to provide custom model element description.')»
+		«overrideC»
 		protected String getSelectionTitle() {
 			return «xptExternalizer.accessorCall(editorGen, messageKey(i18nKeyForModelElementSelectionPage(it)))»;
 		}
@@ -89,44 +80,6 @@ import plugin.Activator
 	@Localization def i18nAccessors(GenDiagram it) '''
 		«xptExternalizer.accessorField(messageKey(i18nKeyForModelElementSelectionPage(it)))»
 	'''
-
-	/**
-	 * Since 3.1 the code moved to non-generated super class in GMFT-runtime. 
-	 * Empty xpands are left here to support backward compatibility
-	 */
-	def attributes(GenDiagram it) ''''''
-
-	/**
-	 * Since 3.1 the code moved to non-generated super class in GMFT-runtime. 
-	 * Empty xpands are left here to support backward compatibility
-	 */
-	def getModelElement(GenDiagram it) ''''''
-
-	/**
-	 * Since 3.1 the code moved to non-generated super class in GMFT-runtime. 
-	 * Empty xpands are left here to support backward compatibility
-	 */
-	def setModelElement(GenDiagram it) ''''''
-
-	/**
-	 * Since 3.1 the code moved to non-generated super class in GMFT-runtime. 
-	 * Empty xpands are left here to support backward compatibility
-	 */
-	def createControl(GenDiagram it) ''''''
-
-	/**
-	 * Since 3.1 the code moved to non-generated super class in GMFT-runtime. 
-	 * Empty xpands are left here to support backward compatibility
-	 */
-	def updateSelection(GenDiagram it) ''''''
-
-	/**
-	 * Since 3.1 the code moved to non-generated super class in GMFT-runtime. 
-	 * Empty xpands are left here to support backward compatibility
-	 */
-	def validatePage(GenDiagram it) ''''''
-
-	def additions(GenDiagram it) ''''''
 
 	@Localization def String i18nKeyForModelElementSelectionPage(GenDiagram diagram) {
 		return className(diagram).toString

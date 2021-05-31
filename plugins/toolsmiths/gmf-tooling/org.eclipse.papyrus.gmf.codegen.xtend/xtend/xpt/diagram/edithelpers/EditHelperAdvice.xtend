@@ -19,7 +19,7 @@ import com.google.inject.Inject
 import org.eclipse.papyrus.gmf.codegen.gmfgen.SpecializationType
 import xpt.Common
 
-public class EditHelperAdvice {
+class EditHelperAdvice {
 	@Inject extension Common;
 
 	def className(SpecializationType it) '''«it.editHelperAdviceClassName»'''
@@ -33,14 +33,11 @@ public class EditHelperAdvice {
 	def EditHelperAdvice(SpecializationType it) '''
 		«copyright(diagramElement.diagram.editorGen)»
 		package «packageName(it)»;
-		
+
 		public class «className(it)» «extendsClause(it)» {
-			
-			«additions(it)»
+
 		}
 	'''
-
-	def additions(SpecializationType it) ''''''
 
 	def extendsClause(SpecializationType it) '''extends «superClass(it)»'''
 

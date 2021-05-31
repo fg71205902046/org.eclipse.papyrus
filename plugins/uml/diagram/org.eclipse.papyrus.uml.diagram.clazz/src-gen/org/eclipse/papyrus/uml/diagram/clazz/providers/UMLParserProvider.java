@@ -2420,90 +2420,70 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 				return getDependency_MultiNameLabel_Parser();
 			case DependencyFloatingNameEditPart.VISUAL_ID:
 				return getDependency_FloatingNameLabel_Parser();
-
 			case AssociationClassNameEditPart.VISUAL_ID:
 				return getAssociationClass_NameLabel_Parser();
 			case AssociationClassFloatingNameEditPart.VISUAL_ID:
 				return getAssociationClass_FloatingNameLabel_Parser();
-
 			case AssociationFloatingNameEditPart.VISUAL_ID:
 				return getAssociation_FloatingNameLabel_Parser();
-
 			case InstanceSpecificationNameEditPart.VISUAL_ID:
 				return getInstanceSpecification_NameLabel_Parser();
 			case InstanceSpecificationFloatingNameEditPart.VISUAL_ID:
 				return getInstanceSpecification_FloatingNameLabel_Parser();
-
 			case ComponentNameEditPart.VISUAL_ID:
 				return getComponent_NameLabel_Parser();
 			case ComponentFloatingNameEditPart.VISUAL_ID:
 				return getComponent_FloatingNameLabel_Parser();
-
 			case SignalNameEditPart.VISUAL_ID:
 				return getSignal_NameLabel_Parser();
 			case SignalFloatingNameEditPart.VISUAL_ID:
 				return getSignal_FloatingNameLabel_Parser();
-
 			case InterfaceNameEditPart.VISUAL_ID:
 				return getInterface_NameLabel_Parser();
 			case InterfaceFloatingNameEditPart.VISUAL_ID:
 				return getInterface_FloatingNameLabel_Parser();
-
 			case ModelNameEditPartTN.VISUAL_ID:
 				return getModel_NameLabel_Parser();
-
 			case EnumerationNameEditPart.VISUAL_ID:
 				return getEnumeration_NameLabel_Parser();
 			case EnumerationFloatingNameEditPart.VISUAL_ID:
 				return getEnumeration_FloatingNameLabel_Parser();
-
 			case PackageNameEditPart.VISUAL_ID:
 				return getPackage_NameLabel_Parser();
-
 			case InformationItemNameEditPart.VISUAL_ID:
 				return getInformationItem_NameLabel_Parser();
 			case InformationItemFloatingNameEditPart.VISUAL_ID:
 				return getInformationItem_FloatingNameLabel_Parser();
-
 			case ClassNameEditPart.VISUAL_ID:
 				return getClass_NameLabel_Parser();
 			case ClassFloatingNameEditPart.VISUAL_ID:
 				return getClass_FloatingNameLabel_Parser();
-
 			case PrimitiveTypeNameEditPart.VISUAL_ID:
 				return getPrimitiveType_NameLabel_Parser();
 			case PrimitiveTypeFloatingNameEditPart.VISUAL_ID:
 				return getPrimitiveType_FloatingNameLabel_Parser();
-
 			case DataTypeNameEditPart.VISUAL_ID:
 				return getDataType_NameLabel_Parser();
 			case DataTypeFloatingNameEditPart.VISUAL_ID:
 				return getDataType_FloatingNameLabel_Parser();
-
 			case ConstraintNameEditPart.VISUAL_ID:
 				return getConstraint_NameLabel_Parser();
 			case ConstraintBodyEditPart.VISUAL_ID:
 				return getConstraint_BodyLabel_Parser();
-
 			case CommentBodyEditPart.VISUAL_ID:
 				return getComment_BodyLabel_Parser();
-
 			case DiagramNameEditPart.VISUAL_ID:
 				return getDiagram_NameLabel_Parser();
-
 			case DurationObservationFloatingNameEditPart.VISUAL_ID:
 				return getDurationObservation_FloatingNameLabel_Parser();
 			case DurationObservationStereotypeLabelEditPart.VISUAL_ID:
 				return getDurationObservation_StereotypeLabel_Parser();
-
 			case TimeObservationFloatingNameEditPart.VISUAL_ID:
 				return getTimeObservation_FloatingNameLabel_Parser();
 			case TimeObservationStereotypeLabelEditPart.VISUAL_ID:
 				return getTimeObservation_StereotypeLabel_Parser();
-
 			case DefaultNamedElementNameEditPart.VISUAL_ID:
 				return getNamedElement_NameLabel_Parser();
-
 			case PropertyForComponentEditPart.VISUAL_ID:
 				return getProperty_ComponentAttributeLabel_Parser();
 			case PropertyForSignalEditPart.VISUAL_ID:
@@ -2544,67 +2524,52 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 				return getReception_InterfaceReceptionLabel_Parser();
 			case SlotEditPart.VISUAL_ID:
 				return getSlot_SlotLabel_Parser();
-
-
 			case InstanceSpecificationNameEditPartCN.VISUAL_ID:
 				return getInstanceSpecification_NameLabel_CN_Parser();
 			case InstanceSpecificationFloatingNameEditPartCN.VISUAL_ID:
 				return getInstanceSpecification_FloatingNameLabel_CN_Parser();
-
 			case ComponentNameEditPartCN.VISUAL_ID:
 				return getComponent_NameLabel_CN_Parser();
 			case ComponentFloatingNameEditPartCN.VISUAL_ID:
 				return getComponent_FloatingNameLabel_CN_Parser();
-
 			case SignalNameEditPartCN.VISUAL_ID:
 				return getSignal_NameLabel_CN_Parser();
 			case SignalFloatingNameEditPartCN.VISUAL_ID:
 				return getSignal_FloatingNameLabel_CN_Parser();
-
 			case InterfaceNameEditPartCN.VISUAL_ID:
 				return getInterface_NameLabel_CN_Parser();
 			case InterfaceFloatingNameEditPartCN.VISUAL_ID:
 				return getInterface_FloatingNameLabel_CN_Parser();
-
 			case ModelNameEditPartCN.VISUAL_ID:
 				return getModel_NameLabel_CN_Parser();
-
 			case EnumerationNameEditPartCN.VISUAL_ID:
 				return getEnumeration_NameLabel_CN_Parser();
 			case EnumerationFloatingNameEditPartCN.VISUAL_ID:
 				return getEnumeration_FloatingNameLabel_CN_Parser();
-
 			case PackageNameEditPartCN.VISUAL_ID:
 				return getPackage_NameLabel_CN_Parser();
-
 			case InformationItemNameEditPartCN.VISUAL_ID:
 				return getInformationItem_NameLabel_CN_Parser();
 			case InformationItemFloatingNameEditPartCN.VISUAL_ID:
 				return getInformationItem_FloatingNameLabel_CN_Parser();
-
 			case ClassNameEditPartCN.VISUAL_ID:
 				return getClass_NameLabel_CN_Parser();
 			case ClassFloatingNameEditPartCN.VISUAL_ID:
 				return getClass_FloatingNameLabel_CN_Parser();
-
 			case PrimitiveTypeNameEditPartCN.VISUAL_ID:
 				return getPrimitiveType_NameLabel_CN_Parser();
 			case PrimitiveTypeFloatingNameEditPartCN.VISUAL_ID:
 				return getPrimitiveType_FloatingNameLabel_CN_Parser();
-
 			case DataTypeNameEditPartCN.VISUAL_ID:
 				return getDataType_NameLabel_CN_Parser();
 			case DataTypeFloatingNameEditPartCN.VISUAL_ID:
 				return getDataType_FloatingNameLabel_CN_Parser();
-
 			case CommentBodyEditPartCN.VISUAL_ID:
 				return getComment_BodyLabel_CN_Parser();
-
 			case ConstraintNameEditPartCN.VISUAL_ID:
 				return getConstraint_NameLabel_CN_Parser();
 			case ConstraintBodyEditPartCN.VISUAL_ID:
 				return getConstraint_FloatingNameLabel_CN_Parser();
-
 			case NestedInterfaceForClassEditPart.VISUAL_ID:
 				return getInterface_ClassNestedClassifierLabel_Parser();
 			case NestedInterfaceForComponentEditPart.VISUAL_ID:
@@ -2641,12 +2606,10 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 				return getComponent_InterfaceNestedClassifierLabel_Parser();
 			case NestedComponentForComponentEditPart.VISUAL_ID:
 				return getComponent_ComponentNestedClassifierLabel_Parser();
-
 			case AssociationClassRoleSourceEditPart.VISUAL_ID:
 				return getAssociationClass_SourceRoleLabel_Parser();
 			case AssociationClassRoleTargetEditPart.VISUAL_ID:
 				return getAssociationClass_TargetRoleLabel_Parser();
-
 			case AppliedStereotypeAssociationEditPart.VISUAL_ID:
 				return getAssociation_StereotypeLabel_Parser();
 			case AssociationNameEditPart.VISUAL_ID:
@@ -2659,82 +2622,58 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 				return getAssociation_SourceMultiplicityLabel_Parser();
 			case AssociationMultiplicityTargetEditPart.VISUAL_ID:
 				return getAssociation_TargetMultiplicityLabel_Parser();
-
 			case AssociationBranchMutliplicityEditPart.VISUAL_ID:
 				return getAssociation_BranchMultiplicityLabel_Parser();
-
 			case AppliedStereotyperGeneralizationEditPart.VISUAL_ID:
 				return getGeneralization_StereotypeLabel_Parser();
-
 			case AppliedStereotypeInterfaceRealizationEditPart.VISUAL_ID:
 				return getInterfaceRealization_StereotypeLabel_Parser();
 			case InterfaceRealizationNameEditPart.VISUAL_ID:
 				return getInterfaceRealization_NameLabel_Parser();
-
 			case AppliedStereotypeSubstitutionEditPart.VISUAL_ID:
 				return getSubstitution_StereotypeLabel_Parser();
 			case SubstitutionNameEditPart.VISUAL_ID:
 				return getSubstitution_NameLabel_Parser();
-
 			case AppliedStereotypeRealizationEditPart.VISUAL_ID:
 				return getRealization_StereotypeLabel_Parser();
 			case RealizationNameEditPart.VISUAL_ID:
 				return getRealization_NameLabel_Parser();
-
 			case AbstractionNameEditPart.VISUAL_ID:
 				return getAbstraction_NameLabel_Parser();
 			case AppliedStereotypeAbstractionEditPart.VISUAL_ID:
 				return getAbstraction_StereotypeLabel_Parser();
-
 			case UsageNameEditPart.VISUAL_ID:
 				return getUsage_NameLabel_Parser();
 			case AppliedStereotypeUsageEditPart.VISUAL_ID:
 				return getUsage_StereotypeLabel_Parser();
-
 			case DependencyNameEditPart.VISUAL_ID:
 				return getDependency_NameLabel_Parser();
 			case AppliedStereotypeDependencyEditPart.VISUAL_ID:
 				return getDependency_StereotypeLabel_Parser();
-
-
 			case ElementImportAliasEditPart.VISUAL_ID:
 				return getElementImport_AliasLabel_Parser();
 			case AppliedStereotypeElementImportEditPart.VISUAL_ID:
 				return getElementImport_StereotypeLabel_Parser();
-
 			case AppliedStereotypePackageImportEditPart.VISUAL_ID:
 				return getPackageImport_StereotypeLabel_Parser();
-
 			case AppliedStereotypePackageMergeEditPart.VISUAL_ID:
 				return getPackageMerge_StereotypeLabel_Parser();
-
-
-
-
 			case BindingSubstitutionEditPart.VISUAL_ID:
 				return getTemplateBinding_SubstitutionLabel_Parser();
 			case AppliedStereotypeTemplateBindingEditPart.VISUAL_ID:
 				return getTemplateBinding_StereotypeLabel_Parser();
-
 			case ConstraintLabelEditPart.VISUAL_ID:
 				return getGeneralizationSet_ConstraintLabel_Parser();
 			case AppliedStereotypeGeneralizationSetLabelEditPart.VISUAL_ID:
 				return getGeneralizationSet_StereotypeLabel_Parser();
-
 			case SourceISLinkLabelEditPart.VISUAL_ID:
 				return getInstanceSpecification_SourceRoleLabel_Parser();
 			case TargetISLinkLabelEditPart.VISUAL_ID:
 				return getInstanceSpecification_TargetRoleLabel_Parser();
-
-
-
-
 			case InformationFlowAppliedStereotypeEditPart.VISUAL_ID:
 				return getInformationFlow_StereotypeLabel_Parser();
 			case InformationFlowNameEditPart.VISUAL_ID:
 				return getInformationFlow_NameLabel_Parser();
-
-
 			}
 		}
 		return null;
@@ -2810,5 +2749,4 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return super.getAdapter(adapter);
 		}
 	}
-
 }

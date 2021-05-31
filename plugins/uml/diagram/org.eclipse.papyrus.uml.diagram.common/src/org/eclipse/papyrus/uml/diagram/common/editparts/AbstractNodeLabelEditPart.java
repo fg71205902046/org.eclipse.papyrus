@@ -10,7 +10,7 @@
 *
 * Contributors:
 *   Etienne ALLOGO (ARTAL) - Initial API and implementation
-*   Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : generate less dead or duplicate code
+*   Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : generate less dead + sort members 
 *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.common.editparts;
@@ -176,6 +176,24 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	}
 
 	/**
+	 * Returns the kind of associated editor for direct edition.
+	 *
+	 * @return an <code>int</code> corresponding to the kind of direct editor, @see IDirectEdition
+	 */
+	public int getDirectEditionType() {
+		if (checkExtendedEditor()) {
+			initExtendedEditorConfiguration();
+			return IDirectEdition.EXTENDED_DIRECT_EDITOR;
+		}
+
+		if (checkDefaultEdition()) {
+			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
+		}
+		// not a named element. no specific editor => do nothing
+		return IDirectEdition.NO_DIRECT_EDITION;
+	}
+
+	/**
 	 * Gets the edits the text.
 	 *
 	 * @return the edits the text
@@ -188,6 +206,44 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 		return getParser().getEditString(
 				ParserUtil.getParserAdapter(getParserElement(), this),
 				getParserOptions().intValue());
+	}
+
+	/**
+	 * Gets the edits the text validator.
+	 *
+	 * @return the edits the text validator
+	 */
+	@Override
+	public final ICellEditorValidator getEditTextValidator() {
+		return new ICellEditorValidator() {
+
+			@Override
+			public String isValid(final Object value) {
+				if (value instanceof String) {
+					final IParser parser = getParser();
+					try {
+						IParserEditStatus valid = (IParserEditStatus) getEditingDomain()
+								.runExclusive(new RunnableWithResult.Impl<>() {
+
+									@Override
+									public void run() {
+										setResult(
+												parser.isValidEditString(
+														ParserUtil.getParserAdapter(getParserElement(),
+																AbstractNodeLabelEditPart.this),
+														(String) value));
+									}
+								});
+						return valid.getCode() == IParserEditStatus.EDITABLE ? null : valid.getMessage();
+					} catch (InterruptedException ie) {
+						ie.printStackTrace();
+					}
+				}
+
+				// shouldn't get here
+				return null;
+			}
+		};
 	}
 
 	/**
@@ -335,6 +391,15 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 			};
 		}
 		return accessibleEP;
+	}
+
+	/**
+	 * Gets the label icon.
+	 *
+	 * @return the label icon
+	 */
+	protected Image getLabelIcon() {
+		return DiagramEditPartsUtil.getIcon(getParserElement(), getViewer());
 	}
 
 	/**
@@ -505,6 +570,47 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	}
 
 	/**
+	 * Checks if is editable.
+	 *
+	 * @return true, if is editable
+	 */
+	protected boolean isEditable() {
+		return getParser() != null;
+	}
+
+	/**
+	 * Performs the direct edit usually used by GMF editors.
+	 *
+	 * @param theRequest
+	 *            the direct edit request that starts the direct edit system
+	 */
+	protected final void performDefaultDirectEditorEdit(final Request theRequest) {
+		// initialize the direct edit manager
+		try {
+			getEditingDomain().runExclusive(new Runnable() {
+
+				@Override
+				public final void run() {
+					if (isActive() && isEditable()) {
+						if (theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+							Character initialChar = (Character) theRequest.getExtendedData().get(
+									RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+							performDirectEdit(initialChar.charValue());
+						} else if ((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
+							DirectEditRequest editRequest = (DirectEditRequest) theRequest;
+							performDirectEdit(editRequest.getLocation());
+						} else {
+							performDirectEdit();
+						}
+					}
+				}
+			});
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
 	 * Perform direct edit.
 	 */
 	protected void performDirectEdit() {
@@ -528,6 +634,92 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 			((TextDirectEditManager) getManager()).show(initialCharacter);
 		} else {
 			performDirectEdit();
+		}
+	}
+
+	/**
+	 * Perform direct edit.
+	 *
+	 * @param eventLocation
+	 *            the event location
+	 */
+	protected final void performDirectEdit(Point eventLocation) {
+		if (getManager() instanceof TextDirectEditManager) {
+			((TextDirectEditManager) getManager()).show(eventLocation.getSWTPoint());
+		}
+	}
+
+	/**
+	 * Perform direct edit request.
+	 *
+	 * @param request
+	 *            the request
+	 */
+	@Override
+	protected final void performDirectEditRequest(Request request) {
+
+		final Request theRequest = request;
+
+		if (IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
+			directEditionMode = getDirectEditionType();
+		}
+		switch (directEditionMode) {
+		case IDirectEdition.NO_DIRECT_EDITION:
+			// no direct edition mode => does nothing
+			return;
+		case IDirectEdition.EXTENDED_DIRECT_EDITOR:
+			updateExtendedEditorConfiguration();
+			if (configuration == null || configuration.getLanguage() == null) {
+				// Create default edit manager
+				setManager(new MultilineLabelDirectEditManager(this,
+						MultilineLabelDirectEditManager.getTextCellEditorClass(this),
+						MultilineCellEditorLocator.getTextCellEditorLocator(this)));
+				performDefaultDirectEditorEdit(theRequest);
+			} else {
+				configuration.preEditAction(resolveSemanticElement());
+				Dialog dialog = null;
+				if (configuration instanceof ICustomDirectEditorConfiguration) {
+					setManager(((ICustomDirectEditorConfiguration) configuration).createDirectEditManager(this));
+					initializeDirectEditManager(theRequest);
+					return;
+				} else if (configuration instanceof IPopupEditorConfiguration) {
+					IPopupEditorHelper helper = ((IPopupEditorConfiguration) configuration)
+							.createPopupEditorHelper(this);
+					helper.showEditor();
+					return;
+				} else if (configuration instanceof IAdvancedEditorConfiguration) {
+					dialog = ((IAdvancedEditorConfiguration) configuration).createDialog(
+							PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(),
+							configuration.getTextToEdit(resolveSemanticElement()));
+				} else if (configuration instanceof IDirectEditorConfiguration) {
+					dialog = new ExtendedDirectEditionDialog(
+							PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(),
+							configuration.getTextToEdit(resolveSemanticElement()), configuration);
+				} else {
+					return;
+				}
+				final Dialog finalDialog = dialog;
+
+				if (Window.OK == dialog.open()) {
+					TransactionalEditingDomain domain = getEditingDomain();
+					RecordingCommand command = new RecordingCommand(domain, "Edit Label") { //$NON-NLS-1$
+
+						@Override
+						protected void doExecute() {
+							configuration.postEditAction(resolveSemanticElement(),
+									((ILabelEditorDialog) finalDialog).getValue());
+
+						}
+					};
+					domain.getCommandStack().execute(command);
+				}
+			}
+			break;
+		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
+			initializeDirectEditManager(theRequest);
+			break;
+		default:
+			break;
 		}
 	}
 
@@ -626,6 +818,8 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
 
+	/////
+
 	/**
 	 * Removes the owner element listeners.
 	 */
@@ -714,200 +908,6 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement(), this);
 		} else if (IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
 			configuration = null;
-		}
-	}
-
-	/////
-
-	/**
-	 * Perform direct edit.
-	 *
-	 * @param eventLocation
-	 *            the event location
-	 */
-	protected final void performDirectEdit(Point eventLocation) {
-		if (getManager() instanceof TextDirectEditManager) {
-			((TextDirectEditManager) getManager()).show(eventLocation.getSWTPoint());
-		}
-	}
-
-	/**
-	 * Performs the direct edit usually used by GMF editors.
-	 *
-	 * @param theRequest
-	 *            the direct edit request that starts the direct edit system
-	 */
-	protected final void performDefaultDirectEditorEdit(final Request theRequest) {
-		// initialize the direct edit manager
-		try {
-			getEditingDomain().runExclusive(new Runnable() {
-
-				@Override
-				public final void run() {
-					if (isActive() && isEditable()) {
-						if (theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
-							Character initialChar = (Character) theRequest.getExtendedData().get(
-									RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
-							performDirectEdit(initialChar.charValue());
-						} else if ((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
-							DirectEditRequest editRequest = (DirectEditRequest) theRequest;
-							performDirectEdit(editRequest.getLocation());
-						} else {
-							performDirectEdit();
-						}
-					}
-				}
-			});
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Checks if is editable.
-	 *
-	 * @return true, if is editable
-	 */
-	protected boolean isEditable() {
-		return getParser() != null;
-	}
-
-	/**
-	 * Returns the kind of associated editor for direct edition.
-	 *
-	 * @return an <code>int</code> corresponding to the kind of direct editor, @see IDirectEdition
-	 */
-	public int getDirectEditionType() {
-		if (checkExtendedEditor()) {
-			initExtendedEditorConfiguration();
-			return IDirectEdition.EXTENDED_DIRECT_EDITOR;
-		}
-
-		if (checkDefaultEdition()) {
-			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
-		}
-		// not a named element. no specific editor => do nothing
-		return IDirectEdition.NO_DIRECT_EDITION;
-	}
-
-	/**
-	 * Gets the label icon.
-	 *
-	 * @return the label icon
-	 */
-	protected Image getLabelIcon() {
-		return DiagramEditPartsUtil.getIcon(getParserElement(), getViewer());
-	}
-
-	/**
-	 * Gets the edits the text validator.
-	 *
-	 * @return the edits the text validator
-	 */
-	@Override
-	public final ICellEditorValidator getEditTextValidator() {
-		return new ICellEditorValidator() {
-
-			@Override
-			public String isValid(final Object value) {
-				if (value instanceof String) {
-					final IParser parser = getParser();
-					try {
-						IParserEditStatus valid = (IParserEditStatus) getEditingDomain()
-								.runExclusive(new RunnableWithResult.Impl<>() {
-
-									@Override
-									public void run() {
-										setResult(
-												parser.isValidEditString(
-														ParserUtil.getParserAdapter(getParserElement(),
-																AbstractNodeLabelEditPart.this),
-														(String) value));
-									}
-								});
-						return valid.getCode() == IParserEditStatus.EDITABLE ? null : valid.getMessage();
-					} catch (InterruptedException ie) {
-						ie.printStackTrace();
-					}
-				}
-
-				// shouldn't get here
-				return null;
-			}
-		};
-	}
-
-	/**
-	 * Perform direct edit request.
-	 *
-	 * @param request
-	 *            the request
-	 */
-	@Override
-	protected final void performDirectEditRequest(Request request) {
-
-		final Request theRequest = request;
-
-		if (IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
-			directEditionMode = getDirectEditionType();
-		}
-		switch (directEditionMode) {
-		case IDirectEdition.NO_DIRECT_EDITION:
-			// no direct edition mode => does nothing
-			return;
-		case IDirectEdition.EXTENDED_DIRECT_EDITOR:
-			updateExtendedEditorConfiguration();
-			if (configuration == null || configuration.getLanguage() == null) {
-				// Create default edit manager
-				setManager(new MultilineLabelDirectEditManager(this,
-						MultilineLabelDirectEditManager.getTextCellEditorClass(this),
-						MultilineCellEditorLocator.getTextCellEditorLocator(this)));
-				performDefaultDirectEditorEdit(theRequest);
-			} else {
-				configuration.preEditAction(resolveSemanticElement());
-				Dialog dialog = null;
-				if (configuration instanceof ICustomDirectEditorConfiguration) {
-					setManager(((ICustomDirectEditorConfiguration) configuration).createDirectEditManager(this));
-					initializeDirectEditManager(theRequest);
-					return;
-				} else if (configuration instanceof IPopupEditorConfiguration) {
-					IPopupEditorHelper helper = ((IPopupEditorConfiguration) configuration)
-							.createPopupEditorHelper(this);
-					helper.showEditor();
-					return;
-				} else if (configuration instanceof IAdvancedEditorConfiguration) {
-					dialog = ((IAdvancedEditorConfiguration) configuration).createDialog(
-							PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(),
-							configuration.getTextToEdit(resolveSemanticElement()));
-				} else if (configuration instanceof IDirectEditorConfiguration) {
-					dialog = new ExtendedDirectEditionDialog(
-							PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(),
-							configuration.getTextToEdit(resolveSemanticElement()), configuration);
-				} else {
-					return;
-				}
-				final Dialog finalDialog = dialog;
-
-				if (Window.OK == dialog.open()) {
-					TransactionalEditingDomain domain = getEditingDomain();
-					RecordingCommand command = new RecordingCommand(domain, "Edit Label") { //$NON-NLS-1$
-
-						@Override
-						protected void doExecute() {
-							configuration.postEditAction(resolveSemanticElement(),
-									((ILabelEditorDialog) finalDialog).getValue());
-
-						}
-					};
-					domain.getCommandStack().execute(command);
-				}
-			}
-			break;
-		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-			initializeDirectEditManager(theRequest);
-			break;
-		default:
-			break;
 		}
 	}
 

@@ -93,7 +93,7 @@ import xpt.diagram.ViewmapAttributesUtils_qvto
 	def dispatch CharSequence addLinkedDiagramStyle(Behaviour it, String stylesVar) ''''''
 
 	def dispatch CharSequence addLinkedDiagramStyle(OpenDiagramBehaviour it, String stylesVar) '''
-		«IF diagramKind != null»
+		«IF diagramKind !== null »
 			{
 				org.eclipse.gmf.runtime.notation.HintedDiagramLinkStyle diagramFacet = org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createHintedDiagramLinkStyle();
 				diagramFacet.setHint("«diagramKind»"); «nonNLS(1)»

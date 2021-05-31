@@ -38,5 +38,4 @@ public class ModelElementSelectionPage extends DefaultModelElementSelectionPage 
 	protected String getSelectionTitle() {
 		return Messages.ModelElementSelectionPageMessage;
 	}
-
 }

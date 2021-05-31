@@ -12,6 +12,7 @@
  * Alexander Shatalin (Borland) - initial API and implementation
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up
  *****************************************************************************/
 package xpt.navigator
 
@@ -19,11 +20,13 @@ import com.google.inject.Inject
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigator
 import xpt.Common
 import xpt.editor.VisualIDRegistry
+import xpt.CodeStyle
 
 @com.google.inject.Singleton class NavigatorSorter {
+	@Inject extension CodeStyle;
 	@Inject extension Common;
 	@Inject extension Utils_qvto;
-	
+
 	@Inject VisualIDRegistry xptVisualIDRegistry;
 	@Inject NavigatorItem xptNavigatorItem;
 
@@ -38,15 +41,14 @@ import xpt.editor.VisualIDRegistry
 	def NavigatorSorter(GenNavigator it) '''
 		«copyright(editorGen)»
 		package «packageName(it)»;
-		
+
 		«generatedClassComment()»
+		@SuppressWarnings("deprecation")
 		public class «className(it)»  extends org.eclipse.jface.viewers.ViewerSorter {
-			
+
 			«attributes(it)»
-			
+
 			«category(it)»
-			
-			   «additions(it)»
 		}
 	'''
 
@@ -54,7 +56,7 @@ import xpt.editor.VisualIDRegistry
 		«generatedMemberComment()»
 		private static final int GROUP_CATEGORY = «getMaxVisualID(it) + 2»;
 		«IF editorGen.diagram.generateCreateShortcutAction()»
-			
+
 			«generatedMemberComment()»
 			private static final int SHORTCUTS_CATEGORY = «getMaxVisualID(it) + 1»;
 		«ENDIF»
@@ -62,6 +64,7 @@ import xpt.editor.VisualIDRegistry
 
 	def category(GenNavigator it) '''
 		«generatedMemberComment()»
+		«overrideC»
 		public int category(Object element) {
 			if (element instanceof «xptNavigatorItem.qualifiedClassName(it)») {
 				«xptNavigatorItem.qualifiedClassName(it)» item = («xptNavigatorItem.qualifiedClassName(it)») element;
@@ -75,6 +78,4 @@ import xpt.editor.VisualIDRegistry
 			return GROUP_CATEGORY;
 		}
 	'''
-
-	def additions(GenNavigator it) ''''''
 }

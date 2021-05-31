@@ -13,6 +13,7 @@
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Anatoliy Tischenko  - Initial API and implementation
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up
  *****************************************************************************/
 package xpt.editor
 
@@ -23,7 +24,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
 import com.google.inject.Singleton
 
 @Singleton class ResourceSetInfo {
-	
+
 	@Inject extension Common;
 	@Inject extension CodeStyle
 
@@ -33,95 +34,93 @@ import com.google.inject.Singleton
 	def ResourceSetInfo(GenDiagram it) '''
 		«generatedClassComment»	
 		protected class ResourceSetInfo extends ElementInfo {
-		
+
 			«attributes(it)»
-			
+
 			«constructor(it)»
-		
+
 			«getModificationStamp(it)»
-		
+
 			«setModificationStamp(it)»
-			
+
 			«getEditingDomain(it)»
-		
+
 			«getResourceSet(it)»
-			
+
 			«getLoadedResourcesIterator(it)»
-		
+
 			«getEditorInput(it)»
-		
+
 			«dispose(it)»
-		
+
 			«isSynchronized(it)»
-		
-		«IF null == editorGen.application»
+
+		«IF null === editorGen.application »
 			«setUnSynchronized(it)»
-		
+
 			«setSynchronized(it)»
-		
+
 			«stopResourceListening(it)»
-		
+
 			«startResourceListening(it)»
 
 		«ENDIF»
 			«isUpdateCache(it)»
-			
+
 			«setUpdateCache(it)»
-			
+
 			«isModifiable(it)»
-			
+
 			«setModifiable(it)»
-			
+
 			«isReadOnly(it)»
-			
+
 			«setReadOnly(it)»
-		
-		«IF null == editorGen.application»
+
+		«IF null === editorGen.application »
 			«SynchronizerDelegate(it)»
-			«extraLineBreak»
 		«ENDIF»
-			«additions(it)»
 		}
 	'''
 
 	def attributes(GenDiagram it) '''
 		«generatedMemberComment»
-		private long myModificationStamp = «IF null == editorGen.application»org.eclipse.core.resources.IResource.NULL_STAMP«ELSE»0«ENDIF»;
-	
-		«IF null == editorGen.application»
+		private long myModificationStamp = «IF null === editorGen.application »org.eclipse.core.resources.IResource.NULL_STAMP«ELSE»0«ENDIF»;
+
+		«IF null === editorGen.application »
 			«generatedMemberComment»
 			private org.eclipse.emf.workspace.util.WorkspaceSynchronizer mySynchronizer;
-	
+
 			«generatedMemberComment»
-			private java.util.LinkedList<org.eclipse.emf.ecore.resource.Resource> myUnSynchronizedResources = new java.util.LinkedList<org.eclipse.emf.ecore.resource.Resource>();
-			
+			private java.util.LinkedList<org.eclipse.emf.ecore.resource.Resource> myUnSynchronizedResources = new java.util.LinkedList<«diamondOp('org.eclipse.emf.ecore.resource.Resource')»>();
+
 		«ENDIF»
 		«generatedMemberComment»
 		private org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument myDocument;
-	
+
 		«generatedMemberComment»
 		private org.eclipse.ui.IEditorInput myEditorInput;
-	
+
 		«generatedMemberComment»
 		private boolean myUpdateCache = true;
-		
+
 		«generatedMemberComment»
 		private boolean myModifiable = false;
-	
+
 		«generatedMemberComment»
 		private boolean myReadOnly = true;
-		
+
 		«generatedMemberComment»
 		private ResourceSetModificationListener myResourceSetListener;
 	'''
-	
+
 	def constructor(GenDiagram it) '''
 		«generatedMemberComment»
 		public ResourceSetInfo(org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument document, org.eclipse.ui.IEditorInput editorInput) {
 			super(document);
 			myDocument = document;
 			myEditorInput = editorInput;
-			«IF null == editorGen.application»
+			«IF null === editorGen.application »
 			startResourceListening();
 			«ENDIF»
 			myResourceSetListener = new ResourceSetModificationListener(this);
@@ -163,7 +162,7 @@ import com.google.inject.Singleton
 	def getLoadedResourcesIterator(GenDiagram it) '''
 		«generatedMemberComment»
 		public java.util.Iterator<org.eclipse.emf.ecore.resource.Resource> getLoadedResourcesIterator() {
-			return new java.util.ArrayList<org.eclipse.emf.ecore.resource.Resource>(getResourceSet().getResources()).iterator();
+			return new java.util.ArrayList<«diamondOp('org.eclipse.emf.ecore.resource.Resource')»>(getResourceSet().getResources()).iterator();
 		}
 	'''
 
@@ -177,7 +176,7 @@ import com.google.inject.Singleton
 	def dispose(GenDiagram it) '''
 		«generatedMemberComment»
 		public void dispose() {
-			«IF null == editorGen.application»
+			«IF null === editorGen.application »
 			stopResourceListening();
 			«ENDIF»
 			getResourceSet().eAdapters().remove(myResourceSetListener);
@@ -192,7 +191,7 @@ import com.google.inject.Singleton
 	def isSynchronized(GenDiagram it) '''
 		«generatedMemberComment»
 		public boolean isSynchronized() {
-			«IF null == editorGen.application»
+			«IF null === editorGen.application »
 			return myUnSynchronizedResources.size() == 0;
 			«ELSE»
 			return getModificationStamp() == computeModificationStamp(this);
@@ -242,7 +241,7 @@ import com.google.inject.Singleton
 			myUpdateCache = update;
 		}
 	'''
-	
+
 	def isModifiable(GenDiagram it) '''
 		«generatedMemberComment»
 		public boolean isModifiable() {
@@ -256,7 +255,7 @@ import com.google.inject.Singleton
 			myModifiable = modifiable;
 		}
 	'''
-	
+
 	def isReadOnly(GenDiagram it) '''
 		«generatedMemberComment»
 		public boolean isReadOnly() {
@@ -274,27 +273,27 @@ import com.google.inject.Singleton
 	def SynchronizerDelegate(GenDiagram it) '''
 	«generatedClassComment»	
 	private class SynchronizerDelegate implements org.eclipse.emf.workspace.util.WorkspaceSynchronizer.Delegate {
-	
+
 		«disposeSD(it)»
-	
+
 		«handleResourceChangedSD(it)»
-	
+
 		«handleResourceDeletedSD(it)»
-	
+
 		«handleResourceMovedSD(it)»
-		
-		«additionsSD(it)»
 	}
 	'''
 
 	def disposeSD(GenDiagram it) '''
 		«generatedMemberComment»
+		«overrideI»
 		public void dispose() {
 		}
 	'''	
 
 	def handleResourceChangedSD(GenDiagram it) '''
 		«generatedMemberComment»
+		«overrideI»
 		public boolean handleResourceChanged(final org.eclipse.emf.ecore.resource.Resource resource) {
 			«updateSynchStateSD(it)»
 			org.eclipse.swt.widgets.Display.getDefault().asyncExec(new java.lang.Runnable() {
@@ -307,9 +306,9 @@ import com.google.inject.Singleton
 		}
 	'''
 
-
 	def handleResourceDeletedSD(GenDiagram it) '''
 		«generatedMemberComment»
+		«overrideI»
 		public boolean handleResourceDeleted(org.eclipse.emf.ecore.resource.Resource resource) {
 			«updateSynchStateSD(it)»
 			org.eclipse.swt.widgets.Display.getDefault().asyncExec(new java.lang.Runnable() {
@@ -324,6 +323,7 @@ import com.google.inject.Singleton
 
 	def handleResourceMovedSD(GenDiagram it) '''
 		«generatedMemberComment»
+		«overrideI»
 		public boolean handleResourceMoved(org.eclipse.emf.ecore.resource.Resource resource, final org.eclipse.emf.common.util.URI newURI) {
 			«updateSynchStateSD(it)»
 			if (myDocument.getDiagram().eResource() == resource) {

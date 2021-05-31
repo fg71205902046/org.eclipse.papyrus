@@ -12,7 +12,8 @@
  *    Artem Tikhomirov (Borland) - initial API and implementation
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
  *    Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 - Use project or worksapce preference as new line characters
- *    Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : Remove reference to xpand/qvto
+ *    Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.1 Remove reference to xpand/qvto
+ *    Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 generate less dead or duplicate code
  *****************************************************************************/
 package org.eclipse.papyrus.gmf.codegen.util;
 
@@ -209,8 +210,9 @@ public abstract class Generator extends GeneratorBase implements Runnable {
 		//
 		// common edit parts, edit policies and providers
 		generateBaseItemSemanticEditPolicy();
-		generateTextSelectionEditPolicy();
-		generateTextNonResizableEditPolicy();
+		// Bug 569174 : L1.2 => moved to common
+		// generateTextSelectionEditPolicy();
+		// generateTextNonResizableEditPolicy();
 		generateEditPartFactory();
 		generateElementInitializers();
 		generateElementTypes();
@@ -568,14 +570,11 @@ public abstract class Generator extends GeneratorBase implements Runnable {
 		}
 		doGenerateJavaClass(myEmitters.getLinkItemSemanticEditPolicyEmitter(), genLink.getItemSemanticEditPolicyQualifiedClassName(), genLink);
 	}
-
-	private void generateTextSelectionEditPolicy() throws UnexpectedBehaviourException, InterruptedException {
-		doGenerateJavaClass(myEmitters.getTextSelectionEditPolicyEmitter(), myDiagram.getTextSelectionEditPolicyQualifiedClassName(), myDiagram);
-	}
-
-	private void generateTextNonResizableEditPolicy() throws UnexpectedBehaviourException, InterruptedException {
-		doGenerateJavaClass(myEmitters.getTextNonResizableEditPolicyEmitter(), myDiagram.getTextNonResizableEditPolicyQualifiedClassName(), myDiagram);
-	}
+	
+	// Bug 569174 : L1.2 => moved to common -
+	// private void generateTextSelectionEditPolicy() throws UnexpectedBehaviourException, InterruptedException {
+	// doGenerateJavaClass(myEmitters.getTextSelectionEditPolicyEmitter(), myDiagram.getTextSelectionEditPolicyQualifiedClassName(), myDiagram);
+	// }
 
 	// preferences
 

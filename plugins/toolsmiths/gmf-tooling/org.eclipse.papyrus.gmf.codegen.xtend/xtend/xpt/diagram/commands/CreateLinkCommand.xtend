@@ -44,7 +44,7 @@ import xpt.providers.ElementInitializers
 	def fullPath(GenLink it) '''«qualifiedClassName(it)»'''
 
 	private def GenFeature sourceOrContainmentFeature(TypeLinkModelFacet it) {
-		if(sourceMetaFeature == null) containmentMetaFeature else sourceMetaFeature;
+		if(sourceMetaFeature === null) containmentMetaFeature else sourceMetaFeature;
 	}
 
 	def CreateLinkCommand(GenLink it) '''«Main(it)»'''
@@ -97,12 +97,12 @@ import xpt.providers.ElementInitializers
 			«xptMetaModel.modifyFeature(it.containmentMetaFeature,
 			if(hasContainerOtherThanSource(it)) 'getContainer()' else 'getSource()', containmentMetaFeature.genClass,
 			'newElement')»
-			«IF sourceMetaFeature != null»
+			«IF sourceMetaFeature !== null »
 				«xptMetaModel.modifyFeature(it.sourceMetaFeature, 'newElement', metaClass, 'getSource()')»
 			«ENDIF»
 			«xptMetaModel.modifyFeature(it.targetMetaFeature, 'newElement', metaClass, 'getTarget()')»
 			«IF hasExplicitChildFeature(it)»
-				«IF sourceMetaFeature != null»
+				«IF sourceMetaFeature !== null »
 					«xptMetaModel.modifyFeature(it.childMetaFeature, 'getContainer()', containmentMetaFeature.genClass, 'newElement')»
 				«ELSE»
 					«xptMetaModel.modifyFeature(it.childMetaFeature, 'getSource()', getSourceType(), 'newElement')»

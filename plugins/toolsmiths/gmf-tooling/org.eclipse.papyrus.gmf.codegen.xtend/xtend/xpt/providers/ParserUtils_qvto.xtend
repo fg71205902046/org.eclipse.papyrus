@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2007, 2014, 2021 Borland Software Corporation, CEA LIST, Artal and others
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -12,8 +12,8 @@
  * Dmitry Stadnik (Borland) - initial API and implementation
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Artem Tikhomirov (Borland) - refactored javaInitilizers not to use methods from GMFGen model
- *                               [221347] Got rid of generated interfaces 
- *                               (IObjectInitializer, IFeatureInitializer) and implementation thereof
+ *								[221347] Got rid of generated interfaces
+ *								(IObjectInitializer, IFeatureInitializer) and implementation thereof
  * Christian W. Damus (CEA) - bug 440263
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  *****************************************************************************/
@@ -35,5 +35,5 @@ import org.eclipse.papyrus.gmf.codegen.xtend.annotations.MetaDef
 	@MetaDef  def String parserAccessorName(GenCommonBase element) {
 		return 'get' + element.stringUniqueIdentifier.toFirstUpper + '_Parser'
 	}
-	
+
 }

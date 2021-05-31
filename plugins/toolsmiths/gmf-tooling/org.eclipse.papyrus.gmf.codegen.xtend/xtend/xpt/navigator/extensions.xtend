@@ -1,17 +1,18 @@
 /*******************************************************************************
  * Copyright (c) 2007, 2020 Borland Software Corporation, CEA LIST, Artal and others
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors: 
  *		Dmitry Stadnik (Borland) - initial API and implementation
  *		Michael Golubev (Montages) - #386838 - migrate to Xtend2
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *    Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up
  *****************************************************************************/
 package xpt.navigator
 
@@ -26,10 +27,10 @@ import xpt.editor.ShortcutPropertyTester
  */
 @com.google.inject.Singleton class extensions {
 	@Inject extension Common;
-	
+
 	@Inject UriEditorInputTester uriTester;
 	@Inject ShortcutPropertyTester shortcutTester;
-	@Inject AbstractNavigatorItem abstractNavigatorItem;
+	@Inject NavigatorAbstractNavigatorItem abstractNavigatorItem;
 	@Inject NavigatorLabelProvider labelProvider;
 	@Inject NavigatorContentProvider contentProvider;
 	@Inject DomainNavigatorContentProvider domainContentProvider;
@@ -37,17 +38,15 @@ import xpt.editor.ShortcutPropertyTester
 	@Inject DomainNavigatorItem xptDomainNavigatorItem;
 
 	def extensions(GenNavigator it) '''
-	«IF it != null»
-		«editorInputPropertyTester(it, 'URIEditorInput', 'org.eclipse.emf.common.ui.URIEditorInput',
-			'' + uriTester.qualifiedClassName(it))»
-		
+	«IF it !== null »
+		«editorInputPropertyTester(it, 'URIEditorInput', 'org.eclipse.emf.common.ui.URIEditorInput', '' + uriTester.qualifiedClassName(it))»
+
 		«IF editorGen.diagram.generateShortcutIcon()»
-			«editorInputPropertyTester(it, 'Shortcut', 'org.eclipse.gmf.runtime.notation.View',
-			shortcutTester.qualifiedClassName(editorGen.diagram).toString)»
+			«editorInputPropertyTester(it, 'Shortcut', 'org.eclipse.gmf.runtime.notation.View', shortcutTester.qualifiedClassName(editorGen.diagram).toString)»
 		«ENDIF»
-		
+
 		«registerBindings(it)»
-		
+
 		«tripleSpace(1)»<extension point="org.eclipse.ui.navigator.navigatorContent" id="navigator-content">
 		«tripleSpace(2)»«xmlGeneratedTag()»
 		«tripleSpace(2)»<navigatorContent
@@ -96,7 +95,7 @@ import xpt.editor.ShortcutPropertyTester
 		«tripleSpace(4)»</parentExpression>
 		«tripleSpace(3)»</commonSorter>
 		«tripleSpace(2)»</navigatorContent>
-		«IF generateDomainModelNavigator && null != editorGen.domainGenModel»
+		«IF generateDomainModelNavigator && null !== editorGen.domainGenModel »
 			«tripleSpace(2)»<navigatorContent
 			«tripleSpace(4)»id="«domainContentExtensionID»" 
 			«tripleSpace(4)»name="«domainContentExtensionName»" 
@@ -134,7 +133,7 @@ import xpt.editor.ShortcutPropertyTester
 		«tripleSpace(3)»</enablement>
 		«tripleSpace(2)»</actionProvider>
 		«tripleSpace(1)»</extension>
-			
+
 		«registerLinkHelper(it)»
 	«ENDIF»
 	'''
@@ -158,7 +157,7 @@ import xpt.editor.ShortcutPropertyTester
 		«tripleSpace(2)»<viewerContentBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
 		«tripleSpace(3)»<includes>
 		«tripleSpace(4)»<contentExtension pattern="«contentExtensionID»"/>
-		«IF generateDomainModelNavigator && null != editorGen.domainGenModel»
+		«IF generateDomainModelNavigator && null !== editorGen.domainGenModel »
 		«tripleSpace(4)»<contentExtension pattern="«domainContentExtensionID»"/>
 		«ENDIF»
 		«tripleSpace(4)»<contentExtension pattern="«linkHelperExtensionID»"/>

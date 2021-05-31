@@ -12,6 +12,7 @@
  * Alexander Shatalin (Borland) - initial API and implementation
  * Michael Golubev (Montages) - #372479, #386838
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up
  *****************************************************************************/
 package xpt.editor
 
@@ -44,11 +45,11 @@ import xpt.diagram.editpolicies.LinkUtils_qvto
 	@Inject extension Utils_qvto;
 	@Inject extension LinkUtils_qvto;
 	@Inject extension MetaModel;
-	
+
 	@Inject CodeStyle xptCodeStyle;
 	@Inject MetaModel xptMetaModel;
 	@Inject xpt.expressions.getExpression xptGetExpression;
-	
+
 	@MetaDef def getVisualIdMethodName(GenDiagram xptSelf) '''getVisualID'''
 
 	@MetaDef def getModelIDMethodName(GenDiagram xptSelf) '''getModelID'''
@@ -81,59 +82,58 @@ import xpt.diagram.editpolicies.LinkUtils_qvto
 	@MetaDef def runtimeTypedInstanceName(GenDiagram it) '''TYPED_INSTANCE'''
 
 	@MetaDef def runtimeTypedInstanceCall(GenDiagram it) '''«qualifiedClassName(it)».«runtimeTypedInstanceName(it)»'''
-	
+
 	@MetaDef def getDiagramVisualIDMethodName(GenDiagram it) '''getDiagramVisualID'''
-	
+
 	@MetaDef def getDiagramVisualIDMethodCall(GenDiagram it) '''«qualifiedClassName(it)».«getDiagramVisualIDMethodName(it)»'''
-	
+
 	@MetaDef def getNodeVisualIDMethodName(GenDiagram it) '''getNodeVisualID'''
 
 	@MetaDef def getNodeVisualIDMethodCall(GenDiagram it) '''«qualifiedClassName(it)».«getNodeVisualIDMethodName(it)»'''
-	
+
 	@MetaDef def canCreateNodeMethodName(GenDiagram it) '''canCreateNode'''
-	
+
 	@MetaDef def canCreateNodeMethodCall(GenDiagram it) '''«qualifiedClassName(it)».«canCreateNodeMethodName(it)»'''
 
 	@MetaDef def getLinkWithClassVisualIDMethodCall(GenDiagram it) '''«qualifiedClassName(it)».«getLinkWithClassVisualIDMethodName(it)»'''
-	
+
 	@MetaDef def getLinkWithClassVisualIDMethodName(GenDiagram it) '''getLinkWithClassVisualID'''
-	
+
 	@MetaDef def domainElementConstraintMethodName(GenCommonBase it) '''is«stringUniqueIdentifier()»'''
-	
+
 	@MetaDef def checkNodeVisualIDMethodName(GenDiagram it) '''checkNodeVisualID'''
-	
+
 	@MetaDef def checkNodeVisualIDMethodCall(GenDiagram it) '''«qualifiedClassName(it)».«checkNodeVisualIDMethodName(it)»'''
-	
+
 	@MetaDef def isCompartmentVisualIDMethodName(GenDiagram it) '''isCompartmentVisualID'''
 
 	@MetaDef def isCompartmentVisualIDMethodCall(GenDiagram it) '''«qualifiedClassName(it)».«isCompartmentVisualIDMethodName(it)»'''
-	
+
 	@MetaDef def isSemanticLeafVisualIDMethodName(GenDiagram it) '''isSemanticLeafVisualID'''
-	
+
 	@MetaDef def isSemanticLeafVisualIDMethodCall(GenDiagram it) '''«qualifiedClassName(it)».«isSemanticLeafVisualIDMethodName(it)»'''
 
-	
 	/**
 	 * [MG]: this set of def dispatch'es had been moved from xpt.editor.Utils.qvto as local for VisualIDRegistry
 	 */
 	def dispatch Iterable<GenCommonBase> getEssentialVisualChildren(GenCommonBase it) {
 		return <GenCommonBase>newLinkedList()
 	}
-	
+
 	/**
 	 * [MG]: this set of def dispatch'es had been moved from xpt.editor.Utils.qvto as local for VisualIDRegistry
 	 */
 	def dispatch Iterable<GenCommonBase> getEssentialVisualChildren(GenLink it) {
 		return it.labels.filter(typeof(GenCommonBase))
 	}
-	
+
 	/**
 	 * [MG]: this set of def dispatch'es had been moved from xpt.editor.Utils.qvto as local for VisualIDRegistry
 	 */
 	def dispatch Iterable<GenCommonBase> getEssentialVisualChildren(GenContainerBase it) {
 		return it.containedNodes.filter(typeof(GenCommonBase))
 	}
-	
+
 	/**
 	 * [MG]: this set of def dispatch'es had been moved from xpt.editor.Utils.qvto as local for VisualIDRegistry
 	 */
@@ -144,19 +144,19 @@ import xpt.diagram.editpolicies.LinkUtils_qvto
 		result.addAll(it.containedNodes)
 		return result
 	}
-	
+
 	def Iterable<GenNode> getContainedSemanticNodes(GenContainerBase container) {
-		return container.containedNodes.filter[node | null != node.modelFacet]
+		return container.containedNodes.filter[node | null !== node.modelFacet]
 	}
-	
+
 	def className(GenDiagram it) '''«visualIDRegistryClassName»'''
 
 	def packageName(GenDiagram it) '''«it.editorGen.editor.packageName»'''
 
 	def qualifiedClassName(GenDiagram it) '''«packageName(it)».«className(it)»'''
-	
+
 	def fullPath(GenDiagram it) '''«qualifiedClassName(it)»'''
-	
+
 	def VisualIDRegistry(GenDiagram it) '''
 	«copyright(getDiagram().editorGen)»
 	package «packageName(it)»;
@@ -164,47 +164,48 @@ import xpt.diagram.editpolicies.LinkUtils_qvto
 	«generatedClassComment(
 		'This registry is used to determine which type of visual object should be\n' + 
 		'created for the corresponding Diagram, Node, ChildNode or Link represented\n' + 
-		'by a domain model object.\n'	
+		'by a domain model object.'	
 	)»
 	public class «className(it)» {
 
 		«attributes(it)»
-	
+
 		«getViewVisualID(it)»
-		
+
 		«getModelID(it)»
-		
+
 		«getVisualID(it)»
-	
+
 		«getType(it)»
-		
+
 		«getDiagramVisualID(it)»
-		
+
 		«getNodeVisualID(it)»
-		
+
 		«canCreateNode(it)»
-		
+
 		«getLinkWithClassVisualID(it)»
-		
+
 		«isDiagram(it)»
-	
+
 		«constraintMethods(it)»
-		
+
 		«checkNodeVisualID(it)»
-	
+
 		«isCompartmentVisualID(it)»
-	
+
 		«isSemanticLeafVisualID(it)»
-	
+
 		«runtimeTypedInstance(it)»
-	
-		«additions(it)»	
 	}
 	'''
 
 	def attributes(GenDiagram it) '''
-		«generatedMemberComment()»
-		private static final String DEBUG_KEY = "«editorGen.plugin.ID»/debug/visualID"; «nonNLS(1)»
+		// Uncomment for debug puprose ?
+		// /**
+		// * @generated
+		// */
+		// private static final String DEBUG_KEY = "«editorGen.plugin.ID»/debug/visualID"; «nonNLS(1)»
 	'''
 
 	def getViewVisualID(GenDiagram it) '''
@@ -269,21 +270,23 @@ import xpt.diagram.editpolicies.LinkUtils_qvto
 	def dispatch checkSemanticElement(GenCommonBase it) '''
 		«ERROR('checkSemanticElement not supported for: ' + it)»
 	'''
-	
+
 	def dispatch checkSemanticElement(GenDiagram it) '''«checkDomainElementMetaclass(domainDiagramElement)» && isDiagram(«xptMetaModel.CastEObject(domainDiagramElement, 'domainElement')»)'''
 	def dispatch checkSemanticElement(GenNode it) '''«checkDomainElementMetaclass(modelFacet.metaClass)»«checkDomainElementConstraints(it.modelFacet, it)»'''
 	def dispatch checkSemanticElement(GenLink it) '''«checkSemanticElement(it.modelFacet, it)»'''
 
 	def checkDomainElementMetaclass(GenClass it) '''«xptMetaModel.MetaClass(it)».isSuperTypeOf(domainElement.eClass())'''
 
-	def checkDomainElementConstraints(TypeModelFacet it, GenCommonBase commonBase) 
-	'''
-«««		«IF null != modelElementSelector»
-«««		//«it.eContainer»
-«««		//->«modelElementSelector»
-«««		«ENDIF»
+	def checkDomainElementConstraints(TypeModelFacet it, GenCommonBase commonBase)
+	/*
+	 * «««		«IF null != modelElementSelector»
+		«««		//«it.eContainer»
+		«««		//->«modelElementSelector»
+		«««		«ENDIF»
 		«««	 [ExtendedConstraint] START Testing the kind of ModelFacet (GenLink or Default case)
-		«IF null != modelElementSelector»
+	 */
+	'''
+		«IF null !== modelElementSelector »
 			«IF commonBase instanceof GenLink || !(modelElementSelector.provider instanceof GenJavaExpressionProvider)»
 				«««	[ExtendedConstraint] END   Testing the kind of ModelFacet (GenLink or Default case)
 				 && «domainElementConstraintMethodName(commonBase)»(«CastEObject(metaClass,'domainElement')»)
@@ -297,7 +300,6 @@ import xpt.diagram.editpolicies.LinkUtils_qvto
 
 	def dispatch checkSemanticElement(LinkModelFacet it, GenLink genLink) '''«ERROR('checkSemanticElement is supported only for TypeLinkModelFacet: ' + it)»'''
 	def dispatch checkSemanticElement(TypeLinkModelFacet it, GenLink genLink) '''«checkDomainElementMetaclass(metaClass)»«checkDomainElementConstraints(it, genLink)»'''
-
 
 	def getNodeVisualID(GenDiagram it) '''
 	«generatedMemberComment()»
@@ -391,15 +393,18 @@ import xpt.diagram.editpolicies.LinkUtils_qvto
 	'''
 
 	def isDiagram(GenDiagram it) '''
-	«IF null != domainDiagramElement»
-		«generatedMemberComment(
-				'User can change implementation of this method to handle some specific\n' + 
-				'situations not covered by default logic.\n'
-		)»
-		private static boolean isDiagram(«xptMetaModel.QualifiedClassName(domainDiagramElement)» element) {
-			return true;
-		}
-	«ENDIF»
+		«IF null !== domainDiagramElement »
+			// Uncomment for debug puprose ?
+			// /**
+			// * User can change implementation of this method to handle some specific
+			// * situations not covered by default logic.
+			// *
+			// * @generated
+			// */
+			// private static boolean isDiagram(Package element) {
+			// return true;
+			// }
+		«ENDIF»
 	'''
 
 	/**
@@ -411,10 +416,10 @@ import xpt.diagram.editpolicies.LinkUtils_qvto
 	 * FIXME don't use static fields, replace with instance/separate cache (e.g. accessible from Activator)
 	 */		
 	def constraintMethods(GenDiagram it) '''
-			«IF null != editorGen.expressionProviders»
-				«FOR topNode : topLevelNodes.filter[n|!n.sansDomain].filter[n|n.modelFacet.modelElementSelector != null]»«constraintMethod(
+			«IF null !== editorGen.expressionProviders »
+				«FOR topNode : topLevelNodes.filter[n|!n.sansDomain].filter[n| n.modelFacet.modelElementSelector !== null ]»«constraintMethod(
 				topNode)»«ENDFOR»
-				«FOR childNode : childNodes.filter[n|!n.sansDomain].filter[n|n.modelFacet.modelElementSelector != null]»«constraintMethod(
+				«FOR childNode : childNodes.filter[n|!n.sansDomain].filter[n| n.modelFacet.modelElementSelector !== null ]»«constraintMethod(
 				childNode)»«ENDFOR»
 				«FOR link : links.filter[n|!n.sansDomain]»«constraintMethod(link.modelFacet, link)»«ENDFOR»
 			«ENDIF»
@@ -425,8 +430,7 @@ import xpt.diagram.editpolicies.LinkUtils_qvto
 
 	def dispatch constraintMethod(LinkModelFacet it, GenLink l) '''''' // no-op
 	def dispatch constraintMethod(TypeLinkModelFacet it, GenLink l) 
-	'''«IF modelElementSelector != null»«domainElementConstraintMethod(modelElementSelector.provider, l, modelElementSelector, metaClass)»«ENDIF»'''
-
+	'''«IF modelElementSelector !== null »«domainElementConstraintMethod(modelElementSelector.provider, l, modelElementSelector, metaClass)»«ENDIF»'''
 
 	def dispatch domainElementConstraintMethod(GenExpressionProviderBase it, GenCommonBase diagramElement, ValueExpression expression, GenClass context)
 		'''«ERROR('Constraint method is not supported for ' + it)»'''
@@ -443,9 +447,9 @@ import xpt.diagram.editpolicies.LinkUtils_qvto
 		context)» domainElement) {
 		«ENDIF»
 		««« [ExtendedConstraint] END   Testing the kind of ModelFacet (GenLink or Default case)
-		«IF injectExpressionBody && (expression.body != null && expression.body.length() != 0)»
+		«IF injectExpressionBody && ( expression.body !== null && expression.body.length() != 0)»
 			«expression.body»
-		«ELSEIF throwException || (injectExpressionBody && (expression.body == null || expression.body.length() == 0))»
+		«ELSEIF throwException || (injectExpressionBody && ( expression.body === null || expression.body.length() == 0))»
 			// FIXME: implement this method 
 			// Ensure that you remove @generated or mark it @generated NOT
 			throw new java.lang.UnsupportedOperationException("No java implementation provided in '« domainElementConstraintMethodName(diagramElement)»' operation");«nonNLS»
@@ -465,23 +469,21 @@ import xpt.diagram.editpolicies.LinkUtils_qvto
 	'''
 	// Constraints support end.
 
-
 	def unrecognizedVID(GenDiagram it) '''
 	return "";
 	'''
-	
+
 	def checkNodeVisualID(GenDiagram it) '''
 		«generatedMemberComment()»
 		public static boolean «checkNodeVisualIDMethodName(it)»(org.eclipse.gmf.runtime.notation.View containerView, org.eclipse.emf.ecore.EObject domainElement, String candidate) {
 			if (candidate == null){
-				//unrecognized id is always bad
+				// unrecognized id is always bad
 				return false;
 			}
 			String basic = «getNodeVisualIDMethodName(it)»(containerView, domainElement);
 			return candidate.equals(basic);
 		}
 	'''
-
 
 	def isCompartmentVisualID(GenDiagram it) '''
 		«generatedMemberComment()»
@@ -527,31 +529,31 @@ import xpt.diagram.editpolicies.LinkUtils_qvto
 			public String «getVisualIdMethodName(it)»(org.eclipse.gmf.runtime.notation.View view) {
 				return «getVisualIDMethodCall(it)»(view);
 			}
-			
+
 			«generatedMemberComment()»
 			«xptCodeStyle.overrideC(it)»
 			public String «getModelIDMethodName(it)»(org.eclipse.gmf.runtime.notation.View view) {
 				return «getModelIDMethodCall(it)»(view);
 			}
-			
+
 			«generatedMemberComment()»
 			«xptCodeStyle.overrideC(it)»
 			public String «getNodeVisualIDMethodName(it)»(org.eclipse.gmf.runtime.notation.View containerView, org.eclipse.emf.ecore.EObject domainElement) {
 				return «getNodeVisualIDMethodCall(it)»(containerView, domainElement);
 			}
-			
+
 			«generatedMemberComment()»
 			«xptCodeStyle.overrideC(it)»
 			public boolean «checkNodeVisualIDMethodName(it)»(org.eclipse.gmf.runtime.notation.View containerView, org.eclipse.emf.ecore.EObject domainElement, String candidate) {
 				return «checkNodeVisualIDMethodCall(it)»(containerView, domainElement, candidate);
 			}
-			
+
 			«generatedMemberComment()»
 			«xptCodeStyle.overrideC(it)»
 			public boolean «isCompartmentVisualIDMethodName(it)»(String visualID) {
 				return «isCompartmentVisualIDMethodCall(it)»(visualID);
 			}
-			
+
 			«generatedMemberComment()»
 			«xptCodeStyle.overrideC(it)»
 			public boolean «isSemanticLeafVisualIDMethodName(it)»(String visualID) {
@@ -561,6 +563,4 @@ import xpt.diagram.editpolicies.LinkUtils_qvto
 	'''
 
 	def caseVisualID(GenCommonBase xptSelf) '''case «VisualIDRegistry::visualID(xptSelf)»:'''
-
-	def additions(GenDiagram it) ''''''
 }

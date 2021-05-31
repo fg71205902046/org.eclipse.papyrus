@@ -15,12 +15,20 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part;
 
+import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.DragTracker;
+import org.eclipse.gef.EditPart;
+import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.requests.SelectionRequest;
 import org.eclipse.gef.tools.DeselectAllTracker;
 import org.eclipse.gmf.runtime.diagram.ui.internal.tools.RubberbandDragTracker;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.XYLayoutShapeCompartmentEditPart;
 
@@ -81,7 +89,54 @@ public abstract class AbstractPackageableElementCompartmentEditPart extends XYLa
 	}
 
 	@Override
+	public final EditPart getTargetEditPart(Request request) {
+		return super.getTargetEditPart(request);
+	}
+
+
+	@Override
 	public boolean isSelectable() {
 		return false;
+	}
+
+	@Override
+	protected final void handleNotificationEvent(Notification notification) {
+		Object feature = notification.getFeature();
+		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature)
+				|| NotationPackage.eINSTANCE.getSize_Height().equals(feature)
+				|| NotationPackage.eINSTANCE.getLocation_X().equals(feature)
+				|| NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
+			refreshBounds();
+		}
+		super.handleNotificationEvent(notification);
+	}
+
+	/**
+	 * Refresh bounds.
+	 */
+	protected final void refreshBounds() {
+		int width = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
+		int height = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
+		Dimension size = new Dimension(width, height);
+		int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
+		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
+		Point loc = new Point(x, y);
+		((GraphicalEditPart) getParent()).setLayoutConstraint(
+				this,
+				getFigure(),
+				new Rectangle(loc, size));
+	}
+
+	@Override
+	protected final void refreshVisuals() {
+		super.refreshVisuals();
+		refreshBounds();
+	}
+
+	@Override
+	protected final void setRatio(Double ratio) {
+		if (getFigure().getParent().getLayoutManager() instanceof ConstrainedToolbarLayout) {
+			super.setRatio(ratio);
+		}
 	}
 }

@@ -12,6 +12,7 @@
  *    Artem Tikhomirov (Borland) - initial API and implementation
  * 	  Michael Golubev (Montages) - #386838 - migrate to Xtend2
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
+ *    Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up
  *****************************************************************************/
 package impl.preferences
 
@@ -42,30 +43,27 @@ import xpt.Common
 	def Main(GenCustomPreferencePage it) '''
 		«copyright(it.diagram.editorGen)»
 		package «packageName(it)»;
-		
+
 		«generatedClassComment»
 		public class «className(it)» «extendsList(it)» «implementsList(it)» {
-		
+
 			«FOR pref : preferences»
 				«constant(pref)»
 			«ENDFOR»
-		
+
 			«generatedMemberComment»
 			public «className(it)»() {
 				setPreferenceStore(«diagram.editorGen.plugin.activatorQualifiedClassName».getInstance().getPreferenceStore());
 			}
-		
+
 			«methods(it)»
 			«initDefaultsMethod(it)»
-			«additions(it)»
 		}
 	'''
 
 	def extendsList(GenCustomPreferencePage it) '''extends org.eclipse.gmf.runtime.common.ui.preferences.AbstractPreferencePage'''
 
 	def implementsList(GenCustomPreferencePage it) '''«/* no-op */»'''
-
-	def additions(GenCustomPreferencePage it) ''''''
 
 	/**
 	 * [artem]: the reason I didn't split this template up into two distinct, addFieldsMethod and initHelpMethod, is that
@@ -78,7 +76,7 @@ import xpt.Common
 			// TODO  Provide method implementation
 			throw new UnsupportedOperationException();
 		}
-		
+
 		«generatedMemberComment»
 		protected void initHelp() {
 			// TODO implement this method if needed, or leave as no-op
@@ -88,11 +86,11 @@ import xpt.Common
 	def initDefaultsMethod(GenCustomPreferencePage it) '''
 		«generatedMemberComment»
 		public static void initDefaults(org.eclipse.jface.preference.IPreferenceStore store) {
-			«IF it.preferences.empty || it.preferences.exists[p|p.defaultValue == null]»
+			«IF it.preferences.empty || it.preferences.exists[p|p.defaultValue === null]»
 				// TODO this code is invoked during preference store initialization, please fill
 				// the store passed with default preference values.
 			«ENDIF»
-			«FOR pref : it.preferences.filter[p|p.defaultValue != null]»
+			«FOR pref : it.preferences.filter[p|p.defaultValue !== null]»
 				«setDefaultValue(pref, 'store')»
 			«ENDFOR»
 		}

@@ -82,7 +82,7 @@ import org.eclipse.uml2.uml.Feature;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * An intermediate class with the common methods used by the link labels (inherit from PapyrusLabelEditPart).
+ * An intermediate class with the common methods used by the compartments (inherit from UMLCompartmentEditPart).
  *
  * @author allogo
  */

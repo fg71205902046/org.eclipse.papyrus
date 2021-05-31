@@ -56,12 +56,10 @@ public class AssociationBranchEditPart extends AbstractAssociationBranchEditPart
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof AssociationBranchRoleEditPart) {
-			((AssociationBranchRoleEditPart) childEditPart).setLabel(
-					getPrimaryShape().getRoleSourceLabel());
+			((AssociationBranchRoleEditPart) childEditPart).setLabel(getPrimaryShape().getRoleSourceLabel());
 		}
 		if (childEditPart instanceof AssociationBranchMutliplicityEditPart) {
-			((AssociationBranchMutliplicityEditPart) childEditPart).setLabel(
-					getPrimaryShape().getMultiplicitySourceLabel());
+			((AssociationBranchMutliplicityEditPart) childEditPart).setLabel(getPrimaryShape().getMultiplicitySourceLabel());
 		}
 		return false;
 	}
@@ -121,5 +119,4 @@ public class AssociationBranchEditPart extends AbstractAssociationBranchEditPart
 	public AssociationFigure getPrimaryShape() {
 		return (AssociationFigure) getFigure();
 	}
-
 }

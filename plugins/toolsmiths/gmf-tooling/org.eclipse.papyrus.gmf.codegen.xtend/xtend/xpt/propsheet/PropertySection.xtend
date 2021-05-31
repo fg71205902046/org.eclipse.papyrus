@@ -38,16 +38,15 @@ import xpt.Common
 	def PropertySection(GenCustomPropertyTab it) '''
 		«copyright(sheet.editorGen)»
 		package «packageName(it)»;
-		
+
 		«generatedClassComment»
 		public class «className(it)» «extendsList(it)» «implementsClause(it)» {
-		
+
 			«IF sheet.readOnly»
 				«createReadonlyControlsMethod(it)»
 			«ENDIF»
 			«transfromSelectionMethod(it)»
-		
-			«additions(it)»
+
 		}
 	'''
 
@@ -75,17 +74,6 @@ import xpt.Common
 	'''
 
 	def transfromSelectionMethodBodyDefault(GenCustomPropertyTab it) '''
-		selected = /*super.*/transformSelectionToDomain(selected);
+		selected = /* super. */transformSelectionToDomain(selected);
 	'''
-
-	/**
-	 * DEFINE's below are not supported anymore (code moved to superclass in 3.1). 
-	 * If your xpt version have them, call it from custom version of additions
-	 * <p>
-	 * def dispatch getPropertySourceMethod(GenCustomPropertyTab it) '''''' 
-	 * def dispatch getPropertySourceProviderMethod(GenCustomPropertyTab it) ''''''
-	 * def dispatch setInputMethod(GenCustomPropertyTab it) ''''''
-	 * def dispatch getAdapterFactoryMethod(GenCustomPropertyTab it) ''''''
-	 */
-	def additions(GenCustomPropertyTab it) ''''''
 }

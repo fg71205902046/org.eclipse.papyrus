@@ -20,7 +20,6 @@ import com.google.inject.Inject
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenChildLabelNode
 import xpt.Common
 import xpt.QualifiedClassNameProvider
-import xpt.diagram.editpolicies.TextNonResizableEditPolicy
 import xpt.CodeStyle
 
 /**
@@ -32,7 +31,6 @@ import xpt.CodeStyle
 	@Inject extension CodeStyle
 	@Inject extension xpt.diagram.editparts.Common;
 	@Inject xpt.diagram.editparts.Common xptEditpartsCommon;
-	@Inject TextNonResizableEditPolicy xptTextNonResizable;
 
 	def className(GenChildLabelNode it) '''«editPartClassName»'''
 
@@ -55,7 +53,7 @@ import xpt.CodeStyle
 	def createDefaultEditPoliciesBody(GenChildLabelNode it) '''
 		super.createDefaultEditPolicies();
 		installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE, new «getItemSemanticEditPolicyQualifiedClassName(it)»());
-		installEditPolicy(org.eclipse.gef.EditPolicy.PRIMARY_DRAG_ROLE, new «xptTextNonResizable.qualifiedClassName(getDiagram())»());
+		installEditPolicy(org.eclipse.gef.EditPolicy.PRIMARY_DRAG_ROLE, new org.eclipse.papyrus.uml.diagram.common.editpolicies.UMLTextNonResizableEditPolicy());
 		installEditPolicy(org.eclipse.gef.EditPolicy.COMPONENT_ROLE, new org.eclipse.gmf.runtime.diagram.ui.editpolicies.ListItemComponentEditPolicy());
 		installEditPolicy(org.eclipse.gef.EditPolicy.DIRECT_EDIT_ROLE, new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy());
 		«xptEditpartsCommon.behaviour(it)»

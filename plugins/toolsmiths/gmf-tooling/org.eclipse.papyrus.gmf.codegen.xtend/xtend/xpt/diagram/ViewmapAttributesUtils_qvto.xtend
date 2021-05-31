@@ -29,54 +29,54 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.ViewmapLayoutType
 	}
 
 	def boolean isFixedFont(Viewmap xptSelf) {
-		return xptSelf != null && xptSelf.attributes.filter(typeof(StyleAttributes)).exists[fixedFont]
+		return xptSelf !== null && xptSelf.attributes.filter(typeof(StyleAttributes)).exists[fixedFont]
 	}
 
 	def boolean isFixedForeground(Viewmap xptSelf) {
-		return xptSelf != null && xptSelf.attributes.filter(typeof(StyleAttributes)).exists[fixedForeground]
+		return xptSelf !== null && xptSelf.attributes.filter(typeof(StyleAttributes)).exists[fixedForeground]
 	}
 
 	def boolean isFixedBackground(Viewmap xptSelf) {
-		return xptSelf != null && xptSelf.attributes.filter(typeof(StyleAttributes)).exists[fixedBackground]
+		return xptSelf !== null && xptSelf.attributes.filter(typeof(StyleAttributes)).exists[fixedBackground]
 	}
 
 	def boolean canUseShapeStyle(Viewmap xptSelf) {
-		return xptSelf != null && !(xptSelf.isFixedFont() || xptSelf.isFixedForeground() || xptSelf.isFixedBackground());
+		return xptSelf !== null && !(xptSelf.isFixedFont() || xptSelf.isFixedForeground() || xptSelf.isFixedBackground());
 	}
 
 	def ResizeConstraints getResizeConstraints(Viewmap viewmap) {
-		if(viewmap == null) return null;
+		if(viewmap === null) return null;
 		return viewmap.attributes.filter(typeof(ResizeConstraints)).head
 	}
 
 	def DefaultSizeAttributes getDefaultSizeAttributes(Viewmap viewmap) {
-		if(viewmap == null) return null;
+		if(viewmap === null) return null;
 		return viewmap.attributes.filter(typeof(DefaultSizeAttributes)).head
 	}
 
 	def LabelOffsetAttributes getLabelOffsetAttributes(Viewmap viewmap) {
-		if(viewmap == null) return null;
+		if(viewmap === null) return null;
 		return viewmap.attributes.filter(typeof(LabelOffsetAttributes)).head
 	}
 
 	def int defaultSizeWidth(Viewmap viewmap, int defaultValue) {
 		var result = getDefaultSizeAttributes(viewmap)
-		return if(result == null) defaultValue else result.width
+		return if(result === null) defaultValue else result.width
 	}
 
 	def int defaultSizeHeight(Viewmap viewmap, int defaultValue) {
 		var result = getDefaultSizeAttributes(viewmap)
-		return if(result == null) defaultValue else result.height
+		return if(result === null) defaultValue else result.height
 	}
 
 	def int labelOffsetX(Viewmap viewmap, int defaultValue) {
 		var result = getLabelOffsetAttributes(viewmap)
-		return if(result == null) defaultValue else result.x
+		return if(result === null) defaultValue else result.x
 	}
 
 	def int labelOffsetY(Viewmap viewmap, int defaultValue) {
 		var result = getLabelOffsetAttributes(viewmap)
-		return if(result == null) defaultValue else result.y
+		return if(result === null) defaultValue else result.y
 	}
 
 }

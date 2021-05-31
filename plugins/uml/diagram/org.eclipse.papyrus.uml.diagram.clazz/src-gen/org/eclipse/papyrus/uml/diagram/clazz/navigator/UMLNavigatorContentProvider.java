@@ -74,7 +74,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		myEditingDomain = (AdapterFactoryEditingDomain) editingDomain;
 		@SuppressWarnings("serial")
 		Map<Resource, Boolean> map = new HashMap<>() {
-
 			@Override
 			public Boolean get(java.lang.Object key) {
 				if (!containsKey(key)) {
@@ -87,7 +86,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		};
 		myEditingDomain.setResourceToReadOnlyMap(map);
 		myViewerRefreshRunnable = new Runnable() {
-
 			@Override
 			public void run() {
 				if (myViewer != null) {
@@ -96,7 +94,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 			}
 		};
 		myWorkspaceSynchronizer = new WorkspaceSynchronizer(editingDomain, new WorkspaceSynchronizer.Delegate() {
-
 			@Override
 			public void dispose() {
 			}
@@ -285,5 +282,4 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	public boolean hasChildren(Object element) {
 		return element instanceof IFile || getChildren(element).length > 0;
 	}
-
 }

@@ -36,7 +36,6 @@ import org.eclipse.emf.codegen.merge.java.JControlModel;
 import org.eclipse.emf.codegen.merge.java.JMerger;
 import org.eclipse.emf.codegen.util.CodeGenUtil;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.papyrus.gmf.codegen.util.MergeFileSystemAccess;
 import org.eclipse.papyrus.gmf.common.codegen.OutputFormatterUtil;
 import org.eclipse.papyrus.gmf.internal.common.codegen.DefaultTextMerger;
 import org.eclipse.papyrus.gmf.internal.common.codegen.TextMerger;

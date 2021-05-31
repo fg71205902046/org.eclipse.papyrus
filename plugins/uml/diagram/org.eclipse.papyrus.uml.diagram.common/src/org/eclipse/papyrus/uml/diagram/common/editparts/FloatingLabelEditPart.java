@@ -11,7 +11,7 @@
  * Contributors:
  *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and Implementation
  *   Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 525463
- *
+ *   Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : generate less dead or duplicate code
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editparts;
 
@@ -28,8 +28,9 @@ import org.eclipse.papyrus.infra.gmfdiag.common.utils.NamedStyleProperties;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.MaskManagedFloatingLabelEditPolicy;
 
 /**
- * The Class FloatingNameEditPart.
+ * The Class FloatingNameEditPart. replaced by {@link AbstractFloatingLabelEditPart} with less generated code
  */
+@Deprecated
 public class FloatingLabelEditPart extends PapyrusLabelEditPart implements NamedStyleProperties, IFloatingLabelEditPart {
 
 

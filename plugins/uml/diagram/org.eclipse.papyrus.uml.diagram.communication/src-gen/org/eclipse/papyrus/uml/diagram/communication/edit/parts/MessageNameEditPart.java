@@ -68,9 +68,9 @@ import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.utils.DirectEdi
 import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.communication.custom.edit.policies.MessageNameEditPolicy;
-import org.eclipse.papyrus.uml.diagram.communication.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.communication.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.communication.providers.UMLElementTypes;
 import org.eclipse.swt.SWT;

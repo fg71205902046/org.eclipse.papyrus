@@ -47,7 +47,7 @@ import xpt.GenModelUtils_qvto
 	}
 
 	def boolean canBeContainer(GenLink link, GenClass metaClass) {
-		link.modelFacet != null && isCompatible(link.modelFacet.getContainerClass(), metaClass)
+		link.modelFacet !== null && isCompatible(link.modelFacet.getContainerClass(), metaClass)
 	}
 
 	private def dispatch GenClass getContainerClass(LinkModelFacet facet) {
@@ -63,7 +63,7 @@ import xpt.GenModelUtils_qvto
 	}
 
 	private def boolean isCompatible(GenClass desiredType, GenClass actualClass) {
-		return null != desiredType && desiredType.isSuperTypeOf(actualClass)
+		return null !== desiredType && desiredType.isSuperTypeOf(actualClass)
 	}
 
 }

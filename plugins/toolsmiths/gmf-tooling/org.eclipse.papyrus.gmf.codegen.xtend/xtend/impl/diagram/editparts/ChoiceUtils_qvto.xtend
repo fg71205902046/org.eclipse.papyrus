@@ -29,24 +29,24 @@ import xpt.Common_qvto
 
 	def boolean isOclChoiceLabel(GenCommonBase xptSelf) {
 		var LabelModelFacet labelModelFacet = getLabelModelfacet(xptSelf)
-		return labelModelFacet != null && labelModelFacet.parser.oclIsKindOf(typeof(OclChoiceParser))
+		return labelModelFacet !== null && labelModelFacet.parser.oclIsKindOf(typeof(OclChoiceParser))
 	}
 
 	def boolean isOclChoiceLabelWithShowExpr(GenCommonBase xptSelf) {
 		var LabelModelFacet labelModelFacet = getLabelModelfacet(xptSelf)
-		if (labelModelFacet == null) {
+		if (labelModelFacet === null) {
 			return false
 		}
 		var parser = labelModelFacet.parser;
 		return switch (parser) {
-			OclChoiceParser: parser.showExpression != null
+			OclChoiceParser: parser.showExpression !== null
 			default: false
 		}
 	}
 
 	def boolean isChoiceLabel(LabelModelFacet modelFacet) {
 		var parser = modelFacet.parser;
-		if (parser != null) {
+		if (parser !== null) {
 			return parser.oclIsKindOf(typeof(PredefinedEnumParser)) || parser.oclIsKindOf(typeof(OclChoiceParser));
 		} else {
 			return false;

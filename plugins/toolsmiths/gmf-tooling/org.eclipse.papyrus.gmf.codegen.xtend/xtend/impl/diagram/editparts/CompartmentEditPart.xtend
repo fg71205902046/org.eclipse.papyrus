@@ -31,7 +31,6 @@ import xpt.CodeStyle
 	@Inject extension Common;
 	@Inject extension CodeStyle;
 
-
 	@Inject extension Utils_qvto;
 
 	@Inject Externalizer xptExternalizer;
@@ -89,10 +88,8 @@ import xpt.CodeStyle
 			'''
 		}
 	}
-		
-	
 
-	def createDefaultEditPoliciesBody(GenCompartment it) '''
+	def CharSequence createDefaultEditPoliciesBody(GenCompartment it) '''
 		super.createDefaultEditPolicies();
 		«IF canCollapse»
 			installEditPolicy(org.eclipse.gef.EditPolicy.PRIMARY_DRAG_ROLE, new org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableCompartmentEditPolicy());
