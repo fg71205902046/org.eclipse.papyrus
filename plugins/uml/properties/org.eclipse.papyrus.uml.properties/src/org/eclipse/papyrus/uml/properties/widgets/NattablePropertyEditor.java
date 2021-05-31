@@ -12,7 +12,7 @@
  *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation, Bug 502160, 494531
  *  Christian W. Damus - bugs 493858, 493853, 516310, 517313
  *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr - bugs 494537, 504745
- *  Asma SMAOUI (CEA LIST) - bug 573840
+ *  Asma SMAOUI (CEA LIST) - bug 573840, 573841 
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.widgets;
 
@@ -99,6 +99,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.ui.internal.views.properties.tabbed.view.TabbedPropertyComposite;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * The property editor for the nattable widget.
@@ -317,7 +319,14 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 			sourceElement = eModelElement;
 		} else if (modelElement instanceof EMFModelElement) {
 			final EMFModelElement emfModelElement = (EMFModelElement) modelElement;
-			sourceElement = emfModelElement.getSource();
+			EObject source = emfModelElement.getSource();
+			if (!(source instanceof Element)) {
+				final Element baseElement = UMLUtil.getBaseElement(source);
+				if (baseElement != null) {// in other case we will get an exeption somewhere
+					source = baseElement;
+				}
+			}
+			sourceElement = source;
 			feature = emfModelElement.getFeature(getLocalPropertyPath());
 		} else {
 			displayError("Invalid table context"); //$NON-NLS-1$
