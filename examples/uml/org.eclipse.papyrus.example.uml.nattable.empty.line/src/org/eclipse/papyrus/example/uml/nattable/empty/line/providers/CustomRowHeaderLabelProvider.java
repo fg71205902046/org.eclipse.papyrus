@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 CEA LIST
+ * Copyright (c) 2020,2021 CEA LIST
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Asma SMAOUI (CEA LIST) - bug 573840
   *****************************************************************************/
 
 package org.eclipse.papyrus.example.uml.nattable.empty.line.providers;
@@ -30,7 +31,7 @@ public class CustomRowHeaderLabelProvider extends AbstractEmptyLineRowHeaderLabe
 	 * @param tableKind
 	 */
 	public CustomRowHeaderLabelProvider() {
-		super(Activator.TABLE_KIND_ID);
+		super(Activator.TABLE_TYPE);
 	}
 
 	/**

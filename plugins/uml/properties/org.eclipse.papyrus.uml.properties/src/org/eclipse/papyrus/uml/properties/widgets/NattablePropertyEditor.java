@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015, 2016, 2017 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2015, 2016, 2017, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,7 +12,7 @@
  *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation, Bug 502160, 494531
  *  Christian W. Damus - bugs 493858, 493853, 516310, 517313
  *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr - bugs 494537, 504745
- *  
+ *  Asma SMAOUI (CEA LIST) - bug 573840
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.widgets;
 
@@ -802,7 +802,8 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 		}
 
 		table.setName(getLabel());
-
+		// for table used in property view, the kindId was null, because it is given by the AF. So we propose to use the type for kindId
+		table.setTableKindId(table.getTableConfiguration().getType());
 		AbstractAxisProvider rowProvider = tableConfiguration.getDefaultRowAxisProvider();
 		if (rowProvider == null) {
 			rowProvider = NattableaxisproviderFactory.eINSTANCE.createMasterObjectAxisProvider();
