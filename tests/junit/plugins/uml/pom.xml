@@ -39,6 +39,7 @@
 		<module>org.eclipse.papyrus.uml.service.types.tests</module>
 		<module>org.eclipse.papyrus.uml.service.types.ui.tests</module>
 		<module>org.eclipse.papyrus.uml.architecture.tests</module>
+		<module>org.eclipse.papyrus.uml.types.core.tests</module>
 
 	</modules>
 

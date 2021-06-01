@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 Christian W. Damus, CEA LIST, and others.
+ * Copyright (c) 2020, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -114,7 +114,7 @@ public class StereotypeMatcherEditHelperAdvice extends AbstractEditHelperAdvice 
 
 		String profileQualifiedName = stereotypeQualifiedName.substring(0, sep);
 		String stereotypeName = stereotypeQualifiedName.substring(sep + NamedElement.SEPARATOR.length());
-		Profile profile = context.getAppliedProfile(profileQualifiedName);
+		Profile profile = context.getAppliedProfile(profileQualifiedName, true);
 		return profile != null && profile.getOwnedStereotype(stereotypeName) != null;
 	}
 
