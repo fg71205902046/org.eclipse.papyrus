@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2017, 2018 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2013, 2021, 2018 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -12,7 +12,7 @@
  * Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 422257
- *  Christian W. Damus - bugs 463156, 493030
+ *  Christian W. Damus - bugs 463156, 493030, 573886
  *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 519409
  *  Benoit Maggi (CEA) - Bug 536581
  *****************************************************************************/
@@ -23,6 +23,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.eclipse.emf.ecore.EClass;
@@ -43,6 +44,7 @@ import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureContext;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureViewpoint;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.representation.AssistantRule;
 import org.eclipse.papyrus.infra.gmfdiag.representation.ChildRule;
 import org.eclipse.papyrus.infra.gmfdiag.representation.PaletteRule;
@@ -176,10 +178,10 @@ public class PolicyChecker {
 		if (prototype == null) {
 			return false;
 		}
-		if (!matchesProfiles(prototype.representationKind, profileHelper.getAppliedProfiles(owner))) {
+		if (!matchesProfiles(prototype.representationKind, owner, profileHelper.getAppliedProfiles(owner))) {
 			return false;
 		}
-		if (!matchesProfiles(prototype.representationKind, profileHelper.getAppliedProfiles(element))) {
+		if (!matchesProfiles(prototype.representationKind, owner, profileHelper.getAppliedProfiles(element))) {
 			return false;
 		}
 		if (!matchesCreationRoot(prototype.representationKind, element, profileHelper.getAppliedStereotypes(element), () -> prototype.getViewCountOn(element))) {
@@ -356,7 +358,7 @@ public class PolicyChecker {
 		for (MergedArchitectureViewpoint viewpoint : getViewpoints()) {
 			for (RepresentationKind kind : viewpoint.getRepresentationKinds()) {
 				PapyrusRepresentationKind view = (PapyrusRepresentationKind) kind;
-				if (!matchesProfiles(view, profiles)) {
+				if (!matchesProfiles(view, element, profiles)) {
 					continue;
 				}
 				ViewPrototype proto = ViewPrototype.get(view);
@@ -444,7 +446,7 @@ public class PolicyChecker {
 			return false;
 		}
 		if (owner != null) {
-			if (!matchesProfiles(view, profileHelper.getAppliedProfiles(owner))) {
+			if (!matchesProfiles(view, owner, profileHelper.getAppliedProfiles(owner))) {
 				return false;
 			}
 			if (!matchesExistingOwner(view, owner, profileHelper.getAppliedStereotypes(owner))) {
@@ -452,7 +454,7 @@ public class PolicyChecker {
 			}
 		}
 		if (root != null) {
-			if (!matchesProfiles(view, profileHelper.getAppliedProfiles(root))) {
+			if (!matchesProfiles(view, root, profileHelper.getAppliedProfiles(root))) {
 				return false;
 			}
 			if (!matchesExistingRoot(view, root, profileHelper.getAppliedStereotypes(root))) {
@@ -467,21 +469,41 @@ public class PolicyChecker {
 	 *
 	 * @param view
 	 *            The view to check against
+	 * @param context
+	 *            The object in which context we are checking the {@code view}'s profile association
 	 * @param profiles
 	 *            The applied profiles
 	 * @return <code>true</code> if the prototype is matching
 	 */
-	private boolean matchesProfiles(PapyrusRepresentationKind view, Collection<EPackage> profiles) {
+	private boolean matchesProfiles(PapyrusRepresentationKind view, EObject context, Collection<EPackage> profiles) {
 		PapyrusRepresentationKind current = view;
 		while (current != null) {
 			for (EPackage profile : view.getLanguage().getProfiles()) {
-				if (!profiles.contains(profile)) {
+				// The profile may be a dynamic definition, so compare them in the same resource set context
+				EPackage localProfile = resolveDynamicProfile(context, profile);
+				if (!profiles.contains(localProfile)) {
 					return false;
 				}
 			}
 			current = current.getParent();
 		}
 		return true;
+	}
+
+	/**
+	 * Resolve a possibly dynamic {@link profile} definition in the resource set
+	 * of the {@code context} element.
+	 *
+	 * @param context
+	 *            a model element in which context policy is being checked
+	 * @param profile
+	 *            a profile associated with the policy being checked
+	 * @return the corresponding {@code profile} definition on the {@code context}'s resource set
+	 */
+	private EPackage resolveDynamicProfile(EObject context, EPackage profile) {
+		return Optional.ofNullable(EMFHelper.getResourceSet(context))
+				.map(rset -> rset.getPackageRegistry().getEPackage(profile.getNsURI()))
+				.orElse(profile);
 	}
 
 	/**
@@ -626,7 +648,9 @@ public class PolicyChecker {
 		if (c == null || c.isSuperTypeOf(owner.eClass())) {
 			// matching type => check the application of the required stereotypes
 			for (EClass stereotype : rule.getStereotypes()) {
-				if (!stereotypes.contains(stereotype)) {
+				// The profile may be a dynamic definition, so compare stereotypes in the same resource set context
+				EClass localStereotype = resolveDynamicStereotype(owner, stereotype);
+				if (!stereotypes.contains(localStereotype)) {
 					return RESULT_UNKNOWN;
 				}
 			}
@@ -635,6 +659,24 @@ public class PolicyChecker {
 			// type is not matching => unknown
 			return RESULT_UNKNOWN;
 		}
+	}
+
+	/**
+	 * Resolve a possibly dynamic {@link stereotype} definition in the resource set
+	 * of the {@code context} element.
+	 *
+	 * @param context
+	 *            a model element in which context policy is being checked
+	 * @param stereotype
+	 *            a stereotype associated with the policy being checked
+	 * @return the corresponding {@code stereotype} definition on the {@code context}'s resource set
+	 */
+	private EClass resolveDynamicStereotype(EObject context, EClass stereotype) {
+		return Optional.ofNullable(resolveDynamicProfile(context, stereotype.getEPackage())
+				.getEClassifier(stereotype.getName()))
+				.filter(EClass.class::isInstance)
+				.map(EClass.class::cast)
+				.orElse(stereotype);
 	}
 
 	/**
@@ -683,7 +725,9 @@ public class PolicyChecker {
 			// matching type => check the application of the required stereotypes
 			// each stereotype required to match the model rule should be applied on the element
 			for (EClass stereotype : rule.getStereotypes()) {
-				if (!stereotypes.contains(stereotype)) {
+				// The profile may be a dynamic definition, so compare stereotypes in the same resource set context
+				EClass localStereotype = resolveDynamicStereotype(element, stereotype);
+				if (!stereotypes.contains(localStereotype)) {
 					return RESULT_UNKNOWN;
 				}
 			}
@@ -719,7 +763,9 @@ public class PolicyChecker {
 				&& (co == null || co.isSuperTypeOf(origin))) {
 			// matching type => check the application of the required stereotypes
 			for (EClass stereotype : rule.getStereotypes()) {
-				if (!stereotypes.contains(stereotype)) {
+				// The profile may be a dynamic definition, so compare stereotypes in the same resource set context
+				EClass localStereotype = resolveDynamicStereotype(element, stereotype);
+				if (!stereotypes.contains(localStereotype)) {
 					return RESULT_UNKNOWN;
 				}
 			}
