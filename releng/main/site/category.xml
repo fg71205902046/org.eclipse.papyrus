@@ -12,6 +12,12 @@
    <feature url="features/org.eclipse.papyrus.user.examples.feature.source_0.0.3.qualifier.jar" id="org.eclipse.papyrus.user.examples.feature.source" version="0.0.3.qualifier">
       <category name="org.eclipse.papyrus.user.examples.category"/>
    </feature>
+   <feature url="features/org.eclipse.papyrus.uml.siriusdiag.feature_1.0.0.qualifier.jar" id="org.eclipse.papyrus.uml.siriusdiag.feature" version="1.0.0.qualifier">
+      <category name="org.eclipse.papyrus.sirius.category"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.uml.siriusdiag.feature.source_1.0.0.qualifier.jar" id="org.eclipse.papyrus.uml.siriusdiag.feature.source" version="1.0.0.qualifier">
+      <category name="org.eclipse.papyrus.sirius.category"/>
+   </feature>
    <category-def name="org.eclipse.papyrus.category" label="Papyrus">
       <description>
          Papyrus Category
@@ -22,6 +28,11 @@
          Papyrus User Examples offers a set of plugins dedicated to gather examples of Papyrus usage.
       </description>
    </category-def>
-   
+   <category-def name="org.eclipse.papyrus.sirius.category" label="Papyrus Sirius Diagram">
+      <description>
+         Papyrus UML Diagram developped with Sirius
+      </description>
+   </category-def>
    <repository-reference location="https://download.eclipse.org/tools/orbit/downloads/drops/R20180206163158/repository/" enabled="true" />
+   <repository-reference location="https://download.eclipse.org/sirius/updates/releases/6.4.2/2020-09/" enabled="true" />
 </site>

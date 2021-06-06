@@ -60,3 +60,21 @@ location emfCompare "https://download.eclipse.org/modeling/emf/compare/updates/m
 	org.eclipse.emf.compare.ide.ui.feature.group lazy
 	org.eclipse.emf.compare.source.feature.group
 }
+
+//updateFrom("Sirius for SimRel 2021-03",0)
+
+location sirius "https://download.eclipse.org/sirius/updates/releases/6.4.2/2020-09/"{ //yes for 2021-03, Sirius proposed the 2020-09 release! 
+	//org.eclipse.sirius.diagram.elk.feature.feature.group
+	org.eclipse.sirius.doc.feature.feature.group
+	org.eclipse.sirius.runtime.acceleo.feature.group //required ?
+	org.eclipse.sirius.runtime.ide.ui.acceleo.feature.group 
+	org.eclipse.sirius.specifier.feature.group
+	org.eclipse.sirius.specifier.ide.ui.acceleo.feature.group
+	org.eclipse.sirius.specifier.ide.ui.aql.feature.group
+	org.eclipse.sirius.specifier.ide.ui.feature.group
+	org.eclipse.sirius.specifier.properties.feature.feature.group
+}
+
+location acceleo "https://download.eclipse.org/acceleo/updates/releases/3.7/R202002210922/" {//required to get org.eclipse.sirius.runtime.acceleo.feature.group
+	org.eclipse.acceleo.feature.group
+}

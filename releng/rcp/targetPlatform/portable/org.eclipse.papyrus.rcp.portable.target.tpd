@@ -45,6 +45,6 @@ location emf "https://download.eclipse.org/modeling/emf/emf/builds/release/2.25"
 
 //updateFrom("EMF CDO",0) 
 
-location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20210308-1312" {
+location cdo "https://download.eclipse.org/modeling/emf/cdo/drops/R20210308-1312/" {
 	org.eclipse.emf.cdo.epp.feature.group
 }

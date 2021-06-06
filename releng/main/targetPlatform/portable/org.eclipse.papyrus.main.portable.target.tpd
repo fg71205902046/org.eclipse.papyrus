@@ -140,3 +140,16 @@ location emfTransaction "https://download.eclipse.org/modeling/emf/transaction/u
 location gef "https://download.eclipse.org/tools/gef/updates/legacy/releases/4.0.0_gef-master_1952" {
 	org.eclipse.gef.feature.group
 }
+
+//updateFrom("Sirius for SimRel 2021-03",0)
+
+location sirius "https://download.eclipse.org/sirius/updates/releases/6.4.2/2020-09/"{ //yes for 2021-03, Sirius proposed the 2020-09 release!
+	org.eclipse.sirius.aql.feature.group
+	org.eclipse.sirius.interpreter.feature.feature.group
+	org.eclipse.sirius.properties.feature.feature.group
+	org.eclipse.sirius.runtime.feature.group
+	org.eclipse.sirius.runtime.ide.ui.feature.group
+	org.eclipse.sirius.runtime.ide.xtext.feature.group
+	org.eclipse.sirius.runtime.ocl.feature.group
+}
+

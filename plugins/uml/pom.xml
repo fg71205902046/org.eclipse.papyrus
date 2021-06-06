@@ -45,6 +45,7 @@
 		<module>nattable</module>
 		<module>profile</module>
 		<module>properties</module>
+		<module>sirius</module>
 		<module>textedit</module>
 		<module>tools</module>
 		<module>xtext</module>

@@ -30,6 +30,7 @@
 		<module>org.eclipse.papyrus.infra.internationalization.feature</module>
 		<module>org.eclipse.papyrus.infra.nattable.feature</module>
 		<module>org.eclipse.papyrus.infra.services.feature</module>
+		<module>org.eclipse.papyrus.infra.siriusdiag.feature</module>
 		<module>org.eclipse.papyrus.infra.ui.feature</module>
 		<module>org.eclipse.papyrus.infra.viewpoints.feature</module>
 		<module>org.eclipse.papyrus.infra.widget.feature</module>
@@ -47,6 +48,7 @@
 		<module>org.eclipse.papyrus.uml.nattable.feature</module>
 		<module>org.eclipse.papyrus.uml.properties.feature</module>
 		<module>org.eclipse.papyrus.uml.search.feature</module>
+		<module>org.eclipse.papyrus.uml.siriusdiag.feature</module>
 		<module>org.eclipse.papyrus.uml.textedit.feature</module>
 		<module>org.eclipse.papyrus.uml.tools.feature</module>
 		<module>org.eclipse.papyrus.uml.ui.feature</module>

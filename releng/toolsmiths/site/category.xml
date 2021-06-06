@@ -69,4 +69,5 @@
       </description>
    </category-def>
    <repository-reference location="https://download.eclipse.org/cbi/tpd/3.0.0-SNAPSHOT" enabled="true" />
+   <repository-reference location="https://download.eclipse.org/acceleo/updates/releases/3.7/R202002210922/" enabled="true" />
 </site>

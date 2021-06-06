@@ -55,6 +55,7 @@
 							<!-- Integrate the p2 as it fails to be indexed by the installer from the original update site -->
 							<associateSites>
 								<site>https://download.eclipse.org/cbi/tpd/3.0.0-SNAPSHOT/</site>
+								<site>https://download.eclipse.org/acceleo/updates/releases/3.7/R202002210922/</site>
 							</associateSites>
 						</configuration>
 					</execution>

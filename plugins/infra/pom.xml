@@ -22,6 +22,7 @@
 		<module>properties</module>
 		<module>services</module>
 		<module>newchild</module>
+		<module>siriusdiag</module>
 
 		<module>types</module>
 
