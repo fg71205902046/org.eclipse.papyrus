@@ -1,300 +1,287 @@
 <?xml version="1.0" encoding="ASCII"?>
 <contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9" xmi:id="_W38FcJLCEeWbp4A9_-WIrQ" name="Customization" label="Customization Models">
   <tabs xmi:id="_W38FcZLCEeWbp4A9_-WIrQ" label="Context" id="context" category="" priority="10">
-    <sections xmi:id="_W38FcpLCEeWbp4A9_-WIrQ" name="Single Environment" sectionFile="ui/SingleEnvironment.xwt">
+    <allSections xsi:type="contexts:Section" xmi:id="_W38FcpLCEeWbp4A9_-WIrQ" name="Single Environment" sectionFile="ui/SingleEnvironment.xwt">
       <widget href="ui/SingleEnvironment.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38Fc5LCEeWbp4A9_-WIrQ" name="Multiple Environment" sectionFile="ui/MultipleEnvironment.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38Fc5LCEeWbp4A9_-WIrQ" name="Multiple Environment" sectionFile="ui/MultipleEnvironment.xwt">
       <widget href="ui/MultipleEnvironment.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38FdJLCEeWbp4A9_-WIrQ" name="Single WidgetType" sectionFile="ui/SingleWidgetType.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38FdJLCEeWbp4A9_-WIrQ" name="Single WidgetType" sectionFile="ui/SingleWidgetType.xwt">
       <widget href="ui/SingleWidgetType.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38FdZLCEeWbp4A9_-WIrQ" name="Multiple WidgetType" sectionFile="ui/MultipleWidgetType.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38FdZLCEeWbp4A9_-WIrQ" name="Multiple WidgetType" sectionFile="ui/MultipleWidgetType.xwt">
       <widget href="ui/MultipleWidgetType.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38FdpLCEeWbp4A9_-WIrQ" name="Single PropertyEditorType" sectionFile="ui/SinglePropertyEditorType.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38FdpLCEeWbp4A9_-WIrQ" name="Single PropertyEditorType" sectionFile="ui/SinglePropertyEditorType.xwt">
       <widget href="ui/SinglePropertyEditorType.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38Fd5LCEeWbp4A9_-WIrQ" name="Multiple PropertyEditorType" sectionFile="ui/MultiplePropertyEditorType.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38Fd5LCEeWbp4A9_-WIrQ" name="Multiple PropertyEditorType" sectionFile="ui/MultiplePropertyEditorType.xwt">
       <widget href="ui/MultiplePropertyEditorType.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38FeJLCEeWbp4A9_-WIrQ" name="Single CompositeWidgetType" sectionFile="ui/SingleCompositeWidgetType.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38FeJLCEeWbp4A9_-WIrQ" name="Single CompositeWidgetType" sectionFile="ui/SingleCompositeWidgetType.xwt">
       <widget href="ui/SingleCompositeWidgetType.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38FeZLCEeWbp4A9_-WIrQ" name="Multiple CompositeWidgetType" sectionFile="ui/MultipleCompositeWidgetType.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38FeZLCEeWbp4A9_-WIrQ" name="Multiple CompositeWidgetType" sectionFile="ui/MultipleCompositeWidgetType.xwt">
       <widget href="ui/MultipleCompositeWidgetType.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38FepLCEeWbp4A9_-WIrQ" name="Single LayoutType" sectionFile="ui/SingleLayoutType.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38FepLCEeWbp4A9_-WIrQ" name="Single LayoutType" sectionFile="ui/SingleLayoutType.xwt">
       <widget href="ui/SingleLayoutType.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38Fe5LCEeWbp4A9_-WIrQ" name="Multiple LayoutType" sectionFile="ui/MultipleLayoutType.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38Fe5LCEeWbp4A9_-WIrQ" name="Multiple LayoutType" sectionFile="ui/MultipleLayoutType.xwt">
       <widget href="ui/MultipleLayoutType.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38FfJLCEeWbp4A9_-WIrQ" name="Single ConstraintType" sectionFile="ui/SingleConstraintType.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38FfJLCEeWbp4A9_-WIrQ" name="Single ConstraintType" sectionFile="ui/SingleConstraintType.xwt">
       <widget href="ui/SingleConstraintType.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38FfZLCEeWbp4A9_-WIrQ" name="Multiple ConstraintType" sectionFile="ui/MultipleConstraintType.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38FfZLCEeWbp4A9_-WIrQ" name="Multiple ConstraintType" sectionFile="ui/MultipleConstraintType.xwt">
       <widget href="ui/MultipleConstraintType.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38FfpLCEeWbp4A9_-WIrQ" name="Single ModelElementFactoryDescriptor" sectionFile="ui/SingleModelElementFactoryDescriptor.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38FfpLCEeWbp4A9_-WIrQ" name="Single ModelElementFactoryDescriptor" sectionFile="ui/SingleModelElementFactoryDescriptor.xwt">
       <widget href="ui/SingleModelElementFactoryDescriptor.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38Ff5LCEeWbp4A9_-WIrQ" name="Multiple ModelElementFactoryDescriptor" sectionFile="ui/MultipleModelElementFactoryDescriptor.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38Ff5LCEeWbp4A9_-WIrQ" name="Multiple ModelElementFactoryDescriptor" sectionFile="ui/MultipleModelElementFactoryDescriptor.xwt">
       <widget href="ui/MultipleModelElementFactoryDescriptor.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38FgJLCEeWbp4A9_-WIrQ" name="Single StandardWidgetType" sectionFile="ui/SingleStandardWidgetType.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38FgJLCEeWbp4A9_-WIrQ" name="Single StandardWidgetType" sectionFile="ui/SingleStandardWidgetType.xwt">
       <widget href="ui/SingleStandardWidgetType.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38sgJLCEeWbp4A9_-WIrQ" name="Multiple StandardWidgetType" sectionFile="ui/MultipleStandardWidgetType.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38sgJLCEeWbp4A9_-WIrQ" name="Multiple StandardWidgetType" sectionFile="ui/MultipleStandardWidgetType.xwt">
       <widget href="ui/MultipleStandardWidgetType.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38sgZLCEeWbp4A9_-WIrQ" name="Single Context" sectionFile="ui/SingleContext.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38sgZLCEeWbp4A9_-WIrQ" name="Single Context" sectionFile="ui/SingleContext.xwt">
       <widget href="ui/SingleContext.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38sgpLCEeWbp4A9_-WIrQ" name="Multiple Context" sectionFile="ui/MultipleContext.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38sgpLCEeWbp4A9_-WIrQ" name="Multiple Context" sectionFile="ui/MultipleContext.xwt">
       <widget href="ui/MultipleContext.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38sg5LCEeWbp4A9_-WIrQ" name="Single DisplayUnit" sectionFile="ui/SingleDisplayUnit.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38sg5LCEeWbp4A9_-WIrQ" name="Single DisplayUnit" sectionFile="ui/SingleDisplayUnit.xwt">
       <widget href="ui/SingleDisplayUnit.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38shJLCEeWbp4A9_-WIrQ" name="Multiple DisplayUnit" sectionFile="ui/MultipleDisplayUnit.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38shJLCEeWbp4A9_-WIrQ" name="Multiple DisplayUnit" sectionFile="ui/MultipleDisplayUnit.xwt">
       <widget href="ui/MultipleDisplayUnit.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38shZLCEeWbp4A9_-WIrQ" name="Single View" sectionFile="ui/SingleView.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38shZLCEeWbp4A9_-WIrQ" name="Single View" sectionFile="ui/SingleView.xwt">
       <widget href="ui/SingleView.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38shpLCEeWbp4A9_-WIrQ" name="Multiple View" sectionFile="ui/MultipleView.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38shpLCEeWbp4A9_-WIrQ" name="Multiple View" sectionFile="ui/MultipleView.xwt">
       <widget href="ui/MultipleView.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38sh5LCEeWbp4A9_-WIrQ" name="Single Tab" sectionFile="ui/SingleTab.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38sh5LCEeWbp4A9_-WIrQ" name="Single Tab" sectionFile="ui/SingleTab.xwt">
       <widget href="ui/SingleTab.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38siJLCEeWbp4A9_-WIrQ" name="Multiple Tab" sectionFile="ui/MultipleTab.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38siJLCEeWbp4A9_-WIrQ" name="Multiple Tab" sectionFile="ui/MultipleTab.xwt">
       <widget href="ui/MultipleTab.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38siZLCEeWbp4A9_-WIrQ" name="Single Section" sectionFile="ui/SingleSection.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38siZLCEeWbp4A9_-WIrQ" name="Single Section" sectionFile="ui/SingleSection.xwt">
       <widget href="ui/SingleSection.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38sipLCEeWbp4A9_-WIrQ" name="Multiple Section" sectionFile="ui/MultipleSection.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38sipLCEeWbp4A9_-WIrQ" name="Multiple Section" sectionFile="ui/MultipleSection.xwt">
       <widget href="ui/MultipleSection.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38si5LCEeWbp4A9_-WIrQ" name="Single DataContextElement" sectionFile="ui/SingleDataContextElement.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38si5LCEeWbp4A9_-WIrQ" name="Single DataContextElement" sectionFile="ui/SingleDataContextElement.xwt">
       <widget href="ui/SingleDataContextElement.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38sjJLCEeWbp4A9_-WIrQ" name="Multiple DataContextElement" sectionFile="ui/MultipleDataContextElement.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38sjJLCEeWbp4A9_-WIrQ" name="Multiple DataContextElement" sectionFile="ui/MultipleDataContextElement.xwt">
       <widget href="ui/MultipleDataContextElement.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38sjZLCEeWbp4A9_-WIrQ" name="Single Property" sectionFile="ui/SingleProperty.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38sjZLCEeWbp4A9_-WIrQ" name="Single Property" sectionFile="ui/SingleProperty.xwt">
       <widget href="ui/SingleProperty.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38sjpLCEeWbp4A9_-WIrQ" name="Multiple Property" sectionFile="ui/MultipleProperty.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38sjpLCEeWbp4A9_-WIrQ" name="Multiple Property" sectionFile="ui/MultipleProperty.xwt">
       <widget href="ui/MultipleProperty.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38sj5LCEeWbp4A9_-WIrQ" name="Single UnknownProperty" sectionFile="ui/SingleUnknownProperty.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38sj5LCEeWbp4A9_-WIrQ" name="Single UnknownProperty" sectionFile="ui/SingleUnknownProperty.xwt">
       <widget href="ui/SingleUnknownProperty.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38skJLCEeWbp4A9_-WIrQ" name="Multiple UnknownProperty" sectionFile="ui/MultipleUnknownProperty.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38skJLCEeWbp4A9_-WIrQ" name="Multiple UnknownProperty" sectionFile="ui/MultipleUnknownProperty.xwt">
       <widget href="ui/MultipleUnknownProperty.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38skZLCEeWbp4A9_-WIrQ" name="Single DataContextPackage" sectionFile="ui/SingleDataContextPackage.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38skZLCEeWbp4A9_-WIrQ" name="Single DataContextPackage" sectionFile="ui/SingleDataContextPackage.xwt">
       <widget href="ui/SingleDataContextPackage.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38skpLCEeWbp4A9_-WIrQ" name="Multiple DataContextPackage" sectionFile="ui/MultipleDataContextPackage.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38skpLCEeWbp4A9_-WIrQ" name="Multiple DataContextPackage" sectionFile="ui/MultipleDataContextPackage.xwt">
       <widget href="ui/MultipleDataContextPackage.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38sk5LCEeWbp4A9_-WIrQ" name="Single DataContextRoot" sectionFile="ui/SingleDataContextRoot.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38sk5LCEeWbp4A9_-WIrQ" name="Single DataContextRoot" sectionFile="ui/SingleDataContextRoot.xwt">
       <widget href="ui/SingleDataContextRoot.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38slJLCEeWbp4A9_-WIrQ" name="Multiple DataContextRoot" sectionFile="ui/MultipleDataContextRoot.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38slJLCEeWbp4A9_-WIrQ" name="Multiple DataContextRoot" sectionFile="ui/MultipleDataContextRoot.xwt">
       <widget href="ui/MultipleDataContextRoot.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38slZLCEeWbp4A9_-WIrQ" name="Single ConstraintDescriptor" sectionFile="ui/SingleConstraintDescriptor.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38slZLCEeWbp4A9_-WIrQ" name="Single ConstraintDescriptor" sectionFile="ui/SingleConstraintDescriptor.xwt">
       <widget href="ui/SingleConstraintDescriptor.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38slpLCEeWbp4A9_-WIrQ" name="Multiple ConstraintDescriptor" sectionFile="ui/MultipleConstraintDescriptor.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38slpLCEeWbp4A9_-WIrQ" name="Multiple ConstraintDescriptor" sectionFile="ui/MultipleConstraintDescriptor.xwt">
       <widget href="ui/MultipleConstraintDescriptor.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38sl5LCEeWbp4A9_-WIrQ" name="Single ConfigProperty" sectionFile="ui/SingleConfigProperty.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38sl5LCEeWbp4A9_-WIrQ" name="Single ConfigProperty" sectionFile="ui/SingleConfigProperty.xwt">
       <widget href="ui/SingleConfigProperty.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38smJLCEeWbp4A9_-WIrQ" name="Multiple ConfigProperty" sectionFile="ui/MultipleConfigProperty.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38smJLCEeWbp4A9_-WIrQ" name="Multiple ConfigProperty" sectionFile="ui/MultipleConfigProperty.xwt">
       <widget href="ui/MultipleConfigProperty.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38smZLCEeWbp4A9_-WIrQ" name="Single ValueProperty" sectionFile="ui/SingleValueProperty.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38smZLCEeWbp4A9_-WIrQ" name="Single ValueProperty" sectionFile="ui/SingleValueProperty.xwt">
       <widget href="ui/SingleValueProperty.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38smpLCEeWbp4A9_-WIrQ" name="Multiple ValueProperty" sectionFile="ui/MultipleValueProperty.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38smpLCEeWbp4A9_-WIrQ" name="Multiple ValueProperty" sectionFile="ui/MultipleValueProperty.xwt">
       <widget href="ui/MultipleValueProperty.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38sm5LCEeWbp4A9_-WIrQ" name="Single ReferenceProperty" sectionFile="ui/SingleReferenceProperty.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38sm5LCEeWbp4A9_-WIrQ" name="Single ReferenceProperty" sectionFile="ui/SingleReferenceProperty.xwt">
       <widget href="ui/SingleReferenceProperty.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38snJLCEeWbp4A9_-WIrQ" name="Multiple ReferenceProperty" sectionFile="ui/MultipleReferenceProperty.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38snJLCEeWbp4A9_-WIrQ" name="Multiple ReferenceProperty" sectionFile="ui/MultipleReferenceProperty.xwt">
       <widget href="ui/MultipleReferenceProperty.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W38snZLCEeWbp4A9_-WIrQ" name="Single Element" sectionFile="ui/SingleElement.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W38snZLCEeWbp4A9_-WIrQ" name="Single Element" sectionFile="ui/SingleElement.xwt">
       <widget href="ui/SingleElement.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W39TkJLCEeWbp4A9_-WIrQ" name="Multiple Element" sectionFile="ui/MultipleElement.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W39TkJLCEeWbp4A9_-WIrQ" name="Multiple Element" sectionFile="ui/MultipleElement.xwt">
       <widget href="ui/MultipleElement.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W39TkZLCEeWbp4A9_-WIrQ" name="Single UIComponent" sectionFile="ui/SingleUIComponent.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W39TkZLCEeWbp4A9_-WIrQ" name="Single UIComponent" sectionFile="ui/SingleUIComponent.xwt">
       <widget href="ui/SingleUIComponent.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W39TkpLCEeWbp4A9_-WIrQ" name="Multiple UIComponent" sectionFile="ui/MultipleUIComponent.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W39TkpLCEeWbp4A9_-WIrQ" name="Multiple UIComponent" sectionFile="ui/MultipleUIComponent.xwt">
       <widget href="ui/MultipleUIComponent.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W39Tk5LCEeWbp4A9_-WIrQ" name="Single Widget" sectionFile="ui/SingleWidget.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W39Tk5LCEeWbp4A9_-WIrQ" name="Single Widget" sectionFile="ui/SingleWidget.xwt">
       <widget href="ui/SingleWidget.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W39TlJLCEeWbp4A9_-WIrQ" name="Multiple Widget" sectionFile="ui/MultipleWidget.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W39TlJLCEeWbp4A9_-WIrQ" name="Multiple Widget" sectionFile="ui/MultipleWidget.xwt">
       <widget href="ui/MultipleWidget.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W39TlZLCEeWbp4A9_-WIrQ" name="Single StandardWidget" sectionFile="ui/SingleStandardWidget.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W39TlZLCEeWbp4A9_-WIrQ" name="Single StandardWidget" sectionFile="ui/SingleStandardWidget.xwt">
       <widget href="ui/SingleStandardWidget.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W39TlpLCEeWbp4A9_-WIrQ" name="Multiple StandardWidget" sectionFile="ui/MultipleStandardWidget.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W39TlpLCEeWbp4A9_-WIrQ" name="Multiple StandardWidget" sectionFile="ui/MultipleStandardWidget.xwt">
       <widget href="ui/MultipleStandardWidget.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W39Tl5LCEeWbp4A9_-WIrQ" name="Single PropertyEditor" sectionFile="ui/SinglePropertyEditor.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W39Tl5LCEeWbp4A9_-WIrQ" name="Single PropertyEditor" sectionFile="ui/SinglePropertyEditor.xwt">
       <widget href="ui/SinglePropertyEditor.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W39TmJLCEeWbp4A9_-WIrQ" name="Multiple PropertyEditor" sectionFile="ui/MultiplePropertyEditor.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W39TmJLCEeWbp4A9_-WIrQ" name="Multiple PropertyEditor" sectionFile="ui/MultiplePropertyEditor.xwt">
       <widget href="ui/MultiplePropertyEditor.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W39TmZLCEeWbp4A9_-WIrQ" name="Single CompositeWidget" sectionFile="ui/SingleCompositeWidget.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W39TmZLCEeWbp4A9_-WIrQ" name="Single CompositeWidget" sectionFile="ui/SingleCompositeWidget.xwt">
       <widget href="ui/SingleCompositeWidget.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W39TmpLCEeWbp4A9_-WIrQ" name="Multiple CompositeWidget" sectionFile="ui/MultipleCompositeWidget.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W39TmpLCEeWbp4A9_-WIrQ" name="Multiple CompositeWidget" sectionFile="ui/MultipleCompositeWidget.xwt">
       <widget href="ui/MultipleCompositeWidget.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W39Tm5LCEeWbp4A9_-WIrQ" name="Single Layout" sectionFile="ui/SingleLayout.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W39Tm5LCEeWbp4A9_-WIrQ" name="Single Layout" sectionFile="ui/SingleLayout.xwt">
       <widget href="ui/SingleLayout.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W39TnJLCEeWbp4A9_-WIrQ" name="Multiple Layout" sectionFile="ui/MultipleLayout.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W39TnJLCEeWbp4A9_-WIrQ" name="Multiple Layout" sectionFile="ui/MultipleLayout.xwt">
       <widget href="ui/MultipleLayout.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W39TnZLCEeWbp4A9_-WIrQ" name="Single WidgetAttribute" sectionFile="ui/SingleWidgetAttribute.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W39TnZLCEeWbp4A9_-WIrQ" name="Single WidgetAttribute" sectionFile="ui/SingleWidgetAttribute.xwt">
       <widget href="ui/SingleWidgetAttribute.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W39TnpLCEeWbp4A9_-WIrQ" name="Multiple WidgetAttribute" sectionFile="ui/MultipleWidgetAttribute.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W39TnpLCEeWbp4A9_-WIrQ" name="Multiple WidgetAttribute" sectionFile="ui/MultipleWidgetAttribute.xwt">
       <widget href="ui/MultipleWidgetAttribute.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W39Tn5LCEeWbp4A9_-WIrQ" name="Single ValueAttribute" sectionFile="ui/SingleValueAttribute.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W39Tn5LCEeWbp4A9_-WIrQ" name="Single ValueAttribute" sectionFile="ui/SingleValueAttribute.xwt">
       <widget href="ui/SingleValueAttribute.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W39ToJLCEeWbp4A9_-WIrQ" name="Multiple ValueAttribute" sectionFile="ui/MultipleValueAttribute.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W39ToJLCEeWbp4A9_-WIrQ" name="Multiple ValueAttribute" sectionFile="ui/MultipleValueAttribute.xwt">
       <widget href="ui/MultipleValueAttribute.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W39ToZLCEeWbp4A9_-WIrQ" name="Single ReferenceAttribute" sectionFile="ui/SingleReferenceAttribute.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W39ToZLCEeWbp4A9_-WIrQ" name="Single ReferenceAttribute" sectionFile="ui/SingleReferenceAttribute.xwt">
       <widget href="ui/SingleReferenceAttribute.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W39TopLCEeWbp4A9_-WIrQ" name="Multiple ReferenceAttribute" sectionFile="ui/MultipleReferenceAttribute.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W39TopLCEeWbp4A9_-WIrQ" name="Multiple ReferenceAttribute" sectionFile="ui/MultipleReferenceAttribute.xwt">
       <widget href="ui/MultipleReferenceAttribute.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W39To5LCEeWbp4A9_-WIrQ" name="Single UnknownComponent" sectionFile="ui/SingleUnknownComponent.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W39To5LCEeWbp4A9_-WIrQ" name="Single UnknownComponent" sectionFile="ui/SingleUnknownComponent.xwt">
       <widget href="ui/SingleUnknownComponent.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W39TpJLCEeWbp4A9_-WIrQ" name="Multiple UnknownComponent" sectionFile="ui/MultipleUnknownComponent.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W39TpJLCEeWbp4A9_-WIrQ" name="Multiple UnknownComponent" sectionFile="ui/MultipleUnknownComponent.xwt">
       <widget href="ui/MultipleUnknownComponent.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W39TpZLCEeWbp4A9_-WIrQ" name="GroupAttributes" sectionFile="ui/GroupAttributes.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W39TpZLCEeWbp4A9_-WIrQ" name="GroupAttributes" sectionFile="ui/GroupAttributes.xwt">
       <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_W396oJLCEeWbp4A9_-WIrQ" name="isGroup">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.2"/>
-        <properties xsi:type="constraints:ReferenceProperty" xmi:id="_W396oZLCEeWbp4A9_-WIrQ" name="query">
-          <value href="custom.querySet#isGroup"/>
-        </properties>
+        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.constraints/Model/ConstraintEnvironment.xmi#//@constraintTypes.4"/>
+        <properties xsi:type="constraints:ValueProperty" xmi:id="_9F22UMj_Eeu_J9e0SdsaHg" name="className" value="org.eclipse.papyrus.views.properties.toolsmiths.query.IsGroupQuery"/>
       </constraints>
       <widget href="ui/GroupAttributes.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W396opLCEeWbp4A9_-WIrQ" name="EcoreInstanceOf" sectionFile="ui/EcoreInstanceOf.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W396opLCEeWbp4A9_-WIrQ" name="EcoreInstanceOf" sectionFile="ui/EcoreInstanceOf.xwt">
       <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_W396o5LCEeWbp4A9_-WIrQ" name="isEcoreInstanceOf">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.2"/>
-        <properties xsi:type="constraints:ReferenceProperty" xmi:id="_W396pJLCEeWbp4A9_-WIrQ" name="query">
-          <value href="custom.querySet#isEcoreInstanceOf"/>
-        </properties>
+        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.constraints/Model/ConstraintEnvironment.xmi#//@constraintTypes.4"/>
+        <properties xsi:type="constraints:ValueProperty" xmi:id="_LWecQMkAEeu_J9e0SdsaHg" name="className" value="org.eclipse.papyrus.views.properties.toolsmiths.query.IsEcoreInstanceOfQuery"/>
       </constraints>
       <widget href="ui/EcoreInstanceOf.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W396pZLCEeWbp4A9_-WIrQ" name="UMLInstanceOf" sectionFile="ui/UMLInstanceOf.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W396pZLCEeWbp4A9_-WIrQ" name="UMLInstanceOf" sectionFile="ui/UMLInstanceOf.xwt">
       <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_W396ppLCEeWbp4A9_-WIrQ" name="isUMLInstanceOf">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.2"/>
-        <properties xsi:type="constraints:ReferenceProperty" xmi:id="_W396p5LCEeWbp4A9_-WIrQ" name="query">
-          <value href="custom.querySet#isUmlInstanceOf"/>
-        </properties>
+        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.constraints/Model/ConstraintEnvironment.xmi#//@constraintTypes.4"/>
+        <properties xsi:type="constraints:ValueProperty" xmi:id="_NwjSAMkAEeu_J9e0SdsaHg" name="className" value="org.eclipse.papyrus.views.properties.toolsmiths.query.IsUmlInstanceOfQuery"/>
       </constraints>
       <widget href="ui/UMLInstanceOf.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W396qJLCEeWbp4A9_-WIrQ" name="OCLQuery" sectionFile="ui/OCLQuery.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W396qJLCEeWbp4A9_-WIrQ" name="OCLQuery" sectionFile="ui/OCLQuery.xwt">
       <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_W396qZLCEeWbp4A9_-WIrQ" name="isOCLQueryConstraint">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.2"/>
-        <properties xsi:type="constraints:ReferenceProperty" xmi:id="_W396qpLCEeWbp4A9_-WIrQ" name="query">
-          <value href="custom.querySet#isOclQuery"/>
-        </properties>
+        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.constraints/Model/ConstraintEnvironment.xmi#//@constraintTypes.4"/>
+        <properties xsi:type="constraints:ValueProperty" xmi:id="_QW7eYMkAEeu_J9e0SdsaHg" name="className" value="org.eclipse.papyrus.views.properties.toolsmiths.query.IsOclQuery"/>
       </constraints>
       <widget href="ui/OCLQuery.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W396q5LCEeWbp4A9_-WIrQ" name="Stereotype" sectionFile="ui/Stereotype.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W396q5LCEeWbp4A9_-WIrQ" name="Stereotype" sectionFile="ui/Stereotype.xwt">
       <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_W396rJLCEeWbp4A9_-WIrQ" name="isStereotypeConstraint">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.2"/>
-        <properties xsi:type="constraints:ReferenceProperty" xmi:id="_W396rZLCEeWbp4A9_-WIrQ" name="query">
-          <value href="custom.querySet#isStereotype"/>
-        </properties>
+        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.constraints/Model/ConstraintEnvironment.xmi#//@constraintTypes.4"/>
+        <properties xsi:type="constraints:ValueProperty" xmi:id="_TUwhcMkAEeu_J9e0SdsaHg" name="className" value="org.eclipse.papyrus.views.properties.toolsmiths.query.IsStereotypeQuery"/>
       </constraints>
       <widget href="ui/Stereotype.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W3-hsJLCEeWbp4A9_-WIrQ" name="GridLayout" sectionFile="ui/GridLayout.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W3-hsJLCEeWbp4A9_-WIrQ" name="GridLayout" sectionFile="ui/GridLayout.xwt">
       <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_W3-hsZLCEeWbp4A9_-WIrQ" name="isGridLayout">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.2"/>
-        <properties xsi:type="constraints:ReferenceProperty" xmi:id="_W3-hspLCEeWbp4A9_-WIrQ" name="query">
-          <value href="custom.querySet#isGridLayout"/>
-        </properties>
+        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.constraints/Model/ConstraintEnvironment.xmi#//@constraintTypes.4"/>
+        <properties xsi:type="constraints:ValueProperty" xmi:id="_5rn5MMkBEeu_J9e0SdsaHg" name="className" value="org.eclipse.papyrus.views.properties.toolsmiths.query.IsGridLayoutQuery"/>
       </constraints>
       <widget href="ui/GridLayout.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W3-hs5LCEeWbp4A9_-WIrQ" name="Label" sectionFile="ui/Label.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W3-hs5LCEeWbp4A9_-WIrQ" name="Label" sectionFile="ui/Label.xwt">
       <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_W3-htJLCEeWbp4A9_-WIrQ" name="isSWTLabel">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.2"/>
-        <properties xsi:type="constraints:ReferenceProperty" xmi:id="_W3-htZLCEeWbp4A9_-WIrQ" name="query">
-          <value href="custom.querySet#isLabel"/>
-        </properties>
+        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.constraints/Model/ConstraintEnvironment.xmi#//@constraintTypes.4"/>
+        <properties xsi:type="constraints:ValueProperty" xmi:id="_-R1PUMkBEeu_J9e0SdsaHg" name="className" value="org.eclipse.papyrus.views.properties.toolsmiths.query.IsLabelQuery"/>
       </constraints>
       <widget href="ui/Label.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W3-htpLCEeWbp4A9_-WIrQ" name="Single ToggleButton" sectionFile="ui/Single ToggleButton.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W3-htpLCEeWbp4A9_-WIrQ" name="Single ToggleButton" sectionFile="ui/Single ToggleButton.xwt">
       <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_W3-ht5LCEeWbp4A9_-WIrQ" name="isSingleToggleButton">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.2"/>
-        <properties xsi:type="constraints:ReferenceProperty" xmi:id="_W3-huJLCEeWbp4A9_-WIrQ" name="query">
-          <value href="custom.querySet#isToggleButton"/>
-        </properties>
+        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.constraints/Model/ConstraintEnvironment.xmi#//@constraintTypes.4"/>
+        <properties xsi:type="constraints:ValueProperty" xmi:id="_CpbhsMkCEeu_J9e0SdsaHg" name="className" value="org.eclipse.papyrus.views.properties.toolsmiths.query.IsToggleButtonQuery"/>
       </constraints>
       <widget href="ui/Single ToggleButton.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W3-huZLCEeWbp4A9_-WIrQ" name="SingleFileSelector" sectionFile="ui/SingleFileSelector.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W3-huZLCEeWbp4A9_-WIrQ" name="SingleFileSelector" sectionFile="ui/SingleFileSelector.xwt">
       <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_W3-hupLCEeWbp4A9_-WIrQ" name="isSingleFileSelector">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.2"/>
-        <properties xsi:type="constraints:ReferenceProperty" xmi:id="_W3-hu5LCEeWbp4A9_-WIrQ" name="query">
-          <value href="custom.querySet#isFileSelector"/>
-        </properties>
+        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.constraints/Model/ConstraintEnvironment.xmi#//@constraintTypes.4"/>
+        <properties xsi:type="constraints:ValueProperty" xmi:id="_FQqCoMkCEeu_J9e0SdsaHg" name="className" value="org.eclipse.papyrus.views.properties.toolsmiths.query.IsFileSelectorQuery"/>
       </constraints>
       <widget href="ui/SingleFileSelector.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W3-hvJLCEeWbp4A9_-WIrQ" name="Single IntegerSpinner" sectionFile="ui/Single IntegerSpinner.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W3-hvJLCEeWbp4A9_-WIrQ" name="Single IntegerSpinner" sectionFile="ui/Single IntegerSpinner.xwt">
       <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_W3-hvZLCEeWbp4A9_-WIrQ" name="isIntegerSpinner">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.2"/>
-        <properties xsi:type="constraints:ReferenceProperty" xmi:id="_W3-hvpLCEeWbp4A9_-WIrQ" name="query">
-          <value href="custom.querySet#isIntegerSpinner"/>
-        </properties>
+        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.constraints/Model/ConstraintEnvironment.xmi#//@constraintTypes.4"/>
+        <properties xsi:type="constraints:ValueProperty" xmi:id="_JFwE4MkCEeu_J9e0SdsaHg" name="className" value="org.eclipse.papyrus.views.properties.toolsmiths.query.IsIntegerSpinnerQuery"/>
       </constraints>
       <widget href="ui/Single IntegerSpinner.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W3-hv5LCEeWbp4A9_-WIrQ" name="SingleCompositeConstraint" sectionFile="ui/SingleCompositeConstraint.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W3-hv5LCEeWbp4A9_-WIrQ" name="SingleCompositeConstraint" sectionFile="ui/SingleCompositeConstraint.xwt">
       <widget href="ui/SingleCompositeConstraint.xwt#/"/>
-    </sections>
-    <sections xmi:id="_W3-hwJLCEeWbp4A9_-WIrQ" name="MultipleCompositeConstraint" sectionFile="ui/MultipleCompositeConstraint.xwt">
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_W3-hwJLCEeWbp4A9_-WIrQ" name="MultipleCompositeConstraint" sectionFile="ui/MultipleCompositeConstraint.xwt">
       <widget href="ui/MultipleCompositeConstraint.xwt#/"/>
-    </sections>
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_prCjwMj8EeusCeu7kEqTxQ" name="JavaQuery" sectionFile="ui/JavaQuery.xwt">
+      <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_cEtbgMj9EeusCeu7kEqTxQ" name="IsJavaQuery">
+        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.constraints/Model/ConstraintEnvironment.xmi#//@constraintTypes.4"/>
+        <properties xsi:type="constraints:ValueProperty" xmi:id="_DQJq0Mj_Eeu_J9e0SdsaHg" name="className" value="org.eclipse.papyrus.views.properties.toolsmiths.query.IsJavaQueryConstraintQuery"/>
+      </constraints>
+      <widget href="ui/JavaQuery.xwt#/"/>
+    </allSections>
   </tabs>
   <views xmi:id="_W3-hwZLCEeWbp4A9_-WIrQ" name="Single Environment" sections="_W38FcpLCEeWbp4A9_-WIrQ" automaticContext="true">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_W3-hwpLCEeWbp4A9_-WIrQ" name="isSingleEnvironment">
@@ -548,7 +535,7 @@
       <properties xsi:type="constraints:ValueProperty" xmi:id="_W4A-D5LCEeWbp4A9_-WIrQ" name="className" value="DataContextRoot"/>
     </constraints>
   </views>
-  <views xmi:id="_W4A-EJLCEeWbp4A9_-WIrQ" name="Single ConstraintDescriptor" sections="_W38slZLCEeWbp4A9_-WIrQ _W396opLCEeWbp4A9_-WIrQ _W396pZLCEeWbp4A9_-WIrQ _W396qJLCEeWbp4A9_-WIrQ _W396q5LCEeWbp4A9_-WIrQ" automaticContext="true">
+  <views xmi:id="_W4A-EJLCEeWbp4A9_-WIrQ" name="Single ConstraintDescriptor" sections="_W38slZLCEeWbp4A9_-WIrQ _W396opLCEeWbp4A9_-WIrQ _W396pZLCEeWbp4A9_-WIrQ _W396qJLCEeWbp4A9_-WIrQ _W396q5LCEeWbp4A9_-WIrQ _prCjwMj8EeusCeu7kEqTxQ" automaticContext="true">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_W4A-EZLCEeWbp4A9_-WIrQ" name="isSingleConstraintDescriptor">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_W4A-EpLCEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/papyrus/constraints/0.9"/>
@@ -966,6 +953,9 @@
     </elements>
     <elements xmi:id="_W4EobZLCEeWbp4A9_-WIrQ" name="Stereotype">
       <properties xmi:id="_W4EobpLCEeWbp4A9_-WIrQ" name="stereotypeName" label="Stereotype name" description="The fully qualified name of the Stereotype. The separator is &quot;::&quot;. For example : MyProfile::MyPackage::MyStereotype"/>
+    </elements>
+    <elements xmi:id="_2p8DIMj8EeusCeu7kEqTxQ" name="JavaQuery">
+      <properties xmi:id="_3lRqAMj8EeusCeu7kEqTxQ" name="className" label="Class name" description="The qualified name of a Java Class implementing org.eclipse.papyrus.infra.constraints.constraints.JavaQuery"/>
     </elements>
     <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.views.properties.toolsmiths/Model/CustomizationEnvironment.xmi#//@modelElementFactories.1"/>
   </dataContexts>

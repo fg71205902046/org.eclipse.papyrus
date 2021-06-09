@@ -17,7 +17,7 @@ package org.eclipse.papyrus.infra.properties.ui.widgets;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.DataSource;
 
 /**
- * The inteface to be implemented by all PropertyEditors
+ * The interface to be implemented by all PropertyEditors
  *
  * @author Camille Letavernier
  *

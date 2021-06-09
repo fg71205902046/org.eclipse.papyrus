@@ -51,7 +51,7 @@ public class JavaQueryConstraint extends AbstractConstraint {
 
 	@Override
 	public boolean match(Object selection) {
-		return query.match(selection);
+		return query != null && query.match(selection);
 	}
 
 	@Override
