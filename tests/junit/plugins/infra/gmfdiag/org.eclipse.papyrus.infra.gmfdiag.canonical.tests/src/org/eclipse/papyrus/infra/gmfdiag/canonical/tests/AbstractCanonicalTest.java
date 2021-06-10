@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   Vincent LORENZO (CEA LIST) - vincent.lorenzo@cea.fr - bug 569174
+ *   Vincent LORENZO (CEA LIST) - vincent.lorenzo@cea.fr - bug 569174 - FIX Junit tests
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.canonical.tests;
@@ -43,6 +43,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.edit.command.AddCommand;
@@ -131,6 +132,7 @@ import com.google.common.util.concurrent.Futures;
 /**
  * Common implementation of canonical test cases.
  */
+@SuppressWarnings("deprecation")
 public class AbstractCanonicalTest extends AbstractPapyrusTest {
 	@Rule
 	public final HouseKeeper houseKeeper = new HouseKeeper();
@@ -762,30 +764,54 @@ public class AbstractCanonicalTest extends AbstractPapyrusTest {
 		try {
 			URI classdiagram = URI.createPlatformPluginURI(String.format("/%s/model/classdiagram.gmfgen", UMLDiagramEditorPlugin.ID), true);
 			VisualIDOverride ov = UML2Util.load(rset, classdiagram, GenExtensionPackage.eINSTANCE.getVisualIDOverride());
-			PapyrusgmfgenextensionSwitch<Class<? extends View>> typeSwitch = new PapyrusgmfgenextensionSwitch<>() {
+			if (ov != null) {
+				PapyrusgmfgenextensionSwitch<Class<? extends View>> typeSwitch = new PapyrusgmfgenextensionSwitch<>() {
 
-				@Override
-				public Class<? extends View> caseVisualIDOverride(VisualIDOverride object) {
-					Class<? extends View> result = null;
-					GenCommonBase base = object.getGenView();
-					if (base instanceof GenDiagram) {
-						result = Diagram.class;
-					} else if (base instanceof GenTopLevelNode) {
-						result = Node.class;
-					} else if (base instanceof GenChildNode) {
-						result = Node.class;
-					} else if (base instanceof GenLink) {
-						result = Edge.class;
+					@Override
+					public Class<? extends View> caseVisualIDOverride(VisualIDOverride object) {
+						Class<? extends View> result = null;
+						GenCommonBase base = object.getGenView();
+						if (base instanceof GenDiagram) {
+							result = Diagram.class;
+						} else if (base instanceof GenTopLevelNode) {
+							result = Node.class;
+						} else if (base instanceof GenChildNode) {
+							result = Node.class;
+						} else if (base instanceof GenLink) {
+							result = Edge.class;
+						}
+						if (result != null) {
+							map.put(object.getVisualID(), result);
+						}
+						return result;
 					}
-					if (result != null) {
-						map.put(object.getVisualID(), result);
-					}
-					return result;
+				};
+
+				for (Iterator<? extends EObject> iter = ov.eAllContents(); iter.hasNext();) {
+					typeSwitch.doSwitch(iter.next());
 				}
-			};
+			} else {
+				Resource res = rset.getResource(classdiagram, true);
+				final TreeIterator<EObject> iter = res.getAllContents();
+				while (iter.hasNext()) {
+					final EObject base = iter.next();
+					if (base instanceof GenCommonBase) {
+						Class<? extends View> result = null;
+						if (base instanceof GenDiagram) {
+							result = Diagram.class;
+						} else if (base instanceof GenTopLevelNode) {
+							result = Node.class;
+						} else if (base instanceof GenChildNode) {
+							result = Node.class;
+						} else if (base instanceof GenLink) {
+							result = Edge.class;
+						}
+						if (result != null) {
+							map.put(((GenCommonBase) base).getVisualIDOverride(), result);
+						}
+					}
 
-			for (Iterator<? extends EObject> iter = ov.eAllContents(); iter.hasNext();) {
-				typeSwitch.doSwitch(iter.next());
+				}
 			}
 		} finally {
 			EMFHelper.unload(rset);
