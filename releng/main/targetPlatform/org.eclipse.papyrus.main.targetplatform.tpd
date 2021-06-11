@@ -47,7 +47,7 @@ location xwt "https://download.eclipse.org/xwt/milestones-1.7.0/1.7.0-S/" {
 
 //updateFrom("QVT Operational for 2021-06",0)
 
-location qvto "https://download.eclipse.org/mmt/qvto/updates/milestones/3.10.4/S202105250604" {
+location qvto "https://download.eclipse.org/mmt/qvto/updates/releases/3.10.4" {
 	org.eclipse.m2m.qvt.oml.sdk.feature.group
 }
 
@@ -66,13 +66,13 @@ location uml "https://download.eclipse.org/modeling/mdt/uml2/updates/5.5" {
 
 //updateFrom("Eclipse",0)
 
-location platform "https://download.eclipse.org/eclipse/updates/4.20-I-builds/I20210519-1800/" {
+location platform "https://download.eclipse.org/eclipse/updates/4.20-I-builds/I20210611-1600" {
 	org.eclipse.sdk.feature.group
 }
 
 //updateFrom("OCL for 2021-06",0) 
 
-location ocl "https://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.15.0/S202104121022" {
+location ocl "https://download.eclipse.org/modeling/mdt/ocl/updates/releases/6.15.0" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
@@ -95,7 +95,7 @@ location mwe "https://download.eclipse.org/modeling/emft/mwe/updates/releases/2.
 
 //updateFrom("Web Tools Platform 3.22 for SimRel 2021-06",0) 
 
-location webtools "https://download.eclipse.org/webtools/downloads/drops/R3.22.0/S-3.22.0.M3-20210520103215/repository/" {
+location webtools "https://download.eclipse.org/webtools/downloads/drops/R3.22.0/S-3.22.0.RC3a-20210612170523/repository/" {
 	org.eclipse.wst.xml_ui.feature.feature.group lazy 
 }
 
@@ -113,7 +113,7 @@ location gmfNotation "https://download.eclipse.org/modeling/gmp/gmf-notation/upd
 
 //updateFrom("EMF (Core)",0)
 
-location emf "https://download.eclipse.org/modeling/emf/emf/builds/milestone/S202105150126" {
+location emf "https://download.eclipse.org/modeling/emf/emf/builds/release/2.26" {
 	org.eclipse.emf.sdk.feature.group
 }
 
