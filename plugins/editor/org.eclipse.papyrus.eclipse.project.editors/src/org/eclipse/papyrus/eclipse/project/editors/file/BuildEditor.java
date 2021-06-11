@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2011, 2016, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,7 +12,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr
  *  Christian W. Damus - bug 485220
- *  
+ *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr - Bug 574258
  *****************************************************************************/
 package org.eclipse.papyrus.eclipse.project.editors.file;
 
@@ -45,7 +45,6 @@ public class BuildEditor extends AbstractFileEditor implements IBuildEditor {
 	 * Defaults to "bin.includes" (The eclipse standard binary build)
 	 */
 	private String buildKey = "bin.includes"; //$NON-NLS-1$
-
 
 	/**
 	 *
@@ -232,5 +231,17 @@ public class BuildEditor extends AbstractFileEditor implements IBuildEditor {
 	public boolean isRegisteredBinFolder(String binFolder) {
 		List<String> folders = Arrays.asList(splitValues(this.buildConfig.getProperty(BIN_KEY, ""))); //$NON-NLS-1$
 		return folders.contains(binFolder);
+	}
+
+	/**
+	 *
+	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IBuildEditor#getSourceIncludes()
+	 *
+	 * @return
+	 */
+	@Override
+	public String[] getSourceIncludes() {
+		String value = this.buildConfig.getProperty(SOURCE_BUILD);
+		return splitValues(value);
 	}
 }

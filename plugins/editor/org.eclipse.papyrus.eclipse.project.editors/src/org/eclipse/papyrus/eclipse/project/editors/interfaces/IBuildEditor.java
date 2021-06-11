@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2021 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -12,14 +12,14 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr
- *
+ *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr - Bug 574258
  *****************************************************************************/
 package org.eclipse.papyrus.eclipse.project.editors.interfaces;
 
 /**
  *
  * Editor for the build.properties
- * 
+ *
  * @noimplement This interface is not intended to be implemented by clients.
  * @noextend This interface is not intended to be extended by clients.
  */
@@ -88,15 +88,28 @@ public interface IBuildEditor extends IFileEditor {
 	 * Returns all the registered source folders
 	 *
 	 * @return
-	 * 		all the registered source folders
+	 *         all the registered source folders
 	 */
 	public String[] getSourceFolders();
 
 	/**
-	 * Returns all the files added to the build
+	 * Returns all the files added to the binary build
 	 *
 	 * @return
-	 * 		all the files added to the build
+	 *         all the files added to binary the build
 	 */
 	public String[] getElementsInBuild();
+
+
+	/**
+	 * Returns all the files added to the source build
+	 *
+	 * @return
+	 *         all the files added to source the build
+	 * @since 3.1
+	 */
+	public default String[] getSourceIncludes() {// default for API compatibility
+		return new String[0];
+	}
+
 }
