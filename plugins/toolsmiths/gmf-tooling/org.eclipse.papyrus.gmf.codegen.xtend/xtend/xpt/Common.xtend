@@ -28,14 +28,17 @@ import xpt.editor.VisualIDRegistry
  * XXX: [MG] I don't like dependency from Common -> VisualIdRegistry 
  */
 @Singleton class Common {
-	def copyright(GenEditorGenerator it) 
-	'''
-	«IF copyrightText !== null»
-	/**
-	 * «copyrightText.replaceAll('\n', '\n * ').replaceAll('\\* \n', '*\n')»
-	 */
- 	«ENDIF»
-	'''
+
+	def copyright(GenEditorGenerator it) {
+		if(copyrightText !== null) {
+			val split =  copyrightText.split('\n');
+			// Bug 569174 : L1.2 : fix copyright header extra space to remove at line 2 ... n
+			'''
+			/**«FOR element : split »«'\n *'»«IF !element.isBlank» «element»«ENDIF»«ENDFOR»
+			 */
+			'''
+		}
+	}
 
 	def xcopyright(GenEditorGenerator it) 
 	'''
