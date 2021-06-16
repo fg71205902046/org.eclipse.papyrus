@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017 CEA LIST.
+ * Copyright (c) 2017, 2021 CEA LIST, Christian W. Damus, and others.
  * 
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *  
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
+ *  Christian W. Damus - bug 573890
  *  
  * 
  */
@@ -79,7 +80,7 @@ public interface PapyrusTable extends PapyrusRepresentationKind {
 	 * @return the value of the '<em>Creation Command</em>' attribute.
 	 * @see #setCreationCommand(String)
 	 * @see org.eclipse.papyrus.infra.nattable.representation.RepresentationPackage#getPapyrusTable_CreationCommand()
-	 * @model
+	 * @model annotation="http://www.eclipse.org/papyrus/infra/core/architecture classConstraint='bundleclass://org.eclipse.papyrus.infra.nattable.common/org.eclipse.papyrus.infra.nattable.common.internal.command.ITableCreationCommand'"
 	 * @generated
 	 */
 	String getCreationCommand();

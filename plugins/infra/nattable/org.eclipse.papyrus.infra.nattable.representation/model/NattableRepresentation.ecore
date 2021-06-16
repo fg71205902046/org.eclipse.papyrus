@@ -20,6 +20,9 @@
         <details key="propertyDescription" value="The configuration of the table"/>
         <details key="propertyCategory" value="Table"/>
       </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/papyrus/infra/core/architecture">
+        <details key="classConstraint" value="bundleclass://org.eclipse.papyrus.infra.nattable.common/org.eclipse.papyrus.infra.nattable.common.internal.command.ITableCreationCommand"/>
+      </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
 </ecore:EPackage>

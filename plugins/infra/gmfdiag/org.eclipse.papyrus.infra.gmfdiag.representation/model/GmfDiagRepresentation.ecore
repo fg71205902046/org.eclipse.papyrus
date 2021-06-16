@@ -55,6 +55,7 @@
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/papyrus/infra/core/architecture">
         <details key="classConstraint" value="bundleclass://org.eclipse.papyrus.infra.gmfdiag.commands/org.eclipse.papyrus.commands.ICreationCommand"/>
+        <details key="requiredBundles" value="org.eclipse.papyrus.infra.gmfdiag.common"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="palettes" upperBound="-1"

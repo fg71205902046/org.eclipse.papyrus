@@ -10,7 +10,7 @@
  *  
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
- *  Christian W. Damus - bug 539694
+ *  Christian W. Damus - bugs 539694, 573890
  *  
  * 
  */
@@ -138,7 +138,7 @@ public interface PapyrusDiagram extends PapyrusRepresentationKind {
 	 * @see #setCreationCommandClass(String)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage#getPapyrusDiagram_CreationCommandClass()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/papyrus/infra/core/architecture classConstraint='bundleclass://org.eclipse.papyrus.infra.gmfdiag.commands/org.eclipse.papyrus.commands.ICreationCommand'"
+	 *        annotation="http://www.eclipse.org/papyrus/infra/core/architecture classConstraint='bundleclass://org.eclipse.papyrus.infra.gmfdiag.commands/org.eclipse.papyrus.commands.ICreationCommand' requiredBundles='org.eclipse.papyrus.infra.gmfdiag.common'"
 	 * @generated
 	 */
 	String getCreationCommandClass();

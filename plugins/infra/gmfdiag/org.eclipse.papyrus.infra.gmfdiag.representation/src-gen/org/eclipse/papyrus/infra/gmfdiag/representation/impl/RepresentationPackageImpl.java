@@ -10,7 +10,7 @@
  *  
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
- *  Christian W. Damus - bug 539694
+ *  Christian W. Damus - bugs 539694, 573890
  *  
  * 
  */
@@ -568,7 +568,8 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 		  (getPapyrusDiagram_CreationCommandClass(),
 		   source,
 		   new String[] {
-			   "classConstraint", "bundleclass://org.eclipse.papyrus.infra.gmfdiag.commands/org.eclipse.papyrus.commands.ICreationCommand" //$NON-NLS-1$ //$NON-NLS-2$
+			   "classConstraint", "bundleclass://org.eclipse.papyrus.infra.gmfdiag.commands/org.eclipse.papyrus.commands.ICreationCommand", //$NON-NLS-1$ //$NON-NLS-2$
+			   "requiredBundles", "org.eclipse.papyrus.infra.gmfdiag.common" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

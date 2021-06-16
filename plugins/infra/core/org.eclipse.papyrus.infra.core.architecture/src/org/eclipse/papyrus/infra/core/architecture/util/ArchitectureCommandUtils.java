@@ -24,6 +24,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
@@ -45,6 +46,7 @@ import org.osgi.framework.Bundle;
  */
 public class ArchitectureCommandUtils {
 
+	private static final String REQUIRED_BUNDLES = "requiredBundles"; //$NON-NLS-1$
 	private static final String CLASS_CONSTRAINT = "classConstraint"; //$NON-NLS-1$
 	private static final String BUNDLECLASS = "bundleclass"; //$NON-NLS-1$
 
@@ -90,7 +92,7 @@ public class ArchitectureCommandUtils {
 		return result;
 	}
 
-	private static String getClassBundleAnnotation(EObject owner, EStructuralFeature feature) {
+	private static String getBundleFromClassAnnotation(EObject owner, EStructuralFeature feature) {
 		String result = null;
 
 		if (owner.eIsSet(feature)) {
@@ -100,6 +102,16 @@ public class ArchitectureCommandUtils {
 			if (uri != null && BUNDLECLASS.equals(uri.scheme())) {
 				result = uri.authority();
 			}
+		}
+
+		return result;
+	}
+
+	private static String getRequiredBundlesAnnotation(EObject owner, EStructuralFeature feature) {
+		String result = null;
+
+		if (owner.eIsSet(feature)) {
+			result = EcoreUtil.getAnnotation(feature, ArchitecturePackage.eNS_URI, REQUIRED_BUNDLES);
 		}
 
 		return result;
@@ -215,9 +227,14 @@ public class ArchitectureCommandUtils {
 		for (Iterator<EObject> iter = EcoreUtil.getAllContents(Set.of(modelObject)); iter.hasNext();) {
 			EObject next = iter.next();
 			for (EStructuralFeature feature : getCommandClassFeatures(next.eClass(), commandClassFeatures)) {
-				String bundleDependency = getClassBundleAnnotation(next, feature);
-				if (bundleDependency != null) {
-					result.add(bundleDependency);
+				String bundleDependencyByClass = getBundleFromClassAnnotation(next, feature);
+				if (bundleDependencyByClass != null) {
+					result.add(bundleDependencyByClass);
+				}
+
+				String otherDependencies = getRequiredBundlesAnnotation(next, feature);
+				if (otherDependencies != null && !otherDependencies.isBlank()) {
+					Stream.of(otherDependencies.split("\\s*,\\s*")).forEach(result::add); //$NON-NLS-1$
 				}
 			}
 		}
