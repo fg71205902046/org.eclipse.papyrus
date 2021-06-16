@@ -58,7 +58,7 @@ public class ModelEditPartCN extends PackageEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Model_Shape_CN";
+	public static final String VISUAL_ID = "Model_Shape_CN"; //$NON-NLS-1$
 
 	/**
 	 * @generated

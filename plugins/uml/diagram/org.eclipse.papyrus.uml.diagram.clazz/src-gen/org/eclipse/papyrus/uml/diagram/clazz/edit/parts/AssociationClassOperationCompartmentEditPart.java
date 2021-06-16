@@ -34,7 +34,7 @@ public class AssociationClassOperationCompartmentEditPart extends AbstractListCo
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "AssociationClass_OperationCompartment";
+	public static final String VISUAL_ID = "AssociationClass_OperationCompartment"; //$NON-NLS-1$
 
 	/**
 	 * @generated

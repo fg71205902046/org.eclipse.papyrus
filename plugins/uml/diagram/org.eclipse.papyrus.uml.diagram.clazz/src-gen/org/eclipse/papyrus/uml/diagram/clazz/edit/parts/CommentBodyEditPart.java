@@ -32,7 +32,7 @@ public class CommentBodyEditPart extends AbstractNodeLabelEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Comment_BodyLabel";
+	public static final String VISUAL_ID = "Comment_BodyLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

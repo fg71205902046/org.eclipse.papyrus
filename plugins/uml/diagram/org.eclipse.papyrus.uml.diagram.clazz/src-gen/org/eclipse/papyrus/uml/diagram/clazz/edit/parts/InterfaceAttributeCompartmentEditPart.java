@@ -34,7 +34,7 @@ public class InterfaceAttributeCompartmentEditPart extends AbstractResizableComp
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Interface_AttributeCompartment";
+	public static final String VISUAL_ID = "Interface_AttributeCompartment"; //$NON-NLS-1$
 
 	/**
 	 * @generated

@@ -35,7 +35,7 @@ public class AssociationClassNestedClassifierCompartmentEditPart extends Abstrac
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "AssociationClass_NestedClassifierCompartment";
+	public static final String VISUAL_ID = "AssociationClass_NestedClassifierCompartment"; //$NON-NLS-1$
 
 	/**
 	 * @generated

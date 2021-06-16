@@ -34,7 +34,7 @@ public class DataTypeOperationCompartmentEditPartCN extends AbstractResizableCom
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "DataType_OperationCompartment_CN";
+	public static final String VISUAL_ID = "DataType_OperationCompartment_CN"; //$NON-NLS-1$
 
 	/**
 	 * @generated

@@ -74,7 +74,7 @@ public class PrimitiveTypeEditPart extends ClassifierEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "PrimitiveType_Shape";
+	public static final String VISUAL_ID = "PrimitiveType_Shape"; //$NON-NLS-1$
 
 	/**
 	 * @generated

@@ -50,7 +50,7 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "TemplateSignature_Shape";
+	public static final String VISUAL_ID = "TemplateSignature_Shape"; //$NON-NLS-1$
 
 	/**
 	 * @generated

@@ -41,7 +41,7 @@ public class OperationForInterfaceEditpart extends AbstractCompartmentEditPart i
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Operation_InterfaceOperationLabel";
+	public static final String VISUAL_ID = "Operation_InterfaceOperationLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

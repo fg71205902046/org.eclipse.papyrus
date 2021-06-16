@@ -34,7 +34,7 @@ public class ClassNameEditPartCN extends AbstractNodeLabelEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Class_NameLabel_CN";
+	public static final String VISUAL_ID = "Class_NameLabel_CN"; //$NON-NLS-1$
 
 	/**
 	 * @generated

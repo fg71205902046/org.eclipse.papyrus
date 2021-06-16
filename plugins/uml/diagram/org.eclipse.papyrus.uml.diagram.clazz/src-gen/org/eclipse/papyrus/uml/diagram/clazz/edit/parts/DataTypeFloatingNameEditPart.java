@@ -36,7 +36,7 @@ public class DataTypeFloatingNameEditPart extends AbstractFloatingLabelEditPart 
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "DataType_FloatingNameLabel";
+	public static final String VISUAL_ID = "DataType_FloatingNameLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

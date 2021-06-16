@@ -38,7 +38,7 @@ public class SlotEditPart extends AbstractCompartmentEditPart implements ITextAw
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Slot_SlotLabel";
+	public static final String VISUAL_ID = "Slot_SlotLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

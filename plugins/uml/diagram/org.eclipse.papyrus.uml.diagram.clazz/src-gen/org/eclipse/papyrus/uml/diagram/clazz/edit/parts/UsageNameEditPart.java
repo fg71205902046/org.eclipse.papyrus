@@ -35,7 +35,7 @@ public class UsageNameEditPart extends AbstractLinkLabelEditPart implements ILab
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Usage_NameLabel";
+	public static final String VISUAL_ID = "Usage_NameLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

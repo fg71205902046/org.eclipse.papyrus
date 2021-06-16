@@ -75,7 +75,7 @@ public class SignalEditPartCN extends ClassifierEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Signal_Shape_CN";
+	public static final String VISUAL_ID = "Signal_Shape_CN"; //$NON-NLS-1$
 
 	/**
 	 * @generated

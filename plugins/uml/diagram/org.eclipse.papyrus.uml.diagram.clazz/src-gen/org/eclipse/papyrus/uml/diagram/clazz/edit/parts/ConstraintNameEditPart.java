@@ -34,7 +34,7 @@ public class ConstraintNameEditPart extends AbstractNodeLabelEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Constraint_NameLabel";
+	public static final String VISUAL_ID = "Constraint_NameLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

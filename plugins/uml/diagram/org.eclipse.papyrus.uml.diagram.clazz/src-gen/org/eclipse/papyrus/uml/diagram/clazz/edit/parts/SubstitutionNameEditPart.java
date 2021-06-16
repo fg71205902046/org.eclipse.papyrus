@@ -35,7 +35,7 @@ public class SubstitutionNameEditPart extends AbstractLinkLabelEditPart implemen
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Substitution_NameLabel";
+	public static final String VISUAL_ID = "Substitution_NameLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

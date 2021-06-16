@@ -51,7 +51,7 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "RedefinableTemplateSignature_Shape";
+	public static final String VISUAL_ID = "RedefinableTemplateSignature_Shape"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -127,6 +127,7 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure createNodeShape() {
 		return primaryShape = new TemplateFigure();
 	}
@@ -136,6 +137,7 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 	 *
 	 * @generated
 	 */
+	@Override
 	public TemplateFigure getPrimaryShape() {
 		return (TemplateFigure) primaryShape;
 	}
@@ -202,6 +204,7 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 	 * @generated
 	 */
 
+	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
 		return result;
@@ -235,6 +238,7 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 	 *
 	 * @generated
 	 */
+	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();

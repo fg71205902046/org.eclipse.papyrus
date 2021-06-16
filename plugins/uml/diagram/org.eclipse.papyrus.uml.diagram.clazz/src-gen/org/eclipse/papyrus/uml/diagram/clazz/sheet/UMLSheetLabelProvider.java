@@ -39,7 +39,7 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelPr
 			return ((UMLNavigatorGroup) element).getGroupName();
 		}
 		IElementType etype = getElementType(getView(element));
-		return etype == null ? "" : etype.getDisplayName();
+		return etype == null ? "" : etype.getDisplayName(); //$NON-NLS-1$
 	}
 
 	/**

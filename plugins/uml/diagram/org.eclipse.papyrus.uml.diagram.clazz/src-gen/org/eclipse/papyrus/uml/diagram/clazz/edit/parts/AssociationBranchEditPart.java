@@ -32,7 +32,7 @@ public class AssociationBranchEditPart extends AbstractAssociationBranchEditPart
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Association_BranchEdge";
+	public static final String VISUAL_ID = "Association_BranchEdge"; //$NON-NLS-1$
 
 	/**
 	 * @generated

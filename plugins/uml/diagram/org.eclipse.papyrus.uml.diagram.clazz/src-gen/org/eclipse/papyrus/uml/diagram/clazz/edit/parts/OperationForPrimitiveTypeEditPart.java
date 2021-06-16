@@ -41,7 +41,7 @@ public class OperationForPrimitiveTypeEditPart extends AbstractCompartmentEditPa
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Operation_PrimitiveTypeOperationLabel";
+	public static final String VISUAL_ID = "Operation_PrimitiveTypeOperationLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

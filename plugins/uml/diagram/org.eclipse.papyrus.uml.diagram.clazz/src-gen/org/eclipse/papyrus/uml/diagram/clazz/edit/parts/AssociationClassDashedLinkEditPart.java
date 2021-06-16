@@ -31,7 +31,7 @@ public class AssociationClassDashedLinkEditPart extends ConnectionEditPart imple
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "AssociationClass_TetherEdge";
+	public static final String VISUAL_ID = "AssociationClass_TetherEdge"; //$NON-NLS-1$
 
 	/**
 	 * @generated

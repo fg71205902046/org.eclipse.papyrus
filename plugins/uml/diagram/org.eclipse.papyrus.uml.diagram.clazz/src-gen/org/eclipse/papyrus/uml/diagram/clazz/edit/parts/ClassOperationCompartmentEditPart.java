@@ -34,7 +34,7 @@ public class ClassOperationCompartmentEditPart extends AbstractResizableCompartm
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Class_OperationCompartment";
+	public static final String VISUAL_ID = "Class_OperationCompartment"; //$NON-NLS-1$
 
 	/**
 	 * @generated

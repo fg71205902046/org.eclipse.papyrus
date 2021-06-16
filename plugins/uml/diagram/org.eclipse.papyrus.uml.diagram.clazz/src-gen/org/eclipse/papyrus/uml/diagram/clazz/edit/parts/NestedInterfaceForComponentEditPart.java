@@ -44,7 +44,7 @@ public class NestedInterfaceForComponentEditPart extends AbstractCompartmentEdit
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Interface_ComponentNestedClassifierLabel";
+	public static final String VISUAL_ID = "Interface_ComponentNestedClassifierLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

@@ -36,7 +36,7 @@ public class TimeObservationFloatingNameEditPart extends AbstractFloatingLabelEd
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "TimeObservation_FloatingNameLabel";
+	public static final String VISUAL_ID = "TimeObservation_FloatingNameLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

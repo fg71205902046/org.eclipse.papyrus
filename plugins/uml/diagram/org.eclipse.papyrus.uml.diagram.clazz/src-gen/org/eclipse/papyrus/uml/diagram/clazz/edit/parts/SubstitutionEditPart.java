@@ -34,7 +34,7 @@ public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements I
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Substitution_Edge";
+	public static final String VISUAL_ID = "Substitution_Edge"; //$NON-NLS-1$
 
 	/**
 	 * @generated

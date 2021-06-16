@@ -35,7 +35,7 @@ public class InstanceSpecificationSlotCompartmentEditPart extends AbstractListCo
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "InstanceSpecification_SlotCompartment";
+	public static final String VISUAL_ID = "InstanceSpecification_SlotCompartment"; //$NON-NLS-1$
 
 	/**
 	 * @generated

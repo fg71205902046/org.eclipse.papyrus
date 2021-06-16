@@ -45,7 +45,7 @@ public class NestedEnumerationForClassEditPart extends AbstractCompartmentEditPa
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Enumeration_ClassNestedClassifierLabel";
+	public static final String VISUAL_ID = "Enumeration_ClassNestedClassifierLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

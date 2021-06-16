@@ -34,7 +34,7 @@ public class DataTypeNameEditPart extends AbstractNodeLabelEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "DataType_NameLabel";
+	public static final String VISUAL_ID = "DataType_NameLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

@@ -34,7 +34,7 @@ public class TemplateBindingEditPart extends UMLConnectionNodeEditPart implement
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "TemplateBinding_Edge";
+	public static final String VISUAL_ID = "TemplateBinding_Edge"; //$NON-NLS-1$
 
 	/**
 	 * @generated

@@ -57,7 +57,7 @@ public class AssociationNodeEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Association_Shape";
+	public static final String VISUAL_ID = "Association_Shape"; //$NON-NLS-1$
 
 	/**
 	 * @generated

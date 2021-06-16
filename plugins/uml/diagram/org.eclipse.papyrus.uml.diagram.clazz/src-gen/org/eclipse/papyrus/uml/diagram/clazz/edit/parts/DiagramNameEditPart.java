@@ -34,7 +34,7 @@ public class DiagramNameEditPart extends AbstractShortcutDiagramNameEditPart imp
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Diagram_NameLabel";
+	public static final String VISUAL_ID = "Diagram_NameLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

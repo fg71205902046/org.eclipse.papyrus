@@ -30,7 +30,7 @@ public class ContainmentLinkEditPart extends UMLConnectionNodeEditPart implement
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Element_ContainmentEdge";
+	public static final String VISUAL_ID = "Element_ContainmentEdge"; //$NON-NLS-1$
 
 	/**
 	 * @generated

@@ -36,7 +36,7 @@ public class DependencyFloatingNameEditPart extends AbstractFloatingLabelEditPar
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Dependency_FloatingNameLabel";
+	public static final String VISUAL_ID = "Dependency_FloatingNameLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

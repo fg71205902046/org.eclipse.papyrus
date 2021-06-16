@@ -1230,7 +1230,7 @@ public class ElementInitializers {
 	 */
 	private ValueSpecification specification_Constraint_PackagedElementShape(Constraint it) {
 		LiteralString literalString = UMLFactory.eINSTANCE.createLiteralString();
-		literalString.setValue("");
+		literalString.setValue(""); //$NON-NLS-1$
 		return literalString;
 	}
 
@@ -1463,7 +1463,7 @@ public class ElementInitializers {
 	 */
 	private ValueSpecification specification_Constraint_PackagedElementShape_CN(Constraint it) {
 		LiteralString literalString = UMLFactory.eINSTANCE.createLiteralString();
-		literalString.setValue("");
+		literalString.setValue(""); //$NON-NLS-1$
 		return literalString;
 	}
 
@@ -1663,7 +1663,7 @@ public class ElementInitializers {
 		if (it.getImportedElement() != null) {
 			return (it.getImportedElement().getLabel());
 		}
-		return "elementimport";
+		return "elementimport"; //$NON-NLS-1$
 	}
 
 	/**

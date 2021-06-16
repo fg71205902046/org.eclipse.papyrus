@@ -12,7 +12,7 @@
  *    Dmitry Stadnik (Borland) - initial API and implementation
  *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
- *    Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up
+ *    Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up + missing NLS
  *****************************************************************************/
 package xpt.editor
 
@@ -103,7 +103,7 @@ import xpt.CodeStyle
 					return false;
 				}
 				String extension = getExtension();
-				if (extension != null && !getFilePath().toString().endsWith("." + extension)) {
+				if (extension != null && !getFilePath().toString().endsWith("." + extension)) { «nonNLS»
 					setErrorMessage(org.eclipse.osgi.util.NLS.bind(«xptExternalizer.accessorCall(editorGen, i18nKeyForCreationWizardPageExtensionError(it))», extension));
 					return false;
 				}

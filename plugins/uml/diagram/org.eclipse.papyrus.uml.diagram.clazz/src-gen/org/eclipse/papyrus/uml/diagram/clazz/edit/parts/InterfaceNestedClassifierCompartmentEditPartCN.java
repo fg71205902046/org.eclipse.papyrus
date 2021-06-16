@@ -35,7 +35,7 @@ public class InterfaceNestedClassifierCompartmentEditPartCN extends AbstractResi
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Interface_NestedClassifierCompartment_CN";
+	public static final String VISUAL_ID = "Interface_NestedClassifierCompartment_CN"; //$NON-NLS-1$
 
 	/**
 	 * @generated

@@ -34,7 +34,7 @@ public class MultiDependencyLabelEditPart extends AbstractExternalLabelEditPart 
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Dependency_MultiNameLabel";
+	public static final String VISUAL_ID = "Dependency_MultiNameLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

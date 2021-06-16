@@ -18,7 +18,7 @@
  * Christian W. Damus - bug 451230
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : Remove reference to gmfgraph and ModelViewMap
- * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up providers
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up providers + missing nonNLS/@override
  *****************************************************************************/
 package impl.diagram.editparts
 
@@ -280,17 +280,22 @@ import xpt.providers.ElementTypes
 		var fqn = if (it.figureQualifiedClassName === null) 'org.eclipse.draw2d.RectangleFigure' else figureQualifiedClassName;
 		'''
 			«generatedMemberComment»
+			«IF node.papyrusNodeEditPart»«overrideC»«ENDIF»
 			protected org.eclipse.draw2d.IFigure createNodeShape() {
 				return primaryShape = new «fqn»()«forceUseLocalCoordinatesAnonymousClassBody(node)»;
 			}
 
-			«getPrimaryShapeMethod(fqn)»
+			«getPrimaryShapeMethod(fqn, node)»
 		'''
+	}
+	
+	def boolean isPapyrusNodeEditPart(GenNode it) {
+		superEditPart !== null
 	}
 
 	def dispatch createNodeShape(SnippetViewmap it, GenNode node) '''
 		«generatedMemberComment»
-		«node.overrideC»
+		«IF node.papyrusNodeEditPart»«overrideC»«ENDIF»
 		protected org.eclipse.draw2d.IFigure createNodeShape() {
 			return «body»;
 		}
@@ -298,12 +303,12 @@ import xpt.providers.ElementTypes
 
 	def dispatch createNodeShape(InnerClassViewmap it, GenNode node) '''
 		«generatedMemberComment»
-		«node.overrideC»
+		«IF node.papyrusNodeEditPart»«overrideC»«ENDIF»
 		protected org.eclipse.draw2d.IFigure createNodeShape() {
 			return primaryShape = new «className»()«forceUseLocalCoordinatesAnonymousClassBody(node)»;
 		}
 
-		«getPrimaryShapeMethod(className)»
+		«getPrimaryShapeMethod(className, node)»
 	'''
 
 	def forceUseLocalCoordinatesAnonymousClassBody(GenNode node) '''
@@ -316,8 +321,9 @@ import xpt.providers.ElementTypes
 		«ENDIF»
 	'''
 
-	def getPrimaryShapeMethod(String fqn) '''
+	def getPrimaryShapeMethod(String fqn, GenNode node) '''
 		«generatedMemberComment(fqn)»
+		«IF node.papyrusNodeEditPart»«overrideC»«ENDIF»
 		public «fqn» getPrimaryShape() {
 			return («fqn») primaryShape;
 		}
@@ -465,6 +471,7 @@ import xpt.providers.ElementTypes
 		 *	«super.createNodePlate(it)»
 		 *	
 		 *	By default node edit part are now RoundedRectangleNodePlateFigure */»
+		«IF papyrusNodeEditPart»«overrideC»«ENDIF»
 		protected org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure createNodePlate() {
 			org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure result = new org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure(«IF getDiagram().isPixelMapMode()»«defaultSizeWidth(viewmap, 40)», «defaultSizeHeight(viewmap, 40)»«ELSE»getMapMode().DPtoLP(«defaultSizeWidth(viewmap, 40)»), getMapMode().DPtoLP(«defaultSizeHeight(viewmap, 40)»)«ENDIF»);
 		return result;
@@ -496,6 +503,7 @@ import xpt.providers.ElementTypes
 			'\n' + 
 			'Body of this method does not depend on settings in generation model\n' + 
 			'so you may safely remove <i>generated</i> tag and modify it.')»
+		«overrideC»
 		protected org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure create«IF hasBorderItems(it)»Main«ELSE»Node«ENDIF»Figure() {
 			«IF it instanceof GenChildSideAffixedNode»
 				org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure figure = createNodePlate();
@@ -517,6 +525,7 @@ import xpt.providers.ElementTypes
 			'@param nodeShape\n' +
 			'           instance of generated figure class'
 			)»
+		«IF papyrusNodeEditPart»«overrideC»«ENDIF»
 		protected org.eclipse.draw2d.IFigure setupContentPane(org.eclipse.draw2d.IFigure nodeShape) {
 			«IF !childNodes.empty || !compartments.empty || labels.exists[l|!l.oclIsKindOf(typeof(GenExternalNodeLabel))]»
 				if (nodeShape.getLayoutManager() == null) {
@@ -555,6 +564,7 @@ import xpt.providers.ElementTypes
 
 	def setForegroundColor(GenNode it) '''
 		«generatedMemberComment»
+		«overrideC»
 		protected void setForegroundColor(org.eclipse.swt.graphics.Color color) {
 			if (primaryShape != null) {
 				primaryShape.setForegroundColor(color);
@@ -564,6 +574,7 @@ import xpt.providers.ElementTypes
 
 	def setBackgroundColor(GenNode it) '''
 		«generatedMemberComment»
+		«overrideC»
 		protected void setBackgroundColor(org.eclipse.swt.graphics.Color color) {
 			if (primaryShape != null) {
 				primaryShape.setBackgroundColor(color);
@@ -573,6 +584,7 @@ import xpt.providers.ElementTypes
 
 	def setLineWidth(GenNode it) '''
 		«generatedMemberComment»
+		«overrideC»
 		protected void setLineWidth(int width) {«
 			/* if (primaryShape instanceof org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure) {	
 			 * ((org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure) primaryShape).setLineWidth(«IF getDiagram().isPixelMapMode()»width«ELSE»getMapMode().DPtoLP(width)«ENDIF»);
@@ -584,6 +596,7 @@ import xpt.providers.ElementTypes
 
 	def setLineStyle(GenNode it) '''
 		«generatedMemberComment»
+		«overrideC»
 		protected void setLineType(int style) {
 			if (primaryShape instanceof org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure) {	
 				((org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure) primaryShape).setLineStyle(style);
@@ -594,6 +607,7 @@ import xpt.providers.ElementTypes
 	def getPrimaryChildEditPart(GenNode it) '''
 		«IF !labels.empty»
 			«generatedMemberComment»
+			«overrideC»
 			public org.eclipse.gef.EditPart getPrimaryChildEditPart() {
 				return getChildBySemanticHint(«xptVisualIDRegistry.typeMethodCall(labels.head)»);
 			}
@@ -687,10 +701,11 @@ import xpt.providers.ElementTypes
 
 	def specificHandleNotificationEventBody(RefreshHook it) '''
 		if (resolveSemanticElement() != null) {
-			if(«refreshCondition»){
-				«refreshAction»;
+			if(«refreshCondition»){ «nonNLS(refreshCondition)»
+				«refreshAction»; «nonNLS(refreshAction)»
 				refreshVisuals();
 			}
 		}
 	'''	
+	
 }

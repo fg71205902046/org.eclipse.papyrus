@@ -32,7 +32,7 @@ public class ConstraintBodyEditPart extends AbstractNodeLabelEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Constraint_BodyLabel";
+	public static final String VISUAL_ID = "Constraint_BodyLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

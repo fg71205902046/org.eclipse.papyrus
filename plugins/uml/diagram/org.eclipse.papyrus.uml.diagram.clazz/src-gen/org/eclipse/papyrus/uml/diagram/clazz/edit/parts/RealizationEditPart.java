@@ -34,7 +34,7 @@ public class RealizationEditPart extends UMLConnectionNodeEditPart implements IT
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Realization_Edge";
+	public static final String VISUAL_ID = "Realization_Edge"; //$NON-NLS-1$
 
 	/**
 	 * @generated

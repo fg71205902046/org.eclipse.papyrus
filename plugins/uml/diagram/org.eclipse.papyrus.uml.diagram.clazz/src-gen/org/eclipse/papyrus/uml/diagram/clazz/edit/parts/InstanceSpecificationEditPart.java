@@ -68,7 +68,7 @@ public class InstanceSpecificationEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "InstanceSpecification_Shape";
+	public static final String VISUAL_ID = "InstanceSpecification_Shape"; //$NON-NLS-1$
 
 	/**
 	 * @generated

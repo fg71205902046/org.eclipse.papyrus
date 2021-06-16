@@ -34,7 +34,7 @@ public class UsageEditPart extends UMLConnectionNodeEditPart implements ITreeBra
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Usage_Edge";
+	public static final String VISUAL_ID = "Usage_Edge"; //$NON-NLS-1$
 
 	/**
 	 * @generated

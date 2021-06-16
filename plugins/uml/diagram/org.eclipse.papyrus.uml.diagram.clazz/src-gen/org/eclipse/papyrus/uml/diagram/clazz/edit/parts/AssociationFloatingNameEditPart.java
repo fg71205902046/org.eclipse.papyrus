@@ -36,7 +36,7 @@ public class AssociationFloatingNameEditPart extends AbstractFloatingLabelEditPa
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Association_FloatingNameLabel";
+	public static final String VISUAL_ID = "Association_FloatingNameLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

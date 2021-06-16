@@ -40,7 +40,7 @@ public class ReceptionEditPart extends AbstractCompartmentEditPart implements IT
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Reception_ReceptionLabel";
+	public static final String VISUAL_ID = "Reception_ReceptionLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

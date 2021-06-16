@@ -31,7 +31,7 @@ public class ConstraintConstrainedElementEditPart extends UMLConnectionNodeEditP
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Constraint_ConstrainedElementEdge";
+	public static final String VISUAL_ID = "Constraint_ConstrainedElementEdge"; //$NON-NLS-1$
 
 	/**
 	 * @generated

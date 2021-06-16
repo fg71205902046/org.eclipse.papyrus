@@ -34,7 +34,7 @@ public class PackageMergeEditPart extends UMLConnectionNodeEditPart implements I
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "PackageMerge_Edge";
+	public static final String VISUAL_ID = "PackageMerge_Edge"; //$NON-NLS-1$
 
 	/**
 	 * @generated

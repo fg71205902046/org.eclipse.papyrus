@@ -38,7 +38,7 @@ public class ContextLinkAppliedStereotypeEditPart extends AbstractLinkLabelEditP
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Constraint_KeywordLabel";
+	public static final String VISUAL_ID = "Constraint_KeywordLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

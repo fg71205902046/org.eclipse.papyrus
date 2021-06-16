@@ -41,7 +41,7 @@ public class PropertyforPrimitiveTypeEditPart extends AbstractCompartmentEditPar
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Property_PrimitiveTypeAttributeLabel";
+	public static final String VISUAL_ID = "Property_PrimitiveTypeAttributeLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

@@ -95,7 +95,7 @@ public class TemplateParameterEditPart extends AbstractTemplateParameterEditPart
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "TemplateParameter_TemplateParameterLabel";
+	public static final String VISUAL_ID = "TemplateParameter_TemplateParameterLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -466,7 +466,7 @@ public class TemplateParameterEditPart extends AbstractTemplateParameterEditPart
 
 				if (Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
-					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
+					RecordingCommand command = new RecordingCommand(domain, "Edit Label") { //$NON-NLS-1$
 
 						@Override
 						protected void doExecute() {
@@ -702,7 +702,7 @@ public class TemplateParameterEditPart extends AbstractTemplateParameterEditPart
 	protected void initExtendedEditorConfiguration() {
 		if (configuration == null) {
 			final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-			if (languagePreferred != null && !languagePreferred.equals("")) {
+			if (languagePreferred != null && !languagePreferred.equals("")) { //$NON-NLS-1$
 				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement(), this);
 			} else {
 				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, resolveSemanticElement(), this);
@@ -717,9 +717,9 @@ public class TemplateParameterEditPart extends AbstractTemplateParameterEditPart
 	 */
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-		if (languagePreferred != null && !languagePreferred.equals("") && !languagePreferred.equals(configuration.getLanguage())) {
+		if (languagePreferred != null && !languagePreferred.equals("") && !languagePreferred.equals(configuration.getLanguage())) { //$NON-NLS-1$
 			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement(), this);
-		} else if (IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
+		} else if (IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) { // $NON-NLS-1$
 			configuration = null;
 		}
 	}

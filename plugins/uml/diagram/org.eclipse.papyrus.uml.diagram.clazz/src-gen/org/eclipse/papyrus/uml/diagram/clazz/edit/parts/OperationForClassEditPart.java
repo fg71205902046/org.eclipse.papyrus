@@ -41,7 +41,7 @@ public class OperationForClassEditPart extends AbstractCompartmentEditPart imple
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Operation_ClassOperationLabel";
+	public static final String VISUAL_ID = "Operation_ClassOperationLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

@@ -44,7 +44,7 @@ public class EnumerationLiteralEditPart extends AbstractCompartmentEditPart impl
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "EnumerationLiteral_LiteralLabel";
+	public static final String VISUAL_ID = "EnumerationLiteral_LiteralLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

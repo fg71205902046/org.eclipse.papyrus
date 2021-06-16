@@ -34,7 +34,7 @@ public class PrimitiveTypeOperationCompartmentEditPartCN extends AbstractResizab
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "PrimitiveType_OperationCompartment_CN";
+	public static final String VISUAL_ID = "PrimitiveType_OperationCompartment_CN"; //$NON-NLS-1$
 
 	/**
 	 * @generated

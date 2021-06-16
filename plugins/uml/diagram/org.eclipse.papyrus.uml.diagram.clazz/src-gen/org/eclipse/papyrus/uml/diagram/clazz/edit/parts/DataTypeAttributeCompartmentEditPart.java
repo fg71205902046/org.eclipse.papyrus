@@ -34,7 +34,7 @@ public class DataTypeAttributeCompartmentEditPart extends AbstractResizableCompa
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "DataType_AttributeCompartment";
+	public static final String VISUAL_ID = "DataType_AttributeCompartment"; //$NON-NLS-1$
 
 	/**
 	 * @generated

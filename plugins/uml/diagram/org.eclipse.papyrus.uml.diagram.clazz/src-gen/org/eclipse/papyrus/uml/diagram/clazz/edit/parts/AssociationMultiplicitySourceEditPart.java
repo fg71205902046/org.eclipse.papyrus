@@ -39,7 +39,7 @@ public class AssociationMultiplicitySourceEditPart extends AbstractLinkLabelEdit
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Association_SourceMultiplicityLabel";
+	public static final String VISUAL_ID = "Association_SourceMultiplicityLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

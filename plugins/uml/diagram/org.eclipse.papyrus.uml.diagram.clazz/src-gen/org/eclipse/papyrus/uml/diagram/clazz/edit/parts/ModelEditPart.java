@@ -36,7 +36,7 @@ public class ModelEditPart extends PapyrusDiagramEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Package_ClassDiagram";
+	public static final String VISUAL_ID = "Package_ClassDiagram"; //$NON-NLS-1$
 
 	/**
 	 * @generated

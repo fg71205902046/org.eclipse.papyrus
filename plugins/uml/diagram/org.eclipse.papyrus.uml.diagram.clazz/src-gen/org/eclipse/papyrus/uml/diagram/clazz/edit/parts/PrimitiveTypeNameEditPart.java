@@ -34,7 +34,7 @@ public class PrimitiveTypeNameEditPart extends AbstractNodeLabelEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "PrimitiveType_NameLabel";
+	public static final String VISUAL_ID = "PrimitiveType_NameLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

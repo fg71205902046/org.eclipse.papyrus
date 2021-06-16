@@ -12,7 +12,7 @@
  * Dmitry Stadnik (Borland) - initial API and implementation
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
- * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up + missing NLS
  *****************************************************************************/
 package xpt.editor
 
@@ -69,7 +69,7 @@ import xpt.Common
 						}
 					});
 				} catch (Exception e) {
-					«xptActivator.qualifiedClassName(editorGen.plugin)».getInstance().logError("Error building context menu", e);
+					«xptActivator.qualifiedClassName(editorGen.plugin)».getInstance().logError("Error building context menu", e); «nonNLS»
 			}
 			}
 		}

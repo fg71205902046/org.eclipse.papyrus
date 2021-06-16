@@ -41,7 +41,7 @@ public class PropertyForComponentEditPart extends AbstractCompartmentEditPart im
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Property_ComponentAttributeLabel";
+	public static final String VISUAL_ID = "Property_ComponentAttributeLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

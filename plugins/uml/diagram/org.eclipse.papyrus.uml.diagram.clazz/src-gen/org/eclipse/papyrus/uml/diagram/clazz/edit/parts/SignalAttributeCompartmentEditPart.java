@@ -35,7 +35,7 @@ public class SignalAttributeCompartmentEditPart extends AbstractListCompartmentE
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Signal_AttributeCompartment";
+	public static final String VISUAL_ID = "Signal_AttributeCompartment"; //$NON-NLS-1$
 
 	/**
 	 * @generated

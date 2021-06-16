@@ -73,7 +73,7 @@ public class EnumerationEditPart extends ClassifierEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Enumeration_Shape";
+	public static final String VISUAL_ID = "Enumeration_Shape"; //$NON-NLS-1$
 
 	/**
 	 * @generated

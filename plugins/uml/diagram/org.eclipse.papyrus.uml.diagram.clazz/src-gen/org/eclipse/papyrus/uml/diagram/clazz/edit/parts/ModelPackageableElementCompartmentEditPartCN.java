@@ -36,7 +36,7 @@ public class ModelPackageableElementCompartmentEditPartCN extends AbstractPackag
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Model_PackagedElementCompartment_CN";
+	public static final String VISUAL_ID = "Model_PackagedElementCompartment_CN"; //$NON-NLS-1$
 
 	/**
 	 * @generated

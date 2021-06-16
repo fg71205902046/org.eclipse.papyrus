@@ -65,7 +65,7 @@ import xpt.ExternalizerUtils_qvto
 			«generatedMemberComment»
 			public «className(it)»(org.eclipse.emf.common.util.URI domainModelURI, org.eclipse.emf.ecore.EObject diagramRoot, org.eclipse.emf.transaction.TransactionalEditingDomain editingDomain) {
 				«_assert('domainModelURI != null : \"Domain model uri must be specified\"')»
-				«_assert('diagramRoot != null : \"Doagram root element must be specified\"')»
+				«_assert('diagramRoot != null : \"Diagram root element must be specified\"')»
 				«_assert('editingDomain != null : \"Editing domain must be specified\"')»
 				myFileCreationPage = new «creationPage(it)»(«xptExternalizer.accessorCall(editorGen, nameKey(i18nKeyForNewDiagramFileWizardCreationPage(it)))», org.eclipse.jface.viewers.StructuredSelection.EMPTY);
 				myFileCreationPage.setTitle(«xptExternalizer.accessorCall(editorGen, titleKey(i18nKeyForNewDiagramFileWizardCreationPage(it)))»);

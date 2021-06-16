@@ -41,7 +41,7 @@ public class PropertyForSignalEditPart extends AbstractCompartmentEditPart imple
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Property_SignalAttributeLabel";
+	public static final String VISUAL_ID = "Property_SignalAttributeLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

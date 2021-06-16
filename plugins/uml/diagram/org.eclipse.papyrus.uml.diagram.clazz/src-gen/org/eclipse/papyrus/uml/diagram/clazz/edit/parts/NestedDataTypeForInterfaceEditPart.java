@@ -44,7 +44,7 @@ public class NestedDataTypeForInterfaceEditPart extends AbstractCompartmentEditP
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "DataType_InterfaceNestedClassifierLabel";
+	public static final String VISUAL_ID = "DataType_InterfaceNestedClassifierLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

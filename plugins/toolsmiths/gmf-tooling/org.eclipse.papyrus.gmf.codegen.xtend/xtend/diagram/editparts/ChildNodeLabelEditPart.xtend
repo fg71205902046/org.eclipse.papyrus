@@ -14,7 +14,7 @@
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
- * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - L1.2 generate less dead or duplicate code
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - L1.2 generate less dead or duplicate code + missing @override
  *****************************************************************************/
 package diagram.editparts
 
@@ -93,6 +93,7 @@ import xpt.Common
 
 	def getDragTracker(GenChildLabelNode it) '''
 		«generatedMemberComment»
+		«overrideC»
 		public org.eclipse.gef.DragTracker getDragTracker(org.eclipse.gef.Request request) {
 			«xptChildNodeLabelEditPart.getDragTrackerBody(it)»
 		}
@@ -108,6 +109,7 @@ import xpt.Common
 
 	def handleNotificationEvent(GenChildLabelNode it) '''
 		«generatedMemberComment»
+		«overrideC»
 		protected void handleNotificationEvent(org.eclipse.emf.common.notify.Notification event) {
 			«xptChildNodeLabelEditPart.handleNotificationEventBody(it)»
 		}

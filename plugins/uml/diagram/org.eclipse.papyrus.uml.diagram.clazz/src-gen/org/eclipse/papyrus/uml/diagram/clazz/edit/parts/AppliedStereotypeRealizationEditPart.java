@@ -36,7 +36,7 @@ public class AppliedStereotypeRealizationEditPart extends AbstractLinkLabelEditP
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Realization_StereotypeLabel";
+	public static final String VISUAL_ID = "Realization_StereotypeLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

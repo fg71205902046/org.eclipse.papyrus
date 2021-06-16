@@ -34,7 +34,7 @@ public class ContextLinkEditPart extends UMLConnectionNodeEditPart implements IT
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Constraint_ContextEdge";
+	public static final String VISUAL_ID = "Constraint_ContextEdge"; //$NON-NLS-1$
 
 	/**
 	 * @generated

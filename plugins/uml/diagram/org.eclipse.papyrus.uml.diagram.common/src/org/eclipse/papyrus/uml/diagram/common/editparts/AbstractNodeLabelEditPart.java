@@ -10,7 +10,7 @@
 *
 * Contributors:
 *   Etienne ALLOGO (ARTAL) - Initial API and implementation
-*   Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : generate less dead + sort members 
+*   Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : generate less dead + sort members
 *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.common.editparts;
@@ -817,8 +817,6 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
-
-	/////
 
 	/**
 	 * Removes the owner element listeners.

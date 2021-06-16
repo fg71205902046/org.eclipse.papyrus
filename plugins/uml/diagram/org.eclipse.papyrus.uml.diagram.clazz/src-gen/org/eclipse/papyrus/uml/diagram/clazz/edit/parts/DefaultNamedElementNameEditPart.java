@@ -34,7 +34,7 @@ public class DefaultNamedElementNameEditPart extends AbstractNodeLabelEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "NamedElement_NameLabel";
+	public static final String VISUAL_ID = "NamedElement_NameLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

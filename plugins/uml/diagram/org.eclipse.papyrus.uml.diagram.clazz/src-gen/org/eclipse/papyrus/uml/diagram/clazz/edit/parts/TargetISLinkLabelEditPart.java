@@ -39,7 +39,7 @@ public class TargetISLinkLabelEditPart extends AbstractLinkLabelEditPart impleme
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "InstanceSpecification_TargetRoleLabel";
+	public static final String VISUAL_ID = "InstanceSpecification_TargetRoleLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

@@ -16,7 +16,7 @@
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Christian W. Damus (CEA) - bug 440263
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
- * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up providers
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up providers + missing nonNLS
  *****************************************************************************/
 package xpt.providers
 
@@ -46,6 +46,7 @@ import xpt.Common
 import xpt.Common_qvto
 import xpt.expressions.ExpressionAbstractExpression
 import xpt.expressions.getExpression
+import java.util.stream.Collectors
 
 /**
  * XXX should generate this class only when there is initialization logic defined in the model
@@ -253,7 +254,7 @@ import xpt.expressions.getExpression
 		private «xptMetaModel.featureTargetType(vs.feature)» «javaMethodName(diagramElement, vs)»(«xptMetaModel.
 			QualifiedClassName(vs.featureSeqInitializer.elementClass)» it) {
 		«IF injectExpressionBody && (!vs.value.body.nullOrEmpty)»
-			«vs.value.body»
+			«var body = vs.value.body»«FOR line : body.lines.collect(Collectors::toList) SEPARATOR '\n'»«line» «nonNLS(line)»«ENDFOR»
 		«ELSEIF throwException || (injectExpressionBody && vs.value.body.nullOrEmpty)»
 			// TODO: implement this method to return value
 			// for «xptMetaModel.MetaFeature(vs.feature)»

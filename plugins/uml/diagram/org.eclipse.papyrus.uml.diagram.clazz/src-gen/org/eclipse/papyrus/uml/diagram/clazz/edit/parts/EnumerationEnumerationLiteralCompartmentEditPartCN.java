@@ -35,7 +35,7 @@ public class EnumerationEnumerationLiteralCompartmentEditPartCN extends Abstract
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Enumeration_LiteralCompartment_CN";
+	public static final String VISUAL_ID = "Enumeration_LiteralCompartment_CN"; //$NON-NLS-1$
 
 	/**
 	 * @generated

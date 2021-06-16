@@ -48,7 +48,7 @@ public class ConstraintEditPartCN extends AbstractConstraintEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Constraint_PackagedElementShape_CN";
+	public static final String VISUAL_ID = "Constraint_PackagedElementShape_CN"; //$NON-NLS-1$
 
 	/**
 	 * @generated

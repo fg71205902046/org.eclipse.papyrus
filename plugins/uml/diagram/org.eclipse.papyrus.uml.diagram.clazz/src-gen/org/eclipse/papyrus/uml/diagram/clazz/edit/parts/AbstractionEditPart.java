@@ -34,7 +34,7 @@ public class AbstractionEditPart extends UMLConnectionNodeEditPart implements IT
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Abstraction_Edge";
+	public static final String VISUAL_ID = "Abstraction_Edge"; //$NON-NLS-1$
 
 	/**
 	 * @generated

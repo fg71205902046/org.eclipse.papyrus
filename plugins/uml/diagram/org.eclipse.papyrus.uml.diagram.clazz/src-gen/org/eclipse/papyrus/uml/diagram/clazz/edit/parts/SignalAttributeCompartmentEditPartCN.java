@@ -34,7 +34,7 @@ public class SignalAttributeCompartmentEditPartCN extends AbstractResizableCompa
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Signal_AttributeCompartment_CN";
+	public static final String VISUAL_ID = "Signal_AttributeCompartment_CN"; //$NON-NLS-1$
 
 	/**
 	 * @generated

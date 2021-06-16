@@ -35,7 +35,7 @@ public class ClassNestedClassifierCompartmentEditPart extends AbstractResizableC
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Class_NestedClassifierCompartment";
+	public static final String VISUAL_ID = "Class_NestedClassifierCompartment"; //$NON-NLS-1$
 
 	/**
 	 * @generated

@@ -34,7 +34,7 @@ public class ClassOperationCompartmentEditPartCN extends AbstractResizableCompar
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Class_OperationCompartment_CN";
+	public static final String VISUAL_ID = "Class_OperationCompartment_CN"; //$NON-NLS-1$
 
 	/**
 	 * @generated

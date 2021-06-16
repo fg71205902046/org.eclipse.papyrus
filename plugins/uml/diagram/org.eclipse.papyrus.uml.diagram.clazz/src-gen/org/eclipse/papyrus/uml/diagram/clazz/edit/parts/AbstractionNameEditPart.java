@@ -35,7 +35,7 @@ public class AbstractionNameEditPart extends AbstractLinkLabelEditPart implement
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Abstraction_NameLabel";
+	public static final String VISUAL_ID = "Abstraction_NameLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

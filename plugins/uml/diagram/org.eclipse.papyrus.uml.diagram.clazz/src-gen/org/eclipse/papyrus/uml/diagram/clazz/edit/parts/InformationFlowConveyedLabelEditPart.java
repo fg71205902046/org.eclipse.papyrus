@@ -36,7 +36,7 @@ public class InformationFlowConveyedLabelEditPart extends AbstractLinkLabelEditP
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "InformationFlow_ConveyedLabel";
+	public static final String VISUAL_ID = "InformationFlow_ConveyedLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

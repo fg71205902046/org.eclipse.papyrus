@@ -32,7 +32,7 @@ public class InformationFlowEditPart extends UMLConnectionNodeEditPart implement
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "InformationFlow_Edge";
+	public static final String VISUAL_ID = "InformationFlow_Edge"; //$NON-NLS-1$
 
 	/**
 	 * @generated

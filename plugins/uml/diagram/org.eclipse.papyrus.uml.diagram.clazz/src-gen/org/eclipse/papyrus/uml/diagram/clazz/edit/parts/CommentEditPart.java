@@ -49,7 +49,7 @@ public class CommentEditPart extends AbstractCommentEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Comment_Shape";
+	public static final String VISUAL_ID = "Comment_Shape"; //$NON-NLS-1$
 
 	/**
 	 * @generated

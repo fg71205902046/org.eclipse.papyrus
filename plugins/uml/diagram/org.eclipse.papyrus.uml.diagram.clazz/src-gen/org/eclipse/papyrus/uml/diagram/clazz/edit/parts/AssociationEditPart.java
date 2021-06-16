@@ -34,7 +34,7 @@ public class AssociationEditPart extends AbstractAssociationEditPart implements 
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Association_Edge";
+	public static final String VISUAL_ID = "Association_Edge"; //$NON-NLS-1$
 
 	/**
 	 * @generated

@@ -34,7 +34,7 @@ public class GeneralizationEditPart extends UMLConnectionNodeEditPart implements
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Generalization_Edge";
+	public static final String VISUAL_ID = "Generalization_Edge"; //$NON-NLS-1$
 
 	/**
 	 * @generated

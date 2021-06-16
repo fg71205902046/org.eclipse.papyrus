@@ -45,7 +45,7 @@ public class NestedSignalForClassEditPart extends AbstractCompartmentEditPart im
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Signal_ClassNestedClassifierLabel";
+	public static final String VISUAL_ID = "Signal_ClassNestedClassifierLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

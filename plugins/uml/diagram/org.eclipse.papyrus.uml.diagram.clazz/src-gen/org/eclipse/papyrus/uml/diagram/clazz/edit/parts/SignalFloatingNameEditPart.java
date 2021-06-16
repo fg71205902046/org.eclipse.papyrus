@@ -36,7 +36,7 @@ public class SignalFloatingNameEditPart extends AbstractFloatingLabelEditPart im
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Signal_FloatingNameLabel";
+	public static final String VISUAL_ID = "Signal_FloatingNameLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

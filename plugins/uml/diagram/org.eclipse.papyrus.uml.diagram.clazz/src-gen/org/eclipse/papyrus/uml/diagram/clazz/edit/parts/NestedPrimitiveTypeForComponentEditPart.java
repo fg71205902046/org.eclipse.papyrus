@@ -45,7 +45,7 @@ public class NestedPrimitiveTypeForComponentEditPart extends AbstractCompartment
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "PrimitiveType_ComponentNestedClassifierLabel";
+	public static final String VISUAL_ID = "PrimitiveType_ComponentNestedClassifierLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

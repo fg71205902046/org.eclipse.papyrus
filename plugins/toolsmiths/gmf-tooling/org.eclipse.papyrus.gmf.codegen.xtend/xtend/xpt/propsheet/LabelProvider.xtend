@@ -68,7 +68,7 @@ import xpt.CodeStyle
 				}
 			«ENDIF»
 			org.eclipse.gmf.runtime.emf.type.core.IElementType etype = getElementType(getView(element));
-			return etype == null ? "" : etype.getDisplayName();
+			return etype == null ? "" : etype.getDisplayName(); «nonNLS»
 		}
 	'''
 

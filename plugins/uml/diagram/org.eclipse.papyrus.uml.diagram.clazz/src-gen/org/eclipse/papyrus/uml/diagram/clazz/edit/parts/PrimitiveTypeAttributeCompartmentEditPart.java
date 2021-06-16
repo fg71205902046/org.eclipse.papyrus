@@ -34,7 +34,7 @@ public class PrimitiveTypeAttributeCompartmentEditPart extends AbstractResizable
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "PrimitiveType_AttributeCompartment";
+	public static final String VISUAL_ID = "PrimitiveType_AttributeCompartment"; //$NON-NLS-1$
 
 	/**
 	 * @generated

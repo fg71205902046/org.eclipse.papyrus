@@ -55,7 +55,7 @@ public class DiagramEditorContextMenuProvider extends DiagramContextMenuProvider
 				}
 			});
 		} catch (Exception e) {
-			UMLDiagramEditorPlugin.getInstance().logError("Error building context menu", e);
+			UMLDiagramEditorPlugin.getInstance().logError("Error building context menu", e); //$NON-NLS-1$
 		}
 	}
 }

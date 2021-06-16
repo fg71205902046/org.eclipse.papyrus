@@ -34,7 +34,7 @@ public class ComponentAttributeCompartmentEditPartCN extends AbstractResizableCo
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Component_AttributeCompartment_CN";
+	public static final String VISUAL_ID = "Component_AttributeCompartment_CN"; //$NON-NLS-1$
 
 	/**
 	 * @generated

@@ -70,7 +70,7 @@ public class AssociationClassEditPart extends ClassifierEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "AssociationClass_Shape";
+	public static final String VISUAL_ID = "AssociationClass_Shape"; //$NON-NLS-1$
 
 	/**
 	 * @generated

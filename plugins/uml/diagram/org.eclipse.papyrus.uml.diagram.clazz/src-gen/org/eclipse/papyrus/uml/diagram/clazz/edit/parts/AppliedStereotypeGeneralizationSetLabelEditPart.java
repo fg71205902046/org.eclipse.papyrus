@@ -35,7 +35,7 @@ public class AppliedStereotypeGeneralizationSetLabelEditPart extends AbstractLin
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "GeneralizationSet_StereotypeLabel";
+	public static final String VISUAL_ID = "GeneralizationSet_StereotypeLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

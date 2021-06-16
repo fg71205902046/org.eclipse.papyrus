@@ -74,7 +74,7 @@ public class DataTypeEditPart extends ClassifierEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "DataType_Shape";
+	public static final String VISUAL_ID = "DataType_Shape"; //$NON-NLS-1$
 
 	/**
 	 * @generated

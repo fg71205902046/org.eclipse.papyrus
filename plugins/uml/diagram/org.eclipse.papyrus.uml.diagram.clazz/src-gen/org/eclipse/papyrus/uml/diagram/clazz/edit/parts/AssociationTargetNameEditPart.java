@@ -39,7 +39,7 @@ public class AssociationTargetNameEditPart extends AbstractLinkLabelEditPart imp
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Association_TargetRoleLabel";
+	public static final String VISUAL_ID = "Association_TargetRoleLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

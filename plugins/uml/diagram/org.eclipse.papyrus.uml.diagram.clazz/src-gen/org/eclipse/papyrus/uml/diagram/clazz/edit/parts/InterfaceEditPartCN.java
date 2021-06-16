@@ -74,7 +74,7 @@ public class InterfaceEditPartCN extends ClassifierEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Interface_Shape_CN";
+	public static final String VISUAL_ID = "Interface_Shape_CN"; //$NON-NLS-1$
 
 	/**
 	 * @generated

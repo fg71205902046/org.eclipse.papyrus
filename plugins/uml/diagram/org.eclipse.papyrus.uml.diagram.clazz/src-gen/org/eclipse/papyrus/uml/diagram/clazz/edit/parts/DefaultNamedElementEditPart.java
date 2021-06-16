@@ -49,7 +49,7 @@ public class DefaultNamedElementEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "NamedElement_DefaultShape";
+	public static final String VISUAL_ID = "NamedElement_DefaultShape"; //$NON-NLS-1$
 
 	/**
 	 * @generated

@@ -46,7 +46,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNo
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.common.editparts.AbstractShortCutDiagramEditPart;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShortCutDiagramEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.DiagramNodeFigure;
 import org.eclipse.swt.graphics.Color;
 
@@ -58,7 +57,7 @@ public class ShortCutDiagramEditPart extends AbstractShortCutDiagramEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Diagram_ShortcutShape";
+	public static final String VISUAL_ID = "Diagram_ShortcutShape"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -86,7 +85,6 @@ public class ShortCutDiagramEditPart extends AbstractShortCutDiagramEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new ShortCutDiagramEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);

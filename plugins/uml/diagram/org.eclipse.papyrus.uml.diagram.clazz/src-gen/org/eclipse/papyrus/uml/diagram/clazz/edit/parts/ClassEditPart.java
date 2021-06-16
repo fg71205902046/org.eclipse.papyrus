@@ -74,7 +74,7 @@ public class ClassEditPart extends org.eclipse.papyrus.uml.diagram.common.editpa
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Class_Shape";
+	public static final String VISUAL_ID = "Class_Shape"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -185,7 +185,7 @@ public class ClassEditPart extends org.eclipse.papyrus.uml.diagram.common.editpa
 		}
 		super.handleNotificationEvent(event);
 		if (resolveSemanticElement() != null) {
-			if (resolveSemanticElement().equals(event.getNotifier()) && (event.getFeature() instanceof EAttribute) && ((EAttribute) (event.getFeature())).getName().equals("isActive")) {
+			if (resolveSemanticElement().equals(event.getNotifier()) && (event.getFeature() instanceof EAttribute) && ((EAttribute) (event.getFeature())).getName().equals("isActive")) { //$NON-NLS-1$
 				getPrimaryShape().setActive(event.getNewBooleanValue());
 				refreshVisuals();
 			}

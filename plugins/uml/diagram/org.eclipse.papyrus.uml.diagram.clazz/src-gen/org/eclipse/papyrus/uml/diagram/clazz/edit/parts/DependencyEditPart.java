@@ -34,7 +34,7 @@ public class DependencyEditPart extends UMLConnectionNodeEditPart implements ITr
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Dependency_Edge";
+	public static final String VISUAL_ID = "Dependency_Edge"; //$NON-NLS-1$
 
 	/**
 	 * @generated

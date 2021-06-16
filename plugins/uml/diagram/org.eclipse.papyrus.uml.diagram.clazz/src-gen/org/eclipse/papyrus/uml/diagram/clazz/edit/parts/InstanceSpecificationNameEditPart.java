@@ -36,7 +36,7 @@ public class InstanceSpecificationNameEditPart extends AbstractNodeLabelEditPart
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "InstanceSpecification_NameLabel";
+	public static final String VISUAL_ID = "InstanceSpecification_NameLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

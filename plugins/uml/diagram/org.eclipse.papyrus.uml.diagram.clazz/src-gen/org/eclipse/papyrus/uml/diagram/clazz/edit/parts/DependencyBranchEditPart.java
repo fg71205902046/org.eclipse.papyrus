@@ -31,7 +31,7 @@ public class DependencyBranchEditPart extends ConnectionEditPart implements ITre
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Dependency_BranchEdge";
+	public static final String VISUAL_ID = "Dependency_BranchEdge"; //$NON-NLS-1$
 
 	/**
 	 * @generated

@@ -35,7 +35,7 @@ public class InterfaceRealizationNameEditPart extends AbstractLinkLabelEditPart 
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "InterfaceRealization_NameLabel";
+	public static final String VISUAL_ID = "InterfaceRealization_NameLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

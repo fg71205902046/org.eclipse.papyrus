@@ -36,7 +36,7 @@ public class BindingSubstitutionEditPart extends AbstractLinkLabelEditPart imple
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "TemplateBinding_SubstitutionLabel";
+	public static final String VISUAL_ID = "TemplateBinding_SubstitutionLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

@@ -36,7 +36,7 @@ public class AppliedStereotypePackageImportEditPart extends AbstractLinkLabelEdi
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "PackageImport_StereotypeLabel";
+	public static final String VISUAL_ID = "PackageImport_StereotypeLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

@@ -13,6 +13,7 @@
  * Patrick Tessier (CEA LIST)
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : Remove reference to xpand/qvto
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 missing @override
  *****************************************************************************/
 package xpt.diagram.editparts
 
@@ -33,6 +34,7 @@ import xpt.Common_qvto
 import xpt.QualifiedClassNameProvider
 
 @Singleton class Common {
+	@Inject extension xpt.CodeStyle;
 	@Inject extension xpt.Common;
 	@Inject extension Common_qvto;
 	@Inject QualifiedClassNameProvider qualifiedClassNameProvider;
@@ -40,7 +42,7 @@ import xpt.QualifiedClassNameProvider
 
 	def visualIDConstant(GenCommonBase it) '''
 		«generatedMemberComment»
-		public static final String VISUAL_ID = "«stringVisualID»";
+		public static final String VISUAL_ID = "«stringVisualID»"; «nonNLS(1)»
 	'''
 
 	def behaviour(GenCommonBase it) '''
@@ -78,6 +80,7 @@ import xpt.QualifiedClassNameProvider
 
 	def labelFigureDelegateToPrim(Viewmap it) '''
 		«generatedMemberComment»
+		«overrideC»
 		protected org.eclipse.draw2d.IFigure createFigure() {
 			org.eclipse.draw2d.IFigure label = createFigurePrim();
 			defaultText = getLabelTextHelper(label);
@@ -112,12 +115,14 @@ import xpt.QualifiedClassNameProvider
 
 	def notationalListeners(GenCommonBase it) '''
 		«generatedMemberComment»
+		«overrideC»
 		protected void addNotationalListeners() {
 			super.addNotationalListeners();
 			addListenerFilter("PrimaryView", this, getPrimaryView()); «nonNLS(1)»
 		}
 	
 		«generatedMemberComment»
+		«overrideC»
 		protected void removeNotationalListeners() {
 			super.removeNotationalListeners();
 			removeListenerFilter("PrimaryView"); «nonNLS(1)»

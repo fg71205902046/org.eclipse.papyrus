@@ -12,7 +12,7 @@
  * Dmitry Stadnik (Borland) - initial API and implementation
  * Alexander Shatalin (Borland) - initial API and implementation
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
- * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 generate less dead or duplicate code
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 generate less dead or duplicate code + missing @override
  *****************************************************************************/
 package diagram.editparts
 
@@ -84,6 +84,7 @@ import xpt.CodeStyle
 	def handleNotificationEvent(GenCompartment it) '''
 		«IF isStoringChildPositions(node)»
 			«generatedMemberComment»
+			«overrideC»
 			protected void handleNotificationEvent(org.eclipse.emf.common.notify.Notification notification) {
 				«xptCompartmentEditPartImpl.handleNotificationEventBody(it)»
 			}
@@ -98,6 +99,7 @@ import xpt.CodeStyle
 
 	def handleSize(GenCompartment it) '''
 		«generatedMemberComment»
+		«overrideC»
 		protected void handleNotificationEvent(org.eclipse.emf.common.notify.Notification notification) {
 			Object feature = notification.getFeature();
 			if (org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getSize_Width().equals(feature)

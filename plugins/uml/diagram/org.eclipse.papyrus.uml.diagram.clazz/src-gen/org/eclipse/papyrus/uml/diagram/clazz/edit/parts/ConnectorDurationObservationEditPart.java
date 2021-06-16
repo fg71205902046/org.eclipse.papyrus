@@ -29,7 +29,7 @@ public class ConnectorDurationObservationEditPart extends ConnectionEditPart imp
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "DurationObservation_EventEdge";
+	public static final String VISUAL_ID = "DurationObservation_EventEdge"; //$NON-NLS-1$
 
 	/**
 	 * @generated

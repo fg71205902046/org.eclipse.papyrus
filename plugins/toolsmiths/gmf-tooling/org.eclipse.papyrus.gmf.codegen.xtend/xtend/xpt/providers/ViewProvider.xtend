@@ -368,7 +368,7 @@ import xpt.editor.VisualIDRegistry
 			«ENDFOR»
 			«««	BEGIN Papyrus Modification
 			«IF compartments.size != 0»
-				org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(«'node'», «'prefStore'», "«elementType.displayName»");
+				org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(«'node'», «'prefStore'», "«elementType.displayName»"); «nonNLS(1)»
 			«ENDIF»
 			«««	END Papyrus Modification
 			«initLabelVisibility(it,'node', 'prefStore')»
@@ -537,14 +537,14 @@ import xpt.editor.VisualIDRegistry
 
 	def specificInitFontFromPrefs(GenCommonBase it,String viewVar, String prefStoreVar) '''
 		«IF !"UNDEFINED".equals(elementType.displayName.toUpperCase())»
-			org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initFontStyleFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
+			org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initFontStyleFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»"); «nonNLS(1)»
 		«ENDIF»
 	'''
 
 	//write the line to initialize the property isVisible for the label of the link
 	def initLabelVisibility(GenLink it,String viewVar, String prefStoreVar) '''
 		«IF hasLabelVisibilityPreference(it)»
-			org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
+			org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»"); «nonNLS(1)»
 		«ENDIF»
 	'''
 
@@ -555,7 +555,7 @@ import xpt.editor.VisualIDRegistry
 	//write the line to initialize the property isVisible for the label of the link
 	def initLabelVisibility(GenNode it,String viewVar, String prefStoreVar) '''
 		«IF it.labels.filter(typeof (GenExternalNodeLabel)).exists[lbl  | lbl.labelVisibilityPreference !== null]»
-			 org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
+			 org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»"); «nonNLS(1)»
 		«ENDIF»
 	'''
 }

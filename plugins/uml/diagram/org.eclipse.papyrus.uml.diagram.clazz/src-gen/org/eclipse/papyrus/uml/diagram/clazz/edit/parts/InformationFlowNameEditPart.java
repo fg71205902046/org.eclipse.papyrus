@@ -35,7 +35,7 @@ public class InformationFlowNameEditPart extends AbstractLinkLabelEditPart imple
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "InformationFlow_NameLabel";
+	public static final String VISUAL_ID = "InformationFlow_NameLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

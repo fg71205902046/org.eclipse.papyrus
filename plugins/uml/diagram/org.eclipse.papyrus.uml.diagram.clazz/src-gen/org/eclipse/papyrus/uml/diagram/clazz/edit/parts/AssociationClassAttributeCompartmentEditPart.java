@@ -34,7 +34,7 @@ public class AssociationClassAttributeCompartmentEditPart extends AbstractResiza
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "AssociationClass_AttributeCompartment";
+	public static final String VISUAL_ID = "AssociationClass_AttributeCompartment"; //$NON-NLS-1$
 
 	/**
 	 * @generated

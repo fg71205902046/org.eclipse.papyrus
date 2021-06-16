@@ -37,7 +37,7 @@ public class DurationObservationStereotypeLabelEditPart extends AbstractWrapping
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "DurationObservation_StereotypeLabel";
+	public static final String VISUAL_ID = "DurationObservation_StereotypeLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

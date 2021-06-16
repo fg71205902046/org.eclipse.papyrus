@@ -32,7 +32,7 @@ public class RedefinableTemplateSignatureTemplateParameterCompartmentEditPart ex
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "RedefinableTemplateSignature_TemplateParameterCompartment";
+	public static final String VISUAL_ID = "RedefinableTemplateSignature_TemplateParameterCompartment"; //$NON-NLS-1$
 
 	/**
 	 * @generated

@@ -76,7 +76,7 @@ public class ClassEditPartCN extends ClassEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Class_Shape_CN";
+	public static final String VISUAL_ID = "Class_Shape_CN"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -188,7 +188,7 @@ public class ClassEditPartCN extends ClassEditPart {
 		}
 		super.handleNotificationEvent(event);
 		if (resolveSemanticElement() != null) {
-			if (resolveSemanticElement().equals(event.getNotifier()) && (event.getFeature() instanceof EAttribute) && ((EAttribute) (event.getFeature())).getName().equals("isActive")) {
+			if (resolveSemanticElement().equals(event.getNotifier()) && (event.getFeature() instanceof EAttribute) && ((EAttribute) (event.getFeature())).getName().equals("isActive")) { //$NON-NLS-1$
 				getPrimaryShape().setActive(event.getNewBooleanValue());
 				refreshVisuals();
 			}

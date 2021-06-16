@@ -32,7 +32,7 @@ public class InstanceSpecificationLinkEditPart extends UMLConnectionNodeEditPart
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "InstanceSpecification_Edge";
+	public static final String VISUAL_ID = "InstanceSpecification_Edge"; //$NON-NLS-1$
 
 	/**
 	 * @generated

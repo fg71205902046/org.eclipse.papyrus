@@ -34,7 +34,7 @@ public class InterfaceRealizationEditPart extends UMLConnectionNodeEditPart impl
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "InterfaceRealization_Edge";
+	public static final String VISUAL_ID = "InterfaceRealization_Edge"; //$NON-NLS-1$
 
 	/**
 	 * @generated

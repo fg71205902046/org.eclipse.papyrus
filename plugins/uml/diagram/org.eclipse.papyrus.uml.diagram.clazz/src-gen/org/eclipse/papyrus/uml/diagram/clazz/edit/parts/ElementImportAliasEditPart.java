@@ -35,7 +35,7 @@ public class ElementImportAliasEditPart extends AbstractLinkLabelEditPart implem
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "ElementImport_AliasLabel";
+	public static final String VISUAL_ID = "ElementImport_AliasLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

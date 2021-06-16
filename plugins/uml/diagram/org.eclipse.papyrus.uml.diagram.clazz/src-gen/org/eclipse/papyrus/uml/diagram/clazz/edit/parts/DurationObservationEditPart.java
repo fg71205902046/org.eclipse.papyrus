@@ -63,7 +63,7 @@ public class DurationObservationEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "DurationObservation_Shape";
+	public static final String VISUAL_ID = "DurationObservation_Shape"; //$NON-NLS-1$
 
 	/**
 	 * @generated

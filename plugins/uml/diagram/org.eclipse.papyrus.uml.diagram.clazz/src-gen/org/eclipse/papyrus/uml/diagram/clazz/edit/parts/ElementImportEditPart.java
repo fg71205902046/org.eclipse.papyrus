@@ -34,7 +34,7 @@ public class ElementImportEditPart extends UMLConnectionNodeEditPart implements 
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "ElementImport_Edge";
+	public static final String VISUAL_ID = "ElementImport_Edge"; //$NON-NLS-1$
 
 	/**
 	 * @generated

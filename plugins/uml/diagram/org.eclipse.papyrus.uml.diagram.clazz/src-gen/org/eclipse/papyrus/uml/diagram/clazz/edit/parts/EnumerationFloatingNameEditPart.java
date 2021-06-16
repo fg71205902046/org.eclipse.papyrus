@@ -36,7 +36,7 @@ public class EnumerationFloatingNameEditPart extends AbstractFloatingLabelEditPa
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Enumeration_FloatingNameLabel";
+	public static final String VISUAL_ID = "Enumeration_FloatingNameLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

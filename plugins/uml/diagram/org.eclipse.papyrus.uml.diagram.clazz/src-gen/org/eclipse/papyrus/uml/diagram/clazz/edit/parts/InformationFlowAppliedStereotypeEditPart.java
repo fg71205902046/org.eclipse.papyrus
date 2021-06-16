@@ -38,7 +38,7 @@ public class InformationFlowAppliedStereotypeEditPart extends AbstractLinkLabelE
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "InformationFlow_StereotypeLabel";
+	public static final String VISUAL_ID = "InformationFlow_StereotypeLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

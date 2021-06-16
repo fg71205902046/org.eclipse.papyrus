@@ -41,7 +41,7 @@ public class OperationForDataTypeEditPart extends AbstractCompartmentEditPart im
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Operation_DataTypeOperationLabel";
+	public static final String VISUAL_ID = "Operation_DataTypeOperationLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

@@ -38,7 +38,7 @@ public class ConnectableElementTemplateParameterEditPart extends AbstractCompart
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "ConnectableElementTemplateParameter_TemplateParameterLabel";
+	public static final String VISUAL_ID = "ConnectableElementTemplateParameter_TemplateParameterLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

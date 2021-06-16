@@ -13,6 +13,7 @@
  * Alexander Shatalin (Borland) - initial API and implementation
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 missing @override
  *****************************************************************************/
 package diagram.editparts
 
@@ -109,6 +110,7 @@ import xpt.diagram.editparts.Utils_qvto
 		on adding corresponding annotation to the View instance.*/»
 		«IF diagram.generateShortcutIcon()»
 			«generatedMemberComment»
+			«overrideC»
 			protected void handleNotificationEvent(org.eclipse.emf.common.notify.Notification event) {
 				«xptNodeEditPartImpl.handleNotificationEventBody(it)»
 			}

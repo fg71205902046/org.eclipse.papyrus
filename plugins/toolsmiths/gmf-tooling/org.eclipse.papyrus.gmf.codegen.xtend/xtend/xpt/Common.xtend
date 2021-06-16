@@ -12,11 +12,12 @@
  * Dmitry Stadnik (Borland) - initial API and implementation
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
- * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up + nonNLS(String) helper
  *****************************************************************************/
 package xpt
 
 import com.google.inject.Singleton
+import java.util.regex.Pattern
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator
@@ -91,6 +92,18 @@ import xpt.editor.VisualIDRegistry
 	def nonNLS(Object xptSelf, int i) '''«nonNLS(i)»'''
 
 	def nonNLS(int xptSelf) '''//$NON-NLS-«xptSelf»$'''
+
+	/**
+	 * Generates nonNLS(n) a line of java code by counting the quoted strings.
+	 */
+	def nonNLS(String toExternalize) '''«var count = countQuotedStrings(toExternalize)»«IF count > 0»«FOR i : 1..count SEPARATOR ' '»«nonNLS(i)»«ENDFOR»«ENDIF»'''
+
+	/**
+	 * Counts quoted strings.
+	 */
+	def countQuotedStrings(String toCount) {
+		Pattern.compile('"([^"]*)"').matcher(toCount).results.count.intValue;
+	}
 
 	/**
 	 * XXX:[MG] move this to VIDRegistry(?)

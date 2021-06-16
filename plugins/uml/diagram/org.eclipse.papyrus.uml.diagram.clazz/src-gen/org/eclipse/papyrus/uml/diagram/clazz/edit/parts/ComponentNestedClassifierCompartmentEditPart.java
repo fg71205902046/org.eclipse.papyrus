@@ -35,7 +35,7 @@ public class ComponentNestedClassifierCompartmentEditPart extends AbstractResiza
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Component_NestedClassifierCompartment";
+	public static final String VISUAL_ID = "Component_NestedClassifierCompartment"; //$NON-NLS-1$
 
 	/**
 	 * @generated

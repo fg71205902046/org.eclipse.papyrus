@@ -146,8 +146,7 @@ public class PapyrusGMFExtensionMigrator extends GenExtensionSwitch<Boolean> {
 					extendedElement.setSuperEditPart("org.eclipse.papyrus.uml.diagram.common.editparts.AbstractExternalLabelEditPart"); //$NON-NLS-1$
 				} else if ("org.eclipse.papyrus.uml.diagram.common.editparts.FloatingLabelEditPart".equals(superOwnedEditPart)) { //$NON-NLS-1$
 					extendedElement.setSuperEditPart("org.eclipse.papyrus.uml.diagram.common.editparts.AbstractFloatingLabelEditPart"); //$NON-NLS-1$
-				}
-				else if ("org.eclipse.papyrus.uml.diagram.common.editparts.AbstractLabelEditPart".equals(superOwnedEditPart)) { //$NON-NLS-1$
+				} else if ("org.eclipse.papyrus.uml.diagram.common.editparts.AbstractLabelEditPart".equals(superOwnedEditPart)) { //$NON-NLS-1$
 					extendedElement.setSuperEditPart("org.eclipse.papyrus.uml.diagram.common.editparts.AbstractWrappingLabelEditPart"); //$NON-NLS-1$
 				}
 			}

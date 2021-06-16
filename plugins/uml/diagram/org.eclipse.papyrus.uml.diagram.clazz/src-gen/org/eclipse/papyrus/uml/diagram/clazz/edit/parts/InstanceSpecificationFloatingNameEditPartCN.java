@@ -36,7 +36,7 @@ public class InstanceSpecificationFloatingNameEditPartCN extends AbstractFloatin
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "InstanceSpecification_FloatingNameLabel_CN";
+	public static final String VISUAL_ID = "InstanceSpecification_FloatingNameLabel_CN"; //$NON-NLS-1$
 
 	/**
 	 * @generated

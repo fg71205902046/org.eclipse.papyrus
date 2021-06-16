@@ -35,7 +35,7 @@ public class ConstraintLabelEditPart extends AbstractLinkLabelEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "GeneralizationSet_ConstraintLabel";
+	public static final String VISUAL_ID = "GeneralizationSet_ConstraintLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

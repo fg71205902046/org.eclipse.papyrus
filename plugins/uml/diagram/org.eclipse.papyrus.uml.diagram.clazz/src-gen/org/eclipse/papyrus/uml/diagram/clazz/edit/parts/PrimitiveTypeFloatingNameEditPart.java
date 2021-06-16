@@ -36,7 +36,7 @@ public class PrimitiveTypeFloatingNameEditPart extends AbstractFloatingLabelEdit
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "PrimitiveType_FloatingNameLabel";
+	public static final String VISUAL_ID = "PrimitiveType_FloatingNameLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

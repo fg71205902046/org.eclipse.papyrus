@@ -32,7 +32,7 @@ public class TemplateSignatureTemplateParameterCompartmentEditPart extends Abstr
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "TemplateSignature_TemplateParameterCompartment";
+	public static final String VISUAL_ID = "TemplateSignature_TemplateParameterCompartment"; //$NON-NLS-1$
 
 	/**
 	 * @generated

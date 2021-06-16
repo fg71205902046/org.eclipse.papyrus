@@ -40,7 +40,7 @@ public class ReceptionInInterfaceEditPart extends AbstractCompartmentEditPart im
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Reception_InterfaceReceptionLabel";
+	public static final String VISUAL_ID = "Reception_InterfaceReceptionLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

@@ -674,6 +674,7 @@ def labelSetterFigureClassName (Viewmap it)'''
 
 def setParser (GenCommonBase it)'''
 	«generatedMemberComment»
+	«overrideI»
 	public void setParser(org.eclipse.gmf.runtime.common.ui.services.parser.IParser parser) {
 		this.parser = parser;
 	}
@@ -760,7 +761,7 @@ def performDirectEditRequest(GenCommonBase it, GenDiagram diagram ) '''
 
 				if (org.eclipse.jface.window.Window.OK == dialog.open()) {
 					org.eclipse.emf.transaction.TransactionalEditingDomain domain = getEditingDomain();
-					org.eclipse.emf.transaction.RecordingCommand command = new org.eclipse.emf.transaction.RecordingCommand(domain, "Edit Label") {
+					org.eclipse.emf.transaction.RecordingCommand command = new org.eclipse.emf.transaction.RecordingCommand(domain, "Edit Label") { //$NON-NLS-1$
 
 						@Override
 						protected void doExecute() {
@@ -887,7 +888,7 @@ def initExtendedEditorConfiguration (GenCommonBase it)'''
 	protected void initExtendedEditorConfiguration() {
 		if (configuration == null) {
 			final String languagePreferred = org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.Activator.getDefault().getPreferenceStore().getString(org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.utils.IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-			if (languagePreferred != null && !languagePreferred.equals("")) {
+			if (languagePreferred != null && !languagePreferred.equals("")) { //$NON-NLS-1$
 				configuration = org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.utils.DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement(), this);
 			} else {
 				configuration = org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.utils.DirectEditorsUtil.findEditorConfiguration(org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.utils.IDirectEditorsIds.UML_LANGUAGE, resolveSemanticElement(), this);
@@ -904,9 +905,9 @@ def updateExtendedEditorConfiguration (GenCommonBase it)'''
 	 */
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.Activator.getDefault().getPreferenceStore().getString(org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.utils.IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-		if (languagePreferred != null && !languagePreferred.equals("") && !languagePreferred.equals(configuration.getLanguage())) {
+		if (languagePreferred != null && !languagePreferred.equals("") && !languagePreferred.equals(configuration.getLanguage())) { //$NON-NLS-1$
 			configuration = org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.utils.DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement(),this);
-		} else if (org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.utils.IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
+		} else if (org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.utils.IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) { //$NON-NLS-1$
 			configuration = null;
 		}
 	}

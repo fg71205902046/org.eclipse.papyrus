@@ -35,7 +35,7 @@ public class DependencyNameEditPart extends AbstractLinkLabelEditPart implements
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Dependency_NameLabel";
+	public static final String VISUAL_ID = "Dependency_NameLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

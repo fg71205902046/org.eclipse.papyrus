@@ -57,7 +57,7 @@ public class PackageEditPart extends org.eclipse.papyrus.uml.diagram.common.edit
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Package_Shape";
+	public static final String VISUAL_ID = "Package_Shape"; //$NON-NLS-1$
 
 	/**
 	 * @generated

@@ -74,7 +74,7 @@ public class ComponentEditPart extends ClassifierEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Component_Shape";
+	public static final String VISUAL_ID = "Component_Shape"; //$NON-NLS-1$
 
 	/**
 	 * @generated

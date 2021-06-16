@@ -34,7 +34,7 @@ public class InterfaceNameEditPart extends AbstractNodeLabelEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Interface_NameLabel";
+	public static final String VISUAL_ID = "Interface_NameLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated

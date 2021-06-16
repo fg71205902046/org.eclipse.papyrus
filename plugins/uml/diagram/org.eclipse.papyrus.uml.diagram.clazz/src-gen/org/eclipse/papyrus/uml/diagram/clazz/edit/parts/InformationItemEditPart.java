@@ -62,7 +62,7 @@ public class InformationItemEditPart extends ClassifierEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "InformationItem_Shape";
+	public static final String VISUAL_ID = "InformationItem_Shape"; //$NON-NLS-1$
 
 	/**
 	 * @generated

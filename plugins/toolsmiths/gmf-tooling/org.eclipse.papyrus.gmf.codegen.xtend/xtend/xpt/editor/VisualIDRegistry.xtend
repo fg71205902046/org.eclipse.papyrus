@@ -470,7 +470,7 @@ import xpt.diagram.editpolicies.LinkUtils_qvto
 	// Constraints support end.
 
 	def unrecognizedVID(GenDiagram it) '''
-	return "";
+		return ""; «nonNLS»
 	'''
 
 	def checkNodeVisualID(GenDiagram it) '''

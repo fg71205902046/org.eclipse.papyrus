@@ -34,7 +34,7 @@ public class SignalNameEditPart extends AbstractNodeLabelEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Signal_NameLabel";
+	public static final String VISUAL_ID = "Signal_NameLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated
