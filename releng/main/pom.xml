@@ -255,7 +255,7 @@
 
 		<!-- Stable release profile. Takes +30min. Eclipse servers only -->
 		<profile>
-			<id>packAndSign</id>
+			<id>sign</id>
 			<activation>
 				<property>
 					<name>SIGN</name>
@@ -266,19 +266,6 @@
 			<build>
 				<plugins>
 					<plugin>
-						<groupId>org.eclipse.tycho.extras</groupId>
-						<artifactId>tycho-pack200a-plugin</artifactId>
-						<version>${tychoExtrasVersion}</version>
-						<executions>
-							<execution>
-								<id>pack200-normalize</id>
-								<goals>
-									<goal>normalize</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
 						<groupId>org.eclipse.cbi.maven.plugins</groupId>
 						<artifactId>eclipse-jarsigner-plugin</artifactId>
 						<version>${jarSignerVersion}</version>
@@ -287,19 +274,6 @@
 								<id>sign</id>
 								<goals>
 									<goal>sign</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<groupId>org.eclipse.tycho.extras</groupId>
-						<artifactId>tycho-pack200b-plugin</artifactId>
-						<version>${tychoExtrasVersion}</version>
-						<executions>
-							<execution>
-								<id>pack200-pack</id>
-								<goals>
-									<goal>pack</goal>
 								</goals>
 							</execution>
 						</executions>
@@ -328,7 +302,7 @@
 
 		<!-- Nightly profile. Artifacts can be consumed, but are not signed -->
 		<profile>
-			<id>pack</id>
+			<id>p2</id>
 			<activation>
 				<property>
 					<name>SIGN</name>
@@ -337,20 +311,6 @@
 			</activation>
 			<build>
 				<plugins>
-					<!-- Pack200 -->
-					<plugin>
-						<groupId>org.eclipse.tycho.extras</groupId>
-						<artifactId>tycho-pack200b-plugin</artifactId>
-						<version>${tychoExtrasVersion}</version>
-						<executions>
-							<execution>
-								<id>pack200-pack</id>
-								<goals>
-									<goal>pack</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
 					<plugin>
 						<groupId>org.eclipse.tycho</groupId>
 						<artifactId>tycho-p2-plugin</artifactId>
