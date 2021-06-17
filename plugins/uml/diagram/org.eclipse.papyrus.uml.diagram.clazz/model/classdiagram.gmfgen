@@ -8978,6 +8978,7 @@
     <plugin
         iD="org.eclipse.papyrus.uml.diagram.clazz"
         name="PapyrusUMLClassDiagram"
+        provider="Eclipse Modeling Project"
         version="4.1.0.qualifier"/>
     <editor/>
     <navigator/>

@@ -19638,7 +19638,7 @@
     <plugin
         iD="org.eclipse.papyrus.uml.diagram.activity"
         name="Papyrus activity editor Plugin"
-        provider="Papyrus"
+        provider="Eclipse Modeling Project"
         version="3.3.0.qualifier">
       <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
       <requiredPlugins>org.eclipse.papyrus.uml.diagram.common</requiredPlugins>

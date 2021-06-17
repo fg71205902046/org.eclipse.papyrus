@@ -2173,7 +2173,7 @@
     </diagram>
     <plugin
         iD="org.eclipse.papyrus.uml.diagram.sequence"
-        provider="CEA"
+        provider="Eclipse Modeling Project"
         version="5.1.0.qualifier">
       <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
       <requiredPlugins>org.eclipse.papyrus.uml.diagram.common</requiredPlugins>

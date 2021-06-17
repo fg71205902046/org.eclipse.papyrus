@@ -2524,7 +2524,7 @@
     <plugin
         iD="org.eclipse.papyrus.uml.diagram.statemachine"
         name="PapyrusUMLStateMachineDiagram"
-        provider="Papyrus"
+        provider="Eclipse Modeling Project"
         version="3.2.100.qualifier"/>
     <editor
         iconPath="icons/UMLDiagramFile.gif"/>
