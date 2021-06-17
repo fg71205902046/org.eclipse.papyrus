@@ -52,12 +52,12 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.RefreshHook;
 
 /**
  * Migrates the data formerly contained in the "PAPYRUSGMFEXTENSION" into the new single generation model (papyrus/gmfgen/2020)
- * 
+ *
  * <ul>
  * <li>Migration is based on a set of mappings (Addition of new attributes to the formerly extended class).</li>
  * <li>Once the gmfgen file is migrated, it is then possible to regenerate the code of the corresponding UML diagram.</li>
  * </ul>
- * 
+ *
  */
 public class PapyrusGMFExtensionMigrator extends GenExtensionSwitch<Boolean> {
 
@@ -140,7 +140,7 @@ public class PapyrusGMFExtensionMigrator extends GenExtensionSwitch<Boolean> {
 			if (extendedElement instanceof GenChildLabelNode && "org.eclipse.papyrus.uml.diagram.common.editparts.UMLCompartmentEditPart".equals(superOwnedEditPart)) { //$NON-NLS-1$
 				extendedElement.setSuperEditPart("org.eclipse.papyrus.uml.diagram.common.editparts.AbstractCompartmentEditPart"); //$NON-NLS-1$
 			} else if (extendedElement instanceof GenCompartment && "org.eclipse.papyrus.infra.gmfdiag.common.editpart.ResizeableListCompartmentEditPart".equals(superOwnedEditPart)) { //$NON-NLS-1$
-				extendedElement.setSuperEditPart("org.eclipse.papyrus.uml.diagram.common.editparts.AbstractResizableCompartmentEditPart"); //$NON-NLS-1$
+				extendedElement.setSuperEditPart("org.eclipse.papyrus.infra.gmfdiag.common.editpart.AbstractResizableCompartmentEditPart"); //$NON-NLS-1$
 			} else if (extendedElement instanceof GenExternalNodeLabel) {
 				if ("org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusLabelEditPart".equals(superOwnedEditPart)) { //$NON-NLS-1$
 					extendedElement.setSuperEditPart("org.eclipse.papyrus.uml.diagram.common.editparts.AbstractExternalLabelEditPart"); //$NON-NLS-1$

@@ -13,7 +13,7 @@
 *   Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : generate less dead or duplicate code
 *****************************************************************************/
 
-package org.eclipse.papyrus.uml.diagram.common.editparts;
+package org.eclipse.papyrus.infra.gmfdiag.common.editpart;
 
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
@@ -25,12 +25,12 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ResizeableListCompartmentEditPart;
 
 /**
  * An intermediate class with the common methods used by resizeable list compartments (inherit from ResizeableListCompartmentEditPart).
  *
  * @author allogo
+ * @since 4.2
  */
 public abstract class AbstractResizableCompartmentEditPart extends ResizeableListCompartmentEditPart {
 

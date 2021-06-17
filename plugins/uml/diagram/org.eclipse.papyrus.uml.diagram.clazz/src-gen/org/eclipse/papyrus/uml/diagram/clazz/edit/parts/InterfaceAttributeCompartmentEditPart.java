@@ -19,11 +19,11 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableCompartmentEditPolicy;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.AbstractResizableCompartmentEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCompartmentSemanticEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.part.Messages;
-import org.eclipse.papyrus.uml.diagram.common.editparts.AbstractResizableCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
 
 /**

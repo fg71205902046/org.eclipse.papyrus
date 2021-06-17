@@ -141,7 +141,7 @@ import xpt.CodeStyle
 	//  - moved to intermediate class AbstractResizableCompartmentEditPart
 	def boolean isCommonResizableCompartment(GenCompartment node) {
 		return 'org.eclipse.papyrus.infra.gmfdiag.common.editpart.ResizeableListCompartmentEditPart' == node.superEditPart
-		|| 'org.eclipse.papyrus.uml.diagram.common.editparts.AbstractResizableCompartmentEditPart' == node.superEditPart
+		|| 'org.eclipse.papyrus.infra.gmfdiag.common.editpart.AbstractResizableCompartmentEditPart' == node.superEditPart
 		|| 'org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.AbstractPackageableElementCompartmentEditPart' == node.superEditPart
 	}
 }
