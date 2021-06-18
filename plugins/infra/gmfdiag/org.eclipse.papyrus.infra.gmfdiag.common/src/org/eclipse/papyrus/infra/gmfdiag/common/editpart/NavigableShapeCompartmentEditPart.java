@@ -11,31 +11,28 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
+ *  Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : Pull up refreshVisuals/setRatio for shape compartments
  *****************************************************************************/
-package org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part;
+package org.eclipse.papyrus.infra.gmfdiag.common.editpart;
 
 import org.eclipse.gef.DragTracker;
-import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.requests.SelectionRequest;
 import org.eclipse.gef.tools.DeselectAllTracker;
 import org.eclipse.gmf.runtime.diagram.ui.internal.tools.RubberbandDragTracker;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.NavigableShapeCompartmentEditPart;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.XYLayoutShapeCompartmentEditPart;
 
 /**
  * this is an abstract editpart used to allow double click on XY layout compartment
  *
- * @deprecated use {@link NavigableShapeCompartmentEditPart} instead
+ * @since 4.2
+ *
  */
 @SuppressWarnings("restriction")
-@Deprecated
-public abstract class AbstractPackageableElementCompartmentEditPart extends XYLayoutShapeCompartmentEditPart {
+public abstract class NavigableShapeCompartmentEditPart extends XYLayoutShapeCompartmentEditPart {
 
-	public AbstractPackageableElementCompartmentEditPart(View view) {
+	public NavigableShapeCompartmentEditPart(View view) {
 		super(view);
 	}
 
@@ -54,7 +51,7 @@ public abstract class AbstractPackageableElementCompartmentEditPart extends XYLa
 
 				@Override
 				protected boolean handleButtonDown(int button) {
-					getCurrentViewer().select(AbstractPackageableElementCompartmentEditPart.this);
+					getCurrentViewer().select(NavigableShapeCompartmentEditPart.this);
 					return true;
 				}
 			};
@@ -71,25 +68,18 @@ public abstract class AbstractPackageableElementCompartmentEditPart extends XYLa
 				SelectionRequest request = new SelectionRequest();
 				request.setLocation(getLocation());
 				request.setType(RequestConstants.REQ_OPEN);
-				AbstractPackageableElementCompartmentEditPart.this.performRequest(request);
+				NavigableShapeCompartmentEditPart.this.performRequest(request);
 				return true;
 			}
 
 			@Override
 			protected void handleFinished() {
 				if (getViewer().getSelectedEditParts().isEmpty()) {
-					getViewer().select(AbstractPackageableElementCompartmentEditPart.this);
+					getViewer().select(NavigableShapeCompartmentEditPart.this);
 				}
 			}
-
 		};
 	}
-
-	@Override
-	public final EditPart getTargetEditPart(Request request) {
-		return super.getTargetEditPart(request);
-	}
-
 
 	@Override
 	public boolean isSelectable() {

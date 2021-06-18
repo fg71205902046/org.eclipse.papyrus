@@ -1,7 +1,7 @@
 /*****************************************************************************
- * Copyright (c) 2014-15 CEA LIST, Montages AG and others
+ * Copyright (c) 2014-15, 2021 CEA LIST, Montages AG, ARTAL and others
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -11,8 +11,9 @@
  *
  * Contributors:
  *  Anatoly Tishenko (tishenko@montages.com) - Initial API and implementation
+ *  Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : Pull up refreshVisuals/setRatio for shape compartments
  */
-package  org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.linklf;
+package org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.linklf;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -28,16 +29,22 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.draw2d.geometry.Translatable;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
+import org.eclipse.gef.GraphicalEditPart;
+import org.eclipse.gef.Request;
 import org.eclipse.gef.SnapToGrid;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemsAwareFreeFormLayer;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ShapeCompartmentFigure;
 import org.eclipse.gmf.runtime.diagram.ui.layout.FreeFormLayoutEx;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.internal.figures.AnimatableScrollPane;
 import org.eclipse.gmf.runtime.draw2d.ui.internal.figures.OverlayScrollPaneLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 
 /**
@@ -47,6 +54,7 @@ public class LinkLFShapeCompartmentEditPart extends ShapeCompartmentEditPart {
 
 	private final PropertyChangeListener myGridListener = new PropertyChangeListener() {
 
+		@Override
 		public void propertyChange(PropertyChangeEvent evt) {
 			String propertyName = evt.getPropertyName();
 			if (SnapToGrid.PROPERTY_GRID_ORIGIN.equals(propertyName) || //
@@ -170,6 +178,7 @@ public class LinkLFShapeCompartmentEditPart extends ShapeCompartmentEditPart {
 			myBaseRangeModel = rangeModel;
 		}
 
+		@Override
 		public void setValue(int value) {
 			Rectangle gridSpec = getGridSpec(getViewer());
 			if (gridSpec != null) {
@@ -181,46 +190,57 @@ public class LinkLFShapeCompartmentEditPart extends ShapeCompartmentEditPart {
 			}
 		}
 
+		@Override
 		public void setMinimum(int min) {
 			myBaseRangeModel.setMinimum(min);
 		}
 
+		@Override
 		public void setMaximum(int max) {
 			myBaseRangeModel.setMaximum(max);
 		}
 
+		@Override
 		public void setExtent(int extent) {
 			myBaseRangeModel.setExtent(extent);
 		}
 
+		@Override
 		public void setAll(int min, int extent, int max) {
 			myBaseRangeModel.setAll(min, extent, max);
 		}
 
+		@Override
 		public void removePropertyChangeListener(PropertyChangeListener listener) {
 			myBaseRangeModel.removePropertyChangeListener(listener);
 		}
 
+		@Override
 		public boolean isEnabled() {
 			return true;
 		}
 
+		@Override
 		public int getValue() {
 			return myBaseRangeModel.getValue();
 		}
 
+		@Override
 		public int getMinimum() {
 			return myBaseRangeModel.getMinimum();
 		}
 
+		@Override
 		public int getMaximum() {
 			return myBaseRangeModel.getMaximum();
 		}
 
+		@Override
 		public int getExtent() {
 			return myBaseRangeModel.getExtent();
 		}
 
+		@Override
 		public void addPropertyChangeListener(PropertyChangeListener listener) {
 			myBaseRangeModel.addPropertyChangeListener(listener);
 		}
@@ -265,21 +285,71 @@ public class LinkLFShapeCompartmentEditPart extends ShapeCompartmentEditPart {
 			myMapMode = mm;
 		}
 
+		@Override
 		public int LPtoDP(int logicalUnit) {
 			return myMapMode.LPtoDP(logicalUnit);
 		}
 
+		@Override
 		public int DPtoLP(int deviceUnit) {
 			return myMapMode.DPtoLP(deviceUnit);
 		}
 
+		@Override
 		public Translatable LPtoDP(Translatable t) {
 			return myMapMode.LPtoDP(t);
 		}
 
+		@Override
 		public Translatable DPtoLP(Translatable t) {
 			return myMapMode.DPtoLP(t);
 		}
+	}
+
+
+	@Override
+	protected final void setRatio(Double ratio) {
+		if (getFigure().getParent().getLayoutManager() instanceof ConstrainedToolbarLayout) {
+			super.setRatio(ratio);
+		}
+	}
+
+	@Override
+	public EditPart getTargetEditPart(Request request) {
+		return super.getTargetEditPart(request);
+	}
+
+	@Override
+	protected final void handleNotificationEvent(Notification notification) {
+		Object feature = notification.getFeature();
+		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature)
+				|| NotationPackage.eINSTANCE.getSize_Height().equals(feature)
+				|| NotationPackage.eINSTANCE.getLocation_X().equals(feature)
+				|| NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
+			refreshBounds();
+		}
+		super.handleNotificationEvent(notification);
+	}
+
+	/**
+	 * Refresh bounds.
+	 *
+	 * @since 4.1
+	 */
+	protected final void refreshBounds() {
+		int width = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
+		int height = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
+		Dimension size = new Dimension(width, height);
+		int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
+		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
+		Point loc = new Point(x, y);
+		((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
+	}
+
+	@Override
+	protected void refreshVisuals() {
+		super.refreshVisuals();
+		refreshBounds();
 	}
 
 }

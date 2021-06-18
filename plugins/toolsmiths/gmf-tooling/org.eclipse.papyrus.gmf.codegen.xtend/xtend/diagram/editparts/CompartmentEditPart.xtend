@@ -13,6 +13,7 @@
  * Alexander Shatalin (Borland) - initial API and implementation
  * Michael Golubev (Montages) - #386838 - migrate to Xtend2
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 generate less dead or duplicate code + missing @override
+ * Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : Pull up refreshVisuals/setRatio for shape compartments (LinkLFShapeCompartmentEditPart)
  *****************************************************************************/
 package diagram.editparts
 
@@ -49,10 +50,10 @@ import xpt.CodeStyle
 			«xptCompartmentEditPartImpl.getCompartmentName(it)»
 			«xptCompartmentEditPartImpl.createFigure(it)»
 			«createDefaultEditPolicies(it)»
-			«xptCompartmentEditPartImpl.refreshVisuals(it)»
-			«handleNotificationEvent(it)»
-			«xptCompartmentEditPartImpl.refreshBounds(it)»
 			«IF !commonResizableCompartment && superEditPart !== null»
+				«xptCompartmentEditPartImpl.refreshVisuals(it)»
+				«handleNotificationEvent(it)»
+				«xptCompartmentEditPartImpl.refreshBounds(it)»
 				«xptCompartmentEditPartImpl.setRatio(it)»
 				«xptCompartmentEditPartImpl.getTargetEditPartMethod(it)»
 				«additions(it)»
@@ -64,7 +65,7 @@ import xpt.CodeStyle
 		«IF superEditPart!== null»
 			extends «superEditPart»
 		«ELSE»
-			extends «IF listLayout»org.eclipse.papyrus.uml.diagram.common.editparts.AbstractListCompartmentEditPart«ELSE»org.eclipse.papyrus.uml.diagram.common.editparts.AbstractShapeCompartmentEditPart«ENDIF»
+			extends «IF listLayout»org.eclipse.papyrus.uml.diagram.common.editparts.AbstractListCompartmentEditPart«ELSE»org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.linklf.LinkLFShapeCompartmentEditPart«ENDIF»
 		«ENDIF»
 	'''
 
@@ -142,6 +143,6 @@ import xpt.CodeStyle
 	def boolean isCommonResizableCompartment(GenCompartment node) {
 		return 'org.eclipse.papyrus.infra.gmfdiag.common.editpart.ResizeableListCompartmentEditPart' == node.superEditPart
 		|| 'org.eclipse.papyrus.infra.gmfdiag.common.editpart.AbstractResizableCompartmentEditPart' == node.superEditPart
-		|| 'org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.AbstractPackageableElementCompartmentEditPart' == node.superEditPart
+		|| 'org.eclipse.papyrus.infra.gmfdiag.common.editpart.NavigableShapeCompartmentEditPart' == node.superEditPart
 	}
 }
