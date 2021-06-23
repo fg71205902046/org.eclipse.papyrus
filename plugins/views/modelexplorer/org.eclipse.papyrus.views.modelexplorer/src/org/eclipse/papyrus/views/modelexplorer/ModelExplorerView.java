@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2016, 2017, 2019 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2016, 2017, 2019, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -17,6 +17,7 @@
  *  Mickaël ADAM (ALL4TEC) - mickael.adam@all4tec.net - Bug 500290: implement new filter and ignore case Check button
  *  Ansgar Radermacher (CEA LIST) - Bug 516459: Navigation mechanism with Alt+hover does not work on Linux
  *  Ansgar Radermacher (CEA LIST) - Bug 553094: Avoid potential NPE during dispose and remove reload-listener
+ *  Ansgar Radermacher (CEA LIST) - Bug 574410: Exceptions during reload, contents disappears during 2nd reload
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer;
@@ -1019,8 +1020,6 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 			viewerFilter.clearCache();
 			viewerFilter = null;
 		}
-
-		reloadableEditor.removeEditorReloadListener(reloadAdapter);
 	}
 
 	/**
@@ -1068,6 +1067,10 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 		pageSelectionListener = null;
 
+		// 574410 - remove listener in dispose (not in deactivate), otherwise it is not
+		// available during 2nd and further reloads.
+		reloadableEditor.removeEditorReloadListener(reloadAdapter);
+
 		super.dispose();
 
 		// Clean up properties to help GC
@@ -1113,6 +1116,10 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	@Override
 	@SuppressWarnings("rawtypes")
 	public Object getAdapter(Class adapter) {
+		if (editingDomain == null) {
+			// bug 574410 - don't adapt, if model explorer is deactivated during reload
+			return null;
+		}
 		if (IPropertySheetPage.class.equals(adapter)) {
 			return getPropertySheetPage();
 		}
