@@ -123,6 +123,7 @@ import xpt.expressions.getExpression
 					«generatedMemberComment»
 					public static class «ctx.className» implements org.eclipse.emf.validation.model.IClientSelector {
 						«generatedMemberComment»
+						«overrideC»
 						public boolean selects(Object object) {
 					«IF ctx.ruleTargets.filter(typeof(GenDiagramElementTarget)).notEmpty»
 							if (isInDefaultEditorContext(object) && object instanceof org.eclipse.gmf.runtime.notation.View) {
@@ -272,6 +273,7 @@ import xpt.expressions.getExpression
 			public static class «getConstraintAdapterLocalClassName()» extends org.eclipse.emf.validation.AbstractModelConstraint {
 
 				«generatedMemberComment»
+				«overrideC»
 				public org.eclipse.core.runtime.IStatus validate(org.eclipse.emf.validation.IValidationContext ctx) {
 					«constraintAdapter_initContext(it.target, it)»
 					«constraintAdapter_validateMethod(it.rule.provider, it)»

@@ -135,7 +135,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	 * Activate.
 	 */
 	@Override
-	public final void activate() {
+	public void activate() {
 		super.activate();
 		addOwnerElementListeners();
 	}
@@ -144,7 +144,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	 * Deactivate.
 	 */
 	@Override
-	public final void deactivate() {
+	public void deactivate() {
 		removeOwnerElementListeners();
 		super.deactivate();
 
@@ -158,7 +158,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	 * @return the child by semantic hint
 	 */
 	@Override
-	public final IGraphicalEditPart getChildBySemanticHint(String semanticHint) {
+	public IGraphicalEditPart getChildBySemanticHint(String semanticHint) {
 		return null;
 	}
 
@@ -168,7 +168,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	 * @return the completion processor
 	 */
 	@Override
-	public final IContentAssistProcessor getCompletionProcessor() {
+	public IContentAssistProcessor getCompletionProcessor() {
 		if (getParserElement() == null || getParser() == null) {
 			return null;
 		}
@@ -199,7 +199,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	 * @return the edits the text
 	 */
 	@Override
-	public final String getEditText() {
+	public String getEditText() {
 		if (getParserElement() == null || getParser() == null) {
 			return ""; //$NON-NLS-1$
 		}
@@ -214,7 +214,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	 * @return the edits the text validator
 	 */
 	@Override
-	public final ICellEditorValidator getEditTextValidator() {
+	public ICellEditorValidator getEditTextValidator() {
 		return new ICellEditorValidator() {
 
 			@Override
@@ -252,7 +252,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	 * @return the parser options
 	 */
 	@Override
-	public final ParserOptions getParserOptions() {
+	public ParserOptions getParserOptions() {
 		return ParserOptions.NONE;
 	}
 
@@ -262,7 +262,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	 * @param figure
 	 *            the new label
 	 */
-	public final void setLabel(IFigure figure) {
+	public void setLabel(IFigure figure) {
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);
@@ -277,7 +277,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	 *            the new label text
 	 */
 	@Override
-	public final void setLabelText(String text) {
+	public void setLabelText(String text) {
 		setLabelTextHelper(getFigure(), text);
 		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 		if (pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
@@ -296,7 +296,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	 *            the new parser
 	 */
 	@Override
-	public final void setParser(IParser parser) {
+	public void setParser(IParser parser) {
 		this.parser = parser;
 	}
 
@@ -313,7 +313,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	 * Adds the notational listeners.
 	 */
 	@Override
-	protected final void addNotationalListeners() {
+	protected void addNotationalListeners() {
 		super.addNotationalListeners();
 		addListenerFilter("PrimaryView", this, getPrimaryView()); //$NON-NLS-1$
 	}
@@ -321,7 +321,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	/**
 	 * Adds the owner element listeners.
 	 */
-	protected final void addOwnerElementListeners() {
+	protected void addOwnerElementListeners() {
 		addListenerFilter(ADD_PARENT_MODEL, this, ((View) getParent().getModel()));
 
 	}
@@ -330,7 +330,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	 * Adds the semantic listeners.
 	 */
 	@Override
-	protected final void addSemanticListeners() {
+	protected void addSemanticListeners() {
 		if (getParser() instanceof ISemanticParser) {
 			EObject element = resolveSemanticElement();
 			parserElements = ((ISemanticParser) getParser()).getSemanticElementsBeingParsed(element);
@@ -347,7 +347,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	 *
 	 * @return <code>true</code> if a default direct edition is available
 	 */
-	protected final boolean checkDefaultEdition() {
+	protected boolean checkDefaultEdition() {
 		return (getParser() != null);
 	}
 
@@ -356,7 +356,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	 *
 	 * @return <code>true</code> if an extended editor is present.
 	 */
-	protected final boolean checkExtendedEditor() {
+	protected boolean checkExtendedEditor() {
 		if (resolveSemanticElement() != null) {
 			return DirectEditorsUtil.hasSpecificEditorConfiguration(resolveSemanticElement(), this);
 		}
@@ -369,7 +369,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	 * @return the i figure
 	 */
 	@Override
-	protected final IFigure createFigure() {
+	protected IFigure createFigure() {
 		// Parent should assign one using setLabel() method
 		return null;
 	}
@@ -380,12 +380,12 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	 * @return the accessible edit part
 	 */
 	@Override
-	protected final AccessibleEditPart getAccessibleEditPart() {
+	protected AccessibleEditPart getAccessibleEditPart() {
 		if (accessibleEP == null) {
 			accessibleEP = new AccessibleGraphicalEditPart() {
 
 				@Override
-				public final void getName(AccessibleEvent e) {
+				public void getName(AccessibleEvent e) {
 					e.result = getLabelTextHelper(getFigure());
 				}
 			};
@@ -409,7 +409,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	 *            the figure
 	 * @return the label icon helper
 	 */
-	protected final Image getLabelIconHelper(IFigure figure) {
+	protected Image getLabelIconHelper(IFigure figure) {
 		if (figure instanceof WrappingLabel) {
 			return ((WrappingLabel) figure).getIcon();
 		} else if (figure instanceof ILabelFigure) {
@@ -424,7 +424,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	 *
 	 * @return the label text
 	 */
-	protected final String getLabelText() {
+	protected String getLabelText() {
 		String text = null;
 		EObject parserElement = getParserElement();
 		if (parserElement != null && getParser() != null) {
@@ -445,7 +445,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	 *            the figure
 	 * @return the label text helper
 	 */
-	protected final String getLabelTextHelper(IFigure figure) {
+	protected String getLabelTextHelper(IFigure figure) {
 		if (figure instanceof WrappingLabel) {
 			return ((WrappingLabel) figure).getText();
 		} else if (figure instanceof ILabelFigure) {
@@ -460,7 +460,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	 *
 	 * @return the manager
 	 */
-	protected final DirectEditManager getManager() {
+	protected DirectEditManager getManager() {
 		if (manager == null) {
 			setManager(new MultilineLabelDirectEditManager(this,
 					MultilineLabelDirectEditManager.getTextCellEditorClass(this),
@@ -475,7 +475,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	 * @return the model children
 	 */
 	@Override
-	protected final List<?> getModelChildren() {
+	protected List<?> getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
 
@@ -484,7 +484,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	 *
 	 * @return the parser element
 	 */
-	protected final EObject getParserElement() {
+	protected EObject getParserElement() {
 		return resolveSemanticElement();
 	}
 
@@ -530,7 +530,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	/**
 	 * Initializes the extended editor configuration.
 	 */
-	protected final void initExtendedEditorConfiguration() {
+	protected void initExtendedEditorConfiguration() {
 		if (configuration == null) {
 			final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
 			if (languagePreferred != null && !languagePreferred.equals("")) { //$NON-NLS-1$
@@ -547,12 +547,12 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	 * @param request
 	 *            the request
 	 */
-	protected final void initializeDirectEditManager(final Request request) {
+	protected void initializeDirectEditManager(final Request request) {
 		// initialize the direct edit manager
 		try {
 			getEditingDomain().runExclusive(new Runnable() {
 				@Override
-				public final void run() {
+				public void run() {
 					if (isActive() && isEditable()) {
 						if (request.getExtendedData().get(
 								RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
@@ -584,13 +584,13 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	 * @param theRequest
 	 *            the direct edit request that starts the direct edit system
 	 */
-	protected final void performDefaultDirectEditorEdit(final Request theRequest) {
+	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager
 		try {
 			getEditingDomain().runExclusive(new Runnable() {
 
 				@Override
-				public final void run() {
+				public void run() {
 					if (isActive() && isEditable()) {
 						if (theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
 							Character initialChar = (Character) theRequest.getExtendedData().get(
@@ -643,7 +643,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	 * @param eventLocation
 	 *            the event location
 	 */
-	protected final void performDirectEdit(Point eventLocation) {
+	protected void performDirectEdit(Point eventLocation) {
 		if (getManager() instanceof TextDirectEditManager) {
 			((TextDirectEditManager) getManager()).show(eventLocation.getSWTPoint());
 		}
@@ -656,7 +656,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	 *            the request
 	 */
 	@Override
-	protected final void performDirectEditRequest(Request request) {
+	protected void performDirectEditRequest(Request request) {
 
 		final Request theRequest = request;
 
@@ -727,7 +727,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	 * Refresh font.
 	 */
 	@Override
-	protected final void refreshFont() {
+	protected void refreshFont() {
 		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
 				NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null) {
@@ -742,7 +742,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	/**
 	 * Refresh label.
 	 */
-	protected final void refreshLabel() {
+	protected void refreshLabel() {
 		EditPolicy maskLabelPolicy = getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
 		if (maskLabelPolicy == null) {
 			maskLabelPolicy = getEditPolicy(IndirectMaskLabelEditPolicy.INDRIRECT_MASK_MANAGED_LABEL);
@@ -770,7 +770,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	/**
 	 * Refresh strike through.
 	 */
-	protected final void refreshStrikeThrough() {
+	protected void refreshStrikeThrough() {
 		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
 				NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null && getFigure() instanceof WrappingLabel) {
@@ -781,7 +781,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	/**
 	 * Refresh underline.
 	 */
-	protected final void refreshUnderline() {
+	protected void refreshUnderline() {
 		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
 				NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null && getFigure() instanceof WrappingLabel) {
@@ -800,7 +800,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	 * Refresh visuals.
 	 */
 	@Override
-	protected final void refreshVisuals() {
+	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshLabel();
 		refreshFont();
@@ -813,7 +813,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	 * Removes the notational listeners.
 	 */
 	@Override
-	protected final void removeNotationalListeners() {
+	protected void removeNotationalListeners() {
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
@@ -821,7 +821,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	/**
 	 * Removes the owner element listeners.
 	 */
-	protected final void removeOwnerElementListeners() {
+	protected void removeOwnerElementListeners() {
 		removeListenerFilter(ADD_PARENT_MODEL);
 	}
 
@@ -829,7 +829,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	 * Removes the semantic listeners.
 	 */
 	@Override
-	protected final void removeSemanticListeners() {
+	protected void removeSemanticListeners() {
 		if (parserElements != null) {
 			for (int i = 0; i < parserElements.size(); i++) {
 				removeListenerFilter("SemanticModel" + i); //$NON-NLS-1$
@@ -846,7 +846,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	 *            the new font color
 	 */
 	@Override
-	protected final void setFontColor(Color color) {
+	protected void setFontColor(Color color) {
 		getFigure().setForegroundColor(color);
 	}
 
@@ -858,7 +858,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	 * @param icon
 	 *            the icon
 	 */
-	protected final void setLabelIconHelper(IFigure figure, Image icon) {
+	protected void setLabelIconHelper(IFigure figure, Image icon) {
 		if (figure instanceof WrappingLabel) {
 			((WrappingLabel) figure).setIcon(icon);
 		} else if (figure instanceof ILabelFigure) {
@@ -876,7 +876,7 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	 * @param text
 	 *            the text
 	 */
-	protected final void setLabelTextHelper(IFigure figure, String text) {
+	protected void setLabelTextHelper(IFigure figure, String text) {
 		if (figure instanceof WrappingLabel) {
 			((WrappingLabel) figure).setText(text);
 		} else if (figure instanceof ILabelFigure) {
@@ -892,14 +892,14 @@ public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPa
 	 * @param manager
 	 *            the new manager
 	 */
-	protected final void setManager(DirectEditManager manager) {
+	protected void setManager(DirectEditManager manager) {
 		this.manager = manager;
 	}
 
 	/**
 	 * Updates the preference configuration.
 	 */
-	protected final void updateExtendedEditorConfiguration() {
+	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(
 				IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
 		if (languagePreferred != null && !languagePreferred.equals("") && !languagePreferred.equals(configuration.getLanguage())) { //$NON-NLS-1$

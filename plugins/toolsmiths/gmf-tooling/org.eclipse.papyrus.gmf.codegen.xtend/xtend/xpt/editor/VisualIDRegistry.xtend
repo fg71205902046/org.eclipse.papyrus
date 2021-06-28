@@ -201,7 +201,7 @@ import xpt.diagram.editpolicies.LinkUtils_qvto
 	'''
 
 	def attributes(GenDiagram it) '''
-		// Uncomment for debug puprose ?
+		// Uncomment for debug purpose ?
 		// /**
 		// * @generated
 		// */
@@ -394,7 +394,7 @@ import xpt.diagram.editpolicies.LinkUtils_qvto
 
 	def isDiagram(GenDiagram it) '''
 		«IF null !== domainDiagramElement »
-			// Uncomment for debug puprose ?
+			// Uncomment for debug purpose ?
 			// /**
 			// * User can change implementation of this method to handle some specific
 			// * situations not covered by default logic.

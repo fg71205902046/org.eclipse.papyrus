@@ -26,6 +26,7 @@ import xpt.Common
 import xpt.diagram.ViewmapAttributesUtils_qvto
 import xpt.editor.VisualIDRegistry
 import xpt.CodeStyle
+import org.eclipse.papyrus.gmf.codegen.gmfgen.ParentAssignedViewmap
 
 @Singleton class LinkLabelEditPart {
 	@Inject extension Common;
@@ -54,6 +55,10 @@ import xpt.CodeStyle
 			«xptTextAware.getLabelIconNotUseElementIcon(it, elementIcon, diagram)»
 			«xptTextAware.methodsExtent(it, false, readOnly, modelFacet, link)»
 			«handleNotificationEvent(it)»
+			«IF !(viewmap instanceof ParentAssignedViewmap /* default overriden */)»
+				«xptEditpartsCommon.labelFigure(it.viewmap)»
+			«ENDIF»
+			
 			«additions(it)»
 		}
 	'''

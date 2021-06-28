@@ -46,6 +46,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagramUpdater;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenExternalNodeLabel;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenFloatingLabel;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLinkLabel;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.RefreshHook;
@@ -148,6 +149,10 @@ public class PapyrusGMFExtensionMigrator extends GenExtensionSwitch<Boolean> {
 					extendedElement.setSuperEditPart("org.eclipse.papyrus.uml.diagram.common.editparts.AbstractFloatingLabelEditPart"); //$NON-NLS-1$
 				} else if ("org.eclipse.papyrus.uml.diagram.common.editparts.AbstractLabelEditPart".equals(superOwnedEditPart)) { //$NON-NLS-1$
 					extendedElement.setSuperEditPart("org.eclipse.papyrus.uml.diagram.common.editparts.AbstractWrappingLabelEditPart"); //$NON-NLS-1$
+				}
+			} else if (extendedElement instanceof GenLink) {
+				if ("org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart".equals(superOwnedEditPart)) { //$NON-NLS-1$
+					extendedElement.setSuperEditPart("org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart"); //$NON-NLS-1$
 				}
 			}
 

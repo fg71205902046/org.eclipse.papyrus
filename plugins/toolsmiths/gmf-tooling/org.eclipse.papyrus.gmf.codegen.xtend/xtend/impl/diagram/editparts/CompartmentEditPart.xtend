@@ -79,6 +79,7 @@ import xpt.CodeStyle
 			'''
 				«IF !needsTitle»
 					«/*By default titles are shown even if there are no TitleStyle, we need to switch it off*/generatedMemberComment»
+					«overrideC»
 					public org.eclipse.draw2d.IFigure createFigure() {
 						org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure result = (org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure) super.createFigure();
 						result.setTitleVisibility(false);

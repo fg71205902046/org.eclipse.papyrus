@@ -23,6 +23,7 @@ import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNodeLabel
 import xpt.Common
 import xpt.diagram.editparts.Utils_qvto
 import xpt.CodeStyle
+import org.eclipse.papyrus.gmf.codegen.gmfgen.ParentAssignedViewmap
 
 @Singleton class NodeLabelEditPart {
 	@Inject extension Common;
@@ -46,6 +47,9 @@ import xpt.CodeStyle
 			«xptTextAware.getLabelIconNotUseElementIcon(it, elementIcon, diagram)»
 			«xptTextAware.methodsExtent(it, isStoringChildPositions(node), readOnly,  modelFacet, node)»
 			«handleNotificationEventExtent(it)»
+			«IF !(viewmap instanceof ParentAssignedViewmap /* default overriden */)»
+				«xptEditpartsCommon.labelFigure(it.viewmap)»
+			«ENDIF»
 		}
 	'''
 

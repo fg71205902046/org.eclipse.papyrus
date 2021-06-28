@@ -78,11 +78,10 @@ import xpt.editor.VisualIDRegistry
 	 */ 
 	def doGeneratedComment(String comment, String comment2) 
 	'''
-	/**
-	«IF comment.length > 0» * «comment.replaceAll('\n', '\n * ').replaceAll('\\* \n', '*\n')»
+	/**«IF comment.length > 0»«'\n'» * «comment.replaceAll('\n', '\n * ').replaceAll('\\* \n', '*\n')»
 	 *«ENDIF»
-	 * @generated
-	«IF comment2.length > 0» * «comment2.replaceAll('\n', '\n * ').replaceAll('\\* \n', '*\n ')»«ENDIF»
+	 * @generated«IF comment2.length > 0»«'\n' /*the first space inherited*/»* «comment2.replaceAll('\n',
+	 		/*the first space inherited*/'\n* ').replaceAll('\\* \n', '*\n ')»«ENDIF»
 	 */
 	'''
 

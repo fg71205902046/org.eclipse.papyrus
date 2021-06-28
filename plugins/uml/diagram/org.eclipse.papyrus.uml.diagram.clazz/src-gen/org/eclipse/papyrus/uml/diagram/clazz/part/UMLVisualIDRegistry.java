@@ -33,7 +33,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class UMLVisualIDRegistry {
 
-	// Uncomment for debug puprose ?
+	// Uncomment for debug purpose ?
 	// /**
 	// * @generated
 	// */
@@ -1995,7 +1995,7 @@ public class UMLVisualIDRegistry {
 		return ""; //$NON-NLS-1$
 	}
 
-	// Uncomment for debug puprose ?
+	// Uncomment for debug purpose ?
 	// /**
 	// * User can change implementation of this method to handle some specific
 	// * situations not covered by default logic.

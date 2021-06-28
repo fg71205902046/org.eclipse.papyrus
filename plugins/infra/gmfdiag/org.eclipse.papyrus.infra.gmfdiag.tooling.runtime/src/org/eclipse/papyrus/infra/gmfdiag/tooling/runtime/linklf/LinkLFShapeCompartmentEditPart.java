@@ -12,7 +12,7 @@
  * Contributors:
  *  Anatoly Tishenko (tishenko@montages.com) - Initial API and implementation
  *  Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : Pull up refreshVisuals/setRatio for shape compartments
- */
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.linklf;
 
 import java.beans.PropertyChangeEvent;
@@ -52,7 +52,7 @@ import org.eclipse.gmf.runtime.notation.View;
  */
 public class LinkLFShapeCompartmentEditPart extends ShapeCompartmentEditPart {
 
-	private final PropertyChangeListener myGridListener = new PropertyChangeListener() {
+	private PropertyChangeListener myGridListener = new PropertyChangeListener() {
 
 		@Override
 		public void propertyChange(PropertyChangeEvent evt) {
@@ -172,7 +172,7 @@ public class LinkLFShapeCompartmentEditPart extends ShapeCompartmentEditPart {
 
 	private class SnapToGridRangeModel implements RangeModel {
 
-		private final RangeModel myBaseRangeModel;
+		private RangeModel myBaseRangeModel;
 
 		public SnapToGridRangeModel(RangeModel rangeModel) {
 			myBaseRangeModel = rangeModel;
@@ -308,7 +308,7 @@ public class LinkLFShapeCompartmentEditPart extends ShapeCompartmentEditPart {
 
 
 	@Override
-	protected final void setRatio(Double ratio) {
+	protected void setRatio(Double ratio) {
 		if (getFigure().getParent().getLayoutManager() instanceof ConstrainedToolbarLayout) {
 			super.setRatio(ratio);
 		}
@@ -320,7 +320,7 @@ public class LinkLFShapeCompartmentEditPart extends ShapeCompartmentEditPart {
 	}
 
 	@Override
-	protected final void handleNotificationEvent(Notification notification) {
+	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
 		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature)
 				|| NotationPackage.eINSTANCE.getSize_Height().equals(feature)
@@ -336,7 +336,7 @@ public class LinkLFShapeCompartmentEditPart extends ShapeCompartmentEditPart {
 	 *
 	 * @since 4.1
 	 */
-	protected final void refreshBounds() {
+	protected void refreshBounds() {
 		int width = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
 		int height = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
 		Dimension size = new Dimension(width, height);

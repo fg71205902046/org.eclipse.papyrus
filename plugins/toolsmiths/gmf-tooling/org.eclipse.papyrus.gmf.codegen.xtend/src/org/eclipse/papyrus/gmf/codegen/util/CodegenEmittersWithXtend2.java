@@ -1,14 +1,14 @@
 /******************************************************************************
  * Copyright (c) 2015, 2020 Montages A.G., CEA LIST, Artal and others
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/ 
- * 
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
  * SPDX-License-Identifier: EPL-2.0
  *
- * Contributors: 
+ * Contributors:
  *    Svyatoslav Kovalsky (Montages) - initial API and implementation
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Bug 569174
  *    Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.1 Remove reference to xpand/qvto
@@ -16,6 +16,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.gmf.codegen.util;
 
+import java.net.URL;
 import java.util.List;
 
 import org.eclipse.papyrus.gmf.common.UnexpectedBehaviourException;
@@ -86,5 +87,16 @@ public abstract class CodegenEmittersWithXtend2 extends CodegenEmitters {
 	@Override
 	protected JavaClassEmitter createJavaClassEmitter(String templateName, String mainMethod) {
 		return getXtendEmitter(templateName, mainMethod);
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.gmf.codegen.util.CodegenEmitters#getJMergeControlFile()
+	 *
+	 * @return
+	 */
+	@Override
+	public URL getJMergeControlFile() {
+		// @generated NOT is ignored if control file is undefined
+		return CodegenXtendPlugin.getInstance().getBundle().getEntry("/templates/emf-merge.xml"); //$NON-NLS-1$
 	}
 }

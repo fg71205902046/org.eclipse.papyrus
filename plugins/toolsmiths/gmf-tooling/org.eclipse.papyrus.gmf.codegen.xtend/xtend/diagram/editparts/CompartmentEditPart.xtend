@@ -122,15 +122,13 @@ import xpt.CodeStyle
 			int x = ((Integer) getStructuralFeatureValue(org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getLocation_X())).intValue();
 			int y = ((Integer) getStructuralFeatureValue(org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getLocation_Y())).intValue();
 			org.eclipse.draw2d.geometry.Point loc = new org.eclipse.draw2d.geometry.Point(x, y);
-			((org.eclipse.gef.GraphicalEditPart) getParent()).setLayoutConstraint(
-				this,
-				getFigure(),
-				new org.eclipse.draw2d.geometry.Rectangle(loc, size));
+			((org.eclipse.gef.GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), new org.eclipse.draw2d.geometry.Rectangle(loc, size));
 		}
 	'''
 
 	def refreshvisual(GenCompartment it) '''
 		«generatedMemberComment»
+		«overrideC»
 		protected void refreshVisuals() {
 			super.refreshVisuals();
 			refreshBounds();
@@ -141,8 +139,8 @@ import xpt.CodeStyle
 	//  - Common generated methods from ResizeableListCompartmentEditPart
 	//  - moved to intermediate class AbstractResizableCompartmentEditPart
 	def boolean isCommonResizableCompartment(GenCompartment node) {
-		return 'org.eclipse.papyrus.infra.gmfdiag.common.editpart.ResizeableListCompartmentEditPart' == node.superEditPart
-		|| 'org.eclipse.papyrus.infra.gmfdiag.common.editpart.AbstractResizableCompartmentEditPart' == node.superEditPart
-		|| 'org.eclipse.papyrus.infra.gmfdiag.common.editpart.NavigableShapeCompartmentEditPart' == node.superEditPart
+		return null !== node.superEditPart
+		// use regex 569174 to avoid static ref to diagram specific implementation
+		&& node.superEditPart.matches('^org\\.eclipse\\.papyrus\\..*Compartment.*EditPart$')
 	}
 }

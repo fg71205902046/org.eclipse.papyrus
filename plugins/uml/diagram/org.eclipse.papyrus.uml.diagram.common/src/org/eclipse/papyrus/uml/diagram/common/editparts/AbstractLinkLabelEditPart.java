@@ -2,7 +2,7 @@
 * Copyright (c) 2021 CEA LIST, ARTAL
 *
 * All rights reserved. This program and the accompanying materials
-* are made available under the terms of the Eclipse public final License 2.0
+* are made available under the terms of the Eclipse public License 2.0
 * which accompanies this distribution, and is available at
 * https://www.eclipse.org/legal/epl-2.0/
 *
@@ -34,7 +34,7 @@ public abstract class AbstractLinkLabelEditPart extends UMLLabelEditPart {
 	}
 
 	@Override
-	protected final IFigure createFigure() {
+	protected IFigure createFigure() {
 		// Parent should assign one using setLabel() method
 		return null;
 	}

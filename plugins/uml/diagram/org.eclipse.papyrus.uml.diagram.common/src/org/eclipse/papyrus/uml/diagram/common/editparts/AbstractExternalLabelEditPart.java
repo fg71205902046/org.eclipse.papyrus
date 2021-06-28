@@ -47,7 +47,7 @@ public abstract class AbstractExternalLabelEditPart extends UMLLabelEditPart {
 	}
 
 	@Override
-	public final IBorderItemLocator getBorderItemLocator() {
+	public IBorderItemLocator getBorderItemLocator() {
 		IFigure parentFigure = getFigure().getParent();
 		if (parentFigure != null && parentFigure.getLayoutManager() != null) {
 			Object constraint = parentFigure.getLayoutManager().getConstraint(getFigure());
@@ -57,7 +57,7 @@ public abstract class AbstractExternalLabelEditPart extends UMLLabelEditPart {
 	}
 
 	@Override
-	public final void refreshBounds() {
+	public void refreshBounds() {
 		int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
 		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
 		int width = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();

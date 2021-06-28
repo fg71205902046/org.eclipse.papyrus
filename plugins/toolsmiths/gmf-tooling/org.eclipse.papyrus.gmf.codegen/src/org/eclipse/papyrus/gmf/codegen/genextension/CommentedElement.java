@@ -38,7 +38,7 @@ public interface CommentedElement extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * All extended classes have a comment in order to describe the puprose of this extension
+	 * All extended classes have a comment in order to describe the purpose of this extension
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Comment</em>' attribute.
 	 * @see #setComment(String)

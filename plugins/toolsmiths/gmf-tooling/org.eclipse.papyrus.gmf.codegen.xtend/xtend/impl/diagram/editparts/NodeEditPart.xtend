@@ -19,6 +19,7 @@
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : Remove reference to gmfgraph and ModelViewMap
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up providers + missing nonNLS/@override
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 unsure all default super classes declare overridables
  *****************************************************************************/
 package impl.diagram.editparts
 
@@ -77,9 +78,9 @@ import xpt.providers.ElementTypes
 			«superEditPart»
 		«ELSE»
 			«IF hasBorderItems(it)»
-				org.eclipse.gmf.runtime.diagram.ui.editparts.BorderedBorderItemEditPart«
-			ELSE»
-				org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart
+				org.eclipse.papyrus.uml.diagram.common.editparts.BorderedBorderItemEditPart
+			«ELSE»
+				org.eclipse.papyrus.uml.diagram.common.editparts.AbstractBorderItemEditPart
 			«ENDIF»
 		«ENDIF»
 	'''
@@ -280,7 +281,7 @@ import xpt.providers.ElementTypes
 		var fqn = if (it.figureQualifiedClassName === null) 'org.eclipse.draw2d.RectangleFigure' else figureQualifiedClassName;
 		'''
 			«generatedMemberComment»
-			«IF node.papyrusNodeEditPart»«overrideC»«ENDIF»
+			«overrideC»
 			protected org.eclipse.draw2d.IFigure createNodeShape() {
 				return primaryShape = new «fqn»()«forceUseLocalCoordinatesAnonymousClassBody(node)»;
 			}
@@ -288,14 +289,10 @@ import xpt.providers.ElementTypes
 			«getPrimaryShapeMethod(fqn, node)»
 		'''
 	}
-	
-	def boolean isPapyrusNodeEditPart(GenNode it) {
-		superEditPart !== null
-	}
 
 	def dispatch createNodeShape(SnippetViewmap it, GenNode node) '''
 		«generatedMemberComment»
-		«IF node.papyrusNodeEditPart»«overrideC»«ENDIF»
+		«overrideC»
 		protected org.eclipse.draw2d.IFigure createNodeShape() {
 			return «body»;
 		}
@@ -303,7 +300,7 @@ import xpt.providers.ElementTypes
 
 	def dispatch createNodeShape(InnerClassViewmap it, GenNode node) '''
 		«generatedMemberComment»
-		«IF node.papyrusNodeEditPart»«overrideC»«ENDIF»
+		«overrideC»
 		protected org.eclipse.draw2d.IFigure createNodeShape() {
 			return primaryShape = new «className»()«forceUseLocalCoordinatesAnonymousClassBody(node)»;
 		}
@@ -323,7 +320,7 @@ import xpt.providers.ElementTypes
 
 	def getPrimaryShapeMethod(String fqn, GenNode node) '''
 		«generatedMemberComment(fqn)»
-		«IF node.papyrusNodeEditPart»«overrideC»«ENDIF»
+		«overrideC»
 		public «fqn» getPrimaryShape() {
 			return («fqn») primaryShape;
 		}
@@ -471,7 +468,7 @@ import xpt.providers.ElementTypes
 		 *	«super.createNodePlate(it)»
 		 *	
 		 *	By default node edit part are now RoundedRectangleNodePlateFigure */»
-		«IF papyrusNodeEditPart»«overrideC»«ENDIF»
+		«overrideC»
 		protected org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure createNodePlate() {
 			org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure result = new org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure(«IF getDiagram().isPixelMapMode()»«defaultSizeWidth(viewmap, 40)», «defaultSizeHeight(viewmap, 40)»«ELSE»getMapMode().DPtoLP(«defaultSizeWidth(viewmap, 40)»), getMapMode().DPtoLP(«defaultSizeHeight(viewmap, 40)»)«ENDIF»);
 		return result;
@@ -525,7 +522,7 @@ import xpt.providers.ElementTypes
 			'@param nodeShape\n' +
 			'           instance of generated figure class'
 			)»
-		«IF papyrusNodeEditPart»«overrideC»«ENDIF»
+		«overrideC»
 		protected org.eclipse.draw2d.IFigure setupContentPane(org.eclipse.draw2d.IFigure nodeShape) {
 			«IF !childNodes.empty || !compartments.empty || labels.exists[l|!l.oclIsKindOf(typeof(GenExternalNodeLabel))]»
 				if (nodeShape.getLayoutManager() == null) {

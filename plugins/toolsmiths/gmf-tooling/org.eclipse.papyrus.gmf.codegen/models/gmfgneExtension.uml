@@ -8,7 +8,7 @@ SuperGenNodes is a list of all superEditPart.&#xD;
 Thanks to this, it is possible to factorize code and to decrease the number of generated classes.</body>
   </ownedComment>
   <ownedComment xmi:id="_ngQ9QN5UEd2H5qD714qFTA" annotatedElement="_qPNzoN5QEd2H5qD714qFTA">
-    <body>All extended classes have a comment in order to describe the puprose of this extension</body>
+    <body>All extended classes have a comment in order to describe the purpose of this extension</body>
   </ownedComment>
   <ownedComment xmi:id="_lxYf8N5cEd2H5qD714qFTA" annotatedElement="_hmemwN5REd2H5qD714qFTA">
     <body>The purpose of this class is point to an external class (for example java classes).&#xD;

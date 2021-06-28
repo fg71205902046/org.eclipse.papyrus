@@ -21,7 +21,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" ordered="false"
         unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="All extended classes have a comment in order to describe the puprose of this extension"/>
+        <details key="documentation" value="All extended classes have a comment in order to describe the purpose of this extension"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>

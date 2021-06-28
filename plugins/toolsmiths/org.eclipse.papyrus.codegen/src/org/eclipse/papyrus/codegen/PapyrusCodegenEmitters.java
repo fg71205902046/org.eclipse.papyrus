@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright (c) 2008, 2017 Atos Origin, CEA, ALL4TEC.
+ * Copyright (c) 2008, 2017, 2021 Atos Origin, CEA, ALL4TEC.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -14,8 +14,6 @@
  *		Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : Remove reference to xpand/qvto
  *****************************************************************************/
 package org.eclipse.papyrus.codegen;
-
-import java.net.URL;
 
 import org.eclipse.papyrus.gmf.codegen.util.CodegenEmittersWithXtend2;
 import org.eclipse.papyrus.gmf.common.UnexpectedBehaviourException;
@@ -116,16 +114,5 @@ public class PapyrusCodegenEmitters extends CodegenEmittersWithXtend2 {
 	 */
 	public TextEmitter getPaletteConfigurationEmitter() {
 		return createJavaClassEmitter("xpt::editor::palette::PaletteConfiguration", "PaletteConfiguration"); //$NON-NLS-1$ //$NON-NLS-2$
-	}
-
-	/**
-	 * @see org.eclipse.papyrus.gmf.codegen.util.CodegenEmitters#getJMergeControlFile()
-	 *
-	 * @return
-	 */
-	@Override
-	public URL getJMergeControlFile() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

@@ -18,6 +18,7 @@
  * Vincent Lorenzo (CEA-LIST) - Bug 520733
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : 1.4 Merge papyrus extension templates into codegen.xtend
  * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.2 clean up providers
+ * Etienne Allogo (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : L1.6 declare node variable for description style
  *****************************************************************************/
 package xpt.providers
 
@@ -50,6 +51,7 @@ import xpt.diagram.ViewmapAttributesUtils_qvto
 import xpt.diagram.editpolicies.LinkUtils_qvto
 import xpt.diagram.views.ViewStyles
 import xpt.editor.VisualIDRegistry
+import org.eclipse.papyrus.gmf.codegen.gmfgen.DesignLabelModelFacet
 
 @Singleton class ViewProvider {
 	@Inject extension Common;
@@ -345,7 +347,7 @@ import xpt.editor.VisualIDRegistry
 			org.eclipse.gmf.runtime.notation.Shape node = org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createShape();
 			«ELSE»
 			org.eclipse.gmf.runtime.notation.Node node = org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createNode();
-			node.getStyles().add(org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createDescriptionStyle());«/* FIXME Contionally add this style, whether toolsmith needs Notes or not */»
+			node.getStyles().add(org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createDescriptionStyle());«/* FIXME Conditionally add this style, whether toolsmith needs Notes or not */»
 			«xptViewStyles.addFontLineFillStylesConditionally(it.viewmap, 'node.getStyles()')»
 			«ENDIF»
 			«xptViewStyles.addLinkedDiagramStyle(it, 'node.getStyles()')»
@@ -417,7 +419,10 @@ import xpt.editor.VisualIDRegistry
 	 */
 	def initLabel(GenLabel it, String nodeVar, String prefStoreVar) '''
 		«var String labelVar = it.stringUniqueIdentifier.toFirstLower»
-		«IF !styles.empty || it.oclIsKindOf(typeof(GenExternalNodeLabel)) || it.oclIsKindOf(typeof(GenLinkLabel)) /* generate var if used */»org.eclipse.gmf.runtime.notation.Node «labelVar» = «ENDIF»createLabel(«nodeVar», «xptVisualIDRegistry.typeMethodCall(it)»);
+		«IF !styles.empty || it.oclIsKindOf(typeof(GenExternalNodeLabel)) || it.oclIsKindOf(typeof(GenLinkLabel) ) 
+			// Bug 569174 : L1.6 declare node variable for description style
+			|| modelFacet !== null && modelFacet.oclIsKindOf(typeof(DesignLabelModelFacet))
+			/* generate var if used */»org.eclipse.gmf.runtime.notation.Node «labelVar» = «ENDIF»createLabel(«nodeVar», «xptVisualIDRegistry.typeMethodCall(it)»);
 		«IF it.modelFacet !== null»
 			«xptViewStyles.addTextStyle(it.modelFacet, labelVar + '.getStyles()')»
 		«ENDIF»
