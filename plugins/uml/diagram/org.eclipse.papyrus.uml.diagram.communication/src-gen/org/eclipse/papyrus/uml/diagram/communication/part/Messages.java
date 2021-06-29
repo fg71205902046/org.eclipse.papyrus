@@ -1,15 +1,15 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  *
-  * All rights reserved. This program and the accompanying materials
-  * are made available under the terms of the Eclipse Public License 2.0
-  * which accompanies this distribution, and is available at
-  * https://www.eclipse.org/legal/epl-2.0/
-  *
-  * SPDX-License-Identifier: EPL-2.0
-  *
-  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.communication.part;
 
@@ -252,96 +252,6 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String ValidateActionMessage;
-
-	/**
-	 * @generated
-	 */
-	public static String Nodes1Group_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Nodes1Group_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Edges2Group_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Edges2Group_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String LifelineComCreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String LifelineComCreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Comment7CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Comment7CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Constraint5CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Constraint5CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String DurationObservation4CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String DurationObservation4CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String TimeObservation6CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String TimeObservation6CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String MessageCreateCreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String MessageCreateCreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Link13CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Link13CreationTool_desc;
 
 	/**
 	 * @generated

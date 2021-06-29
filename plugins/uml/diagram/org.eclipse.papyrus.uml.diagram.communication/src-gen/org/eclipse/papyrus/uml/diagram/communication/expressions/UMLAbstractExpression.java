@@ -1,15 +1,15 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  *
-  * All rights reserved. This program and the accompanying materials
-  * are made available under the terms of the Eclipse Public License 2.0
-  * which accompanies this distribution, and is available at
-  * https://www.eclipse.org/legal/epl-2.0/
-  *
-  * SPDX-License-Identifier: EPL-2.0
-  *
-  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.communication.expressions;
 
@@ -142,25 +142,25 @@ public abstract class UMLAbstractExpression {
 		}
 		if (Number.class.isAssignableFrom(targetWrapperClass)) {
 			if (targetWrapperClass.equals(Byte.class)) {
-				return new Byte(num.byteValue());
+				return Byte.valueOf(num.byteValue());
 			}
 			if (targetWrapperClass.equals(Integer.class)) {
-				return new Integer(num.intValue());
+				return Integer.valueOf(num.intValue());
 			}
 			if (targetWrapperClass.equals(Short.class)) {
-				return new Short(num.shortValue());
+				return Short.valueOf(num.shortValue());
 			}
 			if (targetWrapperClass.equals(Long.class)) {
-				return new Long(num.longValue());
+				return Long.valueOf(num.longValue());
 			}
 			if (targetWrapperClass.equals(BigInteger.class)) {
 				return BigInteger.valueOf(num.longValue());
 			}
 			if (targetWrapperClass.equals(Float.class)) {
-				return new Float(num.floatValue());
+				return Float.valueOf(num.floatValue());
 			}
 			if (targetWrapperClass.equals(Double.class)) {
-				return new Double(num.doubleValue());
+				return Double.valueOf(num.doubleValue());
 			}
 			if (targetWrapperClass.equals(BigDecimal.class)) {
 				return new BigDecimal(num.doubleValue());
@@ -168,5 +168,4 @@ public abstract class UMLAbstractExpression {
 		}
 		return value;
 	}
-
 }

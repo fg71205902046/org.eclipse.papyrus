@@ -1,15 +1,15 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  *
-  * All rights reserved. This program and the accompanying materials
-  * are made available under the terms of the Eclipse Public License 2.0
-  * which accompanies this distribution, and is available at
-  * https://www.eclipse.org/legal/epl-2.0/
-  *
-  * SPDX-License-Identifier: EPL-2.0
-  *
-  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.communication.providers;
 
@@ -289,39 +289,28 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 				return getInteraction_NameLabel_Parser();
 			case InteractionFloatingLabelEditPart.VISUAL_ID:
 				return getInteraction_FloatingNameLabel_Parser();
-
 			case LifelineNameEditPart.VISUAL_ID:
 				return getLifeline_NameLabel_Parser();
 			case LifelineFloatingLabelEditPartCN.VISUAL_ID:
 				return getLifeline_FloatingNameLabel_Parser();
-
 			case ConstraintNameEditPartCN.VISUAL_ID:
 				return getConstraint_NameLabel_Parser();
 			case ConstraintBodyEditPartCN.VISUAL_ID:
 				return getConstraint_BodyLabel_Parser();
-
 			case CommentBodyEditPartCN.VISUAL_ID:
 				return getComment_BodyLabel_Parser();
-
 			case TimeObservationNameEditPartCN.VISUAL_ID:
 				return getTimeObservation_NameLabel_Parser();
 			case TimeObservationStereotypeLabelEditPartCN.VISUAL_ID:
 				return getTimeObservation_StereotypeLabel_Parser();
-
 			case DurationObservationLabelEditPartCN.VISUAL_ID:
 				return getDurationObservation_NameLabel_Parser();
 			case DurationObservationStereotypeLabelEditPartCN.VISUAL_ID:
 				return getDurationObservation_StereotypeLabel_Parser();
-
 			case MessageNameEditPart.VISUAL_ID:
 				return getPath_MessageLabel_Parser();
 			case AppliedStereotypeMessageEditPart.VISUAL_ID:
 				return getPath_StereotypeLabel_Parser();
-
-
-
-
-
 			}
 		}
 		return null;
@@ -397,5 +386,4 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return super.getAdapter(adapter);
 		}
 	}
-
 }
