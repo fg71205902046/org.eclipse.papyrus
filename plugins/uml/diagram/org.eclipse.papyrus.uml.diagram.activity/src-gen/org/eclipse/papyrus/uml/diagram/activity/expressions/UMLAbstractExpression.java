@@ -1,6 +1,5 @@
-/*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
- *
+/**
+ * Copyright (c) 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,9 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.activity.expressions;
 
 import java.math.BigDecimal;
@@ -118,8 +116,7 @@ public abstract class UMLAbstractExpression {
 	}
 
 	/**
-	 * Expression may return number value which is not directly compatible with feature type (e.g. Double when Integer is expected), or EEnumLiteral
-	 * meta-object when literal instance is expected
+	 * Expression may return number value which is not directly compatible with feature type (e.g. Double when Integer is expected), or EEnumLiteral meta-object when literal instance is expected
 	 *
 	 * @generated
 	 */
@@ -145,25 +142,25 @@ public abstract class UMLAbstractExpression {
 		}
 		if (Number.class.isAssignableFrom(targetWrapperClass)) {
 			if (targetWrapperClass.equals(Byte.class)) {
-				return new Byte(num.byteValue());
+				return Byte.valueOf(num.byteValue());
 			}
 			if (targetWrapperClass.equals(Integer.class)) {
-				return new Integer(num.intValue());
+				return Integer.valueOf(num.intValue());
 			}
 			if (targetWrapperClass.equals(Short.class)) {
-				return new Short(num.shortValue());
+				return Short.valueOf(num.shortValue());
 			}
 			if (targetWrapperClass.equals(Long.class)) {
-				return new Long(num.longValue());
+				return Long.valueOf(num.longValue());
 			}
 			if (targetWrapperClass.equals(BigInteger.class)) {
 				return BigInteger.valueOf(num.longValue());
 			}
 			if (targetWrapperClass.equals(Float.class)) {
-				return new Float(num.floatValue());
+				return Float.valueOf(num.floatValue());
 			}
 			if (targetWrapperClass.equals(Double.class)) {
-				return new Double(num.doubleValue());
+				return Double.valueOf(num.doubleValue());
 			}
 			if (targetWrapperClass.equals(BigDecimal.class)) {
 				return new BigDecimal(num.doubleValue());

@@ -1,4 +1,4 @@
-/*****************************************************************************
+/**
  * Copyright (c) 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,9 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 
 import java.util.Collections;
@@ -72,7 +71,7 @@ public class ClearStructuralFeatureActionEditPart extends RoundedCompartmentEdit
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "ClearStructuralFeatureAction_Shape";
+	public static final String VISUAL_ID = "ClearStructuralFeatureAction_Shape"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -99,13 +98,10 @@ public class ClearStructuralFeatureActionEditPart extends RoundedCompartmentEdit
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		// in Papyrus diagrams are not strongly synchronised
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.ClearStructuralFeatureActionCanonicalEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(RequestConstants.REQ_CREATE, new CreateActionLocalConditionEditPolicy());
 		installEditPolicy(RequestConstants.REQ_DELETE, new DeleteActionViewEditPolicy());
@@ -179,15 +175,13 @@ public class ClearStructuralFeatureActionEditPart extends RoundedCompartmentEdit
 		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
 			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge
-					&& false == notifier instanceof BasicCompartment) {
+			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
 				if (modelChildren.contains(event.getNotifier())) {
 					return;
 				}
 			}
 		}
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -216,48 +210,26 @@ public class ClearStructuralFeatureActionEditPart extends RoundedCompartmentEdit
 			((ClearStructuralFeatureActionNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
-
-
-
-		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof OutputPinInClearStructuralFeatureActionEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.EAST);
 			getBorderedFigure().getBorderItemContainer().add(((OutputPinInClearStructuralFeatureActionEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
-		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof InputPinInClearStructuralFeatureActionAsObjectEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((InputPinInClearStructuralFeatureActionAsObjectEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
-		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ValuePinInClearStructuralFeatureActionAsObjectEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((ValuePinInClearStructuralFeatureActionAsObjectEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
-		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ActionInputPinInClearStructuralFeatureActionAsObjectEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((ActionInputPinInClearStructuralFeatureActionAsObjectEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
 		return false;
 	}
 
@@ -337,6 +309,7 @@ public class ClearStructuralFeatureActionEditPart extends RoundedCompartmentEdit
 	/**
 	 * @generated
 	 */
+
 	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
@@ -363,6 +336,7 @@ public class ClearStructuralFeatureActionEditPart extends RoundedCompartmentEdit
 	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
+	 *
 	 * @generated
 	 */
 	@Override
@@ -421,5 +395,4 @@ public class ClearStructuralFeatureActionEditPart extends RoundedCompartmentEdit
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ClearStructuralFeatureActionNameEditPart.VISUAL_ID));
 	}
-
 }

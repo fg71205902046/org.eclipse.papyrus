@@ -1,4 +1,4 @@
-/*****************************************************************************
+/**
  * Copyright (c) 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,9 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 
 import java.util.Collections;
@@ -62,7 +61,7 @@ public class ActivityPartitionEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "ActivityPartition_Shape";
+	public static final String VISUAL_ID = "ActivityPartition_Shape"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -88,9 +87,7 @@ public class ActivityPartitionEditPart extends RoundedCompartmentEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
@@ -156,15 +153,13 @@ public class ActivityPartitionEditPart extends RoundedCompartmentEditPart {
 		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
 			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge
-					&& false == notifier instanceof BasicCompartment) {
+			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
 				if (modelChildren.contains(event.getNotifier())) {
 					return;
 				}
 			}
 		}
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -193,15 +188,12 @@ public class ActivityPartitionEditPart extends RoundedCompartmentEditPart {
 			((ActivityPartitionNameEditPart) childEditPart).setLabel(getPrimaryShape().getPartitionLabel());
 			return true;
 		}
-
-
 		if (childEditPart instanceof ActivityPartitionActivityPartitionContentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getActivityPartitionCompartment();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((ActivityPartitionActivityPartitionContentCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -273,6 +265,7 @@ public class ActivityPartitionEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+
 	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
@@ -299,6 +292,7 @@ public class ActivityPartitionEditPart extends RoundedCompartmentEditPart {
 	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
+	 *
 	 * @generated
 	 */
 	@Override
@@ -357,5 +351,4 @@ public class ActivityPartitionEditPart extends RoundedCompartmentEditPart {
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ActivityPartitionNameEditPart.VISUAL_ID));
 	}
-
 }

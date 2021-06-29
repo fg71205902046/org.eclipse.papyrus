@@ -1,4 +1,4 @@
-/*****************************************************************************
+/**
  * Copyright (c) 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,9 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.activity.providers;
 
 import org.eclipse.gef.EditDomain;
@@ -41,8 +40,7 @@ public class UMLValidationDecoratorProvider extends ValidationDecoratorProvider 
 	@Override
 	public void createDecorators(IDecoratorTarget decoratorTarget) {
 		EditPart editPart = decoratorTarget.getAdapter(EditPart.class);
-		if (editPart instanceof GraphicalEditPart ||
-				editPart instanceof AbstractConnectionEditPart) {
+		if (editPart instanceof GraphicalEditPart || editPart instanceof AbstractConnectionEditPart) {
 			Object model = editPart.getModel();
 			if ((model instanceof View)) {
 				View view = (View) model;
@@ -69,8 +67,7 @@ public class UMLValidationDecoratorProvider extends ValidationDecoratorProvider 
 			return false;
 		}
 		IDecoratorTarget decoratorTarget = ((CreateDecoratorsOperation) operation).getDecoratorTarget();
-		View view = decoratorTarget.getAdapter(
-				View.class);
+		View view = decoratorTarget.getAdapter(View.class);
 		return view != null && ActivityDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(view));
 	}
 }

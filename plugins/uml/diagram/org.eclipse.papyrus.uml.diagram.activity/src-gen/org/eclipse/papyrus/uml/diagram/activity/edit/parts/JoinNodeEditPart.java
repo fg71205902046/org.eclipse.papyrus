@@ -1,4 +1,4 @@
-/*****************************************************************************
+/**
  * Copyright (c) 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,9 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 
 import java.util.Collections;
@@ -61,7 +60,7 @@ public class JoinNodeEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "JoinNode_Shape";
+	public static final String VISUAL_ID = "JoinNode_Shape"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -87,9 +86,7 @@ public class JoinNodeEditPart extends RoundedCompartmentEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY, new ActivityDiagramChangeStereotypedShapeEditpolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
@@ -156,15 +153,13 @@ public class JoinNodeEditPart extends RoundedCompartmentEditPart {
 		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
 			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge
-					&& false == notifier instanceof BasicCompartment) {
+			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
 				if (modelChildren.contains(event.getNotifier())) {
 					return;
 				}
 			}
 		}
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -208,6 +203,7 @@ public class JoinNodeEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+
 	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(10, 40);
@@ -234,6 +230,7 @@ public class JoinNodeEditPart extends RoundedCompartmentEditPart {
 	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
+	 *
 	 * @generated
 	 */
 	@Override
@@ -287,5 +284,4 @@ public class JoinNodeEditPart extends RoundedCompartmentEditPart {
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(JoinNodeFloatingNameEditPart.VISUAL_ID));
 	}
-
 }

@@ -1,4 +1,4 @@
-/*****************************************************************************
+/**
  * Copyright (c) 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,9 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 
 import java.util.Collections;
@@ -70,7 +69,7 @@ public class SendSignalActionEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "SendSignalAction_Shape";
+	public static final String VISUAL_ID = "SendSignalAction_Shape"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -97,13 +96,10 @@ public class SendSignalActionEditPart extends RoundedCompartmentEditPart {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		// in Papyrus diagrams are not strongly synchronised
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.SendSignalActionCanonicalEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(RequestConstants.REQ_CREATE, new CreateActionLocalConditionEditPolicy());
 		installEditPolicy(RequestConstants.REQ_DELETE, new DeleteActionViewEditPolicy());
@@ -178,15 +174,13 @@ public class SendSignalActionEditPart extends RoundedCompartmentEditPart {
 		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
 			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge
-					&& false == notifier instanceof BasicCompartment) {
+			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
 				if (modelChildren.contains(event.getNotifier())) {
 					return;
 				}
 			}
 		}
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -215,68 +209,36 @@ public class SendSignalActionEditPart extends RoundedCompartmentEditPart {
 			((SendSignalActionNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
-
-
-
-		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ActionInputPinInSendSigActEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
 			getBorderedFigure().getBorderItemContainer().add(((ActionInputPinInSendSigActEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
-		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ValuePinInSendSigActEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
 			getBorderedFigure().getBorderItemContainer().add(((ValuePinInSendSigActEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
-		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof InputPinInSendSigActEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
 			getBorderedFigure().getBorderItemContainer().add(((InputPinInSendSigActEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
-		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ValuePinInSendSigActAsTargetEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NORTH);
 			getBorderedFigure().getBorderItemContainer().add(((ValuePinInSendSigActAsTargetEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
-		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ActionInputPinInSendSigActAsTargetEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NORTH);
 			getBorderedFigure().getBorderItemContainer().add(((ActionInputPinInSendSigActAsTargetEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
-		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof InputPinInSendSigActAsTargetEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NORTH);
 			getBorderedFigure().getBorderItemContainer().add(((InputPinInSendSigActAsTargetEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
 		return false;
 	}
 
@@ -364,6 +326,7 @@ public class SendSignalActionEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+
 	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
@@ -390,6 +353,7 @@ public class SendSignalActionEditPart extends RoundedCompartmentEditPart {
 	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
+	 *
 	 * @generated
 	 */
 	@Override
@@ -448,5 +412,4 @@ public class SendSignalActionEditPart extends RoundedCompartmentEditPart {
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(SendSignalActionNameEditPart.VISUAL_ID));
 	}
-
 }

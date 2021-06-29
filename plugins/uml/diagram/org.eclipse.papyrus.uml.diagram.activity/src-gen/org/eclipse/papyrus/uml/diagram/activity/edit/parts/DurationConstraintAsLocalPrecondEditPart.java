@@ -1,4 +1,4 @@
-/*****************************************************************************
+/**
  * Copyright (c) 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,9 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
@@ -50,7 +49,7 @@ public class DurationConstraintAsLocalPrecondEditPart extends AbstractConstraint
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "DurationConstraint_LocalPreconditionShape";
+	public static final String VISUAL_ID = "DurationConstraint_LocalPreconditionShape"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -76,9 +75,7 @@ public class DurationConstraintAsLocalPrecondEditPart extends AbstractConstraint
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY, new ActivityDiagramChangeStereotypedShapeEditpolicy());
@@ -122,7 +119,6 @@ public class DurationConstraintAsLocalPrecondEditPart extends AbstractConstraint
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -155,8 +151,6 @@ public class DurationConstraintAsLocalPrecondEditPart extends AbstractConstraint
 			((DurationConstraintAsLocalPrecondBodyEditPart) childEditPart).setLabel(getPrimaryShape().getConstraintFigure());
 			return true;
 		}
-
-
 		return false;
 	}
 
@@ -206,6 +200,7 @@ public class DurationConstraintAsLocalPrecondEditPart extends AbstractConstraint
 	/**
 	 * @generated
 	 */
+
 	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
@@ -232,6 +227,7 @@ public class DurationConstraintAsLocalPrecondEditPart extends AbstractConstraint
 	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
+	 *
 	 * @generated
 	 */
 	@Override
@@ -290,5 +286,4 @@ public class DurationConstraintAsLocalPrecondEditPart extends AbstractConstraint
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(DurationConstraintAsLocalPrecondNameEditPart.VISUAL_ID));
 	}
-
 }

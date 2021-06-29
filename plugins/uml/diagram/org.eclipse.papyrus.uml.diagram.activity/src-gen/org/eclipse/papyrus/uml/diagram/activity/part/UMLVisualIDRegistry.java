@@ -1,6 +1,5 @@
-/*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
- *
+/**
+ * Copyright (c) 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,9 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.activity.part;
 
 import org.eclipse.emf.ecore.EAnnotation;
@@ -31,7 +29,6 @@ import org.eclipse.uml2.uml.ExpansionNode;
 import org.eclipse.uml2.uml.InputPin;
 import org.eclipse.uml2.uml.IntervalConstraint;
 import org.eclipse.uml2.uml.OutputPin;
-import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.TimeConstraint;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValuePin;
@@ -45,10 +42,11 @@ import org.eclipse.uml2.uml.ValuePin;
  */
 public class UMLVisualIDRegistry {
 
-	/**
-	 * @generated
-	 */
-	private static final String DEBUG_KEY = "org.eclipse.papyrus.uml.diagram.activity/debug/visualID"; //$NON-NLS-1$
+	// Uncomment for debug purpose ?
+	// /**
+	// * @generated
+	// */
+	// private static final String DEBUG_KEY = "org.eclipse.papyrus.uml.diagram.activity/debug/visualID"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -58,7 +56,7 @@ public class UMLVisualIDRegistry {
 			if (ActivityDiagramEditPart.MODEL_ID.equals(view.getType())) {
 				return ActivityDiagramEditPart.VISUAL_ID;
 			} else {
-				return "";
+				return ""; //$NON-NLS-1$
 			}
 		}
 		return org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry.getVisualID(view.getType());
@@ -98,7 +96,7 @@ public class UMLVisualIDRegistry {
 	 */
 	public static String getDiagramVisualID(EObject domainElement) {
 		if (domainElement == null) {
-			return "";
+			return ""; //$NON-NLS-1$
 		}
 		return ActivityDiagramEditPart.VISUAL_ID;
 	}
@@ -108,11 +106,11 @@ public class UMLVisualIDRegistry {
 	 */
 	public static String getNodeVisualID(View containerView, EObject domainElement) {
 		if (domainElement == null) {
-			return "";
+			return ""; //$NON-NLS-1$
 		}
 		String containerModelID = org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry.getModelID(containerView);
 		if (!ActivityDiagramEditPart.MODEL_ID.equals(containerModelID)) {
-			return "";
+			return ""; //$NON-NLS-1$
 		}
 		String containerVisualID;
 		if (ActivityDiagramEditPart.MODEL_ID.equals(containerModelID)) {
@@ -121,7 +119,7 @@ public class UMLVisualIDRegistry {
 			if (containerView instanceof Diagram) {
 				containerVisualID = ActivityDiagramEditPart.VISUAL_ID;
 			} else {
-				return "";
+				return ""; //$NON-NLS-1$
 			}
 		}
 		if (containerVisualID != null) {
@@ -2086,7 +2084,7 @@ public class UMLVisualIDRegistry {
 				break;
 			}
 		}
-		return "";
+		return ""; //$NON-NLS-1$
 	}
 
 	/**
@@ -5744,7 +5742,7 @@ public class UMLVisualIDRegistry {
 	 */
 	public static String getLinkWithClassVisualID(EObject domainElement) {
 		if (domainElement == null) {
-			return "";
+			return ""; //$NON-NLS-1$
 		}
 		if (UMLPackage.eINSTANCE.getObjectFlow().isSuperTypeOf(domainElement.eClass())) {
 			return ObjectFlowEditPart.VISUAL_ID;
@@ -5755,18 +5753,19 @@ public class UMLVisualIDRegistry {
 		if (UMLPackage.eINSTANCE.getExceptionHandler().isSuperTypeOf(domainElement.eClass())) {
 			return ExceptionHandlerEditPart.VISUAL_ID;
 		}
-		return "";
+		return ""; //$NON-NLS-1$
 	}
 
-	/**
-	 * User can change implementation of this method to handle some specific
-	 * situations not covered by default logic.
-	 *
-	 * @generated
-	 */
-	private static boolean isDiagram(Package element) {
-		return true;
-	}
+	// Uncomment for debug purpose ?
+	// /**
+	// * User can change implementation of this method to handle some specific
+	// * situations not covered by default logic.
+	// *
+	// * @generated
+	// */
+	// private static boolean isDiagram(Package element) {
+	// return true;
+	// }
 
 	/**
 	 * @generated

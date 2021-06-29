@@ -1,6 +1,5 @@
-/*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
- *
+/**
+ * Copyright (c) 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,9 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.activity.part;
 
 import org.eclipse.core.resources.IFile;
@@ -91,19 +89,14 @@ public class UMLInitDiagramFileAction implements IObjectActionDelegate {
 			Resource resource = resourceSet.getResource(domainModelURI, true);
 			diagramRoot = resource.getContents().get(0);
 		} catch (WrappedException ex) {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Unable to load resource: " + domainModelURI, ex); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Unable to load resource: " + domainModelURI, ex); //$NON-NLS-1$
 		}
 		if (diagramRoot == null) {
-			MessageDialog.openError(getShell(),
-					Messages.InitDiagramFile_ResourceErrorDialogTitle,
-					Messages.InitDiagramFile_ResourceErrorDialogMessage);
+			MessageDialog.openError(getShell(), Messages.InitDiagramFile_ResourceErrorDialogTitle, Messages.InitDiagramFile_ResourceErrorDialogMessage);
 			return;
 		}
 		Wizard wizard = new UMLNewDiagramFileWizard(domainModelURI, diagramRoot, editingDomain);
-		wizard.setWindowTitle(NLS.bind(
-				Messages.InitDiagramFile_WizardTitle,
-				ActivityDiagramEditPart.MODEL_ID));
+		wizard.setWindowTitle(NLS.bind(Messages.InitDiagramFile_WizardTitle, ActivityDiagramEditPart.MODEL_ID));
 		UMLDiagramEditorUtil.runWizard(getShell(), wizard, "InitDiagramFile"); //$NON-NLS-1$
 	}
 }

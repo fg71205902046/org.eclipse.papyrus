@@ -1,6 +1,5 @@
-/*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
- *
+/**
+ * Copyright (c) 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,9 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.activity.navigator;
 
 import java.util.ArrayList;
@@ -71,13 +69,11 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	/**
 	 * @generated
 	 */
-	@SuppressWarnings({ "unchecked", "serial", "rawtypes" })
 	public UMLNavigatorContentProvider() {
 		TransactionalEditingDomain editingDomain = WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain();
 		myEditingDomain = (AdapterFactoryEditingDomain) editingDomain;
 		@SuppressWarnings("serial")
 		Map<Resource, Boolean> map = new HashMap<>() {
-
 			@Override
 			public Boolean get(java.lang.Object key) {
 				if (!containsKey(key)) {
@@ -90,7 +86,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		};
 		myEditingDomain.setResourceToReadOnlyMap(map);
 		myViewerRefreshRunnable = new Runnable() {
-
 			@Override
 			public void run() {
 				if (myViewer != null) {
@@ -99,7 +94,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 			}
 		};
 		myWorkspaceSynchronizer = new WorkspaceSynchronizer(editingDomain, new WorkspaceSynchronizer.Delegate() {
-
 			@Override
 			public void dispose() {
 			}

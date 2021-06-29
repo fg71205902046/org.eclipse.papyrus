@@ -1,6 +1,5 @@
-/*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
- *
+/**
+ * Copyright (c) 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,9 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.activity.part;
 
 import java.util.EventObject;
@@ -68,6 +66,7 @@ import org.eclipse.ui.part.ShowInContext;
 /**
  * @generated
  */
+@SuppressWarnings({ "deprecation", "restriction" })
 public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderChangeListener, IGotoMarker {
 
 	/**
@@ -127,14 +126,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	 * @generated
 	 */
 	@Override
-	protected String getContextID() {
-		return CONTEXT_ID;
-	}
-
-	/**
-	 * @generated
-	 */
-	@Override
 	protected PaletteRoot createPaletteRoot(PaletteRoot existingPaletteRoot) {
 		PaletteRoot paletteRoot;
 		if (existingPaletteRoot == null) {
@@ -145,6 +136,14 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 		}
 		applyCustomizationsToPalette(paletteRoot);
 		return paletteRoot;
+	}
+
+	/**
+	 * @generated
+	 */
+	@Override
+	protected String getContextID() {
+		return CONTEXT_ID;
 	}
 
 	/**
@@ -284,7 +283,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 			public void commandStackChanged(EventObject event) {
 				if (Display.getCurrent() == null) {
 					Display.getDefault().asyncExec(new Runnable() {
-
 						@Override
 						public void run() {
 							firePropertyChange(IEditorPart.PROP_DIRTY);
@@ -344,8 +342,7 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	public void providerChanged(ProviderChangeEvent event) {
 		// update the palette if the palette service has changed
 		if (PapyrusPaletteService.getInstance().equals(event.getSource())) {
-			PapyrusPaletteService.getInstance().updatePalette(getPaletteViewer().getPaletteRoot(), this,
-					getDefaultPaletteContent());
+			PapyrusPaletteService.getInstance().updatePalette(getPaletteViewer().getPaletteRoot(), this, getDefaultPaletteContent());
 		}
 	}
 
@@ -548,21 +545,18 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 		super.initializeGraphicalViewer();
 
 		// Enable Drop
-		getDiagramGraphicalViewer().addDropTargetListener(
-				new DropTargetListener(getDiagramGraphicalViewer(), LocalSelectionTransfer.getTransfer()) {
+		getDiagramGraphicalViewer().addDropTargetListener(new DropTargetListener(getDiagramGraphicalViewer(), LocalSelectionTransfer.getTransfer()) {
+			@Override
+			protected Object getJavaObject(TransferData data) {
+				// It is usual for the transfer data not to be set because it is available locally
+				return LocalSelectionTransfer.getTransfer().getSelection();
+			}
 
-					@Override
-					protected Object getJavaObject(TransferData data) {
-						// It is usual for the transfer data not to be set because it is available locally
-						return LocalSelectionTransfer.getTransfer().getSelection();
-					}
-
-					@Override
-					protected TransactionalEditingDomain getTransactionalEditingDomain() {
-						return getEditingDomain();
-					}
-				});
-
+			@Override
+			protected TransactionalEditingDomain getTransactionalEditingDomain() {
+				return getEditingDomain();
+			}
+		});
 	}
 
 	/**

@@ -1,6 +1,5 @@
-/*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
- *
+/**
+ * Copyright (c) 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,9 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.activity.providers;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -7004,7 +7002,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 				return getActivity_NameLabel_Parser();
 			case ActivityIsSingleExecutionEditPart.VISUAL_ID:
 				return getActivity_KeywordLabel_Parser();
-
 			case ParameterEditPart.VISUAL_ID:
 				return getParameter_ParameterLabel_Parser();
 			case ConstraintInActivityAsPrecondEditPart.VISUAL_ID:
@@ -7015,285 +7012,236 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 				return getInitialNode_FloatingNameLabel_Parser();
 			case InitialNodeAppliedStereotypeEditPart.VISUAL_ID:
 				return getInitialNode_StereotypeLabel_Parser();
-
 			case ActivityFinalNodeFloatingNameEditPart.VISUAL_ID:
 				return getActivityFinalNode_FloatingNameLabel_Parser();
 			case ActivityFinalNodeAppliedStereotypeEditPart.VISUAL_ID:
 				return getActivityFinalNode_StereotypeLabel_Parser();
-
 			case FlowFinalNodeFloatingNameEditPart.VISUAL_ID:
 				return getFlowFinalNode_FloatingNameLabel_Parser();
 			case FlowFinalNodeAppliedStereotypeEditPart.VISUAL_ID:
 				return getFlowFinalNode_StereotypeLabel_Parser();
-
 			case OpaqueActionNameEditPart.VISUAL_ID:
 				return getOpaqueAction_NameLabel_Parser();
 			case OpaqueActionFloatingNameEditPart.VISUAL_ID:
 				return getOpaqueAction_FloatingNameLabel_Parser();
-
 			case ValuePinInOActLabelEditPart.VISUAL_ID:
 				return getValuePin_OpaqueActionInputNameLabel_Parser();
 			case ValuePinInOActValueEditPart.VISUAL_ID:
 				return getValuePin_OpaqueActionInputValueLabel_Parser();
 			case ValuePinInOActAppliedStereotypeEditPart.VISUAL_ID:
 				return getValuePin_OpaqueActionInputStereotypeLabel_Parser();
-
 			case ActionInputPinInOActLabelEditPart.VISUAL_ID:
 				return getActionInputPin_OpaqueActionInputNameLabel_Parser();
 			case ActionInputPinInOActValueEditPart.VISUAL_ID:
 				return getActionInputPin_OpaqueActionInputValueLabel_Parser();
 			case ActionInputPinInOActAppliedStereotypeEditPart.VISUAL_ID:
 				return getActionInputPin_OpaqueActionInputStereotypeLabel_Parser();
-
 			case InputPinInOActLabelEditPart.VISUAL_ID:
 				return getInputPin_OpaqueActionInputNameLabel_Parser();
 			case InputPinInOActAppliedStereotypeEditPart.VISUAL_ID:
 				return getInputPin_OpaqueActionInputStereotypeLabel_Parser();
-
 			case OutputPinInOActLabelEditPart.VISUAL_ID:
 				return getOutputPin_OpaqueActionOutputNameLabel_Parser();
 			case OutputPinInOActAppliedStereotypeEditPart.VISUAL_ID:
 				return getOutputPin_OpaqueActionOutputStereotypeLabel_Parser();
-
 			case CallBehaviorActionNameEditPart.VISUAL_ID:
 				return getCallBehaviorAction_NameLabel_Parser();
 			case CallBehaviorActionFloatingNameEditPart.VISUAL_ID:
 				return getCallBehaviorAction_FloatingNameLabel_Parser();
-
 			case ValuePinInCBActLabelEditPart.VISUAL_ID:
 				return getValuePin_CallBehaviorActionArgumentNameLabel_Parser();
 			case ValuePinInCBActValueEditPart.VISUAL_ID:
 				return getValuePin_CallBehaviorActionArgumentValueLabel_Parser();
 			case ValuePinInCBActAppliedStereotypeEditPart.VISUAL_ID:
 				return getValuePin_CallBehaviorActionArgumentStereotypeLabel_Parser();
-
 			case ActionInputPinInCBActLabelEditPart.VISUAL_ID:
 				return getActionInputPin_CallBehaviorActionArgumentNameLabel_Parser();
 			case ActionInputPinInCBActValueEditPart.VISUAL_ID:
 				return getActionInputPin_CallBehaviorActionArgumentValueLabel_Parser();
 			case ActionInputPinInCBActAppliedStereotypeEditPart.VISUAL_ID:
 				return getActionInputPin_CallBehaviorActionArgumentStereotypeLabel_Parser();
-
 			case InputPinInCBActLabelEditPart.VISUAL_ID:
 				return getInputPin_CallBehaviorActionArgumentNameLabel_Parser();
 			case InputPinInCBActAppliedStereotypeEditPart.VISUAL_ID:
 				return getInputPin_CallBehaviorActionArgumentStereotypeLabel_Parser();
-
 			case OutputPinInCBActLabelEditPart.VISUAL_ID:
 				return getOutputPin_CallBehaviorActionResultNameLabel_Parser();
 			case OutputPinInCBActAppliedStereotypeEditPart.VISUAL_ID:
 				return getOutputPin_CallBehaviorActionResultStereotypeLabel_Parser();
-
 			case CallOperationActionNameEditPart.VISUAL_ID:
 				return getCallOperationAction_NameLabel_Parser();
 			case CallOperationActionFloatingNameEditPart.VISUAL_ID:
 				return getCallOperationAction_FloatingNameLabel_Parser();
-
 			case ActionInputPinInCOActLabelEditPart.VISUAL_ID:
 				return getActionInputPin_CallOperationActionArgumentNameLabel_Parser();
 			case ActionInputPinInCOActValueEditPart.VISUAL_ID:
 				return getActionInputPin_CallOperationActionArgumentValueLabel_Parser();
 			case ActionInputPinInCOActAppliedStereotypeEditPart.VISUAL_ID:
 				return getActionInputPin_CallOperationActionArgumentStereotypeLabel_Parser();
-
 			case ValuePinInCOActLabelEditPart.VISUAL_ID:
 				return getValuePin_CallOperationActionArgumentNameLabel_Parser();
 			case ValuePinInCOActValueEditPart.VISUAL_ID:
 				return getValuePin_CallOperationActionArgumentValueLabel_Parser();
 			case ValuePinInCOActAppliedStereotypeEditPart.VISUAL_ID:
 				return getValuePin_CallOperationActionArgumentStereotypeLabel_Parser();
-
 			case InputPinInCOActLabelEditPart.VISUAL_ID:
 				return getInputPin_CallOperationActionArgumentNameLabel_Parser();
 			case InputPinInCOActAppliedStereotypeEditPart.VISUAL_ID:
 				return getInputPin_CallOperationActionArgumentStereotypeLabel_Parser();
-
 			case OutputPinInCOActLabelEditPart.VISUAL_ID:
 				return getOutputPin_CallOperationActionResultNameLabel_Parser();
 			case OutputPinInCOActAppliedStereotypeEditPart.VISUAL_ID:
 				return getOutputPin_CallOperationActionResultStereotypeLabel_Parser();
-
 			case ValuePinInCOActAsTargetLabelEditPart.VISUAL_ID:
 				return getValuePin_CallOperationActionTargetNameLabel_Parser();
 			case ValuePinInCOActAsTargetValueEditPart.VISUAL_ID:
 				return getValuePin_CallOperationActionTargetValueLabel_Parser();
 			case ValuePinInCOActAsTargetAppliedStereotypeEditPart.VISUAL_ID:
 				return getValuePin_CallOperationActionTargetStereotypeLabel_Parser();
-
 			case ActionInputPinInCOActAsTargetLabelEditPart.VISUAL_ID:
 				return getActionInputPin_CallOperationActionTargetNameLabel_Parser();
 			case ActionInputPinInCOActAsTargetValueEditPart.VISUAL_ID:
 				return getActionInputPin_CallOperationActionTargetValueLabel_Parser();
 			case ActionInputPinInCOActAsTargetAppliedStereotypeEditPart.VISUAL_ID:
 				return getActionInputPin_CallOperationActionTargetStereotypeLabel_Parser();
-
 			case InputPinInCOActAsTargetLabelEditPart.VISUAL_ID:
 				return getInputPin_CallOperationActionTargetNameLabel_Parser();
 			case InputPinInCOActAsTargetAppliedStereotypeEditPart.VISUAL_ID:
 				return getInputPin_CallOperationActionTargetStereotypeLabel_Parser();
-
 			case DurationConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
 				return getDurationConstraint_LocalPreconditionNameLabel_Parser();
 			case DurationConstraintAsLocalPrecondBodyEditPart.VISUAL_ID:
 				return getDurationConstraint_LocalPreconditionBodyLabel_Parser();
-
 			case DurationConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
 				return getDurationConstraint_LocalPostconditionNameLabel_Parser();
 			case DurationConstraintAsLocalPostcondBodyEditPart.VISUAL_ID:
 				return getDurationConstraint_LocalPostconditionBodyLabel_Parser();
-
 			case TimeConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
 				return getTimeConstraint_LocalPreconditionNameLabel_Parser();
 			case TimeConstraintAsLocalPrecondBodyEditPart.VISUAL_ID:
 				return getTimeConstraint_LocalPreconditionBodyLabel_Parser();
-
 			case TimeConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
 				return getTimeConstraint_LocalPostconditionNameLabel_Parser();
 			case TimeConstraintAsLocalPostcondBodyEditPart.VISUAL_ID:
 				return getTimeConstraint_LocalPostconditionBodyLabel_Parser();
-
 			case IntervalConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
 				return getIntervalConstraint_LocalPreconditionNameLabel_Parser();
 			case IntervalConstraintAsLocalPrecondBodyEditPart.VISUAL_ID:
 				return getIntervalConstraint_LocalPreconditionBodyLabel_Parser();
-
 			case IntervalConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
 				return getIntervalConstraint_LocalPostconditionNameLabel_Parser();
 			case IntervalConstraintAsLocalPostcondBodyEditPart.VISUAL_ID:
 				return getIntervalConstraint_LocalPostconditionBodyLabel_Parser();
-
 			case ConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
 				return getConstraint_LocalPreconditionNameLabel_Parser();
 			case ConstraintAsLocalPrecondBodyEditPart.VISUAL_ID:
 				return getConstraint_LocalPreconditionBodyLabel_Parser();
-
 			case ConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
 				return getConstraint_LocalPostconditionNameLabel_Parser();
 			case ConstraintAsLocalPostcondBodyEditPart.VISUAL_ID:
 				return getConstraint_LocalPostconditionBodyLabel_Parser();
-
 			case DecisionNodeFloatingNameEditPart.VISUAL_ID:
 				return getDecisionNode_FloatingNameLabel_Parser();
 			case DecisionInputEditPart.VISUAL_ID:
 				return getDecisionNode_DecisionInputLabel_Parser();
 			case DecisionNodeAppliedStereotypeEditPart.VISUAL_ID:
 				return getDecisionNode_StereotypeLabel_Parser();
-
 			case MergeNodeFloatingNameEditPart.VISUAL_ID:
 				return getMergeNode_FloatingNameLabel_Parser();
 			case MergeNodeAppliedStereotypeEditPart.VISUAL_ID:
 				return getMergeNode_StereotypeLabel_Parser();
-
 			case ForkNodeFloatingNameEditPart.VISUAL_ID:
 				return getForkNode_FloatingNameLabel_Parser();
 			case ForkNodeAppliedStereotypeEditPart.VISUAL_ID:
 				return getForkNode_StereotypeLabel_Parser();
-
 			case JoinNodeFloatingNameEditPart.VISUAL_ID:
 				return getJoinNode_FloatingNameLabel_Parser();
 			case JoinSpecEditPart.VISUAL_ID:
 				return getJoinNode_JoinSpecLabel_Parser();
 			case JoinNodeAppliedStereotypeEditPart.VISUAL_ID:
 				return getJoinNode_StereotypeLabel_Parser();
-
 			case DataStoreNodeLabelEditPart.VISUAL_ID:
 				return getDataStoreNode_NameLabel_Parser();
 			case DataStoreSelectionEditPart.VISUAL_ID:
 				return getDataStoreNode_SelectionLabel_Parser();
 			case DataStoreNodeFloatingNameEditPart.VISUAL_ID:
 				return getDataStoreNode_FloatingNameLabel_Parser();
-
 			case SendObjectActionNameEditPart.VISUAL_ID:
 				return getSendObjectAction_NameLabel_Parser();
 			case SendObjectActionFloatingNameEditPart.VISUAL_ID:
 				return getSendObjectAction_FloatingNameLabel_Parser();
-
 			case ValuePinInSendObjActAsReqLabelEditPart.VISUAL_ID:
 				return getValuePin_SendObjectActionRequestNameLabel_Parser();
 			case ValuePinInSendObjActAsReqValueEditPart.VISUAL_ID:
 				return getValuePin_SendObjectActionRequestValueLabel_Parser();
 			case ValuePinInSendObjActAsReqAppliedStereotypeEditPart.VISUAL_ID:
 				return getValuePin_SendObjectActionRequestStereotypeLabel_Parser();
-
 			case ActionInputPinInSendObjActAsReqLabelEditPart.VISUAL_ID:
 				return getActionInputPin_SendObjectActionRequestNameLabel_Parser();
 			case ActionInputPinInSendObjActAsReqValueEditPart.VISUAL_ID:
 				return getActionInputPin_SendObjectActionRequestValueLabel_Parser();
 			case ActionInputPinInSendObjActAsReqAppliedStereotypeEditPart.VISUAL_ID:
 				return getActionInputPin_SendObjectActionRequestStereotypeLabel_Parser();
-
 			case InputPinInSendObjActAsReqLabelEditPart.VISUAL_ID:
 				return getInputPin_SendObjectActionRequestNameLabel_Parser();
 			case InputPinInSendObjActAsReqAppliedStereotypeEditPart.VISUAL_ID:
 				return getInputPin_SendObjectActionRequestStereotypeLabel_Parser();
-
 			case ValuePinInSendObjActAsTargetLabelEditPart.VISUAL_ID:
 				return getValuePin_SendObjectActionTargetNameLabel_Parser();
 			case ValuePinInSendObjActAsTargetValueEditPart.VISUAL_ID:
 				return getValuePin_SendObjectActionTargetValueLabel_Parser();
 			case ValuePinInSendObjActAsTargetAppliedStereotypeEditPart.VISUAL_ID:
 				return getValuePin_SendObjectActionTargetStereotypeLabel_Parser();
-
 			case ActionInputPinInSendObjActAsTargetLabelEditPart.VISUAL_ID:
 				return getActionInputPin_SendObjectActionTargetNameLabel_Parser();
 			case ActionInputPinInSendObjActAsTargetValueEditPart.VISUAL_ID:
 				return getActionInputPin_SendObjectActionTargetValueLabel_Parser();
 			case ActionInputPinInSendObjActAsTargetAppliedStereotypeEditPart.VISUAL_ID:
 				return getActionInputPin_SendObjectActionTargetStereotypeLabel_Parser();
-
 			case InputPinInSendObjActAsTargetLabelEditPart.VISUAL_ID:
 				return getInputPin_SendObjectActionTargetNameLabel_Parser();
 			case InputPinInSendObjActAsTargetAppliedStereotypeEditPart.VISUAL_ID:
 				return getInputPin_SendObjectActionTargetStereotypeLabel_Parser();
-
 			case SendSignalActionNameEditPart.VISUAL_ID:
 				return getSendSignalAction_NameLabel_Parser();
 			case SendSignalActionFloatingNameEditPart.VISUAL_ID:
 				return getSendSignalAction_FloatingNameLabel_Parser();
-
 			case ActionInputPinInSendSigActLabelEditPart.VISUAL_ID:
 				return getActionInputPin_SendSignalActionArgumentNameLabel_Parser();
 			case ActionInputPinInSendSigActValueEditPart.VISUAL_ID:
 				return getActionInputPin_SendSignalActionArgumentValueLabel_Parser();
 			case ActionInputPinInSendSigActAppliedStereotypeEditPart.VISUAL_ID:
 				return getActionInputPin_SendSignalActionArgumentStereotypeLabel_Parser();
-
 			case ValuePinInSendSigActLabelEditPart.VISUAL_ID:
 				return getValuePin_SendSignalActionArgumentNameLabel_Parser();
 			case ValuePinInSendSigActValueEditPart.VISUAL_ID:
 				return getValuePin_SendSignalActionArgumentValueLabel_Parser();
 			case ValuePinInSendSigActAppliedStereotypeEditPart.VISUAL_ID:
 				return getValuePin_SendSignalActionArgumentStereotypeLabel_Parser();
-
 			case InputPinInSendSigActLabelEditPart.VISUAL_ID:
 				return getInputPin_SendSignalActionArgumentNameLabel_Parser();
 			case InputPinInSendSigActAppliedStereotypeEditPart.VISUAL_ID:
 				return getInputPin_SendSignalActionArgumentStereotypeLabel_Parser();
-
 			case ValuePinInSendSigActAsTargetLabelEditPart.VISUAL_ID:
 				return getValuePin_SendSignalActionTargetNameLabel_Parser();
 			case ValuePinInSendSigActAsTargetValueEditPart.VISUAL_ID:
 				return getValuePin_SendSignalActionTargetValueLabel_Parser();
 			case ValuePinInSendSigActAsTargetAppliedStereotypeEditPart.VISUAL_ID:
 				return getValuePin_SendSignalActionTargetStereotypeLabel_Parser();
-
 			case ActionInputPinInSendSigActAsTargetLabelEditPart.VISUAL_ID:
 				return getActionInputPin_SendSignalActionTargetNameLabel_Parser();
 			case ActionInputPinInSendSigActAsTargetValueEditPart.VISUAL_ID:
 				return getActionInputPin_SendSignalActionTargetValueLabel_Parser();
 			case ActionInputPinInSendSigActAsTargetAppliedStereotypeEditPart.VISUAL_ID:
 				return getActionInputPin_SendSignalActionTargetStereotypeLabel_Parser();
-
 			case InputPinInSendSigActAsTargetLabelEditPart.VISUAL_ID:
 				return getInputPin_SendSignalActionTargetNameLabel_Parser();
 			case InputPinInSendSigActAsTargetAppliedStereotypeEditPart.VISUAL_ID:
 				return getInputPin_SendSignalActionTargetStereotypeLabel_Parser();
-
 			case ParameterNodeNameEditPart.VISUAL_ID:
 				return getActivityParameterNode_NameLabel_Parser();
 			case ActivityParameterNodeStreamLabelEditPart.VISUAL_ID:
 				return getActivityParameterNode_StreamLabel_Parser();
-
 			case AcceptEventActionLabelEditPart.VISUAL_ID:
 				return getAcceptEventAction_NameLabel_Parser();
 			case AcceptTimeEventActionLabelEditPart.VISUAL_ID:
@@ -7302,747 +7250,612 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 				return getAcceptEventAction_StereotypeLabel_Parser();
 			case AcceptEventActionFloatingNameEditPart.VISUAL_ID:
 				return getAcceptEventAction_FloatingNameLabel_Parser();
-
 			case OutputPinInAcceptEventActionLabelEditPart.VISUAL_ID:
 				return getOutputPin_AcceptEventActionResultNameLabel_Parser();
 			case OutputPinInAcceptEventActionAppliedStereotypeEditPart.VISUAL_ID:
 				return getOutputPin_AcceptEventActionResultStereotypeLabel_Parser();
-
 			case ValueSpecificationActionNameEditPart.VISUAL_ID:
 				return getValueSpecificationAction_NameLabel_Parser();
 			case ValueSpecificationActionFloatingNameEditPart.VISUAL_ID:
 				return getValueSpecificationAction_FloatingNameLabel_Parser();
-
 			case OutputPinInValSpecActLabelEditPart.VISUAL_ID:
 				return getOutputPin_ValueSpecificationActionResultNameLabel_Parser();
 			case OutputPinInValSpecActAppliedStereotypeEditPart.VISUAL_ID:
 				return getOutputPin_ValueSpecificationActionResultStereotypeLabel_Parser();
-
 			case ConditionalNodeKeywordEditPart.VISUAL_ID:
 				return getConditionalNode_KeywordLabel_Parser();
-
 			case ExpansionRegionKeywordEditPart.VISUAL_ID:
 				return getExpansionRegion_KeywordLabel_Parser();
-
-
-
 			case LoopNodeKeywordEditPart.VISUAL_ID:
 				return getLoopNode_KeywordLabel_Parser();
-
 			case InputPinInLoopNodeAsVariableLabelEditPart.VISUAL_ID:
 				return getInputPin_LoopNodeVariableInputNameLabel_Parser();
 			case InputPinInStructuredActivityNodeAppliedStereotypeEditPart.VISUAL_ID:
 				return getInputPin_LoopNodeVariableInputStereotypeLabel_Parser();
-
 			case ValuePinInLoopNodeAsVariableLabelEditPart.VISUAL_ID:
 				return getValuePin_LoopNodeVariableInputNameLabel_Parser();
 			case ValuePinInLoopNodeAsVariableValueEditPart.VISUAL_ID:
 				return getValuePin_LoopNodeVariableInputValueLabel_Parser();
 			case ValuePinInLoopNodeAsVariableAppliedStereotypeEditPart.VISUAL_ID:
 				return getValuePin_LoopNodeVariableInputStereotypeLabel_Parser();
-
 			case ActionPinInLoopNodeAsVariableLabelEditPart.VISUAL_ID:
 				return getActionInputPin_LoopNodeVariableInputNameLabel_Parser();
 			case ActionPinInLoopNodeAsVariableValueEditPart.VISUAL_ID:
 				return getActionInputPin_LoopNodeVariableInputValueLabel_Parser();
 			case ActionPinInLoopNodeAsVariableAppliedStereotypeEditPart.VISUAL_ID:
 				return getActionInputPin_LoopNodeVariableInputStereotypeLabel_Parser();
-
 			case OutputPinInLoopNodeAsBodyOutputLabelEditPart.VISUAL_ID:
 				return getOutputPin_LoopNodeBodyOutputNameLabel_Parser();
 			case OutputPinInLoopNodeAsBodyOutputAppliedStereotypeEditPart.VISUAL_ID:
 				return getOutputPin_LoopNodeBodyOutputStereotypeLabel_Parser();
-
 			case OutputPinInLoopNodeAsLoopVariableLabelEditPart.VISUAL_ID:
 				return getOutputPin_LoopNodeVariableNameLabel_Parser();
 			case OutputPinInLoopNodeAsLoopVariableAppliedStereotypeEditPart.VISUAL_ID:
 				return getOutputPin_LoopNodeVariableStereotypeLabel_Parser();
-
 			case OutputPinInLoopNodeAsResultLabelEditPart.VISUAL_ID:
 				return getOutputPin_LoopNodeResultNameLabel_Parser();
 			case OutputPinInLoopNodeAsResultAppliedStereotypeEditPart.VISUAL_ID:
 				return getOutputPin_LoopNodeResultStereotypeLabel_Parser();
-
 			case SequenceNodeKeywordEditPart.VISUAL_ID:
 				return getSequenceNode_KeywordLabel_Parser();
-
 			case StructuredActivityNodeKeywordEditPart.VISUAL_ID:
 				return getStructuredActivityNode_KeywordLabel_Parser();
-
 			case InputPinInStructuredActivityNodeAsStructuredNodeInputsLabelEditPart.VISUAL_ID:
 				return getInputPin_StructuredActivityNodeInputNameLabel_Parser();
 			case InputPinInStructuredActivityNodeAsStructuredNodeInputsAppliedStereotypeEditPart.VISUAL_ID:
 				return getInputPin_StructuredActivityNodeInputStereotypeLabel_Parser();
-
 			case ValuePinInStructuredActivityNodeAsStructuredNodeInputsLabelEditPart.VISUAL_ID:
 				return getValuePin_StructuredActivityNodeInputNameLabel_Parser();
 			case ValuePinInStructuredActivityNodeAsStructuredNodeInputsValueEditPart.VISUAL_ID:
 				return getValuePin_StructuredActivityNodeInputValueLabel_Parser();
 			case ValuePinInStructuredActivityNodeAsStructuredNodeInputsAppliedStereotypeEditPart.VISUAL_ID:
 				return getValuePin_StructuredActivityNodeInputStereotypeLabel_Parser();
-
 			case ActionPinInStructuredActivityNodeAsStructuredNodeInputsLabelEditPart.VISUAL_ID:
 				return getActionInputPin_StructuredActivityNodeInputNameLabel_Parser();
 			case ActionPinInStructuredActivityNodeAsStructuredNodeInputsValueEditPart.VISUAL_ID:
 				return getActionInputPin_StructuredActivityNodeInputValueLabel_Parser();
 			case ActionPinInStructuredActivityNodeAsStructuredNodeInputsAppliedStereotypeEditPart.VISUAL_ID:
 				return getActionInputPin_StructuredActivityNodeInputStereotypeLabel_Parser();
-
 			case OutputPinInStructuredActivityNodeAsStructuredNodeInputsLabelEditPart.VISUAL_ID:
 				return getOutputPin_StructuredActivityNodeOutputNameLabel_Parser();
 			case OutputPinInStructuredActivityNodeAsStructuredNodeInputsAppliedStereotypeEditPart.VISUAL_ID:
 				return getOutputPin_StructuredActivityNodeOutputStereotypeLabel_Parser();
-
 			case ActivityPartitionNameEditPart.VISUAL_ID:
 				return getActivityPartition_NameLabel_Parser();
 			case ActivityPartitionFloatingNameEditPart.VISUAL_ID:
 				return getActivityPartition_FloatingNameLabel_Parser();
-
-
 			case CommentBodyLabelEditPart.VISUAL_ID:
 				return getComment_BodyLabel_Parser();
-
 			case ReadSelfActionNameEditPart.VISUAL_ID:
 				return getReadSelfAction_NameLabel_Parser();
 			case ReadSelfActionFloatingNameEditPart.VISUAL_ID:
 				return getReadSelfAction_FloatingNameLabel_Parser();
-
 			case OutputPinInReadSelfActionLabelEditPart.VISUAL_ID:
 				return getOutputPin_ReadSelfActionResultNameLabel_Parser();
 			case OutputPinInReadSelfActionAppliedStereotypeEditPart.VISUAL_ID:
 				return getOutputPin_ReadSelfActionResultStereotypeLabel_Parser();
-
 			case ActivityNameEditPartCN.VISUAL_ID:
 				return getActivity_NameLabel_CN_Parser();
 			case ActivityIsSingleExecutionCNEditPart.VISUAL_ID:
 				return getActivity_KeywordLabel_CN_Parser();
-
 			case CreateObjectActionNameEditPart.VISUAL_ID:
 				return getCreateObjectAction_NameLabel_Parser();
 			case CreateObjectActionFloatingNameEditPart.VISUAL_ID:
 				return getCreateObjectAction_FloatingNameLabel_Parser();
-
 			case OutputPinInCreateObjectActionAsResultLabelEditPart.VISUAL_ID:
 				return getOutputPin_CreateObjectActionResultNameLabel_Parser();
 			case OutputPinInCreateObjectActionAsResultAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getOutputPin_CreateObjectActionResultStereotypeLabel_Parser();
-
 			case ShapeNamedElementNameEditPart.VISUAL_ID:
 				return getNamedElement_NameLabel_Parser();
-
 			case ReadStructuralFeatureActionNameEditPart.VISUAL_ID:
 				return getReadStructuralFeatureAction_NameLabel_Parser();
 			case ReadStructuralFeatureActionFloatingNameEditPart.VISUAL_ID:
 				return getReadStructuralFeatureAction_FloatingNameLabel_Parser();
-
 			case InputPinInReadStructuralFeatureAsObjectLabelEditPart.VISUAL_ID:
 				return getInputPin_ReadStructuralFeatureActionObjectNameLabel_Parser();
 			case InputPinInReadStructuralFeatureAsObjectAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getInputPin_ReadStructuralFeatureActionObjectStereotypeLabel_Parser();
-
 			case ValuePinInReadStructuralFeatureAsObjectNameLabelEditPart.VISUAL_ID:
 				return getValuePin_ReadStructuralFeatureActionObjectNameLabel_Parser();
 			case ValuePinInReadStructuralFeatureAsObjectValueEditPart.VISUAL_ID:
 				return getValuePin_ReadStructuralFeatureActionObjectValueLabel_Parser();
 			case ValuePinInReadStructuralFeatureAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getValuePin_ReadStructuralFeatureActionObjectStereotypeLabel_Parser();
-
 			case ActionPinInReadStructuralFeatureAsObjectNameLabelEditPart.VISUAL_ID:
 				return getActionInputPin_ReadStructuralFeatureActionObjectNameLabel_Parser();
 			case ActionPinInReadStructuralFeatureAsObjectValueEditPart.VISUAL_ID:
 				return getActionInputPin_ReadStructuralFeatureActionObjectValueLabel_Parser();
 			case ActionPinInReadStructuralFeatureAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getActionInputPin_ReadStructuralFeatureActionObjectStereotypeLabel_Parser();
-
 			case OutputPinInReadStructuralFeatureAsResultLabelEditPart.VISUAL_ID:
 				return getOutputPin_ReadStructuralFeatureActionResultNameLabel_Parser();
 			case InputPinInReadStructuralFeatureAsResultWrappingLabelEditPart.VISUAL_ID:
 				return getOutputPin_ReadStructuralFeatureActionResultStereotypeLabel_Parser();
-
 			case AddStructuralFeatureValueActionNameEditPart.VISUAL_ID:
 				return getAddStructuralFeatureValueAction_NameLabel_Parser();
 			case AddStructuralFeatureValueActionFloatingNameEditPart.VISUAL_ID:
 				return getAddStructuralFeatureValueAction_FloatingNameLabel_Parser();
-
 			case InputPinInAddStructuralFeatureValueActionAsObjectLabelEditPart.VISUAL_ID:
 				return getInputPin_AddStructuralFeatureValueActionObjectNameLabel_Parser();
 			case InputPinInAddStructuralFeatureValueActionAsObjectAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getInputPin_AddStructuralFeatureValueActionObjectStereotypeLabel_Parser();
-
 			case InputPinInAddStructuralFeatureValueActionAsValueLabel2EditPart.VISUAL_ID:
 				return getInputPin_AddStructuralFeatureValueActionValueNameLabel_Parser();
 			case InputPinInAddStructuralFeatureValueActionAsValueAppliedStereotypeWrappingLabel2EditPart.VISUAL_ID:
 				return getInputPin_AddStructuralFeatureValueActionValueStereotypeLabel_Parser();
-
 			case InputPinInAddStructuralFeatureValueActionAsInserAtLabelEditPart.VISUAL_ID:
 				return getInputPin_AddStructuralFeatureValueActionInsertAtNameLabel_Parser();
 			case InputPinInAddStructuralFeatureValueActionAsInserAtAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getInputPin_AddStructuralFeatureValueActionInsertAtStereotypeLabel_Parser();
-
 			case ValuePinInAddStructuralFeatureValueActionAsObjectLabelEditPart.VISUAL_ID:
 				return getValuePin_AddStructuralFeatureValueActionObjectNameLabel_Parser();
 			case ValuePinInAddStructuralFeatureValueActionAsObjectValueEditPart.VISUAL_ID:
 				return getValuePin_AddStructuralFeatureValueActionObjectValueLabel_Parser();
 			case ValuePinInAddStructuralFeatureValueActionAsObjectAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getValuePin_AddStructuralFeatureValueActionObjectStereotypeLabel_Parser();
-
 			case ValuePinInAddStructuralFeatureValueActionAsValueLabelEditPart.VISUAL_ID:
 				return getValuePin_AddStructuralFeatureValueActionValueNameLabel_Parser();
 			case ValuePinInAddStructuralFeatureValueActionAsValueValueEditPart.VISUAL_ID:
 				return getValuePin_AddStructuralFeatureValueActionValueValueLabel_Parser();
 			case ValuePinInAddStructuralFeatureValueActionAsValueAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getValuePin_AddStructuralFeatureValueActionValueStereotypeLabel_Parser();
-
 			case ValuePinInAddStructuralFeatureValueActionAsInserAtLabelEditPart.VISUAL_ID:
 				return getValuePin_AddStructuralFeatureValueActionInsertAtNameLabel_Parser();
 			case ValuePinInAddStructuralFeatureValueActionAsInserAtValueEditPart.VISUAL_ID:
 				return getValuePin_AddStructuralFeatureValueActionInsertAtValueLabel_Parser();
 			case ValuePinInAddStructuralFeatureValueActionAsInserAtAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getValuePin_AddStructuralFeatureValueActionInsertAtStereotypeLabel_Parser();
-
 			case ActionPinInAddStructuralFeatureValueActionAsObjectLabelEditPart.VISUAL_ID:
 				return getActionInputPin_AddStructuralFeatureValueActionObjectNameLabel_Parser();
 			case ActionPinInAddStructuralFeatureValueActionAsObjectValueEditPart.VISUAL_ID:
 				return getActionInputPin_AddStructuralFeatureValueActionObjectValueLabel_Parser();
 			case ActionPinInAddStructuralFeatureValueActionAsObjectAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getActionInputPin_AddStructuralFeatureValueActionObjectStereotypeLabel_Parser();
-
 			case ActionPinInAddStructuralFeatureValueActionAsValueLabelEditPart.VISUAL_ID:
 				return getActionInputPin_AddStructuralFeatureValueActionValueNameLabel_Parser();
 			case ActionPinInAddStructuralFeatureValueActionAsValueValueEditPart.VISUAL_ID:
 				return getActionInputPin_AddStructuralFeatureValueActionValueValueLabel_Parser();
 			case ActionPinInAddStructuralFeatureValueActionAsValueAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getActionInputPin_AddStructuralFeatureValueActionValueStereotypeLabel_Parser();
-
 			case ActionPinInAddStructuralFeatureValueActionAsInserAtLabelEditPart.VISUAL_ID:
 				return getActionInputPin_AddStructuralFeatureValueActionInsertAtNameLabel_Parser();
 			case ActionPinInAddStructuralFeatureValueActionAsInserAtValueEditPart.VISUAL_ID:
 				return getActionInputPin_AddStructuralFeatureValueActionInsertAtValueLabel_Parser();
 			case ActionPinInAddStructuralFeatureValueActionAsInserAtAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getActionInputPin_AddStructuralFeatureValueActionInsertAtStereotypeLabel_Parser();
-
 			case OutputPinInAddStructuralFeatureValueActionAsResultLabel3EditPart.VISUAL_ID:
 				return getOutputPin_AddStructuralFeatureValueActionResultNameLabel_Parser();
 			case OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotypeWrappingLabel3EditPart.VISUAL_ID:
 				return getOutputPin_AddStructuralFeatureValueActionResultStereotypeLabel_Parser();
-
 			case DestroyObjectActionNameEditPart.VISUAL_ID:
 				return getDestroyObjectAction_NameLabel_Parser();
 			case DestroyObjectActionFloatingNameEditPart.VISUAL_ID:
 				return getDestroyObjectAction_FloatingNameLabel_Parser();
-
 			case InputPinInDestroyObjectActionLabelEditPart.VISUAL_ID:
 				return getInputPin_DestroyObjectActionTargetNameLabel_Parser();
 			case InputPinInDestroyObjectActionAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getInputPin_DestroyObjectActionTargetStereotypeLabel_Parser();
-
 			case ValuePinInDestroyObjectActionLabelEditPart.VISUAL_ID:
 				return getValuePin_DestroyObjectActionTargetNameLabel_Parser();
 			case ValuePinInDestroyObjectActionValueEditPart.VISUAL_ID:
 				return getValuePin_DestroyObjectActionTargetValueLabel_Parser();
 			case ValuePinInDestroyObjectActionAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getValuePin_DestroyObjectActionTargetStereotypeLabel_Parser();
-
 			case ActionPinInDestroyObjectActionLabelEditPart.VISUAL_ID:
 				return getActionInputPin_DestroyObjectActionTargetNameLabel_Parser();
 			case ActionPinInDestroyObjectActionValueEditPart.VISUAL_ID:
 				return getActionInputPin_DestroyObjectActionTargetValueLabel_Parser();
 			case ActionPinInDestroyObjectActionAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getActionInputPin_DestroyObjectActionTargetStereotypeLabel_Parser();
-
 			case ReadVariableActionNameEditPart.VISUAL_ID:
 				return getReadVariableAction_NameLabel_Parser();
 			case ReadVariableActionFloatingNameEditPart.VISUAL_ID:
 				return getReadVariableAction_FloatingNameLabel_Parser();
-
 			case OutputPinInReadVariableActionAsResultLabelEditPart.VISUAL_ID:
 				return getOutputPin_ReadVariableActionResultNameLabel_Parser();
 			case OutputPinInReadVariableActionAsResultAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getOutputPin_ReadVariableActionResultStereotypeLabel_Parser();
-
 			case AddVariableValueActionNameEditPart.VISUAL_ID:
 				return getAddVariableValueAction_NameLabel_Parser();
 			case AddVariableValueActionFloatingNameEditPart.VISUAL_ID:
 				return getAddVariableValueAction_FloatingNameLabel_Parser();
-
 			case InputPinInAddVariableValueActionAsInsertAtLabelEditPart.VISUAL_ID:
 				return getInputPin_AddVariableValueActionInsertAtNameLabel_Parser();
 			case InputPinInAddVariableValueActionAsInsertAtAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getInputPin_AddVariableValueActionInsertAtStereotypeLabel_Parser();
-
 			case InputPinInAddVariableValueActionAsValueLabelEditPart.VISUAL_ID:
 				return getInputPin_AddVariableValueActionValueNameLabel_Parser();
 			case InputPinInAddVariableValueActionAsValueAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getInputPin_AddVariableValueActionValueStereotypeLabel_Parser();
-
 			case ValuePinInAddVariableValueActionAsInsertAtLabelEditPart.VISUAL_ID:
 				return getValuePin_AddVariableValueActionInsertAtNameLabel_Parser();
 			case ValuePinInAddVariableValueActionAsInsertAtValueEditPart.VISUAL_ID:
 				return getValuePin_AddVariableValueActionInsertAtValueLabel_Parser();
 			case ValuePinInAddVariableValueActionAsInsertAtAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getValuePin_AddVariableValueActionInsertAtStereotypeLabel_Parser();
-
 			case ValuePinInAddVariableValueActionAsValueLabelEditPart.VISUAL_ID:
 				return getValuePin_AddVariableValueActionValueNameLabel_Parser();
 			case ValuePinInAddVariableValueActionAsValueValueEditPart.VISUAL_ID:
 				return getValuePin_AddVariableValueActionValueValueLabel_Parser();
 			case ValuePinInAddVariableValueActionAsValueAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getValuePin_AddVariableValueActionValueStereotypeLabel_Parser();
-
 			case ActionPinInAddVariableValueActionAsInsertAtLabelEditPart.VISUAL_ID:
 				return getActionInputPin_AddVariableValueActionInsertAtNameLabel_Parser();
 			case ActionPinInAddVariableValueActionAsInsertAtValueEditPart.VISUAL_ID:
 				return getActionInputPin_AddVariableValueActionInsertAtValueLabel_Parser();
 			case ActionPinInAddVariableValueActionAsInsertAtAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getActionInputPin_AddVariableValueActionInsertAtStereotypeLabel_Parser();
-
 			case ActionPinInAddVariableValueActionAsValueLabelEditPart.VISUAL_ID:
 				return getActionInputPin_AddVariableValueActionValueNameLabel_Parser();
 			case ActionPinInAddVariableValueActionAsValueValueEditPart.VISUAL_ID:
 				return getActionInputPin_AddVariableValueActionValueValueLabel_Parser();
 			case ActionPinInAddVariableValueActionAsValueAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getActionInputPin_AddVariableValueActionValueStereotypeLabel_Parser();
-
 			case BroadcastSignalActionNameEditPart.VISUAL_ID:
 				return getBroadcastSignalAction_NameLabel_Parser();
 			case BroadcastSignalActionFloatingNameEditPart.VISUAL_ID:
 				return getBroadcastSignalAction_FloatingNameLabel_Parser();
-
 			case InputPinInBroadcastSignalActionLabelEditPart.VISUAL_ID:
 				return getInputPin_BroadcastSignalActionArgumentNameLabel_Parser();
 			case InputPinInBroadcastSignalActionValueLabelEditPart.VISUAL_ID:
 				return getInputPin_BroadcastSignalActionArgumentValueLabel_Parser();
 			case InputPinInBroadcastSignalActionAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getInputPin_BroadcastSignalActionArgumentStereotypeLabel_Parser();
-
 			case ValuePinInBroadcastSignalActionLabelEditPart.VISUAL_ID:
 				return getValuePin_BroadcastSignalActionArgumentNameLabel_Parser();
 			case ValuePinInBroadcastSignalActionValueLabelEditPart.VISUAL_ID:
 				return getValuePin_BroadcastSignalActionArgumentValueLabel_Parser();
 			case ValuePinInBroadcastSignalActionAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getValuePin_BroadcastSignalActionArgumentStereotypeLabel_Parser();
-
 			case ActionPinInBroadcastSignalActionLabelEditPart.VISUAL_ID:
 				return getActionInputPin_BroadcastSignalActionArgumentNameLabel_Parser();
 			case ActionPinInBroadcastSignalActionValueLabelEditPart.VISUAL_ID:
 				return getActionInputPin_BroadcastSignalActionArgumentValueLabel_Parser();
 			case ActionPinInBroadcastSignalActionAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getActionInputPin_BroadcastSignalActionArgumentStereotypeLabel_Parser();
-
 			case CentralBufferNodeLabelEditPart.VISUAL_ID:
 				return getCentralBufferNode_NameLabel_Parser();
 			case CentralBufferNodeSelectionEditPart.VISUAL_ID:
 				return getCentralBufferNode_SelectionLabel_Parser();
 			case CentralBufferNodeFloatingNameEditPart.VISUAL_ID:
 				return getCentralBufferNode_FloatingNameLabel_Parser();
-
 			case ConstraintNameEditPartCN.VISUAL_ID:
 				return getConstraint_NameLabel_Parser();
 			case ConstraintBodyEditPartCN.VISUAL_ID:
 				return getConstraint_BodyLabel_Parser();
-
 			case StartObjectBehaviorActionNameEditPart.VISUAL_ID:
 				return getStartObjectBehaviorAction_NameLabel_Parser();
 			case StartObjectBehaviorActionFloatingNameEditPart.VISUAL_ID:
 				return getStartObjectBehaviorAction_FloatingNameLabel_Parser();
-
 			case OutputPinInStartObjectBehaviorActionLabelEditPart.VISUAL_ID:
 				return getOutputPin_StartObjectBehaviorActionResultNameLabel_Parser();
 			case OutputPinInStartObjectBehaviorActionAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getOutputPin_StartObjectBehaviorActionResultStereotypeLabel_Parser();
-
 			case InputPinInStartObjectBehaviorActionAsObjectLabelEditPart.VISUAL_ID:
 				return getInputPin_StartObjectBehaviorActionObjectNameLabel_Parser();
 			case InputPinInStartObjectBehaviorActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getInputPin_StartObjectBehaviorActionObjectStereotypeLabel_Parser();
-
 			case ValuePinInStartObjectBehaviorActionAsObjectLabelEditPart.VISUAL_ID:
 				return getValuePin_StartObjectBehaviorActionObjectNameLabel_Parser();
 			case ValuePinInStartObjectBehaviorActionAsObjectValueEditPart.VISUAL_ID:
 				return getValuePin_StartObjectBehaviorActionObjectValueLabel_Parser();
 			case ValuePinInStartObjectBehaviorActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getValuePin_StartObjectBehaviorActionObjectStereotypeLabel_Parser();
-
 			case ActionPinInStartObjectBehaviorActionAsObjectLabelEditPart.VISUAL_ID:
 				return getActionInputPin_StartObjectBehaviorActionObjectNameLabel_Parser();
 			case ActionPinInStartObjectBehaviorActionAsObjectValueEditPart.VISUAL_ID:
 				return getActionInputPin_StartObjectBehaviorActionObjectValueLabel_Parser();
 			case ActionPinInStartObjectBehaviorActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getActionInputPin_StartObjectBehaviorActionObjectStereotypeLabel_Parser();
-
 			case InputPinInStartObjectBehaviorActionAsArgumentLabelEditPart.VISUAL_ID:
 				return getInputPin_StartObjectBehaviorActionArgumentNameLabel_Parser();
 			case InputPinInStartObjectBehaviorActionAsArgumentAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getInputPin_StartObjectBehaviorActionArgumentStereotypeLabel_Parser();
-
 			case ValuePinInStartObjectBehaviorActionAsArgumentLabelEditPart.VISUAL_ID:
 				return getValuePin_StartObjectBehaviorActionArgumentNameLabel_Parser();
 			case ValuePinInStartObjectBehaviorActionAsArgumentValueEditPart.VISUAL_ID:
 				return getValuePin_StartObjectBehaviorActionArgumentValueLabel_Parser();
 			case ValuePinInStartObjectBehaviorActionAsArgumentAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getValuePin_StartObjectBehaviorActionArgumentStereotypeLabel_Parser();
-
 			case ActionPinInStartObjectBehaviorActionAsArgumentLabelEditPart.VISUAL_ID:
 				return getActionInputPin_StartObjectBehaviorActionArgumentNameLabel_Parser();
 			case ActionPinInStartObjectBehaviorActionAsArgumentValueEditPart.VISUAL_ID:
 				return getActionInputPin_StartObjectBehaviorActionArgumentValueLabel_Parser();
 			case ActionPinInStartObjectBehaviorActionAsArgumentAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getActionInputPin_StartObjectBehaviorActionArgumentStereotypeLabel_Parser();
-
 			case TestIdentityActionNameEditPart.VISUAL_ID:
 				return getTestIdentityAction_NameLabel_Parser();
 			case TestIdentityActionFloatingNameEditPart.VISUAL_ID:
 				return getTestIdentityAction_FloatingNameLabel_Parser();
-
 			case OutputPinInTestIdentityActionItemLabelEditPart.VISUAL_ID:
 				return getOutputPin_TestIdentityActionResultNameLabel_Parser();
 			case OutputPinInTestIdentityActionItemAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getOutputPin_TestIdentityActionResultStereotypeLabel_Parser();
-
 			case InputPinInTestIdentityActionAsFirstLabelEditPart.VISUAL_ID:
 				return getInputPin_TestIdentityActionFirstNameLabel_Parser();
 			case InputPinInTestIdentityActionAsFirstAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getInputPin_TestIdentityActionFirstStereotypeLabel_Parser();
-
 			case InputPinInTestIdentityActionAsSecondLabelEditPart.VISUAL_ID:
 				return getInputPin_TestIdentityActionSecondNameLabel_Parser();
 			case InputPinInTestIdentityActionAsSecondAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getInputPin_TestIdentityActionSecondStereotypeLabel_Parser();
-
 			case ValuePinInTestIdentityActionAsFirstLabelEditPart.VISUAL_ID:
 				return getValuePin_TestIdentityActionFirstNameLabel_Parser();
 			case ValuePinInTestIdentityActionAsFirstValueEditPart.VISUAL_ID:
 				return getValuePin_TestIdentityActionFirstValueLabel_Parser();
 			case ValuePinInTestIdentityActionAsFirstAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getValuePin_TestIdentityActionFirstStereotypeLabel_Parser();
-
 			case ValuePinInTestIdentityActionAsSecondLabelEditPart.VISUAL_ID:
 				return getValuePin_TestIdentityActionSecondNameLabel_Parser();
 			case ValuePinInTestIdentityActionAsSecondValueEditPart.VISUAL_ID:
 				return getValuePin_TestIdentityActionSecondValueLabel_Parser();
 			case ValuePinInTestIdentityActionAsSecondAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getValuePin_TestIdentityActionSecondStereotypeLabel_Parser();
-
 			case ActionPinInTestIdentityActionAsFirstLabelEditPart.VISUAL_ID:
 				return getActionInputPin_TestIdentityActionFirstNameLabel_Parser();
 			case ActionPinInTestIdentityActionAsFirstValueEditPart.VISUAL_ID:
 				return getActionInputPin_TestIdentityActionFirstValueLabel_Parser();
 			case ActionPinInTestIdentityActionAsFirstAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getActionInputPin_TestIdentityActionFirstStereotypeLabel_Parser();
-
 			case ActionPinInTestIdentityActionAsSecondLabelEditPart.VISUAL_ID:
 				return getActionInputPin_TestIdentityActionSecondNameLabel_Parser();
 			case ActionPinInTestIdentityActionAsSecondValueEditPart.VISUAL_ID:
 				return getActionInputPin_TestIdentityActionSecondValueLabel_Parser();
 			case ActionPinInTestIdentityActionAsSecondAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getActionInputPin_TestIdentityActionSecondStereotypeLabel_Parser();
-
 			case ClearStructuralFeatureActionNameEditPart.VISUAL_ID:
 				return getClearStructuralFeatureAction_NameLabel_Parser();
 			case ClearStructuralFeatureActionFloatingNameEditPart.VISUAL_ID:
 				return getClearStructuralFeatureAction_FloatingNameLabel_Parser();
-
 			case OutputPinInClearStructuralFeatureActionLabelEditPart.VISUAL_ID:
 				return getOutputPin_ClearStructuralFeatureActionResultNameLabel_Parser();
 			case OutputPinInClearStructuralFeatureActionAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getOutputPin_ClearStructuralFeatureActionResultStereotypeLabel_Parser();
-
 			case InputPinInClearStructuralFeatureActionAsObjectLabelEditPart.VISUAL_ID:
 				return getInputPin_ClearStructuralFeatureActionObjectNameLabel_Parser();
 			case InputPinInClearStructuralFeatureActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getInputPin_ClearStructuralFeatureActionObjectStereotypeLabel_Parser();
-
 			case ValuePinInClearStructuralFeatureActionAsObjectLabelEditPart.VISUAL_ID:
 				return getValuePin_ClearStructuralFeatureActionObjectNameLabel_Parser();
 			case ValuePinInClearStructuralFeatureActionAsObjectValueEditPart.VISUAL_ID:
 				return getValuePin_ClearStructuralFeatureActionObjectValueLabel_Parser();
 			case ValuePinInClearStructuralFeatureActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getValuePin_ClearStructuralFeatureActionObjectStereotypeLabel_Parser();
-
 			case ActionInputPinInClearStructuralFeatureActionAsObjectLabelEditPart.VISUAL_ID:
 				return getActionInputPin_ClearStructuralFeatureActionObjectNameLabel_Parser();
 			case ActionInputPinInClearStructuralFeatureActionAsObjectValueEditPart.VISUAL_ID:
 				return getActionInputPin_ClearStructuralFeatureActionObjectValueLabel_Parser();
 			case ActionInputPinInClearStructFeatActAsObjectAppliedStereotypeEditPart.VISUAL_ID:
 				return getActionInputPin_ClearStructuralFeatureActionObjectStereotypeLabel_Parser();
-
 			case CreateLinkActionNameEditPart.VISUAL_ID:
 				return getCreateLinkAction_NameLabel_Parser();
 			case CreateLinkActionFloatingNameEditPart.VISUAL_ID:
 				return getCreateLinkAction_FloatingNameLabel_Parser();
-
 			case InputPinInCreateLinkActionAsInputValueLabelEditPart.VISUAL_ID:
 				return getInputPin_CreateLinkActionInputNameLabel_Parser();
 			case InputPinInCreateLinkActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getInputPin_CreateLinkActionInputStereotypeLabel_Parser();
-
 			case ValuePinInCreateLinkActionAsInputValueLabelEditPart.VISUAL_ID:
 				return getValuePin_CreateLinkActionInputNameLabel_Parser();
 			case ValuePinInCreateLinkActionAsInputValueValueEditPart.VISUAL_ID:
 				return getValuePin_CreateLinkActionInputValueLabel_Parser();
 			case ValuePinInCreateLinkActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getValuePin_CreateLinkActionInputStereotypeLabel_Parser();
-
 			case ActionInputPinInCreateLinkActionAsInputValueLabelEditPart.VISUAL_ID:
 				return getActionInputPin_CreateLinkActionInputNameLabel_Parser();
 			case ActionInputPinInCreateLinkActionAsInputValueValueEditPart.VISUAL_ID:
 				return getActionInputPin_CreateLinkActionInputValueLabel_Parser();
 			case ActionInputPinInCreateLinkActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getActionInputPin_CreateLinkActionInputStereotypeLabel_Parser();
-
 			case ReadLinkActionNameEditPart.VISUAL_ID:
 				return getReadLinkAction_NameLabel_Parser();
 			case ReadLinkActionFloatingNameEditPart.VISUAL_ID:
 				return getReadLinkAction_FloatingNameLabel_Parser();
-
 			case OutputPinInReadLinkActionLabelEditPart.VISUAL_ID:
 				return getOutputPin_ReadLinkActionResultNameLabel_Parser();
 			case OutputPinInReadLinkActionAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getOutputPin_ReadLinkActionResultStereotypeLabel_Parser();
-
 			case InputPinInReadLinkActionAsInputValueLabelEditPart.VISUAL_ID:
 				return getInputPin_ReadLinkActionInputNameLabel_Parser();
 			case InputPinInReadLinkActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getInputPin_ReadLinkActionInputStereotypeLabel_Parser();
-
 			case ValuePinInReadLinkActionAsInputValueLabelEditPart.VISUAL_ID:
 				return getValuePin_ReadLinkActionInputNameLabel_Parser();
 			case ValuePinInReadLinkActionAsInputValueValueEditPart.VISUAL_ID:
 				return getValuePin_ReadLinkActionInputValueLabel_Parser();
 			case ValuePinInReadLinkActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getValuePin_ReadLinkActionInputStereotypeLabel_Parser();
-
 			case ActionInputPinInReadLinkActionAsInputValueLabelEditPart.VISUAL_ID:
 				return getActionInputPin_ReadLinkActionInputNameLabel_Parser();
 			case ActionInputPinInReadLinkActionAsInputValueValueEditPart.VISUAL_ID:
 				return getActionInputPin_ReadLinkActionInputValueLabel_Parser();
 			case ActionInputPinInReadLinkActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getActionInputPin_ReadLinkActionInputStereotypeLabel_Parser();
-
 			case DestroyLinkActionNameEditPart.VISUAL_ID:
 				return getDestroyLinkAction_NameLabel_Parser();
 			case DestroyLinkActionFloatingNameEditPart.VISUAL_ID:
 				return getDestroyLinkAction_FloatingNameLabel_Parser();
-
 			case InputPinInDestroyLinkActionAsInputValueLabelEditPart.VISUAL_ID:
 				return getInputPin_DestroyLinkActionInputNameLabel_Parser();
 			case InputPinInDestroyLinkActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getInputPin_DestroyLinkActionInputStereotypeLabel_Parser();
-
 			case ValuePinInDestroyLinkActionAsInputValueLabelEditPart.VISUAL_ID:
 				return getValuePin_DestroyLinkActionInputNameLabel_Parser();
 			case ValuePinInDestroyLinkActionAsInputValueValueEditPart.VISUAL_ID:
 				return getValuePin_DestroyLinkActionInputValueLabel_Parser();
 			case ValuePinInDestroyLinkActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getValuePin_DestroyLinkActionInputStereotypeLabel_Parser();
-
 			case ActionInputPinInDestroyLinkActionAsInputValueLabelEditPart.VISUAL_ID:
 				return getActionInputPin_DestroyLinkActionInputNameLabel_Parser();
 			case ActionInputPinInDestroyLinkActionAsInputValueValueEditPart.VISUAL_ID:
 				return getActionInputPin_DestroyLinkActionInputValueLabel_Parser();
 			case ActionInputPinInDestroyLinkActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getActionInputPin_DestroyLinkActionInputStereotypeLabel_Parser();
-
 			case ClearAssociationActionNameEditPart.VISUAL_ID:
 				return getClearAssociationAction_NameLabel_Parser();
 			case ClearAssociationActionFloatingNameEditPart.VISUAL_ID:
 				return getClearAssociationAction_FloatingNameLabel_Parser();
-
 			case InputPinInClearAssociationActionAsObjectLabelEditPart.VISUAL_ID:
 				return getInputPin_ClearAssociationActionObjectNameLabel_Parser();
 			case InputPinInClearAssociationActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getInputPin_ClearAssociationActionObjectStereotypeLabel_Parser();
-
 			case ValuePinInClearAssociationActionAsObjectLabelEditPart.VISUAL_ID:
 				return getValuePin_ClearAssociationActionObjectNameLabel_Parser();
 			case ValuePinInClearAssociationActionAsObjectValueEditPart.VISUAL_ID:
 				return getValuePin_ClearAssociationActionObjectValueLabel_Parser();
 			case ValuePinInClearAssociationActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getValuePin_ClearAssociationActionObjectStereotypeLabel_Parser();
-
 			case ActionPinInClearAssociationActionAsObjectLabelEditPart.VISUAL_ID:
 				return getActionInputPin_ClearAssociationActionObjectNameLabel_Parser();
 			case ActionPinInClearAssociationActionAsObjectValueEditPart.VISUAL_ID:
 				return getActionInputPin_ClearAssociationActionObjectValueLabel_Parser();
 			case ActionPinInClearAssociationActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getActionInputPin_ClearAssociationActionObjectStereotypeLabel_Parser();
-
 			case ReadExtentActionNameEditPart.VISUAL_ID:
 				return getReadExtentAction_NameLabel_Parser();
 			case ReadExtentActionFloatingNameEditPart.VISUAL_ID:
 				return getReadExtentAction_FloatingNameLabel_Parser();
-
 			case OutputPinInReadExtentActionLabelEditPart.VISUAL_ID:
 				return getOutputPin_ReadExtentActionResultNameLabel_Parser();
 			case OutputPinInReadExtentActionAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getOutputPin_ReadExtentActionResultStereotypeLabel_Parser();
-
 			case ReclassifyObjectActionNameEditPart.VISUAL_ID:
 				return getReclassifyObjectAction_NameLabel_Parser();
 			case ReclassifyObjectActionFloatingNameEditPart.VISUAL_ID:
 				return getReclassifyObjectAction_FloatingNameLabel_Parser();
-
 			case InputPinInReclassifyObjectActionAsObjectLabelEditPart.VISUAL_ID:
 				return getInputPin_ReclassifyObjectActionObjectNameLabel_Parser();
 			case InputPinInReclassifyObjectActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getInputPin_ReclassifyObjectActionObjectStereotypeLabel_Parser();
-
 			case ValuePinInReclassifyObjectActionAsObjectLabelEditPart.VISUAL_ID:
 				return getValuePin_ReclassifyObjectActionObjectNameLabel_Parser();
 			case ValuePinInReclassifyObjectActionAsObjectValueEditPart.VISUAL_ID:
 				return getValuePin_ReclassifyObjectActionObjectValueLabel_Parser();
 			case ValuePinInReclassifyObjectActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getValuePin_ReclassifyObjectActionObjectStereotypeLabel_Parser();
-
 			case ActionPinInReclassifyObjectActionAsObjectLabelEditPart.VISUAL_ID:
 				return getActionInputPin_ReclassifyObjectActionObjectNameLabel_Parser();
 			case ActionPinInReclassifyObjectActionAsObjectValueEditPart.VISUAL_ID:
 				return getActionInputPin_ReclassifyObjectActionObjectValueLabel_Parser();
 			case ActionPinInReclassifyObjectActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getActionInputPin_ReclassifyObjectActionObjectStereotypeLabel_Parser();
-
 			case ReadIsClassifiedObjectActionNameEditPart.VISUAL_ID:
 				return getReadIsClassifiedObjectAction_NameLabel_Parser();
 			case ReadIsClassifiedObjectActionFloatingNameEditPart.VISUAL_ID:
 				return getReadIsClassifiedObjectAction_FloatingNameLabel_Parser();
-
 			case OutputPinInReadIsClassifiedObjectActionLabelEditPart.VISUAL_ID:
 				return getOutputPin_ReadIsClassifiedObjectActionResultNameLabel_Parser();
 			case OutputPinInReadIsClassifiedObjectActionAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getOutputPin_ReadIsClassifiedObjectActionResultStereotypeLabel_Parser();
-
 			case InputPinInReadIsClassifiedObjectActionAsObjectLabelEditPart.VISUAL_ID:
 				return getInputPin_ReadIsClassifiedObjectActionObjectNameLabel_Parser();
 			case InputPinInReadIsClassifiedObjectActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getInputPin_ReadIsClassifiedObjectActionObjectStereotypeLabel_Parser();
-
 			case ValuePinInReadIsClassifiedObjectActionAsObjectLabelEditPart.VISUAL_ID:
 				return getValuePin_ReadIsClassifiedObjectActionObjectNameLabel_Parser();
 			case ValuePinInReadIsClassifiedObjectActionAsObjectValueEditPart.VISUAL_ID:
 				return getValuePin_ReadIsClassifiedObjectActionObjectValueLabel_Parser();
 			case ValuePinInReadIsClassifiedObjectActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getValuePin_ReadIsClassifiedObjectActionObjectStereotypeLabel_Parser();
-
 			case ActionPinInReadIsClassifiedObjectActionAsObjectLabelEditPart.VISUAL_ID:
 				return getActionInputPin_ReadIsClassifiedObjectActionObjectNameLabel_Parser();
 			case ActionPinInReadIsClassifiedObjectActionAsObjectValueEditPart.VISUAL_ID:
 				return getActionInputPin_ReadIsClassifiedObjectActionObjectValueLabel_Parser();
 			case ActionPinInReadIsClassifiedObjectActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getActionInputPin_ReadIsClassifiedObjectActionObjectStereotypeLabel_Parser();
-
 			case ReduceActionNameEditPart.VISUAL_ID:
 				return getReduceAction_NameLabel_Parser();
 			case ReduceActionFloatingNameEditPart.VISUAL_ID:
 				return getReduceAction_FloatingNameLabel_Parser();
-
 			case OutputPinInReduceActionLabelEditPart.VISUAL_ID:
 				return getOutputPin_ReduceActionResultNameLabel_Parser();
 			case OutputPinInReduceActionAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getOutputPin_ReduceActionResultStereotypeLabel_Parser();
-
 			case InputPinInReduceActionAsCollectionLabelEditPart.VISUAL_ID:
 				return getInputPin_ReduceActionCollectionNameLabel_Parser();
 			case InputPinInReduceActionAsCollectionAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getInputPin_ReduceActionCollectionStereotypeLabel_Parser();
-
 			case ValuePinInReduceActionAsCollectionLabelEditPart.VISUAL_ID:
 				return getValuePin_ReduceActionCollectionNameLabel_Parser();
 			case ValuePinInReduceActionAsCollectionValueEditPart.VISUAL_ID:
 				return getValuePin_ReduceActionCollectionValueLabel_Parser();
 			case ValuePinInReduceActionAsCollectionAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getValuePin_ReduceActionCollectionStereotypeLabel_Parser();
-
 			case ActionPinInReduceActionAsCollectionLabelEditPart.VISUAL_ID:
 				return getActionInputPin_ReduceActionCollectionNameLabel_Parser();
 			case ActionPinInReduceActionAsCollectionValueEditPart.VISUAL_ID:
 				return getActionInputPin_ReduceActionCollectionValueLabel_Parser();
 			case ActionPinInReduceActionAsCollectionAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getActionInputPin_ReduceActionCollectionStereotypeLabel_Parser();
-
 			case StartClassifierBehaviorActionNameEditPart.VISUAL_ID:
 				return getStartClassifierBehaviorAction_NameLabel_Parser();
 			case StartClassifierBehaviorActionFloatingNameEditPart.VISUAL_ID:
 				return getStartClassifierBehaviorAction_FloatingNameLabel_Parser();
-
 			case InputPinInStartClassifierBehaviorActionAsObjectLabelEditPart.VISUAL_ID:
 				return getInputPin_StartClassifierBehaviorActionObjectNameLabel_Parser();
 			case InputPinInStartClassifierBehaviorActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getInputPin_StartClassifierBehaviorActionObjectStereotypeLabel_Parser();
-
 			case ValuePinInStartClassifierBehaviorActionAsObjectLabelEditPart.VISUAL_ID:
 				return getValuePin_StartClassifierBehaviorActionObjectNameLabel_Parser();
 			case ValuePinInStartClassifierBehaviorActionAsObjectValueEditPart.VISUAL_ID:
 				return getValuePin_StartClassifierBehaviorActionObjectValueLabel_Parser();
 			case ValuePinInStartClassifierBehaviorActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getValuePin_StartClassifierBehaviorActionObjectStereotypeLabel_Parser();
-
 			case ActionPinInStartClassifierBehaviorActionAsObjectLabelEditPart.VISUAL_ID:
 				return getActionInputPin_StartClassifierBehaviorActionObjectNameLabel_Parser();
 			case ActionPinInStartClassifierBehaviorActionAsObjectValueEditPart.VISUAL_ID:
 				return getActionInputPin_StartClassifierBehaviorActionObjectValueLabel_Parser();
 			case ActionPinInStartClassifierBehaviorActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getActionInputPin_StartClassifierBehaviorActionObjectStereotypeLabel_Parser();
-
 			case CreateLinkObjectActionNameEditPart.VISUAL_ID:
 				return getCreateLinkObjectAction_NameLabel_Parser();
 			case CreateLinkObjectActionFloatingNameEditPart.VISUAL_ID:
 				return getCreateLinkObjectAction_FloatingNameLabel_Parser();
-
 			case InputPinInCreateLinkObjectActionAsInputValueLabelEditPart.VISUAL_ID:
 				return getInputPin_CreateLinkObjectActionInputNameLabel_Parser();
 			case InputPinInCreateLinkObjectActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getInputPin_CreateLinkObjectActionInputStereotypeLabel_Parser();
-
 			case ValuePinInCreateLinkObjectActionAsInputValueLabelEditPart.VISUAL_ID:
 				return getValuePin_CreateLinkObjectActionInputNameLabel_Parser();
 			case ValuePinInCreateLinkObjectActionAsInputValueValueEditPart.VISUAL_ID:
 				return getValuePin_CreateLinkObjectActionInputValueLabel_Parser();
 			case ValuePinInCreateLinkObjectActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getValuePin_CreateLinkObjectActionInputStereotypeLabel_Parser();
-
 			case ActionPinInCreateLinkObjectActionAsInputValueLabelEditPart.VISUAL_ID:
 				return getActionInputPin_CreateLinkObjectActionInputNameLabel_Parser();
 			case ActionPinInCreateLinkObjectActionAsInputValueValueEditPart.VISUAL_ID:
 				return getActionInputPin_CreateLinkObjectActionInputValueLabel_Parser();
 			case ActionPinInCreateLinkObjectActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getActionInputPin_CreateLinkObjectActionInputStereotypeLabel_Parser();
-
 			case OutputPinInCreateLinkObjectActionLabelEditPart.VISUAL_ID:
 				return getOutputPin_CreateLinkObjectActionResultNameLabel_Parser();
 			case OutputPinInCreateLinkObjectActionAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getOutputPin_CreateLinkObjectActionResultStereotypeLabel_Parser();
-
 			case UnmarshallActionNameEditPart.VISUAL_ID:
 				return getUnmarshallAction_NameLabel_Parser();
 			case UnmarshallActionFloatingNameEditPart.VISUAL_ID:
 				return getUnmarshallAction_FloatingNameLabel_Parser();
-
 			case InputPinInUnmarshallActionAsObjectLabelEditPart.VISUAL_ID:
 				return getInputPin_UnmarshallActionObjectNameLabel_Parser();
 			case InputPinInUnmarshallActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getInputPin_UnmarshallActionObjectStereotypeLabel_Parser();
-
 			case ValuePinInUnmarshallActionAsObjectLabelEditPart.VISUAL_ID:
 				return getValuePin_UnmarshallActionObjectNameLabel_Parser();
 			case ValuePinInUnmarshallActionAsObjectValueEditPart.VISUAL_ID:
 				return getValuePin_UnmarshallActionObjectValueLabel_Parser();
 			case ValuePinInUnmarshallActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getValuePin_UnmarshallActionObjectStereotypeLabel_Parser();
-
 			case ActionPinInUnmarshallActionAsObjectLabelEditPart.VISUAL_ID:
 				return getActionInputPin_UnmarshallActionObjectNameLabel_Parser();
 			case ActionPinInUnmarshallActionAsObjectValueEditPart.VISUAL_ID:
 				return getActionInputPin_UnmarshallActionObjectValueLabel_Parser();
 			case ActionPinInUnmarshallActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getActionInputPin_UnmarshallActionObjectStereotypeLabel_Parser();
-
 			case OutputPinInUnmarshallActionAsResultLabelEditPart.VISUAL_ID:
 				return getOutputPin_UnmarshallActionResultNameLabel_Parser();
 			case OutputPinInUnmarshallActionAsResultAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getOutputPin_UnmarshallActionResultStereotypeLabel_Parser();
-
-
-
 			case ObjectFlowNameEditPart.VISUAL_ID:
 				return getObjectFlow_NameLabel_Parser();
 			case ObjectFlowWeightEditPart.VISUAL_ID:
@@ -8057,7 +7870,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 				return getObjectFlow_GuardLabel_Parser();
 			case ObjectFlowAppliedStereotypeEditPart.VISUAL_ID:
 				return getObjectFlow_StereotypeLabel_Parser();
-
 			case ControlFlowNameEditPart.VISUAL_ID:
 				return getControlFlow_NameLabel_Parser();
 			case ControlFlowWeightEditPart.VISUAL_ID:
@@ -8066,12 +7878,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 				return getControlFlow_GuardLabel_Parser();
 			case ControlFlowAppliedStereotypeEditPart.VISUAL_ID:
 				return getControlFlow_StereotypeLabel_Parser();
-
 			case ExceptionHandlerTypeEditPart.VISUAL_ID:
 				return getExceptionHandler_TypeLabel_Parser();
-
-
-
 			}
 		}
 		return null;

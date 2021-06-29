@@ -1,6 +1,5 @@
-/*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
- *
+/**
+ * Copyright (c) 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,9 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.activity.sheet;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -41,7 +39,7 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelPr
 			return ((UMLNavigatorGroup) element).getGroupName();
 		}
 		IElementType etype = getElementType(getView(element));
-		return etype == null ? "" : etype.getDisplayName();
+		return etype == null ? "" : etype.getDisplayName(); //$NON-NLS-1$
 	}
 
 	/**
@@ -91,4 +89,5 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelPr
 		}
 		return null;
 	}
+
 }

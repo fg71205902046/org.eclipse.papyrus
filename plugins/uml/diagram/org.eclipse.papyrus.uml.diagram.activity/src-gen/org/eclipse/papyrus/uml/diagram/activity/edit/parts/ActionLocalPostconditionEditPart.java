@@ -1,4 +1,4 @@
-/*****************************************************************************
+/**
  * Copyright (c) 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,9 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 
 import org.eclipse.draw2d.Connection;
@@ -31,7 +30,7 @@ public class ActionLocalPostconditionEditPart extends ConnectionEditPart impleme
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Action_LocalPostconditionEdge";
+	public static final String VISUAL_ID = "Action_LocalPostconditionEdge"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -70,10 +69,14 @@ public class ActionLocalPostconditionEditPart extends ConnectionEditPart impleme
 		return (DashedLinkDescriptor) getFigure();
 	}
 
+
 	/**
 	 * @generated
 	 */
 	public class DashedLinkDescriptor extends PolylineConnectionEx {
+
+
+
 
 		/**
 		 * @generated
@@ -82,6 +85,9 @@ public class ActionLocalPostconditionEditPart extends ConnectionEditPart impleme
 			this.setLineStyle(Graphics.LINE_DASH);
 
 		}
+
+
+
 
 	}
 

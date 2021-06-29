@@ -1,4 +1,4 @@
-/*****************************************************************************
+/**
  * Copyright (c) 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,9 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
@@ -45,7 +44,7 @@ public class InterruptibleActivityRegionEditPart extends RoundedCompartmentEditP
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "InterruptibleActivityRegion_Shape";
+	public static final String VISUAL_ID = "InterruptibleActivityRegion_Shape"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -71,9 +70,7 @@ public class InterruptibleActivityRegionEditPart extends RoundedCompartmentEditP
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
@@ -116,7 +113,6 @@ public class InterruptibleActivityRegionEditPart extends RoundedCompartmentEditP
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -140,6 +136,7 @@ public class InterruptibleActivityRegionEditPart extends RoundedCompartmentEditP
 	/**
 	 * @generated
 	 */
+
 	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
@@ -166,6 +163,7 @@ public class InterruptibleActivityRegionEditPart extends RoundedCompartmentEditP
 	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
+	 *
 	 * @generated
 	 */
 	@Override
@@ -216,5 +214,4 @@ public class InterruptibleActivityRegionEditPart extends RoundedCompartmentEditP
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}
-
 }

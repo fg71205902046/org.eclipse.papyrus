@@ -1,4 +1,4 @@
-/*****************************************************************************
+/**
  * Copyright (c) 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,9 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.activity.providers;
 
 import java.util.HashSet;
@@ -785,32 +784,26 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static final IElementType OutputPin_CreateLinkObjectActionResultShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.OutputPin_CreateLinkObjectActionResultShape"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType UnmarshallAction_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.UnmarshallAction_Shape"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType InputPin_UnmarshallActionObjectShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InputPin_UnmarshallActionObjectShape"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType ValuePin_UnmarshallActionObjectShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ValuePin_UnmarshallActionObjectShape"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType ActionInputPin_UnmarshallActionObjectShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ActionInputPin_UnmarshallActionObjectShape"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	public static final IElementType OutputPin_UnmarshallActionResultShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.OutputPin_UnmarshallActionResultShape"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
@@ -877,582 +870,199 @@ public class UMLElementTypes {
 		Object type = hint.getAdapter(IElementType.class);
 		if (elements == null) {
 			elements = new IdentityHashMap<>();
-
 			elements.put(Package_ActivityDiagram, UMLPackage.eINSTANCE.getPackage());
-
-
 			elements.put(Activity_Shape, UMLPackage.eINSTANCE.getActivity());
-
-
 			elements.put(Parameter_ParameterLabel, UMLPackage.eINSTANCE.getParameter());
-
-
 			elements.put(Constraint_PreconditionLabel, UMLPackage.eINSTANCE.getConstraint());
-
-
 			elements.put(Constraint_PostconditionLabel, UMLPackage.eINSTANCE.getConstraint());
-
-
 			elements.put(InitialNode_Shape, UMLPackage.eINSTANCE.getInitialNode());
-
-
 			elements.put(ActivityFinalNode_Shape, UMLPackage.eINSTANCE.getActivityFinalNode());
-
-
 			elements.put(FlowFinalNode_Shape, UMLPackage.eINSTANCE.getFlowFinalNode());
-
-
 			elements.put(OpaqueAction_Shape, UMLPackage.eINSTANCE.getOpaqueAction());
-
-
 			elements.put(ValuePin_OpaqueActionInputShape, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_OpaqueActionInputShape, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(InputPin_OpaqueActionInputShape, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(OutputPin_OpaqueActionOutputShape, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(CallBehaviorAction_Shape, UMLPackage.eINSTANCE.getCallBehaviorAction());
-
-
 			elements.put(ValuePin_CallBehaviorActionArgumentShape, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_CallBehaviorActionArgumentShape, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(InputPin_CallBehaviorActionArgumentShape, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(OutputPin_CallBehaviorActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(CallOperationAction_Shape, UMLPackage.eINSTANCE.getCallOperationAction());
-
-
 			elements.put(ActionInputPin_CallOperationActionArgumentShape, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(ValuePin_CallOperationActionArgumentShape, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(InputPin_CallOperationActionArgumentShape, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(OutputPin_CallOperationActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(ValuePin_CallOperationActionTargetShape, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_CallOperationActionTargetShape, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(InputPin_CallOperationActionTargetShape, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(DurationConstraint_LocalPreconditionShape, UMLPackage.eINSTANCE.getDurationConstraint());
-
-
 			elements.put(DurationConstraint_LocalPostconditionShape, UMLPackage.eINSTANCE.getDurationConstraint());
-
-
 			elements.put(TimeConstraint_LocalPreconditionShape, UMLPackage.eINSTANCE.getTimeConstraint());
-
-
 			elements.put(TimeConstraint_LocalPostconditionShape, UMLPackage.eINSTANCE.getTimeConstraint());
-
-
 			elements.put(IntervalConstraint_LocalPreconditionShape, UMLPackage.eINSTANCE.getIntervalConstraint());
-
-
 			elements.put(IntervalConstraint_LocalPostconditionShape, UMLPackage.eINSTANCE.getIntervalConstraint());
-
-
 			elements.put(Constraint_LocalPreconditionShape, UMLPackage.eINSTANCE.getConstraint());
-
-
 			elements.put(Constraint_LocalPostconditionShape, UMLPackage.eINSTANCE.getConstraint());
-
-
 			elements.put(DecisionNode_Shape, UMLPackage.eINSTANCE.getDecisionNode());
-
-
 			elements.put(MergeNode_Shape, UMLPackage.eINSTANCE.getMergeNode());
-
-
 			elements.put(ForkNode_Shape, UMLPackage.eINSTANCE.getForkNode());
-
-
 			elements.put(JoinNode_Shape, UMLPackage.eINSTANCE.getJoinNode());
-
-
 			elements.put(DataStoreNode_Shape, UMLPackage.eINSTANCE.getDataStoreNode());
-
-
 			elements.put(SendObjectAction_Shape, UMLPackage.eINSTANCE.getSendObjectAction());
-
-
 			elements.put(ValuePin_SendObjectActionRequestShape, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_SendObjectActionRequestShape, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(InputPin_SendObjectActionRequestShape, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_SendObjectActionTargetShape, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_SendObjectActionTargetShape, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(InputPin_SendObjectActionTargetShape, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(SendSignalAction_Shape, UMLPackage.eINSTANCE.getSendSignalAction());
-
-
 			elements.put(ActionInputPin_SendSignalActionArgumentShape, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(ValuePin_SendSignalActionArgumentShape, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(InputPin_SendSignalActionArgumentShape, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_SendSignalActionTargetShape, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_SendSignalActionTargetShape, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(InputPin_SendSignalActionTargetShape, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ActivityParameterNode_Shape, UMLPackage.eINSTANCE.getActivityParameterNode());
-
-
 			elements.put(AcceptEventAction_Shape, UMLPackage.eINSTANCE.getAcceptEventAction());
-
-
 			elements.put(OutputPin_AcceptEventActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(ValueSpecificationAction_Shape, UMLPackage.eINSTANCE.getValueSpecificationAction());
-
-
 			elements.put(OutputPin_ValueSpecificationActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(ConditionalNode_Shape, UMLPackage.eINSTANCE.getConditionalNode());
-
-
 			elements.put(ExpansionRegion_Shape, UMLPackage.eINSTANCE.getExpansionRegion());
-
-
 			elements.put(ExpansionNode_InputShape, UMLPackage.eINSTANCE.getExpansionNode());
-
-
 			elements.put(ExpansionNode_OutputShape, UMLPackage.eINSTANCE.getExpansionNode());
-
-
 			elements.put(LoopNode_Shape, UMLPackage.eINSTANCE.getLoopNode());
-
-
 			elements.put(InputPin_LoopNodeVariableInputShape, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_LoopNodeVariableInputShape, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_LoopNodeVariableInputShape, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(OutputPin_LoopNodeBodyOutputShape, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(OutputPin_LoopNodeVariableShape, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(OutputPin_LoopNodeResultShape, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(SequenceNode_Shape, UMLPackage.eINSTANCE.getSequenceNode());
-
-
 			elements.put(StructuredActivityNode_Shape, UMLPackage.eINSTANCE.getStructuredActivityNode());
-
-
 			elements.put(InputPin_StructuredActivityNodeInputShape, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_StructuredActivityNodeInputShape, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_StructuredActivityNodeInputShape, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(OutputPin_StructuredActivityNodeOutputShape, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(ActivityPartition_Shape, UMLPackage.eINSTANCE.getActivityPartition());
-
-
 			elements.put(InterruptibleActivityRegion_Shape, UMLPackage.eINSTANCE.getInterruptibleActivityRegion());
-
-
 			elements.put(Comment_Shape, UMLPackage.eINSTANCE.getComment());
-
-
 			elements.put(ReadSelfAction_Shape, UMLPackage.eINSTANCE.getReadSelfAction());
-
-
 			elements.put(OutputPin_ReadSelfActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(Activity_Shape_CN, UMLPackage.eINSTANCE.getActivity());
-
-
 			elements.put(CreateObjectAction_Shape, UMLPackage.eINSTANCE.getCreateObjectAction());
-
-
 			elements.put(OutputPin_CreateObjectActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(NamedElement_DefaultShape, UMLPackage.eINSTANCE.getNamedElement());
-
-
 			elements.put(ReadStructuralFeatureAction_Shape, UMLPackage.eINSTANCE.getReadStructuralFeatureAction());
-
-
 			elements.put(InputPin_ReadStructuralFeatureActionObjectShape, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_ReadStructuralFeatureActionObjectShape, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_ReadStructuralFeatureActionObjectShape, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(OutputPin_ReadStructuralFeatureActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(AddStructuralFeatureValueAction_Shape, UMLPackage.eINSTANCE.getAddStructuralFeatureValueAction());
-
-
 			elements.put(InputPin_AddStructuralFeatureValueActionObjectShape, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(InputPin_AddStructuralFeatureValueActionValueShape, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(InputPin_AddStructuralFeatureValueActionInsertAtShape, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_AddStructuralFeatureValueActionObjectShape, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ValuePin_AddStructuralFeatureValueActionValueShape, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ValuePin_AddStructuralFeatureValueActionInsertAtShape, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_AddStructuralFeatureValueActionObjectShape, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(ActionInputPin_AddStructuralFeatureValueActionValueShape, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(ActionInputPin_AddStructuralFeatureValueActionInsertAtShape, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(OutputPin_AddStructuralFeatureValueActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(DestroyObjectAction_Shape, UMLPackage.eINSTANCE.getDestroyObjectAction());
-
-
 			elements.put(InputPin_DestroyObjectActionTargetShape, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_DestroyObjectActionTargetShape, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_DestroyObjectActionTargetShape, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(ReadVariableAction_Shape, UMLPackage.eINSTANCE.getReadVariableAction());
-
-
 			elements.put(OutputPin_ReadVariableActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(AddVariableValueAction_Shape, UMLPackage.eINSTANCE.getAddVariableValueAction());
-
-
 			elements.put(InputPin_AddVariableValueActionInsertAtShape, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(InputPin_AddVariableValueActionValueShape, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_AddVariableValueActionInsertAtShape, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ValuePin_AddVariableValueActionValueShape, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_AddVariableValueActionInsertAtShape, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(ActionInputPin_AddVariableValueActionValueShape, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(BroadcastSignalAction_Shape, UMLPackage.eINSTANCE.getBroadcastSignalAction());
-
-
 			elements.put(InputPin_BroadcastSignalActionArgumentShape, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_BroadcastSignalActionArgumentShape, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_BroadcastSignalActionArgumentShape, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(CentralBufferNode_Shape, UMLPackage.eINSTANCE.getCentralBufferNode());
-
-
 			elements.put(Constraint_Shape, UMLPackage.eINSTANCE.getConstraint());
-
-
 			elements.put(StartObjectBehaviorAction_Shape, UMLPackage.eINSTANCE.getStartObjectBehaviorAction());
-
-
 			elements.put(OutputPin_StartObjectBehaviorActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(InputPin_StartObjectBehaviorActionObjectShape, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_StartObjectBehaviorActionObjectShape, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_StartObjectBehaviorActionObjectShape, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(InputPin_StartObjectBehaviorActionArgumentShape, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_StartObjectBehaviorActionArgumentShape, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_StartObjectBehaviorActionArgumentShape, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(TestIdentityAction_Shape, UMLPackage.eINSTANCE.getTestIdentityAction());
-
-
 			elements.put(OutputPin_TestIdentityActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(InputPin_TestIdentityActionFirstShape, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(InputPin_TestIdentityActionSecondShape, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_TestIdentityActionFirstShape, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ValuePin_TestIdentityActionSecondShape, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_TestIdentityActionFirstShape, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(ActionInputPin_TestIdentityActionSecondShape, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(ClearStructuralFeatureAction_Shape, UMLPackage.eINSTANCE.getClearStructuralFeatureAction());
-
-
 			elements.put(OutputPin_ClearStructuralFeatureActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(InputPin_ClearStructuralFeatureActionObjectShape, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_ClearStructuralFeatureActionObjectShape, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_ClearStructuralFeatureActionObjectShape, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(CreateLinkAction_Shape, UMLPackage.eINSTANCE.getCreateLinkAction());
-
-
 			elements.put(InputPin_CreateLinkActionInputShape, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_CreateLinkActionInputShape, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_CreateLinkActionInputShape, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(ReadLinkAction_Shape, UMLPackage.eINSTANCE.getReadLinkAction());
-
-
 			elements.put(OutputPin_ReadLinkActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(InputPin_ReadLinkActionInputShape, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_ReadLinkActionInputShape, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_ReadLinkActionInputShape, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(DestroyLinkAction_Shape, UMLPackage.eINSTANCE.getDestroyLinkAction());
-
-
 			elements.put(InputPin_DestroyLinkActionInputShape, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_DestroyLinkActionInputShape, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_DestroyLinkActionInputShape, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(ClearAssociationAction_Shape, UMLPackage.eINSTANCE.getClearAssociationAction());
-
-
 			elements.put(InputPin_ClearAssociationActionObjectShape, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_ClearAssociationActionObjectShape, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_ClearAssociationActionObjectShape, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(ReadExtentAction_Shape, UMLPackage.eINSTANCE.getReadExtentAction());
-
-
 			elements.put(OutputPin_ReadExtentActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(ReclassifyObjectAction_Shape, UMLPackage.eINSTANCE.getReclassifyObjectAction());
-
-
 			elements.put(InputPin_ReclassifyObjectActionObjectShape, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_ReclassifyObjectActionObjectShape, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_ReclassifyObjectActionObjectShape, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(ReadIsClassifiedObjectAction_Shape, UMLPackage.eINSTANCE.getReadIsClassifiedObjectAction());
-
-
 			elements.put(OutputPin_ReadIsClassifiedObjectActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(InputPin_ReadIsClassifiedObjectActionObjectShape, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_ReadIsClassifiedObjectActionObjectShape, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_ReadIsClassifiedObjectActionObjectShape, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(ReduceAction_Shape, UMLPackage.eINSTANCE.getReduceAction());
-
-
 			elements.put(OutputPin_ReduceActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(InputPin_ReduceActionCollectionShape, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_ReduceActionCollectionShape, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_ReduceActionCollectionShape, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(StartClassifierBehaviorAction_Shape, UMLPackage.eINSTANCE.getStartClassifierBehaviorAction());
-
-
 			elements.put(InputPin_StartClassifierBehaviorActionObjectShape, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_StartClassifierBehaviorActionObjectShape, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_StartClassifierBehaviorActionObjectShape, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(CreateLinkObjectAction_Shape, UMLPackage.eINSTANCE.getCreateLinkObjectAction());
-
-
 			elements.put(InputPin_CreateLinkObjectActionInputShape, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_CreateLinkObjectActionInputShape, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_CreateLinkObjectActionInputShape, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(OutputPin_CreateLinkObjectActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(UnmarshallAction_Shape, UMLPackage.eINSTANCE.getUnmarshallAction());
-
-
 			elements.put(InputPin_UnmarshallActionObjectShape, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_UnmarshallActionObjectShape, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_UnmarshallActionObjectShape, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(OutputPin_UnmarshallActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
-
 			elements.put(Action_LocalPreconditionEdge, UMLPackage.eINSTANCE.getAction_LocalPrecondition());
-
 			elements.put(Action_LocalPostconditionEdge, UMLPackage.eINSTANCE.getAction_LocalPostcondition());
-
-
 			elements.put(ObjectFlow_Edge, UMLPackage.eINSTANCE.getObjectFlow());
-
-
 			elements.put(ControlFlow_Edge, UMLPackage.eINSTANCE.getControlFlow());
-
-
 			elements.put(ExceptionHandler_Edge, UMLPackage.eINSTANCE.getExceptionHandler());
-
 			elements.put(Comment_AnnotatedElementEdge, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
-
 			elements.put(Constraint_ConstrainedElementEdge, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
 		}
 		return elements.get(type);

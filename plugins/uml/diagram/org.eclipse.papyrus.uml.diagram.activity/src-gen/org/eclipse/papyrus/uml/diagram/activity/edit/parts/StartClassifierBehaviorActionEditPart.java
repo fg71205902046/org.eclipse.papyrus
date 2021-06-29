@@ -1,4 +1,4 @@
-/*****************************************************************************
+/**
  * Copyright (c) 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,9 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 
 import java.util.Collections;
@@ -71,7 +70,7 @@ public class StartClassifierBehaviorActionEditPart extends RoundedCompartmentEdi
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "StartClassifierBehaviorAction_Shape";
+	public static final String VISUAL_ID = "StartClassifierBehaviorAction_Shape"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -98,13 +97,10 @@ public class StartClassifierBehaviorActionEditPart extends RoundedCompartmentEdi
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		// in Papyrus diagrams are not strongly synchronised
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.StartClassifierBehaviorActionCanonicalEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(RequestConstants.REQ_CREATE, new CreateActionLocalConditionEditPolicy());
 		installEditPolicy(RequestConstants.REQ_DELETE, new DeleteActionViewEditPolicy());
@@ -177,15 +173,13 @@ public class StartClassifierBehaviorActionEditPart extends RoundedCompartmentEdi
 		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
 			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge
-					&& false == notifier instanceof BasicCompartment) {
+			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
 				if (modelChildren.contains(event.getNotifier())) {
 					return;
 				}
 			}
 		}
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -214,38 +208,21 @@ public class StartClassifierBehaviorActionEditPart extends RoundedCompartmentEdi
 			((StartClassifierBehaviorActionNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
-
-
-
-		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof InputPinInStartClassifierBehaviorActionAsObjectEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((InputPinInStartClassifierBehaviorActionAsObjectEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
-		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ValuePinInStartClassifierBehaviorActionAsObjectEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((ValuePinInStartClassifierBehaviorActionAsObjectEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
-		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ActionPinInStartClassifierBehaviorActionAsObjectEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((ActionPinInStartClassifierBehaviorActionAsObjectEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
 		return false;
 	}
 
@@ -320,6 +297,7 @@ public class StartClassifierBehaviorActionEditPart extends RoundedCompartmentEdi
 	/**
 	 * @generated
 	 */
+
 	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
@@ -346,6 +324,7 @@ public class StartClassifierBehaviorActionEditPart extends RoundedCompartmentEdi
 	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
+	 *
 	 * @generated
 	 */
 	@Override
@@ -404,5 +383,4 @@ public class StartClassifierBehaviorActionEditPart extends RoundedCompartmentEdi
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(StartClassifierBehaviorActionNameEditPart.VISUAL_ID));
 	}
-
 }

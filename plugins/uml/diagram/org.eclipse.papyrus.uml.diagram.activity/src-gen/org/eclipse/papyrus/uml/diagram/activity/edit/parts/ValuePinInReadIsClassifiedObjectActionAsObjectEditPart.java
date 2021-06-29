@@ -1,4 +1,4 @@
-/*****************************************************************************
+/**
  * Copyright (c) 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,9 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 
 import java.util.Collections;
@@ -59,7 +58,7 @@ public class ValuePinInReadIsClassifiedObjectActionAsObjectEditPart extends Abst
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "ValuePin_ReadIsClassifiedObjectActionObjectShape";
+	public static final String VISUAL_ID = "ValuePin_ReadIsClassifiedObjectActionObjectShape"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -86,9 +85,7 @@ public class ValuePinInReadIsClassifiedObjectActionAsObjectEditPart extends Abst
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new PinLayoutEditPolicy());
 		installEditPolicy(RequestConstants.REQ_DELETE, new NoDeleteFromDiagramEditPolicy());
@@ -156,20 +153,19 @@ public class ValuePinInReadIsClassifiedObjectActionAsObjectEditPart extends Abst
 		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
 			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge
-					&& false == notifier instanceof BasicCompartment) {
+			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
 				if (modelChildren.contains(event.getNotifier())) {
 					return;
 				}
 			}
 		}
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure createNodeShape() {
 		return primaryShape = new PinFigure();
 	}
@@ -206,6 +202,8 @@ public class ValuePinInReadIsClassifiedObjectActionAsObjectEditPart extends Abst
 	/**
 	 * @generated
 	 */
+
+	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(16, 16);
 		return result;
@@ -236,8 +234,10 @@ public class ValuePinInReadIsClassifiedObjectActionAsObjectEditPart extends Abst
 	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
+	 *
 	 * @generated
 	 */
+	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		return nodeShape; // use nodeShape itself as contentPane
 	}
@@ -288,5 +288,4 @@ public class ValuePinInReadIsClassifiedObjectActionAsObjectEditPart extends Abst
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ValuePinInReadIsClassifiedObjectActionAsObjectLabelEditPart.VISUAL_ID));
 	}
-
 }

@@ -1,4 +1,4 @@
-/*****************************************************************************
+/**
  * Copyright (c) 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,9 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 
 import org.eclipse.draw2d.Connection;
@@ -34,7 +33,7 @@ public class ObjectFlowEditPart extends UMLConnectionNodeEditPart implements ITr
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "ObjectFlow_Edge";
+	public static final String VISUAL_ID = "ObjectFlow_Edge"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -59,8 +58,7 @@ public class ObjectFlowEditPart extends UMLConnectionNodeEditPart implements ITr
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof ObjectFlowAppliedStereotypeEditPart) {
-			((ObjectFlowAppliedStereotypeEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAppliedStereotypeLabel());
+			((ObjectFlowAppliedStereotypeEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -117,5 +115,4 @@ public class ObjectFlowEditPart extends UMLConnectionNodeEditPart implements ITr
 	public ActivityEdgeFigure getPrimaryShape() {
 		return (ActivityEdgeFigure) getFigure();
 	}
-
 }

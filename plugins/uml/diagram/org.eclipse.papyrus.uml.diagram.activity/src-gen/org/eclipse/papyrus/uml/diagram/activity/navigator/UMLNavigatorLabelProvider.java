@@ -1,6 +1,5 @@
-/*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
- *
+/**
+ * Copyright (c) 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,9 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.activity.navigator;
 
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -67,7 +65,6 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			UMLNavigatorGroup group = (UMLNavigatorGroup) element;
 			return UMLDiagramEditorPlugin.getInstance().getBundledImage(group.getIcon());
 		}
-
 		if (element instanceof UMLNavigatorItem) {
 			UMLNavigatorItem navigatorItem = (UMLNavigatorItem) element;
 			if (!isOwnView(navigatorItem.getView())) {
@@ -75,8 +72,6 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			}
 			return getImage(navigatorItem.getView());
 		}
-
-
 		return super.getImage(element);
 	}
 
@@ -114,7 +109,6 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			UMLNavigatorGroup group = (UMLNavigatorGroup) element;
 			return group.getGroupName();
 		}
-
 		if (element instanceof UMLNavigatorItem) {
 			UMLNavigatorItem navigatorItem = (UMLNavigatorItem) element;
 			if (!isOwnView(navigatorItem.getView())) {
@@ -122,8 +116,6 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			}
 			return getText(navigatorItem.getView());
 		}
-
-
 		return super.getText(element);
 	}
 

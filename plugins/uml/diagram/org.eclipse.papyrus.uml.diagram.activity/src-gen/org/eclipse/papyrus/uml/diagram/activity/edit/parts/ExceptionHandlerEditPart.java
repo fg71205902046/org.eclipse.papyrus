@@ -1,4 +1,4 @@
-/*****************************************************************************
+/**
  * Copyright (c) 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,9 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 
 import org.eclipse.draw2d.Connection;
@@ -31,7 +30,7 @@ public class ExceptionHandlerEditPart extends ConnectionEditPart implements ITre
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "ExceptionHandler_Edge";
+	public static final String VISUAL_ID = "ExceptionHandler_Edge"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -105,5 +104,4 @@ public class ExceptionHandlerEditPart extends ConnectionEditPart implements ITre
 	public ExceptionHandlerFigure getPrimaryShape() {
 		return (ExceptionHandlerFigure) getFigure();
 	}
-
 }

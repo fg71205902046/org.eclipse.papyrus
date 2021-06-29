@@ -1,4 +1,4 @@
-/*****************************************************************************
+/**
  * Copyright (c) 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,9 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
@@ -38,7 +37,7 @@ public class ActivityCNContentCompartmentEditPart extends BaseActivityContentCom
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Activity_ActivityNodeCompartment_CN";
+	public static final String VISUAL_ID = "Activity_ActivityNodeCompartment_CN"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -77,11 +76,9 @@ public class ActivityCNContentCompartmentEditPart extends BaseActivityContentCom
 		installEditPolicy(PasteEditPolicy.PASTE_ROLE, new PasteEditPolicy());
 		// in Papyrus diagrams are not strongly synchronised
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityCNContentCompartmentCanonicalEditPolicy());
-
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new ActivityParameterNodeInCompartmentCreationEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new CompartmentXYLayoutEditPolicy());
 		installEditPolicy(BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY, new BorderDisplayEditPolicy());
 	}
-
 }

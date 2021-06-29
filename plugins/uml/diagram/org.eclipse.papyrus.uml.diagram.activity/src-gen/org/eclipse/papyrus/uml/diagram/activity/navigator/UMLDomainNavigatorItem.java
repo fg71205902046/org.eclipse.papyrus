@@ -1,6 +1,5 @@
-/*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
- *
+/**
+ * Copyright (c) 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,9 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.activity.navigator;
 
 import org.eclipse.core.runtime.IAdapterFactory;
@@ -37,7 +35,7 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
 
 			@Override
-			@SuppressWarnings("rawtypes")
+			@SuppressWarnings({ "rawtypes", "unchecked" })
 			public Object getAdapter(Object adaptableObject, Class adapterType) {
 				if (adaptableObject instanceof org.eclipse.papyrus.uml.diagram.activity.navigator.UMLDomainNavigatorItem) {
 					org.eclipse.papyrus.uml.diagram.activity.navigator.UMLDomainNavigatorItem domainNavigatorItem = (org.eclipse.papyrus.uml.diagram.activity.navigator.UMLDomainNavigatorItem) adaptableObject;
@@ -54,7 +52,7 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 			}
 
 			@Override
-			@SuppressWarnings("rawtypes")
+			@SuppressWarnings({ "rawtypes", "unchecked" })
 			public Class[] getAdapterList() {
 				return supportedTypes;
 			}

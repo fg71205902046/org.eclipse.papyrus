@@ -1,4 +1,4 @@
-/*****************************************************************************
+/**
  * Copyright (c) 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,9 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 
 import java.util.Collections;
@@ -66,7 +65,7 @@ public class ActivityParameterNodeEditPart extends RoundedBorderNamedElementEdit
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "ActivityParameterNode_Shape";
+	public static final String VISUAL_ID = "ActivityParameterNode_Shape"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -93,9 +92,7 @@ public class ActivityParameterNodeEditPart extends RoundedBorderNamedElementEdit
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new PinLayoutEditPolicy());
@@ -165,20 +162,19 @@ public class ActivityParameterNodeEditPart extends RoundedBorderNamedElementEdit
 		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
 			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge
-					&& false == notifier instanceof BasicCompartment) {
+			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
 				if (modelChildren.contains(event.getNotifier())) {
 					return;
 				}
 			}
 		}
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure createNodeShape() {
 		return primaryShape = new RoundedCompartmentFigure();
 	}
@@ -201,8 +197,6 @@ public class ActivityParameterNodeEditPart extends RoundedBorderNamedElementEdit
 			((ParameterNodeNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
-
 		return false;
 	}
 
@@ -266,6 +260,8 @@ public class ActivityParameterNodeEditPart extends RoundedBorderNamedElementEdit
 	/**
 	 * @generated
 	 */
+
+	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
 		return result;
@@ -296,8 +292,10 @@ public class ActivityParameterNodeEditPart extends RoundedBorderNamedElementEdit
 	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
+	 *
 	 * @generated
 	 */
+	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
@@ -353,5 +351,4 @@ public class ActivityParameterNodeEditPart extends RoundedBorderNamedElementEdit
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ParameterNodeNameEditPart.VISUAL_ID));
 	}
-
 }

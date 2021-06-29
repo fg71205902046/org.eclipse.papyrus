@@ -1,4 +1,4 @@
-/*****************************************************************************
+/**
  * Copyright (c) 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,9 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
@@ -56,7 +55,7 @@ public class LoopNodeEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "LoopNode_Shape";
+	public static final String VISUAL_ID = "LoopNode_Shape"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -83,13 +82,10 @@ public class LoopNodeEditPart extends RoundedCompartmentEditPart {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		// in Papyrus diagrams are not strongly synchronised
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.LoopNodeCanonicalEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
@@ -146,7 +142,6 @@ public class LoopNodeEditPart extends RoundedCompartmentEditPart {
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -175,75 +170,42 @@ public class LoopNodeEditPart extends RoundedCompartmentEditPart {
 			((LoopNodeKeywordEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
-
 		if (childEditPart instanceof LoopNodeStructuredActivityNodeContentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getStructuredActivityNodeCompartment();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((LoopNodeStructuredActivityNodeContentCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-
-
-
-		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof InputPinInLoopNodeAsVariableEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
 			getBorderedFigure().getBorderItemContainer().add(((InputPinInLoopNodeAsVariableEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
-		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ValuePinInLoopNodeAsVariableEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
 			getBorderedFigure().getBorderItemContainer().add(((ValuePinInLoopNodeAsVariableEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
-		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ActionPinInLoopNodeAsVariableEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
 			getBorderedFigure().getBorderItemContainer().add(((ActionPinInLoopNodeAsVariableEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
-		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof OutputPinInLoopNodeAsBodyOutputEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.EAST);
 			getBorderedFigure().getBorderItemContainer().add(((OutputPinInLoopNodeAsBodyOutputEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
-		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof OutputPinInLoopNodeAsLoopVariableEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.EAST);
 			getBorderedFigure().getBorderItemContainer().add(((OutputPinInLoopNodeAsLoopVariableEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
-		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof OutputPinInLoopNodeAsResultEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.EAST);
 			getBorderedFigure().getBorderItemContainer().add(((OutputPinInLoopNodeAsResultEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
 		return false;
 	}
 
@@ -325,6 +287,7 @@ public class LoopNodeEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+
 	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
@@ -351,6 +314,7 @@ public class LoopNodeEditPart extends RoundedCompartmentEditPart {
 	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
+	 *
 	 * @generated
 	 */
 	@Override
@@ -409,5 +373,4 @@ public class LoopNodeEditPart extends RoundedCompartmentEditPart {
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(LoopNodeKeywordEditPart.VISUAL_ID));
 	}
-
 }

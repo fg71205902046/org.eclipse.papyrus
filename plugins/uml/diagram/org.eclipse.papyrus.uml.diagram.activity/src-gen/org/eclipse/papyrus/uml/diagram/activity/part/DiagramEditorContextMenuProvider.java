@@ -1,6 +1,5 @@
-/*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
- *
+/**
+ * Copyright (c) 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,9 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.activity.part;
 
 import org.eclipse.emf.ecore.EObject;
@@ -49,18 +47,15 @@ public class DiagramEditorContextMenuProvider extends DiagramContextMenuProvider
 	public void buildContextMenu(final IMenuManager menu) {
 		getViewer().flush();
 		try {
-			TransactionUtil.getEditingDomain(
-					(EObject) getViewer().getContents().getModel()).runExclusive(new Runnable() {
-
-						@Override
-						public void run() {
-							ContributionItemService.getInstance().contributeToPopupMenu(
-									DiagramEditorContextMenuProvider.this, part);
-							menu.remove(ActionIds.ACTION_DELETE_FROM_MODEL);
-						}
-					});
+			TransactionUtil.getEditingDomain((EObject) getViewer().getContents().getModel()).runExclusive(new Runnable() {
+				@Override
+				public void run() {
+					ContributionItemService.getInstance().contributeToPopupMenu(DiagramEditorContextMenuProvider.this, part);
+					menu.remove(ActionIds.ACTION_DELETE_FROM_MODEL);
+				}
+			});
 		} catch (Exception e) {
-			UMLDiagramEditorPlugin.getInstance().logError("Error building context menu", e);
+			UMLDiagramEditorPlugin.getInstance().logError("Error building context menu", e); //$NON-NLS-1$
 		}
 	}
 }

@@ -1,4 +1,4 @@
-/*****************************************************************************
+/**
  * Copyright (c) 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,13 +9,11 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.ScalablePolygonShape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
@@ -26,7 +24,6 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
@@ -34,7 +31,9 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNod
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
+import org.eclipse.papyrus.uml.diagram.activity.draw2d.ScalablePolygonShape;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editparts.AbstractBorderItemEditPart;
 import org.eclipse.swt.graphics.Color;
 
 /**
@@ -45,7 +44,7 @@ public class ExpansionNodeAsInEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "ExpansionNode_InputShape";
+	public static final String VISUAL_ID = "ExpansionNode_InputShape"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -72,9 +71,7 @@ public class ExpansionNodeAsInEditPart extends AbstractBorderItemEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new PinLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
@@ -112,6 +109,7 @@ public class ExpansionNodeAsInEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure createNodeShape() {
 		return primaryShape = new ExpansionNodeDescriptor();
 	}
@@ -121,6 +119,7 @@ public class ExpansionNodeAsInEditPart extends AbstractBorderItemEditPart {
 	 *
 	 * @generated
 	 */
+	@Override
 	public ExpansionNodeDescriptor getPrimaryShape() {
 		return (ExpansionNodeDescriptor) primaryShape;
 	}
@@ -128,6 +127,8 @@ public class ExpansionNodeAsInEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
+
+	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(48, 16);
 		return result;
@@ -158,8 +159,10 @@ public class ExpansionNodeAsInEditPart extends AbstractBorderItemEditPart {
 	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
+	 *
 	 * @generated
 	 */
+	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		return nodeShape; // use nodeShape itself as contentPane
 	}
@@ -208,6 +211,9 @@ public class ExpansionNodeAsInEditPart extends AbstractBorderItemEditPart {
 	 */
 	public class ExpansionNodeDescriptor extends ScalablePolygonShape {
 
+
+
+
 		/**
 		 * @generated
 		 */
@@ -228,6 +234,10 @@ public class ExpansionNodeAsInEditPart extends AbstractBorderItemEditPart {
 			this.setFill(true);
 			this.setMaximumSize(new Dimension(getMapMode().DPtoLP(48), getMapMode().DPtoLP(16)));
 		}
+
+
+
+
 
 	}
 

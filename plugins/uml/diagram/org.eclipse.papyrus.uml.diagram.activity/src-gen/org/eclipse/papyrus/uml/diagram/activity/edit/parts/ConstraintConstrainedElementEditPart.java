@@ -1,4 +1,4 @@
-/*****************************************************************************
+/**
  * Copyright (c) 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,9 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 
 import org.eclipse.draw2d.Connection;
@@ -30,7 +29,7 @@ public class ConstraintConstrainedElementEditPart extends UMLConnectionNodeEditP
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Constraint_ConstrainedElementEdge";
+	public static final String VISUAL_ID = "Constraint_ConstrainedElementEdge"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -68,5 +67,4 @@ public class ConstraintConstrainedElementEditPart extends UMLConnectionNodeEditP
 	public LinkFigure getPrimaryShape() {
 		return (LinkFigure) getFigure();
 	}
-
 }

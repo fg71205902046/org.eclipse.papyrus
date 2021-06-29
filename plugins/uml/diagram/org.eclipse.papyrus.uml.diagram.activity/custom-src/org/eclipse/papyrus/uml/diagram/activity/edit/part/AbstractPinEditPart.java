@@ -15,13 +15,13 @@ import java.util.List;
 
 import org.eclipse.draw2d.AbstractPointListShape;
 import org.eclipse.gef.ConnectionEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.BorderedBorderItemEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ControlFlowEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.figures.PinFigure;
 import org.eclipse.papyrus.uml.diagram.activity.helper.ActivityFigureDrawer;
+import org.eclipse.papyrus.uml.diagram.common.editparts.BorderedBorderItemEditPart;
 
 
 /**
@@ -171,6 +171,7 @@ public abstract class AbstractPinEditPart extends BorderedBorderItemEditPart {
 		redrawPinArrow(connection, getSourceConnections());
 	}
 
+	@Override
 	public abstract PinFigure getPrimaryShape();
 
 	/**

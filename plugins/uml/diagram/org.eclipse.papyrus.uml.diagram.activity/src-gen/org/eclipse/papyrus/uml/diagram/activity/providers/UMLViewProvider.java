@@ -1,6 +1,5 @@
-/*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
- *
+/**
+ * Copyright (c) 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,9 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.activity.providers;
 
 import java.util.ArrayList;
@@ -34,7 +32,6 @@ import org.eclipse.gmf.runtime.diagram.core.services.view.CreateNodeViewOperatio
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewForKindOperation;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewOperation;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
@@ -42,28 +39,20 @@ import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
-import org.eclipse.gmf.runtime.notation.FillStyle;
-import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.MeasurementUnit;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.RelativeBendpoints;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.TitleStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.jface.preference.PreferenceConverter;
-import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.DiagramVersioningUtils;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.*;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.FontData;
 
 /**
  * @generated
@@ -79,7 +68,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return provides((CreateViewForKindOperation) operation);
 		}
 		assert operation instanceof CreateViewOperation;
-
 		/* we check this view provider is the good one for the currently edited diagram */
 		if (operation instanceof CreateChildViewOperation) {
 			View container = ((CreateChildViewOperation) operation).getContainerView();
@@ -88,7 +76,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				return false;
 			}
 		}
-
 		if (operation instanceof CreateDiagramViewOperation) {
 			return provides((CreateDiagramViewOperation) operation);
 		} else if (operation instanceof CreateEdgeViewOperation) {
@@ -103,36 +90,30 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 * @generated
 	 */
 	protected boolean provides(CreateViewForKindOperation op) {
-		/*
-		 * if (op.getViewKind() == Node.class)
-		 * return getNodeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
-		 * if (op.getViewKind() == Edge.class)
-		 * return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
-		 */
-
 		// check Diagram Type should be the class diagram
 		String modelID = UMLVisualIDRegistry.getModelID(op.getContainerView());
 		if (!getDiagramProvidedId().equals(modelID)) {
 			return false;
 		}
-
 		String visualID = UMLVisualIDRegistry.getVisualID(op.getSemanticHint());
 		if (Node.class.isAssignableFrom(op.getViewKind())) {
 			return UMLVisualIDRegistry.canCreateNode(op.getContainerView(), visualID);
 		}
-
 		return true;
 	}
 
 	/**
-	 * Indicates for which diagram this provider works for.
-	 * <p>
-	 * This method can be overloaded when diagram editor inherits from another one
-	 * </p>
-	 *
-	 * @return the unique identifier of the diagram for which views are provided.
+	 * @generated
 	 */
 	protected String getDiagramProvidedId() {
+		/*
+		 * Indicates for which diagram this provider works for.
+		 * <p>
+		 * This method can be overloaded when diagram editor inherits from another one, but should never be <code>null</code>
+		 * </p>
+		 *
+		 * @return the unique identifier of the diagram for which views are provided.
+		 */
 		return ActivityDiagramEditPart.MODEL_ID;
 	}
 
@@ -165,18 +146,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		} else {
 			visualID = UMLVisualIDRegistry.getVisualID(op.getSemanticHint());
 			if (elementType != null) {
-
 				if (!UMLElementTypes.isKnownElementType(elementType) || (!(elementType instanceof IHintedType))) {
 					return false; // foreign element type
 				}
-
 				String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
 				if (!op.getSemanticHint().equals(elementTypeHint)) {
 					return false; // if semantic hint is specified it should be the same as in element type
 				}
-				// if (domainElement != null && !visualID.equals(org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement))) {
-				// return false; // visual id for node EClass should match visual id from element type
-				// }
 			} else {
 				if (!ActivityDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(op.getContainerView()))) {
 					return false; // foreign diagram
@@ -379,7 +355,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				}
 			}
 		}
-
 		return UMLVisualIDRegistry.canCreateNode(op.getContainerView(), visualID);
 	}
 
@@ -388,28 +363,21 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 */
 	protected boolean provides(CreateEdgeViewOperation op) {
 		IElementType elementType = getSemanticElementType(op.getSemanticAdapter());
-
 		if (!UMLElementTypes.isKnownElementType(elementType) || (!(elementType instanceof IHintedType))) {
 			return false; // foreign element type
 		}
-
 		String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
 		if (elementTypeHint == null || (op.getSemanticHint() != null && !elementTypeHint.equals(op.getSemanticHint()))) {
 			return false; // our hint is visual id and must be specified, and it should be the same as in element type
 		}
-		// String visualID = org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry.getVisualID(elementTypeHint);
-		// org.eclipse.emf.ecore.EObject domainElement = getSemanticElement(op.getSemanticAdapter());
-		// if (domainElement != null && !visualID.equals(org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry.getLinkWithClassVisualID(domainElement))) {
-		// return false; // visual id for link EClass should match visual id from element type
-		// }
 		return true;
 	}
 
 	/**
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
+	@SuppressWarnings("unchecked")
 	public Diagram createDiagram(IAdaptable semanticAdapter, String diagramKind, PreferencesHint preferencesHint) {
 		Diagram diagram = NotationFactory.eINSTANCE.createDiagram();
 		DiagramVersioningUtils.stampCurrentVersion(diagram);
@@ -424,8 +392,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 * @generated
 	 */
 	@Override
-	public Node createNode(IAdaptable semanticAdapter, View containerView, String semanticHint, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createNode(IAdaptable semanticAdapter, View containerView, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
 		final EObject domainElement = getSemanticElement(semanticAdapter);
 		final String visualID;
 		if (semanticHint == null) {
@@ -817,8 +784,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 * @generated
 	 */
 	@Override
-	public Edge createEdge(IAdaptable semanticAdapter, View containerView, String semanticHint, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Edge createEdge(IAdaptable semanticAdapter, View containerView, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
 		IElementType elementType = getSemanticElementType(semanticAdapter);
 		String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
 		String vid = UMLVisualIDRegistry.getVisualID(elementTypeHint);
@@ -847,8 +813,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createActivity_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createActivity_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActivityEditPart.VISUAL_ID));
@@ -857,71 +822,63 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		stampShortcut(containerView, node);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Activity");
-		Node activity_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActivityNameEditPart.VISUAL_ID));
-		Node activity_KeywordLabel = createLabel(node, UMLVisualIDRegistry.getType(ActivityIsSingleExecutionEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Activity"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(ActivityNameEditPart.VISUAL_ID));
+		createLabel(node, UMLVisualIDRegistry.getType(ActivityIsSingleExecutionEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(ActivityActivityParametersCompartmentEditPart.VISUAL_ID), false, false, true, true);
 		createCompartment(node, UMLVisualIDRegistry.getType(ActivityActivityPreConditionsCompartmentEditPart.VISUAL_ID), false, false, true, true);
 		createCompartment(node, UMLVisualIDRegistry.getType(ActivityActivityPostConditionsCompartmentEditPart.VISUAL_ID), false, false, true, true);
 		createCompartment(node, UMLVisualIDRegistry.getType(ActivityActivityContentCompartmentEditPart.VISUAL_ID), false, false, false, false);
-		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Activity");
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Activity"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createParameter_ParameterLabel(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createParameter_ParameterLabel(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Node node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		node.setType(UMLVisualIDRegistry.getType(ParameterEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Parameter");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Parameter"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createConstraint_PreconditionLabel(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createConstraint_PreconditionLabel(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Node node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		node.setType(UMLVisualIDRegistry.getType(ConstraintInActivityAsPrecondEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Constraint");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Constraint"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createConstraint_PostconditionLabel(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createConstraint_PostconditionLabel(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Node node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		node.setType(UMLVisualIDRegistry.getType(ConstraintInActivityAsPostcondEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Constraint");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Constraint"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createInitialNode_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createInitialNode_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(InitialNodeEditPart.VISUAL_ID));
@@ -929,8 +886,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InitialNode");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InitialNode"); //$NON-NLS-1$
 		Node initialNode_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(InitialNodeFloatingNameEditPart.VISUAL_ID));
 		initialNode_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location initialNode_FloatingNameLabel_Location = (Location) initialNode_FloatingNameLabel.getLayoutConstraint();
@@ -941,15 +897,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location initialNode_StereotypeLabel_Location = (Location) initialNode_StereotypeLabel.getLayoutConstraint();
 		initialNode_StereotypeLabel_Location.setX(0);
 		initialNode_StereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "InitialNode");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "InitialNode"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createActivityFinalNode_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createActivityFinalNode_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActivityFinalNodeEditPart.VISUAL_ID));
@@ -957,8 +912,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActivityFinalNode");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActivityFinalNode"); //$NON-NLS-1$
 		Node activityFinalNode_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActivityFinalNodeFloatingNameEditPart.VISUAL_ID));
 		activityFinalNode_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location activityFinalNode_FloatingNameLabel_Location = (Location) activityFinalNode_FloatingNameLabel.getLayoutConstraint();
@@ -969,15 +923,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location activityFinalNode_StereotypeLabel_Location = (Location) activityFinalNode_StereotypeLabel.getLayoutConstraint();
 		activityFinalNode_StereotypeLabel_Location.setX(0);
 		activityFinalNode_StereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ActivityFinalNode");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ActivityFinalNode"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createFlowFinalNode_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createFlowFinalNode_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(FlowFinalNodeEditPart.VISUAL_ID));
@@ -985,8 +938,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "FlowFinalNode");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "FlowFinalNode"); //$NON-NLS-1$
 		Node flowFinalNode_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(FlowFinalNodeFloatingNameEditPart.VISUAL_ID));
 		flowFinalNode_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location flowFinalNode_FloatingNameLabel_Location = (Location) flowFinalNode_FloatingNameLabel.getLayoutConstraint();
@@ -997,15 +949,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location flowFinalNode_StereotypeLabel_Location = (Location) flowFinalNode_StereotypeLabel.getLayoutConstraint();
 		flowFinalNode_StereotypeLabel_Location.setX(0);
 		flowFinalNode_StereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "FlowFinalNode");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "FlowFinalNode"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createOpaqueAction_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createOpaqueAction_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(OpaqueActionEditPart.VISUAL_ID));
@@ -1013,9 +964,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OpaqueAction");
-		Node opaqueAction_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(OpaqueActionNameEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OpaqueAction"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(OpaqueActionNameEditPart.VISUAL_ID));
 		Node opaqueAction_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(OpaqueActionFloatingNameEditPart.VISUAL_ID));
 		opaqueAction_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location opaqueAction_FloatingNameLabel_Location = (Location) opaqueAction_FloatingNameLabel.getLayoutConstraint();
@@ -1027,8 +977,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createValuePin_OpaqueActionInputShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createValuePin_OpaqueActionInputShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ValuePinInOpaqueActEditPart.VISUAL_ID));
@@ -1036,8 +985,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		Node valuePin_OpaqueActionInputNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInOActLabelEditPart.VISUAL_ID));
 		valuePin_OpaqueActionInputNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location valuePin_OpaqueActionInputNameLabel_Location = (Location) valuePin_OpaqueActionInputNameLabel.getLayoutConstraint();
@@ -1053,15 +1001,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location valuePin_OpaqueActionInputStereotypeLabel_Location = (Location) valuePin_OpaqueActionInputStereotypeLabel.getLayoutConstraint();
 		valuePin_OpaqueActionInputStereotypeLabel_Location.setX(0);
 		valuePin_OpaqueActionInputStereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createActionInputPin_OpaqueActionInputShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createActionInputPin_OpaqueActionInputShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActionInputPinInOpaqueActEditPart.VISUAL_ID));
@@ -1069,8 +1016,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		Node actionInputPin_OpaqueActionInputNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActionInputPinInOActLabelEditPart.VISUAL_ID));
 		actionInputPin_OpaqueActionInputNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actionInputPin_OpaqueActionInputNameLabel_Location = (Location) actionInputPin_OpaqueActionInputNameLabel.getLayoutConstraint();
@@ -1086,15 +1032,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location actionInputPin_OpaqueActionInputStereotypeLabel_Location = (Location) actionInputPin_OpaqueActionInputStereotypeLabel.getLayoutConstraint();
 		actionInputPin_OpaqueActionInputStereotypeLabel_Location.setX(0);
 		actionInputPin_OpaqueActionInputStereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createInputPin_OpaqueActionInputShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createInputPin_OpaqueActionInputShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(InputPinInOpaqueActEditPart.VISUAL_ID));
@@ -1102,8 +1047,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		Node inputPin_OpaqueActionInputNameLabel = createLabel(node, UMLVisualIDRegistry.getType(InputPinInOActLabelEditPart.VISUAL_ID));
 		inputPin_OpaqueActionInputNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location inputPin_OpaqueActionInputNameLabel_Location = (Location) inputPin_OpaqueActionInputNameLabel.getLayoutConstraint();
@@ -1114,15 +1058,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location inputPin_OpaqueActionInputStereotypeLabel_Location = (Location) inputPin_OpaqueActionInputStereotypeLabel.getLayoutConstraint();
 		inputPin_OpaqueActionInputStereotypeLabel_Location.setX(0);
 		inputPin_OpaqueActionInputStereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createOutputPin_OpaqueActionOutputShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createOutputPin_OpaqueActionOutputShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(OutputPinInOpaqueActEditPart.VISUAL_ID));
@@ -1130,8 +1073,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin"); //$NON-NLS-1$
 		Node outputPin_OpaqueActionOutputNameLabel = createLabel(node, UMLVisualIDRegistry.getType(OutputPinInOActLabelEditPart.VISUAL_ID));
 		outputPin_OpaqueActionOutputNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location outputPin_OpaqueActionOutputNameLabel_Location = (Location) outputPin_OpaqueActionOutputNameLabel.getLayoutConstraint();
@@ -1142,15 +1084,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location outputPin_OpaqueActionOutputStereotypeLabel_Location = (Location) outputPin_OpaqueActionOutputStereotypeLabel.getLayoutConstraint();
 		outputPin_OpaqueActionOutputStereotypeLabel_Location.setX(0);
 		outputPin_OpaqueActionOutputStereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "OutputPin");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "OutputPin"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createCallBehaviorAction_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createCallBehaviorAction_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(CallBehaviorActionEditPart.VISUAL_ID));
@@ -1158,9 +1099,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "CallBehaviorAction");
-		Node callBehaviorAction_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(CallBehaviorActionNameEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "CallBehaviorAction"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(CallBehaviorActionNameEditPart.VISUAL_ID));
 		Node callBehaviorAction_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(CallBehaviorActionFloatingNameEditPart.VISUAL_ID));
 		callBehaviorAction_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location callBehaviorAction_FloatingNameLabel_Location = (Location) callBehaviorAction_FloatingNameLabel.getLayoutConstraint();
@@ -1172,8 +1112,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createValuePin_CallBehaviorActionArgumentShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createValuePin_CallBehaviorActionArgumentShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ValuePinInCallBeActEditPart.VISUAL_ID));
@@ -1181,8 +1120,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		Node valuePin_CallBehaviorActionArgumentNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInCBActLabelEditPart.VISUAL_ID));
 		valuePin_CallBehaviorActionArgumentNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location valuePin_CallBehaviorActionArgumentNameLabel_Location = (Location) valuePin_CallBehaviorActionArgumentNameLabel.getLayoutConstraint();
@@ -1198,15 +1136,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location valuePin_CallBehaviorActionArgumentStereotypeLabel_Location = (Location) valuePin_CallBehaviorActionArgumentStereotypeLabel.getLayoutConstraint();
 		valuePin_CallBehaviorActionArgumentStereotypeLabel_Location.setX(0);
 		valuePin_CallBehaviorActionArgumentStereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createActionInputPin_CallBehaviorActionArgumentShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createActionInputPin_CallBehaviorActionArgumentShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActionInputPinInCallBeActEditPart.VISUAL_ID));
@@ -1214,8 +1151,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		Node actionInputPin_CallBehaviorActionArgumentNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActionInputPinInCBActLabelEditPart.VISUAL_ID));
 		actionInputPin_CallBehaviorActionArgumentNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actionInputPin_CallBehaviorActionArgumentNameLabel_Location = (Location) actionInputPin_CallBehaviorActionArgumentNameLabel.getLayoutConstraint();
@@ -1231,15 +1167,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location actionInputPin_CallBehaviorActionArgumentStereotypeLabel_Location = (Location) actionInputPin_CallBehaviorActionArgumentStereotypeLabel.getLayoutConstraint();
 		actionInputPin_CallBehaviorActionArgumentStereotypeLabel_Location.setX(0);
 		actionInputPin_CallBehaviorActionArgumentStereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createInputPin_CallBehaviorActionArgumentShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createInputPin_CallBehaviorActionArgumentShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(InputPinInCallBeActEditPart.VISUAL_ID));
@@ -1247,8 +1182,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		Node inputPin_CallBehaviorActionArgumentNameLabel = createLabel(node, UMLVisualIDRegistry.getType(InputPinInCBActLabelEditPart.VISUAL_ID));
 		inputPin_CallBehaviorActionArgumentNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location inputPin_CallBehaviorActionArgumentNameLabel_Location = (Location) inputPin_CallBehaviorActionArgumentNameLabel.getLayoutConstraint();
@@ -1259,15 +1193,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location inputPin_CallBehaviorActionArgumentStereotypeLabel_Location = (Location) inputPin_CallBehaviorActionArgumentStereotypeLabel.getLayoutConstraint();
 		inputPin_CallBehaviorActionArgumentStereotypeLabel_Location.setX(0);
 		inputPin_CallBehaviorActionArgumentStereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createOutputPin_CallBehaviorActionResultShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createOutputPin_CallBehaviorActionResultShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(OutputPinInCallBeActEditPart.VISUAL_ID));
@@ -1275,8 +1208,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin"); //$NON-NLS-1$
 		Node outputPin_CallBehaviorActionResultNameLabel = createLabel(node, UMLVisualIDRegistry.getType(OutputPinInCBActLabelEditPart.VISUAL_ID));
 		outputPin_CallBehaviorActionResultNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location outputPin_CallBehaviorActionResultNameLabel_Location = (Location) outputPin_CallBehaviorActionResultNameLabel.getLayoutConstraint();
@@ -1287,15 +1219,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location outputPin_CallBehaviorActionResultStereotypeLabel_Location = (Location) outputPin_CallBehaviorActionResultStereotypeLabel.getLayoutConstraint();
 		outputPin_CallBehaviorActionResultStereotypeLabel_Location.setX(0);
 		outputPin_CallBehaviorActionResultStereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "OutputPin");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "OutputPin"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createCallOperationAction_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createCallOperationAction_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(CallOperationActionEditPart.VISUAL_ID));
@@ -1303,9 +1234,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "CallOperationAction");
-		Node callOperationAction_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(CallOperationActionNameEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "CallOperationAction"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(CallOperationActionNameEditPart.VISUAL_ID));
 		Node callOperationAction_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(CallOperationActionFloatingNameEditPart.VISUAL_ID));
 		callOperationAction_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location callOperationAction_FloatingNameLabel_Location = (Location) callOperationAction_FloatingNameLabel.getLayoutConstraint();
@@ -1317,8 +1247,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createActionInputPin_CallOperationActionArgumentShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createActionInputPin_CallOperationActionArgumentShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActionInputPinInCallOpActEditPart.VISUAL_ID));
@@ -1326,8 +1255,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		Node actionInputPin_CallOperationActionArgumentNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActionInputPinInCOActLabelEditPart.VISUAL_ID));
 		actionInputPin_CallOperationActionArgumentNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actionInputPin_CallOperationActionArgumentNameLabel_Location = (Location) actionInputPin_CallOperationActionArgumentNameLabel.getLayoutConstraint();
@@ -1343,15 +1271,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location actionInputPin_CallOperationActionArgumentStereotypeLabel_Location = (Location) actionInputPin_CallOperationActionArgumentStereotypeLabel.getLayoutConstraint();
 		actionInputPin_CallOperationActionArgumentStereotypeLabel_Location.setX(0);
 		actionInputPin_CallOperationActionArgumentStereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createValuePin_CallOperationActionArgumentShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createValuePin_CallOperationActionArgumentShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ValuePinInCallOpActEditPart.VISUAL_ID));
@@ -1359,8 +1286,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		Node valuePin_CallOperationActionArgumentNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInCOActLabelEditPart.VISUAL_ID));
 		valuePin_CallOperationActionArgumentNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location valuePin_CallOperationActionArgumentNameLabel_Location = (Location) valuePin_CallOperationActionArgumentNameLabel.getLayoutConstraint();
@@ -1376,15 +1302,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location valuePin_CallOperationActionArgumentStereotypeLabel_Location = (Location) valuePin_CallOperationActionArgumentStereotypeLabel.getLayoutConstraint();
 		valuePin_CallOperationActionArgumentStereotypeLabel_Location.setX(0);
 		valuePin_CallOperationActionArgumentStereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createInputPin_CallOperationActionArgumentShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createInputPin_CallOperationActionArgumentShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(InputPinInCallOpActEditPart.VISUAL_ID));
@@ -1392,8 +1317,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		Node inputPin_CallOperationActionArgumentNameLabel = createLabel(node, UMLVisualIDRegistry.getType(InputPinInCOActLabelEditPart.VISUAL_ID));
 		inputPin_CallOperationActionArgumentNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location inputPin_CallOperationActionArgumentNameLabel_Location = (Location) inputPin_CallOperationActionArgumentNameLabel.getLayoutConstraint();
@@ -1404,15 +1328,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location inputPin_CallOperationActionArgumentStereotypeLabel_Location = (Location) inputPin_CallOperationActionArgumentStereotypeLabel.getLayoutConstraint();
 		inputPin_CallOperationActionArgumentStereotypeLabel_Location.setX(0);
 		inputPin_CallOperationActionArgumentStereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createOutputPin_CallOperationActionResultShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createOutputPin_CallOperationActionResultShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(OutputPinInCallOpActEditPart.VISUAL_ID));
@@ -1420,8 +1343,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin"); //$NON-NLS-1$
 		Node outputPin_CallOperationActionResultNameLabel = createLabel(node, UMLVisualIDRegistry.getType(OutputPinInCOActLabelEditPart.VISUAL_ID));
 		outputPin_CallOperationActionResultNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location outputPin_CallOperationActionResultNameLabel_Location = (Location) outputPin_CallOperationActionResultNameLabel.getLayoutConstraint();
@@ -1432,15 +1354,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location outputPin_CallOperationActionResultStereotypeLabel_Location = (Location) outputPin_CallOperationActionResultStereotypeLabel.getLayoutConstraint();
 		outputPin_CallOperationActionResultStereotypeLabel_Location.setX(0);
 		outputPin_CallOperationActionResultStereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "OutputPin");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "OutputPin"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createValuePin_CallOperationActionTargetShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createValuePin_CallOperationActionTargetShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ValuePinInCallOpActAsTargetEditPart.VISUAL_ID));
@@ -1448,8 +1369,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		Node valuePin_CallOperationActionTargetNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInCOActAsTargetLabelEditPart.VISUAL_ID));
 		valuePin_CallOperationActionTargetNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location valuePin_CallOperationActionTargetNameLabel_Location = (Location) valuePin_CallOperationActionTargetNameLabel.getLayoutConstraint();
@@ -1465,15 +1385,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location valuePin_CallOperationActionTargetStereotypeLabel_Location = (Location) valuePin_CallOperationActionTargetStereotypeLabel.getLayoutConstraint();
 		valuePin_CallOperationActionTargetStereotypeLabel_Location.setX(0);
 		valuePin_CallOperationActionTargetStereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createActionInputPin_CallOperationActionTargetShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createActionInputPin_CallOperationActionTargetShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActionInputPinInCallOpActAsTargetEditPart.VISUAL_ID));
@@ -1481,8 +1400,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		Node actionInputPin_CallOperationActionTargetNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActionInputPinInCOActAsTargetLabelEditPart.VISUAL_ID));
 		actionInputPin_CallOperationActionTargetNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actionInputPin_CallOperationActionTargetNameLabel_Location = (Location) actionInputPin_CallOperationActionTargetNameLabel.getLayoutConstraint();
@@ -1498,15 +1416,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location actionInputPin_CallOperationActionTargetStereotypeLabel_Location = (Location) actionInputPin_CallOperationActionTargetStereotypeLabel.getLayoutConstraint();
 		actionInputPin_CallOperationActionTargetStereotypeLabel_Location.setX(0);
 		actionInputPin_CallOperationActionTargetStereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createInputPin_CallOperationActionTargetShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createInputPin_CallOperationActionTargetShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(InputPinInCallOpActAsTargetEditPart.VISUAL_ID));
@@ -1514,8 +1431,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		Node inputPin_CallOperationActionTargetNameLabel = createLabel(node, UMLVisualIDRegistry.getType(InputPinInCOActAsTargetLabelEditPart.VISUAL_ID));
 		inputPin_CallOperationActionTargetNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location inputPin_CallOperationActionTargetNameLabel_Location = (Location) inputPin_CallOperationActionTargetNameLabel.getLayoutConstraint();
@@ -1526,15 +1442,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location inputPin_CallOperationActionTargetStereotypeLabel_Location = (Location) inputPin_CallOperationActionTargetStereotypeLabel.getLayoutConstraint();
 		inputPin_CallOperationActionTargetStereotypeLabel_Location.setX(0);
 		inputPin_CallOperationActionTargetStereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createDurationConstraint_LocalPreconditionShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createDurationConstraint_LocalPreconditionShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(DurationConstraintAsLocalPrecondEditPart.VISUAL_ID));
@@ -1542,18 +1457,16 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DurationConstraint");
-		Node durationConstraint_LocalPreconditionNameLabel = createLabel(node, UMLVisualIDRegistry.getType(DurationConstraintAsLocalPrecondNameEditPart.VISUAL_ID));
-		Node durationConstraint_LocalPreconditionBodyLabel = createLabel(node, UMLVisualIDRegistry.getType(DurationConstraintAsLocalPrecondBodyEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DurationConstraint"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(DurationConstraintAsLocalPrecondNameEditPart.VISUAL_ID));
+		createLabel(node, UMLVisualIDRegistry.getType(DurationConstraintAsLocalPrecondBodyEditPart.VISUAL_ID));
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createDurationConstraint_LocalPostconditionShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createDurationConstraint_LocalPostconditionShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(DurationConstraintAsLocalPostcondEditPart.VISUAL_ID));
@@ -1561,18 +1474,16 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DurationConstraint");
-		Node durationConstraint_LocalPostconditionNameLabel = createLabel(node, UMLVisualIDRegistry.getType(DurationConstraintAsLocalPostcondNameEditPart.VISUAL_ID));
-		Node durationConstraint_LocalPostconditionBodyLabel = createLabel(node, UMLVisualIDRegistry.getType(DurationConstraintAsLocalPostcondBodyEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DurationConstraint"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(DurationConstraintAsLocalPostcondNameEditPart.VISUAL_ID));
+		createLabel(node, UMLVisualIDRegistry.getType(DurationConstraintAsLocalPostcondBodyEditPart.VISUAL_ID));
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createTimeConstraint_LocalPreconditionShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createTimeConstraint_LocalPreconditionShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(TimeConstraintAsLocalPrecondEditPart.VISUAL_ID));
@@ -1580,18 +1491,16 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "TimeConstraint");
-		Node timeConstraint_LocalPreconditionNameLabel = createLabel(node, UMLVisualIDRegistry.getType(TimeConstraintAsLocalPrecondNameEditPart.VISUAL_ID));
-		Node timeConstraint_LocalPreconditionBodyLabel = createLabel(node, UMLVisualIDRegistry.getType(TimeConstraintAsLocalPrecondBodyEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "TimeConstraint"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(TimeConstraintAsLocalPrecondNameEditPart.VISUAL_ID));
+		createLabel(node, UMLVisualIDRegistry.getType(TimeConstraintAsLocalPrecondBodyEditPart.VISUAL_ID));
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createTimeConstraint_LocalPostconditionShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createTimeConstraint_LocalPostconditionShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(TimeConstraintAsLocalPostcondEditPart.VISUAL_ID));
@@ -1599,18 +1508,16 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "TimeConstraint");
-		Node timeConstraint_LocalPostconditionNameLabel = createLabel(node, UMLVisualIDRegistry.getType(TimeConstraintAsLocalPostcondNameEditPart.VISUAL_ID));
-		Node timeConstraint_LocalPostconditionBodyLabel = createLabel(node, UMLVisualIDRegistry.getType(TimeConstraintAsLocalPostcondBodyEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "TimeConstraint"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(TimeConstraintAsLocalPostcondNameEditPart.VISUAL_ID));
+		createLabel(node, UMLVisualIDRegistry.getType(TimeConstraintAsLocalPostcondBodyEditPart.VISUAL_ID));
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createIntervalConstraint_LocalPreconditionShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createIntervalConstraint_LocalPreconditionShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID));
@@ -1618,18 +1525,16 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "IntervalConstraint");
-		Node intervalConstraint_LocalPreconditionNameLabel = createLabel(node, UMLVisualIDRegistry.getType(IntervalConstraintAsLocalPrecondNameEditPart.VISUAL_ID));
-		Node intervalConstraint_LocalPreconditionBodyLabel = createLabel(node, UMLVisualIDRegistry.getType(IntervalConstraintAsLocalPrecondBodyEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "IntervalConstraint"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(IntervalConstraintAsLocalPrecondNameEditPart.VISUAL_ID));
+		createLabel(node, UMLVisualIDRegistry.getType(IntervalConstraintAsLocalPrecondBodyEditPart.VISUAL_ID));
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createIntervalConstraint_LocalPostconditionShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createIntervalConstraint_LocalPostconditionShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID));
@@ -1637,18 +1542,16 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "IntervalConstraint");
-		Node intervalConstraint_LocalPostconditionNameLabel = createLabel(node, UMLVisualIDRegistry.getType(IntervalConstraintAsLocalPostcondNameEditPart.VISUAL_ID));
-		Node intervalConstraint_LocalPostconditionBodyLabel = createLabel(node, UMLVisualIDRegistry.getType(IntervalConstraintAsLocalPostcondBodyEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "IntervalConstraint"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(IntervalConstraintAsLocalPostcondNameEditPart.VISUAL_ID));
+		createLabel(node, UMLVisualIDRegistry.getType(IntervalConstraintAsLocalPostcondBodyEditPart.VISUAL_ID));
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createConstraint_LocalPreconditionShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createConstraint_LocalPreconditionShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ConstraintAsLocalPrecondEditPart.VISUAL_ID));
@@ -1656,18 +1559,16 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Constraint");
-		Node constraint_LocalPreconditionNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ConstraintAsLocalPrecondNameEditPart.VISUAL_ID));
-		Node constraint_LocalPreconditionBodyLabel = createLabel(node, UMLVisualIDRegistry.getType(ConstraintAsLocalPrecondBodyEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Constraint"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(ConstraintAsLocalPrecondNameEditPart.VISUAL_ID));
+		createLabel(node, UMLVisualIDRegistry.getType(ConstraintAsLocalPrecondBodyEditPart.VISUAL_ID));
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createConstraint_LocalPostconditionShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createConstraint_LocalPostconditionShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ConstraintAsLocalPostcondEditPart.VISUAL_ID));
@@ -1675,18 +1576,16 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Constraint");
-		Node constraint_LocalPostconditionNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ConstraintAsLocalPostcondNameEditPart.VISUAL_ID));
-		Node constraint_LocalPostconditionBodyLabel = createLabel(node, UMLVisualIDRegistry.getType(ConstraintAsLocalPostcondBodyEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Constraint"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(ConstraintAsLocalPostcondNameEditPart.VISUAL_ID));
+		createLabel(node, UMLVisualIDRegistry.getType(ConstraintAsLocalPostcondBodyEditPart.VISUAL_ID));
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createDecisionNode_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createDecisionNode_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(DecisionNodeEditPart.VISUAL_ID));
@@ -1694,8 +1593,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DecisionNode");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DecisionNode"); //$NON-NLS-1$
 		Node decisionNode_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(DecisionNodeFloatingNameEditPart.VISUAL_ID));
 		decisionNode_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location decisionNode_FloatingNameLabel_Location = (Location) decisionNode_FloatingNameLabel.getLayoutConstraint();
@@ -1711,15 +1609,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location decisionNode_StereotypeLabel_Location = (Location) decisionNode_StereotypeLabel.getLayoutConstraint();
 		decisionNode_StereotypeLabel_Location.setX(0);
 		decisionNode_StereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "DecisionNode");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "DecisionNode"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createMergeNode_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createMergeNode_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(MergeNodeEditPart.VISUAL_ID));
@@ -1727,8 +1624,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "MergeNode");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "MergeNode"); //$NON-NLS-1$
 		Node mergeNode_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(MergeNodeFloatingNameEditPart.VISUAL_ID));
 		mergeNode_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location mergeNode_FloatingNameLabel_Location = (Location) mergeNode_FloatingNameLabel.getLayoutConstraint();
@@ -1739,15 +1635,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location mergeNode_StereotypeLabel_Location = (Location) mergeNode_StereotypeLabel.getLayoutConstraint();
 		mergeNode_StereotypeLabel_Location.setX(0);
 		mergeNode_StereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "MergeNode");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "MergeNode"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createForkNode_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createForkNode_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ForkNodeEditPart.VISUAL_ID));
@@ -1755,8 +1650,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ForkNode");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ForkNode"); //$NON-NLS-1$
 		Node forkNode_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ForkNodeFloatingNameEditPart.VISUAL_ID));
 		forkNode_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location forkNode_FloatingNameLabel_Location = (Location) forkNode_FloatingNameLabel.getLayoutConstraint();
@@ -1767,15 +1661,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location forkNode_StereotypeLabel_Location = (Location) forkNode_StereotypeLabel.getLayoutConstraint();
 		forkNode_StereotypeLabel_Location.setX(0);
 		forkNode_StereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ForkNode");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ForkNode"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createJoinNode_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createJoinNode_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(JoinNodeEditPart.VISUAL_ID));
@@ -1783,8 +1676,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "JoinNode");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "JoinNode"); //$NON-NLS-1$
 		Node joinNode_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(JoinNodeFloatingNameEditPart.VISUAL_ID));
 		joinNode_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location joinNode_FloatingNameLabel_Location = (Location) joinNode_FloatingNameLabel.getLayoutConstraint();
@@ -1800,15 +1692,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location joinNode_StereotypeLabel_Location = (Location) joinNode_StereotypeLabel.getLayoutConstraint();
 		joinNode_StereotypeLabel_Location.setX(0);
 		joinNode_StereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "JoinNode");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "JoinNode"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createDataStoreNode_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createDataStoreNode_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(DataStoreNodeEditPart.VISUAL_ID));
@@ -1816,9 +1707,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DataStoreNode");
-		Node dataStoreNode_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(DataStoreNodeLabelEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DataStoreNode"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(DataStoreNodeLabelEditPart.VISUAL_ID));
 		Node dataStoreNode_SelectionLabel = createLabel(node, UMLVisualIDRegistry.getType(DataStoreSelectionEditPart.VISUAL_ID));
 		dataStoreNode_SelectionLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location dataStoreNode_SelectionLabel_Location = (Location) dataStoreNode_SelectionLabel.getLayoutConstraint();
@@ -1835,8 +1725,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createSendObjectAction_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createSendObjectAction_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(SendObjectActionEditPart.VISUAL_ID));
@@ -1844,9 +1733,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "SendObjectAction");
-		Node sendObjectAction_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(SendObjectActionNameEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "SendObjectAction"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(SendObjectActionNameEditPart.VISUAL_ID));
 		Node sendObjectAction_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(SendObjectActionFloatingNameEditPart.VISUAL_ID));
 		sendObjectAction_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location sendObjectAction_FloatingNameLabel_Location = (Location) sendObjectAction_FloatingNameLabel.getLayoutConstraint();
@@ -1858,8 +1746,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createValuePin_SendObjectActionRequestShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createValuePin_SendObjectActionRequestShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ValuePinInSendObjActAsReqEditPart.VISUAL_ID));
@@ -1867,8 +1754,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		Node valuePin_SendObjectActionRequestNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInSendObjActAsReqLabelEditPart.VISUAL_ID));
 		valuePin_SendObjectActionRequestNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location valuePin_SendObjectActionRequestNameLabel_Location = (Location) valuePin_SendObjectActionRequestNameLabel.getLayoutConstraint();
@@ -1884,15 +1770,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location valuePin_SendObjectActionRequestStereotypeLabel_Location = (Location) valuePin_SendObjectActionRequestStereotypeLabel.getLayoutConstraint();
 		valuePin_SendObjectActionRequestStereotypeLabel_Location.setX(0);
 		valuePin_SendObjectActionRequestStereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createActionInputPin_SendObjectActionRequestShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createActionInputPin_SendObjectActionRequestShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActionInputPinInSendObjActAsReqEditPart.VISUAL_ID));
@@ -1900,8 +1785,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		Node actionInputPin_SendObjectActionRequestNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActionInputPinInSendObjActAsReqLabelEditPart.VISUAL_ID));
 		actionInputPin_SendObjectActionRequestNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actionInputPin_SendObjectActionRequestNameLabel_Location = (Location) actionInputPin_SendObjectActionRequestNameLabel.getLayoutConstraint();
@@ -1917,15 +1801,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location actionInputPin_SendObjectActionRequestStereotypeLabel_Location = (Location) actionInputPin_SendObjectActionRequestStereotypeLabel.getLayoutConstraint();
 		actionInputPin_SendObjectActionRequestStereotypeLabel_Location.setX(0);
 		actionInputPin_SendObjectActionRequestStereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createInputPin_SendObjectActionRequestShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createInputPin_SendObjectActionRequestShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(InputPinInSendObjActAsReqEditPart.VISUAL_ID));
@@ -1933,8 +1816,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		Node inputPin_SendObjectActionRequestNameLabel = createLabel(node, UMLVisualIDRegistry.getType(InputPinInSendObjActAsReqLabelEditPart.VISUAL_ID));
 		inputPin_SendObjectActionRequestNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location inputPin_SendObjectActionRequestNameLabel_Location = (Location) inputPin_SendObjectActionRequestNameLabel.getLayoutConstraint();
@@ -1945,15 +1827,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location inputPin_SendObjectActionRequestStereotypeLabel_Location = (Location) inputPin_SendObjectActionRequestStereotypeLabel.getLayoutConstraint();
 		inputPin_SendObjectActionRequestStereotypeLabel_Location.setX(0);
 		inputPin_SendObjectActionRequestStereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createValuePin_SendObjectActionTargetShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createValuePin_SendObjectActionTargetShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ValuePinInSendObjActAsTargetEditPart.VISUAL_ID));
@@ -1961,8 +1842,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		Node valuePin_SendObjectActionTargetNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInSendObjActAsTargetLabelEditPart.VISUAL_ID));
 		valuePin_SendObjectActionTargetNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location valuePin_SendObjectActionTargetNameLabel_Location = (Location) valuePin_SendObjectActionTargetNameLabel.getLayoutConstraint();
@@ -1978,15 +1858,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location valuePin_SendObjectActionTargetStereotypeLabel_Location = (Location) valuePin_SendObjectActionTargetStereotypeLabel.getLayoutConstraint();
 		valuePin_SendObjectActionTargetStereotypeLabel_Location.setX(0);
 		valuePin_SendObjectActionTargetStereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createActionInputPin_SendObjectActionTargetShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createActionInputPin_SendObjectActionTargetShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActionInputPinInSendObjActAsTargetEditPart.VISUAL_ID));
@@ -1994,8 +1873,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		Node actionInputPin_SendObjectActionTargetNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActionInputPinInSendObjActAsTargetLabelEditPart.VISUAL_ID));
 		actionInputPin_SendObjectActionTargetNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actionInputPin_SendObjectActionTargetNameLabel_Location = (Location) actionInputPin_SendObjectActionTargetNameLabel.getLayoutConstraint();
@@ -2011,15 +1889,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location actionInputPin_SendObjectActionTargetStereotypeLabel_Location = (Location) actionInputPin_SendObjectActionTargetStereotypeLabel.getLayoutConstraint();
 		actionInputPin_SendObjectActionTargetStereotypeLabel_Location.setX(0);
 		actionInputPin_SendObjectActionTargetStereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createInputPin_SendObjectActionTargetShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createInputPin_SendObjectActionTargetShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(InputPinInSendObjActAsTargetEditPart.VISUAL_ID));
@@ -2027,8 +1904,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		Node inputPin_SendObjectActionTargetNameLabel = createLabel(node, UMLVisualIDRegistry.getType(InputPinInSendObjActAsTargetLabelEditPart.VISUAL_ID));
 		inputPin_SendObjectActionTargetNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location inputPin_SendObjectActionTargetNameLabel_Location = (Location) inputPin_SendObjectActionTargetNameLabel.getLayoutConstraint();
@@ -2039,15 +1915,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location inputPin_SendObjectActionTargetStereotypeLabel_Location = (Location) inputPin_SendObjectActionTargetStereotypeLabel.getLayoutConstraint();
 		inputPin_SendObjectActionTargetStereotypeLabel_Location.setX(0);
 		inputPin_SendObjectActionTargetStereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createSendSignalAction_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createSendSignalAction_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(SendSignalActionEditPart.VISUAL_ID));
@@ -2055,9 +1930,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "SendSignalAction");
-		Node sendSignalAction_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(SendSignalActionNameEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "SendSignalAction"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(SendSignalActionNameEditPart.VISUAL_ID));
 		Node sendSignalAction_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(SendSignalActionFloatingNameEditPart.VISUAL_ID));
 		sendSignalAction_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location sendSignalAction_FloatingNameLabel_Location = (Location) sendSignalAction_FloatingNameLabel.getLayoutConstraint();
@@ -2069,8 +1943,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createActionInputPin_SendSignalActionArgumentShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createActionInputPin_SendSignalActionArgumentShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActionInputPinInSendSigActEditPart.VISUAL_ID));
@@ -2078,8 +1951,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		Node actionInputPin_SendSignalActionArgumentNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActionInputPinInSendSigActLabelEditPart.VISUAL_ID));
 		actionInputPin_SendSignalActionArgumentNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actionInputPin_SendSignalActionArgumentNameLabel_Location = (Location) actionInputPin_SendSignalActionArgumentNameLabel.getLayoutConstraint();
@@ -2095,15 +1967,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location actionInputPin_SendSignalActionArgumentStereotypeLabel_Location = (Location) actionInputPin_SendSignalActionArgumentStereotypeLabel.getLayoutConstraint();
 		actionInputPin_SendSignalActionArgumentStereotypeLabel_Location.setX(0);
 		actionInputPin_SendSignalActionArgumentStereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createValuePin_SendSignalActionArgumentShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createValuePin_SendSignalActionArgumentShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ValuePinInSendSigActEditPart.VISUAL_ID));
@@ -2111,8 +1982,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		Node valuePin_SendSignalActionArgumentNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInSendSigActLabelEditPart.VISUAL_ID));
 		valuePin_SendSignalActionArgumentNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location valuePin_SendSignalActionArgumentNameLabel_Location = (Location) valuePin_SendSignalActionArgumentNameLabel.getLayoutConstraint();
@@ -2128,15 +1998,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location valuePin_SendSignalActionArgumentStereotypeLabel_Location = (Location) valuePin_SendSignalActionArgumentStereotypeLabel.getLayoutConstraint();
 		valuePin_SendSignalActionArgumentStereotypeLabel_Location.setX(0);
 		valuePin_SendSignalActionArgumentStereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createInputPin_SendSignalActionArgumentShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createInputPin_SendSignalActionArgumentShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(InputPinInSendSigActEditPart.VISUAL_ID));
@@ -2144,8 +2013,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		Node inputPin_SendSignalActionArgumentNameLabel = createLabel(node, UMLVisualIDRegistry.getType(InputPinInSendSigActLabelEditPart.VISUAL_ID));
 		inputPin_SendSignalActionArgumentNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location inputPin_SendSignalActionArgumentNameLabel_Location = (Location) inputPin_SendSignalActionArgumentNameLabel.getLayoutConstraint();
@@ -2156,15 +2024,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location inputPin_SendSignalActionArgumentStereotypeLabel_Location = (Location) inputPin_SendSignalActionArgumentStereotypeLabel.getLayoutConstraint();
 		inputPin_SendSignalActionArgumentStereotypeLabel_Location.setX(0);
 		inputPin_SendSignalActionArgumentStereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createValuePin_SendSignalActionTargetShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createValuePin_SendSignalActionTargetShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ValuePinInSendSigActAsTargetEditPart.VISUAL_ID));
@@ -2172,8 +2039,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		Node valuePin_SendSignalActionTargetNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInSendSigActAsTargetLabelEditPart.VISUAL_ID));
 		valuePin_SendSignalActionTargetNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location valuePin_SendSignalActionTargetNameLabel_Location = (Location) valuePin_SendSignalActionTargetNameLabel.getLayoutConstraint();
@@ -2189,15 +2055,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location valuePin_SendSignalActionTargetStereotypeLabel_Location = (Location) valuePin_SendSignalActionTargetStereotypeLabel.getLayoutConstraint();
 		valuePin_SendSignalActionTargetStereotypeLabel_Location.setX(0);
 		valuePin_SendSignalActionTargetStereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createActionInputPin_SendSignalActionTargetShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createActionInputPin_SendSignalActionTargetShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActionInputPinInSendSigActAsTargetEditPart.VISUAL_ID));
@@ -2205,8 +2070,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		Node actionInputPin_SendSignalActionTargetNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActionInputPinInSendSigActAsTargetLabelEditPart.VISUAL_ID));
 		actionInputPin_SendSignalActionTargetNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actionInputPin_SendSignalActionTargetNameLabel_Location = (Location) actionInputPin_SendSignalActionTargetNameLabel.getLayoutConstraint();
@@ -2222,15 +2086,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location actionInputPin_SendSignalActionTargetStereotypeLabel_Location = (Location) actionInputPin_SendSignalActionTargetStereotypeLabel.getLayoutConstraint();
 		actionInputPin_SendSignalActionTargetStereotypeLabel_Location.setX(0);
 		actionInputPin_SendSignalActionTargetStereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createInputPin_SendSignalActionTargetShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createInputPin_SendSignalActionTargetShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(InputPinInSendSigActAsTargetEditPart.VISUAL_ID));
@@ -2238,8 +2101,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		Node inputPin_SendSignalActionTargetNameLabel = createLabel(node, UMLVisualIDRegistry.getType(InputPinInSendSigActAsTargetLabelEditPart.VISUAL_ID));
 		inputPin_SendSignalActionTargetNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location inputPin_SendSignalActionTargetNameLabel_Location = (Location) inputPin_SendSignalActionTargetNameLabel.getLayoutConstraint();
@@ -2250,15 +2112,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location inputPin_SendSignalActionTargetStereotypeLabel_Location = (Location) inputPin_SendSignalActionTargetStereotypeLabel.getLayoutConstraint();
 		inputPin_SendSignalActionTargetStereotypeLabel_Location.setX(0);
 		inputPin_SendSignalActionTargetStereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createActivityParameterNode_Shape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createActivityParameterNode_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActivityParameterNodeEditPart.VISUAL_ID));
@@ -2266,9 +2127,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActivityParameterNode");
-		Node activityParameterNode_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(ParameterNodeNameEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActivityParameterNode"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(ParameterNodeNameEditPart.VISUAL_ID));
 		Node activityParameterNode_StreamLabel = createLabel(node, UMLVisualIDRegistry.getType(ActivityParameterNodeStreamLabelEditPart.VISUAL_ID));
 		activityParameterNode_StreamLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location activityParameterNode_StreamLabel_Location = (Location) activityParameterNode_StreamLabel.getLayoutConstraint();
@@ -2285,8 +2145,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createAcceptEventAction_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createAcceptEventAction_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(AcceptEventActionEditPart.VISUAL_ID));
@@ -2294,9 +2153,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "AcceptEventAction");
-		Node acceptEventAction_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(AcceptEventActionLabelEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "AcceptEventAction"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(AcceptEventActionLabelEditPart.VISUAL_ID));
 		Node acceptEventAction_TriggerLabel = createLabel(node, UMLVisualIDRegistry.getType(AcceptTimeEventActionLabelEditPart.VISUAL_ID));
 		acceptEventAction_TriggerLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location acceptEventAction_TriggerLabel_Location = (Location) acceptEventAction_TriggerLabel.getLayoutConstraint();
@@ -2312,15 +2170,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location acceptEventAction_FloatingNameLabel_Location = (Location) acceptEventAction_FloatingNameLabel.getLayoutConstraint();
 		acceptEventAction_FloatingNameLabel_Location.setX(0);
 		acceptEventAction_FloatingNameLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "AcceptEventAction");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "AcceptEventAction"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createOutputPin_AcceptEventActionResultShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createOutputPin_AcceptEventActionResultShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(OutputPinInAcceptEventActionEditPart.VISUAL_ID));
@@ -2328,8 +2185,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin"); //$NON-NLS-1$
 		Node outputPin_AcceptEventActionResultNameLabel = createLabel(node, UMLVisualIDRegistry.getType(OutputPinInAcceptEventActionLabelEditPart.VISUAL_ID));
 		outputPin_AcceptEventActionResultNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location outputPin_AcceptEventActionResultNameLabel_Location = (Location) outputPin_AcceptEventActionResultNameLabel.getLayoutConstraint();
@@ -2340,15 +2196,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location outputPin_AcceptEventActionResultStereotypeLabel_Location = (Location) outputPin_AcceptEventActionResultStereotypeLabel.getLayoutConstraint();
 		outputPin_AcceptEventActionResultStereotypeLabel_Location.setX(0);
 		outputPin_AcceptEventActionResultStereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "OutputPin");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "OutputPin"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createValueSpecificationAction_Shape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createValueSpecificationAction_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ValueSpecificationActionEditPart.VISUAL_ID));
@@ -2356,9 +2211,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValueSpecificationAction");
-		Node valueSpecificationAction_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(ValueSpecificationActionNameEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValueSpecificationAction"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(ValueSpecificationActionNameEditPart.VISUAL_ID));
 		Node valueSpecificationAction_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ValueSpecificationActionFloatingNameEditPart.VISUAL_ID));
 		valueSpecificationAction_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location valueSpecificationAction_FloatingNameLabel_Location = (Location) valueSpecificationAction_FloatingNameLabel.getLayoutConstraint();
@@ -2370,8 +2224,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createOutputPin_ValueSpecificationActionResultShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createOutputPin_ValueSpecificationActionResultShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(OutputPinInValSpecActEditPart.VISUAL_ID));
@@ -2379,8 +2232,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin"); //$NON-NLS-1$
 		Node outputPin_ValueSpecificationActionResultNameLabel = createLabel(node, UMLVisualIDRegistry.getType(OutputPinInValSpecActLabelEditPart.VISUAL_ID));
 		outputPin_ValueSpecificationActionResultNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location outputPin_ValueSpecificationActionResultNameLabel_Location = (Location) outputPin_ValueSpecificationActionResultNameLabel.getLayoutConstraint();
@@ -2391,15 +2243,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location outputPin_ValueSpecificationActionResultStereotypeLabel_Location = (Location) outputPin_ValueSpecificationActionResultStereotypeLabel.getLayoutConstraint();
 		outputPin_ValueSpecificationActionResultStereotypeLabel_Location.setX(0);
 		outputPin_ValueSpecificationActionResultStereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "OutputPin");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "OutputPin"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createConditionalNode_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createConditionalNode_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ConditionalNodeEditPart.VISUAL_ID));
@@ -2407,19 +2258,17 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ConditionalNode");
-		Node conditionalNode_KeywordLabel = createLabel(node, UMLVisualIDRegistry.getType(ConditionalNodeKeywordEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ConditionalNode"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(ConditionalNodeKeywordEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(ConditionalNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID), false, false, false, false);
-		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "ConditionalNode");
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "ConditionalNode"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createExpansionRegion_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createExpansionRegion_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ExpansionRegionEditPart.VISUAL_ID));
@@ -2427,19 +2276,17 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ExpansionRegion");
-		Node expansionRegion_KeywordLabel = createLabel(node, UMLVisualIDRegistry.getType(ExpansionRegionKeywordEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ExpansionRegion"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(ExpansionRegionKeywordEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(ExpansionRegionStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID), false, false, false, false);
-		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "ExpansionRegion");
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "ExpansionRegion"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createExpansionNode_InputShape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createExpansionNode_InputShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ExpansionNodeAsInEditPart.VISUAL_ID));
@@ -2447,16 +2294,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ExpansionNode");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ExpansionNode"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createExpansionNode_OutputShape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createExpansionNode_OutputShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ExpansionNodeAsOutEditPart.VISUAL_ID));
@@ -2464,16 +2309,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ExpansionNode");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ExpansionNode"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createLoopNode_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createLoopNode_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(LoopNodeEditPart.VISUAL_ID));
@@ -2481,19 +2324,17 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "LoopNode");
-		Node loopNode_KeywordLabel = createLabel(node, UMLVisualIDRegistry.getType(LoopNodeKeywordEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "LoopNode"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(LoopNodeKeywordEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(LoopNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID), false, false, false, false);
-		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "LoopNode");
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "LoopNode"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createInputPin_LoopNodeVariableInputShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createInputPin_LoopNodeVariableInputShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(InputPinInLoopNodeAsVariableEditPart.VISUAL_ID));
@@ -2501,8 +2342,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		Node inputPin_LoopNodeVariableInputNameLabel = createLabel(node, UMLVisualIDRegistry.getType(InputPinInLoopNodeAsVariableLabelEditPart.VISUAL_ID));
 		inputPin_LoopNodeVariableInputNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location inputPin_LoopNodeVariableInputNameLabel_Location = (Location) inputPin_LoopNodeVariableInputNameLabel.getLayoutConstraint();
@@ -2519,8 +2359,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createValuePin_LoopNodeVariableInputShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createValuePin_LoopNodeVariableInputShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ValuePinInLoopNodeAsVariableEditPart.VISUAL_ID));
@@ -2528,8 +2367,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		Node valuePin_LoopNodeVariableInputNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInLoopNodeAsVariableLabelEditPart.VISUAL_ID));
 		valuePin_LoopNodeVariableInputNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location valuePin_LoopNodeVariableInputNameLabel_Location = (Location) valuePin_LoopNodeVariableInputNameLabel.getLayoutConstraint();
@@ -2551,8 +2389,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createActionInputPin_LoopNodeVariableInputShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createActionInputPin_LoopNodeVariableInputShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActionPinInLoopNodeAsVariableEditPart.VISUAL_ID));
@@ -2560,8 +2397,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		Node actionInputPin_LoopNodeVariableInputNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActionPinInLoopNodeAsVariableLabelEditPart.VISUAL_ID));
 		actionInputPin_LoopNodeVariableInputNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actionInputPin_LoopNodeVariableInputNameLabel_Location = (Location) actionInputPin_LoopNodeVariableInputNameLabel.getLayoutConstraint();
@@ -2583,8 +2419,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createOutputPin_LoopNodeBodyOutputShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createOutputPin_LoopNodeBodyOutputShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(OutputPinInLoopNodeAsBodyOutputEditPart.VISUAL_ID));
@@ -2592,8 +2427,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin"); //$NON-NLS-1$
 		Node outputPin_LoopNodeBodyOutputNameLabel = createLabel(node, UMLVisualIDRegistry.getType(OutputPinInLoopNodeAsBodyOutputLabelEditPart.VISUAL_ID));
 		outputPin_LoopNodeBodyOutputNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location outputPin_LoopNodeBodyOutputNameLabel_Location = (Location) outputPin_LoopNodeBodyOutputNameLabel.getLayoutConstraint();
@@ -2610,8 +2444,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createOutputPin_LoopNodeVariableShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createOutputPin_LoopNodeVariableShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(OutputPinInLoopNodeAsLoopVariableEditPart.VISUAL_ID));
@@ -2619,8 +2452,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin"); //$NON-NLS-1$
 		Node outputPin_LoopNodeVariableNameLabel = createLabel(node, UMLVisualIDRegistry.getType(OutputPinInLoopNodeAsLoopVariableLabelEditPart.VISUAL_ID));
 		outputPin_LoopNodeVariableNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location outputPin_LoopNodeVariableNameLabel_Location = (Location) outputPin_LoopNodeVariableNameLabel.getLayoutConstraint();
@@ -2637,8 +2469,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createOutputPin_LoopNodeResultShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createOutputPin_LoopNodeResultShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(OutputPinInLoopNodeAsResultEditPart.VISUAL_ID));
@@ -2646,8 +2477,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin"); //$NON-NLS-1$
 		Node outputPin_LoopNodeResultNameLabel = createLabel(node, UMLVisualIDRegistry.getType(OutputPinInLoopNodeAsResultLabelEditPart.VISUAL_ID));
 		outputPin_LoopNodeResultNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location outputPin_LoopNodeResultNameLabel_Location = (Location) outputPin_LoopNodeResultNameLabel.getLayoutConstraint();
@@ -2664,8 +2494,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createSequenceNode_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createSequenceNode_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(SequenceNodeEditPart.VISUAL_ID));
@@ -2673,19 +2502,17 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "SequenceNode");
-		Node sequenceNode_KeywordLabel = createLabel(node, UMLVisualIDRegistry.getType(SequenceNodeKeywordEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "SequenceNode"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(SequenceNodeKeywordEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(SequenceNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID), false, false, false, false);
-		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "SequenceNode");
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "SequenceNode"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createStructuredActivityNode_Shape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createStructuredActivityNode_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(StructuredActivityNodeEditPart.VISUAL_ID));
@@ -2693,19 +2520,17 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "StructuredActivityNode");
-		Node structuredActivityNode_KeywordLabel = createLabel(node, UMLVisualIDRegistry.getType(StructuredActivityNodeKeywordEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "StructuredActivityNode"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(StructuredActivityNodeKeywordEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID), false, false, false, false);
-		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "StructuredActivityNode");
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "StructuredActivityNode"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createInputPin_StructuredActivityNodeInputShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createInputPin_StructuredActivityNodeInputShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID));
@@ -2713,8 +2538,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		Node inputPin_StructuredActivityNodeInputNameLabel = createLabel(node, UMLVisualIDRegistry.getType(InputPinInStructuredActivityNodeAsStructuredNodeInputsLabelEditPart.VISUAL_ID));
 		inputPin_StructuredActivityNodeInputNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location inputPin_StructuredActivityNodeInputNameLabel_Location = (Location) inputPin_StructuredActivityNodeInputNameLabel.getLayoutConstraint();
@@ -2731,8 +2555,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createValuePin_StructuredActivityNodeInputShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createValuePin_StructuredActivityNodeInputShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID));
@@ -2740,8 +2563,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		Node valuePin_StructuredActivityNodeInputNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInStructuredActivityNodeAsStructuredNodeInputsLabelEditPart.VISUAL_ID));
 		valuePin_StructuredActivityNodeInputNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location valuePin_StructuredActivityNodeInputNameLabel_Location = (Location) valuePin_StructuredActivityNodeInputNameLabel.getLayoutConstraint();
@@ -2763,8 +2585,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createActionInputPin_StructuredActivityNodeInputShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createActionInputPin_StructuredActivityNodeInputShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID));
@@ -2772,8 +2593,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		Node actionInputPin_StructuredActivityNodeInputNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActionPinInStructuredActivityNodeAsStructuredNodeInputsLabelEditPart.VISUAL_ID));
 		actionInputPin_StructuredActivityNodeInputNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actionInputPin_StructuredActivityNodeInputNameLabel_Location = (Location) actionInputPin_StructuredActivityNodeInputNameLabel.getLayoutConstraint();
@@ -2795,8 +2615,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createOutputPin_StructuredActivityNodeOutputShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createOutputPin_StructuredActivityNodeOutputShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID));
@@ -2804,8 +2623,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin"); //$NON-NLS-1$
 		Node outputPin_StructuredActivityNodeOutputNameLabel = createLabel(node, UMLVisualIDRegistry.getType(OutputPinInStructuredActivityNodeAsStructuredNodeInputsLabelEditPart.VISUAL_ID));
 		outputPin_StructuredActivityNodeOutputNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location outputPin_StructuredActivityNodeOutputNameLabel_Location = (Location) outputPin_StructuredActivityNodeOutputNameLabel.getLayoutConstraint();
@@ -2822,8 +2640,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createActivityPartition_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createActivityPartition_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActivityPartitionEditPart.VISUAL_ID));
@@ -2831,24 +2648,22 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActivityPartition");
-		Node activityPartition_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActivityPartitionNameEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActivityPartition"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(ActivityPartitionNameEditPart.VISUAL_ID));
 		Node activityPartition_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActivityPartitionFloatingNameEditPart.VISUAL_ID));
 		activityPartition_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location activityPartition_FloatingNameLabel_Location = (Location) activityPartition_FloatingNameLabel.getLayoutConstraint();
 		activityPartition_FloatingNameLabel_Location.setX(0);
 		activityPartition_FloatingNameLabel_Location.setY(15);
 		createCompartment(node, UMLVisualIDRegistry.getType(ActivityPartitionActivityPartitionContentCompartmentEditPart.VISUAL_ID), false, false, false, false);
-		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "ActivityPartition");
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "ActivityPartition"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createInterruptibleActivityRegion_Shape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createInterruptibleActivityRegion_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(InterruptibleActivityRegionEditPart.VISUAL_ID));
@@ -2856,18 +2671,16 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InterruptibleActivityRegion");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InterruptibleActivityRegion"); //$NON-NLS-1$
 		createCompartment(node, UMLVisualIDRegistry.getType(InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart.VISUAL_ID), false, false, false, false);
-		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "InterruptibleActivityRegion");
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "InterruptibleActivityRegion"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createComment_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createComment_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(CommentEditPartCN.VISUAL_ID));
@@ -2875,17 +2688,15 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Comment");
-		Node comment_BodyLabel = createLabel(node, UMLVisualIDRegistry.getType(CommentBodyLabelEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Comment"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(CommentBodyLabelEditPart.VISUAL_ID));
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createReadSelfAction_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createReadSelfAction_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ReadSelfActionEditPart.VISUAL_ID));
@@ -2893,9 +2704,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ReadSelfAction");
-		Node readSelfAction_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(ReadSelfActionNameEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ReadSelfAction"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(ReadSelfActionNameEditPart.VISUAL_ID));
 		Node readSelfAction_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ReadSelfActionFloatingNameEditPart.VISUAL_ID));
 		readSelfAction_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location readSelfAction_FloatingNameLabel_Location = (Location) readSelfAction_FloatingNameLabel.getLayoutConstraint();
@@ -2907,8 +2717,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createOutputPin_ReadSelfActionResultShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createOutputPin_ReadSelfActionResultShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ReadSelfActionOutputPinEditPart.VISUAL_ID));
@@ -2916,8 +2725,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin"); //$NON-NLS-1$
 		Node outputPin_ReadSelfActionResultNameLabel = createLabel(node, UMLVisualIDRegistry.getType(OutputPinInReadSelfActionLabelEditPart.VISUAL_ID));
 		outputPin_ReadSelfActionResultNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location outputPin_ReadSelfActionResultNameLabel_Location = (Location) outputPin_ReadSelfActionResultNameLabel.getLayoutConstraint();
@@ -2928,15 +2736,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location outputPin_ReadSelfActionResultStereotypeLabel_Location = (Location) outputPin_ReadSelfActionResultStereotypeLabel.getLayoutConstraint();
 		outputPin_ReadSelfActionResultStereotypeLabel_Location.setX(0);
 		outputPin_ReadSelfActionResultStereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "OutputPin");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "OutputPin"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createActivity_Shape_CN(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createActivity_Shape_CN(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActivityEditPartCN.VISUAL_ID));
@@ -2944,23 +2751,21 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Activity");
-		Node activity_NameLabel_CN = createLabel(node, UMLVisualIDRegistry.getType(ActivityNameEditPartCN.VISUAL_ID));
-		Node activity_KeywordLabel_CN = createLabel(node, UMLVisualIDRegistry.getType(ActivityIsSingleExecutionCNEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Activity"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(ActivityNameEditPartCN.VISUAL_ID));
+		createLabel(node, UMLVisualIDRegistry.getType(ActivityIsSingleExecutionCNEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(ActivityCNParametersCompartmentEditPart.VISUAL_ID), false, false, true, true);
 		createCompartment(node, UMLVisualIDRegistry.getType(ActivityCNPreConditionsCompartmentEditPart.VISUAL_ID), false, false, true, true);
 		createCompartment(node, UMLVisualIDRegistry.getType(ActivityCNPostConditionsCompartmentEditPart.VISUAL_ID), false, false, true, true);
 		createCompartment(node, UMLVisualIDRegistry.getType(ActivityCNContentCompartmentEditPart.VISUAL_ID), false, false, false, false);
-		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Activity");
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Activity"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createCreateObjectAction_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createCreateObjectAction_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(CreateObjectActionEditPart.VISUAL_ID));
@@ -2968,9 +2773,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "CreateObjectAction");
-		Node createObjectAction_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(CreateObjectActionNameEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "CreateObjectAction"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(CreateObjectActionNameEditPart.VISUAL_ID));
 		Node createObjectAction_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(CreateObjectActionFloatingNameEditPart.VISUAL_ID));
 		createObjectAction_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location createObjectAction_FloatingNameLabel_Location = (Location) createObjectAction_FloatingNameLabel.getLayoutConstraint();
@@ -2982,8 +2786,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createOutputPin_CreateObjectActionResultShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createOutputPin_CreateObjectActionResultShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(OutputPinInCreateObjectActionAsResultEditPart.VISUAL_ID));
@@ -2991,8 +2794,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin"); //$NON-NLS-1$
 		Node outputPin_CreateObjectActionResultNameLabel = createLabel(node, UMLVisualIDRegistry.getType(OutputPinInCreateObjectActionAsResultLabelEditPart.VISUAL_ID));
 		outputPin_CreateObjectActionResultNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location outputPin_CreateObjectActionResultNameLabel_Location = (Location) outputPin_CreateObjectActionResultNameLabel.getLayoutConstraint();
@@ -3003,15 +2805,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location outputPin_CreateObjectActionResultStereotypeLabel_Location = (Location) outputPin_CreateObjectActionResultStereotypeLabel.getLayoutConstraint();
 		outputPin_CreateObjectActionResultStereotypeLabel_Location.setX(0);
 		outputPin_CreateObjectActionResultStereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "OutputPin");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "OutputPin"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createNamedElement_DefaultShape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createNamedElement_DefaultShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ShapeNamedElementEditPart.VISUAL_ID));
@@ -3019,22 +2820,20 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ShapeNamedElement");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ShapeNamedElement"); //$NON-NLS-1$
 		Node namedElement_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(ShapeNamedElementNameEditPart.VISUAL_ID));
 		namedElement_NameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location namedElement_NameLabel_Location = (Location) namedElement_NameLabel.getLayoutConstraint();
 		namedElement_NameLabel_Location.setX(25);
 		namedElement_NameLabel_Location.setY(3);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ShapeNamedElement");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ShapeNamedElement"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createReadStructuralFeatureAction_Shape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createReadStructuralFeatureAction_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ReadStructuralFeatureActionEditPart.VISUAL_ID));
@@ -3042,9 +2841,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ReadStructuralFeatureAction");
-		Node readStructuralFeatureAction_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(ReadStructuralFeatureActionNameEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ReadStructuralFeatureAction"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(ReadStructuralFeatureActionNameEditPart.VISUAL_ID));
 		Node readStructuralFeatureAction_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ReadStructuralFeatureActionFloatingNameEditPart.VISUAL_ID));
 		readStructuralFeatureAction_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location readStructuralFeatureAction_FloatingNameLabel_Location = (Location) readStructuralFeatureAction_FloatingNameLabel.getLayoutConstraint();
@@ -3056,8 +2854,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createInputPin_ReadStructuralFeatureActionObjectShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createInputPin_ReadStructuralFeatureActionObjectShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(InputPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID));
@@ -3065,8 +2862,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		Node inputPin_ReadStructuralFeatureActionObjectNameLabel = createLabel(node, UMLVisualIDRegistry.getType(InputPinInReadStructuralFeatureAsObjectLabelEditPart.VISUAL_ID));
 		inputPin_ReadStructuralFeatureActionObjectNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location inputPin_ReadStructuralFeatureActionObjectNameLabel_Location = (Location) inputPin_ReadStructuralFeatureActionObjectNameLabel.getLayoutConstraint();
@@ -3077,15 +2873,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location inputPin_ReadStructuralFeatureActionObjectStereotypeLabel_Location = (Location) inputPin_ReadStructuralFeatureActionObjectStereotypeLabel.getLayoutConstraint();
 		inputPin_ReadStructuralFeatureActionObjectStereotypeLabel_Location.setX(0);
 		inputPin_ReadStructuralFeatureActionObjectStereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createValuePin_ReadStructuralFeatureActionObjectShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createValuePin_ReadStructuralFeatureActionObjectShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ValuePinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID));
@@ -3093,8 +2888,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		Node valuePin_ReadStructuralFeatureActionObjectNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInReadStructuralFeatureAsObjectNameLabelEditPart.VISUAL_ID));
 		valuePin_ReadStructuralFeatureActionObjectNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location valuePin_ReadStructuralFeatureActionObjectNameLabel_Location = (Location) valuePin_ReadStructuralFeatureActionObjectNameLabel.getLayoutConstraint();
@@ -3116,8 +2910,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createActionInputPin_ReadStructuralFeatureActionObjectShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createActionInputPin_ReadStructuralFeatureActionObjectShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActionPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID));
@@ -3125,8 +2918,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionPin"); //$NON-NLS-1$
 		Node actionInputPin_ReadStructuralFeatureActionObjectNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActionPinInReadStructuralFeatureAsObjectNameLabelEditPart.VISUAL_ID));
 		actionInputPin_ReadStructuralFeatureActionObjectNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actionInputPin_ReadStructuralFeatureActionObjectNameLabel_Location = (Location) actionInputPin_ReadStructuralFeatureActionObjectNameLabel.getLayoutConstraint();
@@ -3148,8 +2940,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createOutputPin_ReadStructuralFeatureActionResultShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createOutputPin_ReadStructuralFeatureActionResultShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(OutputPinInReadStructuralFeatureAsResultEditPart.VISUAL_ID));
@@ -3157,8 +2948,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin"); //$NON-NLS-1$
 		Node outputPin_ReadStructuralFeatureActionResultNameLabel = createLabel(node, UMLVisualIDRegistry.getType(OutputPinInReadStructuralFeatureAsResultLabelEditPart.VISUAL_ID));
 		outputPin_ReadStructuralFeatureActionResultNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location outputPin_ReadStructuralFeatureActionResultNameLabel_Location = (Location) outputPin_ReadStructuralFeatureActionResultNameLabel.getLayoutConstraint();
@@ -3175,8 +2965,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createAddStructuralFeatureValueAction_Shape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createAddStructuralFeatureValueAction_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(AddStructuralFeatureValueActionEditPart.VISUAL_ID));
@@ -3184,9 +2973,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "AddStructuralFeatureValueAction");
-		Node addStructuralFeatureValueAction_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(AddStructuralFeatureValueActionNameEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "AddStructuralFeatureValueAction"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(AddStructuralFeatureValueActionNameEditPart.VISUAL_ID));
 		Node addStructuralFeatureValueAction_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(AddStructuralFeatureValueActionFloatingNameEditPart.VISUAL_ID));
 		addStructuralFeatureValueAction_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location addStructuralFeatureValueAction_FloatingNameLabel_Location = (Location) addStructuralFeatureValueAction_FloatingNameLabel.getLayoutConstraint();
@@ -3198,8 +2986,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createInputPin_AddStructuralFeatureValueActionObjectShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createInputPin_AddStructuralFeatureValueActionObjectShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(InputPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID));
@@ -3207,8 +2994,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		Node inputPin_AddStructuralFeatureValueActionObjectNameLabel = createLabel(node, UMLVisualIDRegistry.getType(InputPinInAddStructuralFeatureValueActionAsObjectLabelEditPart.VISUAL_ID));
 		inputPin_AddStructuralFeatureValueActionObjectNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location inputPin_AddStructuralFeatureValueActionObjectNameLabel_Location = (Location) inputPin_AddStructuralFeatureValueActionObjectNameLabel.getLayoutConstraint();
@@ -3225,8 +3011,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createInputPin_AddStructuralFeatureValueActionValueShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createInputPin_AddStructuralFeatureValueActionValueShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(InputPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID));
@@ -3234,8 +3019,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		Node inputPin_AddStructuralFeatureValueActionValueNameLabel = createLabel(node, UMLVisualIDRegistry.getType(InputPinInAddStructuralFeatureValueActionAsValueLabel2EditPart.VISUAL_ID));
 		inputPin_AddStructuralFeatureValueActionValueNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location inputPin_AddStructuralFeatureValueActionValueNameLabel_Location = (Location) inputPin_AddStructuralFeatureValueActionValueNameLabel.getLayoutConstraint();
@@ -3252,8 +3036,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createInputPin_AddStructuralFeatureValueActionInsertAtShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createInputPin_AddStructuralFeatureValueActionInsertAtShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(InputPinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID));
@@ -3261,8 +3044,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		Node inputPin_AddStructuralFeatureValueActionInsertAtNameLabel = createLabel(node, UMLVisualIDRegistry.getType(InputPinInAddStructuralFeatureValueActionAsInserAtLabelEditPart.VISUAL_ID));
 		inputPin_AddStructuralFeatureValueActionInsertAtNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location inputPin_AddStructuralFeatureValueActionInsertAtNameLabel_Location = (Location) inputPin_AddStructuralFeatureValueActionInsertAtNameLabel.getLayoutConstraint();
@@ -3279,8 +3061,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createValuePin_AddStructuralFeatureValueActionObjectShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createValuePin_AddStructuralFeatureValueActionObjectShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ValuePinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID));
@@ -3288,8 +3069,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		Node valuePin_AddStructuralFeatureValueActionObjectNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInAddStructuralFeatureValueActionAsObjectLabelEditPart.VISUAL_ID));
 		valuePin_AddStructuralFeatureValueActionObjectNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location valuePin_AddStructuralFeatureValueActionObjectNameLabel_Location = (Location) valuePin_AddStructuralFeatureValueActionObjectNameLabel.getLayoutConstraint();
@@ -3311,8 +3091,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createValuePin_AddStructuralFeatureValueActionValueShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createValuePin_AddStructuralFeatureValueActionValueShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ValuePinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID));
@@ -3320,8 +3099,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		Node valuePin_AddStructuralFeatureValueActionValueNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInAddStructuralFeatureValueActionAsValueLabelEditPart.VISUAL_ID));
 		valuePin_AddStructuralFeatureValueActionValueNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location valuePin_AddStructuralFeatureValueActionValueNameLabel_Location = (Location) valuePin_AddStructuralFeatureValueActionValueNameLabel.getLayoutConstraint();
@@ -3343,8 +3121,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createValuePin_AddStructuralFeatureValueActionInsertAtShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createValuePin_AddStructuralFeatureValueActionInsertAtShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ValuePinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID));
@@ -3352,8 +3129,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		Node valuePin_AddStructuralFeatureValueActionInsertAtNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInAddStructuralFeatureValueActionAsInserAtLabelEditPart.VISUAL_ID));
 		valuePin_AddStructuralFeatureValueActionInsertAtNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location valuePin_AddStructuralFeatureValueActionInsertAtNameLabel_Location = (Location) valuePin_AddStructuralFeatureValueActionInsertAtNameLabel.getLayoutConstraint();
@@ -3375,8 +3151,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createActionInputPin_AddStructuralFeatureValueActionObjectShape(EObject domainElement,
-			View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createActionInputPin_AddStructuralFeatureValueActionObjectShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActionPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID));
@@ -3384,8 +3159,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		Node actionInputPin_AddStructuralFeatureValueActionObjectNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActionPinInAddStructuralFeatureValueActionAsObjectLabelEditPart.VISUAL_ID));
 		actionInputPin_AddStructuralFeatureValueActionObjectNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actionInputPin_AddStructuralFeatureValueActionObjectNameLabel_Location = (Location) actionInputPin_AddStructuralFeatureValueActionObjectNameLabel.getLayoutConstraint();
@@ -3407,8 +3181,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createActionInputPin_AddStructuralFeatureValueActionValueShape(EObject domainElement,
-			View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createActionInputPin_AddStructuralFeatureValueActionValueShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActionPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID));
@@ -3416,8 +3189,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		Node actionInputPin_AddStructuralFeatureValueActionValueNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActionPinInAddStructuralFeatureValueActionAsValueLabelEditPart.VISUAL_ID));
 		actionInputPin_AddStructuralFeatureValueActionValueNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actionInputPin_AddStructuralFeatureValueActionValueNameLabel_Location = (Location) actionInputPin_AddStructuralFeatureValueActionValueNameLabel.getLayoutConstraint();
@@ -3439,8 +3211,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createActionInputPin_AddStructuralFeatureValueActionInsertAtShape(EObject domainElement,
-			View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createActionInputPin_AddStructuralFeatureValueActionInsertAtShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActionPinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID));
@@ -3448,8 +3219,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		Node actionInputPin_AddStructuralFeatureValueActionInsertAtNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActionPinInAddStructuralFeatureValueActionAsInserAtLabelEditPart.VISUAL_ID));
 		actionInputPin_AddStructuralFeatureValueActionInsertAtNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actionInputPin_AddStructuralFeatureValueActionInsertAtNameLabel_Location = (Location) actionInputPin_AddStructuralFeatureValueActionInsertAtNameLabel.getLayoutConstraint();
@@ -3471,8 +3241,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createOutputPin_AddStructuralFeatureValueActionResultShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createOutputPin_AddStructuralFeatureValueActionResultShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(OutputPinInAddStructuralFeatureValueActionAsResultEditPart.VISUAL_ID));
@@ -3480,8 +3249,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin"); //$NON-NLS-1$
 		Node outputPin_AddStructuralFeatureValueActionResultNameLabel = createLabel(node, UMLVisualIDRegistry.getType(OutputPinInAddStructuralFeatureValueActionAsResultLabel3EditPart.VISUAL_ID));
 		outputPin_AddStructuralFeatureValueActionResultNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location outputPin_AddStructuralFeatureValueActionResultNameLabel_Location = (Location) outputPin_AddStructuralFeatureValueActionResultNameLabel.getLayoutConstraint();
@@ -3498,8 +3266,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createDestroyObjectAction_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createDestroyObjectAction_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(DestroyObjectActionEditPart.VISUAL_ID));
@@ -3507,9 +3274,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DestroyObjectAction");
-		Node destroyObjectAction_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(DestroyObjectActionNameEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DestroyObjectAction"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(DestroyObjectActionNameEditPart.VISUAL_ID));
 		Node destroyObjectAction_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(DestroyObjectActionFloatingNameEditPart.VISUAL_ID));
 		destroyObjectAction_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location destroyObjectAction_FloatingNameLabel_Location = (Location) destroyObjectAction_FloatingNameLabel.getLayoutConstraint();
@@ -3521,8 +3287,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createInputPin_DestroyObjectActionTargetShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createInputPin_DestroyObjectActionTargetShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(InputPinInDestroyObjectActionEditPart.VISUAL_ID));
@@ -3530,8 +3295,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		Node inputPin_DestroyObjectActionTargetNameLabel = createLabel(node, UMLVisualIDRegistry.getType(InputPinInDestroyObjectActionLabelEditPart.VISUAL_ID));
 		inputPin_DestroyObjectActionTargetNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location inputPin_DestroyObjectActionTargetNameLabel_Location = (Location) inputPin_DestroyObjectActionTargetNameLabel.getLayoutConstraint();
@@ -3548,8 +3312,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createValuePin_DestroyObjectActionTargetShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createValuePin_DestroyObjectActionTargetShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ValuePinInDestroyObjectActionEditPart.VISUAL_ID));
@@ -3557,8 +3320,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		Node valuePin_DestroyObjectActionTargetNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInDestroyObjectActionLabelEditPart.VISUAL_ID));
 		valuePin_DestroyObjectActionTargetNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location valuePin_DestroyObjectActionTargetNameLabel_Location = (Location) valuePin_DestroyObjectActionTargetNameLabel.getLayoutConstraint();
@@ -3580,8 +3342,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createActionInputPin_DestroyObjectActionTargetShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createActionInputPin_DestroyObjectActionTargetShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActionPinInDestroyObjectActionEditPart.VISUAL_ID));
@@ -3589,8 +3350,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		Node actionInputPin_DestroyObjectActionTargetNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActionPinInDestroyObjectActionLabelEditPart.VISUAL_ID));
 		actionInputPin_DestroyObjectActionTargetNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actionInputPin_DestroyObjectActionTargetNameLabel_Location = (Location) actionInputPin_DestroyObjectActionTargetNameLabel.getLayoutConstraint();
@@ -3612,8 +3372,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createReadVariableAction_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createReadVariableAction_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ReadVariableActionEditPart.VISUAL_ID));
@@ -3621,9 +3380,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ReadVariableAction");
-		Node readVariableAction_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(ReadVariableActionNameEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ReadVariableAction"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(ReadVariableActionNameEditPart.VISUAL_ID));
 		Node readVariableAction_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ReadVariableActionFloatingNameEditPart.VISUAL_ID));
 		readVariableAction_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location readVariableAction_FloatingNameLabel_Location = (Location) readVariableAction_FloatingNameLabel.getLayoutConstraint();
@@ -3635,8 +3393,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createOutputPin_ReadVariableActionResultShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createOutputPin_ReadVariableActionResultShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(OutputPinInReadVariableActionAsResultEditPart.VISUAL_ID));
@@ -3644,8 +3401,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin"); //$NON-NLS-1$
 		Node outputPin_ReadVariableActionResultNameLabel = createLabel(node, UMLVisualIDRegistry.getType(OutputPinInReadVariableActionAsResultLabelEditPart.VISUAL_ID));
 		outputPin_ReadVariableActionResultNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location outputPin_ReadVariableActionResultNameLabel_Location = (Location) outputPin_ReadVariableActionResultNameLabel.getLayoutConstraint();
@@ -3656,15 +3412,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location outputPin_ReadVariableActionResultStereotypeLabel_Location = (Location) outputPin_ReadVariableActionResultStereotypeLabel.getLayoutConstraint();
 		outputPin_ReadVariableActionResultStereotypeLabel_Location.setX(0);
 		outputPin_ReadVariableActionResultStereotypeLabel_Location.setY(15);
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "OutputPin");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "OutputPin"); //$NON-NLS-1$
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createAddVariableValueAction_Shape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createAddVariableValueAction_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(AddVariableValueActionEditPart.VISUAL_ID));
@@ -3672,9 +3427,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "AddVariableValueAction");
-		Node addVariableValueAction_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(AddVariableValueActionNameEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "AddVariableValueAction"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(AddVariableValueActionNameEditPart.VISUAL_ID));
 		Node addVariableValueAction_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(AddVariableValueActionFloatingNameEditPart.VISUAL_ID));
 		addVariableValueAction_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location addVariableValueAction_FloatingNameLabel_Location = (Location) addVariableValueAction_FloatingNameLabel.getLayoutConstraint();
@@ -3686,8 +3440,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createInputPin_AddVariableValueActionInsertAtShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createInputPin_AddVariableValueActionInsertAtShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(InputPinInAddVariableValueActionAsInsertAtEditPart.VISUAL_ID));
@@ -3695,8 +3448,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		Node inputPin_AddVariableValueActionInsertAtNameLabel = createLabel(node, UMLVisualIDRegistry.getType(InputPinInAddVariableValueActionAsInsertAtLabelEditPart.VISUAL_ID));
 		inputPin_AddVariableValueActionInsertAtNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location inputPin_AddVariableValueActionInsertAtNameLabel_Location = (Location) inputPin_AddVariableValueActionInsertAtNameLabel.getLayoutConstraint();
@@ -3713,8 +3465,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createInputPin_AddVariableValueActionValueShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createInputPin_AddVariableValueActionValueShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(InputPinInAddVariableValueActionAsValueEditPart.VISUAL_ID));
@@ -3722,8 +3473,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		Node inputPin_AddVariableValueActionValueNameLabel = createLabel(node, UMLVisualIDRegistry.getType(InputPinInAddVariableValueActionAsValueLabelEditPart.VISUAL_ID));
 		inputPin_AddVariableValueActionValueNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location inputPin_AddVariableValueActionValueNameLabel_Location = (Location) inputPin_AddVariableValueActionValueNameLabel.getLayoutConstraint();
@@ -3740,8 +3490,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createValuePin_AddVariableValueActionInsertAtShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createValuePin_AddVariableValueActionInsertAtShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ValuePinInAddVariableValueActionAsInsertAtEditPart.VISUAL_ID));
@@ -3749,8 +3498,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		Node valuePin_AddVariableValueActionInsertAtNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInAddVariableValueActionAsInsertAtLabelEditPart.VISUAL_ID));
 		valuePin_AddVariableValueActionInsertAtNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location valuePin_AddVariableValueActionInsertAtNameLabel_Location = (Location) valuePin_AddVariableValueActionInsertAtNameLabel.getLayoutConstraint();
@@ -3772,8 +3520,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createValuePin_AddVariableValueActionValueShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createValuePin_AddVariableValueActionValueShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ValuePinInAddVariableValueActionAsValueEditPart.VISUAL_ID));
@@ -3781,8 +3528,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		Node valuePin_AddVariableValueActionValueNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInAddVariableValueActionAsValueLabelEditPart.VISUAL_ID));
 		valuePin_AddVariableValueActionValueNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location valuePin_AddVariableValueActionValueNameLabel_Location = (Location) valuePin_AddVariableValueActionValueNameLabel.getLayoutConstraint();
@@ -3804,8 +3550,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createActionInputPin_AddVariableValueActionInsertAtShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createActionInputPin_AddVariableValueActionInsertAtShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActionPinInAddVariableValueActionAsInsertAtEditPart.VISUAL_ID));
@@ -3813,8 +3558,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActoinInputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActoinInputPin"); //$NON-NLS-1$
 		Node actionInputPin_AddVariableValueActionInsertAtNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActionPinInAddVariableValueActionAsInsertAtLabelEditPart.VISUAL_ID));
 		actionInputPin_AddVariableValueActionInsertAtNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actionInputPin_AddVariableValueActionInsertAtNameLabel_Location = (Location) actionInputPin_AddVariableValueActionInsertAtNameLabel.getLayoutConstraint();
@@ -3836,8 +3580,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createActionInputPin_AddVariableValueActionValueShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createActionInputPin_AddVariableValueActionValueShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActionPinInAddVariableValueActionAsValueEditPart.VISUAL_ID));
@@ -3845,8 +3588,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		Node actionInputPin_AddVariableValueActionValueNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActionPinInAddVariableValueActionAsValueLabelEditPart.VISUAL_ID));
 		actionInputPin_AddVariableValueActionValueNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actionInputPin_AddVariableValueActionValueNameLabel_Location = (Location) actionInputPin_AddVariableValueActionValueNameLabel.getLayoutConstraint();
@@ -3868,8 +3610,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createBroadcastSignalAction_Shape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createBroadcastSignalAction_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(BroadcastSignalActionEditPart.VISUAL_ID));
@@ -3877,9 +3618,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "BroadcastSignalAction");
-		Node broadcastSignalAction_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(BroadcastSignalActionNameEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "BroadcastSignalAction"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(BroadcastSignalActionNameEditPart.VISUAL_ID));
 		Node broadcastSignalAction_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(BroadcastSignalActionFloatingNameEditPart.VISUAL_ID));
 		broadcastSignalAction_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location broadcastSignalAction_FloatingNameLabel_Location = (Location) broadcastSignalAction_FloatingNameLabel.getLayoutConstraint();
@@ -3891,8 +3631,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createInputPin_BroadcastSignalActionArgumentShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createInputPin_BroadcastSignalActionArgumentShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(InputPinInBroadcastSignalActionEditPart.VISUAL_ID));
@@ -3900,8 +3639,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		Node inputPin_BroadcastSignalActionArgumentNameLabel = createLabel(node, UMLVisualIDRegistry.getType(InputPinInBroadcastSignalActionLabelEditPart.VISUAL_ID));
 		inputPin_BroadcastSignalActionArgumentNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location inputPin_BroadcastSignalActionArgumentNameLabel_Location = (Location) inputPin_BroadcastSignalActionArgumentNameLabel.getLayoutConstraint();
@@ -3923,8 +3661,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createValuePin_BroadcastSignalActionArgumentShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createValuePin_BroadcastSignalActionArgumentShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ValuePinInBroadcastSignalActionEditPart.VISUAL_ID));
@@ -3932,8 +3669,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		Node valuePin_BroadcastSignalActionArgumentNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInBroadcastSignalActionLabelEditPart.VISUAL_ID));
 		valuePin_BroadcastSignalActionArgumentNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location valuePin_BroadcastSignalActionArgumentNameLabel_Location = (Location) valuePin_BroadcastSignalActionArgumentNameLabel.getLayoutConstraint();
@@ -3955,8 +3691,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createActionInputPin_BroadcastSignalActionArgumentShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createActionInputPin_BroadcastSignalActionArgumentShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActionPinInBroadcastSignalActionEditPart.VISUAL_ID));
@@ -3964,8 +3699,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		Node actionInputPin_BroadcastSignalActionArgumentNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActionPinInBroadcastSignalActionLabelEditPart.VISUAL_ID));
 		actionInputPin_BroadcastSignalActionArgumentNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actionInputPin_BroadcastSignalActionArgumentNameLabel_Location = (Location) actionInputPin_BroadcastSignalActionArgumentNameLabel.getLayoutConstraint();
@@ -3987,8 +3721,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createCentralBufferNode_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createCentralBufferNode_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(CentralBufferNodeEditPart.VISUAL_ID));
@@ -3996,9 +3729,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "CentralBufferNode");
-		Node centralBufferNode_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(CentralBufferNodeLabelEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "CentralBufferNode"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(CentralBufferNodeLabelEditPart.VISUAL_ID));
 		Node centralBufferNode_SelectionLabel = createLabel(node, UMLVisualIDRegistry.getType(CentralBufferNodeSelectionEditPart.VISUAL_ID));
 		centralBufferNode_SelectionLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location centralBufferNode_SelectionLabel_Location = (Location) centralBufferNode_SelectionLabel.getLayoutConstraint();
@@ -4015,8 +3747,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createConstraint_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createConstraint_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ConstraintEditPartCN.VISUAL_ID));
@@ -4024,18 +3755,16 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Constraint");
-		Node constraint_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(ConstraintNameEditPartCN.VISUAL_ID));
-		Node constraint_BodyLabel = createLabel(node, UMLVisualIDRegistry.getType(ConstraintBodyEditPartCN.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Constraint"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(ConstraintNameEditPartCN.VISUAL_ID));
+		createLabel(node, UMLVisualIDRegistry.getType(ConstraintBodyEditPartCN.VISUAL_ID));
 		return node;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Node createStartObjectBehaviorAction_Shape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createStartObjectBehaviorAction_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(StartObjectBehavoiurActionEditPart.VISUAL_ID));
@@ -4043,9 +3772,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "StartObjectBehaviourAction");
-		Node startObjectBehaviorAction_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(StartObjectBehaviorActionNameEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "StartObjectBehaviourAction"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(StartObjectBehaviorActionNameEditPart.VISUAL_ID));
 		Node startObjectBehaviorAction_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(StartObjectBehaviorActionFloatingNameEditPart.VISUAL_ID));
 		startObjectBehaviorAction_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location startObjectBehaviorAction_FloatingNameLabel_Location = (Location) startObjectBehaviorAction_FloatingNameLabel.getLayoutConstraint();
@@ -4057,8 +3785,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createOutputPin_StartObjectBehaviorActionResultShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createOutputPin_StartObjectBehaviorActionResultShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(OutputPinInStartObjectBehaviorActionEditPart.VISUAL_ID));
@@ -4066,8 +3793,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin"); //$NON-NLS-1$
 		Node outputPin_StartObjectBehaviorActionResultNameLabel = createLabel(node, UMLVisualIDRegistry.getType(OutputPinInStartObjectBehaviorActionLabelEditPart.VISUAL_ID));
 		outputPin_StartObjectBehaviorActionResultNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location outputPin_StartObjectBehaviorActionResultNameLabel_Location = (Location) outputPin_StartObjectBehaviorActionResultNameLabel.getLayoutConstraint();
@@ -4084,8 +3810,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createInputPin_StartObjectBehaviorActionObjectShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createInputPin_StartObjectBehaviorActionObjectShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(InputPinInStartObjectBehaviorActionAsObjectEditPart.VISUAL_ID));
@@ -4093,8 +3818,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		Node inputPin_StartObjectBehaviorActionObjectNameLabel = createLabel(node, UMLVisualIDRegistry.getType(InputPinInStartObjectBehaviorActionAsObjectLabelEditPart.VISUAL_ID));
 		inputPin_StartObjectBehaviorActionObjectNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location inputPin_StartObjectBehaviorActionObjectNameLabel_Location = (Location) inputPin_StartObjectBehaviorActionObjectNameLabel.getLayoutConstraint();
@@ -4111,8 +3835,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createValuePin_StartObjectBehaviorActionObjectShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createValuePin_StartObjectBehaviorActionObjectShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ValuePinInStartObjectBehaviorActionAsObjectEditPart.VISUAL_ID));
@@ -4120,8 +3843,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		Node valuePin_StartObjectBehaviorActionObjectNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInStartObjectBehaviorActionAsObjectLabelEditPart.VISUAL_ID));
 		valuePin_StartObjectBehaviorActionObjectNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location valuePin_StartObjectBehaviorActionObjectNameLabel_Location = (Location) valuePin_StartObjectBehaviorActionObjectNameLabel.getLayoutConstraint();
@@ -4143,8 +3865,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createActionInputPin_StartObjectBehaviorActionObjectShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createActionInputPin_StartObjectBehaviorActionObjectShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActionPinInStartObjectBehaviorActionAsObjectEditPart.VISUAL_ID));
@@ -4152,8 +3873,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		Node actionInputPin_StartObjectBehaviorActionObjectNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActionPinInStartObjectBehaviorActionAsObjectLabelEditPart.VISUAL_ID));
 		actionInputPin_StartObjectBehaviorActionObjectNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actionInputPin_StartObjectBehaviorActionObjectNameLabel_Location = (Location) actionInputPin_StartObjectBehaviorActionObjectNameLabel.getLayoutConstraint();
@@ -4175,8 +3895,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createInputPin_StartObjectBehaviorActionArgumentShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createInputPin_StartObjectBehaviorActionArgumentShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(InputPinInStartObjectBehaviorActionAsArgumentEditPart.VISUAL_ID));
@@ -4184,8 +3903,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		Node inputPin_StartObjectBehaviorActionArgumentNameLabel = createLabel(node, UMLVisualIDRegistry.getType(InputPinInStartObjectBehaviorActionAsArgumentLabelEditPart.VISUAL_ID));
 		inputPin_StartObjectBehaviorActionArgumentNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location inputPin_StartObjectBehaviorActionArgumentNameLabel_Location = (Location) inputPin_StartObjectBehaviorActionArgumentNameLabel.getLayoutConstraint();
@@ -4202,8 +3920,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createValuePin_StartObjectBehaviorActionArgumentShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createValuePin_StartObjectBehaviorActionArgumentShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ValuePinInStartObjectBehaviorActionAsArgumentEditPart.VISUAL_ID));
@@ -4211,8 +3928,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		Node valuePin_StartObjectBehaviorActionArgumentNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInStartObjectBehaviorActionAsArgumentLabelEditPart.VISUAL_ID));
 		valuePin_StartObjectBehaviorActionArgumentNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location valuePin_StartObjectBehaviorActionArgumentNameLabel_Location = (Location) valuePin_StartObjectBehaviorActionArgumentNameLabel.getLayoutConstraint();
@@ -4234,8 +3950,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createActionInputPin_StartObjectBehaviorActionArgumentShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createActionInputPin_StartObjectBehaviorActionArgumentShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActionPinInStartObjectBehaviorActionAsArgumentEditPart.VISUAL_ID));
@@ -4243,8 +3958,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		Node actionInputPin_StartObjectBehaviorActionArgumentNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActionPinInStartObjectBehaviorActionAsArgumentLabelEditPart.VISUAL_ID));
 		actionInputPin_StartObjectBehaviorActionArgumentNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actionInputPin_StartObjectBehaviorActionArgumentNameLabel_Location = (Location) actionInputPin_StartObjectBehaviorActionArgumentNameLabel.getLayoutConstraint();
@@ -4266,8 +3980,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createTestIdentityAction_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createTestIdentityAction_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(TestIdentityActionEditPart.VISUAL_ID));
@@ -4275,9 +3988,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "TestIdentityAction");
-		Node testIdentityAction_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(TestIdentityActionNameEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "TestIdentityAction"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(TestIdentityActionNameEditPart.VISUAL_ID));
 		Node testIdentityAction_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(TestIdentityActionFloatingNameEditPart.VISUAL_ID));
 		testIdentityAction_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location testIdentityAction_FloatingNameLabel_Location = (Location) testIdentityAction_FloatingNameLabel.getLayoutConstraint();
@@ -4289,8 +4001,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createOutputPin_TestIdentityActionResultShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createOutputPin_TestIdentityActionResultShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(OutputPinInTestIdentityActionEditPart.VISUAL_ID));
@@ -4298,8 +4009,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin"); //$NON-NLS-1$
 		Node outputPin_TestIdentityActionResultNameLabel = createLabel(node, UMLVisualIDRegistry.getType(OutputPinInTestIdentityActionItemLabelEditPart.VISUAL_ID));
 		outputPin_TestIdentityActionResultNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location outputPin_TestIdentityActionResultNameLabel_Location = (Location) outputPin_TestIdentityActionResultNameLabel.getLayoutConstraint();
@@ -4316,8 +4026,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createInputPin_TestIdentityActionFirstShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createInputPin_TestIdentityActionFirstShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(InputPinInTestIdentityActionAsFirstEditPart.VISUAL_ID));
@@ -4325,8 +4034,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		Node inputPin_TestIdentityActionFirstNameLabel = createLabel(node, UMLVisualIDRegistry.getType(InputPinInTestIdentityActionAsFirstLabelEditPart.VISUAL_ID));
 		inputPin_TestIdentityActionFirstNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location inputPin_TestIdentityActionFirstNameLabel_Location = (Location) inputPin_TestIdentityActionFirstNameLabel.getLayoutConstraint();
@@ -4343,8 +4051,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createInputPin_TestIdentityActionSecondShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createInputPin_TestIdentityActionSecondShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(InputPinInTestIdentityActionAsSecondEditPart.VISUAL_ID));
@@ -4352,8 +4059,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		Node inputPin_TestIdentityActionSecondNameLabel = createLabel(node, UMLVisualIDRegistry.getType(InputPinInTestIdentityActionAsSecondLabelEditPart.VISUAL_ID));
 		inputPin_TestIdentityActionSecondNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location inputPin_TestIdentityActionSecondNameLabel_Location = (Location) inputPin_TestIdentityActionSecondNameLabel.getLayoutConstraint();
@@ -4370,8 +4076,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createValuePin_TestIdentityActionFirstShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createValuePin_TestIdentityActionFirstShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ValuePinInTestIdentityActionAsFirstEditPart.VISUAL_ID));
@@ -4379,8 +4084,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		Node valuePin_TestIdentityActionFirstNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInTestIdentityActionAsFirstLabelEditPart.VISUAL_ID));
 		valuePin_TestIdentityActionFirstNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location valuePin_TestIdentityActionFirstNameLabel_Location = (Location) valuePin_TestIdentityActionFirstNameLabel.getLayoutConstraint();
@@ -4402,8 +4106,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createValuePin_TestIdentityActionSecondShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createValuePin_TestIdentityActionSecondShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ValuePinInTestIdentityActionAsSecondEditPart.VISUAL_ID));
@@ -4411,8 +4114,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		Node valuePin_TestIdentityActionSecondNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInTestIdentityActionAsSecondLabelEditPart.VISUAL_ID));
 		valuePin_TestIdentityActionSecondNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location valuePin_TestIdentityActionSecondNameLabel_Location = (Location) valuePin_TestIdentityActionSecondNameLabel.getLayoutConstraint();
@@ -4434,8 +4136,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createActionInputPin_TestIdentityActionFirstShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createActionInputPin_TestIdentityActionFirstShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActionPinInTestIdentityActionAsFirstEditPart.VISUAL_ID));
@@ -4443,8 +4144,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		Node actionInputPin_TestIdentityActionFirstNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActionPinInTestIdentityActionAsFirstLabelEditPart.VISUAL_ID));
 		actionInputPin_TestIdentityActionFirstNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actionInputPin_TestIdentityActionFirstNameLabel_Location = (Location) actionInputPin_TestIdentityActionFirstNameLabel.getLayoutConstraint();
@@ -4466,8 +4166,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createActionInputPin_TestIdentityActionSecondShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createActionInputPin_TestIdentityActionSecondShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActionPinInTestIdentityActionAsSecondEditPart.VISUAL_ID));
@@ -4475,8 +4174,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		Node actionInputPin_TestIdentityActionSecondNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActionPinInTestIdentityActionAsSecondLabelEditPart.VISUAL_ID));
 		actionInputPin_TestIdentityActionSecondNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actionInputPin_TestIdentityActionSecondNameLabel_Location = (Location) actionInputPin_TestIdentityActionSecondNameLabel.getLayoutConstraint();
@@ -4498,8 +4196,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createClearStructuralFeatureAction_Shape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createClearStructuralFeatureAction_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ClearStructuralFeatureActionEditPart.VISUAL_ID));
@@ -4507,9 +4204,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ClearStructuralFeatureAction");
-		Node clearStructuralFeatureAction_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(ClearStructuralFeatureActionNameEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ClearStructuralFeatureAction"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(ClearStructuralFeatureActionNameEditPart.VISUAL_ID));
 		Node clearStructuralFeatureAction_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ClearStructuralFeatureActionFloatingNameEditPart.VISUAL_ID));
 		clearStructuralFeatureAction_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location clearStructuralFeatureAction_FloatingNameLabel_Location = (Location) clearStructuralFeatureAction_FloatingNameLabel.getLayoutConstraint();
@@ -4521,8 +4217,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createOutputPin_ClearStructuralFeatureActionResultShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createOutputPin_ClearStructuralFeatureActionResultShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(OutputPinInClearStructuralFeatureActionEditPart.VISUAL_ID));
@@ -4530,8 +4225,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin"); //$NON-NLS-1$
 		Node outputPin_ClearStructuralFeatureActionResultNameLabel = createLabel(node, UMLVisualIDRegistry.getType(OutputPinInClearStructuralFeatureActionLabelEditPart.VISUAL_ID));
 		outputPin_ClearStructuralFeatureActionResultNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location outputPin_ClearStructuralFeatureActionResultNameLabel_Location = (Location) outputPin_ClearStructuralFeatureActionResultNameLabel.getLayoutConstraint();
@@ -4548,8 +4242,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createInputPin_ClearStructuralFeatureActionObjectShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createInputPin_ClearStructuralFeatureActionObjectShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(InputPinInClearStructuralFeatureActionAsObjectEditPart.VISUAL_ID));
@@ -4557,8 +4250,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		Node inputPin_ClearStructuralFeatureActionObjectNameLabel = createLabel(node, UMLVisualIDRegistry.getType(InputPinInClearStructuralFeatureActionAsObjectLabelEditPart.VISUAL_ID));
 		inputPin_ClearStructuralFeatureActionObjectNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location inputPin_ClearStructuralFeatureActionObjectNameLabel_Location = (Location) inputPin_ClearStructuralFeatureActionObjectNameLabel.getLayoutConstraint();
@@ -4575,8 +4267,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createValuePin_ClearStructuralFeatureActionObjectShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createValuePin_ClearStructuralFeatureActionObjectShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ValuePinInClearStructuralFeatureActionAsObjectEditPart.VISUAL_ID));
@@ -4584,8 +4275,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		Node valuePin_ClearStructuralFeatureActionObjectNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInClearStructuralFeatureActionAsObjectLabelEditPart.VISUAL_ID));
 		valuePin_ClearStructuralFeatureActionObjectNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location valuePin_ClearStructuralFeatureActionObjectNameLabel_Location = (Location) valuePin_ClearStructuralFeatureActionObjectNameLabel.getLayoutConstraint();
@@ -4607,8 +4297,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createActionInputPin_ClearStructuralFeatureActionObjectShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createActionInputPin_ClearStructuralFeatureActionObjectShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActionInputPinInClearStructuralFeatureActionAsObjectEditPart.VISUAL_ID));
@@ -4616,8 +4305,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		Node actionInputPin_ClearStructuralFeatureActionObjectNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActionInputPinInClearStructuralFeatureActionAsObjectLabelEditPart.VISUAL_ID));
 		actionInputPin_ClearStructuralFeatureActionObjectNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actionInputPin_ClearStructuralFeatureActionObjectNameLabel_Location = (Location) actionInputPin_ClearStructuralFeatureActionObjectNameLabel.getLayoutConstraint();
@@ -4639,8 +4327,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createCreateLinkAction_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createCreateLinkAction_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(CreateLinkActionEditPart.VISUAL_ID));
@@ -4648,9 +4335,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "CreateLinkAction");
-		Node createLinkAction_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(CreateLinkActionNameEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "CreateLinkAction"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(CreateLinkActionNameEditPart.VISUAL_ID));
 		Node createLinkAction_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(CreateLinkActionFloatingNameEditPart.VISUAL_ID));
 		createLinkAction_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location createLinkAction_FloatingNameLabel_Location = (Location) createLinkAction_FloatingNameLabel.getLayoutConstraint();
@@ -4662,8 +4348,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createInputPin_CreateLinkActionInputShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createInputPin_CreateLinkActionInputShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(InputPinInCreateLinkActionAsInputValueEditPart.VISUAL_ID));
@@ -4671,8 +4356,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		Node inputPin_CreateLinkActionInputNameLabel = createLabel(node, UMLVisualIDRegistry.getType(InputPinInCreateLinkActionAsInputValueLabelEditPart.VISUAL_ID));
 		inputPin_CreateLinkActionInputNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location inputPin_CreateLinkActionInputNameLabel_Location = (Location) inputPin_CreateLinkActionInputNameLabel.getLayoutConstraint();
@@ -4689,8 +4373,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createValuePin_CreateLinkActionInputShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createValuePin_CreateLinkActionInputShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ValuePinInCreateLinkActionAsInputValueEditPart.VISUAL_ID));
@@ -4698,8 +4381,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		Node valuePin_CreateLinkActionInputNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInCreateLinkActionAsInputValueLabelEditPart.VISUAL_ID));
 		valuePin_CreateLinkActionInputNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location valuePin_CreateLinkActionInputNameLabel_Location = (Location) valuePin_CreateLinkActionInputNameLabel.getLayoutConstraint();
@@ -4721,8 +4403,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createActionInputPin_CreateLinkActionInputShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createActionInputPin_CreateLinkActionInputShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActionInputPinInCreateLinkActionAsInputValueEditPart.VISUAL_ID));
@@ -4730,8 +4411,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		Node actionInputPin_CreateLinkActionInputNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActionInputPinInCreateLinkActionAsInputValueLabelEditPart.VISUAL_ID));
 		actionInputPin_CreateLinkActionInputNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actionInputPin_CreateLinkActionInputNameLabel_Location = (Location) actionInputPin_CreateLinkActionInputNameLabel.getLayoutConstraint();
@@ -4753,8 +4433,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createReadLinkAction_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createReadLinkAction_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ReadLinkActionEditPart.VISUAL_ID));
@@ -4762,9 +4441,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ReadLinkAction");
-		Node readLinkAction_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(ReadLinkActionNameEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ReadLinkAction"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(ReadLinkActionNameEditPart.VISUAL_ID));
 		Node readLinkAction_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ReadLinkActionFloatingNameEditPart.VISUAL_ID));
 		readLinkAction_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location readLinkAction_FloatingNameLabel_Location = (Location) readLinkAction_FloatingNameLabel.getLayoutConstraint();
@@ -4776,8 +4454,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createOutputPin_ReadLinkActionResultShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createOutputPin_ReadLinkActionResultShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(OutputPinInReadLinkActionEditPart.VISUAL_ID));
@@ -4785,8 +4462,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin"); //$NON-NLS-1$
 		Node outputPin_ReadLinkActionResultNameLabel = createLabel(node, UMLVisualIDRegistry.getType(OutputPinInReadLinkActionLabelEditPart.VISUAL_ID));
 		outputPin_ReadLinkActionResultNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location outputPin_ReadLinkActionResultNameLabel_Location = (Location) outputPin_ReadLinkActionResultNameLabel.getLayoutConstraint();
@@ -4803,8 +4479,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createInputPin_ReadLinkActionInputShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createInputPin_ReadLinkActionInputShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(InputPinInReadLinkActionAsInputValueEditPart.VISUAL_ID));
@@ -4812,8 +4487,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		Node inputPin_ReadLinkActionInputNameLabel = createLabel(node, UMLVisualIDRegistry.getType(InputPinInReadLinkActionAsInputValueLabelEditPart.VISUAL_ID));
 		inputPin_ReadLinkActionInputNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location inputPin_ReadLinkActionInputNameLabel_Location = (Location) inputPin_ReadLinkActionInputNameLabel.getLayoutConstraint();
@@ -4830,8 +4504,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createValuePin_ReadLinkActionInputShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createValuePin_ReadLinkActionInputShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ValuePinInReadLinkActionAsInputValueEditPart.VISUAL_ID));
@@ -4839,8 +4512,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		Node valuePin_ReadLinkActionInputNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInReadLinkActionAsInputValueLabelEditPart.VISUAL_ID));
 		valuePin_ReadLinkActionInputNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location valuePin_ReadLinkActionInputNameLabel_Location = (Location) valuePin_ReadLinkActionInputNameLabel.getLayoutConstraint();
@@ -4862,8 +4534,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createActionInputPin_ReadLinkActionInputShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createActionInputPin_ReadLinkActionInputShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActionInputPinInReadLinkActionAsInputValueEditPart.VISUAL_ID));
@@ -4871,8 +4542,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		Node actionInputPin_ReadLinkActionInputNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActionInputPinInReadLinkActionAsInputValueLabelEditPart.VISUAL_ID));
 		actionInputPin_ReadLinkActionInputNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actionInputPin_ReadLinkActionInputNameLabel_Location = (Location) actionInputPin_ReadLinkActionInputNameLabel.getLayoutConstraint();
@@ -4894,8 +4564,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createDestroyLinkAction_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createDestroyLinkAction_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(DestroyLinkActionEditPart.VISUAL_ID));
@@ -4903,9 +4572,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DestroyLinkAction");
-		Node destroyLinkAction_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(DestroyLinkActionNameEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DestroyLinkAction"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(DestroyLinkActionNameEditPart.VISUAL_ID));
 		Node destroyLinkAction_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(DestroyLinkActionFloatingNameEditPart.VISUAL_ID));
 		destroyLinkAction_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location destroyLinkAction_FloatingNameLabel_Location = (Location) destroyLinkAction_FloatingNameLabel.getLayoutConstraint();
@@ -4917,8 +4585,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createInputPin_DestroyLinkActionInputShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createInputPin_DestroyLinkActionInputShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(InputPinInDestroyLinkActionAsInputValueEditPart.VISUAL_ID));
@@ -4926,8 +4593,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		Node inputPin_DestroyLinkActionInputNameLabel = createLabel(node, UMLVisualIDRegistry.getType(InputPinInDestroyLinkActionAsInputValueLabelEditPart.VISUAL_ID));
 		inputPin_DestroyLinkActionInputNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location inputPin_DestroyLinkActionInputNameLabel_Location = (Location) inputPin_DestroyLinkActionInputNameLabel.getLayoutConstraint();
@@ -4944,8 +4610,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createValuePin_DestroyLinkActionInputShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createValuePin_DestroyLinkActionInputShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ValuePinInDestroyLinkActionAsInputValueEditPart.VISUAL_ID));
@@ -4953,8 +4618,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		Node valuePin_DestroyLinkActionInputNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInDestroyLinkActionAsInputValueLabelEditPart.VISUAL_ID));
 		valuePin_DestroyLinkActionInputNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location valuePin_DestroyLinkActionInputNameLabel_Location = (Location) valuePin_DestroyLinkActionInputNameLabel.getLayoutConstraint();
@@ -4976,8 +4640,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createActionInputPin_DestroyLinkActionInputShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createActionInputPin_DestroyLinkActionInputShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActionInputPinInDestroyLinkActionAsInputValueEditPart.VISUAL_ID));
@@ -4985,8 +4648,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		Node actionInputPin_DestroyLinkActionInputNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActionInputPinInDestroyLinkActionAsInputValueLabelEditPart.VISUAL_ID));
 		actionInputPin_DestroyLinkActionInputNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actionInputPin_DestroyLinkActionInputNameLabel_Location = (Location) actionInputPin_DestroyLinkActionInputNameLabel.getLayoutConstraint();
@@ -5008,8 +4670,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createClearAssociationAction_Shape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createClearAssociationAction_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ClearAssociationActionEditPart.VISUAL_ID));
@@ -5017,9 +4678,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ClearAssotiationAction");
-		Node clearAssociationAction_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(ClearAssociationActionNameEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ClearAssotiationAction"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(ClearAssociationActionNameEditPart.VISUAL_ID));
 		Node clearAssociationAction_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ClearAssociationActionFloatingNameEditPart.VISUAL_ID));
 		clearAssociationAction_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location clearAssociationAction_FloatingNameLabel_Location = (Location) clearAssociationAction_FloatingNameLabel.getLayoutConstraint();
@@ -5031,8 +4691,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createInputPin_ClearAssociationActionObjectShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createInputPin_ClearAssociationActionObjectShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(InputPinInClearAssociationActionAsObjectEditPart.VISUAL_ID));
@@ -5040,8 +4699,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		Node inputPin_ClearAssociationActionObjectNameLabel = createLabel(node, UMLVisualIDRegistry.getType(InputPinInClearAssociationActionAsObjectLabelEditPart.VISUAL_ID));
 		inputPin_ClearAssociationActionObjectNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location inputPin_ClearAssociationActionObjectNameLabel_Location = (Location) inputPin_ClearAssociationActionObjectNameLabel.getLayoutConstraint();
@@ -5058,8 +4716,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createValuePin_ClearAssociationActionObjectShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createValuePin_ClearAssociationActionObjectShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ValuePinInClearAssociationActionAsObjectEditPart.VISUAL_ID));
@@ -5067,8 +4724,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		Node valuePin_ClearAssociationActionObjectNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInClearAssociationActionAsObjectLabelEditPart.VISUAL_ID));
 		valuePin_ClearAssociationActionObjectNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location valuePin_ClearAssociationActionObjectNameLabel_Location = (Location) valuePin_ClearAssociationActionObjectNameLabel.getLayoutConstraint();
@@ -5090,8 +4746,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createActionInputPin_ClearAssociationActionObjectShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createActionInputPin_ClearAssociationActionObjectShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActionPinInClearAssociationActionAsObjectEditPart.VISUAL_ID));
@@ -5099,8 +4754,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		Node actionInputPin_ClearAssociationActionObjectNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActionPinInClearAssociationActionAsObjectLabelEditPart.VISUAL_ID));
 		actionInputPin_ClearAssociationActionObjectNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actionInputPin_ClearAssociationActionObjectNameLabel_Location = (Location) actionInputPin_ClearAssociationActionObjectNameLabel.getLayoutConstraint();
@@ -5122,8 +4776,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createReadExtentAction_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createReadExtentAction_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ReadExtentActionEditPart.VISUAL_ID));
@@ -5131,9 +4784,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ReadExtentAction");
-		Node readExtentAction_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(ReadExtentActionNameEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ReadExtentAction"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(ReadExtentActionNameEditPart.VISUAL_ID));
 		Node readExtentAction_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ReadExtentActionFloatingNameEditPart.VISUAL_ID));
 		readExtentAction_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location readExtentAction_FloatingNameLabel_Location = (Location) readExtentAction_FloatingNameLabel.getLayoutConstraint();
@@ -5145,8 +4797,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createOutputPin_ReadExtentActionResultShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createOutputPin_ReadExtentActionResultShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(OutputPinInReadExtentActionEditPart.VISUAL_ID));
@@ -5154,8 +4805,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin"); //$NON-NLS-1$
 		Node outputPin_ReadExtentActionResultNameLabel = createLabel(node, UMLVisualIDRegistry.getType(OutputPinInReadExtentActionLabelEditPart.VISUAL_ID));
 		outputPin_ReadExtentActionResultNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location outputPin_ReadExtentActionResultNameLabel_Location = (Location) outputPin_ReadExtentActionResultNameLabel.getLayoutConstraint();
@@ -5172,8 +4822,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createReclassifyObjectAction_Shape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createReclassifyObjectAction_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ReclassifyObjectActionEditPart.VISUAL_ID));
@@ -5181,9 +4830,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ReclassifyObjectAction");
-		Node reclassifyObjectAction_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(ReclassifyObjectActionNameEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ReclassifyObjectAction"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(ReclassifyObjectActionNameEditPart.VISUAL_ID));
 		Node reclassifyObjectAction_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ReclassifyObjectActionFloatingNameEditPart.VISUAL_ID));
 		reclassifyObjectAction_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location reclassifyObjectAction_FloatingNameLabel_Location = (Location) reclassifyObjectAction_FloatingNameLabel.getLayoutConstraint();
@@ -5195,8 +4843,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createInputPin_ReclassifyObjectActionObjectShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createInputPin_ReclassifyObjectActionObjectShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(InputPinInReclassifyObjectActionAsObjectEditPart.VISUAL_ID));
@@ -5204,8 +4851,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		Node inputPin_ReclassifyObjectActionObjectNameLabel = createLabel(node, UMLVisualIDRegistry.getType(InputPinInReclassifyObjectActionAsObjectLabelEditPart.VISUAL_ID));
 		inputPin_ReclassifyObjectActionObjectNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location inputPin_ReclassifyObjectActionObjectNameLabel_Location = (Location) inputPin_ReclassifyObjectActionObjectNameLabel.getLayoutConstraint();
@@ -5222,8 +4868,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createValuePin_ReclassifyObjectActionObjectShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createValuePin_ReclassifyObjectActionObjectShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ValuePinInReclassifyObjectActionAsObjectEditPart.VISUAL_ID));
@@ -5231,8 +4876,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		Node valuePin_ReclassifyObjectActionObjectNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInReclassifyObjectActionAsObjectLabelEditPart.VISUAL_ID));
 		valuePin_ReclassifyObjectActionObjectNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location valuePin_ReclassifyObjectActionObjectNameLabel_Location = (Location) valuePin_ReclassifyObjectActionObjectNameLabel.getLayoutConstraint();
@@ -5254,8 +4898,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createActionInputPin_ReclassifyObjectActionObjectShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createActionInputPin_ReclassifyObjectActionObjectShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActionPinInReclassifyObjectActionAsObjectEditPart.VISUAL_ID));
@@ -5263,8 +4906,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		Node actionInputPin_ReclassifyObjectActionObjectNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActionPinInReclassifyObjectActionAsObjectLabelEditPart.VISUAL_ID));
 		actionInputPin_ReclassifyObjectActionObjectNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actionInputPin_ReclassifyObjectActionObjectNameLabel_Location = (Location) actionInputPin_ReclassifyObjectActionObjectNameLabel.getLayoutConstraint();
@@ -5286,8 +4928,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createReadIsClassifiedObjectAction_Shape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createReadIsClassifiedObjectAction_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ReadIsClassifiedObjectActionEditPart.VISUAL_ID));
@@ -5295,9 +4936,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ReadIsClassifiedObjectAction");
-		Node readIsClassifiedObjectAction_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(ReadIsClassifiedObjectActionNameEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ReadIsClassifiedObjectAction"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(ReadIsClassifiedObjectActionNameEditPart.VISUAL_ID));
 		Node readIsClassifiedObjectAction_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ReadIsClassifiedObjectActionFloatingNameEditPart.VISUAL_ID));
 		readIsClassifiedObjectAction_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location readIsClassifiedObjectAction_FloatingNameLabel_Location = (Location) readIsClassifiedObjectAction_FloatingNameLabel.getLayoutConstraint();
@@ -5309,8 +4949,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createOutputPin_ReadIsClassifiedObjectActionResultShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createOutputPin_ReadIsClassifiedObjectActionResultShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(OutputPinInReadIsClassifiedObjectActionEditPart.VISUAL_ID));
@@ -5318,8 +4957,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin"); //$NON-NLS-1$
 		Node outputPin_ReadIsClassifiedObjectActionResultNameLabel = createLabel(node, UMLVisualIDRegistry.getType(OutputPinInReadIsClassifiedObjectActionLabelEditPart.VISUAL_ID));
 		outputPin_ReadIsClassifiedObjectActionResultNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location outputPin_ReadIsClassifiedObjectActionResultNameLabel_Location = (Location) outputPin_ReadIsClassifiedObjectActionResultNameLabel.getLayoutConstraint();
@@ -5336,8 +4974,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createInputPin_ReadIsClassifiedObjectActionObjectShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createInputPin_ReadIsClassifiedObjectActionObjectShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(InputPinInReadIsClassifiedObjectActionAsObjectEditPart.VISUAL_ID));
@@ -5345,8 +4982,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		Node inputPin_ReadIsClassifiedObjectActionObjectNameLabel = createLabel(node, UMLVisualIDRegistry.getType(InputPinInReadIsClassifiedObjectActionAsObjectLabelEditPart.VISUAL_ID));
 		inputPin_ReadIsClassifiedObjectActionObjectNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location inputPin_ReadIsClassifiedObjectActionObjectNameLabel_Location = (Location) inputPin_ReadIsClassifiedObjectActionObjectNameLabel.getLayoutConstraint();
@@ -5363,8 +4999,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createValuePin_ReadIsClassifiedObjectActionObjectShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createValuePin_ReadIsClassifiedObjectActionObjectShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ValuePinInReadIsClassifiedObjectActionAsObjectEditPart.VISUAL_ID));
@@ -5372,8 +5007,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		Node valuePin_ReadIsClassifiedObjectActionObjectNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInReadIsClassifiedObjectActionAsObjectLabelEditPart.VISUAL_ID));
 		valuePin_ReadIsClassifiedObjectActionObjectNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location valuePin_ReadIsClassifiedObjectActionObjectNameLabel_Location = (Location) valuePin_ReadIsClassifiedObjectActionObjectNameLabel.getLayoutConstraint();
@@ -5395,8 +5029,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createActionInputPin_ReadIsClassifiedObjectActionObjectShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createActionInputPin_ReadIsClassifiedObjectActionObjectShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActionPinInReadIsClassifiedObjectActionAsObjectEditPart.VISUAL_ID));
@@ -5404,8 +5037,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		Node actionInputPin_ReadIsClassifiedObjectActionObjectNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActionPinInReadIsClassifiedObjectActionAsObjectLabelEditPart.VISUAL_ID));
 		actionInputPin_ReadIsClassifiedObjectActionObjectNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actionInputPin_ReadIsClassifiedObjectActionObjectNameLabel_Location = (Location) actionInputPin_ReadIsClassifiedObjectActionObjectNameLabel.getLayoutConstraint();
@@ -5427,8 +5059,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createReduceAction_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createReduceAction_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ReduceActionEditPart.VISUAL_ID));
@@ -5436,9 +5067,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ReduceAction");
-		Node reduceAction_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(ReduceActionNameEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ReduceAction"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(ReduceActionNameEditPart.VISUAL_ID));
 		Node reduceAction_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ReduceActionFloatingNameEditPart.VISUAL_ID));
 		reduceAction_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location reduceAction_FloatingNameLabel_Location = (Location) reduceAction_FloatingNameLabel.getLayoutConstraint();
@@ -5450,8 +5080,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createOutputPin_ReduceActionResultShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createOutputPin_ReduceActionResultShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(OutputPinInReduceActionEditPart.VISUAL_ID));
@@ -5459,8 +5088,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin"); //$NON-NLS-1$
 		Node outputPin_ReduceActionResultNameLabel = createLabel(node, UMLVisualIDRegistry.getType(OutputPinInReduceActionLabelEditPart.VISUAL_ID));
 		outputPin_ReduceActionResultNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location outputPin_ReduceActionResultNameLabel_Location = (Location) outputPin_ReduceActionResultNameLabel.getLayoutConstraint();
@@ -5477,8 +5105,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createInputPin_ReduceActionCollectionShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createInputPin_ReduceActionCollectionShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(InputPinInReduceActionAsCollectionEditPart.VISUAL_ID));
@@ -5486,8 +5113,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		Node inputPin_ReduceActionCollectionNameLabel = createLabel(node, UMLVisualIDRegistry.getType(InputPinInReduceActionAsCollectionLabelEditPart.VISUAL_ID));
 		inputPin_ReduceActionCollectionNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location inputPin_ReduceActionCollectionNameLabel_Location = (Location) inputPin_ReduceActionCollectionNameLabel.getLayoutConstraint();
@@ -5504,8 +5130,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createValuePin_ReduceActionCollectionShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createValuePin_ReduceActionCollectionShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ValuePinInReduceActionAsCollectionEditPart.VISUAL_ID));
@@ -5513,8 +5138,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		Node valuePin_ReduceActionCollectionNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInReduceActionAsCollectionLabelEditPart.VISUAL_ID));
 		valuePin_ReduceActionCollectionNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location valuePin_ReduceActionCollectionNameLabel_Location = (Location) valuePin_ReduceActionCollectionNameLabel.getLayoutConstraint();
@@ -5536,8 +5160,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createActionInputPin_ReduceActionCollectionShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createActionInputPin_ReduceActionCollectionShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActionPinInReduceActionAsCollectionEditPart.VISUAL_ID));
@@ -5545,8 +5168,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		Node actionInputPin_ReduceActionCollectionNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActionPinInReduceActionAsCollectionLabelEditPart.VISUAL_ID));
 		actionInputPin_ReduceActionCollectionNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actionInputPin_ReduceActionCollectionNameLabel_Location = (Location) actionInputPin_ReduceActionCollectionNameLabel.getLayoutConstraint();
@@ -5568,8 +5190,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createStartClassifierBehaviorAction_Shape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createStartClassifierBehaviorAction_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(StartClassifierBehaviorActionEditPart.VISUAL_ID));
@@ -5577,9 +5198,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "StartClassifierBehaviourAction");
-		Node startClassifierBehaviorAction_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(StartClassifierBehaviorActionNameEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "StartClassifierBehaviourAction"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(StartClassifierBehaviorActionNameEditPart.VISUAL_ID));
 		Node startClassifierBehaviorAction_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(StartClassifierBehaviorActionFloatingNameEditPart.VISUAL_ID));
 		startClassifierBehaviorAction_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location startClassifierBehaviorAction_FloatingNameLabel_Location = (Location) startClassifierBehaviorAction_FloatingNameLabel.getLayoutConstraint();
@@ -5591,8 +5211,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createInputPin_StartClassifierBehaviorActionObjectShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createInputPin_StartClassifierBehaviorActionObjectShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(InputPinInStartClassifierBehaviorActionAsObjectEditPart.VISUAL_ID));
@@ -5600,8 +5219,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		Node inputPin_StartClassifierBehaviorActionObjectNameLabel = createLabel(node, UMLVisualIDRegistry.getType(InputPinInStartClassifierBehaviorActionAsObjectLabelEditPart.VISUAL_ID));
 		inputPin_StartClassifierBehaviorActionObjectNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location inputPin_StartClassifierBehaviorActionObjectNameLabel_Location = (Location) inputPin_StartClassifierBehaviorActionObjectNameLabel.getLayoutConstraint();
@@ -5618,8 +5236,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createValuePin_StartClassifierBehaviorActionObjectShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createValuePin_StartClassifierBehaviorActionObjectShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ValuePinInStartClassifierBehaviorActionAsObjectEditPart.VISUAL_ID));
@@ -5627,8 +5244,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		Node valuePin_StartClassifierBehaviorActionObjectNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInStartClassifierBehaviorActionAsObjectLabelEditPart.VISUAL_ID));
 		valuePin_StartClassifierBehaviorActionObjectNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location valuePin_StartClassifierBehaviorActionObjectNameLabel_Location = (Location) valuePin_StartClassifierBehaviorActionObjectNameLabel.getLayoutConstraint();
@@ -5650,8 +5266,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createActionInputPin_StartClassifierBehaviorActionObjectShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createActionInputPin_StartClassifierBehaviorActionObjectShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActionPinInStartClassifierBehaviorActionAsObjectEditPart.VISUAL_ID));
@@ -5659,8 +5274,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		Node actionInputPin_StartClassifierBehaviorActionObjectNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActionPinInStartClassifierBehaviorActionAsObjectLabelEditPart.VISUAL_ID));
 		actionInputPin_StartClassifierBehaviorActionObjectNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actionInputPin_StartClassifierBehaviorActionObjectNameLabel_Location = (Location) actionInputPin_StartClassifierBehaviorActionObjectNameLabel.getLayoutConstraint();
@@ -5682,8 +5296,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createCreateLinkObjectAction_Shape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createCreateLinkObjectAction_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(CreateLinkObjectActionEditPart.VISUAL_ID));
@@ -5691,9 +5304,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "CreateLinkObjectAction");
-		Node createLinkObjectAction_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(CreateLinkObjectActionNameEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "CreateLinkObjectAction"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(CreateLinkObjectActionNameEditPart.VISUAL_ID));
 		Node createLinkObjectAction_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(CreateLinkObjectActionFloatingNameEditPart.VISUAL_ID));
 		createLinkObjectAction_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location createLinkObjectAction_FloatingNameLabel_Location = (Location) createLinkObjectAction_FloatingNameLabel.getLayoutConstraint();
@@ -5705,8 +5317,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createInputPin_CreateLinkObjectActionInputShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createInputPin_CreateLinkObjectActionInputShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(InputPinInCreateLinkObjectActionAsInputValueEditPart.VISUAL_ID));
@@ -5714,8 +5325,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		Node inputPin_CreateLinkObjectActionInputNameLabel = createLabel(node, UMLVisualIDRegistry.getType(InputPinInCreateLinkObjectActionAsInputValueLabelEditPart.VISUAL_ID));
 		inputPin_CreateLinkObjectActionInputNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location inputPin_CreateLinkObjectActionInputNameLabel_Location = (Location) inputPin_CreateLinkObjectActionInputNameLabel.getLayoutConstraint();
@@ -5732,8 +5342,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createValuePin_CreateLinkObjectActionInputShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createValuePin_CreateLinkObjectActionInputShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ValuePinInCreateLinkObjectActionAsInputValueEditPart.VISUAL_ID));
@@ -5741,8 +5350,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		Node valuePin_CreateLinkObjectActionInputNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInCreateLinkObjectActionAsInputValueLabelEditPart.VISUAL_ID));
 		valuePin_CreateLinkObjectActionInputNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location valuePin_CreateLinkObjectActionInputNameLabel_Location = (Location) valuePin_CreateLinkObjectActionInputNameLabel.getLayoutConstraint();
@@ -5764,8 +5372,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createActionInputPin_CreateLinkObjectActionInputShape(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createActionInputPin_CreateLinkObjectActionInputShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ActionPinInCreateLinkObjectActionAsInputValueEditPart.VISUAL_ID));
@@ -5773,8 +5380,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		Node actionInputPin_CreateLinkObjectActionInputNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActionPinInCreateLinkObjectActionAsInputValueLabelEditPart.VISUAL_ID));
 		actionInputPin_CreateLinkObjectActionInputNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actionInputPin_CreateLinkObjectActionInputNameLabel_Location = (Location) actionInputPin_CreateLinkObjectActionInputNameLabel.getLayoutConstraint();
@@ -5796,8 +5402,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createOutputPin_CreateLinkObjectActionResultShape(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	public Node createOutputPin_CreateLinkObjectActionResultShape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(OutputPinInCreateLinkObjectActionEditPart.VISUAL_ID));
@@ -5805,8 +5410,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin"); //$NON-NLS-1$
 		Node outputPin_CreateLinkObjectActionResultNameLabel = createLabel(node, UMLVisualIDRegistry.getType(OutputPinInCreateLinkObjectActionLabelEditPart.VISUAL_ID));
 		outputPin_CreateLinkObjectActionResultNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location outputPin_CreateLinkObjectActionResultNameLabel_Location = (Location) outputPin_CreateLinkObjectActionResultNameLabel.getLayoutConstraint();
@@ -5831,9 +5435,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "UnmarshallAction");
-		Node unmarshallAction_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(UnmarshallActionNameEditPart.VISUAL_ID));
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "UnmarshallAction"); //$NON-NLS-1$
+		createLabel(node, UMLVisualIDRegistry.getType(UnmarshallActionNameEditPart.VISUAL_ID));
 		Node unmarshallAction_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(UnmarshallActionFloatingNameEditPart.VISUAL_ID));
 		unmarshallAction_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location unmarshallAction_FloatingNameLabel_Location = (Location) unmarshallAction_FloatingNameLabel.getLayoutConstraint();
@@ -5853,8 +5456,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin"); //$NON-NLS-1$
 		Node inputPin_UnmarshallActionObjectNameLabel = createLabel(node, UMLVisualIDRegistry.getType(InputPinInUnmarshallActionAsObjectLabelEditPart.VISUAL_ID));
 		inputPin_UnmarshallActionObjectNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location inputPin_UnmarshallActionObjectNameLabel_Location = (Location) inputPin_UnmarshallActionObjectNameLabel.getLayoutConstraint();
@@ -5879,8 +5481,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin"); //$NON-NLS-1$
 		Node valuePin_UnmarshallActionObjectNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInUnmarshallActionAsObjectLabelEditPart.VISUAL_ID));
 		valuePin_UnmarshallActionObjectNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location valuePin_UnmarshallActionObjectNameLabel_Location = (Location) valuePin_UnmarshallActionObjectNameLabel.getLayoutConstraint();
@@ -5910,8 +5511,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin"); //$NON-NLS-1$
 		Node actionInputPin_UnmarshallActionObjectNameLabel = createLabel(node, UMLVisualIDRegistry.getType(ActionPinInUnmarshallActionAsObjectLabelEditPart.VISUAL_ID));
 		actionInputPin_UnmarshallActionObjectNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location actionInputPin_UnmarshallActionObjectNameLabel_Location = (Location) actionInputPin_UnmarshallActionObjectNameLabel.getLayoutConstraint();
@@ -5941,8 +5541,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin"); //$NON-NLS-1$
 		Node outputPin_UnmarshallActionResultNameLabel = createLabel(node, UMLVisualIDRegistry.getType(OutputPinInUnmarshallActionAsResultLabelEditPart.VISUAL_ID));
 		outputPin_UnmarshallActionResultNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location outputPin_UnmarshallActionResultNameLabel_Location = (Location) outputPin_UnmarshallActionResultNameLabel.getLayoutConstraint();
@@ -5959,8 +5558,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Edge createAction_LocalPreconditionEdge(View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	@SuppressWarnings("unchecked")
+	public Edge createAction_LocalPreconditionEdge(View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
@@ -5973,21 +5572,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setType(UMLVisualIDRegistry.getType(ActionLocalPreconditionEditPart.VISUAL_ID));
 		edge.setElement(null);
 		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		// if (routing != null) {
-		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		// }
-
 		return edge;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Edge createAction_LocalPostconditionEdge(View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	@SuppressWarnings("unchecked")
+	public Edge createAction_LocalPostconditionEdge(View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
@@ -6000,21 +5592,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setType(UMLVisualIDRegistry.getType(ActionLocalPostconditionEditPart.VISUAL_ID));
 		edge.setElement(null);
 		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		// if (routing != null) {
-		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		// }
-
 		return edge;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Edge createObjectFlow_Edge(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	@SuppressWarnings("unchecked")
+	public Edge createObjectFlow_Edge(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
@@ -6028,12 +5613,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setElement(domainElement);
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "ObjectFlow");
-		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		// if (routing != null) {
-		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		// }
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "ObjectFlow"); //$NON-NLS-1$
 		Node objectFlow_NameLabel = createLabel(edge, UMLVisualIDRegistry.getType(ObjectFlowNameEditPart.VISUAL_ID));
 		objectFlow_NameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location objectFlow_NameLabel_Location = (Location) objectFlow_NameLabel.getLayoutConstraint();
@@ -6071,16 +5651,15 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		objectFlow_StereotypeLabel_Location.setY(-20);
 		Node objectFlow_IconLabel = createLabel(edge, UMLVisualIDRegistry.getType(ObjectFlowInterruptibleIconEditPart.VISUAL_ID));
 		objectFlow_IconLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "ObjectFlow");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "ObjectFlow"); //$NON-NLS-1$
 		return edge;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Edge createControlFlow_Edge(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	@SuppressWarnings("unchecked")
+	public Edge createControlFlow_Edge(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
@@ -6094,12 +5673,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setElement(domainElement);
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "ControlFlow");
-		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		// if (routing != null) {
-		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		// }
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "ControlFlow"); //$NON-NLS-1$
 		Node controlFlow_NameLabel = createLabel(edge, UMLVisualIDRegistry.getType(ControlFlowNameEditPart.VISUAL_ID));
 		controlFlow_NameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location controlFlow_NameLabel_Location = (Location) controlFlow_NameLabel.getLayoutConstraint();
@@ -6122,16 +5696,15 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		controlFlow_StereotypeLabel_Location.setY(-20);
 		Node controlFlow_IconLabel = createLabel(edge, UMLVisualIDRegistry.getType(ControlFlowInterruptibleIconEditPart.VISUAL_ID));
 		controlFlow_IconLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-
-		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "ControlFlow");
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "ControlFlow"); //$NON-NLS-1$
 		return edge;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Edge createExceptionHandler_Edge(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	@SuppressWarnings("unchecked")
+	public Edge createExceptionHandler_Edge(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
@@ -6145,12 +5718,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setElement(domainElement);
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "ExceptionHandler");
-		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		// if (routing != null) {
-		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		// }
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "ExceptionHandler"); //$NON-NLS-1$
 		Node exceptionHandler_TypeLabel = createLabel(edge, UMLVisualIDRegistry.getType(ExceptionHandlerTypeEditPart.VISUAL_ID));
 		exceptionHandler_TypeLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location exceptionHandler_TypeLabel_Location = (Location) exceptionHandler_TypeLabel.getLayoutConstraint();
@@ -6158,15 +5726,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		exceptionHandler_TypeLabel_Location.setY(40);
 		Node exceptionHandler_IconLabel = createLabel(edge, UMLVisualIDRegistry.getType(ExceptionHandlerIconEditPart.VISUAL_ID));
 		exceptionHandler_IconLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-
 		return edge;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Edge createComment_AnnotatedElementEdge(View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	@SuppressWarnings("unchecked")
+	public Edge createComment_AnnotatedElementEdge(View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
@@ -6179,21 +5746,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setType(UMLVisualIDRegistry.getType(CommentLinkEditPart.VISUAL_ID));
 		edge.setElement(null);
 		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		// if (routing != null) {
-		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		// }
-
 		return edge;
 	}
 
 	/**
 	 * @generated
 	 */
-	public Edge createConstraint_ConstrainedElementEdge(View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	@SuppressWarnings("unchecked")
+	public Edge createConstraint_ConstrainedElementEdge(View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
@@ -6206,13 +5766,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setType(UMLVisualIDRegistry.getType(ConstraintConstrainedElementEditPart.VISUAL_ID));
 		edge.setElement(null);
 		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		// if (routing != null) {
-		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		// }
-
 		return edge;
 	}
 
@@ -6241,15 +5794,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	protected Node createCompartment(View owner, String hint, boolean canCollapse, boolean hasTitle, boolean canSort,
-			boolean canFilter) {
-		// SemanticListCompartment rv = NotationFactory.eINSTANCE.createSemanticListCompartment();
-		// rv.setShowTitle(showTitle);
-		// rv.setCollapsed(isCollapsed);
+	@SuppressWarnings("unchecked")
+	protected Node createCompartment(View owner, String hint, boolean canCollapse, boolean hasTitle, boolean canSort, boolean canFilter) {
 		Node rv = NotationFactory.eINSTANCE.createBasicCompartment();
-
 		rv.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-
 		if (hasTitle) {
 			TitleStyle ts = NotationFactory.eINSTANCE.createTitleStyle();
 			rv.getStyles().add(ts);
@@ -6287,62 +5835,5 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return null;
 		}
 		return semanticAdapter.getAdapter(IElementType.class);
-	}
-
-	/**
-	 * @generated
-	 */
-	private void initFontStyleFromPrefs(View view, final IPreferenceStore store, String elementName) {
-		String fontConstant = PreferencesConstantsHelper.getElementConstant(elementName, PreferencesConstantsHelper.FONT);
-		String fontColorConstant = PreferencesConstantsHelper.getElementConstant(elementName, PreferencesConstantsHelper.COLOR_FONT);
-
-		FontStyle viewFontStyle = (FontStyle) view.getStyle(NotationPackage.Literals.FONT_STYLE);
-		if (viewFontStyle != null) {
-			FontData fontData = PreferenceConverter.getFontData(store, fontConstant);
-			viewFontStyle.setFontName(fontData.getName());
-			viewFontStyle.setFontHeight(fontData.getHeight());
-			viewFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
-			viewFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(store, fontColorConstant);
-			viewFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	private void initForegroundFromPrefs(View view, final IPreferenceStore store, String elementName) {
-		String lineColorConstant = PreferencesConstantsHelper.getElementConstant(elementName, PreferencesConstantsHelper.COLOR_LINE);
-		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(store, lineColorConstant);
-		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getLineStyle_LineColor(), FigureUtilities.RGBToInteger(lineRGB));
-	}
-
-	/**
-	 * @generated
-	 */
-	private void initBackgroundFromPrefs(View view, final IPreferenceStore store, String elementName) {
-		String fillColorConstant = PreferencesConstantsHelper.getElementConstant(elementName, PreferencesConstantsHelper.COLOR_FILL);
-		String gradientColorConstant = PreferencesConstantsHelper.getElementConstant(elementName, PreferencesConstantsHelper.COLOR_GRADIENT);
-		String gradientPolicyConstant = PreferencesConstantsHelper.getElementConstant(elementName, PreferencesConstantsHelper.GRADIENT_POLICY);
-
-
-		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(store, fillColorConstant);
-		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getFillStyle_FillColor(), FigureUtilities.RGBToInteger(fillRGB));
-
-
-		FillStyle fillStyle = (FillStyle) view
-				.getStyle(NotationPackage.Literals.FILL_STYLE);
-		fillStyle
-				.setFillColor(FigureUtilities.RGBToInteger(fillRGB).intValue());
-
-		;
-		if (store.getBoolean(gradientPolicyConstant)) {
-			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
-					store.getString(gradientColorConstant));
-			fillStyle.setGradient(gradientPreferenceConverter.getGradientData());
-			fillStyle
-					.setTransparency(gradientPreferenceConverter.getTransparency());
-		}
 	}
 }

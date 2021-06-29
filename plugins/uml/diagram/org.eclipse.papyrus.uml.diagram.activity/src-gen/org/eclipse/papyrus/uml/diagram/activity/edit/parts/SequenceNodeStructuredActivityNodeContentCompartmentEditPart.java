@@ -1,4 +1,4 @@
-/*****************************************************************************
+/**
  * Copyright (c) 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,9 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
@@ -29,13 +28,12 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
 /**
  * @generated
  */
-public class SequenceNodeStructuredActivityNodeContentCompartmentEditPart
-		extends ShapeCompartmentWithoutScrollbarsEditPart {
+public class SequenceNodeStructuredActivityNodeContentCompartmentEditPart extends ShapeCompartmentWithoutScrollbarsEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "SequenceNode_ActivityNodeCompartment";
+	public static final String VISUAL_ID = "SequenceNode_ActivityNodeCompartment"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -69,7 +67,6 @@ public class SequenceNodeStructuredActivityNodeContentCompartmentEditPart
 		installEditPolicy(PasteEditPolicy.PASTE_ROLE, new PasteEditPolicy());
 		// in Papyrus diagrams are not strongly synchronised
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.SequenceNodeStructuredActivityNodeContentCompartmentCanonicalEditPolicy());
-
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ActivityGroupCustomDragAndDropEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new ActivityCompartmentCreationEditPolicy());
 	}

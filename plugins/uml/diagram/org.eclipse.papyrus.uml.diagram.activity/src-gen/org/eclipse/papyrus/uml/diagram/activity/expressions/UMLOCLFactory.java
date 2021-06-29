@@ -1,6 +1,5 @@
-/*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
- *
+/**
+ * Copyright (c) 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,9 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.activity.expressions;
 
 import java.util.Collections;
@@ -236,8 +234,7 @@ public class UMLOCLFactory {
 	/**
 	 * @generated
 	 */
-	public static UMLAbstractExpression getExpression(int index, EClassifier context,
-			Map<String, EClassifier> environment) {
+	public static UMLAbstractExpression getExpression(int index, EClassifier context, Map<String, EClassifier> environment) {
 		UMLOCLFactory cached = getInstance();
 		if (index < 0 || index >= cached.expressions.length) {
 			throw new IllegalArgumentException();
@@ -249,14 +246,17 @@ public class UMLOCLFactory {
 	}
 
 	/**
+	 * This is factory method, callers are responsible to keep reference to the return value if they want to reuse parsed expression
+	 *
 	 * @generated
 	 */
-	public static UMLAbstractExpression getExpression(String body, EClassifier context,
-			Map<String, EClassifier> environment) {
+	public static UMLAbstractExpression getExpression(String body, EClassifier context, Map<String, EClassifier> environment) {
 		return new Expression(body, context, environment);
 	}
 
 	/**
+	 * This method will become private in the next release
+	 *
 	 * @generated
 	 */
 	public static UMLAbstractExpression getExpression(String body, EClassifier context) {

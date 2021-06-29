@@ -1,6 +1,5 @@
-/*****************************************************************************
- * Copyright (c) 2009, 2017 Atos Origin.
- *
+/**
+ * Copyright (c) 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,10 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   Atos Origin - Initial API and implementation
- *   Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 512207
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.activity.preferences;
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
@@ -39,7 +36,6 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		AppearancePreferencePage.initDefaults(store);
 		ConnectionsPreferencePage.initDefaults(store);
 		PrintingPreferencePage.initDefaults(store);
-
 	}
 
 	/**

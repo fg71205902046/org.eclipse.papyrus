@@ -1,4 +1,4 @@
-/*****************************************************************************
+/**
  * Copyright (c) 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,9 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 
 import java.util.Collections;
@@ -60,7 +59,7 @@ public class InputPinInUnmarshallActionAsObjectEditPart extends AbstractPinEditP
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "InputPin_UnmarshallActionObjectShape";
+	public static final String VISUAL_ID = "InputPin_UnmarshallActionObjectShape"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -87,9 +86,7 @@ public class InputPinInUnmarshallActionAsObjectEditPart extends AbstractPinEditP
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new PinLayoutEditPolicy());
 		installEditPolicy(RequestConstants.REQ_DELETE, new NoDeleteFromDiagramEditPolicy());
@@ -143,9 +140,6 @@ public class InputPinInUnmarshallActionAsObjectEditPart extends AbstractPinEditP
 		return lep;
 	}
 
-
-
-
 	/**
 	 * Papyrus codeGen
 	 *
@@ -160,20 +154,19 @@ public class InputPinInUnmarshallActionAsObjectEditPart extends AbstractPinEditP
 		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
 			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge
-					&& false == notifier instanceof BasicCompartment) {
+			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
 				if (modelChildren.contains(event.getNotifier())) {
 					return;
 				}
 			}
 		}
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure createNodeShape() {
 		return primaryShape = new InputPinFigure();
 	}
@@ -187,7 +180,6 @@ public class InputPinInUnmarshallActionAsObjectEditPart extends AbstractPinEditP
 	public InputPinFigure getPrimaryShape() {
 		return (InputPinFigure) primaryShape;
 	}
-
 
 	/**
 	 * @generated
@@ -208,11 +200,12 @@ public class InputPinInUnmarshallActionAsObjectEditPart extends AbstractPinEditP
 	/**
 	 * @generated
 	 */
+
+	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(16, 16);
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -239,8 +232,10 @@ public class InputPinInUnmarshallActionAsObjectEditPart extends AbstractPinEditP
 	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
+	 *
 	 * @generated
 	 */
+	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		return nodeShape; // use nodeShape itself as contentPane
 	}
@@ -265,7 +260,6 @@ public class InputPinInUnmarshallActionAsObjectEditPart extends AbstractPinEditP
 			primaryShape.setForegroundColor(color);
 		}
 	}
-
 
 	/**
 	 * @generated
@@ -292,9 +286,4 @@ public class InputPinInUnmarshallActionAsObjectEditPart extends AbstractPinEditP
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(InputPinInUnmarshallActionAsObjectLabelEditPart.VISUAL_ID));
 	}
-
-
-
-
-
 }

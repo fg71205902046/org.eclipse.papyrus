@@ -1,4 +1,4 @@
-/*****************************************************************************
+/**
  * Copyright (c) 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,9 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
@@ -57,7 +56,7 @@ public class ExpansionRegionEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "ExpansionRegion_Shape";
+	public static final String VISUAL_ID = "ExpansionRegion_Shape"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -84,13 +83,10 @@ public class ExpansionRegionEditPart extends RoundedCompartmentEditPart {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		// in Papyrus diagrams are not strongly synchronised
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.ExpansionRegionCanonicalEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
@@ -147,7 +143,6 @@ public class ExpansionRegionEditPart extends RoundedCompartmentEditPart {
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -176,75 +171,42 @@ public class ExpansionRegionEditPart extends RoundedCompartmentEditPart {
 			((ExpansionRegionKeywordEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
-
 		if (childEditPart instanceof ExpansionRegionStructuredActivityNodeContentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getStructuredActivityNodeCompartment();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((ExpansionRegionStructuredActivityNodeContentCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-
-
-
-		// Papyrus Gencode :Affixed Expansion Node locator for Activity
 		if (childEditPart instanceof ExpansionNodeAsInEditPart) {
 			IBorderItemLocator locator = new ExpansionNodePositionLocator(getMainFigure(), PositionConstants.NORTH);
 			getBorderedFigure().getBorderItemContainer().add(((ExpansionNodeAsInEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
-		// Papyrus Gencode :Affixed Expansion Node locator for Activity
 		if (childEditPart instanceof ExpansionNodeAsOutEditPart) {
 			IBorderItemLocator locator = new ExpansionNodePositionLocator(getMainFigure(), PositionConstants.SOUTH);
 			getBorderedFigure().getBorderItemContainer().add(((ExpansionNodeAsOutEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
-		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
-		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
-		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
-		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.EAST);
 			getBorderedFigure().getBorderItemContainer().add(((OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
 		return false;
 	}
 
@@ -326,6 +288,7 @@ public class ExpansionRegionEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+
 	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
@@ -352,6 +315,7 @@ public class ExpansionRegionEditPart extends RoundedCompartmentEditPart {
 	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
+	 *
 	 * @generated
 	 */
 	@Override
@@ -410,5 +374,4 @@ public class ExpansionRegionEditPart extends RoundedCompartmentEditPart {
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ExpansionRegionKeywordEditPart.VISUAL_ID));
 	}
-
 }
