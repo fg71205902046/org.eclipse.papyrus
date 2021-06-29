@@ -18,8 +18,8 @@ package org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.itemseman
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.command.BranchDependenctReorientCommand;
+import org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.DefaultNamedElementItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.DependencyBranchEditPart;
-import org.eclipse.papyrus.uml.diagram.component.edit.policies.DefaultNamedElementItemSemanticEditPolicy;
 
 /**
  * this class has been specialized in order to manage reconnection of multidependency

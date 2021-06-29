@@ -1,15 +1,15 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  *
-  * All rights reserved. This program and the accompanying materials
-  * are made available under the terms of the Eclipse Public License 2.0
-  * which accompanies this distribution, and is available at
-  * https://www.eclipse.org/legal/epl-2.0/
-  *
-  * SPDX-License-Identifier: EPL-2.0
-  *
-  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.component.providers;
 
@@ -278,107 +278,40 @@ public class UMLElementTypes {
 		Object type = hint.getAdapter(IElementType.class);
 		if (elements == null) {
 			elements = new IdentityHashMap<>();
-
 			elements.put(Package_ComponentDiagram, UMLPackage.eINSTANCE.getPackage());
-
-
 			elements.put(Dependency_Shape, UMLPackage.eINSTANCE.getDependency());
-
-
 			elements.put(Component_PackagedElementShape, UMLPackage.eINSTANCE.getComponent());
-
-
 			elements.put(Model_Shape, UMLPackage.eINSTANCE.getModel());
-
-
 			elements.put(Package_Shape, UMLPackage.eINSTANCE.getPackage());
-
-
 			elements.put(Interface_ClassifierShape, UMLPackage.eINSTANCE.getInterface());
-
-
 			elements.put(Comment_Shape, UMLPackage.eINSTANCE.getComment());
-
-
 			elements.put(Constraint_Shape, UMLPackage.eINSTANCE.getConstraint());
-
-
 			elements.put(NamedElement_DefaultShape, UMLPackage.eINSTANCE.getNamedElement());
-
-
 			elements.put(Interface_Shape, UMLPackage.eINSTANCE.getInterface());
-
-
 			elements.put(Port_Shape, UMLPackage.eINSTANCE.getPort());
-
-
 			elements.put(Model_Shape_CN, UMLPackage.eINSTANCE.getModel());
-
-
 			elements.put(Package_Shape_CN, UMLPackage.eINSTANCE.getPackage());
-
-
 			elements.put(Interface_ClassifierShape_CN, UMLPackage.eINSTANCE.getInterface());
-
-
 			elements.put(Component_PackagedElementShape_CCN, UMLPackage.eINSTANCE.getComponent());
-
-
 			elements.put(Component_PackagedElementShape_CN, UMLPackage.eINSTANCE.getComponent());
-
-
 			elements.put(Comment_Shape_CN, UMLPackage.eINSTANCE.getComment());
-
-
 			elements.put(Constraint_Shape_CN, UMLPackage.eINSTANCE.getConstraint());
-
-
 			elements.put(Property_InterfaceAttributeLabel, UMLPackage.eINSTANCE.getProperty());
-
-
 			elements.put(Operation_InterfaceOperationLabel, UMLPackage.eINSTANCE.getOperation());
-
-
 			elements.put(Reception_InterfaceReceptionLabel, UMLPackage.eINSTANCE.getReception());
-
-
 			elements.put(Interface_Shape_CN, UMLPackage.eINSTANCE.getInterface());
-
-
 			elements.put(Property_Shape, UMLPackage.eINSTANCE.getProperty());
-
-
 			elements.put(Usage_Edge, UMLPackage.eINSTANCE.getUsage());
-
-
 			elements.put(InterfaceRealization_Edge, UMLPackage.eINSTANCE.getInterfaceRealization());
-
-
 			elements.put(Generalization_Edge, UMLPackage.eINSTANCE.getGeneralization());
-
-
 			elements.put(Substitution_Edge, UMLPackage.eINSTANCE.getSubstitution());
-
-
 			elements.put(Manifestation_Edge, UMLPackage.eINSTANCE.getManifestation());
-
-
 			elements.put(ComponentRealization_Edge, UMLPackage.eINSTANCE.getComponentRealization());
-
-
 			elements.put(Abstraction_Edge, UMLPackage.eINSTANCE.getAbstraction());
-
 			elements.put(Comment_AnnotatedElementEdge, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
-
 			elements.put(Constraint_ConstrainedElementEdge, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
-
-
 			elements.put(Dependency_Edge, UMLPackage.eINSTANCE.getDependency());
-
-
 			elements.put(Dependency_BranchEdge, UMLPackage.eINSTANCE.getDependency());
-
-
 			elements.put(Connector_Edge, UMLPackage.eINSTANCE.getConnector());
 		}
 		return elements.get(type);

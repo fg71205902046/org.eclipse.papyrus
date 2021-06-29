@@ -11,7 +11,7 @@
  * Contributors:
  *  CEA LIST - Initial API and implementation
  */
-package org.eclipse.papyrus.uml.diagram.component.edit.commands;
+package org.eclipse.papyrus.uml.diagram.component.custom.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -28,51 +28,36 @@ import org.eclipse.papyrus.uml.diagram.component.edit.policies.UMLBaseItemSemant
 import org.eclipse.papyrus.uml.diagram.component.providers.ElementInitializers;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Substitution;
 import org.eclipse.uml2.uml.UMLFactory;
-import org.eclipse.uml2.uml.Usage;
 
-/**
- * @generated
- */
-public class UsageCreateCommand extends EditElementCommand {
 
-	/**
-	 * @generated
-	 */
+public class SubstitutionCreateCommand extends EditElementCommand {
+
+
 	protected final EObject source;
 
-	/**
-	 * @generated
-	 */
+
 	protected final EObject target;
 
-	/**
-	 * @generated
-	 */
+
 	protected Package container;
 
-	/**
-	 * @generated
-	 */
-	public UsageCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
+
+	public SubstitutionCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
 		this.target = target;
 		container = deduceContainer(source, target);
 	}
 
-	/**
-	 * @generated
-	 */
+
 	@Override
 	public boolean canExecute() {
-		if (source == null && target == null) {
+		if ((source == null && target == null) || (source != null && !(source instanceof NamedElement))) {
 			return false;
 		}
-		if (source != null && false == source instanceof NamedElement) {
-			return false;
-		}
-		if (target != null && false == target instanceof NamedElement) {
+		if (target != null && !(target instanceof NamedElement)) {
 			return false;
 		}
 		if (getSource() == null) {
@@ -82,36 +67,33 @@ public class UsageCreateCommand extends EditElementCommand {
 		if (getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateUsage_Edge(getContainer(), getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateSubstitution_Edge(getContainer(), getSource(), getTarget());
 	}
 
-	/**
-	 * @generated
-	 */
+
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 
-		Usage newElement = UMLFactory.eINSTANCE.createUsage();
+		Substitution newElement = UMLFactory.eINSTANCE.createSubstitution();
 		getContainer().getPackagedElements()
 				.add(newElement);
 		newElement.getClients()
 				.add(getSource());
 		newElement.getSuppliers()
 				.add(getTarget());
-		ElementInitializers.getInstance().init_Usage_Edge(newElement);
+		ElementInitializers.getInstance().init_Substitution_Edge(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 
 	}
 
-	/**
-	 * @generated
-	 */
-	protected void doConfigure(Usage newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
+	protected void doConfigure(Substitution newElement, IProgressMonitor monitor, IAdaptable info)
+			throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
 		configureRequest.setClientContext(((CreateElementRequest) getRequest()).getClientContext());
@@ -124,31 +106,23 @@ public class UsageCreateCommand extends EditElementCommand {
 		}
 	}
 
-	/**
-	 * @generated
-	 */
+
 	@Override
 	protected void setElementToEdit(EObject element) {
 		throw new UnsupportedOperationException();
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected NamedElement getSource() {
 		return (NamedElement) source;
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected NamedElement getTarget() {
 		return (NamedElement) target;
 	}
 
-	/**
-	 * @generated
-	 */
+
 	public Package getContainer() {
 		return container;
 	}
@@ -156,8 +130,6 @@ public class UsageCreateCommand extends EditElementCommand {
 	/**
 	 * Default approach is to traverse ancestors of the source to find instance of container.
 	 * Modify with appropriate logic.
-	 *
-	 * @generated
 	 */
 	protected Package deduceContainer(EObject source, EObject target) {
 		// Find container element for the new link.

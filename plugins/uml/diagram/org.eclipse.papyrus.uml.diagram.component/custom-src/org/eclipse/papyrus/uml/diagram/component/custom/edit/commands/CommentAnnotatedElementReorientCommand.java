@@ -11,7 +11,7 @@
  * Contributors:
  *  CEA LIST - Initial API and implementation
  */
-package org.eclipse.papyrus.uml.diagram.component.edit.commands;
+package org.eclipse.papyrus.uml.diagram.component.custom.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -25,34 +25,22 @@ import org.eclipse.papyrus.uml.diagram.component.edit.policies.UMLBaseItemSemant
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Element;
 
-/**
- * @generated
- */
+
 public class CommentAnnotatedElementReorientCommand extends EditElementCommand {
 
-	/**
-	 * @generated
-	 */
+
 	private final int reorientDirection;
 
-	/**
-	 * @generated
-	 */
+
 	private final EObject referenceOwner;
 
-	/**
-	 * @generated
-	 */
+
 	private final EObject oldEnd;
 
-	/**
-	 * @generated
-	 */
+
 	private final EObject newEnd;
 
-	/**
-	 * @generated
-	 */
+
 	public CommentAnnotatedElementReorientCommand(ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
@@ -61,12 +49,10 @@ public class CommentAnnotatedElementReorientCommand extends EditElementCommand {
 		newEnd = request.getNewRelationshipEnd();
 	}
 
-	/**
-	 * @generated
-	 */
+
 	@Override
 	public boolean canExecute() {
-		if (false == referenceOwner instanceof Comment) {
+		if (!(referenceOwner instanceof Comment)) {
 			return false;
 		}
 		if (reorientDirection == ReorientRequest.REORIENT_SOURCE) {
@@ -78,9 +64,7 @@ public class CommentAnnotatedElementReorientCommand extends EditElementCommand {
 		return false;
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected boolean canReorientSource() {
 		if (!(oldEnd instanceof Element && newEnd instanceof Comment)) {
 			return false;
@@ -88,9 +72,7 @@ public class CommentAnnotatedElementReorientCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistComment_AnnotatedElementEdge(getNewSource(), getOldTarget());
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected boolean canReorientTarget() {
 		if (!(oldEnd instanceof Element && newEnd instanceof Element)) {
 			return false;
@@ -98,9 +80,7 @@ public class CommentAnnotatedElementReorientCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistComment_AnnotatedElementEdge(getOldSource(), getNewTarget());
 	}
 
-	/**
-	 * @generated
-	 */
+
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
@@ -115,9 +95,7 @@ public class CommentAnnotatedElementReorientCommand extends EditElementCommand {
 		throw new IllegalStateException();
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected CommandResult reorientSource() throws ExecutionException {
 		getOldSource().getAnnotatedElements()
 				.remove(getOldTarget());
@@ -126,9 +104,7 @@ public class CommentAnnotatedElementReorientCommand extends EditElementCommand {
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected CommandResult reorientTarget() throws ExecutionException {
 		getOldSource().getAnnotatedElements()
 				.remove(getOldTarget());
@@ -137,30 +113,22 @@ public class CommentAnnotatedElementReorientCommand extends EditElementCommand {
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected Comment getOldSource() {
 		return (Comment) referenceOwner;
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected Comment getNewSource() {
 		return (Comment) newEnd;
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected Element getOldTarget() {
 		return (Element) oldEnd;
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected Element getNewTarget() {
 		return (Element) newEnd;
 	}

@@ -11,7 +11,7 @@
  * Contributors:
  *  CEA LIST - Initial API and implementation
  */
-package org.eclipse.papyrus.uml.diagram.component.edit.commands;
+package org.eclipse.papyrus.uml.diagram.component.custom.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -33,19 +33,13 @@ import org.eclipse.uml2.uml.StructuredClassifier;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
-/**
- * @generated
- */
+
 public class PortCreateCommand extends EditElementCommand {
 
-	/**
-	 * @generated
-	 */
+
 	private Diagram diagram = null;
 
-	/**
-	 * @generated
-	 */
+
 	public PortCreateCommand(CreateElementRequest req, Diagram diagram) {
 		super(req.getLabel(), null, req);
 		this.diagram = diagram;
@@ -53,8 +47,6 @@ public class PortCreateCommand extends EditElementCommand {
 
 	/**
 	 * FIXME: replace with setElementToEdit()
-	 *
-	 * @generated
 	 */
 	@Override
 	protected EObject getElementToEdit() {
@@ -65,9 +57,7 @@ public class PortCreateCommand extends EditElementCommand {
 		return container;
 	}
 
-	/**
-	 * @generated
-	 */
+
 	@Override
 	public boolean canExecute() {
 
@@ -78,9 +68,7 @@ public class PortCreateCommand extends EditElementCommand {
 
 	}
 
-	/**
-	 * @generated
-	 */
+
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
@@ -113,9 +101,7 @@ public class PortCreateCommand extends EditElementCommand {
 		return CommandResult.newOKCommandResult(newElement);
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected void doConfigure(Port newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);

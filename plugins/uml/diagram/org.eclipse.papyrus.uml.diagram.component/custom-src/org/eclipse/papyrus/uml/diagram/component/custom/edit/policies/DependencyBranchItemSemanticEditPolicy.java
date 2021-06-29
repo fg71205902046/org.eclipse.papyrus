@@ -11,7 +11,7 @@
  * Contributors:
  *  CEA LIST - Initial API and implementation
  */
-package org.eclipse.papyrus.uml.diagram.component.edit.policies;
+package org.eclipse.papyrus.uml.diagram.component.custom.edit.policies;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
@@ -25,18 +25,18 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.uml.diagram.component.edit.commands.AbstractionCreateCommand;
-import org.eclipse.papyrus.uml.diagram.component.edit.commands.CommentAnnotatedElementCreateCommand;
-import org.eclipse.papyrus.uml.diagram.component.edit.commands.CommentAnnotatedElementReorientCommand;
-import org.eclipse.papyrus.uml.diagram.component.edit.commands.ComponentRealizationCreateCommand;
-import org.eclipse.papyrus.uml.diagram.component.edit.commands.ConstraintConstrainedElementCreateCommand;
-import org.eclipse.papyrus.uml.diagram.component.edit.commands.ConstraintConstrainedElementReorientCommand;
-import org.eclipse.papyrus.uml.diagram.component.edit.commands.DependencyBranchCreateCommand;
-import org.eclipse.papyrus.uml.diagram.component.edit.commands.DependencyCreateCommand;
-import org.eclipse.papyrus.uml.diagram.component.edit.commands.InterfaceRealizationCreateCommand;
-import org.eclipse.papyrus.uml.diagram.component.edit.commands.ManifestationCreateCommand;
-import org.eclipse.papyrus.uml.diagram.component.edit.commands.SubstitutionCreateCommand;
-import org.eclipse.papyrus.uml.diagram.component.edit.commands.UsageCreateCommand;
+import org.eclipse.papyrus.uml.diagram.component.custom.edit.commands.AbstractionCreateCommand;
+import org.eclipse.papyrus.uml.diagram.component.custom.edit.commands.CommentAnnotatedElementCreateCommand;
+import org.eclipse.papyrus.uml.diagram.component.custom.edit.commands.CommentAnnotatedElementReorientCommand;
+import org.eclipse.papyrus.uml.diagram.component.custom.edit.commands.ComponentRealizationCreateCommand;
+import org.eclipse.papyrus.uml.diagram.component.custom.edit.commands.ConstraintConstrainedElementCreateCommand;
+import org.eclipse.papyrus.uml.diagram.component.custom.edit.commands.ConstraintConstrainedElementReorientCommand;
+import org.eclipse.papyrus.uml.diagram.component.custom.edit.commands.DependencyBranchCreateCommand;
+import org.eclipse.papyrus.uml.diagram.component.custom.edit.commands.DependencyCreateCommand;
+import org.eclipse.papyrus.uml.diagram.component.custom.edit.commands.InterfaceRealizationCreateCommand;
+import org.eclipse.papyrus.uml.diagram.component.custom.edit.commands.ManifestationCreateCommand;
+import org.eclipse.papyrus.uml.diagram.component.custom.edit.commands.SubstitutionCreateCommand;
+import org.eclipse.papyrus.uml.diagram.component.custom.edit.commands.UsageCreateCommand;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.AbstractionEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentRealizationEditPart;
@@ -47,23 +47,18 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceRealization
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ManifestationEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.SubstitutionEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.UsageEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes;
 
-/**
- * @generated
- */
+
 public class DependencyBranchItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
-	/**
-	 * @generated
-	 */
+
 	public DependencyBranchItemSemanticEditPolicy() {
 		super(UMLElementTypes.Dependency_BranchEdge);
 	}
 
-	/**
-	 * @generated
-	 */
+
 	@Override
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		EObject selectedEObject = req.getElementToDestroy();
@@ -79,18 +74,14 @@ public class DependencyBranchItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		return UnexecutableCommand.INSTANCE;
 	}
 
-	/**
-	 * @generated
-	 */
+
 	@Override
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
 		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
 		return command != null ? command : super.getCreateRelationshipCommand(req);
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
 		IElementType requestElementType = req.getElementType();
 		if (requestElementType == null) {
@@ -121,10 +112,7 @@ public class DependencyBranchItemSemanticEditPolicy extends UMLBaseItemSemanticE
 			return getGEFWrapper(new AbstractionCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Comment_AnnotatedElementEdge == baseElementType) {
-			return null;
-		}
-		if (UMLElementTypes.Constraint_ConstrainedElementEdge == baseElementType) {
+		if ((UMLElementTypes.Comment_AnnotatedElementEdge == baseElementType) || (UMLElementTypes.Constraint_ConstrainedElementEdge == baseElementType)) {
 			return null;
 		}
 		if (UMLElementTypes.Dependency_Edge == baseElementType) {
@@ -138,9 +126,7 @@ public class DependencyBranchItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		return null;
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 		IElementType requestElementType = req.getElementType();
 		if (requestElementType == null) {
@@ -193,8 +179,6 @@ public class DependencyBranchItemSemanticEditPolicy extends UMLBaseItemSemanticE
 	/**
 	 * Returns command to reorient EClass based link. New link target or source
 	 * should be the domain model element associated with this node.
-	 *
-	 * @generated
 	 */
 	@Override
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
@@ -224,8 +208,6 @@ public class DependencyBranchItemSemanticEditPolicy extends UMLBaseItemSemanticE
 	/**
 	 * Returns command to reorient EReference based link. New link target or source
 	 * should be the domain model element associated with this node.
-	 *
-	 * @generated
 	 */
 	@Override
 	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {

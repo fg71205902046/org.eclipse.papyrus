@@ -34,7 +34,7 @@ import org.eclipse.uml2.uml.UMLFactory;
  * @since 3.0
  *
  */
-public class CustomPortCreateCommand extends org.eclipse.papyrus.uml.diagram.component.edit.commands.PortCreateCommand {
+public class CustomPortCreateCommand extends org.eclipse.papyrus.uml.diagram.component.custom.edit.commands.PortCreateCommand {
 
 	/** Constructor **/
 	public CustomPortCreateCommand(CreateElementRequest req, Diagram diagram) {

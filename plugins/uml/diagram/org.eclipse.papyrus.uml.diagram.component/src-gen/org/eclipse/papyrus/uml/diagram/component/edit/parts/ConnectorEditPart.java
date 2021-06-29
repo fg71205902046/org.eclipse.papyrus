@@ -1,15 +1,15 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  *
-  * All rights reserved. This program and the accompanying materials
-  * are made available under the terms of the Eclipse Public License 2.0
-  * which accompanies this distribution, and is available at
-  * https://www.eclipse.org/legal/epl-2.0/
-  *
-  * SPDX-License-Identifier: EPL-2.0
-  *
-  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.component.edit.parts;
 
@@ -32,7 +32,7 @@ public class ConnectorEditPart extends UMLConnectionNodeEditPart implements ITre
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Connector_Edge";
+	public static final String VISUAL_ID = "Connector_Edge"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -56,12 +56,10 @@ public class ConnectorEditPart extends UMLConnectionNodeEditPart implements ITre
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof ConnectorAppliedStereotypeEditPart) {
-			((ConnectorAppliedStereotypeEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAppliedStereotypeLabel());
+			((ConnectorAppliedStereotypeEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		if (childEditPart instanceof ConnectorNameEditPart) {
-			((ConnectorNameEditPart) childEditPart).setLabel(
-					getPrimaryShape().getNameLabel());
+			((ConnectorNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 		}
 		return false;
 	}
@@ -121,5 +119,4 @@ public class ConnectorEditPart extends UMLConnectionNodeEditPart implements ITre
 	public ConnectorFigure getPrimaryShape() {
 		return (ConnectorFigure) getFigure();
 	}
-
 }

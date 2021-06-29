@@ -11,7 +11,7 @@
  * Contributors:
  *  CEA LIST - Initial API and implementation
  */
-package org.eclipse.papyrus.uml.diagram.component.edit.commands;
+package org.eclipse.papyrus.uml.diagram.component.custom.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -25,34 +25,22 @@ import org.eclipse.papyrus.uml.diagram.component.edit.policies.UMLBaseItemSemant
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;
 
-/**
- * @generated
- */
+
 public class ConstraintConstrainedElementReorientCommand extends EditElementCommand {
 
-	/**
-	 * @generated
-	 */
+
 	private final int reorientDirection;
 
-	/**
-	 * @generated
-	 */
+
 	private final EObject referenceOwner;
 
-	/**
-	 * @generated
-	 */
+
 	private final EObject oldEnd;
 
-	/**
-	 * @generated
-	 */
+
 	private final EObject newEnd;
 
-	/**
-	 * @generated
-	 */
+
 	public ConstraintConstrainedElementReorientCommand(ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
@@ -61,12 +49,10 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 		newEnd = request.getNewRelationshipEnd();
 	}
 
-	/**
-	 * @generated
-	 */
+
 	@Override
 	public boolean canExecute() {
-		if (false == referenceOwner instanceof Constraint) {
+		if (!(referenceOwner instanceof Constraint)) {
 			return false;
 		}
 		if (reorientDirection == ReorientRequest.REORIENT_SOURCE) {
@@ -78,9 +64,7 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 		return false;
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected boolean canReorientSource() {
 		if (!(oldEnd instanceof Element && newEnd instanceof Constraint)) {
 			return false;
@@ -88,9 +72,7 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistConstraint_ConstrainedElementEdge(getNewSource(), getOldTarget());
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected boolean canReorientTarget() {
 		if (!(oldEnd instanceof Element && newEnd instanceof Element)) {
 			return false;
@@ -98,9 +80,7 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistConstraint_ConstrainedElementEdge(getOldSource(), getNewTarget());
 	}
 
-	/**
-	 * @generated
-	 */
+
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
@@ -115,9 +95,7 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 		throw new IllegalStateException();
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected CommandResult reorientSource() throws ExecutionException {
 		getOldSource().getConstrainedElements()
 				.remove(getOldTarget());
@@ -126,9 +104,7 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected CommandResult reorientTarget() throws ExecutionException {
 		getOldSource().getConstrainedElements()
 				.remove(getOldTarget());
@@ -137,30 +113,22 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected Constraint getOldSource() {
 		return (Constraint) referenceOwner;
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected Constraint getNewSource() {
 		return (Constraint) newEnd;
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected Element getOldTarget() {
 		return (Element) oldEnd;
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected Element getNewTarget() {
 		return (Element) newEnd;
 	}

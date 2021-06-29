@@ -3,18 +3,20 @@
     xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:gmfgen="http://www.eclipse.org/papyrus/gmf/2020/GenModel"
-    xmlns:papyrusgmfgenextension="http://www.eclipse.org/papyrus/gmf/2020/GenExtension">
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:gmfgen="http://www.eclipse.org/papyrus/gmf/2020/GenModel">
   <gmfgen:GenEditorGenerator
       packageNamePrefix="org.eclipse.papyrus.uml.diagram.component"
       modelID="PapyrusUMLComponentDiagram"
       domainFileExtension="PapyrusUMLComponent"
-      copyrightText="Copyright (c) 2014 CEA LIST.&#xA;&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License 2.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-2.0&#xA;&#xA;SPDX-License-Identifier: EPL-2.0&#xA;&#xA;Contributors:&#xA; CEA LIST - Initial API and implementation"
+      copyrightText="Copyright (c) 2014 CEA LIST.&#xA;&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License 2.0&#xA;which accompanies this distribution, and is available at&#xA;https://www.eclipse.org/legal/epl-2.0/&#xA;&#xA;SPDX-License-Identifier: EPL-2.0&#xA;&#xA;Contributors:&#xA; CEA LIST - Initial API and implementation"
       pluginDirectory="/org.eclipse.papyrus.uml.diagram.component/src-gen">
     <diagram
         visualID="1000"
         editPartClassName="ComponentDiagramEditPart"
         itemSemanticEditPolicyClassName="ComponentDiagramItemSemanticEditPolicy"
+        superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart"
+        visualIDOverride="Package_ComponentDiagram"
         canonicalEditPolicyClassName="ModelCanonicalEditPolicy"
         iconProviderPriority="Low"
         creationWizardIconPath="icons/obj16/ComponentDiagram.gif"
@@ -22,7 +24,8 @@
         validationProviderPriority="Low"
         validationEnabled="true"
         validationDecorators="true"
-        liveValidationUIFeedback="true">
+        liveValidationUIFeedback="true"
+        baseEditHelperPackage="org.eclipse.papyrus.uml.diagram.common.helper">
       <diagramRunTimeClass
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
       <elementType
@@ -41,7 +44,7 @@
       <behaviour
           xsi:type="gmfgen:CustomBehaviour"
           key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.AbstractShowHideRelatedLinkEditPolicy.SHOW_HIDE_RELATED_LINK_ROLE"
-          editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.ShowHideRelatedLinkEditPolicy"/> 
+          editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.ShowHideRelatedLinkEditPolicy"/>
       <domainDiagramElement
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package"/>
       <childNodes
@@ -49,10 +52,15 @@
           visualID="3069"
           editPartClassName="PortEditPart"
           itemSemanticEditPolicyClassName="PortItemSemanticEditPolicy"
+          superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.RoundedBorderNamedElementEditPart"
+          visualIDOverride="Port_Shape"
+          usingDeleteService="true"
           canonicalEditPolicyClassName="PortCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="PortGraphicalNodeEditPolicy"
           createCommandClassName="PortCreateCommand"
-          containers="/0/@diagram/@topLevelNodes.1 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.12">
+          specificNotificationEvent="true"
+          containers="/0/@diagram/@topLevelNodes.1 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.12"
+          locatorClassName="org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -115,7 +123,11 @@
             xsi:type="gmfgen:GenExternalNodeLabel"
             visualID="5006"
             editPartClassName="PortNameEditPart"
-            itemSemanticEditPolicyClassName="PortNameItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="PortNameItemSemanticEditPolicy"
+            superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractFloatingLabelEditPart"
+            visualIDOverride="Port_NameLabel"
+            name="FloatingLabelEditPart"
+            locatorClassName="org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -140,13 +152,17 @@
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
+          <labelVisibilityPreference
+              role="Name"/>
         </labels>
         <labels
             xsi:type="gmfgen:GenExternalNodeLabel"
             visualID="5007"
             editPartClassName="PortAppliedStereotypeEditPart"
             itemSemanticEditPolicyClassName="PortAppliedStereotypeItemSemanticEditPolicy"
-            readOnly="true">
+            visualIDOverride="Port_StereotypeLabel"
+            readOnly="true"
+            locatorClassName="org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -170,16 +186,21 @@
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
+          <labelVisibilityPreference
+              role="Stereotype"/>
         </labels>
       </childNodes>
       <childNodes
           visualID="3077"
           editPartClassName="ModelEditPartCN"
           itemSemanticEditPolicyClassName="ModelItemSemanticEditPolicyCN"
+          superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.PackageEditPart"
+          visualIDOverride="Model_Shape_CN"
           canonicalEditPolicyClassName="ModelCanonicalEditPolicyCN"
           compartments="/0/@diagram/@compartments.3"
           graphicalNodeEditPolicyClassName="ModelGraphicalNodeEditPolicyCN"
           createCommandClassName="ModelCreateCommandCN"
+          specificNotificationEvent="true"
           containers="/0/@diagram/@compartments.2 /0/@diagram/@compartments.3 /0/@diagram/@compartments.1 /0/@diagram/@compartments.4">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -238,6 +259,7 @@
             visualID="5264"
             editPartClassName="ModelNameEditPartCN"
             itemSemanticEditPolicyClassName="ModelNameItemSemanticEditPolicyCN"
+            visualIDOverride="Model_NameLabel_CN"
             elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -257,10 +279,14 @@
           visualID="3076"
           editPartClassName="PackageEditPartCN"
           itemSemanticEditPolicyClassName="PackageItemSemanticEditPolicyCN"
+          superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.PackageEditPart"
+          visualIDOverride="Package_Shape_CN"
+          usingDeleteService="true"
           canonicalEditPolicyClassName="PackageCanonicalEditPolicyCN"
           compartments="/0/@diagram/@compartments.4"
           graphicalNodeEditPolicyClassName="PackageGraphicalNodeEditPolicyCN"
           createCommandClassName="PackageCreateCommandCN"
+          specificNotificationEvent="true"
           containers="/0/@diagram/@compartments.2 /0/@diagram/@compartments.4 /0/@diagram/@compartments.3 /0/@diagram/@compartments.1">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -319,6 +345,7 @@
             visualID="5261"
             editPartClassName="PackageNameEditPartCN"
             itemSemanticEditPolicyClassName="PackageNameItemSemanticEditPolicyCN"
+            visualIDOverride="Package_NameLabel_CN"
             elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -337,7 +364,10 @@
       <childNodes
           visualID="3078"
           editPartClassName="RectangleInterfaceEditPartCN"
+          superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart"
+          visualIDOverride="Interface_ClassifierShape_CN"
           compartments="/0/@diagram/@compartments.9 /0/@diagram/@compartments.10"
+          specificNotificationEvent="true"
           containers="/0/@diagram/@compartments.1 /0/@diagram/@compartments.2 /0/@diagram/@compartments.3 /0/@diagram/@compartments.4">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -385,7 +415,8 @@
         <labels
             visualID="5267"
             editPartClassName="RectangleInterfaceNameEditPartCN"
-            itemSemanticEditPolicyClassName="RectangleInterfaceNameItemSemanticEditPolicyCN">
+            itemSemanticEditPolicyClassName="RectangleInterfaceNameItemSemanticEditPolicyCN"
+            visualIDOverride="Interface_ClassifierNameLabel_CN">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -404,7 +435,11 @@
             xsi:type="gmfgen:GenExternalNodeLabel"
             visualID="6033"
             editPartClassName="RectangleInterfaceFloatingLabelEditPartCN"
-            itemSemanticEditPolicyClassName="InterfaceFloatingLabelItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="InterfaceFloatingLabelItemSemanticEditPolicy"
+            superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractFloatingLabelEditPart"
+            visualIDOverride="Interface_ClassifierFloatingNameLabel_CN"
+            name="FloatingLabelEditPart"
+            locatorClassName="org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -425,11 +460,15 @@
           visualID="3070"
           editPartClassName="ComponentEditPartCN"
           itemSemanticEditPolicyClassName="ComponentItemSemanticEditPolicyCN"
+          superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart"
+          visualIDOverride="Component_PackagedElementShape_CCN"
+          usingDeleteService="true"
           canonicalEditPolicyClassName="ComponentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.0"
           compartments="/0/@diagram/@compartments.5"
           graphicalNodeEditPolicyClassName="ComponentGraphicalNodeEditPolicyCN"
           createCommandClassName="ComponentCreateCommandCN"
+          specificNotificationEvent="true"
           containers="/0/@diagram/@compartments.5 /0/@diagram/@compartments.6 /0/@diagram/@compartments.0">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -508,6 +547,7 @@
             visualID="5256"
             editPartClassName="ComponentNameEditPartCN"
             itemSemanticEditPolicyClassName="ComponentNameItemSemanticEditPolicyCN"
+            visualIDOverride="Component_NameLabel_CCN"
             elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -529,7 +569,11 @@
             xsi:type="gmfgen:GenExternalNodeLabel"
             visualID="6026"
             editPartClassName="ComponentFloatingLabelEditPartCN"
-            itemSemanticEditPolicyClassName="ComponentFloatingLabelItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="ComponentFloatingLabelItemSemanticEditPolicy"
+            superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractFloatingLabelEditPart"
+            visualIDOverride="Component_FloatingNameLabel_CCN"
+            name="FloatingLabelEditPart"
+            locatorClassName="org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -550,11 +594,15 @@
           visualID="3071"
           editPartClassName="ComponentEditPartPCN"
           itemSemanticEditPolicyClassName="ComponentItemSemanticEditPolicyPCN"
+          superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart"
+          visualIDOverride="Component_PackagedElementShape_CN"
+          usingDeleteService="true"
           canonicalEditPolicyClassName="ComponentCanonicalEditPolicyPCN"
           childNodes="/0/@diagram/@childNodes.0"
           compartments="/0/@diagram/@compartments.6"
           graphicalNodeEditPolicyClassName="ComponentGraphicalNodeEditPolicyPCN"
           createCommandClassName="ComponentCreateCommandPCN"
+          specificNotificationEvent="true"
           containers="/0/@diagram/@compartments.2 /0/@diagram/@compartments.4 /0/@diagram/@compartments.3 /0/@diagram/@compartments.1">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -632,7 +680,8 @@
         <labels
             visualID="5257"
             editPartClassName="ComponentNameEditPartPCN"
-            itemSemanticEditPolicyClassName="ComponentNameItemSemanticEditPolicyPCN">
+            itemSemanticEditPolicyClassName="ComponentNameItemSemanticEditPolicyPCN"
+            visualIDOverride="Component_NameLabel_CN">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -653,7 +702,11 @@
             xsi:type="gmfgen:GenExternalNodeLabel"
             visualID="6027"
             editPartClassName="ComponentFloatingLabelEditPartPCN"
-            itemSemanticEditPolicyClassName="ComponentFloatingLabelItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="ComponentFloatingLabelItemSemanticEditPolicy"
+            superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractFloatingLabelEditPart"
+            visualIDOverride="Component_FloatingNameLabel_CN"
+            name="FloatingLabelEditPart"
+            locatorClassName="org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -674,9 +727,13 @@
           visualID="3074"
           editPartClassName="CommentEditPartPCN"
           itemSemanticEditPolicyClassName="CommentItemSemanticEditPolicyPCN"
+          superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractCommentEditPart"
+          visualIDOverride="Comment_Shape_CN"
+          usingDeleteService="true"
           canonicalEditPolicyClassName="CommentCanonicalEditPolicyPCN"
           graphicalNodeEditPolicyClassName="CommentGraphicalNodeEditPolicyPCN"
           createCommandClassName="CommentCreateCommandPCN"
+          specificNotificationEvent="true"
           containers="/0/@diagram/@compartments.2 /0/@diagram/@compartments.4 /0/@diagram/@compartments.3 /0/@diagram/@compartments.1">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -720,7 +777,8 @@
         <labels
             visualID="5258"
             editPartClassName="CommentBodyEditPartPCN"
-            itemSemanticEditPolicyClassName="CommentBodyItemSemanticEditPolicyPCN">
+            itemSemanticEditPolicyClassName="CommentBodyItemSemanticEditPolicyPCN"
+            visualIDOverride="Comment_BodyLabel_CN">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -739,9 +797,13 @@
           visualID="3075"
           editPartClassName="ConstraintEditPartPCN"
           itemSemanticEditPolicyClassName="ConstraintItemSemanticEditPolicyPCN"
+          superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractConstraintEditPart"
+          visualIDOverride="Constraint_Shape_CN"
+          usingDeleteService="true"
           canonicalEditPolicyClassName="ConstraintCanonicalEditPolicyPCN"
           graphicalNodeEditPolicyClassName="ConstraintGraphicalNodeEditPolicyPCN"
           createCommandClassName="ConstraintCreateCommandPCN"
+          specificNotificationEvent="true"
           containers="/0/@diagram/@compartments.2 /0/@diagram/@compartments.4 /0/@diagram/@compartments.3 /0/@diagram/@compartments.1">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -788,6 +850,7 @@
             visualID="5259"
             editPartClassName="ConstraintNameEditPartPCN"
             itemSemanticEditPolicyClassName="ConstraintNameItemSemanticEditPolicyPCN"
+            visualIDOverride="Constraint_NameLabel_CN"
             elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -806,6 +869,7 @@
             visualID="5260"
             editPartClassName="ConstraintSpecificationEditPartPCN"
             itemSemanticEditPolicyClassName="ConstraintSpecificationItemSemanticEditPolicyPCN"
+            visualIDOverride="Constraint_BodyLabel_CN"
             elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -828,9 +892,13 @@
           visualID="1"
           editPartClassName="PropertyForInterfaceEditPart"
           itemSemanticEditPolicyClassName="PropertyForInterfaceItemSemanticEditPolicy"
+          superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractCompartmentEditPart"
+          visualIDOverride="Property_InterfaceAttributeLabel"
+          usingDeleteService="true"
           canonicalEditPolicyClassName="PropertyForInterfaceCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="PropertyForInterfaceGraphicalNodeEditPolicy"
           createCommandClassName="PropertyForInterfaceCreateCommand"
+          specificNotificationEvent="true"
           containers="/0/@diagram/@compartments.7 /0/@diagram/@compartments.9">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -878,9 +946,12 @@
           visualID="5"
           editPartClassName="OperationForInterfaceEditPart"
           itemSemanticEditPolicyClassName="OperationForInterfaceItemSemanticEditPolicy"
+          superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractCompartmentEditPart"
+          visualIDOverride="Operation_InterfaceOperationLabel"
           canonicalEditPolicyClassName="OperationForInterfaceCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="OperationForInterfaceGraphicalNodeEditPolicy"
           createCommandClassName="OperationForInterfaceCreateCommand"
+          specificNotificationEvent="true"
           containers="/0/@diagram/@compartments.8 /0/@diagram/@compartments.10">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -928,6 +999,7 @@
           visualID="6"
           editPartClassName="ReceptionInInterfaceEditPart"
           itemSemanticEditPolicyClassName="ReceptionInInterfaceItemSemanticEditPolicy"
+          visualIDOverride="Reception_InterfaceReceptionLabel"
           canonicalEditPolicyClassName="ReceptionInInterfaceCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="ReceptionInInterfaceGraphicalNodeEditPolicy"
           createCommandClassName="ReceptionInInterfaceCreateCommand"
@@ -972,9 +1044,13 @@
           visualID="3072"
           editPartClassName="InterfaceEditPartPCN"
           itemSemanticEditPolicyClassName="InterfaceItemSemanticEditPolicyPCN"
+          superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart"
+          visualIDOverride="Interface_Shape_CN"
+          usingDeleteService="true"
           canonicalEditPolicyClassName="InterfaceCanonicalEditPolicyPCN"
           graphicalNodeEditPolicyClassName="InterfaceGraphicalNodeEditPolicyPCN"
           createCommandClassName="InterfaceCreateCommandPCN"
+          specificNotificationEvent="true"
           containers="/0/@diagram/@compartments.2 /0/@diagram/@compartments.4 /0/@diagram/@compartments.3 /0/@diagram/@compartments.1">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -1019,7 +1095,9 @@
         <labels
             xsi:type="gmfgen:GenExternalNodeLabel"
             editPartClassName="InterfaceNameEditPartPCN"
-            itemSemanticEditPolicyClassName="InterfaceNameItemSemanticEditPolicyPCN">
+            itemSemanticEditPolicyClassName="InterfaceNameItemSemanticEditPolicyPCN"
+            visualIDOverride="Interface_NameLabel_CN"
+            locatorClassName="org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -1031,12 +1109,18 @@
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
+          <labelVisibilityPreference
+              role="Name"/>
         </labels>
         <labels
             xsi:type="gmfgen:GenExternalNodeLabel"
             visualID="6028"
             editPartClassName="InterfaceFloatingLabelEditPartPCN"
-            itemSemanticEditPolicyClassName="InterfaceFloatingLabelItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="InterfaceFloatingLabelItemSemanticEditPolicy"
+            superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractFloatingLabelEditPart"
+            visualIDOverride="Interface_FloatingNameLabel_CN"
+            name="FloatingLabelEditPart"
+            locatorClassName="org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -1056,7 +1140,11 @@
       <childNodes
           visualID="3079"
           editPartClassName="PropertyPartEditPartCN"
+          superEditPart="org.eclipse.papyrus.uml.diagram.component.custom.edit.part.CustomPropertyPartEditPartCN"
+          visualIDOverride="Property_Shape"
+          specificDiagramUpdaterClassName="org.eclipse.papyrus.uml.diagram.component.custom.parts.PropertyDiagramUpdater"
           childNodes="/0/@diagram/@childNodes.0"
+          specificNotificationEvent="true"
           containers="/0/@diagram/@compartments.0 /0/@diagram/@compartments.5 /0/@diagram/@compartments.6">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -1119,6 +1207,7 @@
             visualID="5268"
             editPartClassName="PropertyPartNameEditPartCN"
             itemSemanticEditPolicyClassName="PropertyPartNameItemSemanticEditPolicyCN"
+            visualIDOverride="Property_NameLabel"
             elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -1145,6 +1234,8 @@
           visualID="3203"
           editPartClassName="DependencyNodeEditPart"
           itemSemanticEditPolicyClassName="DependencyNodeItemSemanticEditPolicy"
+          visualIDOverride="Dependency_Shape"
+          usingDeleteService="true"
           canonicalEditPolicyClassName="DependencyNodeCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="DependencyNodeGraphicalNodeEditPolicy"
           createCommandClassName="DependencyNodeCreateCommand">
@@ -1188,7 +1279,9 @@
             xsi:type="gmfgen:GenExternalNodeLabel"
             visualID="5008"
             editPartClassName="MultiDependencyLabelEditPart"
-            itemSemanticEditPolicyClassName="MultiDependencyLabelItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="MultiDependencyLabelItemSemanticEditPolicy"
+            visualIDOverride="Dependency_MultiNameLabel"
+            locatorClassName="org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -1205,7 +1298,11 @@
             xsi:type="gmfgen:GenExternalNodeLabel"
             visualID="6029"
             editPartClassName="DependencyNodeFloatingLabelEditPart"
-            itemSemanticEditPolicyClassName="DependencyFloatingLabelItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="DependencyFloatingLabelItemSemanticEditPolicy"
+            superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractFloatingLabelEditPart"
+            visualIDOverride="Dependency_FloatingNameLabel"
+            name="FloatingLabelEditPart"
+            locatorClassName="org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -1226,11 +1323,15 @@
           visualID="2002"
           editPartClassName="ComponentEditPart"
           itemSemanticEditPolicyClassName="ComponentItemSemanticEditPolicy"
+          superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart"
+          visualIDOverride="Component_PackagedElementShape"
+          usingDeleteService="true"
           canonicalEditPolicyClassName="ComponentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.0"
           compartments="/0/@diagram/@compartments.0"
           graphicalNodeEditPolicyClassName="ComponentGraphicalNodeEditPolicy"
-          createCommandClassName="ComponentCreateCommand">
+          createCommandClassName="ComponentCreateCommand"
+          specificNotificationEvent="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -1307,6 +1408,7 @@
             visualID="5004"
             editPartClassName="ComponentNameEditPart"
             itemSemanticEditPolicyClassName="ComponentNameItemSemanticEditPolicy"
+            visualIDOverride="Component_NameLabel"
             elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -1326,7 +1428,11 @@
             xsi:type="gmfgen:GenExternalNodeLabel"
             visualID="6030"
             editPartClassName="ComponentFloatingLabelEditPart"
-            itemSemanticEditPolicyClassName="ComponentFloatingLabelItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="ComponentFloatingLabelItemSemanticEditPolicy"
+            superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractFloatingLabelEditPart"
+            visualIDOverride="Component_FloatingNameLabel"
+            name="FloatingLabelEditPart"
+            locatorClassName="org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -1347,10 +1453,13 @@
           visualID="3202"
           editPartClassName="ModelEditPart"
           itemSemanticEditPolicyClassName="ModelItemSemanticEditPolicy"
+          superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.PackageEditPart"
+          visualIDOverride="Model_Shape"
           canonicalEditPolicyClassName="ModelCanonicalEditPolicy"
           compartments="/0/@diagram/@compartments.1"
           graphicalNodeEditPolicyClassName="ModelGraphicalNodeEditPolicy"
-          createCommandClassName="ModelCreateCommand">
+          createCommandClassName="ModelCreateCommand"
+          specificNotificationEvent="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -1408,6 +1517,7 @@
             visualID="5262"
             editPartClassName="ModelNameEditPart"
             itemSemanticEditPolicyClassName="ModelNameItemSemanticEditPolicy"
+            visualIDOverride="Model_NameLabel"
             elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -1427,10 +1537,14 @@
           visualID="3200"
           editPartClassName="PackageEditPart"
           itemSemanticEditPolicyClassName="PackageItemSemanticEditPolicy"
+          superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.PackageEditPart"
+          visualIDOverride="Package_Shape"
+          usingDeleteService="true"
           canonicalEditPolicyClassName="PackageCanonicalEditPolicy"
           compartments="/0/@diagram/@compartments.2"
           graphicalNodeEditPolicyClassName="PackageGraphicalNodeEditPolicy"
-          createCommandClassName="PackageCreateCommand">
+          createCommandClassName="PackageCreateCommand"
+          specificNotificationEvent="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -1488,6 +1602,7 @@
             visualID="5254"
             editPartClassName="PackageNameEditPart"
             itemSemanticEditPolicyClassName="PackageNameItemSemanticEditPolicy"
+            visualIDOverride="Package_NameLabel"
             elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -1507,10 +1622,13 @@
           visualID="3205"
           editPartClassName="RectangleInterfaceEditPart"
           itemSemanticEditPolicyClassName="RectangleInterfaceItemSemanticEditPolicy"
+          superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart"
+          visualIDOverride="Interface_ClassifierShape"
           canonicalEditPolicyClassName="RectangleInterfaceCanonicalEditPolicy"
           compartments="/0/@diagram/@compartments.7 /0/@diagram/@compartments.8"
           graphicalNodeEditPolicyClassName="RectangleInterfaceGraphicalNodeEditPolicy"
-          createCommandClassName="RectangleInterfaceCreateCommand">
+          createCommandClassName="RectangleInterfaceCreateCommand"
+          specificNotificationEvent="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -1558,6 +1676,8 @@
             visualID="5266"
             editPartClassName="RectangleInterfaceNameEditPart"
             itemSemanticEditPolicyClassName="RectangleInterfaceNameItemSemanticEditPolicy"
+            superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart"
+            visualIDOverride="Interface_ClassifierNameLabel"
             elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -1576,7 +1696,11 @@
             xsi:type="gmfgen:GenExternalNodeLabel"
             visualID="6031"
             editPartClassName="RectangleInterfaceFloatingLabelEditPart"
-            itemSemanticEditPolicyClassName="InterfaceFloatingLabelItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="InterfaceFloatingLabelItemSemanticEditPolicy"
+            superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractFloatingLabelEditPart"
+            visualIDOverride="Interface_ClassifierFloatingNameLabel"
+            name="FloatingLabelEditPart"
+            locatorClassName="org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -1597,9 +1721,13 @@
           visualID="3201"
           editPartClassName="CommentEditPart"
           itemSemanticEditPolicyClassName="CommentItemSemanticEditPolicy"
+          superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractCommentEditPart"
+          visualIDOverride="Comment_Shape"
+          usingDeleteService="true"
           canonicalEditPolicyClassName="CommentCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="CommentGraphicalNodeEditPolicy"
-          createCommandClassName="CommentCreateCommand">
+          createCommandClassName="CommentCreateCommand"
+          specificNotificationEvent="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -1647,7 +1775,8 @@
         <labels
             visualID="5255"
             editPartClassName="CommentBodyEditPart"
-            itemSemanticEditPolicyClassName="CommentBodyItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="CommentBodyItemSemanticEditPolicy"
+            visualIDOverride="Comment_BodyLabel">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -1666,9 +1795,13 @@
           visualID="3199"
           editPartClassName="ConstraintEditPart"
           itemSemanticEditPolicyClassName="ConstraintItemSemanticEditPolicy"
+          superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractConstraintEditPart"
+          visualIDOverride="Constraint_Shape"
+          usingDeleteService="true"
           canonicalEditPolicyClassName="ConstraintCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="ConstraintGraphicalNodeEditPolicy"
-          createCommandClassName="ConstraintCreateCommand">
+          createCommandClassName="ConstraintCreateCommand"
+          specificNotificationEvent="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -1719,6 +1852,7 @@
             visualID="5252"
             editPartClassName="ConstraintNameEditPart"
             itemSemanticEditPolicyClassName="ConstraintNameItemSemanticEditPolicy"
+            visualIDOverride="Constraint_NameLabel"
             elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -1737,6 +1871,7 @@
             visualID="5253"
             editPartClassName="ConstraintSpecificationEditPart"
             itemSemanticEditPolicyClassName="ConstraintSpecificationItemSemanticEditPolicy"
+            visualIDOverride="Constraint_BodyLabel"
             elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -1758,9 +1893,12 @@
           visualID="3204"
           editPartClassName="DefaultNamedElementEditPart"
           itemSemanticEditPolicyClassName="DefaultNamedElementItemSemanticEditPolicy"
+          superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart"
+          visualIDOverride="NamedElement_DefaultShape"
           canonicalEditPolicyClassName="DefaultNamedElementCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="DefaultNamedElementGraphicalNodeEditPolicy"
-          createCommandClassName="DefaultNamedElementCreateCommand">
+          createCommandClassName="DefaultNamedElementCreateCommand"
+          specificNotificationEvent="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -1804,7 +1942,8 @@
         <labels
             visualID="5265"
             editPartClassName="DefaultNamedElementNameEditPart"
-            itemSemanticEditPolicyClassName="DefaultNamedElementNameItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="DefaultNamedElementNameItemSemanticEditPolicy"
+            visualIDOverride="NamedElement_NameLabel">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -1823,9 +1962,13 @@
           visualID="2003"
           editPartClassName="InterfaceEditPart"
           itemSemanticEditPolicyClassName="InterfaceItemSemanticEditPolicy"
+          superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart"
+          visualIDOverride="Interface_Shape"
+          usingDeleteService="true"
           canonicalEditPolicyClassName="InterfaceCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="InterfaceGraphicalNodeEditPolicy"
-          createCommandClassName="InterfaceCreateCommand">
+          createCommandClassName="InterfaceCreateCommand"
+          specificNotificationEvent="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -1869,7 +2012,9 @@
             xsi:type="gmfgen:GenExternalNodeLabel"
             visualID="5005"
             editPartClassName="InterfaceNameEditPart"
-            itemSemanticEditPolicyClassName="InterfaceNameItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="InterfaceNameItemSemanticEditPolicy"
+            visualIDOverride="Interface_NameLabel"
+            locatorClassName="org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -1881,12 +2026,18 @@
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
+          <labelVisibilityPreference
+              role="Name"/>
         </labels>
         <labels
             xsi:type="gmfgen:GenExternalNodeLabel"
             visualID="6032"
             editPartClassName="InterfaceFloatingLabelEditPart"
-            itemSemanticEditPolicyClassName="InterfaceFloatingLabelItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="InterfaceFloatingLabelItemSemanticEditPolicy"
+            superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractFloatingLabelEditPart"
+            visualIDOverride="Interface_FloatingNameLabel"
+            name="FloatingLabelEditPart"
+            locatorClassName="org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -1907,6 +2058,9 @@
           visualID="4001"
           editPartClassName="UsageEditPart"
           itemSemanticEditPolicyClassName="UsageItemSemanticEditPolicy"
+          superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart"
+          visualIDOverride="Usage_Edge"
+          usingDeleteService="true"
           createCommandClassName="UsageCreateCommand"
           reorientCommandClassName="UsageReorientCommand">
         <diagramRunTimeClass
@@ -1921,7 +2075,7 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.component.custom.figure.edges.UsageLinkFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
@@ -1956,7 +2110,8 @@
         <labels
             visualID="6016"
             editPartClassName="UsageNameEditPart"
-            itemSemanticEditPolicyClassName="UsageNameItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="UsageNameItemSemanticEditPolicy"
+            visualIDOverride="Usage_NameLabel">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -1974,11 +2129,14 @@
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
+          <labelVisibilityPreference
+              role="Name"/>
         </labels>
         <labels
             visualID="6017"
             editPartClassName="UsageAppliedStereotypeEditPart"
-            itemSemanticEditPolicyClassName="UsageAppliedStereotypeItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="UsageAppliedStereotypeItemSemanticEditPolicy"
+            visualIDOverride="Usage_StereotypeLabel">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -1998,6 +2156,8 @@
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
+          <labelVisibilityPreference
+              role="Stereotype"/>
         </labels>
         <creationConstraints
             sourceEnd="/0/@expressionProviders/@providers.0/@expressions.7"
@@ -2007,6 +2167,9 @@
           visualID="4006"
           editPartClassName="InterfaceRealizationEditPart"
           itemSemanticEditPolicyClassName="InterfaceRealizationItemSemanticEditPolicy"
+          superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart"
+          visualIDOverride="InterfaceRealization_Edge"
+          usingDeleteService="true"
           createCommandClassName="InterfaceRealizationCreateCommand"
           reorientCommandClassName="InterfaceRealizationReorientCommand">
         <diagramRunTimeClass
@@ -2021,7 +2184,7 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.component.custom.figure.edges.InterfaceRealizationLinkFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
@@ -2052,7 +2215,8 @@
         <labels
             visualID="6010"
             editPartClassName="InterfaceRealizationNameEditPart"
-            itemSemanticEditPolicyClassName="InterfaceRealizationNameItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="InterfaceRealizationNameItemSemanticEditPolicy"
+            visualIDOverride="InterfaceRealization_NameLabel">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -2069,11 +2233,14 @@
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
+          <labelVisibilityPreference
+              role="Name"/>
         </labels>
         <labels
             visualID="6011"
             editPartClassName="InterfaceRealizationAppliedStereotypeEditPart"
-            itemSemanticEditPolicyClassName="InterfaceRealizationAppliedStereotypeEditPartItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="InterfaceRealizationAppliedStereotypeEditPartItemSemanticEditPolicy"
+            visualIDOverride="InterfaceRealization_StereotypeLabel">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -2093,6 +2260,8 @@
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
+          <labelVisibilityPreference
+              role="Stereotype"/>
         </labels>
         <creationConstraints
             sourceEnd="/0/@expressionProviders/@providers.0/@expressions.7"
@@ -2102,6 +2271,9 @@
           visualID="4003"
           editPartClassName="GeneralizationEditPart"
           itemSemanticEditPolicyClassName="GeneralizationItemSemanticEditPolicy"
+          superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart"
+          visualIDOverride="Generalization_Edge"
+          usingDeleteService="true"
           createCommandClassName="GeneralizationCreateCommand"
           reorientCommandClassName="GeneralizationReorientCommand">
         <diagramRunTimeClass
@@ -2116,7 +2288,7 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.edge.GeneralizationFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
@@ -2143,6 +2315,7 @@
             visualID="2"
             editPartClassName="GeneralizationAppliedStereotypeEditPart"
             itemSemanticEditPolicyClassName="GeneralizationAppliedStereotypeItemSemanticEditPolicy"
+            visualIDOverride="Generalization_StereotypeLabel"
             readOnly="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -2163,12 +2336,17 @@
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Generalization/isSubstitutable"/>
           </modelFacet>
+          <labelVisibilityPreference
+              role="Stereotype"/>
         </labels>
       </links>
       <links
           visualID="4012"
           editPartClassName="SubstitutionEditPart"
           itemSemanticEditPolicyClassName="SubstitutionItemSemanticEditPolicy"
+          superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart"
+          visualIDOverride="Substitution_Edge"
+          usingDeleteService="true"
           createCommandClassName="SubstitutionCreateCommand"
           reorientCommandClassName="SubstitutionReorientCommand">
         <diagramRunTimeClass
@@ -2184,7 +2362,7 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.edge.InterfaceRealizationFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
@@ -2219,7 +2397,8 @@
         <labels
             visualID="6006"
             editPartClassName="SubstitutionNameEditPart"
-            itemSemanticEditPolicyClassName="SubstitutionNameItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="SubstitutionNameItemSemanticEditPolicy"
+            visualIDOverride="Substitution_NameLabel">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -2236,11 +2415,14 @@
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
+          <labelVisibilityPreference
+              role="Name"/>
         </labels>
         <labels
             visualID="6020"
             editPartClassName="SubstitutionAppliedStereotypeEditPart"
-            itemSemanticEditPolicyClassName="SubstitutionAppliedStereotypeItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="SubstitutionAppliedStereotypeItemSemanticEditPolicy"
+            visualIDOverride="Substitution_StereotypeLabel">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -2260,12 +2442,17 @@
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
+          <labelVisibilityPreference
+              role="Stereotype"/>
         </labels>
       </links>
       <links
           visualID="4014"
           editPartClassName="ManifestationEditPart"
           itemSemanticEditPolicyClassName="ManifestationItemSemanticEditPolicy"
+          superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart"
+          visualIDOverride="Manifestation_Edge"
+          usingDeleteService="true"
           createCommandClassName="ManifestationCreateCommand"
           reorientCommandClassName="ManifestationReorientCommand">
         <diagramRunTimeClass
@@ -2281,7 +2468,7 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.edge.DashedEdgeFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
@@ -2316,7 +2503,8 @@
         <labels
             visualID="6008"
             editPartClassName="ManifestationNameEditPart"
-            itemSemanticEditPolicyClassName="ManifestationNameItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="ManifestationNameItemSemanticEditPolicy"
+            visualIDOverride="Manifestation_NameLabel">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -2333,11 +2521,15 @@
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
+          <labelVisibilityPreference
+              role="Name"/>
         </labels>
         <labels
             visualID="6022"
             editPartClassName="ManifestationAppliedStereotypeEditPart"
-            itemSemanticEditPolicyClassName="ManifestationAppliedStereotypeItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="ManifestationAppliedStereotypeItemSemanticEditPolicy"
+            superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractLabelEditPart"
+            visualIDOverride="Manifestation_StereotypeLabel">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -2357,12 +2549,17 @@
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
+          <labelVisibilityPreference
+              role="Stereotype"/>
         </labels>
       </links>
       <links
           visualID="4007"
           editPartClassName="ComponentRealizationEditPart"
           itemSemanticEditPolicyClassName="ComponentRealizationItemSemanticEditPolicy"
+          superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart"
+          visualIDOverride="ComponentRealization_Edge"
+          usingDeleteService="true"
           createCommandClassName="ComponentRealizationCreateCommand"
           reorientCommandClassName="ComponentRealizationReorientCommand">
         <diagramRunTimeClass
@@ -2377,7 +2574,7 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.edge.InterfaceRealizationFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
@@ -2412,7 +2609,8 @@
         <labels
             visualID="3"
             editPartClassName="ComponentRealizationNameEditPart"
-            itemSemanticEditPolicyClassName="ComponentRealizationNameItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="ComponentRealizationNameItemSemanticEditPolicy"
+            visualIDOverride="ComponentRealization_NameLabel">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -2429,11 +2627,14 @@
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
+          <labelVisibilityPreference
+              role="Name"/>
         </labels>
         <labels
             visualID="4"
             editPartClassName="ComponentRealizationAppliedStereotypeEditPart"
             itemSemanticEditPolicyClassName="ComponentRealizationAppliedStereotypeItemSemanticEditPolicy"
+            visualIDOverride="ComponentRealization_StereotypeLabel"
             readOnly="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -2454,12 +2655,17 @@
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
+          <labelVisibilityPreference
+              role="Stereotype"/>
         </labels>
       </links>
       <links
           visualID="4013"
           editPartClassName="AbstractionEditPart"
           itemSemanticEditPolicyClassName="AbstractionItemSemanticEditPolicy"
+          superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart"
+          visualIDOverride="Abstraction_Edge"
+          usingDeleteService="true"
           createCommandClassName="AbstractionCreateCommand"
           reorientCommandClassName="AbstractionReorientCommand">
         <diagramRunTimeClass
@@ -2475,7 +2681,7 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.edge.DashedEdgeFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
@@ -2510,7 +2716,8 @@
         <labels
             visualID="6007"
             editPartClassName="AbstractionNameEditPart"
-            itemSemanticEditPolicyClassName="AbstractionNameItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="AbstractionNameItemSemanticEditPolicy"
+            visualIDOverride="Abstraction_NameLabel">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -2527,11 +2734,14 @@
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
+          <labelVisibilityPreference
+              role="Name"/>
         </labels>
         <labels
             visualID="6021"
             editPartClassName="AbstractionAppliedStereotypeEditPart"
-            itemSemanticEditPolicyClassName="AbstractionAppliedStereotypeItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="AbstractionAppliedStereotypeItemSemanticEditPolicy"
+            visualIDOverride="Abstraction_StereotypeLabel">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -2551,12 +2761,15 @@
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
+          <labelVisibilityPreference
+              role="Stereotype"/>
         </labels>
       </links>
       <links
           visualID="4016"
           editPartClassName="LinkDescriptorEditPart"
           itemSemanticEditPolicyClassName="LinkDescriptorItemSemanticEditPolicy"
+          visualIDOverride="Link_DescriptorEdge"
           createCommandClassName="LinkDescriptorCreateCommand"
           reorientCommandClassName="LinkDescriptorReorientCommand">
         <diagramRunTimeClass
@@ -2577,6 +2790,9 @@
           visualID="4015"
           editPartClassName="CommentAnnotatedElementEditPart"
           itemSemanticEditPolicyClassName="CommentAnnotatedElementItemSemanticEditPolicy"
+          superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart"
+          visualIDOverride="Comment_AnnotatedElementEdge"
+          usingDeleteService="true"
           createCommandClassName="CommentAnnotatedElementCreateCommand"
           reorientCommandClassName="CommentAnnotatedElementReorientCommand">
         <diagramRunTimeClass
@@ -2603,6 +2819,8 @@
           visualID="4009"
           editPartClassName="ConstraintConstrainedElementEditPart"
           itemSemanticEditPolicyClassName="ConstraintConstrainedElementItemSemanticEditPolicy"
+          superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart"
+          visualIDOverride="Constraint_ConstrainedElementEdge"
           createCommandClassName="ConstraintConstrainedElementCreateCommand"
           reorientCommandClassName="ConstraintConstrainedElementReorientCommand">
         <diagramRunTimeClass
@@ -2629,6 +2847,9 @@
           visualID="4010"
           editPartClassName="DependencyEditPart"
           itemSemanticEditPolicyClassName="DependencyItemSemanticEditPolicy"
+          superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart"
+          visualIDOverride="Dependency_Edge"
+          usingDeleteService="true"
           createCommandClassName="DependencyCreateCommand"
           reorientCommandClassName="DependencyReorientCommand">
         <diagramRunTimeClass
@@ -2644,7 +2865,7 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.edge.DashedEdgeFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
@@ -2679,7 +2900,8 @@
         <labels
             visualID="6009"
             editPartClassName="DependencyNameEditPart"
-            itemSemanticEditPolicyClassName="DependencyNameItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="DependencyNameItemSemanticEditPolicy"
+            visualIDOverride="Dependency_NameLabel">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -2696,11 +2918,14 @@
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
+          <labelVisibilityPreference
+              role="Name"/>
         </labels>
         <labels
             visualID="6023"
             editPartClassName="DependencyAppliedStereotypeEditPart"
             itemSemanticEditPolicyClassName="DependencyAppliedStereotypeItemSemanticEditPolicy"
+            visualIDOverride="Dependency_StereotypeLabel"
             readOnly="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -2721,12 +2946,17 @@
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
+          <labelVisibilityPreference
+              role="Stereotype"/>
         </labels>
       </links>
       <links
           visualID="4017"
           editPartClassName="DependencyBranchEditPart"
           itemSemanticEditPolicyClassName="DependencyBranchItemSemanticEditPolicy"
+          superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart"
+          visualIDOverride="Dependency_BranchEdge"
+          usingDeleteService="true"
           createCommandClassName="DependencyBranchCreateCommand"
           reorientCommandClassName="DependencyBranchReorientCommand">
         <diagramRunTimeClass
@@ -2771,6 +3001,7 @@
           visualID="4018"
           editPartClassName="InterfacePortLinkEditPart"
           itemSemanticEditPolicyClassName="InterfacePortLinkItemSemanticEditPolicy"
+          visualIDOverride="Link_InterfacePortEdge"
           outgoingCreationAllowed="false"
           createCommandClassName="InterfacePortLinkCreateCommand"
           reorientCommandClassName="InterfacePortLinkReorientCommand">
@@ -2787,7 +3018,10 @@
       </links>
       <links
           visualID="4019"
-          editPartClassName="ConnectorEditPart">
+          editPartClassName="ConnectorEditPart"
+          superEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart"
+          visualIDOverride="Connector_Edge"
+          usingDeleteService="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
@@ -2799,7 +3033,7 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.component.custom.figure.edges.ConnectorFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
@@ -2824,7 +3058,8 @@
         <labels
             visualID="6024"
             editPartClassName="ConnectorAppliedStereotypeEditPart"
-            itemSemanticEditPolicyClassName="ConnectorAppliedStereotypeItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="ConnectorAppliedStereotypeItemSemanticEditPolicy"
+            visualIDOverride="Connector_StereotypeLabel">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -2846,7 +3081,8 @@
           </modelFacet>
         </labels>
         <labels
-            visualID="6025">
+            visualID="6025"
+            visualIDOverride="Connector_NameLabel">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -2863,12 +3099,16 @@
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
+          <labelVisibilityPreference
+              role="Name"
+              visibleByDefault="false"/>
         </labels>
       </links>
       <compartments
           visualID="7001"
           editPartClassName="ComponentCompositeCompartmentEditPart"
           itemSemanticEditPolicyClassName="ComponentCompositeCompartmentItemSemanticEditPolicy"
+          visualIDOverride="Component_StructureCompartment"
           canonicalEditPolicyClassName="ComponentCompositeCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.4 /0/@diagram/@childNodes.12"
           title="packaged elements"
@@ -2902,6 +3142,7 @@
           visualID="7006"
           editPartClassName="ModelPackageableElementCompartmentEditPart"
           itemSemanticEditPolicyClassName="ModelPackageableElementCompartmentItemSemanticEditPolicy"
+          visualIDOverride="Model_PackagedElementCompartment"
           canonicalEditPolicyClassName="ModelPackageableElementCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.2 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.11"
           title="packaged elements"
@@ -2931,6 +3172,7 @@
           visualID="7002"
           editPartClassName="PackagePackageableElementCompartmentEditPart"
           itemSemanticEditPolicyClassName="PackagePackageableElementCompartmentItemSemanticEditPolicy"
+          visualIDOverride="Package_PackagedElementCompartment"
           canonicalEditPolicyClassName="PackagePackageableElementCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.2 /0/@diagram/@childNodes.11"
           title="packaged elements"
@@ -2960,6 +3202,7 @@
           visualID="7007"
           editPartClassName="ModelPackageableElementCompartmentEditPartCN"
           itemSemanticEditPolicyClassName="ModelPackageableElementCompartmentItemSemanticEditPolicyCN"
+          visualIDOverride="Model_PackagedElementCompartment_CN"
           canonicalEditPolicyClassName="ModelPackageableElementCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.2 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.11"
           title="packaged elements"
@@ -2989,6 +3232,7 @@
           visualID="7005"
           editPartClassName="PackagePackageableElementCompartmentEditPartCN"
           itemSemanticEditPolicyClassName="PackagePackageableElementCompartmentItemSemanticEditPolicyCN"
+          visualIDOverride="Package_PackagedElementCompartment_CN"
           canonicalEditPolicyClassName="PackagePackageableElementCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.2 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.11"
           title="packaged elements"
@@ -3018,6 +3262,7 @@
           visualID="7003"
           editPartClassName="ComponentCompositeCompartmentEditPartCN"
           itemSemanticEditPolicyClassName="ComponentCompositeCompartmentItemSemanticEditPolicyCN"
+          visualIDOverride="Component_StructureCompartment_CCN"
           canonicalEditPolicyClassName="ComponentCompositeCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.4 /0/@diagram/@childNodes.12"
           title="packaged elements"
@@ -3051,6 +3296,7 @@
           visualID="7004"
           editPartClassName="ComponentCompositeCompartmentEditPartPCN"
           itemSemanticEditPolicyClassName="ComponentCompositeCompartmentItemSemanticEditPolicyPCN"
+          visualIDOverride="Component_StructureCompartment_CN"
           canonicalEditPolicyClassName="ComponentCompositeCompartmentCanonicalEditPolicyPCN"
           childNodes="/0/@diagram/@childNodes.4 /0/@diagram/@childNodes.12"
           title="packaged elements"
@@ -3084,6 +3330,8 @@
           visualID="7008"
           editPartClassName="InterfaceAttributeCompartmentEditPart"
           itemSemanticEditPolicyClassName="InterfaceAttributeCompartmentItemSemanticEditPolicy"
+          superEditPart="org.eclipse.papyrus.infra.gmfdiag.common.editpart.AbstractResizableCompartmentEditPart"
+          visualIDOverride="Interface_AttributeCompartment"
           canonicalEditPolicyClassName="InterfaceAttributeCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.8"
           title="attributes"
@@ -3107,6 +3355,8 @@
           visualID="7009"
           editPartClassName="InterfaceOperationCompartmentEditPart"
           itemSemanticEditPolicyClassName="InterfaceOperationCompartmentItemSemanticEditPolicy"
+          superEditPart="org.eclipse.papyrus.infra.gmfdiag.common.editpart.AbstractResizableCompartmentEditPart"
+          visualIDOverride="Interface_OperationCompartment"
           canonicalEditPolicyClassName="InterfaceOperationCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10"
           title="operations"
@@ -3130,6 +3380,7 @@
           visualID="7010"
           editPartClassName="InterfaceAttributeCompartmentEditPartCN"
           itemSemanticEditPolicyClassName="InterfaceAttributeCompartmentItemSemanticEditPolicyCN"
+          visualIDOverride="Interface_AttributeCompartment_CN"
           canonicalEditPolicyClassName="InterfaceAttributeCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.8"
           title="attributes"
@@ -3153,6 +3404,7 @@
           visualID="7011"
           editPartClassName="InterfaceOperationCompartmentEditPartCN"
           itemSemanticEditPolicyClassName="InterfaceOperationCompartmentItemSemanticEditPolicyCN"
+          visualIDOverride="Interface_OperationCompartment_CN"
           canonicalEditPolicyClassName="InterfaceOperationCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10"
           title="operations"
@@ -3197,7 +3449,7 @@
         iD="org.eclipse.papyrus.uml.diagram.component"
         name="Papyrus Component Diagram "
         provider="Eclipse Modeling Project"
-        version="3.0.0.qualifier">
+        version="4.0.0.qualifier">
       <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
       <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
     </plugin>
@@ -3302,455 +3554,6 @@
           oclExpression="self.diagram"/>
     </extensions>
   </gmfgen:GenEditorGenerator>
-  <papyrusgmfgenextension:PapyrusExtensionRootNode
-      comment="Papyrus specific extension for GMFGen">
-    <extensionNodes
-        xsi:type="papyrusgmfgenextension:ExtendedGenView"
-        comment="Manage named element figure relying on Affixed Node"
-        genView="/0/@diagram/@childNodes.0"
-        name="RoundedBorderNamedElementEditPart"
-        superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.RoundedBorderNamedElementEditPart"/>
-    <extensionNodes
-        xsi:type="papyrusgmfgenextension:ExtendedGenView"
-        comment="Label in charge to display applied stereotypes on links"
-        genView="/0/@diagram/@links.2 /0/@diagram/@links.3 /0/@diagram/@links.4 /0/@diagram/@links.5 /0/@diagram/@links.6 /0/@diagram/@links.10 /0/@diagram/@links.11 /0/@diagram/@links.13 /0/@diagram/@links.0 /0/@diagram/@links.1 /0/@diagram/@links.9 /0/@diagram/@links.8"
-        name="ExtendedUMLLinks"
-        superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart"/>
-    <extensionNodes
-        xsi:type="papyrusgmfgenextension:ExtendedGenView"
-        comment="This manages graphical refresh when aggregation kind changes"
-        genView="/0/@diagram/@childNodes.12"
-        name="EP_ConnectableElement_As_Part_NODE"
-        superOwnedEditPart="org.eclipse.papyrus.uml.diagram.component.custom.edit.part.CustomPropertyPartEditPartCN"/>
-    <extensionNodes
-        xsi:type="papyrusgmfgenextension:ExtendedGenView"
-        comment="adding to manange otherNamedElement"
-        genView="/0/@diagram /0/@diagram/@topLevelNodes.4/@labels.0"
-        name="OtherNamedElementEditPart"
-        superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart"/>
-    <extensionNodes
-        xsi:type="papyrusgmfgenextension:ExtendedGenView"
-        comment="Manages stereotype shown with External Label"
-        genView="/0/@diagram/@links.4/@labels.1"
-        name="EP_Stereotypes_EXT_NODE"
-        superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractLabelEditPart"/>
-    <extensionNodes
-        xsi:type="papyrusgmfgenextension:ExtendedGenView"
-        comment="Add super class to a Comment edit parts"
-        genView="/0/@diagram/@childNodes.6 /0/@diagram/@topLevelNodes.5"
-        name="EP_Comment_NODE"
-        superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractCommentEditPart"/>
-    <extensionNodes
-        xsi:type="papyrusgmfgenextension:ExtendedGenView"
-        comment="Add super class to a Constraint edit parts"
-        genView="/0/@diagram/@childNodes.7 /0/@diagram/@topLevelNodes.6"
-        name="EP_Constraint_NODE"
-        superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractConstraintEditPart"/>
-    <extensionNodes
-        xsi:type="papyrusgmfgenextension:ExtendedGenView"
-        comment="add superclass for compartment"
-        genView="/0/@diagram/@compartments.7 /0/@diagram/@compartments.8"
-        name="ResizeableListCompartmentEditPart"
-        superOwnedEditPart="org.eclipse.papyrus.infra.gmfdiag.common.editpart.ResizeableListCompartmentEditPart"/>
-    <extensionNodes
-        xsi:type="papyrusgmfgenextension:ExtendedGenView"
-        comment="Extended Gen View For UML compartments child label nodes, like properties in classifier representation of class diagram"
-        genView="/0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9"
-        name="UMLCompartmentEditPart"
-        superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.UMLCompartmentEditPart"/>
-    <extensionNodes
-        xsi:type="papyrusgmfgenextension:SpecificLocator"
-        comment="Affixed Port locator"
-        classpath="org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator"
-        genChildSideAffixedNode="/0/@diagram/@childNodes.0"/>
-    <extensionNodes
-        xsi:type="papyrusgmfgenextension:SpecificLocatorExternalLabel"
-        comment="External node label locator"
-        classpath="org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator"
-        genExternalNodeLabel="/0/@diagram/@topLevelNodes.8/@labels.0 /0/@diagram/@childNodes.11/@labels.0 /0/@diagram/@childNodes.0/@labels.0 /0/@diagram/@topLevelNodes.0/@labels.0 /0/@diagram/@childNodes.0/@labels.1 /0/@diagram/@topLevelNodes.0/@labels.1"/>
-    <extensionNodes
-        xsi:type="papyrusgmfgenextension:GenNodeConstraint"
-        comment="Creation constraint for TopLevelNode in virtual canvas"
-        genNode="/0/@diagram/@topLevelNodes.0 /0/@diagram/@topLevelNodes.2 /0/@diagram/@topLevelNodes.3 /0/@diagram/@topLevelNodes.1 /0/@diagram/@topLevelNodes.8 /0/@diagram/@topLevelNodes.5 /0/@diagram/@topLevelNodes.6 /0/@diagram/@topLevelNodes.7"
-        genConstraint="/0/@expressionProviders/@providers.1/@expressions.3"/>
-    <extensionNodes
-        xsi:type="papyrusgmfgenextension:AdditionalEditPartCandies"
-        comment="Indicate specific BaseEditHelper in place of generated EditHelper"
-        baseEditHelperPackage="org.eclipse.papyrus.uml.diagram.common.helper"/>
-    <extensionNodes
-        xsi:type="papyrusgmfgenextension:EditPartUsingDeleteService"
-        comment="The delete service is used on every TopNode Childnode and Link"
-        name="Every TopNode ChildNode Link"
-        genView="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.2 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@topLevelNodes.0 /0/@diagram/@topLevelNodes.1 /0/@diagram/@topLevelNodes.8 /0/@diagram/@topLevelNodes.3 /0/@diagram/@topLevelNodes.5 /0/@diagram/@topLevelNodes.6 /0/@diagram/@links.0 /0/@diagram/@links.1 /0/@diagram/@links.2 /0/@diagram/@links.4 /0/@diagram/@links.6 /0/@diagram/@links.5 /0/@diagram/@links.8 /0/@diagram/@links.10 /0/@diagram/@links.11 /0/@diagram/@childNodes.8 /0/@diagram/@links.13"/>
-    <extensionNodes
-        xsi:type="papyrusgmfgenextension:EditPartUsingReorientService"
-        comment="Use the edit service for reorient command (All DirectedRelationship)"
-        name="DirectedRelationship"
-        genView="/0/@diagram/@links.2 /0/@diagram/@links.0 /0/@diagram/@links.1 /0/@diagram/@links.3 /0/@diagram/@links.4 /0/@diagram/@links.5 /0/@diagram/@links.6 /0/@diagram/@links.10 /0/@diagram/@links.11 /0/@diagram/@links.13"/>
-    <extensionNodes
-        xsi:type="papyrusgmfgenextension:CompartmentTitleVisibilityPreference"
-        comment="Hidden Compartments Title"
-        visibleByDefault="false"
-        compartments="/0/@diagram/@compartments.2 /0/@diagram/@compartments.4 /0/@diagram/@compartments.1 /0/@diagram/@compartments.3 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.0 /0/@diagram/@compartments.5 /0/@diagram/@compartments.6"/>
-    <extensionNodes
-        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
-        comment="Name"
-        role="Name"
-        linkLabels="/0/@diagram/@links.4/@labels.0 /0/@diagram/@links.5/@labels.0 /0/@diagram/@links.6/@labels.0 /0/@diagram/@links.10/@labels.0 /0/@diagram/@links.3/@labels.0 /0/@diagram/@links.1/@labels.0 /0/@diagram/@links.0/@labels.0"
-        externalNodeLabels="/0/@diagram/@topLevelNodes.8/@labels.0 /0/@diagram/@childNodes.11/@labels.0 /0/@diagram/@childNodes.0/@labels.0"/>
-    <extensionNodes
-        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
-        comment="Stereotype"
-        role="Stereotype"
-        linkLabels="/0/@diagram/@links.4/@labels.1 /0/@diagram/@links.2/@labels.0 /0/@diagram/@links.3/@labels.1 /0/@diagram/@links.5/@labels.1 /0/@diagram/@links.6/@labels.1 /0/@diagram/@links.10/@labels.1 /0/@diagram/@links.1/@labels.1 /0/@diagram/@links.0/@labels.1"
-        externalNodeLabels="/0/@diagram/@childNodes.0/@labels.1"/>
-    <extensionNodes
-        xsi:type="papyrusgmfgenextension:SpecificDiagramUpdater"
-        comment="Property (Part) custom DiagramUpdater"
-        classpath="org.eclipse.papyrus.uml.diagram.component.custom.parts.PropertyDiagramUpdater"
-        genNode="/0/@diagram/@childNodes.12"/>
-    <extensionNodes
-        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
-        comment="Name (Connector)"
-        role="Name"
-        linkLabels="/0/@diagram/@links.13/@labels.1"
-        visibleByDefault="false"/>
-    <extensionNodes
-        xsi:type="papyrusgmfgenextension:ExtendedGenView"
-        comment="add superclass for floating Label"
-        genView="/0/@diagram/@childNodes.3/@labels.1 /0/@diagram/@childNodes.4/@labels.1 /0/@diagram/@childNodes.5/@labels.1 /0/@diagram/@childNodes.11/@labels.1 /0/@diagram/@topLevelNodes.0/@labels.1 /0/@diagram/@topLevelNodes.1/@labels.1 /0/@diagram/@topLevelNodes.4/@labels.1 /0/@diagram/@topLevelNodes.8/@labels.1 /0/@diagram/@childNodes.0/@labels.0"
-        name="FloatingLabelEditPart"
-        superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.FloatingLabelEditPart"/>
-    <extensionNodes
-        xsi:type="papyrusgmfgenextension:ExtendedGenView"
-        comment="Add Rounded Compartment"
-        genView="/0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@topLevelNodes.1 /0/@diagram/@childNodes.11 /0/@diagram/@topLevelNodes.8 /0/@diagram/@childNodes.3 /0/@diagram/@topLevelNodes.4 /0/@diagram/@topLevelNodes.7"
-        name="RoundedCompartmentEditPart"
-        superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart"/>
-    <extensionNodes
-        xsi:type="papyrusgmfgenextension:SpecificLocatorExternalLabel"
-        comment="Locator for external Floating label of RoundedCompartment EP"
-        classpath="org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator"
-        genExternalNodeLabel="/0/@diagram/@childNodes.3/@labels.1 /0/@diagram/@childNodes.4/@labels.1 /0/@diagram/@childNodes.5/@labels.1 /0/@diagram/@childNodes.11/@labels.1 /0/@diagram/@topLevelNodes.0/@labels.1 /0/@diagram/@topLevelNodes.1/@labels.1 /0/@diagram/@topLevelNodes.4/@labels.1 /0/@diagram/@topLevelNodes.8/@labels.1"/>
-    <extensionNodes
-        xsi:type="papyrusgmfgenextension:ExtendedGenView"
-        comment="Package EditPart"
-        genView="/0/@diagram/@childNodes.2 /0/@diagram/@topLevelNodes.3 /0/@diagram/@childNodes.1 /0/@diagram/@topLevelNodes.2"
-        name="PackageEditPart"
-        superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.PackageEditPart"/>
-  </papyrusgmfgenextension:PapyrusExtensionRootNode>
-  <papyrusgmfgenextension:VisualIDOverride
-      genView="/0/@diagram"
-      visualID="Package_ComponentDiagram">
-    <child
-        genView="/0/@diagram/@childNodes.8"
-        visualID="Property_InterfaceAttributeLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.9"
-        visualID="Operation_InterfaceOperationLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.10"
-        visualID="Reception_InterfaceReceptionLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.0"
-        visualID="Port_Shape">
-      <child
-          genView="/0/@diagram/@childNodes.0/@labels.0"
-          visualID="Port_NameLabel"/>
-      <child
-          genView="/0/@diagram/@childNodes.0/@labels.1"
-          visualID="Port_StereotypeLabel"/>
-    </child>
-    <child
-        genView="/0/@diagram/@childNodes.1"
-        visualID="Model_Shape_CN">
-      <child
-          genView="/0/@diagram/@childNodes.1/@labels.0"
-          visualID="Model_NameLabel_CN"/>
-    </child>
-    <child
-        genView="/0/@diagram/@childNodes.2"
-        visualID="Package_Shape_CN">
-      <child
-          genView="/0/@diagram/@childNodes.2/@labels.0"
-          visualID="Package_NameLabel_CN"/>
-    </child>
-    <child
-        genView="/0/@diagram/@childNodes.3"
-        visualID="Interface_ClassifierShape_CN">
-      <child
-          genView="/0/@diagram/@childNodes.3/@labels.0"
-          visualID="Interface_ClassifierNameLabel_CN"/>
-      <child
-          genView="/0/@diagram/@childNodes.3/@labels.1"
-          visualID="Interface_ClassifierFloatingNameLabel_CN"/>
-    </child>
-    <child
-        genView="/0/@diagram/@childNodes.4"
-        visualID="Component_PackagedElementShape_CCN">
-      <child
-          genView="/0/@diagram/@childNodes.4/@labels.0"
-          visualID="Component_NameLabel_CCN"/>
-      <child
-          genView="/0/@diagram/@childNodes.4/@labels.1"
-          visualID="Component_FloatingNameLabel_CCN"/>
-    </child>
-    <child
-        genView="/0/@diagram/@childNodes.5"
-        visualID="Component_PackagedElementShape_CN">
-      <child
-          genView="/0/@diagram/@childNodes.5/@labels.0"
-          visualID="Component_NameLabel_CN"/>
-      <child
-          genView="/0/@diagram/@childNodes.5/@labels.1"
-          visualID="Component_FloatingNameLabel_CN"/>
-    </child>
-    <child
-        genView="/0/@diagram/@childNodes.6"
-        visualID="Comment_Shape_CN">
-      <child
-          genView="/0/@diagram/@childNodes.6/@labels.0"
-          visualID="Comment_BodyLabel_CN"/>
-    </child>
-    <child
-        genView="/0/@diagram/@childNodes.7"
-        visualID="Constraint_Shape_CN">
-      <child
-          genView="/0/@diagram/@childNodes.7/@labels.0"
-          visualID="Constraint_NameLabel_CN"/>
-      <child
-          genView="/0/@diagram/@childNodes.7/@labels.1"
-          visualID="Constraint_BodyLabel_CN"/>
-    </child>
-    <child
-        genView="/0/@diagram/@childNodes.11"
-        visualID="Interface_Shape_CN">
-      <child
-          genView="/0/@diagram/@childNodes.11/@labels.0"
-          visualID="Interface_NameLabel_CN"/>
-      <child
-          genView="/0/@diagram/@childNodes.11/@labels.1"
-          visualID="Interface_FloatingNameLabel_CN"/>
-    </child>
-    <child
-        genView="/0/@diagram/@childNodes.12"
-        visualID="Property_Shape">
-      <child
-          genView="/0/@diagram/@childNodes.12/@labels.0"
-          visualID="Property_NameLabel"/>
-    </child>
-    <child
-        genView="/0/@diagram/@compartments.0"
-        visualID="Component_StructureCompartment"/>
-    <child
-        genView="/0/@diagram/@compartments.1"
-        visualID="Model_PackagedElementCompartment"/>
-    <child
-        genView="/0/@diagram/@compartments.2"
-        visualID="Package_PackagedElementCompartment"/>
-    <child
-        genView="/0/@diagram/@compartments.3"
-        visualID="Model_PackagedElementCompartment_CN"/>
-    <child
-        genView="/0/@diagram/@compartments.4"
-        visualID="Package_PackagedElementCompartment_CN"/>
-    <child
-        genView="/0/@diagram/@compartments.5"
-        visualID="Component_StructureCompartment_CCN"/>
-    <child
-        genView="/0/@diagram/@compartments.6"
-        visualID="Component_StructureCompartment_CN"/>
-    <child
-        genView="/0/@diagram/@compartments.7"
-        visualID="Interface_AttributeCompartment"/>
-    <child
-        genView="/0/@diagram/@compartments.8"
-        visualID="Interface_OperationCompartment"/>
-    <child
-        genView="/0/@diagram/@compartments.9"
-        visualID="Interface_AttributeCompartment_CN"/>
-    <child
-        genView="/0/@diagram/@compartments.10"
-        visualID="Interface_OperationCompartment_CN"/>
-    <child
-        genView="/0/@diagram/@topLevelNodes.0"
-        visualID="Dependency_Shape">
-      <child
-          genView="/0/@diagram/@topLevelNodes.0/@labels.0"
-          visualID="Dependency_MultiNameLabel"/>
-      <child
-          genView="/0/@diagram/@topLevelNodes.0/@labels.1"
-          visualID="Dependency_FloatingNameLabel"/>
-    </child>
-    <child
-        genView="/0/@diagram/@topLevelNodes.1"
-        visualID="Component_PackagedElementShape">
-      <child
-          genView="/0/@diagram/@topLevelNodes.1/@labels.0"
-          visualID="Component_NameLabel"/>
-      <child
-          genView="/0/@diagram/@topLevelNodes.1/@labels.1"
-          visualID="Component_FloatingNameLabel"/>
-    </child>
-    <child
-        genView="/0/@diagram/@topLevelNodes.2"
-        visualID="Model_Shape">
-      <child
-          genView="/0/@diagram/@topLevelNodes.2/@labels.0"
-          visualID="Model_NameLabel"/>
-    </child>
-    <child
-        genView="/0/@diagram/@topLevelNodes.3"
-        visualID="Package_Shape">
-      <child
-          genView="/0/@diagram/@topLevelNodes.3/@labels.0"
-          visualID="Package_NameLabel"/>
-    </child>
-    <child
-        genView="/0/@diagram/@topLevelNodes.4"
-        visualID="Interface_ClassifierShape">
-      <child
-          genView="/0/@diagram/@topLevelNodes.4/@labels.0"
-          visualID="Interface_ClassifierNameLabel"/>
-      <child
-          genView="/0/@diagram/@topLevelNodes.4/@labels.1"
-          visualID="Interface_ClassifierFloatingNameLabel"/>
-    </child>
-    <child
-        genView="/0/@diagram/@topLevelNodes.5"
-        visualID="Comment_Shape">
-      <child
-          genView="/0/@diagram/@topLevelNodes.5/@labels.0"
-          visualID="Comment_BodyLabel"/>
-    </child>
-    <child
-        genView="/0/@diagram/@topLevelNodes.6"
-        visualID="Constraint_Shape">
-      <child
-          genView="/0/@diagram/@topLevelNodes.6/@labels.0"
-          visualID="Constraint_NameLabel"/>
-      <child
-          genView="/0/@diagram/@topLevelNodes.6/@labels.1"
-          visualID="Constraint_BodyLabel"/>
-    </child>
-    <child
-        genView="/0/@diagram/@topLevelNodes.7"
-        visualID="NamedElement_DefaultShape">
-      <child
-          genView="/0/@diagram/@topLevelNodes.7/@labels.0"
-          visualID="NamedElement_NameLabel"/>
-    </child>
-    <child
-        genView="/0/@diagram/@topLevelNodes.8"
-        visualID="Interface_Shape">
-      <child
-          genView="/0/@diagram/@topLevelNodes.8/@labels.0"
-          visualID="Interface_NameLabel"/>
-      <child
-          genView="/0/@diagram/@topLevelNodes.8/@labels.1"
-          visualID="Interface_FloatingNameLabel"/>
-    </child>
-    <child
-        genView="/0/@diagram/@links.0"
-        visualID="Usage_Edge">
-      <child
-          genView="/0/@diagram/@links.0/@labels.0"
-          visualID="Usage_NameLabel"/>
-      <child
-          genView="/0/@diagram/@links.0/@labels.1"
-          visualID="Usage_StereotypeLabel"/>
-    </child>
-    <child
-        genView="/0/@diagram/@links.1"
-        visualID="InterfaceRealization_Edge">
-      <child
-          genView="/0/@diagram/@links.1/@labels.0"
-          visualID="InterfaceRealization_NameLabel"/>
-      <child
-          genView="/0/@diagram/@links.1/@labels.1"
-          visualID="InterfaceRealization_StereotypeLabel"/>
-    </child>
-    <child
-        genView="/0/@diagram/@links.2"
-        visualID="Generalization_Edge">
-      <child
-          genView="/0/@diagram/@links.2/@labels.0"
-          visualID="Generalization_StereotypeLabel"/>
-    </child>
-    <child
-        genView="/0/@diagram/@links.3"
-        visualID="Substitution_Edge">
-      <child
-          genView="/0/@diagram/@links.3/@labels.0"
-          visualID="Substitution_NameLabel"/>
-      <child
-          genView="/0/@diagram/@links.3/@labels.1"
-          visualID="Substitution_StereotypeLabel"/>
-    </child>
-    <child
-        genView="/0/@diagram/@links.4"
-        visualID="Manifestation_Edge">
-      <child
-          genView="/0/@diagram/@links.4/@labels.0"
-          visualID="Manifestation_NameLabel"/>
-      <child
-          genView="/0/@diagram/@links.4/@labels.1"
-          visualID="Manifestation_StereotypeLabel"/>
-    </child>
-    <child
-        genView="/0/@diagram/@links.5"
-        visualID="ComponentRealization_Edge">
-      <child
-          genView="/0/@diagram/@links.5/@labels.0"
-          visualID="ComponentRealization_NameLabel"/>
-      <child
-          genView="/0/@diagram/@links.5/@labels.1"
-          visualID="ComponentRealization_StereotypeLabel"/>
-    </child>
-    <child
-        genView="/0/@diagram/@links.6"
-        visualID="Abstraction_Edge">
-      <child
-          genView="/0/@diagram/@links.6/@labels.0"
-          visualID="Abstraction_NameLabel"/>
-      <child
-          genView="/0/@diagram/@links.6/@labels.1"
-          visualID="Abstraction_StereotypeLabel"/>
-    </child>
-    <child
-        genView="/0/@diagram/@links.7"
-        visualID="Link_DescriptorEdge"/>
-    <child
-        genView="/0/@diagram/@links.8"
-        visualID="Comment_AnnotatedElementEdge"/>
-    <child
-        genView="/0/@diagram/@links.9"
-        visualID="Constraint_ConstrainedElementEdge"/>
-    <child
-        genView="/0/@diagram/@links.10"
-        visualID="Dependency_Edge">
-      <child
-          genView="/0/@diagram/@links.10/@labels.0"
-          visualID="Dependency_NameLabel"/>
-      <child
-          genView="/0/@diagram/@links.10/@labels.1"
-          visualID="Dependency_StereotypeLabel"/>
-    </child>
-    <child
-        genView="/0/@diagram/@links.11"
-        visualID="Dependency_BranchEdge"/>
-    <child
-        genView="/0/@diagram/@links.12"
-        visualID="Link_InterfacePortEdge"/>
-    <child
-        genView="/0/@diagram/@links.13"
-        visualID="Connector_Edge">
-      <child
-          genView="/0/@diagram/@links.13/@labels.0"
-          visualID="Connector_StereotypeLabel"/>
-      <child
-          genView="/0/@diagram/@links.13/@labels.1"
-          visualID="Connector_NameLabel"/>
-    </child>
-  </papyrusgmfgenextension:VisualIDOverride>
+  <ecore:EAnnotation
+      source="genextension_migration"/>
 </xmi:XMI>

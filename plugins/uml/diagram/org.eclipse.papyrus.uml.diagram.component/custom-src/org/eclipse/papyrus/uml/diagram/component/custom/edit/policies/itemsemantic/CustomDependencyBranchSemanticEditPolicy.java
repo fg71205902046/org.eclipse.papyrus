@@ -17,7 +17,7 @@ package org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.itemseman
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-import org.eclipse.papyrus.uml.diagram.component.edit.policies.DependencyBranchItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.DependencyBranchItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes;
 
 /**

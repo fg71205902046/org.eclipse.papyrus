@@ -18,7 +18,7 @@ package org.eclipse.papyrus.uml.diagram.component.custom.edit.command;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
-import org.eclipse.papyrus.uml.diagram.component.edit.commands.DependencyBranchReorientCommand;
+import org.eclipse.papyrus.uml.diagram.component.custom.edit.commands.DependencyBranchReorientCommand;
 import org.eclipse.papyrus.uml.diagram.component.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;

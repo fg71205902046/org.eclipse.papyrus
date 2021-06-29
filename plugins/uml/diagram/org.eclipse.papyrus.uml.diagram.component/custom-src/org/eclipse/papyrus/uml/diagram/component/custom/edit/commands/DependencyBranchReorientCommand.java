@@ -11,7 +11,7 @@
  * Contributors:
  *  CEA LIST - Initial API and implementation
  */
-package org.eclipse.papyrus.uml.diagram.component.edit.commands;
+package org.eclipse.papyrus.uml.diagram.component.custom.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -26,29 +26,19 @@ import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 
-/**
- * @generated
- */
+
 public class DependencyBranchReorientCommand extends EditElementCommand {
 
-	/**
-	 * @generated
-	 */
+
 	private final int reorientDirection;
 
-	/**
-	 * @generated
-	 */
+
 	private final EObject oldEnd;
 
-	/**
-	 * @generated
-	 */
+
 	private final EObject newEnd;
 
-	/**
-	 * @generated
-	 */
+
 	public DependencyBranchReorientCommand(ReorientRelationshipRequest request) {
 		super(request.getLabel(), request.getRelationship(), request);
 		reorientDirection = request.getDirection();
@@ -56,12 +46,10 @@ public class DependencyBranchReorientCommand extends EditElementCommand {
 		newEnd = request.getNewRelationshipEnd();
 	}
 
-	/**
-	 * @generated
-	 */
+
 	@Override
 	public boolean canExecute() {
-		if (false == getElementToEdit() instanceof Dependency) {
+		if (!(getElementToEdit() instanceof Dependency)) {
 			return false;
 		}
 		if (reorientDirection == ReorientRequest.REORIENT_SOURCE) {
@@ -73,15 +61,10 @@ public class DependencyBranchReorientCommand extends EditElementCommand {
 		return false;
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof NamedElement && newEnd instanceof NamedElement)) {
-			return false;
-		}
-		if (getLink().getSuppliers()
-				.size() != 1) {
+		if (!(oldEnd instanceof NamedElement && newEnd instanceof NamedElement) || (getLink().getSuppliers()
+				.size() != 1)) {
 			return false;
 		}
 		NamedElement target = getLink().getSuppliers()
@@ -93,15 +76,10 @@ public class DependencyBranchReorientCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistDependency_BranchEdge(container, getLink(), getNewSource(), target);
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected boolean canReorientTarget() {
-		if (!(oldEnd instanceof NamedElement && newEnd instanceof NamedElement)) {
-			return false;
-		}
-		if (getLink().getClients()
-				.size() != 1) {
+		if (!(oldEnd instanceof NamedElement && newEnd instanceof NamedElement) || (getLink().getClients()
+				.size() != 1)) {
 			return false;
 		}
 		NamedElement source = getLink().getClients()
@@ -113,9 +91,7 @@ public class DependencyBranchReorientCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistDependency_BranchEdge(container, getLink(), source, getNewTarget());
 	}
 
-	/**
-	 * @generated
-	 */
+
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
@@ -130,9 +106,7 @@ public class DependencyBranchReorientCommand extends EditElementCommand {
 		throw new IllegalStateException();
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected CommandResult reorientSource() throws ExecutionException {
 		getLink().getClients()
 				.remove(getOldSource());
@@ -141,9 +115,7 @@ public class DependencyBranchReorientCommand extends EditElementCommand {
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected CommandResult reorientTarget() throws ExecutionException {
 		getLink().getSuppliers()
 				.remove(getOldTarget());
@@ -152,37 +124,27 @@ public class DependencyBranchReorientCommand extends EditElementCommand {
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected Dependency getLink() {
 		return (Dependency) getElementToEdit();
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected NamedElement getOldSource() {
 		return (NamedElement) oldEnd;
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected NamedElement getNewSource() {
 		return (NamedElement) newEnd;
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected NamedElement getOldTarget() {
 		return (NamedElement) oldEnd;
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected NamedElement getNewTarget() {
 		return (NamedElement) newEnd;
 	}
