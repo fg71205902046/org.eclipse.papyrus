@@ -1,15 +1,15 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  *
-  * All rights reserved. This program and the accompanying materials
-  * are made available under the terms of the Eclipse Public License 2.0
-  * which accompanies this distribution, and is available at
-  * https://www.eclipse.org/legal/epl-2.0/
-  *
-  * SPDX-License-Identifier: EPL-2.0
-  *
-  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.clazz.edit.parts;
 
@@ -23,7 +23,6 @@ import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
@@ -40,6 +39,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.custom.figure.TemplateFigure;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.common.editparts.AbstractBorderItemEditPart;
 import org.eclipse.swt.graphics.Color;
 
 /**
@@ -116,6 +116,7 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure createNodeShape() {
 		return primaryShape = new TemplateFigure();
 	}
@@ -125,6 +126,7 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	 *
 	 * @generated
 	 */
+	@Override
 	public TemplateFigure getPrimaryShape() {
 		return (TemplateFigure) primaryShape;
 	}
@@ -191,6 +193,7 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	 * @generated
 	 */
 
+	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
 		return result;
@@ -224,6 +227,7 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	 *
 	 * @generated
 	 */
+	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
