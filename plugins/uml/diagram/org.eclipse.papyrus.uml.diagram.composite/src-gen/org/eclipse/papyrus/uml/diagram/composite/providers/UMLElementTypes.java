@@ -1,15 +1,15 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  *
-  * All rights reserved. This program and the accompanying materials
-  * are made available under the terms of the Eclipse Public License 2.0
-  * which accompanies this distribution, and is available at
-  * https://www.eclipse.org/legal/epl-2.0/
-  *
-  * SPDX-License-Identifier: EPL-2.0
-  *
-  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.composite.providers;
 
@@ -522,314 +522,110 @@ public class UMLElementTypes {
 		Object type = hint.getAdapter(IElementType.class);
 		if (elements == null) {
 			elements = new IdentityHashMap<>();
-
 			elements.put(Package_CompositeStructureDiagram, UMLPackage.eINSTANCE.getPackage());
-
-
 			elements.put(Activity_Shape, UMLPackage.eINSTANCE.getActivity());
-
-
 			elements.put(Interaction_Shape, UMLPackage.eINSTANCE.getInteraction());
-
-
 			elements.put(ProtocolStateMachine_Shape, UMLPackage.eINSTANCE.getProtocolStateMachine());
-
-
 			elements.put(StateMachine_Shape, UMLPackage.eINSTANCE.getStateMachine());
-
-
 			elements.put(FunctionBehavior_Shape, UMLPackage.eINSTANCE.getFunctionBehavior());
-
-
 			elements.put(OpaqueBehavior_Shape, UMLPackage.eINSTANCE.getOpaqueBehavior());
-
-
 			elements.put(Component_Shape, UMLPackage.eINSTANCE.getComponent());
-
-
 			elements.put(Device_Shape, UMLPackage.eINSTANCE.getDevice());
-
-
 			elements.put(ExecutionEnvironment_Shape, UMLPackage.eINSTANCE.getExecutionEnvironment());
-
-
 			elements.put(Node_Shape, UMLPackage.eINSTANCE.getNode());
-
-
 			elements.put(Class_Shape, UMLPackage.eINSTANCE.getClass_());
-
-
 			elements.put(Collaboration_Shape, UMLPackage.eINSTANCE.getCollaboration());
-
-
 			elements.put(Interface_Shape, UMLPackage.eINSTANCE.getInterface());
-
-
 			elements.put(PrimitiveType_Shape, UMLPackage.eINSTANCE.getPrimitiveType());
-
-
 			elements.put(Enumeration_Shape, UMLPackage.eINSTANCE.getEnumeration());
-
-
 			elements.put(DataType_Shape, UMLPackage.eINSTANCE.getDataType());
-
-
 			elements.put(Actor_Shape, UMLPackage.eINSTANCE.getActor());
-
-
 			elements.put(DeploymentSpecification_Shape, UMLPackage.eINSTANCE.getDeploymentSpecification());
-
-
 			elements.put(Artifact_Shape, UMLPackage.eINSTANCE.getArtifact());
-
-
 			elements.put(InformationItem_Shape, UMLPackage.eINSTANCE.getInformationItem());
-
-
 			elements.put(Signal_Shape, UMLPackage.eINSTANCE.getSignal());
-
-
 			elements.put(UseCase_Shape, UMLPackage.eINSTANCE.getUseCase());
-
-
 			elements.put(SignalEvent_Shape, UMLPackage.eINSTANCE.getSignalEvent());
-
-
 			elements.put(CallEvent_Shape, UMLPackage.eINSTANCE.getCallEvent());
-
-
 			elements.put(AnyReceiveEvent_Shape, UMLPackage.eINSTANCE.getAnyReceiveEvent());
-
-
 			elements.put(ChangeEvent_Shape, UMLPackage.eINSTANCE.getChangeEvent());
-
-
 			elements.put(TimeEvent_Shape, UMLPackage.eINSTANCE.getTimeEvent());
-
-
 			elements.put(DurationObservation_Shape, UMLPackage.eINSTANCE.getDurationObservation());
-
-
 			elements.put(TimeObservation_Shape, UMLPackage.eINSTANCE.getTimeObservation());
-
-
 			elements.put(LiteralBoolean_Shape, UMLPackage.eINSTANCE.getLiteralBoolean());
-
-
 			elements.put(LiteralInteger_Shape, UMLPackage.eINSTANCE.getLiteralInteger());
-
-
 			elements.put(LiteralNull_Shape, UMLPackage.eINSTANCE.getLiteralNull());
-
-
 			elements.put(LiteralString_Shape, UMLPackage.eINSTANCE.getLiteralString());
-
-
 			elements.put(LiteralUnlimitedNatural_Shape, UMLPackage.eINSTANCE.getLiteralUnlimitedNatural());
-
-
 			elements.put(StringExpression_PackagedElementShape, UMLPackage.eINSTANCE.getStringExpression());
-
-
 			elements.put(OpaqueExpression_Shape, UMLPackage.eINSTANCE.getOpaqueExpression());
-
-
 			elements.put(TimeExpression_Shape, UMLPackage.eINSTANCE.getTimeExpression());
-
-
 			elements.put(Expression_Shape, UMLPackage.eINSTANCE.getExpression());
-
-
 			elements.put(Duration_Shape, UMLPackage.eINSTANCE.getDuration());
-
-
 			elements.put(TimeInterval_Shape, UMLPackage.eINSTANCE.getTimeInterval());
-
-
 			elements.put(DurationInterval_Shape, UMLPackage.eINSTANCE.getDurationInterval());
-
-
 			elements.put(Interval_Shape, UMLPackage.eINSTANCE.getInterval());
-
-
 			elements.put(InstanceValue_Shape, UMLPackage.eINSTANCE.getInstanceValue());
-
-
 			elements.put(Comment_Shape, UMLPackage.eINSTANCE.getComment());
-
-
 			elements.put(DurationConstraint_Shape, UMLPackage.eINSTANCE.getDurationConstraint());
-
-
 			elements.put(TimeConstraint_Shape, UMLPackage.eINSTANCE.getTimeConstraint());
-
-
 			elements.put(IntervalConstraint_Shape, UMLPackage.eINSTANCE.getIntervalConstraint());
-
-
 			elements.put(InteractionConstraint_Shape, UMLPackage.eINSTANCE.getInteractionConstraint());
-
-
 			elements.put(Constraint_Shape, UMLPackage.eINSTANCE.getConstraint());
-
-
 			elements.put(Port_BehaviorShape, UMLPackage.eINSTANCE.getPort());
-
-
 			elements.put(Port_Shape, UMLPackage.eINSTANCE.getPort());
-
-
 			elements.put(Parameter_Shape, UMLPackage.eINSTANCE.getParameter());
-
-
 			elements.put(Property_Shape, UMLPackage.eINSTANCE.getProperty());
-
-
 			elements.put(ConnectableElement_CollaborationRoleShape, UMLPackage.eINSTANCE.getConnectableElement());
-
-
 			elements.put(CollaborationUse_Shape, UMLPackage.eINSTANCE.getCollaborationUse());
-
-
 			elements.put(Activity_Shape_CN, UMLPackage.eINSTANCE.getActivity());
-
-
 			elements.put(Interaction_Shape_CN, UMLPackage.eINSTANCE.getInteraction());
-
-
 			elements.put(ProtocolStateMachine_Shape_CN, UMLPackage.eINSTANCE.getProtocolStateMachine());
-
-
 			elements.put(StateMachine_Shape_CN, UMLPackage.eINSTANCE.getStateMachine());
-
-
 			elements.put(FunctionBehavior_Shape_CN, UMLPackage.eINSTANCE.getFunctionBehavior());
-
-
 			elements.put(OpaqueBehavior_Shape_CN, UMLPackage.eINSTANCE.getOpaqueBehavior());
-
-
 			elements.put(Component_Shape_CN, UMLPackage.eINSTANCE.getComponent());
-
-
 			elements.put(Device_Shape_CN, UMLPackage.eINSTANCE.getDevice());
-
-
 			elements.put(ExecutionEnvironment_Shape_CN, UMLPackage.eINSTANCE.getExecutionEnvironment());
-
-
 			elements.put(Node_Shape_CN, UMLPackage.eINSTANCE.getNode());
-
-
 			elements.put(Class_Shape_CN, UMLPackage.eINSTANCE.getClass_());
-
-
 			elements.put(Collaboration_Shape_CN, UMLPackage.eINSTANCE.getCollaboration());
-
-
 			elements.put(Interface_Shape_CN, UMLPackage.eINSTANCE.getInterface());
-
-
 			elements.put(PrimitiveType_Shape_CN, UMLPackage.eINSTANCE.getPrimitiveType());
-
-
 			elements.put(Enumeration_Shape_CN, UMLPackage.eINSTANCE.getEnumeration());
-
-
 			elements.put(DataType_Shape_CN, UMLPackage.eINSTANCE.getDataType());
-
-
 			elements.put(Actor_Shape_CN, UMLPackage.eINSTANCE.getActor());
-
-
 			elements.put(DeploymentSpecification_Shape_CN, UMLPackage.eINSTANCE.getDeploymentSpecification());
-
-
 			elements.put(Artifact_Shape_CN, UMLPackage.eINSTANCE.getArtifact());
-
-
 			elements.put(InformationItem_Shape_CN, UMLPackage.eINSTANCE.getInformationItem());
-
-
 			elements.put(Signal_Shape_CN, UMLPackage.eINSTANCE.getSignal());
-
-
 			elements.put(UseCase_Shape_CN, UMLPackage.eINSTANCE.getUseCase());
-
-
 			elements.put(Comment_Shape_CN, UMLPackage.eINSTANCE.getComment());
-
-
 			elements.put(DurationConstraint_Shape_CN, UMLPackage.eINSTANCE.getDurationConstraint());
-
-
 			elements.put(TimeConstraint_Shape_CN, UMLPackage.eINSTANCE.getTimeConstraint());
-
-
 			elements.put(IntervalConstraint_Shape_CN, UMLPackage.eINSTANCE.getIntervalConstraint());
-
-
 			elements.put(InteractionConstraint_Shape_CN, UMLPackage.eINSTANCE.getInteractionConstraint());
-
-
 			elements.put(Constraint_Shape_CN, UMLPackage.eINSTANCE.getConstraint());
-
-
 			elements.put(Property_AttributeLabel, UMLPackage.eINSTANCE.getProperty());
-
-
 			elements.put(Operation_OperationLabel, UMLPackage.eINSTANCE.getOperation());
-
-
 			elements.put(EnumerationLiteral_LiteralLabel, UMLPackage.eINSTANCE.getEnumerationLiteral());
-
 			elements.put(Comment_AnnotatedElementEdge, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
-
 			elements.put(Constraint_ConstrainedElementEdge, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
-
-
 			elements.put(ComponentRealization_Edge, UMLPackage.eINSTANCE.getComponentRealization());
-
-
 			elements.put(InterfaceRealization_Edge, UMLPackage.eINSTANCE.getInterfaceRealization());
-
-
 			elements.put(Substitution_Edge, UMLPackage.eINSTANCE.getSubstitution());
-
-
 			elements.put(Realization_Edge, UMLPackage.eINSTANCE.getRealization());
-
-
 			elements.put(Manifestation_Edge, UMLPackage.eINSTANCE.getManifestation());
-
-
 			elements.put(Abstraction_Edge, UMLPackage.eINSTANCE.getAbstraction());
-
-
 			elements.put(Usage_Edge, UMLPackage.eINSTANCE.getUsage());
-
-
 			elements.put(Deployment_Edge, UMLPackage.eINSTANCE.getDeployment());
-
-
 			elements.put(Dependency_RoleBindingEdge, UMLPackage.eINSTANCE.getDependency());
-
-
 			elements.put(Dependency_Edge, UMLPackage.eINSTANCE.getDependency());
-
-
 			elements.put(Connector_Edge, UMLPackage.eINSTANCE.getConnector());
-
-
 			elements.put(Generalization_Edge, UMLPackage.eINSTANCE.getGeneralization());
-
 			elements.put(TimeObservation_EventEdge, UMLPackage.eINSTANCE.getTimeObservation_Event());
-
 			elements.put(DurationObservation_EventEdge, UMLPackage.eINSTANCE.getDurationObservation_Event());
-
 			elements.put(Representation_Edge, UMLPackage.eINSTANCE.getInformationItem_Represented());
-
-
 			elements.put(InformationFlow_Edge, UMLPackage.eINSTANCE.getInformationFlow());
 		}
 		return elements.get(type);

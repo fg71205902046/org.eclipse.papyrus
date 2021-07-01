@@ -1,15 +1,15 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  *
-  * All rights reserved. This program and the accompanying materials
-  * are made available under the terms of the Eclipse Public License 2.0
-  * which accompanies this distribution, and is available at
-  * https://www.eclipse.org/legal/epl-2.0/
-  *
-  * SPDX-License-Identifier: EPL-2.0
-  *
-  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.composite.providers;
 
@@ -3799,471 +3799,374 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 				return getActivity_NameLabel_Parser();
 			case ActivityCompositeFloatingLabelEditPart.VISUAL_ID:
 				return getActivity_FloatingNameLabel_Parser();
-
 			case InteractionCompositeNameEditPart.VISUAL_ID:
 				return getInteraction_NameLabel_Parser();
 			case InteractionCompositeFloatingLabelEditPart.VISUAL_ID:
 				return getInteraction_FloatingNameLabel_Parser();
-
 			case ProtocolStateMachineCompositeNameEditPart.VISUAL_ID:
 				return getProtocolStateMachine_NameLabel_Parser();
 			case ProtocolStateMachineCompositeFloatingLabelEditPart.VISUAL_ID:
 				return getProtocolStateMachine_FloatingNameLabel_Parser();
-
 			case StateMachineCompositeNameEditPart.VISUAL_ID:
 				return getStateMachine_NameLabel_Parser();
 			case StateMachineCompositeFloatingLabelEditPart.VISUAL_ID:
 				return getStateMachine_FloatingNameLabel_Parser();
-
 			case FunctionBehaviorCompositeNameEditPart.VISUAL_ID:
 				return getFunctionBehavior_NameLabel_Parser();
 			case FunctionBehaviorCompositeFloatingLabelEditPart.VISUAL_ID:
 				return getFunctionBehavior_FloatingNameLabel_Parser();
-
 			case OpaqueBehaviorCompositeNameEditPart.VISUAL_ID:
 				return getOpaqueBehavior_NameLabel_Parser();
 			case OpaqueBehaviorCompositeFloatingLabelEditPart.VISUAL_ID:
 				return getOpaqueBehavior_FloatingNameLabel_Parser();
-
 			case ComponentCompositeNameEditPart.VISUAL_ID:
 				return getComponent_NameLabel_Parser();
 			case ComponentCompositeFloatingLabelEditPart.VISUAL_ID:
 				return getComponent_FloatingNameLabel_Parser();
-
 			case DeviceCompositeNameEditPart.VISUAL_ID:
 				return getDevice_NameLabel_Parser();
 			case DeviceCompositeFloatingLabelEditPart.VISUAL_ID:
 				return getDevice_FloatingNameLabel_Parser();
-
 			case ExecutionEnvironmentCompositeNameEditPart.VISUAL_ID:
 				return getExecutionEnvironment_NameLabel_Parser();
 			case ExecutionEnvironmentCompositeFloatingLabelEditPart.VISUAL_ID:
 				return getExecutionEnvironment_FloatingNameLabel_Parser();
-
 			case NodeCompositeNameEditPart.VISUAL_ID:
 				return getNode_NameLabel_Parser();
 			case NodeCompositeFloatingLabelEditPart.VISUAL_ID:
 				return getNode_FloatingNameLabel_Parser();
-
 			case ClassCompositeNameEditPart.VISUAL_ID:
 				return getClass_NameLabel_Parser();
 			case ClassCompositeFloatingLabelEditPart.VISUAL_ID:
 				return getClass_FloatingNameLabel_Parser();
-
 			case CollaborationCompositeNameEditPart.VISUAL_ID:
 				return getCollaboration_NameLabel_Parser();
 			case CollaborationCompositeFloatingLabelEditPart.VISUAL_ID:
 				return getCollaboration_FloatingNameLabel_Parser();
-
 			case InterfaceNameEditPart.VISUAL_ID:
 				return getInterface_NameLabel_Parser();
 			case InterfaceFloatingLabelEditPart.VISUAL_ID:
 				return getInterface_FloatingNameLabel_Parser();
-
 			case PrimitiveTypeNameEditPart.VISUAL_ID:
 				return getPrimitiveType_NameLabel_Parser();
 			case PrimitiveTypeFloatingLabelEditPart.VISUAL_ID:
 				return getPrimitiveType_FloatingNameLabel_Parser();
-
 			case EnumerationNameEditPart.VISUAL_ID:
 				return getEnumeration_NameLabel_Parser();
 			case EnumerationFloatingLabelEditPart.VISUAL_ID:
 				return getEnumeration_FloatingNameLabel_Parser();
-
 			case DataTypeNameEditPart.VISUAL_ID:
 				return getDataType_NameLabel_Parser();
 			case DataTypeFloatingLabelEditPart.VISUAL_ID:
 				return getDataType_FloatingNameLabel_Parser();
-
 			case ActorNameEditPart.VISUAL_ID:
 				return getActor_NameLabel_Parser();
 			case ActorFloatingLabelEditPart.VISUAL_ID:
 				return getActor_FloatingNameLabel_Parser();
-
 			case DeploymentSpecificationNameEditPart.VISUAL_ID:
 				return getDeploymentSpecification_NameLabel_Parser();
 			case DeploymentSpecificationFloatingLabelEditPart.VISUAL_ID:
 				return getDeploymentSpecification_FloatingNameLabel_Parser();
-
 			case ArtifactNameEditPart.VISUAL_ID:
 				return getArtifact_NameLabel_Parser();
 			case ArtifactFloatingLabelEditPart.VISUAL_ID:
 				return getArtifact_FloatingNameLabel_Parser();
-
 			case InformationItemNameEditPart.VISUAL_ID:
 				return getInformationItem_NameLabel_Parser();
 			case InformationItemFloatingLabelEditPart.VISUAL_ID:
 				return getInformationItem_FloatingNameLabel_Parser();
-
 			case SignalNameEditPart.VISUAL_ID:
 				return getSignal_NameLabel_Parser();
 			case SignalFloatingLabelEditPart.VISUAL_ID:
 				return getSignal_FloatingNameLabel_Parser();
-
 			case UseCaseNameEditPart.VISUAL_ID:
 				return getUseCase_NameLabel_Parser();
 			case UseCaseFloatingLabelEditPart.VISUAL_ID:
 				return getUseCase_FloatingNameLabel_Parser();
-
 			case SignalEventNameEditPart.VISUAL_ID:
 				return getSignalEvent_NameLabel_Parser();
 			case SignalEventFloatingLabelEditPart.VISUAL_ID:
 				return getSignalEvent_FloatingNameLabel_Parser();
-
 			case CallEventNameEditPart.VISUAL_ID:
 				return getCallEvent_NameLabel_Parser();
 			case CallEventFloatingLabelEditPart.VISUAL_ID:
 				return getCallEvent_FloatingNameLabel_Parser();
-
 			case AnyReceiveEventNameEditPart.VISUAL_ID:
 				return getAnyReceiveEvent_NameLabel_Parser();
 			case AnyReceiveEventFloatingLabelEditPart.VISUAL_ID:
 				return getAnyReceiveEvent_FloatingNameLabel_Parser();
-
 			case ChangeEventNameEditPart.VISUAL_ID:
 				return getChangeEvent_NameLabel_Parser();
 			case ChangeEventFloatingLabelEditPart.VISUAL_ID:
 				return getChangeEvent_FloatingNameLabel_Parser();
-
 			case TimeEventNameEditPart.VISUAL_ID:
 				return getTimeEvent_NameLabel_Parser();
 			case TimeEventFloatingLabelEditPart.VISUAL_ID:
 				return getTimeEvent_FloatingNameLabel_Parser();
-
 			case DurationObservationNameEditPart.VISUAL_ID:
 				return getDurationObservation_NameLabel_Parser();
 			case DurationObservationStereotypeLabelEditPart.VISUAL_ID:
 				return getDurationObservation_StereotypeLabel_Parser();
-
 			case TimeObservationNameEditPart.VISUAL_ID:
 				return getTimeObservation_NameLabel_Parser();
 			case TimeObservationStereotypeLabelEditPart.VISUAL_ID:
 				return getTimeObservation_StereotypeLabel_Parser();
-
 			case LiteralBooleanNameEditPart.VISUAL_ID:
 				return getLiteralBoolean_NameLabel_Parser();
 			case LiteralBooleanFloatingLabelEditPart.VISUAL_ID:
 				return getLiteralBoolean_FloatingNameLabel_Parser();
-
 			case LiteralIntegerNameEditPart.VISUAL_ID:
 				return getLiteralInteger_NameLabel_Parser();
 			case LiteralIntegerFloatingLabelEditPart.VISUAL_ID:
 				return getLiteralInteger_FloatingNameLabel_Parser();
-
 			case LiteralNullNameEditPart.VISUAL_ID:
 				return getLiteralNull_NameLabel_Parser();
 			case LiteralNullFloatingLabelEditPart.VISUAL_ID:
 				return getLiteralNull_FloatingNameLabel_Parser();
-
 			case LiteralStringNameEditPart.VISUAL_ID:
 				return getLiteralString_NameLabel_Parser();
 			case LiteralStringFloatingLabelEditPart.VISUAL_ID:
 				return getLiteralString_FloatingNameLabel_Parser();
-
 			case LiteralUnlimitedNaturalNameEditPart.VISUAL_ID:
 				return getLiteralUnlimitedNatural_NameLabel_Parser();
 			case LiteralUnlimitedNaturalFloatingLabelEditPart.VISUAL_ID:
 				return getLiteralUnlimitedNatural_FloatingNameLabel_Parser();
-
 			case StringExpressionNameEditPart.VISUAL_ID:
 				return getStringExpression_NameLabel_Parser();
 			case StringExpressionFloatingLabelEditPart.VISUAL_ID:
 				return getStringExpression_FloatingNameLabel_Parser();
-
 			case OpaqueExpressionNameEditPart.VISUAL_ID:
 				return getOpaqueExpression_NameLabel_Parser();
 			case OpaqueExpressionFloatingLabelEditPart.VISUAL_ID:
 				return getOpaqueExpression_FloatingNameLabel_Parser();
-
 			case TimeExpressionNameEditPart.VISUAL_ID:
 				return getTimeExpression_NameLabel_Parser();
 			case TimeExpressionFloatingLabelEditPart.VISUAL_ID:
 				return getTimeExpression_FloatingNameLabel_Parser();
-
 			case ExpressionNameEditPart.VISUAL_ID:
 				return getExpression_NameLabel_Parser();
 			case ExpressionFloatingLabelEditPart.VISUAL_ID:
 				return getExpression_FloatingNameLabel_Parser();
-
 			case DurationNameEditPart.VISUAL_ID:
 				return getDuration_NameLabel_Parser();
 			case DurationFloatingLabelEditPart.VISUAL_ID:
 				return getDuration_FloatingNameLabel_Parser();
-
 			case TimeIntervalNameEditPart.VISUAL_ID:
 				return getTimeInterval_NameLabel_Parser();
 			case TimeIntervalFloatingLabelEditPart.VISUAL_ID:
 				return getTimeInterval_FloatingNameLabel_Parser();
-
 			case DurationIntervalNameEditPart.VISUAL_ID:
 				return getDurationInterval_NameLabel_Parser();
 			case DurationIntervalFloatingLabelEditPart.VISUAL_ID:
 				return getDurationInterval_FloatingNameLabel_Parser();
-
 			case IntervalNameEditPart.VISUAL_ID:
 				return getInterval_NameLabel_Parser();
 			case IntervalFloatingLabelEditPart.VISUAL_ID:
 				return getInterval_FloatingNameLabel_Parser();
-
 			case InstanceValueNameEditPart.VISUAL_ID:
 				return getInstanceValue_NameLabel_Parser();
 			case InstanceValueFloatingLabelEditPart.VISUAL_ID:
 				return getInstanceValue_FloatingNameLabel_Parser();
-
 			case CommentBodyEditPart.VISUAL_ID:
 				return getComment_BodyLabel_Parser();
-
 			case DurationConstraintNameEditPart.VISUAL_ID:
 				return getDurationConstraint_NameLabel_Parser();
 			case DurationConstraintSpecificationEditPart.VISUAL_ID:
 				return getDurationConstraint_BodyLabel_Parser();
-
 			case TimeConstraintNameEditPart.VISUAL_ID:
 				return getTimeConstraint_NameLabel_Parser();
 			case TimeConstraintSpecificationEditPart.VISUAL_ID:
 				return getTimeConstraint_BodyLabel_Parser();
-
 			case IntervalConstraintNameEditPart.VISUAL_ID:
 				return getIntervalConstraint_NameLabel_Parser();
 			case IntervalConstraintSpecificationEditPart.VISUAL_ID:
 				return getIntervalConstraint_BodyLabel_Parser();
-
 			case InteractionConstraintNameEditPart.VISUAL_ID:
 				return getInteractionConstraint_NameLabel_Parser();
 			case InteractionConstraintSpecificationEditPart.VISUAL_ID:
 				return getInteractionConstraint_BodyLabel_Parser();
-
 			case ConstraintNameEditPart.VISUAL_ID:
 				return getConstraint_NameLabel_Parser();
 			case ConstraintSpecificationEditPart.VISUAL_ID:
 				return getConstraint_BodyLabel_Parser();
-
 			case BehaviorPortFloatingLabelEditPart.VISUAL_ID:
 				return getPort_BehaviorFloatingNameLabel_Parser();
-
 			case PortNameEditPart.VISUAL_ID:
 				return getPort_NameLabel_Parser();
 			case PortAppliedStereotypeEditPart.VISUAL_ID:
 				return getPort_StereotypeLabel_Parser();
-
 			case ParameterNameEditPart.VISUAL_ID:
 				return getParameter_NameLabel_Parser();
 			case ParameterAppliedStereotypeEditPart.VISUAL_ID:
 				return getParameter_StereotypeLabel_Parser();
-
 			case PropertyPartNameEditPartCN.VISUAL_ID:
 				return getProperty_NameLabel_Parser();
 			case PropertyPartFloatingLabelEditPartCN.VISUAL_ID:
 				return getProperty_FloatingNameLabel_Parser();
-
 			case CollaborationRoleNameEditPartCN.VISUAL_ID:
 				return getConnectableElement_CollaborationRoleNameLabel_Parser();
 			case CollaborationRoleFloatingLabelEditPartCN.VISUAL_ID:
 				return getConnectableElement_CollaborationRoleFloatingNameLabel_Parser();
-
 			case CollaborationUseNameEditPart.VISUAL_ID:
 				return getCollaborationUse_NameLabel_Parser();
 			case CollaborationUseFloatingLabelEditPartCN.VISUAL_ID:
 				return getCollaborationUse_FloatingNameLabel_Parser();
-
 			case ActivityCompositeNameEditPartCN.VISUAL_ID:
 				return getActivity_NameLabel_CN_Parser();
 			case ActivityCompositeFloatingLabelEditPartCN.VISUAL_ID:
 				return getActivity_FloatingNameLabel_CN_Parser();
-
 			case InteractionCompositeNameEditPartCN.VISUAL_ID:
 				return getInteraction_NameLabel_CN_Parser();
 			case InteractionCompositeFloatingLabelEditPartCN.VISUAL_ID:
 				return getInteraction_FloatingNameLabel_CN_Parser();
-
 			case ProtocolStateMachineCompositeNameEditPartCN.VISUAL_ID:
 				return getProtocolStateMachine_NameLabel_CN_Parser();
 			case ProtocolStateMachineCompositeFloatingLabelEditPartCN.VISUAL_ID:
 				return getProtocolStateMachine_FloatingNameLabel_CN_Parser();
-
 			case StateMachineCompositeNameEditPartCN.VISUAL_ID:
 				return getStateMachine_NameLabel_CN_Parser();
 			case StateMachineCompositeFloatingLabelEditPartCN.VISUAL_ID:
 				return getStateMachine_FloatingNameLabel_CN_Parser();
-
 			case FunctionBehaviorCompositeNameEditPartCN.VISUAL_ID:
 				return getFunctionBehavior_NameLabel_CN_Parser();
 			case FunctionBehaviorCompositeFloatingLabelEditPartCN.VISUAL_ID:
 				return getFunctionBehavior_FloatingNameLabel_CN_Parser();
-
 			case OpaqueBehaviorCompositeNameEditPartCN.VISUAL_ID:
 				return getOpaqueBehavior_NameLabel_CN_Parser();
 			case OpaqueBehaviorCompositeFloatingLabelEditPartCN.VISUAL_ID:
 				return getOpaqueBehavior_FloatingNameLabel_CN_Parser();
-
 			case ComponentCompositeNameEditPartCN.VISUAL_ID:
 				return getComponent_NameLabel_CN_Parser();
 			case ComponentCompositeFloatingLabelEditPartCN.VISUAL_ID:
 				return getComponent_FloatingNameLabel_CN_Parser();
-
 			case DeviceCompositeNameEditPartCN.VISUAL_ID:
 				return getDevice_NameLabel_CN_Parser();
 			case DeviceCompositeFloatingLabelEditPartCN.VISUAL_ID:
 				return getDevice_FloatingNameLabel_CN_Parser();
-
 			case ExecutionEnvironmentCompositeNameEditPartCN.VISUAL_ID:
 				return getExecutionEnvironment_NameLabel_CN_Parser();
 			case ExecutionEnvironmentCompositeFloatingLabelEditPartCN.VISUAL_ID:
 				return getExecutionEnvironment_FloatingNameLabel_CN_Parser();
-
 			case NodeCompositeNameEditPartCN.VISUAL_ID:
 				return getNode_NameLabel_CN_Parser();
 			case NodeCompositeFloatingLabelEditPartCN.VISUAL_ID:
 				return getNode_FloatingNameLabel_CN_Parser();
-
 			case ClassCompositeNameEditPartCN.VISUAL_ID:
 				return getClass_NameLabel_CN_Parser();
 			case ClassCompositeFloatingLabelEditPartCN.VISUAL_ID:
 				return getClass_FloatingNameLabel_CN_Parser();
-
 			case CollaborationCompositeNameEditPartCN.VISUAL_ID:
 				return getCollaboration_NameLabel_CN_Parser();
 			case CollaborationCompositeFloatingLabelEditPartCN.VISUAL_ID:
 				return getCollaboration_FloatingNameLabel_CN_Parser();
-
 			case InterfaceNameEditPartCN.VISUAL_ID:
 				return getInterface_NameLabel_CN_Parser();
 			case InterfaceFloatingLabelEditPartCN.VISUAL_ID:
 				return getInterface_FloatingNameLabel_CN_Parser();
-
 			case PrimitiveTypeNameEditPartCN.VISUAL_ID:
 				return getPrimitiveType_NameLabel_CN_Parser();
 			case PrimitiveTypeFloatingLabelEditPartCN.VISUAL_ID:
 				return getPrimitiveType_FloatingNameLabel_CN_Parser();
-
 			case EnumerationNameEditPartCN.VISUAL_ID:
 				return getEnumeration_NameLabel_CN_Parser();
 			case EnumerationFloatingLabelEditPartCN.VISUAL_ID:
 				return getEnumeration_FloatingNameLabel_CN_Parser();
-
 			case DataTypeNameEditPartCN.VISUAL_ID:
 				return getDataType_NameLabel_CN_Parser();
 			case DataTypeFloatingLabelEditPartCN.VISUAL_ID:
 				return getDataType_FloatingNameLabel_CN_Parser();
-
 			case ActorNameEditPartCN.VISUAL_ID:
 				return getActor_NameLabel_CN_Parser();
 			case ActorFloatingLabelEditPartCN.VISUAL_ID:
 				return getActor_FloatingNameLabel_CN_Parser();
-
 			case DeploymentSpecificationNameEditPartCN.VISUAL_ID:
 				return getDeploymentSpecification_NameLabel_CN_Parser();
 			case DeploymentSpecificationFloatingLabelEditPartCN.VISUAL_ID:
 				return getDeploymentSpecification_FloatingNameLabel_CN_Parser();
-
 			case ArtifactNameEditPartCN.VISUAL_ID:
 				return getArtifact_NameLabel_CN_Parser();
 			case ArtifactFloatingLabelEditPartCN.VISUAL_ID:
 				return getArtifact_FloatingNameLabel_CN_Parser();
-
 			case InformationItemNameEditPartCN.VISUAL_ID:
 				return getInformationItem_NameLabel_CN_Parser();
 			case InformationItemFloatingLabelEditPartCN.VISUAL_ID:
 				return getInformationItem_FloatingNameLabel_CN_Parser();
-
 			case SignalNameEditPartCN.VISUAL_ID:
 				return getSignal_NameLabel_CN_Parser();
 			case SignalFloatingLabelEditPartCN.VISUAL_ID:
 				return getSignal_FloatingNameLabel_CN_Parser();
-
 			case UseCaseNameEditPartCN.VISUAL_ID:
 				return getUseCase_NameLabel_CN_Parser();
 			case UseCaseFloatingLabelEditPartCN.VISUAL_ID:
 				return getUseCase_FloatingNameLabel_CN_Parser();
-
 			case CommentBodyEditPartCN.VISUAL_ID:
 				return getComment_BodyLabel_CN_Parser();
-
 			case DurationConstraintNameEditPartCN.VISUAL_ID:
 				return getDurationConstraint_NameLabel_CN_Parser();
 			case DurationConstraintSpecificationEditPartCN.VISUAL_ID:
 				return getDurationConstraint_BodyLabel_CN_Parser();
-
 			case TimeConstraintNameEditPartCN.VISUAL_ID:
 				return getTimeConstraint_NameLabel_CN_Parser();
 			case TimeConstraintSpecificationEditPartCN.VISUAL_ID:
 				return getTimeConstraint_BodyLabel_CN_Parser();
-
 			case IntervalConstraintNameEditPartCN.VISUAL_ID:
 				return getIntervalConstraint_NameLabel_CN_Parser();
 			case IntervalConstraintSpecificationEditPartCN.VISUAL_ID:
 				return getIntervalConstraint_BodyLabel_CN_Parser();
-
 			case InteractionConstraintNameEditPartCN.VISUAL_ID:
 				return getInteractionConstraint_NameLabel_CN_Parser();
 			case InteractionConstraintSpecificationEditPartCN.VISUAL_ID:
 				return getInteractionConstraint_BodyLabel_CN_Parser();
-
 			case ConstraintNameEditPartCN.VISUAL_ID:
 				return getConstraint_NameLabel_CN_Parser();
 			case ConstraintSpecificationEditPartCN.VISUAL_ID:
 				return getConstraint_BodyLabel_CN_Parser();
-
 			case PropertyEditPartCLN.VISUAL_ID:
 				return getProperty_AttributeLabel_Parser();
 			case OperationEditPartCLN.VISUAL_ID:
 				return getOperation_OperationLabel_Parser();
 			case EnumerationLiteralEditPartCLN.VISUAL_ID:
 				return getEnumerationLiteral_LiteralLabel_Parser();
-
-
-
-
 			case ComponentRealizationNameEditPart.VISUAL_ID:
 				return getComponentRealization_NameLabel_Parser();
 			case ComponentRealizationAppliedStereotypeEditPart.VISUAL_ID:
 				return getComponentRealization_StereotypeLabel_Parser();
-
 			case InterfaceRealizationNameEditPart.VISUAL_ID:
 				return getInterfaceRealization_NameLabel_Parser();
 			case InterfaceRealizationAppliedStereotypeEditPart.VISUAL_ID:
 				return getInterfaceRealization_StereotypeLabel_Parser();
-
 			case SubstitutionNameEditPart.VISUAL_ID:
 				return getSubstitution_NameLabel_Parser();
 			case SubstitutionAppliedStereotypeEditPart.VISUAL_ID:
 				return getSubstitution_StereotypeLabel_Parser();
-
 			case RealizationNameEditPart.VISUAL_ID:
 				return getRealization_NameLabel_Parser();
 			case RealizationAppliedStereotypeEditPart.VISUAL_ID:
 				return getRealization_StereotypeLabel_Parser();
-
 			case ManifestationNameEditPart.VISUAL_ID:
 				return getManifestation_NameLabel_Parser();
 			case ManifestationAppliedStereotypeEditPart.VISUAL_ID:
 				return getManifestation_StereotypeLabel_Parser();
-
 			case AbstractionNameEditPart.VISUAL_ID:
 				return getAbstraction_NameLabel_Parser();
 			case AbstractionAppliedStereotypeEditPart.VISUAL_ID:
 				return getAbstraction_StereotypeLabel_Parser();
-
 			case UsageNameEditPart.VISUAL_ID:
 				return getUsage_NameLabel_Parser();
 			case UsageAppliedStereotypeEditPart.VISUAL_ID:
 				return getUsage_StereotypeLabel_Parser();
-
 			case DeploymentNameEditPart.VISUAL_ID:
 				return getDeployment_NameLabel_Parser();
 			case DeploymentAppliedStereotypeEditPart.VISUAL_ID:
 				return getDeployment_StereotypeLabel_Parser();
-
 			case RoleBindingRoleNameEditPart.VISUAL_ID:
 				return getDependency_RoleBindingNameLabel_Parser();
 			case RoleBindingAppliedStereotypeEditPart.VISUAL_ID:
 				return getDependency_RoleBindingStereotypeLabel_Parser();
-
 			case DependencyNameEditPart.VISUAL_ID:
 				return getDependency_NameLabel_Parser();
 			case DependencyAppliedStereotypeEditPart.VISUAL_ID:
 				return getDependency_StereotypeLabel_Parser();
-
 			case ConnectorAppliedStereotypeEditPart.VISUAL_ID:
 				return getConnector_StereotypeLabel_Parser();
 			case ConnectorNameEditPart.VISUAL_ID:
@@ -4272,18 +4175,12 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 				return getConnector_SourceMultiplicityLabel_Parser();
 			case ConnectorMultiplicityTargetEditPart.VISUAL_ID:
 				return getConnector_TargetMultiplicityLabel_Parser();
-
 			case GeneralizationAppliedStereotypeEditPart.VISUAL_ID:
 				return getGeneralization_StereotypeLabel_Parser();
-
-
-
-
 			case InformationFlowAppliedStereotypeEditPart.VISUAL_ID:
 				return getInformationFlow_StereotypeLabel_Parser();
 			case InformationFlowNameEditPart.VISUAL_ID:
 				return getInformationFlow_NameLabel_Parser();
-
 			}
 		}
 		return null;
@@ -4359,5 +4256,4 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return super.getAdapter(adapter);
 		}
 	}
-
 }

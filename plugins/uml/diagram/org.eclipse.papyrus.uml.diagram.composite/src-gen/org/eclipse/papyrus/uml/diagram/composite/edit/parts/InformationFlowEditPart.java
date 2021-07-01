@@ -1,15 +1,15 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  *
-  * All rights reserved. This program and the accompanying materials
-  * are made available under the terms of the Eclipse Public License 2.0
-  * which accompanies this distribution, and is available at
-  * https://www.eclipse.org/legal/epl-2.0/
-  *
-  * SPDX-License-Identifier: EPL-2.0
-  *
-  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.composite.edit.parts;
 
@@ -32,7 +32,7 @@ public class InformationFlowEditPart extends UMLConnectionNodeEditPart implement
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "InformationFlow_Edge";
+	public static final String VISUAL_ID = "InformationFlow_Edge"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -56,16 +56,13 @@ public class InformationFlowEditPart extends UMLConnectionNodeEditPart implement
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof InformationFlowConveyedLabelEditPart) {
-			((InformationFlowConveyedLabelEditPart) childEditPart).setLabel(
-					getPrimaryShape().getConveyedLabel());
+			((InformationFlowConveyedLabelEditPart) childEditPart).setLabel(getPrimaryShape().getConveyedLabel());
 		}
 		if (childEditPart instanceof InformationFlowAppliedStereotypeEditPart) {
-			((InformationFlowAppliedStereotypeEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAppliedStereotypeLabel());
+			((InformationFlowAppliedStereotypeEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		if (childEditPart instanceof InformationFlowNameEditPart) {
-			((InformationFlowNameEditPart) childEditPart).setLabel(
-					getPrimaryShape().getNameLabel());
+			((InformationFlowNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 		}
 		return false;
 	}
@@ -128,5 +125,4 @@ public class InformationFlowEditPart extends UMLConnectionNodeEditPart implement
 	public InformationFlowFigure getPrimaryShape() {
 		return (InformationFlowFigure) getFigure();
 	}
-
 }

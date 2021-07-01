@@ -1,15 +1,15 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  *
-  * All rights reserved. This program and the accompanying materials
-  * are made available under the terms of the Eclipse Public License 2.0
-  * which accompanies this distribution, and is available at
-  * https://www.eclipse.org/legal/epl-2.0/
-  *
-  * SPDX-License-Identifier: EPL-2.0
-  *
-  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.composite.part;
 
@@ -22,7 +22,6 @@ import org.eclipse.papyrus.uml.diagram.composite.edit.parts.*;
 import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.CollaborationUse;
 import org.eclipse.uml2.uml.Dependency;
-import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -35,10 +34,11 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class UMLVisualIDRegistry {
 
-	/**
-	 * @generated
-	 */
-	private static final String DEBUG_KEY = "org.eclipse.papyrus.uml.diagram.composite/debug/visualID"; //$NON-NLS-1$
+	// Uncomment for debug purpose ?
+	// /**
+	// * @generated
+	// */
+	// private static final String DEBUG_KEY = "org.eclipse.papyrus.uml.diagram.composite/debug/visualID"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -48,7 +48,7 @@ public class UMLVisualIDRegistry {
 			if (CompositeStructureDiagramEditPart.MODEL_ID.equals(view.getType())) {
 				return CompositeStructureDiagramEditPart.VISUAL_ID;
 			} else {
-				return "";
+				return ""; //$NON-NLS-1$
 			}
 		}
 		return org.eclipse.papyrus.uml.diagram.composite.part.UMLVisualIDRegistry.getVisualID(view.getType());
@@ -88,7 +88,7 @@ public class UMLVisualIDRegistry {
 	 */
 	public static String getDiagramVisualID(EObject domainElement) {
 		if (domainElement == null) {
-			return "";
+			return ""; //$NON-NLS-1$
 		}
 		return CompositeStructureDiagramEditPart.VISUAL_ID;
 	}
@@ -98,11 +98,11 @@ public class UMLVisualIDRegistry {
 	 */
 	public static String getNodeVisualID(View containerView, EObject domainElement) {
 		if (domainElement == null) {
-			return "";
+			return ""; //$NON-NLS-1$
 		}
 		String containerModelID = org.eclipse.papyrus.uml.diagram.composite.part.UMLVisualIDRegistry.getModelID(containerView);
 		if (!CompositeStructureDiagramEditPart.MODEL_ID.equals(containerModelID)) {
-			return "";
+			return ""; //$NON-NLS-1$
 		}
 		String containerVisualID;
 		if (CompositeStructureDiagramEditPart.MODEL_ID.equals(containerModelID)) {
@@ -111,7 +111,7 @@ public class UMLVisualIDRegistry {
 			if (containerView instanceof Diagram) {
 				containerVisualID = CompositeStructureDiagramEditPart.VISUAL_ID;
 			} else {
-				return "";
+				return ""; //$NON-NLS-1$
 			}
 		}
 		if (containerVisualID != null) {
@@ -2587,7 +2587,7 @@ public class UMLVisualIDRegistry {
 				break;
 			}
 		}
-		return "";
+		return ""; //$NON-NLS-1$
 	}
 
 	/**
@@ -5902,7 +5902,7 @@ public class UMLVisualIDRegistry {
 	 */
 	public static String getLinkWithClassVisualID(EObject domainElement) {
 		if (domainElement == null) {
-			return "";
+			return ""; //$NON-NLS-1$
 		}
 		if (UMLPackage.eINSTANCE.getComponentRealization().isSuperTypeOf(domainElement.eClass())) {
 			return ComponentRealizationEditPart.VISUAL_ID;
@@ -5943,18 +5943,19 @@ public class UMLVisualIDRegistry {
 		if (UMLPackage.eINSTANCE.getInformationFlow().isSuperTypeOf(domainElement.eClass())) {
 			return InformationFlowEditPart.VISUAL_ID;
 		}
-		return "";
+		return ""; //$NON-NLS-1$
 	}
 
-	/**
-	 * User can change implementation of this method to handle some specific
-	 * situations not covered by default logic.
-	 *
-	 * @generated
-	 */
-	private static boolean isDiagram(Package element) {
-		return true;
-	}
+	// Uncomment for debug purpose ?
+	// /**
+	// * User can change implementation of this method to handle some specific
+	// * situations not covered by default logic.
+	// *
+	// * @generated
+	// */
+	// private static boolean isDiagram(Package element) {
+	// return true;
+	// }
 
 	/**
 	 * @generated
@@ -6183,5 +6184,4 @@ public class UMLVisualIDRegistry {
 			return org.eclipse.papyrus.uml.diagram.composite.part.UMLVisualIDRegistry.isSemanticLeafVisualID(visualID);
 		}
 	};
-
 }

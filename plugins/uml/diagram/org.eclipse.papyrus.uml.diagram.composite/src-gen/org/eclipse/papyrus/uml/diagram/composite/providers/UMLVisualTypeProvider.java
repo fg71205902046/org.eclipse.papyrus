@@ -1,15 +1,15 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  *
-  * All rights reserved. This program and the accompanying materials
-  * are made available under the terms of the Eclipse Public License 2.0
-  * which accompanies this distribution, and is available at
-  * https://www.eclipse.org/legal/epl-2.0/
-  *
-  * SPDX-License-Identifier: EPL-2.0
-  *
-  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.composite.providers;
 
@@ -38,13 +38,11 @@ public class UMLVisualTypeProvider extends AbstractVisualTypeProvider {
 	@Override
 	public IElementType getElementType(Diagram diagram, String viewType) {
 		IElementType result = null;
-
 		try {
 			result = UMLElementTypes.getElementType(viewType);
 		} catch (NumberFormatException e) {
 			// Not supported by this diagram
 		}
-
 		return result;
 	}
 
@@ -63,5 +61,4 @@ public class UMLVisualTypeProvider extends AbstractVisualTypeProvider {
 	public String getLinkType(Diagram diagram, EObject element) {
 		return UMLVisualIDRegistry.getLinkWithClassVisualID(element);
 	}
-
 }
