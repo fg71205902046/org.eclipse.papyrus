@@ -44,7 +44,7 @@ for f in *win32*; do
 	cd Papyrus
 
 	echo "  Signing $papyrusWinApp"
-	curl -o signed.exe -F filedata=@$papyrusWinApp http://build.eclipse.org:31338/winsign.php
+	curl -o signed.exe -F file=@$papyrusWinApp https://cbi.eclipse.org/authenticode/sign
 	mv signed.exe $papyrusWinApp
 
 	cd ..
@@ -89,7 +89,7 @@ for f in *macosx*; do
 	echo "  Signing $papyrusMacApp"
 	zip -r -q unsigned.zip $papyrusMacApp
 	rm -rf $papyrusMacApp
-	curl -o signed.zip -F file=@unsigned.zip http://build.eclipse.org:31338/macsign.php
+	curl -o signed.zip -F file=@unsigned.zip https://cbi.eclipse.org/macos/codesign/sign
 	unzip -qq signed.zip
 	rm -f unsigned.zip signed.zip
 
