@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014, 2017 CEA LIST.
+ * Copyright (c) 2014 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,7 +10,6 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 512207
  */
 package org.eclipse.papyrus.uml.diagram.profile.preferences;
 
@@ -37,7 +36,6 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		AppearancePreferencePage.initDefaults(store);
 		ConnectionsPreferencePage.initDefaults(store);
 		PrintingPreferencePage.initDefaults(store);
-
 	}
 
 	/**

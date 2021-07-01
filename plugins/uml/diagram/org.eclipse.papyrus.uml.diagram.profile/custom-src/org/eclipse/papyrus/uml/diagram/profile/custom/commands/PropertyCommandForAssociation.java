@@ -25,7 +25,6 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
-import org.eclipse.papyrus.uml.diagram.profile.edit.commands.ClassPropertyCreateCommand;
 import org.eclipse.papyrus.uml.diagram.profile.providers.ElementInitializers;
 import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Association;

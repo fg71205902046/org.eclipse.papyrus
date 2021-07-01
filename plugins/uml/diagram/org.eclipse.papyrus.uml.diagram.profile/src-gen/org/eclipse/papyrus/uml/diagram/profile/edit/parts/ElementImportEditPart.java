@@ -34,7 +34,7 @@ public class ElementImportEditPart extends UMLConnectionNodeEditPart implements 
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "ElementImport_Edge";
+	public static final String VISUAL_ID = "ElementImport_Edge"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -51,8 +51,7 @@ public class ElementImportEditPart extends UMLConnectionNodeEditPart implements 
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
 	}
 
 	/**
@@ -63,8 +62,7 @@ public class ElementImportEditPart extends UMLConnectionNodeEditPart implements 
 			((ElementImportAliasEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 		}
 		if (childEditPart instanceof AppliedStereotypeElementImportEditPart) {
-			((AppliedStereotypeElementImportEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+			((AppliedStereotypeElementImportEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}

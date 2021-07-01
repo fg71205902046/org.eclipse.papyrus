@@ -35,7 +35,7 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
 
 			@Override
-			@SuppressWarnings("rawtypes")
+			@SuppressWarnings({ "rawtypes", "unchecked" })
 			public Object getAdapter(Object adaptableObject, Class adapterType) {
 				if (adaptableObject instanceof org.eclipse.papyrus.uml.diagram.profile.navigator.UMLDomainNavigatorItem) {
 					org.eclipse.papyrus.uml.diagram.profile.navigator.UMLDomainNavigatorItem domainNavigatorItem = (org.eclipse.papyrus.uml.diagram.profile.navigator.UMLDomainNavigatorItem) adaptableObject;
@@ -52,7 +52,7 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 			}
 
 			@Override
-			@SuppressWarnings("rawtypes")
+			@SuppressWarnings({ "rawtypes", "unchecked" })
 			public Class[] getAdapterList() {
 				return supportedTypes;
 			}
@@ -110,8 +110,7 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof org.eclipse.papyrus.uml.diagram.profile.navigator.UMLDomainNavigatorItem) {
-			return EcoreUtil.getURI(getEObject()).equals(EcoreUtil.getURI(
-					((org.eclipse.papyrus.uml.diagram.profile.navigator.UMLDomainNavigatorItem) obj).getEObject()));
+			return EcoreUtil.getURI(getEObject()).equals(EcoreUtil.getURI(((org.eclipse.papyrus.uml.diagram.profile.navigator.UMLDomainNavigatorItem) obj).getEObject()));
 		}
 		return super.equals(obj);
 	}

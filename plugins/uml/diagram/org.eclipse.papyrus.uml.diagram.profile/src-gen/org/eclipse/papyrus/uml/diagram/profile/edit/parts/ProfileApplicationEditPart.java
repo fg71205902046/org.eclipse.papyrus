@@ -29,7 +29,7 @@ public class ProfileApplicationEditPart extends UMLConnectionNodeEditPart implem
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "ProfileApplication_Edge";
+	public static final String VISUAL_ID = "ProfileApplication_Edge"; //$NON-NLS-1$
 
 	/**
 	 * @generated

@@ -42,7 +42,7 @@ public class AssociationNodeEditPart extends NodeEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Association_Shape";
+	public static final String VISUAL_ID = "Association_Shape"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -68,9 +68,7 @@ public class AssociationNodeEditPart extends NodeEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
@@ -126,6 +124,7 @@ public class AssociationNodeEditPart extends NodeEditPart {
 	/**
 	 * @generated
 	 */
+
 	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(20, 20);
@@ -152,6 +151,7 @@ public class AssociationNodeEditPart extends NodeEditPart {
 	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
+	 *
 	 * @generated
 	 */
 	@Override
@@ -197,4 +197,5 @@ public class AssociationNodeEditPart extends NodeEditPart {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}
+
 }

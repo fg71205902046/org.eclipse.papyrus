@@ -13,7 +13,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.uml.diagram.profile.edit.policies;
+package org.eclipse.papyrus.uml.diagram.profile.custom.policies;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;

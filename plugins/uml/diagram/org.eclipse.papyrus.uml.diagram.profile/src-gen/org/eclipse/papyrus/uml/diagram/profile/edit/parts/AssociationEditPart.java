@@ -34,7 +34,7 @@ public class AssociationEditPart extends AbstractAssociationEditPart implements 
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Association_Edge";
+	public static final String VISUAL_ID = "Association_Edge"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -50,8 +50,7 @@ public class AssociationEditPart extends AbstractAssociationEditPart implements 
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}
 
@@ -60,8 +59,7 @@ public class AssociationEditPart extends AbstractAssociationEditPart implements 
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof AssociationAppliedStereotypeEditPart) {
-			((AssociationAppliedStereotypeEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+			((AssociationAppliedStereotypeEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		if (childEditPart instanceof AssociationNameEditPart) {
 			((AssociationNameEditPart) childEditPart).setLabel(getPrimaryShape().getAssociationNameLabel());
@@ -73,12 +71,10 @@ public class AssociationEditPart extends AbstractAssociationEditPart implements 
 			((AssociationRoleSourceEditPart) childEditPart).setLabel(getPrimaryShape().getRoleSourceLabel());
 		}
 		if (childEditPart instanceof AssociationMultiplicitySourceEditPart) {
-			((AssociationMultiplicitySourceEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getMultiplicitySourceLabel());
+			((AssociationMultiplicitySourceEditPart) childEditPart).setLabel(getPrimaryShape().getMultiplicitySourceLabel());
 		}
 		if (childEditPart instanceof AssociationMultiplicityTargetEditPart) {
-			((AssociationMultiplicityTargetEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getMultiplicityTargetLabel());
+			((AssociationMultiplicityTargetEditPart) childEditPart).setLabel(getPrimaryShape().getMultiplicityTargetLabel());
 		}
 		return false;
 	}

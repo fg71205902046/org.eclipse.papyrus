@@ -1,15 +1,15 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  *
-  * All rights reserved. This program and the accompanying materials
-  * are made available under the terms of the Eclipse Public License 2.0
-  * which accompanies this distribution, and is available at
-  * https://www.eclipse.org/legal/epl-2.0/
-  *
-  * SPDX-License-Identifier: EPL-2.0
-  *
-  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.profile.edit.parts;
 
@@ -35,7 +35,7 @@ public class PackagePackageableElementCompartmentEditPartCN extends LinkLFShapeC
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Package_PackagedElementCompartment_CN";
+	public static final String VISUAL_ID = "Package_PackagedElementCompartment_CN"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -67,5 +67,4 @@ public class PackagePackageableElementCompartmentEditPartCN extends LinkLFShapeC
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CustomCreationRoleEditPolicy());
 		installEditPolicy(BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY, new BorderDisplayEditPolicy());
 	}
-
 }

@@ -89,7 +89,7 @@ public class UMLCreationWizardPage extends WizardNewFileCreationPage {
 			return false;
 		}
 		String extension = getExtension();
-		if (extension != null && !getFilePath().toString().endsWith("." + extension)) {
+		if (extension != null && !getFilePath().toString().endsWith("." + extension)) { //$NON-NLS-1$
 			setErrorMessage(NLS.bind(Messages.UMLCreationWizardPageExtensionError, extension));
 			return false;
 		}

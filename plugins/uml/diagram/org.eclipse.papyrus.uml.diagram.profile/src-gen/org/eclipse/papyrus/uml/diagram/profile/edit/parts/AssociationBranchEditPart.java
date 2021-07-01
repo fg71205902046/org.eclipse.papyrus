@@ -32,7 +32,7 @@ public class AssociationBranchEditPart extends AbstractAssociationBranchEditPart
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Association_BranchEdge";
+	public static final String VISUAL_ID = "Association_BranchEdge"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -59,8 +59,7 @@ public class AssociationBranchEditPart extends AbstractAssociationBranchEditPart
 			((AssociationBranchRoleEditPart) childEditPart).setLabel(getPrimaryShape().getRoleSourceLabel());
 		}
 		if (childEditPart instanceof AssociationBranchMultiplicityEditPart) {
-			((AssociationBranchMultiplicityEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getMultiplicitySourceLabel());
+			((AssociationBranchMultiplicityEditPart) childEditPart).setLabel(getPrimaryShape().getMultiplicitySourceLabel());
 		}
 		return false;
 	}

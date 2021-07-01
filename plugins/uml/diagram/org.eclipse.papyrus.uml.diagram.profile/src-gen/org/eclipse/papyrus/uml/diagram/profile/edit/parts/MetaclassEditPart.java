@@ -50,7 +50,7 @@ public class MetaclassEditPart extends ClassEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Class_MetaclassShape";
+	public static final String VISUAL_ID = "Class_MetaclassShape"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -76,12 +76,9 @@ public class MetaclassEditPart extends ClassEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		installEditPolicy("RESIZE_BORDER_ITEMS", new ConstrainedItemBorderLayoutEditPolicy()); //$NON-NLS-1$
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
@@ -124,15 +121,12 @@ public class MetaclassEditPart extends ClassEditPart {
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-		// set the figure active when the feature of the of a class is true
 		if (resolveSemanticElement() != null) {
-			if (resolveSemanticElement().equals(event.getNotifier()) && (event.getFeature() instanceof EAttribute)
-					&& ((EAttribute) (event.getFeature())).getName().equals("isActive")) {
+			if (resolveSemanticElement().equals(event.getNotifier()) && (event.getFeature() instanceof EAttribute) && ((EAttribute) (event.getFeature())).getName().equals("isActive")) { //$NON-NLS-1$
 				((ClassFigure) getFigure()).setActive(event.getNewBooleanValue());
 				refreshVisuals();
 			}
 		}
-
 	}
 
 	/**
@@ -144,7 +138,7 @@ public class MetaclassEditPart extends ClassEditPart {
 	}
 
 	/**
-	 * org.eclipse.papyrus.uml.diagram.common.figure.node.ClassifierFigure
+	 * org.eclipse.papyrus.uml.diagram.common.figure.node.ClassFigure
 	 *
 	 * @generated
 	 */
@@ -161,7 +155,6 @@ public class MetaclassEditPart extends ClassEditPart {
 			((MetaclassNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -208,6 +201,7 @@ public class MetaclassEditPart extends ClassEditPart {
 	/**
 	 * @generated
 	 */
+
 	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(100, 50);
@@ -234,6 +228,7 @@ public class MetaclassEditPart extends ClassEditPart {
 	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
+	 *
 	 * @generated
 	 */
 	@Override
@@ -292,4 +287,5 @@ public class MetaclassEditPart extends ClassEditPart {
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(MetaclassNameEditPart.VISUAL_ID));
 	}
+
 }

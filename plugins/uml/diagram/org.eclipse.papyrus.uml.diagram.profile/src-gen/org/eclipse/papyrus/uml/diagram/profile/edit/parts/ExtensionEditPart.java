@@ -30,7 +30,7 @@ public class ExtensionEditPart extends UMLConnectionNodeEditPart implements ITre
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Extension_Edge";
+	public static final String VISUAL_ID = "Extension_Edge"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -46,8 +46,7 @@ public class ExtensionEditPart extends UMLConnectionNodeEditPart implements ITre
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(ExtensionCustomNameEditPolicy.SPECIFIC_EXTENSION_NAME_POLICY,
-				new ExtensionCustomNameEditPolicy());
+		installEditPolicy(ExtensionCustomNameEditPolicy.SPECIFIC_EXTENSION_NAME_POLICY, new ExtensionCustomNameEditPolicy());
 	}
 
 	/**
