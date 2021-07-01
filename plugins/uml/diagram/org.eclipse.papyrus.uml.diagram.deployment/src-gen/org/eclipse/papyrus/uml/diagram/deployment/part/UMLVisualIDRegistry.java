@@ -112,7 +112,6 @@ import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.PackagePackageableE
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.PackagePackageableElementCompartmentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.deployment.expressions.UMLOCLFactory;
 import org.eclipse.uml2.uml.Artifact;
-import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -124,10 +123,11 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class UMLVisualIDRegistry {
 
-	/**
-	 * @generated
-	 */
-	private static final String DEBUG_KEY = "org.eclipse.papyrus.uml.diagram.deployment/debug/visualID"; //$NON-NLS-1$
+	// Uncomment for debug purpose ?
+	// /**
+	// * @generated
+	// */
+	// private static final String DEBUG_KEY = "org.eclipse.papyrus.uml.diagram.deployment/debug/visualID"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -137,7 +137,7 @@ public class UMLVisualIDRegistry {
 			if (DeploymentDiagramEditPart.MODEL_ID.equals(view.getType())) {
 				return DeploymentDiagramEditPart.VISUAL_ID;
 			} else {
-				return "";
+				return ""; //$NON-NLS-1$
 			}
 		}
 		return org.eclipse.papyrus.uml.diagram.deployment.part.UMLVisualIDRegistry.getVisualID(view.getType());
@@ -177,7 +177,7 @@ public class UMLVisualIDRegistry {
 	 */
 	public static String getDiagramVisualID(EObject domainElement) {
 		if (domainElement == null) {
-			return "";
+			return ""; //$NON-NLS-1$
 		}
 		return DeploymentDiagramEditPart.VISUAL_ID;
 	}
@@ -187,11 +187,11 @@ public class UMLVisualIDRegistry {
 	 */
 	public static String getNodeVisualID(View containerView, EObject domainElement) {
 		if (domainElement == null) {
-			return "";
+			return ""; //$NON-NLS-1$
 		}
 		String containerModelID = org.eclipse.papyrus.uml.diagram.deployment.part.UMLVisualIDRegistry.getModelID(containerView);
 		if (!DeploymentDiagramEditPart.MODEL_ID.equals(containerModelID)) {
-			return "";
+			return ""; //$NON-NLS-1$
 		}
 		String containerVisualID;
 		if (DeploymentDiagramEditPart.MODEL_ID.equals(containerModelID)) {
@@ -200,7 +200,7 @@ public class UMLVisualIDRegistry {
 			if (containerView instanceof Diagram) {
 				containerVisualID = DeploymentDiagramEditPart.VISUAL_ID;
 			} else {
-				return "";
+				return ""; //$NON-NLS-1$
 			}
 		}
 		if (containerVisualID != null) {
@@ -463,7 +463,7 @@ public class UMLVisualIDRegistry {
 				break;
 			}
 		}
-		return "";
+		return ""; //$NON-NLS-1$
 	}
 
 	/**
@@ -990,7 +990,7 @@ public class UMLVisualIDRegistry {
 	 */
 	public static String getLinkWithClassVisualID(EObject domainElement) {
 		if (domainElement == null) {
-			return "";
+			return ""; //$NON-NLS-1$
 		}
 		if (UMLPackage.eINSTANCE.getDeployment().isSuperTypeOf(domainElement.eClass())) {
 			return DeploymentEditPart.VISUAL_ID;
@@ -1010,18 +1010,19 @@ public class UMLVisualIDRegistry {
 		if (UMLPackage.eINSTANCE.getCommunicationPath().isSuperTypeOf(domainElement.eClass())) {
 			return CommunicationPathEditPart.VISUAL_ID;
 		}
-		return "";
+		return ""; //$NON-NLS-1$
 	}
 
-	/**
-	 * User can change implementation of this method to handle some specific
-	 * situations not covered by default logic.
-	 *
-	 * @generated
-	 */
-	private static boolean isDiagram(Package element) {
-		return true;
-	}
+	// Uncomment for debug purpose ?
+	// /**
+	// * User can change implementation of this method to handle some specific
+	// * situations not covered by default logic.
+	// *
+	// * @generated
+	// */
+	// private static boolean isDiagram(Package element) {
+	// return true;
+	// }
 
 	/**
 	 * @generated

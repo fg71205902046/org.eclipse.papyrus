@@ -1,15 +1,15 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  *
-  * All rights reserved. This program and the accompanying materials
-  * are made available under the terms of the Eclipse Public License 2.0
-  * which accompanies this distribution, and is available at
-  * https://www.eclipse.org/legal/epl-2.0/
-  *
-  * SPDX-License-Identifier: EPL-2.0
-  *
-  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.deployment.edit.parts;
 
@@ -53,7 +53,7 @@ public class ExecutionEnvironmentEditPartCN extends NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "ExecutionEnvironment_Shape_CCN";
+	public static final String VISUAL_ID = "ExecutionEnvironment_Shape_CCN"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -79,9 +79,7 @@ public class ExecutionEnvironmentEditPartCN extends NamedElementEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
@@ -130,7 +128,6 @@ public class ExecutionEnvironmentEditPartCN extends NamedElementEditPart {
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -159,8 +156,6 @@ public class ExecutionEnvironmentEditPartCN extends NamedElementEditPart {
 			((ExecutionEnvironmentNameEditPartCN) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
-
 		return false;
 	}
 
@@ -207,6 +202,7 @@ public class ExecutionEnvironmentEditPartCN extends NamedElementEditPart {
 	/**
 	 * @generated
 	 */
+
 	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(150, 100);
@@ -233,6 +229,7 @@ public class ExecutionEnvironmentEditPartCN extends NamedElementEditPart {
 	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
+	 *
 	 * @generated
 	 */
 	@Override
@@ -291,5 +288,4 @@ public class ExecutionEnvironmentEditPartCN extends NamedElementEditPart {
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ExecutionEnvironmentNameEditPartCN.VISUAL_ID));
 	}
-
 }

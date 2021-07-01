@@ -47,18 +47,15 @@ public class DiagramEditorContextMenuProvider extends DiagramContextMenuProvider
 	public void buildContextMenu(final IMenuManager menu) {
 		getViewer().flush();
 		try {
-			TransactionUtil.getEditingDomain(
-					(EObject) getViewer().getContents().getModel()).runExclusive(new Runnable() {
-
-						@Override
-						public void run() {
-							ContributionItemService.getInstance().contributeToPopupMenu(
-									DiagramEditorContextMenuProvider.this, part);
-							menu.remove(ActionIds.ACTION_DELETE_FROM_MODEL);
-						}
-					});
+			TransactionUtil.getEditingDomain((EObject) getViewer().getContents().getModel()).runExclusive(new Runnable() {
+				@Override
+				public void run() {
+					ContributionItemService.getInstance().contributeToPopupMenu(DiagramEditorContextMenuProvider.this, part);
+					menu.remove(ActionIds.ACTION_DELETE_FROM_MODEL);
+				}
+			});
 		} catch (Exception e) {
-			UMLDiagramEditorPlugin.getInstance().logError("Error building context menu", e);
+			UMLDiagramEditorPlugin.getInstance().logError("Error building context menu", e); //$NON-NLS-1$
 		}
 	}
 }

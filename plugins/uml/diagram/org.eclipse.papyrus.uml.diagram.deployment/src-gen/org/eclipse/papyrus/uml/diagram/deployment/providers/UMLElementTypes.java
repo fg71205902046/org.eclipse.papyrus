@@ -1,15 +1,15 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  *
-  * All rights reserved. This program and the accompanying materials
-  * are made available under the terms of the Eclipse Public License 2.0
-  * which accompanies this distribution, and is available at
-  * https://www.eclipse.org/legal/epl-2.0/
-  *
-  * SPDX-License-Identifier: EPL-2.0
-  *
-  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.deployment.providers;
 
@@ -278,110 +278,41 @@ public class UMLElementTypes {
 		Object type = hint.getAdapter(IElementType.class);
 		if (elements == null) {
 			elements = new IdentityHashMap<>();
-
 			elements.put(Package_DeploymentDiagram, UMLPackage.eINSTANCE.getPackage());
-
-
 			elements.put(Dependency_Shape, UMLPackage.eINSTANCE.getDependency());
-
-
 			elements.put(Model_Shape, UMLPackage.eINSTANCE.getModel());
-
-
 			elements.put(Package_Shape, UMLPackage.eINSTANCE.getPackage());
-
-
 			elements.put(Constraint_Shape, UMLPackage.eINSTANCE.getConstraint());
-
-
 			elements.put(Comment_Shape, UMLPackage.eINSTANCE.getComment());
-
-
 			elements.put(ExecutionEnvironment_Shape, UMLPackage.eINSTANCE.getExecutionEnvironment());
-
-
 			elements.put(Device_Shape, UMLPackage.eINSTANCE.getDevice());
-
-
 			elements.put(Artifact_Shape, UMLPackage.eINSTANCE.getArtifact());
-
-
 			elements.put(Node_Shape, UMLPackage.eINSTANCE.getNode());
-
-
 			elements.put(NamedElement_DefaultShape, UMLPackage.eINSTANCE.getNamedElement());
-
-
 			elements.put(DeploymentSpecification_Shape, UMLPackage.eINSTANCE.getDeploymentSpecification());
-
-
 			elements.put(Model_Shape_CN, UMLPackage.eINSTANCE.getModel());
-
-
 			elements.put(Package_Shape_CN, UMLPackage.eINSTANCE.getPackage());
-
-
 			elements.put(Device_Shape_CCN, UMLPackage.eINSTANCE.getDevice());
-
-
 			elements.put(Device_Shape_CN, UMLPackage.eINSTANCE.getDevice());
-
-
 			elements.put(ExecutionEnvironment_Shape_CCN, UMLPackage.eINSTANCE.getExecutionEnvironment());
-
-
 			elements.put(ExecutionEnvironment_Shape_CN, UMLPackage.eINSTANCE.getExecutionEnvironment());
-
-
 			elements.put(Node_Shape_CCN, UMLPackage.eINSTANCE.getNode());
-
-
 			elements.put(Node_Shape_CN, UMLPackage.eINSTANCE.getNode());
-
-
 			elements.put(Artifact_Shape_CCN, UMLPackage.eINSTANCE.getArtifact());
-
-
 			elements.put(Artifact_Shape_ACN, UMLPackage.eINSTANCE.getArtifact());
-
-
 			elements.put(Artifact_Shape_CN, UMLPackage.eINSTANCE.getArtifact());
-
-
 			elements.put(Comment_Shape_CN, UMLPackage.eINSTANCE.getComment());
-
-
 			elements.put(Constraint_Shape_CN, UMLPackage.eINSTANCE.getConstraint());
-
-
 			elements.put(DeploymentSpecification_Shape_CCN, UMLPackage.eINSTANCE.getDeploymentSpecification());
-
-
 			elements.put(DeploymentSpecification_Shape_CN, UMLPackage.eINSTANCE.getDeploymentSpecification());
-
-
 			elements.put(DeploymentSpecification_Shape_ACN, UMLPackage.eINSTANCE.getDeploymentSpecification());
-
 			elements.put(Comment_AnnotatedElementEdge, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
-
 			elements.put(Constraint_ConstrainedElementEdge, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
-
-
 			elements.put(Deployment_Edge, UMLPackage.eINSTANCE.getDeployment());
-
-
 			elements.put(Manifestation_Edge, UMLPackage.eINSTANCE.getManifestation());
-
-
 			elements.put(Generalization_Edge, UMLPackage.eINSTANCE.getGeneralization());
-
-
 			elements.put(Dependency_Edge, UMLPackage.eINSTANCE.getDependency());
-
-
 			elements.put(Dependency_BranchEdge, UMLPackage.eINSTANCE.getDependency());
-
-
 			elements.put(CommunicationPath_Edge, UMLPackage.eINSTANCE.getCommunicationPath());
 		}
 		return elements.get(type);

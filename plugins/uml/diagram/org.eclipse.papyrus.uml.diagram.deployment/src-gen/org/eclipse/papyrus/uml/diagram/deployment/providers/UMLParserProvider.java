@@ -909,130 +909,94 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			switch (visualID) {
 			case MultiDependencyLabelEditPart.VISUAL_ID:
 				return getDependency_MultiNameLabel_Parser();
-
 			case ModelNameEditPart.VISUAL_ID:
 				return getModel_NameLabel_Parser();
-
 			case PackageNameEditPart.VISUAL_ID:
 				return getPackage_NameLabel_Parser();
-
 			case ConstraintNameEditPart.VISUAL_ID:
 				return getConstraint_NameLabel_Parser();
 			case ConstraintSpecificationEditPart.VISUAL_ID:
 				return getConstraint_BodyLabel_Parser();
-
 			case CommentBodyEditPart.VISUAL_ID:
 				return getComment_BodyLabel_Parser();
-
 			case ExecutionEnvironmentNameEditPart.VISUAL_ID:
 				return getExecutionEnvironment_NameLabel_Parser();
-
 			case DeviceNameEditPart.VISUAL_ID:
 				return getDevice_NameLabel_Parser();
-
 			case ArtifactNameEditPart.VISUAL_ID:
 				return getArtifact_NameLabel_Parser();
 			case ArtifactFloatingLabelEditPart.VISUAL_ID:
 				return getArtifact_FloatingNameLabel_Parser();
-
 			case NodeNameEditPart.VISUAL_ID:
 				return getNode_NameLabel_Parser();
-
 			case DefaultNamedElementNameEditPart.VISUAL_ID:
 				return getNamedElement_NameLabel_Parser();
-
 			case DeploymentSpecificationNameEditPart.VISUAL_ID:
 				return getDeploymentSpecification_NameLabel_Parser();
 			case DeploymentSpecificationFloatingLabelEditPart.VISUAL_ID:
 				return getDeploymentSpecification_FloatingNameLabel_Parser();
-
 			case ModelNameEditPartCN.VISUAL_ID:
 				return getModel_NameLabel_CN_Parser();
-
 			case PackageNameEditPartCN.VISUAL_ID:
 				return getPackage_NameLabel_CN_Parser();
-
 			case DeviceNameEditPartCN.VISUAL_ID:
 				return getDevice_NameLabel_CCN_Parser();
-
 			case NestedDeviceNameEditPartCN.VISUAL_ID:
 				return getDevice_NameLabel_CN_Parser();
-
 			case ExecutionEnvironmentNameEditPartCN.VISUAL_ID:
 				return getExecutionEnvironment_NameLabel_CCN_Parser();
-
 			case NestedExecutionEnvironmentNameEditPartCN.VISUAL_ID:
 				return getExecutionEnvironment_NameLabel_CN_Parser();
-
 			case NodeNameEditPartCN.VISUAL_ID:
 				return getNode_NameLabel_CCN_Parser();
-
 			case NestedNodeNameEditPart.VISUAL_ID:
 				return getNode_NameLabel_CN_Parser();
-
 			case ArtifactNameEditPartCN.VISUAL_ID:
 				return getArtifact_NameLabel_CCN_Parser();
 			case ArtifactFloatingLabelEditPartCN.VISUAL_ID:
 				return getArtifact_FloatingNameLabel_CCN_Parser();
-
 			case ArtifactNameEditPartACN.VISUAL_ID:
 				return getArtifact_NameLabel_ACN_Parser();
 			case ArtifactFloatingLabelEditPartACN.VISUAL_ID:
 				return getArtifact_FloatingNameLabel_ACN_Parser();
-
 			case NestedArtifactNameEditPart.VISUAL_ID:
 				return getArtifact_NameLabel_CN_Parser();
-
 			case CommentBodyEditPartCN.VISUAL_ID:
 				return getComment_BodyLabel_CN_Parser();
-
 			case ConstraintNameEditPartCN.VISUAL_ID:
 				return getConstraint_NameLabel_CN_Parser();
 			case ConstraintSpecificationEditPartCN.VISUAL_ID:
 				return getConstraint_BodyLabel_CN_Parser();
-
 			case DeploymentSpecAsClassifierNameEditPart.VISUAL_ID:
 				return getDeploymentSpecification_NameLabel_CCN_Parser();
 			case DeploymentSpecAsClassifierFloatingLabelEditPart.VISUAL_ID:
 				return getDeploymentSpecification_FloatingNameLabel_CCN_Parser();
-
 			case DeploymentSpecAsPackageableElNameEditPart.VISUAL_ID:
 				return getDeploymentSpecification_NameLabel_CN_Parser();
 			case DeploymentSpecAsPackageableElFloatingLabelEditPart.VISUAL_ID:
 				return getDeploymentSpecification_FloatingNameLabel_CN_Parser();
-
 			case DeploymentSpecAsNestedArtifactNameEditPart.VISUAL_ID:
 				return getDeploymentSpecification_NameLabel_ACN_Parser();
 			case DeploymentSpecAsNestedArtifactFloatingLabelEditPart.VISUAL_ID:
 				return getDeploymentSpecification_FloatingNameLabel_ACN_Parser();
-
-
-
-
 			case DeploymentNameEditPart.VISUAL_ID:
 				return getDeployment_NameLabel_Parser();
 			case DeploymentAppliedStereotypeEditPart.VISUAL_ID:
 				return getDeployment_StereotypeLabel_Parser();
-
 			case ManifestationNameEditPart.VISUAL_ID:
 				return getManifestation_NameLabel_Parser();
 			case ManifestationAppliedStereotypeEditPart.VISUAL_ID:
 				return getManifestation_StereotypeLabel_Parser();
-
 			case GeneralizationAppliedStereotypeEditPart.VISUAL_ID:
 				return getGeneralization_StereotypeLabel_Parser();
-
 			case DependencyNameEditPart.VISUAL_ID:
 				return getDependency_NameLabel_Parser();
 			case DependencyAppliedStereotypeEditPart.VISUAL_ID:
 				return getDependency_StereotypeLabel_Parser();
-
-
 			case CommunicationPathNameEditPart.VISUAL_ID:
 				return getCommunicationPath_NameLabel_Parser();
 			case CommunicationPathAppliedStereotypeEditPart.VISUAL_ID:
 				return getCommunicationPath_StereotypeLabel_Parser();
-
 			}
 		}
 		return null;

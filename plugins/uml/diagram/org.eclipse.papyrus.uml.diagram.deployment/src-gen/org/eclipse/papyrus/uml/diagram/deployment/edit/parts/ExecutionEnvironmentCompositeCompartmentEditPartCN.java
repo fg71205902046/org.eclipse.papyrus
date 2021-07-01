@@ -1,15 +1,15 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  *
-  * All rights reserved. This program and the accompanying materials
-  * are made available under the terms of the Eclipse Public License 2.0
-  * which accompanies this distribution, and is available at
-  * https://www.eclipse.org/legal/epl-2.0/
-  *
-  * SPDX-License-Identifier: EPL-2.0
-  *
-  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.deployment.edit.parts;
 
@@ -34,7 +34,7 @@ public class ExecutionEnvironmentCompositeCompartmentEditPartCN extends LinkLFSh
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "ExecutionEnvironment_NestedNodeCompartment_CN";
+	public static final String VISUAL_ID = "ExecutionEnvironment_NestedNodeCompartment_CN"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -64,9 +64,7 @@ public class ExecutionEnvironmentCompositeCompartmentEditPartCN extends LinkLFSh
 		installEditPolicy(PasteEditPolicy.PASTE_ROLE, new PasteEditPolicy());
 		// in Papyrus diagrams are not strongly synchronised
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.deployment.edit.policies.ExecutionEnvironmentCompositeCompartmentCanonicalEditPolicyCN());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomContainerEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 	}
-
 }

@@ -21,7 +21,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.updater.UpdaterLinkDescriptor;
  * @generated
  */
 public class UMLLinkDescriptor extends UpdaterLinkDescriptor {
-
 	/**
 	 * @generated
 	 */
@@ -32,8 +31,8 @@ public class UMLLinkDescriptor extends UpdaterLinkDescriptor {
 	/**
 	 * @generated
 	 */
-	public UMLLinkDescriptor(EObject source, EObject destination, EObject linkElement, IElementType elementType,
-			String linkVID) {
+	public UMLLinkDescriptor(EObject source, EObject destination, EObject linkElement, IElementType elementType, String linkVID) {
 		super(source, destination, linkElement, elementType, linkVID);
 	}
+
 }

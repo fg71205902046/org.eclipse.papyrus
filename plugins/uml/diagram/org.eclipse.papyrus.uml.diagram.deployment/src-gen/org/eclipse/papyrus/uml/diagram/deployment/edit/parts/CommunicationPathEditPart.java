@@ -1,15 +1,15 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  *
-  * All rights reserved. This program and the accompanying materials
-  * are made available under the terms of the Eclipse Public License 2.0
-  * which accompanies this distribution, and is available at
-  * https://www.eclipse.org/legal/epl-2.0/
-  *
-  * SPDX-License-Identifier: EPL-2.0
-  *
-  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.deployment.edit.parts;
 
@@ -33,7 +33,7 @@ public class CommunicationPathEditPart extends UMLConnectionNodeEditPart impleme
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "CommunicationPath_Edge";
+	public static final String VISUAL_ID = "CommunicationPath_Edge"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -58,12 +58,10 @@ public class CommunicationPathEditPart extends UMLConnectionNodeEditPart impleme
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof CommunicationPathNameEditPart) {
-			((CommunicationPathNameEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAssociationNameLabel());
+			((CommunicationPathNameEditPart) childEditPart).setLabel(getPrimaryShape().getAssociationNameLabel());
 		}
 		if (childEditPart instanceof CommunicationPathAppliedStereotypeEditPart) {
-			((CommunicationPathAppliedStereotypeEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAppliedStereotypeLabel());
+			((CommunicationPathAppliedStereotypeEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -123,5 +121,4 @@ public class CommunicationPathEditPart extends UMLConnectionNodeEditPart impleme
 	public AssociationFigure getPrimaryShape() {
 		return (AssociationFigure) getFigure();
 	}
-
 }

@@ -1,15 +1,15 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  *
-  * All rights reserved. This program and the accompanying materials
-  * are made available under the terms of the Eclipse Public License 2.0
-  * which accompanies this distribution, and is available at
-  * https://www.eclipse.org/legal/epl-2.0/
-  *
-  * SPDX-License-Identifier: EPL-2.0
-  *
-  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.deployment.edit.parts;
 
@@ -33,7 +33,7 @@ public class ManifestationEditPart extends UMLConnectionNodeEditPart implements 
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Manifestation_Edge";
+	public static final String VISUAL_ID = "Manifestation_Edge"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -58,12 +58,10 @@ public class ManifestationEditPart extends UMLConnectionNodeEditPart implements 
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof ManifestationNameEditPart) {
-			((ManifestationNameEditPart) childEditPart).setLabel(
-					getPrimaryShape().getNameLabel());
+			((ManifestationNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 		}
 		if (childEditPart instanceof ManifestationAppliedStereotypeEditPart) {
-			((ManifestationAppliedStereotypeEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAppliedStereotypeLabel());
+			((ManifestationAppliedStereotypeEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -123,5 +121,4 @@ public class ManifestationEditPart extends UMLConnectionNodeEditPart implements 
 	public DashedEdgeFigure getPrimaryShape() {
 		return (DashedEdgeFigure) getFigure();
 	}
-
 }
