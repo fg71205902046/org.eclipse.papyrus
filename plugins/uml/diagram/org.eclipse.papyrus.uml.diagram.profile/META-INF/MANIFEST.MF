@@ -64,7 +64,8 @@ Require-Bundle: org.eclipse.core.expressions;bundle-version="[3.6.0,4.0.0)",
  org.eclipse.papyrus.uml.tools.utils;bundle-version="[4.0.0,5.0.0)",
  org.eclipse.ui.navigator;bundle-version="[3.9.0,4.0.0)",
  org.eclipse.ui.navigator.resources;bundle-version="[3.7.0,4.0.0)",
- org.eclipse.uml2.uml.editor;bundle-version="[5.5.0,6.0.0)"
+ org.eclipse.uml2.uml.editor;bundle-version="[5.5.0,6.0.0)",
+ org.eclipse.emf.codegen.ecore;bundle-version="[2.26.0,3.0.0)";resolution:=optional
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
 Bundle-Version: 4.1.0.qualifier

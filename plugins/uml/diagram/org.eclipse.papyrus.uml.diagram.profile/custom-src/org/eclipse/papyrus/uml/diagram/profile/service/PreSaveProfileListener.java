@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2021 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 574592
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.profile.service;
@@ -18,6 +19,7 @@ package org.eclipse.papyrus.uml.diagram.profile.service;
 import java.util.Map;
 
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.commands.operations.IOperationHistory;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -29,6 +31,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -36,7 +39,7 @@ import org.eclipse.emf.edit.ui.action.ValidateAction.EclipseResourcesUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.commands.CheckedOperationHistory;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -45,20 +48,20 @@ import org.eclipse.papyrus.infra.services.validation.ValidationTool;
 import org.eclipse.papyrus.infra.ui.lifecycleevents.DoSaveEvent;
 import org.eclipse.papyrus.infra.ui.lifecycleevents.ISaveEventListener;
 import org.eclipse.papyrus.uml.diagram.profile.custom.commands.DefineProfileCommand;
+import org.eclipse.papyrus.uml.diagram.profile.custom.messages.Messages;
 import org.eclipse.papyrus.uml.profile.Activator;
 import org.eclipse.papyrus.uml.profile.ui.dialogs.ProfileDefinitionDialog;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.papyrus.uml.tools.profile.definition.PapyrusDefinitionAnnotation;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.operations.IWorkbenchOperationSupport;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Profile;
 
 /**
- * This class provides listeners
- *
- *
- * This class describes the actions to do just before the save action
+ * Handler of the pre-save event for <em>UML Profiles</em> that, if appropriate,
+ * prompts the user to create a new dynamic definition before saving.
  */
 public class PreSaveProfileListener implements ISaveEventListener {
 
@@ -98,19 +101,21 @@ public class PreSaveProfileListener implements ISaveEventListener {
 				rootProfile = (Profile) profileEObject;
 			}
 
-			if (rootProfile == null) {
-				return; // We're not saving a profile model
+			if (rootProfile == null || isStaticallyGenerated(rootProfile, modelSet)) {
+				// We're not saving a profile model or it is statically generated and should not
+				// have dynamic definitions (bug 574592)
+				return;
 			}
 
 			/**
 			 * Does the user want define the profile?
 			 */
-			String DEFINE_MSG = "In order to apply this profile, it had to be defined.\nWould you like to define it?";
-			String PAPYRUS_QUESTION = "Papyrus question"; //$NON-NLS-1$
+			String defineMsg = Messages.PreSaveProfileListener_0;
+			String defineTitle = Messages.PreSaveProfileListener_8;
 
 			Shell activeShell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 
-			boolean result = MessageDialog.openQuestion(activeShell, PAPYRUS_QUESTION, DEFINE_MSG);
+			boolean result = MessageDialog.openQuestion(activeShell, defineTitle, defineMsg);
 			if (!result) {
 				return;
 			}
@@ -131,14 +136,15 @@ public class PreSaveProfileListener implements ISaveEventListener {
 
 					DefineProfileCommand cmd = new DefineProfileCommand(domain, papyrusAnnotation, rootProfile, dialog.saveConstraintInDefinition());
 					try {
-						IStatus status = CheckedOperationHistory.getInstance().execute(cmd, new NullProgressMonitor(), null);
+						IOperationHistory history = event.getMultiDiagramEditor().getSite().getService(IWorkbenchOperationSupport.class).getOperationHistory();
+						IStatus status = history.execute(cmd, new NullProgressMonitor(), null);
 						switch (status.getSeverity()) {
 						case IStatus.OK:
-							MessageDialog.openInformation(activeShell, "The profile has been defined", "The profile has been successfully defined");
+							MessageDialog.openInformation(activeShell, defineTitle, Messages.PreSaveProfileListener_1);
 							break;
 						case IStatus.WARNING:
 							Activator.log.warn(status.getMessage());
-							MessageDialog.openWarning(activeShell, "The profile has been defined", status.getMessage());
+							MessageDialog.openWarning(activeShell, defineTitle, status.getMessage());
 							break;
 						case IStatus.ERROR:
 							notifyErrors(activeShell, cmd.getDiagnostic());
@@ -146,21 +152,21 @@ public class PreSaveProfileListener implements ISaveEventListener {
 						}
 					} catch (ExecutionException e) {
 						Activator.log.error(e);
-						MessageDialog.openError(activeShell, "Uncaught exception", "An exception occurred during the profile definition: \n" + e.getMessage());
+						MessageDialog.openError(activeShell, Messages.PreSaveProfileListener_2, NLS.bind(Messages.PreSaveProfileListener_3, e.getMessage()));
 					}
 				} else {
 					handleDiagnostic(diagnostic, rootProfile);
-					MessageDialog.openError(activeShell, "Profile not Valid", "The profile cannot be defined because it is invalid.");
+					MessageDialog.openError(activeShell, Messages.PreSaveProfileListener_4, Messages.PreSaveProfileListener_5);
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			Activator.log.error("Uncaught exception in profile definition.", e); //$NON-NLS-1$
 		}
 	}
 
 	protected void notifyErrors(Shell activeShell, Diagnostic diagnostic) {
 		Activator.log.error(diagnostic.getMessage(), diagnostic.getException());
-		DiagnosticDialog.openProblem(activeShell, "Profile definition failed", "The following errors occured during the profile definition", diagnostic);
+		DiagnosticDialog.openProblem(activeShell, Messages.PreSaveProfileListener_6, Messages.PreSaveProfileListener_7, diagnostic);
 	}
 
 	protected boolean canDefine(Diagnostic diagnostic) {
@@ -246,4 +252,19 @@ public class PreSaveProfileListener implements ISaveEventListener {
 			e.printStackTrace();
 		}
 	}
+
+	/**
+	 * Query whether an UML {@code profile} is statically generated (imported into an EMF Generator Model).
+	 *
+	 * @param profile
+	 *            an UML profile
+	 * @param resourceSet
+	 *            the resource set context in which it is loaded
+	 *
+	 * @return whether the {@code profile} appears to be statically generated
+	 */
+	boolean isStaticallyGenerated(Profile profile, ResourceSet resourceSet) {
+		return GenModelHelper.getInstance().hasGeneratorModel(profile, resourceSet);
+	}
+
 }
