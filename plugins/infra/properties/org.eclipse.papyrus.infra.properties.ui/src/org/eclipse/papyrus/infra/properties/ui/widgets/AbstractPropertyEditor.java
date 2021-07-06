@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2016-2017,2020 CEA LIST, Christian W. Damus, Esterel Technologies SAS and others.
+ * Copyright (c) 2010, 2016-2017,2020, 2021 CEA LIST, Christian W. Damus, Esterel Technologies SAS and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -20,6 +20,7 @@
  *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 515650
  *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 522124
  *  Patrick Tessier (CEA LIST) -bug 568329
+ *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Bug 574687
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.widgets;
@@ -391,8 +392,10 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 			// Only do this after attaching our listener so that it will be ahead of
 			// any ModelElements created for properties
 			checkInput();
-
 			manageObservableListeners();
+		}
+		if (valueEditor != null && !valueEditor.isDisposed()) {
+			checkInput();
 		}
 	}
 
@@ -739,6 +742,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 								public void run() {
 									isEditable = input.isEditable(propertyPath);
 									applyReadOnly(getReadOnly());
+									AbstractPropertyEditor.this.setInput(input);
 								}
 							});
 						}
