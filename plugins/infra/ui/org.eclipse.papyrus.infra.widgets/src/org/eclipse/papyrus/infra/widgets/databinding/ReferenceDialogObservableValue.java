@@ -59,7 +59,9 @@ public class ReferenceDialogObservableValue extends CLabelObservableValue {
 	@Override
 	protected void doSetValue(Object value) {
 		super.doSetValue(value);
-		referenceDialog.update();
+		if (!referenceDialog.isDisposed()) {
+			referenceDialog.update();
+		}
 	}
 
 }
