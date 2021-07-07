@@ -12,14 +12,12 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - Factor out workspace storage for pluggable storage providers (CDO)
  *  Nicolas FAUVERGUE (CEA) nicolas.fauvergue@cea.fr - Bug 548720
- *  Christian W. Damus - bug 573987
+ *  Christian W. Damus - bugs 573987, 574094
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.toolsmiths.editor;
 
 import static org.eclipse.papyrus.views.properties.toolsmiths.preferences.CustomizationEditorActionKind.getOnOpenCustomizationEditorAction;
 
-import java.io.IOException;
-import java.io.OutputStream;
 import java.util.EventObject;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -43,7 +41,7 @@ import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
-import org.eclipse.emf.ecore.resource.URIHandler;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
@@ -291,43 +289,13 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 
 	@Override
 	public void doSave(IProgressMonitor progressMonitor) {
-		if (editingDomain.getResourceToReadOnlyMap() == null) {
-			editingDomain.setResourceToReadOnlyMap(new HashMap<Resource, Boolean>());
-		}
-
-		Map<Resource, Boolean> readOnlyMap = editingDomain.getResourceToReadOnlyMap();
-		ResourceSet resourceSet = getEditingDomain().getResourceSet();
-
-		for (Resource resource : resourceSet.getResources()) {
-			if (readOnlyMap.containsKey(resource)) {
-				continue;
-			}
-
-			URIHandler handler = resourceSet.getURIConverter().getURIHandler(resource.getURI());
-			Map<String, Object> options = new HashMap<>();
-			options.put(URIConverter.OPTION_URI_CONVERTER, resourceSet.getURIConverter());
-			try {
-				OutputStream os = handler.createOutputStream(resource.getURI(), options);
-				readOnlyMap.put(resource, os == null);
-				if (os != null) {
-					os.close();
-				}
-			} catch (IOException ex) {
-				// Currently, createOutputStream() fails on a NPE if the resource is read-only.
-				// Only log a warning, since the editor is currently not able to properly check for
-				// read-only state without calling createOutputStream
-				// See Bug 351146 for potential options regarding a proper fix
-				Activator.log.warn("Trying to save a read-only resource: " + resource.getURI());
-				readOnlyMap.put(resource, true);
-			}
-		}
-
 		setSaving(true);
 		try {
 			super.doSave(progressMonitor);
 		} finally {
 			setSaving(false);
 		}
+
 		refreshContext();
 	}
 
@@ -521,6 +489,13 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 
 					@Override
 					public void run() {
+						if (!commandStack.isSaveNeeded()) {
+							// Make sure that all resources report unmodified so that when next
+							// checked, they will not remember having been modified by changes
+							// that were undone
+							editingDomain.getResourceSet().getResources().forEach(res -> res.setModified(false));
+						}
+
 						firePropertyChange(IEditorPart.PROP_DIRTY);
 
 						// Try to select the affected objects.
@@ -542,7 +517,71 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 			}
 		});
 
-		// Replace the parent editing domain with a standard one. We don't want to override the isReadOnly() method.
-		editingDomain = new AdapterFactoryEditingDomain(adapterFactory, commandStack);
+		// Track modification in the resources that we load, to not save unmodified resources.
+		ResourceSet resourceSet = new ResourceSetImpl() {
+			@Override
+			public Resource createResource(URI uri, String contentType) {
+				Resource result = super.createResource(uri, contentType);
+				result.setTrackingModification(true);
+				return result;
+			}
+		};
+
+		// Customize read-only testing to account for ppe: scheme URIs and also preventing save
+		// of unmodified resources
+		editingDomain = new AdapterFactoryEditingDomain(adapterFactory, commandStack, resourceSet) {
+			private final PropertiesURIHandler ppeHandler = new PropertiesURIHandler();
+
+			{
+				resourceToReadOnlyMap = new HashMap<>();
+			}
+
+			@Override
+			public boolean isReadOnly(Resource resource) {
+				if (resource == null) {
+					return true;
+				}
+
+				boolean result = basicIsReadOnly(resource);
+
+				// Additionally, if we're saving, treat unmodified resources as though
+				// read-only to avoid rewriting XWT files
+				if (isSaving() && !result) {
+					result = resource.isTrackingModification() && !resource.isModified();
+				}
+
+				return result;
+			}
+
+			protected boolean basicIsReadOnly(Resource resource) {
+				Boolean result = resourceToReadOnlyMap.get(resource);
+				if (result == null && resource != null) {
+					URIConverter converter = getResourceSet().getURIConverter();
+					URI uri = converter.normalize(resource.getURI());
+
+					// Handle ppe: scheme
+					if (ppeHandler.canHandle(uri)) {
+						uri = ppeHandler.getConvertedURI(uri);
+					}
+
+					if (uri.isPlatformPlugin()) {
+						// Don't let modifications be made in resources deployed in plug-ins, even if those
+						// plug-ins are in the filesystem and therefore writable
+						result = true;
+					} else {
+						Map<?, ?> options = Map.of(URIConverter.OPTION_REQUESTED_ATTRIBUTES, Set.of(URIConverter.ATTRIBUTE_READ_ONLY));
+						result = Boolean.TRUE.equals(converter.getAttributes(uri, options).get(URIConverter.ATTRIBUTE_READ_ONLY));
+					}
+
+					resourceToReadOnlyMap.put(resource, result);
+				}
+
+				return Boolean.TRUE.equals(result);
+			}
+
+		};
+
+		// This editor relies on the traceability from the resource set to the editing domain
+		resourceSet.eAdapters().add(new AdapterFactoryEditingDomain.EditingDomainProvider(editingDomain));
 	}
 }

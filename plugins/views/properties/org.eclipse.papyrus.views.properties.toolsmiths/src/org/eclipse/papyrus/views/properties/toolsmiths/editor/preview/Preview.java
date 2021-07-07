@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST and others.
+ * Copyright (c) 2010, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,6 +12,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - Use URIs to support non-URL-compatible storage (CDO)
  *  Christian W. Damus (CEA) - bug 417409
+ *  Christian W. Damus - bug 574094
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.toolsmiths.editor.preview;
@@ -34,13 +35,10 @@ import java.util.Set;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
-import org.eclipse.papyrus.views.properties.model.xwt.resource.XWTResource;
-import org.eclipse.papyrus.views.properties.toolsmiths.Activator;
-import org.eclipse.papyrus.views.properties.toolsmiths.editor.UIEditor;
-import org.eclipse.papyrus.views.properties.toolsmiths.messages.Messages;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.TreeElement;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.properties.contexts.Section;
@@ -49,6 +47,10 @@ import org.eclipse.papyrus.infra.properties.contexts.View;
 import org.eclipse.papyrus.infra.properties.ui.runtime.DefaultDisplayEngine;
 import org.eclipse.papyrus.infra.properties.ui.runtime.DisplayEngine;
 import org.eclipse.papyrus.infra.properties.ui.widgets.layout.PropertiesLayout;
+import org.eclipse.papyrus.views.properties.model.xwt.resource.XWTResource;
+import org.eclipse.papyrus.views.properties.toolsmiths.Activator;
+import org.eclipse.papyrus.views.properties.toolsmiths.editor.UIEditor;
+import org.eclipse.papyrus.views.properties.toolsmiths.messages.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabItem;
@@ -106,7 +108,7 @@ public class Preview extends ViewPart implements ISelectionChangedListener, IPar
 
 	private Label previewDisabled;
 
-	private Set<UIEditor> currentEditors = new HashSet<UIEditor>();
+	private Set<UIEditor> currentEditors = new HashSet<>();
 
 	private IWorkbenchPage activePage;
 
@@ -154,7 +156,7 @@ public class Preview extends ViewPart implements ISelectionChangedListener, IPar
 		GridData data;
 
 		// Label preview = new Label(controls, SWT.NONE);
-		//		preview.setImage(Activator.getDefault().getImage("/icons/preview.png")); //$NON-NLS-1$
+		// preview.setImage(Activator.getDefault().getImage("/icons/preview.png")); //$NON-NLS-1$
 		// data = new GridData(SWT.CENTER, SWT.BEGINNING, false, false);
 		// preview.setLayoutData(data);
 
@@ -259,9 +261,10 @@ public class Preview extends ViewPart implements ISelectionChangedListener, IPar
 				xwtFile.createNewFile();
 			}
 
-			OutputStream os = new FileOutputStream(xwtFile);
-			try {
-				Map<Object, Object> options = new HashMap<Object, Object>();
+			Resource widgetResource = section.getWidget().eResource();
+			final boolean wasModified = widgetResource.isModified();
+			try (OutputStream os = new FileOutputStream(xwtFile)) {
+				Map<Object, Object> options = new HashMap<>();
 				// The outputstream cannot be formatted. If format is true, this is
 				// the real file (and not the preview file) that will be formatted
 				options.put(XWTResource.OPTION_FORMAT, false);
@@ -271,7 +274,8 @@ public class Preview extends ViewPart implements ISelectionChangedListener, IPar
 				section.getWidget().eResource().save(os, options);
 				return xwtFile.toURI().toURL();
 			} finally {
-				os.close();
+				// Restore the modified state that bug 574094 relies on
+				widgetResource.setModified(wasModified);
 			}
 		} catch (IOException ex) {
 			Activator.log.error(ex);
@@ -337,7 +341,7 @@ public class Preview extends ViewPart implements ISelectionChangedListener, IPar
 		}
 
 		displayEngine = new DefaultDisplayEngine();
-		Map<Tab, Composite> tabs = new HashMap<Tab, Composite>();
+		Map<Tab, Composite> tabs = new HashMap<>();
 
 		contents = new CTabFolder(parent, SWT.NONE);
 		contents.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
@@ -390,7 +394,7 @@ public class Preview extends ViewPart implements ISelectionChangedListener, IPar
 
 	private Collection<Tab> getTabs(View view) {
 
-		List<Tab> tabs = new LinkedList<Tab>();
+		List<Tab> tabs = new LinkedList<>();
 
 		for (Section section : view.getSections()) {
 			Tab tab = section.getTab();
