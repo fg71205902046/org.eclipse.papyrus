@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2015, 2017 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2021, 2017 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,10 +11,12 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 422257
- *  Christian W. Damus - bug 482927
- *  Vincent Lorenzo (CEA LIST) - bug 520271 
+ *  Christian W. Damus - bugs 482927, 573987
+ *  Vincent Lorenzo (CEA LIST) - bug 520271
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.generation.wizard;
+
+import static java.util.stream.StreamSupport.stream;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -25,11 +27,16 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.jface.util.Policy;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.papyrus.customization.properties.generation.Activator;
@@ -40,6 +47,7 @@ import org.eclipse.papyrus.customization.properties.generation.generators.IGener
 import org.eclipse.papyrus.customization.properties.generation.layout.ILayoutGenerator;
 import org.eclipse.papyrus.customization.properties.generation.messages.Messages;
 import org.eclipse.papyrus.customization.properties.generation.wizard.widget.TernaryButton;
+import org.eclipse.papyrus.infra.emf.utils.ResourceUtils;
 import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.papyrus.infra.properties.contexts.ContextsFactory;
 import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
@@ -52,8 +60,12 @@ import org.eclipse.papyrus.infra.properties.ui.UiFactory;
 import org.eclipse.papyrus.infra.properties.ui.ValueAttribute;
 import org.eclipse.papyrus.infra.properties.ui.runtime.IConfigurationManager;
 import org.eclipse.papyrus.infra.properties.ui.runtime.PropertiesRuntime;
+import org.eclipse.papyrus.infra.ui.util.EditorHelper;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.ide.IDE;
 
 /**
  * A Wizard for generating Property view contexts
@@ -87,14 +99,20 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 	 */
 	protected ILayoutGenerator layoutGenerator;
 
+	private IWorkbenchPage workbenchPage;
+
+	private Optional<IFile> currentlySelectedFile;
+
 	public CreateContextWizard() {
 		setDefaultPageImageDescriptor(Activator.getDefault().getImageDescriptor("/icons/wizban-custom.png")); //$NON-NLS-1$
 	}
 
 	@Override
 	public boolean performFinish() {
+		boolean result = false;
+
 		if (generator == null || contexts == null || contexts.isEmpty() || layoutGenerator == null) {
-			return false;
+			return result;
 		}
 
 		IConfigurationManager configManager = PropertiesRuntime.getConfigurationManager();
@@ -124,9 +142,9 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 					continue;
 				}
 
-				List<PropertyEditor> editors = new LinkedList<PropertyEditor>();
+				List<PropertyEditor> editors = new LinkedList<>();
 				// the list of properties for the current view
-				final List<Property> properties = new ArrayList<Property>();
+				final List<Property> properties = new ArrayList<>();
 				for (DataContextElement element : getAllContextElements(view.getDatacontexts())) {
 					for (Property property : element.getProperties()) {
 						if (isSelected(fieldSelection, property, view.getElementMultiplicity() != 1)) {
@@ -135,9 +153,9 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 					}
 				}
 
-				final List<Property> tmpProperties = new ArrayList<Property>(properties);
+				final List<Property> tmpProperties = new ArrayList<>(properties);
 				for (Property p1 : tmpProperties) {
-					//Bug 519090
+					// Bug 519090
 					// we remove all redefined properties from the list
 					properties.removeAll(p1.getRedefinedProperties());
 				}
@@ -169,11 +187,12 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 				setNeedsProgressMonitor(true);
 				final Context currentContext = context;
 
-				final Map<String, Object> saveOptions = new HashMap<String, Object>();
+				final Map<String, Object> saveOptions = new HashMap<>();
 				saveOptions.put(XMLResource.OPTION_PROCESS_DANGLING_HREF, XMLResource.OPTION_PROCESS_DANGLING_HREF_RECORD);
 
 				getContainer().run(true, true, new IRunnableWithProgress() {
 
+					@Override
 					public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
 						monitor.beginTask(Messages.CreateContextWizard_propertyViewGenerationJobName + currentContext.getUserLabel(), numberOfSections + 1);
 						monitor.worked(1);
@@ -204,9 +223,24 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 				Activator.log.error(ex);
 			}
 
+			result = true;
 		}
 
-		return true;
+		if (result) {
+			// Open the "main" generated context file
+			URI uriToOpen = contexts.get(0).eResource().getURI();
+			if (uriToOpen.isPlatformResource()) {
+				IFile file = ResourceUtils.getFile(contexts.get(0).eResource());
+
+				try {
+					IDE.openEditor(workbenchPage, file);
+				} catch (PartInitException e) {
+					Policy.getStatusHandler().show(e.getStatus(), getWindowTitle());
+				}
+			}
+		}
+
+		return result;
 	}
 
 	private boolean isSelected(FieldSelection fieldSelection, Property property, boolean multiple) {
@@ -276,7 +310,7 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 	protected List<String> getPropertyPath(DataContextElement element) {
 		List<String> result;
 		if (element.getPackage() == null) {
-			result = new LinkedList<String>();
+			result = new LinkedList<>();
 		} else {
 			result = getPropertyPath(element.getPackage());
 		}
@@ -285,7 +319,7 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 	}
 
 	private Set<DataContextElement> getAllContextElements(Collection<DataContextElement> source) {
-		Set<DataContextElement> result = new HashSet<DataContextElement>();
+		Set<DataContextElement> result = new HashSet<>();
 		for (DataContextElement element : source) {
 			getAllContextElements(element, result);
 		}
@@ -303,21 +337,36 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 		}
 	}
 
+	@Override
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		addPage(mainPage = new CreateContextMainPage());
 		addPage(generatorPage = new GeneratorPage());
 		addPage(selectOutputPage = new SelectOutputPage());
 		addPage(selectFieldsPage = new SelectFieldsPage());
-		// addPage(layout = new LayoutPage());
 
 		setWindowTitle(Messages.CreateContextWizard_pageTitle);
 
+		workbenchPage = EditorHelper.getInstance(workbench).getActivePage();
+		currentlySelectedFile = stream(((Iterable<?>) selection).spliterator(), false)
+				.filter(IFile.class::isInstance).map(IFile.class::cast)
+				.findFirst();
+	}
+
+	/**
+	 * Query the file that was selected in the workbench when the user launched the wizard.
+	 *
+	 * @return the currently selected file
+	 */
+	Optional<IFile> getCurrentlySelectedFile() {
+		return currentlySelectedFile;
 	}
 
 	protected void setGenerator(IGenerator generator) {
-		this.generator = generator;
-		generatorPage.setGenerator(generator);
-		generatorPage.doBinding();
+		if (!Objects.equals(this.generator, generator)) {
+			this.generator = generator;
+			generatorPage.setGenerator(generator);
+			generatorPage.doBinding();
+		}
 	}
 
 	protected void setContexts(List<Context> contexts) {

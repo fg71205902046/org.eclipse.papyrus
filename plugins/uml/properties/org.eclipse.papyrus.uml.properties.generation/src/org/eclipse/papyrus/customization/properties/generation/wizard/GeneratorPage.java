@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST and others.
+ * Copyright (c) 2010, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,6 +12,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Thibault Le Ouay t.leouay@sherpa-eng.com - Strategy improvement of generated files
  *  Christian W. Damus (CEA) - bug 422257
+ *  Christian W. Damus - bug 573987
  *
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.generation.wizard;
@@ -23,8 +24,6 @@ import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.UpdateValueStrategy;
 import org.eclipse.core.databinding.conversion.IConverter;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
-import org.eclipse.core.databinding.observable.value.IValueChangeListener;
-import org.eclipse.core.databinding.observable.value.ValueChangeEvent;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.databinding.wizard.WizardPageSupport;
@@ -110,7 +109,7 @@ public class GeneratorPage extends AbstractCreateContextPage implements Listener
 
 		setDescription(generator.getDescription());
 		this.generator = generator;
-		generator.createControls(generatorControl);
+		generator.createControls(generatorControl, getWizard().getCurrentlySelectedFile().orElse(null));
 		generatorControl.layout();
 		srcTextObservable = this.generator.getObservableValue();
 		root.layout();
@@ -284,26 +283,26 @@ public class GeneratorPage extends AbstractCreateContextPage implements Listener
 			targetFieldStrategy.setAfterConvertValidator(srcValidator);
 			binding = ctx.bindValue(srcTextObservable, targetTextObservable, srcFieldStrategy, targetFieldStrategy);
 
-		}
-	}
-
-	@Override
-	public boolean canFlipToNextPage() {
-		binding.getValidationStatus().addValueChangeListener(new IValueChangeListener() {
-
-			@Override
-			public void handleValueChange(ValueChangeEvent event) {
-				IStatus status = (IStatus) event.diff.getNewValue();
+			binding.getValidationStatus().addValueChangeListener(event -> {
+				IStatus status = event.diff.getNewValue();
 				if (status.isOK() || status.getSeverity() == IStatus.WARNING) {
 					setNext(true);
 				} else {
 					setNext(false);
 				}
+			});
+
+			// The source file is the "target", which the binding would not normally update to the "model."
+			// But if the source file is already suggested, then we do want to initialize the output file
+			// from it, so update the "target" to the "model" in binding-speak
+			if (srcTextObservable.getValue() != null && !"".equals(srcTextObservable.getValue())) {
+				binding.updateTargetToModel();
 			}
+		}
+	}
 
-		});
-
-
+	@Override
+	public boolean canFlipToNextPage() {
 		return this.next;
 	}
 

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST and others.
+ * Copyright (c) 2010, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,13 +12,19 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Thibault Le Ouay t.leouay@sherpa-eng.com - Add SelectOutputPage
  *  Christian W. Damus (CEA) - bug 422257
+ *  Christian W. Damus - bug 573987
  *
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.generation.wizard;
 
 import java.util.List;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.content.IContentDescription;
+import org.eclipse.core.runtime.content.IContentType;
 import org.eclipse.jface.wizard.IWizardPage;
+import org.eclipse.papyrus.customization.properties.generation.Activator;
 import org.eclipse.papyrus.customization.properties.generation.extensionpoint.GeneratorExtensionPoint;
 import org.eclipse.papyrus.customization.properties.generation.generators.IGenerator;
 import org.eclipse.papyrus.customization.properties.generation.messages.Messages;
@@ -64,6 +70,7 @@ public class CreateContextMainPage extends AbstractCreateContextPage implements 
 		}
 	}
 
+	@Override
 	public void createControl(Composite parent) {
 		Composite root = new Composite(parent, SWT.NONE);
 		root.setLayout(new GridLayout(1, false));
@@ -80,6 +87,8 @@ public class CreateContextMainPage extends AbstractCreateContextPage implements 
 
 		setControl(root);
 		setDescription(Messages.CreateContextMainPage_description);
+
+		getWizard().getCurrentlySelectedFile().ifPresent(this::selectGenerator);
 	}
 
 	@Override
@@ -90,8 +99,32 @@ public class CreateContextMainPage extends AbstractCreateContextPage implements 
 		return getWizard().generatorPage;
 	}
 
+	@Override
 	public void handleEvent(Event event) {
 		super.setPageComplete(true);
+	}
+
+	/**
+	 * Select the best-fitting generator, if any, for the file currently selected
+	 * in the workbench.
+	 *
+	 * @param selectedFile
+	 *            the currently selected file. Must not be {@code null}
+	 */
+	private void selectGenerator(IFile selectedFile) {
+		IContentType contentType = null;
+
+		try {
+			IContentDescription description = selectedFile.getContentDescription();
+			contentType = (description != null) ? description.getContentType() : null;
+		} catch (CoreException e) {
+			Activator.log.error("Failed to determine content type of " + selectedFile, e); //$NON-NLS-1$
+		}
+
+		IContentType _contentType = contentType;
+		generators.stream().filter(gen -> gen.canGenerate(selectedFile, _contentType))
+				.findFirst()
+				.ifPresent(gen -> combo.select(generators.indexOf(gen)));
 	}
 
 }

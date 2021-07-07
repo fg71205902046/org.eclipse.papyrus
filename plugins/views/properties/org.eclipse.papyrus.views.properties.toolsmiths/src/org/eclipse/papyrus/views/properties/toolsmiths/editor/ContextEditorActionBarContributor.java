@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 573987
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.toolsmiths.editor;
 
@@ -26,6 +27,7 @@ import org.eclipse.emf.edit.ui.action.DeleteAction;
 import org.eclipse.emf.edit.ui.action.PasteAction;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -39,8 +41,8 @@ import org.eclipse.papyrus.views.properties.toolsmiths.editor.actions.MoDiscoCop
 import org.eclipse.papyrus.views.properties.toolsmiths.editor.actions.MoDiscoCutAction;
 import org.eclipse.papyrus.views.properties.toolsmiths.editor.actions.MoDiscoDeleteAction;
 import org.eclipse.papyrus.views.properties.toolsmiths.editor.actions.MoDiscoPasteAction;
-import org.eclipse.papyrus.views.properties.toolsmiths.editor.actions.ToggleDataContextAction;
 import org.eclipse.papyrus.views.properties.toolsmiths.editor.actions.ValidationAction;
+import org.eclipse.papyrus.views.properties.toolsmiths.messages.Messages;
 import org.eclipse.papyrus.views.properties.toolsmiths.util.ActionUtil;
 
 /**
@@ -52,7 +54,10 @@ import org.eclipse.papyrus.views.properties.toolsmiths.util.ActionUtil;
  */
 public class ContextEditorActionBarContributor extends EcoreActionBarContributor {
 
+	private static final String MENU_ID = "org.eclipse.papyrus.views.properties.toolsmiths.editor.menu"; //$NON-NLS-1$
 	private int i = 0;
+
+	private final ActionUtil actionUtil;
 
 	/**
 	 *
@@ -61,7 +66,14 @@ public class ContextEditorActionBarContributor extends EcoreActionBarContributor
 	 */
 	public ContextEditorActionBarContributor() {
 		super();
+
+		actionUtil = new ActionUtil(this, super::selectionChanged, super::generateCreateChildActions, super::generateCreateSiblingActions);
 		validateAction = new ValidationAction();
+	}
+
+	@Override
+	protected IMenuManager createSubmenuManager() {
+		return new MenuManager(Messages.ContextEditorActionBarContributor_0, MENU_ID);
 	}
 
 	@Override
@@ -76,21 +88,17 @@ public class ContextEditorActionBarContributor extends EcoreActionBarContributor
 
 	@Override
 	protected Collection<IAction> generateCreateChildActions(Collection<?> descriptors, ISelection selection) {
-		Collection<IAction> result = super.generateCreateChildActions(descriptors, selection);
-		if (selection instanceof IStructuredSelection) {
-			IStructuredSelection sSelection = (IStructuredSelection) selection;
-			if (sSelection.size() == 1) {
-				Object firstElement = sSelection.getFirstElement();
-				if (firstElement instanceof View) {
-					result.addAll(createChildForView(selection, (View) sSelection.getFirstElement()));
-				} else if (firstElement instanceof Section) {
-					result.addAll(createChildForSection(selection));
-				} else if (firstElement instanceof Tab) {
-					removeChildActionsForTab(result);
-				} else if (firstElement instanceof Context) {
-					removeChildActionsForContext(result);
-				}
-			}
+		Collection<IAction> result = actionUtil.createNewChildActions(descriptors, selection);
+
+		Object firstElement = ActionUtil.getElement(selection);
+		if (firstElement instanceof View) {
+			result.addAll(createChildForView(selection, (View) firstElement));
+		} else if (firstElement instanceof Section) {
+			result.addAll(createChildForSection(selection));
+		} else if (firstElement instanceof Tab) {
+			removeChildActionsForTab(result);
+		} else if (firstElement instanceof Context) {
+			removeChildActionsForContext(result);
 		}
 
 		return result;
@@ -98,7 +106,8 @@ public class ContextEditorActionBarContributor extends EcoreActionBarContributor
 
 	@Override
 	protected Collection<IAction> generateCreateSiblingActions(Collection<?> descriptors, ISelection selection) {
-		Collection<IAction> result = super.generateCreateSiblingActions(descriptors, selection);
+		Collection<IAction> result = actionUtil.createNewSiblingActions(descriptors, selection);
+
 		if (selection instanceof IStructuredSelection) {
 			IStructuredSelection sSelection = (IStructuredSelection) selection;
 			if (sSelection.size() == 1) {
@@ -126,7 +135,7 @@ public class ContextEditorActionBarContributor extends EcoreActionBarContributor
 			IAction action = iterator.next();
 			if (action instanceof CreateChildAction) {
 				CreateChildAction createChildAction = (CreateChildAction) action;
-				if (createChildAction.getText().equals("Section")) { //It's the only relevant property we have access to... //$NON-NLS-1$
+				if (createChildAction.getText().equals("Section")) { // It's the only relevant property we have access to... //$NON-NLS-1$
 					iterator.remove();
 				}
 			}
@@ -145,10 +154,8 @@ public class ContextEditorActionBarContributor extends EcoreActionBarContributor
 			IAction action = iterator.next();
 			if (action instanceof CreateChildAction) {
 				CreateChildAction createChildAction = (CreateChildAction) action;
-				if (!ToggleDataContextAction.showDataContext) {
-					if (createChildAction.getText().equals("Data Context Root")) { //It's the only relevant property we have access to... //$NON-NLS-1$
-						iterator.remove();
-					}
+				if (createChildAction.getText().equals("Data Context Root")) { // It's the only relevant property we have access to... //$NON-NLS-1$
+					iterator.remove();
 				}
 			}
 		}
@@ -166,7 +173,7 @@ public class ContextEditorActionBarContributor extends EcoreActionBarContributor
 			IAction action = iterator.next();
 			if (action instanceof CreateSiblingAction) {
 				CreateSiblingAction createSiblingAction = (CreateSiblingAction) action;
-				if (createSiblingAction.getText().equals("Data Context Root")) { //It's the only relevant property we have access to... //$NON-NLS-1$
+				if (createSiblingAction.getText().equals("Data Context Root")) { // It's the only relevant property we have access to... //$NON-NLS-1$
 					iterator.remove();
 				}
 			}
@@ -185,7 +192,7 @@ public class ContextEditorActionBarContributor extends EcoreActionBarContributor
 			IAction action = iterator.next();
 			if (action instanceof CreateSiblingAction) {
 				CreateSiblingAction createSiblingAction = (CreateSiblingAction) action;
-				if (createSiblingAction.getText().equals("Section")) { //It's the only relevant property we have access to... //$NON-NLS-1$
+				if (createSiblingAction.getText().equals("Section")) { // It's the only relevant property we have access to... //$NON-NLS-1$
 					iterator.remove();
 				}
 			}
@@ -203,7 +210,7 @@ public class ContextEditorActionBarContributor extends EcoreActionBarContributor
 	 *         The list of newly created {@link IAction}s
 	 */
 	protected Collection<IAction> createSiblingActionsForSection(ISelection selection, Section section) {
-		Collection<IAction> actions = new LinkedList<IAction>();
+		Collection<IAction> actions = new LinkedList<>();
 
 		// TODO : We need to retrieve the view owning the section. It is only possible with an access to the
 		// ITreeElements, which we don't have here. Find a way to retrieve it.
@@ -227,7 +234,7 @@ public class ContextEditorActionBarContributor extends EcoreActionBarContributor
 	 *         The list of newly created {@link IAction}s
 	 */
 	protected Collection<IAction> createChildForView(ISelection selection, View view) {
-		Collection<IAction> actions = new LinkedList<IAction>();
+		Collection<IAction> actions = new LinkedList<>();
 		if (view.getContext() == null) {
 			return actions;
 		}
@@ -301,7 +308,7 @@ public class ContextEditorActionBarContributor extends EcoreActionBarContributor
 	 *         The newly created {@link IAction}s
 	 */
 	protected Collection<IAction> createChildForSection(ISelection selection) {
-		Collection<IAction> actions = new LinkedList<IAction>();
+		Collection<IAction> actions = new LinkedList<>();
 
 		actions.add(new CreateSectionWidgetAction(selection));
 
@@ -310,11 +317,7 @@ public class ContextEditorActionBarContributor extends EcoreActionBarContributor
 
 	@Override
 	public void selectionChanged(SelectionChangedEvent event) {
-		ISelection newSelection = ActionUtil.getAdaptedSelection(event.getSelection());
-
-		SelectionChangedEvent newEvent = new SelectionChangedEvent(event.getSelectionProvider(), newSelection);
-
-		super.selectionChanged(newEvent);
+		actionUtil.selectionChanged(event);
 	}
 
 	@Override

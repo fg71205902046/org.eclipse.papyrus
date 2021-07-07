@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2013, 2019 CEA LIST.
+ * Copyright (c) 2010, 2021, 2019 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,8 +12,11 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - Factor out workspace storage for pluggable storage providers (CDO)
  *  Nicolas FAUVERGUE (CEA) nicolas.fauvergue@cea.fr - Bug 548720
+ *  Christian W. Damus - bug 573987
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.toolsmiths.editor;
+
+import static org.eclipse.papyrus.views.properties.toolsmiths.preferences.CustomizationEditorActionKind.getOnOpenCustomizationEditorAction;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -82,7 +85,9 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Tree;
+import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IPerspectiveDescriptor;
 import org.eclipse.ui.IWorkbenchPage;
@@ -107,6 +112,14 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 	private Set<Preview> previews = new HashSet<>();
 
 	private TreeViewer selectionViewer;
+
+	@Override
+	public void init(IEditorSite site, IEditorInput editorInput) {
+		super.init(site, editorInput);
+
+		IWorkbenchPage page = site.getPage();
+		page.getWorkbenchWindow().getShell().getDisplay().asyncExec(() -> getOnOpenCustomizationEditorAction().perform(page));
+	}
 
 	@Override
 	public void createPages() {

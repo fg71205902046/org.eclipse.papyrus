@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2019  CEA LIST.
+ * Copyright (c) 2010, 2021  CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,6 +12,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Thibault Le Ouay t.leouay@sherpa-eng.com - Strategy improvement of generated files
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 544869
+ *  Christian W. Damus - bug 573987
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.generation.generators;
 
@@ -25,6 +26,9 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.content.IContentType;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -36,6 +40,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.m2m.qvt.oml.BasicModelExtent;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
@@ -68,7 +73,7 @@ public class EcoreGenerator extends AbstractQVTGenerator {
 	protected List<EPackage> listEPackages;
 
 	@Override
-	public void createControls(Composite parent) {
+	public void createControls(Composite parent, IFile workbenchSelection) {
 		Composite root = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout(2, false);
 		layout.marginWidth = 0;
@@ -86,6 +91,12 @@ public class EcoreGenerator extends AbstractQVTGenerator {
 
 		listEPackages = new ArrayList<>();
 
+		if (workbenchSelection != null) {
+			IFile suggestion = getSourceFile(workbenchSelection);
+			if (suggestion != null) {
+				sourceFileChooser.setFile(suggestion);
+			}
+		}
 	}
 
 	@Override
@@ -393,6 +404,15 @@ public class EcoreGenerator extends AbstractQVTGenerator {
 
 	}
 
+	@Override
+	public IFile getSourceFile(IFile file, IContentType contentType) {
+		if (contentType == null) {
+			return null; // Ecore content type is registered, so the file is not an Ecore model
+		}
 
+		IContentType ecore = Platform.getContentTypeManager().getContentType(EcorePackage.eCONTENT_TYPE);
+
+		return ecore != null && contentType.isKindOf(ecore) ? file : null;
+	}
 
 }

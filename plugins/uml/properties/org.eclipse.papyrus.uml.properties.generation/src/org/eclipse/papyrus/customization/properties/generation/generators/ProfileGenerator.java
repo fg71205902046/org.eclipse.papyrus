@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,6 +11,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Thibault Le Ouay t.leouay@sherpa-eng.com - Strategy improvement of generated files
+ *  Christian W. Damus - bug 573987
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.generation.generators;
 
@@ -24,6 +25,9 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.content.IContentType;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -33,6 +37,7 @@ import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.eclipse.papyrus.customization.properties.generation.Activator;
 import org.eclipse.papyrus.customization.properties.generation.messages.Messages;
 import org.eclipse.papyrus.customization.properties.generation.wizard.widget.FileChooser;
+import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.infra.properties.contexts.Property;
@@ -51,6 +56,8 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageImport;
 import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.resource.UMLResource;
 
 /**
  * An IGenerator for building Contexts from a UML Profile
@@ -71,7 +78,7 @@ public class ProfileGenerator extends AbstractQVTGenerator {
 
 
 	@Override
-	public void createControls(Composite parent) {
+	public void createControls(Composite parent, IFile workbenchSelection) {
 		Composite root = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout(2, false);
 		layout.marginWidth = 0;
@@ -87,6 +94,13 @@ public class ProfileGenerator extends AbstractQVTGenerator {
 		sourceFileChooser.setFilterExtensions(FileExtensions.umlProfileExtensions);
 		sourceFileChooser.addListener(this);
 		listEObject = new ArrayList<>();
+
+		if (workbenchSelection != null) {
+			IFile suggestion = getSourceFile(workbenchSelection);
+			if (suggestion != null) {
+				sourceFileChooser.setFile(suggestion);
+			}
+		}
 	}
 
 	@Override
@@ -371,4 +385,27 @@ public class ProfileGenerator extends AbstractQVTGenerator {
 		return null;
 
 	}
+
+	@Override
+	public IFile getSourceFile(IFile file, IContentType contentType) {
+		IFile result = null;
+
+		if (DiModel.DI_FILE_EXTENSION.equals(file.getFileExtension())) {
+			// Get the associated UML file, if it exists
+			IFile umlFile = file.getProject().getFile(file.getProjectRelativePath().removeFileExtension().addFileExtension(UMLResource.FILE_EXTENSION));
+			if (umlFile != null && umlFile.isAccessible()) {
+				result = getSourceFile(umlFile);
+			}
+		} else if (contentType != null) {
+			// The only other supported input is the UML file, itself, and the UML content type is registered
+			IContentType uml = Platform.getContentTypeManager().getContentType(UMLPackage.eCONTENT_TYPE);
+
+			if (uml != null && contentType.isKindOf(uml)) {
+				result = file;
+			}
+		}
+
+		return result;
+	}
+
 }

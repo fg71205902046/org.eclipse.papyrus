@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST and others.
+ * Copyright (c) 2016, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - bug 573987
  *
  *****************************************************************************/
 
@@ -35,7 +36,6 @@ import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.papyrus.infra.properties.contexts.ContextsPackage;
 import org.eclipse.papyrus.infra.properties.contexts.util.ContextsSwitch;
 import org.eclipse.papyrus.infra.properties.ui.UiPackage;
-import org.eclipse.papyrus.views.properties.toolsmiths.editor.actions.ToggleDataContextAction;
 
 /**
  * @author Camille Letavernier
@@ -104,9 +104,7 @@ public class GetVisibleFeaturesQuery implements IJavaQuery2<EObject, List<ERefer
 
 	protected Predicate<EReference> filterContextReferences(Context object) {
 		return ref -> {
-			if (ref == ContextsPackage.Literals.CONTEXT__DATA_CONTEXTS) { // Show DataContexts only if the corresponding action is enabled
-				return ToggleDataContextAction.showDataContext;
-			} else if (ref == ContextsPackage.Literals.CONTEXT__PROTOTYPE) { // Show the Prototype reference only if it is set
+			if (ref == ContextsPackage.Literals.CONTEXT__PROTOTYPE) { // Show the Prototype reference only if it is set
 				return object.getPrototype() != null;
 			}
 			return true;

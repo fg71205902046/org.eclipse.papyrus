@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2013 CEA LIST.
+ * Copyright (c) 2010, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,6 +11,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - Factor out workspace storage for pluggable storage providers (CDO)
+ *  Christian W. Damus - bug 573987
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.toolsmiths.messages;
 
@@ -20,6 +21,8 @@ import org.eclipse.papyrus.views.properties.toolsmiths.messages.Messages;
 public class Messages extends NLS {
 
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.views.properties.toolsmiths.messages.messages"; //$NON-NLS-1$
+
+	public static String ContextEditorActionBarContributor_0;
 
 	public static String CopyContextAction_Copying;
 
@@ -72,6 +75,18 @@ public class Messages extends NLS {
 	public static String CustomizationDialog_removeSelectedContext;
 
 	public static String CustomizationDialog_selectContextToEdit;
+
+	public static String CustomizationEditorActionKind_0;
+
+	public static String CustomizationEditorActionKind_1;
+
+	public static String CustomizationEditorActionKind_2;
+
+	public static String CustomizationEditorActionKind_3;
+
+	public static String CustomizationEditorActionKind_4;
+
+	public static String CustomizationPreferencePage_0;
 
 	public static String CustomizationPreferencePage_AskForConfirmation;
 

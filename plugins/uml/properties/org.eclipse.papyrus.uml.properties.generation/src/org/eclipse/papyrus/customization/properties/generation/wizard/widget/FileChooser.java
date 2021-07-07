@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 573987
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.generation.wizard.widget;
 
@@ -18,13 +19,14 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
 import org.eclipse.jface.databinding.swt.IWidgetValueProperty;
-import org.eclipse.jface.databinding.swt.WidgetProperties;
+import org.eclipse.jface.databinding.swt.typed.WidgetProperties;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.window.Window;
@@ -66,6 +68,8 @@ public class FileChooser extends Composite implements SelectionListener, Listene
 
 	private boolean newFile;
 
+	private IObservableValue<String> textObservable;
+
 	/**
 	 * Constructs a new FileChooser in the given Composite
 	 *
@@ -89,6 +93,9 @@ public class FileChooser extends Composite implements SelectionListener, Listene
 		browse.setText(Messages.FileChooser_browseWorkspace);
 		browse.addSelectionListener(this);
 		this.newFile = newFile;
+
+		IWidgetValueProperty<Text, String> prop = WidgetProperties.text(SWT.Modify);
+		textObservable = prop.observeDelayed(600, text);
 	}
 
 	/**
@@ -207,9 +214,7 @@ public class FileChooser extends Composite implements SelectionListener, Listene
 		if (result.length > 0) {
 			Object file = result[0];
 			if (file instanceof IFile) {
-				this.currentFile = ((IFile) file);
-				text.setText(currentFile.getFullPath().toString());
-				notifyChange();
+				setFile((IFile) file);
 			}
 		}
 	}
@@ -226,11 +231,32 @@ public class FileChooser extends Composite implements SelectionListener, Listene
 	}
 
 	public IObservableValue getObservableValue() {
-		IWidgetValueProperty prop = WidgetProperties.text(SWT.Modify);
-		return prop.observeDelayed(600, text);
+		return textObservable;
 	}
 
 	public void setText(String s) {
 		text.setText(s);
+	}
+
+	/**
+	 * Set the currently selected file.
+	 *
+	 * @param file
+	 *            the currently selected file. May be {@code null} to clear the selection
+	 */
+	public void setFile(IFile file) {
+		if (!Objects.equals(file, currentFile) && !text.isDisposed()) {
+			currentFile = file;
+			if (file == null) {
+				text.setText(""); //$NON-NLS-1$
+			} else {
+				text.setText(file.getFullPath().toString());
+			}
+
+			// Trigger the update immediately
+			getObservableValue().getValue();
+
+			notifyChange();
+		}
 	}
 }

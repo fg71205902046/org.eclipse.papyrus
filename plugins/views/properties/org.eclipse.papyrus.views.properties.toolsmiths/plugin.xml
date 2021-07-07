@@ -97,10 +97,6 @@
             class="org.eclipse.papyrus.views.properties.toolsmiths.editor.actions.TogglePreviewAction"
             commandId="org.eclipse.papyrus.customization.properties.TogglePreview">
       </handler>
-      <handler
-            class="org.eclipse.papyrus.views.properties.toolsmiths.editor.actions.ToggleDataContextAction"
-            commandId="org.eclipse.papyrus.customization.properties.ToggleDataContext">
-      </handler>
    </extension>
    <extension
          point="org.eclipse.ui.commands">
@@ -114,17 +110,8 @@
             id="org.eclipse.papyrus.customization.properties.TogglePreview"
             name="%command.name.0">
          <state
-               class="org.eclipse.papyrus.views.properties.toolsmiths.editor.actions.TogglePreviewState"
+               class="org.eclipse.jface.commands.ToggleState"
                id="org.eclipse.ui.commands.toggleState">
-         </state>
-      </command>
-      <command
-            description="%command.description.1"
-            id="org.eclipse.papyrus.customization.properties.ToggleDataContext"
-            name="%command.name.1">
-            <state
-               class="org.eclipse.papyrus.views.properties.toolsmiths.editor.actions.ToggleDataContextState"
-               id="org.eclipse.papyrus.customizatio.propertiesn.displayContextState">
          </state>
       </command>
    </extension>
@@ -160,22 +147,6 @@
                   label="%command.label"
                   style="toggle"
                   tooltip="%command.tooltip">
-               <visibleWhen>
-                  <with
-                        variable="activeEditorId">
-                     <equals
-                           value="org.eclipse.papyrus.customization.properties.UIEditor">
-                     </equals>
-                  </with>
-               </visibleWhen>
-            </command>
-            <command
-                  commandId="org.eclipse.papyrus.customization.properties.ToggleDataContext"
-                  icon="icons/DataContexts.gif"
-                  id="org.eclipse.papyrus.customization.properties.toggleDataContext"
-                  label="%command.label.0"
-                  style="toggle"
-                  tooltip="%command.tooltip.0">
                <visibleWhen>
                   <with
                         variable="activeEditorId">
