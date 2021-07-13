@@ -51,6 +51,8 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.toolsmiths.validation.common.Activator;
 import org.eclipse.papyrus.toolsmiths.validation.common.internal.messages.Messages;
 
+import com.google.common.collect.Lists;
+
 /**
  * <p>
  * A configurable model checker that recursively walks the model to evaluate custom
@@ -376,6 +378,21 @@ public class CustomModelChecker extends AbstractPluginChecker {
 			}
 
 			return result;
+		}
+
+		protected Diagnostic createDiagnostic(int severity, EObject eObject, String message, MarkerAttribute attr1, MarkerAttribute... moreAttrs) {
+			return createDiagnostic(severity, eObject, null, 0, message, attr1, moreAttrs);
+		}
+
+		protected Diagnostic createDiagnostic(int severity, EObject eObject, EStructuralFeature feature, String message, MarkerAttribute attr1, MarkerAttribute... moreAttrs) {
+			return createDiagnostic(severity, eObject, feature, 0, message, attr1, moreAttrs);
+		}
+
+		protected Diagnostic createDiagnostic(int severity, EObject eObject, EStructuralFeature feature, int code, String message, MarkerAttribute attr1, MarkerAttribute... moreAttrs) {
+			List<Object> data = diagnosticData(eObject, feature);
+			data.addAll(Lists.asList(attr1, moreAttrs));
+
+			return new BasicDiagnostic(severity, source, code, message, data.toArray());
 		}
 
 		protected boolean isValidatorFor(EPackage ePackage) {

@@ -1,5 +1,5 @@
 <!--
- Copyright (c) 2020 Christian W. Damus, CEA LIST, and others.
+ Copyright (c) 2020, 2021 Christian W. Damus, CEA LIST, and others.
  All rights reserved. This program and the accompanying materials
  are made available under the terms of the Eclipse Public License 2.0
  which accompanies this distribution, and is available at
@@ -25,7 +25,7 @@ The following figure shows an overview of the generic plug-in builder framework:
 
 == API Details ==
 
-=== Package oep.toolsmiths.validation.common ===
+=== Package oep.toolsmiths.validation.common.checkers ===
 
 In previous releases, this package defined an interface <code>IPluginChecker</code>, to implementations of which the
 <code>PluginValidationService</code> used by the plug-in validation menu actions delegates the work of validating the project and
@@ -128,3 +128,36 @@ plug-in validation problems that should trigger this launch gate should use a ma
 the model's abstract problem type that all of its markers conform to. This latter marker type is recommended to make it easy for the
 plug-in builder to clean all relevant markers in a project.
 
+= Quick Fixes =
+
+Quick fixes, known in the Eclipse APIs as <em>marker resolutions</em>, provide the user with convenient automation of
+changes to fix problems identified in markers. Wherever it is practical, it is helpful to provide quick fixes for
+every change that would commonly be recommended for any given problem.
+
+To assist in the development of simple quick fixes, the common plug-in builder bundle provides a small framework.
+
+== API Details ==
+
+=== Package oep.toolsmiths.validation.common.checkers ===
+
+The <code>IPluginChecker2</code> interface provides a convenient method <code>problem(int) : MarkerAttribute</code> that
+creates a marker attribute encoding an unique <em>problem identifier</em> for inclusion in the data of a <code>Diagnostic</code>.
+This identifier correlates to a quick-fix <em>marker resolution</em>.
+
+The <code>CommonProblemConstants</code> class has two constants <code>PROBLEM_ID_BASE</code> and
+<code>MAX_PROBLEM_ID</code> that define a range of problem IDs reserved for problems reported by the common layer, itself,
+of the plug-in builder framework. Problem IDs used by model-specific builders must use IDs greater than the
+<code>MAX_PROBLEM_ID</code> of the common layer. They can use the same IDs as problems from other models because they
+are tagged with different <em>marker types</em>; the problems reported by the common framework do use each model's
+marker type, which is thy the ID numbers need to be kept separate.
+
+=== Package oep.toolsmiths.validation.common.quickfix ===
+
+Builder bundles that provide quick fixes for their problems should extend the <code>CommonMarkerResolutionGenerator</code>
+class. This provides fixes for all of the problems reported by the common framework and is easily extended to add
+fixes for your model's specific problems. A variety of marker resolutions are available to implement fixes for the most
+common kinds of problems:
+
+* <code>SimpleMissingAttributeMarkerResolution</code>: this fixes a problem that reports a required attribute missing from an extension in the <tt>plugin.xml</tt>, where a suitable value can be suggested automatically. It is configured with the attribute name and a value to set (or a function that computes the value from the marker's attributes). The marker already has the information about which element of which extension to update
+* <code>SimpleMissingExtensionMarkerResolution</code>: similar to the previous, this fixes a problem that reports a required or recommended extension missing on a model-specific extension point. It is configured with the values, or computations of, the extension point, element name, and one or more attributes to set
+* <code>SimpleModelEditMarkerResolution</code>: a flexible marker resolution to fix problems in EMF-based model resources. It is configured with a function that computes an EMF <em>command</em> to update the object in the model that the marker targets. The resolution takes care of finding an <em>editing domain</em> in which context to create the command, using an existing open editor if available, otherwise editing the model "off-line", as it were

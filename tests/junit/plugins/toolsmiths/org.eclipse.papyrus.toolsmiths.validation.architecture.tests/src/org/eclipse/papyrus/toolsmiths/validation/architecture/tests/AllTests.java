@@ -14,6 +14,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.validation.architecture.tests;
 
+import org.eclipse.papyrus.toolsmiths.validation.architecture.internal.quickfix.tests.ModelQuickFixTests;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -28,6 +29,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		ArchitectureModelBuilderTest.class,
 		ArchitectureDependenciesBuilderTest.class,
 		ArchitectureBuildPropertiesBuilderTest.class,
+		ModelQuickFixTests.class,
 })
 public class AllTests {
 	// Everything is specified in annotations

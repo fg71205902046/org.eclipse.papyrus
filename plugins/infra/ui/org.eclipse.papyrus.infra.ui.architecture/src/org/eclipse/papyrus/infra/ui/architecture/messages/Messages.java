@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2019 CEA LIST and others.
+ * Copyright (c) 2019, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
+ *   Christian W. Damus - bug 573788
  *
  *****************************************************************************/
 
@@ -22,6 +23,8 @@ import org.eclipse.osgi.util.NLS;
  */
 public class Messages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.infra.ui.architecture.messages.messages"; //$NON-NLS-1$
+	public static String AddRecommendedElementTypesConfigurationsHandler_1;
+	public static String AddRecommendedElementTypesConfigurationsHandler_2;
 	public static String ArchitecturePageAddValidator_diagleTitle;
 	public static String ArchitecturePageAddValidator_dialogLabel;
 	public static String ChangeArchitectureContextHandler_dialogLabel;

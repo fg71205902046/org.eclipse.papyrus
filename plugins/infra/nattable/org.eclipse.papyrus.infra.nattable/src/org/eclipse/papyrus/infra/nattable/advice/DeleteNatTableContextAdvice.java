@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,10 +10,12 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 573788
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.advice;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -23,12 +25,9 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
-import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 
 /**
  * Destroy the NatTable
@@ -39,13 +38,6 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
  */
 public class DeleteNatTableContextAdvice extends AbstractEditHelperAdvice {
 
-	/**
-	 *
-	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice#getBeforeDestroyDependentsCommand(org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest)
-	 *
-	 * @param request
-	 * @return
-	 */
 	@Override
 	protected ICommand getBeforeDestroyDependentsCommand(DestroyDependentsRequest request) {
 		final EObject objectToDestroy = request.getElementToDestroy();
@@ -61,13 +53,12 @@ public class DeleteNatTableContextAdvice extends AbstractEditHelperAdvice {
 				final EObject currentEObject = currentSetting.getEObject();
 				final EStructuralFeature currentfeature = currentSetting.getEStructuralFeature();
 				if (currentEObject instanceof Table && currentfeature == NattablePackage.eINSTANCE.getTable_Context()) {
-					final DestroyElementRequest request2 = new DestroyElementRequest(currentEObject, false);
-					final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(currentEObject);
-					cmd.add(provider.getEditCommand(request2));
+					Optional.ofNullable(request.getDestroyDependentCommand(currentEObject))
+							.ifPresent(cmd::add);
 				}
 			}
 			if (!cmd.isEmpty()) {
-				return cmd;
+				return cmd.reduce();
 			}
 		}
 		return null;

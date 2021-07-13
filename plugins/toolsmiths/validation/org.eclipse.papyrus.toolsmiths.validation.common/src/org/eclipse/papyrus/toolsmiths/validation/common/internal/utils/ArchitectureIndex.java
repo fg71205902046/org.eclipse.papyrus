@@ -15,11 +15,15 @@
 
 package org.eclipse.papyrus.toolsmiths.validation.common.internal.utils;
 
+import java.util.ArrayDeque;
 import java.util.Collection;
 import java.util.EnumMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.Queue;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -38,8 +42,10 @@ import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
 import org.eclipse.papyrus.infra.core.architecture.ADElement;
+import org.eclipse.papyrus.infra.core.architecture.ArchitectureContext;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureDomain;
 import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.InternalCrossReferencer;
 import org.eclipse.papyrus.toolsmiths.validation.common.Activator;
 
@@ -409,6 +415,43 @@ public class ArchitectureIndex extends AbstractIndex {
 		return result.build();
 	}
 
+	public Collection<ArchitectureContext> getAllExtensions(ArchitectureContext context) {
+		try {
+			return getAllExtensionsAsync(context).get();
+		} catch (InterruptedException | ExecutionException e) {
+			Activator.log.error("Error querying Architecture Context models.", e); //$NON-NLS-1$
+			return List.of();
+		}
+	}
+
+	public CompletableFuture<Collection<ArchitectureContext>> getAllExtensionsAsync(ArchitectureContext context) {
+		return getInternalCrossReferences().thenApply(xrefs -> {
+			Collection<ArchitectureContext> result = new LinkedHashSet<>();
+			Queue<ArchitectureContext> queue = new ArrayDeque<>(getExtensions(context, xrefs));
+
+			for (ArchitectureContext next = queue.poll(); next != null; next = queue.poll()) {
+				if (result.add(next)) {
+					queue.addAll(getExtensions(next, xrefs));
+				}
+			}
+
+			return result;
+		});
+	}
+
+	private Collection<ArchitectureContext> getExtensions(ArchitectureContext context, Multimap<EObject, EStructuralFeature.Setting> xrefs) {
+		UserSpaceMapping mapping = new UserSpaceMapping(context);
+
+		return xrefs.get(mapping.toIndexSpace(context)).stream()
+				.filter(setting -> setting.getEStructuralFeature() == ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__EXTENDED_CONTEXTS)
+				.map(EStructuralFeature.Setting::getEObject)
+				.map(ArchitectureContext.class::cast)
+				.distinct()
+				.map(mapping::toUserSpace)
+				.filter(Objects::nonNull)
+				.collect(Collectors.toList());
+	}
+
 	//
 	// Nested types
 	//
@@ -422,5 +465,37 @@ public class ArchitectureIndex extends AbstractIndex {
 		/** Search cross-references wihin and between architecture models only. */
 		INTERNAL_CROSS_REFERENCE;
 	}
+
+	/**
+	 * A bijection of objects in user space and index space, being the resource set of the client
+	 * component and the resource set of the index, respectively.
+	 */
+	private final class UserSpaceMapping {
+		private final ResourceSet userContext;
+		private final ResourceSet indexContext;
+
+		UserSpaceMapping(EObject userContext) {
+			super();
+
+			this.userContext = EMFHelper.getResourceSet(userContext);
+			this.indexContext = domainManager.getRegisteredArchitectureDomains().stream()
+					.map(EMFHelper::getResourceSet)
+					.filter(Objects::nonNull)
+					.findAny()
+					.orElse(null);
+		}
+
+		@SuppressWarnings("unchecked")
+		<T extends EObject> T toUserSpace(T indexObject) {
+			return (T) userContext.getEObject(EcoreUtil.getURI(indexObject), true);
+		}
+
+		@SuppressWarnings("unchecked")
+		<T extends EObject> T toIndexSpace(T userObject) {
+			return (indexContext == null) ? null : (T) indexContext.getEObject(EcoreUtil.getURI(userObject), true);
+		}
+
+	}
+
 
 }
