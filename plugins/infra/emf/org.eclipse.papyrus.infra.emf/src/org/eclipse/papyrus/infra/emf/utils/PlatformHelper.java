@@ -15,6 +15,8 @@
 
 package org.eclipse.papyrus.infra.emf.utils;
 
+import static org.eclipse.papyrus.infra.emf.utils.ResourceUtils.createWorkspaceAwareURIConverter;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
@@ -249,6 +251,11 @@ abstract class PlatformHelper {
 		@Override
 		EPackage.Registry createWorkspacePackageRegistry() {
 			ResourceSet resourceSet = new ResourceSetImpl();
+
+			// Ensure that platform:/plugin URIs in package/profile registrations resolve
+			// into the workspace where applicable (bug 573888)
+			resourceSet.setURIConverter(createWorkspaceAwareURIConverter());
+
 			EPackage.Registry result = new EPackageRegistryImpl(EPackage.Registry.INSTANCE);
 
 			Map<String, URI> models = new HashMap<>();

@@ -14,6 +14,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.validation.architecture.tests;
 
+import static org.eclipse.papyrus.junit.matchers.MoreMatchers.isEmpty;
 import static org.eclipse.papyrus.junit.matchers.MoreMatchers.regexContains;
 import static org.eclipse.papyrus.junit.matchers.WorkspaceMatchers.isMarkerMessage;
 import static org.eclipse.papyrus.junit.matchers.WorkspaceMatchers.isMarkerSeverity;
@@ -293,6 +294,47 @@ public class ArchitectureModelBuilderTest extends AbstractPapyrusTest {
 
 			assertThat(modelMarkers, not(hasItem(isMarkerMessage(containsString("Representations Advice"))))); //$NON-NLS-1$
 		}
+	}
+
+	@TestProject("org.eclipse.papyrus.toolsmiths.validation.architecture.example")
+	@MarkerType(ARCHITECTURE_PLUGIN_VALIDATION_MARKER_TYPE)
+	@Build
+	public static class Regression {
+
+		/**
+		 * The project fixture to manage easily the project.
+		 */
+		@Rule
+		public final TestProjectFixture fixture = new TestProjectFixture();
+
+		/**
+		 * Test the validation of an Architecture model that references a non-registered dynamic profile
+		 * by <tt>platform:/plugin</tt> URI.
+		 *
+		 * @see <a href="https://eclip.se/573888">bug 573888</a>
+		 */
+		@Test
+		@OverlayFile(value = "bug573888/BookStore-pluginProfile.architecture", path = "resources/BookStore.architecture")
+		public void bug573888_profilePlatformPluginURI() {
+			final List<IMarker> modelMarkers = fixture.getMarkers("resources/BookStore.architecture"); //$NON-NLS-1$
+
+			assertThat(modelMarkers, isEmpty());
+		}
+
+		/**
+		 * Test the validation of an Architecture model that references a registered dynamic profile
+		 * by namespace URI where the registration of the profile uses <tt>platform:/plugin</tt> URIs.
+		 *
+		 * @see <a href="https://eclip.se/573888">bug 573888</a>
+		 */
+		@Test
+		@OverlayFile(value = "bug573888/plugin-platformPluginURI.xml", path = "plugin.xml")
+		public void bug573888_registrationPlatformPluginURI() {
+			final List<IMarker> modelMarkers = fixture.getMarkers("resources/BookStore.architecture"); //$NON-NLS-1$
+
+			assertThat(modelMarkers, isEmpty());
+		}
+
 	}
 
 }
