@@ -1,15 +1,15 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  *
-  * All rights reserved. This program and the accompanying materials
-  * are made available under the terms of the Eclipse Public License 2.0
-  * which accompanies this distribution, and is available at
-  * https://www.eclipse.org/legal/epl-2.0/
-  *
-  * SPDX-License-Identifier: EPL-2.0
-  *
-  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.statemachine.providers;
 
@@ -180,7 +180,6 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static final IElementType Trigger_DeferrableTriggerLabel = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Trigger_DeferrableTriggerLabel"); //$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
@@ -239,88 +238,34 @@ public class UMLElementTypes {
 		Object type = hint.getAdapter(IElementType.class);
 		if (elements == null) {
 			elements = new IdentityHashMap<>();
-
 			elements.put(Package_StateMachineDiagram, UMLPackage.eINSTANCE.getPackage());
-
-
 			elements.put(StateMachine_Shape, UMLPackage.eINSTANCE.getStateMachine());
-
-
 			elements.put(State_Shape_TN, UMLPackage.eINSTANCE.getState());
-
-
 			elements.put(Region_Shape, UMLPackage.eINSTANCE.getRegion());
-
-
 			elements.put(FinalState_Shape, UMLPackage.eINSTANCE.getFinalState());
-
-
 			elements.put(State_Shape, UMLPackage.eINSTANCE.getState());
-
-
 			elements.put(Pseudostate_InitialShape, UMLPackage.eINSTANCE.getPseudostate());
-
-
 			elements.put(Pseudostate_JoinShape, UMLPackage.eINSTANCE.getPseudostate());
-
-
 			elements.put(Pseudostate_ForkShape, UMLPackage.eINSTANCE.getPseudostate());
-
-
 			elements.put(Pseudostate_ChoiceShape, UMLPackage.eINSTANCE.getPseudostate());
-
-
 			elements.put(Pseudostate_JunctionShape, UMLPackage.eINSTANCE.getPseudostate());
-
-
 			elements.put(Pseudostate_ShallowHistoryShape, UMLPackage.eINSTANCE.getPseudostate());
-
-
 			elements.put(Pseudostate_DeepHistoryShape, UMLPackage.eINSTANCE.getPseudostate());
-
-
 			elements.put(Pseudostate_TerminateShape, UMLPackage.eINSTANCE.getPseudostate());
-
-
 			elements.put(Pseudostate_EntryPointShape, UMLPackage.eINSTANCE.getPseudostate());
-
-
 			elements.put(Pseudostate_ExitPointShape, UMLPackage.eINSTANCE.getPseudostate());
-
-
 			elements.put(ConnectionPointReference_Shape, UMLPackage.eINSTANCE.getConnectionPointReference());
-
-
 			elements.put(Comment_Shape, UMLPackage.eINSTANCE.getComment());
-
-
 			elements.put(Constraint_Shape, UMLPackage.eINSTANCE.getConstraint());
-
-
 			elements.put(Transition_InternalTransitionLabel, UMLPackage.eINSTANCE.getTransition());
-
-
 			elements.put(Behavior_EntryBehaviorLabel, UMLPackage.eINSTANCE.getBehavior());
-
-
 			elements.put(Behavior_DoActivityBehaviorLabel, UMLPackage.eINSTANCE.getBehavior());
-
-
 			elements.put(Behavior_ExitBehaviorLabel, UMLPackage.eINSTANCE.getBehavior());
-
-
 			elements.put(Trigger_DeferrableTriggerLabel, UMLPackage.eINSTANCE.getTrigger());
-
-
 			elements.put(Transition_Edge, UMLPackage.eINSTANCE.getTransition());
-
-
 			elements.put(Generalization_Edge, UMLPackage.eINSTANCE.getGeneralization());
-
 			elements.put(Comment_AnnotatedElementEdge, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
-
 			elements.put(Constraint_ConstrainedElementEdge, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
-
 			elements.put(Constraint_ContextEdge, UMLPackage.eINSTANCE.getConstraint_Context());
 		}
 		return elements.get(type);

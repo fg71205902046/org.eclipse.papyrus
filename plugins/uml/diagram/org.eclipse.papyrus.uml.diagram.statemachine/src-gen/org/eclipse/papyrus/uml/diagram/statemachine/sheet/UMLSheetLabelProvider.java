@@ -35,7 +35,7 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelPr
 	public String getText(Object element) {
 		element = unwrap(element);
 		IElementType etype = getElementType(getView(element));
-		return etype == null ? "" : etype.getDisplayName();
+		return etype == null ? "" : etype.getDisplayName(); //$NON-NLS-1$
 	}
 
 	/**
@@ -85,4 +85,5 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelPr
 		}
 		return null;
 	}
+
 }

@@ -81,7 +81,6 @@ public class UMLValidationProvider {
 	 * @generated
 	 */
 	public static class DefaultCtx implements IClientSelector {
-
 		/**
 		 * @generated
 		 */

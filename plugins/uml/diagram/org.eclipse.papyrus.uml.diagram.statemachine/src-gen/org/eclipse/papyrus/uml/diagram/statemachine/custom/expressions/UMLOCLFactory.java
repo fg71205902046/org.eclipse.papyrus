@@ -79,8 +79,7 @@ public class UMLOCLFactory {
 	/**
 	 * @generated
 	 */
-	public static UMLAbstractExpression getExpression(int index, EClassifier context,
-			Map<String, EClassifier> environment) {
+	public static UMLAbstractExpression getExpression(int index, EClassifier context, Map<String, EClassifier> environment) {
 		UMLOCLFactory cached = getInstance();
 		if (index < 0 || index >= cached.expressions.length) {
 			throw new IllegalArgumentException();
@@ -96,8 +95,7 @@ public class UMLOCLFactory {
 	 *
 	 * @generated
 	 */
-	public static UMLAbstractExpression getExpression(String body, EClassifier context,
-			Map<String, EClassifier> environment) {
+	public static UMLAbstractExpression getExpression(String body, EClassifier context, Map<String, EClassifier> environment) {
 		return new Expression(body, context, environment);
 	}
 

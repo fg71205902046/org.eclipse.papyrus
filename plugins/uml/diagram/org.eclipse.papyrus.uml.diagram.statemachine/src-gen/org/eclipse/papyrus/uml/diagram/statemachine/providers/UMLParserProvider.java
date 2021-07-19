@@ -770,84 +770,66 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			switch (visualID) {
 			case StateMachineNameEditPart.VISUAL_ID:
 				return getStateMachine_NameLabel_Parser();
-
 			case StateNameEditPartTN.VISUAL_ID:
 				return getState_NameLabel_TN_Parser();
-
-
 			case FinalStateFloatingLabelEditPart.VISUAL_ID:
 				return getFinalState_FloatingNameLabel_Parser();
 			case FinalStateStereotypeEditPart.VISUAL_ID:
 				return getFinalState_StereotypeLabel_Parser();
-
 			case StateNameEditPart.VISUAL_ID:
 				return getState_NameLabel_Parser();
 			case StateFloatingLabelEditPart.VISUAL_ID:
 				return getState_FloatingNameLabel_Parser();
-
 			case PseudostateInitialFloatingLabelEditPart.VISUAL_ID:
 				return getPseudostate_InitialFloatingNameLabel_Parser();
 			case PseudostateInitialStereotypeEditPart.VISUAL_ID:
 				return getPseudostate_InitialStereotypeLabel_Parser();
-
 			case PseudostateJoinFloatingLabelEditPart.VISUAL_ID:
 				return getPseudostate_JoinFloatingNameLabel_Parser();
 			case PseudostateJoinStereotypeEditPart.VISUAL_ID:
 				return getPseudostate_JoinStereotypeLabel_Parser();
-
 			case PseudostateForkNameEditPart.VISUAL_ID:
 				return getPseudostate_ForkFloatingNameLabel_Parser();
 			case PseudostateForkStereotypeEditPart.VISUAL_ID:
 				return getPseudostate_ForkStereotypeLabel_Parser();
-
 			case PseudostateChoiceFloatingLabelEditPart.VISUAL_ID:
 				return getPseudostate_ChoiceFloatingNameLabel_Parser();
 			case PseudostateChoiceStereotypeEditPart.VISUAL_ID:
 				return getPseudostate_ChoiceStereotypeLabel_Parser();
-
 			case PseudostateJunctionFloatingLabelEditPart.VISUAL_ID:
 				return getPseudostate_JunctionFloatingNameLabel_Parser();
 			case PseudostateJunctionStereotypeEditPart.VISUAL_ID:
 				return getPseudostate_JunctionStereotypeLabel_Parser();
-
 			case PseudostateShallowHistoryFloatingLabelEditPart.VISUAL_ID:
 				return getPseudostate_ShallowHistoryFloatingNameLabel_Parser();
 			case PseudostateShallowHistoryStereotypeEditPart.VISUAL_ID:
 				return getPseudostate_ShallowHistoryStereotypeLabel_Parser();
-
 			case PseudostateDeepHistoryFloatingLabelEditPart.VISUAL_ID:
 				return getPseudostate_DeepHistoryFloatingNameLabel_Parser();
 			case PseudostateDeepHistoryStereotypeEditPart.VISUAL_ID:
 				return getPseudostate_DeepHistoryStereotypeLabel_Parser();
-
 			case PseudostateTerminateFloatingLabelEditPart.VISUAL_ID:
 				return getPseudostate_TerminateFloatingNameLabel_Parser();
 			case PseudostateTerminateStereotypeEditPart.VISUAL_ID:
 				return getPseudostate_TerminateStereotypeLabel_Parser();
-
 			case PseudostateEntryPointFloatingLabelEditPart.VISUAL_ID:
 				return getPseudostate_EntryPointFloatingNameLabel_Parser();
 			case PseudostateEntryPointStereotypeEditPart.VISUAL_ID:
 				return getPseudostate_EntryPointStereotypeLabel_Parser();
-
 			case PseudostateExitPointFloatingLabelEditPart.VISUAL_ID:
 				return getPseudostate_ExitPointFloatingNameLabel_Parser();
 			case PseudostateExitPointStereotypeEditPart.VISUAL_ID:
 				return getPseudostate_ExitPointStereotypeLabel_Parser();
-
 			case ConnectionPointReferenceNameEditPart.VISUAL_ID:
 				return getConnectionPointReference_NameLabel_Parser();
 			case ConnectionPointReferenceStereotypeEditPart.VISUAL_ID:
 				return getConnectionPointReference_StereotypeLabel_Parser();
-
 			case CommentBodyEditPart.VISUAL_ID:
 				return getComment_BodyLabel_Parser();
-
 			case ConstraintNameLabelEditPart.VISUAL_ID:
 				return getConstraint_NameLabel_Parser();
 			case ConstraintBodyEditPart.VISUAL_ID:
 				return getConstraint_BodyLabel_Parser();
-
 			case InternalTransitionEditPart.VISUAL_ID:
 				return getTransition_InternalTransitionLabel_Parser();
 			case EntryStateBehaviorEditPart.VISUAL_ID:
@@ -864,13 +846,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 				return getTransition_GuardLabel_Parser();
 			case TransitionStereotypeEditPart.VISUAL_ID:
 				return getTransition_StereotypeLabel_Parser();
-
 			case GeneralizationStereotypeEditPart.VISUAL_ID:
 				return getGeneralization_StereotypeLabel_Parser();
-
-
-
-
 			}
 		}
 		return null;
