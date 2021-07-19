@@ -20,11 +20,10 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.timing.custom.edit.commands.CustomMessageCreateCommand;
 import org.eclipse.papyrus.uml.diagram.timing.custom.edit.commands.CustomMessageReorientCommand;
+import org.eclipse.papyrus.uml.diagram.timing.custom.edit.commands.TimeConstraintCreateCommand;
+import org.eclipse.papyrus.uml.diagram.timing.custom.edit.commands.TimeObservationCreateCommand;
 import org.eclipse.papyrus.uml.diagram.timing.custom.utils.MessageUtils;
 import org.eclipse.papyrus.uml.diagram.timing.custom.utils.OccurrenceSpecificationUtils;
-import org.eclipse.papyrus.uml.diagram.timing.edit.commands.TimeConstraintCreateCommand;
-import org.eclipse.papyrus.uml.diagram.timing.edit.commands.TimeObservationCreateCommand;
-import org.eclipse.papyrus.uml.diagram.timing.edit.policies.MessageOccurrenceSpecificationItemSemanticEditPolicyCN;
 import org.eclipse.papyrus.uml.diagram.timing.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 

@@ -24,6 +24,7 @@ public class ElementInitializers {
 		// use #getInstance to access cached instance
 	}
 
+
 	/**
 	 * @generated
 	 */

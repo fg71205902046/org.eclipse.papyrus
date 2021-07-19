@@ -24,7 +24,6 @@ import org.eclipse.papyrus.uml.diagram.timing.custom.Messages;
 import org.eclipse.papyrus.uml.diagram.timing.custom.OperationForbiddenException;
 import org.eclipse.papyrus.uml.diagram.timing.custom.utils.Constants;
 import org.eclipse.papyrus.uml.diagram.timing.custom.utils.StateInvariantUtils;
-import org.eclipse.papyrus.uml.diagram.timing.edit.policies.FullStateInvariantItemSemanticEditPolicyCN;
 
 /** Hides related Views (OccurrenceSpecifications, VerticalLine) when hiding a full StateInvariant. */
 public class CustomFullStateInvariantItemSemanticEditPolicy extends FullStateInvariantItemSemanticEditPolicyCN {

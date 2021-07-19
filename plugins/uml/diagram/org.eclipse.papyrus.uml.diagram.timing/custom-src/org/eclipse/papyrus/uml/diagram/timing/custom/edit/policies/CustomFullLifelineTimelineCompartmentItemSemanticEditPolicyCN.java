@@ -25,7 +25,6 @@ import org.eclipse.papyrus.uml.diagram.timing.custom.edit.commands.CustomTimeObs
 import org.eclipse.papyrus.uml.diagram.timing.custom.utils.MessageUtils;
 import org.eclipse.papyrus.uml.diagram.timing.edit.parts.MessageFoundEditPart;
 import org.eclipse.papyrus.uml.diagram.timing.edit.parts.MessageLostEditPart;
-import org.eclipse.papyrus.uml.diagram.timing.edit.policies.FullLifelineTimelineCompartmentItemSemanticEditPolicyCN;
 import org.eclipse.papyrus.uml.diagram.timing.providers.UMLElementTypes;
 
 public class CustomFullLifelineTimelineCompartmentItemSemanticEditPolicyCN extends FullLifelineTimelineCompartmentItemSemanticEditPolicyCN {

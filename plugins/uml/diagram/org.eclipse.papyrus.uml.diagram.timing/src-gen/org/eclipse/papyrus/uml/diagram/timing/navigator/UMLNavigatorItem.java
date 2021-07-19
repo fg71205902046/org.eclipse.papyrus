@@ -33,18 +33,16 @@ public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
 		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
 
 			@Override
-			@SuppressWarnings("rawtypes")
+			@SuppressWarnings({ "rawtypes", "unchecked" })
 			public Object getAdapter(Object adaptableObject, Class adapterType) {
-				if (adaptableObject instanceof org.eclipse.papyrus.uml.diagram.timing.navigator.UMLNavigatorItem
-						&& (adapterType == View.class || adapterType == EObject.class)) {
-					return ((org.eclipse.papyrus.uml.diagram.timing.navigator.UMLNavigatorItem) adaptableObject)
-							.getView();
+				if (adaptableObject instanceof org.eclipse.papyrus.uml.diagram.timing.navigator.UMLNavigatorItem && (adapterType == View.class || adapterType == EObject.class)) {
+					return ((org.eclipse.papyrus.uml.diagram.timing.navigator.UMLNavigatorItem) adaptableObject).getView();
 				}
 				return null;
 			}
 
 			@Override
-			@SuppressWarnings("rawtypes")
+			@SuppressWarnings({ "rawtypes", "unchecked" })
 			public Class[] getAdapterList() {
 				return supportedTypes;
 			}
@@ -90,8 +88,7 @@ public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof org.eclipse.papyrus.uml.diagram.timing.navigator.UMLNavigatorItem) {
-			return EcoreUtil.getURI(getView()).equals(EcoreUtil
-					.getURI(((org.eclipse.papyrus.uml.diagram.timing.navigator.UMLNavigatorItem) obj).getView()));
+			return EcoreUtil.getURI(getView()).equals(EcoreUtil.getURI(((org.eclipse.papyrus.uml.diagram.timing.navigator.UMLNavigatorItem) obj).getView()));
 		}
 		return super.equals(obj);
 	}

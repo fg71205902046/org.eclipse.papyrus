@@ -20,7 +20,6 @@ import org.eclipse.papyrus.uml.diagram.timing.custom.edit.commands.CustomMessage
 import org.eclipse.papyrus.uml.diagram.timing.custom.edit.commands.CustomMessageReorientCommand;
 import org.eclipse.papyrus.uml.diagram.timing.custom.utils.MessageUtils;
 import org.eclipse.papyrus.uml.diagram.timing.custom.utils.OccurrenceSpecificationUtils;
-import org.eclipse.papyrus.uml.diagram.timing.edit.policies.DestructionOccurrenceSpecificationItemSemanticEditPolicyCN;
 import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 
 /** Semantic edit policy for {@link DestructionOccurrenceSpecification}s */

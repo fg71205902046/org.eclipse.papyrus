@@ -1,15 +1,15 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  *
-  * All rights reserved. This program and the accompanying materials
-  * are made available under the terms of the Eclipse Public License 2.0
-  * which accompanies this distribution, and is available at
-  * https://www.eclipse.org/legal/epl-2.0/
-  *
-  * SPDX-License-Identifier: EPL-2.0
-  *
-  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.timing.edit.parts;
 
@@ -37,7 +37,7 @@ public class FullLifelineTimelineCompartmentEditPartCN extends LinkLFShapeCompar
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Lifeline_FullSubfragmentCompartment";
+	public static final String VISUAL_ID = "Lifeline_FullSubfragmentCompartment"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -76,9 +76,7 @@ public class FullLifelineTimelineCompartmentEditPartCN extends LinkLFShapeCompar
 		installEditPolicy(PasteEditPolicy.PASTE_ROLE, new PasteEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new CustomTimelineCompartmentLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new TimingDiagramDragDropEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new CustomFullLifelineTimelineCompartmentItemSemanticEditPolicyCN());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomFullLifelineTimelineCompartmentItemSemanticEditPolicyCN());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomLifelineCompartmentGraphicalNodeEditPolicy());
 	}
-
 }

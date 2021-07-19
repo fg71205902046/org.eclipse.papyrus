@@ -17,11 +17,10 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
+import org.eclipse.papyrus.uml.diagram.timing.custom.edit.commands.CompactLifelineCreateCommandCN;
+import org.eclipse.papyrus.uml.diagram.timing.custom.edit.commands.FullLifelineCreateCommandCN;
 import org.eclipse.papyrus.uml.diagram.timing.custom.utils.LifelineUtils;
 import org.eclipse.papyrus.uml.diagram.timing.custom.utils.LifelineUtils.LifelineType;
-import org.eclipse.papyrus.uml.diagram.timing.edit.commands.CompactLifelineCreateCommandCN;
-import org.eclipse.papyrus.uml.diagram.timing.edit.commands.FullLifelineCreateCommandCN;
-import org.eclipse.papyrus.uml.diagram.timing.edit.policies.InteractionCompartmentItemSemanticEditPolicyTN;
 import org.eclipse.papyrus.uml.diagram.timing.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Lifeline;
 

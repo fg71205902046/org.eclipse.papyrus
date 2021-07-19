@@ -1,15 +1,15 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  *
-  * All rights reserved. This program and the accompanying materials
-  * are made available under the terms of the Eclipse Public License 2.0
-  * which accompanies this distribution, and is available at
-  * https://www.eclipse.org/legal/epl-2.0/
-  *
-  * SPDX-License-Identifier: EPL-2.0
-  *
-  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.timing.edit.parts;
 
@@ -32,7 +32,7 @@ public class MessageAsyncEditPart extends ConnectionEditPart implements ITreeBra
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Message_AsynchEdge";
+	public static final String VISUAL_ID = "Message_AsynchEdge"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -48,8 +48,7 @@ public class MessageAsyncEditPart extends ConnectionEditPart implements ITreeBra
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
 	}
 
 	/**
@@ -60,8 +59,7 @@ public class MessageAsyncEditPart extends ConnectionEditPart implements ITreeBra
 			((MessageAsyncNameLabelEditPart) childEditPart).setLabel(getPrimaryShape().getMessageLabel());
 		}
 		if (childEditPart instanceof MessageAsyncAppliedStereotypeEditPart) {
-			((MessageAsyncAppliedStereotypeEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+			((MessageAsyncAppliedStereotypeEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -121,5 +119,4 @@ public class MessageAsyncEditPart extends ConnectionEditPart implements ITreeBra
 	public MessageAsyncFigure getPrimaryShape() {
 		return (MessageAsyncFigure) getFigure();
 	}
-
 }

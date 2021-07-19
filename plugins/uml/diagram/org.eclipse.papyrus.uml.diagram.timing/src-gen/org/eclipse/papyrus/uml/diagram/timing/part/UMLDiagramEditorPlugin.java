@@ -10,7 +10,6 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Christian W. Damus (CEA) - bug 410346
  */
 package org.eclipse.papyrus.uml.diagram.timing.part;
 
@@ -24,7 +23,7 @@ import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.Activator;
+import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 import org.eclipse.papyrus.uml.diagram.timing.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.timing.expressions.UMLOCLFactory;
 import org.eclipse.papyrus.uml.diagram.timing.preferences.DiagramPreferenceInitializer;
@@ -98,11 +97,9 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 		instance = this;
 		myLogHelper = new LogHelper(this);
 		PreferencesHint.registerPreferenceStore(DIAGRAM_PREFERENCES_HINT, getPreferenceStore());
-		adapterFactory = org.eclipse.papyrus.infra.gmfdiag.common.Activator.getInstance()
-				.getItemProvidersAdapterFactory();
+		adapterFactory = Activator.getInstance().getItemProvidersAdapterFactory();
 		DiagramPreferenceInitializer diagramPreferenceInitializer = new DiagramPreferenceInitializer();
 		diagramPreferenceInitializer.initializeDefaultPreferences();
-
 	}
 
 	/**
@@ -130,7 +127,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 */
 	@Override
 	public IPreferenceStore getPreferenceStore() {
-		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+		IPreferenceStore store = org.eclipse.papyrus.infra.gmfdiag.preferences.Activator.getDefault().getPreferenceStore();
 		return store;
 	}
 
@@ -178,8 +175,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	public static ImageDescriptor findImageDescriptor(String path) {
 		final IPath p = new Path(path);
 		if (p.isAbsolute() && p.segmentCount() > 1) {
-			return AbstractUIPlugin.imageDescriptorFromPlugin(p.segment(0),
-					p.removeFirstSegments(1).makeAbsolute().toString());
+			return AbstractUIPlugin.imageDescriptorFromPlugin(p.segment(0), p.removeFirstSegments(1).makeAbsolute().toString());
 		} else {
 			return getBundledImageDescriptor(p.makeAbsolute().toString());
 		}

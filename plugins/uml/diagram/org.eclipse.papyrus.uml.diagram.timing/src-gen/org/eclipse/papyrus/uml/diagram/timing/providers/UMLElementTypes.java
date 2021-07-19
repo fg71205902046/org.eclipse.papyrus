@@ -76,8 +76,7 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	private static DiagramElementTypeImages elementTypeImages = new DiagramElementTypeImages(
-			UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
+	private static DiagramElementTypeImages elementTypeImages = new DiagramElementTypeImages(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
 
 	/**
 	 * @generated
@@ -87,170 +86,115 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType Package_TimingDiagram = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.Package_TimingDiagram"); //$NON-NLS-1$
-
+	public static final IElementType Package_TimingDiagram = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Package_TimingDiagram"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Interaction_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.Interaction_Shape"); //$NON-NLS-1$
-
+	public static final IElementType Interaction_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Interaction_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Lifeline_FullShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.Lifeline_FullShape"); //$NON-NLS-1$
-
+	public static final IElementType Lifeline_FullShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Lifeline_FullShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Lifeline_CompactShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.Lifeline_CompactShape"); //$NON-NLS-1$
-
+	public static final IElementType Lifeline_CompactShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Lifeline_CompactShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType StateInvariant_FullShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.StateInvariant_FullShape"); //$NON-NLS-1$
-
+	public static final IElementType StateInvariant_FullShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.StateInvariant_FullShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType StateInvariant_CompactShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.StateInvariant_CompactShape"); //$NON-NLS-1$
-
+	public static final IElementType StateInvariant_CompactShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.StateInvariant_CompactShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType OccurrenceSpecification_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.OccurrenceSpecification_Shape"); //$NON-NLS-1$
-
+	public static final IElementType OccurrenceSpecification_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.OccurrenceSpecification_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType MessageOccurrenceSpecification_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.MessageOccurrenceSpecification_Shape"); //$NON-NLS-1$
-
+	public static final IElementType MessageOccurrenceSpecification_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.MessageOccurrenceSpecification_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Node_StateDefinitionShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.Node_StateDefinitionShape"); //$NON-NLS-1$
-
+	public static final IElementType Node_StateDefinitionShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Node_StateDefinitionShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Node_StateInvariantTransitionShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.Node_StateInvariantTransitionShape"); //$NON-NLS-1$
-
+	public static final IElementType Node_StateInvariantTransitionShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Node_StateInvariantTransitionShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType TimeConstraint_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.TimeConstraint_Shape"); //$NON-NLS-1$
-
+	public static final IElementType TimeConstraint_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.TimeConstraint_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType TimeObservation_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.TimeObservation_Shape"); //$NON-NLS-1$
-
+	public static final IElementType TimeObservation_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.TimeObservation_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType DurationConstraint_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.DurationConstraint_Shape"); //$NON-NLS-1$
-
+	public static final IElementType DurationConstraint_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.DurationConstraint_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType DurationObservation_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.DurationObservation_Shape"); //$NON-NLS-1$
-
+	public static final IElementType DurationObservation_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.DurationObservation_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType GeneralOrdering_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.GeneralOrdering_Shape"); //$NON-NLS-1$
-
+	public static final IElementType GeneralOrdering_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.GeneralOrdering_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Node_FreeTimeRulerShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.Node_FreeTimeRulerShape"); //$NON-NLS-1$
-
+	public static final IElementType Node_FreeTimeRulerShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Node_FreeTimeRulerShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Node_LinearTimeRulerShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.Node_LinearTimeRulerShape"); //$NON-NLS-1$
-
+	public static final IElementType Node_LinearTimeRulerShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Node_LinearTimeRulerShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Node_TickShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.Node_TickShape"); //$NON-NLS-1$
-
+	public static final IElementType Node_TickShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Node_TickShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType DestructionOccurrenceSpecification_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.DestructionOccurrenceSpecification_Shape"); //$NON-NLS-1$
-
+	public static final IElementType DestructionOccurrenceSpecification_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.DestructionOccurrenceSpecification_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Lifeline_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.Lifeline_Shape"); //$NON-NLS-1$
-
+	public static final IElementType Lifeline_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Lifeline_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Gate_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.Gate_Shape"); //$NON-NLS-1$
-
+	public static final IElementType Gate_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Gate_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Message_SynchEdge = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.Message_SynchEdge"); //$NON-NLS-1$
-
+	public static final IElementType Message_SynchEdge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Message_SynchEdge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Message_AsynchEdge = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.Message_AsynchEdge"); //$NON-NLS-1$
-
+	public static final IElementType Message_AsynchEdge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Message_AsynchEdge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Message_ReplyEdge = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.Message_ReplyEdge"); //$NON-NLS-1$
-
+	public static final IElementType Message_ReplyEdge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Message_ReplyEdge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Message_CreateEdge = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.Message_CreateEdge"); //$NON-NLS-1$
-
+	public static final IElementType Message_CreateEdge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Message_CreateEdge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Message_DeleteEdge = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.Message_DeleteEdge"); //$NON-NLS-1$
-
+	public static final IElementType Message_DeleteEdge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Message_DeleteEdge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Message_LostEdge = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.Message_LostEdge"); //$NON-NLS-1$
-
+	public static final IElementType Message_LostEdge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Message_LostEdge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Message_FoundEdge = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.Message_FoundEdge"); //$NON-NLS-1$
+	public static final IElementType Message_FoundEdge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Message_FoundEdge"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -289,53 +233,28 @@ public class UMLElementTypes {
 		Object type = hint.getAdapter(IElementType.class);
 		if (elements == null) {
 			elements = new IdentityHashMap<>();
-
 			elements.put(Package_TimingDiagram, UMLPackage.eINSTANCE.getPackage());
-
 			elements.put(Interaction_Shape, UMLPackage.eINSTANCE.getInteraction());
-
 			elements.put(Lifeline_FullShape, UMLPackage.eINSTANCE.getLifeline());
-
 			elements.put(Lifeline_CompactShape, UMLPackage.eINSTANCE.getLifeline());
-
 			elements.put(StateInvariant_FullShape, UMLPackage.eINSTANCE.getStateInvariant());
-
 			elements.put(StateInvariant_CompactShape, UMLPackage.eINSTANCE.getStateInvariant());
-
 			elements.put(OccurrenceSpecification_Shape, UMLPackage.eINSTANCE.getOccurrenceSpecification());
-
-			elements.put(MessageOccurrenceSpecification_Shape,
-					UMLPackage.eINSTANCE.getMessageOccurrenceSpecification());
-
+			elements.put(MessageOccurrenceSpecification_Shape, UMLPackage.eINSTANCE.getMessageOccurrenceSpecification());
 			elements.put(TimeConstraint_Shape, UMLPackage.eINSTANCE.getTimeConstraint());
-
 			elements.put(TimeObservation_Shape, UMLPackage.eINSTANCE.getTimeObservation());
-
 			elements.put(DurationConstraint_Shape, UMLPackage.eINSTANCE.getDurationConstraint());
-
 			elements.put(DurationObservation_Shape, UMLPackage.eINSTANCE.getDurationObservation());
-
 			elements.put(GeneralOrdering_Shape, UMLPackage.eINSTANCE.getGeneralOrdering());
-
-			elements.put(DestructionOccurrenceSpecification_Shape,
-					UMLPackage.eINSTANCE.getDestructionOccurrenceSpecification());
-
+			elements.put(DestructionOccurrenceSpecification_Shape, UMLPackage.eINSTANCE.getDestructionOccurrenceSpecification());
 			elements.put(Lifeline_Shape, UMLPackage.eINSTANCE.getLifeline());
-
 			elements.put(Gate_Shape, UMLPackage.eINSTANCE.getGate());
-
 			elements.put(Message_SynchEdge, UMLPackage.eINSTANCE.getMessage());
-
 			elements.put(Message_AsynchEdge, UMLPackage.eINSTANCE.getMessage());
-
 			elements.put(Message_ReplyEdge, UMLPackage.eINSTANCE.getMessage());
-
 			elements.put(Message_CreateEdge, UMLPackage.eINSTANCE.getMessage());
-
 			elements.put(Message_DeleteEdge, UMLPackage.eINSTANCE.getMessage());
-
 			elements.put(Message_LostEdge, UMLPackage.eINSTANCE.getMessage());
-
 			elements.put(Message_FoundEdge, UMLPackage.eINSTANCE.getMessage());
 		}
 		return elements.get(type);
@@ -346,6 +265,54 @@ public class UMLElementTypes {
 	 */
 	private static IElementType getElementTypeByUniqueId(String id) {
 		return ElementTypeRegistry.getInstance().getType(id);
+	}
+
+	/**
+	 * @generated
+	 */
+	public static synchronized boolean isKnownElementType(IElementType elementType) {
+		if (KNOWN_ELEMENT_TYPES == null) {
+			KNOWN_ELEMENT_TYPES = new HashSet<>();
+			KNOWN_ELEMENT_TYPES.add(Package_TimingDiagram);
+			KNOWN_ELEMENT_TYPES.add(Interaction_Shape);
+			KNOWN_ELEMENT_TYPES.add(Lifeline_FullShape);
+			KNOWN_ELEMENT_TYPES.add(Lifeline_CompactShape);
+			KNOWN_ELEMENT_TYPES.add(StateInvariant_FullShape);
+			KNOWN_ELEMENT_TYPES.add(StateInvariant_CompactShape);
+			KNOWN_ELEMENT_TYPES.add(OccurrenceSpecification_Shape);
+			KNOWN_ELEMENT_TYPES.add(MessageOccurrenceSpecification_Shape);
+			KNOWN_ELEMENT_TYPES.add(Node_StateDefinitionShape);
+			KNOWN_ELEMENT_TYPES.add(Node_StateInvariantTransitionShape);
+			KNOWN_ELEMENT_TYPES.add(TimeConstraint_Shape);
+			KNOWN_ELEMENT_TYPES.add(TimeObservation_Shape);
+			KNOWN_ELEMENT_TYPES.add(DurationConstraint_Shape);
+			KNOWN_ELEMENT_TYPES.add(DurationObservation_Shape);
+			KNOWN_ELEMENT_TYPES.add(GeneralOrdering_Shape);
+			KNOWN_ELEMENT_TYPES.add(Node_FreeTimeRulerShape);
+			KNOWN_ELEMENT_TYPES.add(Node_LinearTimeRulerShape);
+			KNOWN_ELEMENT_TYPES.add(Node_TickShape);
+			KNOWN_ELEMENT_TYPES.add(DestructionOccurrenceSpecification_Shape);
+			KNOWN_ELEMENT_TYPES.add(Lifeline_Shape);
+			KNOWN_ELEMENT_TYPES.add(Gate_Shape);
+			KNOWN_ELEMENT_TYPES.add(Message_SynchEdge);
+			KNOWN_ELEMENT_TYPES.add(Message_AsynchEdge);
+			KNOWN_ELEMENT_TYPES.add(Message_ReplyEdge);
+			KNOWN_ELEMENT_TYPES.add(Message_CreateEdge);
+			KNOWN_ELEMENT_TYPES.add(Message_DeleteEdge);
+			KNOWN_ELEMENT_TYPES.add(Message_LostEdge);
+			KNOWN_ELEMENT_TYPES.add(Message_FoundEdge);
+		}
+
+		boolean result = KNOWN_ELEMENT_TYPES.contains(elementType);
+
+		if (!result) {
+			IElementType[] supertypes = elementType.getAllSuperTypes();
+			for (int i = 0; !result && (i < supertypes.length); i++) {
+				result = KNOWN_ELEMENT_TYPES.contains(supertypes[i]);
+			}
+		}
+
+		return result;
 	}
 
 	/**
@@ -413,54 +380,6 @@ public class UMLElementTypes {
 			}
 		}
 		return null;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static synchronized boolean isKnownElementType(IElementType elementType) {
-		if (KNOWN_ELEMENT_TYPES == null) {
-			KNOWN_ELEMENT_TYPES = new HashSet<>();
-			KNOWN_ELEMENT_TYPES.add(Package_TimingDiagram);
-			KNOWN_ELEMENT_TYPES.add(Interaction_Shape);
-			KNOWN_ELEMENT_TYPES.add(Lifeline_FullShape);
-			KNOWN_ELEMENT_TYPES.add(Lifeline_CompactShape);
-			KNOWN_ELEMENT_TYPES.add(StateInvariant_FullShape);
-			KNOWN_ELEMENT_TYPES.add(StateInvariant_CompactShape);
-			KNOWN_ELEMENT_TYPES.add(OccurrenceSpecification_Shape);
-			KNOWN_ELEMENT_TYPES.add(MessageOccurrenceSpecification_Shape);
-			KNOWN_ELEMENT_TYPES.add(Node_StateDefinitionShape);
-			KNOWN_ELEMENT_TYPES.add(Node_StateInvariantTransitionShape);
-			KNOWN_ELEMENT_TYPES.add(TimeConstraint_Shape);
-			KNOWN_ELEMENT_TYPES.add(TimeObservation_Shape);
-			KNOWN_ELEMENT_TYPES.add(DurationConstraint_Shape);
-			KNOWN_ELEMENT_TYPES.add(DurationObservation_Shape);
-			KNOWN_ELEMENT_TYPES.add(GeneralOrdering_Shape);
-			KNOWN_ELEMENT_TYPES.add(Node_FreeTimeRulerShape);
-			KNOWN_ELEMENT_TYPES.add(Node_LinearTimeRulerShape);
-			KNOWN_ELEMENT_TYPES.add(Node_TickShape);
-			KNOWN_ELEMENT_TYPES.add(DestructionOccurrenceSpecification_Shape);
-			KNOWN_ELEMENT_TYPES.add(Lifeline_Shape);
-			KNOWN_ELEMENT_TYPES.add(Gate_Shape);
-			KNOWN_ELEMENT_TYPES.add(Message_SynchEdge);
-			KNOWN_ELEMENT_TYPES.add(Message_AsynchEdge);
-			KNOWN_ELEMENT_TYPES.add(Message_ReplyEdge);
-			KNOWN_ELEMENT_TYPES.add(Message_CreateEdge);
-			KNOWN_ELEMENT_TYPES.add(Message_DeleteEdge);
-			KNOWN_ELEMENT_TYPES.add(Message_LostEdge);
-			KNOWN_ELEMENT_TYPES.add(Message_FoundEdge);
-		}
-
-		boolean result = KNOWN_ELEMENT_TYPES.contains(elementType);
-
-		if (!result) {
-			IElementType[] supertypes = elementType.getAllSuperTypes();
-			for (int i = 0; !result && (i < supertypes.length); i++) {
-				result = KNOWN_ELEMENT_TYPES.contains(supertypes[i]);
-			}
-		}
-
-		return result;
 	}
 
 	/**

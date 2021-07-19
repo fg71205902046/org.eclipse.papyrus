@@ -15,7 +15,6 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.uml.diagram.timing.custom.edit.commands.CustomMessageCreateCommand;
 import org.eclipse.papyrus.uml.diagram.timing.custom.utils.MessageUtils;
-import org.eclipse.papyrus.uml.diagram.timing.edit.policies.CompactLifelineItemSemanticEditPolicyCN;
 
 public class CustomCompactLifelineItemSemanticEditPolicyCN extends CompactLifelineItemSemanticEditPolicyCN {
 

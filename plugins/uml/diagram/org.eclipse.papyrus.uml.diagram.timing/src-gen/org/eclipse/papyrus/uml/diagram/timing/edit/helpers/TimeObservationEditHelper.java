@@ -17,4 +17,5 @@ package org.eclipse.papyrus.uml.diagram.timing.edit.helpers;
  * @generated
  */
 public class TimeObservationEditHelper extends UMLBaseEditHelper {
+
 }

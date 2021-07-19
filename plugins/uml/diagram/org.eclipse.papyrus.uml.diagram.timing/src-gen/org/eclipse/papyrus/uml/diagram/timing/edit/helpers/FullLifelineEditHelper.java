@@ -16,4 +16,5 @@ package org.eclipse.papyrus.uml.diagram.timing.edit.helpers;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 
 public class FullLifelineEditHelper extends AbstractEditHelperAdvice {
+
 }
