@@ -1,15 +1,15 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  *
-  * All rights reserved. This program and the accompanying materials
-  * are made available under the terms of the Eclipse Public License 2.0
-  * which accompanies this distribution, and is available at
-  * https://www.eclipse.org/legal/epl-2.0/
-  *
-  * SPDX-License-Identifier: EPL-2.0
-  *
-  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.usecase.edit.parts;
 
@@ -32,7 +32,7 @@ public class AssociationEditPart extends UMLConnectionNodeEditPart implements IT
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Association_Edge";
+	public static final String VISUAL_ID = "Association_Edge"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -56,12 +56,10 @@ public class AssociationEditPart extends UMLConnectionNodeEditPart implements IT
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof AssociationNameEditPart) {
-			((AssociationNameEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAssociationNameLabel());
+			((AssociationNameEditPart) childEditPart).setLabel(getPrimaryShape().getAssociationNameLabel());
 		}
 		if (childEditPart instanceof AssociationAppliedStereotypeEditPart) {
-			((AssociationAppliedStereotypeEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAppliedStereotypeLabel());
+			((AssociationAppliedStereotypeEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -121,5 +119,4 @@ public class AssociationEditPart extends UMLConnectionNodeEditPart implements IT
 	public AssociationFigure getPrimaryShape() {
 		return (AssociationFigure) getFigure();
 	}
-
 }

@@ -1,15 +1,15 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  *
-  * All rights reserved. This program and the accompanying materials
-  * are made available under the terms of the Eclipse Public License 2.0
-  * which accompanies this distribution, and is available at
-  * https://www.eclipse.org/legal/epl-2.0/
-  *
-  * SPDX-License-Identifier: EPL-2.0
-  *
-  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.usecase.providers;
 
@@ -269,107 +269,40 @@ public class UMLElementTypes {
 		Object type = hint.getAdapter(IElementType.class);
 		if (elements == null) {
 			elements = new IdentityHashMap<>();
-
 			elements.put(Package_UseCaseDiagram, UMLPackage.eINSTANCE.getPackage());
-
-
 			elements.put(Actor_Shape, UMLPackage.eINSTANCE.getActor());
-
-
 			elements.put(Actor_ClassifierShape, UMLPackage.eINSTANCE.getActor());
-
-
 			elements.put(UseCase_Shape, UMLPackage.eINSTANCE.getUseCase());
-
-
 			elements.put(UseCase_ClassifierShape, UMLPackage.eINSTANCE.getUseCase());
-
-
 			elements.put(Classifier_SubjectShape, UMLPackage.eINSTANCE.getClassifier());
-
-
 			elements.put(Package_Shape, UMLPackage.eINSTANCE.getPackage());
-
-
 			elements.put(Constraint_Shape, UMLPackage.eINSTANCE.getConstraint());
-
-
 			elements.put(Comment_Shape, UMLPackage.eINSTANCE.getComment());
-
-
 			elements.put(NamedElement_DefaultShape, UMLPackage.eINSTANCE.getNamedElement());
-
-
 			elements.put(Diagram_ShortcutShape, NotationPackage.eINSTANCE.getDiagram());
-
-
 			elements.put(ExtensionPoint_ExtensionPointLabel, UMLPackage.eINSTANCE.getExtensionPoint());
-
-
 			elements.put(ExtensionPoint_ClassifierExtensionPointLabel, UMLPackage.eINSTANCE.getExtensionPoint());
-
-
 			elements.put(UseCase_Shape_CCN, UMLPackage.eINSTANCE.getUseCase());
-
-
 			elements.put(Component_Shape_CCN, UMLPackage.eINSTANCE.getComponent());
-
-
 			elements.put(Comment_Shape_CN, UMLPackage.eINSTANCE.getComment());
-
-
 			elements.put(Constraint_Shape_CCN, UMLPackage.eINSTANCE.getConstraint());
-
-
 			elements.put(Actor_Shape_CCN, UMLPackage.eINSTANCE.getActor());
-
-
 			elements.put(Constraint_Shape_CN, UMLPackage.eINSTANCE.getConstraint());
-
-
 			elements.put(Actor_Shape_CN, UMLPackage.eINSTANCE.getActor());
-
-
 			elements.put(UseCase_Shape_CN, UMLPackage.eINSTANCE.getUseCase());
-
-
 			elements.put(Component_Shape_CN, UMLPackage.eINSTANCE.getComponent());
-
-
 			elements.put(Package_Shape_CN, UMLPackage.eINSTANCE.getPackage());
-
-
 			elements.put(Include_Edge, UMLPackage.eINSTANCE.getInclude());
-
-
 			elements.put(Extend_Edge, UMLPackage.eINSTANCE.getExtend());
-
-
 			elements.put(Generalization_Edge, UMLPackage.eINSTANCE.getGeneralization());
-
-
 			elements.put(Association_Edge, UMLPackage.eINSTANCE.getAssociation());
-
 			elements.put(Constraint_ConstrainedElementEdge, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
-
-
 			elements.put(Dependency_Edge, UMLPackage.eINSTANCE.getDependency());
-
 			elements.put(Comment_AnnotatedElementEdge, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
-
-
 			elements.put(Abstraction_Edge, UMLPackage.eINSTANCE.getAbstraction());
-
-
 			elements.put(Usage_Edge, UMLPackage.eINSTANCE.getUsage());
-
-
 			elements.put(Realization_Edge, UMLPackage.eINSTANCE.getRealization());
-
-
 			elements.put(PackageMerge_Edge, UMLPackage.eINSTANCE.getPackageMerge());
-
-
 			elements.put(PackageImport_Edge, UMLPackage.eINSTANCE.getPackageImport());
 		}
 		return elements.get(type);

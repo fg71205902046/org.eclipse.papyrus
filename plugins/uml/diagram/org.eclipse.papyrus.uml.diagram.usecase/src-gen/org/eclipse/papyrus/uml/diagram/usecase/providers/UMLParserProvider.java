@@ -998,40 +998,30 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 				return getActor_StereotypeLabel_Parser();
 			case ActorFloatingLabelEditPartTN.VISUAL_ID:
 				return getActor_FloatingNameLabel_Parser();
-
 			case ActorAsRectangleNameEditPartTN.VISUAL_ID:
 				return getActor_ClassifierNameLabel_Parser();
-
 			case UseCaseNameEditPartTN.VISUAL_ID:
 				return getUseCase_NameLabel_Parser();
 			case UseCaseFloatingLabelEditPartTN.VISUAL_ID:
 				return getUseCase_FloatingNameLabel_Parser();
-
 			case UseCaseAsRectangleNameEditPartTN.VISUAL_ID:
 				return getUseCase_ClassifierNameLabel_Parser();
-
 			case SubjectClassifierNameEditPartTN.VISUAL_ID:
 				return getClassifier_NameLabel_Parser();
 			case SubjectClassifierFloatingLabelEditPartTN.VISUAL_ID:
 				return getClassifier_FloatingNameLabel_Parser();
-
 			case PackageNameEditPartTN.VISUAL_ID:
 				return getPackage_NameLabel_Parser();
-
 			case ConstraintNameEditPartTN.VISUAL_ID:
 				return getConstraint_NameLabel_Parser();
 			case ConstraintBodyEditPart.VISUAL_ID:
 				return getConstraint_BodyLabel_Parser();
-
 			case CommentBodyEditPartTN.VISUAL_ID:
 				return getComment_BodyLabel_Parser();
-
 			case DefaultNamedElementNameEditPart.VISUAL_ID:
 				return getNamedElement_NameLabel_Parser();
-
 			case DiagramNameEditPart.VISUAL_ID:
 				return getDiagram_NameLabel_Parser();
-
 			case ExtensionPointEditPart.VISUAL_ID:
 				return getExtensionPoint_ExtensionPointLabel_Parser();
 			case ExtensionPointInRectangleEditPart.VISUAL_ID:
@@ -1040,92 +1030,70 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 				return getUseCase_NameLabel_CCN_Parser();
 			case UseCaseInComponentFloatingLabelEditPart.VISUAL_ID:
 				return getUseCase_FloatingNameLabel_CCN_Parser();
-
 			case ComponentInComponentNameEditPart.VISUAL_ID:
 				return getComponent_NameLabel_CCN_Parser();
-
 			case CommentBodyEditPartCN.VISUAL_ID:
 				return getComment_BodyLabel_CN_Parser();
-
 			case ConstraintInComponentNameEditPart.VISUAL_ID:
 				return getConstraint_NameLabel_CCN_Parser();
 			case ConstraintBodyInCEditPart.VISUAL_ID:
 				return getConstraint_BodyLabel_CCN_Parser();
-
 			case ActorInComponentNameEditPart.VISUAL_ID:
 				return getActor_NameLabel_CCN_Parser();
 			case ActorInComponentAppliedStereotypeEditPart.VISUAL_ID:
 				return getActor_StereotypeLabel_CCN_Parser();
 			case ActorInComponentFloatingLabelEditPart.VISUAL_ID:
 				return getActor_FloatingNameLabel_CCN_Parser();
-
 			case ConstraintInPackageNameEditPart.VISUAL_ID:
 				return getConstraint_NameLabel_CN_Parser();
 			case ConstraintBodyInPEditPart.VISUAL_ID:
 				return getConstraint_BodyLabel_CN_Parser();
-
 			case ActorInPackageNameEditPart.VISUAL_ID:
 				return getActor_NameLabel_CN_Parser();
 			case ActorInPackageAppliedStereotypeEditPart.VISUAL_ID:
 				return getActor_StereotypeLabel_CN_Parser();
 			case ActorInPackageFloatingLabelEditPart.VISUAL_ID:
 				return getActor_FloatingNameLabel_CN_Parser();
-
 			case UseCaseInPackageNameEditPart.VISUAL_ID:
 				return getUseCase_NameLabel_CN_Parser();
 			case UseCaseInPackageFloatingLabelEditPart.VISUAL_ID:
 				return getUseCase_FloatingNameLabel_CN_Parser();
-
 			case ComponentInPackageNameEditPart.VISUAL_ID:
 				return getComponent_NameLabel_CN_Parser();
 			case ComponentInPackageFloatingLabelEditPart.VISUAL_ID:
 				return getComponent_FloatingNameLabel_Parser();
-
 			case PackageNameEditPartCN.VISUAL_ID:
 				return getPackage_NameLabel_CN_Parser();
-
 			case IncludeAppliedStereotypeEditPart.VISUAL_ID:
 				return getInclude_StereotypeLabel_Parser();
-
 			case ExtendAppliedStereotypeEditPart.VISUAL_ID:
 				return getExtend_StereotypeLabel_Parser();
-
 			case GeneralizationAppliedStereotypeEditPart.VISUAL_ID:
 				return getGeneralization_StereotypeLabel_Parser();
-
 			case AssociationNameEditPart.VISUAL_ID:
 				return getAssociation_NameLabel_Parser();
 			case AssociationAppliedStereotypeEditPart.VISUAL_ID:
 				return getAssociation_StereotypeLabel_Parser();
-
-
 			case DependencyNameEditPart.VISUAL_ID:
 				return getDependency_NameLabel_Parser();
 			case DependencyAppliedStereotypeEditPart.VISUAL_ID:
 				return getDependency_StereotypeLabel_Parser();
-
-
 			case AbstractionNameEditPart.VISUAL_ID:
 				return getAbstraction_NameLabel_Parser();
 			case AppliedStereotypeAbstractionEditPart.VISUAL_ID:
 				return getAbstraction_StereotypeLabel_Parser();
-
 			case UsageNameEditPart.VISUAL_ID:
 				return getUsage_NameLabel_Parser();
 			case AppliedStereotypeUsageEditPart.VISUAL_ID:
 				return getUsage_StereotypeLabel_Parser();
-
 			case RealizationNameEditPart.VISUAL_ID:
 				return getRealization_NameLabel_Parser();
 			case RealizationAppliedStereotypeEditPart.VISUAL_ID:
 				return getRealization_StereotypeLabel_Parser();
-
 			case AppliedStereotypePackageMergeEditPart.VISUAL_ID:
 				return getPackageMerge_StereotypeLabel_Parser();
-
 			case PackageImportAppliedStereotypeEditPart.VISUAL_ID:
 				return getPackageImport_StereotypeLabel_Parser();
-
 			}
 		}
 		return null;

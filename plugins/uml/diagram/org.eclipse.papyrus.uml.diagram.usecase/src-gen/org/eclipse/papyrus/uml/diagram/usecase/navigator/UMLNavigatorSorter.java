@@ -19,6 +19,7 @@ import org.eclipse.papyrus.uml.diagram.usecase.part.UMLVisualIDRegistry;
 /**
  * @generated
  */
+@SuppressWarnings("deprecation")
 public class UMLNavigatorSorter extends ViewerSorter {
 
 	/**

@@ -1,15 +1,15 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  *
-  * All rights reserved. This program and the accompanying materials
-  * are made available under the terms of the Eclipse Public License 2.0
-  * which accompanies this distribution, and is available at
-  * https://www.eclipse.org/legal/epl-2.0/
-  *
-  * SPDX-License-Identifier: EPL-2.0
-  *
-  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.usecase.edit.parts;
 
@@ -48,7 +48,7 @@ public class ComponentInComponentEditPart extends NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Component_Shape_CCN";
+	public static final String VISUAL_ID = "Component_Shape_CCN"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -74,9 +74,7 @@ public class ComponentInComponentEditPart extends NamedElementEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
@@ -120,7 +118,6 @@ public class ComponentInComponentEditPart extends NamedElementEditPart {
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -149,15 +146,12 @@ public class ComponentInComponentEditPart extends NamedElementEditPart {
 			((ComponentInComponentNameEditPart) childEditPart).setLabel(getPrimaryShape().getUseCaseSubjectFigure_name());
 			return true;
 		}
-
-
 		if (childEditPart instanceof ComponentUsecases2EditPart) {
 			IFigure pane = getPrimaryShape().getUseCaseSubjectFigure_contents();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((ComponentUsecases2EditPart) childEditPart).getFigure());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -212,6 +206,7 @@ public class ComponentInComponentEditPart extends NamedElementEditPart {
 	/**
 	 * @generated
 	 */
+
 	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(200, 400);
@@ -238,6 +233,7 @@ public class ComponentInComponentEditPart extends NamedElementEditPart {
 	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
+	 *
 	 * @generated
 	 */
 	@Override
@@ -296,5 +292,4 @@ public class ComponentInComponentEditPart extends NamedElementEditPart {
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ComponentInComponentNameEditPart.VISUAL_ID));
 	}
-
 }

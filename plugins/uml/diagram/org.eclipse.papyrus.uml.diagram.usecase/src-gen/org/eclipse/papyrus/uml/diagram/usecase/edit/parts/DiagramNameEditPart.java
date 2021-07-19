@@ -1,15 +1,15 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  *
-  * All rights reserved. This program and the accompanying materials
-  * are made available under the terms of the Eclipse Public License 2.0
-  * which accompanies this distribution, and is available at
-  * http://www.eclipse.org/legal/epl-2.0
-  *
-  * SPDX-License-Identifier: EPL-2.0
-  *
-  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.usecase.edit.parts;
 
@@ -35,7 +35,7 @@ public class DiagramNameEditPart extends AbstractShortcutDiagramNameEditPart imp
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Diagram_NameLabel";
+	public static final String VISUAL_ID = "Diagram_NameLabel"; //$NON-NLS-1$
 
 	/**
 	 * @generated
