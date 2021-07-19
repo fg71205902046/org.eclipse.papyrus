@@ -1,15 +1,15 @@
 /**
- * Copyright (c) 2016 CEA LIST.
-  *
-  * All rights reserved. This program and the accompanying materials
-  * are made available under the terms of the Eclipse Public License 2.0
-  * which accompanies this distribution, and is available at
-  * https://www.eclipse.org/legal/epl-2.0/
-  *
-  * SPDX-License-Identifier: EPL-2.0
-  *
-  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ * Copyright (c) 2018 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.sequence.providers;
 
@@ -88,8 +88,7 @@ public class UMLValidationProvider {
 			return false;
 		}
 		if (object instanceof View) {
-			return constraintsActive
-					&& SequenceDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID((View) object));
+			return constraintsActive && SequenceDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID((View) object));
 		}
 		return true;
 	}
@@ -98,7 +97,6 @@ public class UMLValidationProvider {
 	 * @generated
 	 */
 	public static class DefaultCtx implements IClientSelector {
-
 		/**
 		 * @generated
 		 */
@@ -112,7 +110,6 @@ public class UMLValidationProvider {
 	 * @generated
 	 */
 	public static class Ctx_3001 implements IClientSelector {
-
 		/**
 		 * @generated
 		 */
@@ -175,7 +172,9 @@ public class UMLValidationProvider {
 		 */
 		CtxSwitchStrategy(IBatchValidator validator) {
 			this.defaultStrategy = validator.getDefaultTraversalStrategy();
-			this.contextSwitchingIdentifiers = new String[] { LifelineEditPart.VISUAL_ID };
+			this.contextSwitchingIdentifiers = new String[] {
+					LifelineEditPart.VISUAL_ID
+			};
 			Arrays.sort(this.contextSwitchingIdentifiers);
 		}
 
@@ -235,11 +234,8 @@ public class UMLValidationProvider {
 			if (nextTarget != null && currentTarget != null) {
 				if (nextTarget instanceof View) {
 					final String id = UMLVisualIDRegistry.getVisualID((View) nextTarget);
-					String nextSemanticId = (id != null && Arrays.binarySearch(contextSwitchingIdentifiers, id) >= 0)
-							? id
-							: null;
-					if ((currentSemanticCtxId != null && currentSemanticCtxId != nextSemanticId)
-							|| (nextSemanticId != null && nextSemanticId != currentSemanticCtxId)) {
+					String nextSemanticId = (id != null && Arrays.binarySearch(contextSwitchingIdentifiers, id) >= 0) ? id : null;
+					if ((currentSemanticCtxId != null && currentSemanticCtxId != nextSemanticId) || (nextSemanticId != null && nextSemanticId != currentSemanticCtxId)) {
 						this.ctxChanged = true;
 					}
 					currentSemanticCtxId = nextSemanticId;

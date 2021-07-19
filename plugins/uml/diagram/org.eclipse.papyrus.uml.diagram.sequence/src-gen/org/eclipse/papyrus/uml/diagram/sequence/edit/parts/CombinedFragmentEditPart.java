@@ -1,6 +1,5 @@
-
 /**
- * Copyright (c) 2016 CEA LIST.
+ * Copyright (c) 2018 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,7 +9,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
@@ -58,7 +57,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "CombinedFragment_Shape";
+	public static final String VISUAL_ID = "CombinedFragment_Shape"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -85,16 +84,12 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		// in Papyrus diagrams are not strongly synchronised
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentCanonicalEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY,
-				new ShowHideCompartmentEditPolicy());
+		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -144,7 +139,6 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -169,21 +163,17 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-
 		if (childEditPart instanceof CombinedFragmentCombinedFragmentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((CombinedFragmentCombinedFragmentCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-
-		// Papyrus Gencode :specific locator to move gates
 		if (childEditPart instanceof GateEditPart) {
 			IBorderItemLocator locator = new PortPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((GateEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-
 		return false;
 	}
 
@@ -242,6 +232,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated
 	 */
+
 	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
@@ -268,6 +259,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
+	 *
 	 * @generated
 	 */
 	@Override
@@ -325,12 +317,10 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	@Override
 	public EditPart getTargetEditPart(Request request) {
 		if (request instanceof CreateViewAndElementRequest) {
-			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor()
-					.getCreateElementRequestAdapter();
+			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
 			IElementType type = (IElementType) adapter.getAdapter(IElementType.class);
 			if (UMLElementTypes.isKindOf(type, UMLElementTypes.InteractionOperand_Shape)) {
-				return getChildBySemanticHint(
-						UMLVisualIDRegistry.getType(CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID));
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID));
 			}
 		}
 		return super.getTargetEditPart(request);

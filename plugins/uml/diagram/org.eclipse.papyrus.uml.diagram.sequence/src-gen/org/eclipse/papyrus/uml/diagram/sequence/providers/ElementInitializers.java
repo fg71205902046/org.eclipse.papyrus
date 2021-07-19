@@ -28,9 +28,7 @@ import org.eclipse.uml2.uml.ConsiderIgnoreFragment;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Continuation;
 import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
-import org.eclipse.uml2.uml.Duration;
 import org.eclipse.uml2.uml.DurationConstraint;
-import org.eclipse.uml2.uml.DurationInterval;
 import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.GeneralOrdering;
 import org.eclipse.uml2.uml.Interaction;
@@ -41,8 +39,6 @@ import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.StateInvariant;
 import org.eclipse.uml2.uml.TimeConstraint;
-import org.eclipse.uml2.uml.TimeExpression;
-import org.eclipse.uml2.uml.TimeInterval;
 import org.eclipse.uml2.uml.TimeObservation;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -227,52 +223,6 @@ public class ElementInitializers {
 	}
 
 	/**
-	 * Initialize a time interval
-	 *
-	 * @param instance
-	 *            instance to initialize
-	 */
-	private void init_TimeInterval(TimeInterval instance) {
-		// time interval
-		TimeInterval timeInterval = instance;
-		// create, add and set the min and max duration of the duration interval
-		org.eclipse.uml2.uml.Package package_ = timeInterval.getNearestPackage();
-		TimeExpression minTimeExpression = UMLFactory.eINSTANCE.createTimeExpression();
-		TimeExpression maxTimeExpression = UMLFactory.eINSTANCE.createTimeExpression();
-		package_.getPackagedElements().add(minTimeExpression);
-		package_.getPackagedElements().add(maxTimeExpression);
-		ElementInitializers.init_NamedElement(minTimeExpression, "", timeInterval.eClass().getName(), "Min");
-		ElementInitializers.init_NamedElement(maxTimeExpression, "", timeInterval.eClass().getName(), "Max");
-		timeInterval.setMin(minTimeExpression);
-		timeInterval.setMax(maxTimeExpression);
-		minTimeExpression.setExpr(UMLFactory.eINSTANCE.createLiteralInteger());
-		maxTimeExpression.setExpr(UMLFactory.eINSTANCE.createLiteralInteger());
-	}
-
-	/**
-	 * Initialize a duration interval
-	 *
-	 * @param instance
-	 *            instance to initialize
-	 */
-	private void init_DurationInterval(DurationInterval instance) {
-		// duration interval
-		DurationInterval durationInterval = instance;
-		// create, add and set the min and max duration of the duration interval
-		org.eclipse.uml2.uml.Package package_ = durationInterval.getNearestPackage();
-		Duration minDuration = UMLFactory.eINSTANCE.createDuration();
-		Duration maxDuration = UMLFactory.eINSTANCE.createDuration();
-		package_.getPackagedElements().add(minDuration);
-		package_.getPackagedElements().add(maxDuration);
-		ElementInitializers.init_NamedElement(minDuration, "", durationInterval.eClass().getName(), "Min");
-		ElementInitializers.init_NamedElement(maxDuration, "", durationInterval.eClass().getName(), "Max");
-		durationInterval.setMin(minDuration);
-		durationInterval.setMax(maxDuration);
-		minDuration.setExpr(UMLFactory.eINSTANCE.createLiteralInteger());
-		maxDuration.setExpr(UMLFactory.eINSTANCE.createLiteralInteger());
-	}
-
-	/**
 	 * @generated
 	 */
 	public void init_GeneralOrdering_Edge(GeneralOrdering instance) {
@@ -318,98 +268,98 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String name_Interaction_Shape(Interaction it) {
-		return getNamedElement(it, "", it.eClass().getName(), "");
+		return getNamedElement(it, "", it.eClass().getName(), ""); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
 	 * @generated
 	 */
 	private String name_ConsiderIgnoreFragment_Shape(ConsiderIgnoreFragment it) {
-		return getNamedElement(it, "", it.eClass().getName(), "");
+		return getNamedElement(it, "", it.eClass().getName(), ""); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
 	 * @generated
 	 */
 	private String name_CombinedFragment_Shape(CombinedFragment it) {
-		return getNamedElement(it, "", it.eClass().getName(), "");
+		return getNamedElement(it, "", it.eClass().getName(), ""); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
 	 * @generated
 	 */
 	private String name_InteractionUse_Shape(InteractionUse it) {
-		return getNamedElement(it, "", it.eClass().getName(), "");
+		return getNamedElement(it, "", it.eClass().getName(), ""); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
 	 * @generated
 	 */
 	private String name_Continuation_Shape(Continuation it) {
-		return getNamedElement(it, "", it.eClass().getName(), "");
+		return getNamedElement(it, "", it.eClass().getName(), ""); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
 	 * @generated
 	 */
 	private String name_Lifeline_Shape(Lifeline it) {
-		return getNamedElement(it, "", it.eClass().getName(), "");
+		return getNamedElement(it, "", it.eClass().getName(), ""); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
 	 * @generated
 	 */
 	private String name_StateInvariant_Shape(StateInvariant it) {
-		return getNamedElement(it, "", it.eClass().getName(), "");
+		return getNamedElement(it, "", it.eClass().getName(), ""); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
 	 * @generated
 	 */
 	private String name_DestructionOccurrenceSpecification_Shape(DestructionOccurrenceSpecification it) {
-		return getNamedElement(it, "", it.eClass().getName(), "");
+		return getNamedElement(it, "", it.eClass().getName(), ""); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
 	 * @generated
 	 */
 	private String value_specification_Constraint_Shape(LiteralString it) {
-		return "";
+		return ""; //$NON-NLS-1$
 	}
 
 	/**
 	 * @generated
 	 */
 	private String name_TimeConstraint_Shape(TimeConstraint it) {
-		return getNamedElement(it, "", it.eClass().getName(), "");
+		return getNamedElement(it, "", it.eClass().getName(), ""); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
 	 * @generated
 	 */
 	private String name_TimeObservation_Shape(TimeObservation it) {
-		return getNamedElement(it, "", it.eClass().getName(), "");
+		return getNamedElement(it, "", it.eClass().getName(), ""); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
 	 * @generated
 	 */
 	private String name_GeneralOrdering_Edge(GeneralOrdering it) {
-		return getNamedElement(it, "", it.eClass().getName(), "");
+		return getNamedElement(it, "", it.eClass().getName(), ""); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
 	 * @generated
 	 */
 	private String name_DurationConstraint_Edge(DurationConstraint it) {
-		return getNamedElement(it, "", it.eClass().getName(), "");
+		return getNamedElement(it, "", it.eClass().getName(), ""); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
 	 * @generated
 	 */
 	private String name_DurationObservation_Edge(DurationObservation it) {
-		return getNamedElement(it, "", it.eClass().getName(), "");
+		return getNamedElement(it, "", it.eClass().getName(), ""); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**

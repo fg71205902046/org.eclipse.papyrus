@@ -1,16 +1,15 @@
 /**
- * Copyright (c) 2016, 2018 CEA LIST, Christian W. Damus, and others.
-  *
-  * All rights reserved. This program and the accompanying materials
-  * are made available under the terms of the Eclipse Public License 2.0
-  * which accompanies this distribution, and is available at
-  * https://www.eclipse.org/legal/epl-2.0/
-  *
-  * SPDX-License-Identifier: EPL-2.0
-  *
-  * Contributors:
-  *  CEA LIST - Initial API and implementation
-  *  Christian W. Damus - bug 536486
+ * Copyright (c) 2018 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
@@ -25,7 +24,6 @@ import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.editpolicies.ResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.BorderedBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
@@ -36,6 +34,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNod
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
+import org.eclipse.papyrus.uml.diagram.common.editparts.BorderedBorderItemEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.DestructionEventFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
@@ -49,7 +48,7 @@ public class DestructionOccurrenceSpecificationEditPart extends BorderedBorderIt
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "DestructionOccurrenceSpecification_Shape";
+	public static final String VISUAL_ID = "DestructionOccurrenceSpecification_Shape"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -77,13 +76,10 @@ public class DestructionOccurrenceSpecificationEditPart extends BorderedBorderIt
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		// in Papyrus diagrams are not strongly synchronised
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DestructionOccurrenceSpecificationCanonicalEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -129,6 +125,7 @@ public class DestructionOccurrenceSpecificationEditPart extends BorderedBorderIt
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure createNodeShape() {
 		return primaryShape = new DestructionEventFigure();
 	}
@@ -138,6 +135,7 @@ public class DestructionOccurrenceSpecificationEditPart extends BorderedBorderIt
 	 *
 	 * @generated
 	 */
+	@Override
 	public DestructionEventFigure getPrimaryShape() {
 		return (DestructionEventFigure) primaryShape;
 	}
@@ -145,6 +143,7 @@ public class DestructionOccurrenceSpecificationEditPart extends BorderedBorderIt
 	/**
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
 		return result;
@@ -190,6 +189,7 @@ public class DestructionOccurrenceSpecificationEditPart extends BorderedBorderIt
 	 *            instance of generated figure class
 	 * @generated
 	 */
+	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();

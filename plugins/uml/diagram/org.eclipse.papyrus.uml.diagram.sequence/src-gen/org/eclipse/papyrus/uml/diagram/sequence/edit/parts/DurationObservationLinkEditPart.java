@@ -1,22 +1,20 @@
 /**
- * Copyright (c) 2016, 2018 CEA LIST, Christian W. Damus, and others.
-  *
-  * All rights reserved. This program and the accompanying materials
-  * are made available under the terms of the Eclipse Public License 2.0
-  * which accompanies this distribution, and is available at
-  * https://www.eclipse.org/legal/epl-2.0/
-  *
-  * SPDX-License-Identifier: EPL-2.0
-  *
-  * Contributors:
-  *  CEA LIST - Initial API and implementation
-  *  Christian W. Damus - bug 536486
+ * Copyright (c) 2018 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import org.eclipse.draw2d.Connection;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
@@ -34,7 +32,7 @@ public class DurationObservationLinkEditPart extends UMLConnectionNodeEditPart i
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "DurationObservation_Edge";
+	public static final String VISUAL_ID = "DurationObservation_Edge"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -46,18 +44,11 @@ public class DurationObservationLinkEditPart extends UMLConnectionNodeEditPart i
 	/**
 	 * @generated
 	 */
-	protected void createDefaultEditPoliciesGen() {
-		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeLinkLabelDisplayEditPolicy());
-	}
-
 	@Override
 	protected void createDefaultEditPolicies() {
-		createDefaultEditPoliciesGen();
-
-		removeEditPolicy(EditPolicy.CONNECTION_BENDPOINTS_ROLE);
+		super.createDefaultEditPolicies();
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
 	}
 
 	/**
@@ -68,8 +59,7 @@ public class DurationObservationLinkEditPart extends UMLConnectionNodeEditPart i
 			((DurationObservationLinkNameEditPart) childEditPart).setLabel(getPrimaryShape().getDurationLabelFigure());
 		}
 		if (childEditPart instanceof DurationObservationLinkAppliedStereotypeEditPart) {
-			((DurationObservationLinkAppliedStereotypeEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+			((DurationObservationLinkAppliedStereotypeEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -129,5 +119,4 @@ public class DurationObservationLinkEditPart extends UMLConnectionNodeEditPart i
 	public DurationLinkFigure getPrimaryShape() {
 		return (DurationLinkFigure) getFigure();
 	}
-
 }

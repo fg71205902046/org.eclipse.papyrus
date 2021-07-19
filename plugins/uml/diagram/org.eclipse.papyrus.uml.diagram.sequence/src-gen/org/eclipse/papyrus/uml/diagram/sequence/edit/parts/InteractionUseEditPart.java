@@ -1,6 +1,5 @@
-
 /**
- * Copyright (c) 2016 CEA LIST.
+ * Copyright (c) 2018 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,7 +9,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
@@ -53,7 +52,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "InteractionUse_Shape";
+	public static final String VISUAL_ID = "InteractionUse_Shape"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -80,15 +79,13 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		// in Papyrus diagrams are not strongly synchronised
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionUseCanonicalEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
+				new OpenDiagramEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -137,7 +134,6 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -170,14 +166,11 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			((InteractionUseName2EditPart) childEditPart).setLabel(getPrimaryShape().getCenterLabel());
 			return true;
 		}
-
-		// Papyrus Gencode :specific locator to move gates
 		if (childEditPart instanceof GateEditPart) {
 			IBorderItemLocator locator = new PortPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((GateEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-
 		return false;
 	}
 
@@ -234,6 +227,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated
 	 */
+
 	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
@@ -260,6 +254,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
+	 *
 	 * @generated
 	 */
 	@Override
@@ -318,5 +313,4 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(InteractionUseNameEditPart.VISUAL_ID));
 	}
-
 }

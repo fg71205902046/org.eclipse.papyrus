@@ -70,7 +70,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
+import org.eclipse.papyrus.uml.diagram.sequence.internal.messages.Messages;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.FragmentsOrdererHelper;

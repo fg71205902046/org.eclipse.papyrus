@@ -1,3 +1,16 @@
+/**
+ * Copyright (c) 2018 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import org.eclipse.draw2d.Connection;
@@ -20,7 +33,7 @@ public class MessageDeleteEditPart extends AbstractMessageEditPart implements IT
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Message_DeleteEdge";
+	public static final String VISUAL_ID = "Message_DeleteEdge"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -36,8 +49,7 @@ public class MessageDeleteEditPart extends AbstractMessageEditPart implements IT
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicy.CONNECTION_BENDPOINTS_ROLE, new MessageConnectionLineSegEditPolicy());
 	}
 
@@ -49,8 +61,7 @@ public class MessageDeleteEditPart extends AbstractMessageEditPart implements IT
 			((MessageDeleteNameEditPart) childEditPart).setLabel(getPrimaryShape().getMessageLabelFigure());
 		}
 		if (childEditPart instanceof MessageDeleteAppliedStereotypeEditPart) {
-			((MessageDeleteAppliedStereotypeEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+			((MessageDeleteAppliedStereotypeEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -110,5 +121,4 @@ public class MessageDeleteEditPart extends AbstractMessageEditPart implements IT
 	public MessageDelete getPrimaryShape() {
 		return (MessageDelete) getFigure();
 	}
-
 }

@@ -1,6 +1,5 @@
-
 /**
- * Copyright (c) 2016 CEA LIST.
+ * Copyright (c) 2018 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,7 +9,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
@@ -23,7 +22,6 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
@@ -33,6 +31,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNod
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
+import org.eclipse.papyrus.uml.diagram.common.editparts.AbstractBorderItemEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.ContinuationFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.swt.graphics.Color;
@@ -45,7 +44,7 @@ public class ContinuationEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Continuation_Shape";
+	public static final String VISUAL_ID = "Continuation_Shape"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -72,9 +71,7 @@ public class ContinuationEditPart extends AbstractBorderItemEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -111,6 +108,7 @@ public class ContinuationEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure createNodeShape() {
 		return primaryShape = new ContinuationFigure();
 	}
@@ -120,6 +118,7 @@ public class ContinuationEditPart extends AbstractBorderItemEditPart {
 	 *
 	 * @generated
 	 */
+	@Override
 	public ContinuationFigure getPrimaryShape() {
 		return (ContinuationFigure) primaryShape;
 	}
@@ -132,7 +131,6 @@ public class ContinuationEditPart extends AbstractBorderItemEditPart {
 			((ContinuationNameEditPart) childEditPart).setLabel(getPrimaryShape().getFigureContinuationNameLabel());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -179,6 +177,7 @@ public class ContinuationEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
 		return result;
@@ -211,6 +210,7 @@ public class ContinuationEditPart extends AbstractBorderItemEditPart {
 	 *            instance of generated figure class
 	 * @generated
 	 */
+	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();

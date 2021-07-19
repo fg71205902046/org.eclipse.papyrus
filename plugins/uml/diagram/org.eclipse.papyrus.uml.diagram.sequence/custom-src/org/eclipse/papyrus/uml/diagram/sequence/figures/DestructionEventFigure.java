@@ -22,14 +22,16 @@ package org.eclipse.papyrus.uml.diagram.sequence.figures;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.anchors.AnchorConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.anchors.CenterAnchor;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 
 /**
  * Figure for a {@link DestructionOccurrenceSpecification}. It is drawn as an X centered over a Lifeline body
  */
-public class DestructionEventFigure extends DefaultSizeNodeFigure {
+public class DestructionEventFigure extends DefaultSizeNodeFigure implements IPapyrusNodeFigure {
 
 	private int lineWidth = 1;
 
@@ -80,4 +82,23 @@ public class DestructionEventFigure extends DefaultSizeNodeFigure {
 		return super.getConnectionAnchorTerminal(c);
 	}
 
+	@Override
+	public Color getBorderColor() {
+		return null;
+	}
+
+	@Override
+	public boolean isShadow() {
+		return false;
+	}
+
+	@Override
+	public void setBorderColor(Color borderColor) {
+
+	}
+
+	@Override
+	public void setShadow(boolean shadow) {
+
+	}
 }

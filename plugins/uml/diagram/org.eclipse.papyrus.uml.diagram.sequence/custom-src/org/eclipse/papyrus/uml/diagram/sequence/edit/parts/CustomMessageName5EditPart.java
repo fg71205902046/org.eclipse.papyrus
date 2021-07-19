@@ -84,7 +84,8 @@ public class CustomMessageName5EditPart extends MessageDeleteNameEditPart implem
 		}
 	}
 
-	private View getFontStyleOwnerView() {
+	@Override
+	protected View getFontStyleOwnerView() {
 		return (View) getParent().getModel();
 	}
 }

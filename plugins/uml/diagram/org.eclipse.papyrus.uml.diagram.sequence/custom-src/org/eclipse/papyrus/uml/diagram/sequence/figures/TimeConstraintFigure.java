@@ -48,7 +48,6 @@ public class TimeConstraintFigure extends DefaultSizeNodeFigure implements IPapy
 		graphics.popState();
 	}
 
-
 	@Override
 	public Color getBorderColor() {
 		return null;

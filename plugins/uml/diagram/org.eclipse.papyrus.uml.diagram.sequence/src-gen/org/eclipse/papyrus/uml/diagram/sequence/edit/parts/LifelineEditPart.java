@@ -1,6 +1,5 @@
-
 /**
- * Copyright (c) 2016 CEA LIST.
+ * Copyright (c) 2018 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,7 +9,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
@@ -63,7 +62,7 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Lifeline_Shape";
+	public static final String VISUAL_ID = "Lifeline_Shape"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -90,13 +89,10 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		// in Papyrus diagrams are not strongly synchronised
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineCanonicalEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(ConnectRectangleToGridEditPolicy.CONNECT_TO_GRILLING_MANAGEMENT, new ConnectRectangleToGridEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new GrillingBasedResizableShapeEditPolicy());
@@ -157,7 +153,6 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -186,37 +181,26 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 			((LifelineNameEditPart) childEditPart).setLabel(getPrimaryShape().getFigureLifelineLabelFigure());
 			return true;
 		}
-
-		// Papyrus Gencode :Specific locator for the itemBorder of the lifeline.
 		if (childEditPart instanceof StateInvariantEditPart) {
 			IBorderItemLocator locator = new CenterLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((StateInvariantEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-
-		// Papyrus Gencode :Specific locator for the itemBorder of the lifeline.
 		if (childEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
 			IBorderItemLocator locator = new CenterLocator(getMainFigure(), PositionConstants.SOUTH);
 			getBorderedFigure().getBorderItemContainer().add(((DestructionOccurrenceSpecificationEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-
-		// Papyrus Gencode :Specific locator for the itemBorder of the lifeline.
 		if (childEditPart instanceof TimeConstraintBorderNodeEditPart) {
 			IBorderItemLocator locator = new CenterLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer()
-					.add(((TimeConstraintBorderNodeEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((TimeConstraintBorderNodeEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-
-		// Papyrus Gencode :Specific locator for the itemBorder of the lifeline.
 		if (childEditPart instanceof TimeObservationBorderNodeEditPart) {
 			IBorderItemLocator locator = new CenterLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer()
-					.add(((TimeObservationBorderNodeEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((TimeObservationBorderNodeEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-
 		return false;
 	}
 
@@ -236,13 +220,11 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 			return true;
 		}
 		if (childEditPart instanceof TimeConstraintBorderNodeEditPart) {
-			getBorderedFigure().getBorderItemContainer()
-					.remove(((TimeConstraintBorderNodeEditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer().remove(((TimeConstraintBorderNodeEditPart) childEditPart).getFigure());
 			return true;
 		}
 		if (childEditPart instanceof TimeObservationBorderNodeEditPart) {
-			getBorderedFigure().getBorderItemContainer()
-					.remove(((TimeObservationBorderNodeEditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer().remove(((TimeObservationBorderNodeEditPart) childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -284,6 +266,7 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+
 	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(100, 700);
@@ -310,6 +293,7 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
+	 *
 	 * @generated
 	 */
 	@Override
@@ -368,5 +352,4 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(LifelineNameEditPart.VISUAL_ID));
 	}
-
 }

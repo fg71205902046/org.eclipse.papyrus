@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2016 CEA LIST.
+ * Copyright (c) 2018 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -9,7 +9,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
@@ -99,8 +99,7 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 		 * @generated
 		 */
 		@Override
-		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
-				throws ExecutionException {
+		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 			try {
 				Diagram diagram = getDiagramToOpen();
 				if (diagram == null) {
@@ -143,11 +142,9 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 			try {
 				new WorkspaceModifyOperation() {
 					@Override
-					protected void execute(IProgressMonitor monitor)
-							throws CoreException, InvocationTargetException, InterruptedException {
+					protected void execute(IProgressMonitor monitor) throws CoreException, InvocationTargetException, InterruptedException {
 						try {
-							for (Iterator<?> it = diagramFacet.eResource().getResourceSet().getResources()
-									.iterator(); it.hasNext();) {
+							for (Iterator<?> it = diagramFacet.eResource().getResourceSet().getResources().iterator(); it.hasNext();) {
 								Resource nextResource = (Resource) it.next();
 								if (nextResource.isLoaded() && !getEditingDomain().isReadOnly(nextResource)) {
 									nextResource.save(UMLDiagramEditorUtil.getSaveOptions());
@@ -195,5 +192,7 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 		protected String getEditorID() {
 			return UMLDiagramEditor.ID;
 		}
+
 	}
+
 }

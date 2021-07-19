@@ -95,7 +95,8 @@ public class CustomMessageNameEditPart extends MessageSyncNameEditPart implement
 		}
 	}
 
-	private View getFontStyleOwnerView() {
+	@Override
+	protected View getFontStyleOwnerView() {
 		return (View) getParent().getModel();
 	}
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2016 CEA LIST.
+ * Copyright (c) 2018 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -9,7 +9,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.sequence.part;
 
@@ -89,7 +89,7 @@ public class UMLCreationWizardPage extends WizardNewFileCreationPage {
 			return false;
 		}
 		String extension = getExtension();
-		if (extension != null && !getFilePath().toString().endsWith("." + extension)) {
+		if (extension != null && !getFilePath().toString().endsWith("." + extension)) { //$NON-NLS-1$
 			setErrorMessage(NLS.bind(Messages.UMLCreationWizardPageExtensionError, extension));
 			return false;
 		}

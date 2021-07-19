@@ -88,7 +88,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationBorder
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.expressions.UMLOCLFactory;
 import org.eclipse.uml2.uml.Message;
-import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -102,17 +101,12 @@ public class UMLVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-	private static final String DEBUG_KEY = "org.eclipse.papyrus.uml.diagram.sequence/debug/visualID"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
 	public static String getVisualID(View view) {
 		if (view instanceof Diagram) {
 			if (SequenceDiagramEditPart.MODEL_ID.equals(view.getType())) {
 				return SequenceDiagramEditPart.VISUAL_ID;
 			} else {
-				return "";
+				return ""; //$NON-NLS-1$
 			}
 		}
 		return org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry.getVisualID(view.getType());
@@ -152,7 +146,7 @@ public class UMLVisualIDRegistry {
 	 */
 	public static String getDiagramVisualID(EObject domainElement) {
 		if (domainElement == null) {
-			return "";
+			return ""; //$NON-NLS-1$
 		}
 		return SequenceDiagramEditPart.VISUAL_ID;
 	}
@@ -165,22 +159,20 @@ public class UMLVisualIDRegistry {
 	 */
 	public static String getNodeVisualID(View containerView, EObject domainElement) {
 		if (domainElement == null) {
-			return "";
+			return ""; //$NON-NLS-1$
 		}
-		String containerModelID = org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry
-				.getModelID(containerView);
+		String containerModelID = org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry.getModelID(containerView);
 		if (!SequenceDiagramEditPart.MODEL_ID.equals(containerModelID)) {
-			return "";
+			return ""; //$NON-NLS-1$
 		}
 		String containerVisualID;
 		if (SequenceDiagramEditPart.MODEL_ID.equals(containerModelID)) {
-			containerVisualID = org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry
-					.getVisualID(containerView);
+			containerVisualID = org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry.getVisualID(containerView);
 		} else {
 			if (containerView instanceof Diagram) {
 				containerVisualID = SequenceDiagramEditPart.VISUAL_ID;
 			} else {
-				return "";
+				return ""; //$NON-NLS-1$
 			}
 		}
 		if (containerVisualID != null) {
@@ -229,8 +221,7 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getStateInvariant().isSuperTypeOf(domainElement.eClass())) {
 					return StateInvariantEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getDestructionOccurrenceSpecification()
-						.isSuperTypeOf(domainElement.eClass())) {
+				if (UMLPackage.eINSTANCE.getDestructionOccurrenceSpecification().isSuperTypeOf(domainElement.eClass())) {
 					return DestructionOccurrenceSpecificationEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())) {
@@ -291,22 +282,20 @@ public class UMLVisualIDRegistry {
 				break;
 			}
 		}
-		return "";
+		return ""; //$NON-NLS-1$
 	}
 
 	/**
 	 * @generated
 	 */
 	public static boolean canCreateNode(View containerView, String nodeVisualID) {
-		String containerModelID = org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry
-				.getModelID(containerView);
+		String containerModelID = org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry.getModelID(containerView);
 		if (!SequenceDiagramEditPart.MODEL_ID.equals(containerModelID)) {
 			return false;
 		}
 		String containerVisualID;
 		if (SequenceDiagramEditPart.MODEL_ID.equals(containerModelID)) {
-			containerVisualID = org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry
-					.getVisualID(containerView);
+			containerVisualID = org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry.getVisualID(containerView);
 		} else {
 			if (containerView instanceof Diagram) {
 				containerVisualID = SequenceDiagramEditPart.VISUAL_ID;
@@ -576,34 +565,27 @@ public class UMLVisualIDRegistry {
 	 */
 	public static String getLinkWithClassVisualID(EObject domainElement) {
 		if (domainElement == null) {
-			return "";
+			return ""; //$NON-NLS-1$
 		}
-		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
-				&& isMessage_SynchEdge((Message) domainElement)) {
+		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass()) && isMessage_SynchEdge((Message) domainElement)) {
 			return MessageSyncEditPart.VISUAL_ID;
 		}
-		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
-				&& isMessage_AsynchEdge((Message) domainElement)) {
+		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass()) && isMessage_AsynchEdge((Message) domainElement)) {
 			return MessageAsyncEditPart.VISUAL_ID;
 		}
-		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
-				&& isMessage_ReplyEdge((Message) domainElement)) {
+		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass()) && isMessage_ReplyEdge((Message) domainElement)) {
 			return MessageReplyEditPart.VISUAL_ID;
 		}
-		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
-				&& isMessage_CreateEdge((Message) domainElement)) {
+		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass()) && isMessage_CreateEdge((Message) domainElement)) {
 			return MessageCreateEditPart.VISUAL_ID;
 		}
-		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
-				&& isMessage_DeleteEdge((Message) domainElement)) {
+		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass()) && isMessage_DeleteEdge((Message) domainElement)) {
 			return MessageDeleteEditPart.VISUAL_ID;
 		}
-		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
-				&& isMessage_LostEdge((Message) domainElement)) {
+		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass()) && isMessage_LostEdge((Message) domainElement)) {
 			return MessageLostEditPart.VISUAL_ID;
 		}
-		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
-				&& isMessage_FoundEdge((Message) domainElement)) {
+		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass()) && isMessage_FoundEdge((Message) domainElement)) {
 			return MessageFoundEditPart.VISUAL_ID;
 		}
 		if (UMLPackage.eINSTANCE.getGeneralOrdering().isSuperTypeOf(domainElement.eClass())) {
@@ -615,17 +597,7 @@ public class UMLVisualIDRegistry {
 		if (UMLPackage.eINSTANCE.getDurationObservation().isSuperTypeOf(domainElement.eClass())) {
 			return DurationObservationLinkEditPart.VISUAL_ID;
 		}
-		return "";
-	}
-
-	/**
-	 * User can change implementation of this method to handle some specific situations not covered
-	 * by default logic.
-	 *
-	 * @generated
-	 */
-	private static boolean isDiagram(Package element) {
-		return true;
+		return ""; //$NON-NLS-1$
 	}
 
 	/**
@@ -656,8 +628,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isMessage_CreateEdge(Message domainElement) {
-		Object result = UMLOCLFactory.getExpression(10, UMLPackage.eINSTANCE.getMessage(), null)
-				.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(10, UMLPackage.eINSTANCE.getMessage(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
@@ -665,8 +636,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isMessage_DeleteEdge(Message domainElement) {
-		Object result = UMLOCLFactory.getExpression(13, UMLPackage.eINSTANCE.getMessage(), null)
-				.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(13, UMLPackage.eINSTANCE.getMessage(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
@@ -674,8 +644,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isMessage_LostEdge(Message domainElement) {
-		Object result = UMLOCLFactory.getExpression(16, UMLPackage.eINSTANCE.getMessage(), null)
-				.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(16, UMLPackage.eINSTANCE.getMessage(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
@@ -683,8 +652,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isMessage_FoundEdge(Message domainElement) {
-		Object result = UMLOCLFactory.getExpression(19, UMLPackage.eINSTANCE.getMessage(), null)
-				.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(19, UMLPackage.eINSTANCE.getMessage(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
@@ -761,8 +729,7 @@ public class UMLVisualIDRegistry {
 		 */
 		@Override
 		public String getNodeVisualID(View containerView, EObject domainElement) {
-			return org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry.getNodeVisualID(containerView,
-					domainElement);
+			return org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry.getNodeVisualID(containerView, domainElement);
 		}
 
 		/**
@@ -770,8 +737,7 @@ public class UMLVisualIDRegistry {
 		 */
 		@Override
 		public boolean checkNodeVisualID(View containerView, EObject domainElement, String candidate) {
-			return org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry.checkNodeVisualID(containerView,
-					domainElement, candidate);
+			return org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry.checkNodeVisualID(containerView, domainElement, candidate);
 		}
 
 		/**

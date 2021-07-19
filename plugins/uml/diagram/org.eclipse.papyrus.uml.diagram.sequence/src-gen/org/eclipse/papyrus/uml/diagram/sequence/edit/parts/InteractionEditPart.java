@@ -1,6 +1,5 @@
-
 /**
- * Copyright (c) 2016 CEA LIST.
+ * Copyright (c) 2018 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,7 +9,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
@@ -56,7 +55,7 @@ public class InteractionEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Interaction_Shape";
+	public static final String VISUAL_ID = "Interaction_Shape"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -83,32 +82,16 @@ public class InteractionEditPart extends RoundedCompartmentEditPart {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		// in Papyrus diagrams are not strongly synchronised
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionCanonicalEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new InteractionGraphicalNodeEditPolicy());
-		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY,
-				new ShowHideCompartmentEditPolicy());
+		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
-	}
-
-	/**
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#getCommand(org.eclipse.gef.Request)
-	 *
-	 * @param _request
-	 * @return
-	 */
-	@Override
-	public Command getCommand(Request _request) {
-
-		return super.getCommand(_request);
 	}
 
 	/**
@@ -155,7 +138,6 @@ public class InteractionEditPart extends RoundedCompartmentEditPart {
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -184,21 +166,17 @@ public class InteractionEditPart extends RoundedCompartmentEditPart {
 			((InteractionNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
 		if (childEditPart instanceof InteractionInteractionCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((InteractionInteractionCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-
-		// Papyrus Gencode :specific locator to move gates
 		if (childEditPart instanceof GateEditPart) {
 			IBorderItemLocator locator = new PortPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((GateEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-
 		return false;
 	}
 
@@ -260,6 +238,7 @@ public class InteractionEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+
 	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(857, 757);
@@ -286,6 +265,7 @@ public class InteractionEditPart extends RoundedCompartmentEditPart {
 	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
+	 *
 	 * @generated
 	 */
 	@Override

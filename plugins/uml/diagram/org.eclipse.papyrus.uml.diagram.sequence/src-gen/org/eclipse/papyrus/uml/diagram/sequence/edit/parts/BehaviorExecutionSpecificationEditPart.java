@@ -1,6 +1,5 @@
-
 /**
- * Copyright (c) 2016 CEA LIST.
+ * Copyright (c) 2018 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,7 +9,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
@@ -50,7 +49,7 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "BehaviorExecutionSpecification_Shape";
+	public static final String VISUAL_ID = "BehaviorExecutionSpecification_Shape"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -77,13 +76,10 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		// in Papyrus diagrams are not strongly synchronised
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.sequence.edit.policies.BehaviorExecutionSpecificationCanonicalEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ExecutionSpecificationGraphicalNodeEditPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ExecutionSpecificationComponentEditPolicy());
@@ -136,7 +132,6 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -148,7 +143,7 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 	}
 
 	/**
-	 * org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart.ExecutionSpecificationRectangleFigure
+	 * org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ExecutionSpecificationRectangleFigure
 	 *
 	 * @generated
 	 */
@@ -160,6 +155,7 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 	/**
 	 * @generated
 	 */
+
 	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(16, 60);
@@ -199,6 +195,7 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
+	 *
 	 * @generated
 	 */
 	@Override
@@ -249,5 +246,4 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}
-
 }

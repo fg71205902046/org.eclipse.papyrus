@@ -1,6 +1,5 @@
-
 /**
- * Copyright (c) 2016 CEA LIST.
+ * Copyright (c) 2018 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,7 +9,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
@@ -28,7 +27,7 @@ public class ConstraintConstrainedElementEditPart extends AnnotatedLinkEditPart 
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Constraint_ConstrainedElementEdge";
+	public static final String VISUAL_ID = "Constraint_ConstrainedElementEdge"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -66,5 +65,4 @@ public class ConstraintConstrainedElementEditPart extends AnnotatedLinkEditPart 
 	public AnnotatedLinkEditPart.AnnotatedLinkDescriptor getPrimaryShape() {
 		return (AnnotatedLinkEditPart.AnnotatedLinkDescriptor) getFigure();
 	}
-
 }

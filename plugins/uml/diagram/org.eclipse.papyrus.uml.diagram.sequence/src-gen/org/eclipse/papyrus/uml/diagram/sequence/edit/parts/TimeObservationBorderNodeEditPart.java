@@ -1,15 +1,15 @@
 /**
- * Copyright (c) 2018 Christian W. Damus, CEA LIST, and others.
-  *
-  * All rights reserved. This program and the accompanying materials
-  * are made available under the terms of the Eclipse Public License 2.0
-  * which accompanies this distribution, and is available at
-  * http://www.eclipse.org/legal/epl-2.0
-  *
-  * SPDX-License-Identifier: EPL-2.0
-  *
-  * Contributors:
-  *  Christian W. Damus - Initial API and implementation
+ * Copyright (c) 2018 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
@@ -56,7 +56,7 @@ public class TimeObservationBorderNodeEditPart extends BorderNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "TimeObservation_Shape";
+	public static final String VISUAL_ID = "TimeObservation_Shape"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -83,9 +83,7 @@ public class TimeObservationBorderNodeEditPart extends BorderNodeEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -157,12 +155,12 @@ public class TimeObservationBorderNodeEditPart extends BorderNodeEditPart {
 			}
 		}
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure createNodeShape() {
 		return primaryShape = new TimeObservationFigure();
 	}
@@ -182,8 +180,7 @@ public class TimeObservationBorderNodeEditPart extends BorderNodeEditPart {
 	 */
 	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if (borderItemEditPart instanceof TimeObservationNameEditPart
-				|| borderItemEditPart instanceof TimeObservationAppliedStereotypeEditPart) {
+		if (borderItemEditPart instanceof TimeObservationNameEditPart || borderItemEditPart instanceof TimeObservationAppliedStereotypeEditPart) {
 			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
 			locator.setBorderItemOffset(new Dimension(-20, -20));
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
@@ -195,6 +192,8 @@ public class TimeObservationBorderNodeEditPart extends BorderNodeEditPart {
 	/**
 	 * @generated
 	 */
+
+	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 1);
 		return result;
@@ -225,8 +224,10 @@ public class TimeObservationBorderNodeEditPart extends BorderNodeEditPart {
 	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
+	 *
 	 * @generated
 	 */
+	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		return nodeShape; // use nodeShape itself as contentPane
 	}
@@ -277,5 +278,4 @@ public class TimeObservationBorderNodeEditPart extends BorderNodeEditPart {
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(TimeObservationNameEditPart.VISUAL_ID));
 	}
-
 }

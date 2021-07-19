@@ -1,6 +1,5 @@
-
 /**
- * Copyright (c) 2016 CEA LIST.
+ * Copyright (c) 2018 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -15,24 +14,16 @@
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.gef.Request;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCompartmentSemanticEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editparts.AbstractListCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy;
@@ -42,12 +33,12 @@ import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ResizeOperan
 /**
  * @generated
  */
-public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCompartmentEditPart {
+public class CombinedFragmentCombinedFragmentCompartmentEditPart extends AbstractListCompartmentEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "CombinedFragment_SubfragmentCompartment";
+	public static final String VISUAL_ID = "CombinedFragment_SubfragmentCompartment"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -94,67 +85,9 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 		installEditPolicy(PasteEditPolicy.PASTE_ROLE, new PasteEditPolicy());
 		// in Papyrus diagrams are not strongly synchronised
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentCombinedFragmentCompartmentCanonicalEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new ResizeOperandEditPolicy());
 		installEditPolicy(BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY, new BorderDisplayEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CombinedCreationEditPolicy());
 	}
-
-	/**
-	 * @generated
-	 */
-	@Override
-	protected void setRatio(Double ratio) {
-		if (getFigure().getParent().getLayoutManager() instanceof ConstrainedToolbarLayout) {
-			super.setRatio(ratio);
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	@Override
-	public EditPart getTargetEditPart(Request request) {
-
-		return super.getTargetEditPart(request);
-	}
-
-	/**
-	 * @generated
-	 */
-	@Override
-	protected void handleNotificationEvent(Notification notification) {
-		Object feature = notification.getFeature();
-		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature)
-				|| NotationPackage.eINSTANCE.getSize_Height().equals(feature)
-				|| NotationPackage.eINSTANCE.getLocation_X().equals(feature)
-				|| NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
-			refreshBounds();
-		}
-		super.handleNotificationEvent(notification);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void refreshBounds() {
-		int width = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
-		int height = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
-		Dimension size = new Dimension(width, height);
-		int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
-		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
-		Point loc = new Point(x, y);
-		((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
-	}
-
-	/**
-	 * @generated
-	 */
-	@Override
-	protected void refreshVisuals() {
-		super.refreshVisuals();
-		refreshBounds();
-	}
-
 }

@@ -251,10 +251,10 @@ public class CustomStateInvariantEditPart extends StateInvariantEditPart impleme
 	 * Refresh Invariant.
 	 */
 	protected void refreshLabels() {
-		List parts = getChildren();
+		List<?> parts = getChildren();
 		for (Object p : parts) {
 			if (p instanceof CustomStateInvariantLabelEditPart) {
-				((CustomStateInvariantLabelEditPart) p).refreshLabel();
+				((CustomStateInvariantLabelEditPart) p).refresh(); // Bug 569174 : refreshLabel visibility changed
 			}
 		}
 	}

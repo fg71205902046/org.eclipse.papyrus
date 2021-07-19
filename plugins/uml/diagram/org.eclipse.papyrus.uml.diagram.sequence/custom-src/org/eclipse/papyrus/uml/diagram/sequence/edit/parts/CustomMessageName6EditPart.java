@@ -84,7 +84,8 @@ public class CustomMessageName6EditPart extends MessageLostNameEditPart implemen
 		}
 	}
 
-	private View getFontStyleOwnerView() {
+	@Override
+	protected View getFontStyleOwnerView() {
 		return (View) getParent().getModel();
 	}
 }

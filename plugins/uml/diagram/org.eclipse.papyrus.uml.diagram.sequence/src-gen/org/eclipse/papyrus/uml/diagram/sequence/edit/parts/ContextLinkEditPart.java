@@ -1,16 +1,15 @@
 /**
- * Copyright (c) 2016, 2018 CEA LIST, Christian W. Damus, and others.
-  *
-  * All rights reserved. This program and the accompanying materials
-  * are made available under the terms of the Eclipse Public License 2.0
-  * which accompanies this distribution, and is available at
-  * https://www.eclipse.org/legal/epl-2.0/
-  *
-  * SPDX-License-Identifier: EPL-2.0
-  *
-  * Contributors:
-  *  CEA LIST - Initial API and implementation
-  *  Christian W. Damus - bug 536486
+ * Copyright (c) 2018 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
@@ -33,7 +32,7 @@ public class ContextLinkEditPart extends ConnectionEditPart implements ITreeBran
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Constraint_ContextEdge";
+	public static final String VISUAL_ID = "Constraint_ContextEdge"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -49,8 +48,7 @@ public class ContextLinkEditPart extends ConnectionEditPart implements ITreeBran
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new CustomAppliedStereotypeContextLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new CustomAppliedStereotypeContextLinkLabelDisplayEditPolicy());
 	}
 
 	/**
@@ -58,8 +56,7 @@ public class ContextLinkEditPart extends ConnectionEditPart implements ITreeBran
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof ConstraintContextAppliedStereotypeEditPart) {
-			((ConstraintContextAppliedStereotypeEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+			((ConstraintContextAppliedStereotypeEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -116,5 +113,4 @@ public class ContextLinkEditPart extends ConnectionEditPart implements ITreeBran
 	public CustomContextLinkFigure getPrimaryShape() {
 		return (CustomContextLinkFigure) getFigure();
 	}
-
 }

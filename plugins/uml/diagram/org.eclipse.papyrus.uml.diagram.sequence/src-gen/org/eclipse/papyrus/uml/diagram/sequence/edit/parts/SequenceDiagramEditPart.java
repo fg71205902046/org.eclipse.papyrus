@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2016 CEA LIST.
+ * Copyright (c) 2018 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -9,7 +9,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
@@ -37,7 +37,7 @@ public class SequenceDiagramEditPart extends PapyrusDiagramEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Package_SequenceDiagram";
+	public static final String VISUAL_ID = "Package_SequenceDiagram"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -59,7 +59,6 @@ public class SequenceDiagramEditPart extends PapyrusDiagramEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultCompartmentSemanticEditPolicy());
 		// in Papyrus diagrams are not strongly synchronised
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.sequence.edit.policies.PackageCanonicalEditPolicy());
-
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		installEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT, new GridManagementEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new SequenceDiagramLayoutEditPolicy());

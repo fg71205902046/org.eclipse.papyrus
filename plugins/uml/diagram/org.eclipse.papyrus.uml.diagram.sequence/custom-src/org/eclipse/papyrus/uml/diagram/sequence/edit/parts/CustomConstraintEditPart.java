@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA
+ * Copyright (c) 2010, 2021 CEA, ARTAL
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *
  * Contributors:
  *   Soyatec - Initial API and implementation
+ *   Etienne ALLOGO (ARTAL) - etienne.allogo@artal.fr - Bug 569174 : generate less dead - method visibility changed
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
@@ -56,10 +57,10 @@ public class CustomConstraintEditPart extends ConstraintEditPart {
 		if (event.getFeature() instanceof EReference) {
 			EReference ref = (EReference) event.getFeature();
 			if ("specification".equals(ref.getName())) {
-				List parts = getChildren();
+				List<?> parts = getChildren();
 				for (Object p : parts) {
 					if (p instanceof Constraint2EditPart) {
-						((Constraint2EditPart) p).handleNotificationEvent(event);
+						((Constraint2EditPart) p).notifyChanged(event); // Bug 569174 : handleNotificationEvent visibility changed
 					}
 				}
 			}
@@ -75,10 +76,10 @@ public class CustomConstraintEditPart extends ConstraintEditPart {
 	}
 
 	protected void refreshLabel() {
-		List parts = getChildren();
+		List<?> parts = getChildren();
 		for (Object p : parts) {
 			if (p instanceof Constraint2EditPart) {
-				((Constraint2EditPart) p).refreshLabel();
+				((Constraint2EditPart) p).refresh(); // Bug 569174 : refreshLabel visibility changed
 			}
 		}
 	}

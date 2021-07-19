@@ -18,10 +18,12 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.CenteredWrappedLabel;
+import org.eclipse.swt.graphics.Color;
 
-public class ContinuationFigure extends RoundedRectangle {
+public class ContinuationFigure extends RoundedRectangle implements IPapyrusNodeFigure {
 
 	private CenteredWrappedLabel fFigureContinuationNameLabel;
 
@@ -44,5 +46,35 @@ public class ContinuationFigure extends RoundedRectangle {
 
 	public IFigure getInvariantFigure() {
 		return this;
+	}
+
+	@Override
+	public Color getBorderColor() {
+		return null;
+	}
+
+	@Override
+	public boolean isShadow() {
+		return false;
+	}
+
+	@Override
+	public void setBorderColor(Color borderColor) {
+	}
+
+	@Override
+	public void setShadow(boolean shadow) {
+	}
+
+	@Override
+	public void setTransparency(int transparency) {
+	}
+
+	@Override
+	public void setGradientData(int gradientColor1, int gradientColor2, int gradientStyle) {
+	}
+
+	@Override
+	public void setIsUsingGradient(boolean b) {
 	}
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2016 CEA LIST.
+ * Copyright (c) 2018 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -9,7 +9,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.sequence.expressions;
 
@@ -44,8 +44,7 @@ public abstract class UMLAbstractExpression {
 		String pluginID = UMLDiagramEditorPlugin.ID;
 		this.status = new Status(severity, pluginID, -1, (message != null) ? message : "", throwable); //$NON-NLS-1$
 		if (!this.status.isOK()) {
-			UMLDiagramEditorPlugin.getInstance().logError("Expression problem:" + message + "body:" + body(), //$NON-NLS-1$//$NON-NLS-2$
-					throwable);
+			UMLDiagramEditorPlugin.getInstance().logError("Expression problem:" + message + "body:" + body(), throwable); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -143,25 +142,25 @@ public abstract class UMLAbstractExpression {
 		}
 		if (Number.class.isAssignableFrom(targetWrapperClass)) {
 			if (targetWrapperClass.equals(Byte.class)) {
-				return new Byte(num.byteValue());
+				return Byte.valueOf(num.byteValue());
 			}
 			if (targetWrapperClass.equals(Integer.class)) {
-				return new Integer(num.intValue());
+				return Integer.valueOf(num.intValue());
 			}
 			if (targetWrapperClass.equals(Short.class)) {
-				return new Short(num.shortValue());
+				return Short.valueOf(num.shortValue());
 			}
 			if (targetWrapperClass.equals(Long.class)) {
-				return new Long(num.longValue());
+				return Long.valueOf(num.longValue());
 			}
 			if (targetWrapperClass.equals(BigInteger.class)) {
 				return BigInteger.valueOf(num.longValue());
 			}
 			if (targetWrapperClass.equals(Float.class)) {
-				return new Float(num.floatValue());
+				return Float.valueOf(num.floatValue());
 			}
 			if (targetWrapperClass.equals(Double.class)) {
-				return new Double(num.doubleValue());
+				return Double.valueOf(num.doubleValue());
 			}
 			if (targetWrapperClass.equals(BigDecimal.class)) {
 				return new BigDecimal(num.doubleValue());

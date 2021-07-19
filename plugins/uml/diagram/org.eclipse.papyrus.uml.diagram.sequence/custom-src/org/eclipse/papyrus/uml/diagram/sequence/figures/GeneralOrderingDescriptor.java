@@ -21,9 +21,9 @@ import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
-import org.eclipse.papyrus.infra.gmfdiag.common.figure.edge.PapyrusEdgeFigure;
+import org.eclipse.papyrus.uml.diagram.common.figure.edge.UMLEdgeFigure;
 
-public class GeneralOrderingDescriptor extends PapyrusEdgeFigure {
+public class GeneralOrderingDescriptor extends UMLEdgeFigure {
 
 	private WrappingLabel fAppliedStereotypeLabel;
 
@@ -55,6 +55,7 @@ public class GeneralOrderingDescriptor extends PapyrusEdgeFigure {
 		return df;
 	}
 
+	@Override
 	public WrappingLabel getAppliedStereotypeLabel() {
 		return fAppliedStereotypeLabel;
 	}

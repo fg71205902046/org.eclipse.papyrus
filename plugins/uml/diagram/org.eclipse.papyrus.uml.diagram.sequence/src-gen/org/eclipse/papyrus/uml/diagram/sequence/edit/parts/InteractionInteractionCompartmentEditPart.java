@@ -1,6 +1,5 @@
-
 /**
- * Copyright (c) 2016 CEA LIST.
+ * Copyright (c) 2018 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,7 +9,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
@@ -37,7 +36,7 @@ public class InteractionInteractionCompartmentEditPart extends LinkLFShapeCompar
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "Interaction_SubfragmentCompartment";
+	public static final String VISUAL_ID = "Interaction_SubfragmentCompartment"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -76,10 +75,8 @@ public class InteractionInteractionCompartmentEditPart extends LinkLFShapeCompar
 		installEditPolicy(PasteEditPolicy.PASTE_ROLE, new PasteEditPolicy());
 		// in Papyrus diagrams are not strongly synchronised
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionInteractionCompartmentCanonicalEditPolicy());
-
 		installEditPolicy(BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY, new BorderDisplayEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new GridBasedXYLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 	}
-
 }

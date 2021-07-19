@@ -1,24 +1,24 @@
 /**
- * Copyright (c) 2016 CEA LIST.
-  *
-  * All rights reserved. This program and the accompanying materials
-  * are made available under the terms of the Eclipse Public License 2.0
-  * which accompanies this distribution, and is available at
-  * https://www.eclipse.org/legal/epl-2.0/
-  *
-  * SPDX-License-Identifier: EPL-2.0
-  *
-  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ * Copyright (c) 2018 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import org.eclipse.draw2d.Connection;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
@@ -27,12 +27,12 @@ import org.eclipse.papyrus.uml.diagram.sequence.figures.GeneralOrderingDescripto
 /**
  * @generated
  */
-public class GeneralOrderingEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
+public class GeneralOrderingEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "GeneralOrdering_Edge";
+	public static final String VISUAL_ID = "GeneralOrdering_Edge"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -48,8 +48,7 @@ public class GeneralOrderingEditPart extends ConnectionNodeEditPart implements I
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
 	}
 
 	/**
@@ -57,8 +56,7 @@ public class GeneralOrderingEditPart extends ConnectionNodeEditPart implements I
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof GeneralOrderingAppliedStereotypeEditPart) {
-			((GeneralOrderingAppliedStereotypeEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+			((GeneralOrderingAppliedStereotypeEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -111,8 +109,8 @@ public class GeneralOrderingEditPart extends ConnectionNodeEditPart implements I
 	/**
 	 * @generated
 	 */
+	@Override
 	public GeneralOrderingDescriptor getPrimaryShape() {
 		return (GeneralOrderingDescriptor) getFigure();
 	}
-
 }
