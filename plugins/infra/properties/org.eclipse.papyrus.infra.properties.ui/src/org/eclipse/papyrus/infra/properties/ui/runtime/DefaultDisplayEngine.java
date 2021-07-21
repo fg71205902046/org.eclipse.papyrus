@@ -330,6 +330,12 @@ public class DefaultDisplayEngine implements DisplayEngine {
 
 				}
 				// in other case, only refresh is needed.
+			} else {
+				// the constraint evaluation has not be created
+				// the section has to be created
+				// for example the selection has changed
+				storeConstraintevalutionForSource(section, source);
+				disposeAndCreateControl(parent, section, source);
 			}
 		}
 	}
