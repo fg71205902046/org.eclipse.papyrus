@@ -19,6 +19,10 @@
       %license
    </license>
 
+   <requires>
+      <import feature="org.eclipse.xwt.feature" version="1.6.0" match="greaterOrEqual"/>
+   </requires>
+
    <plugin
          id="org.eclipse.papyrus.infra.ui"
          download-size="0"

@@ -1,5 +1,5 @@
 target "Papyrus Releng" with requirements source
 
-include "../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable.target.tpd"
-include "../../toolsmiths/targetPlatform/portable/org.eclipse.papyrus.toolsmiths.portable.targetplatform.tpd"
-include "../../tests/main-tests/targetPlatform/portable/org.eclipse.papyrus.main.tests.portable.target.tpd"
+include "../../main/targetPlatform/org.eclipse.papyrus.main.targetplatform.tpd"
+include "../../toolsmiths/targetPlatform/org.eclipse.papyrus.toolsmiths.targetplatform.tpd"
+include "../../tests/main-tests/targetPlatform/org.eclipse.papyrus.main.tests.targetplatform.tpd"
