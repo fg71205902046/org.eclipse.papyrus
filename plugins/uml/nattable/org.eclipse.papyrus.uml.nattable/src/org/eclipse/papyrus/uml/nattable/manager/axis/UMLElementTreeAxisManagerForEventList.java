@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2021 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,11 +11,12 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 514620
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.manager.axis;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -72,7 +73,7 @@ public class UMLElementTreeAxisManagerForEventList extends EObjectTreeAxisManage
 		if (elementId == null) {
 			return false;
 		}
-		
+
 		final IElementType types = ElementTypeRegistry.getInstance().getType(elementId);
 		if (types == null || (types instanceof SpecializationType && ((SpecializationType) types).getMetamodelType() == null)) {
 			return false;
@@ -143,7 +144,7 @@ public class UMLElementTreeAxisManagerForEventList extends EObjectTreeAxisManage
 	/**
 	 * This method allows to add/remove elements from the table, according to values returned by {@link #getFilteredValueAsCollection(TreeFillingConfiguration, Object, int)},
 	 * when the attribute base_metaclass_name is modified in a stereotype application
-	 * 
+	 *
 	 * @param notification
 	 *            a notification which concern the feature base_ of a stereotype application
 	 */
@@ -194,7 +195,7 @@ public class UMLElementTreeAxisManagerForEventList extends EObjectTreeAxisManage
 	}
 
 	/**
-	 * 
+	 *
 	 * @param semanticParent
 	 *            the {@link ITreeItemAxis} representing the semantic parent of the baseElement concerned by the stereotype application
 	 * @param baseElement
@@ -215,8 +216,13 @@ public class UMLElementTreeAxisManagerForEventList extends EObjectTreeAxisManage
 			Collection<?> values = getFilteredValueAsCollection(curr, context, 0);
 			ITreeItemAxis confRep = null;
 			if (this.managedElements.containsKey(curr)) {
-				// we are on the root, only null or 1 representation is possible
-				confRep = this.managedElements.get(curr).iterator().next();
+				Iterator<ITreeItemAxis> iter = this.managedElements.get(curr).iterator();
+				while (iter.hasNext() && confRep == null) {
+					final ITreeItemAxis axis = iter.next();
+					if (axis.getParent() == semanticParent) {
+						confRep = axis;
+					}
+				}
 			}
 			if (values.isEmpty()) {
 				if (confRep != null) {
@@ -252,11 +258,11 @@ public class UMLElementTreeAxisManagerForEventList extends EObjectTreeAxisManage
 	}
 
 	/**
-	 * 
+	 *
 	 * @param notification
 	 *            a notification
 	 * @return
-	 * 		<code>true</code> if the notification concerns a stereotype application
+	 *         <code>true</code> if the notification concerns a stereotype application
 	 */
 	protected boolean isStereotypeApplicationNotification(final Notification notification) {
 		Object notifier = notification.getNotifier();
