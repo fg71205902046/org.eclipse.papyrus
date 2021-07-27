@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2017, 2019 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2017, 2019. 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,7 +11,7 @@
  * Contributors:
  *   Thibault Le Ouay (Sherpa Engineering) t.leouay@sherpa-eng.com  - Initial API and implementation
  *   Christian W. Damus - bug 471453
- *   Ansgar Radermacher (CEA LIST) - bug 551952
+ *   Ansgar Radermacher (CEA LIST) -  support working sets (bug 572328), bug 551952
  *
  *****************************************************************************/
 
@@ -76,6 +76,11 @@ public class PapyrusProjectCreationPage extends WizardNewProjectCreationPage imp
 		fileName.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		fileName.addListener(SWT.Modify, fileNameModifyListener);
 		setPageComplete(false);
+
+		String[] workingSetIds = new String[] {
+				"org.eclipse.ui.resourceWorkingSetPage", //$NON-NLS-1$
+				"org.eclipse.jdt.ui.JavaWorkingSetPage" }; //$NON-NLS-1$
+		createWorkingSetGroup(composite, null, workingSetIds);
 	}
 
 	/**
@@ -143,7 +148,7 @@ public class PapyrusProjectCreationPage extends WizardNewProjectCreationPage imp
 	 *
 	 * @see org.eclipse.jface.wizard.WizardPage#canFlipToNextPage()
 	 *
-	 * @return
+	 * @return true, if user can flip to next page
 	 */
 	@Override
 	public boolean canFlipToNextPage() {
@@ -183,6 +188,5 @@ public class PapyrusProjectCreationPage extends WizardNewProjectCreationPage imp
 	@Override
 	public void performHelp() {
 		PlatformUI.getWorkbench().getHelpSystem().displayHelp("org.eclipse.papyrus.uml.diagram.wizards.NewProject"); //$NON-NLS-1$
-
 	}
 }

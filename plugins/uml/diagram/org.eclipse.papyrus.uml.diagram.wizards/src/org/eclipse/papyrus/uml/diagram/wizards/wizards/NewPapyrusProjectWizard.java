@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2013 CEA LIST.
+ * Copyright (c) 2010, 2013, 2021 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -12,6 +12,8 @@
  * Contributors:
  *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
  *  Christian W. Damus (CEA) - Support creating models in repositories (CDO)
+ *  Ansgar Radermacher (CEA) - Support working sets ((bug 572328), avoid deprecated SubProgressMonitor
+ *
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.wizards.wizards;
@@ -22,7 +24,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.SubProgressMonitor;
+import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.uml.diagram.wizards.Activator;
@@ -30,6 +32,8 @@ import org.eclipse.papyrus.uml.diagram.wizards.messages.Messages;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.PapyrusProjectCreationPage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectArchitectureContextPage;
 import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkingSet;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 
 /**
@@ -130,13 +134,16 @@ public class NewPapyrusProjectWizard extends CreateModelWizard {
 			if (projectLocationURI != null) {
 				projectDescription.setLocationURI(projectLocationURI);
 			}
-			project.create(projectDescription, new SubProgressMonitor(progressMonitor, 1));
-			project.open(new SubProgressMonitor(progressMonitor, 1));
+			project.create(projectDescription, SubMonitor.convert(progressMonitor, 1));
+			project.open(SubMonitor.convert(progressMonitor, 1));
 		} else {
 			// projectDescription = project.getDescription();
-			project.open(new SubProgressMonitor(progressMonitor, 1));
+			project.open(SubMonitor.convert(progressMonitor, 1));
 		}
-
+		IWorkingSet[] workingSets = getMyProjectPage().getSelectedWorkingSets();
+		if (workingSets.length > 0) {
+			PlatformUI.getWorkbench().getWorkingSetManager().addToWorkingSets(project, workingSets);
+		}
 		return project;
 	}
 
