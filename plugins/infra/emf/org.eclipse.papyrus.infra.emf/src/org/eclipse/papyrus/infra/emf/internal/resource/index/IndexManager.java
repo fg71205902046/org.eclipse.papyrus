@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2017 Christian W. Damus and others.
- * 
+ * Copyright (c) 2014, 2021 Christian W. Damus, CEA LIST, and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.emf.internal.resource.index;
@@ -24,11 +24,14 @@ import static org.eclipse.papyrus.infra.emf.internal.resource.InternalIndexUtil.
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -40,7 +43,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -59,6 +65,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.QualifiedName;
+import org.eclipse.core.runtime.SafeRunner;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.core.runtime.content.IContentType;
@@ -88,6 +95,7 @@ import com.google.common.collect.Multimap;
 import com.google.common.collect.Queues;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
+import com.google.common.util.concurrent.SettableFuture;
 
 /**
  * A controller of the indexing process for {@link WorkspaceModelIndex}s,
@@ -111,6 +119,14 @@ public class IndexManager {
 	private Map<QualifiedName, InternalModelIndex> indices;
 	private JobWrangler jobWrangler;
 	private final CopyOnWriteArrayList<IndexListener> listeners = new CopyOnWriteArrayList<>();
+
+	private final IndexSynchronizer synchronizer = new IndexSynchronizer();
+
+	private final CopyOnWriteArrayList<IIndexManagerListener> managerListeners = new CopyOnWriteArrayList<>();
+
+	private final Lock lifecycleLock = new ReentrantLock();
+	private final Condition pausedCondition = lifecycleLock.newCondition();
+	private boolean paused = false;
 
 	public IndexManager() {
 		super();
@@ -137,7 +153,67 @@ public class IndexManager {
 			indices.values().forEach(InternalModelIndex::dispose);
 			// don't null the 'indices' to prevent starting again
 
+			listeners.clear();
+			managerListeners.clear();
+
 			ContentTypeService.dispose(contentTypeService);
+		}
+	}
+
+	public final boolean isPaused() {
+		lifecycleLock.lock();
+
+		try {
+			return paused;
+		} finally {
+			lifecycleLock.unlock();
+		}
+	}
+
+	public final void pause() {
+		setPaused(true);
+	}
+
+	private void setPaused(boolean paused) {
+		boolean notify = false;
+		lifecycleLock.lock();
+
+		try {
+			if (this.paused != paused) {
+				this.paused = paused;
+				pausedCondition.signalAll();
+				notify = true;
+			}
+		} finally {
+			lifecycleLock.unlock();
+		}
+
+		if (notify) {
+			tracef("Indexing %s", paused ? "paused" : "resumed"); //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$
+
+			if (!managerListeners.isEmpty()) {
+				BiConsumer<IIndexManagerListener, IndexManager> action = paused
+						? IIndexManagerListener::indexingPaused
+						: IIndexManagerListener::indexingResumed;
+				Consumer<IIndexManagerListener> callback = l -> action.accept(l, this);
+				managerListeners.forEach(l -> SafeRunner.run(() -> callback.accept(l)));
+			}
+		}
+	}
+
+	public final void resume() {
+		setPaused(false);
+	}
+
+	final void checkPaused() throws InterruptedException {
+		lifecycleLock.lock();
+
+		try {
+			while (paused) {
+				pausedCondition.await();
+			}
+		} finally {
+			lifecycleLock.unlock();
 		}
 	}
 
@@ -161,6 +237,14 @@ public class IndexManager {
 		// And load or index from scratch
 		index(Arrays.asList(wsRoot.getProjects()));
 		wsRoot.getWorkspace().addResourceChangeListener(workspaceListener, IResourceChangeEvent.POST_CHANGE);
+	}
+
+	public void addIndexManagerListener(IIndexManagerListener listener) {
+		managerListeners.addIfAbsent(listener);
+	}
+
+	public void removeIndexManagerListener(IIndexManagerListener listener) {
+		managerListeners.remove(listener);
 	}
 
 	private void startIndex(InternalModelIndex index) {
@@ -211,18 +295,18 @@ public class IndexManager {
 	/**
 	 * Obtains an asynchronous future result that is scheduled to run after
 	 * any pending indexing work has completed.
-	 * 
+	 *
 	 * @param index
 	 *            the index that is making the request
 	 * @param callable
 	 *            the operation to schedule
-	 * 
+	 *
 	 * @return the future result of the operation
 	 */
 	<V> ListenableFuture<V> afterIndex(InternalModelIndex index, Callable<V> callable) {
 		ListenableFuture<V> result;
 
-		if ((Job.getJobManager().find(this).length == 0) || wsRoot.getWorkspace().isTreeLocked()) {
+		if (isIdle() || wsRoot.getWorkspace().isTreeLocked()) {
 			// Result is available now, or the workspace is currently notifying on this,
 			// in which case none of the indexer jobs can run yet so we must return whatever
 			// is the current state of the index (or else certainly deadlock)
@@ -232,37 +316,40 @@ public class IndexManager {
 				result = Futures.immediateFailedFuture(e);
 			}
 		} else {
-			JobBasedFuture<V> job = new JobBasedFuture<V>("Wait for workspace model index") {
-				{
-					setSystem(true);
-				}
-
-				@Override
-				protected V compute(IProgressMonitor monitor) throws Exception {
-					V result;
-
-					Job.getJobManager().join(IndexManager.this, monitor);
-					result = callable.call();
-
-					return result;
-				}
-			};
-			job.schedule();
-			result = job;
+			result = synchronizer.post(callable);
 		}
 
 		return result;
 	}
 
 	/**
+	 * Query whether the index manager idle.
+	 *
+	 * @return {@code true} if either there is no job wrangler, yet (in which case there cannot be any
+	 *         indexing jobs) or it is idle
+	 */
+	private boolean isIdle() {
+		return jobWrangler == null || jobWrangler.isIdle();
+	}
+
+	private void waitForIndex() throws InterruptedException {
+		if (isIdle()) {
+			// Nothing to wait for
+			return;
+		}
+
+		jobWrangler.waitForIdle();
+	}
+
+	/**
 	 * Invokes an operation on some index if it is assured to be ready by
 	 * virture of no indexing jobs currently working on computing the index.
-	 * 
+	 *
 	 * @param callable
 	 *            an index operation
 	 * @return the result of the {@code callable}, or {@code null} if indexing is
 	 *         still pending (not ready to compute any result)
-	 * 
+	 *
 	 * @throws CoreException
 	 *             on failure of the {@code callable}
 	 */
@@ -516,6 +603,18 @@ public class IndexManager {
 		}
 	}
 
+	private void notifyWranglerStarting() {
+		if (!managerListeners.isEmpty()) {
+			managerListeners.forEach(l -> SafeRunner.run(() -> l.indexingStarting(this)));
+		}
+	}
+
+	private void notifyWranglerFinished() {
+		if (!managerListeners.isEmpty()) {
+			managerListeners.forEach(l -> SafeRunner.run(() -> l.indexingFinished(this)));
+		}
+	}
+
 	//
 	// Nested types
 	//
@@ -639,8 +738,12 @@ public class IndexManager {
 
 	private class JobWrangler extends AbstractIndexJob {
 		private final Lock lock = new ReentrantLock();
+		private final Condition idleCondition = lock.newCondition();
 
 		private final Deque<AbstractIndexJob> queue = Queues.newArrayDeque();
+
+		final AtomicInteger pending = new AtomicInteger(); // How many permits have we issued?
+		final Condition pendingChanged = lock.newCondition();
 
 		private final AtomicBoolean active = new AtomicBoolean();
 		private final Semaphore indexJobSemaphore;
@@ -691,14 +794,15 @@ public class IndexManager {
 		@Override
 		protected void canceling() {
 			cancelled = true;
-			getThread().interrupt();
+			Thread running = getThread();
+			if (running != null) {
+				running.interrupt();
+			}
+			tracef("Cancelling job %s", getName()); //$NON-NLS-1$
 		}
 
 		@Override
 		protected IStatus doRun(IProgressMonitor progressMonitor) {
-			final AtomicInteger pending = new AtomicInteger(); // How many permits have we issued?
-			final Condition pendingChanged = lock.newCondition();
-
 			final SubMonitor monitor = SubMonitor.convert(progressMonitor, IProgressMonitor.UNKNOWN);
 
 			IStatus result = Status.OK_STATUS;
@@ -720,6 +824,9 @@ public class IndexManager {
 						// one of mine is starting
 						AbstractIndexJob indexJob = (AbstractIndexJob) starting;
 						notifyStarting(indexJob);
+					} else if (starting == jobWrangler) {
+						// the orchestration job is starting
+
 					}
 				}
 
@@ -738,6 +845,8 @@ public class IndexManager {
 								synchronized (retries) {
 									if ((event.getResult() != null) && (event.getResult().getSeverity() >= IStatus.ERROR)) {
 										// Indexing failed to complete. Need to re-build the index
+										tracef("Retrying %s", finished); //$NON-NLS-1$
+
 										int count = retries.containsKey(project) ? retries.get(project) : 0;
 										if (count++ < MAX_INDEX_RETRIES) {
 											// Only retry up to three times
@@ -770,7 +879,12 @@ public class IndexManager {
 
 			getJobManager().addJobChangeListener(listener);
 
+			notifyWranglerStarting();
+
 			lock.lock();
+
+			// Initialize the pending count
+			pending.set(0);
 
 			try {
 				out: for (;;) {
@@ -782,6 +896,8 @@ public class IndexManager {
 							if (cancelled) {
 								throw new InterruptedException();
 							}
+
+							checkPaused();
 
 							// Enforce the concurrent jobs limit
 							indexJobSemaphore.acquire();
@@ -804,13 +920,14 @@ public class IndexManager {
 								lock.unlock();
 							}
 							result = Status.CANCEL_STATUS;
+							tracef("Job %s interrupted", getName()); //$NON-NLS-1$
 							break out;
 						} finally {
 							lock.lock();
 						}
 					}
 
-					if ((pending.get() <= 0) && queue.isEmpty()) {
+					if (isIdle()) {
 						// Nothing left to wait for
 						break out;
 					} else if (pending.get() > 0) {
@@ -831,7 +948,12 @@ public class IndexManager {
 					}
 				}
 
-				// We've finished wrangling index jobs, for now
+				if (isIdle()) {
+					// We've finished wrangling index jobs, for now
+					tracef("Index manager idle"); //$NON-NLS-1$
+
+					idleCondition.signalAll();
+				}
 			} finally {
 				try {
 					// If we were canceled then we re-schedule after a delay to recover
@@ -839,6 +961,7 @@ public class IndexManager {
 						// We cannot un-cancel a job, so we must replace ourselves with a new job
 						schedule(1000L);
 						cancelled = false;
+						tracef("Re-scheduled cancelled job %s", getName()); //$NON-NLS-1$
 					} else {
 						// Don't think we're active any longer
 						active.compareAndSet(true, false);
@@ -847,16 +970,42 @@ public class IndexManager {
 						if (!queue.isEmpty()) {
 							// We'll have to go around again
 							scheduleIfNeeded();
+							tracef("Re-scheduled job %s for new indexing jobs", getName()); //$NON-NLS-1$
 						}
 					}
 				} finally {
 					lock.unlock();
 					getJobManager().removeJobChangeListener(listener);
+
+					notifyWranglerFinished();
 				}
 			}
 
 			return result;
 		}
+
+		boolean isIdle() {
+			lock.lock();
+
+			try {
+				return queue.isEmpty() && pending.get() <= 0;
+			} finally {
+				lock.unlock();
+			}
+		}
+
+		void waitForIdle() throws InterruptedException {
+			lock.lock();
+
+			try {
+				while (!isIdle()) {
+					idleCondition.await();
+				}
+			} finally {
+				lock.unlock();
+			}
+		}
+
 	}
 
 	private class DiscoverProjectJob extends AbstractIndexJob {
@@ -1377,4 +1526,130 @@ public class IndexManager {
 		}
 
 	}
+
+	/**
+	 * A job-based future that accumulates a queue of computations waiting for indexing to finish.
+	 * After the indexer is idle, the pending computations are run cleared out, publishing results
+	 * to all clients that were waiting for them.
+	 */
+	private final class IndexSynchronizer extends JobBasedFuture<List<Future<?>>> {
+
+		private final Lock lock = new ReentrantLock();
+
+		private final Queue<Computation<?>> waitingComputations = new LinkedList<>();
+
+		IndexSynchronizer() {
+			super("Wait for workspace model index");
+
+			setSystem(true);
+		}
+
+		@Override
+		protected List<Future<?>> compute(IProgressMonitor monitor) throws Exception {
+			List<Future<?>> result = new ArrayList<>();
+			List<Computation<?>> toComplete;
+
+			waitForIndex();
+
+			lock.lock();
+			try {
+				do {
+					toComplete = List.copyOf(waitingComputations);
+					waitingComputations.clear();
+
+					lock.unlock();
+
+					try {
+						for (Computation<?> next : toComplete) {
+							next.complete();
+							result.add(next.get());
+						}
+					} finally {
+						lock.lock();
+					}
+				} while (!waitingComputations.isEmpty());
+			} finally {
+				lock.unlock();
+			}
+
+			return result;
+		}
+
+		/**
+		 * Post a computation to run after the indexer is idle, returning its future result.
+		 * If the index is currently idle, the result will be computed immediately and
+		 * returned already completed without being queued.
+		 *
+		 * @param computation
+		 *            a computation to post
+		 * @return its future result
+		 */
+		<V> ListenableFuture<V> post(Callable<V> computation) {
+			ListenableFuture<V> result;
+
+			if (isIdle()) {
+				// Nothing to wait for
+				result = Computation.complete(computation);
+			} else {
+				lock.lock();
+				try {
+					boolean first = waitingComputations.isEmpty();
+
+					Computation<V> wrapper = new Computation<>(computation);
+					waitingComputations.offer(wrapper);
+					result = wrapper.get();
+
+					if (first) {
+						// This is the first waiting computation. Schedule the queue
+						schedule();
+					}
+				} finally {
+					lock.unlock();
+				}
+			}
+
+			return result;
+		}
+	};
+
+	/**
+	 * A computation queued in the {@link IndexSynchronizer}.
+	 */
+	private static final class Computation<V> implements Supplier<ListenableFuture<V>> {
+		private final Callable<V> computation;
+		private final SettableFuture<V> result = SettableFuture.create();
+
+		Computation(Callable<V> computation) {
+			super();
+
+			this.computation = computation;
+		}
+
+		void complete() {
+			try {
+				result.set(computation.call());
+			} catch (ThreadDeath d) {
+				throw d;
+			} catch (Throwable e) {
+				result.setException(e);
+			}
+		}
+
+		@Override
+		public ListenableFuture<V> get() {
+			return result;
+		}
+
+		static <V> ListenableFuture<V> complete(Callable<V> computation) {
+			try {
+				return Futures.immediateFuture(computation.call());
+			} catch (ThreadDeath d) {
+				throw d;
+			} catch (Throwable e) {
+				return Futures.immediateFailedFuture(e);
+			}
+		}
+
+	}
+
 }

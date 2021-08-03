@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2017 Christian W. Damus and others.
+ * Copyright (c) 2014, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -37,7 +37,6 @@ import org.eclipse.papyrus.uml.decoratormodel.internal.resource.DecoratorModelIn
 import org.eclipse.papyrus.uml.decoratormodel.internal.resource.IDecoratorModelIndexListener;
 import org.eclipse.papyrus.uml.decoratormodel.tests.AbstractProfileExternalizationTest;
 import org.eclipse.uml2.uml.Package;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -186,7 +185,6 @@ public class DecoratorModelIndexTest extends AbstractProfileExternalizationTest 
 	}
 
 	@Test
-	@Ignore("time out")
 	public void decoratorModelsForPackage_none() throws CoreException {
 		Set<URI> decorators = fixture.getDecoratorModelsForPackage(EcoreUtil.getURI(getPackage1()));
 
