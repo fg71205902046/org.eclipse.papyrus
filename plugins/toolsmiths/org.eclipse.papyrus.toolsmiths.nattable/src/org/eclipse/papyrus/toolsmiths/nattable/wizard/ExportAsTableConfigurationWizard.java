@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2019 CEA LIST and others.
+ * Copyright (c) 2019, 2021 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,27 +11,27 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Bug 552101
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 571814
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.nattable.wizard;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -63,6 +63,7 @@ import org.eclipse.papyrus.toolsmiths.nattable.wizard.pages.WarningOnCurrentTabl
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IExportWizard;
 import org.eclipse.ui.IWorkbench;
+
 
 
 
@@ -249,20 +250,23 @@ public class ExportAsTableConfigurationWizard extends Wizard implements IExportW
 			// 3.2 we create the defaut table icon, using the PNG format.
 			if (!imageFilePNG.exists()) {
 				final URL fileURL = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getURL(Activator.PLUGIN_ID, DEFAULT_TABLE_ICON);
-				File file = null;
-				try {
-					file = new File(FileLocator.resolve(fileURL).toURI());
-				} catch (final URISyntaxException e) {
-					Activator.log.error(e);
-				} catch (final IOException e) {
-					Activator.log.error(e);
+				String str = fileURL.getFile();
+
+				// The difficulty is to manage the spaces and the accentuated char in the path of the installation to copy the image file to the expected output target
+
+				// tested with windows and MacOS
+				if (OperatingSystem.isWindows() && str.startsWith("/")) { //$NON-NLS-1$
+					str = str.replaceFirst("/", ""); //$NON-NLS-1$ //$NON-NLS-2$
 				}
 
+
+				final Path path = Paths.get(str, ""); //$NON-NLS-1$
+
 				// 3. copy the image
-				if (null != file) {
+				if (null != path) {
 					try {
 						final OutputStream out = new FileOutputStream(imageFilePNG.getLocation().toString());
-						Files.copy(file.toPath(), out);
+						Files.copy(path, out);
 						out.close();
 					} catch (final IOException e) {
 						Activator.log.error(e);
@@ -393,4 +397,22 @@ public class ExportAsTableConfigurationWizard extends Wizard implements IExportW
 	}
 
 
+	private static class OperatingSystem {
+
+		private static String OS = System.getProperty("os.name", "unknown").toLowerCase(Locale.ROOT); //$NON-NLS-1$ //$NON-NLS-2$
+
+		public static boolean isWindows() {
+			return OS.contains("win"); //$NON-NLS-1$
+		}
+
+		public static boolean isMac() {
+			return OS.contains("mac"); //$NON-NLS-1$
+		}
+
+		public static boolean isUnix() {
+			return OS.contains("nux"); //$NON-NLS-1$
+		}
+	}
+
 }
+
