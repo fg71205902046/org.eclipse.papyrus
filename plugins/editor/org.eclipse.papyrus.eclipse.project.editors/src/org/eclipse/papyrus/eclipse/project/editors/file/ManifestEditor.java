@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2016, 2017 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2011, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Christian W. Damus - bugs 485220, 489075
+ *  Christian W. Damus - bugs 485220, 489075, 569105
  *  Vincent Lorenzo (CEA LIST) - bug 525876
  *****************************************************************************/
 package org.eclipse.papyrus.eclipse.project.editors.file;
@@ -78,7 +78,7 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	private static final String EXPORT_PACKAGE = "Export-Package"; //$NON-NLS-1$
 
 	private static final String FRAGMENT_HOST = "Fragment-Host"; //$NON-NLS-1$
-	
+
 	private static final String SINGLETON = "singleton:="; //$NON-NLS-1$
 
 	private static final String VISIBILITY = "visibility"; //$NON-NLS-1$
@@ -245,12 +245,18 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 
 			// Left-overs
 			for (Map.Entry<String, String> next : newAttributes.entrySet()) {
-				result.append(SEMICOLON);
-				result.append(next.getKey()).append(EQUALS).append('"').append(next.getValue()).append('"');
+				// Do not add an attribute that was to be removed when it doesn't actually exist (bug 569105)
+				if (next.getValue() != null) {
+					result.append(SEMICOLON);
+					result.append(next.getKey()).append(EQUALS).append('"').append(next.getValue()).append('"');
+				}
 			}
 			for (Map.Entry<String, String> next : newDirectives.entrySet()) {
-				result.append(SEMICOLON);
-				result.append(next.getKey()).append(ASSIGN).append(next.getValue());
+				// Do not add a directive that was to be removed when it doesn't actually exist (bug 569105)
+				if (next.getValue() != null) {
+					result.append(SEMICOLON);
+					result.append(next.getKey()).append(ASSIGN).append(next.getValue());
+				}
 			}
 
 			return result.toString();
@@ -972,20 +978,20 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 			return attributeNames;
 		}
 	}
-	
+
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#setFragmentHost(java.lang.String)
 	 */
 	@Override
 	public void setFragmentHost(final String fragmentHost) {
 		setFragmentHost(fragmentHost, null);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#setFragmentHost(java.lang.String, java.lang.String)
 	 */
 	@Override
@@ -996,10 +1002,10 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 
 		setMainAttribute(FRAGMENT_HOST, fragmentHostStringValue);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#getFragmentHost()
 	 */
 	@Override

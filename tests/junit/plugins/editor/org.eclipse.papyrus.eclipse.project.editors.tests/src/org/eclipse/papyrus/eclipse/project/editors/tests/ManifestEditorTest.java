@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2016 Christian W. Damus and others.
- * 
+ * Copyright (c) 2016, 2021 Christian W. Damus, CEA LIST, and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.eclipse.project.editors.tests;
@@ -23,7 +23,7 @@ import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -422,6 +422,12 @@ public class ManifestEditorTest {
 		fixture.getEditor().save();
 
 		assertThat(one(getManifest(), "org.eclipse.papyrus.junit.utils"), not(containsString("visibility:=reexport")));
+
+		// And try to remove it again! (bug 569105)
+		fixture.getEditor().setRequiredBundleExported("org.eclipse.papyrus.junit.utils", false);
+		fixture.getEditor().save();
+
+		assertThat(one(getManifest(), "org.eclipse.papyrus.junit.utils"), not(containsString("visibility:=")));
 	}
 
 	@WithResource("manifest_project/META-INF/MANIFEST.MF")
@@ -432,9 +438,9 @@ public class ManifestEditorTest {
 		fixture.getEditor().save();
 
 		List<String> manifest = getManifest();
-	
-		assertThat(manifest, hasItem("Require-Bundle: org.eclipse.papyrus.junit.utils;bundle-version=\"[1.2.0,2.0.0)\",")); 
-		
+
+		assertThat(manifest, hasItem("Require-Bundle: org.eclipse.papyrus.junit.utils;bundle-version=\"[1.2.0,2.0.0)\","));
+
 		// This is now the last one (no trailing comma)
 		assertThat(manifest, hasItem(" org.eclipse.papyrus.eclipse.project.editors;bundle-version=\"[2.0.0,3.0.0)\""));
 	}
