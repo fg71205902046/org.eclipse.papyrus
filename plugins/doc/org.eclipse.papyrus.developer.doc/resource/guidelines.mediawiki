@@ -1495,21 +1495,24 @@ Papyrus editor add some new features to GMF, and needs specific generation. Here
 === How to generate a diagram for Papyrus ===
 
 ==== Prerequisites ====
+From the Papyrus update site, you need to install the Papyrus Diagram Generation Tools feature.
+[[Image:images/PapyrusDiagramGenInstallation.png]]
 
-Install following Eclipse environment:
-* GMF tooling see version http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a
-* the xtend2 extensions of GMF tooling.
-* xtend editor (to manage file encoding problem) http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/
+If you want to work with the generation plug-ins in your workspace, add the following developer plugins to your workspace (first instance).
 
-It is recommended to run the generation in a second Eclipse Application launched from your running Eclipse instance.
-Add the following developer plugins to your workspace (first instance).
-
-* org.eclipse.papyrus.gmfgenextension
-* org.eclipse.papyrus.codegen 
-* org.eclipse.papyrus.def
+* org.eclipse.papyrus.codegen
+* org.eclipse.papyrus.dev.assistants.codegen
+* org.eclipse.papyrus.gmf.codegen
+* org.eclipse.papyrus.gmf.codegen.edit
+* org.eclipse.papyrus.gmf.codegen.ui
+* org.eclipse.papyrus.gmf.codegen.xtend
+* org.eclipse.papyrus.gmf.codegen.xtend.ui
+* org.eclipse.papyrus.gmf.common
+* org.eclipse.papyrus.gmf.validate
 * org.eclipse.papyrus.dev.assistants.codegen (optional, needed in case of generating a diagram assistant, as shown below)
 
 Now use the "debug/run configurations" dialog to create a new Eclipse Application instance and launch it.
+
 
 ==== Setup your runtime application ====
 
@@ -1590,6 +1593,8 @@ where  '''getyourTemplateNameEmitter()'''&nbsp;: is the new TextEmitter defined 
 You just now have to run your transformation as explained before in this page. Be careful to refresh your projects in your runtime application if you generate in this mode.  
 
 === Papyrus Extension Root Node Description ===
+Since Papyrus for Eclipse 2021-09, the Papyrus Extension doesn't exist anymore, but its concepts have been included directly in the GMF metamodel. So this documentation is half-deprecated.
+
 ==== Compartment Visibility Preference ====
 Description : This extension allows to define the default visibility for the compartments. The compartments not referenced by this node are visible by default.
 

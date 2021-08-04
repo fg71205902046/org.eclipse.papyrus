@@ -2,7 +2,6 @@ Manifest-Version: 1.0
 Require-Bundle: org.eclipse.emf.databinding;bundle-version="[1.5.0,2.0.0)",
  org.eclipse.papyrus.gmf.codegen;bundle-version="[2.11.0,3.0.0)",
  org.eclipse.gmf.runtime.diagram.ui.properties;bundle-version="[1.8.0,2.0.0)",
- org.eclipse.papyrus.gmfgenextension;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.papyrus.infra.core;bundle-version="[4.0.0,5.0.0)",
  org.eclipse.papyrus.infra.emf;bundle-version="[4.0.0,5.0.0)",
  org.eclipse.papyrus.infra.emf.gmf;bundle-version="[2.0.0,3.0.0)",

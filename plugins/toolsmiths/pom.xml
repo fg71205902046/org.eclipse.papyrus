@@ -45,7 +45,6 @@
 		<module>org.eclipse.papyrus.gmf.editpartview</module>
 		<module>org.eclipse.papyrus.gmf.editpoliciesstates</module>
 		<module>org.eclipse.papyrus.gmf.figureview</module>
-		<module>org.eclipse.papyrus.gmfgenextension</module>
 		<module>org.eclipse.papyrus.infra.emf.commandstack</module>
 		<module>org.eclipse.papyrus.infra.gmfdiag.css.debug</module>
 		<module>org.eclipse.papyrus.mwe2.utils</module>
