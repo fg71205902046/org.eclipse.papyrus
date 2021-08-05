@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   alex - Initial API and implementation
- *   Christian W. Damus - bug 570097
+ *   Christian W. Damus - bugs 570097, 574690
  *
  *****************************************************************************/
 
@@ -109,7 +109,9 @@ public abstract class ResourceMissingFromBinaryBuildMarkerResolution extends Abs
 
 		@Override
 		IPath getPathToAdd(IMarker marker) {
-			return super.getPathToAdd(marker).removeLastSegments(1).addTrailingSeparator();
+			// The path in the marker is is project relative, so take only the first segment for
+			// the top folder within the project
+			return super.getPathToAdd(marker).uptoSegment(1).addTrailingSeparator();
 		}
 
 		// Only those that are in a folder (not the project root)

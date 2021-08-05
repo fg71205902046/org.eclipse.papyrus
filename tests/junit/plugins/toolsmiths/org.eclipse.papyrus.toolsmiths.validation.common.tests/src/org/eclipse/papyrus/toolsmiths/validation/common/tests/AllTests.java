@@ -28,6 +28,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		ProjectManagementUtilsTest.class,
 		AbstractMissingExtensionMarkerResolutionTest.class,
 		AbstractMissingAttributeMarkerResolutionTest.class,
+		ResourceMissingFromBinaryBuilderMarkerResolutionTest.class,
 })
 public class AllTests {
 	// Suite is specified in annotations
