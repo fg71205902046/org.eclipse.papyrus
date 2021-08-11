@@ -46,12 +46,16 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.ICoreRunnable;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.QualifiedName;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.core.runtime.jobs.IJobChangeEvent;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.core.runtime.jobs.JobChangeAdapter;
@@ -371,6 +375,40 @@ public class WorkspaceModelIndexTest extends AbstractPapyrusTest {
 		// Synchronize with the index and verify that it got the file
 		index = fixture.getIndex().get();
 		assertIndex(index);
+	}
+
+	/**
+	 * Verify that derived resources are not indexed.
+	 *
+	 * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=573042
+	 */
+	@Test
+	public void indexNotBuiltForDerivedResources() throws Exception {
+		IPath newReferencingFilePath = referencingFile.getProjectRelativePath().removeLastSegments(1).append("derived")
+				.addFileExtension(referencingFile.getFileExtension());
+		IFile newReferencingFile = referencingFile.getProject().getFile(newReferencingFilePath);
+
+		ICoreRunnable furtherSetup = monitor -> {
+			SubMonitor sub = SubMonitor.convert(monitor, 2);
+			referencingFile.copy(newReferencingFilePath, false, sub.newChild(1));
+			newReferencingFile.setDerived(true, sub.newChild(1));
+			sub.done();
+		};
+
+		// Interlock with the indexing to ensure that we don't try the index before it hears
+		// about the file delta
+		sync.init(SyncMode.TEST, IndexMode.INDEX);
+
+		newReferencingFile.getWorkspace().run(furtherSetup, new NullProgressMonitor());
+
+		// Wait for the indexing to start. If it doesn't start within five seconds, then
+		// something is wrong with the resource change notifications
+		sync.syncFromTest();
+
+		Map<IFile, CrossReferenceIndex> index = fixture.getIndex().get();
+
+		// The new Referencing URI is not included in the index
+		assertIndex(index, true, Set.of(), Set.of(referencingURI), true, Set.of(), Set.of(referencedURI));
 	}
 
 	//

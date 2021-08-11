@@ -1122,7 +1122,8 @@ public class IndexManager {
 
 		@Override
 		public boolean visit(IResource resource) throws CoreException {
-			boolean result = !monitor.isCanceled();
+			// bug 573042: do not index derived resources
+			boolean result = !monitor.isCanceled() && !resource.isDerived();
 
 			if (result && (resource.getType() == IResource.FILE)) {
 				scan((IFile) resource);
@@ -1253,7 +1254,8 @@ public class IndexManager {
 
 					@Override
 					public boolean visit(IResourceDelta delta) throws CoreException {
-						if (delta.getResource().getType() == IResource.FILE) {
+						// bug 573042: do not index derived resources
+						if (delta.getResource().getType() == IResource.FILE && !delta.getResource().isDerived(IResource.CHECK_ANCESTORS)) {
 							IFile file = (IFile) delta.getResource();
 
 							switch (delta.getKind()) {
