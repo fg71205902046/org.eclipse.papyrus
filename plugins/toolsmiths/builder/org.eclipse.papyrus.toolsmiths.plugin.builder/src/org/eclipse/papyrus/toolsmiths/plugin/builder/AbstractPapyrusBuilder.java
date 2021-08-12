@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 CEA LIST and others.
+ * Copyright (c) 2020, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *   Vincent Lorenzo (CEA LIST) <vincent.lorenzo@cea.fr> - Initial API and implementation
+ *   Christian W. Damus - bug 575376
  *
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.plugin.builder;
@@ -31,7 +32,37 @@ import org.eclipse.papyrus.emf.helpers.ProjectDependencyHelper;
  */
 public abstract class AbstractPapyrusBuilder {
 
+	/** Problem marker ID for plug-in problems. */
+	public static final String PLUGIN_PROBLEM = Activator.PLUGIN_ID + ".problem"; //$NON-NLS-1$
+
+	/** Problem marker ID for generic model problems. */
+	public static final String MODEL_PROBLEM = Activator.PLUGIN_ID + ".diagnostic"; //$NON-NLS-1$
+
 	private ProjectDependencyHelper DEPENDENCY_HELPER = ProjectDependencyHelper.INSTANCE;
+
+	private final String defaultMarkerType;
+
+	public AbstractPapyrusBuilder(String defaultMarkerType) {
+		super();
+
+		this.defaultMarkerType = defaultMarkerType;
+	}
+
+	/**
+	 * Initializes me with the <em>Papyrus Plug-in Problem</em> marker type.
+	 */
+	public AbstractPapyrusBuilder() {
+		this(PLUGIN_PROBLEM);
+	}
+
+	/**
+	 * Query the default marker type used for markers when the type is not otherwise specified.
+	 *
+	 * @return the default marker type
+	 */
+	protected String getDefaultMarkerType() {
+		return defaultMarkerType;
+	}
 
 	/**
 	 * Run the build on the specified project.
@@ -60,7 +91,7 @@ public abstract class AbstractPapyrusBuilder {
 	 * @throws CoreException
 	 */
 	public void clean(IProgressMonitor monitor, IProject iProject) throws CoreException {
-		// default implementation does nothing
+		iProject.deleteMarkers(getDefaultMarkerType(), true, IResource.DEPTH_INFINITE);
 	}
 
 	/**
@@ -77,9 +108,9 @@ public abstract class AbstractPapyrusBuilder {
 		// later, we can create our own type, with a specific handler to open our own error dialog appearing during the launching of a new Eclipse runtime
 		IMarker marker = null;
 		try {
-			marker = res.createMarker(IJavaModelMarker.JAVA_MODEL_PROBLEM_MARKER);
+			marker = res.createMarker(getDefaultMarkerType());
 
-			marker.setAttribute(IMarker.MESSAGE, Messages.AbstractPapyrusBuilder_PapyrusBuilder + message); //$NON-NLS-1$
+			marker.setAttribute(IMarker.MESSAGE, Messages.AbstractPapyrusBuilder_PapyrusBuilder + message);
 			marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_ERROR);
 			marker.setAttribute("code", 10000); //$NON-NLS-1$
 			marker.setAttribute(IMarker.SOURCE_ID, Activator.PLUGIN_ID);

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 CEA LIST, EclipseSource, Christian W. Damus, and others.
+ * Copyright (c) 2020, 2021 CEA LIST, EclipseSource, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Remi Schnekenburger - Initial API and implementation
- *   Christian W. Damus - bug 569357
+ *   Christian W. Damus - bugs 569357, 575376
  *
  *****************************************************************************/
 
@@ -26,7 +26,6 @@ import java.util.stream.Stream;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.SubMonitor;
@@ -46,7 +45,6 @@ import com.google.common.collect.ListMultimap;
  */
 public class PluginCheckerBuilder extends AbstractPapyrusBuilder {
 
-	private final String defaultMarkerType;
 	private final Function<? super IProject, ListMultimap<IFile, ? extends EObject>> mapperFunction;
 	private final List<IPluginChecker2.Factory> checkerFactories = new ArrayList<>();
 
@@ -56,9 +54,8 @@ public class PluginCheckerBuilder extends AbstractPapyrusBuilder {
 	 * Initializes me with a function that maps files in the validated project to EMF model elements.
 	 * By default, I create PDE Problem markers.
 	 */
-	@SuppressWarnings("restriction")
 	public PluginCheckerBuilder(Function<? super IProject, ListMultimap<IFile, ? extends EObject>> mapperFunction) {
-		this(org.eclipse.pde.internal.core.builders.PDEMarkerFactory.MARKER_ID, mapperFunction);
+		this(PLUGIN_PROBLEM, mapperFunction);
 	}
 
 	/**
@@ -66,9 +63,8 @@ public class PluginCheckerBuilder extends AbstractPapyrusBuilder {
 	 * and a specific default marker type to create.
 	 */
 	public PluginCheckerBuilder(String defaultMarkerType, Function<? super IProject, ListMultimap<IFile, ? extends EObject>> mapperFunction) {
-		super();
+		super(defaultMarkerType);
 
-		this.defaultMarkerType = defaultMarkerType;
 		this.mapperFunction = mapperFunction;
 	}
 
@@ -95,11 +91,6 @@ public class PluginCheckerBuilder extends AbstractPapyrusBuilder {
 	public PluginCheckerBuilder withDiagnosticEquivalence(DiagnosticEquivalence diagnosticEquivalence) {
 		this.diagnosticEquivalence = diagnosticEquivalence == null ? DiagnosticEquivalence.DEFAULT : diagnosticEquivalence;
 		return this;
-	}
-
-	@Override
-	public void clean(IProgressMonitor monitor, IProject iProject) throws CoreException {
-		iProject.deleteMarkers(defaultMarkerType, true, IResource.DEPTH_INFINITE);
 	}
 
 	@Override
@@ -176,7 +167,7 @@ public class PluginCheckerBuilder extends AbstractPapyrusBuilder {
 	}
 
 	private IMarker createMarker(IFile file, Diagnostic diagnostic) {
-		return MarkersService.createMarker(file, IPluginChecker2.getMarkerType(diagnostic).orElse(defaultMarkerType), diagnostic);
+		return MarkersService.createMarker(file, IPluginChecker2.getMarkerType(diagnostic).orElse(getDefaultMarkerType()), diagnostic);
 	}
 
 	/**
@@ -186,7 +177,7 @@ public class PluginCheckerBuilder extends AbstractPapyrusBuilder {
 	 */
 	private Diagnostic wrap(Diagnostic diagnostic) {
 		return IPluginChecker2.getMarkerType(diagnostic).isEmpty()
-				? diagnosticEquivalence.wrap(diagnostic, IPluginChecker2.markerType(defaultMarkerType))
+				? diagnosticEquivalence.wrap(diagnostic, IPluginChecker2.markerType(getDefaultMarkerType()))
 				: diagnosticEquivalence.wrap(diagnostic);
 	}
 

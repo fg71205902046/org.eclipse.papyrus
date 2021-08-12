@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Papyrus Toolsmiths - Papyrus Plugin Builder
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.eclipse.papyrus.toolsmiths.plugin.builder;singleton:=true
 Bundle-Version: 1.1.0.qualifier
-Bundle-Vendor: Eclipse Modeling Project
+Bundle-Vendor: %Bundle-Vendor
 Automatic-Module-Name: org.eclipse.papyrus.infra.nattable.builder
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Bundle-ActivationPolicy: lazy

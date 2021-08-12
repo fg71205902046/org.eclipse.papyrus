@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Vincent Lorenzo (CEA LIST) <vincent.lorenzo@cea.fr> - Initial API and implementation
- *   Christian W. Damus - bugs 569357, 570097, 572644, 573408
+ *   Christian W. Damus - bugs 569357, 570097, 572644, 573408, 575376
  *
  *****************************************************************************/
 
@@ -57,7 +57,6 @@ import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.jdt.core.IJavaModelMarker;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
@@ -149,6 +148,10 @@ public class GenericEMFModelBuilder extends AbstractPapyrusBuilder {
 		IGNORED_NS_URI.add("http://www.omg.org/XMI"); //$NON-NLS-1$
 		IGNORED_NS_URI.add("http://www.omg.org/spec/XMI/20131001"); //$NON-NLS-1$
 		// IGNORED_NS_URI.add("http://www.eclipse.org/uml2/schemas/Ecore/5");
+	}
+
+	public GenericEMFModelBuilder() {
+		super(MODEL_PROBLEM);
 	}
 
 	@Override
@@ -345,8 +348,14 @@ public class GenericEMFModelBuilder extends AbstractPapyrusBuilder {
 			if (!isIgnoredNS_URI(current.getURI().toString()) && managedFileExtension(current.getURI().fileExtension())
 					&& !hasSpecificBuilder(current.getURI())) {
 				try {
-					dependencies.add(getBundleNameFromResource(current));
-					dependencies.addAll(getModelBundleDependenciesFromXML(resource));
+					String bundleName = getBundleNameFromResource(current);
+					if (bundleName != null) {
+						dependencies.add(bundleName);
+					}
+					Set<String> modelDependencies = getModelBundleDependenciesFromXML(resource);
+					if (modelDependencies != null && !modelDependencies.isEmpty()) {
+						dependencies.addAll(modelDependencies);
+					}
 				} catch (Exception e) {
 				}
 			}
@@ -529,7 +538,7 @@ public class GenericEMFModelBuilder extends AbstractPapyrusBuilder {
 	}
 
 	protected String getMarkerType() {
-		return IJavaModelMarker.JAVA_MODEL_PROBLEM_MARKER;
+		return getDefaultMarkerType();
 	}
 
 	/**

@@ -20,6 +20,7 @@ import static org.eclipse.papyrus.toolsmiths.validation.common.internal.utils.Pr
 import static org.eclipse.papyrus.toolsmiths.validation.common.internal.utils.ProjectManagementUtils.resourcePathIs;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -83,9 +84,11 @@ public class ArchitectureCustomValidator extends CustomModelChecker.SwitchValida
 	}
 
 	private void validateElementTypesContextID(ArchitectureContext architecture, ElementTypeSetConfiguration typeSet, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		Collection<IPluginElement> registrations = getExtensionElements(IElementTypeSetExtensionPoint.EXTENSION_POINT_ID, ELEM_ELEMENT_TYPE_SET)
-				.filter(resourcePathIs(IElementTypeSetExtensionPoint.PATH, typeSet.eResource().getURI()))
-				.collect(Collectors.toList());
+		Collection<IPluginElement> registrations = typeSet == null || typeSet.eIsProxy()
+				? List.of()
+				: getExtensionElements(IElementTypeSetExtensionPoint.EXTENSION_POINT_ID, ELEM_ELEMENT_TYPE_SET)
+						.filter(resourcePathIs(IElementTypeSetExtensionPoint.PATH, typeSet.eResource().getURI()))
+						.collect(Collectors.toList());
 
 		if (!registrations.isEmpty() && registrations.stream().noneMatch(hasAttribute(IElementTypeSetExtensionPoint.CLIENT_CONTEXT_ID, architecture.getId()::equals))) {
 			diagnostics.add(createDiagnostic(Diagnostic.WARNING, architecture, format(Messages.ArchitectureCustomValidator_2, context, typeSet)));
