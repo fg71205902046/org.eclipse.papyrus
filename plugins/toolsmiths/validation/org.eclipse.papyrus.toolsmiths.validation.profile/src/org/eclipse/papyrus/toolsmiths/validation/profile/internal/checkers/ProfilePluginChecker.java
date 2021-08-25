@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
- *   Christian W. Damus - bugs 569357, 571125, 573245
+ *   Christian W. Damus - bugs 569357, 571125, 573245, 573886
  *
  *****************************************************************************/
 
@@ -43,6 +43,7 @@ import org.eclipse.papyrus.toolsmiths.validation.profile.constants.ProfilePlugin
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.resource.UMLResource;
 
 /**
  * This allows to check an profile plug-in (extensions, builds, dependencies, ...).
@@ -149,7 +150,9 @@ public class ProfilePluginChecker {
 	}
 
 	private static CustomModelChecker createCustomModelChecker(IProject project, IFile modelFile, Resource resource) {
-		return new CustomModelChecker(modelFile, resource, PROFILE_PLUGIN_VALIDATION_MARKER_TYPE);
+		return new CustomModelChecker(modelFile, resource, PROFILE_PLUGIN_VALIDATION_MARKER_TYPE)
+				.withValidator(UMLPackage.eNS_URI, ProfileCustomValidator::new)
+				.withValidator(UMLResource.ECORE_PROFILE_NS_URI, ProfileCustomValidator::new);
 	}
 
 }

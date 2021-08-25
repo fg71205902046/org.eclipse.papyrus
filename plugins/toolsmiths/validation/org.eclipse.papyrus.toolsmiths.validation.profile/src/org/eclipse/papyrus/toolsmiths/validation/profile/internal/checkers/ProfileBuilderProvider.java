@@ -23,6 +23,7 @@ import static org.eclipse.papyrus.toolsmiths.validation.profile.constants.Profil
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.toolsmiths.plugin.builder.AbstractPapyrusBuilder;
 import org.eclipse.papyrus.toolsmiths.plugin.builder.IPapyrusBuilderProvider;
 import org.eclipse.papyrus.toolsmiths.plugin.builder.PapyrusBuilderKind;
@@ -59,6 +60,11 @@ public class ProfileBuilderProvider implements IPapyrusBuilderProvider {
 		PluginCheckerBuilder result = null;
 
 		switch (builderKind) {
+		case MODEL_RESOURCE:
+			result = new PluginCheckerBuilder(PROFILE_PLUGIN_VALIDATION_MARKER_TYPE, this::mapProfilesWithStereotypes)
+					.withChecker(ProfilePluginChecker.modelValidationCheckerFactory())
+					.withChecker(ProfilePluginChecker.customModelCheckerFactory());
+			break;
 		case BUNDLE_MANIFEST:
 			result = new PluginCheckerBuilder(PROFILE_PLUGIN_VALIDATION_MARKER_TYPE, this::mapProfilesResources)
 					.withChecker(ProfilePluginChecker.modelDependenciesCheckerFactory())
@@ -74,6 +80,11 @@ public class ProfileBuilderProvider implements IPapyrusBuilderProvider {
 		}
 
 		return result;
+	}
+
+	private ListMultimap<IFile, EObject> mapProfilesWithStereotypes(IProject project) {
+		ModelResourceMapper<EObject> mapper = new ModelResourceMapper<>(project);
+		return mapper.map(StaticProfileHelper.umlWithGenmodel(), resourceSets(), rootsOfType(EObject.class));
 	}
 
 	private ListMultimap<IFile, Profile> mapProfilesResources(IProject project) {

@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Remi Schnekenburger - Initial API and implementation
- *   Christian W. Damus - bugs 570097, 571125
+ *   Christian W. Damus - bugs 570097, 571125, 573886
  *
  *****************************************************************************/
 
@@ -182,7 +182,7 @@ final class ProfilePluginXMLValidator {
 			final String profileId = ((XMIResource) profile.eResource()).getID(profile);
 			String uml2ProfileFile = profileFile.getProjectRelativePath().removeFileExtension().addFileExtension(UmlModel.UML_FILE_EXTENSION).lastSegment();
 
-			if (!extensionlocation.endsWith("/" + uml2ProfileFile + "#" + profileId)) { //$NON-NLS-1$
+			if (!extensionlocation.endsWith("/" + uml2ProfileFile + "#" + profileId)) { //$NON-NLS-1$ //$NON-NLS-2$
 				problems.reportProblem(Diagnostic.ERROR, element, LOCATION, NLS.bind(Messages.StaticProfilePluginErrorReporter_wrongLocationForProfile, profile.getLabel()),
 						ProfilePluginValidationConstants.NO_UML2_GEN_PACKAGE_LOCATION_MARKER_ID,
 						CATEGORY, Collections.singletonMap(MODEL_NAME, profile.getLabel()));

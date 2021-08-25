@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Remi Schnekenburger (EclipseSource) - Initial API and implementation
- *   Christian W. Damus - bug 570097
+ *   Christian W. Damus - bugs 570097, 573886
  *
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.validation.profile.internal.messages;
@@ -22,7 +22,10 @@ import org.eclipse.osgi.util.NLS;
  */
 public class Messages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.toolsmiths.validation.profile.internal.messages.messages"; //$NON-NLS-1$
+	public static String ProfileCustomValidator_0;
+	public static String ProfileCustomValidator_1;
 	public static String ProfileExtensionsChecker_noExternsionsDeclared;
+	public static String ProfilePluginChecker_0;
 	public static String ProfilePluginChecker_validateProfilePluginTask;
 	public static String StaticProfilePluginErrorReporter_missingExtensionPointAttribute;
 	public static String StaticProfileExtensionsBuilder_nsURI_differs;

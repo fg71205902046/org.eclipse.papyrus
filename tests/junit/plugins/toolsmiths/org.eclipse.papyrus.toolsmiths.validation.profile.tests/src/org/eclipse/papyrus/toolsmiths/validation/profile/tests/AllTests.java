@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
- *   Christian W. Damus - bug 572676
+ *   Christian W. Damus - bugs 573886, 572676
  *
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.validation.profile.tests;
@@ -23,9 +23,9 @@ import org.junit.runners.Suite.SuiteClasses;
  * All tests for Profile plug-in validation
  */
 @RunWith(Suite.class)
-@SuiteClasses({
-		ProfilePluginValidationTest.class,
+@SuiteClasses({ ProfilePluginValidationTest.class,
 		ProfilePluginXMLBuilderTest.class,
+		ProfileModelBuilderTest.class,
 })
 public class AllTests {
 

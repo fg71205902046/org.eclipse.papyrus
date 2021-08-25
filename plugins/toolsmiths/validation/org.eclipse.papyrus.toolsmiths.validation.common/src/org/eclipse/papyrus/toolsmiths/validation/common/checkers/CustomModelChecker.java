@@ -469,7 +469,12 @@ public class CustomModelChecker extends AbstractPluginChecker {
 		}
 
 		private MethodType validationMethodType(EClass eClass) {
-			return MethodType.methodType(void.class, eClass.getInstanceClass(), DiagnosticChain.class, Map.class);
+			Class<?> instanceClass = eClass.getInstanceClass();
+			if (instanceClass == null) {
+				// It's a dynamic EObject
+				instanceClass = EObject.class;
+			}
+			return MethodType.methodType(void.class, instanceClass, DiagnosticChain.class, Map.class);
 		}
 	}
 
