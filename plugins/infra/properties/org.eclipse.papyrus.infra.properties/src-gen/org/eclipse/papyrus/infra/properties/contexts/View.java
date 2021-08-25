@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 573986
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.contexts;
 
@@ -27,16 +28,16 @@ import org.eclipse.papyrus.infra.constraints.DisplayUnit;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.properties.contexts.View#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.properties.contexts.View#getSections <em>Sections</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.properties.contexts.View#getContext <em>Context</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.properties.contexts.View#isAutomaticContext <em>Automatic Context</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.properties.contexts.View#getDatacontexts <em>Datacontexts</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.properties.contexts.View#getContext <em>Context</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getView()
  * @model
  * @generated
  */
-public interface View extends DisplayUnit {
+public interface View extends DisplayUnit, Annotatable {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

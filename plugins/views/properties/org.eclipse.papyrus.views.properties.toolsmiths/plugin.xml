@@ -97,6 +97,10 @@
             class="org.eclipse.papyrus.views.properties.toolsmiths.editor.actions.TogglePreviewAction"
             commandId="org.eclipse.papyrus.customization.properties.TogglePreview">
       </handler>
+      <handler
+            class="org.eclipse.papyrus.views.properties.toolsmiths.editor.actions.ToggleAnnotationsAction"
+            commandId="org.eclipse.papyrus.customization.properties.ToggleAnnotations">
+      </handler>
    </extension>
    <extension
          point="org.eclipse.ui.commands">
@@ -111,8 +115,15 @@
             name="%command.name.0">
          <state
                class="org.eclipse.jface.commands.ToggleState"
-               id="org.eclipse.ui.commands.toggleState">
-         </state>
+               id="org.eclipse.ui.commands.toggleState"/>
+      </command>
+      <command
+            description="%command.description.2"
+            id="org.eclipse.papyrus.customization.properties.ToggleAnnotations"
+            name="%command.name.2">
+            <state
+               class="org.eclipse.ui.handlers.RegistryToggleState"
+               id="org.eclipse.ui.commands.toggleState"/>
       </command>
    </extension>
    <extension
@@ -147,6 +158,22 @@
                   label="%command.label"
                   style="toggle"
                   tooltip="%command.tooltip">
+               <visibleWhen>
+                  <with
+                        variable="activeEditorId">
+                     <equals
+                           value="org.eclipse.papyrus.customization.properties.UIEditor">
+                     </equals>
+                  </with>
+               </visibleWhen>
+            </command>
+            <command
+                  commandId="org.eclipse.papyrus.customization.properties.ToggleAnnotations"
+                  icon="icons/Annotation.gif"
+                  id="org.eclipse.papyrus.customization.properties.toggleAnnotations"
+                  label="%command.label.1"
+                  style="toggle"
+                  tooltip="%command.tooltip.1">
                <visibleWhen>
                   <with
                         variable="activeEditorId">

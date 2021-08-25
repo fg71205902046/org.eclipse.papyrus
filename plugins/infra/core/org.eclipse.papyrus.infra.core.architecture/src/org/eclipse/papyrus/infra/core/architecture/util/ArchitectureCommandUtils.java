@@ -26,7 +26,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -35,8 +34,9 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.core.architecture.ADElement;
 import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
 import org.eclipse.papyrus.infra.core.architecture.impl.ArchitecturePlugin;
+import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
 import org.eclipse.papyrus.infra.tools.util.ClasspathHelper;
-import org.osgi.framework.Bundle;
+import org.eclipse.papyrus.infra.tools.util.Try;
 
 /**
  * Utilities for working with/resolving the command classes referenced by
@@ -48,7 +48,6 @@ public class ArchitectureCommandUtils {
 
 	private static final String REQUIRED_BUNDLES = "requiredBundles"; //$NON-NLS-1$
 	private static final String CLASS_CONSTRAINT = "classConstraint"; //$NON-NLS-1$
-	private static final String BUNDLECLASS = "bundleclass"; //$NON-NLS-1$
 
 	private static final Map<EStructuralFeature, Class<?>> commandClassConstraints = new ConcurrentHashMap<>();
 
@@ -69,24 +68,7 @@ public class ArchitectureCommandUtils {
 		String classURI = EcoreUtil.getAnnotation(feature, ArchitecturePackage.eNS_URI, CLASS_CONSTRAINT);
 		if (classURI != null) {
 			URI uri = URI.createURI(classURI);
-			if (!BUNDLECLASS.equals(uri.scheme())) {
-				result = fail("Constraint class URI does not have bundleclass scheme: " + uri); //$NON-NLS-1$
-			} else if (uri.authority() == null) {
-				result = fail("Constraint class URI does not have an authority: " + uri); //$NON-NLS-1$
-			} else if (uri.segmentCount() != 1) {
-				result = fail("Constraint class URI must have exactly one segment: " + uri); //$NON-NLS-1$
-			} else {
-				Bundle bundle = Platform.getBundle(uri.authority());
-				if (bundle == null) {
-					result = fail("No such bundle in constraint class URI: " + uri); //$NON-NLS-1$
-				} else {
-					try {
-						result = bundle.loadClass(uri.segment(0));
-					} catch (Exception e) {
-						result = fail(e);
-					}
-				}
-			}
+			result = ClassLoaderHelper.loadClass(uri).orElseApply(ArchitectureCommandUtils::fail);
 		}
 
 		return result;
@@ -98,10 +80,8 @@ public class ArchitectureCommandUtils {
 		if (owner.eIsSet(feature)) {
 			String classURI = EcoreUtil.getAnnotation(feature, ArchitecturePackage.eNS_URI, CLASS_CONSTRAINT);
 			URI uri = classURI == null ? null : URI.createURI(classURI);
-
-			if (uri != null && BUNDLECLASS.equals(uri.scheme())) {
-				result = uri.authority();
-			}
+			Try<String> bundleName = ClassLoaderHelper.getBundleName(uri);
+			result = bundleName.orElse(null);
 		}
 
 		return result;

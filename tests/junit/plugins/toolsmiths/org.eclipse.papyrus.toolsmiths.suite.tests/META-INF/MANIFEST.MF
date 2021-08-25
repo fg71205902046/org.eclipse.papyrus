@@ -19,6 +19,7 @@ Require-Bundle: org.eclipse.emf.edit.ui;bundle-version="[2.18.0,3.0.0)",
  org.eclipse.papyrus.toolsmiths.validation.elementtypes.tests;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.toolsmiths.validation.profile.tests;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.toolsmiths.validation.newchild.tests;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.toolsmiths.validation.properties.tests;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.ui.views.properties.tabbed;bundle-version="[3.8.0,4.0.0)",
  org.junit;bundle-version="[4.13.0,5.0.0)"
 Export-Package: org.eclipse.papyrus.toolsmiths.suite.tests

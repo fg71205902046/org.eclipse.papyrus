@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,6 +11,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - bug 402049
+ *  Christian W. Damus - bug 573986
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.model.xwt.resource;
 
@@ -89,6 +90,7 @@ public class XWTResource extends ResourceImpl {
 	private final NamespaceComparator comparator = new NamespaceComparator();
 
 	private final WidgetAttributeComparator widgetAttributeComparator = new WidgetAttributeComparator();
+
 	/**
 	 *
 	 * Constructs a new XWTResource with the given URI
@@ -120,14 +122,14 @@ public class XWTResource extends ResourceImpl {
 	@Override
 	public void save(Map<?, ?> options) throws IOException {
 		if (options == null || options.isEmpty()) {
-			Map<String, String> optionsMap = new HashMap<String, String>();
+			Map<String, String> optionsMap = new HashMap<>();
 			optionsMap.put(OPTION_SAVE_ONLY_IF_CHANGED, OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
 			super.save(optionsMap);
 		} else {
 			super.save(options);
 		}
 
-		Object formatValue = options.get(OPTION_FORMAT);
+		Object formatValue = options == null ? null : options.get(OPTION_FORMAT);
 		if (formatValue == null || formatValue == Boolean.TRUE) {
 			if (uri.isPlatform()) {
 				IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(uri.toPlatformString(true)));
@@ -157,7 +159,7 @@ public class XWTResource extends ResourceImpl {
 	}
 
 	private Collection<Context> findContexts() {
-		Set<Context> rootContexts = new HashSet<Context>();
+		Set<Context> rootContexts = new HashSet<>();
 		if (resourceSet == null) {
 			return Collections.emptyList();
 		}
@@ -169,7 +171,7 @@ public class XWTResource extends ResourceImpl {
 			}
 		}
 
-		Set<Context> allContexts = new HashSet<Context>();
+		Set<Context> allContexts = new HashSet<>();
 
 		for (Context context : rootContexts) {
 			allContexts.addAll(PropertiesUtil.getDependencies(context));
@@ -182,7 +184,7 @@ public class XWTResource extends ResourceImpl {
 		URI transformationURI = URI.createPlatformPluginURI(Activator.PLUGIN_ID + "/Transformation/XMLToUI.qvto", true); //$NON-NLS-1$
 		TransformationExecutor executor = new TransformationExecutor(transformationURI);
 
-		List<Context> contexts = new LinkedList<Context>(findContexts());
+		List<Context> contexts = new LinkedList<>(findContexts());
 
 		ModelExtent inXml = getModelExtent(genericXMLRoot);
 		ModelExtent inRoot = getModelExtent(ConfigurationManager.getInstance().getPropertiesRoot());
@@ -201,11 +203,11 @@ public class XWTResource extends ResourceImpl {
 			if (!(objectResult instanceof CompositeWidget)) {
 				return null;
 			}
-			
-			//we sort the attribute to be sure to display them in the same order than the serialization, done to fix the bug 402049 
+
+			// we sort the attribute to be sure to display them in the same order than the serialization, done to fix the bug 402049
 			CompositeWidget widget = (CompositeWidget) outObjects.get(0);
 			ECollections.sort(widget.getAttributes(), this.widgetAttributeComparator);
-			
+
 			return widget;
 		} else {
 			IStatus status = BasicDiagnostic.toIStatus(result);
@@ -275,14 +277,14 @@ public class XWTResource extends ResourceImpl {
 			return new BasicModelExtent();
 		}
 
-		EList<EObject> objects = new BasicEList<EObject>();
+		EList<EObject> objects = new BasicEList<>();
 		objects.add(source);
 		ModelExtent extent = new BasicModelExtent(objects);
 		return extent;
 	}
 
 	/**
-	 * 
+	 *
 	 * @author Vincent Lorenzo
 	 *         This comparator has been created to fix the bug 402049. This comparator is used during the save of the model.
 	 */
@@ -310,7 +312,7 @@ public class XWTResource extends ResourceImpl {
 	}
 
 	/**
-	 * 
+	 *
 	 * @author Vincent Lorenzo
 	 *         This comparator has been created to fix the bug 402049. This comparator is used when we load the model,
 	 *         to be sure to display attribute in the same order than the saved one!

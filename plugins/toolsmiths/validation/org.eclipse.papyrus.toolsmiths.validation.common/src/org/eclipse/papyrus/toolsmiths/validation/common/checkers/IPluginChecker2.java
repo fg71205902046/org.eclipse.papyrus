@@ -469,8 +469,8 @@ public interface IPluginChecker2 {
 					marker.setAttribute(name, (boolean) value);
 				} else if (value instanceof Integer) {
 					marker.setAttribute(name, (int) value);
-				} else {
-					marker.setAttribute(name, value);
+				} else if (value != null) {
+					marker.setAttribute(name, String.valueOf(value));
 				}
 			} catch (CoreException e) {
 				Activator.log.error("Could not set marker attribute.", e); //$NON-NLS-1$

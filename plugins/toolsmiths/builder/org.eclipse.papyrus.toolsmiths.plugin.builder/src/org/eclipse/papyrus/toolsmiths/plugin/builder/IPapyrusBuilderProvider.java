@@ -15,9 +15,18 @@
 
 package org.eclipse.papyrus.toolsmiths.plugin.builder;
 
+import java.io.IOException;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.content.IContentType;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.ContentHandler;
+import org.eclipse.emf.ecore.resource.URIConverter;
 
 /**
  * A pluggable service that contributes {@link AbstractPapyrusBuilder}s for various
@@ -81,5 +90,32 @@ public interface IPapyrusBuilderProvider {
 	 * @return the builder, or {@code null} if none
 	 */
 	AbstractPapyrusBuilder getBuilder(PapyrusBuilderKind builderKind, IProject project);
+
+	/**
+	 * Query whether a resource matches a specific content type.
+	 *
+	 * @param resourceURI
+	 *            the URI of the resource to test
+	 * @param contentType
+	 *            the content type against which to match the resource
+	 * @return whether the resource is of the given content type
+	 */
+	default boolean hasContentType(URI resourceURI, String contentType) {
+		boolean result = false;
+
+		try {
+			IContentType match = Platform.getContentTypeManager().getContentType(contentType);
+			Map<String, ?> description = URIConverter.INSTANCE.contentDescription(resourceURI,
+					Map.of(ContentHandler.OPTION_REQUESTED_PROPERTIES, Set.of(ContentHandler.CONTENT_TYPE_PROPERTY)));
+			result = Optional.ofNullable((String) description.get(ContentHandler.CONTENT_TYPE_PROPERTY))
+					.map(Platform.getContentTypeManager()::getContentType)
+					.filter(type -> match != null && type.isKindOf(match))
+					.isPresent();
+		} catch (IOException e) {
+			Activator.log.error("Failed to determine content type of model resource.", e); //$NON-NLS-1$
+		}
+
+		return result;
+	}
 
 }

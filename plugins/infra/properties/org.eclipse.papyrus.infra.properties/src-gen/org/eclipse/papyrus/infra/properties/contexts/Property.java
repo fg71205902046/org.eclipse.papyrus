@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2017 CEA LIST.
+ * Copyright (c) 2011, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,11 +11,11 @@
  * Contributors:
  *  CEA LIST - Initial API and implementation
  *  Vincent Lorenzo - Bug 520271
+ *  Christian W. Damus - bug 573986
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.contexts;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.properties.environment.Type;
 
 /**
@@ -41,7 +41,7 @@ import org.eclipse.papyrus.infra.properties.environment.Type;
  * @model
  * @generated
  */
-public interface Property extends EObject {
+public interface Property extends Annotatable {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

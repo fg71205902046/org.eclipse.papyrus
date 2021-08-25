@@ -14,73 +14,47 @@
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.toolsmiths.editor.actions;
 
-import org.eclipse.core.commands.AbstractHandler;
-import org.eclipse.core.commands.Command;
-import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.State;
 import org.eclipse.papyrus.views.properties.toolsmiths.Activator;
-import org.eclipse.ui.ISources;
 import org.eclipse.ui.IViewReference;
 import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.commands.ICommandService;
-import org.eclipse.ui.handlers.HandlerUtil;
-import org.eclipse.ui.part.ViewPart;
 
 /**
  * An action to toggle the UIEditor Preview
  *
  * @author Camille Letavernier
  */
-public class TogglePreviewAction extends AbstractHandler {
+public class TogglePreviewAction extends AbstractToggleHandler {
 
-	private static final String STATE_ID = "org.eclipse.ui.commands.toggleState"; //$NON-NLS-1$
-	private static final String COMMAND_ID = "org.eclipse.papyrus.customization.properties.TogglePreview"; //$NON-NLS-1$
+	public TogglePreviewAction() {
+		super("org.eclipse.papyrus.customization.properties.TogglePreview"); //$NON-NLS-1$
+	}
 
 	@Override
-	public Object execute(ExecutionEvent event) throws ExecutionException {
-		IWorkbenchPage activePage = HandlerUtil.getActiveWorkbenchWindowChecked(event).getActivePage();
-		if (activePage == null) {
-			return null;
-		}
-
-		IViewReference viewReference = activePage.findViewReference(Activator.PREVIEW_ID);
+	protected void doToggle(IWorkbenchPage page, boolean on) {
 
 		try {
-			if (viewReference == null) {
-				activePage.showView(Activator.PREVIEW_ID);
+			if (on) {
+				page.showView(Activator.PREVIEW_ID);
 			} else {
-				activePage.hideView((ViewPart) viewReference.getPart(false));
+				IViewReference viewReference = page.findViewReference(Activator.PREVIEW_ID);
+				if (viewReference != null) {
+					page.hideView(viewReference);
+				}
 			}
 		} catch (PartInitException ex) {
 			Activator.log.error(ex);
 		}
-
-		return null;
 	}
 
 	@Override
-	public void setEnabled(Object evaluationContext) {
-		super.setEnabled(evaluationContext);
+	protected boolean updateState(IWorkbenchPage page) {
+		return page.findViewReference(Activator.PREVIEW_ID) != null;
+	}
 
-		IWorkbenchWindow activeWindow = (IWorkbenchWindow) HandlerUtil.getVariable(evaluationContext, ISources.ACTIVE_WORKBENCH_WINDOW_NAME);
-		IWorkbenchPage activePage = activeWindow == null ? null : activeWindow.getActivePage();
-		if (activePage == null) {
-			return;
-		}
-
-		ICommandService commandService = activeWindow.getService(ICommandService.class);
-		Command command = commandService.getCommand(COMMAND_ID);
-
-		State state = (command == null) ? null : command.getState(STATE_ID);
-		if (state == null) {
-			return;
-		}
-
-		IViewReference viewReference = activePage.findViewReference(Activator.PREVIEW_ID);
-		state.setValue(viewReference != null);
+	@Override
+	protected boolean initializeFromState(IWorkbenchPage page, boolean on) {
+		return page.findViewReference(Activator.PREVIEW_ID) != null;
 	}
 
 }

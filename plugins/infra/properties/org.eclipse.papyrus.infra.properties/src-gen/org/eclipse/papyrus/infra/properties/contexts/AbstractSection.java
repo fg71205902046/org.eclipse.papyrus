@@ -1,5 +1,5 @@
 /**
- *  Copyright (c) 2011-2021 CEA LIST and others.
+ *  Copyright (c) 2011-2021 CEA LIST, Christian W. Damus, and others.
  *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  *  Contributors:
  *  Remi Schnekenburger - Initial API and implementation
+ *  Christian W. Damus - bug 573986
  */
 package org.eclipse.papyrus.infra.properties.contexts;
 
@@ -32,7 +33,7 @@ import org.eclipse.papyrus.infra.constraints.DisplayUnit;
  * @model abstract="true"
  * @generated
  */
-public interface AbstractSection extends DisplayUnit {
+public interface AbstractSection extends DisplayUnit, Annotatable {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2013 CEA LIST.
+ * Copyright (c) 2011, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,11 +11,13 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus - add prototype reference to Context (CDO)
+ *   Christian W. Damus - bug 573986
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.contexts.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -23,7 +25,10 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.properties.contexts.ContextsPackage;
 import org.eclipse.papyrus.infra.properties.contexts.Section;
 import org.eclipse.papyrus.infra.properties.contexts.Tab;
+import org.eclipse.papyrus.infra.properties.contexts.View;
+import org.eclipse.papyrus.infra.properties.contexts.operations.SectionOperations;
 import org.eclipse.papyrus.infra.properties.ui.CompositeWidget;
+import org.eclipse.uml2.common.util.CacheAdapter;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,6 +41,7 @@ import org.eclipse.papyrus.infra.properties.ui.CompositeWidget;
  *   <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.SectionImpl#getTab <em>Tab</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.SectionImpl#getSectionFile <em>Section File</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.SectionImpl#getWidget <em>Widget</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.SectionImpl#getViews <em>Views</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.properties.contexts.impl.SectionImpl#getOwner <em>Owner</em>}</li>
  * </ul>
  *
@@ -204,6 +210,25 @@ public class SectionImpl extends AbstractSectionImpl implements Section {
 	 * @generated
 	 */
 	@Override
+	public EList<View> getViews() {
+		CacheAdapter cache = getCacheAdapter();
+		if (cache != null) {
+			@SuppressWarnings("unchecked")
+			EList<View> result = (EList<View>) cache.get(eResource(), this, ContextsPackage.Literals.SECTION__VIEWS);
+			if (result == null) {
+				cache.put(eResource(), this, ContextsPackage.Literals.SECTION__VIEWS, result = SectionOperations.getViews(this));
+			}
+			return result;
+		}
+		return SectionOperations.getViews(this);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Tab getOwner() {
 		Tab owner = basicGetOwner();
 		return owner != null && owner.eIsProxy() ? (Tab)eResolveProxy((InternalEObject)owner) : owner;
@@ -287,6 +312,8 @@ public class SectionImpl extends AbstractSectionImpl implements Section {
 			case ContextsPackage.SECTION__WIDGET:
 				if (resolve) return getWidget();
 				return basicGetWidget();
+			case ContextsPackage.SECTION__VIEWS:
+				return getViews();
 			case ContextsPackage.SECTION__OWNER:
 				if (resolve) return getOwner();
 				return basicGetOwner();
@@ -350,6 +377,8 @@ public class SectionImpl extends AbstractSectionImpl implements Section {
 				return SECTION_FILE_EDEFAULT == null ? sectionFile != null : !SECTION_FILE_EDEFAULT.equals(sectionFile);
 			case ContextsPackage.SECTION__WIDGET:
 				return widget != null;
+			case ContextsPackage.SECTION__VIEWS:
+				return !getViews().isEmpty();
 			case ContextsPackage.SECTION__OWNER:
 				return basicGetOwner() != null;
 		}

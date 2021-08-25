@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2013 CEA LIST.
+ * Copyright (c) 2011, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,6 +11,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus - add prototype reference to Context (CDO)
+ *   Christian W. Damus - bug 573986
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.contexts.impl;
 
@@ -19,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.infra.properties.contexts.*;
 import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.papyrus.infra.properties.contexts.ContextsFactory;
 import org.eclipse.papyrus.infra.properties.contexts.ContextsPackage;
@@ -79,6 +81,7 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 			case ContextsPackage.CONTEXT: return createContext();
 			case ContextsPackage.TAB: return createTab();
 			case ContextsPackage.SECTION: return createSection();
+			case ContextsPackage.ANNOTATION: return createAnnotation();
 			case ContextsPackage.PROPERTY: return createProperty();
 			case ContextsPackage.DATA_CONTEXT_ELEMENT: return createDataContextElement();
 			case ContextsPackage.DATA_CONTEXT_PACKAGE: return createDataContextPackage();
@@ -132,6 +135,17 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 	public Section createSection() {
 		SectionImpl section = new SectionImpl();
 		return section;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Annotation createAnnotation() {
+		AnnotationImpl annotation = new AnnotationImpl();
+		return annotation;
 	}
 
 	/**

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Christian W. Damus - bug 485220
+ *  Christian W. Damus - bugs 485220, 573986
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.toolsmiths.providers;
@@ -46,7 +46,7 @@ public class ContextContentProvider extends CustomizedTreeContentProvider {
 	 * @return The root EObjects from the input ResourceSet
 	 */
 	@Override
-	public EObject[] getRootElements(Object inputElement) {
+	public Object[] getRootElements(Object inputElement) {
 		if (inputElement instanceof ResourceSet) {
 			ResourceSet resourceSet = (ResourceSet) inputElement;
 
@@ -64,9 +64,10 @@ public class ContextContentProvider extends CustomizedTreeContentProvider {
 				}
 			}
 			elements.addAll(allContexts);
-			return elements.toArray(new EObject[elements.size()]);
+			return elements.toArray();
 		}
-		return null;
+
+		return super.getRootElements(inputElement);
 	}
 
 	@Override

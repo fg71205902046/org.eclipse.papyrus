@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2021, 2017 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,7 +11,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 422257
- *  Christian W. Damus - bugs 482927, 573987
+ *  Christian W. Damus - bugs 482927, 573987, 573986
  *  Vincent Lorenzo (CEA LIST) - bug 520271
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.generation.wizard;
@@ -20,7 +20,6 @@ import static java.util.stream.StreamSupport.stream;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -30,6 +29,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.BiPredicate;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -43,6 +43,7 @@ import org.eclipse.papyrus.customization.properties.generation.Activator;
 import org.eclipse.papyrus.customization.properties.generation.fieldselection.ContextElement;
 import org.eclipse.papyrus.customization.properties.generation.fieldselection.FieldSelection;
 import org.eclipse.papyrus.customization.properties.generation.fieldselection.PropertyDefinition;
+import org.eclipse.papyrus.customization.properties.generation.generators.GeneratorHelper;
 import org.eclipse.papyrus.customization.properties.generation.generators.IGenerator;
 import org.eclipse.papyrus.customization.properties.generation.layout.ILayoutGenerator;
 import org.eclipse.papyrus.customization.properties.generation.messages.Messages;
@@ -55,11 +56,6 @@ import org.eclipse.papyrus.infra.properties.contexts.Property;
 import org.eclipse.papyrus.infra.properties.contexts.Section;
 import org.eclipse.papyrus.infra.properties.contexts.Tab;
 import org.eclipse.papyrus.infra.properties.contexts.View;
-import org.eclipse.papyrus.infra.properties.ui.PropertyEditor;
-import org.eclipse.papyrus.infra.properties.ui.UiFactory;
-import org.eclipse.papyrus.infra.properties.ui.ValueAttribute;
-import org.eclipse.papyrus.infra.properties.ui.runtime.IConfigurationManager;
-import org.eclipse.papyrus.infra.properties.ui.runtime.PropertiesRuntime;
 import org.eclipse.papyrus.infra.ui.util.EditorHelper;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
@@ -115,8 +111,6 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 			return result;
 		}
 
-		IConfigurationManager configManager = PropertiesRuntime.getConfigurationManager();
-
 		for (Context context : contexts) {
 			Tab defaultTab = ContextsFactory.eINSTANCE.createTab();
 			defaultTab.setId(context.getName().toLowerCase());
@@ -135,47 +129,15 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 			// Activator.log.error("Couldn't persist the field selection model", ex); //$NON-NLS-1$
 			// }
 
-			layoutGenerator.setGenerator(generator);
+			GeneratorHelper helper = new GeneratorHelper(generator, layoutGenerator);
+			BiPredicate<Property, Integer> propertySelectionPredicate = (property, multiplicity) -> isSelected(fieldSelection, property, multiplicity.intValue() != 1);
 
 			for (View view : context.getViews()) {
 				if (view.getConstraints().size() == 0) {
 					continue;
 				}
 
-				List<PropertyEditor> editors = new LinkedList<>();
-				// the list of properties for the current view
-				final List<Property> properties = new ArrayList<>();
-				for (DataContextElement element : getAllContextElements(view.getDatacontexts())) {
-					for (Property property : element.getProperties()) {
-						if (isSelected(fieldSelection, property, view.getElementMultiplicity() != 1)) {
-							properties.add(property);
-						}
-					}
-				}
-
-				final List<Property> tmpProperties = new ArrayList<>(properties);
-				for (Property p1 : tmpProperties) {
-					// Bug 519090
-					// we remove all redefined properties from the list
-					properties.removeAll(p1.getRedefinedProperties());
-				}
-
-				// we create the editor
-				for (Property property : properties) {
-					PropertyEditor editor = UiFactory.eINSTANCE.createPropertyEditor();
-					editor.setProperty(property);
-					editor.setWidgetType(configManager.getDefaultEditorType(property));
-					editors.add(editor);
-					ValueAttribute input = UiFactory.eINSTANCE.createValueAttribute();
-					input.setName("input"); //$NON-NLS-1$
-					input.setValue("{Binding}"); //$NON-NLS-1$
-					editor.getAttributes().add(input);
-				}
-
-				List<Section> generatedSections = layoutGenerator.layoutElements(editors, view);
-				defaultTab.getSections().addAll(generatedSections);
-				view.getSections().addAll(generatedSections);
-				context.getViews().add(view);
+				helper.generateLayout(context, defaultTab, view, propertySelectionPredicate);
 			}
 
 			int i = 1;

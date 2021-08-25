@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 573986
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.contexts.provider;
 
@@ -288,6 +289,29 @@ public class ContextsItemProviderAdapterFactory extends ContextsAdapterFactory i
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.properties.contexts.Annotation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AnnotationItemProvider annotationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.properties.contexts.Annotation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAnnotationAdapter() {
+		if (annotationItemProvider == null) {
+			annotationItemProvider = new AnnotationItemProvider(this);
+		}
+
+		return annotationItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -395,6 +419,7 @@ public class ContextsItemProviderAdapterFactory extends ContextsAdapterFactory i
 		if (contextItemProvider != null) contextItemProvider.dispose();
 		if (tabItemProvider != null) tabItemProvider.dispose();
 		if (sectionItemProvider != null) sectionItemProvider.dispose();
+		if (annotationItemProvider != null) annotationItemProvider.dispose();
 		if (propertyItemProvider != null) propertyItemProvider.dispose();
 		if (dataContextElementItemProvider != null) dataContextElementItemProvider.dispose();
 		if (dataContextPackageItemProvider != null) dataContextPackageItemProvider.dispose();

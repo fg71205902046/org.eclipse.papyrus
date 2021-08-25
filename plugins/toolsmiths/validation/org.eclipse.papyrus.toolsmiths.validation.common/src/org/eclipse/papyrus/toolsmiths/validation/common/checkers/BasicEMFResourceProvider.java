@@ -34,11 +34,11 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.osgi.service.resolver.BundleDescription;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.toolsmiths.validation.common.internal.messages.Messages;
+import org.eclipse.papyrus.toolsmiths.validation.common.utils.CommonURIUtils;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.PluginRegistry;
 
@@ -149,17 +149,14 @@ class BasicEMFResourceProvider implements OpaqueResourceProvider.EMF {
 			result = result.resolve(baseURIFunction.apply(object, project));
 		}
 
-		if (result.isPlatform()) {
-			// Can check for existence of the resource
-			ResourceSet rset = object.eResource().getResourceSet();
-			if (!rset.getURIConverter().exists(result, null)) {
-				BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.ERROR, diagnosticSource, 0,
-						NLS.bind(Messages.BasicEMFResourceProvider_1,
-								new Object[] { result.lastSegment(), EObjectValidator.getObjectLabel(object, context), resourceClassifier }),
-						new Object[] { object, referenceAttribute });
-				diagnostics.add(diagnostic);
-				return null;
-			}
+		// Check for existence of the resource, if applicable
+		if (!CommonURIUtils.exists(object, result)) {
+			BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.ERROR, diagnosticSource, 0,
+					NLS.bind(Messages.BasicEMFResourceProvider_1,
+							new Object[] { result.lastSegment(), EObjectValidator.getObjectLabel(object, context), resourceClassifier }),
+					new Object[] { object, referenceAttribute });
+			diagnostics.add(diagnostic);
+			return null;
 		}
 
 		return new ClassifiedURIImpl(result, resourceClassifier);

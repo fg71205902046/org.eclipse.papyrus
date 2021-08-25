@@ -20,6 +20,7 @@ import java.util.Map;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.CustomModelChecker;
+import org.eclipse.papyrus.toolsmiths.validation.common.utils.LocalProfileIndex;
 import org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.messages.Messages;
 import org.eclipse.papyrus.uml.types.core.advices.applystereotype.FeatureToSet;
 import org.eclipse.papyrus.uml.types.core.advices.applystereotype.StereotypeToApply;
