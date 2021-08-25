@@ -2,12 +2,13 @@
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/uml2/2.2.0/GenModel"
     copyrightText="Copyright (c) 2011, 2021 CEA LIST and others.&#xA;&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License 2.0&#xA;which accompanies this distribution, and is available at&#xA;https://www.eclipse.org/legal/epl-2.0/&#xA;&#xA;SPDX-License-Identifier: EPL-2.0&#xA;&#xA;Contributors:&#xA;  CEA LIST - Initial API and implementation&#xA;"
-    modelDirectory="/org.eclipse.papyrus.infra.properties/src-gen" editDirectory="/org.eclipse.papyrus.infra.properties.edit/src-gen"
+    modelDirectory="/org.eclipse.papyrus.infra.properties/src-gen" creationIcons="false"
+    editDirectory="/org.eclipse.papyrus.infra.properties.edit/src-gen"
     editorDirectory="/org.eclipse.papyrus.infra.properties.editor/src-gen" modelPluginID="org.eclipse.papyrus.infra.properties"
     modelName="Properties" nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.uml2.uml.ecore.importer" complianceLevel="11.0" copyrightFields="false"
-    usedGenPackages="../../org.eclipse.papyrus.infra.constraints/Model/Constraints.genmodel#//constraints ../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"
-    operationReflection="true" importOrganizing="true">
+    usedGenPackages="../../org.eclipse.papyrus.infra.constraints/Model/Constraints.genmodel#//constraints ../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.uml2.types/model/Types.genmodel#//types"
+    operationReflection="true" importOrganizing="true" cacheAdapterSupport="true">
   <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
     <details key="OPPOSITE_ROLE_NAMES" value="IGNORE"/>
     <details key="DUPLICATE_FEATURES" value="DISCARD"/>
@@ -36,7 +37,9 @@
   <genPackages xsi:type="genmodel:GenPackage" prefix="Properties" basePackage="org.eclipse.papyrus.infra"
       disposableProviderFactory="true" ecorePackage="properties.ecore#/">
     <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Environment" basePackage="org.eclipse.papyrus.infra.properties"
-        disposableProviderFactory="true" ecorePackage="properties.ecore#//environment">
+        resource="XMI" disposableProviderFactory="true" contentTypeIdentifier="org.eclipse.papyrus.infra.properties.environment"
+        fileExtensions="environment,xmi" ecorePackage="properties.ecore#//environment"
+        operationsPackage="org.eclipse.papyrus.infra.properties.environment.operations">
       <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="properties.ecore#//environment/Type">
         <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="properties.ecore#//environment/Type/String"/>
         <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="properties.ecore#//environment/Type/Boolean"/>
@@ -91,7 +94,8 @@
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Contexts" basePackage="org.eclipse.papyrus.infra.properties"
-        disposableProviderFactory="true" ecorePackage="properties.ecore#//contexts">
+        resource="XMI" disposableProviderFactory="true" contentTypeIdentifier="org.eclipse.papyrus.infra.properties.context"
+        fileExtensions="ctx" ecorePackage="properties.ecore#//contexts" operationsPackage="org.eclipse.papyrus.infra.properties.contexts.operations">
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="properties.ecore#//contexts/Context">
         <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute properties.ecore#//contexts/Context/name"/>
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
@@ -126,13 +130,33 @@
         <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute properties.ecore#//contexts/Section/sectionFile"/>
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
             propertySortChoices="true" ecoreFeature="ecore:EReference properties.ecore#//contexts/Section/widget"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false"
+            createChild="false" ecoreFeature="ecore:EReference properties.ecore#//contexts/Section/views"/>
         <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false"
             createChild="false" ecoreFeature="ecore:EReference properties.ecore#//contexts/Section/owner"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="properties.ecore#//contexts/Section/getViews"
+            cacheAdapterScope="Resource"/>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="properties.ecore#//contexts/AbstractSection">
         <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute properties.ecore#//contexts/AbstractSection/name"/>
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
             propertySortChoices="true" ecoreFeature="ecore:EReference properties.ecore#//contexts/AbstractSection/tab"/>
+      </genClasses>
+      <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="properties.ecore#//contexts/Annotatable">
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference properties.ecore#//contexts/Annotatable/annotations"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="properties.ecore#//contexts/Annotatable/getAnnotation">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="properties.ecore#//contexts/Annotatable/getAnnotation/source"/>
+        </genOperations>
+      </genClasses>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="properties.ecore#//contexts/Annotation">
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute properties.ecore#//contexts/Annotation/source"/>
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference properties.ecore#//contexts/Annotation/references"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference properties.ecore#//contexts/Annotation/details"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false"
+            createChild="false" ecoreFeature="ecore:EReference properties.ecore#//contexts/Annotation/element"/>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="properties.ecore#//contexts/Property">
         <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute properties.ecore#//contexts/Property/name"/>
@@ -165,11 +189,11 @@
         <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute properties.ecore#//contexts/View/name"/>
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
             propertySortChoices="true" ecoreFeature="ecore:EReference properties.ecore#//contexts/View/sections"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false"
+            createChild="false" ecoreFeature="ecore:EReference properties.ecore#//contexts/View/context"/>
         <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute properties.ecore#//contexts/View/automaticContext"/>
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
             propertySortChoices="true" ecoreFeature="ecore:EReference properties.ecore#//contexts/View/datacontexts"/>
-        <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false"
-            createChild="false" ecoreFeature="ecore:EReference properties.ecore#//contexts/View/context"/>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="properties.ecore#//contexts/DataContextRoot">
         <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute properties.ecore#//contexts/DataContextRoot/label"/>
@@ -178,7 +202,7 @@
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Ui" basePackage="org.eclipse.papyrus.infra.properties"
-        disposableProviderFactory="true" ecorePackage="properties.ecore#//ui">
+        disposableProviderFactory="true" ecorePackage="properties.ecore#//ui" operationsPackage="org.eclipse.papyrus.infra.properties.ui.operations">
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="properties.ecore#//ui/Element"/>
       <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="properties.ecore#//ui/UIComponent">
         <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"

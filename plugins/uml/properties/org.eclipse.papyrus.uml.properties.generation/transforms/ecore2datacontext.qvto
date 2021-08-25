@@ -1,3 +1,5 @@
+import org.eclipse.papyrus.uml.properties.generation.Contexts;
+
 modeltype Ecore uses "http://www.eclipse.org/emf/2002/Ecore";
 modeltype PropertyContext uses "http://www.eclipse.org/papyrus/properties/contexts/0.9";
 modeltype PropertyEnvironment uses "http://www.eclipse.org/papyrus/properties/environment/0.9";
@@ -28,7 +30,8 @@ mapping EPackage::toContext() : c: Context, root:DataContextRoot when {
 		->any(e | e.factoryClass = 'org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElementFactory');
 }
 
-mapping EPackage::toDataContextPackage() : DataContextPackage{
+mapping EPackage::toDataContextPackage() : DataContextPackage {
+	result.setSourceModel(self);
 	name := self.name;
 	elements := self.eClassifiers->select(e | e.oclIsKindOf(EClass))->map toDataContextElement().element
 					->union(self.eSubpackages->map toDataContextPackage());
@@ -53,7 +56,11 @@ query EClass::getContext() : PropertyContext::Context {
 }
 
 abstract mapping EClassifier::toDataContextElement() : element : DataContextElement, viewSingle : View, viewMultiple : View {
+	element.setSourceModel(self);
 	element.name := self.name;
+	
+	viewSingle.setSourceModel(self);
+	viewMultiple.setSourceModel(self);
 }
 
 mapping EClass::toDataContextElement() : element : DataContextElement, viewSingle : View, viewMultiple : View  inherits EClassifier::toDataContextElement 
@@ -114,6 +121,7 @@ mapping EClass::toConstraint(view : View) : SimpleConstraint {
 }
 
 mapping EStructuralFeature::toProperty() : Property {
+	result.setSourceModel(self);
 	name := self.name;
 	type := self.eType.toType();
 	multiplicity := if self.upperBound = 1 then 1 else -1 endif;

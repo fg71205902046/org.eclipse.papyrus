@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
- *   Christian W. Damus - bugs 569357, 570097
+ *   Christian W. Damus - bugs 569357, 570097, 573986
  *
  *****************************************************************************/
 
@@ -107,14 +107,9 @@ public class MarkersService {
 					// will work
 					related.append(URI.encodeFragment(uri, false));
 				}
-				break;
 			} else if (next instanceof IPluginChecker2.MarkerAttribute) {
 				IPluginChecker2.MarkerAttribute attr = (IPluginChecker2.MarkerAttribute) next;
-				try {
-					result.setAttribute(attr.getName(), attr.getValue());
-				} catch (CoreException e) {
-					Activator.log.error("Failed to set attribute " + attr.getName() + " of problem marker.", e); //$NON-NLS-1$ //$NON-NLS-2$
-				}
+				attr.applyTo(result);
 			}
 		}
 

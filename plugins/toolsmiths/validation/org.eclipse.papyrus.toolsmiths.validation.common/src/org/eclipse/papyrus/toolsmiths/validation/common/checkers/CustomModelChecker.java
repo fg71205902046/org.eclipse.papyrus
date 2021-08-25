@@ -20,12 +20,18 @@ import static org.eclipse.papyrus.toolsmiths.validation.common.checkers.ModelVal
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -120,8 +126,13 @@ public class CustomModelChecker extends AbstractPluginChecker {
 			BasicDiagnostic validationResults = new BasicDiagnostic();
 			Diagnostician diagnostician = new Diagnostician(new ValidatorRegistry());
 
-			for (EObject next : resource.getContents()) {
-				diagnostician.validate(next, validationResults, context);
+			ResourceQueue queue = ResourceQueue.getInstance(context);
+			queue.offer(this.resource);
+
+			for (Resource resource = queue.poll(); resource != null; resource = queue.poll()) {
+				for (EObject next : resource.getContents()) {
+					diagnostician.validate(next, validationResults, context);
+				}
 			}
 
 			if (validationResults.getSeverity() > Diagnostic.OK) {
@@ -340,6 +351,16 @@ public class CustomModelChecker extends AbstractPluginChecker {
 			} else if (argument instanceof Value) {
 				Value value = (Value) argument;
 				result = getValueLabel(value.dataType, value.value, context);
+			} else if (argument instanceof Iterable<?>) {
+				result = StreamSupport.stream(((Iterable<?>) argument).spliterator(), false)
+						.map(el -> formatArgument(el, context))
+						.map(String::valueOf)
+						.collect(Collectors.joining(", ", "[", "]"));
+			} else if (argument instanceof Object[]) {
+				result = Stream.of((Object[]) argument)
+						.map(el -> formatArgument(el, context))
+						.map(String::valueOf)
+						.collect(Collectors.joining(", ", "[", "]"));
 			}
 			return result;
 		}
@@ -389,10 +410,37 @@ public class CustomModelChecker extends AbstractPluginChecker {
 		}
 
 		protected Diagnostic createDiagnostic(int severity, EObject eObject, EStructuralFeature feature, int code, String message, MarkerAttribute attr1, MarkerAttribute... moreAttrs) {
+			return createDiagnostic(severity, eObject, feature, code, message, Lists.asList(attr1, moreAttrs));
+		}
+
+		protected Diagnostic createDiagnostic(int severity, EObject eObject, String message, Collection<? extends MarkerAttribute> moreAttrs) {
+			return createDiagnostic(severity, eObject, null, 0, message, moreAttrs);
+		}
+
+		protected Diagnostic createDiagnostic(int severity, EObject eObject, EStructuralFeature feature, String message, Collection<? extends MarkerAttribute> moreAttrs) {
+			return createDiagnostic(severity, eObject, feature, 0, message, moreAttrs);
+		}
+
+		protected Diagnostic createDiagnostic(int severity, EObject eObject, EStructuralFeature feature, int code, String message, Collection<? extends MarkerAttribute> moreAttrs) {
 			List<Object> data = diagnosticData(eObject, feature);
-			data.addAll(Lists.asList(attr1, moreAttrs));
+			data.addAll(moreAttrs);
 
 			return new BasicDiagnostic(severity, source, code, message, data.toArray());
+		}
+
+		/**
+		 * Add an auxiliary resource to the current validation scope. It will be validated after
+		 * processing of the current resource is completed, if it has not already been validated.
+		 *
+		 * @param auxiliaryResource
+		 *            a resource to validate
+		 * @param context
+		 *            the current validation context
+		 */
+		protected void validateResource(Resource auxiliaryResource, Map<Object, Object> context) {
+			if (auxiliaryResource != null && auxiliaryResource.isLoaded()) {
+				ResourceQueue.getInstance(context).offer(auxiliaryResource);
+			}
 		}
 
 		protected boolean isValidatorFor(EPackage ePackage) {
@@ -483,6 +531,52 @@ public class CustomModelChecker extends AbstractPluginChecker {
 		Value(EDataType dataType, Object value) {
 			this.dataType = dataType;
 			this.value = value;
+		}
+	}
+
+	@SuppressWarnings("serial") // Never serialized
+	private static final class ResourceQueue extends ArrayDeque<Resource> {
+		// To avoid repeating resources
+		private final Set<Resource> processed = new HashSet<>();
+
+		/**
+		 * Not instantiable by clients.
+		 */
+		private ResourceQueue() {
+			super();
+		}
+
+		static ResourceQueue getInstance(Map<Object, Object> context) {
+			ResourceQueue result = (ResourceQueue) context.get(ResourceQueue.class);
+			if (result == null) {
+				result = new ResourceQueue();
+				context.put(ResourceQueue.class, result);
+			}
+			return result;
+		}
+
+		@Override
+		public boolean offerFirst(Resource e) {
+			return !processed.contains(e) && super.offerFirst(e);
+		}
+
+		@Override
+		public boolean offerLast(Resource e) {
+			return !processed.contains(e) && super.offerLast(e);
+		}
+
+		@Override
+		public void addFirst(Resource e) {
+			if (processed.add(e)) {
+				super.addFirst(e);
+			}
+		}
+
+		@Override
+		public void addLast(Resource e) {
+			if (processed.add(e)) {
+				super.addLast(e);
+			}
 		}
 	}
 

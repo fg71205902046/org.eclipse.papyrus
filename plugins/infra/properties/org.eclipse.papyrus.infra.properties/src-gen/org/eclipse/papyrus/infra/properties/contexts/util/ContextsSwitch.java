@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2011, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   Christian W. Damus - bug 482927
+ *   Christian W. Damus - bugs 482927, 573986
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.contexts.util;
 
@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.papyrus.infra.constraints.DisplayUnit;
+import org.eclipse.papyrus.infra.properties.contexts.*;
 import org.eclipse.papyrus.infra.properties.contexts.AbstractSection;
 import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.papyrus.infra.properties.contexts.ContextsPackage;
@@ -105,6 +106,7 @@ public class ContextsSwitch<T> extends Switch<T> {
 				T result = caseSection(section);
 				if (result == null) result = caseAbstractSection(section);
 				if (result == null) result = caseDisplayUnit(section);
+				if (result == null) result = caseAnnotatable(section);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -112,18 +114,33 @@ public class ContextsSwitch<T> extends Switch<T> {
 				AbstractSection abstractSection = (AbstractSection)theEObject;
 				T result = caseAbstractSection(abstractSection);
 				if (result == null) result = caseDisplayUnit(abstractSection);
+				if (result == null) result = caseAnnotatable(abstractSection);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ContextsPackage.ANNOTATABLE: {
+				Annotatable annotatable = (Annotatable)theEObject;
+				T result = caseAnnotatable(annotatable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ContextsPackage.ANNOTATION: {
+				Annotation annotation = (Annotation)theEObject;
+				T result = caseAnnotation(annotation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ContextsPackage.PROPERTY: {
 				Property property = (Property)theEObject;
 				T result = caseProperty(property);
+				if (result == null) result = caseAnnotatable(property);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ContextsPackage.DATA_CONTEXT_ELEMENT: {
 				DataContextElement dataContextElement = (DataContextElement)theEObject;
 				T result = caseDataContextElement(dataContextElement);
+				if (result == null) result = caseAnnotatable(dataContextElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -131,6 +148,7 @@ public class ContextsSwitch<T> extends Switch<T> {
 				DataContextPackage dataContextPackage = (DataContextPackage)theEObject;
 				T result = caseDataContextPackage(dataContextPackage);
 				if (result == null) result = caseDataContextElement(dataContextPackage);
+				if (result == null) result = caseAnnotatable(dataContextPackage);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -138,6 +156,7 @@ public class ContextsSwitch<T> extends Switch<T> {
 				UnknownProperty unknownProperty = (UnknownProperty)theEObject;
 				T result = caseUnknownProperty(unknownProperty);
 				if (result == null) result = caseProperty(unknownProperty);
+				if (result == null) result = caseAnnotatable(unknownProperty);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -145,6 +164,7 @@ public class ContextsSwitch<T> extends Switch<T> {
 				View view = (View)theEObject;
 				T result = caseView(view);
 				if (result == null) result = caseDisplayUnit(view);
+				if (result == null) result = caseAnnotatable(view);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -153,6 +173,7 @@ public class ContextsSwitch<T> extends Switch<T> {
 				T result = caseDataContextRoot(dataContextRoot);
 				if (result == null) result = caseDataContextPackage(dataContextRoot);
 				if (result == null) result = caseDataContextElement(dataContextRoot);
+				if (result == null) result = caseAnnotatable(dataContextRoot);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -217,6 +238,36 @@ public class ContextsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseAbstractSection(AbstractSection object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Annotatable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Annotatable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAnnotatable(Annotatable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Annotation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Annotation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAnnotation(Annotation object) {
 		return null;
 	}
 

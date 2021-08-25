@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST and others.
+ * Copyright (c) 2010, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,6 +12,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Thibault Le Ouay t.leouay@sherpa-eng.com - Strategy improvement of generated files
  *  Christian W. Damus (CEA) - bug 422257
+ *  Christian W. Damus - bug 573986
  *
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.generation.generators;
@@ -41,6 +42,7 @@ import org.eclipse.m2m.qvt.oml.TransformationExecutor;
 import org.eclipse.papyrus.customization.properties.generation.Activator;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.properties.contexts.Context;
+import org.eclipse.papyrus.infra.properties.contexts.ContextsPackage;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
@@ -63,12 +65,13 @@ public abstract class AbstractQVTGenerator implements IGenerator, Listener {
 	 */
 	protected ModelExtent out;
 
-	private Set<Listener> listeners = new HashSet<Listener>();
+	private Set<Listener> listeners = new HashSet<>();
 
 	private int strategy;
 
 	private Collection<ResourceSet> scratchResourceSets;
 
+	@Override
 	public List<Context> generate(List<URI> targetURI) {
 
 		switch (strategy) {
@@ -87,6 +90,7 @@ public abstract class AbstractQVTGenerator implements IGenerator, Listener {
 		return generatedContexts;
 	}
 
+	@Override
 	public void dispose() {
 		if (scratchResourceSets != null) {
 			for (ResourceSet next : scratchResourceSets) {
@@ -126,7 +130,7 @@ public abstract class AbstractQVTGenerator implements IGenerator, Listener {
 	 * @param uri
 	 *            The URI from which the EObject is loaded
 	 * @return
-	 * 		The loaded EObject, or null if an error occured
+	 *         The loaded EObject, or null if an error occured
 	 * @throws IOException
 	 *             If the URI isn't a valid EObject
 	 */
@@ -149,20 +153,23 @@ public abstract class AbstractQVTGenerator implements IGenerator, Listener {
 	protected final ResourceSet createResourceSet() {
 		ResourceSet result = new ResourceSetImpl();
 		if (scratchResourceSets == null) {
-			scratchResourceSets = new ArrayList<ResourceSet>();
+			scratchResourceSets = new ArrayList<>();
 		}
 		scratchResourceSets.add(result);
 		return result;
 	}
 
+	@Override
 	public void addListener(Listener listener) {
 		listeners.add(listener);
 	}
 
+	@Override
 	public void removeListener(Listener listener) {
 		listeners.remove(listener);
 	}
 
+	@Override
 	public void handleEvent(Event event) {
 		for (Listener listener : listeners) {
 			listener.handleEvent(event);
@@ -175,10 +182,10 @@ public abstract class AbstractQVTGenerator implements IGenerator, Listener {
 	 * @param outObjects
 	 *            The list of EObjects from which the context will be retrieved
 	 * @return
-	 * 		The main generated context
+	 *         The main generated context
 	 */
 	protected List<Context> getContexts(List<EObject> outObjects) {
-		List<Context> result = new LinkedList<Context>();
+		List<Context> result = new LinkedList<>();
 
 		for (Object objectResult : outObjects) {
 			if (objectResult instanceof Context) {
@@ -190,8 +197,10 @@ public abstract class AbstractQVTGenerator implements IGenerator, Listener {
 	}
 
 
+	@Override
 	public abstract IObservableValue getObservableValue();
 
+	@Override
 	public void setStrategy(int strategy) {
 		this.strategy = strategy;
 	}
@@ -224,7 +233,8 @@ public abstract class AbstractQVTGenerator implements IGenerator, Listener {
 			}
 
 			ResourceSet resourceSet = createResourceSet();
-			Resource contextResource = resourceSet.createResource(targetURI.get(0));
+			// We want to use UUIDs for XMI IDs, so be sure to use the correct resource factory
+			Resource contextResource = resourceSet.createResource(targetURI.get(0), ContextsPackage.eCONTENT_TYPE);
 			contextResource.getContents().addAll(outObjects);
 
 			return generatedContexts = getContexts(outObjects);
@@ -251,7 +261,7 @@ public abstract class AbstractQVTGenerator implements IGenerator, Listener {
 		ExecutionContextImpl context = new ExecutionContextImpl();
 		context.setConfigProperty("keepModeling", true); //$NON-NLS-1$
 		// context.setLog(new WriterLog(new OutputStreamWriter(System.out)));
-		List<Context> temp = new LinkedList<Context>();
+		List<Context> temp = new LinkedList<>();
 
 		for (int i = 0; i < targetURI.size(); i++) {
 			extents = getModelExtents(i);
@@ -267,7 +277,8 @@ public abstract class AbstractQVTGenerator implements IGenerator, Listener {
 					return null;
 				}
 				ResourceSet resourceSet = createResourceSet();
-				Resource contextResource = resourceSet.createResource(targetURI.get(i));
+				// We want to use UUIDs for XMI IDs, so be sure to use the correct resource factory
+				Resource contextResource = resourceSet.createResource(targetURI.get(i), ContextsPackage.eCONTENT_TYPE);
 				contextResource.getContents().addAll(outObjects);
 				temp.addAll(getContexts(outObjects));
 

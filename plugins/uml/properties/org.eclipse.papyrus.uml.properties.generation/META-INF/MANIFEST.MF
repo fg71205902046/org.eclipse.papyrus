@@ -1,5 +1,6 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.customization.properties.generation,
+ org.eclipse.papyrus.customization.properties.generation.extensionpoint;x-friends:="org.eclipse.papyrus.toolsmiths.validation.properties",
  org.eclipse.papyrus.customization.properties.generation.generators,
  org.eclipse.papyrus.customization.properties.generation.layout,
  org.eclipse.papyrus.customization.properties.generation.validators,

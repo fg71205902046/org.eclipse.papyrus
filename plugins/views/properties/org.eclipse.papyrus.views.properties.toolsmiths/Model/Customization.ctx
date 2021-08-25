@@ -282,6 +282,18 @@
       </constraints>
       <widget href="ui/JavaQuery.xwt#/"/>
     </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_Y-8R8MiQEeuawZoZjJAkNQ" name="Single Annotation" sectionFile="ui/SingleAnnotation.xwt">
+      <widget href="ui/SingleAnnotation.xwt#/"/>
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_h8gC0MiQEeuawZoZjJAkNQ" name="Multiple Annotations" sectionFile="ui/MultipleAnnotations.xwt">
+      <widget href="ui/MultipleAnnotations.xwt#/"/>
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_l4XJgMiSEeuyq8SIp47lRg" name="Single EStringToStringMapEntry" sectionFile="ui/SingleEStringToStringMapEntry.xwt">
+      <widget href="ui/SingleEStringToStringMapEntry.xwt#/"/>
+    </allSections>
+    <allSections xsi:type="contexts:Section" xmi:id="_oRQTgMiSEeuyq8SIp47lRg" name="Multiple EStringToStringMapEntries" sectionFile="ui/MultipleEStringToStringMapEntries.xwt">
+      <widget href="ui/MultipleEStringToStringMapEntries.xwt#/"/>
+    </allSections>
   </tabs>
   <views xmi:id="_W3-hwZLCEeWbp4A9_-WIrQ" name="Single Environment" sections="_W38FcpLCEeWbp4A9_-WIrQ" automaticContext="true">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_W3-hwpLCEeWbp4A9_-WIrQ" name="isSingleEnvironment">
@@ -759,6 +771,34 @@
       <properties xsi:type="constraints:ValueProperty" xmi:id="_W4CzM5LCEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/papyrus/constraints/0.9"/>
     </constraints>
   </views>
+  <views xmi:id="_cZBBkMiPEeuawZoZjJAkNQ" name="Single Annotation" sections="_Y-8R8MiQEeuawZoZjJAkNQ">
+    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_pc4ggMiPEeuawZoZjJAkNQ" name="isSingleAnnotation">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_VLM6kMiQEeuawZoZjJAkNQ" name="className" value="Annotation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_VLM6kciQEeuawZoZjJAkNQ" name="nsUri" value="http://www.eclipse.org/papyrus/properties/contexts/0.9"/>
+    </constraints>
+  </views>
+  <views xmi:id="_dXW5IMiPEeuawZoZjJAkNQ" elementMultiplicity="-1" name="Multiple Annotations" sections="_h8gC0MiQEeuawZoZjJAkNQ">
+    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_vPWOYMiPEeuawZoZjJAkNQ" name="isMultipleAnnotations">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_VLM6ksiQEeuawZoZjJAkNQ" name="className" value="Annotation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_VLM6k8iQEeuawZoZjJAkNQ" name="nsUri" value="http://www.eclipse.org/papyrus/properties/contexts/0.9"/>
+    </constraints>
+  </views>
+  <views xmi:id="_74YgkMiREeuyq8SIp47lRg" name="Single EStringToStringMapEntry" sections="_l4XJgMiSEeuyq8SIp47lRg">
+    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_EY4iAMiSEeuyq8SIp47lRg" name="isSingleDetail">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_jGk-YMiSEeuyq8SIp47lRg" name="className" value="EStringToStringMapEntry"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_jGk-YciSEeuyq8SIp47lRg" name="nsUri" value="http://www.eclipse.org/emf/2002/Ecore"/>
+    </constraints>
+  </views>
+  <views xmi:id="_InG18MiSEeuyq8SIp47lRg" elementMultiplicity="-1" name="Multiple EStringToStringMapEntries" sections="_oRQTgMiSEeuyq8SIp47lRg">
+    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_NjpocMiSEeuyq8SIp47lRg" name="isMultipleDetails">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_jGk-YsiSEeuyq8SIp47lRg" name="className" value="EStringToStringMapEntry"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_jGk-Y8iSEeuyq8SIp47lRg" name="nsUri" value="http://www.eclipse.org/emf/2002/Ecore"/>
+    </constraints>
+  </views>
   <dataContexts xmi:id="_W4CzNJLCEeWbp4A9_-WIrQ" name="properties" label="properties">
     <elements xsi:type="contexts:DataContextPackage" xmi:id="_W4CzNZLCEeWbp4A9_-WIrQ" name="environment">
       <elements xmi:id="_W4CzNpLCEeWbp4A9_-WIrQ" name="Environment">
@@ -869,6 +909,11 @@
         <properties xmi:id="_W4EBUpLCEeWbp4A9_-WIrQ" name="constraintType" type="Reference" description="The type of this constraint"/>
         <properties xmi:id="_W4EBU5LCEeWbp4A9_-WIrQ" name="properties" label="" type="Reference" multiplicity="-1" description="The list of properties used to instantiate this constraint (key - value pairs)"/>
       </elements>
+      <elements xmi:id="_h2pZ0MiNEeulZ9kJCZuAXw" name="Annotation">
+        <properties xmi:id="_lkLbgMiNEeulZ9kJCZuAXw" name="source" label="Source" description="The source URI identifying the application that manages the annotation."/>
+        <properties xmi:id="_skTPUMiNEeulZ9kJCZuAXw" name="references" label="References" type="Reference" multiplicity="-1" description="References to model elements. The semantics of these references vary by source."/>
+        <properties xmi:id="_5vDZYMiNEeulZ9kJCZuAXw" name="details" label="Details" type="Reference" multiplicity="-1" description="Name/value pairs of tagged values providing additional information about the annotated element.&#xA;The semantics of details varies by source."/>
+      </elements>
     </elements>
     <elements xsi:type="contexts:DataContextPackage" xmi:id="_W4EBVJLCEeWbp4A9_-WIrQ" name="ui">
       <elements xmi:id="_W4EBVZLCEeWbp4A9_-WIrQ" name="Element"/>
@@ -905,6 +950,12 @@
       </elements>
       <elements xmi:id="_W4EBbZLCEeWbp4A9_-WIrQ" name="UnknownComponent" supertypes="_W4EBWJLCEeWbp4A9_-WIrQ">
         <properties xmi:id="_W4EBbpLCEeWbp4A9_-WIrQ" name="typeName" description="The fully-qualified name of this element"/>
+      </elements>
+    </elements>
+    <elements xsi:type="contexts:DataContextPackage" xmi:id="_K80F4MiOEeulZ9kJCZuAXw" name="ecore">
+      <elements xmi:id="_Mge4EMiOEeulZ9kJCZuAXw" name="EStringToStringMapEntry">
+        <properties xmi:id="_OyungMiOEeulZ9kJCZuAXw" name="key" label="Key" description="The mapping key."/>
+        <properties xmi:id="_PMH-8MiOEeulZ9kJCZuAXw" name="value" label="Value" description="The mapping value.&#x9;"/>
       </elements>
     </elements>
     <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.views.properties.toolsmiths/Model/CustomizationEnvironment.xmi#//@modelElementFactories.2"/>

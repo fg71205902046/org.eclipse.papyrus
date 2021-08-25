@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,8 +10,12 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 573986
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.generation.layout;
+
+import static org.eclipse.papyrus.infra.properties.contexts.util.ContextAnnotations.getSourceModel;
+import static org.eclipse.papyrus.infra.properties.contexts.util.ContextAnnotations.setSourceModel;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -54,10 +58,11 @@ import org.eclipse.papyrus.infra.properties.ui.util.PropertiesUtil;
  */
 public class StandardLayoutGenerator implements ILayoutGenerator {
 
-	protected final TreeMap<Category, List<PropertyEditor>> editorsByCategory = new TreeMap<Category, List<PropertyEditor>>();
+	protected final TreeMap<Category, List<PropertyEditor>> editorsByCategory = new TreeMap<>();
 
-	protected final Set<Namespace> namespaces = new HashSet<Namespace>();
+	protected final Set<Namespace> namespaces = new HashSet<>();
 
+	@Override
 	public synchronized List<Section> layoutElements(List<PropertyEditor> editors, View parent) {
 
 		editorsByCategory.clear();
@@ -117,6 +122,7 @@ public class StandardLayoutGenerator implements ILayoutGenerator {
 		CompositeWidget sectionRoot = createSectionRoot();
 
 		Section section = ContextsFactory.eINSTANCE.createSection();
+		setSourceModel(section, getSourceModel(parent));
 		section.setName(parent.getName());
 		section.setSectionFile(String.format("ui/%s.xwt", section.getName().replaceAll(" ", ""))); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
@@ -148,7 +154,7 @@ public class StandardLayoutGenerator implements ILayoutGenerator {
 	}
 
 	protected List<ValueAttribute> createNamespaces(Collection<Namespace> namespaces) {
-		List<ValueAttribute> xmlNamespaces = new LinkedList<ValueAttribute>();
+		List<ValueAttribute> xmlNamespaces = new LinkedList<>();
 		for (Namespace namespace : namespaces) {
 			if (namespace == null) {
 				continue;
@@ -230,6 +236,7 @@ public class StandardLayoutGenerator implements ILayoutGenerator {
 			return true;
 		}
 
+		@Override
 		public int compareTo(Category category) {
 			if (category == null) {
 				return -1;
@@ -269,10 +276,12 @@ public class StandardLayoutGenerator implements ILayoutGenerator {
 	 */
 	public static Type[] orderedTypes = new Type[] { Type.STRING, Type.BOOLEAN, Type.INTEGER, Type.ENUMERATION, Type.REFERENCE };
 
+	@Override
 	public String getName() {
 		return Messages.StandardLayoutGenerator_name;
 	}
 
+	@Override
 	public void setGenerator(IGenerator generator) {
 		// Ignored
 	}

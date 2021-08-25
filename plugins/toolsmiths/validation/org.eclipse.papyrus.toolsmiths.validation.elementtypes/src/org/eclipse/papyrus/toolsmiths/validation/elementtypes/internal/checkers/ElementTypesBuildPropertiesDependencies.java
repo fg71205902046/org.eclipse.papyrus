@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.papyrus.infra.emf.utils.ResourceUtils;
 import org.eclipse.papyrus.infra.types.util.ElementTypesConfigurationsSwitch;
+import org.eclipse.papyrus.toolsmiths.validation.common.utils.LocalProfileIndex;
 import org.eclipse.papyrus.uml.types.core.advices.applystereotype.StereotypeToApply;
 import org.eclipse.papyrus.uml.types.core.advices.applystereotype.util.ApplyStereotypeAdviceSwitch;
 import org.eclipse.papyrus.uml.types.core.advices.stereotypepropertyreferenceedgeadvice.StereotypePropertyReferenceEdgeAdviceConfiguration;

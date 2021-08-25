@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
- *   Christian W. Damus - bugs 570097, 571125, 573245
+ *   Christian W. Damus - bugs 570097, 571125, 573245, 573986
  *
  *****************************************************************************/
 
@@ -42,6 +42,7 @@ import org.eclipse.papyrus.toolsmiths.validation.common.checkers.BuildProperties
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.CustomModelChecker;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.ExtensionsChecker;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.IPluginChecker2;
+import org.eclipse.papyrus.toolsmiths.validation.common.checkers.JavaClassDependencies;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.ModelDependenciesChecker;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.ModelValidationChecker;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.OpaqueResourceProvider;
@@ -117,7 +118,8 @@ public class ArchitecturePluginChecker {
 	}
 
 	private static OpaqueResourceProvider.EMF createOpaqueResourceProvider(IProject project) {
-		ArchitectureDependencies dependencies = new ArchitectureDependencies(project);
+		JavaClassDependencies dependencies = new JavaClassDependencies(project, ArchitectureCommandUtils::getCommandClass);
+
 		// Icon resources
 		return createIconProvider()
 				// Creation/conversion command classes

@@ -10,17 +10,22 @@
  *
  * Contributors:
  *   Alexandra Buzila (EclipseSource) - Initial API and implementation
- *   Christian W. Damus - bug 570097
+ *   Christian W. Damus - bugs 570097, 573986
  *
  *****************************************************************************/
 
 package org.eclipse.papyrus.toolsmiths.validation.common.quickfix;
+
+import java.util.Objects;
+import java.util.Optional;
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.CommonProblemConstants;
 import org.eclipse.pde.internal.core.builders.PDEMarkerFactory;
 import org.eclipse.ui.IMarkerResolution;
 import org.eclipse.ui.IMarkerResolutionGenerator2;
+
+import com.google.common.collect.Iterables;
 
 /**
  * Resolution generator for markers created by the common plug-in builders validation
@@ -42,8 +47,16 @@ public class CommonMarkerResolutionGenerator implements IMarkerResolutionGenerat
 		return new IMarkerResolution[] { resolution };
 	}
 
+	protected final IMarkerResolution[] maybe(Optional<? extends IMarkerResolution> resolution) {
+		return resolution.map(res -> new IMarkerResolution[] { res }).orElse(NO_RESOLUTIONS);
+	}
+
 	protected final IMarkerResolution[] allOf(IMarkerResolution... resolutions) {
 		return resolutions;
+	}
+
+	protected final IMarkerResolution[] allOf(Iterable<? extends IMarkerResolution> resolutions) {
+		return Iterables.toArray(Iterables.filter(resolutions, Objects::nonNull), IMarkerResolution.class);
 	}
 
 	@Override

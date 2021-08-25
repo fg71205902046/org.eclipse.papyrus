@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2020 CEA LIST, EclipseSource, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2021 CEA LIST, EclipseSource, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,7 +12,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  EclipseSource - Bug 543723
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - bug 553247
- *  Christian W. Damus - bug 568782
+ *  Christian W. Damus - bugs 568782, 573986
  *****************************************************************************/
 package org.eclipse.papyrus.infra.tools.util;
 
@@ -23,6 +23,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.infra.tools.Activator;
 import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
 
 /**
  * <p>
@@ -40,6 +41,9 @@ import org.osgi.framework.Bundle;
  * @author Camille Letavernier
  */
 public class ClassLoaderHelper {
+
+	/** The Equinox <tt>bundleclass:</tt> URI scheme. */
+	private static final String BUNDLECLASS = "bundleclass"; //$NON-NLS-1$
 
 	/**
 	 * Usually, there are few classes with many different accesses. Using a cache, we can improve
@@ -148,6 +152,93 @@ public class ClassLoaderHelper {
 		}
 
 		return null;
+	}
+
+	/**
+	 * Query whether an URI is parseable as a fully-qualified class reference.
+	 *
+	 * @param uri
+	 *            an URI
+	 * @return whether is is valid input for the {@link #loadClass(URI)} API
+	 *
+	 * @since 4.2
+	 * @see #loadClass(URI)
+	 */
+	public static boolean isClassURI(URI uri) {
+		return uri != null && BUNDLECLASS.equals(uri.scheme());
+	}
+
+	/**
+	 * Query the bundle name indicated by a class URI.
+	 *
+	 * @param classURI
+	 *            reference to a class in a bundle
+	 * @return the symbolic name of the bundle that hosts the class
+	 *
+	 * @since 4.2
+	 * @see #isClassURI(URI)
+	 */
+	public static Try<String> getBundleName(URI classURI) {
+		Try<String> result;
+
+		if (!isClassURI(classURI)) {
+			result = Try.failure("Class URI does not have bundleclass scheme: " + classURI); //$NON-NLS-1$
+		} else if (classURI.authority() == null) {
+			result = Try.failure("Class URI does not have an authority: " + classURI); //$NON-NLS-1$
+		} else {
+			result = Try.success(classURI.authority());
+		}
+
+		return result;
+	}
+
+	/**
+	 * Load a class indicated by an URI.
+	 *
+	 * @param classURI
+	 *            reference to the class to load
+	 * @return the loaded class
+	 *
+	 * @since 4.2
+	 * @see #isClassURI(URI)
+	 */
+	public static Try<Class<?>> loadClass(URI classURI) {
+		Try<Class<?>> result;
+
+		if (!isClassURI(classURI)) {
+			result = Try.failure("Class URI does not have bundleclass scheme: " + classURI); //$NON-NLS-1$
+		} else if (classURI.authority() == null) {
+			result = Try.failure("Class URI does not have an authority: " + classURI); //$NON-NLS-1$
+		} else if (classURI.segmentCount() != 1) {
+			result = Try.failure("Class URI must have exactly one segment: " + classURI); //$NON-NLS-1$
+		} else {
+			Bundle bundle = Platform.getBundle(classURI.authority());
+			if (bundle == null) {
+				result = Try.failure("No such bundle in class URI: " + classURI); //$NON-NLS-1$
+			} else {
+				result = Try.call(() -> bundle.loadClass(classURI.segment(0)));
+			}
+		}
+
+		return result;
+	}
+
+	/**
+	 * Get a URI for a class that can be used to {@linkplain #loadClass(URI) load it again} later.
+	 * This only works for classes that trace to some bundle that hosts them.
+	 *
+	 * @param class_
+	 *            a class
+	 * @return a URI for it, if it is a class that is hosted in some bundle
+	 *
+	 * @since 4.2
+	 * @see #loadClass(URI)
+	 */
+	public static Try<URI> getURI(Class<?> class_) {
+		Bundle bundle = FrameworkUtil.getBundle(class_);
+		return bundle == null
+				? Try.failure("Class is not hosted by an OSGi bundle: " + class_.getName())
+				: Try.success(URI.createURI(String.format("%s://%s/%s", BUNDLECLASS, bundle.getSymbolicName(), class_.getName())));
 	}
 
 	/**

@@ -54,4 +54,8 @@
     <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <scope href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Context"/>
   </queries>
+  <queries xsi:type="query:JavaModelQuery" name="showDAnnotations" description="Tests whether annotations should be displayed" lowerBound="1" implementationClassName="org.eclipse.papyrus.views.properties.toolsmiths.query.ShowAnnotationsQuery">
+    <returnType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <scope href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Context"/>
+  </queries>
 </query:ModelQuerySet>

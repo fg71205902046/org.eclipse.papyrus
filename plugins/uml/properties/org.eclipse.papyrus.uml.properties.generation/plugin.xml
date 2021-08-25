@@ -53,5 +53,18 @@
             id="profile2datacontext">
       </library>
    </extension>
+   <extension
+         point="org.eclipse.m2m.qvt.oml.javaBlackboxUnits">
+      <unit
+            name="Contexts"
+            namespace="org.eclipse.papyrus.uml.properties.generation">
+         <library
+               class="org.eclipse.papyrus.customization.properties.generation.generators.ContextsBlackBox">
+            <metamodel
+                  nsURI="http://www.eclipse.org/papyrus/properties/contexts/0.9">
+            </metamodel>
+         </library>
+      </unit>
+   </extension>
 
 </plugin>
