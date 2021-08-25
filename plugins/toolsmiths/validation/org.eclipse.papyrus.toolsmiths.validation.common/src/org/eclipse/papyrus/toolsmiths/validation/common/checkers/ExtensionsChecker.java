@@ -103,7 +103,7 @@ public class ExtensionsChecker<T extends EObject, P extends DefaultHandler & IPl
 		final IFile pluginXML = ProjectManagementService.getPluginXMLFile(project);
 
 		if (pluginXML == null) {
-			MarkersService.createMarker(modelFile, PDEMarkerFactory.MARKER_ID, NLS.bind(Messages.ExtensionsChecker_1, modelFile.getName()), IMarker.SEVERITY_ERROR);
+			MarkersService.createMarker(modelFile, getMarkerType(), NLS.bind(Messages.ExtensionsChecker_1, modelFile.getName()), IMarker.SEVERITY_ERROR);
 			return;
 		}
 

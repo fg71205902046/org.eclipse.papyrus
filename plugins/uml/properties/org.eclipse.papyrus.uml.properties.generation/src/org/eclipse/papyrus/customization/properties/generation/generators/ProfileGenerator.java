@@ -11,7 +11,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Thibault Le Ouay t.leouay@sherpa-eng.com - Strategy improvement of generated files
- *  Christian W. Damus - bug 573987
+ *  Christian W. Damus - bugs 573987, 573986
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.generation.generators;
 
@@ -357,7 +357,7 @@ public class ProfileGenerator extends AbstractQVTGenerator {
 
 			if (listEObject.get(i) instanceof Package) {
 				Package currentPackage = (Package) listEObject.get(i);
-				umlProfile = (Profile) loadEMFModel(currentPackage.eResource().getURI());
+				setProfile((Profile) loadEMFModel(currentPackage.eResource().getURI()));
 				inProfile = new BasicModelExtent(Collections.singletonList(umlProfile));
 
 			}
@@ -406,6 +406,10 @@ public class ProfileGenerator extends AbstractQVTGenerator {
 		}
 
 		return result;
+	}
+
+	protected void setProfile(Profile profile) {
+		this.umlProfile = profile;
 	}
 
 }

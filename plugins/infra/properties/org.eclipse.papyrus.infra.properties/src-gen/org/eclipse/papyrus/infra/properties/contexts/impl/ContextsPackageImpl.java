@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2015, 2017 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2011, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,7 +11,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus - add prototype reference to Context (CDO)
- *   Christian W. Damus - bug 482927
+ *   Christian W. Damus - bugs 482927, 573986
  *   Vincent Lorenzo - Bug 520271
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.contexts.impl;
@@ -19,12 +19,15 @@ package org.eclipse.papyrus.infra.properties.contexts.impl;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.papyrus.infra.constraints.ConstraintsPackage;
 import org.eclipse.papyrus.infra.properties.contexts.AbstractSection;
+import org.eclipse.papyrus.infra.properties.contexts.Annotatable;
+import org.eclipse.papyrus.infra.properties.contexts.Annotation;
 import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.papyrus.infra.properties.contexts.ContextsFactory;
 import org.eclipse.papyrus.infra.properties.contexts.ContextsPackage;
@@ -40,6 +43,7 @@ import org.eclipse.papyrus.infra.properties.environment.EnvironmentPackage;
 import org.eclipse.papyrus.infra.properties.environment.impl.EnvironmentPackageImpl;
 import org.eclipse.papyrus.infra.properties.ui.UiPackage;
 import org.eclipse.papyrus.infra.properties.ui.impl.UiPackageImpl;
+import org.eclipse.uml2.types.TypesPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -75,6 +79,20 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 * @generated
 	 */
 	private EClass abstractSectionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass annotatableEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass annotationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -166,6 +184,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		// Initialize simple dependencies
 		ConstraintsPackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
+		TypesPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(EnvironmentPackage.eNS_URI);
@@ -418,7 +437,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 */
 	@Override
 	public EReference getView_Context() {
-		return (EReference)viewEClass.getEStructuralFeatures().get(4);
+		return (EReference)viewEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -428,7 +447,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 */
 	@Override
 	public EAttribute getView_AutomaticContext() {
-		return (EAttribute)viewEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)viewEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -438,7 +457,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 */
 	@Override
 	public EReference getView_Datacontexts() {
-		return (EReference)viewEClass.getEStructuralFeatures().get(3);
+		return (EReference)viewEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -477,6 +496,86 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 * @generated
 	 */
 	@Override
+	public EClass getAnnotatable() {
+		return annotatableEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getAnnotatable_Annotations() {
+		return (EReference)annotatableEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getAnnotatable__GetAnnotation__String() {
+		return annotatableEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getAnnotation() {
+		return annotationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAnnotation_Source() {
+		return (EAttribute)annotationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getAnnotation_References() {
+		return (EReference)annotationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getAnnotation_Details() {
+		return (EReference)annotationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getAnnotation_Element() {
+		return (EReference)annotationEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getSection() {
 		return sectionEClass;
 	}
@@ -507,8 +606,28 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getSection_Owner() {
+	public EReference getSection_Views() {
 		return (EReference)sectionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getSection_Owner() {
+		return (EReference)sectionEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getSection__GetViews() {
+		return sectionEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -764,11 +883,23 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		sectionEClass = createEClass(SECTION);
 		createEAttribute(sectionEClass, SECTION__SECTION_FILE);
 		createEReference(sectionEClass, SECTION__WIDGET);
+		createEReference(sectionEClass, SECTION__VIEWS);
 		createEReference(sectionEClass, SECTION__OWNER);
+		createEOperation(sectionEClass, SECTION___GET_VIEWS);
 
 		abstractSectionEClass = createEClass(ABSTRACT_SECTION);
 		createEAttribute(abstractSectionEClass, ABSTRACT_SECTION__NAME);
 		createEReference(abstractSectionEClass, ABSTRACT_SECTION__TAB);
+
+		annotatableEClass = createEClass(ANNOTATABLE);
+		createEReference(annotatableEClass, ANNOTATABLE__ANNOTATIONS);
+		createEOperation(annotatableEClass, ANNOTATABLE___GET_ANNOTATION__STRING);
+
+		annotationEClass = createEClass(ANNOTATION);
+		createEAttribute(annotationEClass, ANNOTATION__SOURCE);
+		createEReference(annotationEClass, ANNOTATION__REFERENCES);
+		createEReference(annotationEClass, ANNOTATION__DETAILS);
+		createEReference(annotationEClass, ANNOTATION__ELEMENT);
 
 		propertyEClass = createEClass(PROPERTY);
 		createEAttribute(propertyEClass, PROPERTY__NAME);
@@ -794,9 +925,9 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		viewEClass = createEClass(VIEW);
 		createEAttribute(viewEClass, VIEW__NAME);
 		createEReference(viewEClass, VIEW__SECTIONS);
+		createEReference(viewEClass, VIEW__CONTEXT);
 		createEAttribute(viewEClass, VIEW__AUTOMATIC_CONTEXT);
 		createEReference(viewEClass, VIEW__DATACONTEXTS);
-		createEReference(viewEClass, VIEW__CONTEXT);
 
 		dataContextRootEClass = createEClass(DATA_CONTEXT_ROOT);
 		createEAttribute(dataContextRootEClass, DATA_CONTEXT_ROOT__LABEL);
@@ -830,6 +961,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		UiPackage theUiPackage = (UiPackage)EPackage.Registry.INSTANCE.getEPackage(UiPackage.eNS_URI);
 		ConstraintsPackage theConstraintsPackage = (ConstraintsPackage)EPackage.Registry.INSTANCE.getEPackage(ConstraintsPackage.eNS_URI);
+		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 		EnvironmentPackage theEnvironmentPackage = (EnvironmentPackage)EPackage.Registry.INSTANCE.getEPackage(EnvironmentPackage.eNS_URI);
 
 		// Create type parameters
@@ -840,9 +972,13 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		contextEClass.getESuperTypes().add(theEcorePackage.getEModelElement());
 		sectionEClass.getESuperTypes().add(this.getAbstractSection());
 		abstractSectionEClass.getESuperTypes().add(theConstraintsPackage.getDisplayUnit());
+		abstractSectionEClass.getESuperTypes().add(this.getAnnotatable());
+		propertyEClass.getESuperTypes().add(this.getAnnotatable());
+		dataContextElementEClass.getESuperTypes().add(this.getAnnotatable());
 		dataContextPackageEClass.getESuperTypes().add(this.getDataContextElement());
 		unknownPropertyEClass.getESuperTypes().add(this.getProperty());
 		viewEClass.getESuperTypes().add(theConstraintsPackage.getDisplayUnit());
+		viewEClass.getESuperTypes().add(this.getAnnotatable());
 		dataContextRootEClass.getESuperTypes().add(this.getDataContextPackage());
 
 		// Initialize classes, features, and operations; add parameters
@@ -870,11 +1006,26 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		initEClass(sectionEClass, Section.class, "Section", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getSection_SectionFile(), ecorePackage.getEString(), "sectionFile", null, 1, 1, Section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getSection_Widget(), theUiPackage.getCompositeWidget(), null, "widget", null, 1, 1, Section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getSection_Views(), this.getView(), null, "views", null, 0, -1, Section.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getSection_Owner(), this.getTab(), this.getTab_Sections(), "owner", null, 1, 1, Section.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEOperation(getSection__GetViews(), this.getView(), "getViews", 0, -1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(abstractSectionEClass, AbstractSection.class, "AbstractSection", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getAbstractSection_Name(), ecorePackage.getEString(), "name", null, 1, 1, AbstractSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getAbstractSection_Tab(), this.getTab(), this.getTab_AllSections(), "tab", null, 1, 1, AbstractSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(annotatableEClass, Annotatable.class, "Annotatable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getAnnotatable_Annotations(), this.getAnnotation(), this.getAnnotation_Element(), "annotations", null, 0, -1, Annotatable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
+		EOperation op = initEOperation(getAnnotatable__GetAnnotation__String(), this.getAnnotation(), "getAnnotation", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, theTypesPackage.getString(), "source", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(annotationEClass, Annotation.class, "Annotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getAnnotation_Source(), theTypesPackage.getString(), "source", null, 1, 1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getAnnotation_References(), theEcorePackage.getEObject(), null, "references", null, 0, -1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getAnnotation_Details(), theEcorePackage.getEStringToStringMapEntry(), null, "details", null, 0, -1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getAnnotation_Element(), this.getAnnotatable(), this.getAnnotatable_Annotations(), "element", null, 1, 1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(propertyEClass, Property.class, "Property", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getProperty_Name(), ecorePackage.getEString(), "name", null, 1, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -900,9 +1051,9 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		initEClass(viewEClass, View.class, "View", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getView_Name(), ecorePackage.getEString(), "name", null, 1, 1, View.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getView_Sections(), this.getSection(), null, "sections", null, 0, -1, View.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getView_Context(), this.getContext(), this.getContext_Views(), "context", null, 1, 1, View.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getView_AutomaticContext(), ecorePackage.getEBoolean(), "automaticContext", null, 1, 1, View.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getView_Datacontexts(), this.getDataContextElement(), null, "datacontexts", null, 0, -1, View.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getView_Context(), this.getContext(), this.getContext_Views(), "context", null, 1, 1, View.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(dataContextRootEClass, DataContextRoot.class, "DataContextRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getDataContextRoot_Label(), ecorePackage.getEString(), "label", null, 1, 1, DataContextRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

@@ -1,9 +1,18 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2010, 2021 CEA LIST, Christian W. Damus, and others.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 573986
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.constraints.impl;
 
 import java.util.Collection;
@@ -136,6 +145,37 @@ public class SimpleConstraintImpl extends ConstraintDescriptorImpl implements Si
 			properties = new EObjectContainmentEList<>(ConfigProperty.class, this, ConstraintsPackage.SIMPLE_CONSTRAINT__PROPERTIES);
 		}
 		return properties;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public ConfigProperty getProperties(String name) {
+		return getProperties(name, false, null);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public ConfigProperty getProperties(String name, boolean ignoreCase, EClass eClass) {
+		propertiesLoop: for (ConfigProperty properties : getProperties()) {
+			if (eClass != null && !eClass.isInstance(properties)) {
+				continue propertiesLoop;
+			}
+			if (name != null && !(ignoreCase ? name.equalsIgnoreCase(properties.getName()) : name.equals(properties.getName()))) {
+				continue propertiesLoop;
+			}
+			return properties;
+		}
+		return null;
 	}
 
 	/**

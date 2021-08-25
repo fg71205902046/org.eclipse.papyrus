@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2011, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,7 +11,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus - add prototype reference to Context (CDO)
- *   Christian W. Damus - bug 482927
+ *   Christian W. Damus - bugs 482927, 573986
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.contexts.impl;
 
@@ -33,6 +33,7 @@ import org.eclipse.papyrus.infra.properties.contexts.ContextsPackage;
 import org.eclipse.papyrus.infra.properties.contexts.DataContextRoot;
 import org.eclipse.papyrus.infra.properties.contexts.Tab;
 import org.eclipse.papyrus.infra.properties.contexts.View;
+import org.eclipse.uml2.common.util.CacheAdapter;
 
 /**
  * <!-- begin-user-doc -->
@@ -504,6 +505,17 @@ public class ContextImpl extends EModelElementImpl implements Context {
 		result.append(label);
 		result.append(')');
 		return result.toString();
+	}
+
+	/**
+	 * Retrieves the cache adapter for this '<em><b>Context</b></em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return The cache adapter for this '<em><b>Context</b></em>'.
+	 * @generated
+	 */
+	protected CacheAdapter getCacheAdapter() {
+		return CacheAdapter.getInstance();
 	}
 
 } // ContextImpl

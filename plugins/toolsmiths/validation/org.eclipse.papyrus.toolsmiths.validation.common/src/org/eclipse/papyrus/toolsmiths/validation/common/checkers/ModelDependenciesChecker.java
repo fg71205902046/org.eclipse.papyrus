@@ -11,7 +11,7 @@
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
  *   Remi Schnekenburger (EclipseSource) - Bug 568495
- *   Christian W. Damus - bugs 569357, 570097, 571125
+ *   Christian W. Damus - bugs 569357, 570097, 571125, 573986
  *
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.validation.common.checkers;
@@ -30,8 +30,6 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.function.ToIntFunction;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.eclipse.core.filebuffers.FileBuffers;
 import org.eclipse.core.filebuffers.ITextFileBuffer;
@@ -46,7 +44,6 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -57,13 +54,12 @@ import org.eclipse.osgi.service.resolver.BundleSpecification;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.toolsmiths.validation.common.Activator;
 import org.eclipse.papyrus.toolsmiths.validation.common.internal.messages.Messages;
+import org.eclipse.papyrus.toolsmiths.validation.common.utils.CommonURIUtils;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.ProjectManagementService;
 import org.eclipse.pde.internal.core.ibundle.IManifestHeader;
 import org.eclipse.pde.internal.core.text.bundle.BundleModel;
 import org.eclipse.pde.internal.core.text.bundle.ManifestHeader;
-import org.osgi.framework.Bundle;
 import org.osgi.framework.Constants;
-import org.osgi.framework.FrameworkUtil;
 
 /**
  * A checker that verifies specification of the dependencies for bundles that provide the resources
@@ -71,12 +67,6 @@ import org.osgi.framework.FrameworkUtil;
  */
 @SuppressWarnings("restriction")
 public class ModelDependenciesChecker extends AbstractPluginChecker {
-
-	/** The URI scheme for Equinox's internal <tt>bundleresource://</tt> URIs. */
-	private static final String BUNDLE_RESOURCE_SCHEME = "bundleresource"; //$NON-NLS-1$
-
-	/** The URI scheme for e4's <tt>bundleclass://</tt> URIs. */
-	private static final String BUNDLE_CLASS_SCHEME = "bundleclass"; //$NON-NLS-1$
 
 	/**
 	 * The EMF model resource.
@@ -89,9 +79,6 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 	private ToIntFunction<? super String> severityFunction = __ -> Diagnostic.ERROR;
 
 	private OpaqueResourceProvider.EMF opaqueResourceProvider;
-
-	/** Regex to parse the bundle ID out of a URI of <tt>bundleresource:</tt> scheme. */
-	private final Pattern bundleResourceAuthorityPattern = Pattern.compile("^\\d+"); //$NON-NLS-1$
 
 	/**
 	 * Initializes me to report all missing bundle dependencies as errors.
@@ -508,37 +495,8 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 	 *         which then would have been reported to the {@code diagnostics}.
 	 */
 	private String getPluginNameFromURI(final URI uri, final DiagnosticChain diagnostics) {
-		String pluginName = null;
-
-		if ((uri.isPlatformPlugin() || uri.isPlatformResource()) && uri.segmentCount() > 1) {
-			pluginName = uri.segment(1);
-		} else if (BUNDLE_CLASS_SCHEME.equals(uri.scheme()) && uri.hasAuthority()) {
-			pluginName = uri.authority();
-		} else if (BUNDLE_RESOURCE_SCHEME.equals(uri.scheme()) && uri.hasAuthority()) {
-			Bundle bundle = null;
-			Matcher m = bundleResourceAuthorityPattern.matcher(uri.authority());
-			if (m.find()) {
-				long bundleID = Long.parseLong(m.group());
-				bundle = Activator.getDefault().getBundle().getBundleContext().getBundle(bundleID);
-			}
-			if (bundle != null) {
-				pluginName = bundle.getSymbolicName();
-			}
-		} else {
-			// Is it a registered package?
-			EPackage ePackage = resource.getResourceSet().getPackageRegistry().getEPackage(uri.toString());
-			if (ePackage != null) {
-				Bundle bundle = FrameworkUtil.getBundle(ePackage.getClass());
-				if (bundle != null) {
-					pluginName = bundle.getSymbolicName();
-				}
-			} else {
-				// This doesn't look like any URI that resolves into a bundle
-				diagnostics.add(createDiagnostic(Diagnostic.WARNING, 0, NLS.bind(Messages.ModelDependenciesChecker_2, uri)));
-			}
-		}
-
-		return pluginName;
+		return CommonURIUtils.getBundleName(resource.getResourceSet(), uri).orElseAccept(
+				(reason) -> diagnostics.add(createDiagnostic(Diagnostic.WARNING, 0, reason)));
 	}
 
 	/**

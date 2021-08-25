@@ -34,11 +34,11 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.osgi.service.resolver.BundleDescription;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.toolsmiths.validation.common.internal.messages.Messages;
+import org.eclipse.papyrus.toolsmiths.validation.common.utils.CommonURIUtils;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.PluginRegistry;
 
@@ -140,36 +140,42 @@ class BasicEMFResourceProvider implements OpaqueResourceProvider.EMF {
 			return null;
 		}
 
-		if (result.isRelative() && result.isHierarchical()) {
-			// Sometimes the developer puts a leading '/' in the path that will confuse this resolution process
-			if (result.hasAbsolutePath() && !result.hasAuthority() && !result.hasDevice()) {
-				// Create a relative-path URI (we already know that it has no scheme because it's a relative URI
-				result = URI.createHierarchicalURI(result.segments(), result.query(), result.fragment());
+		if (result != null) {
+			if (result.isRelative() && result.isHierarchical()) {
+				// Sometimes the developer puts a leading '/' in the path that will confuse this resolution process
+				if (result.hasAbsolutePath() && !result.hasAuthority() && !result.hasDevice()) {
+					// Create a relative-path URI (we already know that it has no scheme because it's a relative URI
+					result = URI.createHierarchicalURI(result.segments(), result.query(), result.fragment());
+				}
+				result = result.resolve(baseURIFunction.apply(object, project));
 			}
-			result = result.resolve(baseURIFunction.apply(object, project));
-		}
 
-		if (result.isPlatform()) {
-			// Can check for existence of the resource
-			ResourceSet rset = object.eResource().getResourceSet();
-			if (!rset.getURIConverter().exists(result, null)) {
+			// Check for existence of the resource, if applicable
+			if (!CommonURIUtils.exists(object, result)) {
 				BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.ERROR, diagnosticSource, 0,
 						NLS.bind(Messages.BasicEMFResourceProvider_1,
 								new Object[] { result.lastSegment(), EObjectValidator.getObjectLabel(object, context), resourceClassifier }),
 						new Object[] { object, referenceAttribute });
 				diagnostics.add(diagnostic);
-				return null;
+				result = null;
 			}
 		}
 
-		return new ClassifiedURIImpl(result, resourceClassifier);
+		return result == null ? null : new ClassifiedURIImpl(result, resourceClassifier);
 	}
 
 	static URI getURI(EObject owner, EAttribute attribute, Object value) {
-		if (!attribute.getEContainingClass().isInstance(owner)) {
-			return null;
+		URI result = null;
+
+		if (value != null && attribute.getEContainingClass().isInstance(owner)) {
+			URI uri = value instanceof URI ? (URI) value : URI.createURI(String.valueOf(value), true);
+
+			if (!uri.isEmpty()) {
+				result = uri;
+			}
 		}
-		return value instanceof URI ? (URI) value : URI.createURI(String.valueOf(value), true);
+
+		return result;
 	}
 
 }

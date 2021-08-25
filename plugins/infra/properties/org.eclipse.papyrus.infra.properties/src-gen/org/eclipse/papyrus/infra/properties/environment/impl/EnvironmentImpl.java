@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 573986
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.environment.impl;
 
@@ -31,6 +32,7 @@ import org.eclipse.papyrus.infra.properties.environment.ModelElementFactoryDescr
 import org.eclipse.papyrus.infra.properties.environment.Namespace;
 import org.eclipse.papyrus.infra.properties.environment.PropertyEditorType;
 import org.eclipse.papyrus.infra.properties.environment.StandardWidgetType;
+import org.eclipse.uml2.common.util.CacheAdapter;
 
 /**
  * <!-- begin-user-doc -->
@@ -382,6 +384,17 @@ public class EnvironmentImpl extends ConstraintEnvironmentImpl implements Enviro
 				return miscClasses != null && !miscClasses.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * Retrieves the cache adapter for this '<em><b>Environment</b></em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return The cache adapter for this '<em><b>Environment</b></em>'.
+	 * @generated
+	 */
+	protected CacheAdapter getCacheAdapter() {
+		return CacheAdapter.getInstance();
 	}
 
 } // EnvironmentImpl

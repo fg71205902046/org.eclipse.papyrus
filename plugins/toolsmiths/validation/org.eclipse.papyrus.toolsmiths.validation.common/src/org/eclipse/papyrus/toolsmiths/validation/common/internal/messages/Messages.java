@@ -29,12 +29,14 @@ public class Messages extends NLS {
 	public static String BasicPluginXMLResourceProvider_1;
 	public static String BuildPropertiesChecker_2;
 	public static String BuildPropertiesChecker_3;
+	public static String CommonMarkerResolutionUtils_0;
+	public static String CommonMarkerResolutionUtils_1;
+	public static String CommonURIUtils_0;
 	public static String CustomModelChecker_0;
 	public static String ExtensionsChecker_0;
 	public static String ExtensionsChecker_1;
 	public static String ModelDependenciesChecker_0;
 	public static String ModelDependenciesChecker_1;
-	public static String ModelDependenciesChecker_2;
 	public static String PluginErrorReporter_0;
 	public static String MissingDependenciesMarkerResolution_description;
 	public static String MissingDependenciesMarkerResolution_label;
@@ -46,6 +48,9 @@ public class Messages extends NLS {
 	public static String ResourceMissingFromBinaryBuildMarkerResolution_label;
 	public static String ResourceMissingFromBinaryBuildMarkerResolution_folder;
 	public static String ResourceMissingFromBinaryBuildMarkerResolution_file;
+	public static String SimpleModelEditMarkerResolution_0;
+	public static String TouchResourceCommand_0;
+	public static String TouchResourceCommand_1;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Remi Schnekenburger - Initial API and implementation
- *   Christian W. Damus - bugs 569357, 570097
+ *   Christian W. Damus - bugs 569357, 570097, 573986
  *
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.validation.common.utils;
@@ -28,7 +28,10 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceVisitor;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.content.IContentDescription;
+import org.eclipse.core.runtime.content.IContentType;
 import org.eclipse.emf.common.util.AbstractTreeIterator;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -152,6 +155,31 @@ public class ModelResourceMapper<T extends EObject> {
 	public static Predicate<IResource> byExtension(String extension) {
 		return file -> //
 		extension.equals(file.getFileExtension());
+	}
+
+	/**
+	 * Select files to validate by content type.
+	 *
+	 * @param extension
+	 *            the file extension to match
+	 */
+	public static Predicate<IResource> byContentType(String contentTypeID) {
+		return file -> //
+		file.getType() == IResource.FILE && hasContentType((IFile) file, contentTypeID);
+	}
+
+	private static boolean hasContentType(IFile file, String contentTypeID) {
+		IContentType match = Platform.getContentTypeManager().getContentType(contentTypeID);
+		IContentType actual = null;
+
+		try {
+			IContentDescription description = file.getContentDescription();
+			actual = description != null ? description.getContentType() : null;
+		} catch (CoreException e) {
+			Activator.log.error("Failed to determine content type of model file.", e); //$NON-NLS-1$
+		}
+
+		return match != null && actual != null && actual.isKindOf(match);
 	}
 
 	/**

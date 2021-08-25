@@ -55,7 +55,8 @@
           createChild="true" ecoreFeature="ecore:EReference Constraints.ecore#//SimpleConstraint/properties"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="Constraints.ecore#//ConfigProperty">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute Constraints.ecore#//ConfigProperty/name"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute Constraints.ecore#//ConfigProperty/name"
+          key="true"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="Constraints.ecore#//CompositeConstraint">
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"

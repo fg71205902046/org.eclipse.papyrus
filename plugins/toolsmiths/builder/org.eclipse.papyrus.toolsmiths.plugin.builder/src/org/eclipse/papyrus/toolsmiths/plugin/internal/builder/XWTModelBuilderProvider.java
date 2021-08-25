@@ -32,7 +32,7 @@ import org.osgi.service.component.annotations.Component;
 @Component
 public class XWTModelBuilderProvider implements IPapyrusBuilderProvider {
 
-	public static final Set<String> MODEL_FILE_EXTENSIONS = Set.of("xwt", "xmi", "ctx"); //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$
+	public static final Set<String> MODEL_FILE_EXTENSIONS = Set.of("xwt"); //$NON-NLS-1$
 
 	@Override
 	public String getProblemMarkerType(PapyrusBuilderKind builderKind) {

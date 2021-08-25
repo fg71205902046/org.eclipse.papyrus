@@ -11,7 +11,7 @@
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
  *   Remi Schnekenburger (EclipseSource) - Bug 568495
- *   Christian W. Damus - bugs 569357, 570097, 571125
+ *   Christian W. Damus - bugs 569357, 570097, 571125, 573986
  *
  *****************************************************************************/
 
@@ -381,7 +381,7 @@ public class BuildPropertiesChecker extends AbstractPluginChecker {
 			// If it's a platform plugin resource, then it is expected to be deployed independently
 			// and so needs not be considered in our build.properties validation
 			String uriPlatformString = uri.toPlatformString(true);
-			result = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(uriPlatformString));
+			result = ResourcesPlugin.getWorkspace().getRoot().findMember(new Path(uriPlatformString));
 		}
 
 		return result;

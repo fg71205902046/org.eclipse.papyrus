@@ -20,16 +20,23 @@ import static org.eclipse.papyrus.toolsmiths.validation.common.checkers.ModelVal
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
@@ -47,6 +54,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.toolsmiths.validation.common.Activator;
 import org.eclipse.papyrus.toolsmiths.validation.common.internal.messages.Messages;
@@ -74,6 +82,8 @@ public class CustomModelChecker extends AbstractPluginChecker {
 	private final Map<String, Function<? super String, ? extends EValidator>> validatorFactories = new HashMap<>();
 
 	private final EValidator nullValidator = new NullValidator();
+
+	private Function<? super AdapterFactory, ? extends AdapterFactory> adapterFactoryDecoratorFunction;
 
 	/**
 	 * Constructor.
@@ -105,11 +115,29 @@ public class CustomModelChecker extends AbstractPluginChecker {
 		return this;
 	}
 
+	/**
+	 * Configure a function to decorate the adapter factory used to obtain labels for objects in problem messages.
+	 *
+	 * @param <A>
+	 *            the adapter factory type created by the decorator function
+	 * @param decoratorFunction
+	 *            a function to decorate an adapter factory
+	 */
+	public <A extends AdapterFactory & IDisposable> CustomModelChecker withAdapterFactoryDecorator(Function<? super AdapterFactory, A> decoratorFunction) {
+		adapterFactoryDecoratorFunction = decoratorFunction;
+		return this;
+	}
+
 	@Override
 	public void check(final DiagnosticChain diagnostics, final IProgressMonitor monitor) {
 		SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(Messages.CustomModelChecker_0, getModelFile().getName()), 1);
 
-		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		ComposedAdapterFactory composed = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		AdapterFactory adapterFactory = decorateAdapterFactory(composed);
+		if (!(adapterFactory instanceof IDisposable)) {
+			composed.dispose();
+			throw new IllegalStateException("adapter factory is not disposable");
+		}
 		final EValidator.SubstitutionLabelProvider labels = createSubstitutionLabelProvider(adapterFactory);
 
 		Map<Object, Object> context = new HashMap<>();
@@ -120,19 +148,30 @@ public class CustomModelChecker extends AbstractPluginChecker {
 			BasicDiagnostic validationResults = new BasicDiagnostic();
 			Diagnostician diagnostician = new Diagnostician(new ValidatorRegistry());
 
-			for (EObject next : resource.getContents()) {
-				diagnostician.validate(next, validationResults, context);
+			ResourceQueue queue = ResourceQueue.getInstance(context);
+			queue.offer(this.resource);
+
+			for (Resource resource = queue.poll(); resource != null; resource = queue.poll()) {
+				for (EObject next : resource.getContents()) {
+					diagnostician.validate(next, validationResults, context);
+				}
 			}
 
 			if (validationResults.getSeverity() > Diagnostic.OK) {
 				diagnostics.merge(wrap(validationResults));
 			}
 		} finally {
-			adapterFactory.dispose();
+			((IDisposable) adapterFactory).dispose();
 		}
 
 		subMonitor.worked(1);
 		SubMonitor.done(monitor);
+	}
+
+	private AdapterFactory decorateAdapterFactory(AdapterFactory adapterFactory) {
+		return adapterFactoryDecoratorFunction != null
+				? adapterFactoryDecoratorFunction.apply(adapterFactory)
+				: adapterFactory;
 	}
 
 	//
@@ -340,6 +379,16 @@ public class CustomModelChecker extends AbstractPluginChecker {
 			} else if (argument instanceof Value) {
 				Value value = (Value) argument;
 				result = getValueLabel(value.dataType, value.value, context);
+			} else if (argument instanceof Iterable<?>) {
+				result = StreamSupport.stream(((Iterable<?>) argument).spliterator(), false)
+						.map(el -> formatArgument(el, context))
+						.map(String::valueOf)
+						.collect(Collectors.joining(", ", "[", "]"));
+			} else if (argument instanceof Object[]) {
+				result = Stream.of((Object[]) argument)
+						.map(el -> formatArgument(el, context))
+						.map(String::valueOf)
+						.collect(Collectors.joining(", ", "[", "]"));
 			}
 			return result;
 		}
@@ -389,10 +438,37 @@ public class CustomModelChecker extends AbstractPluginChecker {
 		}
 
 		protected Diagnostic createDiagnostic(int severity, EObject eObject, EStructuralFeature feature, int code, String message, MarkerAttribute attr1, MarkerAttribute... moreAttrs) {
+			return createDiagnostic(severity, eObject, feature, code, message, Lists.asList(attr1, moreAttrs));
+		}
+
+		protected Diagnostic createDiagnostic(int severity, EObject eObject, String message, Collection<? extends MarkerAttribute> moreAttrs) {
+			return createDiagnostic(severity, eObject, null, 0, message, moreAttrs);
+		}
+
+		protected Diagnostic createDiagnostic(int severity, EObject eObject, EStructuralFeature feature, String message, Collection<? extends MarkerAttribute> moreAttrs) {
+			return createDiagnostic(severity, eObject, feature, 0, message, moreAttrs);
+		}
+
+		protected Diagnostic createDiagnostic(int severity, EObject eObject, EStructuralFeature feature, int code, String message, Collection<? extends MarkerAttribute> moreAttrs) {
 			List<Object> data = diagnosticData(eObject, feature);
-			data.addAll(Lists.asList(attr1, moreAttrs));
+			data.addAll(moreAttrs);
 
 			return new BasicDiagnostic(severity, source, code, message, data.toArray());
+		}
+
+		/**
+		 * Add an auxiliary resource to the current validation scope. It will be validated after
+		 * processing of the current resource is completed, if it has not already been validated.
+		 *
+		 * @param auxiliaryResource
+		 *            a resource to validate
+		 * @param context
+		 *            the current validation context
+		 */
+		protected void validateResource(Resource auxiliaryResource, Map<Object, Object> context) {
+			if (auxiliaryResource != null && auxiliaryResource.isLoaded()) {
+				ResourceQueue.getInstance(context).offer(auxiliaryResource);
+			}
 		}
 
 		protected boolean isValidatorFor(EPackage ePackage) {
@@ -488,6 +564,52 @@ public class CustomModelChecker extends AbstractPluginChecker {
 		Value(EDataType dataType, Object value) {
 			this.dataType = dataType;
 			this.value = value;
+		}
+	}
+
+	@SuppressWarnings("serial") // Never serialized
+	private static final class ResourceQueue extends ArrayDeque<Resource> {
+		// To avoid repeating resources
+		private final Set<Resource> processed = new HashSet<>();
+
+		/**
+		 * Not instantiable by clients.
+		 */
+		private ResourceQueue() {
+			super();
+		}
+
+		static ResourceQueue getInstance(Map<Object, Object> context) {
+			ResourceQueue result = (ResourceQueue) context.get(ResourceQueue.class);
+			if (result == null) {
+				result = new ResourceQueue();
+				context.put(ResourceQueue.class, result);
+			}
+			return result;
+		}
+
+		@Override
+		public boolean offerFirst(Resource e) {
+			return !processed.contains(e) && super.offerFirst(e);
+		}
+
+		@Override
+		public boolean offerLast(Resource e) {
+			return !processed.contains(e) && super.offerLast(e);
+		}
+
+		@Override
+		public void addFirst(Resource e) {
+			if (processed.add(e)) {
+				super.addFirst(e);
+			}
+		}
+
+		@Override
+		public void addLast(Resource e) {
+			if (processed.add(e)) {
+				super.addLast(e);
+			}
 		}
 	}
 

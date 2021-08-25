@@ -177,3 +177,59 @@ The result is displayed in the ''''Problems'''' view and are categorized by the 
 
 Like others problems, you can double-click on one to open the relevant file. You may delete a problem that you think is resolved, but if it is not, then it will be presented again by the next validation.
 
+==Properties Model Plug-in Validation==
+
+This section describes the validation checks performed by the '''Papyrus Plug-in Builder''' on ''Properties models''.
+
+===What is checked?===
+Several validation rules are checked for any plug-in project that contains Properties Context and/or Environment models, including:
+* Bundle manifest dependencies on core Papyrus Properties Framework bundles: '''WARNING'''
+** 'org.eclipse.papyrus.infra.properties'
+* For each properties context model found in the plug-in that traces to a UML Profile or an Ecore package from which it was generated:
+** Validation of the context model file itself and XWT section files that it references: errors or warnings as described for different elements, below
+*** a data context package does not trace to a source UML Profile or Ecore package: '''WARNING'''
+*** a data context package traces to a source UML Profile or Ecore package that appears no longer to exist: '''ERROR'''
+*** a data context package has a different name than the source UML Profile or Ecore package to which it traces: '''ERROR'''
+*** a data context package is missing nested packages or data context elements for nested packages or classes in the source UML Profile or Ecore package: '''WARNING'''
+*** a data context element does not trace to a source UML Stereotype or Ecore Eclass: '''WARNING'''
+*** a data context element traces to a source UML Stereotype or Ecore Eclass that appears no longer to exist: '''WARNING'''
+*** a data context element has a different name than the source UML Stereotype or Ecore Eclass to which it traces: '''ERROR'''
+*** a data context element is missing properties for attributes of the source UML Stereotype or Ecore EClass: '''WARNING'''
+*** a data context package does not trace to an attribute of a source UML Stereotype or Ecore Eclass: '''WARNING'''
+*** a data context property traces to an attribute of the source UML Profile or Ecore package that appears no longer to exist: '''ERROR'''
+*** a data context property has a different name than the attribute of the source UML Stereotype or Ecore Eclass to which it traces: '''ERROR'''
+*** a data context property has a type that appears to be inconsistent with the type of the corresponding attribute in the source UML Stereotype or Ecore Eclass: '''WARNING'''
+*** a property editor in the XWT section has a widget type that appears to be inconsistent with the type of the data context property that it edits: '''WARNING'''
+** Validation of the properties context model registration in the 'plugin.xml' file
+*** if there is no registration extension: '''ERROR'''
+** Validation of bundle dependencies in the 'MANIFEST.MF' file implied by the properties context model:
+*** missing dependency on the bundle that deploys the UML Profile or Ecore package from which the context was generated: '''ERROR'''
+** Validation of the 'build.properties' file
+*** If any of the following resources is not included in the binary build: '''ERROR'''
+**** the properties context model file, itself
+**** any XWT resource referenced by the context
+* For each properties environment model found in the plug-in:
+** Validation of the environment model file itself: errors or warnings as described for different elements, below
+*** a Java class referenced for a model element factory or other concept does not exist: '''ERROR'''
+** Validation of the properties environment model registration in the 'plugin.xml' file
+*** if there is no registration extension: '''ERROR'''
+** Validation of bundle dependencies in the 'MANIFEST.MF' file implied by the properties environment model:
+*** missing dependency on the bundle that defines Java classes referenced in the environment: '''ERROR'''
+** Validation of the 'build.properties' file
+*** If any of the following resources is not included in the binary build: '''ERROR'''
+**** the properties model file, itself
+**** any other environment model cross-referenced by it in the same project
+
+The rules above are not checked in the ''Properties Context Editor'' while editing a model because they
+depend on the deployment of dependent resources in tooling bundles. Therefore, they are only checked by the
+tooling validation mechanisms described in this documentation. Other intrinsic model well-formedness constraints
+for modelign assistants are checked by the editor; they are described in the documentation of the
+''Properties Context'' model.
+
+===Where to find the result?===
+The result is displayed in the ''''Problems'''' view and are categorized by the type ''''Papyrus Toolsmiths Properties Plug-in Problem''''.
+
+[[File:images/devDoc/Papyrus_ProblemsViewProperties.png|frame|none|Properties model problems]]
+
+Like other problems, you can double-click on one to open the relevant file. You may delete a problem that you think is resolved, but if it is not, then it will be presented again by the next validation.
+

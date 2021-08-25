@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 573986
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.impl;
 
@@ -37,6 +38,7 @@ import org.eclipse.papyrus.infra.properties.ui.UnknownComponent;
 import org.eclipse.papyrus.infra.properties.ui.ValueAttribute;
 import org.eclipse.papyrus.infra.properties.ui.Widget;
 import org.eclipse.papyrus.infra.properties.ui.WidgetAttribute;
+import org.eclipse.uml2.types.TypesPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -170,6 +172,7 @@ public class UiPackageImpl extends EPackageImpl implements UiPackage {
 		// Initialize simple dependencies
 		ConstraintsPackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
+		TypesPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(EnvironmentPackage.eNS_URI);

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 573986
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.environment.impl;
 
@@ -21,6 +22,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.papyrus.infra.properties.environment.EnvironmentPackage;
 import org.eclipse.papyrus.infra.properties.environment.MiscClass;
 import org.eclipse.papyrus.infra.properties.environment.Namespace;
+import org.eclipse.uml2.common.util.CacheAdapter;
 
 /**
  * <!-- begin-user-doc -->
@@ -288,6 +290,17 @@ public class MiscClassImpl extends MinimalEObjectImpl.Container implements MiscC
 		result.append(class_);
 		result.append(')');
 		return result.toString();
+	}
+
+	/**
+	 * Retrieves the cache adapter for this '<em><b>Misc Class</b></em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return The cache adapter for this '<em><b>Misc Class</b></em>'.
+	 * @generated
+	 */
+	protected CacheAdapter getCacheAdapter() {
+		return CacheAdapter.getInstance();
 	}
 
 } // MiscClassImpl

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,9 +10,11 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 573986
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.contexts;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.infra.properties.ui.CompositeWidget;
 
 /**
@@ -26,6 +28,7 @@ import org.eclipse.papyrus.infra.properties.ui.CompositeWidget;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.properties.contexts.Section#getSectionFile <em>Section File</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.properties.contexts.Section#getWidget <em>Widget</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.properties.contexts.Section#getViews <em>Views</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.properties.contexts.Section#getOwner <em>Owner</em>}</li>
  * </ul>
  *
@@ -83,6 +86,22 @@ public interface Section extends AbstractSection {
 	 * @generated
 	 */
 	void setWidget(CompositeWidget value);
+
+	/**
+	 * Returns the value of the '<em><b>Views</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.infra.properties.contexts.View}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Views</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Views</em>' reference list.
+	 * @see org.eclipse.papyrus.infra.properties.contexts.ContextsPackage#getSection_Views()
+	 * @model transient="true" changeable="false" volatile="true" derived="true" ordered="false"
+	 * @generated
+	 */
+	EList<View> getViews();
 
 	/**
 	 * Returns the value of the '<em><b>Owner</b></em>' reference.

@@ -10,7 +10,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Christian W. Damus - bug 573987
+ *  Christian W. Damus - bugs 573987, 573986
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.toolsmiths.editor;
 
@@ -41,6 +41,7 @@ import org.eclipse.papyrus.views.properties.toolsmiths.editor.actions.MoDiscoCop
 import org.eclipse.papyrus.views.properties.toolsmiths.editor.actions.MoDiscoCutAction;
 import org.eclipse.papyrus.views.properties.toolsmiths.editor.actions.MoDiscoDeleteAction;
 import org.eclipse.papyrus.views.properties.toolsmiths.editor.actions.MoDiscoPasteAction;
+import org.eclipse.papyrus.views.properties.toolsmiths.editor.actions.ToggleAnnotationsAction;
 import org.eclipse.papyrus.views.properties.toolsmiths.editor.actions.ValidationAction;
 import org.eclipse.papyrus.views.properties.toolsmiths.messages.Messages;
 import org.eclipse.papyrus.views.properties.toolsmiths.util.ActionUtil;
@@ -155,6 +156,9 @@ public class ContextEditorActionBarContributor extends EcoreActionBarContributor
 			if (action instanceof CreateChildAction) {
 				CreateChildAction createChildAction = (CreateChildAction) action;
 				if (createChildAction.getText().equals("Data Context Root")) { // It's the only relevant property we have access to... //$NON-NLS-1$
+					iterator.remove();
+				}
+				if (!ToggleAnnotationsAction.showAnnotations && createChildAction.getText().equals("Annotation")) { //$NON-NLS-1$
 					iterator.remove();
 				}
 			}
@@ -327,7 +331,7 @@ public class ContextEditorActionBarContributor extends EcoreActionBarContributor
 
 	@Override
 	protected boolean removeAllReferencesOnDelete() {
-		return false; // When true, the whole model is loaded on "delete" actions, including *.xwt files
+		return true; // Our "delete" action scans for references only in context resources, not *.xwt files
 		// (Which cannot contain references to the deleted element, and are really slow to load)
 	}
 

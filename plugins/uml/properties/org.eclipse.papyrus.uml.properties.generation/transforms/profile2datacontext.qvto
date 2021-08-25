@@ -1,8 +1,11 @@
+import org.eclipse.papyrus.uml.properties.generation.Contexts;
+
 modeltype UML uses "http://www.eclipse.org/uml2/5.0.0/UML";
 modeltype PropertyContext uses "http://www.eclipse.org/papyrus/properties/contexts/0.9";
 modeltype PropertyEnvironment uses "http://www.eclipse.org/papyrus/properties/environment/0.9";
 modeltype PRoot uses "http://www.eclipse.org/papyrus/properties/root";
 modeltype Constraints uses "http://www.eclipse.org/papyrus/constraints/0.9";
+modeltype Ecore uses "http://www.eclipse.org/emf/2002/Ecore";
 
 transformation stereotype2datacontext(in profile : UML, out context : PropertyContext, in uml : PropertyContext, in pRoot : PRoot);
 
@@ -37,14 +40,13 @@ query Package::getClassifiers() : Collection(Classifier) {
 	return self.packagedElement->select(e | e.isView()).oclAsType(Classifier);
 }
 
--------------------
-
 ----- DataContextPackage & DataContextRoot -------
 
 mapping Package::toDCPackage() : DataContextPackage disjuncts
 	Package::toDataContextPackage, Package::toDCRoot;
 	
 abstract mapping Package::toAbstractDCPackage() : DataContextPackage {
+	result.setSourceModel(self);
 	name := self.name;
 	var mappedElements := self.getClassifiers().map toDCElement().element; 
 	elements := mappedElements
@@ -86,9 +88,11 @@ query findFactory(className : String) : ModelElementFactoryDescriptor {
 mapping Classifier::toDCElement() : element : DataContextElement, viewSingle : View, viewMultiple : View 
 	disjuncts Stereotype::toDataContextElement, DataType::toDataContextElement;
 	
-abstract mapping Classifier::toAbstractDCElement() : element : DataContextElement, viewSingle : View, viewMultiple : View{
+abstract mapping Classifier::toAbstractDCElement() : element : DataContextElement, viewSingle : View, viewMultiple : View {
+	element.setSourceModel(self);
 	element.name := self.name;
 	
+	viewSingle.setSourceModel(self);
 	viewSingle.name := 'Single '+self.name;
 	viewSingle.automaticContext := true;
 	viewSingle.datacontexts := element;
@@ -96,6 +100,7 @@ abstract mapping Classifier::toAbstractDCElement() : element : DataContextElemen
 	viewSingle.constraints := self.map toConstraint(viewSingle);
 	viewSingle.context := self.getRootPackage().map toContext();
 	
+	viewMultiple.setSourceModel(self);
 	viewMultiple.name := 'Multiple '+self.name;
 	viewMultiple.automaticContext := true;
 	viewMultiple.datacontexts := element;
@@ -152,6 +157,7 @@ query UML::Property::isAttribute(stereo : Stereotype) : Boolean{
 ---------------------------------------
 
 mapping UML::Property::toProperty() : PropertyContext::Property {
+	result.setSourceModel(self);
 	name := self.name;
 	type := self.type.getType();
 	multiplicity := if self.upperBound() > 1 or self.upperBound() = -1 then -1 else 1 endif;

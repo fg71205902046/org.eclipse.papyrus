@@ -15,6 +15,10 @@
 
 package org.eclipse.papyrus.toolsmiths.validation.common.tests.rules;
 
+import static org.eclipse.papyrus.junit.matchers.MoreMatchers.greaterThanOrEqual;
+import static org.eclipse.papyrus.junit.matchers.MoreMatchers.isEmpty;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -27,6 +31,7 @@ import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -67,6 +72,8 @@ import org.eclipse.papyrus.junit.utils.rules.ProjectFixture;
 import org.eclipse.papyrus.toolsmiths.plugin.builder.preferences.PluginBuilderPreferencesConstants;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.IPluginChecker2;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.ModelResourceMapper;
+import org.eclipse.ui.IMarkerResolution;
+import org.eclipse.ui.IMarkerResolutionGenerator2;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
@@ -100,6 +107,10 @@ public class TestProjectFixture extends ProjectFixture {
 	private String projectNameOverride;
 	private final Set<String> filteredDiagnosticSources = new HashSet<>();
 
+	// Quick-fix testing
+	private List<IMarker> modelMarkers;
+	private List<Map<String, Object>> fixedMarkers = new ArrayList<>();
+
 	/**
 	 * Initializes me.
 	 */
@@ -123,6 +134,12 @@ public class TestProjectFixture extends ProjectFixture {
 
 	@Override
 	public Statement apply(Statement base, Description description) {
+		QuickFixWith fixWith = JUnitUtils.getAnnotation(description, QuickFixWith.class);
+		QuickFix fix = JUnitUtils.getAnnotation(description, QuickFix.class);
+		if (fixWith != null && fix != null && fixWith.value() != null) {
+			base = new QuickFixes(fixWith, fix, base);
+		}
+
 		Build build = JUnitUtils.getAnnotation(description, Build.class);
 		if (build != null && build.value()) {
 			base = new BuildProject(base);
@@ -410,6 +427,40 @@ public class TestProjectFixture extends ProjectFixture {
 					}
 					return null;
 				});
+	}
+
+	public Map<String, Object> getAttributes(IMarker marker) {
+		try {
+			return marker.getAttributes();
+		} catch (CoreException e) {
+			throw new AssertionError("Failed to extract marker attributes.", e);
+		}
+	}
+
+	public Set<Map<String, Object>> getMarkerAttributes(Collection<? extends IMarker> markers) {
+		return markers.stream()
+				.map(this::getAttributes)
+				.collect(Collectors.toSet());
+	}
+
+	public void fix(int problemID, IMarkerResolutionGenerator2 resolutionGenerator) {
+		IMarker marker = getFixableMarker(problemID);
+		Map<String, Object> attributes = getAttributes(marker);
+
+		assertThat("No quick fix available for problem " + problemID, resolutionGenerator.hasResolutions(marker), is(true));
+		IMarkerResolution[] fixes = resolutionGenerator.getResolutions(marker);
+		assertThat("No quick fix provided by generator", fixes.length, greaterThanOrEqual(1));
+		fixes[0].run(marker);
+
+		fixedMarkers.add(attributes);
+	}
+
+	public IMarker getFixableMarker(int problemID) {
+		IPluginChecker2.MarkerAttribute attr = IPluginChecker2.problem(problemID);
+		IMarker result = modelMarkers.stream().filter(m -> m.getAttribute(attr.getName(), -1) == problemID)
+				.findAny().orElse(null);
+		assertThat("Fixable problem marker not found: " + problemID, result, notNullValue());
+		return result;
 	}
 
 	//
@@ -733,6 +784,70 @@ public class TestProjectFixture extends ProjectFixture {
 			return createProject(projectName, JUnitUtils.getTestClass(description), resourcePath.toString());
 		}
 
+	}
+
+	private final class QuickFixes extends Statement {
+
+		private final Class<? extends IMarkerResolutionGenerator2> quickFixer;
+		private final int problemID;
+		private final Optional<String> path;
+
+		private final Statement base;
+
+		QuickFixes(QuickFixWith fixWith, QuickFix fix, Statement base) {
+			super();
+
+			this.quickFixer = fixWith.value();
+			this.problemID = fix.value();
+			this.path = Optional.ofNullable(fix.path()).filter(Predicate.not(String::isBlank));
+
+			this.base = base;
+		}
+
+		@Override
+		public void evaluate() throws Throwable {
+			String path = resourceToFix();
+			modelMarkers = getMarkers(path);
+
+			try {
+				base.evaluate();
+
+				IMarkerResolutionGenerator2 generator = quickFixer.getConstructor().newInstance();
+				fix(problemID, generator);
+
+				assertThat("No problem markers processed by quick fix", fixedMarkers, not(isEmpty()));
+
+				build();
+
+				Set<Map<String, Object>> newMarkerAttributes = getMarkerAttributes(getMarkers(path));
+				Set<Map<String, Object>> unfixed = new HashSet<>(fixedMarkers);
+				unfixed.retainAll(newMarkerAttributes);
+
+				assertThat("Some problem(s) not fixed", unfixed, isEmpty());
+			} finally {
+				modelMarkers = null;
+			}
+		}
+
+		private String resourceToFix() {
+			return path.or(this::findResourceToFix)
+					.orElseThrow(() -> new AssertionError(String.format("Could not find resource to fix problem ID 0x%x.", problemID)));
+		}
+
+		private Optional<String> findResourceToFix() {
+			Optional<IResource> result;
+
+			try {
+				result = Stream.of(getProject().findMarkers(markerType, false, IResource.DEPTH_INFINITE))
+						.filter(marker -> marker.getAttribute("problemId", -1) == problemID)
+						.map(IMarker::getResource)
+						.findAny();
+			} catch (CoreException e) {
+				throw new AssertionError("Failed to search markers in project.", e);
+			}
+
+			return result.map(IResource::getProjectRelativePath).map(Object::toString);
+		}
 	}
 
 }

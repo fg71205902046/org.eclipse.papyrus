@@ -1,6 +1,7 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.18.0,4.0.0)",
  org.eclipse.emf.ecore.edit;bundle-version="[2.13.0,3.0.0)",
+ org.eclipse.uml2.types;bundle-version="[2.5.0,3.0.0)",
  org.eclipse.uml2.common.edit;bundle-version="[2.5.0,3.0.0)",
  org.eclipse.emf.ecore.xmi;bundle-version="[2.16.0,3.0.0)",
  org.eclipse.papyrus.infra.constraints.edit;bundle-version="[3.0.0,4.0.0)",
@@ -8,13 +9,14 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.18.0,4.0.0)",
  org.eclipse.papyrus.infra.properties;bundle-version="[4.0.0,5.0.0)",
  org.eclipse.emf.edit;bundle-version="[2.16.0,3.0.0)",
  org.eclipse.papyrus.infra.constraints;bundle-version="[3.0.0,4.0.0)"
-Export-Package: org.eclipse.papyrus.infra.properties.contexts.provider,
+Export-Package: org.eclipse.papyrus.infra.properties.contexts.command,
+ org.eclipse.papyrus.infra.properties.contexts.provider,
  org.eclipse.papyrus.infra.properties.environment.provider,
  org.eclipse.papyrus.infra.properties.ui.provider
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Version: 4.0.0.qualifier
+Bundle-Version: 4.1.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.properties.environment.provider.PropertiesEditPlugin$Implementation

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,14 +10,17 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 573986
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.toolsmiths.editor.actions;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.action.DeleteAction;
+import org.eclipse.papyrus.infra.properties.contexts.command.ContextDeleteCommand;
 import org.eclipse.papyrus.views.properties.toolsmiths.util.ActionUtil;
 
 /**
@@ -75,7 +78,7 @@ public class MoDiscoDeleteAction extends DeleteAction {
 	@Override
 	public Command createCommand(Collection<?> selection) {
 		Collection<?> newSelection = ActionUtil.getAdaptedSelection(selection);
-		return super.createCommand(newSelection);
+		return removeAllReferences ? ContextDeleteCommand.create(domain, newSelection) : RemoveCommand.create(domain, newSelection);
 	}
 
 }

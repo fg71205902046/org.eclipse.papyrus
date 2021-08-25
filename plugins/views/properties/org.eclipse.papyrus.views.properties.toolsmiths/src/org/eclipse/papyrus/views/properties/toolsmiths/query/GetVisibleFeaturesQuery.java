@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   Christian W. Damus - bug 573987
+ *   Christian W. Damus - bugs 573987, 573986
  *
  *****************************************************************************/
 
@@ -32,10 +32,12 @@ import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementEx
 import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
 import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
 import org.eclipse.papyrus.infra.constraints.ConstraintsPackage;
+import org.eclipse.papyrus.infra.properties.contexts.Annotatable;
 import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.papyrus.infra.properties.contexts.ContextsPackage;
 import org.eclipse.papyrus.infra.properties.contexts.util.ContextsSwitch;
 import org.eclipse.papyrus.infra.properties.ui.UiPackage;
+import org.eclipse.papyrus.views.properties.toolsmiths.editor.actions.ToggleAnnotationsAction;
 
 /**
  * @author Camille Letavernier
@@ -56,11 +58,14 @@ public class GetVisibleFeaturesQuery implements IJavaQuery2<EObject, List<ERefer
 		allExcludedReferences.add(ContextsPackage.Literals.PROPERTY__CONTEXT_ELEMENT);
 		allExcludedReferences.add(ContextsPackage.Literals.ABSTRACT_SECTION__TAB);
 		allExcludedReferences.add(ContextsPackage.Literals.SECTION__OWNER);
+		allExcludedReferences.add(ContextsPackage.Literals.SECTION__VIEWS);
 		allExcludedReferences.add(ContextsPackage.Literals.TAB__AFTER_TAB);
 		allExcludedReferences.add(ContextsPackage.Literals.TAB__SECTIONS);
 		allExcludedReferences.add(ContextsPackage.Literals.TAB__ALL_SECTIONS);
 		allExcludedReferences.add(ContextsPackage.Literals.VIEW__CONTEXT);
 		allExcludedReferences.add(ContextsPackage.Literals.VIEW__DATACONTEXTS);
+		allExcludedReferences.add(ContextsPackage.Literals.ANNOTATION__ELEMENT);
+		allExcludedReferences.add(ContextsPackage.Literals.ANNOTATION__REFERENCES);
 
 		allExcludedReferences.add(UiPackage.Literals.COMPOSITE_WIDGET__WIDGET_TYPE);
 		allExcludedReferences.add(UiPackage.Literals.UI_COMPONENT__ATTRIBUTES);
@@ -90,6 +95,11 @@ public class GetVisibleFeaturesQuery implements IJavaQuery2<EObject, List<ERefer
 				}
 
 				@Override
+				public List<EReference> caseAnnotatable(Annotatable object) {
+					return filter(object.eClass(), filterAnnotationReferences(object));
+				}
+
+				@Override
 				public java.util.List<EReference> defaultCase(EObject object) {
 					return filter(object.eClass(), ref -> true);
 				};
@@ -106,6 +116,17 @@ public class GetVisibleFeaturesQuery implements IJavaQuery2<EObject, List<ERefer
 		return ref -> {
 			if (ref == ContextsPackage.Literals.CONTEXT__PROTOTYPE) { // Show the Prototype reference only if it is set
 				return object.getPrototype() != null;
+			} else if (ref == ContextsPackage.Literals.ANNOTATABLE__ANNOTATIONS) {
+				return ToggleAnnotationsAction.showAnnotations;
+			}
+			return true;
+		};
+	}
+
+	protected Predicate<EReference> filterAnnotationReferences(Annotatable object) {
+		return ref -> {
+			if (ref == ContextsPackage.Literals.ANNOTATABLE__ANNOTATIONS) {
+				return ToggleAnnotationsAction.showAnnotations;
 			}
 			return true;
 		};
