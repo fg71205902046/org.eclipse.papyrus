@@ -481,9 +481,9 @@ public class PluginErrorReporter<T extends EObject> extends ManifestErrorReporte
 	 * @return whether a cross-reference is found in any architecture context
 	 */
 	protected boolean findArchitectureContextReference() {
-		// We do not need extensions on the set registration point if some architecture context includes the set
+		// We do not need extensions on the model registration point if some architecture context includes the model
 		return ArchitectureIndex.getInstance().isReferenced(getModel());
-		}
+	}
 
 	//
 	// Nested types

@@ -15,6 +15,7 @@
 
 package org.eclipse.papyrus.toolsmiths.validation.common.tests;
 
+import org.eclipse.papyrus.toolsmiths.validation.common.projectrules.tests.ProjectRulesAllTests;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -24,6 +25,7 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @RunWith(Suite.class)
 @SuiteClasses({
+		ProjectRulesAllTests.class,
 		ModelDependenciesCheckerTest.class,
 		ProjectManagementUtilsTest.class,
 		AbstractMissingExtensionMarkerResolutionTest.class,

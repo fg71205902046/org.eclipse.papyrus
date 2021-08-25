@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 Christian W. Damus, CEA LIST, and others.
+ * Copyright (c) 2020, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -59,10 +59,23 @@ public class WorkspaceMatchers {
 	 * @return the marker matcher
 	 */
 	public static Matcher<IMarker> isMarkerMessage(Matcher<? super String> messageMatcher) {
-		return new FeatureMatcher<IMarker, String>(messageMatcher, "marker message", "message") { //$NON-NLS-1$//$NON-NLS-2$
+		return hasMarkerAttribute(IMarker.MESSAGE, messageMatcher);
+	}
+
+	/**
+	 * Create a matcher for markers by some attribute.
+	 *
+	 * @param name
+	 *            the attribute name to match
+	 * @param valueMatcher
+	 *            a matcher to match the attrtibute value of markers
+	 * @return the marker matcher
+	 */
+	public static Matcher<IMarker> hasMarkerAttribute(String name, Matcher<? super String> valueMatcher) {
+		return new FeatureMatcher<IMarker, String>(valueMatcher, "marker " + name, name) { //$NON-NLS-1$
 			@Override
 			protected String featureValueOf(IMarker actual) {
-				return actual.getAttribute(IMarker.MESSAGE, "");
+				return actual.getAttribute(name, ""); //$NON-NLS-1$
 			}
 		};
 	}

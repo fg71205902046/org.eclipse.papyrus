@@ -10,12 +10,14 @@
  *
  * Contributors:
  *   Vincent Lorenzo (CEA LIST) <vincent.lorenzo@cea.fr> - Initial API and implementation
- *   Christian W. Damus - bugs 569357, 570097, 572644, 573408, 575376
+ *   Christian W. Damus - bugs 569357, 570097, 572644, 573408, 575376, 575122
  *
  *****************************************************************************/
 
 package org.eclipse.papyrus.toolsmiths.plugin.builder;
 
+import static com.google.common.base.Functions.constant;
+import static java.util.function.Function.identity;
 import static org.eclipse.papyrus.toolsmiths.validation.common.checkers.ModelValidationChecker.createSubstitutionLabelProvider;
 
 import java.io.IOException;
@@ -24,11 +26,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -42,12 +46,15 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -57,6 +64,7 @@ import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
@@ -65,9 +73,24 @@ import org.eclipse.papyrus.emf.helpers.BundleResourceURIHelper;
 import org.eclipse.papyrus.emf.validation.DependencyValidationUtils;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ResourceUtils;
+import org.eclipse.papyrus.toolsmiths.plugin.builder.helper.ExtensionValidator;
 import org.eclipse.papyrus.toolsmiths.plugin.builder.preferences.PluginBuilderPreferencesConstants;
+import org.eclipse.papyrus.toolsmiths.validation.common.checkers.CommonProblemConstants;
+import org.eclipse.papyrus.toolsmiths.validation.common.checkers.ExtensionsChecker;
+import org.eclipse.papyrus.toolsmiths.validation.common.checkers.IPluginChecker2;
+import org.eclipse.papyrus.toolsmiths.validation.common.internal.utils.PluginErrorReporter;
+import org.eclipse.papyrus.toolsmiths.validation.common.internal.utils.PluginErrorReporter.ExtensionChecker;
+import org.eclipse.papyrus.toolsmiths.validation.common.internal.utils.PluginErrorReporter.ExtensionFixProvider;
+import org.eclipse.papyrus.toolsmiths.validation.common.internal.utils.PluginErrorReporter.ExtensionMatcher;
+import org.eclipse.papyrus.toolsmiths.validation.common.internal.utils.ProjectManagementUtils;
+import org.eclipse.papyrus.toolsmiths.validation.common.projectrules.DependencyKind;
+import org.eclipse.papyrus.toolsmiths.validation.common.projectrules.Extension;
+import org.eclipse.papyrus.toolsmiths.validation.common.projectrules.ProjectDescription;
+import org.eclipse.papyrus.toolsmiths.validation.common.spi.ProjectRulesModelProvider;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.MarkersService;
+import org.eclipse.pde.internal.core.builders.IncrementalErrorReporter.VirtualMarker;
 import org.eclipse.uml2.uml.resource.UMLResource;
+import org.w3c.dom.Element;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -79,6 +102,7 @@ import org.xml.sax.helpers.DefaultHandler;
  *
  * Result of the build process is the creation of IMarker (blocking the launch of the Eclipse runtime)
  */
+@SuppressWarnings("restriction")
 public class GenericEMFModelBuilder extends AbstractPapyrusBuilder {
 
 	/**
@@ -150,8 +174,16 @@ public class GenericEMFModelBuilder extends AbstractPapyrusBuilder {
 		// IGNORED_NS_URI.add("http://www.eclipse.org/uml2/schemas/Ecore/5");
 	}
 
+	private final ProjectRulesModelProvider projectRulesModelProvider;
+
 	public GenericEMFModelBuilder() {
+		this(null);
+	}
+
+	public GenericEMFModelBuilder(ProjectRulesModelProvider projectRulesModelProvider) {
 		super(MODEL_PROBLEM);
+
+		this.projectRulesModelProvider = (projectRulesModelProvider == null) ? ProjectRulesModelProvider.NULL : projectRulesModelProvider;
 	}
 
 	@Override
@@ -174,12 +206,13 @@ public class GenericEMFModelBuilder extends AbstractPapyrusBuilder {
 					validateModel(resources);
 				}
 
-				/*
-				 * check the required dependencies
-				 */
+				// 3. check the required dependencies
 				if (isCheckModelDependencyActivated()) {
 					checkModelDependencies(resources, builtProject);
 				}
+
+				// 4. check plug-in extensions etc.
+				checkPluginManifest(resources, builtProject);
 			} finally {
 				// Make sure to unload resource sets because if any of them load UML content either directly
 				// or by cross-document reference, then the static CacheAdapter may be retaining them
@@ -220,7 +253,7 @@ public class GenericEMFModelBuilder extends AbstractPapyrusBuilder {
 	}
 
 	/**
-	 * This method checks that all required dependencies are included into the manifest file of the project
+	 * This method checks that all required dependencies are included in the manifest file of the project.
 	 *
 	 * @param resources
 	 *            the resource for which we check the dependencies
@@ -231,25 +264,139 @@ public class GenericEMFModelBuilder extends AbstractPapyrusBuilder {
 	protected void checkModelDependencies(final Map<Resource, IFile> resources, final IProject builtProject) throws CoreException {
 		// 3. get all current declared dependencies in the project
 		final Collection<String> currentDeclaredDependencies = getAllAvailableDependencies(builtProject);
+		final Map<Resource, ProjectDescription> projectDescriptions = getProjectDescriptions(resources.keySet());
+
+		Optional<IFile> manifest = Optional.ofNullable(ProjectManagementUtils.getManifestFile(builtProject));
 
 		// 4. explore resources dependencies
 		for (final Entry<Resource, IFile> current : resources.entrySet()) {
-			final Set<String> requiredDependencies = getDependencies(current.getKey(), builtProject);
-			requiredDependencies.removeAll(currentDeclaredDependencies);
-			requiredDependencies.remove(builtProject.getName());
-			if (requiredDependencies.size() > 0) {
-				final StringBuilder dependenciesToAdd = new StringBuilder();
-				final Iterator<String> iter = requiredDependencies.iterator();
-				while (iter.hasNext()) {
-					dependenciesToAdd.append(iter.next());
-					if (iter.hasNext()) {
-						dependenciesToAdd.append(DependencyValidationUtils.DEPENDENCY_SEPARATOR);
-					}
+			final Map<String, Boolean> dependencies = getDependencies(current.getKey(), projectDescriptions.get(current.getKey()), builtProject);
+			dependencies.keySet().removeAll(currentDeclaredDependencies);
+			dependencies.remove(builtProject.getName());
+
+			if (!dependencies.isEmpty()) {
+				final String requiredDependenciesToAdd = dependencies.entrySet().stream().filter(e -> e.getValue())
+						.map(Map.Entry::getKey)
+						.collect(Collectors.joining(DependencyValidationUtils.DEPENDENCY_SEPARATOR));
+				final String expectedDependenciesToAdd = dependencies.entrySet().stream().filter(e -> !e.getValue())
+						.map(Map.Entry::getKey)
+						.collect(Collectors.joining(DependencyValidationUtils.DEPENDENCY_SEPARATOR));
+
+				if (!requiredDependenciesToAdd.isBlank()) {
+					final IMarker marker = createErrorMarker(manifest.orElse(current.getValue()), "Missing Dependencies in model"); //$NON-NLS-1$
+					IPluginChecker2.problem(CommonProblemConstants.MISSING_DEPENDENCIES_MARKER_ID).applyTo(marker);
+					marker.setAttribute(DependencyValidationUtils.MISSING_DEPENDENCIES, requiredDependenciesToAdd);
 				}
-				final IMarker marker = createErrorMarker(current.getValue(), "Missing Dependencies in model"); //$NON-NLS-1$
-				marker.setAttribute(DependencyValidationUtils.MISSING_DEPENDENCIES, dependenciesToAdd.toString());
+				if (!expectedDependenciesToAdd.isBlank()) {
+					final IMarker marker = createWarningMarker(manifest.orElse(current.getValue()), "Missing Dependencies in model"); //$NON-NLS-1$
+					IPluginChecker2.problem(CommonProblemConstants.MISSING_DEPENDENCIES_MARKER_ID).applyTo(marker);
+					marker.setAttribute(DependencyValidationUtils.MISSING_DEPENDENCIES, expectedDependenciesToAdd);
+				}
 			}
 		}
+	}
+
+	/**
+	 * This method checks that all required plug-in extensions are present and correct in the <tt>plugin.xml</tt>.
+	 *
+	 * @param resources
+	 *            the resource for which we check the plug-in extensions
+	 * @param builtProject
+	 *            the current built project
+	 * @throws CoreException
+	 */
+	protected void checkPluginManifest(final Map<Resource, IFile> resources, final IProject builtProject) throws CoreException {
+		final Map<Resource, ProjectDescription> projectDescriptions = getProjectDescriptions(resources.keySet());
+
+		if (projectDescriptions.isEmpty()) {
+			// Nothing to do
+			return;
+		}
+
+		IFile pluginXML = ProjectManagementUtils.getPluginXMLFile(builtProject);
+		if (pluginXML == null) {
+			// Nothing to do
+			return;
+		}
+
+		for (final Resource current : resources.keySet()) {
+			ProjectDescription projectDescription = projectDescriptions.get(current);
+			EObject model = current.getContents().isEmpty() ? null : current.getContents().get(0);
+
+			if (projectDescription != null && model != null) {
+				ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+				ExtensionsChecker<EObject, PluginErrorReporter<EObject>> checker = new ExtensionsChecker<>(builtProject, resources.get(current), Set.of(model), getMarkerType(),
+						(project, file, object) -> createPluginErrorReporter(project, file, object, projectDescription, adapterFactory));
+
+				try {
+					checker.check(new NullProgressMonitor());
+				} finally {
+					adapterFactory.dispose();
+				}
+			}
+		}
+	}
+
+	private PluginErrorReporter<EObject> createPluginErrorReporter(IFile pluginXML, IFile modelFile, EObject model, ProjectDescription description, AdapterFactory adapterFactory) {
+		PluginErrorReporter<EObject> result = new PluginErrorReporter<>(pluginXML, modelFile, model, getMarkerType(), object -> getLabel(object, adapterFactory)) {
+			private String currentMissingExtensionPoint;
+
+			protected void reportMissingExtension(String point) {
+				currentMissingExtensionPoint = point;
+				try {
+					super.reportMissingExtension(point);
+				} finally {
+					currentMissingExtensionPoint = null;
+				}
+			}
+
+			protected VirtualMarker reportProblem(String message, int line, int severity, int fixId, Element element, String attrName, String category) {
+				VirtualMarker result = super.reportProblem(message, line, severity, fixId, element, attrName, category);
+
+				result.setAttribute(EValidator.URI_ATTRIBUTE, EcoreUtil.getURI(model).toString());
+
+				if (currentMissingExtensionPoint != null) {
+					result.setAttribute(CommonProblemConstants.EXTENSION_POINT, currentMissingExtensionPoint);
+				}
+
+				return result;
+			}
+		};
+
+		for (Extension extension : description.getExtensions()) {
+			if (extension.getResourceAttribute() != null) {
+				ExtensionValidator<EObject> validator = new ExtensionValidator<>(pluginXML.getProject(), modelFile, extension);
+
+				String point = extension.getExtensionPoint();
+				ExtensionMatcher<EObject> matcher = validator::matchExtension;
+				ExtensionChecker<EObject> checker = validator::checkExtension;
+				ExtensionFixProvider<EObject> fixProvider = validator::problemID;
+
+				if (extension.getArchitectureReference() != null) {
+					// This extension point is optional if the model can be registered via an Architecture Context
+					result.softRequireExtensionPoint(point, matcher, checker, fixProvider);
+				} else {
+					result.requireExtensionPoint(point, matcher, checker, fixProvider);
+				}
+			}
+		}
+
+		return result;
+	}
+
+	protected String getLabel(EObject object, AdapterFactory adapterFactory) {
+		String result = null;
+
+		IItemLabelProvider provider = (IItemLabelProvider) adapterFactory.adapt(object, IItemLabelProvider.class);
+		if (provider != null) {
+			result = provider.getText(object);
+		}
+
+		if (result == null) {
+			result = EcoreUtil.getIdentification(object);
+		}
+
+		return result;
 	}
 
 	/**
@@ -308,6 +455,25 @@ public class GenericEMFModelBuilder extends AbstractPapyrusBuilder {
 		return resources;
 	}
 
+	protected Map<Resource, ProjectDescription> getProjectDescriptions(final Collection<? extends Resource> resources) {
+		Map<Resource, ProjectDescription> result = new HashMap<>();
+
+		for (Resource resource : resources) {
+			ResourceSet rset = resource.getResourceSet();
+
+			for (EObject next : resource.getContents()) {
+				EPackage ePackage = next.eClass().getEPackage();
+				ProjectDescription description = projectRulesModelProvider.getProjectDescription(ePackage, rset);
+				if (description != null) {
+					result.put(resource, description);
+					break;
+				}
+			}
+		}
+
+		return result;
+	}
+
 	/**
 	 *
 	 * @param f
@@ -361,6 +527,31 @@ public class GenericEMFModelBuilder extends AbstractPapyrusBuilder {
 			}
 		}
 		return dependencies;
+	}
+
+	/**
+	 *
+	 * @param resource
+	 *            a resource
+	 * @param description
+	 *            a description of the project dependencies, or {@code null} if none is available
+	 * @param builtProject
+	 *            the current build project
+	 * @return
+	 *         a mapping of bundle dependencies to whether they are required ({@code true}) or just expected ({@code false})
+	 */
+	protected Map<String, Boolean> getDependencies(final Resource resource, final ProjectDescription description, final IProject builtProject) {
+		Map<String, Boolean> result = getDependencies(resource, builtProject).stream()
+				.collect(Collectors.toMap(identity(), constant(true), (a, b) -> a, TreeMap::new));
+
+		if (description != null) {
+			// Import-Package dependencies are not (yet) supported
+			description.getDependencies().stream()
+					.filter(dep -> dep.getKind() == DependencyKind.REQUIRE_BUNDLE)
+					.forEach(dep -> result.put(dep.getName(), dep.isRequired()));
+		}
+
+		return result;
 	}
 
 	/**

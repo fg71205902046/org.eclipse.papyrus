@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proj:ProjectDescription xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:proj="http://www.eclipse.org/Papyrus/toolsmiths/validation/ProjectRules" requiredDependency="//@dependency.0">
+  <dependency name="org.eclipse.papyrus.test.bogus.required"/>
+  <dependency name="org.eclipse.papyrus.test.bogus.expected"/>
+  <extension extensionPoint="org.eclipse.papyrus.toolsmiths.plugin.builder.test.models">
+    <element name="model">
+      <element name="priority">
+        <attribute name="value" validatable="false">
+          <value xsi:type="proj:OpaqueValue" text="medium"/>
+        </attribute>
+      </element>
+      <attribute name="id" validatable="false">
+        <value xsi:type="proj:OpaqueValue" text="={bundleName}.{uri|fragment}"/>
+      </attribute>
+      <attribute name="path">
+        <value xsi:type="proj:OpaqueValue" text="{resource|path}"/>
+      </attribute>
+      <attribute name="target">
+        <value xsi:type="proj:OpaqueValue" text="{=target.namespace}"/>
+      </attribute>
+    </element>
+  </extension>
+</proj:ProjectDescription>

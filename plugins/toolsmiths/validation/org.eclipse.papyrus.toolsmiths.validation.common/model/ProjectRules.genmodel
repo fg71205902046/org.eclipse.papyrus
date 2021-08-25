@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/uml2/2.2.0/GenModel"
+    copyrightText="Copyright (c) 2021 Christian W. Damus, CEA LIST, and others.&#xA;&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License 2.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-2.0/&#xA;&#xA;SPDX-License-Identifier: EPL-2.0&#xA;&#xA;Contributors:&#xA;  Christian W. Damus - Initial API and implementation&#xA;"
+    modelDirectory="/org.eclipse.papyrus.toolsmiths.validation.common/src-gen" creationIcons="false"
+    editDirectory="/org.eclipse.papyrus.toolsmiths.validation.common.ui/src-gen" editorDirectory="/org.eclipse.papyrus.toolsmiths.validation.common.ui/src-gen"
+    modelPluginID="org.eclipse.papyrus.toolsmiths.validation.common" templateDirectory="/org.eclipse.papyrus.toolsmiths.validation.common/templates"
+    dynamicTemplates="true" modelName="ProjectRules" editPluginClass="org.eclipse.papyrus.toolsmiths.validation.common.internal.ui.Activator"
+    editorPluginClass="" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    codeFormatting="true" commentFormatting="true" testsDirectory="/org.eclipse.papyrus.toolsmiths.validation.common.tests/src-gen"
+    importerID="org.eclipse.uml2.uml.ecore.importer" complianceLevel="11.0" copyrightFields="false"
+    editPluginID="org.eclipse.papyrus.toolsmiths.validation.common.ui" editorPluginID="org.eclipse.papyrus.toolsmiths.validation.common.ui"
+    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.uml2.types/model/Types.genmodel#//types"
+    operationReflection="true" importOrganizing="true" decoration="Live" cleanup="true"
+    findAction="true" revertAction="true" factoryMethods="true" pluralizedGetters="true"
+    cacheAdapterSupport="true">
+  <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
+    <details key="OPPOSITE_ROLE_NAMES" value="IGNORE"/>
+    <details key="DUPLICATE_FEATURES" value="PROCESS"/>
+    <details key="ANNOTATION_DETAILS" value="PROCESS"/>
+    <details key="PROPERTY_DEFAULT_EXPRESSIONS" value="PROCESS"/>
+    <details key="DUPLICATE_FEATURE_INHERITANCE" value="PROCESS"/>
+    <details key="COMMENTS" value="PROCESS"/>
+    <details key="DERIVED_FEATURES" value="PROCESS"/>
+    <details key="SUPER_CLASS_ORDER" value="PROCESS"/>
+    <details key="DUPLICATE_OPERATION_INHERITANCE" value="PROCESS"/>
+    <details key="REDEFINING_OPERATIONS" value="PROCESS"/>
+    <details key="INVARIANT_CONSTRAINTS" value="PROCESS"/>
+    <details key="UNION_PROPERTIES" value="PROCESS"/>
+    <details key="DUPLICATE_OPERATIONS" value="PROCESS"/>
+    <details key="NON_API_INVARIANTS" value="PROCESS"/>
+    <details key="CAMEL_CASE_NAMES" value="IGNORE"/>
+    <details key="SUBSETTING_PROPERTIES" value="PROCESS"/>
+    <details key="OPERATION_BODIES" value="PROCESS"/>
+    <details key="ECORE_TAGGED_VALUES" value="PROCESS"/>
+    <details key="UNTYPED_PROPERTIES" value="REPORT"/>
+    <details key="REDEFINING_PROPERTIES" value="PROCESS"/>
+    <details key="INVOCATION_DELEGATES" value="PROCESS"/>
+    <details key="VALIDATION_DELEGATES" value="PROCESS"/>
+  </genAnnotations>
+  <foreignModel>ProjectRules.uml</foreignModel>
+  <genPackages xsi:type="genmodel:GenPackage" prefix="ProjectRules" basePackage="org.eclipse.papyrus.toolsmiths.validation.common"
+      resource="XMI" disposableProviderFactory="true" generateExampleClass="false"
+      multipleEditorPages="false" contentTypeIdentifier="org.eclipse.papyrus.toolsmiths.validation.common.projectrules"
+      ecorePackage="projectrules.ecore#/" operationsPackage="org.eclipse.papyrus.toolsmiths.validation.common.projectrules.operations">
+    <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="projectrules.ecore#//DependencyKind">
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="projectrules.ecore#//DependencyKind/requireBundle"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="projectrules.ecore#//DependencyKind/importPackage"/>
+    </genEnums>
+    <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="projectrules.ecore#//Version"
+        create="return org.osgi.framework.Version.parseVersion(it);"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="projectrules.ecore#//ProjectDescription">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference projectrules.ecore#//ProjectDescription/dependency"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="true" propertySortChoices="true"
+          ecoreFeature="ecore:EReference projectrules.ecore#//ProjectDescription/requiredDependency"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference projectrules.ecore#//ProjectDescription/extension"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="projectrules.ecore#//Dependency">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute projectrules.ecore#//Dependency/name"
+          key="true"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute projectrules.ecore#//Dependency/kind"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute projectrules.ecore#//Dependency/required"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute projectrules.ecore#//Dependency/lowerBound"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute projectrules.ecore#//Dependency/upperBound"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="projectrules.ecore#//Dependency/isRequired"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="projectrules.ecore#//Dependency/setRequired">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="projectrules.ecore#//Dependency/setRequired/newRequired"/>
+      </genOperations>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="projectrules.ecore#//Extension">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute projectrules.ecore#//Extension/extensionPoint"
+          key="true"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference projectrules.ecore#//Extension/element"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false"
+          createChild="false" ecoreFeature="ecore:EReference projectrules.ecore#//Extension/resourceAttribute"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference projectrules.ecore#//Extension/architectureReference"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
+          ecoreFeature="ecore:EReference projectrules.ecore#//Extension/project"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="projectrules.ecore#//Extension/getResourceAttribute"
+          cacheAdapterScope="Resource"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="projectrules.ecore#//ExtensionElement">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
+          ecoreFeature="ecore:EReference projectrules.ecore#//ExtensionElement/parent"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference projectrules.ecore#//ExtensionElement/element"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference projectrules.ecore#//ExtensionElement/attribute"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
+          ecoreFeature="ecore:EReference projectrules.ecore#//ExtensionElement/extension"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="projectrules.ecore#//ExtensionModelNode">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute projectrules.ecore#//ExtensionModelNode/name"
+          key="true"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute projectrules.ecore#//ExtensionModelNode/validatable"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="projectrules.ecore#//ExtensionModelNode/containingExtension"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="projectrules.ecore#//ExtensionAttribute">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EReference projectrules.ecore#//ExtensionAttribute/value"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
+          ecoreFeature="ecore:EReference projectrules.ecore#//ExtensionAttribute/parsedValue"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
+          ecoreFeature="ecore:EReference projectrules.ecore#//ExtensionAttribute/element"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="projectrules.ecore#//ExtensionAttribute/getParsedValue"
+          cacheAdapterScope="Resource"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="projectrules.ecore#//Value">
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="projectrules.ecore#//Value/stringValue"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="projectrules.ecore#//LiteralString">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute projectrules.ecore#//LiteralString/value"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="projectrules.ecore#//Variable">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute projectrules.ecore#//Variable/name"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute projectrules.ecore#//Variable/option"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="projectrules.ecore#//Expression">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference projectrules.ecore#//Expression/value"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="projectrules.ecore#//OpaqueValue">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute projectrules.ecore#//OpaqueValue/text"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="projectrules.ecore#//OpaqueValue/parse"
+          cacheAdapterScope="Resource"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="projectrules.ecore#//FeaturePath">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute projectrules.ecore#//FeaturePath/path"
+          pluralizationException="true"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Alexandra Buzila (EclipseSource) - Initial API and implementation
- *   Christian W. Damus - bugs 570097, 573986
+ *   Christian W. Damus - bugs 570097, 573986, 575122
  *
  *****************************************************************************/
 
@@ -66,7 +66,15 @@ public class CommonMarkerResolutionGenerator implements IMarkerResolutionGenerat
 		case CommonProblemConstants.MISSING_FROM_BINARY_BUILD_MARKER_ID:
 			return ResourceMissingFromBinaryBuildMarkerResolution.forMarker(marker);
 		case CommonProblemConstants.MISSING_DEPENDENCIES_MARKER_ID:
-			return new IMarkerResolution[] { new MissingDependenciesMarkerResolution() };
+			return only(new MissingDependenciesMarkerResolution());
+		case CommonProblemConstants.MISSING_EXTENSION:
+			return only(new ExtensionGeneratorQuickFix().addExtension(problemID));
+		case CommonProblemConstants.MISSING_EXTENSION_ELEMENT:
+			return only(new ExtensionGeneratorQuickFix().addElement(problemID));
+		case CommonProblemConstants.MISSING_EXTENSION_ATTRIBUTE:
+			return only(new ExtensionGeneratorQuickFix().addAttribute(problemID));
+		case CommonProblemConstants.INVALID_EXTENSION_ATTRIBUTE:
+			return only(new ExtensionGeneratorQuickFix().setAttribute(problemID));
 		default:
 			return noResolutions();
 		}

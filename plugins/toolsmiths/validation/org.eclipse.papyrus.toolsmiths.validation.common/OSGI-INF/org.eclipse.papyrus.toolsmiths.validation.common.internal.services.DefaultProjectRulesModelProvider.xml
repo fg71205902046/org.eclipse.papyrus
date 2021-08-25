@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.papyrus.toolsmiths.validation.common.internal.services.DefaultProjectRulesModelProvider">
+   <service>
+      <provide interface="org.eclipse.papyrus.toolsmiths.validation.common.spi.ProjectRulesModelProvider"/>
+   </service>
+   <reference bind="addProjectRules" cardinality="0..n" interface="org.eclipse.emf.common.util.URI" name="ProjectRules" policy="dynamic" target="(type=org.eclipse.papyrus.toolsmiths.validation.common.projectrules)" unbind="removeProjectRules"/>
+   <implementation class="org.eclipse.papyrus.toolsmiths.validation.common.internal.services.DefaultProjectRulesModelProvider"/>
+</scr:component>

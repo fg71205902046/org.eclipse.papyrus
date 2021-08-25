@@ -3,5 +3,6 @@
    <service>
       <provide interface="org.eclipse.papyrus.toolsmiths.plugin.builder.IPapyrusBuilderProvider"/>
    </service>
+   <reference bind="addProjectRulesModelProvider" cardinality="0..n" interface="org.eclipse.papyrus.toolsmiths.validation.common.spi.ProjectRulesModelProvider" name="ProjectRulesModelProvider" policy="dynamic" unbind="removeProjectRulesModelProvider"/>
    <implementation class="org.eclipse.papyrus.toolsmiths.plugin.internal.builder.GenericEMFModelBuilderProvider"/>
 </scr:component>

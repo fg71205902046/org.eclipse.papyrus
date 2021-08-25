@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 CEA LIST and others.
+ * Copyright (c) 2020, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *   Pauline DEVILLE (CEA LIST) <pauline.deville@cea.fr> - Initial API and implementation
+ *   Christian W. Damus - bug 575122
  *
  *****************************************************************************/
 
@@ -29,7 +30,7 @@ public class ManifestResolutionGenerator implements IMarkerResolutionGenerator2 
 
 	@Override
 	public IMarkerResolution[] getResolutions(IMarker marker) {
-		int kind = marker.getAttribute(ManifestBuilder.KIND_MARKER_ATTRIBUTE, 0);
+		int kind = marker.getAttribute(ManifestBuilder.KIND_MARKER_ATTRIBUTE, -1);
 		if (ManifestBuilder.REEXPORT_KIND == kind) {
 			return new IMarkerResolution[] {
 					new DependencyReexportMarkerResolution()

@@ -22,17 +22,31 @@ Require-Bundle: org.eclipse.emf.transaction;bundle-version="[1.9.0,2.0.0)",
  org.eclipse.uml2.uml;bundle-version="[5.5.0,6.0.0)";resolution:=optional,
  org.eclipse.gmf.runtime.emf.type.core;bundle-version="[1.9.0,2.0.0)",
  org.eclipse.papyrus.infra.services.edit;bundle-version="[4.1.0,5.0.0)",
- org.eclipse.papyrus.uml.tools.utils;bundle-version="[4.1.0,5.0.0)"
+ org.eclipse.uml2.common;bundle-version="[2.5.0,3.0.0)",
+ org.eclipse.core.runtime;bundle-version="[3.22.0,4.0.0)",
+ org.eclipse.emf.ecore;bundle-version="[2.24.0,3.0.0)",
+ org.eclipse.emf.ecore.edit;bundle-version="[2.13.0,3.0.0)",
+ org.eclipse.emf.ecore.xmi;bundle-version="[2.16.0,3.0.0)",
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="[4.1.0,5.0.0)",
+ org.eclipse.uml2.types;bundle-version="[2.5.0,3.0.0)"
 Export-Package: org.eclipse.papyrus.toolsmiths.validation.common,
  org.eclipse.papyrus.toolsmiths.validation.common.checkers,
+ org.eclipse.papyrus.toolsmiths.validation.common.internal.messages;x-internal:=true,
  org.eclipse.papyrus.toolsmiths.validation.common.command,
+ org.eclipse.papyrus.toolsmiths.validation.common.internal.services;x-internal:=true,
  org.eclipse.papyrus.toolsmiths.validation.common.internal.utils;
   x-friends:="org.eclipse.papyrus.toolsmiths.validation.elementtypes,
    org.eclipse.papyrus.toolsmiths.validation.architecture,
    org.eclipse.papyrus.toolsmiths.validation.profile,
    org.eclipse.papyrus.toolsmiths.validation.newchild,
-   org.eclipse.papyrus.toolsmiths.validation.properties",
+   org.eclipse.papyrus.toolsmiths.validation.properties,
+   org.eclipse.papyrus.toolsmiths.plugin.builder",
+ org.eclipse.papyrus.toolsmiths.validation.common.projectrules;x-friends:="org.eclipse.papyrus.toolsmiths.validation.common.ui,org.eclipse.papyrus.toolsmiths.plugin.builder",
+ org.eclipse.papyrus.toolsmiths.validation.common.projectrules.impl;x-friends:="org.eclipse.papyrus.toolsmiths.validation.common.ui",
+ org.eclipse.papyrus.toolsmiths.validation.common.projectrules.operations;x-friends:="org.eclipse.papyrus.toolsmiths.validation.common.ui",
+ org.eclipse.papyrus.toolsmiths.validation.common.projectrules.util;x-friends:="org.eclipse.papyrus.toolsmiths.validation.common.ui,org.eclipse.papyrus.toolsmiths.plugin.builder",
  org.eclipse.papyrus.toolsmiths.validation.common.quickfix,
+ org.eclipse.papyrus.toolsmiths.validation.common.spi;x-friends:="org.eclipse.papyrus.toolsmiths.plugin.builder",
  org.eclipse.papyrus.toolsmiths.validation.common.utils
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
@@ -48,3 +62,4 @@ Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.eclipse.papyrus.toolsmiths.validation.common
 Import-Package: com.google.common.base;version="[30.1.0,31.0.0)",
  com.google.common.collect;version="[30.1.0,31.0.0)"
+Service-Component: OSGI-INF/org.eclipse.papyrus.toolsmiths.validation.common.internal.services.DefaultProjectRulesModelProvider.xml

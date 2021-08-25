@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   Christian W. Damus - bug 570097
+ *   Christian W. Damus - bugs 570097, 575122
  *
  *****************************************************************************/
 
@@ -41,6 +41,24 @@ public class CommonProblemConstants {
 	public static final int MISSING_DEPENDENCIES_MARKER_ID = PROBLEM_ID_BASE + 0x01;
 	/** Marker attribute specifying the dependencies that are missing from the manifest. */
 	public static final String MISSING_DEPENDENCIES = DependencyValidationUtils.MISSING_DEPENDENCIES;
+
+	/** A plug-in extension is missing. */
+	public static final int MISSING_EXTENSION = PROBLEM_ID_BASE + 0x02;
+	/** Marker attribute specifying the extension point that is missing an extension in the plugin.xml. */
+	public static final String EXTENSION_POINT = "extensionPoint"; //$NON-NLS-1$
+
+	/** A plug-in extension element is missing. */
+	public static final int MISSING_EXTENSION_ELEMENT = PROBLEM_ID_BASE + 0x03;
+	/** Marker attribute specifying the element name that is missing from the plugin.xml. */
+	public static final String ELEMENT_NAME = "elementName"; //$NON-NLS-1$
+
+	/** A plug-in extension element's attribute is missing. */
+	public static final int MISSING_EXTENSION_ATTRIBUTE = PROBLEM_ID_BASE + 0x04;
+	/** Marker attribute specifying the attribute name that is missing from the plugin.xml. */
+	public static final String ATTRIBUTE_NAME = "attributeName"; //$NON-NLS-1$
+
+	/** A plug-in extension elemen's attribute is ill-specified. */
+	public static final int INVALID_EXTENSION_ATTRIBUTE = PROBLEM_ID_BASE + 0x05;
 
 	/**
 	 * The highest problem ID defined in the common layer, possibly with some room for expansion.

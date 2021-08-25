@@ -15,6 +15,7 @@
 
 package org.eclipse.papyrus.toolsmiths.validation.common.tests.rules;
 
+import static org.eclipse.papyrus.junit.matchers.MoreMatchers.emptyIterable;
 import static org.eclipse.papyrus.junit.matchers.MoreMatchers.greaterThanOrEqual;
 import static org.eclipse.papyrus.junit.matchers.MoreMatchers.isEmpty;
 import static org.hamcrest.CoreMatchers.is;
@@ -39,6 +40,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -110,6 +112,7 @@ public class TestProjectFixture extends ProjectFixture {
 	// Quick-fix testing
 	private List<IMarker> modelMarkers;
 	private List<Map<String, Object>> fixedMarkers = new ArrayList<>();
+	private List<Consumer<? super String>> postFixAssertions = new ArrayList<>();
 
 	/**
 	 * Initializes me.
@@ -431,7 +434,9 @@ public class TestProjectFixture extends ProjectFixture {
 
 	public Map<String, Object> getAttributes(IMarker marker) {
 		try {
-			return marker.getAttributes();
+			Map<String, Object> result = new HashMap<>(marker.getAttributes());
+			result.put("#", marker.getId());
+			return result;
 		} catch (CoreException e) {
 			throw new AssertionError("Failed to extract marker attributes.", e);
 		}
@@ -444,15 +449,22 @@ public class TestProjectFixture extends ProjectFixture {
 	}
 
 	public void fix(int problemID, IMarkerResolutionGenerator2 resolutionGenerator) {
-		IMarker marker = getFixableMarker(problemID);
-		Map<String, Object> attributes = getAttributes(marker);
+		fix(problemID, false, resolutionGenerator);
+	}
 
-		assertThat("No quick fix available for problem " + problemID, resolutionGenerator.hasResolutions(marker), is(true));
-		IMarkerResolution[] fixes = resolutionGenerator.getResolutions(marker);
-		assertThat("No quick fix provided by generator", fixes.length, greaterThanOrEqual(1));
-		fixes[0].run(marker);
+	public void fix(int problemID, boolean fixAll, IMarkerResolutionGenerator2 resolutionGenerator) {
+		Stream<IMarker> markersToFix = fixAll ? getAllFixableMarkers(problemID).stream() : Stream.of(getFixableMarker(problemID));
 
-		fixedMarkers.add(attributes);
+		markersToFix.forEach(marker -> {
+			Map<String, Object> attributes = getAttributes(marker);
+
+			assertThat("No quick fix available for problem " + problemID, resolutionGenerator.hasResolutions(marker), is(true));
+			IMarkerResolution[] fixes = resolutionGenerator.getResolutions(marker);
+			assertThat("No quick fix provided by generator", fixes.length, greaterThanOrEqual(1));
+			fixes[0].run(marker);
+
+			fixedMarkers.add(attributes);
+		});
 	}
 
 	public IMarker getFixableMarker(int problemID) {
@@ -461,6 +473,21 @@ public class TestProjectFixture extends ProjectFixture {
 				.findAny().orElse(null);
 		assertThat("Fixable problem marker not found: " + problemID, result, notNullValue());
 		return result;
+	}
+
+	public Collection<IMarker> getAllFixableMarkers(int problemID) {
+		IPluginChecker2.MarkerAttribute attr = IPluginChecker2.problem(problemID);
+		Collection<IMarker> result = modelMarkers.stream().filter(m -> m.getAttribute(attr.getName(), -1) == problemID)
+				.collect(Collectors.toList());
+		assertThat("Fixable problem markers not found: " + problemID, result, not(emptyIterable()));
+		return result;
+	}
+
+	/**
+	 * Add an assertion to verify the fixed text of the subject file.
+	 */
+	public void assertAfterFix(Consumer<? super String> markersAssertion) {
+		postFixAssertions.add(markersAssertion);
 	}
 
 	//
@@ -790,6 +817,7 @@ public class TestProjectFixture extends ProjectFixture {
 
 		private final Class<? extends IMarkerResolutionGenerator2> quickFixer;
 		private final int problemID;
+		private final boolean fixAll;
 		private final Optional<String> path;
 
 		private final Statement base;
@@ -799,6 +827,7 @@ public class TestProjectFixture extends ProjectFixture {
 
 			this.quickFixer = fixWith.value();
 			this.problemID = fix.value();
+			this.fixAll = fix.all();
 			this.path = Optional.ofNullable(fix.path()).filter(Predicate.not(String::isBlank));
 
 			this.base = base;
@@ -813,7 +842,7 @@ public class TestProjectFixture extends ProjectFixture {
 				base.evaluate();
 
 				IMarkerResolutionGenerator2 generator = quickFixer.getConstructor().newInstance();
-				fix(problemID, generator);
+				fix(problemID, fixAll, generator);
 
 				assertThat("No problem markers processed by quick fix", fixedMarkers, not(isEmpty()));
 
@@ -824,6 +853,11 @@ public class TestProjectFixture extends ProjectFixture {
 				unfixed.retainAll(newMarkerAttributes);
 
 				assertThat("Some problem(s) not fixed", unfixed, isEmpty());
+
+				if (!postFixAssertions.isEmpty()) {
+					String content = getContent(getFile(path));
+					postFixAssertions.forEach(assertion -> assertion.accept(content));
+				}
 			} finally {
 				modelMarkers = null;
 			}

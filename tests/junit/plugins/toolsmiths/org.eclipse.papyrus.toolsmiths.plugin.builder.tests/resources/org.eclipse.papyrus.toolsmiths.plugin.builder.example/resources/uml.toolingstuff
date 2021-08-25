@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test:ToolingStuff
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:test="http://www.eclipse.org/Papyrus/toolsmiths/test/BuilderTest"
+    xmi:id="umltooling">
+  <ui label="Test Tooling Model"
+      description="This is an instance of a fake tooling model for testing."
+      xmi:id="umltooling.ui"/>
+  <target namespace="http://www.eclipse.org/uml2/5.0.0/UML"
+      xmi:id="umltarget">
+    <ui label="UML"
+        description="This example tooling model &quot;targets&quot; the UML namespace, whatever that is supposed to mean."
+        xmi:id="umltarget.ui"/>
+  </target>
+</test:ToolingStuff>

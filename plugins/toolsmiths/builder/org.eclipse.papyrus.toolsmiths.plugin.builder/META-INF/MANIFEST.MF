@@ -42,7 +42,9 @@ Export-Package: org.eclipse.papyrus.toolsmiths.plugin.builder,
  org.eclipse.papyrus.toolsmiths.plugin.builder.helper,
  org.eclipse.papyrus.toolsmiths.plugin.builder.nature,
  org.eclipse.papyrus.toolsmiths.plugin.builder.preferences,
- org.eclipse.papyrus.toolsmiths.plugin.builder.quickfix
+ org.eclipse.papyrus.toolsmiths.plugin.builder.quickfix,
+ org.eclipse.papyrus.toolsmiths.plugin.internal.builder;x-internal:=true,
+ org.eclipse.papyrus.toolsmiths.plugin.internal.builder.messages;x-internal:=true
 Service-Component: OSGI-INF/org.eclipse.papyrus.toolsmiths.plugin.internal.builder.XWTModelBuilderProvider.xml,
  OSGI-INF/org.eclipse.papyrus.toolsmiths.plugin.internal.builder.GenericEMFModelBuilderProvider.xml,
  OSGI-INF/org.eclipse.papyrus.toolsmiths.plugin.internal.builder.ManifestBuilderProvider.xml

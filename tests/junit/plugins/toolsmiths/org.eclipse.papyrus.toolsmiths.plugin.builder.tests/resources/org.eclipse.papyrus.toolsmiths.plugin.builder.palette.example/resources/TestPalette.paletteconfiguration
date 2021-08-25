@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<paletteconfiguration:PaletteConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2" xmlns:paletteconfiguration="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.8" id="TestPaletteConfiguration" label="Test Palette Configuration">
+  <drawerConfigurations xmi:type="paletteconfiguration:DrawerConfiguration" id="TestDrawer" label="Nodes" description="Test Nodes">
+    <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="testpalettemodel.MyClass" label="MyClass" description="Create a MyClass" kind="CreationTool">
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.toolsmiths.plugin.builder.palette.example/resources/TestPalette.elementtypesconfigurations#org.eclipse.papyrus.uml.diagram.paletteconfiguration.tests"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+  </drawerConfigurations>
+  <requiredProfiles>TestPaletteConfiguration</requiredProfiles>
+</paletteconfiguration:PaletteConfiguration>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ Copyright (c) 2021 Christian W. Damus, CEA LIST, and others.
+ 
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License 2.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-2.0/
+ 
+ SPDX-License-Identifier: EPL-2.0
+ 
+ Contributors:
+   Christian W. Damus - Initial API and implementation
+ 
+-->
+
+<plugin>
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated ProjectRules -->
+      <factory
+            uri="http://www.eclipse.org/Papyrus/toolsmiths/validation/ProjectRules"
+            class="org.eclipse.papyrus.toolsmiths.validation.common.projectrules.provider.ProjectRulesItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated NOT -->
+       <wizard
+            id="org.eclipse.papyrus.toolsmiths.validation.common.projectrules.presentation.ProjectRulesModelWizardID"
+            name="%_UI_ProjectRulesModelWizard_label"
+            class="org.eclipse.papyrus.toolsmiths.validation.common.projectrules.presentation.ProjectRulesModelWizard"
+            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.toolsmiths.category"
+            icon="icons/full/obj16/ProjectRulesModelFile.gif">
+         <description>%_UI_ProjectRulesModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated ProjectRules -->
+      <editor
+            id="org.eclipse.papyrus.toolsmiths.validation.common.projectrules.presentation.ProjectRulesEditorID"
+            name="%_UI_ProjectRulesEditor_label"
+            icon="icons/full/obj16/ProjectRulesModelFile.gif"
+            class="org.eclipse.papyrus.toolsmiths.validation.common.projectrules.presentation.ProjectRulesEditor"
+            contributorClass="org.eclipse.papyrus.toolsmiths.validation.common.projectrules.presentation.ProjectRulesActionBarContributor">
+         <contentTypeBinding contentTypeId="org.eclipse.papyrus.toolsmiths.validation.common.projectrules"/>
+      </editor>
+   </extension>
+</plugin>

@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   Christian W. Damus - bugs 570097, 573788, 573986
+ *   Christian W. Damus - bugs 570097, 573788, 573986, 575122
  *
  *****************************************************************************/
 
@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
@@ -68,15 +69,25 @@ public final class CommonMarkerResolutionUtils {
 		return Optional.ofNullable(marker.getAttribute(CommonProblemConstants.MODEL_PATH, null)).map(Path::new);
 	}
 
-	/** Get the object of the given {@code type} from an editing {@code domain}, identified by the URI in the {@code marker}. */
+	/** Get the object of the given {@code type} from a resource set, identified by the URI in the {@code marker}. */
 	public static <T extends EObject> Optional<T> getModelObject(IMarker marker, Class<T> type, EditingDomain domain) {
 		return getModelObject(marker, EValidator.URI_ATTRIBUTE, type, domain);
 	}
 
+	/** Get the object of the given {@code type} from an editing {@code domain}, identified by the URI in the {@code marker}. */
+	public static <T extends EObject> Optional<T> getModelObject(IMarker marker, Class<T> type, ResourceSet resourceSet) {
+		return getModelObject(marker, EValidator.URI_ATTRIBUTE, type, resourceSet);
+	}
+
 	/** Get the object of the given {@code type} from an editing {@code domain}, identified by an URI {@code attribute} in the {@code marker}. */
 	public static <T extends EObject> Optional<T> getModelObject(IMarker marker, String attribute, Class<T> type, EditingDomain domain) {
+		return getModelObject(marker, attribute, type, domain.getResourceSet());
+	}
+
+	/** Get the object of the given {@code type} from a resource set, identified by an URI {@code attribute} in the {@code marker}. */
+	public static <T extends EObject> Optional<T> getModelObject(IMarker marker, String attribute, Class<T> type, ResourceSet resourceSet) {
 		return getURIs(marker, attribute)
-				.map(uri -> domain.getResourceSet().getEObject(uri, true))
+				.map(uri -> resourceSet.getEObject(uri, true))
 				.filter(type::isInstance)
 				.findAny()
 				.map(type::cast);

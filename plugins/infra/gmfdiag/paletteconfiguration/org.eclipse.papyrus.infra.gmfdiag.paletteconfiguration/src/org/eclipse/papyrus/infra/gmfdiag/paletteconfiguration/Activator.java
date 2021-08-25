@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
+ * Copyright (c) 2010, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,16 +10,22 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 575122
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration;
 
+import java.util.Dictionary;
+import java.util.Hashtable;
+
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceRegistration;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -39,6 +44,8 @@ public class Activator extends AbstractUIPlugin {
 	/** Default image. */
 	public static final String DEFAULT_IMAGE = "icons/papyrus/PapyrusLogo16x16.gif";
 
+	private ServiceRegistration<URI> projectRulesRegistration;
+
 	/**
 	 * The constructor
 	 */
@@ -55,6 +62,13 @@ public class Activator extends AbstractUIPlugin {
 
 		// register the login helper
 		log = new LogHelper(plugin);
+
+		// Register the project validation rules for Palette Configuration Models
+		URI projectRules = URI.createPlatformPluginURI(PLUGIN_ID + "/model/PaletteConfiguration.projectrules", true);
+		Dictionary<String, Object> properties = new Hashtable<>();
+		properties.put("type", "org.eclipse.papyrus.toolsmiths.validation.common.projectrules");
+		properties.put("package", PaletteconfigurationPackage.eINSTANCE);
+		projectRulesRegistration = context.registerService(URI.class, projectRules, properties);
 	}
 
 	/**
@@ -62,6 +76,9 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	@Override
 	public void stop(BundleContext context) throws Exception {
+		projectRulesRegistration.unregister();
+		projectRulesRegistration = null;
+
 		plugin = null;
 		log = null;
 		super.stop(context);

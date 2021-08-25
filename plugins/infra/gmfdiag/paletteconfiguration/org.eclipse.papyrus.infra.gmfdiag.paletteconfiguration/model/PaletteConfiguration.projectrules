@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proj:ProjectDescription xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:proj="http://www.eclipse.org/Papyrus/toolsmiths/validation/ProjectRules" requiredDependency="//@dependency.0">
+  <dependency name="org.eclipse.papyrus.infra.gmfdiag.common"/>
+  <extension extensionPoint="org.eclipse.papyrus.infra.gmfdiag.common.paletteDefinition">
+    <element name="paletteDefinition">
+      <element name="Priority">
+        <attribute name="name" validatable="false">
+          <value xsi:type="proj:OpaqueValue" text="Medium"/>
+        </attribute>
+      </element>
+      <attribute name="ID" validatable="false">
+        <value xsi:type="proj:OpaqueValue" text="{=id}"/>
+      </attribute>
+      <attribute name="name" validatable="false">
+        <value xsi:type="proj:OpaqueValue" text="{=label}"/>
+      </attribute>
+      <attribute name="path">
+        <value xsi:type="proj:OpaqueValue" text="{resource|path}"/>
+      </attribute>
+      <attribute name="class" validatable="false">
+        <value xsi:type="proj:OpaqueValue" text="org.eclipse.papyrus.infra.gmfdiag.common.service.palette.ExtendedPluginPaletteProvider"/>
+      </attribute>
+    </element>
+    <architectureReference href="http://www.eclipse.org/papyrus/infra/gmfdiag/representation#//PapyrusDiagram/palettes"/>
+  </extension>
+</proj:ProjectDescription>

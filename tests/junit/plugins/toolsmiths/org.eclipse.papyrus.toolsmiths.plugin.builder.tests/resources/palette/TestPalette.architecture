@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<architecture:ArchitectureDomain xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:architecture="http://www.eclipse.org/papyrus/infra/core/architecture" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:gmfdiagrepresentation="http://www.eclipse.org/papyrus/infra/gmfdiag/representation" xmlns:paletteconfiguration="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.8" xmi:id="_nxugMAQtEey2Q9bkzxwyEA" id="org.eclipse.papyrus.toolsmiths.plugin.builder.palette.example" name="testpalette">
+  <contexts xmi:type="architecture:ArchitectureDescriptionLanguage" xmi:id="_rjgvwAQtEey2Q9bkzxwyEA" id="org.eclipse.papyrus.toolsmiths.plugin.builder.palette.example.Test" name="Test">
+    <representationKinds xmi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_yoywYAQtEey2Q9bkzxwyEA" id="org.eclipse.papyrus.toolsmiths.plugin.builder.palette.example.Test.Diagram" name="Diagram">
+      <palettes xmi:type="paletteconfiguration:PaletteConfiguration" href="platform:/plugin/org.eclipse.papyrus.toolsmiths.plugin.builder.palette.example/resources/TestPalette.paletteconfiguration#/"/>
+    </representationKinds>
+    <metamodel xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
+  </contexts>
+</architecture:ArchitectureDomain>

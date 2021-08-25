@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="projectrules" nsURI="http://www.eclipse.org/Papyrus/toolsmiths/validation/ProjectRules"
+    nsPrefix="proj">
+  <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <details key="originalName" value="ProjectRules"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="ProjectDescription">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependency" ordered="false"
+        upperBound="-1" eType="#//Dependency" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="requiredDependency" ordered="false"
+        upperBound="-1" eType="#//Dependency">
+      <eAnnotations source="subsets" references="#//ProjectDescription/dependency"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extension" ordered="false"
+        upperBound="-1" eType="#//Extension" containment="true" eOpposite="#//Extension/project"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Dependency">
+    <eOperations name="isRequired" ordered="false" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="suppressedVisibility" value="true"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="setRequired" ordered="false" lowerBound="1">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="suppressedVisibility" value="true"/>
+      </eAnnotations>
+      <eParameters name="newRequired" ordered="false" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" ordered="false" lowerBound="1"
+        eType="#//DependencyKind" defaultValueLiteral="requireBundle"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="required" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"
+        volatile="true" transient="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerBound" ordered="false"
+        eType="#//Version"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBound" ordered="false"
+        eType="#//Version" unsettable="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="DependencyKind">
+    <eLiterals name="requireBundle"/>
+    <eLiterals name="importPackage" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Version" instanceClassName="org.osgi.framework.Version"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Extension">
+    <eOperations name="getResourceAttribute" ordered="false" lowerBound="1" eType="#//ExtensionAttribute">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="suppressedVisibility" value="true"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="extensionPoint" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="element" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//ExtensionElement" containment="true"
+        eOpposite="#//ExtensionElement/extension"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resourceAttribute" ordered="false"
+        lowerBound="1" eType="#//ExtensionAttribute" changeable="false" volatile="true"
+        transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The attribute in an extension element that references the model resource to be registered. Some element in the extension description must have such an attribute in order for the extension to be matched to a tooling model and validated."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="architectureReference"
+        ordered="false" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EReference"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="project" ordered="false"
+        lowerBound="1" eType="#//ProjectDescription" eOpposite="#//ProjectDescription/extension"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExtensionElement" eSuperTypes="#//ExtensionModelNode">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" ordered="false"
+        eType="#//ExtensionElement" eOpposite="#//ExtensionElement/element"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="element" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//ExtensionElement" containment="true"
+        eOpposite="#//ExtensionElement/parent"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//ExtensionAttribute" containment="true"
+        eOpposite="#//ExtensionAttribute/element"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extension" ordered="false"
+        eType="#//Extension" eOpposite="#//Extension/element"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExtensionModelNode" abstract="true">
+    <eOperations name="containingExtension" ordered="false" lowerBound="1" eType="#//Extension"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="validatable" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"
+        defaultValueLiteral="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Whether the extension model node participates in project validation. If {@code false}, then it is used only in generating new extension elements in quick fixes."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExtensionAttribute" eSuperTypes="#//ExtensionModelNode">
+    <eOperations name="getParsedValue" ordered="false" lowerBound="1" eType="#//Value">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="suppressedVisibility" value="true"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" ordered="false"
+        lowerBound="1" eType="#//Value" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parsedValue" ordered="false"
+        lowerBound="1" eType="#//Value" changeable="false" volatile="true" transient="true"
+        derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="My {@linkplain #getValue() value} parsed as an expression if it is modeled as an {@link OpaqueValue}, otherwise just my {@code value} as it is."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="element" ordered="false"
+        lowerBound="1" eType="#//ExtensionElement" eOpposite="#//ExtensionElement/attribute"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Value" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Abstraction of a value to generate or compare for validation of an attribute of an extension element."/>
+    </eAnnotations>
+    <eOperations name="stringValue" ordered="false" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LiteralString" eSuperTypes="#//Value">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A fixed string value for an attribute."/>
+    </eAnnotations>
+    <eAnnotations source="duplicates">
+      <contents xsi:type="ecore:EOperation" name="stringValue" ordered="false" lowerBound="1"
+          eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String">
+        <eAnnotations source="redefines" references="#//Value/stringValue"/>
+      </contents>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Variable" eSuperTypes="#//Value">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A variable value for an attribute that is substituted at run-time based on the project and/or model context."/>
+    </eAnnotations>
+    <eAnnotations source="duplicates">
+      <contents xsi:type="ecore:EOperation" name="stringValue" ordered="false" lowerBound="1"
+          eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String">
+        <eAnnotations source="redefines" references="#//Value/stringValue"/>
+      </contents>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="option" ordered="false"
+        upperBound="-1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression" eSuperTypes="#//Value">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A complex value that combines literal and variable text together."/>
+    </eAnnotations>
+    <eAnnotations source="duplicates">
+      <contents xsi:type="ecore:EOperation" name="stringValue" ordered="false" lowerBound="1"
+          eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String">
+        <eAnnotations source="redefines" references="#//Value/stringValue"/>
+      </contents>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" upperBound="-1"
+        eType="#//Value" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OpaqueValue" eSuperTypes="#//Value">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="An opaque value primarily used for user input of complex expressions as text. At run-time, opaque values are parsed to generate structured expressions for evaluation."/>
+    </eAnnotations>
+    <eAnnotations source="duplicates">
+      <contents xsi:type="ecore:EOperation" name="stringValue" ordered="false" lowerBound="1"
+          eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String">
+        <eAnnotations source="redefines" references="#//Value/stringValue"/>
+      </contents>
+    </eAnnotations>
+    <eOperations name="parse" ordered="false" lowerBound="1" eType="#//Value">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Parse my opaque text as a structured value expression."/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" ordered="false" lowerBound="1"
+        eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FeaturePath" eSuperTypes="#//Value">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A feature-path expression that is evaluated at run-time on the root element of the context model."/>
+    </eAnnotations>
+    <eAnnotations source="duplicates">
+      <contents xsi:type="ecore:EOperation" name="stringValue" ordered="false" lowerBound="1"
+          eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String">
+        <eAnnotations source="redefines" references="#//Value/stringValue"/>
+      </contents>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" unique="false" lowerBound="1"
+        upperBound="-1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The path of feature names to follow. Indexing multi-valued features is not supported; the first value (if any) is taken."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+</ecore:EPackage>

@@ -27,12 +27,19 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.papyrus.toolsmiths.validation.profile"
+         id="org.eclipse.papyrus.toolsmiths.validation.common.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 		 
+   <plugin
+         id="org.eclipse.papyrus.toolsmiths.validation.profile"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+         
    <plugin
          id="org.eclipse.papyrus.toolsmiths.validation.elementtypes"
          download-size="0"
@@ -46,14 +53,14 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
+            
    <plugin
          id="org.eclipse.papyrus.toolsmiths.validation.newchild"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
+      
    <plugin
          id="org.eclipse.papyrus.toolsmiths.validation.properties"
          download-size="0"

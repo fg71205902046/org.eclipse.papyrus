@@ -10,31 +10,20 @@
  *
  * Contributors:
  *   Alexandra Buzila (EclipseSource) - Initial API and implementation
- *   Christian W. Damus - bugs 570097, 572677
+ *   Christian W. Damus - bugs 570097, 572677, 575122
  *
  *****************************************************************************/
 
 package org.eclipse.papyrus.toolsmiths.validation.common.quickfix;
 
-import java.util.StringTokenizer;
-
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.pde.core.IBaseModel;
-import org.eclipse.pde.core.plugin.IPluginModelBase;
-import org.eclipse.pde.internal.core.builders.PDEMarkerFactory;
-import org.eclipse.pde.internal.core.builders.XMLErrorReporter;
-import org.eclipse.pde.internal.core.text.IDocumentElementNode;
-import org.eclipse.pde.internal.ui.util.ModelModification;
-import org.eclipse.pde.internal.ui.util.PDEModelUtility;
+import org.eclipse.pde.core.plugin.IPluginElement;
 
 /**
- * Marker Resolution that adds a missing attribute to the {@link IDocumentElementNode} referenced by the marker.
+ * Marker Resolution that adds a missing attribute to the {@link IPluginElement} referenced by the marker.
  */
-@SuppressWarnings("restriction")
-public abstract class AbstractMissingAttributeMarkerResolution extends AbstractPapyrusWorkbenchMarkerResolution {
+public abstract class AbstractMissingAttributeMarkerResolution extends AbstractSetAttributeMarkerResolution {
 
 	private String attribute;
 
@@ -53,54 +42,8 @@ public abstract class AbstractMissingAttributeMarkerResolution extends AbstractP
 	}
 
 	@Override
-	public void run(IMarker marker) {
-		if (!(marker.getResource() instanceof IFile)) {
-			return;
-		}
-		ModelModification modification = new ModelModification((IFile) marker.getResource()) {
-			@Override
-			protected void modifyModel(IBaseModel model, IProgressMonitor monitor) throws CoreException {
-				if (model instanceof IPluginModelBase) {
-					addMissingAttribute((IPluginModelBase) model, marker);
-				}
-			}
-		};
-		PDEModelUtility.modifyModel(modification, null);
-	}
-
-	protected abstract String getAttributeValue(IMarker marker) throws CoreException;
-
-	protected void addMissingAttribute(IPluginModelBase model, IMarker marker) throws CoreException {
-		String locationPath = (String) marker.getAttribute(PDEMarkerFactory.MPK_LOCATION_PATH);
-		IDocumentElementNode node = getNodeWithMarker(model, locationPath);
-
-		String value = getAttributeValue(marker);
-		if (value != null) {
-			node.setXMLAttribute(attribute, value);
-		}
-	}
-
-	private IDocumentElementNode getNodeWithMarker(IPluginModelBase model, String locationPath) {
-		IDocumentElementNode node = null;
-		StringTokenizer strtok = new StringTokenizer(locationPath, Character.toString(XMLErrorReporter.F_CHILD_SEP));
-		while (strtok.hasMoreTokens()) {
-			String token = strtok.nextToken();
-			if (node != null) {
-				IDocumentElementNode[] children = node.getChildNodes();
-				int childIndex = Integer.parseInt(token.substring(1, token.indexOf(')')));
-				if ((childIndex >= 0) || (childIndex < children.length)) {
-					node = children[childIndex];
-				}
-			} else {
-				node = (IDocumentElementNode) model.getPluginBase();
-			}
-
-			int attr = token.indexOf(XMLErrorReporter.F_ATT_PREFIX);
-			if (attr != -1) {
-				return node;
-			}
-		}
-		return node;
+	protected String getAttributeName(IMarker marker) throws CoreException {
+		return attribute;
 	}
 
 }

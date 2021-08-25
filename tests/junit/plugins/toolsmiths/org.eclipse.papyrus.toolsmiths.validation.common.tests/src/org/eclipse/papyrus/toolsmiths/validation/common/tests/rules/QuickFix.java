@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 Christian W. Damus, CEA LIST, and others.
+ * Copyright (c) 2020, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -32,6 +32,9 @@ public @interface QuickFix {
 
 	/** The problem ID to fix. */
 	int value();
+
+	/** Whether to fix all markers of the same problem ID on the resource. */
+	boolean all() default false;
 
 	/** If there are possibly multiple resources that can have the problem to fix, the path to the resource to fix. */
 	String path() default "";

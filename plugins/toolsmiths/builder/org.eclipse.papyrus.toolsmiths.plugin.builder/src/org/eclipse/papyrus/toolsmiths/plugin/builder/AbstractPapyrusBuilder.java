@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Vincent Lorenzo (CEA LIST) <vincent.lorenzo@cea.fr> - Initial API and implementation
- *   Christian W. Damus - bug 575376
+ *   Christian W. Damus - bug 575376, 575122
  *
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.plugin.builder;
@@ -104,6 +104,34 @@ public abstract class AbstractPapyrusBuilder {
 	 *         the created marker
 	 */
 	protected IMarker createErrorMarker(final IResource res, final String message) {
+		return createMarker(res, IMarker.SEVERITY_ERROR, message);
+	}
+
+	/**
+	 *
+	 * @param res
+	 *            the resource to mark with a warning
+	 * @param message
+	 *            the warning message
+	 * @return
+	 *         the created marker
+	 */
+	protected IMarker createWarningMarker(final IResource res, final String message) {
+		return createMarker(res, IMarker.SEVERITY_WARNING, message);
+	}
+
+	/**
+	 *
+	 * @param res
+	 *            the resource to mark with an error
+	 * @param severity
+	 *            the {@linkplain IMarker#SEVERITY marker severity}
+	 * @param message
+	 *            the error message
+	 * @return
+	 *         the created marker
+	 */
+	protected IMarker createMarker(final IResource res, final int severity, final String message) {
 		// use this type to appears as java error
 		// later, we can create our own type, with a specific handler to open our own error dialog appearing during the launching of a new Eclipse runtime
 		IMarker marker = null;
@@ -111,7 +139,7 @@ public abstract class AbstractPapyrusBuilder {
 			marker = res.createMarker(getDefaultMarkerType());
 
 			marker.setAttribute(IMarker.MESSAGE, Messages.AbstractPapyrusBuilder_PapyrusBuilder + message);
-			marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_ERROR);
+			marker.setAttribute(IMarker.SEVERITY, severity);
 			marker.setAttribute("code", 10000); //$NON-NLS-1$
 			marker.setAttribute(IMarker.SOURCE_ID, Activator.PLUGIN_ID);
 			marker.setAttribute(IJavaModelMarker.ID, 7500);

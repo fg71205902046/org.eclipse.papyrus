@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
+  <uml:Model xmi:id="_auiCUPE3EeuAxLkWehHs_Q" name="ProjectRules" URI="http://www.eclipse.org/Papyrus/toolsmiths/validation/ProjectRules">
+    <packageImport xmi:id="_LSLMkPE4EeuAxLkWehHs_Q">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_zH6A8PE3EeuAxLkWehHs_Q" name="ProjectDescription">
+      <ownedAttribute xmi:id="_G2wUsPE5EeuAxLkWehHs_Q" name="dependency" type="_5GKvIPE3EeuAxLkWehHs_Q" aggregation="composite" association="_UiqrEPE5EeuAxLkWehHs_Q">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_IZw_kPE5EeuAxLkWehHs_Q"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_I2c7kPE5EeuAxLkWehHs_Q" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_MhBv4PE5EeuAxLkWehHs_Q" name="requiredDependency" type="_5GKvIPE3EeuAxLkWehHs_Q" aggregation="composite" subsettedProperty="_G2wUsPE5EeuAxLkWehHs_Q" association="_V1HKYPE5EeuAxLkWehHs_Q">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MhBv4fE5EeuAxLkWehHs_Q"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MhBv4vE5EeuAxLkWehHs_Q" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_oJfZUPE8EeuAxLkWehHs_Q" name="extension" type="_5w6qYPE5EeuAxLkWehHs_Q" aggregation="composite" association="_tdK5cPE8EeuAxLkWehHs_Q">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_pShd8PE8EeuAxLkWehHs_Q"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_oJfZUfE8EeuAxLkWehHs_Q" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_5GKvIPE3EeuAxLkWehHs_Q" name="Dependency">
+      <ownedAttribute xmi:id="_712ogPE3EeuAxLkWehHs_Q" name="name">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_ZkIPQPE4EeuAxLkWehHs_Q" name="kind" type="_TwI3YPE4EeuAxLkWehHs_Q">
+        <defaultValue xmi:type="uml:InstanceValue" xmi:id="_dVm80PE4EeuAxLkWehHs_Q" type="_TwI3YPE4EeuAxLkWehHs_Q" instance="_V7XY0PE4EeuAxLkWehHs_Q"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_ETiTMPq_EeuJt_v6-oxbIQ" name="required" isDerived="true">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_nGscYPE4EeuAxLkWehHs_Q" name="lowerBound" type="_jOmwgPE4EeuAxLkWehHs_Q">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nvErAPE4EeuAxLkWehHs_Q"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_qrpJ0PE4EeuAxLkWehHs_Q" name="upperBound" type="_jOmwgPE4EeuAxLkWehHs_Q">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qrpJ0fE4EeuAxLkWehHs_Q"/>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_6GK-IPE4EeuAxLkWehHs_Q" name="isRequired" visibility="protected" isQuery="true">
+        <ownedParameter xmi:id="_B2YLEPE5EeuAxLkWehHs_Q" name="result" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_UvpD0PrAEeuJt_v6-oxbIQ" name="setRequired" visibility="protected" isQuery="true">
+        <ownedParameter xmi:id="_UvpD0frAEeuJt_v6-oxbIQ" name="newRequired" effect="read">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_TwI3YPE4EeuAxLkWehHs_Q" name="DependencyKind">
+      <ownedLiteral xmi:id="_V7XY0PE4EeuAxLkWehHs_Q" name="requireBundle"/>
+      <ownedLiteral xmi:id="_XVX4sPE4EeuAxLkWehHs_Q" name="importPackage"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_jOmwgPE4EeuAxLkWehHs_Q" name="Version"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_UiqrEPE5EeuAxLkWehHs_Q" visibility="private" memberEnd="_G2wUsPE5EeuAxLkWehHs_Q _cSoncPE5EeuAxLkWehHs_Q">
+      <ownedEnd xmi:id="_cSoncPE5EeuAxLkWehHs_Q" name="dependentProject" type="_zH6A8PE3EeuAxLkWehHs_Q" association="_UiqrEPE5EeuAxLkWehHs_Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_V1HKYPE5EeuAxLkWehHs_Q" visibility="private" memberEnd="_MhBv4PE5EeuAxLkWehHs_Q _pbIHsPE5EeuAxLkWehHs_Q">
+      <ownedEnd xmi:id="_pbIHsPE5EeuAxLkWehHs_Q" name="requiringProject" type="_zH6A8PE3EeuAxLkWehHs_Q" subsettedProperty="_cSoncPE5EeuAxLkWehHs_Q" association="_V1HKYPE5EeuAxLkWehHs_Q">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sJ0ikPE5EeuAxLkWehHs_Q"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_mY5dUP9REeui67xlkbe_Cw" name="ExtensionModelNode" isAbstract="true">
+      <ownedAttribute xmi:id="_mY5dV_9REeui67xlkbe_Cw" name="name">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_K5vVwPxtEeuJt_v6-oxbIQ" name="validatable">
+        <ownedComment xmi:id="_UIBDMPxtEeuJt_v6-oxbIQ" annotatedElement="_K5vVwPxtEeuJt_v6-oxbIQ">
+          <body>Whether the extension model node participates in project validation. If {@code false}, then it is used only in generating new extension elements in quick fixes.</body>
+        </ownedComment>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_SNRNwPxtEeuJt_v6-oxbIQ" value="true"/>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_mY5dXP9REeui67xlkbe_Cw" name="containingExtension" isQuery="true">
+        <ownedParameter xmi:id="_mY5dXf9REeui67xlkbe_Cw" name="result" type="_5w6qYPE5EeuAxLkWehHs_Q" direction="return" effect="read"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_5w6qYPE5EeuAxLkWehHs_Q" name="Extension">
+      <ownedAttribute xmi:id="_h4IwAPE8EeuAxLkWehHs_Q" name="project" type="_zH6A8PE3EeuAxLkWehHs_Q" association="_tdK5cPE8EeuAxLkWehHs_Q">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_h4IwAfE8EeuAxLkWehHs_Q" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_9fwToPE5EeuAxLkWehHs_Q" name="extensionPoint">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_uOsScPE7EeuAxLkWehHs_Q" name="element" type="_HwNPwPE6EeuAxLkWehHs_Q" aggregation="composite" association="_wUsVoPE7EeuAxLkWehHs_Q">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vh8qEPE7EeuAxLkWehHs_Q" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_MwF-kP6KEeuBRc6S9Gc6gA" name="resourceAttribute" type="_-BMXUPE6EeuAxLkWehHs_Q" isReadOnly="true" isDerived="true" association="_MwF-kv6KEeuBRc6S9Gc6gA">
+        <ownedComment xmi:id="_a1oV4P6KEeuBRc6S9Gc6gA" annotatedElement="_MwF-kP6KEeuBRc6S9Gc6gA">
+          <body>The attribute in an extension element that references the model resource to be registered. Some element in the extension description must have such an attribute in order for the extension to be matched to a tooling model and validated.</body>
+        </ownedComment>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_aLnbIPE6EeuAxLkWehHs_Q" name="architectureReference" association="_fyC4IPE6EeuAxLkWehHs_Q">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EReference"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bkergPE6EeuAxLkWehHs_Q"/>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_5sFssP6KEeuBRc6S9Gc6gA" name="getResourceAttribute" visibility="protected" isQuery="true">
+        <ownedParameter xmi:id="_QGPlkP6LEeuBRc6S9Gc6gA" name="result" type="_-BMXUPE6EeuAxLkWehHs_Q" direction="return" effect="read"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_fyC4IPE6EeuAxLkWehHs_Q" visibility="private" memberEnd="_aLnbIPE6EeuAxLkWehHs_Q _nCu3gPE6EeuAxLkWehHs_Q">
+      <ownedEnd xmi:id="_nCu3gPE6EeuAxLkWehHs_Q" name="extension" type="_5w6qYPE5EeuAxLkWehHs_Q" association="_fyC4IPE6EeuAxLkWehHs_Q">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_oGYs4PE6EeuAxLkWehHs_Q"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_HwNPwPE6EeuAxLkWehHs_Q" name="ExtensionElement">
+      <generalization xmi:id="_bD10IP9SEeui67xlkbe_Cw" general="_mY5dUP9REeui67xlkbe_Cw"/>
+      <ownedAttribute xmi:id="_2PpRIPE7EeuAxLkWehHs_Q" name="extension" type="_5w6qYPE5EeuAxLkWehHs_Q" association="_wUsVoPE7EeuAxLkWehHs_Q">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9Vy0cPE7EeuAxLkWehHs_Q"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2PpRIfE7EeuAxLkWehHs_Q" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="__Z9EkPE7EeuAxLkWehHs_Q" name="parent" type="_HwNPwPE6EeuAxLkWehHs_Q" association="_Lp6aUPE8EeuAxLkWehHs_Q">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__Z9EkfE7EeuAxLkWehHs_Q"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__Z9EkvE7EeuAxLkWehHs_Q" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_WO3cQPE7EeuAxLkWehHs_Q" name="attribute" type="_-BMXUPE6EeuAxLkWehHs_Q" aggregation="composite" association="_bqCrgPE7EeuAxLkWehHs_Q">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YA8d4PE7EeuAxLkWehHs_Q" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_5irIIPE7EeuAxLkWehHs_Q" name="element" type="_HwNPwPE6EeuAxLkWehHs_Q" aggregation="composite" association="_Lp6aUPE8EeuAxLkWehHs_Q">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_5irIIfE7EeuAxLkWehHs_Q" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_-BMXUPE6EeuAxLkWehHs_Q" name="ExtensionAttribute">
+      <generalization xmi:id="_eB0oMP9SEeui67xlkbe_Cw" general="_mY5dUP9REeui67xlkbe_Cw"/>
+      <ownedAttribute xmi:id="_MLyNwPE7EeuAxLkWehHs_Q" name="element" type="_HwNPwPE6EeuAxLkWehHs_Q" association="_bqCrgPE7EeuAxLkWehHs_Q"/>
+      <ownedAttribute xmi:id="_FeM7cPE7EeuAxLkWehHs_Q" name="value" type="_DYoWEPE7EeuAxLkWehHs_Q" aggregation="composite" association="_z-rCIPE9EeuAxLkWehHs_Q"/>
+      <ownedAttribute xmi:id="_znE5cP6OEeuBRc6S9Gc6gA" name="parsedValue" type="_DYoWEPE7EeuAxLkWehHs_Q" isReadOnly="true" isDerived="true">
+        <ownedComment xmi:id="_8FG1sP6OEeuBRc6S9Gc6gA" annotatedElement="_znE5cP6OEeuBRc6S9Gc6gA">
+          <body>My {@linkplain #getValue() value} parsed as an expression if it is modeled as an {@link OpaqueValue}, otherwise just my {@code value} as it is.</body>
+        </ownedComment>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_K0D9cP6PEeuBRc6S9Gc6gA" name="getParsedValue" visibility="protected" isQuery="true">
+        <ownedParameter xmi:id="_K0D9cf6PEeuBRc6S9Gc6gA" name="result" type="_DYoWEPE7EeuAxLkWehHs_Q" direction="return" effect="read"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_DYoWEPE7EeuAxLkWehHs_Q" name="Value" isAbstract="true">
+      <ownedComment xmi:id="_FIPgAPRQEeuuEuniEKxyXQ" annotatedElement="_DYoWEPE7EeuAxLkWehHs_Q">
+        <body>Abstraction of a value to generate or compare for validation of an attribute of an extension element.</body>
+      </ownedComment>
+      <ownedOperation xmi:id="_0UTJUPE8EeuAxLkWehHs_Q" name="stringValue" isAbstract="true" isQuery="true">
+        <ownedParameter xmi:id="_IiwC0PFBEeuAxLkWehHs_Q" name="result" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_tdK5cPE8EeuAxLkWehHs_Q" visibility="private" memberEnd="_oJfZUPE8EeuAxLkWehHs_Q _h4IwAPE8EeuAxLkWehHs_Q"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_wUsVoPE7EeuAxLkWehHs_Q" visibility="private" memberEnd="_uOsScPE7EeuAxLkWehHs_Q _2PpRIPE7EeuAxLkWehHs_Q"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_bqCrgPE7EeuAxLkWehHs_Q" visibility="private" memberEnd="_WO3cQPE7EeuAxLkWehHs_Q _MLyNwPE7EeuAxLkWehHs_Q"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_Lp6aUPE8EeuAxLkWehHs_Q" visibility="private" memberEnd="_5irIIPE7EeuAxLkWehHs_Q __Z9EkPE7EeuAxLkWehHs_Q"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_z-rCIPE9EeuAxLkWehHs_Q" visibility="private" memberEnd="_FeM7cPE7EeuAxLkWehHs_Q _4q6HwPE9EeuAxLkWehHs_Q">
+      <ownedEnd xmi:id="_4q6HwPE9EeuAxLkWehHs_Q" name="attribute" type="_-BMXUPE6EeuAxLkWehHs_Q" association="_z-rCIPE9EeuAxLkWehHs_Q">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_G0CloPE-EeuAxLkWehHs_Q"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_8PdCAPE8EeuAxLkWehHs_Q" name="LiteralString">
+      <ownedComment xmi:id="_Lim7YPRQEeuuEuniEKxyXQ" annotatedElement="_8PdCAPE8EeuAxLkWehHs_Q">
+        <body>A fixed string value for an attribute.</body>
+      </ownedComment>
+      <generalization xmi:id="_FNXYMPE9EeuAxLkWehHs_Q" general="_DYoWEPE7EeuAxLkWehHs_Q"/>
+      <ownedAttribute xmi:id="_8PdCAfE8EeuAxLkWehHs_Q" name="value">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_8PdCAvE8EeuAxLkWehHs_Q" name="stringValue" isQuery="true" redefinedOperation="_0UTJUPE8EeuAxLkWehHs_Q">
+        <ownedParameter xmi:id="_8PdCA_E8EeuAxLkWehHs_Q" name="result" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Vu_XcPE9EeuAxLkWehHs_Q" name="Variable">
+      <ownedComment xmi:id="_OOTFkPRQEeuuEuniEKxyXQ" annotatedElement="_Vu_XcPE9EeuAxLkWehHs_Q">
+        <body>A variable value for an attribute that is substituted at run-time based on the project and/or model context.</body>
+      </ownedComment>
+      <generalization xmi:id="_Vu_XcfE9EeuAxLkWehHs_Q" general="_DYoWEPE7EeuAxLkWehHs_Q"/>
+      <ownedAttribute xmi:id="_Vu_XcvE9EeuAxLkWehHs_Q" name="name">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_Z8LJkPE9EeuAxLkWehHs_Q" name="option">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_caAd8PE9EeuAxLkWehHs_Q"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_cyVeYPE9EeuAxLkWehHs_Q" value="*"/>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_Vu_Xc_E9EeuAxLkWehHs_Q" name="stringValue" isQuery="true" redefinedOperation="_0UTJUPE8EeuAxLkWehHs_Q">
+        <ownedParameter xmi:id="_GCFc4PFBEeuAxLkWehHs_Q" name="result" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_efWZ0PE9EeuAxLkWehHs_Q" name="Expression">
+      <ownedComment xmi:id="_Sf-WIPRQEeuuEuniEKxyXQ" annotatedElement="_efWZ0PE9EeuAxLkWehHs_Q">
+        <body>A complex value that combines literal and variable text together.</body>
+      </ownedComment>
+      <generalization xmi:id="_efWZ0fE9EeuAxLkWehHs_Q" general="_DYoWEPE7EeuAxLkWehHs_Q"/>
+      <ownedAttribute xmi:id="_efWZ0vE9EeuAxLkWehHs_Q" name="value" type="_DYoWEPE7EeuAxLkWehHs_Q" isOrdered="true" aggregation="composite" association="_8koyYPE9EeuAxLkWehHs_Q">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_hK8dYPE9EeuAxLkWehHs_Q" value="*"/>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_efWZ1vE9EeuAxLkWehHs_Q" name="stringValue" isQuery="true" redefinedOperation="_0UTJUPE8EeuAxLkWehHs_Q">
+        <ownedParameter xmi:id="_HHb7YPFBEeuAxLkWehHs_Q" name="result" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_8koyYPE9EeuAxLkWehHs_Q" visibility="private" memberEnd="_efWZ0vE9EeuAxLkWehHs_Q _8koyYfE9EeuAxLkWehHs_Q">
+      <ownedEnd xmi:id="_8koyYfE9EeuAxLkWehHs_Q" name="expression" type="_efWZ0PE9EeuAxLkWehHs_Q" association="_8koyYPE9EeuAxLkWehHs_Q">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_CqIJ8PE-EeuAxLkWehHs_Q"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_PAE9QPRPEeuuEuniEKxyXQ" name="OpaqueValue">
+      <ownedComment xmi:id="_4svooPRPEeuuEuniEKxyXQ" annotatedElement="_PAE9QPRPEeuuEuniEKxyXQ">
+        <body>An opaque value primarily used for user input of complex expressions as text. At run-time, opaque values are parsed to generate structured expressions for evaluation.</body>
+      </ownedComment>
+      <generalization xmi:id="_PAE9QfRPEeuuEuniEKxyXQ" general="_DYoWEPE7EeuAxLkWehHs_Q"/>
+      <ownedAttribute xmi:id="_PAE9QvRPEeuuEuniEKxyXQ" name="text">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_PAE9Q_RPEeuuEuniEKxyXQ" name="stringValue" isQuery="true" redefinedOperation="_0UTJUPE8EeuAxLkWehHs_Q">
+        <ownedParameter xmi:id="_PAE9RPRPEeuuEuniEKxyXQ" name="result" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_aGM9IPRPEeuuEuniEKxyXQ" name="parse" isQuery="true">
+        <ownedComment xmi:id="_teAfUPRPEeuuEuniEKxyXQ" annotatedElement="_aGM9IPRPEeuuEuniEKxyXQ">
+          <body>Parse my opaque text as a structured value expression.</body>
+        </ownedComment>
+        <ownedParameter xmi:id="_eY3FIPRPEeuuEuniEKxyXQ" name="result" type="_DYoWEPE7EeuAxLkWehHs_Q" direction="return"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_KUa5wPrOEeuJt_v6-oxbIQ" name="FeaturePath">
+      <ownedComment xmi:id="_KUa5wfrOEeuJt_v6-oxbIQ" annotatedElement="_KUa5wPrOEeuJt_v6-oxbIQ">
+        <body>A feature-path expression that is evaluated at run-time on the root element of the context model.</body>
+      </ownedComment>
+      <generalization xmi:id="_KUa5wvrOEeuJt_v6-oxbIQ" general="_DYoWEPE7EeuAxLkWehHs_Q"/>
+      <ownedAttribute xmi:id="_KUa5w_rOEeuJt_v6-oxbIQ" name="path" isOrdered="true" isUnique="false">
+        <ownedComment xmi:id="_S3XLMPrOEeuJt_v6-oxbIQ" annotatedElement="_KUa5w_rOEeuJt_v6-oxbIQ">
+          <body>The path of feature names to follow. Indexing multi-valued features is not supported; the first value (if any) is taken.</body>
+        </ownedComment>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_SAvsQPrOEeuJt_v6-oxbIQ" value="*"/>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_KUa5x_rOEeuJt_v6-oxbIQ" name="stringValue" isQuery="true" redefinedOperation="_0UTJUPE8EeuAxLkWehHs_Q">
+        <ownedParameter xmi:id="_KUa5yPrOEeuJt_v6-oxbIQ" name="result" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_MwF-kv6KEeuBRc6S9Gc6gA" visibility="private" memberEnd="_MwF-kP6KEeuBRc6S9Gc6gA _CAfy4P6LEeuBRc6S9Gc6gA">
+      <ownedEnd xmi:id="_CAfy4P6LEeuBRc6S9Gc6gA" type="_5w6qYPE5EeuAxLkWehHs_Q" association="_MwF-kv6KEeuBRc6S9Gc6gA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DnHycP6LEeuBRc6S9Gc6gA"/>
+      </ownedEnd>
+    </packagedElement>
+    <profileApplication xmi:id="_kTrXoPE3EeuAxLkWehHs_Q">
+      <eAnnotations xmi:id="_kTua8PE3EeuAxLkWehHs_Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
+    </profileApplication>
+  </uml:Model>
+  <Ecore:EPackage xmi:id="_nzqskPE3EeuAxLkWehHs_Q" base_Package="_auiCUPE3EeuAxLkWehHs_Q" packageName="projectrules" nsPrefix="proj" basePackage="org.eclipse.papyrus.toolsmiths.validation.common"/>
+  <Ecore:EDataType xmi:id="_lGHEsPE4EeuAxLkWehHs_Q" instanceClassName="org.osgi.framework.Version" base_PrimitiveType="_jOmwgPE4EeuAxLkWehHs_Q"/>
+  <Ecore:EAttribute xmi:id="_wibXAPE4EeuAxLkWehHs_Q" isUnsettable="true" base_Property="_qrpJ0PE4EeuAxLkWehHs_Q"/>
+  <Ecore:EOperation xmi:id="__E3swPE4EeuAxLkWehHs_Q" base_Operation="_6GK-IPE4EeuAxLkWehHs_Q" visibility="None"/>
+  <Ecore:EOperation xmi:id="_XucXQPrAEeuJt_v6-oxbIQ" base_Operation="_UvpD0PrAEeuJt_v6-oxbIQ" visibility="None"/>
+  <Ecore:EOperation xmi:id="_LcfzQP6LEeuBRc6S9Gc6gA" base_Operation="_5sFssP6KEeuBRc6S9Gc6gA" visibility="None"/>
+  <Ecore:EOperation xmi:id="_Tt8vQP6PEeuBRc6S9Gc6gA" base_Operation="_K0D9cP6PEeuBRc6S9Gc6gA" visibility="None"/>
+</xmi:XMI>

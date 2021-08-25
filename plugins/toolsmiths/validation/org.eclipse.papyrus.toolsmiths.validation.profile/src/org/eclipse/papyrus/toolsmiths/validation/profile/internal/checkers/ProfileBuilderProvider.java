@@ -47,11 +47,18 @@ public class ProfileBuilderProvider implements IPapyrusBuilderProvider {
 
 	@Override
 	public boolean providesBuilder(PapyrusBuilderKind builderKind, URI resourceURI) {
-		String fileName = resourceURI.lastSegment();
-		int firstDot = fileName.indexOf('.');
+		switch (builderKind) {
+		case BUNDLE_MANIFEST:
+		case PLUGIN_MANIFEST:
+			String fileName = resourceURI.lastSegment();
+			int firstDot = fileName.indexOf('.');
 
-		// Note that if there is no dot at all, then this will be the file name
-		return fileName.substring(firstDot + 1).equals(resourceURI.fileExtension());
+			// Note that if there is no dot at all, then this will be the file name
+			return fileName.substring(firstDot + 1).equals("profile.uml");
+		default:
+			// No model resource builder
+			return false;
+		}
 	}
 
 	@Override

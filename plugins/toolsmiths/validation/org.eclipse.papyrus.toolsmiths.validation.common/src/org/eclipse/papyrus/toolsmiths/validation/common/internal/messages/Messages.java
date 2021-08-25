@@ -33,6 +33,14 @@ public class Messages extends NLS {
 	public static String CommonMarkerResolutionUtils_1;
 	public static String CommonURIUtils_0;
 	public static String CustomModelChecker_0;
+	public static String ExtensionGeneratorQuickFix_0;
+	public static String ExtensionGeneratorQuickFix_1;
+	public static String ExtensionGeneratorQuickFix_2;
+	public static String ExtensionGeneratorQuickFix_3;
+	public static String ExtensionGeneratorQuickFix_4;
+	public static String ExtensionGeneratorQuickFix_5;
+	public static String ExtensionGeneratorQuickFix_6;
+	public static String ExtensionGeneratorQuickFix_7;
 	public static String ExtensionsChecker_0;
 	public static String ExtensionsChecker_1;
 	public static String ModelDependenciesChecker_0;
