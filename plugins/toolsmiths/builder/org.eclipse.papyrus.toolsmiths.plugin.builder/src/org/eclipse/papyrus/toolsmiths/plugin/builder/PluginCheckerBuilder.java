@@ -10,13 +10,14 @@
  *
  * Contributors:
  *   Remi Schnekenburger - Initial API and implementation
- *   Christian W. Damus - bugs 569357, 575376
+ *   Christian W. Damus - bugs 569357, 575376, 575725
  *
  *****************************************************************************/
 
 package org.eclipse.papyrus.toolsmiths.plugin.builder;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -29,14 +30,19 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.tools.util.Iterators2;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.DiagnosticEquivalence;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.IPluginChecker2;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.CheckerDiagnosticChain;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.MarkersService;
+import org.eclipse.uml2.common.util.CacheAdapter;
 
 import com.google.common.collect.ListMultimap;
 
@@ -105,30 +111,59 @@ public class PluginCheckerBuilder extends AbstractPapyrusBuilder {
 			return null;
 		}
 
-		// Count steps for each checker once for the project as a whole and once for each model file found.
-		// And one more for actually creating problem markers.
-		SubMonitor subMonitor = SubMonitor.convert(monitor, (1 + sets.keySet().size()) * checkerFactories.size() + 1);
+		try {
+			// Count steps for each checker once for the project as a whole and once for each model file found.
+			// And one more for actually creating problem markers.
+			SubMonitor subMonitor = SubMonitor.convert(monitor, (1 + sets.keySet().size()) * checkerFactories.size() + 1);
 
-		CheckerDiagnosticChain diagnostics = new CheckerDiagnosticChain();
+			CheckerDiagnosticChain diagnostics = new CheckerDiagnosticChain();
 
-		// First, see about checking the project as a whole
-		check(builtProject, null, null, diagnostics, subMonitor);
+			// First, see about checking the project as a whole
+			check(builtProject, null, null, diagnostics, subMonitor);
 
-		for (IFile next : sets.keySet()) {
-			// The map doesn't have empty collections for any key
-			Resource resource = sets.get(next).get(0).eResource();
-			check(builtProject, next, resource, diagnostics, subMonitor);
+			for (IFile next : sets.keySet()) {
+				// The map doesn't have empty collections for any key
+				Resource resource = sets.get(next).get(0).eResource();
+				check(builtProject, next, resource, diagnostics, subMonitor);
+			}
+
+			// Create markers if the validation is not OK
+			if (diagnostics.getSeverity() > Diagnostic.OK) {
+				wrap(diagnostics.stream()).distinct().forEach(this::createMarker);
+			}
+			subMonitor.worked(1);
+		} finally {
+			sets.values().forEach(this::unload);
 		}
-
-		// Create markers if the validation is not OK
-		if (diagnostics.getSeverity() > Diagnostic.OK) {
-			wrap(diagnostics.stream()).distinct().forEach(this::createMarker);
-		}
-		subMonitor.worked(1);
 
 		SubMonitor.done(monitor);
 
 		return new IProject[] { builtProject };
+	}
+
+	/**
+	 * Unload a {@code model}, ensuring that everything reachable from it is purged.
+	 * This applies especially to references from the UML {@link CacheAdapter}, which in a Papyrus
+	 * context usually will retain a reference to the {@code model} or something that reaches it.
+	 *
+	 * @param model
+	 *            a model to unload
+	 */
+	protected void unload(EObject model) {
+		if (model != null && !model.eIsProxy()) {
+			Resource resource = model.eResource();
+			ResourceSet resourceSet = (resource == null) ? null : resource.getResourceSet();
+
+			if (resourceSet != null) {
+				EMFHelper.unload(resourceSet);
+			} else if (resource != null) {
+				resource.unload();
+				resource.eAdapters().clear();
+			} else {
+				Iterators2.stream(model.eAllContents()).map(Notifier::eAdapters).forEach(Collection::clear);
+				model.eAdapters().clear();
+			}
+		}
 	}
 
 	/**
