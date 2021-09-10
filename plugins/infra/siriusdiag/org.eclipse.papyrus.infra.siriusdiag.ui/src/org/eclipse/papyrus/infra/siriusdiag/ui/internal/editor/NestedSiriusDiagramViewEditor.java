@@ -50,9 +50,9 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.internationalization.common.editor.IInternationalizationEditor;
-import org.eclipse.papyrus.infra.siriusdiag.sirius.PapyrusSession;
-import org.eclipse.papyrus.infra.siriusdiag.sirius.PapyrusSessionFactory;
-import org.eclipse.papyrus.infra.siriusdiag.sirius.PapyrusSessionManager;
+import org.eclipse.papyrus.infra.siriusdiag.sirius.ISiriusSessionService;
+import org.eclipse.papyrus.infra.siriusdiag.ui.Activator;
+import org.eclipse.papyrus.infra.siriusdiag.ui.internal.sessions.SessionPrinter;
 import org.eclipse.papyrus.infra.ui.lifecycleevents.ISaveAndDirtyService;
 import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
 import org.eclipse.papyrus.infra.widgets.util.NavigationTarget;
@@ -67,6 +67,7 @@ import org.eclipse.sirius.diagram.ui.tools.internal.editor.DDiagramCommandStack;
 import org.eclipse.sirius.diagram.ui.tools.internal.editor.DDiagramEditorImpl;
 import org.eclipse.sirius.ui.business.api.dialect.DialectUI;
 import org.eclipse.sirius.ui.business.api.dialect.DialectUIManager;
+import org.eclipse.sirius.ui.business.api.session.IEditingSession;
 import org.eclipse.sirius.ui.business.api.session.SessionUIManager;
 import org.eclipse.sirius.ui.business.internal.dialect.DialectUIManagerImpl;
 import org.eclipse.sirius.viewpoint.DRepresentation;
@@ -96,12 +97,7 @@ public class NestedSiriusDiagramViewEditor extends DDiagramEditorImpl implements
 	/** the service registry */
 	protected ServicesRegistry servicesRegistry;
 
-	/**
-	 * The edited document template
-	 */
-	// private SiriusDiagramPrototype proto;
-
-	private PapyrusSession session;
+	private Session session;
 
 	private URI uri;
 
@@ -122,6 +118,7 @@ public class NestedSiriusDiagramViewEditor extends DDiagramEditorImpl implements
 	 */
 	public NestedSiriusDiagramViewEditor(ServicesRegistry servicesRegistry, DSemanticDiagram diagram) {
 		super();
+		this.servicesRegistry = servicesRegistry;
 
 		ISaveAndDirtyService saveAndDirtyService = null;
 		try {
@@ -134,11 +131,10 @@ public class NestedSiriusDiagramViewEditor extends DDiagramEditorImpl implements
 		this.diagram = diagram;
 		try {
 			this.editingDomain = servicesRegistry.getService(TransactionalEditingDomain.class);
-			this.session = (PapyrusSession) PapyrusSessionManager.INSTANCE.getSession(diagram.eResource().getURI(), new NullProgressMonitor(), this.editingDomain);
-			// if (this.session==null) {
-			// session=
-			// }
-			this.servicesRegistry = servicesRegistry;
+			// this.session = (PapyrusSession) PapyrusSessionManager.INSTANCE.getSession(diagram.eResource().getURI(), new NullProgressMonitor(), this.editingDomain);
+			this.session = getCurrentSession();
+			SessionPrinter.print(session, this.getClass().getCanonicalName() + " " + "Constructor");
+
 			this.uri = diagram.eResource().getURI().appendFragment(diagram.eResource().getURIFragment(diagram));
 
 
@@ -149,6 +145,23 @@ public class NestedSiriusDiagramViewEditor extends DDiagramEditorImpl implements
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	private ISiriusSessionService getSiriusSessionService() {
+		try {
+			return (ISiriusSessionService) this.servicesRegistry.getService(ISiriusSessionService.SERVICE_ID);
+		} catch (ServiceException e) {
+			Activator.log.error(e);
+		}
+		return null;
+	}
+
+	private Session getCurrentSession() {
+		final ISiriusSessionService service = getSiriusSessionService();
+		if (service != null) {
+			return service.getSiriusSession();
+		}
+		return null;
 	}
 
 	/**
@@ -275,16 +288,18 @@ public class NestedSiriusDiagramViewEditor extends DDiagramEditorImpl implements
 			TransactionalEditingDomain ted = this.session.getTransactionalEditingDomain();
 			ServicesRegistry serviceRegistry = ServiceUtilsForEObject.getInstance().getServiceRegistry(this.diagram);
 			ModelSet modelSet = serviceRegistry.getService(ModelSet.class);
-			this.session.setTransactionalEditingDomain(modelSet.getTransactionalEditingDomain());
 			if (!this.session.isOpen()) {
-				PapyrusSessionFactory.INSTANCE.setServiceRegistry(serviceRegistry);
-				PapyrusSessionManager.INSTANCE.add(session);
-				SessionUIManager.INSTANCE.getOrCreateUISession(session);
+				this.session.open(new NullProgressMonitor());
+
+				IEditingSession uiSession = SessionUIManager.INSTANCE.getOrCreateUISession(session);
+				uiSession.open();
+
+				// TODO : done in another place
 				UmlModel uml = (UmlModel) modelSet.getModel(UmlModel.MODEL_ID);
 				this.session.addSemanticResource(uml.getResourceURI(), new NullProgressMonitor());
+
 				this.diagram.getTarget().eAdapters().add(new SessionTransientAttachment(session));
 				modelSet.getResources().add(session.getSessionResource());
-				this.session.open(new NullProgressMonitor());
 			}
 		} catch (ServiceException e1) {
 			// TODO : use Ppayrus LogHelper
@@ -355,24 +370,21 @@ public class NestedSiriusDiagramViewEditor extends DDiagramEditorImpl implements
 		try {
 			// recreate session with the good transactional editing domain
 			TransactionalEditingDomain ted = this.session.getTransactionalEditingDomain();
-			try {
-				ServicesRegistry serviceRegistry = ServiceUtilsForEObject.getInstance().getServiceRegistry(this.diagram);
-				ModelSet modelSet = serviceRegistry.getService(ModelSet.class);
-				PapyrusSession.setTransactionalEditingDomain(modelSet.getTransactionalEditingDomain());
-				this.session = PapyrusSessionFactory.INSTANCE.createSession(session.getSessionResource().getURI(), new NullProgressMonitor(), ted);
-				PapyrusSessionFactory.INSTANCE.setServiceRegistry(serviceRegistry);
-				PapyrusSessionManager.INSTANCE.add(session);
-				// TODO : VL : we must find a way to remove a UML dependency in this plugin...
-				UmlModel uml = (UmlModel) modelSet.getModel(UmlModel.MODEL_ID);
-				this.session.addSemanticResource(uml.getResourceURI(), new NullProgressMonitor());
-				this.diagram.getTarget().eAdapters().add(new SessionTransientAttachment(session));
-				modelSet.getResources().add(session.getSessionResource());
-				this.session.open(new NullProgressMonitor());
-			} catch (CoreException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			// }
+			ServicesRegistry serviceRegistry = ServiceUtilsForEObject.getInstance().getServiceRegistry(this.diagram);
+			ModelSet modelSet = serviceRegistry.getService(ModelSet.class);
+			// PapyrusSession.setTransactionalEditingDomain(modelSet.getTransactionalEditingDomain());
+			// this.session = PapyrusSessionFactory.INSTANCE.createSession(session.getSessionResource().getURI(), new NullProgressMonitor(), ted);
+			// PapyrusSessionFactory.INSTANCE.setServiceRegistry(serviceRegistry);
+			// PapyrusSessionManager.INSTANCE.add(session);
+			// TODO : VL : we must find a way to remove a UML dependency in this plugin...
+			UmlModel uml = (UmlModel) modelSet.getModel(UmlModel.MODEL_ID);
+			this.session.addSemanticResource(uml.getResourceURI(), new NullProgressMonitor());
+			this.diagram.getTarget().eAdapters().add(new SessionTransientAttachment(session));
+			modelSet.getResources().add(session.getSessionResource());
+			this.session.open(new NullProgressMonitor());
+
+			SessionPrinter.print(session, this.getClass().getCanonicalName() + " " + "createPartControl");
+
 		} catch (ServiceException e1) {
 			// TODO : use Papyrus LogHelper
 			// TODO Auto-generated catch block

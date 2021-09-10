@@ -30,7 +30,6 @@ import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.siriusdiag.representation.architecture.Activator;
 import org.eclipse.papyrus.infra.siriusdiag.ui.modelresource.SiriusDiagramModel;
 import org.eclipse.sirius.diagram.DSemanticDiagram;
-import org.eclipse.sirius.diagram.description.DiagramDescription;
 
 /**
  * Abstract Command allowing to create a {@link diagram}
@@ -129,7 +128,7 @@ public abstract class AbstractCreatePapyrusEditorViewCommand<T extends EObject> 
 	 * @param diagram
 	 *            the document template to save
 	 */
-	protected final void attachToResource(final EObject modelElement, final DiagramDescription diagram) {
+	protected final void attachToResource(final EObject modelElement, final DSemanticDiagram diagram) {
 		final ServicesRegistry sReg = getServiceRegistry(modelElement);
 		if (sReg == null) {
 			return;

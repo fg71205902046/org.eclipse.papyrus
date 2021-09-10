@@ -14,19 +14,22 @@
 
 package org.eclipse.papyrus.infra.siriusdiag.representation.architecture.commands;
 
-import java.util.Collection;
-
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.infra.architecture.representation.Activator;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.siriusdiag.representation.SiriusDiagramConstants;
 import org.eclipse.papyrus.infra.siriusdiag.representation.SiriusDiagramPrototype;
-import org.eclipse.papyrus.infra.siriusdiag.sirius.PapyrusSessionManager;
+import org.eclipse.papyrus.infra.siriusdiag.sirius.ISiriusSessionService;
 import org.eclipse.sirius.business.api.dialect.DialectManager;
 import org.eclipse.sirius.business.api.session.Session;
+import org.eclipse.sirius.business.internal.session.SessionTransientAttachment;
 import org.eclipse.sirius.diagram.DSemanticDiagram;
 import org.eclipse.sirius.diagram.description.DiagramDescription;
-import org.eclipse.sirius.viewpoint.description.RepresentationDescription;
+import org.eclipse.sirius.viewpoint.description.DAnnotation;
+import org.eclipse.sirius.viewpoint.description.DescriptionFactory;
 
 /**
  * Create a DSemanticDiagram Editor view
@@ -37,7 +40,9 @@ public class CreateSiriusDiagramEditorViewCommand extends AbstractCreatePapyrusE
 	 * the {@link SiriusDiagramPrototype} used to create the {@link diagram} model and its editor view
 	 */
 	private final SiriusDiagramPrototype prototype;
+
 	private DSemanticDiagram diagram;
+
 	// TODO : VL : use me or remove me?
 	private String id;
 
@@ -85,44 +90,55 @@ public class CreateSiriusDiagramEditorViewCommand extends AbstractCreatePapyrusE
 
 	/**
 	 *
+	 * @return
+	 *         the {@link ISiriusSessionService} to use or <code>null</code> if not found
+	 */
+	private ISiriusSessionService getSiriusSessionService() {
+		final ServicesRegistry servReg = getServiceRegistry(this.semanticContext);
+		try {
+			return (ISiriusSessionService) servReg.getService(ISiriusSessionService.SERVICE_ID);
+		} catch (ServiceException e) {
+			Activator.log.error(e);
+		}
+		return null;
+	}
+
+
+	/**
+	 *
 	 * @see org.eclipse.emf.transaction.RecordingCommand#doExecute()
 	 *
 	 */
 	@Override
 	protected void doExecute() {
-		final SiriusDiagramPrototype proto = this.prototype;
-		DiagramDescription description = this.prototype.getDiagramDescription();
-		attachToResource(semanticContext, description);
-		Session session = PapyrusSessionManager.INSTANCE.getSessions().iterator().next();
-
-		// Get Representation
-		EObject model = this.semanticContext;
-		String diagramName = this.editorViewName;
-		proto.setImplementationID(this.diagramId);
-		// TODO : VL : check if the method proto#setSession must be preserved or not...
-		proto.setSession(session);
-		Collection<RepresentationDescription> descs = DialectManager.INSTANCE.getAvailableRepresentationDescriptions(session.getSelectedViewpoints(false), model);
-		for (RepresentationDescription desc : descs) {
-			if (DialectManager.INSTANCE.canCreate(model, desc)) {
-
-				TransactionalEditingDomain domain = session.getTransactionalEditingDomain();
-
-				domain.getCommandStack().execute(new RecordingCommand(domain) {
-
-					@Override
-					protected void doExecute() {
-						// Implement your write operations here,
-						// for example: set a new name
-						// TODO : VL check we there is another way that the name comparison?!
-						if (desc.getName().equals(proto.getDiagramDescription().getName())) {
-							diagram = (DSemanticDiagram) DialectManager.INSTANCE.createRepresentation(diagramName, model, desc, session, new NullProgressMonitor());
-							session.save(new NullProgressMonitor());
-						}
-					}
-				});
-			}
+		final ISiriusSessionService sessionService = getSiriusSessionService();
+		if (sessionService == null || this.prototype == null) {
+			return;
 		}
-		if (proto != null) {
+		final DiagramDescription diagramDescription = sessionService.getSiriusDiagramDescriptionFromPapyrusPrototype(this.prototype, this.semanticContext);
+		if (diagramDescription == null) {
+			return;
+		}
+		final Session session = sessionService.getSiriusSession();
+
+		if (DialectManager.INSTANCE.canCreate(this.semanticContext, diagramDescription)) {
+
+			// required to be able to create the diagram
+			this.semanticContext.eAdapters().add(new SessionTransientAttachment(session));
+			// TODO : find a better way for that
+			// this annotation is used to retrieve the ViewPrototype for a given diagram
+			// TODO try to create a dialect manager
+			// TODO : write that in the documentation
+			this.diagram = (DSemanticDiagram) DialectManager.INSTANCE.createRepresentation(this.editorViewName, this.semanticContext, diagramDescription, session, new NullProgressMonitor());
+			DAnnotation annotation = DescriptionFactory.eINSTANCE.createDAnnotation();
+			annotation.setSource(SiriusDiagramConstants.PAPYRUS_SIRIUS_DIAGRAM_IMPLEMENTATION_DANNOTATION_SOURCE);
+			annotation.getDetails().put(SiriusDiagramConstants.PAPYRUS_SIRIUS_DIAGRAM_IMPLEMENTATION_DANNOTATION_KEY, this.prototype.getId());
+
+			this.diagram.getEAnnotations().add(annotation);
+
+			attachToResource(semanticContext, diagram);
+
+
 			if (this.openAfterCreation) {
 				openEditor(diagram);
 			}
@@ -132,5 +148,4 @@ public class CreateSiriusDiagramEditorViewCommand extends AbstractCreatePapyrusE
 			}
 		}
 	}
-
 }

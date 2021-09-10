@@ -20,7 +20,6 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.infra.siriusdiag.sirius.PapyrusSessionManager;
 import org.eclipse.papyrus.infra.siriusdiag.ui.internal.messages.Messages;
 import org.eclipse.sirius.business.api.session.Session;
 import org.eclipse.sirius.business.api.session.SessionManager;
@@ -197,7 +196,7 @@ public class SiriusDiagramEditorInput extends SessionEditorInput {
 	private static Session openSession(URI sessionModelURI, boolean restore, Session sessionFromURI) {
 		Session session = sessionFromURI;
 		if (session == null && restore) {
-			session = PapyrusSessionManager.INSTANCE.openSession(sessionModelURI, new NullProgressMonitor(), SiriusEditPlugin.getPlugin().getUiCallback(), true);
+			session = SessionManager.INSTANCE.openSession(sessionModelURI, new NullProgressMonitor(), SiriusEditPlugin.getPlugin().getUiCallback(), true);
 		}
 
 		if (session != null && session.isOpen()) {

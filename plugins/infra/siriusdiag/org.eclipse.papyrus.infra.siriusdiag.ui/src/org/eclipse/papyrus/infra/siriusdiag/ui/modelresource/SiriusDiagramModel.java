@@ -14,45 +14,28 @@
 
 package org.eclipse.papyrus.infra.siriusdiag.ui.modelresource;
 
-import org.eclipse.core.runtime.CoreException;
+import java.io.IOException;
+
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.infra.architecture.ArchitectureDescriptionUtils;
-import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
-import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureViewpoint;
 import org.eclipse.papyrus.infra.core.resource.AbstractDynamicModel;
 import org.eclipse.papyrus.infra.core.resource.BadArgumentExcetion;
-import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
-import org.eclipse.papyrus.infra.siriusdiag.representation.SiriusDiagramPrototype;
-import org.eclipse.papyrus.infra.siriusdiag.sirius.PapyrusLocalSessionCreationOperation;
-import org.eclipse.papyrus.infra.siriusdiag.sirius.PapyrusSessionManager;
-import org.eclipse.papyrus.infra.siriusdiag.ui.Activator;
+import org.eclipse.papyrus.infra.siriusdiag.ui.internal.sessions.PapyrusSession;
+import org.eclipse.papyrus.infra.siriusdiag.ui.internal.sessions.SiriusConstants;
 import org.eclipse.sirius.business.api.session.Session;
-import org.eclipse.sirius.business.internal.session.SessionTransientAttachment;
 import org.eclipse.sirius.diagram.DSemanticDiagram;
-import org.eclipse.sirius.diagram.description.DiagramDescription;
 import org.eclipse.sirius.ui.business.api.session.SessionUIManager;
-import org.eclipse.sirius.ui.business.api.viewpoint.ViewpointSelectionCallback;
-import org.eclipse.sirius.viewpoint.description.Viewpoint;
 
 /**
  * This class manages PapyrusDocument in aird model resource.
- *
- *
  */
 public class SiriusDiagramModel extends AbstractDynamicModel<DSemanticDiagram> {
+
+	private Session siriusSession = null;
 
 	/**
 	 * Document Model ID.
@@ -62,7 +45,7 @@ public class SiriusDiagramModel extends AbstractDynamicModel<DSemanticDiagram> {
 	/**
 	 * the file extension where document are stored.
 	 */
-	public static final String SIRIUS_DIAGRAM_MODEL_FILE_EXTENSION = "aird"; // $NON-NLS-1$
+	private static final String SIRIUS_DIAGRAM_MODEL_FILE_EXTENSION = SiriusConstants.SIRIUS_DIAGRAM_MODEL_FILE_EXTENSION;
 
 	/**
 	 *
@@ -71,6 +54,15 @@ public class SiriusDiagramModel extends AbstractDynamicModel<DSemanticDiagram> {
 	 */
 	public SiriusDiagramModel() {
 		super();
+	}
+
+	/**
+	 *
+	 * @param session
+	 *            the Sirius Session
+	 */
+	public void setSiriusSession(Session session) {
+		this.siriusSession = session;
 	}
 
 	/**
@@ -115,88 +107,24 @@ public class SiriusDiagramModel extends AbstractDynamicModel<DSemanticDiagram> {
 		}
 	}
 
+
 	/**
 	 * Add a new initialized document to the aird model.
 	 *
-	 * @param document
+	 * @param siriusDiagram
 	 * @param context
 	 *            we need the context to be able to calculate the resource name were the DSemanticDiagram will be saved.
 	 *            because this value is maybe not yet set to {@link DSemanticDiagram#setSemanticContext(EObject)}
 	 */
-	public void addDiagram(final DiagramDescription document, final EObject context) {
+	public void addDiagram(final DSemanticDiagram siriusDiagram, final EObject context) {
 		if (context != null) { // we check the resource for control mode feature
-
-			Resource targetResource;
-			Resource contextResource = context.eResource();
-			final URI semanticUri = contextResource.getURI();
-			if (!contextResource.getURI().trimFileExtension().equals(getResource().getURI().trimFileExtension())) {
-				ResourceSet set = contextResource.getResourceSet();
-				targetResource = set.getResource(contextResource.getURI(), true);
-			} else {
-				targetResource = getResource();
-			}
-			if (targetResource != null) {
-
-				URI uri = contextResource.getURI();
-				uri = uri.trimFileExtension();
-				uri = uri.appendFileExtension(getModelFileExtension());
-
-				TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(context);
-				ResourceSet set = contextResource.getResourceSet();
-				// domain.getResourceSet();
-				PapyrusLocalSessionCreationOperation operation = new PapyrusLocalSessionCreationOperation(uri, new NullProgressMonitor());
-				operation.setTransactionalEditingDomain(domain);
-				try {
-					operation.execute();
-				} catch (CoreException e) {
-					e.printStackTrace();
+			if (siriusSession != null) {
+				final Resource sessionRes = siriusSession.getSessionResource();
+				if (!sessionRes.getContents().contains(siriusDiagram)) {
+					sessionRes.getContents().add(siriusDiagram);
 				}
-				Session session = operation.getCreatedSession();
-				// ResourceSet set = contextResource.getResourceSet();
-				// TransactionUtil.getEditingDomain(session.getSessionResource()).dispose();
-				// TransactionUtil.disconnectFromEditingDomain(session.getSessionResource());
-				// TransactionUtil.disconnectFromEditingDomain(session);
-				context.eAdapters().add(new SessionTransientAttachment(session));
-				set.getResources().add(session.getSessionResource());
-
-				ArchitectureDescriptionUtils utils = new ArchitectureDescriptionUtils((ModelSet) context.eResource().getResourceSet());
-
-				RecordingCommand command = (new RecordingCommand(domain) {
-					@Override
-					protected void doExecute() {
-						session.addSemanticResource(semanticUri, new NullProgressMonitor());
-
-						for (MergedArchitectureViewpoint current : utils.getArchitectureViewpoints()) {
-							for (RepresentationKind rep : current.getRepresentationKinds()) {
-								if (rep instanceof SiriusDiagramPrototype) {
-									// get the sirius viewpoint or the diagram description representing the class diagram
-									DiagramDescription dd = ((SiriusDiagramPrototype) rep).getDiagramDescription();
-									Viewpoint vp = (Viewpoint) dd.eContainer();
-									// TODO : think about the papyrus architecture switch! The sirius session AND/OR registered sirius viewpoint must also be updated I think.
-									final ViewpointSelectionCallback selected = new ViewpointSelectionCallback();
-									// for (final Viewpoint previouslySelected : session.getSelectedViewpoints(false)) {
-									// selected.deselectViewpoint(previouslySelected, session, new NullProgressMonitor());
-									// }
-									if (!session.getSelectedViewpoints(false).contains(vp)) {
-										selected.selectViewpoint(
-												vp,
-												session, new NullProgressMonitor());
-									}
-								}
-
-							}
-						}
-						PapyrusSessionManager.INSTANCE.add(session);
-						SessionUIManager.INSTANCE.getOrCreateUISession(session);// fait dans SessionEditroInput.openSession
-						session.save(new NullProgressMonitor());
-					}
-				});
-
-				domain.getCommandStack().execute(command);
-				// command.execute();
-
+				SessionUIManager.INSTANCE.getOrCreateUISession(this.siriusSession);// TODO fait dans SessionEditroInput.openSession
 			}
-
 		}
 	}
 
@@ -247,43 +175,6 @@ public class SiriusDiagramModel extends AbstractDynamicModel<DSemanticDiagram> {
 	}
 
 	/**
-	 *
-	 * @param modelElement
-	 *            an element of the edited model
-	 * @return
-	 *         the editing domain or <code>null</code> if not found
-	 */
-	protected final TransactionalEditingDomain getEditingDomain(final EObject modelElement) {
-		final ServicesRegistry servicesRegistry = getServiceRegistry(modelElement);
-		if (null == servicesRegistry) {
-			return null;
-		}
-		try {
-			return ServiceUtils.getInstance().getTransactionalEditingDomain(servicesRegistry);
-		} catch (ServiceException e) {
-			Activator.log.error("EditingDomain not found", e); //$NON-NLS-1$
-		}
-		return null;
-	}
-
-	/**
-	 *
-	 * @param modelElement
-	 *            an element of the edited model
-	 * @return
-	 *         the service registry or <code>null</code> if not found
-	 */
-	protected final ServicesRegistry getServiceRegistry(final EObject modelElement) {
-		try {
-			return ServiceUtilsForEObject.getInstance().getServiceRegistry(modelElement);
-		} catch (ServiceException e) {
-			Activator.log.error("ServicesRegistry not found", e); //$NON-NLS-1$
-		}
-		return null;
-	}
-
-	/**
-	 * TODO VL : seems not used... remove me ?
 	 * Get a diagram by its name.
 	 *
 	 * @param diagramName
@@ -292,8 +183,7 @@ public class SiriusDiagramModel extends AbstractDynamicModel<DSemanticDiagram> {
 	 * @throws NotFoundException
 	 * @throws BadArgumentExcetion
 	 */
-	public DSemanticDiagram getDiagram(String diagramName) throws NotFoundException, BadArgumentExcetion {
-
+	public DSemanticDiagram getDiagram(final String diagramName) throws NotFoundException, BadArgumentExcetion {
 		if (diagramName == null || diagramName.length() == 0) {
 			throw new BadArgumentExcetion("Diagram name should not be null and size should be >0."); //$NON-NLS-1$
 		}
@@ -314,5 +204,37 @@ public class SiriusDiagramModel extends AbstractDynamicModel<DSemanticDiagram> {
 		throw new NotFoundException(NLS.bind("No Diagram named '{0}' can be found in Model.", diagramName)); //$NON-NLS-1$
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.infra.core.resource.AbstractBaseModel#unload()
+	 *
+	 */
+	@Override
+	public void unload() {
+		// TODO : the way used to initialized the sirius session here is not satisfying.
+		// if we create open a Papyrus model with a Sirius diagram, but without creating new one, the field won't be initialized,
+		// so the sirius session won't be properly closed
+		if (this.siriusSession != null) {
+			this.siriusSession.close(new NullProgressMonitor());
+			this.siriusSession = null;
+		}
+		super.unload();
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.core.resource.AbstractDynamicModel#saveModel()
+	 *
+	 * @throws IOException
+	 */
+	@Override
+	public void saveModel() throws IOException {
+		if (this.siriusSession != null) {
+			if (this.siriusSession instanceof PapyrusSession) {
+				((PapyrusSession) this.siriusSession).papyrusSave(null, new NullProgressMonitor());
+			} else {
+				// need to force the save
+				resource.save(null);
+			}
+		}
+	}
 
 }

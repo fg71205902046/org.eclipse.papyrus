@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
 import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
 import org.eclipse.papyrus.infra.siriusdiag.representation.ICreateSiriusDiagramEditorCommand;
+import org.eclipse.papyrus.infra.siriusdiag.representation.SiriusDiagramConstants;
 import org.eclipse.papyrus.infra.siriusdiag.representation.SiriusDiagramPrototype;
 import org.eclipse.papyrus.infra.siriusdiag.ui.Activator;
 import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
@@ -31,6 +32,7 @@ import org.eclipse.papyrus.infra.viewpoints.policy.IViewTypeHelper;
 import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.sirius.diagram.DSemanticDiagram;
+import org.eclipse.sirius.viewpoint.description.DAnnotation;
 
 /**
  * Represents a helper for the handling of Sirius Diagram Template View Type creation commands.
@@ -122,11 +124,15 @@ public class CreateSiriusDiagramViewTypeCommandHelper implements IViewTypeHelper
 		if (!isSupported(view)) {
 			return null;
 		}
+
+		final DSemanticDiagram dsd = (DSemanticDiagram) view;
+		final DAnnotation annotation = dsd.getDAnnotation(SiriusDiagramConstants.PAPYRUS_SIRIUS_DIAGRAM_IMPLEMENTATION_DANNOTATION_SOURCE);
+		final String protoID = annotation.getDetails().get(SiriusDiagramConstants.PAPYRUS_SIRIUS_DIAGRAM_IMPLEMENTATION_DANNOTATION_KEY);
+
 		PolicyChecker checker = PolicyChecker.getFor(view);
 		ArchitectureDomainManager manager = ArchitectureDomainManager.getInstance();
 
-		// TODO, FIXME : not the expected implementation
-		SiriusDiagramPrototype repKind = (SiriusDiagramPrototype) manager.getRepresentationKindById("org.eclipse.papyrus.infra.siriusdiag.class");// getRepresentationKindById(((Document) view)
+		SiriusDiagramPrototype repKind = (SiriusDiagramPrototype) manager.getRepresentationKindById(protoID);
 		if (null != repKind && checker.isInViewpoint(repKind)) {
 			return getPrototypeFor(repKind);
 		}
