@@ -1,46 +1,47 @@
-/**
- * Copyright (c) 2017 CEA LIST.
- * 
+/*****************************************************************************
+ * Copyright (c) 2017, 2021 CEA LIST.
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License 2.0
  *  which accompanies this distribution, and is available at
  *  https://www.eclipse.org/legal/epl-2.0/
  *
  *  SPDX-License-Identifier: EPL-2.0
- *  
+ *
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
- *  
- * 
- */
+ *  Vincent Lorenzo (CEA LIST) <vincent.lorenzo@cea.fr> - Bug 576004
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.architecture.listeners;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.util.EContentAdapter;
-import org.eclipse.papyrus.infra.core.architecture.ArchitectureDescription;
-import org.eclipse.papyrus.infra.core.architecture.ArchitectureDescriptionPreferences;
 
 /**
  * An adapter that is installed in DI models to listen to architecture description changes
  *
  * @since 1.0
  */
-public class ArchitectureDescriptionAdapter extends EContentAdapter {
+public class ArchitectureDescriptionAdapter extends AbstractArchitectureDescriptionAdapter {
 
 	/**
-	 * Listens to changes on ArchitectureDescription* objects
+	 * @see org.eclipse.papyrus.infra.architecture.listeners.AbstractArchitectureDescriptionAdapter#fireArchitectureContextChanged(org.eclipse.emf.common.notify.Notification)
+	 *
+	 * @param notification
 	 */
 	@Override
-	public void notifyChanged(Notification notification) {
-		if (notification.getNotifier() instanceof ArchitectureDescription ||
-			notification.getNewValue() instanceof ArchitectureDescription ||
-			notification.getOldValue() instanceof ArchitectureDescription) {
-			ArchitectureDescriptionNotifier.getInstance().fireArchitectureContextChanged(notification);
-		} else if (notification.getNotifier() instanceof ArchitectureDescriptionPreferences ||
-			notification.getNewValue() instanceof ArchitectureDescriptionPreferences ||
-			notification.getOldValue() instanceof ArchitectureDescriptionPreferences) {
-			ArchitectureDescriptionNotifier.getInstance().fireArchitectureViewpointsChanged(notification);
-		}
+	public void fireArchitectureContextChanged(Notification notification) {
+		ArchitectureDescriptionNotifier.getInstance().fireArchitectureContextChanged(notification);
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.architecture.listeners.AbstractArchitectureDescriptionAdapter#fireArchitectureViewpointsChanged(org.eclipse.emf.common.notify.Notification)
+	 *
+	 * @param notification
+	 */
+	@Override
+	public void fireArchitectureViewpointsChanged(Notification notification) {
+		ArchitectureDescriptionNotifier.getInstance().fireArchitectureViewpointsChanged(notification);
 	}
 
 }
