@@ -33,13 +33,11 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.IJobChangeEvent;
 import org.eclipse.core.runtime.jobs.Job;
@@ -251,7 +249,6 @@ public class GenerateTargetsHandler extends AbstractHandler {
 
 				try {
 					file.getParent().refreshLocal(IResource.DEPTH_ONE, null);
-					generateEclipseTarget(file);
 				} catch (CoreException ex) {
 					return new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.GenerateTargetsHandler_UnexpectedException, ex);
 				}
@@ -262,46 +259,6 @@ public class GenerateTargetsHandler extends AbstractHandler {
 
 		job.setJobGroup(jobGroup);
 		job.schedule();
-	}
-
-	/**
-	 * Generates an Eclipse-Server version of the *.target file for the given *.tpd file (Assuming the
-	 * standard *.target file has already been generated)
-	 *
-	 * The Eclipse-Server version of the target is similar to the default one, except it uses
-	 * the file:/ protocol instead of http:// for all access to download.eclipse.org,
-	 * for improved performances when building on Eclipse Servers
-	 *
-	 * @param tpdFile
-	 * @throws CoreException
-	 */
-	protected void generateEclipseTarget(IFile tpdFile) throws CoreException {
-		String targetSuffix = "eclipse"; //$NON-NLS-1$
-
-		IContainer parent = tpdFile.getParent();
-
-		String fileName = tpdFile.getFullPath().removeFileExtension().addFileExtension("target").lastSegment(); //$NON-NLS-1$
-
-		IFile portableTargetFile = parent.getFile(new Path(fileName));
-
-		IFolder eclipseFolder = parent.getParent().getFolder(new Path(targetSuffix));
-		if (!eclipseFolder.exists()) {
-			eclipseFolder.create(true, true, new NullProgressMonitor());
-		}
-
-		IFile eclipseTargetFile = eclipseFolder.getFile(fileName.replaceAll("portable", targetSuffix)); //$NON-NLS-1$
-
-		InputStream convertedStream = convert(portableTargetFile.getContents(), "http://download.eclipse.org/", "file:/home/data/httpd/download.eclipse.org/"); //$NON-NLS-1$ //$NON-NLS-2$
-		convertedStream = convert(convertedStream, "https://download.eclipse.org/", "file:/home/data/httpd/download.eclipse.org/"); //$NON-NLS-1$ //$NON-NLS-2$
-
-		if (eclipseTargetFile.exists()) {
-
-			eclipseTargetFile.setContents(convertedStream, IResource.NONE, null);
-		} else {
-			eclipseTargetFile.create(convertedStream, true, null);
-		}
-
-		eclipseFolder.refreshLocal(IResource.DEPTH_ONE, null);
 	}
 
 	/**
