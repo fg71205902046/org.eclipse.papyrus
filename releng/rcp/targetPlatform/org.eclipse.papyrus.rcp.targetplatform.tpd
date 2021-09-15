@@ -7,13 +7,13 @@ include "../../main/targetPlatform/org.eclipse.papyrus.main.targetplatform.tpd"
 
 //updateFrom("EGit",0)
 
-location egit "https://download.eclipse.org/egit/updates-5.12" {
+location egit "https://download.eclipse.org/egit/updates-5.13" {
 	org.eclipse.egit.feature.group
 }
 
 //updateFrom("Eclipse",0)
 
-location platform "https://download.eclipse.org/eclipse/updates/4.20/R-4.20-202106111600/" {
+location platform "https://download.eclipse.org/eclipse/updates/4.21/R-4.21-202109060500/" {
 	org.eclipse.e4.core.tools.feature.feature.group 
 	org.eclipse.rcp.configuration.feature.group
 	org.eclipse.equinox.executable.feature.group
@@ -32,19 +32,19 @@ location mylyn "https://download.eclipse.org/mylyn/drops/3.25.2/v20200831-1956" 
 
 //updateFrom("EMF Compare",0) 
 
-location emfCompare "https://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S202102231741" {
+location emfCompare "https://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S202107200824" {
 	org.eclipse.emf.compare.source.feature.group
 	org.eclipse.emf.compare.ide.ui.source.feature.group
 }
 
 //updateFrom("EMF (Core)",0)
 
-location emf "https://download.eclipse.org/modeling/emf/emf/builds/release/2.26" {
+location emf "https://download.eclipse.org/modeling/emf/emf/builds/release/2.27" {
 	org.eclipse.xsd.sdk.feature.group
 }
 
 //updateFrom("EMF CDO",0) 
 
-location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20210608-2339" {
+location cdo "https://download.eclipse.org/modeling/emf/cdo/drops/R20210908-0655" {
 	org.eclipse.emf.cdo.epp.feature.group
 }
