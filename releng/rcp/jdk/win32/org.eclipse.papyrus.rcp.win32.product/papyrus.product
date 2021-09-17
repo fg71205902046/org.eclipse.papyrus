@@ -205,10 +205,9 @@ Java and all Java-based trademarks are trademarks of Oracle Corporation in the U
    </configurations>
 
    <repositories>
-      <repository location="https://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/master/" enabled="true" />
-      <repository location="https://download.eclipse.org/releases/latest/" enabled="true" />
-      <repository location="https://download.eclipse.org/releases/2021-03/" enabled="true" />
-      <repository location="https://download.eclipse.org/eclipse/updates/4.19/" enabled="true" />
+      <repository location="https://download.eclipse.org/modeling/mdt/papyrus/updates/releases/2021-09/5.2.0/" enabled="true" />
+      <repository location="https://download.eclipse.org/releases/2021-09/" enabled="true" />
+      <repository location="https://download.eclipse.org/eclipse/updates/4.21/" enabled="true" />
    </repositories>
 
    <preferencesInfo>
