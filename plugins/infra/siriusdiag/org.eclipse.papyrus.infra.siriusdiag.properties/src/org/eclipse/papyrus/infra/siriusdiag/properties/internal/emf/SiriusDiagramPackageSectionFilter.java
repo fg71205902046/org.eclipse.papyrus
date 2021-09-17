@@ -12,7 +12,7 @@
  *  Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Initial API and implementation
  *****************************************************************************/
 
-package org.eclipse.papyrus.infra.siriusdiag.properties.internal;
+package org.eclipse.papyrus.infra.siriusdiag.properties.internal.emf;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -42,10 +42,10 @@ public class SiriusDiagramPackageSectionFilter implements IFilter {
 	 */
 	@Override
 	public boolean select(final Object toTest) {
-		if (false == toTest instanceof EObject) {
+		final EObject eobject = org.eclipse.papyrus.infra.emf.utils.EMFHelper.getEObject(toTest);
+		if (false == eobject instanceof EObject) {
 			return false;
 		}
-		final EObject eobject = (EObject) toTest;
 		final EPackage epackage = eobject.eClass().getEPackage();
 		return epackage == DiagramPackage.eINSTANCE;
 	}

@@ -12,10 +12,9 @@
  *  Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Initial API and implementation
  *****************************************************************************/
 
-package org.eclipse.papyrus.infra.siriusdiag.properties.internal;
+package org.eclipse.papyrus.infra.siriusdiag.properties.internal.emf;
 
 import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.papyrus.infra.siriusdiag.properties.sections.AbstractEObjectAdvancedPropertySection;
 import org.eclipse.ui.views.properties.IPropertySource;
 
 /**
@@ -34,7 +33,7 @@ public class SiriusDiagramPropertySection extends AbstractEObjectAdvancedPropert
 
 
 	/**
-	 * @see org.eclipse.papyrus.infra.siriusdiag.properties.sections.AbstractEObjectAdvancedPropertySection#createPropertySource(java.lang.Object, org.eclipse.emf.edit.provider.IItemPropertySource)
+	 * @see org.eclipse.papyrus.infra.siriusdiag.properties.internal.emf.AbstractEObjectAdvancedPropertySection#createPropertySource(java.lang.Object, org.eclipse.emf.edit.provider.IItemPropertySource)
 	 *
 	 * @param object
 	 * @param itemPropertySource

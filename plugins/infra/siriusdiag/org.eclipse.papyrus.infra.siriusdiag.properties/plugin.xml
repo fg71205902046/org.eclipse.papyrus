@@ -6,8 +6,8 @@
       <propertySections
             contributorId="TreeOutlinePage">
          <propertySection
-               class="org.eclipse.papyrus.infra.siriusdiag.properties.internal.SiriusDiagramPropertySection"
-               filter="org.eclipse.papyrus.infra.siriusdiag.properties.internal.SiriusDiagramPackageSectionFilter"
+               class="org.eclipse.papyrus.infra.siriusdiag.properties.internal.emf.SiriusDiagramPropertySection"
+               filter="org.eclipse.papyrus.infra.siriusdiag.properties.internal.emf.SiriusDiagramPackageSectionFilter"
                id="org.eclipse.papyrus.infra.siriusdiag.properties.propertySection"
                tab="advanced">
             <input

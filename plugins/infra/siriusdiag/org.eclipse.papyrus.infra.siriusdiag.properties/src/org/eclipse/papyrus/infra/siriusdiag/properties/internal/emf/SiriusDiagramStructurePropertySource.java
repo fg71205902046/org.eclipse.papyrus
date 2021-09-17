@@ -12,9 +12,8 @@
  *  Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Initial API and implementation
  *****************************************************************************/
 
-package org.eclipse.papyrus.infra.siriusdiag.properties.internal;
+package org.eclipse.papyrus.infra.siriusdiag.properties.internal.emf;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.ui.provider.PropertySource;
@@ -43,8 +42,7 @@ public class SiriusDiagramStructurePropertySource extends PropertySource {
 	 */
 	@Override
 	protected IPropertyDescriptor createPropertyDescriptor(final IItemPropertyDescriptor itemPropertyDescriptor) {
-		final EStructuralFeature f = (EStructuralFeature) itemPropertyDescriptor.getFeature(this.object);
-		// TODO do something or this plugin is useless?!
+		// we don't provide specific customization for the property view
 		return super.createPropertyDescriptor(itemPropertyDescriptor);
 	}
 }

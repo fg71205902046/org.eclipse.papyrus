@@ -12,7 +12,7 @@
  *  Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Initial API and implementation
  *****************************************************************************/
 
-package org.eclipse.papyrus.infra.siriusdiag.properties.sections;
+package org.eclipse.papyrus.infra.siriusdiag.properties.internal.emf;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -26,6 +26,8 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.tabbed.AdvancedPropertySection;
@@ -50,7 +52,15 @@ public abstract class AbstractEObjectAdvancedPropertySection extends AdvancedPro
 	 * @param selection
 	 */
 	@Override
-	public final void setInput(final IWorkbenchPart part, final ISelection selection) {
+	public final void setInput(final IWorkbenchPart part, ISelection selection) {
+		if (selection instanceof IStructuredSelection) {
+			// ensure the selection represents an EObject
+			final Object first = ((IStructuredSelection) selection).getFirstElement();
+			final EObject eobject = EMFHelper.getEObject(first);
+			if (eobject != null) {
+				selection = new StructuredSelection(eobject);
+			}
+		}
 		if (selection instanceof IStructuredSelection && ((IStructuredSelection) selection).getFirstElement() instanceof EObject) {
 			final EObject selectedElement = (EObject) ((IStructuredSelection) selection).getFirstElement();
 			final Registry registry = ComposedAdapterFactory.Descriptor.Registry.INSTANCE;

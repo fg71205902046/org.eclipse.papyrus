@@ -12,7 +12,7 @@
  *  Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Initial API and implementation
  *****************************************************************************/
 
-package org.eclipse.papyrus.infra.siriusdiag.properties.descriptors;
+package org.eclipse.papyrus.infra.siriusdiag.properties.internal.emf;
 
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.PropertyDescriptor;
