@@ -30,6 +30,7 @@
 		<module>org.eclipse.papyrus.infra.internationalization.feature</module>
 		<module>org.eclipse.papyrus.infra.nattable.feature</module>
 		<module>org.eclipse.papyrus.infra.services.feature</module>
+		<module>org.eclipse.papyrus.infra.textedit.feature</module>
 		<module>org.eclipse.papyrus.infra.ui.feature</module>
 		<module>org.eclipse.papyrus.infra.viewpoints.feature</module>
 		<module>org.eclipse.papyrus.infra.widget.feature</module>

@@ -23,6 +23,7 @@
 		<module>services</module>
 		<module>newchild</module>
 
+		<module>textedit</module>
 		<module>types</module>
 
 		<module>viewpoints</module>

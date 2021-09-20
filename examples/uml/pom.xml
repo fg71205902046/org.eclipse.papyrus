@@ -20,5 +20,6 @@
 		<module>org.eclipse.papyrus.example.uml.nattable.actions</module>
 		<module>org.eclipse.papyrus.example.uml.nattable.empty.line</module>
 		<module>org.eclipse.papyrus.example.uml.services.decorator</module>
+		<module>org.eclipse.papyrus.examples.uml.textedit.property.xtext.architecture</module>
 	</modules>
 </project>
