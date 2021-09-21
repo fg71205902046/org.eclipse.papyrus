@@ -174,10 +174,9 @@ public class AddPapyrusPluginNatureHandler extends AbstractHandler {
 	private boolean canSetPapyrusPluginNature(final IProject project) {
 		boolean canSet = false;
 
-		if (project.exists() && project.isOpen() && project.getName().startsWith("org.eclipse.papyrus")) { //$NON-NLS-1$
+		if (project.exists() && project.isOpen()) {
 			try {
-				canSet = project.hasNature(PapyrusPluginNature.JAVA_NATURE)
-						&& project.hasNature(PapyrusPluginNature.PLUGIN_NATURE)
+				canSet = project.hasNature(PapyrusPluginNature.PLUGIN_NATURE)
 						&& !project.hasNature(PapyrusPluginNature.PAPYRUS_PLUGIN_NATURE_ID);
 			} catch (CoreException e) {
 				// we ignore the exception
