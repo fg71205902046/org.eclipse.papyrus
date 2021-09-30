@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <component id="org.eclipse.papyrus.uml.diagram.activity" version="2">
-    <resource path="META-INF/MANIFEST.MF">
-        <filter id="926941240">
+    <resource path="src-gen/org/eclipse/papyrus/uml/diagram/activity/edit/policies/UMLBaseItemSemanticEditPolicy.java" type="org.eclipse.papyrus.uml.diagram.activity.edit.policies.UMLBaseItemSemanticEditPolicy">
+        <filter id="1227882500">
             <message_arguments>
-                <message_argument value="4.1.0"/>
-                <message_argument value="4.0.0"/>
+                <message_argument value="getEditHelperCommand(IEditCommandRequest, Command)"/>
             </message_arguments>
         </filter>
     </resource>

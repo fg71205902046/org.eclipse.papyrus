@@ -27,6 +27,8 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.MaskManagedFloatingLa
 
 /**
  * An abstract class to implement a Floating Label EditPart
+ *
+ * @since 5.0
  */
 public abstract class AbstractFloatingLabelEditPart extends AbstractExternalLabelEditPart implements NamedStyleProperties, IFloatingLabelEditPart {
 

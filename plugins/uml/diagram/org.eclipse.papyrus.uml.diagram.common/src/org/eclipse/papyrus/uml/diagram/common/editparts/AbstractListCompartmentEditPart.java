@@ -30,6 +30,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
  * An intermediate class with the common methods used by list compartments (inherit from ListCompartmentEditPart).
  *
  * @author allogo
+ * @since 5.0
  */
 public abstract class AbstractListCompartmentEditPart extends ListCompartmentEditPart {
 

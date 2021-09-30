@@ -58,6 +58,9 @@ import org.eclipse.papyrus.uml.diagram.component.edit.policies.UMLBaseItemSemant
 import org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes;
 
 
+/**
+ * @since 5.0
+ */
 public class DefaultNamedElementItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 

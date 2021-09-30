@@ -60,6 +60,8 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
  * For now, in order to avoid to much changes in the generator, it only contains
  * the constant use to hold a reoriented edge in the request extended data.
  * </pre>
+ *
+ * @since 5.0
  */
 public abstract class AbstractBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 

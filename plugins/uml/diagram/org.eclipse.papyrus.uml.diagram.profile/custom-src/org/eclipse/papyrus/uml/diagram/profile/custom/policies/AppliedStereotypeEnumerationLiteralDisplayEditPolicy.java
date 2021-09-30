@@ -26,6 +26,7 @@ import org.eclipse.uml2.uml.EnumerationLiteral;
  * This Policy is to be used for Enumeration Literal Edit Part to manage the stereotype display
  *
  * @author Céline JANSSENS
+ * @since 5.0
  *
  */
 public class AppliedStereotypeEnumerationLiteralDisplayEditPolicy extends AbstractAppliedStereotypeDisplayEditPolicy {

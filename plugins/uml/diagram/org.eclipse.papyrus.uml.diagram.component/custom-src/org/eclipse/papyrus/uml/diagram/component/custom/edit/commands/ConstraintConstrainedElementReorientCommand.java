@@ -26,6 +26,9 @@ import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;
 
 
+/**
+ * @since 5.0
+ */
 public class ConstraintConstrainedElementReorientCommand extends EditElementCommand {
 
 

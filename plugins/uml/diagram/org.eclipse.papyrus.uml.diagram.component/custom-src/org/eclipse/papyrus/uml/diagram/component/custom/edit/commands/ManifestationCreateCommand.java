@@ -32,6 +32,9 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
 
 
+/**
+ * @since 5.0
+ */
 public class ManifestationCreateCommand extends EditElementCommand {
 
 

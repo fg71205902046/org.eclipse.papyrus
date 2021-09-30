@@ -84,6 +84,9 @@ public class CustomMessageName4EditPart extends MessageCreateNameEditPart implem
 		}
 	}
 
+	/**
+	 * @since 7.0
+	 */
 	@Override
 	protected View getFontStyleOwnerView() {
 		return (View) getParent().getModel();

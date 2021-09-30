@@ -25,6 +25,7 @@ import org.eclipse.core.runtime.preferences.InstanceScope;
  * OutputFormatterUtil class provides utility methods to correctly format the files produced when generating diagrams.
  *
  * @author allogo
+ * @since 2.0
  */
 public class OutputFormatterUtil {
 

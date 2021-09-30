@@ -40,6 +40,7 @@ import org.eclipse.ui.part.ISetSelectionTarget;
 
 /**
  * @author dstadnik
+ * @since 1.4
  */
 public class WizardUtil {
 

@@ -97,6 +97,7 @@ public interface GenContainerBase extends GenCommonBase {
 	 * @see org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage#getGenContainerBase_SpecificDiagramUpdaterClassName()
 	 * @model
 	 * @generated
+	 * @since 3.0
 	 */
 	String getSpecificDiagramUpdaterClassName();
 
@@ -107,6 +108,7 @@ public interface GenContainerBase extends GenCommonBase {
 	 * @param value the new value of the '<em>Specific Diagram Updater Class Name</em>' attribute.
 	 * @see #getSpecificDiagramUpdaterClassName()
 	 * @generated
+	 * @since 3.0
 	 */
 	void setSpecificDiagramUpdaterClassName(String value);
 

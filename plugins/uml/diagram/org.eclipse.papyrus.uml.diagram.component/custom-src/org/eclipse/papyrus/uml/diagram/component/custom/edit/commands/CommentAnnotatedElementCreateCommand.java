@@ -25,6 +25,9 @@ import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Element;
 
 
+/**
+ * @since 5.0
+ */
 public class CommentAnnotatedElementCreateCommand extends EditElementCommand {
 
 

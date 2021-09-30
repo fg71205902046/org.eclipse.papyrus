@@ -61,7 +61,7 @@ Require-Bundle: com.google.guava;bundle-version="[30.1.0,31.0.0)",
  org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="[4.0.0,5.0.0)",
  org.eclipse.papyrus.infra.widgets;bundle-version="[4.0.0,5.0.0)",
  org.eclipse.papyrus.uml.appearance;bundle-version="[3.0.0,4.0.0)",
- org.eclipse.papyrus.uml.diagram.common;bundle-version="[4.0.0,5.0.0)",
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="[5.0.0,6.0.0)",
  org.eclipse.papyrus.uml.internationalization.utils;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.uml.profile;bundle-version="[4.0.0,5.0.0)",
  org.eclipse.papyrus.uml.service.types.ui;bundle-version="[3.0.0,4.0.0)",
@@ -73,7 +73,7 @@ Require-Bundle: com.google.guava;bundle-version="[30.1.0,31.0.0)",
  org.eclipse.emf.codegen.ecore;bundle-version="[2.26.0,3.0.0)";resolution:=optional
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
-Bundle-Version: 4.1.0.qualifier
+Bundle-Version: 5.0.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.profile.part.UMLDiagramEditorPlugin
 Bundle-ManifestVersion: 2
 Bundle-Description: %pluginDescription

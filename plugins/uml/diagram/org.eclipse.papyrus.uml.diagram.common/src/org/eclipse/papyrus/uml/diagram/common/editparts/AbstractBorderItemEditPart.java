@@ -25,6 +25,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
  * It is a custom implementation of {@link org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart} with papyrus interface.
  *
  * @author allogo
+ * @since 5.0
  *
  */
 public abstract class AbstractBorderItemEditPart extends org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart implements IPapyrusEditPart {

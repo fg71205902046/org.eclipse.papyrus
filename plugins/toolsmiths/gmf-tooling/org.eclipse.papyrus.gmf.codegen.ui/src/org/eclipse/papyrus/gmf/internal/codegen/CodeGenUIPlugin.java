@@ -27,6 +27,9 @@ import org.eclipse.papyrus.gmf.codegen.util.EmitterSource;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
+/**
+ * @since 1.4
+ */
 public class CodeGenUIPlugin extends AbstractUIPlugin {
 
 	private static CodeGenUIPlugin plugin;

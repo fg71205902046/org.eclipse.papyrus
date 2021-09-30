@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.notation.View;
  * An intermediate class to implement en external label
  *
  * @author allogo
+ * @since 5.0
  */
 public abstract class AbstractExternalLabelEditPart extends UMLLabelEditPart {
 

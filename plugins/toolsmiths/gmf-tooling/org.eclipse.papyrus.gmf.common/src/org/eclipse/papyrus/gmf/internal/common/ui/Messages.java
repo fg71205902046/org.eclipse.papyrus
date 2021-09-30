@@ -47,8 +47,14 @@ public class Messages extends NLS {
 
 	public static String PredefinedModelExtensionPredefinedModels;
 
+	/**
+	 * @since 2.0
+	 */
 	public static String ValidationHelper_e_marker_creation;
 
+	/**
+	 * @since 2.0
+	 */
 	public static String ValidationHelper_task_validate;
 
 	static {

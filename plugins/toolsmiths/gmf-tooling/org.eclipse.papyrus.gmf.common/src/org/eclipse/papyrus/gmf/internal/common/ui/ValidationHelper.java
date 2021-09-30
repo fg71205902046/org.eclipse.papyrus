@@ -47,9 +47,10 @@ import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
 import org.eclipse.papyrus.gmf.internal.common.Activator;
 
 /**
- * Provides various functinality useful for model validation, for instances
+ * Provides various functionality useful for model validation, for instances
  * progress monitoring, resource markers creation.
  * from old org.eclipse.papyrus.gmf.internal.bridge.transform
+ * @since 2.0
  */
 public class ValidationHelper {
 

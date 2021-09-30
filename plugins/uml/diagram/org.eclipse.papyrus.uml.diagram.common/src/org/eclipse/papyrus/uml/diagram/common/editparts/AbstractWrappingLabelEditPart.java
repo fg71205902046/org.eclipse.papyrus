@@ -26,6 +26,8 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 /**
  * This is an editpart in which we can access to the wrapping label for example
  * it can be use to display stereotype as external node
+ *
+ * @since 5.0
  */
 @SuppressWarnings("restriction")
 public abstract class AbstractWrappingLabelEditPart extends AbstractExternalLabelEditPart implements IPapyrusEditPart {

@@ -28,6 +28,7 @@ import org.eclipse.jface.viewers.ViewerFilter;
 
 /**
  * @author dstadnik
+ * @since 1.4
  */
 public class HideGeneratedFilter extends ViewerFilter {
 

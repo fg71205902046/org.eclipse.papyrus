@@ -82,6 +82,7 @@ import org.eclipse.uml2.uml.Feature;
  * An intermediate class with the common methods used by the labels (inherit from PapyrusLabelEditPart).
  *
  * @author allogo
+ * @since 5.0
  *
  */
 public abstract class UMLLabelEditPart extends PapyrusLabelEditPart implements ITextAwareEditPart, IControlParserForDirectEdit {

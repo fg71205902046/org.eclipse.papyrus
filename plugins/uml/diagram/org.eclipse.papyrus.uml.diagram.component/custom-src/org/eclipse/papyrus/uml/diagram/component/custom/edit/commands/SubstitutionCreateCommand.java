@@ -32,6 +32,9 @@ import org.eclipse.uml2.uml.Substitution;
 import org.eclipse.uml2.uml.UMLFactory;
 
 
+/**
+ * @since 5.0
+ */
 public class SubstitutionCreateCommand extends EditElementCommand {
 
 

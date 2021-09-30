@@ -83,6 +83,7 @@ import org.eclipse.uml2.uml.Feature;
  * An intermediate class with the common methods used by the node labels (inherit from PapyrusCompartmentEditPart).
  *
  * @author allogo
+ * @since 5.0
  */
 public abstract class AbstractNodeLabelEditPart extends PapyrusCompartmentEditPart implements ITextAwareEditPart, IControlParserForDirectEdit {
 

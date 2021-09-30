@@ -27,6 +27,9 @@ import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 
 
+/**
+ * @since 5.0
+ */
 public class DependencyBranchReorientCommand extends EditElementCommand {
 
 

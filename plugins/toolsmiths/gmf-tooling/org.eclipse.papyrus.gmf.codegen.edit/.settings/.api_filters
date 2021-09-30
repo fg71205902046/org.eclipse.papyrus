@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.papyrus.gmf.codegen.edit" version="2">
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/genextension/presentation/GenExtensionActionBarContributor.java">
+        <filter id="0"/>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/genextension/presentation/GenExtensionActionBarContributor.java" type="org.eclipse.papyrus.gmf.codegen.genextension.presentation.GenExtensionActionBarContributor">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.gmf.codegen.genextension.presentation.GenExtensionActionBarContributor"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/genextension/presentation/GenExtensionEditor.java" type="org.eclipse.papyrus.gmf.codegen.genextension.presentation.GenExtensionEditor">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.gmf.codegen.genextension.presentation.GenExtensionEditor"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/genextension/provider/AdditionalEditPartCandiesItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.genextension.provider.AdditionalEditPartCandiesItemProvider">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.gmf.codegen.genextension.provider.AdditionalEditPartCandiesItemProvider"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/genextension/provider/AlternateCanvasItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.genextension.provider.AlternateCanvasItemProvider">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.gmf.codegen.genextension.provider.AlternateCanvasItemProvider"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/genextension/provider/AlternateGenLinkItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.genextension.provider.AlternateGenLinkItemProvider">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.gmf.codegen.genextension.provider.AlternateGenLinkItemProvider"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/genextension/provider/AlternateGenTopLevelNodeItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.genextension.provider.AlternateGenTopLevelNodeItemProvider">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.gmf.codegen.genextension.provider.AlternateGenTopLevelNodeItemProvider"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/genextension/provider/CommentedElementItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.genextension.provider.CommentedElementItemProvider">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.gmf.codegen.genextension.provider.CommentedElementItemProvider"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/genextension/provider/CompartmentTitleVisibilityPreferenceItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.genextension.provider.CompartmentTitleVisibilityPreferenceItemProvider">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.gmf.codegen.genextension.provider.CompartmentTitleVisibilityPreferenceItemProvider"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/genextension/provider/CompartmentVisibilityPreferenceItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.genextension.provider.CompartmentVisibilityPreferenceItemProvider">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.gmf.codegen.genextension.provider.CompartmentVisibilityPreferenceItemProvider"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/genextension/provider/ConstrainedByReferenceCompartmentItemSemanticEditPolicyItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.genextension.provider.ConstrainedByReferenceCompartmentItemSemanticEditPolicyItemProvider">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.gmf.codegen.genextension.provider.ConstrainedByReferenceCompartmentItemSemanticEditPolicyItemProvider"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/genextension/provider/CustomDiagramUpdaterSingletonItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.genextension.provider.CustomDiagramUpdaterSingletonItemProvider">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.gmf.codegen.genextension.provider.CustomDiagramUpdaterSingletonItemProvider"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/genextension/provider/EditPartUsingDeleteServiceItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.genextension.provider.EditPartUsingDeleteServiceItemProvider">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.gmf.codegen.genextension.provider.EditPartUsingDeleteServiceItemProvider"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/genextension/provider/EditPartUsingReorientServiceItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.genextension.provider.EditPartUsingReorientServiceItemProvider">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.gmf.codegen.genextension.provider.EditPartUsingReorientServiceItemProvider"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/genextension/provider/ExtendedGenViewItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.genextension.provider.ExtendedGenViewItemProvider">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.gmf.codegen.genextension.provider.ExtendedGenViewItemProvider"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/genextension/provider/ExternalHookItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.genextension.provider.ExternalHookItemProvider">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.gmf.codegen.genextension.provider.ExternalHookItemProvider"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/genextension/provider/GenExtensionItemProviderAdapterFactory.java" type="org.eclipse.papyrus.gmf.codegen.genextension.provider.GenExtensionItemProviderAdapterFactory">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.gmf.codegen.genextension.provider.GenExtensionItemProviderAdapterFactory"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/genextension/provider/GenNodeConstraintItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.genextension.provider.GenNodeConstraintItemProvider">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.gmf.codegen.genextension.provider.GenNodeConstraintItemProvider"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/genextension/provider/GenVisualTypeProviderItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.genextension.provider.GenVisualTypeProviderItemProvider">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.gmf.codegen.genextension.provider.GenVisualTypeProviderItemProvider"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/genextension/provider/GenerateUsingElementTypeCreationCommandItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.genextension.provider.GenerateUsingElementTypeCreationCommandItemProvider">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.gmf.codegen.genextension.provider.GenerateUsingElementTypeCreationCommandItemProvider"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/genextension/provider/LabelVisibilityPreferenceItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.genextension.provider.LabelVisibilityPreferenceItemProvider">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.gmf.codegen.genextension.provider.LabelVisibilityPreferenceItemProvider"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/genextension/provider/MutatingCanvasItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.genextension.provider.MutatingCanvasItemProvider">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.gmf.codegen.genextension.provider.MutatingCanvasItemProvider"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/genextension/provider/OwnedEditpartItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.genextension.provider.OwnedEditpartItemProvider">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.gmf.codegen.genextension.provider.OwnedEditpartItemProvider"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/genextension/provider/PapyrusExtensionRootNodeItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.genextension.provider.PapyrusExtensionRootNodeItemProvider">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.gmf.codegen.genextension.provider.PapyrusExtensionRootNodeItemProvider"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/genextension/provider/PropertyRefreshHookItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.genextension.provider.PropertyRefreshHookItemProvider">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.gmf.codegen.genextension.provider.PropertyRefreshHookItemProvider"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/genextension/provider/SpecificDiagramUpdaterItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.genextension.provider.SpecificDiagramUpdaterItemProvider">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.gmf.codegen.genextension.provider.SpecificDiagramUpdaterItemProvider"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/genextension/provider/SpecificLocatorExternalLabelItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.genextension.provider.SpecificLocatorExternalLabelItemProvider">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.gmf.codegen.genextension.provider.SpecificLocatorExternalLabelItemProvider"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/genextension/provider/SpecificLocatorItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.genextension.provider.SpecificLocatorItemProvider">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.gmf.codegen.genextension.provider.SpecificLocatorItemProvider"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/genextension/provider/SpecificNodePlateItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.genextension.provider.SpecificNodePlateItemProvider">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.gmf.codegen.genextension.provider.SpecificNodePlateItemProvider"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/genextension/provider/VisualIDOverrideItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.genextension.provider.VisualIDOverrideItemProvider">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.gmf.codegen.genextension.provider.VisualIDOverrideItemProvider"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/gmfgen/presentation/GMFGenEditor.java" type="org.eclipse.papyrus.gmf.codegen.gmfgen.presentation.GMFGenEditor">
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="listViewer"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="parentViewer"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="propertySheetPages"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="tableViewer"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="treeViewer"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="treeViewerWithColumns"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/gmfgen/provider/GMFGenItemProviderAdapterFactory.java" type="org.eclipse.papyrus.gmf.codegen.gmfgen.provider.GMFGenItemProviderAdapterFactory">
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="genFloatingLabelItemProvider"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="refreshHookItemProvider"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/gmfgen/provider/GenChildContainerItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.gmfgen.provider.GenChildContainerItemProvider">
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="addSpecificDiagramUpdaterClassNamePropertyDescriptor(Object)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/gmfgen/provider/GenChildSideAffixedNodeItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.gmfgen.provider.GenChildSideAffixedNodeItemProvider">
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="addLocatorClassNamePropertyDescriptor(Object)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/gmfgen/provider/GenCommonBaseItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.gmfgen.provider.GenCommonBaseItemProvider">
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="addSuperEditPartPropertyDescriptor(Object)"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="addUsingDeleteServicePropertyDescriptor(Object)"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="addUsingReorientServicePropertyDescriptor(Object)"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="addVisualIDOverridePropertyDescriptor(Object)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/gmfgen/provider/GenDiagramItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.gmfgen.provider.GenDiagramItemProvider">
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="addBaseEditHelperPackagePropertyDescriptor(Object)"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="addSpecificDiagramUpdaterClassNamePropertyDescriptor(Object)"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="addUsingElementTypeCreationCommandPropertyDescriptor(Object)"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="addVisualTypeProviderPropertyDescriptor(Object)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/gmfgen/provider/GenDiagramUpdaterItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.gmfgen.provider.GenDiagramUpdaterItemProvider">
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="addCustomDiagramUpdaterSingletonPathPropertyDescriptor(Object)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/gmfgen/provider/GenEditorGeneratorItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.gmfgen.provider.GenEditorGeneratorItemProvider">
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="addJdkComplianceLevelPropertyDescriptor(Object)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/gmfgen/provider/GenExternalNodeLabelItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.gmfgen.provider.GenExternalNodeLabelItemProvider">
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="addLocatorClassNamePropertyDescriptor(Object)"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="addNamePropertyDescriptor(Object)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/gmfgen/provider/GenFloatingLabelItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.gmfgen.provider.GenFloatingLabelItemProvider">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.gmf.codegen.gmfgen.provider.GenFloatingLabelItemProvider"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/gmfgen/provider/GenNodeItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.gmfgen.provider.GenNodeItemProvider">
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="addSpecificNotificationEventPropertyDescriptor(Object)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/gmf/codegen/gmfgen/provider/RefreshHookItemProvider.java" type="org.eclipse.papyrus.gmf.codegen.gmfgen.provider.RefreshHookItemProvider">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.gmf.codegen.gmfgen.provider.RefreshHookItemProvider"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>

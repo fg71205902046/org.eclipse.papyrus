@@ -32,6 +32,9 @@ import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.Usage;
 
 
+/**
+ * @since 5.0
+ */
 public class UsageCreateCommand extends EditElementCommand {
 
 

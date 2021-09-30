@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  *
  * @author allogo
+ * @since 5.0
  */
 public abstract class AbstractLinkLabelEditPart extends UMLLabelEditPart {
 

@@ -34,6 +34,9 @@ import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
 
+/**
+ * @since 5.0
+ */
 public class PortCreateCommand extends EditElementCommand {
 
 

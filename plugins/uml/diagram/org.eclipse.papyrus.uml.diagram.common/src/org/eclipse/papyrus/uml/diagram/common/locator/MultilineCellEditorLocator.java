@@ -80,6 +80,7 @@ public class MultilineCellEditorLocator implements CellEditorLocator {
 	 * @param source
 	 *            the source
 	 * @return the text cell editor locator
+	 * @since 5.0
 	 */
 	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
 		if (source.getFigure() instanceof IMultilineEditableFigure) {

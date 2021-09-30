@@ -85,6 +85,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * An intermediate class with the common methods used by the compartments (inherit from UMLCompartmentEditPart).
  *
  * @author allogo
+ * @since 5.0
  */
 public abstract class AbstractCompartmentEditPart extends UMLCompartmentEditPart implements ITextAwareEditPart, IControlParserForDirectEdit {
 

@@ -11492,7 +11492,7 @@
         iD="org.eclipse.papyrus.uml.diagram.composite"
         name="Papyrus Composite Structure Diagram "
         provider="Eclipse Modeling Project"
-        version="4.1.0.qualifier">
+        version="5.0.0.qualifier">
       <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
       <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
     </plugin>

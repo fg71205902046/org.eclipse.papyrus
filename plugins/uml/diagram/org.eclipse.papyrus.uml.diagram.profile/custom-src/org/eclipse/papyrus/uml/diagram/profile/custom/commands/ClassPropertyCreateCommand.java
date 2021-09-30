@@ -35,6 +35,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
+ * @since 5.0
  */
 public class ClassPropertyCreateCommand extends EditElementCommand {
 

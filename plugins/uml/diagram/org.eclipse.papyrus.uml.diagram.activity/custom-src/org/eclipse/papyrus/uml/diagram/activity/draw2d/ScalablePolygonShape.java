@@ -22,6 +22,7 @@ import org.eclipse.swt.graphics.Color;
  * A ScalablePolygonShape with a dummy papyrus interface.
  *
  * @author allogo
+ * @since 5.0
  */
 public class ScalablePolygonShape extends org.eclipse.draw2d.ScalablePolygonShape implements IPapyrusNodeFigure {
 
