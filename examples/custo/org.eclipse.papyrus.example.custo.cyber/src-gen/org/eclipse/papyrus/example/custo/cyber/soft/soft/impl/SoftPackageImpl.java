@@ -1,17 +1,16 @@
 /**
- * 
- *   Copyright (c) 2021 CEA LIST.
- *    
- *   All rights reserved. This program and the accompanying materials
- *   are made available under the terms of the Eclipse Public License 2.0
- *   which accompanies this distribution, and is available at
- *   https://www.eclipse.org/legal/epl-2.0/
- *  
- *   SPDX-License-Identifier: EPL-2.0
- *    
- *  Contributors:
- *  	Patrick Tessier 	(CEA LIST) - Initial API and implementation
- *  
+ * Copyright (c) 2021 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *    Patrick Tessier (CEA LIST) - Initial API and implementation
+ *
  */
 package org.eclipse.papyrus.example.custo.cyber.soft.soft.impl;
 
@@ -40,13 +39,6 @@ import org.eclipse.uml2.uml.UMLPackage;
  * @generated
  */
 public class SoftPackageImpl extends EPackageImpl implements SoftPackage {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "\n  Copyright (c) 2021 CEA LIST.\n   \n  All rights reserved. This program and the accompanying materials\n  are made available under the terms of the Eclipse Public License 2.0\n  which accompanies this distribution, and is available at\n  https://www.eclipse.org/legal/epl-2.0/\n \n  SPDX-License-Identifier: EPL-2.0\n   \n Contributors:\n \tPatrick Tessier \t(CEA LIST) - Initial API and implementation\n ";
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -107,11 +99,13 @@ public class SoftPackageImpl extends EPackageImpl implements SoftPackage {
 	 * @generated
 	 */
 	public static SoftPackage init() {
-		if (isInited) return (SoftPackage)EPackage.Registry.INSTANCE.getEPackage(SoftPackage.eNS_URI);
+		if (isInited) {
+			return (SoftPackage) EPackage.Registry.INSTANCE.getEPackage(SoftPackage.eNS_URI);
+		}
 
 		// Obtain or create and register package
 		Object registeredSoftPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
-		SoftPackageImpl theSoftPackage = registeredSoftPackage instanceof SoftPackageImpl ? (SoftPackageImpl)registeredSoftPackage : new SoftPackageImpl();
+		SoftPackageImpl theSoftPackage = registeredSoftPackage instanceof SoftPackageImpl ? (SoftPackageImpl) registeredSoftPackage : new SoftPackageImpl();
 
 		isInited = true;
 
@@ -139,6 +133,7 @@ public class SoftPackageImpl extends EPackageImpl implements SoftPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSoftLayer() {
 		return softLayerEClass;
 	}
@@ -148,8 +143,9 @@ public class SoftPackageImpl extends EPackageImpl implements SoftPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSoftLayer_Base_Class() {
-		return (EReference)softLayerEClass.getEStructuralFeatures().get(0);
+		return (EReference) softLayerEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -157,6 +153,7 @@ public class SoftPackageImpl extends EPackageImpl implements SoftPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSoft() {
 		return softEClass;
 	}
@@ -166,8 +163,9 @@ public class SoftPackageImpl extends EPackageImpl implements SoftPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSoft_Base_Property() {
-		return (EReference)softEClass.getEStructuralFeatures().get(0);
+		return (EReference) softEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -175,8 +173,9 @@ public class SoftPackageImpl extends EPackageImpl implements SoftPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSoft_Version() {
-		return (EAttribute)softEClass.getEStructuralFeatures().get(1);
+		return (EAttribute) softEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -184,6 +183,7 @@ public class SoftPackageImpl extends EPackageImpl implements SoftPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCommunication() {
 		return communicationEClass;
 	}
@@ -193,8 +193,9 @@ public class SoftPackageImpl extends EPackageImpl implements SoftPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCommunication_Base_Connector() {
-		return (EReference)communicationEClass.getEStructuralFeatures().get(0);
+		return (EReference) communicationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -202,8 +203,9 @@ public class SoftPackageImpl extends EPackageImpl implements SoftPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SoftFactory getSoftFactory() {
-		return (SoftFactory)getEFactoryInstance();
+		return (SoftFactory) getEFactoryInstance();
 	}
 
 	/**
@@ -221,7 +223,9 @@ public class SoftPackageImpl extends EPackageImpl implements SoftPackage {
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if (isCreated) {
+			return;
+		}
 		isCreated = true;
 
 		// Create classes and their features
@@ -251,7 +255,9 @@ public class SoftPackageImpl extends EPackageImpl implements SoftPackage {
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if (isInitialized) {
+			return;
+		}
 		isInitialized = true;
 
 		// Initialize package
@@ -260,8 +266,8 @@ public class SoftPackageImpl extends EPackageImpl implements SoftPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
-		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
+		UMLPackage theUMLPackage = (UMLPackage) EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
+		TypesPackage theTypesPackage = (TypesPackage) EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -270,15 +276,16 @@ public class SoftPackageImpl extends EPackageImpl implements SoftPackage {
 		// Add supertypes to classes
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(softLayerEClass, SoftLayer.class, "SoftLayer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSoftLayer_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 0, 1, SoftLayer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(softLayerEClass, SoftLayer.class, "SoftLayer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getSoftLayer_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 0, 1, SoftLayer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(softEClass, Soft.class, "Soft", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSoft_Base_Property(), theUMLPackage.getProperty(), null, "base_Property", null, 0, 1, Soft.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getSoft_Version(), theTypesPackage.getString(), "version", null, 1, 1, Soft.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(softEClass, Soft.class, "Soft", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getSoft_Base_Property(), theUMLPackage.getProperty(), null, "base_Property", null, 0, 1, Soft.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getSoft_Version(), theTypesPackage.getString(), "version", null, 1, 1, Soft.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(communicationEClass, Communication.class, "Communication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCommunication_Base_Connector(), theUMLPackage.getConnector(), null, "base_Connector", null, 0, 1, Communication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(communicationEClass, Communication.class, "Communication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getCommunication_Base_Connector(), theUMLPackage.getConnector(), null, "base_Connector", null, 0, 1, Communication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, //$NON-NLS-1$
+				!IS_DERIVED, !IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

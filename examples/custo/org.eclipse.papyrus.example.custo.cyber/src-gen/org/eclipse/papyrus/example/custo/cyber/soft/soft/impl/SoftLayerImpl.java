@@ -1,17 +1,16 @@
 /**
- * 
- *   Copyright (c) 2021 CEA LIST.
- *    
- *   All rights reserved. This program and the accompanying materials
- *   are made available under the terms of the Eclipse Public License 2.0
- *   which accompanies this distribution, and is available at
- *   https://www.eclipse.org/legal/epl-2.0/
- *  
- *   SPDX-License-Identifier: EPL-2.0
- *    
- *  Contributors:
- *  	Patrick Tessier 	(CEA LIST) - Initial API and implementation
- *  
+ * Copyright (c) 2021 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *    Patrick Tessier (CEA LIST) - Initial API and implementation
+ *
  */
 package org.eclipse.papyrus.example.custo.cyber.soft.soft.impl;
 
@@ -40,13 +39,6 @@ import org.eclipse.papyrus.example.custo.cyber.soft.soft.SoftPackage;
  * @generated
  */
 public class SoftLayerImpl extends MinimalEObjectImpl.Container implements SoftLayer {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "\n  Copyright (c) 2021 CEA LIST.\n   \n  All rights reserved. This program and the accompanying materials\n  are made available under the terms of the Eclipse Public License 2.0\n  which accompanies this distribution, and is available at\n  https://www.eclipse.org/legal/epl-2.0/\n \n  SPDX-License-Identifier: EPL-2.0\n   \n Contributors:\n \tPatrick Tessier \t(CEA LIST) - Initial API and implementation\n ";
-
 	/**
 	 * The cached value of the '{@link #getBase_Class() <em>Base Class</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -81,13 +73,15 @@ public class SoftLayerImpl extends MinimalEObjectImpl.Container implements SoftL
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public org.eclipse.uml2.uml.Class getBase_Class() {
 		if (base_Class != null && base_Class.eIsProxy()) {
-			InternalEObject oldBase_Class = (InternalEObject)base_Class;
-			base_Class = (org.eclipse.uml2.uml.Class)eResolveProxy(oldBase_Class);
+			InternalEObject oldBase_Class = (InternalEObject) base_Class;
+			base_Class = (org.eclipse.uml2.uml.Class) eResolveProxy(oldBase_Class);
 			if (base_Class != oldBase_Class) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SoftPackage.SOFT_LAYER__BASE_CLASS, oldBase_Class, base_Class));
+				}
 			}
 		}
 		return base_Class;
@@ -107,11 +101,13 @@ public class SoftLayerImpl extends MinimalEObjectImpl.Container implements SoftL
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBase_Class(org.eclipse.uml2.uml.Class newBase_Class) {
 		org.eclipse.uml2.uml.Class oldBase_Class = base_Class;
 		base_Class = newBase_Class;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SoftPackage.SOFT_LAYER__BASE_CLASS, oldBase_Class, base_Class));
+		}
 	}
 
 	/**
@@ -122,9 +118,11 @@ public class SoftLayerImpl extends MinimalEObjectImpl.Container implements SoftL
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SoftPackage.SOFT_LAYER__BASE_CLASS:
-				if (resolve) return getBase_Class();
-				return basicGetBase_Class();
+		case SoftPackage.SOFT_LAYER__BASE_CLASS:
+			if (resolve) {
+				return getBase_Class();
+			}
+			return basicGetBase_Class();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -137,9 +135,9 @@ public class SoftLayerImpl extends MinimalEObjectImpl.Container implements SoftL
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SoftPackage.SOFT_LAYER__BASE_CLASS:
-				setBase_Class((org.eclipse.uml2.uml.Class)newValue);
-				return;
+		case SoftPackage.SOFT_LAYER__BASE_CLASS:
+			setBase_Class((org.eclipse.uml2.uml.Class) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -152,9 +150,9 @@ public class SoftLayerImpl extends MinimalEObjectImpl.Container implements SoftL
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SoftPackage.SOFT_LAYER__BASE_CLASS:
-				setBase_Class((org.eclipse.uml2.uml.Class)null);
-				return;
+		case SoftPackage.SOFT_LAYER__BASE_CLASS:
+			setBase_Class((org.eclipse.uml2.uml.Class) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -167,8 +165,8 @@ public class SoftLayerImpl extends MinimalEObjectImpl.Container implements SoftL
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SoftPackage.SOFT_LAYER__BASE_CLASS:
-				return base_Class != null;
+		case SoftPackage.SOFT_LAYER__BASE_CLASS:
+			return base_Class != null;
 		}
 		return super.eIsSet(featureID);
 	}

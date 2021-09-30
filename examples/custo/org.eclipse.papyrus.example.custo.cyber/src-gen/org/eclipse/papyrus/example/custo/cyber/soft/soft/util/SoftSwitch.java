@@ -1,17 +1,16 @@
 /**
- * 
- *   Copyright (c) 2021 CEA LIST.
- *    
- *   All rights reserved. This program and the accompanying materials
- *   are made available under the terms of the Eclipse Public License 2.0
- *   which accompanies this distribution, and is available at
- *   https://www.eclipse.org/legal/epl-2.0/
- *  
- *   SPDX-License-Identifier: EPL-2.0
- *    
- *  Contributors:
- *  	Patrick Tessier 	(CEA LIST) - Initial API and implementation
- *  
+ * Copyright (c) 2021 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *    Patrick Tessier (CEA LIST) - Initial API and implementation
+ *
  */
 package org.eclipse.papyrus.example.custo.cyber.soft.soft.util;
 
@@ -36,13 +35,6 @@ import org.eclipse.papyrus.example.custo.cyber.soft.soft.*;
  * @generated
  */
 public class SoftSwitch<T> extends Switch<T> {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "\n  Copyright (c) 2021 CEA LIST.\n   \n  All rights reserved. This program and the accompanying materials\n  are made available under the terms of the Eclipse Public License 2.0\n  which accompanies this distribution, and is available at\n  https://www.eclipse.org/legal/epl-2.0/\n \n  SPDX-License-Identifier: EPL-2.0\n   \n Contributors:\n \tPatrick Tessier \t(CEA LIST) - Initial API and implementation\n ";
-
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -86,25 +78,32 @@ public class SoftSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case SoftPackage.SOFT_LAYER: {
-				SoftLayer softLayer = (SoftLayer)theEObject;
-				T result = caseSoftLayer(softLayer);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
+		case SoftPackage.SOFT_LAYER: {
+			SoftLayer softLayer = (SoftLayer) theEObject;
+			T result = caseSoftLayer(softLayer);
+			if (result == null) {
+				result = defaultCase(theEObject);
 			}
-			case SoftPackage.SOFT: {
-				Soft soft = (Soft)theEObject;
-				T result = caseSoft(soft);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
+			return result;
+		}
+		case SoftPackage.SOFT: {
+			Soft soft = (Soft) theEObject;
+			T result = caseSoft(soft);
+			if (result == null) {
+				result = defaultCase(theEObject);
 			}
-			case SoftPackage.COMMUNICATION: {
-				Communication communication = (Communication)theEObject;
-				T result = caseCommunication(communication);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
+			return result;
+		}
+		case SoftPackage.COMMUNICATION: {
+			Communication communication = (Communication) theEObject;
+			T result = caseCommunication(communication);
+			if (result == null) {
+				result = defaultCase(theEObject);
 			}
-			default: return defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 

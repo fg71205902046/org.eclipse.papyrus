@@ -1,17 +1,16 @@
 /**
- * 
- *   Copyright (c) 2021 CEA LIST.
- *    
- *   All rights reserved. This program and the accompanying materials
- *   are made available under the terms of the Eclipse Public License 2.0
- *   which accompanies this distribution, and is available at
- *   https://www.eclipse.org/legal/epl-2.0/
- *  
- *   SPDX-License-Identifier: EPL-2.0
- *    
- *  Contributors:
- *  	Patrick Tessier 	(CEA LIST) - Initial API and implementation
- *  
+ * Copyright (c) 2021 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *    Patrick Tessier (CEA LIST) - Initial API and implementation
+ *
  */
 package org.eclipse.papyrus.example.custo.cyber.soft.soft.impl;
 
@@ -42,13 +41,6 @@ import org.eclipse.uml2.uml.Connector;
  * @generated
  */
 public class CommunicationImpl extends MinimalEObjectImpl.Container implements Communication {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "\n  Copyright (c) 2021 CEA LIST.\n   \n  All rights reserved. This program and the accompanying materials\n  are made available under the terms of the Eclipse Public License 2.0\n  which accompanies this distribution, and is available at\n  https://www.eclipse.org/legal/epl-2.0/\n \n  SPDX-License-Identifier: EPL-2.0\n   \n Contributors:\n \tPatrick Tessier \t(CEA LIST) - Initial API and implementation\n ";
-
 	/**
 	 * The cached value of the '{@link #getBase_Connector() <em>Base Connector</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -83,13 +75,15 @@ public class CommunicationImpl extends MinimalEObjectImpl.Container implements C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Connector getBase_Connector() {
 		if (base_Connector != null && base_Connector.eIsProxy()) {
-			InternalEObject oldBase_Connector = (InternalEObject)base_Connector;
-			base_Connector = (Connector)eResolveProxy(oldBase_Connector);
+			InternalEObject oldBase_Connector = (InternalEObject) base_Connector;
+			base_Connector = (Connector) eResolveProxy(oldBase_Connector);
 			if (base_Connector != oldBase_Connector) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SoftPackage.COMMUNICATION__BASE_CONNECTOR, oldBase_Connector, base_Connector));
+				}
 			}
 		}
 		return base_Connector;
@@ -109,11 +103,13 @@ public class CommunicationImpl extends MinimalEObjectImpl.Container implements C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBase_Connector(Connector newBase_Connector) {
 		Connector oldBase_Connector = base_Connector;
 		base_Connector = newBase_Connector;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SoftPackage.COMMUNICATION__BASE_CONNECTOR, oldBase_Connector, base_Connector));
+		}
 	}
 
 	/**
@@ -124,9 +120,11 @@ public class CommunicationImpl extends MinimalEObjectImpl.Container implements C
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SoftPackage.COMMUNICATION__BASE_CONNECTOR:
-				if (resolve) return getBase_Connector();
-				return basicGetBase_Connector();
+		case SoftPackage.COMMUNICATION__BASE_CONNECTOR:
+			if (resolve) {
+				return getBase_Connector();
+			}
+			return basicGetBase_Connector();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -139,9 +137,9 @@ public class CommunicationImpl extends MinimalEObjectImpl.Container implements C
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SoftPackage.COMMUNICATION__BASE_CONNECTOR:
-				setBase_Connector((Connector)newValue);
-				return;
+		case SoftPackage.COMMUNICATION__BASE_CONNECTOR:
+			setBase_Connector((Connector) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -154,9 +152,9 @@ public class CommunicationImpl extends MinimalEObjectImpl.Container implements C
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SoftPackage.COMMUNICATION__BASE_CONNECTOR:
-				setBase_Connector((Connector)null);
-				return;
+		case SoftPackage.COMMUNICATION__BASE_CONNECTOR:
+			setBase_Connector((Connector) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -169,8 +167,8 @@ public class CommunicationImpl extends MinimalEObjectImpl.Container implements C
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SoftPackage.COMMUNICATION__BASE_CONNECTOR:
-				return base_Connector != null;
+		case SoftPackage.COMMUNICATION__BASE_CONNECTOR:
+			return base_Connector != null;
 		}
 		return super.eIsSet(featureID);
 	}

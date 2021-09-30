@@ -1,17 +1,16 @@
 /**
- * 
- *   Copyright (c) 2021 CEA LIST.
- *    
- *   All rights reserved. This program and the accompanying materials
- *   are made available under the terms of the Eclipse Public License 2.0
- *   which accompanies this distribution, and is available at
- *   https://www.eclipse.org/legal/epl-2.0/
- *  
- *   SPDX-License-Identifier: EPL-2.0
- *    
- *  Contributors:
- *  	Patrick Tessier 	(CEA LIST) - Initial API and implementation
- *  
+ * Copyright (c) 2021 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *    Patrick Tessier (CEA LIST) - Initial API and implementation
+ *
  */
 package org.eclipse.papyrus.example.custo.cyber.soft.soft.impl;
 
@@ -43,13 +42,6 @@ import org.eclipse.uml2.uml.Property;
  * @generated
  */
 public class SoftImpl extends MinimalEObjectImpl.Container implements Soft {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "\n  Copyright (c) 2021 CEA LIST.\n   \n  All rights reserved. This program and the accompanying materials\n  are made available under the terms of the Eclipse Public License 2.0\n  which accompanies this distribution, and is available at\n  https://www.eclipse.org/legal/epl-2.0/\n \n  SPDX-License-Identifier: EPL-2.0\n   \n Contributors:\n \tPatrick Tessier \t(CEA LIST) - Initial API and implementation\n ";
-
 	/**
 	 * The cached value of the '{@link #getBase_Property() <em>Base Property</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -104,13 +96,15 @@ public class SoftImpl extends MinimalEObjectImpl.Container implements Soft {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Property getBase_Property() {
 		if (base_Property != null && base_Property.eIsProxy()) {
-			InternalEObject oldBase_Property = (InternalEObject)base_Property;
-			base_Property = (Property)eResolveProxy(oldBase_Property);
+			InternalEObject oldBase_Property = (InternalEObject) base_Property;
+			base_Property = (Property) eResolveProxy(oldBase_Property);
 			if (base_Property != oldBase_Property) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SoftPackage.SOFT__BASE_PROPERTY, oldBase_Property, base_Property));
+				}
 			}
 		}
 		return base_Property;
@@ -130,11 +124,13 @@ public class SoftImpl extends MinimalEObjectImpl.Container implements Soft {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBase_Property(Property newBase_Property) {
 		Property oldBase_Property = base_Property;
 		base_Property = newBase_Property;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SoftPackage.SOFT__BASE_PROPERTY, oldBase_Property, base_Property));
+		}
 	}
 
 	/**
@@ -142,6 +138,7 @@ public class SoftImpl extends MinimalEObjectImpl.Container implements Soft {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getVersion() {
 		return version;
 	}
@@ -151,11 +148,13 @@ public class SoftImpl extends MinimalEObjectImpl.Container implements Soft {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVersion(String newVersion) {
 		String oldVersion = version;
 		version = newVersion;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SoftPackage.SOFT__VERSION, oldVersion, version));
+		}
 	}
 
 	/**
@@ -166,11 +165,13 @@ public class SoftImpl extends MinimalEObjectImpl.Container implements Soft {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SoftPackage.SOFT__BASE_PROPERTY:
-				if (resolve) return getBase_Property();
-				return basicGetBase_Property();
-			case SoftPackage.SOFT__VERSION:
-				return getVersion();
+		case SoftPackage.SOFT__BASE_PROPERTY:
+			if (resolve) {
+				return getBase_Property();
+			}
+			return basicGetBase_Property();
+		case SoftPackage.SOFT__VERSION:
+			return getVersion();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -183,12 +184,12 @@ public class SoftImpl extends MinimalEObjectImpl.Container implements Soft {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SoftPackage.SOFT__BASE_PROPERTY:
-				setBase_Property((Property)newValue);
-				return;
-			case SoftPackage.SOFT__VERSION:
-				setVersion((String)newValue);
-				return;
+		case SoftPackage.SOFT__BASE_PROPERTY:
+			setBase_Property((Property) newValue);
+			return;
+		case SoftPackage.SOFT__VERSION:
+			setVersion((String) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -201,12 +202,12 @@ public class SoftImpl extends MinimalEObjectImpl.Container implements Soft {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SoftPackage.SOFT__BASE_PROPERTY:
-				setBase_Property((Property)null);
-				return;
-			case SoftPackage.SOFT__VERSION:
-				setVersion(VERSION_EDEFAULT);
-				return;
+		case SoftPackage.SOFT__BASE_PROPERTY:
+			setBase_Property((Property) null);
+			return;
+		case SoftPackage.SOFT__VERSION:
+			setVersion(VERSION_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -219,10 +220,10 @@ public class SoftImpl extends MinimalEObjectImpl.Container implements Soft {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SoftPackage.SOFT__BASE_PROPERTY:
-				return base_Property != null;
-			case SoftPackage.SOFT__VERSION:
-				return VERSION_EDEFAULT == null ? version != null : !VERSION_EDEFAULT.equals(version);
+		case SoftPackage.SOFT__BASE_PROPERTY:
+			return base_Property != null;
+		case SoftPackage.SOFT__VERSION:
+			return VERSION_EDEFAULT == null ? version != null : !VERSION_EDEFAULT.equals(version);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -234,10 +235,12 @@ public class SoftImpl extends MinimalEObjectImpl.Container implements Soft {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (version: ");
+		result.append(" (version: "); //$NON-NLS-1$
 		result.append(version);
 		result.append(')');
 		return result.toString();

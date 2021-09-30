@@ -1,17 +1,16 @@
 /**
- * 
- *   Copyright (c) 2021 CEA LIST.
- *    
- *   All rights reserved. This program and the accompanying materials
- *   are made available under the terms of the Eclipse Public License 2.0
- *   which accompanies this distribution, and is available at
- *   https://www.eclipse.org/legal/epl-2.0/
- *  
- *   SPDX-License-Identifier: EPL-2.0
- *    
- *  Contributors:
- *  	Patrick Tessier 	(CEA LIST) - Initial API and implementation
- *  
+ * Copyright (c) 2021 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *    Patrick Tessier (CEA LIST) - Initial API and implementation
+ *
  */
 package org.eclipse.papyrus.example.custo.cyber.soft.soft.util;
 
@@ -33,13 +32,6 @@ import org.eclipse.papyrus.example.custo.cyber.soft.soft.*;
  * @generated
  */
 public class SoftAdapterFactory extends AdapterFactoryImpl {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String copyright = "\n  Copyright (c) 2021 CEA LIST.\n   \n  All rights reserved. This program and the accompanying materials\n  are made available under the terms of the Eclipse Public License 2.0\n  which accompanies this distribution, and is available at\n  https://www.eclipse.org/legal/epl-2.0/\n \n  SPDX-License-Identifier: EPL-2.0\n   \n Contributors:\n \tPatrick Tessier \t(CEA LIST) - Initial API and implementation\n ";
-
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
@@ -74,7 +66,7 @@ public class SoftAdapterFactory extends AdapterFactoryImpl {
 			return true;
 		}
 		if (object instanceof EObject) {
-			return ((EObject)object).eClass().getEPackage() == modelPackage;
+			return ((EObject) object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -85,25 +77,27 @@ public class SoftAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SoftSwitch<Adapter> modelSwitch =
-		new SoftSwitch<Adapter>() {
-			@Override
-			public Adapter caseSoftLayer(SoftLayer object) {
-				return createSoftLayerAdapter();
-			}
-			@Override
-			public Adapter caseSoft(Soft object) {
-				return createSoftAdapter();
-			}
-			@Override
-			public Adapter caseCommunication(Communication object) {
-				return createCommunicationAdapter();
-			}
-			@Override
-			public Adapter defaultCase(EObject object) {
-				return createEObjectAdapter();
-			}
-		};
+	protected SoftSwitch<Adapter> modelSwitch = new SoftSwitch<>() {
+		@Override
+		public Adapter caseSoftLayer(SoftLayer object) {
+			return createSoftLayerAdapter();
+		}
+
+		@Override
+		public Adapter caseSoft(Soft object) {
+			return createSoftAdapter();
+		}
+
+		@Override
+		public Adapter caseCommunication(Communication object) {
+			return createCommunicationAdapter();
+		}
+
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -115,7 +109,7 @@ public class SoftAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject)target);
+		return modelSwitch.doSwitch((EObject) target);
 	}
 
 
