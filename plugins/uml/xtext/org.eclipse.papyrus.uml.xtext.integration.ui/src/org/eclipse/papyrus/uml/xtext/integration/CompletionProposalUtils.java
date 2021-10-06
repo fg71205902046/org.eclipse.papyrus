@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2021 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -12,7 +12,7 @@
  * Contributors:
  *  CEA LIST - Initial API and implementation
  *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - bug 479041
- *
+ *  Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - bug576474
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.xtext.integration;
@@ -21,8 +21,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.ui.util.DisplayUtils;
+import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForSelection;
+import org.eclipse.papyrus.uml.xtext.integration.ui.Activator;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
@@ -32,10 +39,35 @@ import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 /**
  * @author CEA LIST - Initial contribution and API
  */
-@SuppressWarnings("nls")
 public class CompletionProposalUtils {
 
+	/**
+	 * @deprecated
+	 *             use the method getLabelProvider instead
+	 */
+	@Deprecated(since = "3.1.0", forRemoval = true)
 	protected final static ILabelProvider labelProvider = DisplayUtils.getLabelProvider();
+
+	/**
+	 *
+	 * @param eobject
+	 *            an eobject
+	 * @return
+	 *         the label provider to use for the given eobject
+	 * @since 3.1
+	 */
+	protected final static ILabelProvider getLabelProvider(final EObject eobject) {
+		try {
+			LabelProviderService service = ServiceUtilsForSelection.getInstance().getService(LabelProviderService.class, new StructuredSelection(eobject));
+			if (service != null) {
+				return service.getLabelProvider(eobject);
+			}
+		} catch (ServiceException e) {
+			Activator.log.error("Label provider service not found", e); //$NON-NLS-1$
+		}
+
+		return null;
+	}
 
 	/**
 	 * Public Utility method for creating a completion proposal
@@ -54,13 +86,19 @@ public class CompletionProposalUtils {
 			String completionString,
 			String displayString,
 			ContentAssistContext context) {
-		String additionalProposalInfo = "" + namedElement.getQualifiedName() + "\n" + '(' + namedElement.eClass().getName() + ')'; //$NON-NLS-1$ //$NON-NLS-2$
-
+		final StringBuilder builder = new StringBuilder(namedElement.getQualifiedName());
+		builder.append("\n").append('(').append(namedElement.eClass().getName()).append(')'); //$NON-NLS-1$
+		final String additionalProposalInfo = builder.toString();
+		Image image = null;
+		final ILabelProvider provider = getLabelProvider(namedElement);
+		if (provider != null) {
+			image = provider.getImage(namedElement);
+		}
 		CustomCompletionProposal completionProposal = new CustomCompletionProposal(completionString, // String to be inserted
 				context.getOffset(), // Offset
 				context.getSelectedText().length(), // Replacement length
 				completionString.length(), // cursorPosition
-				labelProvider.getImage(namedElement), // image
+				image, // image
 				" " + displayString, // displayString //$NON-NLS-1$
 				null, // contextInformation
 				additionalProposalInfo, // additionalProposalInfo
@@ -85,13 +123,19 @@ public class CompletionProposalUtils {
 			String completionString,
 			String displayString,
 			ContentAssistContext context) {
-		String additionalProposalInfo = "" + namedElement.getQualifiedName() + "\n" + '(' + namedElement.eClass().getName() + ')'; //$NON-NLS-1$ //$NON-NLS-2$
-
+		final StringBuilder builder = new StringBuilder(namedElement.getQualifiedName());
+		builder.append("\n").append('(').append(namedElement.eClass().getName()).append(')'); //$NON-NLS-1$
+		final String additionalProposalInfo = builder.toString();
+		Image image = null;
+		final ILabelProvider provider = getLabelProvider(namedElement);
+		if (provider != null) {
+			image = provider.getImage(namedElement);
+		}
 		CustomCompletionProposal completionProposal = new CustomCompletionProposal(completionString, // String to be inserted
 				context.getOffset() - context.getPrefix().length(), // Offset
 				context.getPrefix().length(), // Replacement length
 				completionString.length(), // cursorPosition
-				labelProvider.getImage(namedElement), // image
+				image, // image
 				" " + displayString, // displayString //$NON-NLS-1$
 				null, // contextInformation
 				additionalProposalInfo, // additionalProposalInfo
@@ -140,10 +184,10 @@ public class CompletionProposalUtils {
 
 		List<Package> importedPackages = null;
 		if (null != model) {
-			importedPackages = new ArrayList<Package>(model.getImportedPackages());
+			importedPackages = new ArrayList<>(model.getImportedPackages());
 		}
 
-		List<Namespace> visitedNamespaces = new ArrayList<Namespace>();
+		List<Namespace> visitedNamespaces = new ArrayList<>();
 		Namespace currentNamespace = namedElement.getNamespace();
 
 		boolean rootFound = false;
