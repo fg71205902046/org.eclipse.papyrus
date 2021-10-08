@@ -98,7 +98,7 @@ public abstract class AbstractCreateTextDocumentEditorCommand implements ICreate
 		if (null == domain) {
 			return null;
 		}
-		final CreateTextDocumentViewCommand command = createTextDocumentEditorCreationCommand(domain, textDocumentRepresentation, textDocumentName, semanticContext, openAfterCreation);
+		final CreateTextDocumentViewCommand command = createTextDocumentEditorCreationCommand(domain, textDocumentRepresentation, textDocumentName, semanticContext, graphicalContext, openAfterCreation);
 		domain.getCommandStack().execute(command);
 		return command.getCreatedEditorView();
 	}
