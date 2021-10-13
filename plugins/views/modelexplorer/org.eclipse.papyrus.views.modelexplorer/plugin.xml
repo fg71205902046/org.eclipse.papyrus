@@ -202,7 +202,7 @@
        <visibleWhen checkEnabled="true">
        </visibleWhen>
     </command>
-    <command commandId="org.eclipse.papyrus.views.modelexplorer.popup.open.new.command" icon="icons/etool16/arrow_double.gif" id="org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.open.new" label="Open In &amp;New Table" style="push" tooltip="Open in new tab">
+    <command commandId="org.eclipse.papyrus.views.modelexplorer.popup.open.new.command" icon="icons/etool16/arrow_double.gif" id="org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.open.new" label="Open In &amp;New Tab" style="push" tooltip="Open in new tab">
        <visibleWhen checkEnabled="true">
        </visibleWhen>
     </command>
@@ -402,8 +402,6 @@
          </with>
       </activeWhen>
       <class class="org.eclipse.papyrus.views.modelexplorer.handler.OpenHandler">
-         <parameter name="open_parameter" value="close">
-         </parameter>
       </class>
    </handler>
    <handler commandId="org.eclipse.papyrus.views.modelexplorer.popup.open.new.command">
@@ -416,7 +414,7 @@
          </with>
       </activeWhen>
       <class class="org.eclipse.papyrus.views.modelexplorer.handler.OpenHandler">
-         <parameter name="open_parameter" value="already_open">
+         <parameter name="isDuplicateViewAllowed" value="true">
          </parameter>
       </class>
    </handler>

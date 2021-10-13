@@ -18,7 +18,7 @@ Require-Bundle: org.eclipse.emf.databinding;bundle-version="[1.5.0,2.0.0)",
  org.eclipse.papyrus.uml.validation.tests.staticprofile;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.infra.core;bundle-version="[4.0.0,5.0.0)",
  org.eclipse.papyrus.infra.core.log;bundle-version="[2.0.0,3.0.0)",
- org.eclipse.papyrus.views.modelexplorer;bundle-version="[4.0.0,5.0.0)",
+ org.eclipse.papyrus.views.modelexplorer;bundle-version="[5.0.0,6.0.0)",
  org.eclipse.papyrus.infra.widgets;bundle-version="[4.0.0,5.0.0)",
  org.eclipse.papyrus.uml.validation.tests.genvalidation;bundle-version="[2.0.0,3.0.0)"
 Bundle-ActivationPolicy: lazy

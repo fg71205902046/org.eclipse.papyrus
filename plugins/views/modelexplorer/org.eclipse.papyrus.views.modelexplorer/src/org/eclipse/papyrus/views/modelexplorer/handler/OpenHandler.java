@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2021 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,7 +11,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - bug 576595
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer.handler;
 
@@ -41,9 +41,11 @@ public class OpenHandler extends AbstractPapyrusHandler implements IExecutableEx
 
 
 	/**
-	 * Close only the selected elements
+	 * a boolean used to allow to open a second time the same view
+	 *
+	 * @since 5.0
 	 */
-	public static final String IS_DUPLICATE_EDITOR_ALLOWED_PARAMETER = "isDuplicateEditorAllowed"; //$NON-NLS-1$
+	private static final String IS_DUPLICATE_VIEW_ALLOWED_PARAMETER = "isDuplicateViewAllowed"; //$NON-NLS-1$
 
 
 	/**
@@ -51,8 +53,10 @@ public class OpenHandler extends AbstractPapyrusHandler implements IExecutableEx
 	 * opened.
 	 * Return false if open command should not duplicate already opened editor.
 	 * This property can be set from the plugin.xml.
+	 *
+	 * @since 5.0
 	 */
-	protected boolean isDuplicateDiagramAllowed = false;
+	private boolean isDuplicateViewAllowed = false;
 
 
 	/**
@@ -80,13 +84,13 @@ public class OpenHandler extends AbstractPapyrusHandler implements IExecutableEx
 		}
 
 		// Check each selected object
-		final List<EObject> pagesToOpen = new LinkedList<EObject>();
-		List<EObject> pagesToSelect = new LinkedList<EObject>();
+		final List<EObject> pagesToOpen = new LinkedList<>();
+		List<EObject> pagesToSelect = new LinkedList<>();
 		for (EObject selected : selectedProperties) {
 			if (!canOpenByPolicy(selected)) {
 				continue;
 			}
-			if (!pageManager.isOpen(selected) || isDuplicateDiagramAllowed) {
+			if (!pageManager.isOpen(selected) || this.isDuplicateViewAllowed) {
 				pagesToOpen.add(selected);
 			} else {
 				pagesToSelect.add(selected);
@@ -132,20 +136,16 @@ public class OpenHandler extends AbstractPapyrusHandler implements IExecutableEx
 	 * @throws CoreException
 	 */
 	@Override
-	public void setInitializationData(IConfigurationElement config, String propertyName, Object data) throws CoreException {
-		if (!(data instanceof Hashtable)) {
+	public void setInitializationData(final IConfigurationElement config, final String propertyName, final Object data) throws CoreException {
+		if (!(data instanceof Hashtable<?, ?>)) {
 			return;
 		}
 
-		@SuppressWarnings("rawtypes")
-		Hashtable map = (Hashtable) data;
-
-		try {
-			isDuplicateDiagramAllowed = Boolean.parseBoolean((String) map.get(IS_DUPLICATE_EDITOR_ALLOWED_PARAMETER));
-		} catch (Exception e) {
-			// silently fail;
+		final Hashtable<?, ?> map = (Hashtable<?, ?>) data;
+		final Object value = map.get(IS_DUPLICATE_VIEW_ALLOWED_PARAMETER);
+		if (value != null) {
+			this.isDuplicateViewAllowed = Boolean.parseBoolean(value.toString());
 		}
 	}
-
 
 }
