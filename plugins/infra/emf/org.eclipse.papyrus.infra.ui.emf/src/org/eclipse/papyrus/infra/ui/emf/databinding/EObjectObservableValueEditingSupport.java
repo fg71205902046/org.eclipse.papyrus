@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016, 2017 CEA LIST, Esterel Technologies SAS and others.
+ * Copyright (c) 2016, 2017, 2021 CEA LIST, Esterel Technologies SAS and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -13,6 +13,7 @@
  *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 515491
  *   Sebastien Gabel (Esterel Technologies SAS) - Bug 519143 (Fix NPE)
  *   Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 521908
+ *   Asma SMAOUI (CEA LIST) asma.smaoui@cea.fr - Bug 576650
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.ui.emf.databinding;
@@ -22,6 +23,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.databinding.EObjectObservableValue;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
@@ -214,7 +216,7 @@ public class EObjectObservableValueEditingSupport extends EditingSupport {
 
 	/**
 	 * Return Multi value when the feature is UnlimitedNatural. Replace '-1' by '*'.
-	 * 
+	 *
 	 * @param object
 	 *            The old value.
 	 * @return The value to return.
@@ -222,7 +224,7 @@ public class EObjectObservableValueEditingSupport extends EditingSupport {
 	 */
 	protected Object getMultiUnlimitedNaturalValue(final Object objects) {
 		if (objects instanceof List<?>) {
-			List<Object> objectToReturn = new ArrayList<Object>();
+			List<Object> objectToReturn = new ArrayList<>();
 			if (objects instanceof List<?>) {
 				for (int i = 0; i < ((List<?>) objects).size(); i++) {
 					Object object = ((List<?>) objects).get(i);
@@ -306,15 +308,17 @@ public class EObjectObservableValueEditingSupport extends EditingSupport {
 			element.setValue(null);
 		} else {
 			if (value instanceof Collection<?>) {
-				List<EEnumLiteral> literalsToSet = new ArrayList<EEnumLiteral>();
+				List<Enumerator> literalsToSet = new ArrayList<>();
 				for (Object object : ((Collection<Object>) value)) {
 					if (object instanceof EEnumLiteral) {
-						literalsToSet.add((EEnumLiteral) object);
+						//bug 576650 : get(index).getInstance(), (works with static and dynamic profile)
+						literalsToSet.add(((EEnumLiteral) object).getInstance());
 					} else if (object instanceof Integer) {
 						// retrieve the index of the current value in the list
 						int index = (Integer) value;
 						if (index >= 0 && index < literals.size()) {
-							literalsToSet.add(literals.get(index));
+							//bug 576650 : get(index).getInstance(), (works with static and dynamic profile)
+							literalsToSet.add(literals.get(index).getInstance());
 						}
 					}
 				}
@@ -327,7 +331,8 @@ public class EObjectObservableValueEditingSupport extends EditingSupport {
 
 				// Just set the new value if it is different from the old one
 				if (index >= 0 && index < literals.size() && !element.getValue().toString().equals(literals.get(index).getLiteral())) {
-					element.setValue(literals.get(index));
+					//bug 576650 : get(index).getInstance(), (works with static and dynamic profile)
+					element.setValue(literals.get(index).getInstance());
 				}
 			}
 		}
