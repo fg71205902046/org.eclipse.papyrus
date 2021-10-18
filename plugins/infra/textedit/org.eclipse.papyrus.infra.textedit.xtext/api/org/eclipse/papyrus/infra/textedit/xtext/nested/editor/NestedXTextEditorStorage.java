@@ -117,8 +117,9 @@ public class NestedXTextEditorStorage implements IStorage {
 		uri = uri.appendSegment("nested"); //$NON-NLS-1$ // to be consistent with XText in ViewProperty. In this case the fake resource is called "embedded"
 		uri = uri.appendSegment(xmiID);
 		uri = uri.appendFileExtension(this.fileExtension); // not really used, but to be consistent with the real used grammar
-		final String platformString = uri.toPlatformString(true);
-		return new Path(platformString);
+		// toPlatformString returns null for CDO models
+		// final String platformString = uri.toPlatformString(true);
+		return new Path(uri.path());
 	}
 
 	/**
