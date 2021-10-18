@@ -599,6 +599,7 @@ public class UMLElementTypes {
 			elements.put(TemplateBinding_Edge, UMLPackage.eINSTANCE.getTemplateBinding());
 			elements.put(GeneralizationSet_Edge, UMLPackage.eINSTANCE.getGeneralizationSet());
 			elements.put(InstanceSpecification_Edge, UMLPackage.eINSTANCE.getInstanceSpecification());
+			elements.put(Element_ContainmentEdge, UMLPackage.eINSTANCE.getElement_OwnedElement());
 			elements.put(TimeObservation_EventEdge, UMLPackage.eINSTANCE.getTimeObservation_Event());
 			elements.put(DurationObservation_EventEdge, UMLPackage.eINSTANCE.getDurationObservation_Event());
 			elements.put(InformationFlow_Edge, UMLPackage.eINSTANCE.getInformationFlow());

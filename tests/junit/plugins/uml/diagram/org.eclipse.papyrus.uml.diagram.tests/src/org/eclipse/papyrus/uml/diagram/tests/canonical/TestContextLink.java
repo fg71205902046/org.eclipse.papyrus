@@ -61,7 +61,7 @@ public abstract class TestContextLink extends TestLink {
 		testDropConstraint();
 	}
 
-	//FIXME : this override must be removed and fixed!
+	// FIXME : this override must be removed and fixed!
 	@Override
 	public void testViewDeletion(IElementType type) {
 		testDestroy(type);
@@ -76,7 +76,7 @@ public abstract class TestContextLink extends TestLink {
 		assertEquals(DESTROY_DELETION + INITIALIZATION_TEST, createdEdgesCount, getDiagramEditPart().getConnections().size());
 		ConnectionEditPart linkEditPart = (ConnectionEditPart) getDiagramEditPart().getConnections().get(0);
 
-		//Request deleteViewRequest = new GroupRequest(RequestConstants.REQ_DELETE);
+		// Request deleteViewRequest = new GroupRequest(RequestConstants.REQ_DELETE);
 		Command command = linkEditPart.getCommand((new EditCommandRequestWrapper(new DestroyElementRequest(false))));
 		assertNotNull(DESTROY_DELETION + COMMAND_NULL, command);
 		assertTrue(DESTROY_DELETION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
@@ -123,9 +123,9 @@ public abstract class TestContextLink extends TestLink {
 	private void testDropConstraint() {
 		assertEquals(DROP + INITIALIZATION_TEST, 3, getRootEditPart().getChildren().size());
 		assertEquals(DROP + INITIALIZATION_TEST, rootSemanticOwnedElements, getRootSemanticModel().getOwnedElements().size());
-		assertEquals(CREATION + INITIALIZATION_TEST, 0, calculateDiagramEdgesCount());
+		assertEquals(DROP + INITIALIZATION_TEST, 0, calculateDiagramEdgesCount());
 		DropObjectsRequest dropObjectsRequest = new DropObjectsRequest();
-		ArrayList<Element> list = new ArrayList<Element>();
+		ArrayList<Element> list = new ArrayList<>();
 		list.add(((Element) target.resolveSemanticElement()).getOwnedElements().get(0));
 		dropObjectsRequest.setObjects(list);
 		dropObjectsRequest.setLocation(new Point(20, 20));

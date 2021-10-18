@@ -35,7 +35,7 @@ TestClassDiagramLinkOwnedBySource.class,
 // multilinks
 TestMultiLink.class,
 //containmentLink
-TestClassDiagramContainment.class,
+TestClassDiagramContainmentLink.class,
 //contextLink
 TestClassDiagramContextLink.class,
 //test the order for the drop

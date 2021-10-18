@@ -280,8 +280,17 @@ public class UMLBaseItemSemanticEditPolicy extends AbstractBaseItemSemanticEditP
 		/**
 		 * @generated
 		 */
-		public boolean canCreateElement_ContainmentEdge() {
-			return canExistElement_ContainmentEdge();
+		public boolean canCreateElement_ContainmentEdge(Element source, Element target) {
+			if (source != null) {
+				if (source.getOwnedElements()
+						.contains(target)) {
+					return false;
+				}
+			}
+			if (target != null && (target.getOwner() != null)) {
+				return false;
+			}
+			return canExistElement_ContainmentEdge(source, target);
 		}
 
 		/**
@@ -485,7 +494,7 @@ public class UMLBaseItemSemanticEditPolicy extends AbstractBaseItemSemanticEditP
 		/**
 		 * @generated
 		 */
-		public boolean canExistElement_ContainmentEdge() {
+		public boolean canExistElement_ContainmentEdge(Element source, Element target) {
 			return true;
 		}
 

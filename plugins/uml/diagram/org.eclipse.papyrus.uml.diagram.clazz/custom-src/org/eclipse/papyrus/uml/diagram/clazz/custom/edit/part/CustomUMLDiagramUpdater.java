@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2017 CEA LIST.
- *
+ * Copyright (c) 2014, 2017, 2021 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,6 +11,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 515201
+ *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Bug 563212
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part;
@@ -31,6 +31,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.util.AssociationUtil;
 import org.eclipse.uml2.uml.Association;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Type;
 
@@ -152,5 +153,28 @@ public class CustomUMLDiagramUpdater extends UMLDiagramUpdater {
 		}
 
 		protected abstract boolean check(Type source, Type target);
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramUpdater#getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(org.eclipse.uml2.uml.Element)
+	 *
+	 * @param source
+	 * @return
+	 */
+	@Override
+	protected Collection<UMLLinkDescriptor> getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(Element source) {
+		return Collections.emptyList();// this prevent to have containment link in canonical mode
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramUpdater#getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(org.eclipse.uml2.uml.Element, org.eclipse.gmf.runtime.emf.core.util.CrossReferenceAdapter)
+	 *
+	 * @param target
+	 * @param crossReferencer
+	 * @return
+	 */
+	@Override
+	protected Collection<UMLLinkDescriptor> getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(Element target, CrossReferenceAdapter crossReferencer) {
+		return Collections.emptyList();// this prevent to have containment link in canonical mode
 	}
 }

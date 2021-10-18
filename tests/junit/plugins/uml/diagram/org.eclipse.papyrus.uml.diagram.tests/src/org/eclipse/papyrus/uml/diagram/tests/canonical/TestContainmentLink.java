@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2009, 2021 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,10 +11,12 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
+ *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Bug 563212
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.tests.canonical;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -34,6 +36,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Model;
 
 public abstract class TestContainmentLink extends TestLink {
 
@@ -46,7 +49,7 @@ public abstract class TestContainmentLink extends TestLink {
 	@Override
 	public void testViewDeletion(IElementType type) {
 		// DELETION OF THE VIEW
-		assertTrue(CREATION + INITIALIZATION_TEST, ((Diagram) getRootView()).getEdges().size() == 1);
+		assertTrue(VIEW_DELETION + INITIALIZATION_TEST, ((Diagram) getRootView()).getEdges().size() == 1);
 		assertTrue(VIEW_DELETION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 3);
 		assertTrue(VIEW_DELETION + INITIALIZATION_TEST, ((Element) source.resolveSemanticElement()).getOwnedElements().size() == 1);
 		Request deleteViewRequest = new GroupRequest(RequestConstants.REQ_DELETE);
@@ -77,14 +80,26 @@ public abstract class TestContainmentLink extends TestLink {
 	@Override
 	public void testDestroy(IElementType type) {
 		// DESTROY SEMANTIC+ VIEW
-		assertTrue(CREATION + INITIALIZATION_TEST, ((Diagram) getRootView()).getEdges().size() == 1);
-		assertTrue(CREATION + INITIALIZATION_TEST, ((Element) source.resolveSemanticElement()).getOwnedElements().size() == 1);
+		assertTrue(DESTROY_DELETION + INITIALIZATION_TEST, ((Diagram) getRootView()).getEdges().size() == 1);
+		assertTrue(DESTROY_DELETION + INITIALIZATION_TEST, ((Element) source.resolveSemanticElement()).getOwnedElements().size() == 1);
 		assertTrue(DESTROY_DELETION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 3);
 		Request deleteViewRequest = new EditCommandRequestWrapper(new DestroyElementRequest(false));
 		Command command = ((ConnectionEditPart) source.getSourceConnections().get(0)).getCommand(deleteViewRequest);
-		// ContainmentLink cannot be destroyed
-		assertTrue(DESTROY_DELETION + COMMAND_NULL, command == null);
-
+		assertNotNull(DESTROY_DELETION + COMMAND_NULL, command);
+		assertTrue(DESTROY_DELETION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
+		assertTrue(DESTROY_DELETION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
+		assertTrue(DESTROY_DELETION + TEST_THE_EXECUTION, ((Diagram) getRootView()).getEdges().size() == 0);
+		assertTrue(DESTROY_DELETION + TEST_THE_EXECUTION, ((Element) source.resolveSemanticElement()).getOwnedElements().size() == 0); // old container
+		assertTrue(DESTROY_DELETION + TEST_THE_EXECUTION, getRootSemanticModel().getOwnedElements().size() == 4); // new container
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
+		assertTrue(DESTROY_DELETION + TEST_THE_UNDO, ((Diagram) getRootView()).getEdges().size() == 1);
+		assertTrue(DESTROY_DELETION + TEST_THE_UNDO, ((Element) source.resolveSemanticElement()).getOwnedElements().size() == 1);
+		assertTrue(DESTROY_DELETION + TEST_THE_UNDO, getRootSemanticModel().getOwnedElements().size() == 3);
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
+		assertTrue(DESTROY_DELETION + TEST_THE_REDO, ((Diagram) getRootView()).getEdges().size() == 0);
+		assertTrue(DESTROY_DELETION + TEST_THE_REDO, ((Element) source.resolveSemanticElement()).getOwnedElements().size() == 0); // old container
+		assertTrue(DESTROY_DELETION + TEST_THE_REDO, getRootSemanticModel().getOwnedElements().size() == 4); // new container
 	}
 
 	/**
@@ -182,10 +197,10 @@ public abstract class TestContainmentLink extends TestLink {
 		Command cmd = targetPlayer.getCommand(reconnectRequest);
 		assertTrue(RECONNECTION_TARGET + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, cmd.canExecute() == true);
 		getDiagramEditPart().getDiagramEditDomain().getDiagramCommandStack().execute(cmd);
-		// EditorUtils.getTransactionalEditingDomain().getCommandStack().execute(cmd);
 		assertTrue(RECONNECTION_TARGET + TEST_THE_EXECUTION, ((Diagram) getRootView()).getEdges().size() == 1);
-		assertTrue(RECONNECTION_TARGET + TEST_THE_EXECUTION, getRootSemanticModel().getOwnedElements().size() == 2);
-		assertTrue(LINK_EXISTS_RECONNECTION_ON_TARGET, binaryLink.getTarget().equals(targetPlayer));
+		assertTrue(RECONNECTION_TARGET + TEST_THE_EXECUTION, ((org.eclipse.uml2.uml.Class) target.resolveSemanticElement()).getOwner() instanceof Model);
+		assertTrue(RECONNECTION_TARGET + TEST_THE_EXECUTION, binaryLink.getTarget().equals(targetPlayer));
+		assertEquals(RECONNECTION_TARGET + TEST_THE_EXECUTION, source.resolveSemanticElement(), ((org.eclipse.uml2.uml.Class) targetPlayer.resolveSemanticElement()).getOwner());
 		// undo
 		getDiagramEditPart().getDiagramEditDomain().getDiagramCommandStack().undo();
 		assertTrue(LINK_EXISTS_RECONNECTION_ON_TARGET + TEST_THE_UNDO, binaryLink.getTarget().equals(target));
@@ -196,15 +211,26 @@ public abstract class TestContainmentLink extends TestLink {
 
 	@Override
 	public void testSourceReconnectAMultiLink(IElementType type) {
-		// target reconnection
+		// source reconnection
 		ReconnectRequest reconnectRequest = new ReconnectRequest();
-		assertTrue(THE_LINK_TO_RECONNECT_EXISTS, ((ConnectionEditPart) source.getSourceConnections().get(0)) != null); //$NON-NLS-1$
-		ConnectionEditPart branch = ((ConnectionEditPart) source.getSourceConnections().get(0)); //$NON-NLS-1$
+		assertTrue(THE_LINK_TO_RECONNECT_EXISTS, ((ConnectionEditPart) source.getSourceConnections().get(0)) != null);
+		ConnectionEditPart branch = ((ConnectionEditPart) source.getSourceConnections().get(0));
 		reconnectRequest.setConnectionEditPart(branch);
 		reconnectRequest.setTargetEditPart(sourcePlayer);
 		reconnectRequest.setType(RequestConstants.REQ_RECONNECT_SOURCE);
 		Command cmd = sourcePlayer.getCommand(reconnectRequest);
 		assertTrue(RECONNECTION_SOURCE + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, cmd.canExecute() == true);
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(cmd);
+		assertEquals(RECONNECTION_SOURCE + TEST_THE_EXECUTION, 0, source.getSourceConnections().size());
+		assertEquals(RECONNECTION_SOURCE + TEST_THE_EXECUTION, 0, ((org.eclipse.uml2.uml.Class) source.resolveSemanticElement()).getOwnedElements().size());
+		assertEquals(RECONNECTION_SOURCE + TEST_THE_EXECUTION, 1, sourcePlayer.getSourceConnections().size());
+		assertEquals(RECONNECTION_SOURCE + TEST_THE_EXECUTION, target.resolveSemanticElement(), ((org.eclipse.uml2.uml.Class) sourcePlayer.resolveSemanticElement()).getOwnedElements().get(0));
+		// undo
+		getDiagramEditPart().getDiagramEditDomain().getDiagramCommandStack().undo();
+		assertTrue(LINK_EXISTS_RECONNECTION_ON_SOURCE + TEST_THE_UNDO, branch.getSource().equals(source));
+		// redo
+		getDiagramEditPart().getDiagramEditDomain().getDiagramCommandStack().redo();
+		assertTrue(LINK_EXISTS_RECONNECTION_ON_SOURCE + TEST_THE_REDO, branch.getSource().equals(sourcePlayer));
 	}
 
 	/**
@@ -219,10 +245,12 @@ public abstract class TestContainmentLink extends TestLink {
 		installEnvironment(sourceType, targetType);
 		testToCreateALink(linkType, null);
 		testDestroy(linkType);
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
 		testViewDeletion(linkType);
 		testDrop(linkType);
 		testRecreation(linkType);
 		testSourceReconnectAMultiLink(linkType);
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
 		testTargetReconnectAMultiLink(linkType);
 	}
 

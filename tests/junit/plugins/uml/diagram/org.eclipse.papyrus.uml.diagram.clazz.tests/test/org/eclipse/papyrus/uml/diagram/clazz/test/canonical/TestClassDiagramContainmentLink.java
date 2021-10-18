@@ -24,7 +24,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.test.IClassDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.tests.canonical.TestContainmentLink;
 import org.junit.Test;
 
-public class TestClassDiagramContainment extends TestContainmentLink {
+public class TestClassDiagramContainmentLink extends TestContainmentLink {
 
 	@Override
 	public DiagramUpdater getDiagramUpdater() {

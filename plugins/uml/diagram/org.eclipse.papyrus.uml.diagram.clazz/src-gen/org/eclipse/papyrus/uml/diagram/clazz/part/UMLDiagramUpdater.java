@@ -33,8 +33,10 @@ import org.eclipse.uml2.uml.AssociationClass;
 import org.eclipse.uml2.uml.BehavioredClassifier;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.ClassifierTemplateParameter;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Component;
+import org.eclipse.uml2.uml.ConnectableElementTemplateParameter;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Dependency;
@@ -54,6 +56,7 @@ import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.OperationTemplateParameter;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageImport;
 import org.eclipse.uml2.uml.PackageMerge;
@@ -2788,6 +2791,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_GeneralizationSet_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_InstanceSpecification_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -2796,7 +2800,10 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getDependency_Shape_ContainedLinks(View view) {
-		return Collections.emptyList();
+		Dependency modelElement = (Dependency) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
@@ -2811,6 +2818,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -2825,6 +2833,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -2832,7 +2841,10 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInstanceSpecification_Shape_ContainedLinks(View view) {
-		return Collections.emptyList();
+		InstanceSpecification modelElement = (InstanceSpecification) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
@@ -2847,6 +2859,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -2861,6 +2874,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -2875,6 +2889,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -2899,6 +2914,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_GeneralizationSet_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_InstanceSpecification_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -2914,6 +2930,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -2938,6 +2955,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_GeneralizationSet_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_InstanceSpecification_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -2953,6 +2971,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -2968,6 +2987,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -2982,6 +3002,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -2996,6 +3017,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3006,6 +3028,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		Constraint modelElement = (Constraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ContextEdge(modelElement));
 		return result;
 	}
@@ -3017,6 +3040,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		Comment modelElement = (Comment) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3033,6 +3057,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getDurationObservation_Shape_ContainedLinks(View view) {
 		DurationObservation modelElement = (DurationObservation) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement));
 		return result;
 	}
@@ -3043,6 +3068,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	public List<UMLLinkDescriptor> getTimeObservation_Shape_ContainedLinks(View view) {
 		TimeObservation modelElement = (TimeObservation) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement));
 		return result;
 	}
@@ -3051,49 +3077,70 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getNamedElement_DefaultShape_ContainedLinks(View view) {
-		return Collections.emptyList();
+		NamedElement modelElement = (NamedElement) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getProperty_ClassAttributeLabel_ContainedLinks(View view) {
-		return Collections.emptyList();
+		Property modelElement = (Property) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getProperty_ComponentAttributeLabel_ContainedLinks(View view) {
-		return Collections.emptyList();
+		Property modelElement = (Property) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getProperty_SignalAttributeLabel_ContainedLinks(View view) {
-		return Collections.emptyList();
+		Property modelElement = (Property) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getProperty_InterfaceAttributeLabel_ContainedLinks(View view) {
-		return Collections.emptyList();
+		Property modelElement = (Property) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getProperty_PrimitiveTypeAttributeLabel_ContainedLinks(View view) {
-		return Collections.emptyList();
+		Property modelElement = (Property) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getProperty_DataTypeAttributeLabel_ContainedLinks(View view) {
-		return Collections.emptyList();
+		Property modelElement = (Property) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
@@ -3108,6 +3155,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3123,6 +3171,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3138,6 +3187,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3150,6 +3200,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3162,6 +3213,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3174,6 +3226,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3186,6 +3239,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3198,6 +3252,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3205,35 +3260,50 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getConnectableElementTemplateParameter_TemplateParameterLabel_ContainedLinks(View view) {
-		return Collections.emptyList();
+		ConnectableElementTemplateParameter modelElement = (ConnectableElementTemplateParameter) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOperationTemplateParameter_TemplateParameterLabel_ContainedLinks(View view) {
-		return Collections.emptyList();
+		OperationTemplateParameter modelElement = (OperationTemplateParameter) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getClassifierTemplateParameter_TemplateParameterLabel_ContainedLinks(View view) {
-		return Collections.emptyList();
+		ClassifierTemplateParameter modelElement = (ClassifierTemplateParameter) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getTemplateParameter_TemplateParameterLabel_ContainedLinks(View view) {
-		return Collections.emptyList();
+		TemplateParameter modelElement = (TemplateParameter) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getEnumerationLiteral_LiteralLabel_ContainedLinks(View view) {
-		return Collections.emptyList();
+		EnumerationLiteral modelElement = (EnumerationLiteral) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
@@ -3244,6 +3314,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3255,6 +3326,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3262,28 +3334,40 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getSlot_SlotLabel_ContainedLinks(View view) {
-		return Collections.emptyList();
+		Slot modelElement = (Slot) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getRedefinableTemplateSignature_Shape_ContainedLinks(View view) {
-		return Collections.emptyList();
+		RedefinableTemplateSignature modelElement = (RedefinableTemplateSignature) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getTemplateSignature_Shape_ContainedLinks(View view) {
-		return Collections.emptyList();
+		TemplateSignature modelElement = (TemplateSignature) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInstanceSpecification_Shape_CN_ContainedLinks(View view) {
-		return Collections.emptyList();
+		InstanceSpecification modelElement = (InstanceSpecification) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
@@ -3298,6 +3382,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3312,6 +3397,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3326,6 +3412,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3350,6 +3437,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_GeneralizationSet_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_InstanceSpecification_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -3365,6 +3453,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3389,6 +3478,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_GeneralizationSet_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_InstanceSpecification_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -3404,6 +3494,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3419,6 +3510,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3433,6 +3525,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3447,6 +3540,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3457,6 +3551,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		Comment modelElement = (Comment) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3467,6 +3562,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		Constraint modelElement = (Constraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ContextEdge(modelElement));
 		return result;
 	}
@@ -3482,6 +3578,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3496,6 +3593,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3510,6 +3608,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3524,6 +3623,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3538,6 +3638,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3552,6 +3653,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3566,6 +3668,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3580,6 +3683,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3594,6 +3698,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3608,6 +3713,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3622,6 +3728,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3636,6 +3743,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3650,6 +3758,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3664,6 +3773,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3678,6 +3788,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3693,6 +3804,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3708,6 +3820,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3723,6 +3836,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3738,6 +3852,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3752,6 +3867,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3766,6 +3882,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -3773,112 +3890,160 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getGeneralization_Edge_ContainedLinks(View view) {
-		return Collections.emptyList();
+		Generalization modelElement = (Generalization) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInterfaceRealization_Edge_ContainedLinks(View view) {
-		return Collections.emptyList();
+		InterfaceRealization modelElement = (InterfaceRealization) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getSubstitution_Edge_ContainedLinks(View view) {
-		return Collections.emptyList();
+		Substitution modelElement = (Substitution) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getRealization_Edge_ContainedLinks(View view) {
-		return Collections.emptyList();
+		Realization modelElement = (Realization) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getAbstraction_Edge_ContainedLinks(View view) {
-		return Collections.emptyList();
+		Abstraction modelElement = (Abstraction) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getUsage_Edge_ContainedLinks(View view) {
-		return Collections.emptyList();
+		Usage modelElement = (Usage) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getDependency_Edge_ContainedLinks(View view) {
-		return Collections.emptyList();
+		Dependency modelElement = (Dependency) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getDependency_BranchEdge_ContainedLinks(View view) {
-		return Collections.emptyList();
+		Dependency modelElement = (Dependency) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getElementImport_Edge_ContainedLinks(View view) {
-		return Collections.emptyList();
+		ElementImport modelElement = (ElementImport) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getPackageImport_Edge_ContainedLinks(View view) {
-		return Collections.emptyList();
+		PackageImport modelElement = (PackageImport) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getPackageMerge_Edge_ContainedLinks(View view) {
-		return Collections.emptyList();
+		PackageMerge modelElement = (PackageMerge) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getProfileApplication_Edge_ContainedLinks(View view) {
-		return Collections.emptyList();
+		ProfileApplication modelElement = (ProfileApplication) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getTemplateBinding_Edge_ContainedLinks(View view) {
-		return Collections.emptyList();
+		TemplateBinding modelElement = (TemplateBinding) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getGeneralizationSet_Edge_ContainedLinks(View view) {
-		return Collections.emptyList();
+		GeneralizationSet modelElement = (GeneralizationSet) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInstanceSpecification_Edge_ContainedLinks(View view) {
-		return Collections.emptyList();
+		InstanceSpecification modelElement = (InstanceSpecification) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInformationFlow_Edge_ContainedLinks(View view) {
-		return Collections.emptyList();
+		InformationFlow modelElement = (InformationFlow) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
@@ -3896,6 +4061,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_ElementImport_Edge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -3923,6 +4089,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -3951,6 +4118,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -3973,6 +4141,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_ElementImport_Edge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -4000,6 +4169,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -4028,6 +4198,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -4057,6 +4228,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -4082,6 +4254,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -4110,6 +4283,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -4135,6 +4309,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -4163,6 +4338,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -4191,6 +4367,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -4219,6 +4396,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -4247,6 +4425,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -4269,6 +4448,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_ElementImport_Edge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -4284,6 +4464,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -4309,6 +4490,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_ElementImport_Edge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -4330,6 +4512,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_ElementImport_Edge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -4350,6 +4533,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_BranchEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -4524,6 +4708,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_BranchEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -4539,6 +4724,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -4557,6 +4743,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_ElementImport_Edge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -4584,6 +4771,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -4612,6 +4800,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -4641,6 +4830,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -4666,6 +4856,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -4694,6 +4885,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -4719,6 +4911,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -4747,6 +4940,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -4775,6 +4969,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -4803,6 +4998,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -4831,6 +5027,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -4847,6 +5044,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -4865,6 +5063,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_ElementImport_Edge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -5018,6 +5217,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -5046,6 +5246,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -5074,6 +5275,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -5091,6 +5293,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_GeneralizationSet_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -5109,6 +5312,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_ElementImport_Edge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -5130,6 +5334,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_ElementImport_Edge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -5151,6 +5356,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_ElementImport_Edge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -5172,6 +5378,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_ElementImport_Edge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -5193,6 +5400,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_ElementImport_Edge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -5214,6 +5422,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_ElementImport_Edge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -5235,6 +5444,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_ElementImport_Edge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -5250,6 +5460,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -5262,6 +5473,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -5274,6 +5486,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -5286,6 +5499,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -5298,6 +5512,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -5316,6 +5531,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_ElementImport_Edge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -5337,6 +5553,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_ElementImport_Edge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -5358,6 +5575,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_ElementImport_Edge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_Edge(modelElement, crossReferencer));
@@ -5375,6 +5593,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -5399,6 +5618,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -5422,6 +5642,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -5437,6 +5658,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -5461,6 +5683,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -5484,6 +5707,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -5507,6 +5731,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -5527,6 +5752,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_PackageMerge_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_ProfileApplication_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -5550,6 +5776,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -5570,6 +5797,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_PackageMerge_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_ProfileApplication_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -5593,6 +5821,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -5617,6 +5846,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -5640,6 +5870,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -5663,6 +5894,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -5679,6 +5911,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ContextEdge(modelElement));
 		return result;
@@ -5691,6 +5924,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		Comment modelElement = (Comment) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -5712,6 +5946,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_DurationObservation_EventEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
@@ -5728,6 +5963,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_TimeObservation_EventEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
@@ -5744,6 +5980,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -5913,6 +6150,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -5921,7 +6159,10 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getTemplateSignature_Shape_OutgoingLinks(View view) {
-		return Collections.emptyList();
+		TemplateSignature modelElement = (TemplateSignature) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
@@ -5935,6 +6176,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -5959,6 +6201,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -5982,6 +6225,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -6005,6 +6249,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -6025,6 +6270,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_PackageMerge_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_ProfileApplication_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -6048,6 +6294,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -6068,6 +6315,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_PackageMerge_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_ProfileApplication_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -6091,6 +6339,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -6115,6 +6364,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -6138,6 +6388,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -6161,6 +6412,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -6172,6 +6424,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		Comment modelElement = (Comment) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -6187,6 +6440,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ContextEdge(modelElement));
 		return result;
@@ -6338,6 +6592,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -6361,6 +6616,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -6384,6 +6640,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_Edge(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_TemplateBinding_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -6395,6 +6652,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		Generalization modelElement = (Generalization) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
 		result.addAll(getOutgoingTypeModelFacetLinks_GeneralizationSet_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		return result;
 	}
 
@@ -6409,6 +6667,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -6424,6 +6683,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -6439,6 +6699,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -6454,6 +6715,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -6469,6 +6731,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -6484,6 +6747,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -6499,6 +6763,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -6507,35 +6772,50 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getElementImport_Edge_OutgoingLinks(View view) {
-		return Collections.emptyList();
+		ElementImport modelElement = (ElementImport) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getPackageImport_Edge_OutgoingLinks(View view) {
-		return Collections.emptyList();
+		PackageImport modelElement = (PackageImport) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getPackageMerge_Edge_OutgoingLinks(View view) {
-		return Collections.emptyList();
+		PackageMerge modelElement = (PackageMerge) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getProfileApplication_Edge_OutgoingLinks(View view) {
-		return Collections.emptyList();
+		ProfileApplication modelElement = (ProfileApplication) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getTemplateBinding_Edge_OutgoingLinks(View view) {
-		return Collections.emptyList();
+		TemplateBinding modelElement = (TemplateBinding) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
+		return result;
 	}
 
 	/**
@@ -6549,6 +6829,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -6564,6 +6845,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -6579,6 +6861,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_Edge(modelElement));
 		return result;
 	}
@@ -7514,6 +7797,20 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
+	protected Collection<UMLLinkDescriptor> getIncomingFeatureModelFacetLinks_Element_ContainmentEdge(Element target, CrossReferenceAdapter crossReferencer) {
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
+		for (EStructuralFeature.Setting setting : settings) {
+			if (setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getElement_OwnedElement()) {
+				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.Element_ContainmentEdge, ContainmentLinkEditPart.VISUAL_ID));
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected Collection<UMLLinkDescriptor> getIncomingFeatureModelFacetLinks_TimeObservation_EventEdge(NamedElement target, CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
@@ -8134,6 +8431,19 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.GeneralizationSet_Edge, GeneralizationSetEditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Collection<UMLLinkDescriptor> getOutgoingFeatureModelFacetLinks_Element_ContainmentEdge(Element source) {
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		for (Iterator<?> destinations = source.getOwnedElements()
+				.iterator(); destinations.hasNext();) {
+			Element destination = (Element) destinations.next();
+			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.Element_ContainmentEdge, ContainmentLinkEditPart.VISUAL_ID));
 		}
 		return result;
 	}
