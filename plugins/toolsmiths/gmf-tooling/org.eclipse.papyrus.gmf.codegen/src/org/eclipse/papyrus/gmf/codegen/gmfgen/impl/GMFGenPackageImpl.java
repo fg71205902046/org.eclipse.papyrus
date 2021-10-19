@@ -36,16 +36,14 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
-import org.eclipse.papyrus.gmf.codegen.genextension.GenExtensionPackage;
-import org.eclipse.papyrus.gmf.codegen.genextension.impl.GenExtensionPackageImpl;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenFactory;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage;
 import org.eclipse.papyrus.gmf.validate.GMFValidator;
@@ -1268,16 +1266,11 @@ public class GMFGenPackageImpl extends EPackageImpl implements GMFGenPackage {
 		GenModelPackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
 
-		// Obtain or create and register interdependencies
-		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(GenExtensionPackage.eNS_URI);
-		GenExtensionPackageImpl theGenExtensionPackage = (GenExtensionPackageImpl)(registeredPackage instanceof GenExtensionPackageImpl ? registeredPackage : GenExtensionPackage.eINSTANCE);
-
 		// Load packages
 		theGMFGenPackage.loadPackage();
 
 		// Fix loaded packages
 		theGMFGenPackage.fixPackageContents();
-		theGenExtensionPackage.fixPackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theGMFGenPackage.freeze();

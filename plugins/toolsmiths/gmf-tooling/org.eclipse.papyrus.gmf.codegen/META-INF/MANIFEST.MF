@@ -7,14 +7,12 @@ Bundle-Version: 3.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: org.eclipse.papyrus.gmf.codegen.genextension,
- org.eclipse.papyrus.gmf.codegen.genextension.impl,
- org.eclipse.papyrus.gmf.codegen.genextension.util,
- org.eclipse.papyrus.gmf.codegen.gmfgen,
+Export-Package: org.eclipse.papyrus.gmf.codegen.gmfgen,
  org.eclipse.papyrus.gmf.codegen.gmfgen.impl,
  org.eclipse.papyrus.gmf.codegen.gmfgen.util,
  org.eclipse.papyrus.gmf.codegen.util,
- org.eclipse.papyrus.gmf.internal.codegen.util;x-friends:="org.eclipse.papyrus.gmf.codegen.ui"
+ org.eclipse.papyrus.gmf.internal.codegen.util;
+  x-friends:="org.eclipse.papyrus.gmf.codegen.ui"
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.core.resources;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.emf.ecore;bundle-version="[2.16.0,3.0.0)",

@@ -107,7 +107,6 @@ import org.eclipse.jface.viewers.TableLayout;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.gmf.codegen.genextension.provider.GenExtensionItemProviderAdapterFactory;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator;
 import org.eclipse.papyrus.gmf.codegen.gmfgen.provider.GMFGenItemProviderAdapterFactory;
 import org.eclipse.swt.SWT;
@@ -687,7 +686,6 @@ public class GMFGenEditor
 
 		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new GMFGenItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new GenExtensionItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new GenModelItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());

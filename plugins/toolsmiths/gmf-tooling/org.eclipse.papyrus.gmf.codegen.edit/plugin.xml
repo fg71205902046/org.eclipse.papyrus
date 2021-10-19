@@ -14,21 +14,6 @@
           org.eclipse.emf.edit.provider.IItemPropertySource" />
   </extension>
 
-   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
-      <!-- @generated gmfgen -->
-      <factory
-            uri="http://www.eclipse.org/papyrus/gmf/2020/GenExtension"
-            class="org.eclipse.papyrus.gmf.codegen.genextension.provider.GenExtensionItemProviderAdapterFactory"
-            supportedTypes=
-              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
-               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
-               org.eclipse.emf.edit.provider.ITreeItemContentProvider
-               org.eclipse.emf.edit.provider.IItemLabelProvider
-               org.eclipse.emf.edit.provider.IItemPropertySource"/>
-   </extension>
-
-
-
    <extension point="org.eclipse.ui.newWizards">
       <!-- @generated gmfgen -->
       <category
@@ -56,19 +41,6 @@
             contributorClass="org.eclipse.papyrus.gmf.codegen.gmfgen.presentation.GMFGenActionBarContributor">
       </editor>
    </extension>
-
-   <extension point="org.eclipse.ui.editors">
-      <!-- @generated gmfgen -->
-      <editor
-            id="org.eclipse.papyrus.gmf.codegen.genextension.presentation.GenExtensionEditorID"
-            name="%_UI_GenExtensionEditor_label"
-            icon="icons/full/obj16/GenExtensionModelFile.gif"
-            extensions="genextension"
-            class="org.eclipse.papyrus.gmf.codegen.genextension.presentation.GenExtensionEditor"
-            contributorClass="org.eclipse.papyrus.gmf.codegen.genextension.presentation.GenExtensionActionBarContributor">
-      </editor>
-   </extension>
-
 
   <extension
     point = "org.eclipse.ui.newWizards">

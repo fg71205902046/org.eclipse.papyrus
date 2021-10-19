@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <component id="org.eclipse.papyrus.gmf.codegen" version="2">
-    <resource path="META-INF/MANIFEST.MF">
-        <filter id="923795461">
-            <message_arguments>
-                <message_argument value="2.11.0"/>
-                <message_argument value="2.9.0"/>
-            </message_arguments>
-        </filter>
-    </resource>
     <resource path="src/org/eclipse/papyrus/gmf/codegen/genextension/AdditionalEditPartCandies.java" type="org.eclipse.papyrus.gmf.codegen.genextension.AdditionalEditPartCandies">
         <filter id="1110441988">
             <message_arguments>
