@@ -18,7 +18,7 @@
  *  Ansgar Radermacher (CEA LIST) - Bug 516459: Navigation mechanism with Alt+hover does not work on Linux
  *  Ansgar Radermacher (CEA LIST) - Bug 553094: Avoid potential NPE during dispose and remove reload-listener
  *  Ansgar Radermacher (CEA LIST) - Bug 574410: Exceptions during reload, contents disappears during 2nd reload
- *
+ *  Vincent Lorenzo (CEA LIST) - Bug 576599: IOpenable and Open on double-click must be improved
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer;
 
@@ -49,6 +49,7 @@ import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.ResourceSetListenerImpl;
 import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.util.Policy;
 import org.eclipse.jface.viewers.ColumnViewerToolTipSupport;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -58,6 +59,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerColumn;
 import org.eclipse.jface.viewers.ViewerFilter;
@@ -72,7 +74,6 @@ import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.commands.PapyrusDeleteCommand;
 import org.eclipse.papyrus.infra.emf.gmf.command.ICommandWrapper;
@@ -81,6 +82,7 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigationMenu;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigationService;
+import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
 import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.ui.editor.IReloadableEditor;
 import org.eclipse.papyrus.infra.ui.editor.reload.EditorReloadAdapter;
@@ -94,7 +96,6 @@ import org.eclipse.papyrus.infra.widgets.editors.StringWithClearEditor;
 import org.eclipse.papyrus.infra.widgets.providers.PatternViewerFilter;
 import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
 import org.eclipse.papyrus.views.modelexplorer.SharedModelExplorerState.StateChangedEvent;
-import org.eclipse.papyrus.views.modelexplorer.listener.DoubleClickListener;
 import org.eclipse.papyrus.views.modelexplorer.matching.ModelElementItemMatchingItem;
 import org.eclipse.papyrus.views.modelexplorer.preferences.IFilterPreferenceConstants;
 import org.eclipse.papyrus.views.modelexplorer.preferences.INavigatorPreferenceConstants;
@@ -129,6 +130,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.navigator.CommonNavigator;
 import org.eclipse.ui.navigator.CommonViewer;
 import org.eclipse.ui.navigator.CommonViewerSorter;
+import org.eclipse.ui.navigator.ICommonActionConstants;
 import org.eclipse.ui.navigator.IExtensionActivationListener;
 import org.eclipse.ui.navigator.ILinkHelper;
 import org.eclipse.ui.navigator.INavigatorContentService;
@@ -139,7 +141,6 @@ import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 
-import com.google.common.base.Supplier;
 import com.google.common.collect.Lists;
 
 /**
@@ -303,6 +304,9 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	/** The {@link IPropertySheetPage} this model explorer will use. */
 	private final List<IPropertySheetPage> propertySheetPages = new LinkedList<>();
 
+
+
+
 	/**
 	 *
 	 * Constructor.
@@ -362,8 +366,17 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 	@Override
 	protected void handleDoubleClick(DoubleClickEvent anEvent) {
-		if (Activator.getDefault().getPreferenceStore().getBoolean(INavigatorPreferenceConstants.PREF_EXPAND_NODE_ON_DOUBLE_CLICK)) {
-			super.handleDoubleClick(anEvent);
+		final IAction openHandler = getViewSite().getActionBars().getGlobalActionHandler(ICommonActionConstants.OPEN);
+
+		if (openHandler == null && Activator.getDefault().getPreferenceStore().getBoolean(INavigatorPreferenceConstants.PREF_EXPAND_NODE_ON_DOUBLE_CLICK)) {
+			IStructuredSelection selection = (IStructuredSelection) anEvent
+					.getSelection();
+			Object element = selection.getFirstElement();
+
+			TreeViewer viewer = getCommonViewer();
+			if (viewer.isExpandable(element)) {
+				viewer.setExpandedState(element, !viewer.getExpandedState(element));
+			}
 		}
 	}
 
@@ -591,12 +604,6 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 		getCommonViewer().setSorter(null);
 		((CustomCommonViewer) getCommonViewer()).getDropAdapter().setFeedbackEnabled(true);
-		getCommonViewer().addDoubleClickListener(new DoubleClickListener(new Supplier<ServicesRegistry>() {
-			@Override
-			public ServicesRegistry get() {
-				return serviceRegistry;
-			}
-		}));
 
 		try {
 			navigationMenu = serviceRegistry.getService(NavigationService.class).createNavigationList();
@@ -953,7 +960,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 				getCommonViewer().setInput(serviceRegistry);
 			}
 			editingDomain.addResourceSetListener(resourceSetListener);
-			IReadOnlyHandler2 readOnlyHandler = AdapterUtils.adapt(editingDomain, IReadOnlyHandler2.class, null);
+			final IReadOnlyHandler2 readOnlyHandler = PlatformHelper.getAdapter(editingDomain, IReadOnlyHandler2.class);
 			if (readOnlyHandler != null) {
 				readOnlyHandler.addReadOnlyListener(createReadOnlyListener());
 			}

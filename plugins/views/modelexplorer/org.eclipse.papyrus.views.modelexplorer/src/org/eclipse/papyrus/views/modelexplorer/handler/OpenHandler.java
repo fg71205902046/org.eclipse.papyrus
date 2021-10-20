@@ -11,11 +11,14 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - bug 576595
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - bug 576595, 576599
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer.handler;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -24,18 +27,15 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExecutableExtension;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IOpenable;
 import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.infra.ui.command.AbstractPapyrusHandler;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 
 /**
- * This handler allows to Open Diagrams and Tables
- *
- *
- *
+ * This handler allows to Open EObject that can be adapted to IOpenable.
  */
 public class OpenHandler extends AbstractPapyrusHandler implements IExecutableExtension {
 
@@ -58,7 +58,6 @@ public class OpenHandler extends AbstractPapyrusHandler implements IExecutableEx
 	 */
 	private boolean isDuplicateViewAllowed = false;
 
-
 	/**
 	 *
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
@@ -68,32 +67,42 @@ public class OpenHandler extends AbstractPapyrusHandler implements IExecutableEx
 	 * @throws ExecutionException
 	 */
 	@Override
-	public Object execute(ExecutionEvent event) throws ExecutionException {
+	public Object execute(final ExecutionEvent event) throws ExecutionException {
 		final IPageManager pageManager = getPageManager(event);
 		if (pageManager == null) {
 			return null;
 		}
 
-		// Try to close each selected editor.
-		// There is no common type for object representing an editor. So,
-		// We try to get the EObject, and try to close it as an Editor.
-		List<EObject> selectedProperties = getCurrentSelectionAdaptedToType(event, EObject.class);
-		if (selectedProperties == null) {
+		// 1. get the selected EObject
+		final List<EObject> selectedEObjects = getCurrentSelectionAdaptedToType(event, EObject.class);
+		if (selectedEObjects == null || selectedEObjects.isEmpty()) {
 			// nothing to do
+			return null;
+		}
+
+		// 2. convert to IOpenable
+		final Collection<IOpenable> openables = getIOpenables(selectedEObjects);
+		if (openables.isEmpty()) {
 			return null;
 		}
 
 		// Check each selected object
 		final List<EObject> pagesToOpen = new LinkedList<>();
 		List<EObject> pagesToSelect = new LinkedList<>();
-		for (EObject selected : selectedProperties) {
-			if (!canOpenByPolicy(selected)) {
-				continue;
-			}
-			if (!pageManager.isOpen(selected) || this.isDuplicateViewAllowed) {
-				pagesToOpen.add(selected);
-			} else {
-				pagesToSelect.add(selected);
+		for (IOpenable selected : openables) {
+			if (selected.getPageIdentifier() instanceof EObject) {
+
+				// bug 571087
+				// we use the IOpenable element to get the real element to open
+				final EObject realObjectToOpen = (EObject) selected.getPageIdentifier();
+				if (!canOpenByPolicy(realObjectToOpen)) {
+					continue;
+				}
+				if (!pageManager.isOpen(realObjectToOpen) || this.isDuplicateViewAllowed) {
+					pagesToOpen.add(realObjectToOpen);
+				} else {
+					pagesToSelect.add(realObjectToOpen);
+				}
 			}
 		}
 
@@ -111,6 +120,25 @@ public class OpenHandler extends AbstractPapyrusHandler implements IExecutableEx
 	}
 
 	/**
+	 *
+	 * @param selectedEObject
+	 *            the selected EObject
+	 * @return
+	 *         the IOpenanbel corresponding to these {@link EObject}
+	 */
+	private Collection<IOpenable> getIOpenables(final Collection<EObject> selectedEObject) {
+		final Iterator<EObject> iter = selectedEObject.iterator();
+		final Collection<IOpenable> openables = new ArrayList<>();
+		while (iter.hasNext()) {
+			final IOpenable openable = Platform.getAdapterManager().getAdapter(iter.next(), IOpenable.class);
+			if (openable != null) {
+				openables.add(openable);
+			}
+		}
+		return openables;
+	}
+
+	/**
 	 * Determines whether the current policy allows this object to be opened
 	 *
 	 * @param selection
@@ -118,12 +146,8 @@ public class OpenHandler extends AbstractPapyrusHandler implements IExecutableEx
 	 * @return <code>true</code> if the object can be opened
 	 */
 	private boolean canOpenByPolicy(EObject selection) {
-		if (selection instanceof Diagram) {
-			Diagram diagram = (Diagram) selection;
-			ViewPrototype proto = DiagramUtils.getPrototype(diagram);
-			return proto != ViewPrototype.UNAVAILABLE_VIEW;
-		}
-		return true;
+		final ViewPrototype proto = ViewPrototype.get(selection);
+		return proto != ViewPrototype.UNAVAILABLE_VIEW;
 	}
 
 	/**
@@ -147,5 +171,4 @@ public class OpenHandler extends AbstractPapyrusHandler implements IExecutableEx
 			this.isDuplicateViewAllowed = Boolean.parseBoolean(value.toString());
 		}
 	}
-
 }

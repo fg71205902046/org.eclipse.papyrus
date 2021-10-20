@@ -121,6 +121,20 @@
             name="search filter"
             visibleInUI="false">
       </commonFilter>
+      <actionProvider
+            class="org.eclipse.papyrus.views.modelexplorer.actionprovider.OpenActionProvider"
+            id="org.eclipse.papyrus.views.modelexplorer.actionprovider.OpenActionProvider">
+         <enablement>
+            <or>
+               <adapt
+                     type="org.eclipse.emf.ecore.EObject">
+                  <adapt
+                        type="org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IOpenable">
+                  </adapt>
+               </adapt>
+            </or>
+         </enablement>
+      </actionProvider>
    </extension>
     <!--  
     <extension
