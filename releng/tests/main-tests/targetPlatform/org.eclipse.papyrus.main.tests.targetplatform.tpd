@@ -4,6 +4,6 @@ include "../../../main/targetPlatform/org.eclipse.papyrus.main.targetplatform.tp
 
 //updateFrom("EMF Compare",0)
 
-location emfCompare "https://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S202107200824" {
+location emfCompare "https://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S202110070928" {
 	org.eclipse.emf.compare.source.feature.group
 }

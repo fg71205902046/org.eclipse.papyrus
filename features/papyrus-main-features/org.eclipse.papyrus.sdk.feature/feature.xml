@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.papyrus.sdk.feature"
       label="%featureName"
-      version="5.2.0.qualifier"
+      version="6.0.0.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.papyrus.sdk"
       license-feature="org.eclipse.license"

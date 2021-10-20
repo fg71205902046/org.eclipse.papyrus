@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/org.eclipse.papyrus.sdk.feature_5.2.0.qualifier.jar" id="org.eclipse.papyrus.sdk.feature" version="5.2.0.qualifier">
+   <feature url="features/org.eclipse.papyrus.sdk.feature_6.0.0.qualifier.jar" id="org.eclipse.papyrus.sdk.feature" version="6.0.0.qualifier">
       <category name="org.eclipse.papyrus.category"/>
    </feature>
-   <feature url="features/org.eclipse.papyrus.sdk.feature.source_5.2.0.qualifier.jar" id="org.eclipse.papyrus.sdk.feature.source" version="5.2.0.qualifier">
+   <feature url="features/org.eclipse.papyrus.sdk.feature.source_6.0.0.qualifier.jar" id="org.eclipse.papyrus.sdk.feature.source" version="6.0.0.qualifier">
       <category name="org.eclipse.papyrus.category"/>
    </feature>
    <feature url="features/org.eclipse.papyrus.user.examples.feature_0.0.3.qualifier.jar" id="org.eclipse.papyrus.user.examples.feature" version="0.0.3.qualifier">

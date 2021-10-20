@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.uml.diagram.feature"
-      version="3.0.0.qualifier"
       label="%featureName"
-      provider-name="%providerName" 
+      version="4.0.0.qualifier"
+      provider-name="%providerName"
       license-feature="org.eclipse.license"
       license-feature-version="2.0.2">
 

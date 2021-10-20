@@ -20,7 +20,7 @@
    </license>
    
    <requires>
-      <import feature="org.eclipse.papyrus.sdk.feature" version="5.0.0" match="compatible"/>
+      <import feature="org.eclipse.papyrus.sdk.feature" version="6.0.0" match="compatible"/>
       <import plugin="org.eclipse.gmf.runtime.emf.ui.properties" version="1.7.0" match="compatible"/>
       <import plugin="org.eclipse.papyrus.views.properties.model.xwt" version="3.0.0" match="compatible"/>
    </requires>
