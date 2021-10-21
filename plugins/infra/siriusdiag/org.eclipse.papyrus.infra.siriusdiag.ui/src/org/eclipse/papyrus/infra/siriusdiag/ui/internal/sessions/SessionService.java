@@ -18,12 +18,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.osgi.util.NLS;
@@ -42,6 +44,7 @@ import org.eclipse.papyrus.infra.siriusdiag.ui.Activator;
 import org.eclipse.papyrus.infra.siriusdiag.ui.internal.listeners.SiriusArchitectureDescriptionAdapter;
 import org.eclipse.papyrus.infra.siriusdiag.ui.modelresource.SiriusDiagramModel;
 import org.eclipse.sirius.business.api.dialect.DialectManager;
+import org.eclipse.sirius.business.api.query.FileQuery;
 import org.eclipse.sirius.business.api.session.DefaultLocalSessionCreationOperation;
 import org.eclipse.sirius.business.api.session.Session;
 import org.eclipse.sirius.business.api.session.SessionManager;
@@ -86,7 +89,7 @@ public class SessionService implements ISiriusSessionService, ISiriusSessionView
 	 * @see org.eclipse.papyrus.infra.core.services.IService#init(org.eclipse.papyrus.infra.core.services.ServicesRegistry)
 	 *
 	 * @param servicesRegistry
-	 *            the service registry associated to the current model
+	 *                             the service registry associated to the current model
 	 * @throws ServiceException
 	 */
 	@Override
@@ -175,9 +178,17 @@ public class SessionService implements ISiriusSessionService, ISiriusSessionView
 		/* Papyrus */SessionManager.INSTANCE.add(createdSession);
 		/* Papyrus */SessionManager.INSTANCE.openSession(siriusFileResource, new NullProgressMonitor(), null);// check parameters
 
-		// ModelSet modelSet = (ModelSet) rset;
-		URI umlURI = modelSet.getURIWithoutExtension().appendFileExtension("uml");//// $NON-NLS-1 //TODO uml as string is not very nice inside an infra plugin
-		this.createdSession.addSemanticResource(umlURI, new NullProgressMonitor());
+		List<Resource> resources = new ArrayList(modelSet.getResources());
+
+		for (Resource resource : resources) {
+			if (resource.isLoaded()) {
+				FileQuery fileQuery = new FileQuery(resource.getURI().fileExtension());
+				if (!(fileQuery.isSessionResourceFile() || fileQuery.isSrmFile() || fileQuery.isVSMFile())) {
+					this.createdSession.addSemanticResource(resource.getURI(), new NullProgressMonitor());
+				}
+			}
+		}
+
 		this.createdSession.save(new NullProgressMonitor());
 
 		// 4. update applied sirius viewpoints
@@ -218,7 +229,7 @@ public class SessionService implements ISiriusSessionService, ISiriusSessionView
 	 * This method calls ModelSet.save() to save the notation file if it doesn't yet exist
 	 *
 	 * @param modelSet
-	 *            the current modelSet
+	 *                     the current modelSet
 	 */
 	private final void saveNotationFile(final ModelSet modelSet) {
 		// this action is required to avoid a crash when we create a new sirius diagram from the Papyrus "create model wizard"
@@ -240,7 +251,7 @@ public class SessionService implements ISiriusSessionService, ISiriusSessionView
 	/**
 	 *
 	 * @param siriusResourceURI
-	 *            the resource uri to use to create the Session
+	 *                              the resource uri to use to create the Session
 	 * @return
 	 *         the Session or <code>null</code>
 	 */

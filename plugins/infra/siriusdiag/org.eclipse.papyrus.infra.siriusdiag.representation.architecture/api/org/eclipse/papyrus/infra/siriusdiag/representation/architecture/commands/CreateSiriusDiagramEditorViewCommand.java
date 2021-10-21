@@ -17,11 +17,11 @@ package org.eclipse.papyrus.infra.siriusdiag.representation.architecture.command
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.papyrus.infra.architecture.representation.Activator;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.siriusdiag.representation.SiriusDiagramConstants;
 import org.eclipse.papyrus.infra.siriusdiag.representation.SiriusDiagramPrototype;
+import org.eclipse.papyrus.infra.siriusdiag.representation.architecture.Activator;
 import org.eclipse.papyrus.infra.siriusdiag.sirius.ISiriusSessionService;
 import org.eclipse.sirius.business.api.dialect.DialectManager;
 import org.eclipse.sirius.business.api.session.Session;
@@ -43,15 +43,6 @@ public class CreateSiriusDiagramEditorViewCommand extends AbstractCreatePapyrusE
 
 	private DSemanticDiagram diagram;
 
-	// TODO : VL : use me or remove me?
-	private String id;
-
-	/**
-	 * the main title of the created {@link diagram}
-	 */
-	// TODO : use me or remove me
-	private final String mainTitle;
-
 	/**
 	 *
 	 * Constructor.
@@ -68,8 +59,6 @@ public class CreateSiriusDiagramEditorViewCommand extends AbstractCreatePapyrusE
 			final EObject graphicalContext, final boolean openAfterCreation, final String diagramId) {
 		super(domain, "Create new Sirius Diagram", diagramName, semanticContext, graphicalContext, openAfterCreation, diagramId); //$NON-NLS-1$
 		this.prototype = diagramTemplatePrototype;
-		this.mainTitle = diagramMainTitle;
-		this.id = diagramId;
 	}
 
 	/**

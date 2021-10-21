@@ -31,8 +31,8 @@ import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.sirius.diagram.DSemanticDiagram;
 import org.eclipse.sirius.diagram.DiagramPackage;
 import org.eclipse.sirius.viewpoint.ViewpointPackage;
+import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Model;
-import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
@@ -40,7 +40,7 @@ import org.eclipse.uml2.uml.UMLFactory;
  * TODO : VL : This can must be moved in another plugin. Here we can't get UML dependencies
  * TODO : VL Remove UML dependencies from this plugin
  */
-public class CreatePapyrusSiriusStateMachineDiagramEditorCommand extends AbstractCreateSiriusDiagramEditorCommand implements ICreateSiriusDiagramEditorCommand {
+public class CreatePapyrusSiriusSequenceDiagramEditorCommand extends AbstractCreateSiriusDiagramEditorCommand implements ICreateSiriusDiagramEditorCommand {
 
 	/**
 	 * Prompts the user the future diagram's name
@@ -55,9 +55,9 @@ public class CreatePapyrusSiriusStateMachineDiagramEditorCommand extends Abstrac
 	/**
 	 *
 	 * @param prototype
-	 *            the ViewPrototype
+	 *                            the ViewPrototype
 	 * @param semanticContext
-	 *            the semantic context for the created DSemanticDiagram
+	 *                            the semantic context for the created DSemanticDiagram
 	 * @return
 	 *         the default name to use
 	 */
@@ -109,9 +109,7 @@ public class CreatePapyrusSiriusStateMachineDiagramEditorCommand extends Abstrac
 			}
 			if (semanticContext instanceof Model) {
 				Model model = (Model) semanticContext;
-				StateMachine sm = UMLFactory.eINSTANCE.createStateMachine();
-				sm.setName("StateMachine");
-				semanticContext = sm;
+				Interaction interaction = UMLFactory.eINSTANCE.createInteraction();
 				try {
 
 					ServicesRegistry serviceRegistry = ServiceUtilsForResourceSet.getInstance().getServiceRegistry(model.eResource().getResourceSet());
@@ -123,10 +121,10 @@ public class CreatePapyrusSiriusStateMachineDiagramEditorCommand extends Abstrac
 						@Override
 						protected void doExecute() {
 
-							model.getPackagedElements().add(sm);
+							model.getPackagedElements().add(interaction);
 						}
 					});
-					return super.execute(docProto, diagramName, sm, sm, openAfterCreation, docProto.getImplementationID());
+					return super.execute(docProto, diagramName, interaction, interaction, openAfterCreation, docProto.getImplementationID());
 				} catch (ServiceException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

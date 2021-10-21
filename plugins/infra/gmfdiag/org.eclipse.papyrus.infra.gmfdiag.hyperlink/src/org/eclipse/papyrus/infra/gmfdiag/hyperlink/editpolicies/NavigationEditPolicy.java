@@ -106,16 +106,16 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 		while (false == target instanceof IPrimaryEditPart && target != null) {
 			target = target.getParent();
 		}
-		
+
 		if (false == target instanceof IGraphicalEditPart) {
 			return UnexecutableCommand.INSTANCE;
 		}
 
-		gep = (IGraphicalEditPart)target;
+		gep = (IGraphicalEditPart) target;
 		final EObject semanticElement = gep.resolveSemanticElement();
 
 		// defaultHyperlinks
-		final ArrayList<HyperLinkObject> defaultHyperLinkObject = new ArrayList<HyperLinkObject>();
+		final ArrayList<HyperLinkObject> defaultHyperLinkObject = new ArrayList<>();
 		final ArrayList<HyperLinkObject> hyperLinkObjectList;
 
 		if (semanticElement == null) {
@@ -186,7 +186,7 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 								openLinkCommand.execute(new NullProgressMonitor(), null);
 							} catch (ServiceException | ExecutionException ex) {
 								Activator.log.error(ex);
-							} 
+							}
 						} else {
 							hyperlinkObject.openLink();
 						}
@@ -311,14 +311,16 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 								@Override
 								public void execute() {
 									Shell parentShell = EditorHelper.getActiveShell();
-									HyperLinkManagerShell hyperLinkManagerShell = new HyperLinkManagerShell(parentShell, createEditorRegistry(), ((IGraphicalEditPart) getHost()).getEditingDomain(),
-											(EModelElement) ((IGraphicalEditPart) getHost()).getNotationView().getElement(),
-											((IGraphicalEditPart) getHost()).getNotationView(), hyperlinkHelperFactory);
-									hyperLinkManagerShell.setInput(hyperLinkObjectList);
-									hyperLinkManagerShell.open(); // TODO cannot click Ok
+									if (((IGraphicalEditPart) getHost()).getNotationView().getElement() instanceof EModelElement) {
+										HyperLinkManagerShell hyperLinkManagerShell = new HyperLinkManagerShell(parentShell, createEditorRegistry(), ((IGraphicalEditPart) getHost()).getEditingDomain(),
+
+												(EModelElement) ((IGraphicalEditPart) getHost()).getNotationView().getElement(),
+												((IGraphicalEditPart) getHost()).getNotationView(), hyperlinkHelperFactory);
+										hyperLinkManagerShell.setInput(hyperLinkObjectList);
+										hyperLinkManagerShell.open(); // TODO cannot click Ok
+									}
 								}
 							};
-
 							addLinkCommand.execute();
 						}
 

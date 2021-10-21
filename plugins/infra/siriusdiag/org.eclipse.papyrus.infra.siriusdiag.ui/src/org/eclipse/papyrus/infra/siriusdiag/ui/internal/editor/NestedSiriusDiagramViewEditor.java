@@ -38,14 +38,30 @@ import org.eclipse.emf.edit.provider.resource.ResourceSetItemProvider;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.GraphicalViewer;
+import org.eclipse.gef.KeyHandler;
+import org.eclipse.gef.KeyStroke;
 import org.eclipse.gef.commands.CommandStack;
+import org.eclipse.gef.ui.actions.ActionRegistry;
+import org.eclipse.gef.ui.actions.DirectEditAction;
+import org.eclipse.gef.ui.actions.GEFActionConstants;
+import org.eclipse.gef.ui.actions.ZoomInAction;
+import org.eclipse.gef.ui.actions.ZoomOutAction;
+import org.eclipse.gmf.runtime.common.ui.util.IPartSelector;
+import org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.internal.actions.InsertAction;
+import org.eclipse.gmf.runtime.diagram.ui.internal.actions.PromptingDeleteAction;
+import org.eclipse.gmf.runtime.diagram.ui.internal.actions.PromptingDeleteFromModelAction;
+import org.eclipse.gmf.runtime.diagram.ui.internal.actions.ToggleRouterAction;
+import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramCommandStack;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
+import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiResourceImpl;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
@@ -56,8 +72,8 @@ import org.eclipse.papyrus.infra.siriusdiag.ui.internal.sessions.SessionPrinter;
 import org.eclipse.papyrus.infra.ui.lifecycleevents.ISaveAndDirtyService;
 import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
 import org.eclipse.papyrus.infra.widgets.util.NavigationTarget;
-import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.sirius.business.api.dialect.command.RefreshRepresentationsCommand;
+import org.eclipse.sirius.business.api.query.FileQuery;
 import org.eclipse.sirius.business.api.session.Session;
 import org.eclipse.sirius.business.api.session.SessionManager;
 import org.eclipse.sirius.business.internal.session.SessionTransientAttachment;
@@ -78,11 +94,14 @@ import org.eclipse.sirius.viewpoint.description.style.provider.StyleItemProvider
 import org.eclipse.sirius.viewpoint.description.tool.provider.ToolItemProviderAdapterFactory;
 import org.eclipse.sirius.viewpoint.description.validation.provider.ValidationItemProviderAdapterFactory;
 import org.eclipse.sirius.viewpoint.provider.ViewpointItemProviderAdapterFactory;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
+import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.actions.ActionFactory;
 
 /**
  * Sirius Diagram Editor.
@@ -107,14 +126,16 @@ public class NestedSiriusDiagramViewEditor extends DDiagramEditorImpl implements
 
 	private DSemanticDiagram diagram;
 
+	private KeyHandler keyHandler;
+
 	/**
 	 *
 	 * Constructor.
 	 *
 	 * @param servicesRegistry
-	 *            the Papyrus service registry, it can't be <code>null</code>
+	 *                             the Papyrus service registry, it can't be <code>null</code>
 	 * @param prototype
-	 *            the edited element, it can't be <code>null</code>
+	 *                             the edited element, it can't be <code>null</code>
 	 */
 	public NestedSiriusDiagramViewEditor(ServicesRegistry servicesRegistry, DSemanticDiagram diagram) {
 		super();
@@ -136,7 +157,6 @@ public class NestedSiriusDiagramViewEditor extends DDiagramEditorImpl implements
 			SessionPrinter.print(session, this.getClass().getCanonicalName() + " " + "Constructor");
 
 			this.uri = diagram.eResource().getURI().appendFragment(diagram.eResource().getURIFragment(diagram));
-
 
 			Assert.isNotNull(this.diagram, "The edited diagram is null. The Diagram Editor creation failed"); //$NON-NLS-1$
 			Assert.isNotNull(this.servicesRegistry, "The papyrus ServicesRegistry is null. The Diagram Editor creation failed."); //$NON-NLS-1$
@@ -295,14 +315,16 @@ public class NestedSiriusDiagramViewEditor extends DDiagramEditorImpl implements
 				uiSession.open();
 
 				// TODO : done in another place
-				UmlModel uml = (UmlModel) modelSet.getModel(UmlModel.MODEL_ID);
-				this.session.addSemanticResource(uml.getResourceURI(), new NullProgressMonitor());
-
+				// UmlModel uml = (UmlModel) modelSet.getModel(UmlModel.MODEL_ID);
+				// this.session.addSemanticResource(uml.getResourceURI(), new NullProgressMonitor());
+				for (Resource resource : modelSet.getResources()) {
+					this.session.addSemanticResource(resource.getURI(), new NullProgressMonitor());
+				}
 				this.diagram.getTarget().eAdapters().add(new SessionTransientAttachment(session));
 				modelSet.getResources().add(session.getSessionResource());
 			}
 		} catch (ServiceException e1) {
-			// TODO : use Ppayrus LogHelper
+			// TODO : use Papyrus LogHelper
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
@@ -313,9 +335,9 @@ public class NestedSiriusDiagramViewEditor extends DDiagramEditorImpl implements
 				try {
 					NestedSiriusDiagramViewEditor.super.init(site, diagramViewEditorInput);
 				} catch (PartInitException e) {
-					// TODO : use Ppayrus LogHelper
+					// TODO : use Papyrus LogHelper
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Activator.log.error(e);
 				}
 			}
 		});
@@ -377,8 +399,25 @@ public class NestedSiriusDiagramViewEditor extends DDiagramEditorImpl implements
 			// PapyrusSessionFactory.INSTANCE.setServiceRegistry(serviceRegistry);
 			// PapyrusSessionManager.INSTANCE.add(session);
 			// TODO : VL : we must find a way to remove a UML dependency in this plugin...
-			UmlModel uml = (UmlModel) modelSet.getModel(UmlModel.MODEL_ID);
-			this.session.addSemanticResource(uml.getResourceURI(), new NullProgressMonitor());
+
+			ted.getCommandStack().execute(new RecordingCommand(ted) {
+
+				@Override
+				protected void doExecute() {
+					List<Resource> resources = new ArrayList(modelSet.getResources());
+					for (Resource resource : resources) {
+						if (resource.isLoaded()) {
+							FileQuery fileQuery = new FileQuery(resource.getURI().fileExtension());
+							// Some resources are not needed in the session and can cause problems
+							// but we still need others to handle hyperlink nodes.
+							if (!(fileQuery.isSessionResourceFile() || fileQuery.isSrmFile() || fileQuery.isVSMFile() || resource instanceof DiResourceImpl)) {
+								session.addSemanticResource(resource.getURI(), new NullProgressMonitor());
+							}
+						}
+					}
+				}
+			});
+
 			this.diagram.getTarget().eAdapters().add(new SessionTransientAttachment(session));
 			modelSet.getResources().add(session.getSessionResource());
 			this.session.open(new NullProgressMonitor());
@@ -651,4 +690,90 @@ public class NestedSiriusDiagramViewEditor extends DDiagramEditorImpl implements
 		}
 		// old version DiagramHelper.forceRefresh(getDiagramEditPart());
 	}
+
+	/**
+	 * Returns the KeyHandler with common bindings for both the Outline and
+	 * Graphical Views. For example, delete is a common action.
+	 *
+	 * @return KeyHandler
+	 */
+	@Override
+	protected KeyHandler getKeyHandler() {
+		if (keyHandler == null) {
+			keyHandler = new KeyHandler();
+
+			ActionRegistry registry = getActionRegistry();
+			IAction action;
+
+			action = new PromptingDeleteAction(this);
+			action.setText(DiagramUIMessages.DiagramEditor_Delete_from_Diagram);
+			registry.registerAction(action);
+			getSelectionActions().add(action.getId());
+
+			action = new InsertAction(this);
+			action.setText(""); //$NON-NLS-1$ // no text necessary since this is not a visible action
+			registry.registerAction(action);
+			getSelectionActions().add(action.getId());
+
+			PromptingDeleteFromModelAction deleteModelAction = new PromptingDeleteFromModelAction(
+					this);
+			deleteModelAction.init();
+
+			registry.registerAction(deleteModelAction);
+
+			action = new DirectEditAction((IWorkbenchPart) this);
+			registry.registerAction(action);
+			getSelectionActions().add(action.getId());
+
+			action = new ZoomInAction(getZoomManager());
+			action.setText(""); //$NON-NLS-1$ // no text necessary since this is not a visible action
+			registry.registerAction(action);
+			getSelectionActions().add(action.getId());
+
+			action = new ZoomOutAction(getZoomManager());
+			action.setText(""); //$NON-NLS-1$ // no text necessary since this is not a visible action
+			registry.registerAction(action);
+			getSelectionActions().add(action.getId());
+
+			action = new ToggleRouterAction(((IWorkbenchPart) this).getSite().getPage());
+			((ToggleRouterAction) action).setPartSelector(new IPartSelector() {
+				@Override
+				public boolean selects(IWorkbenchPart part) {
+					return part == this;
+				}
+			});
+			action.setText(""); //$NON-NLS-1$ // no text necessary since this is not a visible action
+			registry.registerAction(action);
+			getSelectionActions().add(action.getId());
+
+			keyHandler.put(KeyStroke.getPressed(SWT.INSERT, 0),
+					getActionRegistry().getAction(InsertAction.ID));
+
+			keyHandler.put(KeyStroke.getPressed(SWT.DEL, 100, SWT.CTRL),
+					getActionRegistry().getAction("deleteFromDiagramAction"));
+			keyHandler.put(KeyStroke.getPressed(SWT.BS, 8, 0),
+					getActionRegistry().getAction(ActionFactory.DELETE.getId()));
+
+			keyHandler.put(KeyStroke.getPressed(SWT.DEL, 127, 0),
+					getActionRegistry().getAction(
+							ActionIds.ACTION_DELETE_FROM_MODEL));
+			keyHandler.put(/* CTRL + '=' */
+					KeyStroke.getPressed('=', 0x3d, SWT.CTRL),
+					getActionRegistry().getAction(
+							GEFActionConstants.ZOOM_IN));
+			keyHandler.put(/* CTRL + '-' */
+					KeyStroke.getPressed('-', 0x2d, SWT.CTRL),
+					getActionRegistry().getAction(
+							GEFActionConstants.ZOOM_OUT));
+			keyHandler.put(/* CTRL + L */
+					KeyStroke.getPressed((char) 0xC, 108, SWT.CTRL),
+					getActionRegistry().getAction(
+							ActionIds.ACTION_TOGGLE_ROUTER));
+			keyHandler.put(KeyStroke.getPressed(SWT.F2, 0), getActionRegistry()
+					.getAction(GEFActionConstants.DIRECT_EDIT));
+		}
+		return keyHandler;
+	}
+
+
 }

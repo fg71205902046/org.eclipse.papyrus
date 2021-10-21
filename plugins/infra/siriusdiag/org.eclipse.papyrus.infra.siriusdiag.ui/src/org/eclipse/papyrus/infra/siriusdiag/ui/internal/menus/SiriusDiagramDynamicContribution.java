@@ -26,6 +26,7 @@ import org.eclipse.papyrus.infra.siriusdiag.ui.internal.viewpoint.SiriusDiagramV
 import org.eclipse.papyrus.infra.viewpoints.policy.DynamicContribution;
 import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
+import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.State;
@@ -60,7 +61,10 @@ public class SiriusDiagramDynamicContribution extends DynamicContribution {
 			return true;
 		} else if (proto.getRepresentationKind().getDiagramDescription().getName().equals("StateMachineDiagram") && (selection instanceof Model || selection instanceof State || selection instanceof StateMachine || selection instanceof Region)) {
 			return true;
+		} else if (proto.getRepresentationKind().getDiagramDescription().getName().equals("SequenceDiagram") && (selection instanceof Model || selection instanceof Interaction)) {
+			return true;
 		}
+
 		return false;
 	}
 

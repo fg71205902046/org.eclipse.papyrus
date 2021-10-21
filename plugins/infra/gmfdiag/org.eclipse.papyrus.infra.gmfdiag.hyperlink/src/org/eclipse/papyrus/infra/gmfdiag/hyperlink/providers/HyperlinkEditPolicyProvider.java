@@ -72,7 +72,10 @@ public class HyperlinkEditPolicyProvider extends AbstractProvider implements IEd
 	 */
 	@Override
 	public void createEditPolicies(EditPart editPart) {
-		editPart.installEditPolicy(org.eclipse.papyrus.infra.gmfdiag.navigation.editpolicy.NavigationEditPolicy.EDIT_POLICY_ID, new HyperlinkNavigationMenuEditPolicy());
-		editPart.installEditPolicy(org.eclipse.papyrus.infra.gmfdiag.hyperlink.editpolicies.NavigationEditPolicy.NAVIGATION_POLICY, new org.eclipse.papyrus.infra.gmfdiag.hyperlink.editpolicies.NavigationEditPolicy());
+		// System.out.println();
+		if (!editPart.getClass().getName().equals("DDiagramEditPart")) {
+			editPart.installEditPolicy(org.eclipse.papyrus.infra.gmfdiag.navigation.editpolicy.NavigationEditPolicy.EDIT_POLICY_ID, new HyperlinkNavigationMenuEditPolicy());
+			editPart.installEditPolicy(org.eclipse.papyrus.infra.gmfdiag.hyperlink.editpolicies.NavigationEditPolicy.NAVIGATION_POLICY, new org.eclipse.papyrus.infra.gmfdiag.hyperlink.editpolicies.NavigationEditPolicy());
+		}
 	}
 }
