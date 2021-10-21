@@ -13,10 +13,10 @@
       <category name="org.eclipse.papyrus.user.examples.category"/>
    </feature>
    <feature url="features/org.eclipse.papyrus.infra.textedit.feature_1.0.0.qualifier.jar" id="org.eclipse.papyrus.infra.textedit.feature" version="1.0.0.qualifier">
-      <category name="org.eclipse.papyrus.category"/>
+      <category name="org.eclipse.papyrus.toolsmiths.category"/>
    </feature>
    <feature url="features/org.eclipse.papyrus.infra.textedit.feature.source_1.0.0.qualifier.jar" id="org.eclipse.papyrus.infra.textedit.feature.source" version="1.0.0.qualifier">
-      <category name="org.eclipse.papyrus.category"/>
+      <category name="org.eclipse.papyrus.toolsmiths.category"/>
    </feature>
    <category-def name="org.eclipse.papyrus.category" label="Papyrus">
       <description>
@@ -26,6 +26,11 @@
    <category-def name="org.eclipse.papyrus.user.examples.category" label="Papyrus User Examples">
       <description>
          Papyrus User Examples offers a set of plugins dedicated to gather examples of Papyrus usage.
+      </description>
+   </category-def>
+   <category-def name="org.eclipse.papyrus.toolsmiths.category" label="Papyrus Toolsmiths">
+      <description>
+         Papyrus Toolsmiths offers a set of plugins dedicated to speedup the process to create your own customization on top of Papyrus.
       </description>
    </category-def>
    <repository-reference location="https://download.eclipse.org/tools/orbit/downloads/drops/R20180206163158/repository/" enabled="true" />

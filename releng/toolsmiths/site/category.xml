@@ -43,29 +43,19 @@
       <category name="org.eclipse.papyrus.toolsmiths.category"/>
    </feature>
    <feature url="features/org.eclipse.papyrus.toolsmiths.builder.feature_1.0.0.qualifier.jar" id="org.eclipse.papyrus.toolsmiths.builder.feature" version="1.0.0.qualifier">
-      <category name="org.eclipse.papyrus.toolsmiths.builder.category"/>
+      <category name="org.eclipse.papyrus.toolsmiths.category"/>
    </feature>
    <feature url="features/org.eclipse.papyrus.toolsmiths.builder.feature.source_1.0.0.qualifier.jar" id="org.eclipse.papyrus.toolsmiths.builder.feature" version="1.0.0.qualifier">
-      <category name="org.eclipse.papyrus.toolsmiths.builder.category"/>
+      <category name="org.eclipse.papyrus.toolsmiths.category"/>
    </feature>
    <category-def name="org.eclipse.papyrus.toolsmiths.category" label="Papyrus Toolsmiths">
       <description>
          Papyrus Toolsmiths offers a set of plugins dedicated to speedup the process to create your own customization on top of Papyrus.
       </description>
    </category-def>
-   <category-def name="org.eclipse.papyrus.dev.examples" label="Papyrus Developer Examples">
-      <description>
-         Papyrus Developer Examples
-      </description>
-   </category-def>
    <category-def name="org.eclipse.papyrus.releng.category" label="Papyrus Releng Tools">
       <description>
          Papyrus tools used for releng purposes.
-      </description>
-   </category-def>
-   <category-def name="org.eclipse.papyrus.toolsmiths.builder.category" label="Papyrus Toolsmiths - Builder">
-      <description>
-         This feature provides custom builder to build Papyrus plugins and get new error markers.
       </description>
    </category-def>
    <repository-reference location="https://download.eclipse.org/cbi/tpd/3.0.0-SNAPSHOT" enabled="true" />
