@@ -55,6 +55,7 @@ import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
 import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.Activator;
 import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
@@ -241,6 +242,9 @@ public class EMFHelper {
 				eObject = ((IAdaptable) source).getAdapter(EReference.class);
 			}
 
+			// For Sirius element
+			eObject = asSemanticElement(eObject); // in case the adapter is a Sirius graphical element
+
 			if (eObject != null) {
 				return asEMFModelElement(eObject); // in case the adapter is a CDOResource
 			}
@@ -252,6 +256,22 @@ public class EMFHelper {
 		}
 
 		return null;
+	}
+
+	/**
+	 * Returns the EObject using the semantic service available
+	 *
+	 * @return An EObject corresponding to the semantic element
+	 */
+	private static EObject asSemanticElement(EObject obj) {
+
+		try {
+			ServicesRegistry serviceRegistry = ServiceUtilsForEObject.getInstance().getServiceRegistry(obj);
+			ISemanticService service = serviceRegistry.getService(ISemanticService.class);
+			return service.getSemanticObject(obj);
+		} catch (ServiceException e) {
+			return obj;
+		}
 	}
 
 	/**
