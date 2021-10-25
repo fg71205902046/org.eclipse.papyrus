@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style">
+  <viewpoint:DAnalysis uid="_y_Q3wB-ZEeyZP7QGS6vSNw" selectedViews="_zZTIYB-ZEeyZP7QGS6vSNw" version="14.3.1.202003261200">
+    <semanticResources>SubNode_ClassToPackage_DropTest.uml</semanticResources>
+    <semanticResources>pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml</semanticResources>
+    <semanticResources>pathmap://UML_PROFILES/Ecore.profile.uml</semanticResources>
+    <semanticResources>pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml</semanticResources>
+    <semanticResources>pathmap://UML_PROFILES/Standard.profile.uml</semanticResources>
+    <semanticResources>pathmap://UML_METAMODELS/UML.metamodel.uml</semanticResources>
+    <semanticResources>pathmap://UML_METAMODELS/Ecore.metamodel.uml</semanticResources>
+    <ownedViews xmi:type="viewpoint:DView" uid="_zZTIYB-ZEeyZP7QGS6vSNw">
+      <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.clazz.diagram/description/papyrus_class.odesign#//@ownedViewpoints[name='ClassDiagram']"/>
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_P1cY4B-aEey8BKucjkJgFA" name="SubNode_ClassToPackage_ClassDiagram" repPath="#_P1AUAB-aEey8BKucjkJgFA" changeId="54395618-b2a6-4314-813a-92ec4ccb99f0">
+        <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.clazz.diagram/description/papyrus_class.odesign#//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']"/>
+        <target xmi:type="uml:Model" href="SubNode_ClassToPackage_DropTest.uml#_v6_OcB-ZEeyZP7QGS6vSNw"/>
+      </ownedRepresentationDescriptors>
+    </ownedViews>
+  </viewpoint:DAnalysis>
+  <diagram:DSemanticDiagram uid="_P1AUAB-aEey8BKucjkJgFA">
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_P3gOYB-aEey8BKucjkJgFA" source="GMF_DIAGRAMS">
+      <data xmi:type="notation:Diagram" xmi:id="_P3gOYR-aEey8BKucjkJgFA" type="Sirius" element="_P1AUAB-aEey8BKucjkJgFA" measurementUnit="Pixel">
+        <children xmi:type="notation:Node" xmi:id="_R1QUgB-aEey8BKucjkJgFA" type="2002" element="_RzMfAB-aEey8BKucjkJgFA">
+          <children xmi:type="notation:Node" xmi:id="_R1iBUB-aEey8BKucjkJgFA" type="5006"/>
+          <children xmi:type="notation:Node" xmi:id="_R1ng4B-aEey8BKucjkJgFA" type="7001">
+            <styles xmi:type="notation:SortingStyle" xmi:id="_R1ng4R-aEey8BKucjkJgFA"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_R1ng4h-aEey8BKucjkJgFA"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_R1QUgR-aEey8BKucjkJgFA" fontName="Segoe UI"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_R1QUgh-aEey8BKucjkJgFA" x="114" y="42" width="223" height="313"/>
+        </children>
+        <styles xmi:type="notation:DiagramStyle" xmi:id="_P3gOYh-aEey8BKucjkJgFA"/>
+      </data>
+    </ownedAnnotationEntries>
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_P7unEB-aEey8BKucjkJgFA" source="DANNOTATION_CUSTOMIZATION_KEY">
+      <data xmi:type="diagram:ComputedStyleDescriptionRegistry" uid="_P7unER-aEey8BKucjkJgFA"/>
+    </ownedAnnotationEntries>
+    <ownedDiagramElements xmi:type="diagram:DNodeContainer" uid="_RzMfAB-aEey8BKucjkJgFA" name="Package1" tooltipText="SubNode_ClassToPackage_DropTest::Package1" width="8" height="8">
+      <target xmi:type="uml:Package" href="SubNode_ClassToPackage_DropTest.uml#_RzA40B-aEey8BKucjkJgFA"/>
+      <semanticElements xmi:type="uml:Package" href="SubNode_ClassToPackage_DropTest.uml#_RzA40B-aEey8BKucjkJgFA"/>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_RzWQAB-aEey8BKucjkJgFA" labelSize="9" labelAlignment="LEFT" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="GradientTopToBottom" foregroundColor="255,255,255">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.clazz.diagram/description/papyrus_class.odesign#//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='CD_Package']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.clazz.diagram/description/papyrus_class.odesign#//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='CD_Package']"/>
+    </ownedDiagramElements>
+    <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.clazz.diagram/description/papyrus_class.odesign#//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']"/>
+    <filterVariableHistory xmi:type="diagram:FilterVariableHistory" uid="_P1IP0B-aEey8BKucjkJgFA"/>
+    <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.clazz.diagram/description/papyrus_class.odesign#//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer"/>
+    <target xmi:type="uml:Model" href="SubNode_ClassToPackage_DropTest.uml#_v6_OcB-ZEeyZP7QGS6vSNw"/>
+  </diagram:DSemanticDiagram>
+</xmi:XMI>

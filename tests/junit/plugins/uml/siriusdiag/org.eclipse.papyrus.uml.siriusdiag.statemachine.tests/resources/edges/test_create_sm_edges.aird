@@ -1,0 +1,1114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:style_1="http://www.eclipse.org/sirius/description/style/1.1.0" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style http://www.eclipse.org/sirius/description/style/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description/style">
+  <viewpoint:DAnalysis uid="__U9O4BeSEeye9rbTyh9wBA" selectedViews="__zng0BeSEeye9rbTyh9wBA __3YmgBeSEeye9rbTyh9wBA" version="14.3.1.202003261200">
+    <semanticResources>pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml</semanticResources>
+    <semanticResources>pathmap://UML_PROFILES/Ecore.profile.uml</semanticResources>
+    <semanticResources>pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml</semanticResources>
+    <semanticResources>pathmap://UML_PROFILES/Standard.profile.uml</semanticResources>
+    <semanticResources>pathmap://UML_METAMODELS/UML.metamodel.uml</semanticResources>
+    <semanticResources>pathmap://UML_METAMODELS/Ecore.metamodel.uml</semanticResources>
+    <semanticResources>test_create_sm_edges.uml</semanticResources>
+    <semanticResources>platform:/plugin/org.eclipse.uml2.types/model/Types.ecore</semanticResources>
+    <semanticResources>platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore</semanticResources>
+    <ownedViews xmi:type="viewpoint:DView" uid="__zng0BeSEeye9rbTyh9wBA">
+      <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.clazz.diagram/description/papyrus_class.odesign#//@ownedViewpoints[name='ClassDiagram']"/>
+    </ownedViews>
+    <ownedViews xmi:type="viewpoint:DView" uid="__3YmgBeSEeye9rbTyh9wBA">
+      <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']"/>
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="___R-QBeSEeye9rbTyh9wBA" name="test_create_sm_edges" repPath="#__5Hr4BeSEeye9rbTyh9wBA" changeId="9ab8442f-dab4-46b0-bb61-77bb04bc0384">
+        <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']"/>
+        <target xmi:type="uml:StateMachine" href="test_create_sm_edges.uml#__UnQoBeSEeye9rbTyh9wBA"/>
+      </ownedRepresentationDescriptors>
+    </ownedViews>
+  </viewpoint:DAnalysis>
+  <diagram:DSemanticDiagram uid="__5Hr4BeSEeye9rbTyh9wBA">
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_AAYxgBeTEeye9rbTyh9wBA" source="GMF_DIAGRAMS">
+      <data xmi:type="notation:Diagram" xmi:id="_AAYxgReTEeye9rbTyh9wBA" type="Sirius" element="__5Hr4BeSEeye9rbTyh9wBA" measurementUnit="Pixel">
+        <children xmi:type="notation:Node" xmi:id="_ABoHoBeTEeye9rbTyh9wBA" type="2002" element="_AA5H0BeTEeye9rbTyh9wBA">
+          <children xmi:type="notation:Node" xmi:id="_ACN9gBeTEeye9rbTyh9wBA" type="5006"/>
+          <children xmi:type="notation:Node" xmi:id="_ACRn4BeTEeye9rbTyh9wBA" type="7001">
+            <children xmi:type="notation:Node" xmi:id="_C9NH8BeTEeye9rbTyh9wBA" type="3008" element="_C86NABeTEeye9rbTyh9wBA">
+              <children xmi:type="notation:Node" xmi:id="_C9NvABeTEeye9rbTyh9wBA" visible="false" type="5005"/>
+              <children xmi:type="notation:Node" xmi:id="_C9O9IBeTEeye9rbTyh9wBA" type="7002">
+                <children xmi:type="notation:Node" xmi:id="_EykHEBeTEeye9rbTyh9wBA" type="3008" element="_EySaQBeTEeye9rbTyh9wBA">
+                  <children xmi:type="notation:Node" xmi:id="_WdD9cBeUEeye9rbTyh9wBA" type="3012" element="_Wc8BoBeUEeye9rbTyh9wBA">
+                    <children xmi:type="notation:Node" xmi:id="_WdGZsBeUEeye9rbTyh9wBA" type="5010">
+                      <layoutConstraint xmi:type="notation:Location" xmi:id="_WdGZsReUEeye9rbTyh9wBA" x="17" y="-2"/>
+                    </children>
+                    <children xmi:type="notation:Node" xmi:id="_WdTOABeUEeye9rbTyh9wBA" type="3005" element="_Wc8osBeUEeye9rbTyh9wBA">
+                      <styles xmi:type="notation:ShapeStyle" xmi:id="_WdTOAReUEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WdTOAheUEeye9rbTyh9wBA"/>
+                    </children>
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_WdD9cReUEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WdD9cheUEeye9rbTyh9wBA" x="-3" y="165" width="16" height="16"/>
+                  </children>
+                  <children xmi:type="notation:Node" xmi:id="_ZJK-YBeUEeye9rbTyh9wBA" type="3012" element="_ZI5RkBeUEeye9rbTyh9wBA">
+                    <children xmi:type="notation:Node" xmi:id="_ZJMMgBeUEeye9rbTyh9wBA" type="5010">
+                      <layoutConstraint xmi:type="notation:Location" xmi:id="_ZJMMgReUEeye9rbTyh9wBA" x="-26" y="17"/>
+                    </children>
+                    <children xmi:type="notation:Node" xmi:id="_ZJThQBeUEeye9rbTyh9wBA" type="3005" element="_ZI54oBeUEeye9rbTyh9wBA">
+                      <styles xmi:type="notation:ShapeStyle" xmi:id="_ZJThQReUEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ZJThQheUEeye9rbTyh9wBA"/>
+                    </children>
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_ZJK-YReUEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ZJK-YheUEeye9rbTyh9wBA" x="750" y="189" width="16" height="16"/>
+                  </children>
+                  <children xmi:type="notation:Node" xmi:id="_EykuIBeTEeye9rbTyh9wBA" type="5005"/>
+                  <children xmi:type="notation:Node" xmi:id="_EykuIReTEeye9rbTyh9wBA" type="7002">
+                    <children xmi:type="notation:Node" xmi:id="_GFPP4BeTEeye9rbTyh9wBA" type="3008" element="_GFBNcBeTEeye9rbTyh9wBA">
+                      <children xmi:type="notation:Node" xmi:id="_GFP28BeTEeye9rbTyh9wBA" visible="false" type="5005"/>
+                      <children xmi:type="notation:Node" xmi:id="_GFQeABeTEeye9rbTyh9wBA" type="7002">
+                        <children xmi:type="notation:Node" xmi:id="_OEdwQBeTEeye9rbTyh9wBA" type="3007" element="_OEOfsBeTEeye9rbTyh9wBA">
+                          <children xmi:type="notation:Node" xmi:id="_OEeXUBeTEeye9rbTyh9wBA" type="5003">
+                            <layoutConstraint xmi:type="notation:Location" xmi:id="_OEeXUReTEeye9rbTyh9wBA" x="21"/>
+                          </children>
+                          <children xmi:type="notation:Node" xmi:id="_OEe-YBeTEeye9rbTyh9wBA" type="3002" element="_OEPGwBeTEeye9rbTyh9wBA">
+                            <styles xmi:type="notation:ShapeStyle" xmi:id="_OEe-YReTEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_OEe-YheTEeye9rbTyh9wBA"/>
+                          </children>
+                          <styles xmi:type="notation:ShapeStyle" xmi:id="_OEdwQReTEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_OEdwQheTEeye9rbTyh9wBA" x="26" y="46" width="20" height="20"/>
+                        </children>
+                        <children xmi:type="notation:Node" xmi:id="_82o84BeTEeye9rbTyh9wBA" type="3007" element="_82cIkBeTEeye9rbTyh9wBA">
+                          <children xmi:type="notation:Node" xmi:id="_82pj8BeTEeye9rbTyh9wBA" type="5003">
+                            <layoutConstraint xmi:type="notation:Location" xmi:id="_82pj8ReTEeye9rbTyh9wBA" x="17" y="-2"/>
+                          </children>
+                          <children xmi:type="notation:Node" xmi:id="_86qhQBeTEeye9rbTyh9wBA" type="3005" element="_82dWsBeTEeye9rbTyh9wBA">
+                            <styles xmi:type="notation:ShapeStyle" xmi:id="_86qhQReTEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_86qhQheTEeye9rbTyh9wBA"/>
+                          </children>
+                          <styles xmi:type="notation:ShapeStyle" xmi:id="_82o84ReTEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_82o84heTEeye9rbTyh9wBA" x="520" y="112" width="16" height="16"/>
+                        </children>
+                        <children xmi:type="notation:Node" xmi:id="_OQeWgBeUEeye9rbTyh9wBA" type="3007" element="_OQQ7IBeUEeye9rbTyh9wBA">
+                          <children xmi:type="notation:Node" xmi:id="_OQe9kBeUEeye9rbTyh9wBA" type="5003">
+                            <layoutConstraint xmi:type="notation:Location" xmi:id="_OQe9kReUEeye9rbTyh9wBA" x="1" y="16"/>
+                          </children>
+                          <children xmi:type="notation:Node" xmi:id="_OQ2J8BeUEeye9rbTyh9wBA" type="3005" element="_OQTXYBeUEeye9rbTyh9wBA">
+                            <styles xmi:type="notation:ShapeStyle" xmi:id="_OQ2J8ReUEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_OQ2J8heUEeye9rbTyh9wBA"/>
+                          </children>
+                          <styles xmi:type="notation:ShapeStyle" xmi:id="_OQeWgReUEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_OQeWgheUEeye9rbTyh9wBA" x="135" y="219" width="60" height="15"/>
+                        </children>
+                        <children xmi:type="notation:Node" xmi:id="_QdQ-MBeUEeye9rbTyh9wBA" type="3007" element="_QdFYABeUEeye9rbTyh9wBA">
+                          <children xmi:type="notation:Node" xmi:id="_QdQ-MxeUEeye9rbTyh9wBA" type="5003">
+                            <layoutConstraint xmi:type="notation:Location" xmi:id="_QdQ-NBeUEeye9rbTyh9wBA" x="21" y="-1"/>
+                          </children>
+                          <children xmi:type="notation:Node" xmi:id="_QqrvIBeUEeye9rbTyh9wBA" type="3005" element="_QdFYAReUEeye9rbTyh9wBA">
+                            <styles xmi:type="notation:ShapeStyle" xmi:id="_QqrvIReUEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_QqrvIheUEeye9rbTyh9wBA"/>
+                          </children>
+                          <styles xmi:type="notation:ShapeStyle" xmi:id="_QdQ-MReUEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_QdQ-MheUEeye9rbTyh9wBA" x="116" y="140" width="20" height="20"/>
+                        </children>
+                        <children xmi:type="notation:Node" xmi:id="_RUT68BeUEeye9rbTyh9wBA" type="3007" element="_RUF4gBeUEeye9rbTyh9wBA">
+                          <children xmi:type="notation:Node" xmi:id="_RUUiABeUEeye9rbTyh9wBA" type="5003">
+                            <layoutConstraint xmi:type="notation:Location" xmi:id="_RUUiAReUEeye9rbTyh9wBA" x="21" y="-1"/>
+                          </children>
+                          <children xmi:type="notation:Node" xmi:id="_RUjykBeUEeye9rbTyh9wBA" type="3005" element="_RUGfkBeUEeye9rbTyh9wBA">
+                            <styles xmi:type="notation:ShapeStyle" xmi:id="_RUjykReUEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_RUjykheUEeye9rbTyh9wBA"/>
+                          </children>
+                          <styles xmi:type="notation:ShapeStyle" xmi:id="_RUT68ReUEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_RUT68heUEeye9rbTyh9wBA" x="229" y="174" width="20" height="20"/>
+                        </children>
+                        <children xmi:type="notation:Node" xmi:id="_SyTi8BeUEeye9rbTyh9wBA" type="3007" element="_SyH8wBeUEeye9rbTyh9wBA">
+                          <children xmi:type="notation:Node" xmi:id="_SyUKABeUEeye9rbTyh9wBA" type="5003">
+                            <layoutConstraint xmi:type="notation:Location" xmi:id="_SyUKAReUEeye9rbTyh9wBA" x="16" y="19"/>
+                          </children>
+                          <children xmi:type="notation:Node" xmi:id="_SycF0BeUEeye9rbTyh9wBA" type="3005" element="_SyIj0BeUEeye9rbTyh9wBA">
+                            <styles xmi:type="notation:ShapeStyle" xmi:id="_SycF0ReUEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SycF0heUEeye9rbTyh9wBA"/>
+                          </children>
+                          <styles xmi:type="notation:ShapeStyle" xmi:id="_SyTi8ReUEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SyTi8heUEeye9rbTyh9wBA" x="430" y="53" width="15" height="60"/>
+                        </children>
+                        <children xmi:type="notation:Node" xmi:id="_UkvJ4BeUEeye9rbTyh9wBA" type="3007" element="_UkkKwBeUEeye9rbTyh9wBA">
+                          <children xmi:type="notation:Node" xmi:id="_Ukvw8BeUEeye9rbTyh9wBA" type="5003">
+                            <layoutConstraint xmi:type="notation:Location" xmi:id="_Ukvw8ReUEeye9rbTyh9wBA" y="-22"/>
+                          </children>
+                          <children xmi:type="notation:Node" xmi:id="_Uk3FsBeUEeye9rbTyh9wBA" type="3005" element="_UkkKwReUEeye9rbTyh9wBA">
+                            <styles xmi:type="notation:ShapeStyle" xmi:id="_Uk3FsReUEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Uk3FsheUEeye9rbTyh9wBA"/>
+                          </children>
+                          <styles xmi:type="notation:ShapeStyle" xmi:id="_UkvJ4ReUEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_UkvJ4heUEeye9rbTyh9wBA" x="399" y="147" width="60" height="60"/>
+                        </children>
+                        <children xmi:type="notation:Node" xmi:id="_VuLeMBeUEeye9rbTyh9wBA" type="3007" element="_Vt-p4BeUEeye9rbTyh9wBA">
+                          <children xmi:type="notation:Node" xmi:id="_VuMFQBeUEeye9rbTyh9wBA" type="5003">
+                            <layoutConstraint xmi:type="notation:Location" xmi:id="_VuMFQReUEeye9rbTyh9wBA" x="21"/>
+                          </children>
+                          <children xmi:type="notation:Node" xmi:id="_VuMsUBeUEeye9rbTyh9wBA" type="3002" element="_Vt_Q8BeUEeye9rbTyh9wBA">
+                            <styles xmi:type="notation:ShapeStyle" xmi:id="_VuMsUReUEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_VuMsUheUEeye9rbTyh9wBA"/>
+                          </children>
+                          <styles xmi:type="notation:ShapeStyle" xmi:id="_VuLeMReUEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_VuLeMheUEeye9rbTyh9wBA" x="466" y="233" width="20" height="20"/>
+                        </children>
+                        <children xmi:type="notation:Node" xmi:id="_imt24BeUEeye9rbTyh9wBA" type="3008" element="_imiQsBeUEeye9rbTyh9wBA">
+                          <children xmi:type="notation:Node" xmi:id="_kQZxgBeUEeye9rbTyh9wBA" type="3012" element="_kQOyYBeUEeye9rbTyh9wBA">
+                            <children xmi:type="notation:Node" xmi:id="_kQaYkBeUEeye9rbTyh9wBA" type="5010">
+                              <layoutConstraint xmi:type="notation:Location" xmi:id="_kQaYkReUEeye9rbTyh9wBA" x="-81"/>
+                            </children>
+                            <children xmi:type="notation:Node" xmi:id="_kQc00BeUEeye9rbTyh9wBA" type="3005" element="_kQOyYReUEeye9rbTyh9wBA">
+                              <styles xmi:type="notation:ShapeStyle" xmi:id="_kQc00ReUEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kQc00heUEeye9rbTyh9wBA"/>
+                            </children>
+                            <styles xmi:type="notation:ShapeStyle" xmi:id="_kQZxgReUEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kQZxgheUEeye9rbTyh9wBA" x="11" y="58" width="16" height="16"/>
+                          </children>
+                          <children xmi:type="notation:Node" xmi:id="_lAa5MBeUEeye9rbTyh9wBA" type="3012" element="_lACesheUEeye9rbTyh9wBA">
+                            <children xmi:type="notation:Node" xmi:id="_lAbgQBeUEeye9rbTyh9wBA" type="5010">
+                              <layoutConstraint xmi:type="notation:Location" xmi:id="_lAbgQReUEeye9rbTyh9wBA" x="17" y="-2"/>
+                            </children>
+                            <children xmi:type="notation:Node" xmi:id="_lBLuMBeUEeye9rbTyh9wBA" type="3005" element="_lACesxeUEeye9rbTyh9wBA">
+                              <styles xmi:type="notation:ShapeStyle" xmi:id="_lBLuMReUEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_lBLuMheUEeye9rbTyh9wBA"/>
+                            </children>
+                            <styles xmi:type="notation:ShapeStyle" xmi:id="_lAa5MReUEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_lAa5MheUEeye9rbTyh9wBA" x="93" y="58" width="16" height="16"/>
+                          </children>
+                          <children xmi:type="notation:Node" xmi:id="_imvFABeUEeye9rbTyh9wBA" type="5005"/>
+                          <children xmi:type="notation:Node" xmi:id="_imvFAReUEeye9rbTyh9wBA" type="7002">
+                            <children xmi:type="notation:Node" xmi:id="_i7o-ABeUEeye9rbTyh9wBA" type="3008" element="_i7d-4BeUEeye9rbTyh9wBA">
+                              <children xmi:type="notation:Node" xmi:id="_i7plEBeUEeye9rbTyh9wBA" visible="false" type="5005"/>
+                              <children xmi:type="notation:Node" xmi:id="_i7plEReUEeye9rbTyh9wBA" type="7002">
+                                <styles xmi:type="notation:SortingStyle" xmi:id="_i7plEheUEeye9rbTyh9wBA"/>
+                                <styles xmi:type="notation:FilteringStyle" xmi:id="_i7plExeUEeye9rbTyh9wBA"/>
+                                <styles xmi:type="notation:DrawerStyle" xmi:id="_i7plFBeUEeye9rbTyh9wBA"/>
+                              </children>
+                              <styles xmi:type="notation:ShapeStyle" xmi:id="_i7o-AReUEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_i7o-AheUEeye9rbTyh9wBA" width="99"/>
+                            </children>
+                            <children xmi:type="notation:Node" xmi:id="_kQdb4BeUEeye9rbTyh9wBA" visible="false" type="3007" element="_kQOLUBeUEeye9rbTyh9wBA">
+                              <children xmi:type="notation:Node" xmi:id="_kQdb4xeUEeye9rbTyh9wBA" type="5003">
+                                <layoutConstraint xmi:type="notation:Location" xmi:id="_kQdb5BeUEeye9rbTyh9wBA" y="5"/>
+                              </children>
+                              <styles xmi:type="notation:ShapeStyle" xmi:id="_kQdb4ReUEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kQdb4heUEeye9rbTyh9wBA" width="20" height="20"/>
+                            </children>
+                            <styles xmi:type="notation:SortingStyle" xmi:id="_imvFAheUEeye9rbTyh9wBA"/>
+                            <styles xmi:type="notation:FilteringStyle" xmi:id="_imvFAxeUEeye9rbTyh9wBA"/>
+                          </children>
+                          <styles xmi:type="notation:ShapeStyle" xmi:id="_imt24ReUEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_imt24heUEeye9rbTyh9wBA" x="188" y="46"/>
+                        </children>
+                        <children xmi:type="notation:Node" xmi:id="_wGQlMBeUEeye9rbTyh9wBA" type="3007" element="_wGE_ABeUEeye9rbTyh9wBA">
+                          <children xmi:type="notation:Node" xmi:id="_wGQlMxeUEeye9rbTyh9wBA" type="5003">
+                            <layoutConstraint xmi:type="notation:Location" xmi:id="_wGQlNBeUEeye9rbTyh9wBA" x="-30" y="17"/>
+                          </children>
+                          <children xmi:type="notation:Node" xmi:id="_wGX58BeUEeye9rbTyh9wBA" type="3005" element="_wGE_AReUEeye9rbTyh9wBA">
+                            <styles xmi:type="notation:ShapeStyle" xmi:id="_wGX58ReUEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_wGX58heUEeye9rbTyh9wBA"/>
+                          </children>
+                          <styles xmi:type="notation:ShapeStyle" xmi:id="_wGQlMReUEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_wGQlMheUEeye9rbTyh9wBA" x="315" y="263" width="16" height="16"/>
+                        </children>
+                        <children xmi:type="notation:Node" xmi:id="_xMemYBeUEeye9rbTyh9wBA" type="3007" element="_xMRLABeUEeye9rbTyh9wBA">
+                          <children xmi:type="notation:Node" xmi:id="_xMemYxeUEeye9rbTyh9wBA" type="5003">
+                            <layoutConstraint xmi:type="notation:Location" xmi:id="_xMemZBeUEeye9rbTyh9wBA" y="5"/>
+                          </children>
+                          <children xmi:type="notation:Node" xmi:id="_xMf0gBeUEeye9rbTyh9wBA" type="3013" element="_xMSZIBeUEeye9rbTyh9wBA">
+                            <styles xmi:type="notation:ShapeStyle" xmi:id="_xMf0gReUEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xMf0gheUEeye9rbTyh9wBA"/>
+                          </children>
+                          <styles xmi:type="notation:ShapeStyle" xmi:id="_xMemYReUEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xMemYheUEeye9rbTyh9wBA" x="135" y="267" width="30" height="30"/>
+                        </children>
+                        <children xmi:type="notation:Node" xmi:id="_KYBBwBeVEeye9rbTyh9wBA" type="3007" element="_KX00gBeVEeye9rbTyh9wBA">
+                          <children xmi:type="notation:Node" xmi:id="_KYBo0BeVEeye9rbTyh9wBA" type="5003">
+                            <layoutConstraint xmi:type="notation:Location" xmi:id="_KYBo0ReVEeye9rbTyh9wBA" y="5"/>
+                          </children>
+                          <children xmi:type="notation:Node" xmi:id="_KYCP4BeVEeye9rbTyh9wBA" type="3013" element="_KX1bkBeVEeye9rbTyh9wBA">
+                            <styles xmi:type="notation:ShapeStyle" xmi:id="_KYCP4ReVEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KYCP4heVEeye9rbTyh9wBA"/>
+                          </children>
+                          <styles xmi:type="notation:ShapeStyle" xmi:id="_KYBBwReVEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KYBBwheVEeye9rbTyh9wBA" x="15" y="236" width="71" height="52"/>
+                        </children>
+                        <styles xmi:type="notation:SortingStyle" xmi:id="_GFQeAReTEeye9rbTyh9wBA"/>
+                        <styles xmi:type="notation:FilteringStyle" xmi:id="_GFQeAheTEeye9rbTyh9wBA"/>
+                        <styles xmi:type="notation:DrawerStyle" xmi:id="_GFQeAxeTEeye9rbTyh9wBA"/>
+                      </children>
+                      <styles xmi:type="notation:ShapeStyle" xmi:id="_GFPP4ReTEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_GFPP4heTEeye9rbTyh9wBA" width="690" height="329"/>
+                    </children>
+                    <styles xmi:type="notation:SortingStyle" xmi:id="_EykuIheTEeye9rbTyh9wBA"/>
+                    <styles xmi:type="notation:FilteringStyle" xmi:id="_EykuIxeTEeye9rbTyh9wBA"/>
+                  </children>
+                  <styles xmi:type="notation:ShapeStyle" xmi:id="_EykHEReTEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_EykHEheTEeye9rbTyh9wBA" x="139" y="75"/>
+                </children>
+                <children xmi:type="notation:Node" xmi:id="_FaMHwBeTEeye9rbTyh9wBA" type="3008" element="_FZ-FUBeTEeye9rbTyh9wBA">
+                  <children xmi:type="notation:Node" xmi:id="_OajqIBeVEeye9rbTyh9wBA" type="3012" element="_OaYrABeVEeye9rbTyh9wBA">
+                    <children xmi:type="notation:Node" xmi:id="_OakRMBeVEeye9rbTyh9wBA" type="5010">
+                      <layoutConstraint xmi:type="notation:Location" xmi:id="_OakRMReVEeye9rbTyh9wBA" x="17" y="-2"/>
+                    </children>
+                    <children xmi:type="notation:Node" xmi:id="_OaoioBeVEeye9rbTyh9wBA" type="3005" element="_OaYrAReVEeye9rbTyh9wBA">
+                      <styles xmi:type="notation:ShapeStyle" xmi:id="_OaoioReVEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_OaoioheVEeye9rbTyh9wBA"/>
+                    </children>
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_OajqIReVEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_OajqIheVEeye9rbTyh9wBA" x="-3" y="148" width="16" height="16"/>
+                  </children>
+                  <children xmi:type="notation:Node" xmi:id="_PUMn4BeVEeye9rbTyh9wBA" type="3012" element="_PT8wQBeVEeye9rbTyh9wBA">
+                    <children xmi:type="notation:Node" xmi:id="_PUMn4xeVEeye9rbTyh9wBA" type="5010">
+                      <layoutConstraint xmi:type="notation:Location" xmi:id="_PUMn5BeVEeye9rbTyh9wBA" x="17"/>
+                    </children>
+                    <children xmi:type="notation:Node" xmi:id="_PUPEIBeVEeye9rbTyh9wBA" type="3005" element="_PT8wQReVEeye9rbTyh9wBA">
+                      <styles xmi:type="notation:ShapeStyle" xmi:id="_PUPrMBeVEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PUPrMReVEeye9rbTyh9wBA"/>
+                    </children>
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_PUMn4ReVEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PUMn4heVEeye9rbTyh9wBA" x="609" y="148" width="16" height="16"/>
+                  </children>
+                  <children xmi:type="notation:Node" xmi:id="_FaMu0BeTEeye9rbTyh9wBA" type="5005"/>
+                  <children xmi:type="notation:Node" xmi:id="_FaMu0ReTEeye9rbTyh9wBA" type="7002">
+                    <children xmi:type="notation:Node" xmi:id="_GgJqQBeTEeye9rbTyh9wBA" type="3008" element="_Gf7n0BeTEeye9rbTyh9wBA">
+                      <children xmi:type="notation:Node" xmi:id="_GgKRUBeTEeye9rbTyh9wBA" visible="false" type="5005"/>
+                      <children xmi:type="notation:Node" xmi:id="_GgKRUReTEeye9rbTyh9wBA" type="7002">
+                        <children xmi:type="notation:Node" xmi:id="_OpX0IBeTEeye9rbTyh9wBA" type="3007" element="_OpKYwBeTEeye9rbTyh9wBA">
+                          <children xmi:type="notation:Node" xmi:id="_OpYbMBeTEeye9rbTyh9wBA" type="5003">
+                            <layoutConstraint xmi:type="notation:Location" xmi:id="_OpZCQBeTEeye9rbTyh9wBA" x="21"/>
+                          </children>
+                          <children xmi:type="notation:Node" xmi:id="_OpZpUBeTEeye9rbTyh9wBA" type="3002" element="_OpK_0BeTEeye9rbTyh9wBA">
+                            <styles xmi:type="notation:ShapeStyle" xmi:id="_OpZpUReTEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_OpZpUheTEeye9rbTyh9wBA"/>
+                          </children>
+                          <styles xmi:type="notation:ShapeStyle" xmi:id="_OpX0IReTEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_OpX0IheTEeye9rbTyh9wBA" x="29" y="30" width="20" height="20"/>
+                        </children>
+                        <children xmi:type="notation:Node" xmi:id="_4fiZwBeTEeye9rbTyh9wBA" type="3008" element="_4fVlcBeTEeye9rbTyh9wBA">
+                          <children xmi:type="notation:Node" xmi:id="_zZG2ABeUEeye9rbTyh9wBA" type="3012" element="_zZBWcBeUEeye9rbTyh9wBA">
+                            <children xmi:type="notation:Node" xmi:id="_zZHdEBeUEeye9rbTyh9wBA" type="5010">
+                              <layoutConstraint xmi:type="notation:Location" xmi:id="_zZHdEReUEeye9rbTyh9wBA" x="17" y="-2"/>
+                            </children>
+                            <children xmi:type="notation:Node" xmi:id="_zZM8oBeUEeye9rbTyh9wBA" type="3005" element="_zZBWcReUEeye9rbTyh9wBA">
+                              <styles xmi:type="notation:ShapeStyle" xmi:id="_zZM8oReUEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zZM8oheUEeye9rbTyh9wBA"/>
+                            </children>
+                            <styles xmi:type="notation:ShapeStyle" xmi:id="_zZG2AReUEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zZG2AheUEeye9rbTyh9wBA" x="11" y="58" width="16" height="16"/>
+                          </children>
+                          <children xmi:type="notation:Node" xmi:id="_zvVksBeUEeye9rbTyh9wBA" type="3012" element="_zvD35BeUEeye9rbTyh9wBA">
+                            <children xmi:type="notation:Node" xmi:id="_zvWLwBeUEeye9rbTyh9wBA" type="5010">
+                              <layoutConstraint xmi:type="notation:Location" xmi:id="_zvWLwReUEeye9rbTyh9wBA" x="17" y="-2"/>
+                            </children>
+                            <children xmi:type="notation:Node" xmi:id="_zvadMBeUEeye9rbTyh9wBA" type="3005" element="_zvD35ReUEeye9rbTyh9wBA">
+                              <styles xmi:type="notation:ShapeStyle" xmi:id="_zvadMReUEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zvadMheUEeye9rbTyh9wBA"/>
+                            </children>
+                            <styles xmi:type="notation:ShapeStyle" xmi:id="_zvVksReUEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zvVksheUEeye9rbTyh9wBA" x="143" y="58" width="16" height="16"/>
+                          </children>
+                          <children xmi:type="notation:Node" xmi:id="_4fjA0BeTEeye9rbTyh9wBA" type="5005"/>
+                          <children xmi:type="notation:Node" xmi:id="_4fjA0ReTEeye9rbTyh9wBA" type="7002">
+                            <children xmi:type="notation:Node" xmi:id="_ym25sBeUEeye9rbTyh9wBA" type="3008" element="_ymqscBeUEeye9rbTyh9wBA">
+                              <children xmi:type="notation:Node" xmi:id="_ym3gwBeUEeye9rbTyh9wBA" visible="false" type="5005"/>
+                              <children xmi:type="notation:Node" xmi:id="_ym3gwReUEeye9rbTyh9wBA" type="7002">
+                                <styles xmi:type="notation:SortingStyle" xmi:id="_ym3gwheUEeye9rbTyh9wBA"/>
+                                <styles xmi:type="notation:FilteringStyle" xmi:id="_ym3gwxeUEeye9rbTyh9wBA"/>
+                                <styles xmi:type="notation:DrawerStyle" xmi:id="_ym3gxBeUEeye9rbTyh9wBA"/>
+                              </children>
+                              <styles xmi:type="notation:ShapeStyle" xmi:id="_ym25sReUEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ym25sheUEeye9rbTyh9wBA" width="149"/>
+                            </children>
+                            <styles xmi:type="notation:SortingStyle" xmi:id="_4fjA0heTEeye9rbTyh9wBA"/>
+                            <styles xmi:type="notation:FilteringStyle" xmi:id="_4fjA0xeTEeye9rbTyh9wBA"/>
+                          </children>
+                          <styles xmi:type="notation:ShapeStyle" xmi:id="_4fiZwReTEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4fiZwheTEeye9rbTyh9wBA" x="174" y="30"/>
+                        </children>
+                        <children xmi:type="notation:Node" xmi:id="_OtGoIBeUEeye9rbTyh9wBA" type="3007" element="_Os7B8BeUEeye9rbTyh9wBA">
+                          <children xmi:type="notation:Node" xmi:id="_OtGoIxeUEeye9rbTyh9wBA" type="5003">
+                            <layoutConstraint xmi:type="notation:Location" xmi:id="_OtGoJBeUEeye9rbTyh9wBA" x="1" y="25"/>
+                          </children>
+                          <children xmi:type="notation:Node" xmi:id="_OtK5kBeUEeye9rbTyh9wBA" type="3005" element="_Os7pABeUEeye9rbTyh9wBA">
+                            <styles xmi:type="notation:ShapeStyle" xmi:id="_OtK5kReUEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_OtK5kheUEeye9rbTyh9wBA"/>
+                          </children>
+                          <styles xmi:type="notation:ShapeStyle" xmi:id="_OtGoIReUEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_OtGoIheUEeye9rbTyh9wBA" x="149" y="191" width="60" height="24"/>
+                        </children>
+                        <children xmi:type="notation:Node" xmi:id="_2X1Q8BeUEeye9rbTyh9wBA" type="3007" element="_2XqR0BeUEeye9rbTyh9wBA">
+                          <children xmi:type="notation:Node" xmi:id="_2X1Q8xeUEeye9rbTyh9wBA" type="5003">
+                            <layoutConstraint xmi:type="notation:Location" xmi:id="_2X1Q9BeUEeye9rbTyh9wBA" x="17" y="-2"/>
+                          </children>
+                          <children xmi:type="notation:Node" xmi:id="_2X4UQBeUEeye9rbTyh9wBA" type="3005" element="_2XqR0ReUEeye9rbTyh9wBA">
+                            <styles xmi:type="notation:ShapeStyle" xmi:id="_2X4UQReUEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2X4UQheUEeye9rbTyh9wBA"/>
+                          </children>
+                          <styles xmi:type="notation:ShapeStyle" xmi:id="_2X1Q8ReUEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2X1Q8heUEeye9rbTyh9wBA" x="439" y="135" width="16" height="16"/>
+                        </children>
+                        <children xmi:type="notation:Node" xmi:id="_Uo9tIBeVEeye9rbTyh9wBA" type="3007" element="_Uow40BeVEeye9rbTyh9wBA">
+                          <children xmi:type="notation:Node" xmi:id="_Uo-UMBeVEeye9rbTyh9wBA" type="5003">
+                            <layoutConstraint xmi:type="notation:Location" xmi:id="_Uo-UMReVEeye9rbTyh9wBA" x="16" y="19"/>
+                          </children>
+                          <children xmi:type="notation:Node" xmi:id="_UpDzwBeVEeye9rbTyh9wBA" type="3005" element="_Uoxf4BeVEeye9rbTyh9wBA">
+                            <styles xmi:type="notation:ShapeStyle" xmi:id="_UpDzwReVEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_UpDzwheVEeye9rbTyh9wBA"/>
+                          </children>
+                          <styles xmi:type="notation:ShapeStyle" xmi:id="_Uo9tIReVEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Uo9tIheVEeye9rbTyh9wBA" x="434" y="65" width="15" height="60"/>
+                        </children>
+                        <children xmi:type="notation:Node" xmi:id="_WL9J4BeVEeye9rbTyh9wBA" type="3007" element="_WLw8oBeVEeye9rbTyh9wBA">
+                          <children xmi:type="notation:Node" xmi:id="_WL9J4xeVEeye9rbTyh9wBA" type="5003">
+                            <layoutConstraint xmi:type="notation:Location" xmi:id="_WL9J5BeVEeye9rbTyh9wBA" x="1" y="-22"/>
+                          </children>
+                          <children xmi:type="notation:Node" xmi:id="_WMA0QBeVEeye9rbTyh9wBA" type="3005" element="_WLxjsBeVEeye9rbTyh9wBA">
+                            <styles xmi:type="notation:ShapeStyle" xmi:id="_WMA0QReVEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WMA0QheVEeye9rbTyh9wBA"/>
+                          </children>
+                          <styles xmi:type="notation:ShapeStyle" xmi:id="_WL9J4ReVEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WL9J4heVEeye9rbTyh9wBA" x="359" y="165" width="60" height="60"/>
+                        </children>
+                        <children xmi:type="notation:Node" xmi:id="_XVVz0BeVEeye9rbTyh9wBA" type="3007" element="_XVJmkBeVEeye9rbTyh9wBA">
+                          <children xmi:type="notation:Node" xmi:id="_XVWa4BeVEeye9rbTyh9wBA" type="5003">
+                            <layoutConstraint xmi:type="notation:Location" xmi:id="_XVWa4ReVEeye9rbTyh9wBA" x="21"/>
+                          </children>
+                          <children xmi:type="notation:Node" xmi:id="_XVWa4heVEeye9rbTyh9wBA" type="3002" element="_XVKNoBeVEeye9rbTyh9wBA">
+                            <styles xmi:type="notation:ShapeStyle" xmi:id="_XVWa4xeVEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_XVWa5BeVEeye9rbTyh9wBA"/>
+                          </children>
+                          <styles xmi:type="notation:ShapeStyle" xmi:id="_XVVz0ReVEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_XVVz0heVEeye9rbTyh9wBA" x="359" y="234" width="20" height="20"/>
+                        </children>
+                        <children xmi:type="notation:Node" xmi:id="_X3rr4BeVEeye9rbTyh9wBA" type="3007" element="_X3gFsBeVEeye9rbTyh9wBA">
+                          <children xmi:type="notation:Node" xmi:id="_X3sS8BeVEeye9rbTyh9wBA" type="5003">
+                            <layoutConstraint xmi:type="notation:Location" xmi:id="_X3sS8ReVEeye9rbTyh9wBA" x="17" y="-2"/>
+                          </children>
+                          <children xmi:type="notation:Node" xmi:id="_X3v9UBeVEeye9rbTyh9wBA" type="3005" element="_X3gFsReVEeye9rbTyh9wBA">
+                            <styles xmi:type="notation:ShapeStyle" xmi:id="_X3v9UReVEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_X3v9UheVEeye9rbTyh9wBA"/>
+                          </children>
+                          <styles xmi:type="notation:ShapeStyle" xmi:id="_X3rr4ReVEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_X3rr4heVEeye9rbTyh9wBA" x="229" y="239" width="16" height="16"/>
+                        </children>
+                        <children xmi:type="notation:Node" xmi:id="_YOJEEBeVEeye9rbTyh9wBA" type="3007" element="_YNN3ABeVEeye9rbTyh9wBA">
+                          <children xmi:type="notation:Node" xmi:id="_YOJEExeVEeye9rbTyh9wBA" type="5003">
+                            <layoutConstraint xmi:type="notation:Location" xmi:id="_YOJEFBeVEeye9rbTyh9wBA" y="5"/>
+                          </children>
+                          <children xmi:type="notation:Node" xmi:id="_YOJrIBeVEeye9rbTyh9wBA" type="3013" element="_YNN3AReVEeye9rbTyh9wBA">
+                            <styles xmi:type="notation:ShapeStyle" xmi:id="_YOJrIReVEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_YOJrIheVEeye9rbTyh9wBA"/>
+                          </children>
+                          <styles xmi:type="notation:ShapeStyle" xmi:id="_YOJEEReVEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_YOJEEheVEeye9rbTyh9wBA" x="39" y="205" width="30" height="30"/>
+                        </children>
+                        <children xmi:type="notation:Node" xmi:id="_YgLPQBeVEeye9rbTyh9wBA" type="3007" element="_Yf-a8BeVEeye9rbTyh9wBA">
+                          <children xmi:type="notation:Node" xmi:id="_YgL2UBeVEeye9rbTyh9wBA" type="5003">
+                            <layoutConstraint xmi:type="notation:Location" xmi:id="_YgL2UReVEeye9rbTyh9wBA" y="5"/>
+                          </children>
+                          <children xmi:type="notation:Node" xmi:id="_YgL2UheVEeye9rbTyh9wBA" type="3013" element="_Yf_CABeVEeye9rbTyh9wBA">
+                            <styles xmi:type="notation:ShapeStyle" xmi:id="_YgL2UxeVEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_YgL2VBeVEeye9rbTyh9wBA"/>
+                          </children>
+                          <styles xmi:type="notation:ShapeStyle" xmi:id="_YgLPQReVEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_YgLPQheVEeye9rbTyh9wBA" x="74" y="253" width="86" height="45"/>
+                        </children>
+                        <children xmi:type="notation:Node" xmi:id="_bVkIABeVEeye9rbTyh9wBA" type="3007" element="_bVX6wBeVEeye9rbTyh9wBA">
+                          <children xmi:type="notation:Node" xmi:id="_bVkvEBeVEeye9rbTyh9wBA" type="5003">
+                            <layoutConstraint xmi:type="notation:Location" xmi:id="_bVkvEReVEeye9rbTyh9wBA" x="21"/>
+                          </children>
+                          <children xmi:type="notation:Node" xmi:id="_bVpnkBeVEeye9rbTyh9wBA" type="3005" element="_bVX6wReVEeye9rbTyh9wBA">
+                            <styles xmi:type="notation:ShapeStyle" xmi:id="_bVpnkReVEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_bVpnkheVEeye9rbTyh9wBA"/>
+                          </children>
+                          <styles xmi:type="notation:ShapeStyle" xmi:id="_bVkIAReVEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_bVkIAheVEeye9rbTyh9wBA" x="116" y="140" width="20" height="20"/>
+                        </children>
+                        <children xmi:type="notation:Node" xmi:id="_bxQlgBeVEeye9rbTyh9wBA" type="3007" element="_bxDxMBeVEeye9rbTyh9wBA">
+                          <children xmi:type="notation:Node" xmi:id="_bxQlgxeVEeye9rbTyh9wBA" type="5003">
+                            <layoutConstraint xmi:type="notation:Location" xmi:id="_bxQlhBeVEeye9rbTyh9wBA" x="21"/>
+                          </children>
+                          <children xmi:type="notation:Node" xmi:id="_bxWsIBeVEeye9rbTyh9wBA" type="3005" element="_bxDxMReVEeye9rbTyh9wBA">
+                            <styles xmi:type="notation:ShapeStyle" xmi:id="_bxWsIReVEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_bxWsIheVEeye9rbTyh9wBA"/>
+                          </children>
+                          <styles xmi:type="notation:ShapeStyle" xmi:id="_bxQlgReVEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_bxQlgheVEeye9rbTyh9wBA" x="169" y="165" width="20" height="20"/>
+                        </children>
+                        <styles xmi:type="notation:SortingStyle" xmi:id="_GgKRUheTEeye9rbTyh9wBA"/>
+                        <styles xmi:type="notation:FilteringStyle" xmi:id="_GgKRUxeTEeye9rbTyh9wBA"/>
+                        <styles xmi:type="notation:DrawerStyle" xmi:id="_GgK4YBeTEeye9rbTyh9wBA"/>
+                      </children>
+                      <styles xmi:type="notation:ShapeStyle" xmi:id="_GgJqQReTEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_GgJqQheTEeye9rbTyh9wBA" width="549" height="329"/>
+                    </children>
+                    <children xmi:type="notation:Node" xmi:id="_OapJsBeVEeye9rbTyh9wBA" visible="false" type="3007" element="_OaYD8BeVEeye9rbTyh9wBA">
+                      <children xmi:type="notation:Node" xmi:id="_OapJsxeVEeye9rbTyh9wBA" type="5003">
+                        <layoutConstraint xmi:type="notation:Location" xmi:id="_OapJtBeVEeye9rbTyh9wBA" y="5"/>
+                      </children>
+                      <styles xmi:type="notation:ShapeStyle" xmi:id="_OapJsReVEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_OapJsheVEeye9rbTyh9wBA" width="20" height="20"/>
+                    </children>
+                    <styles xmi:type="notation:SortingStyle" xmi:id="_FaMu0heTEeye9rbTyh9wBA"/>
+                    <styles xmi:type="notation:FilteringStyle" xmi:id="_FaMu0xeTEeye9rbTyh9wBA"/>
+                  </children>
+                  <styles xmi:type="notation:ShapeStyle" xmi:id="_FaMHwReTEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_FaMHwheTEeye9rbTyh9wBA" x="894" y="75"/>
+                </children>
+                <children xmi:type="notation:Node" xmi:id="_NpQa8BeTEeye9rbTyh9wBA" type="3007" element="_No51oBeTEeye9rbTyh9wBA">
+                  <children xmi:type="notation:Node" xmi:id="_NpRpEBeTEeye9rbTyh9wBA" type="5003">
+                    <layoutConstraint xmi:type="notation:Location" xmi:id="_NpRpEReTEeye9rbTyh9wBA" x="21"/>
+                  </children>
+                  <children xmi:type="notation:Node" xmi:id="_NpWhkBeTEeye9rbTyh9wBA" type="3002" element="_No-uIBeTEeye9rbTyh9wBA">
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_NpWhkReTEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_NpWhkheTEeye9rbTyh9wBA"/>
+                  </children>
+                  <styles xmi:type="notation:ShapeStyle" xmi:id="_NpQa8ReTEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_NpQa8heTEeye9rbTyh9wBA" x="44" y="47" width="20" height="20"/>
+                </children>
+                <children xmi:type="notation:Node" xmi:id="_B0eI0BeUEeye9rbTyh9wBA" type="3007" element="_B0TwwBeUEeye9rbTyh9wBA">
+                  <children xmi:type="notation:Node" xmi:id="_B0ev4BeUEeye9rbTyh9wBA" type="5003">
+                    <layoutConstraint xmi:type="notation:Location" xmi:id="_B0ev4ReUEeye9rbTyh9wBA" x="-13" y="17"/>
+                  </children>
+                  <children xmi:type="notation:Node" xmi:id="_B0mEoBeUEeye9rbTyh9wBA" type="3005" element="_B0TwwReUEeye9rbTyh9wBA">
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_B0mEoReUEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_B0mEoheUEeye9rbTyh9wBA"/>
+                  </children>
+                  <styles xmi:type="notation:ShapeStyle" xmi:id="_B0eI0ReUEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_B0eI0heUEeye9rbTyh9wBA" x="969" y="552" width="16" height="16"/>
+                </children>
+                <children xmi:type="notation:Node" xmi:id="_iw204BeVEeye9rbTyh9wBA" type="3007" element="_iwqAkBeVEeye9rbTyh9wBA">
+                  <children xmi:type="notation:Node" xmi:id="_iw3b8BeVEeye9rbTyh9wBA" type="5003">
+                    <layoutConstraint xmi:type="notation:Location" xmi:id="_iw3b8ReVEeye9rbTyh9wBA" x="21"/>
+                  </children>
+                  <children xmi:type="notation:Node" xmi:id="_iw8UcBeVEeye9rbTyh9wBA" type="3005" element="_iwqAkReVEeye9rbTyh9wBA">
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_iw8UcReVEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_iw8UcheVEeye9rbTyh9wBA"/>
+                  </children>
+                  <styles xmi:type="notation:ShapeStyle" xmi:id="_iw204ReVEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_iw204heVEeye9rbTyh9wBA" x="359" y="417" width="20" height="20"/>
+                </children>
+                <children xmi:type="notation:Node" xmi:id="_jJjBsBeVEeye9rbTyh9wBA" type="3007" element="_jJXbgBeVEeye9rbTyh9wBA">
+                  <children xmi:type="notation:Node" xmi:id="_jJjowBeVEeye9rbTyh9wBA" type="5003">
+                    <layoutConstraint xmi:type="notation:Location" xmi:id="_jJjowReVEeye9rbTyh9wBA" x="21"/>
+                  </children>
+                  <children xmi:type="notation:Node" xmi:id="_jJpIUBeVEeye9rbTyh9wBA" type="3005" element="_jJXbgReVEeye9rbTyh9wBA">
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_jJpIUReVEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jJpIUheVEeye9rbTyh9wBA"/>
+                  </children>
+                  <styles xmi:type="notation:ShapeStyle" xmi:id="_jJjBsReVEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jJjBsheVEeye9rbTyh9wBA" x="419" y="455" width="20" height="20"/>
+                </children>
+                <children xmi:type="notation:Node" xmi:id="_5BKOMBeVEeye9rbTyh9wBA" type="3007" element="_5A36UBeVEeye9rbTyh9wBA">
+                  <children xmi:type="notation:Node" xmi:id="_5BK1QBeVEeye9rbTyh9wBA" type="5003">
+                    <layoutConstraint xmi:type="notation:Location" xmi:id="_5BK1QReVEeye9rbTyh9wBA" x="5" y="16"/>
+                  </children>
+                  <children xmi:type="notation:Node" xmi:id="_5BOfoBeVEeye9rbTyh9wBA" type="3005" element="_5A36UReVEeye9rbTyh9wBA">
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_5BOfoReVEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5BOfoheVEeye9rbTyh9wBA"/>
+                  </children>
+                  <styles xmi:type="notation:ShapeStyle" xmi:id="_5BKOMReVEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5BKOMheVEeye9rbTyh9wBA" x="584" y="477" width="60" height="15"/>
+                </children>
+                <children xmi:type="notation:Node" xmi:id="_5j4gwBeVEeye9rbTyh9wBA" type="3007" element="_5jmM4BeVEeye9rbTyh9wBA">
+                  <children xmi:type="notation:Node" xmi:id="_5j5H0BeVEeye9rbTyh9wBA" type="5003">
+                    <layoutConstraint xmi:type="notation:Location" xmi:id="_5j5H0ReVEeye9rbTyh9wBA" x="16" y="19"/>
+                  </children>
+                  <children xmi:type="notation:Node" xmi:id="_5j9ZQBeVEeye9rbTyh9wBA" type="3005" element="_5jmz8BeVEeye9rbTyh9wBA">
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_5j9ZQReVEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5j9ZQheVEeye9rbTyh9wBA"/>
+                  </children>
+                  <styles xmi:type="notation:ShapeStyle" xmi:id="_5j4gwReVEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5j4gwheVEeye9rbTyh9wBA" x="643" y="522" width="15" height="60"/>
+                </children>
+                <children xmi:type="notation:Node" xmi:id="_6ekAUBeVEeye9rbTyh9wBA" type="3007" element="_6eQeUBeVEeye9rbTyh9wBA">
+                  <children xmi:type="notation:Node" xmi:id="_6eknYBeVEeye9rbTyh9wBA" type="5003">
+                    <layoutConstraint xmi:type="notation:Location" xmi:id="_6eknYReVEeye9rbTyh9wBA" x="4" y="-22"/>
+                  </children>
+                  <children xmi:type="notation:Node" xmi:id="_6eoRwBeVEeye9rbTyh9wBA" type="3005" element="_6eQeUReVEeye9rbTyh9wBA">
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_6eoRwReVEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_6eoRwheVEeye9rbTyh9wBA"/>
+                  </children>
+                  <styles xmi:type="notation:ShapeStyle" xmi:id="_6ekAUReVEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_6ekAUheVEeye9rbTyh9wBA" x="754" y="485" width="60" height="60"/>
+                </children>
+                <children xmi:type="notation:Node" xmi:id="_ApdcUBeWEeye9rbTyh9wBA" type="3007" element="_ApJ6UBeWEeye9rbTyh9wBA">
+                  <children xmi:type="notation:Node" xmi:id="_ApeDYBeWEeye9rbTyh9wBA" type="5003">
+                    <layoutConstraint xmi:type="notation:Location" xmi:id="_ApeDYReWEeye9rbTyh9wBA" x="-30" y="-22"/>
+                  </children>
+                  <children xmi:type="notation:Node" xmi:id="_AphtwBeWEeye9rbTyh9wBA" type="3005" element="_ApJ6UReWEeye9rbTyh9wBA">
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_AphtwReWEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_AphtwheWEeye9rbTyh9wBA"/>
+                  </children>
+                  <styles xmi:type="notation:ShapeStyle" xmi:id="_ApdcUReWEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ApdcUheWEeye9rbTyh9wBA" x="1139" y="501" width="16" height="16"/>
+                </children>
+                <children xmi:type="notation:Node" xmi:id="_BGv1QBeWEeye9rbTyh9wBA" type="3007" element="_BGc6UBeWEeye9rbTyh9wBA">
+                  <children xmi:type="notation:Node" xmi:id="_BG60YBeWEeye9rbTyh9wBA" type="5003">
+                    <layoutConstraint xmi:type="notation:Location" xmi:id="_BG60YReWEeye9rbTyh9wBA" y="5"/>
+                  </children>
+                  <children xmi:type="notation:Node" xmi:id="_BG8CgBeWEeye9rbTyh9wBA" type="3013" element="_BGdhYBeWEeye9rbTyh9wBA">
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_BG8CgReWEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BG8CgheWEeye9rbTyh9wBA"/>
+                  </children>
+                  <styles xmi:type="notation:ShapeStyle" xmi:id="_BGv1QReWEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BGv1QheWEeye9rbTyh9wBA" x="139" y="487" width="30" height="30"/>
+                </children>
+                <children xmi:type="notation:Node" xmi:id="_CPj3cBeWEeye9rbTyh9wBA" type="3007" element="_CPTYwBeWEeye9rbTyh9wBA">
+                  <children xmi:type="notation:Node" xmi:id="_CPkegBeWEeye9rbTyh9wBA" type="5003">
+                    <layoutConstraint xmi:type="notation:Location" xmi:id="_CPkegReWEeye9rbTyh9wBA" y="5"/>
+                  </children>
+                  <children xmi:type="notation:Node" xmi:id="_CPlFkBeWEeye9rbTyh9wBA" type="3013" element="_CPT_0BeWEeye9rbTyh9wBA">
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_CPlsoBeWEeye9rbTyh9wBA" fontName="Segoe UI"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CPlsoReWEeye9rbTyh9wBA"/>
+                  </children>
+                  <styles xmi:type="notation:ShapeStyle" xmi:id="_CPj3cReWEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+                  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CPj3cheWEeye9rbTyh9wBA" x="274" y="464" width="75" height="75"/>
+                </children>
+                <styles xmi:type="notation:SortingStyle" xmi:id="_C9O9IReTEeye9rbTyh9wBA"/>
+                <styles xmi:type="notation:FilteringStyle" xmi:id="_C9O9IheTEeye9rbTyh9wBA"/>
+                <styles xmi:type="notation:DrawerStyle" xmi:id="_C9RZYBeTEeye9rbTyh9wBA"/>
+              </children>
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_C9NH8ReTEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_C9NH8heTEeye9rbTyh9wBA" width="1669" height="733"/>
+            </children>
+            <styles xmi:type="notation:SortingStyle" xmi:id="_ACRn4ReTEeye9rbTyh9wBA"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_ACRn4heTEeye9rbTyh9wBA"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_ABoHoReTEeye9rbTyh9wBA" fontName="Segoe UI" fontHeight="12"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ABoHoheTEeye9rbTyh9wBA" x="20" y="10"/>
+        </children>
+        <styles xmi:type="notation:DiagramStyle" xmi:id="_AAYxgheTEeye9rbTyh9wBA"/>
+      </data>
+    </ownedAnnotationEntries>
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_ABRiUBeTEeye9rbTyh9wBA" source="DANNOTATION_CUSTOMIZATION_KEY">
+      <data xmi:type="diagram:ComputedStyleDescriptionRegistry" uid="_ABSJYBeTEeye9rbTyh9wBA">
+        <computedStyleDescriptions xmi:type="style:FlatContainerStyleDescription" xmi:id="_C87bIBeTEeye9rbTyh9wBA" borderSizeComputationExpression="1" borderLineStyle="dot" labelSize="12" showIcon="false" hideLabelByDefault="true" backgroundStyle="GradientTopToBottom">
+          <borderColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          <backgroundColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+          <foregroundColor xmi:type="description:UserFixedColor" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@userColorsPalettes[name=null]/@entries[name='StateMachine_Gray']"/>
+          <labelBorderStyle xmi:type="style_1:LabelBorderStyleDescription" href="environment:/viewpoint#//@labelBorderStyles/@labelBorderStyleDescriptions.2"/>
+        </computedStyleDescriptions>
+      </data>
+    </ownedAnnotationEntries>
+    <ownedDiagramElements xmi:type="diagram:DNodeContainer" uid="_AA5H0BeTEeye9rbTyh9wBA" name="StateMachine" childrenPresentation="HorizontalStack">
+      <target xmi:type="uml:StateMachine" href="test_create_sm_edges.uml#__UnQoBeSEeye9rbTyh9wBA"/>
+      <semanticElements xmi:type="uml:StateMachine" href="test_create_sm_edges.uml#__UnQoBeSEeye9rbTyh9wBA"/>
+      <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+      <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+      <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_ABC40BeTEeye9rbTyh9wBA" labelSize="12" showIcon="false" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="GradientTopToBottom" foregroundColor="195,209,213">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']"/>
+      <ownedDiagramElements xmi:type="diagram:DNodeContainer" uid="_C86NABeTEeye9rbTyh9wBA" name="Region0">
+        <target xmi:type="uml:Region" href="test_create_sm_edges.uml#_C8y4QBeTEeye9rbTyh9wBA"/>
+        <semanticElements xmi:type="uml:Region" href="test_create_sm_edges.uml#_C8y4QBeTEeye9rbTyh9wBA"/>
+        <graphicalFilters xmi:type="diagram:HideLabelFilter" uid="_C89QUBeTEeye9rbTyh9wBA"/>
+        <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_C88CMBeTEeye9rbTyh9wBA" labelSize="12" showIcon="false" description="_C87bIBeTEeye9rbTyh9wBA" borderSize="1" borderSizeComputationExpression="1" borderLineStyle="dot" hideLabelByDefault="true" backgroundStyle="GradientTopToBottom" foregroundColor="195,209,213"/>
+        <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']"/>
+        <ownedDiagramElements xmi:type="diagram:DNodeContainer" uid="_EySaQBeTEeye9rbTyh9wBA" name="State0" childrenPresentation="VerticalStack">
+          <target xmi:type="uml:State" href="test_create_sm_edges.uml#_EyQlEBeTEeye9rbTyh9wBA"/>
+          <semanticElements xmi:type="uml:State" href="test_create_sm_edges.uml#_EyQlEBeTEeye9rbTyh9wBA"/>
+          <ownedBorderedNodes xmi:type="diagram:DNode" uid="_Wc8BoBeUEeye9rbTyh9wBA" name="EntryPoint00" width="-1" height="-1">
+            <target xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_Wc2iEBeUEeye9rbTyh9wBA"/>
+            <semanticElements xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_Wc2iEBeUEeye9rbTyh9wBA"/>
+            <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+            <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+            <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+            <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_Wc8osBeUEeye9rbTyh9wBA" labelSize="12" showIcon="false" workspacePath="/org.eclipse.papyrus.uml.sirius.statemachine.diagram/icons/Entry.svg">
+              <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subContainerMappings[name='State']/@borderedNodeMappings[name='BorderPseudoState']/@conditionnalStyles.0/@style"/>
+            </ownedStyle>
+            <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subContainerMappings[name='State']/@borderedNodeMappings[name='BorderPseudoState']"/>
+          </ownedBorderedNodes>
+          <ownedBorderedNodes xmi:type="diagram:DNode" uid="_ZI5RkBeUEeye9rbTyh9wBA" name="ExitPoint00" width="-1" height="-1">
+            <target xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_ZIzyABeUEeye9rbTyh9wBA"/>
+            <semanticElements xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_ZIzyABeUEeye9rbTyh9wBA"/>
+            <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+            <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+            <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+            <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_ZI54oBeUEeye9rbTyh9wBA" labelSize="12" showIcon="false" workspacePath="/org.eclipse.papyrus.uml.sirius.statemachine.diagram/icons/Exit.svg">
+              <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subContainerMappings[name='State']/@borderedNodeMappings[name='BorderPseudoState']/@conditionnalStyles.1/@style"/>
+            </ownedStyle>
+            <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subContainerMappings[name='State']/@borderedNodeMappings[name='BorderPseudoState']"/>
+          </ownedBorderedNodes>
+          <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+          <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+          <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+          <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_EyTBUBeTEeye9rbTyh9wBA" labelSize="12" showIcon="false" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="GradientTopToBottom" foregroundColor="195,209,213">
+            <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subContainerMappings[name='State']/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subContainerMappings[name='State']"/>
+          <ownedDiagramElements xmi:type="diagram:DNodeContainer" uid="_GFBNcBeTEeye9rbTyh9wBA" name="Region00">
+            <target xmi:type="uml:Region" href="test_create_sm_edges.uml#_GE__UBeTEeye9rbTyh9wBA"/>
+            <semanticElements xmi:type="uml:Region" href="test_create_sm_edges.uml#_GE__UBeTEeye9rbTyh9wBA"/>
+            <graphicalFilters xmi:type="diagram:HideLabelFilter" uid="_GFCbkReTEeye9rbTyh9wBA"/>
+            <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_GFB0gBeTEeye9rbTyh9wBA" labelSize="12" showIcon="false" description="_C87bIBeTEeye9rbTyh9wBA" borderSize="1" borderSizeComputationExpression="1" borderLineStyle="dot" hideLabelByDefault="true" backgroundStyle="GradientTopToBottom" foregroundColor="195,209,213"/>
+            <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']"/>
+            <ownedDiagramElements xmi:type="diagram:DNode" uid="_OEOfsBeTEeye9rbTyh9wBA" name="Initial00" width="2" height="2" resizeKind="NSEW">
+              <target xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_OEN4oBeTEeye9rbTyh9wBA"/>
+              <semanticElements xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_OEN4oBeTEeye9rbTyh9wBA"/>
+              <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+              <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+              <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+              <ownedStyle xmi:type="diagram:Dot" uid="_OEPGwBeTEeye9rbTyh9wBA" labelSize="12" showIcon="false" backgroundColor="0,0,0">
+                <description xmi:type="style:DotDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']/@conditionnalStyles.0/@style"/>
+              </ownedStyle>
+              <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']"/>
+            </ownedDiagramElements>
+            <ownedDiagramElements xmi:type="diagram:DNode" uid="_OQQ7IBeUEeye9rbTyh9wBA" name="Fork00" width="-1" height="-1" resizeKind="NSEW">
+              <target xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_OQPF8BeUEeye9rbTyh9wBA"/>
+              <semanticElements xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_OQPF8BeUEeye9rbTyh9wBA"/>
+              <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+              <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+              <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+              <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_OQTXYBeUEeye9rbTyh9wBA" labelSize="12" showIcon="false" workspacePath="/org.eclipse.papyrus.uml.sirius.statemachine.diagram/icons/Fork.svg">
+                <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']/@conditionnalStyles.7/@style"/>
+              </ownedStyle>
+              <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']"/>
+            </ownedDiagramElements>
+            <ownedDiagramElements xmi:type="diagram:DNode" uid="_QdFYABeUEeye9rbTyh9wBA" name="ShallowHistory00" width="-1" height="-1" resizeKind="NSEW">
+              <target xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_QdEJ4BeUEeye9rbTyh9wBA"/>
+              <semanticElements xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_QdEJ4BeUEeye9rbTyh9wBA"/>
+              <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+              <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+              <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+              <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_QdFYAReUEeye9rbTyh9wBA" labelSize="12" showIcon="false" workspacePath="/org.eclipse.papyrus.uml.diagram.common/icons/symbols/shallowHistory.svg">
+                <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']/@conditionnalStyles.3/@style"/>
+              </ownedStyle>
+              <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']"/>
+            </ownedDiagramElements>
+            <ownedDiagramElements xmi:type="diagram:DNode" uid="_RUF4gBeUEeye9rbTyh9wBA" name="DeepHistory00" width="-1" height="-1" resizeKind="NSEW">
+              <target xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_RUEqYBeUEeye9rbTyh9wBA"/>
+              <semanticElements xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_RUEqYBeUEeye9rbTyh9wBA"/>
+              <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+              <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+              <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+              <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_RUGfkBeUEeye9rbTyh9wBA" labelSize="12" showIcon="false" workspacePath="/org.eclipse.papyrus.uml.diagram.common/icons/symbols/deepHistory.svg">
+                <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']/@conditionnalStyles.2/@style"/>
+              </ownedStyle>
+              <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']"/>
+            </ownedDiagramElements>
+            <ownedDiagramElements xmi:type="diagram:DNode" uid="_SyH8wBeUEeye9rbTyh9wBA" name="Join00" width="-1" height="-1" resizeKind="NSEW">
+              <target xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_SyHVsBeUEeye9rbTyh9wBA"/>
+              <semanticElements xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_SyHVsBeUEeye9rbTyh9wBA"/>
+              <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+              <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+              <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+              <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_SyIj0BeUEeye9rbTyh9wBA" labelSize="12" showIcon="false" workspacePath="/org.eclipse.papyrus.uml.sirius.statemachine.diagram/icons/Join.svg">
+                <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']/@conditionnalStyles.6/@style"/>
+              </ownedStyle>
+              <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']"/>
+            </ownedDiagramElements>
+            <ownedDiagramElements xmi:type="diagram:DNode" uid="_UkkKwBeUEeye9rbTyh9wBA" name="Choice00" width="-1" height="-1" resizeKind="NSEW">
+              <target xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_UkjjsBeUEeye9rbTyh9wBA"/>
+              <semanticElements xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_UkjjsBeUEeye9rbTyh9wBA"/>
+              <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+              <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+              <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+              <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_UkkKwReUEeye9rbTyh9wBA" labelSize="12" showIcon="false" workspacePath="/org.eclipse.papyrus.uml.sirius.statemachine.diagram/icons/Choice.svg">
+                <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']/@conditionnalStyles.4/@style"/>
+              </ownedStyle>
+              <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']"/>
+            </ownedDiagramElements>
+            <ownedDiagramElements xmi:type="diagram:DNode" uid="_Vt-p4BeUEeye9rbTyh9wBA" name="Junction00" width="2" height="2" resizeKind="NSEW">
+              <target xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_Vt9bwBeUEeye9rbTyh9wBA"/>
+              <semanticElements xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_Vt9bwBeUEeye9rbTyh9wBA"/>
+              <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+              <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+              <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+              <ownedStyle xmi:type="diagram:Dot" uid="_Vt_Q8BeUEeye9rbTyh9wBA" labelSize="12" showIcon="false" backgroundColor="0,0,0">
+                <description xmi:type="style:DotDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']/@conditionnalStyles.1/@style"/>
+              </ownedStyle>
+              <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']"/>
+            </ownedDiagramElements>
+            <ownedDiagramElements xmi:type="diagram:DNode" uid="_wGE_ABeUEeye9rbTyh9wBA" name="Terminate00" width="-1" height="-1" resizeKind="NSEW">
+              <target xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_wGDw4BeUEeye9rbTyh9wBA"/>
+              <semanticElements xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_wGDw4BeUEeye9rbTyh9wBA"/>
+              <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+              <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+              <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+              <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_wGE_AReUEeye9rbTyh9wBA" labelSize="12" showIcon="false" workspacePath="/org.eclipse.papyrus.uml.sirius.statemachine.diagram/icons/Terminate.svg">
+                <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']/@conditionnalStyles.5/@style"/>
+              </ownedStyle>
+              <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']"/>
+            </ownedDiagramElements>
+            <ownedDiagramElements xmi:type="diagram:DNode" uid="_82cIkBeTEeye9rbTyh9wBA" name="Final00" width="-1" height="-1" resizeKind="NSEW">
+              <target xmi:type="uml:FinalState" href="test_create_sm_edges.uml#_82bhgBeTEeye9rbTyh9wBA"/>
+              <semanticElements xmi:type="uml:FinalState" href="test_create_sm_edges.uml#_82bhgBeTEeye9rbTyh9wBA"/>
+              <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+              <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+              <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+              <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_82dWsBeTEeye9rbTyh9wBA" labelSize="12" showIcon="false" workspacePath="/org.eclipse.papyrus.uml.sirius.statemachine.diagram/icons/FinalState.svg">
+                <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='FinalState']/@style"/>
+              </ownedStyle>
+              <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='FinalState']"/>
+            </ownedDiagramElements>
+            <ownedDiagramElements xmi:type="diagram:DNodeContainer" uid="_imiQsBeUEeye9rbTyh9wBA" name="State00" childrenPresentation="VerticalStack">
+              <target xmi:type="uml:State" href="test_create_sm_edges.uml#_imhpoBeUEeye9rbTyh9wBA"/>
+              <semanticElements xmi:type="uml:State" href="test_create_sm_edges.uml#_imhpoBeUEeye9rbTyh9wBA"/>
+              <ownedBorderedNodes xmi:type="diagram:DNode" uid="_kQOyYBeUEeye9rbTyh9wBA" name="EntryPoint000" width="-1" height="-1">
+                <target xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_kQNkQBeUEeye9rbTyh9wBA"/>
+                <semanticElements xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_kQNkQBeUEeye9rbTyh9wBA"/>
+                <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+                <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+                <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+                <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_kQOyYReUEeye9rbTyh9wBA" labelSize="12" showIcon="false" workspacePath="/org.eclipse.papyrus.uml.sirius.statemachine.diagram/icons/Entry.svg">
+                  <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subContainerMappings[name='State']/@borderedNodeMappings[name='BorderPseudoState']/@conditionnalStyles.0/@style"/>
+                </ownedStyle>
+                <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subContainerMappings[name='State']/@borderedNodeMappings[name='BorderPseudoState']"/>
+              </ownedBorderedNodes>
+              <ownedBorderedNodes xmi:type="diagram:DNode" uid="_lACesheUEeye9rbTyh9wBA" name="ExitPoint000" width="-1" height="-1">
+                <target xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_k_-NQBeUEeye9rbTyh9wBA"/>
+                <semanticElements xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_k_-NQBeUEeye9rbTyh9wBA"/>
+                <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+                <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+                <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+                <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_lACesxeUEeye9rbTyh9wBA" labelSize="12" showIcon="false" workspacePath="/org.eclipse.papyrus.uml.sirius.statemachine.diagram/icons/Exit.svg">
+                  <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subContainerMappings[name='State']/@borderedNodeMappings[name='BorderPseudoState']/@conditionnalStyles.1/@style"/>
+                </ownedStyle>
+                <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subContainerMappings[name='State']/@borderedNodeMappings[name='BorderPseudoState']"/>
+              </ownedBorderedNodes>
+              <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+              <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+              <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+              <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_imi3wBeUEeye9rbTyh9wBA" labelSize="12" showIcon="false" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="GradientTopToBottom" foregroundColor="195,209,213">
+                <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subContainerMappings[name='State']/@style"/>
+              </ownedStyle>
+              <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subContainerMappings[name='State']"/>
+              <ownedDiagramElements xmi:type="diagram:DNodeContainer" uid="_i7d-4BeUEeye9rbTyh9wBA" name="Region000">
+                <target xmi:type="uml:Region" href="test_create_sm_edges.uml#_i7cwwBeUEeye9rbTyh9wBA"/>
+                <semanticElements xmi:type="uml:Region" href="test_create_sm_edges.uml#_i7cwwBeUEeye9rbTyh9wBA"/>
+                <graphicalFilters xmi:type="diagram:HideLabelFilter" uid="_i7el8BeUEeye9rbTyh9wBA"/>
+                <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_i7d-4ReUEeye9rbTyh9wBA" labelSize="12" showIcon="false" description="_C87bIBeTEeye9rbTyh9wBA" borderSize="1" borderSizeComputationExpression="1" borderLineStyle="dot" hideLabelByDefault="true" backgroundStyle="GradientTopToBottom" foregroundColor="195,209,213"/>
+                <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']"/>
+              </ownedDiagramElements>
+              <ownedDiagramElements xmi:type="diagram:DNode" uid="_kQOLUBeUEeye9rbTyh9wBA" visible="false">
+                <target xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_kQNkQBeUEeye9rbTyh9wBA"/>
+                <semanticElements xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_kQNkQBeUEeye9rbTyh9wBA"/>
+                <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']"/>
+              </ownedDiagramElements>
+            </ownedDiagramElements>
+            <ownedDiagramElements xmi:type="diagram:DNode" uid="_xMRLABeUEeye9rbTyh9wBA" name="Comment0&#x9;0" width="3" height="3" resizeKind="NSEW">
+              <target xmi:type="uml:Comment" href="test_create_sm_edges.uml#_xMQj8BeUEeye9rbTyh9wBA"/>
+              <semanticElements xmi:type="uml:Comment" href="test_create_sm_edges.uml#_xMQj8BeUEeye9rbTyh9wBA"/>
+              <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+              <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+              <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+              <ownedStyle xmi:type="diagram:Note" uid="_xMSZIBeUEeye9rbTyh9wBA" labelSize="12" borderColor="252,233,79" labelPosition="node" color="255,245,181">
+                <description xmi:type="style:NoteDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Comment']/@style"/>
+              </ownedStyle>
+              <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Comment']"/>
+            </ownedDiagramElements>
+            <ownedDiagramElements xmi:type="diagram:DNode" uid="_KX00gBeVEeye9rbTyh9wBA" name="Constraint00&#xD;&#xA;{{OCL} true}" width="3" height="3" resizeKind="NSEW">
+              <target xmi:type="uml:Constraint" href="test_create_sm_edges.uml#_KXzmYBeVEeye9rbTyh9wBA"/>
+              <semanticElements xmi:type="uml:Constraint" href="test_create_sm_edges.uml#_KXzmYBeVEeye9rbTyh9wBA"/>
+              <ownedStyle xmi:type="diagram:Note" uid="_KX1bkBeVEeye9rbTyh9wBA" labelSize="12" labelPosition="node" color="200,255,230">
+                <description xmi:type="style:NoteDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Constraint']/@style"/>
+              </ownedStyle>
+              <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Constraint']"/>
+            </ownedDiagramElements>
+          </ownedDiagramElements>
+        </ownedDiagramElements>
+        <ownedDiagramElements xmi:type="diagram:DNodeContainer" uid="_FZ-FUBeTEeye9rbTyh9wBA" name="State1" childrenPresentation="VerticalStack">
+          <target xmi:type="uml:State" href="test_create_sm_edges.uml#_FZ9eQBeTEeye9rbTyh9wBA"/>
+          <semanticElements xmi:type="uml:State" href="test_create_sm_edges.uml#_FZ9eQBeTEeye9rbTyh9wBA"/>
+          <ownedBorderedNodes xmi:type="diagram:DNode" uid="_OaYrABeVEeye9rbTyh9wBA" name="EntryPoint10" width="-1" height="-1">
+            <target xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_OaXc4BeVEeye9rbTyh9wBA"/>
+            <semanticElements xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_OaXc4BeVEeye9rbTyh9wBA"/>
+            <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_OaYrAReVEeye9rbTyh9wBA" labelSize="12" showIcon="false" workspacePath="/org.eclipse.papyrus.uml.sirius.statemachine.diagram/icons/Entry.svg">
+              <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subContainerMappings[name='State']/@borderedNodeMappings[name='BorderPseudoState']/@conditionnalStyles.0/@style"/>
+            </ownedStyle>
+            <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subContainerMappings[name='State']/@borderedNodeMappings[name='BorderPseudoState']"/>
+          </ownedBorderedNodes>
+          <ownedBorderedNodes xmi:type="diagram:DNode" uid="_PT8wQBeVEeye9rbTyh9wBA" name="ExitPoint10" width="-1" height="-1">
+            <target xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_PT3QsBeVEeye9rbTyh9wBA"/>
+            <semanticElements xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_PT3QsBeVEeye9rbTyh9wBA"/>
+            <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+            <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+            <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+            <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_PT8wQReVEeye9rbTyh9wBA" labelSize="12" showIcon="false" workspacePath="/org.eclipse.papyrus.uml.sirius.statemachine.diagram/icons/Exit.svg">
+              <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subContainerMappings[name='State']/@borderedNodeMappings[name='BorderPseudoState']/@conditionnalStyles.1/@style"/>
+            </ownedStyle>
+            <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subContainerMappings[name='State']/@borderedNodeMappings[name='BorderPseudoState']"/>
+          </ownedBorderedNodes>
+          <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+          <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+          <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+          <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_FZ-sYBeTEeye9rbTyh9wBA" labelSize="12" showIcon="false" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="GradientTopToBottom" foregroundColor="195,209,213">
+            <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subContainerMappings[name='State']/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subContainerMappings[name='State']"/>
+          <ownedDiagramElements xmi:type="diagram:DNodeContainer" uid="_Gf7n0BeTEeye9rbTyh9wBA" name="Region10">
+            <target xmi:type="uml:Region" href="test_create_sm_edges.uml#_Gf6ZsBeTEeye9rbTyh9wBA"/>
+            <semanticElements xmi:type="uml:Region" href="test_create_sm_edges.uml#_Gf6ZsBeTEeye9rbTyh9wBA"/>
+            <graphicalFilters xmi:type="diagram:HideLabelFilter" uid="_Gf818BeTEeye9rbTyh9wBA"/>
+            <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_Gf8O4BeTEeye9rbTyh9wBA" labelSize="12" showIcon="false" description="_C87bIBeTEeye9rbTyh9wBA" borderSize="1" borderSizeComputationExpression="1" borderLineStyle="dot" hideLabelByDefault="true" backgroundStyle="GradientTopToBottom" foregroundColor="195,209,213"/>
+            <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']"/>
+            <ownedDiagramElements xmi:type="diagram:DNode" uid="_OpKYwBeTEeye9rbTyh9wBA" name="Initial10" width="2" height="2" resizeKind="NSEW">
+              <target xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_OpJKoBeTEeye9rbTyh9wBA"/>
+              <semanticElements xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_OpJKoBeTEeye9rbTyh9wBA"/>
+              <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+              <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+              <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+              <ownedStyle xmi:type="diagram:Dot" uid="_OpK_0BeTEeye9rbTyh9wBA" labelSize="12" showIcon="false" backgroundColor="0,0,0">
+                <description xmi:type="style:DotDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']/@conditionnalStyles.0/@style"/>
+              </ownedStyle>
+              <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']"/>
+            </ownedDiagramElements>
+            <ownedDiagramElements xmi:type="diagram:DNode" uid="_Os7B8BeUEeye9rbTyh9wBA" name="Fork10" width="-1" height="-1" resizeKind="NSEW">
+              <target xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_Os5z0BeUEeye9rbTyh9wBA"/>
+              <semanticElements xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_Os5z0BeUEeye9rbTyh9wBA"/>
+              <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+              <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+              <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+              <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_Os7pABeUEeye9rbTyh9wBA" labelSize="12" showIcon="false" workspacePath="/org.eclipse.papyrus.uml.sirius.statemachine.diagram/icons/Fork.svg">
+                <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']/@conditionnalStyles.7/@style"/>
+              </ownedStyle>
+              <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']"/>
+            </ownedDiagramElements>
+            <ownedDiagramElements xmi:type="diagram:DNode" uid="_Uow40BeVEeye9rbTyh9wBA" name="Join10" width="-1" height="-1" resizeKind="NSEW">
+              <target xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_UovqsBeVEeye9rbTyh9wBA"/>
+              <semanticElements xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_UovqsBeVEeye9rbTyh9wBA"/>
+              <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+              <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+              <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+              <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_Uoxf4BeVEeye9rbTyh9wBA" labelSize="12" showIcon="false" workspacePath="/org.eclipse.papyrus.uml.sirius.statemachine.diagram/icons/Join.svg">
+                <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']/@conditionnalStyles.6/@style"/>
+              </ownedStyle>
+              <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']"/>
+            </ownedDiagramElements>
+            <ownedDiagramElements xmi:type="diagram:DNode" uid="_WLw8oBeVEeye9rbTyh9wBA" name="Choice10" width="-1" height="-1" resizeKind="NSEW">
+              <target xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_WLvugBeVEeye9rbTyh9wBA"/>
+              <semanticElements xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_WLvugBeVEeye9rbTyh9wBA"/>
+              <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+              <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+              <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+              <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_WLxjsBeVEeye9rbTyh9wBA" labelSize="12" showIcon="false" workspacePath="/org.eclipse.papyrus.uml.sirius.statemachine.diagram/icons/Choice.svg">
+                <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']/@conditionnalStyles.4/@style"/>
+              </ownedStyle>
+              <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']"/>
+            </ownedDiagramElements>
+            <ownedDiagramElements xmi:type="diagram:DNode" uid="_XVJmkBeVEeye9rbTyh9wBA" name="Junction10" width="2" height="2" resizeKind="NSEW">
+              <target xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_XVI_gBeVEeye9rbTyh9wBA"/>
+              <semanticElements xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_XVI_gBeVEeye9rbTyh9wBA"/>
+              <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+              <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+              <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+              <ownedStyle xmi:type="diagram:Dot" uid="_XVKNoBeVEeye9rbTyh9wBA" labelSize="12" showIcon="false" backgroundColor="0,0,0">
+                <description xmi:type="style:DotDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']/@conditionnalStyles.1/@style"/>
+              </ownedStyle>
+              <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']"/>
+            </ownedDiagramElements>
+            <ownedDiagramElements xmi:type="diagram:DNode" uid="_X3gFsBeVEeye9rbTyh9wBA" name="Terminate10" width="-1" height="-1" resizeKind="NSEW">
+              <target xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_X3e3kBeVEeye9rbTyh9wBA"/>
+              <semanticElements xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_X3e3kBeVEeye9rbTyh9wBA"/>
+              <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_X3gFsReVEeye9rbTyh9wBA" labelSize="12" showIcon="false" workspacePath="/org.eclipse.papyrus.uml.sirius.statemachine.diagram/icons/Terminate.svg">
+                <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']/@conditionnalStyles.5/@style"/>
+              </ownedStyle>
+              <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']"/>
+            </ownedDiagramElements>
+            <ownedDiagramElements xmi:type="diagram:DNode" uid="_bVX6wBeVEeye9rbTyh9wBA" name="ShallowHistory10" width="-1" height="-1" resizeKind="NSEW">
+              <target xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_bVXTsBeVEeye9rbTyh9wBA"/>
+              <semanticElements xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_bVXTsBeVEeye9rbTyh9wBA"/>
+              <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+              <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+              <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+              <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_bVX6wReVEeye9rbTyh9wBA" labelSize="12" showIcon="false" workspacePath="/org.eclipse.papyrus.uml.diagram.common/icons/symbols/shallowHistory.svg">
+                <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']/@conditionnalStyles.3/@style"/>
+              </ownedStyle>
+              <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']"/>
+            </ownedDiagramElements>
+            <ownedDiagramElements xmi:type="diagram:DNode" uid="_bxDxMBeVEeye9rbTyh9wBA" name="DeepHistory10" width="-1" height="-1" resizeKind="NSEW">
+              <target xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_bxCjEBeVEeye9rbTyh9wBA"/>
+              <semanticElements xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_bxCjEBeVEeye9rbTyh9wBA"/>
+              <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+              <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+              <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+              <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_bxDxMReVEeye9rbTyh9wBA" labelSize="12" showIcon="false" workspacePath="/org.eclipse.papyrus.uml.diagram.common/icons/symbols/deepHistory.svg">
+                <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']/@conditionnalStyles.2/@style"/>
+              </ownedStyle>
+              <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']"/>
+            </ownedDiagramElements>
+            <ownedDiagramElements xmi:type="diagram:DNodeContainer" uid="_4fVlcBeTEeye9rbTyh9wBA" name="State10" childrenPresentation="VerticalStack">
+              <target xmi:type="uml:State" href="test_create_sm_edges.uml#_4fU-YBeTEeye9rbTyh9wBA"/>
+              <semanticElements xmi:type="uml:State" href="test_create_sm_edges.uml#_4fU-YBeTEeye9rbTyh9wBA"/>
+              <ownedBorderedNodes xmi:type="diagram:DNode" uid="_zZBWcBeUEeye9rbTyh9wBA" name="EntryPoint100" width="-1" height="-1">
+                <target xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_zY6owBeUEeye9rbTyh9wBA"/>
+                <semanticElements xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_zY6owBeUEeye9rbTyh9wBA"/>
+                <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+                <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+                <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+                <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_zZBWcReUEeye9rbTyh9wBA" labelSize="12" showIcon="false" workspacePath="/org.eclipse.papyrus.uml.sirius.statemachine.diagram/icons/Entry.svg">
+                  <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subContainerMappings[name='State']/@borderedNodeMappings[name='BorderPseudoState']/@conditionnalStyles.0/@style"/>
+                </ownedStyle>
+                <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subContainerMappings[name='State']/@borderedNodeMappings[name='BorderPseudoState']"/>
+              </ownedBorderedNodes>
+              <ownedBorderedNodes xmi:type="diagram:DNode" uid="_zvD35BeUEeye9rbTyh9wBA" name="ExitPoint100" width="-1" height="-1">
+                <target xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_zu9xQBeUEeye9rbTyh9wBA"/>
+                <semanticElements xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_zu9xQBeUEeye9rbTyh9wBA"/>
+                <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+                <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+                <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+                <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_zvD35ReUEeye9rbTyh9wBA" labelSize="12" showIcon="false" workspacePath="/org.eclipse.papyrus.uml.sirius.statemachine.diagram/icons/Exit.svg">
+                  <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subContainerMappings[name='State']/@borderedNodeMappings[name='BorderPseudoState']/@conditionnalStyles.1/@style"/>
+                </ownedStyle>
+                <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subContainerMappings[name='State']/@borderedNodeMappings[name='BorderPseudoState']"/>
+              </ownedBorderedNodes>
+              <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+              <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+              <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+              <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_4fWMgBeTEeye9rbTyh9wBA" labelSize="12" showIcon="false" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="GradientTopToBottom" foregroundColor="195,209,213">
+                <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subContainerMappings[name='State']/@style"/>
+              </ownedStyle>
+              <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subContainerMappings[name='State']"/>
+              <ownedDiagramElements xmi:type="diagram:DNodeContainer" uid="_ymqscBeUEeye9rbTyh9wBA" name="Region100">
+                <target xmi:type="uml:Region" href="test_create_sm_edges.uml#_ympeUBeUEeye9rbTyh9wBA"/>
+                <semanticElements xmi:type="uml:Region" href="test_create_sm_edges.uml#_ympeUBeUEeye9rbTyh9wBA"/>
+                <graphicalFilters xmi:type="diagram:HideLabelFilter" uid="_ymrTgBeUEeye9rbTyh9wBA"/>
+                <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_ymqscReUEeye9rbTyh9wBA" labelSize="12" showIcon="false" description="_C87bIBeTEeye9rbTyh9wBA" borderSize="1" borderSizeComputationExpression="1" borderLineStyle="dot" hideLabelByDefault="true" backgroundStyle="GradientTopToBottom" foregroundColor="195,209,213"/>
+                <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']"/>
+              </ownedDiagramElements>
+            </ownedDiagramElements>
+            <ownedDiagramElements xmi:type="diagram:DNode" uid="_2XqR0BeUEeye9rbTyh9wBA" name="Final10" width="-1" height="-1" resizeKind="NSEW">
+              <target xmi:type="uml:FinalState" href="test_create_sm_edges.uml#_2XpqwBeUEeye9rbTyh9wBA"/>
+              <semanticElements xmi:type="uml:FinalState" href="test_create_sm_edges.uml#_2XpqwBeUEeye9rbTyh9wBA"/>
+              <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_2XqR0ReUEeye9rbTyh9wBA" labelSize="12" showIcon="false" workspacePath="/org.eclipse.papyrus.uml.sirius.statemachine.diagram/icons/FinalState.svg">
+                <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='FinalState']/@style"/>
+              </ownedStyle>
+              <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='FinalState']"/>
+            </ownedDiagramElements>
+            <ownedDiagramElements xmi:type="diagram:DNode" uid="_YNN3ABeVEeye9rbTyh9wBA" name="Comment10" width="3" height="3" resizeKind="NSEW">
+              <target xmi:type="uml:Comment" href="test_create_sm_edges.uml#_YNNP8BeVEeye9rbTyh9wBA"/>
+              <semanticElements xmi:type="uml:Comment" href="test_create_sm_edges.uml#_YNNP8BeVEeye9rbTyh9wBA"/>
+              <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+              <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+              <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+              <ownedStyle xmi:type="diagram:Note" uid="_YNN3AReVEeye9rbTyh9wBA" labelSize="12" borderColor="252,233,79" labelPosition="node" color="255,245,181">
+                <description xmi:type="style:NoteDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Comment']/@style"/>
+              </ownedStyle>
+              <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Comment']"/>
+            </ownedDiagramElements>
+            <ownedDiagramElements xmi:type="diagram:DNode" uid="_Yf-a8BeVEeye9rbTyh9wBA" name="Constraint10&#xD;&#xA;{{OCL} true}" width="3" height="3" resizeKind="NSEW">
+              <target xmi:type="uml:Constraint" href="test_create_sm_edges.uml#_Yf9M0BeVEeye9rbTyh9wBA"/>
+              <semanticElements xmi:type="uml:Constraint" href="test_create_sm_edges.uml#_Yf9M0BeVEeye9rbTyh9wBA"/>
+              <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+              <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+              <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+              <ownedStyle xmi:type="diagram:Note" uid="_Yf_CABeVEeye9rbTyh9wBA" labelSize="12" labelPosition="node" color="200,255,230">
+                <description xmi:type="style:NoteDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Constraint']/@style"/>
+              </ownedStyle>
+              <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Constraint']"/>
+            </ownedDiagramElements>
+          </ownedDiagramElements>
+          <ownedDiagramElements xmi:type="diagram:DNode" uid="_OaYD8BeVEeye9rbTyh9wBA" visible="false">
+            <target xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_OaXc4BeVEeye9rbTyh9wBA"/>
+            <semanticElements xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_OaXc4BeVEeye9rbTyh9wBA"/>
+            <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']"/>
+          </ownedDiagramElements>
+        </ownedDiagramElements>
+        <ownedDiagramElements xmi:type="diagram:DNode" uid="_No51oBeTEeye9rbTyh9wBA" name="Initial0" width="2" height="2" resizeKind="NSEW">
+          <target xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_NozvABeTEeye9rbTyh9wBA"/>
+          <semanticElements xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_NozvABeTEeye9rbTyh9wBA"/>
+          <ownedStyle xmi:type="diagram:Dot" uid="_No-uIBeTEeye9rbTyh9wBA" labelSize="12" showIcon="false" backgroundColor="0,0,0">
+            <description xmi:type="style:DotDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']/@conditionnalStyles.0/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']"/>
+        </ownedDiagramElements>
+        <ownedDiagramElements xmi:type="diagram:DNode" uid="_iwqAkBeVEeye9rbTyh9wBA" name="ShallowHistory0" width="-1" height="-1" resizeKind="NSEW">
+          <target xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_iwoycBeVEeye9rbTyh9wBA"/>
+          <semanticElements xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_iwoycBeVEeye9rbTyh9wBA"/>
+          <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_iwqAkReVEeye9rbTyh9wBA" labelSize="12" showIcon="false" workspacePath="/org.eclipse.papyrus.uml.diagram.common/icons/symbols/shallowHistory.svg">
+            <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']/@conditionnalStyles.3/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']"/>
+        </ownedDiagramElements>
+        <ownedDiagramElements xmi:type="diagram:DNode" uid="_jJXbgBeVEeye9rbTyh9wBA" name="DeepHistory0" width="-1" height="-1" resizeKind="NSEW">
+          <target xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_jJWNYBeVEeye9rbTyh9wBA"/>
+          <semanticElements xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_jJWNYBeVEeye9rbTyh9wBA"/>
+          <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_jJXbgReVEeye9rbTyh9wBA" labelSize="12" showIcon="false" workspacePath="/org.eclipse.papyrus.uml.diagram.common/icons/symbols/deepHistory.svg">
+            <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']/@conditionnalStyles.2/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']"/>
+        </ownedDiagramElements>
+        <ownedDiagramElements xmi:type="diagram:DNode" uid="_5A36UBeVEeye9rbTyh9wBA" name="Fork0" width="-1" height="-1" resizeKind="NSEW">
+          <target xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_5A2sMBeVEeye9rbTyh9wBA"/>
+          <semanticElements xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_5A2sMBeVEeye9rbTyh9wBA"/>
+          <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+          <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+          <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+          <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_5A36UReVEeye9rbTyh9wBA" labelSize="12" showIcon="false" workspacePath="/org.eclipse.papyrus.uml.sirius.statemachine.diagram/icons/Fork.svg">
+            <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']/@conditionnalStyles.7/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']"/>
+        </ownedDiagramElements>
+        <ownedDiagramElements xmi:type="diagram:DNode" uid="_5jmM4BeVEeye9rbTyh9wBA" name="Join0" width="-1" height="-1" resizeKind="NSEW">
+          <target xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_5jk-wBeVEeye9rbTyh9wBA"/>
+          <semanticElements xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_5jk-wBeVEeye9rbTyh9wBA"/>
+          <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+          <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+          <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+          <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_5jmz8BeVEeye9rbTyh9wBA" labelSize="12" showIcon="false" workspacePath="/org.eclipse.papyrus.uml.sirius.statemachine.diagram/icons/Join.svg">
+            <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']/@conditionnalStyles.6/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']"/>
+        </ownedDiagramElements>
+        <ownedDiagramElements xmi:type="diagram:DNode" uid="_6eQeUBeVEeye9rbTyh9wBA" name="Choice0" width="-1" height="-1" resizeKind="NSEW">
+          <target xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_6ePQMBeVEeye9rbTyh9wBA"/>
+          <semanticElements xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_6ePQMBeVEeye9rbTyh9wBA"/>
+          <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+          <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+          <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+          <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_6eQeUReVEeye9rbTyh9wBA" labelSize="12" showIcon="false" workspacePath="/org.eclipse.papyrus.uml.sirius.statemachine.diagram/icons/Choice.svg">
+            <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']/@conditionnalStyles.4/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']"/>
+        </ownedDiagramElements>
+        <ownedDiagramElements xmi:type="diagram:DNode" uid="_ApJ6UBeWEeye9rbTyh9wBA" name="Terminate0" width="-1" height="-1" resizeKind="NSEW">
+          <target xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_ApIsMBeWEeye9rbTyh9wBA"/>
+          <semanticElements xmi:type="uml:Pseudostate" href="test_create_sm_edges.uml#_ApIsMBeWEeye9rbTyh9wBA"/>
+          <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+          <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+          <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+          <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_ApJ6UReWEeye9rbTyh9wBA" labelSize="12" showIcon="false" workspacePath="/org.eclipse.papyrus.uml.sirius.statemachine.diagram/icons/Terminate.svg">
+            <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']/@conditionnalStyles.5/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Pseudostate']"/>
+        </ownedDiagramElements>
+        <ownedDiagramElements xmi:type="diagram:DNode" uid="_B0TwwBeUEeye9rbTyh9wBA" name="Final0" width="-1" height="-1" resizeKind="NSEW">
+          <target xmi:type="uml:FinalState" href="test_create_sm_edges.uml#_B0SioBeUEeye9rbTyh9wBA"/>
+          <semanticElements xmi:type="uml:FinalState" href="test_create_sm_edges.uml#_B0SioBeUEeye9rbTyh9wBA"/>
+          <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+          <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+          <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+          <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_B0TwwReUEeye9rbTyh9wBA" labelSize="12" showIcon="false" workspacePath="/org.eclipse.papyrus.uml.sirius.statemachine.diagram/icons/FinalState.svg">
+            <description xmi:type="style:WorkspaceImageDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='FinalState']/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='FinalState']"/>
+        </ownedDiagramElements>
+        <ownedDiagramElements xmi:type="diagram:DNode" uid="_BGc6UBeWEeye9rbTyh9wBA" name="Comment0" width="3" height="3" resizeKind="NSEW">
+          <target xmi:type="uml:Comment" href="test_create_sm_edges.uml#_BGcTQBeWEeye9rbTyh9wBA"/>
+          <semanticElements xmi:type="uml:Comment" href="test_create_sm_edges.uml#_BGcTQBeWEeye9rbTyh9wBA"/>
+          <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+          <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+          <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+          <ownedStyle xmi:type="diagram:Note" uid="_BGdhYBeWEeye9rbTyh9wBA" labelSize="12" borderColor="252,233,79" labelPosition="node" color="255,245,181">
+            <description xmi:type="style:NoteDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Comment']/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Comment']"/>
+        </ownedDiagramElements>
+        <ownedDiagramElements xmi:type="diagram:DNode" uid="_CPTYwBeWEeye9rbTyh9wBA" name="Constraint0&#xD;&#xA;{{OCL} true}" width="3" height="3" resizeKind="NSEW">
+          <target xmi:type="uml:Constraint" href="test_create_sm_edges.uml#_CPRjkBeWEeye9rbTyh9wBA"/>
+          <semanticElements xmi:type="uml:Constraint" href="test_create_sm_edges.uml#_CPRjkBeWEeye9rbTyh9wBA"/>
+          <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+          <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+          <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+          <ownedStyle xmi:type="diagram:Note" uid="_CPT_0BeWEeye9rbTyh9wBA" labelSize="12" labelPosition="node" color="200,255,230">
+            <description xmi:type="style:NoteDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Constraint']/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subNodeMappings[name='Constraint']"/>
+        </ownedDiagramElements>
+      </ownedDiagramElements>
+    </ownedDiagramElements>
+    <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']"/>
+    <filterVariableHistory xmi:type="diagram:FilterVariableHistory" uid="__-yPABeSEeye9rbTyh9wBA"/>
+    <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer"/>
+    <target xmi:type="uml:StateMachine" href="test_create_sm_edges.uml#__UnQoBeSEeye9rbTyh9wBA"/>
+  </diagram:DSemanticDiagram>
+</xmi:XMI>
