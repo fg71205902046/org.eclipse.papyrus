@@ -55,9 +55,9 @@ public class CreatePapyrusSiriusStateMachineDiagramEditorCommand extends Abstrac
 	/**
 	 *
 	 * @param prototype
-	 *            the ViewPrototype
+	 *                            the ViewPrototype
 	 * @param semanticContext
-	 *            the semantic context for the created DSemanticDiagram
+	 *                            the semantic context for the created DSemanticDiagram
 	 * @return
 	 *         the default name to use
 	 */
@@ -128,7 +128,6 @@ public class CreatePapyrusSiriusStateMachineDiagramEditorCommand extends Abstrac
 					});
 					return super.execute(docProto, diagramName, sm, sm, openAfterCreation, docProto.getImplementationID());
 				} catch (ServiceException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

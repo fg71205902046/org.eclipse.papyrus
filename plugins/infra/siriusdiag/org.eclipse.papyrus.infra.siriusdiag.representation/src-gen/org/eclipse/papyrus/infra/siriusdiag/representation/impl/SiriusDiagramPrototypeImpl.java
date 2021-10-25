@@ -14,35 +14,24 @@
 package org.eclipse.papyrus.infra.siriusdiag.representation.impl;
 
 import java.lang.reflect.InvocationTargetException;
-
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
 import org.eclipse.emf.ecore.util.EObjectValidator;
-
 import org.eclipse.papyrus.infra.architecture.representation.impl.PapyrusRepresentationKindImpl;
-
 import org.eclipse.papyrus.infra.siriusdiag.representation.RepresentationPackage;
 import org.eclipse.papyrus.infra.siriusdiag.representation.SiriusDiagramPrototype;
-
 import org.eclipse.papyrus.infra.siriusdiag.representation.util.RepresentationValidator;
-
 import org.eclipse.sirius.business.api.session.Session;
-
 import org.eclipse.sirius.diagram.description.DiagramDescription;
 
 /**

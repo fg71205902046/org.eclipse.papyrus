@@ -40,9 +40,9 @@ public abstract class AbstractCreateSiriusDiagramEditorCommand implements ICreat
 	/**
 	 *
 	 * @param dialogTitle
-	 *            the dialog title
+	 *                         the dialog title
 	 * @param proposedName
-	 *            the proposed name
+	 *                         the proposed name
 	 * @return
 	 *         the name entered by the user, or <code>null</code> in case of cancel
 	 */
@@ -57,13 +57,13 @@ public abstract class AbstractCreateSiriusDiagramEditorCommand implements ICreat
 	/**
 	 *
 	 * @param diagramTemplatePrototype
-	 *            the diagram template prototype used to create the {@link diagram}
+	 *                                     the diagram template prototype used to create the {@link diagram}
 	 * @param diagramName
-	 *            the name of the created diagram
+	 *                                     the name of the created diagram
 	 * @param semanticContext
-	 *            the semantic context used for the creation of the {@link diagram}
+	 *                                     the semantic context used for the creation of the {@link diagram}
 	 * @param openAfterCreation
-	 *            if <code>true</code> the editor will be opened after the creation
+	 *                                     if <code>true</code> the editor will be opened after the creation
 	 * @return
 	 *         the created {@link diagram}
 	 */
@@ -74,15 +74,15 @@ public abstract class AbstractCreateSiriusDiagramEditorCommand implements ICreat
 	/**
 	 *
 	 * @param diagram
-	 *            the diagram template prototype used to create the {@link diagram}
+	 *                              the diagram template prototype used to create the {@link diagram}
 	 * @param diagramName
-	 *            the name of the created diagram
+	 *                              the name of the created diagram
 	 * @param semanticContext
-	 *            the semantic context used for the creation of the {@link diagram}
+	 *                              the semantic context used for the creation of the {@link diagram}
 	 * @param graphicalContext
-	 *            the graphical context used for the creation of the {@link diagram}
+	 *                              the graphical context used for the creation of the {@link diagram}
 	 * @param openAfterCreation
-	 *            if <code>true</code> the editor will be opened after the creation
+	 *                              if <code>true</code> the editor will be opened after the creation
 	 * @return
 	 *         the created {@link diagram}
 	 */
@@ -98,7 +98,6 @@ public abstract class AbstractCreateSiriusDiagramEditorCommand implements ICreat
 		if (null == domain) {
 			return null;
 		}
-		// TODO: Changer le nom du diagram
 		final String siriusDiagramMainTitle = getSiriusDiagramMainTitle(semanticContext);
 
 		final CreateSiriusDiagramEditorViewCommand command = createDSemanticDiagramEditorCreationCommand(domain, diagram, diagramName, siriusDiagramMainTitle, semanticContext, openAfterCreation, id);
@@ -112,19 +111,19 @@ public abstract class AbstractCreateSiriusDiagramEditorCommand implements ICreat
 	/**
 	 *
 	 * @param editingDomain
-	 *            the editing domain to use for the command
+	 *                              the editing domain to use for the command
 	 * @param diagramPrototype
-	 *            * the diagram template prototype used to create the {@link diagram}
+	 *                              * the diagram template prototype used to create the {@link diagram}
 	 * @param diagramName
-	 *            the name of the created diagram
+	 *                              the name of the created diagram
 	 * @param diagramMainTitle
-	 *            the main title of the diagram
+	 *                              the main title of the diagram
 	 * @param semanticContext
-	 *            the semantic context used for the creation of the {@link diagram}
+	 *                              the semantic context used for the creation of the {@link diagram}
 	 * @param graphicalContext
-	 *            the graphical context used for the creation of the {@link diagram}
+	 *                              the graphical context used for the creation of the {@link diagram}
 	 * @param openAfterCreation
-	 *            if <code>true</code> the editor will be opened after the creation
+	 *                              if <code>true</code> the editor will be opened after the creation
 	 * @return
 	 *         the created {@link diagram}
 	 */
@@ -142,17 +141,17 @@ public abstract class AbstractCreateSiriusDiagramEditorCommand implements ICreat
 	/**
 	 *
 	 * @param editingDomain
-	 *            the editing domain to use for the command
+	 *                              the editing domain to use for the command
 	 * @param diagramPrototype
-	 *            * the diagram template prototype used to create the {@link diagram}
+	 *                              * the diagram template prototype used to create the {@link diagram}
 	 * @param diagramName
-	 *            the name of the created diagram
+	 *                              the name of the created diagram
 	 * @param diagramMainTitle
-	 *            the main title of the diagram
+	 *                              the main title of the diagram
 	 * @param semanticContext
-	 *            the semantic context used for the creation of the {@link diagram}
+	 *                              the semantic context used for the creation of the {@link diagram}
 	 * @param openAfterCreation
-	 *            if <code>true</code> the editor will be opened after the creation
+	 *                              if <code>true</code> the editor will be opened after the creation
 	 * @return
 	 *         the created {@link diagram}
 	 */
@@ -169,7 +168,7 @@ public abstract class AbstractCreateSiriusDiagramEditorCommand implements ICreat
 	/**
 	 *
 	 * @param modelElement
-	 *            an element of the edited model
+	 *                         an element of the edited model
 	 * @return
 	 *         the service registry or <code>null</code> if not found
 	 */
@@ -185,7 +184,7 @@ public abstract class AbstractCreateSiriusDiagramEditorCommand implements ICreat
 	/**
 	 *
 	 * @param modelElement
-	 *            an element of the edited model
+	 *                         an element of the edited model
 	 * @return
 	 *         the editing domain or <code>null</code> if not found
 	 */
@@ -205,7 +204,7 @@ public abstract class AbstractCreateSiriusDiagramEditorCommand implements ICreat
 	/**
 	 *
 	 * @param semanticContext
-	 *            the semantic context for the create DSemanticDiagram
+	 *                            the semantic context for the create DSemanticDiagram
 	 * @return
 	 *         the label to use as main title for the generated diagram
 	 */

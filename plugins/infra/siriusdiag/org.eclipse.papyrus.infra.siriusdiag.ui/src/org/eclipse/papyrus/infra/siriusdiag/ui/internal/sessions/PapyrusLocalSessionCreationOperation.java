@@ -43,12 +43,12 @@ public class PapyrusLocalSessionCreationOperation extends DefaultLocalSessionCre
 	 * Constructor.
 	 *
 	 * @param sessionResourceURI
-	 *            the {@link URI} of the Resource {@link Session} model
+	 *                                       the {@link URI} of the Resource {@link Session} model
 	 * @param monitor
-	 *            {@link IProgressMonitor} to show progression of
-	 *            {@link Session} creation
+	 *                                       {@link IProgressMonitor} to show progression of
+	 *                                       {@link Session} creation
 	 * @param transactionalEditingDomain
-	 *            the editing domain to use
+	 *                                       the editing domain to use
 	 */
 	public PapyrusLocalSessionCreationOperation(final URI sessionResourceURI, final IProgressMonitor monitor, final TransactionalEditingDomain transactionalEditingDomain) {
 		super(sessionResourceURI, monitor);
@@ -79,9 +79,6 @@ public class PapyrusLocalSessionCreationOperation extends DefaultLocalSessionCre
 			}
 			monitor.subTask(Messages.DefaultLocalSessionCreationOperation_sessionOpenMsg);
 			session.open(SubMonitor.convert(monitor, 1));
-			// TODO useless in Papyrus
-			// monitor.subTask(Messages.DAnalysisSessionImpl_saveMsg);
-			// session.save(SubMonitor.convert(monitor, 1));
 		} finally {
 			monitor.done();
 		}

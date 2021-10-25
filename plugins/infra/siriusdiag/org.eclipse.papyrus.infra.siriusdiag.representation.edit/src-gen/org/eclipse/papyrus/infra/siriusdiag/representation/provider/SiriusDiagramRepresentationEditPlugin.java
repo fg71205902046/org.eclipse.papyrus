@@ -14,23 +14,14 @@
 package org.eclipse.papyrus.infra.siriusdiag.representation.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
-
 import org.eclipse.papyrus.infra.architecture.representation.provider.RepresentationEditPlugin;
-
 import org.eclipse.papyrus.infra.constraints.provider.ConstraintsEditPlugin;
-
 import org.eclipse.papyrus.infra.core.architecture.provider.ArchitectureEditPlugin;
-
 import org.eclipse.papyrus.infra.types.provider.TypesConfigurationsEditPlugin;
-
 import org.eclipse.sirius.diagram.ui.provider.DiagramUIPlugin;
-
 import org.eclipse.sirius.viewpoint.provider.SiriusEditPlugin;
-
 import org.osgi.framework.BundleActivator;
 
 /**

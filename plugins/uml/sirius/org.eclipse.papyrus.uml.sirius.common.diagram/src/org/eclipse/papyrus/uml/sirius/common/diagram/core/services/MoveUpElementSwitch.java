@@ -9,7 +9,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *  Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Initial API and implementation
+ *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Initial API and others
  *****************************************************************************/
 package org.eclipse.papyrus.uml.sirius.common.diagram.core.services;
 
@@ -31,7 +31,7 @@ import org.eclipse.uml2.uml.util.UMLSwitch;
  */
 public class MoveUpElementSwitch extends UMLSwitch<Boolean> {
 
-	private static Boolean success = Boolean.TRUE;
+	private static Boolean success = new Boolean(true);
 
 	@Override
 	public Boolean caseEnumerationLiteral(EnumerationLiteral enumerationLiteral) {

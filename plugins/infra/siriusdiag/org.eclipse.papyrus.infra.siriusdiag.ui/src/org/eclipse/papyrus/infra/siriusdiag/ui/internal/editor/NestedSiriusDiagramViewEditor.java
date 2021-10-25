@@ -162,7 +162,6 @@ public class NestedSiriusDiagramViewEditor extends DDiagramEditorImpl implements
 			Assert.isNotNull(this.servicesRegistry, "The papyrus ServicesRegistry is null. The Diagram Editor creation failed."); //$NON-NLS-1$
 			initializeEditingDomain();
 		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -324,9 +323,7 @@ public class NestedSiriusDiagramViewEditor extends DDiagramEditorImpl implements
 				modelSet.getResources().add(session.getSessionResource());
 			}
 		} catch (ServiceException e1) {
-			// TODO : use Papyrus LogHelper
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			Activator.log.error(e1);
 		}
 		final SiriusDiagramEditorInput diagramViewEditorInput = new SiriusDiagramEditorInput(this.diagram, uri, session);
 		this.editingDomain.getCommandStack().execute(new RecordingCommand(this.editingDomain) {
@@ -335,8 +332,6 @@ public class NestedSiriusDiagramViewEditor extends DDiagramEditorImpl implements
 				try {
 					NestedSiriusDiagramViewEditor.super.init(site, diagramViewEditorInput);
 				} catch (PartInitException e) {
-					// TODO : use Papyrus LogHelper
-					// TODO Auto-generated catch block
 					Activator.log.error(e);
 				}
 			}
@@ -425,9 +420,7 @@ public class NestedSiriusDiagramViewEditor extends DDiagramEditorImpl implements
 			SessionPrinter.print(session, this.getClass().getCanonicalName() + " " + "createPartControl");
 
 		} catch (ServiceException e1) {
-			// TODO : use Papyrus LogHelper
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			Activator.log.error(e1);
 		}
 		super.createPartControl(parent);
 	}

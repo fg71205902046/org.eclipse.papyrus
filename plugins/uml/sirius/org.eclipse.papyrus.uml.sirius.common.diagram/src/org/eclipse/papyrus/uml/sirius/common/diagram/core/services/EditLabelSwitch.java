@@ -9,7 +9,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *  Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Initial API and implementation
+ *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Initial API and others
  *****************************************************************************/
 package org.eclipse.papyrus.uml.sirius.common.diagram.core.services;
 
@@ -523,9 +523,7 @@ public class EditLabelSwitch extends UMLSwitch<Element> implements ILabelConstan
             return caseNamedElement(object);
         }
         object.setName(splittedLabel[0]);
-
         // TODO retrieve and set the element type
-
         return object;
     }
 

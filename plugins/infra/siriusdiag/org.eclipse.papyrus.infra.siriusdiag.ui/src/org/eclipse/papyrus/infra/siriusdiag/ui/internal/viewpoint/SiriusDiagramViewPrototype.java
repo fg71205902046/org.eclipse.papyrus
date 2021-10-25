@@ -38,7 +38,7 @@ public class SiriusDiagramViewPrototype extends ViewPrototype implements Extende
 	 * Constructor.
 	 *
 	 * @param prototype
-	 *            The PapyrusDocument representation
+	 *                      The PapyrusDocument representation
 	 */
 	public SiriusDiagramViewPrototype(final SiriusDiagramPrototype prototype, final ICreateSiriusDiagramEditorCommand command) {
 		super(prototype);
@@ -118,7 +118,7 @@ public class SiriusDiagramViewPrototype extends ViewPrototype implements Extende
 	@Override
 	public EObject getOwnerOf(EObject view) {
 		// it is graphical context
-		return ((DSemanticDiagram) view).eContainer();// TODO: test if eContainer() or root.
+		return ((DSemanticDiagram) view).eContainer();
 	}
 
 	/**

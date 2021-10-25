@@ -9,7 +9,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *  Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Initial API and implementation
+ *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Initial API and others
  *****************************************************************************/
 package org.eclipse.papyrus.uml.sirius.common.diagram.refresh;
 
@@ -36,10 +36,7 @@ public class CommonRefreshExtensionProvider implements IRefreshExtensionProvider
 	   * @see org.eclipse.sirius.business.api.refresh.IRefreshExtensionProvider#provides(org.eclipse.sirius.DDiagram)
 	   */
 	  public boolean provides(DDiagram viewPoint_p) {
-	    String viewpointName = viewPoint_p.getDescription().getName();
-
-	    //TODO : not possible to reference class diagram in a common plugin...
-	    return ("ClassDiagram".equals(viewpointName));
+	    return true;
 	  }
 
 	}

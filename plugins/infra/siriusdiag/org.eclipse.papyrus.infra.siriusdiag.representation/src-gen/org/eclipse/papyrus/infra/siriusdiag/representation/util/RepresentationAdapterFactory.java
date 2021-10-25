@@ -15,18 +15,13 @@ package org.eclipse.papyrus.infra.siriusdiag.representation.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
-
 import org.eclipse.papyrus.infra.core.architecture.ADElement;
 import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
-
-import org.eclipse.papyrus.infra.siriusdiag.representation.*;
-
+import org.eclipse.papyrus.infra.siriusdiag.representation.RepresentationPackage;
+import org.eclipse.papyrus.infra.siriusdiag.representation.SiriusDiagramPrototype;
 import org.eclipse.sirius.business.api.session.Session;
 
 /**

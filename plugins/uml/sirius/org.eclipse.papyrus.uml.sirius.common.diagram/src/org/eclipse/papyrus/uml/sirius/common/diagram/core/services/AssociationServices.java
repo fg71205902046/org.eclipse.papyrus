@@ -9,7 +9,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *  Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Initial API and implementation
+ *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Initial API and others
  *****************************************************************************/
 package org.eclipse.papyrus.uml.sirius.common.diagram.core.services;
 
@@ -106,8 +106,22 @@ public class AssociationServices {
 		property.setUpper(-1);
 		return property;
 	}
-
+	
 	/**
+	 * Create association class end.
+	 *
+	 * @param type
+	 *            type of end
+	 * @return property
+	 */
+	public Property createAssociationClassEnd(Type type) {
+		final Property property = UMLFactory.eINSTANCE.createProperty();
+		property.setName(getAssociationEndsName(type));
+		property.setType(type);
+		return property;
+	}
+	
+    /**
 	 * Precondition for n-ary association creation.
 	 *
 	 * @param object

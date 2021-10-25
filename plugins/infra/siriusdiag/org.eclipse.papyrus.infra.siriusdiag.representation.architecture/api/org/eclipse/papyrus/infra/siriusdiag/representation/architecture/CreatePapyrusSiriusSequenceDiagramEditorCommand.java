@@ -126,7 +126,6 @@ public class CreatePapyrusSiriusSequenceDiagramEditorCommand extends AbstractCre
 					});
 					return super.execute(docProto, diagramName, interaction, interaction, openAfterCreation, docProto.getImplementationID());
 				} catch (ServiceException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

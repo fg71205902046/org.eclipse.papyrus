@@ -16,11 +16,8 @@ package org.eclipse.papyrus.infra.siriusdiag.representation;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
-
 import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
-
 import org.eclipse.sirius.business.api.session.Session;
-
 import org.eclipse.sirius.diagram.description.DiagramDescription;
 
 /**

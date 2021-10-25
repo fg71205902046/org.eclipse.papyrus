@@ -21,27 +21,17 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.papyrus.infra.constraints.ConstraintsPackage;
-
 import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
-
 import org.eclipse.papyrus.infra.siriusdiag.representation.RepresentationFactory;
 import org.eclipse.papyrus.infra.siriusdiag.representation.RepresentationPackage;
 import org.eclipse.papyrus.infra.siriusdiag.representation.SiriusDiagramPrototype;
-
 import org.eclipse.papyrus.infra.siriusdiag.representation.util.RepresentationValidator;
-
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
-
 import org.eclipse.sirius.business.api.session.Session;
-
 import org.eclipse.sirius.diagram.DiagramPackage;
-
 import org.eclipse.sirius.diagram.description.DescriptionPackage;
-
 import org.eclipse.sirius.viewpoint.ViewpointPackage;
 
 /**

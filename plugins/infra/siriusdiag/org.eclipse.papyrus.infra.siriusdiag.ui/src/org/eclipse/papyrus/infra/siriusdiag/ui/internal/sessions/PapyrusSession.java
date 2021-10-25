@@ -34,7 +34,7 @@ public class PapyrusSession extends DAnalysisSessionImpl {
 	 *
 	 * @param mainDAnalysis
 	 */
-	public PapyrusSession(final DAnalysis mainDAnalysis, TransactionalEditingDomain transactionalEditingDomain) {// TODO : remove the editing domain
+	public PapyrusSession(final DAnalysis mainDAnalysis, TransactionalEditingDomain transactionalEditingDomain) {
 		super(mainDAnalysis);
 	}
 

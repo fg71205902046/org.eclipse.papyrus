@@ -31,7 +31,7 @@ import org.eclipse.sirius.viewpoint.provider.SiriusEditPlugin;
 import org.eclipse.ui.IPersistableElement;
 
 /**
- * DocumentStructureTemplate EditorInput.
+ * SiriusDiagramEditorInput.
  *
  */
 public class SiriusDiagramEditorInput extends SessionEditorInput {
@@ -46,9 +46,8 @@ public class SiriusDiagramEditorInput extends SessionEditorInput {
 	 * Constructor.
 	 *
 	 * @param siriusDiagram
-	 *            the document template to edit
+	 *                          the diagram to edit
 	 */
-	// TODO:Essayer sans la classe SiriusDiagramEditorInput
 	public SiriusDiagramEditorInput(final DSemanticDiagram siriusDiagram, URI uri, Session session) {
 		super(uri, siriusDiagram.getName(), session);
 		this.diagram = siriusDiagram;
@@ -57,7 +56,7 @@ public class SiriusDiagramEditorInput extends SessionEditorInput {
 	/**
 	 *
 	 * @return
-	 *         the document template for which we are opening an editor
+	 *         the diagram for which we are opening an editor
 	 */
 	public DSemanticDiagram getSiriusDiagramPrototype() {
 		return this.diagram;
@@ -134,7 +133,7 @@ public class SiriusDiagramEditorInput extends SessionEditorInput {
 	 * @see org.eclipse.core.runtime.IAdaptable#getAdapter(java.lang.Class)
 	 *
 	 * @param adapter
-	 *            the only supported type are {@link URI} and {@link diagram}
+	 *                    the only supported type are {@link URI} and {@link diagram}
 	 * @return
 	 *         the uri of the file containing the {@link diagram} to edit or the {@link diagram} itself
 	 */
@@ -156,9 +155,9 @@ public class SiriusDiagramEditorInput extends SessionEditorInput {
 	 * Get the session.
 	 *
 	 * @param sessionModelURI
-	 *            the Session Resource URI
+	 *                            the Session Resource URI
 	 * @param restore
-	 *            true to restore the session if it is not instantiated
+	 *                            true to restore the session if it is not instantiated
 	 * @return the session if it can be found, <code>null</code> otherwise
 	 *
 	 * @since 0.9.0

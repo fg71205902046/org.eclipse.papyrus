@@ -9,7 +9,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *  Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Initial API and implementation
+ *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Initial API and others
  *****************************************************************************/
 package org.eclipse.papyrus.uml.sirius.common.diagram.core.services;
 
@@ -1045,7 +1045,7 @@ public class DisplayLabelSwitch extends UMLSwitch<String> implements ILabelConst
             sb.append("/"); //$NON-NLS-1$
         }
         if (p.getName() != null) {
-            sb.append(p.getName());
+            sb.append("+ " + p.getName());
         }
         sb.append(caseMultiplicityElement(p));
         return sb.toString();

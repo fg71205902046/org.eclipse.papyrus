@@ -9,7 +9,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *  Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Initial API and implementation
+ *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Initial API and others
  *****************************************************************************/
 package org.eclipse.papyrus.uml.sirius.common.diagram.core.services;
 
@@ -166,7 +166,11 @@ public class LabelServices {
         };
         if (element instanceof AssociationClass) {
             name = "AssociationClass"; //$NON-NLS-1$
-        } else if (element instanceof InitialNode) {
+        } 
+        else if (element instanceof InstanceSpecification) {
+            name = "InstanceSpecification"; //$NON-NLS-1$
+        }
+        else if (element instanceof InitialNode) {
             name = "Initial"; //$NON-NLS-1$
         } else if (element instanceof DecisionNode) {
             name = "Decision"; //$NON-NLS-1$
