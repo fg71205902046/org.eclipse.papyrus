@@ -46,7 +46,7 @@ public class StateDelete extends AbstractStatemachineTopNodeCreationTest {
 		EditPart toSelect = fixture.findEditPart(stateNode);
 		Assert.assertNotNull("We don't found the Editpart to select for destruction", toSelect);
 
-		fixture.applyDeletionTool(stateNode);
+		fixture.applySemanticDeletionTool(stateNode);
 		
 		this.fixture.flushDisplayEvents();
 		// the semantic element has been destroy

@@ -25,7 +25,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramPrototype;
 import org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram;
 import org.eclipse.papyrus.infra.gmfdiag.style.PapyrusDiagramStyle;
 import org.eclipse.papyrus.infra.gmfdiag.style.StylePackage;
-import org.eclipse.papyrus.infra.siriusdiag.ui.modelresource.SiriusDiagramModel;
+import org.eclipse.papyrus.infra.siriusdiag.ui.internal.sessions.SiriusConstants;
 import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
 import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
@@ -59,7 +59,7 @@ public abstract class AbstractDiagramCreationTests extends AbstractPapyrusTest {
 	 */
 	protected final Resource getAIRDResourceForCurrentModel() {// TODO rename me as getAIRDResourceForCurrentModel for Sirius
 		for (final Resource current : this.fixture.getResourceSet().getResources()) {
-			if (SiriusDiagramModel.SIRIUS_DIAGRAM_MODEL_FILE_EXTENSION.equals(current.getURI().fileExtension())) {
+			if (SiriusConstants.SIRIUS_DIAGRAM_MODEL_FILE_EXTENSION.equals(current.getURI().fileExtension())) {
 				if (this.fixture.getModelResourceURI().trimFileExtension().equals(current.getURI().trimFileExtension())) {
 					return current;
 				}
