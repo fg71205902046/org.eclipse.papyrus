@@ -125,14 +125,9 @@
             class="org.eclipse.papyrus.views.modelexplorer.actionprovider.OpenActionProvider"
             id="org.eclipse.papyrus.views.modelexplorer.actionprovider.OpenActionProvider">
          <enablement>
-            <or>
-               <adapt
-                     type="org.eclipse.emf.ecore.EObject">
-                  <adapt
-                        type="org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IOpenable">
-                  </adapt>
-               </adapt>
-            </or>
+            <reference
+                  definitionId="org.eclipse.papyrus.views.modelexplorer.isIOpenable">
+            </reference>
          </enablement>
       </actionProvider>
    </extension>
@@ -407,16 +402,13 @@
       </activeWhen>
    </handler>
    <handler commandId="org.eclipse.papyrus.views.modelexplorer.popup.open.command">
-      <activeWhen>
-         <with variable="selection">
-            <and>
-               <test forcePluginActivation="true" property="org.eclipse.papyrus.views.modelexplorer.tester.isPage" value="true">
-               </test>
-            </and>
-         </with>
-      </activeWhen>
       <class class="org.eclipse.papyrus.views.modelexplorer.handler.OpenHandler">
       </class>
+      <activeWhen>
+         <reference
+               definitionId="org.eclipse.papyrus.views.modelexplorer.isIOpenable">
+         </reference>
+      </activeWhen>
    </handler>
    <handler commandId="org.eclipse.papyrus.views.modelexplorer.popup.open.new.command">
       <activeWhen>
@@ -554,6 +546,13 @@
    </propertyTester>
    <propertyTester class="org.eclipse.papyrus.views.modelexplorer.provider.PropertyTester" id="org.eclipse.papyrus.views.modelexplorer.tester.view" namespace="org.eclipse.papyrus.views.modelexplorer.tester.view" properties="isModelExplorer" type="org.eclipse.ui.IWorkbenchPart">
    </propertyTester>
+   <propertyTester
+         class="org.eclipse.papyrus.views.modelexplorer.provider.IsIOpenablePropertyTester"
+         id="org.eclipse.papyrus.views.modelexplorer.provider.IsOpenablePropertyTester"
+         namespace="org.eclipse.papyrus.views.modelexplorer.tester.openable"
+         properties="isIOpenable"
+         type="org.eclipse.ui.IWorkbenchPart">
+   </propertyTester>
 </extension>
 <!-- 
 TODO: PAPYRUS EMF-FACET update uiCustom Here
@@ -588,5 +587,27 @@ TODO: PAPYRUS EMF-FACET update uiCustom Here
             navigationTargetProvider="org.eclipse.papyrus.views.modelexplorer.navigation.ModelExplorerNavigationTargetProvider"
             order="500">
       </target>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.definitions">
+      <definition
+            id="org.eclipse.papyrus.views.modelexplorer.isIOpenable">
+         <and>
+            <with
+                  variable="activePartId">
+               <equals
+                     value="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+               </equals>
+            </with>
+            <with
+                  variable="activePart">
+               <test
+                     forcePluginActivation="true"
+                     property="org.eclipse.papyrus.views.modelexplorer.tester.openable.isIOpenable"
+                     value="true">
+               </test>
+            </with>
+         </and>
+      </definition>
    </extension>
 </plugin>
