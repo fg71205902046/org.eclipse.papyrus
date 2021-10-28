@@ -40,7 +40,6 @@ import org.eclipse.core.commands.operations.IUndoContext;
 import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.commands.operations.OperationHistoryEvent;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -129,8 +128,8 @@ import org.eclipse.papyrus.infra.nattable.common.editor.AbstractEMFNattableEdito
 import org.eclipse.papyrus.infra.nattable.common.modelresource.PapyrusNattableModel;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.siriusdiag.ui.internal.sessions.PapyrusSession;
-import org.eclipse.papyrus.infra.siriusdiag.ui.internal.sessions.PapyrusSessionFactory;
+import org.eclipse.papyrus.infra.siriusdiag.sirius.ISiriusSessionService;
+import org.eclipse.papyrus.infra.siriusdiag.ui.internal.sessions.SessionService;
 import org.eclipse.papyrus.infra.siriusdiag.ui.internal.sessions.SiriusConstants;
 import org.eclipse.papyrus.infra.siriusdiag.ui.modelresource.SiriusDiagramModel;
 import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
@@ -150,6 +149,7 @@ import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPage;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerView;
+import org.eclipse.sirius.business.api.session.Session;
 import org.eclipse.sirius.diagram.DDiagram;
 import org.eclipse.sirius.diagram.DDiagramElement;
 import org.eclipse.sirius.diagram.DDiagramElementContainer;
@@ -211,6 +211,7 @@ import com.google.common.collect.Lists;
  * completion of the test.
  */
 public class SiriusDiagramEditorFixture extends AbstractModelFixture<TransactionalEditingDomain> {
+
 	private static final class ShowViewDescriptor {
 
 		private static final ShowView.Location DEFAULT_LOCATION_EDITORS = ShowView.Location.RIGHT;
@@ -382,8 +383,10 @@ public class SiriusDiagramEditorFixture extends AbstractModelFixture<Transaction
 	private static final String TOOL_NAME_INCORRECT = "The tool name is not correct";
 	private static final String LAYER_NAME_INCORRECT = "The layer name is not correct (not found in the diagram description of this diagram)";
 
+	// /** the service registry */
+	// protected ServicesRegistry servicesRegistry;
 
-	private PapyrusSession session;
+	private Session session;
 
 	private Class<?> testClass;
 
@@ -1332,7 +1335,7 @@ public class SiriusDiagramEditorFixture extends AbstractModelFixture<Transaction
 	/**
 	 * @return the session
 	 */
-	public PapyrusSession getSession() {
+	public Session getSession() {
 		return session;
 	}
 
@@ -2317,12 +2320,10 @@ public class SiriusDiagramEditorFixture extends AbstractModelFixture<Transaction
 		try {
 			ModelSet modelSet = ServiceUtils.getInstance().getModelSet(editor.getServicesRegistry());
 			SiriusDiagramModel siriusModel = (SiriusDiagramModel) modelSet.getModel(SiriusDiagramModel.SIRIUS_DIAGRAM_MODEL_ID);
-			/// XXX sirius initialization
-			session = (PapyrusSession) PapyrusSessionFactory.INSTANCE.createSession(siriusModel.getResourceURI(), new NullProgressMonitor());
+
+			SessionService sessionService = (SessionService) editor.getServicesRegistry().getService(ISiriusSessionService.SERVICE_ID);
+			session = sessionService.getSiriusSession();
 		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (CoreException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -2375,6 +2376,7 @@ public class SiriusDiagramEditorFixture extends AbstractModelFixture<Transaction
 		}
 		throw new IllegalArgumentException(LAYER_NAME_INCORRECT);
 	}
+
 
 	/**
 	 * Searches the given {@link Layer} for a tool of the given name and returns it.

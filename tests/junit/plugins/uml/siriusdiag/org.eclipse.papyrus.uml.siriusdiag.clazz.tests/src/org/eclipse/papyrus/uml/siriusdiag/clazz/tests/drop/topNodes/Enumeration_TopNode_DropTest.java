@@ -59,7 +59,7 @@ public class Enumeration_TopNode_DropTest extends AbstractPapyrusTest {
 		Assert.assertEquals("The diagram must not yet have children", 0, diagram.getChildren().size());
 
 		DDiagram diagramRespresentation = (DDiagram) diagram.getElement();
-		fixture.applyContainerDropDescriptionTool(diagramRespresentation, "Enumeration from Model", diagramRespresentation, elementToBeDropped);
+		fixture.applyContainerDropDescriptionTool(diagramRespresentation, "Class Enumeration from Model", diagramRespresentation, elementToBeDropped);
 		fixture.flushDisplayEvents();
 
 		Assert.assertEquals("The diagram must have one child after the Drop action", 1, diagram.getChildren().size());

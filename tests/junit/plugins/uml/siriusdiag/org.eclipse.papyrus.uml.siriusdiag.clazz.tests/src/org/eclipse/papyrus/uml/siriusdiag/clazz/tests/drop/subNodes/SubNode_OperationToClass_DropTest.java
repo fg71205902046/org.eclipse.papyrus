@@ -68,7 +68,7 @@ public class SubNode_OperationToClass_DropTest extends AbstractPapyrusTest {
 
 		classElement = diagram.getChildren().get(0);
 		classRepresentation = (DNodeContainerSpec) ((View) classElement).getElement();
-		DNodeListSpec element = (DNodeListSpec) classRepresentation.getOwnedDiagramElements().get(0);
+		DNodeListSpec element = (DNodeListSpec) classRepresentation.getOwnedDiagramElements().get(1);
 		Object siriusNewRepresentation = element.getOwnedElements().get(0);
 		Assert.assertTrue("The created sirus node must be a DNode", siriusNewRepresentation instanceof DNodeListElementSpec);
 		EObject semanticElement = ((DNodeListElementSpec) siriusNewRepresentation).getSemanticElements().iterator().next();

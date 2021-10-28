@@ -51,10 +51,7 @@ public class HyperlinkService {
 				.collect(Collectors.toList());
 	}
 
-	public static boolean isDocumentView(EObject obj, EObject newContainerView) {
-		if (obj instanceof Object) {
-			return true;
-		}
-		return true;
+	public static boolean isNotSemanticElement(EObject obj) {
+		return obj instanceof Element;
 	}
 }

@@ -45,9 +45,9 @@ public class SiriusDiagramEditorFactory extends AbstractEditorFactory {
 	 * Constructor.
 	 *
 	 * @param editorClass
-	 *            the editor class
+	 *                        the editor class
 	 * @param editorType
-	 *            the type of editor
+	 *                        the type of editor
 	 */
 	public SiriusDiagramEditorFactory() {
 		// we don't use the type for the SiriusDiagramModel models
@@ -60,7 +60,7 @@ public class SiriusDiagramEditorFactory extends AbstractEditorFactory {
 	 * @see org.eclipse.papyrus.infra.ui.editorsfactory.IEditorFactory#createIPageModel(java.lang.Object)
 	 *
 	 * @param pageIdentifier
-	 *            The model pushed in the sashmodel by the creation command
+	 *                           The model pushed in the sashmodel by the creation command
 	 * @return A model implementing the IPageModel
 	 */
 	@Override
@@ -129,8 +129,8 @@ public class SiriusDiagramEditorFactory extends AbstractEditorFactory {
 		public IEditorPart createIEditorPart() throws PartInitException {
 			try {
 
-				Constructor<?> c = getDiagramClass().getConstructor(ServicesRegistry.class, DSemanticDiagram.class/* , Session.class, URI.class */);
-				IEditorPart newEditor = (IEditorPart) c.newInstance(this.servicesRegistry, this.rawModel/* , this.session, this.uri */);// rawmodel est il un DSemanticDiagram?
+				Constructor<?> c = getDiagramClass().getConstructor(ServicesRegistry.class, DSemanticDiagram.class);
+				IEditorPart newEditor = (IEditorPart) c.newInstance(this.servicesRegistry, this.rawModel);
 				this.editor = newEditor;
 				return this.editor;
 

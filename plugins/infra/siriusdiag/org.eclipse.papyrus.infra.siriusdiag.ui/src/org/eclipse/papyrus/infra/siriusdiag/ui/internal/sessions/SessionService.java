@@ -183,16 +183,16 @@ public class SessionService implements ISiriusSessionService, ISiriusSessionView
 		for (Resource resource : resources) {
 			if (resource.isLoaded()) {
 				FileQuery fileQuery = new FileQuery(resource.getURI().fileExtension());
-				if (!(fileQuery.isSessionResourceFile() || fileQuery.isSrmFile() || fileQuery.isVSMFile())) {
+				if (!(fileQuery.isSessionResourceFile() || fileQuery.isSrmFile() || fileQuery.isVSMFile() || resource.getURI().scheme().equals("file"))) {
 					this.createdSession.addSemanticResource(resource.getURI(), new NullProgressMonitor());
 				}
 			}
 		}
 
-		this.createdSession.save(new NullProgressMonitor());
-
 		// 4. update applied sirius viewpoints
 		updateAppliedSiriusViewpoints();
+
+		this.createdSession.save(new NullProgressMonitor());
 
 
 	}
