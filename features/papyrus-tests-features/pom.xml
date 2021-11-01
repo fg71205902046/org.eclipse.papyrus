@@ -26,12 +26,12 @@
 		<module>org.eclipse.papyrus.tests.infra.services.feature</module>
 
 		<module>org.eclipse.papyrus.tests.toolsmiths.feature</module>
-
 		<module>org.eclipse.papyrus.tests.uml.assistants.feature</module>
 		<module>org.eclipse.papyrus.tests.uml.decoratormodel.feature</module>
 		<module>org.eclipse.papyrus.tests.uml.diagram.feature</module>
 		<module>org.eclipse.papyrus.tests.uml.expressions.feature</module>
 		<module>org.eclipse.papyrus.tests.uml.feature</module>
+		<module>org.eclipse.papyrus.tests.uml.siriusdiag.feature</module>
 		<module>org.eclipse.papyrus.tests.uml.internationalization.feature</module>
 		<module>org.eclipse.papyrus.tests.uml.nattable.feature</module>
 		<module>org.eclipse.papyrus.tests.uml.tools.feature</module>

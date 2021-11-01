@@ -30,6 +30,7 @@
 		<module>profile</module>
 		<module>tools</module>
 		<module>validation</module>
+		<module>siriusdiag</module>
 
 		<!-- Standalone Plugins -->
 		<module>org.eclipse.papyrus.uml.dynamic.profile.tests</module>

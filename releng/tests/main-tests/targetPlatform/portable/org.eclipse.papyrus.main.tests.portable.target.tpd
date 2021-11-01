@@ -3,7 +3,20 @@ target "Papyrus Tests" with source requirements
 include "../../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable.target.tpd"
 
 //updateFrom("EMF Compare",0)
-
 location emfCompare "https://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S202102231741" {
 	org.eclipse.emf.compare.source.feature.group
+}
+
+//Sirius Tests
+location siriusTest "https://download.eclipse.org/sirius/updates/releases/6.4.2/2020-09/" {
+	org.eclipse.sirius.tests.source.feature.group
+	org.eclipse.sirius.tests.support.source.feature.group
+}
+
+location acceleo "https://download.eclipse.org/acceleo/updates/releases/3.7/R202102190929" {
+	org.eclipse.acceleo.runtime.feature.group 
+}
+
+location swtbot "https://download.eclipse.org/technology/swtbot/releases/3.1.0/" {
+	 org.eclipse.swtbot.feature.group
 }
