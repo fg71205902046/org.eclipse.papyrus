@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 CEA LIST and others.
+ * Copyright (c) 2020, 2021 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -9,8 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   Vincent Lorenzo (CEA LIST) <vincent.lorenzo@cea.fr> - Initial API and implementation
- *
+ *   Vincent LORENZO (CEA LIST) <vincent.lorenzo@cea.fr> - Initial API and implementation
+ *   Vincent LORENZO (CEA LIST) <vincent.lorenzo@cea.fr> - Bug 576651
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.ui.emf.internal.facet;
@@ -27,6 +27,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.dialogs.DialogSettings;
 import org.eclipse.jface.dialogs.IDialogSettings;
+import org.eclipse.jface.dialogs.IDialogSettingsProvider;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationCatalogManager;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationCatalogManagerFactory;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
@@ -34,6 +35,7 @@ import org.eclipse.papyrus.emf.facet.custom.core.internal.CustomizationManager;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
 import org.eclipse.papyrus.infra.emf.CustomizationComparator;
 import org.eclipse.papyrus.infra.ui.internal.emf.Activator;
+import org.eclipse.ui.PlatformUI;
 
 /**
  * This class manages the applied customizations (apply/reset) and is able to save user changes with a workspace preferences
@@ -114,7 +116,7 @@ public class WorskpaceCustomizationUpdater implements ICustomizationManagerUpdat
 	 *         the dialog setting used to save the preferences or <code>null</code> if not found
 	 */
 	protected final IDialogSettings getWorkspaceBrowserCustomizationDialogSettings() {
-		return Activator.getDefault().getDialogSettings().getSection(CUSTOMIZATION_MANAGER_SECTION);
+		return getDialogSettingProvider().getDialogSettings().getSection(CUSTOMIZATION_MANAGER_SECTION);
 	}
 
 	/**
@@ -134,7 +136,7 @@ public class WorskpaceCustomizationUpdater implements ICustomizationManagerUpdat
 	protected final IDialogSettings getOrCreateWorkspaceBrowserCustomizationDialogSettings() {
 		IDialogSettings settings = getWorkspaceBrowserCustomizationDialogSettings();
 		if (settings == null) {
-			settings = Activator.getDefault().getDialogSettings().addNewSection(CUSTOMIZATION_MANAGER_SECTION);
+			settings = getDialogSettingProvider().getDialogSettings().addNewSection(CUSTOMIZATION_MANAGER_SECTION);
 			String loadedFacetPreferences = Activator.getDefault().getPreferenceStore().getString(DEFAULT_LOADED_FACET);
 			if (loadedFacetPreferences != null && !"".equals(loadedFacetPreferences)) { //$NON-NLS-1$
 				settings.put(LOADED_FACET_ORDER, loadedFacetPreferences.split(SEPARATOR_DEFAULT_LOADED_FACET));
@@ -225,8 +227,10 @@ public class WorskpaceCustomizationUpdater implements ICustomizationManagerUpdat
 	 * Restores the default Customization Manager configuration
 	 */
 	protected void destroyUserPreferences() {
-		final DialogSettings settings = (DialogSettings) Activator.getDefault().getDialogSettings();
-		settings.removeSection(CUSTOMIZATION_MANAGER_SECTION);
+		final IDialogSettings settings = getBrowserCustomizationDialogSettings();
+		if (settings instanceof DialogSettings) {
+			((DialogSettings) settings).removeSection(CUSTOMIZATION_MANAGER_SECTION);
+		}
 	}
 
 	/**
@@ -249,6 +253,17 @@ public class WorskpaceCustomizationUpdater implements ICustomizationManagerUpdat
 		customizationList.addAll(appliedCustomizations);
 		String[] loadedCustomizationArray = customizationList.stream().map(customization -> customization.eResource().getURI().toString()).toArray(size -> new String[size]);
 		dialogSettings.put(LOADED_FACET_ORDER, loadedCustomizationArray);
+
+		// not required, Eclipse save itself the IDialogSettings when we close it
+		// just here for debug and information purpose
+		// getDialogSettingProvider().saveDialogSettings();
+	}
+
+	/**
+	 * Returns the dialog setting provider
+	 */
+	protected final IDialogSettingsProvider getDialogSettingProvider() {
+		return PlatformUI.getDialogSettingsProvider(Activator.getDefault().getBundle());
 	}
 
 	/**

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 CEA LIST and others.
+ * Copyright (c) 2020, 2021 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Bug 576651
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.ui.emf.internal.facet;
@@ -195,6 +195,8 @@ public class ArchitectureFrameworkCustomizationManagerUpdater extends WorskpaceC
 			if (loadedFacetPreferences != null && !"".equals(loadedFacetPreferences)) { //$NON-NLS-1$
 				settings.put(LOADED_FACET_ORDER, loadedFacetPreferences.split(SEPARATOR_DEFAULT_LOADED_FACET));
 			}
+		} else {
+			settings = settings.getSection(modelKey);
 		}
 		return settings;
 	}
@@ -317,7 +319,6 @@ public class ArchitectureFrameworkCustomizationManagerUpdater extends WorskpaceC
 			final ArchitectureDescriptionUtils adUtils = new ArchitectureDescriptionUtils(modelSet);
 			final MergedArchitectureContext ctx = adUtils.getArchitectureContext();
 			if (ctx instanceof MergedArchitectureDescriptionLanguage) {
-				// TODO on doit probablement les recharger dans un autre resource set
 				return ((MergedArchitectureDescriptionLanguage) ctx).getTreeViewerConfigurations();
 			}
 		}
