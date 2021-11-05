@@ -270,7 +270,7 @@
           </style>
         </containerMappings>
         <toolSections name="Nodes" icon="/org.eclipse.papyrus.uml.sirius.common.diagram/icons/group.gif">
-          <ownedTools xsi:type="tool_1:ContainerCreationDescription" name="Region" precondition="service:istrue()" containerMappings="//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']" iconPath="/org.eclipse.uml2.uml.edit/icons/full/obj16/Region.gif" extraMappings="//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region'] //@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subContainerMappings[name='State']/@subContainerMappings[name='HorizontalRegions'] //@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subContainerMappings[name='State']/@subContainerMappings[name='VerticalRegions']">
+          <ownedTools xsi:type="tool_1:ContainerCreationDescription" name="Region" containerMappings="//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']" iconPath="/org.eclipse.uml2.uml.edit/icons/full/obj16/Region.gif" extraMappings="//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region'] //@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subContainerMappings[name='State']/@subContainerMappings[name='HorizontalRegions'] //@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']/@subContainerMappings[name='State']/@subContainerMappings[name='VerticalRegions']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -569,13 +569,13 @@
             <initialOperation>
               <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:element">
                 <subModelOperations xsi:type="tool:If" conditionExpression="aql:newSemanticContainer.oclIsTypeOf(uml::Region)">
-                  <subModelOperations xsi:type="tool:ChangeContext" browseExpression="service:newSemanticContainer.getStateParent()">
+                  <subModelOperations xsi:type="tool:ChangeContext" browseExpression="aql:newSemanticContainer.getStateParent()">
                     <subModelOperations xsi:type="tool:ChangeContext" browseExpression="aql:newContainerView.setChildRepresentation('H')"/>
                     <subModelOperations xsi:type="tool:ChangeContext" browseExpression="aql:element">
                       <subModelOperations xsi:type="tool:ChangeContext" browseExpression="aql:newSemanticContainer">
                         <subModelOperations xsi:type="tool_1:CreateView" mapping="//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']" containerViewExpression="aql:newContainerView" variableName="createdView2"/>
                         <subModelOperations xsi:type="tool:ChangeContext" browseExpression="aql:newContainerView.moveChildrenView(createdView2)">
-                          <subModelOperations xsi:type="tool:ChangeContext" browseExpression="service:applyLayoutData(newContainerView)"/>
+                          <subModelOperations xsi:type="tool:ChangeContext" browseExpression="aql:self.applyLayoutData(newContainerView)"/>
                         </subModelOperations>
                       </subModelOperations>
                       <subModelOperations xsi:type="tool_1:CreateView" mapping="//@ownedViewpoints[name='StateMachineDiagram']/@ownedRepresentations[name='StateMachineDiagram']/@defaultLayer/@containerMappings[name='StateMachine']/@subContainerMappings[name='Region']" containerViewExpression="aql:newContainerView"/>
@@ -944,11 +944,6 @@
     </ownedRepresentations>
     <ownedJavaExtensions qualifiedClassName="org.eclipse.papyrus.uml.sirius.statemachine.diagram.StateMachineServices"/>
     <ownedJavaExtensions qualifiedClassName="org.eclipse.papyrus.uml.sirius.common.diagram.core.services.AbstractDiagramServices"/>
-    <ownedJavaExtensions qualifiedClassName="org.eclipse.papyrus.uml.sirius.common.diagram.services.PackageHierarchyServices"/>
-    <ownedJavaExtensions qualifiedClassName="org.eclipse.papyrus.uml.sirius.common.diagram.services.ArchetypeServices"/>
-    <ownedJavaExtensions qualifiedClassName="org.eclipse.papyrus.uml.sirius.common.diagram.services.ComponentDiagramServices"/>
-    <ownedJavaExtensions qualifiedClassName="org.eclipse.papyrus.uml.sirius.common.diagram.services.PackageContainmentServices"/>
-    <ownedJavaExtensions qualifiedClassName="org.eclipse.papyrus.uml.sirius.common.diagram.core.services.ReusedDescriptionServices"/>
   </ownedViewpoints>
   <userColorsPalettes>
     <entries xsi:type="description:UserFixedColor" red="239" green="239" blue="239" name="StateMachine_Gray_Min"/>

@@ -52,6 +52,6 @@ public class HyperlinkService {
 	}
 
 	public static boolean isNotSemanticElement(EObject obj) {
-		return obj instanceof Element;
+		return !(obj instanceof Element);
 	}
 }

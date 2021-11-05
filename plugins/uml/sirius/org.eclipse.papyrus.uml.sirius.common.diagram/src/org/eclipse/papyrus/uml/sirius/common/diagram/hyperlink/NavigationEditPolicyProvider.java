@@ -11,50 +11,42 @@
  * Contributors:
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Initial API and others
  *****************************************************************************/
-package org.eclipse.papyrus.uml.sirius.statemachine.diagram.custom;
+package org.eclipse.papyrus.uml.sirius.common.diagram.hyperlink;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.impl.NodeImpl;
-import org.eclipse.papyrus.infra.gmfdiag.dnd.policy.CustomizableDropEditPolicy;
-import org.eclipse.sirius.diagram.DNodeContainer;
-import org.eclipse.sirius.diagram.ui.graphical.edit.policies.SiriusContainerDropPolicy;
-import org.eclipse.sirius.diagram.ui.internal.edit.parts.DNodeContainerViewNodeContainerCompartment2EditPart;
-import org.eclipse.sirius.diagram.ui.internal.edit.parts.DNodeContainerViewNodeContainerCompartmentEditPart;
+import org.eclipse.sirius.diagram.DNode;
 import org.eclipse.sirius.diagram.ui.internal.edit.policies.AbstractCreateEditPolicyProvider;
-import org.eclipse.uml2.uml.Region;
+import org.eclipse.uml2.uml.Element;
 
 /**
  * The Class MyCreateEditPolicyProvider.
  *
- * @author Yann Binot (Artal Technologies) <yann.binot@artal.fr>
+ * @author Aurélien Didier (Artal Technologies)
  */
 @SuppressWarnings("restriction")
-public class StateMachineSiriusCreateEditPolicyProvider extends AbstractCreateEditPolicyProvider {
+public class NavigationEditPolicyProvider extends AbstractCreateEditPolicyProvider {
 
 	/**
 	 * Creates the edit policies.
 	 *
-	 * @param arg0
-	 *            the arg 0
+	 * @param arg0 the arg 0
 	 * @see org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider#createEditPolicies(org.eclipse.gef.EditPart)
 	 */
 
 	@Override
 	public void createEditPolicies(EditPart editpart) {
-		EditPolicy regionCreationPolicy = new StateMachineRegionPolicy();
 
-		editpart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, regionCreationPolicy);
-		editpart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new SiriusContainerDropPolicy());
+		editpart.installEditPolicy(EditPolicyRoles.OPEN_ROLE, new NavigationEditPolicy());
+//		editpart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new SiriusContainerDropPolicy());
 	}
 
 	/**
 	 * Checks if is valid edit part.
 	 *
-	 * @param editPart
-	 *            the edit part
+	 * @param editPart the edit part
 	 * @return true, if is valid edit part
 	 * @see org.eclipse.sirius.diagram.ui.internal.edit.policies.AbstractCreateEditPolicyProvider#isValidEditPart(org.eclipse.gef.EditPart)
 	 */
@@ -62,20 +54,16 @@ public class StateMachineSiriusCreateEditPolicyProvider extends AbstractCreateEd
 	@Override
 	protected boolean isValidEditPart(EditPart editPart) {
 
-		if (editPart instanceof DNodeContainerViewNodeContainerCompartmentEditPart || editPart instanceof DNodeContainerViewNodeContainerCompartment2EditPart) {
-			Object model = editPart.getModel();
-			if (model instanceof NodeImpl) {
-				EObject element = ((NodeImpl) model).getElement();
-				if (element instanceof DNodeContainer) {
-					EObject target = ((DNodeContainer) element).getTarget();
-					if (target instanceof Region) {
-						return true;
-					}
+		Object model = editPart.getModel();
+		if (model instanceof NodeImpl) {
+			EObject element = ((NodeImpl) model).getElement();
+			if (element instanceof DNode) {
+				EObject target = ((DNode) element).getTarget();
+				if (!(target instanceof Element)) {
+					return true;
 				}
 			}
 		}
-
-
 		return false;
 	}
 

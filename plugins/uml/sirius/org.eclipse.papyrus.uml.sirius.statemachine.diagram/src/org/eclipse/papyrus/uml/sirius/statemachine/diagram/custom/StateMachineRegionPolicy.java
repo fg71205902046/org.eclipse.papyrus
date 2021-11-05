@@ -339,6 +339,8 @@ public class StateMachineRegionPolicy extends CreationEditPolicy {
 				}
 			}
 
+//		} else {
+//			super.showTargetFeedback(request);
 		}
 	}
 

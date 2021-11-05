@@ -53,45 +53,6 @@ public class AssociationServices {
 	}
 
 	/**
-	 * Add Association end.
-	 *
-	 * @param association
-	 *            association
-	 */
-	/*public void addAssociationEnd(final Association association) {
-		if (createNaryAssociationPrecondition(association)) {
-			final ModelElementsSelectionDialog dlg = new ModelElementsSelectionDialog("Create N-ary Association", "Select additional elements to add to the association." + System.lineSeparator()
-			+ " At least one element have to be selected, else n-Ary association will not be created " + System.lineSeparator());
-			final List<Element> endOwners = new ArrayList<Element>();
-			for (final Property property : association.getMemberEnds()) {
-				endOwners.add(property.getType());
-			}
-			dlg.setGrayedPredicate(new Predicate<EObject>() {
-				public boolean apply(EObject input) {
-					if (endOwners.contains(input)) {
-						return true;
-					} else if (input instanceof Class || input instanceof AssociationClass || input instanceof Interface || input instanceof Enumeration || input instanceof DataType
-							|| input instanceof PrimitiveType) {
-						return false;
-					}
-					return true;
-				}
-			});
-			final List<?> elementsToAdd = dlg.open(association);
-			if (elementsToAdd.size() > 0) {
-				for (final Object element : elementsToAdd) {
-					if (element instanceof Type) {
-						final Property end = createAssociationEnd((Type) element);
-						association.getOwnedEnds().add(end);
-						association.getMemberEnds().add(end);
-						association.getNavigableOwnedEnds().add(end);
-					}
-				}
-			}
-		}
-	}
-*/
-	/**
 	 * Create association end.
 	 *
 	 * @param type

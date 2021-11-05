@@ -42,12 +42,6 @@ import org.eclipse.ui.PlatformUI;
  * @author Aurelien
  */
 public class DeleteFromModelHandler extends AbstractHandler {
-//    /**
-//     * Construct a new instance.
-//     */
-//    public DeleteFromModelHandler() {
-//        super();
-//    }
 
     public boolean isEnabled() {
     	return true;

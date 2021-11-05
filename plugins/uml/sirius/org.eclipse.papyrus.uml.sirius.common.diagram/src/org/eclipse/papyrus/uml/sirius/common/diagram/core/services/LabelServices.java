@@ -49,6 +49,7 @@ import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Pseudostate;
 import org.eclipse.uml2.uml.SignalEvent;
+import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.TemplateParameter;
@@ -252,68 +253,6 @@ public class LabelServices {
     }
 
     /**
-     * Compute element import label.
-     *
-     * @param element
-     *            Element import
-     * @return Label
-     */
-    public String computeElementImportLabel(ElementImport element) {
-        // ['«Metaclass»\n'+self.oclAsType(uml::Element).computeUmlLabel()/]
-        return "«Metaclass»\n" + computeUmlLabel(element); //$NON-NLS-1$
-    }
-
-    /**
-     * Compute opaque action with body label.
-     *
-     * @param opaqueAction
-     *            Opaque action
-     * @return Label
-     */
-    public String computeOpaqueActionWithBodyLabel(OpaqueAction opaqueAction) {
-
-        final Iterator<String> it = opaqueAction.getBodies().iterator();
-
-        if (it.hasNext()) {
-            final StringBuffer buffer = new StringBuffer();
-            buffer.append(ILabelConstants.NL);
-
-            while (it.hasNext()) {
-                buffer.append(ILabelConstants.NL);
-                buffer.append(it.next());
-            }
-
-            return buffer.toString();
-        }
-
-        return computeUmlLabel(opaqueAction);
-    }
-
-    /**
-     * Compute profile label.
-     *
-     * @param element
-     *            Profile
-     * @return Label
-     */
-    public String computeProfileLabel(Profile element) {
-        // ['«Profile» \n'+self.oclAsType(uml::Element).computeUmlLabel()/]
-        return "«Profile» \n" + computeUmlLabel(element); //$NON-NLS-1$
-    }
-
-    /**
-     * Compute stereotype label.
-     *
-     * @param element
-     *            Stereotype
-     * @return Label
-     */
-    public String computeStereotypeLabel(Stereotype element) {
-        // ['«Stereotype» \n'+self.oclAsType(uml::Element).computeUmlLabel()/]
-        return "«Stereotype» \n" + computeUmlLabel(element); //$NON-NLS-1$
-    }
-
-    /**
      * Compute the label of the given element.
      *
      * @param element
@@ -327,6 +266,19 @@ public class LabelServices {
         }
         return ""; //$NON-NLS-1$
     }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public String slotLabel(Slot slot) {
+    	if (slot.getDefiningFeature()!= null) {
+    		slot.getDefiningFeature().getName();
+    	} else {
+    		return "<UNDEFINED>";
+    	}
+		return null;
+    }
+
 
     /**
      * @param bound

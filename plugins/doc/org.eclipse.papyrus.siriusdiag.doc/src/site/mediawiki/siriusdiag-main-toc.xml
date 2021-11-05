@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<toc label="Papyrus-SiriusDiag">
+  <topic label="Sirius Diagram Developer Documentation" >
+       <anchor id="Papyrus-SiriusDiag-DevDocAnchor"/>
+  </topic>
+  <topic label="Sirius DIagram User Documentation">
+     <anchor id="Papyrus-SiriusDiag-UserDocAnchor"/>
+  </topic>
+</toc>

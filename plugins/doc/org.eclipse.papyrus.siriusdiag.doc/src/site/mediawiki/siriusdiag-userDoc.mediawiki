@@ -1,0 +1,68 @@
+=Papyrus-SiriusDiag Integration Introduction=
+This part of the documentation deals with features provided by the integration to Papyrus. 
+
+For a better experience, you should activate the Papyrus Perspective before reading this documentation.
+
+=How to create a new Sirius Diagram in my UML model=
+
+Once a UML model is created, go into the ''Model Explorer'', select a UML element from which to start the document, then ''Right-Click''->''New Class Diagram''.
+
+[[Image:images/papyrusUserDoc/PapyrusUserDoc_002_CreateNewDocumentTemplate.png]]
+
+The corresponding sirius diagram is opened inside Papyrus. As for any sirius diagram
+[[Image:images/papyrusUserDoc/PapyrusUserDoc_003_DocumentTemplateEditor.png]]
+
+Now you can edit the default template provided by Papyrus according to your model.
+
+=How to show/hide Sirius Diagram in the ModelExplorer=
+
+The created DocumentTemplates are displayed in the ModelExplorer as children of the element referenced as '''Graphical Context'''.
+The EMF-Facet allowing to display them is '''???'''. This customization is not loaded by default.
+
+Open the ''Model Explorer'' view and load the ''PapyrusDocument'' customization:
+
+[[Image:images/papyrusUserDoc/PapyrusUserDoc_001_Load_Customization.png]]
+
+= How to use sirius diagram =
+
+== Sirius diagram ==
+
+To have a global overview of sirius diagram. You can have a look at the sirius diagram documentation.
+See https://www.eclipse.org/sirius/doc/user/diagrams/Diagrams.html
+
+While most part is similar to the former GMF diagram. There are some small differences between both.
+
+=== Filters ===
+
+While using sirius diagram, you can enable or disable filters on the representation. For exemple filters can show or hide some kind of view, or change the label of elements.
+This was used to replace Benpoints preference and to customize the displayed label with or without stereotype. 
+
+=== Layers ===
+
+Layers can be defined to hide or show several mapping and/or several tools in the palette in a diagram.
+This functionality is only used for comment at that moment.
+
+== Sequence diagram specificity ==
+
+Sequence diagram have some specificity, like the kind of element that can be represented.
+See https://www.eclipse.org/sirius/doc/user/sequences/Sequence%20Diagrams.html
+
+
+= Common =
+
+== Palette tools ==
+
+== Drag and drop from explorer ==
+
+== Drag and drop inside diagram ==
+
+== Deletion (from diagram or model)==
+
+== Show / Hide ==
+
+== Pin / Unpin ==
+
+==
+
+
+

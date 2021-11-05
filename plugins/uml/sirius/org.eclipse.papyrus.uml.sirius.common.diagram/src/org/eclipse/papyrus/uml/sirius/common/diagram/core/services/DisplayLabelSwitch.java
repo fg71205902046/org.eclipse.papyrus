@@ -167,7 +167,7 @@ public class DisplayLabelSwitch extends UMLSwitch<String> implements ILabelConst
     public String caseActivity(Activity object) {
         return OPEN_QUOTE_MARK + "Activity" + CLOSE_QUOTE_MARK + caseBehavior(object); //$NON-NLS-1$
     }
-
+        
     /**
      * {@inheritDoc}
      */

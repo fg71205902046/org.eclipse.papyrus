@@ -12,7 +12,7 @@
       <concerns>
         <ownedConcernDescriptions name="DefaultFilter" filters="//@ownedViewpoints[name='SequenceDiagram']/@ownedRepresentations[name='SequenceDiagram']/@filters[name='Filter']"/>
       </concerns>
-      <defaultLayer name="Default">
+      <defaultLayer name="Sequence">
         <nodeMappings xsi:type="description_1:InstanceRoleMapping" name="SD_LifelineRole" deletionDescription="//@ownedViewpoints[name='SequenceDiagram']/@ownedRepresentations[name='SequenceDiagram']/@defaultLayer/@toolSections.0/@subSections[name='edit']/@ownedTools[name='DEL_Lifeline']" semanticCandidatesExpression="feature:lifeline" synchronizationLock="true" documentation="@generated" domainClass="uml.Lifeline">
           <borderedNodeMappings xsi:type="description_1:ExecutionMapping" name="SD_Lifeline" deletionDescription="//@ownedViewpoints[name='SequenceDiagram']/@ownedRepresentations[name='SequenceDiagram']/@defaultLayer/@toolSections.0/@subSections[name='edit']/@ownedTools[name='DEL_Lifeline']" semanticCandidatesExpression="var:self" semanticElements="var:self" synchronizationLock="true" documentation="@generated" domainClass="uml.Lifeline" startingEndFinderExpression="var:self" finishingEndFinderExpression="var:self">
             <borderedNodeMappings xsi:type="description_1:ExecutionMapping" name="SD_ExecutionSpecificationNode" deletionDescription="//@ownedViewpoints[name='SequenceDiagram']/@ownedRepresentations[name='SequenceDiagram']/@defaultLayer/@toolSections.0/@subSections[name='edit']/@ownedTools[name='DEL_Execution']" semanticCandidatesExpression="service:getExecutionSpecifications" semanticElements="service:computeSemanticElements" documentation="@generated" domainClass="ExecutionSpecification" reusedBorderedNodeMappings="//@ownedViewpoints[name='SequenceDiagram']/@ownedRepresentations[name='SequenceDiagram']/@defaultLayer/@nodeMappings[name='SD_LifelineRole']/@borderedNodeMappings[name='SD_Lifeline']/@borderedNodeMappings[name='SD_ExecutionSpecificationNode']" startingEndFinderExpression="aql:self.getStart()" finishingEndFinderExpression="aql:self.getFinish()">
@@ -837,11 +837,6 @@
     </ownedRepresentations>
     <ownedJavaExtensions qualifiedClassName="org.eclipse.papyrus.uml.sirius.sequence.diagram.services.SequenceDiagramServices"/>
     <ownedJavaExtensions qualifiedClassName="org.eclipse.papyrus.uml.sirius.common.diagram.core.services.AbstractDiagramServices"/>
-    <ownedJavaExtensions qualifiedClassName="org.eclipse.papyrus.uml.sirius.common.diagram.services.PackageHierarchyServices"/>
-    <ownedJavaExtensions qualifiedClassName="org.eclipse.papyrus.uml.sirius.common.diagram.services.ArchetypeServices"/>
-    <ownedJavaExtensions qualifiedClassName="org.eclipse.papyrus.uml.sirius.common.diagram.services.ComponentDiagramServices"/>
-    <ownedJavaExtensions qualifiedClassName="org.eclipse.papyrus.uml.sirius.common.diagram.services.PackageContainmentServices"/>
-    <ownedJavaExtensions qualifiedClassName="org.eclipse.papyrus.uml.sirius.common.diagram.core.services.ReusedDescriptionServices"/>
     <ownedJavaExtensions qualifiedClassName="org.eclipse.papyrus.uml.sirius.sequence.diagram.services.LifelineService"/>
     <ownedJavaExtensions qualifiedClassName="org.eclipse.papyrus.uml.sirius.sequence.diagram.services.ReorderService"/>
     <ownedJavaExtensions qualifiedClassName="org.eclipse.papyrus.uml.sirius.sequence.diagram.services.FragmentsService"/>

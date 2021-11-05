@@ -58,6 +58,7 @@ import org.eclipse.sirius.diagram.business.internal.sync.DNodeCandidate;
 import org.eclipse.sirius.diagram.description.DiagramDescription;
 import org.eclipse.sirius.diagram.description.DiagramElementMapping;
 import org.eclipse.sirius.diagram.description.NodeMapping;
+import org.eclipse.sirius.diagram.description.filter.FilterDescription;
 import org.eclipse.sirius.diagram.ui.business.api.view.SiriusGMFHelper;
 import org.eclipse.sirius.diagram.ui.business.api.view.SiriusLayoutDataManager;
 import org.eclipse.sirius.diagram.ui.business.internal.view.RootLayoutData;
@@ -90,16 +91,27 @@ public class CommonDiagramRefreshExtension implements IRefreshExtension {
 	@Override
 	public void postRefresh(DDiagram diagram) {
 
+		if (isFilterActivated(diagram)){
 		Collection<Point> bendpointsToDraw = getCommonBenpointsToDraw(diagram);
 		Diagram gmfDiagram = SiriusGMFHelper.getGmfDiagram(diagram);
 		Option<GraphicalEditPart> gef = GMFHelper.getGraphicalEditPart(gmfDiagram);
 		if (gef.some()) {
-			if (bendpointsToDraw.size() > 0 && getDrawBendpointPreferenceValue()) {
+			if (bendpointsToDraw.size() > 0) {
 				drawCommonBendpoints((DSemanticDiagram) diagram, (IGraphicalEditPart) gef.get(), bendpointsToDraw);
 			}
 		}
+		}
 //		Not this one : DiagramHelper.refresh(gmfDiagram.get,true);
 //		ResetStyleHelper.resetStyle(Collections.singleton(gmfDiagram));
+	}
+
+	private boolean isFilterActivated(DDiagram diagram) {
+		for (FilterDescription filter : diagram.getActivatedFilters()) {
+			if (filter.getName().equals("Show Bendpoint")) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -394,16 +406,20 @@ public class CommonDiagramRefreshExtension implements IRefreshExtension {
 	public void drawCommonBendpoints(DSemanticDiagram diagram, final IGraphicalEditPart gep,
 			final Collection<Point> bendPoints) {
 
-		//See PapyrusEdgeFigure for the initial algorithm.
+		// See PapyrusEdgeFigure for the initial algorithm.
 		final int diameter = getBendPointDiameter();
 		for (final Point point : bendPoints) {
 
-			Point adjustedPoint= new Point((double)point.x-(double)bendpointDiameter/2,(double)point.y-(double)bendpointDiameter/2);
+			Point adjustedPoint = new Point((double) point.x - (double) bendpointDiameter / 2,
+					(double) point.y - (double) bendpointDiameter / 2);
 			NodeMapping mapping = null;
-			
-			//Before we were using	
-			// NodeMapping mapping= (NodeMapping) DiagramServices.getDiagramServices().getMappingByName(diagram.getDescription(), "Bendpoint");
-			//but in papyrus context, description is not initialized as expected so we have to use DiagramMappingsManager
+
+			// Before we were using
+			// NodeMapping mapping= (NodeMapping)
+			// DiagramServices.getDiagramServices().getMappingByName(diagram.getDescription(),
+			// "Bendpoint");
+			// but in papyrus context, description is not initialized as expected so we have
+			// to use DiagramMappingsManager
 			DiagramMappingsManager dmm = getMappingManager(diagram);
 			for (NodeMapping map : dmm.getNodeMappings()) {
 				if (map.getName().equals("Bendpoint")) {
@@ -413,7 +429,7 @@ public class CommonDiagramRefreshExtension implements IRefreshExtension {
 //			DNodeCandidate nodeCandidate = new DNodeCandidate(mapping, diagram.getTarget(), diagram, rId);
 			DNode node = createNode(mapping, diagram.getTarget(), diagram, diagram);
 			node.setResizeKind(ResizeKind.NONE_LITERAL);
-			//find how to set color
+			// find how to set color
 			Dimension dim = new Dimension(bendpointDiameter, bendpointDiameter);
 			RootLayoutData layoutData = new RootLayoutData(node, adjustedPoint, dim);
 			SiriusLayoutDataManager.INSTANCE.addData(layoutData);

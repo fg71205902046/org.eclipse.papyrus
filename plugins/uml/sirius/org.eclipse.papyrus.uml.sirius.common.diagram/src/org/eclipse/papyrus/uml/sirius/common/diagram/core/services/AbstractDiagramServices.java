@@ -121,6 +121,17 @@ public abstract class AbstractDiagramServices {
     }
 
     /**
+     * @param semanticElement
+     * @param containerView
+     * @param containerViewExpression
+     */
+    public void createView(final EObject semanticElement, final DSemanticDecorator containerView, final String containerViewExpression) {
+    	Session session=SessionManager.INSTANCE.getSession(semanticElement);
+    	createView(semanticElement, containerView, session, containerViewExpression);
+    }
+
+    
+    /**
      * Create view.
      *
      * @param semanticElement
@@ -223,16 +234,6 @@ public abstract class AbstractDiagramServices {
     }
 
     /**
-     * Destroy a semantic element and all its references.
-     *
-     * @param semanticElement
-     *            Element to destroy
-     */
-    public void destroy(EObject semanticElement) {
-        UmlUtils.INSTANCE.destroy(semanticElement);
-    }
-
-    /**
      * Drop a semantic element and create the corresponding view in the given
      * container
      *
@@ -246,6 +247,7 @@ public abstract class AbstractDiagramServices {
      *            True to move the dropped semantic element or false to just
      *            show the element on a diagram
      */
+    //TODO
     private void drop(final Element newContainer, final Element semanticElement, final DSemanticDecorator containerView, boolean moveSemanticElement) {
         final Session session = SessionManager.INSTANCE.getSession(newContainer);
         final Element oldContainer = semanticElement.getOwner();
@@ -335,24 +337,10 @@ public abstract class AbstractDiagramServices {
      * @return List of root packages
      */
     public List<Package> getAllAvailableRootPackages(Element element) {
-        // <%script type="uml.Element" name="allAvailableRootPackages"%>
-        // <%(getRootContainer().filter("Package") +
-        // rootPackagesFromImportedModel).nMinimize()%>
         final List<Package> packages = Lists.newArrayList();
         packages.add(element.getModel());
         packages.addAll(Lists.newArrayList(Iterables.filter(element.getModel().getImportedPackages(), Model.class)));
         return packages;
-    }
-
-    /**
-     * Get all root elements of the current session.
-     *
-     * @param any
-     *            The element to retrieve a session
-     * @return root elements
-     */
-    public Collection<Element> getAllRootsInSession(EObject any) {
-        return ElementServices.INSTANCE.getAllRootsInSession(any);
     }
 
     /**
@@ -366,6 +354,7 @@ public abstract class AbstractDiagramServices {
      * @return List of all existing diagram elements for the given semantic
      *         element which are currently hidden in the diagram
      */
+    //TODO
     private List<DDiagramElement> getHiddenExistingDiagramElements(EObject semanticElement, DSemanticDecorator containerView) {
         final List<DDiagramElement> existingDiagramElements = Lists.newArrayList();
         if (containerView instanceof DSemanticDiagram) {
@@ -393,6 +382,7 @@ public abstract class AbstractDiagramServices {
      *            Diagram element
      * @return List of all the hidden parent container element
      */
+    //TODO
     private List<DDiagramElement> getHiddenParentContainerViews(DDiagramElement diagramElement) {
         final List<DDiagramElement> containerViews = Lists.newArrayList();
         EObject containerView = diagramElement.eContainer();
@@ -415,6 +405,7 @@ public abstract class AbstractDiagramServices {
      *            Session
      * @return List of mappings which could not be null
      */
+    //TODO
     protected List<DiagramElementMapping> getMappings(final DSemanticDecorator containerView, Session session) {
         final List<DiagramElementMapping> mappings = new ArrayList<DiagramElementMapping>();
 
@@ -456,6 +447,7 @@ public abstract class AbstractDiagramServices {
      *            Session
      * @return List of mappings which could not be null
      */
+    //TODO
     protected List<DiagramElementMapping> getMappings(final EObject semanticElement, final DSemanticDecorator containerView, Session session) {
         final ModelAccessor modelAccessor = session.getModelAccessor();
         final List<DiagramElementMapping> mappings = new ArrayList<DiagramElementMapping>();
@@ -480,17 +472,6 @@ public abstract class AbstractDiagramServices {
     }
 
     /**
-     * Get related elements.
-     *
-     * @param cur
-     *            Element
-     * @return Related elements
-     */
-    public Collection<EObject> getRelated(EObject cur) {
-        return RelatedServices.INSTANCE.getRelated(cur);
-    }
-
-    /**
      * return the list of semantic elements we should bind with the given
      * element in the property view.
      *
@@ -501,295 +482,6 @@ public abstract class AbstractDiagramServices {
      */
     public Collection<EObject> getSemanticElements(EObject e) {
         return new SemanticElementsSwitch().getSemanticElements(e);
-    }
-
-    /**
-     * Use to inactivate a viewpoint.
-     *
-     * @param element
-     *            Element
-     * @return Just always return false
-     */
-    public boolean inactive(Element element) {
-        return false;
-    }
-
-    /**
-     * Check if a diagram is empty.
-     *
-     * @param diagram
-     *            diagram to check
-     * @return true if no element is present in diagram
-     */
-    public boolean isDiagramEmpty(DDiagram diagram) {
-        final List<EObject> elements = new ArrayList<EObject>();
-        for (final EObject object : diagram.getDiagramElements()) {
-            if (!(object instanceof DSemanticDiagram)) {
-                if (object instanceof DNodeSpec) {
-                    // ignore empty diagram image
-                    if (!((DNodeSpec) object).getActualMapping().getName().equals("Empty Diagram")) { //$NON-NLS-1$
-                        elements.add(object);
-                    }
-                } else {
-                    elements.add(object);
-                }
-            }
-        }
-
-        if (elements.size() == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Check if the given {@link Model} is the Ecore metamodel.
-     *
-     * @param model
-     *            the given {@link Model}.
-     * @return <code>true</code> if the given {@link Model} is the Ecore
-     *         metamodel, false otherwise.
-     */
-    public boolean isEcoreMetamodel(Model model) {
-        return EcorePackage.eNS_URI.equals(model.getURI());
-    }
-
-    /**
-     * Return if the name of an element is set.
-     *
-     * @param element
-     *            the {@link Element} for which to retrieve a label.
-     * @return True if the name is not null or empty.
-     */
-    public boolean isNameNotSet(Element element) {
-        return LabelServices.INSTANCE.isNameNotSet(element);
-    }
-
-    /**
-     * States if the given object is related to the context {@link Classifier}.
-     *
-     * @param toFilter
-     *            the candidate to check for relation
-     * @param context
-     *            the classifier context object.
-     * @return <code>true</code> if the given object is related to the context
-     *         {@link Classifier}, <code>false</code> otherwise.
-     */
-    public boolean isRelated(EObject toFilter, EObject context) {
-        boolean res = false;
-        if (toFilter.equals(context)) {
-            res = true;
-        } else if (context instanceof Classifier) {
-            if (toFilter instanceof Generalization) {
-                res = ((Classifier) context).getGeneralizations().contains(toFilter) || ((Generalization) toFilter).getGeneral() == context;
-            } else if (toFilter instanceof InterfaceRealization && context instanceof Class) {
-                res = ((Class) context).getInterfaceRealizations().contains(toFilter) || ((InterfaceRealization) toFilter).getContract() == context;
-            } else if (toFilter instanceof Association) {
-                res = ((Classifier) context).getAssociations().contains(toFilter);
-            } else if (toFilter instanceof Artifact && context instanceof ExecutionEnvironment) {
-                for (final Deployment deployment : ((ExecutionEnvironment) context).getDeployments()) {
-                    if (deployment.getSuppliers().contains(toFilter)) {
-                        res = true;
-                    }
-                }
-            } else if (toFilter instanceof ExecutionEnvironment && context instanceof Artifact) {
-                for (final Deployment deployment : ((ExecutionEnvironment) toFilter).getDeployments()) {
-                    if (deployment.getSuppliers().contains(context)) {
-                        res = true;
-                    }
-                }
-            } else if (toFilter instanceof PackageableElement && context instanceof Artifact) {
-                res = ((Artifact) context).getManifestations().contains(toFilter);
-                for (final Manifestation manifestation : ((Artifact) context).getManifestations()) {
-                    if (manifestation.getTargets().contains(toFilter)) {
-                        res = true;
-                    }
-                }
-            } else if (toFilter instanceof Artifact && context instanceof PackageableElement) {
-                res = ((Artifact) toFilter).getManifestations().contains(context);
-                for (final Manifestation manifestation : ((Artifact) toFilter).getManifestations()) {
-                    if (manifestation.getTargets().contains(context)) {
-                        res = true;
-                    }
-                }
-            } else if (toFilter instanceof Feature) {
-                res = isRelated(toFilter.eContainer(), context);
-            } else if (toFilter instanceof Classifier) {
-                if (context == toFilter) {
-                    return false;
-                }
-                res = context == toFilter;
-
-                if (context instanceof EncapsulatedClassifier && toFilter instanceof EncapsulatedClassifier) {
-                    if (!res) {
-                        if (((EncapsulatedClassifier) context).getOwnedElements().contains(toFilter)) {
-                            res = true;
-                        } else {
-                            for (final Port portContext : ((EncapsulatedClassifier) context).getOwnedPorts()) {
-                                if (portIsRelated(toFilter, portContext)) {
-                                    res = true;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (context instanceof EncapsulatedClassifier && toFilter instanceof Property) {
-                    if (!res) {
-                        if (((EncapsulatedClassifier) context).getOwnedAttributes().contains(toFilter)) {
-                            res = true;
-                        }
-                    }
-                }
-
-                // is it a generalization end
-                if (!res) {
-                    for (final Generalization generalization : ((Classifier) context).getGeneralizations()) {
-                        if (generalization.getGeneral() == toFilter) {
-                            res = true;
-                            break;
-                        }
-                    }
-                }
-                // is it a generalization opposite end
-                if (!res) {
-                    for (final Generalization generalization : ((Classifier) toFilter).getGeneralizations()) {
-                        if (generalization.getGeneral() == context) {
-                            res = true;
-                            break;
-                        }
-                    }
-                }
-                if (toFilter instanceof NamedElement && context instanceof NamedElement) {
-                    // is it a dependency end
-                    if (!res) {
-                        for (final Dependency dependency : ((NamedElement) context).getClientDependencies()) {
-                            if (dependency.getClients().contains(toFilter) || dependency.getSuppliers().contains(toFilter)) {
-                                res = true;
-                                break;
-                            }
-                        }
-                    }
-                }
-                if (context instanceof NamedElement && toFilter instanceof NamedElement) {
-                    // is it a dependency end
-                    if (!res) {
-                        for (final Dependency dependency : ((NamedElement) toFilter).getClientDependencies()) {
-                            if (dependency.getClients().contains(context) || dependency.getSuppliers().contains(context)) {
-                                res = true;
-                                break;
-                            }
-                        }
-                    }
-                }
-                if (toFilter instanceof Interface && context instanceof Class) {
-                    // is it a realization end
-                    if (!res) {
-                        for (final InterfaceRealization realization : ((Class) context).getInterfaceRealizations()) {
-                            if (realization.getContract() == toFilter) {
-                                res = true;
-                                break;
-                            }
-                        }
-                    }
-                }
-                if (context instanceof Interface && toFilter instanceof Class) {
-                    // is it a realization end
-                    if (!res) {
-                        for (final InterfaceRealization realization : ((Class) toFilter).getInterfaceRealizations()) {
-                            if (realization.getContract() == context) {
-                                res = true;
-                                break;
-                            }
-                        }
-                    }
-                }
-
-                // is it an association end
-                if (!res) {
-                    final List<Association> toFilterAsso = ((Classifier) toFilter).getAssociations();
-                    final List<Association> contextAsso = ((Classifier) context).getAssociations();
-                    for (final Association association : toFilterAsso) {
-                        if (contextAsso.contains(association)) {
-                            res = true;
-                            break;
-                        }
-                    }
-                }
-            } else if (toFilter instanceof Package) {
-                for (final EObject content : toFilter.eContents()) {
-                    if (isRelated(content, context)) {
-                        res = true;
-                        break;
-                    }
-                }
-            }
-        } else if (context instanceof Package) {
-            if (toFilter instanceof Package) {
-                res = ((Package) context).getNestedPackages().contains(toFilter) || ((Package) context).getImportedPackages().contains(toFilter);
-                for (final PackageImport packageImport : ((Package) context).getPackageImports()) {
-                    if (packageImport.getImportedPackage().equals(toFilter)) {
-                        res = true;
-                    }
-                }
-            } else {
-                res = ((Package) context).getOwnedElements().contains(toFilter);
-            }
-        } else if (context instanceof Port) {
-            res = portIsRelated(toFilter, (Port) context);
-        }
-
-        return res;
-    }
-
-    /**
-     * Check if an element is related to a context.
-     *
-     * @param toFilter
-     *            the candidate to check for relation
-     * @param context
-     *            the classifier context object
-     * @return True if element is a description
-     */
-    public boolean isRelated(EObject toFilter, List<EObject> context) {
-        boolean related = false;
-        for (final EObject eObject : context) {
-            related = isRelated(toFilter, eObject);
-            if (related) {
-                break;
-            }
-        }
-        return related;
-    }
-
-    /**
-     * Compare two Objects types.
-     *
-     * @param source
-     *            EObject
-     * @param target
-     *            EObject
-     * @return true if objects have the same type (eClass)
-     */
-    public boolean isSameType(final EObject source, final EObject target) {
-        return source.eClass().equals(target.eClass());
-    }
-
-    /**
-     * Check if the given {@link Model} is the UML metamodel.
-     *
-     * @param model
-     *            the given {@link Model}.
-     * @return <code>true</code> if the given {@link Model} is the UML
-     *         metamodel, false otherwise.
-     */
-    public boolean isUMLMetamodel(Model model) {
-        final String uri = model.getURI();
-        if (uri != null && (UMLPackage.eNS_URI.equals(uri) || uri.startsWith("http://www.omg.org/spec/UML"))) { //$NON-NLS-1$
-            return true;
-        }
-        return false;
     }
 
     /**
@@ -813,132 +505,6 @@ public abstract class AbstractDiagramServices {
         return semanticElementMappings.size() > 0;
     }
 
-    /**
-     * Mark for auto size.
-     *
-     * @param any
-     *            Any
-     * @return the given auto sized object
-     */
-    /*
-    public EObject markForAutosize(EObject any) {
-        return UIServices.INSTANCE.markForAutosize(any);
-    }*/
-
-    private boolean portIsRelated(EObject toFilter, Port portContext) {
-
-        if (portContext == toFilter) {
-            return false;
-        }
-
-        if (toFilter instanceof Port) {
-            final List<ConnectorEnd> ends = portContext.getEnds();
-            for (final ConnectorEnd portEnd : ends) {
-                final EObject eContainer = portEnd.eContainer();
-                if (eContainer instanceof Connector) {
-                    final Connector connector = (Connector) eContainer;
-                    final EList<ConnectorEnd> connectorEnds = connector.getEnds();
-                    for (final ConnectorEnd connectorEnd : connectorEnds) {
-                        if (connectorEnd.getRole() != null && connectorEnd.getRole().equals(toFilter)) {
-                            return true;
-                        }
-                    }
-                }
-            }
-        } else if (toFilter instanceof EncapsulatedClassifier) {
-            final List<Port> ownedPortsToFilter = ((EncapsulatedClassifier) toFilter).getOwnedPorts();
-            for (final Port portToFilter : ownedPortsToFilter) {
-                if (portIsRelated(portToFilter, portContext)) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * Generic service used to process treatments on a reconnect. The processing
-     * has to be defined by overriding the corresponding caseXXX.
-     *
-     * @param context
-     *            Element attached to the existing edge
-     * @param edgeView
-     *            Represents the graphical new edge
-     * @param sourceView
-     *            Represents the graphical element pointed by the edge before
-     *            reconnecting
-     * @param targetView
-     *            Represents the graphical element pointed by the edge after
-     *            reconnecting
-     * @param source
-     *            Represents the semantic element pointed by the edge before
-     *            reconnecting
-     * @param target
-     *            Represents the semantic element pointed by the edge after
-     *            reconnecting
-     * @return the Element attached to the edge once it has been modified
-     */
-    public Element reconnectEdge(Element context, DEdge edgeView, EdgeTarget sourceView, EdgeTarget targetView, Element source, Element target) {
-        final ReconnectSwitch reconnectService = new ReconnectSwitch();
-
-        // The edge view represents the new graphical edge
-        // with testing of its source and target nodes we can
-        // know if the user reconnected the source or the target of the edge
-        if (edgeView.getSourceNode().equals(sourceView)) {
-            reconnectService.setReconnectKind(ReconnectSwitch.RECONNECT_SOURCE);
-        } else {
-            reconnectService.setReconnectKind(ReconnectSwitch.RECONNECT_TARGET);
-        }
-        reconnectService.setOldPointedElement(source);
-        reconnectService.setNewPointedElement(target);
-        reconnectService.setEdgeToReconnect(edgeView);
-        return reconnectService.doSwitch(context);
-    }
-
-    /**
-     * Generic service used to determine if the selected edge source could be
-     * reconnected to an element.
-     *
-     * @param context
-     *            Element attached to the existing edge
-     * @param source
-     *            Represents the semantic element pointed by the edge before
-     *            reconnecting
-     * @param target
-     *            Represents the semantic element pointed by the edge after
-     *            reconnecting
-     * @return true if the edge could be reconnected
-     */
-    public boolean reconnectSourcePrecondition(Element context, Element source, Element target) {
-        final ReconnectPreconditionSwitch reconnectPreconditionService = new ReconnectPreconditionSwitch();
-        reconnectPreconditionService.setReconnectKind(ReconnectPreconditionSwitch.RECONNECT_SOURCE);
-        reconnectPreconditionService.setNewPointedElement(target);
-        reconnectPreconditionService.setOldPointedElement(source);
-        return reconnectPreconditionService.isReconnectable(context);
-    }
-
-    /**
-     * Generic service used to determine is select edge's target could be
-     * reconnected to an element.
-     *
-     * @param context
-     *            Element attached to the existing edge
-     * @param source
-     *            Represents the semantic element pointed by the edge before
-     *            reconnecting
-     * @param target
-     *            Represents the semantic element pointed by the edge after
-     *            reconnecting
-     * @return true if the edge could be reconnected
-     */
-    public boolean reconnectTargetPrecondition(Element context, Element source, Element target) {
-        final ReconnectPreconditionSwitch reconnectPreconditionService = new ReconnectPreconditionSwitch();
-        reconnectPreconditionService.setReconnectKind(ReconnectPreconditionSwitch.RECONNECT_TARGET);
-        reconnectPreconditionService.setNewPointedElement(target);
-        reconnectPreconditionService.setOldPointedElement(source);
-        return reconnectPreconditionService.isReconnectable(context);
-    }
 
     /**
      * Show the given semantic element on the diagram. If the element already

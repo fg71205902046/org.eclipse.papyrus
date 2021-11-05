@@ -29,4 +29,11 @@
            providerClass="org.eclipse.papyrus.uml.sirius.statemachine.diagram.StateMachineRefreshExtensionProvider">
      </refreshExtensionProvider>
   </extension>
+  <extension
+        point="org.eclipse.sirius.diagram.ui.formatDataManager">
+     <formatDataManagerProvider
+           class="org.eclipse.papyrus.uml.sirius.statemachine.diagram.layout.StateMachineDataManagerProvider"
+           id="org.eclipse.papyrus.uml.sirius.statemachine.diagram.stateFormatDataManager">
+     </formatDataManagerProvider>
+  </extension>
 </plugin>

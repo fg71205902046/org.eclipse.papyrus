@@ -307,20 +307,6 @@ public class StateMachineServices {
 	}
 
 	/**
-	 * Log.
-	 *
-	 * @param o
-	 *            the o
-	 */
-	public void log(EObject o) {
-		System.out.println("'ysui" + o.toString());
-	}
-
-
-
-
-
-	/**
 	 * Gets the region parent.
 	 *
 	 * @param object
@@ -493,19 +479,6 @@ public class StateMachineServices {
 		return object;
 	}
 
-
-
-	/**
-	 * Checks if is true.
-	 *
-	 * @param object
-	 *            the object
-	 * @return true, if is true
-	 */
-	public boolean istrue(EObject object) {
-		return true;
-	}
-
 	/**
 	 * Checks if is vertical.
 	 *
@@ -606,68 +579,6 @@ public class StateMachineServices {
 
 	}
 
-
-	// /**
-	// * Gets the edits the part.
-	// *
-	// * @param element
-	// * the element
-	// * @return the edits the part
-	// */
-	// private int getPositionEditPart(View element) {
-	//
-	// IEditorPart editor = EclipseUIUtil.getActiveEditor();
-	// if (editor instanceof DiagramEditor) {
-	//
-	// final Map<?, ?> editPartRegistry = ((DiagramEditor) editor).getDiagramGraphicalViewer().getEditPartRegistry();
-	// final Object editPart = editPartRegistry.get(element);
-	// if (editPart instanceof IGraphicalEditPart) {
-	//
-	// EditPart parent = ((IGraphicalEditPart) editPart).getParent();
-	//
-	// List<?> children = parent.getChildren();
-	// return children.indexOf(editPart);
-	// }
-	// }
-	// return -1;
-	//
-	// }
-
-
-	// /**
-	// * Sets the position edit part.
-	// *
-	// * @param element
-	// * the element
-	// * @param position
-	// * the position
-	// * @return the int
-	// */
-	// private int setPositionEditPart(View element, int position) {
-	//
-	// IEditorPart editor = EclipseUIUtil.getActiveEditor();
-	// if (editor instanceof DiagramEditor) {
-	//
-	// final Map<?, ?> editPartRegistry = ((DiagramEditor) editor).getDiagramGraphicalViewer().getEditPartRegistry();
-	// final Object editPart = editPartRegistry.get(element);
-	// if (editPart instanceof IGraphicalEditPart) {
-	//
-	// EditPart parent = ((IGraphicalEditPart) editPart).getParent();
-	//
-	// List<Object> children = parent.getChildren();
-	// children.remove(editPart);
-	// children.add(position, editPart);
-	// return children.indexOf(editPart);
-	// }
-	// }
-	// return -1;
-	//
-	// }
-
-
-
-
-
 	/**
 	 * Gets the drop location.
 	 *
@@ -691,27 +602,6 @@ public class StateMachineServices {
 					}
 				}
 			}
-// used before but not compatible with PapyrusMultiDiagramEditor
-//		IEditorPart editor = EclipseUIUtil.getActiveEditor(); 
-//		if (editor instanceof DiagramEditor) {
-//
-//			final Map<?, ?> editPartRegistry = ((DiagramEditor) editor).getDiagramGraphicalViewer().getEditPartRegistry();
-//			final Object editPart = editPartRegistry.get(element);
-//			if (editPart instanceof IGraphicalEditPart) {
-//
-//				IGraphicalEditPart result = (IGraphicalEditPart) editPart;
-//				List<?> children = result.getChildren();
-//				for (Object object : children) {
-//					if (object instanceof EditPart) {
-//						EditPart part = (EditPart) object;
-//						EditPolicy editPolicy = part.getEditPolicy(EditPolicyRoles.CREATION_ROLE);
-//						if (editPolicy instanceof StateMachineRegionPolicy) {
-//							return ((StateMachineRegionPolicy) editPolicy).getDropLocation();
-//						}
-//					}
-//				}
-//			}
-//		}
 		return null;
 	}
 
@@ -854,7 +744,6 @@ public class StateMachineServices {
 				RootLayoutData subLayout = new RootLayoutData(dDiagramElement, point, dim);
 				manageSubLayoutData(dDiagramElement);
 				SiriusLayoutDataManager.INSTANCE.addData(subLayout);
-
 			}
 		}
 	}
@@ -876,7 +765,6 @@ public class StateMachineServices {
 					.collect(Collectors.toList());
 			return ownedDiagramElements;
 		}
-
 		return null;
 	}
 
@@ -937,8 +825,6 @@ public class StateMachineServices {
 					result.add(element);
 				}
 			}
-
-
 		}
 		if (object instanceof Constraint) {
 			Constraint constraint = (Constraint) object;
@@ -975,16 +861,9 @@ public class StateMachineServices {
 			if (bodies != null && !bodies.isEmpty()) {
 				body = bodies.get(0);
 			}
-
 			String result = name + "\n" + "{{" + langage + "}" + body + "}";
 			return result;
-
 		}
-
-
-
-
-
 		return "";
 	}
 
@@ -1007,8 +886,6 @@ public class StateMachineServices {
 				bodies.add(0, value);
 			}
 		}
-
-
 		return context;
 	}
 
@@ -1042,9 +919,6 @@ public class StateMachineServices {
 		return "";
 	}
 
-
-
-
 	/**
 	 * Gets the context parent.
 	 *
@@ -1058,9 +932,7 @@ public class StateMachineServices {
 			EObject eContainer = element.eContainer();
 			return eContainer;
 		}
-
 		return null;
-
 	}
 
 	/**
@@ -1085,13 +957,9 @@ public class StateMachineServices {
 			}
 
 		}
-
-
-
 		return true;
 
 	}
-
 
 	/**
 	 * Gets the context parent view.
@@ -1112,8 +980,6 @@ public class StateMachineServices {
 
 	}
 
-
-
 	/**
 	 * Gets the pre condition.
 	 *
@@ -1133,22 +999,6 @@ public class StateMachineServices {
 		}
 		return false;
 	}
-
-	// /**
-	// * Test root expression.
-	// *
-	// * @param object
-	// * the object
-	// * @return the e object
-	// */
-	// public EObject testRootExpression(EObject object) {
-	// if (object instanceof Model) {
-	// StateMachine initialStateMachine = ElementToRefresh.getInitialStateMachine();
-	//
-	// return initialStateMachine;
-	// }
-	// return object;
-	// }
 
 	/**
 	 * Gets the root.
@@ -1550,8 +1400,6 @@ public class StateMachineServices {
 		}
 		return false;
 	}
-
-
 
 	/**
 	 * Dnd border pseudo state.
