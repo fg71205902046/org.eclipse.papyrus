@@ -8,9 +8,9 @@ location emfCompare "https://download.eclipse.org/modeling/emf/compare/updates/m
 }
 
 //Sirius Tests
-location siriusTest "https://download.eclipse.org/sirius/updates/releases/6.4.2/2020-09/" {
-	org.eclipse.sirius.tests.source.feature.group
-	org.eclipse.sirius.tests.support.source.feature.group
+location sirius "https://download.eclipse.org/sirius/updates/releases/6.4.2/2020-09/" {
+	org.eclipse.sirius.tests.feature.group
+	org.eclipse.sirius.tests.support.feature.group
 }
 
 location acceleo "https://download.eclipse.org/acceleo/updates/releases/3.7/R202102190929" {

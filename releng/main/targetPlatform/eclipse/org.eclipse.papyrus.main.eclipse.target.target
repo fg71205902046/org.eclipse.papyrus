@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
-<target name="Papyrus Main" sequenceNumber="1615974662">
+<target name="Papyrus Main" sequenceNumber="1636103678">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.nebula.widgets.richtext.feature.feature.group" version="1.2.0.201703081533"/>
@@ -97,6 +97,16 @@
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.gef.feature.group" version="3.11.0.201606061308"/>
       <repository id="gef" location="file:/home/data/httpd/download.eclipse.org/tools/gef/updates/legacy/releases/4.0.0_gef-master_1952"/>
+    </location>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.sirius.aql.feature.group" version="6.4.2.202103091337"/>
+      <unit id="org.eclipse.sirius.interpreter.feature.feature.group" version="6.4.2.202103091337"/>
+      <unit id="org.eclipse.sirius.properties.feature.feature.group" version="6.4.2.202103091337"/>
+      <unit id="org.eclipse.sirius.runtime.feature.group" version="6.4.2.202103091337"/>
+      <unit id="org.eclipse.sirius.runtime.ide.ui.feature.group" version="6.4.2.202103091337"/>
+      <unit id="org.eclipse.sirius.runtime.ide.xtext.feature.group" version="6.4.2.202103091337"/>
+      <unit id="org.eclipse.sirius.runtime.ocl.feature.group" version="6.4.2.202103091337"/>
+      <repository id="sirius" location="file:/home/data/httpd/download.eclipse.org/sirius/updates/releases/6.4.2/2020-09/"/>
     </location>
   </locations>
 </target>

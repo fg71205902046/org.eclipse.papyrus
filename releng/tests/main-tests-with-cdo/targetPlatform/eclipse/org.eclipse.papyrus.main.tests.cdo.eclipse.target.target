@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
-<target name="Papyrus CDO Tests" sequenceNumber="1615974662">
+<target name="Papyrus CDO Tests" sequenceNumber="1636103678">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.nebula.widgets.richtext.feature.feature.group" version="1.2.0.201703081533"/>
@@ -103,6 +103,26 @@
       <repository id="emfCompare" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S202102231741"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.sirius.tests.feature.group" version="6.4.2.202103091337"/>
+      <unit id="org.eclipse.sirius.tests.support.feature.group" version="6.4.2.202103091337"/>
+      <unit id="org.eclipse.sirius.aql.feature.group" version="6.4.2.202103091337"/>
+      <unit id="org.eclipse.sirius.interpreter.feature.feature.group" version="6.4.2.202103091337"/>
+      <unit id="org.eclipse.sirius.properties.feature.feature.group" version="6.4.2.202103091337"/>
+      <unit id="org.eclipse.sirius.runtime.feature.group" version="6.4.2.202103091337"/>
+      <unit id="org.eclipse.sirius.runtime.ide.ui.feature.group" version="6.4.2.202103091337"/>
+      <unit id="org.eclipse.sirius.runtime.ide.xtext.feature.group" version="6.4.2.202103091337"/>
+      <unit id="org.eclipse.sirius.runtime.ocl.feature.group" version="6.4.2.202103091337"/>
+      <repository id="sirius" location="file:/home/data/httpd/download.eclipse.org/sirius/updates/releases/6.4.2/2020-09/"/>
+    </location>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.acceleo.runtime.feature.group" version="3.7.11.202102190929"/>
+      <repository id="acceleo" location="file:/home/data/httpd/download.eclipse.org/acceleo/updates/releases/3.7/R202102190929"/>
+    </location>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.swtbot.feature.group" version="3.1.0.202106041005"/>
+      <repository id="swtbot" location="file:/home/data/httpd/download.eclipse.org/technology/swtbot/releases/3.1.0/"/>
+    </location>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.cdo.admin" version="0.0.0"/>
       <unit id="org.eclipse.emf.cdo.dawn" version="0.0.0"/>
       <unit id="org.eclipse.emf.cdo.dawn.gmf" version="0.0.0"/>
@@ -112,7 +132,7 @@
       <unit id="org.eclipse.emf.cdo.gmf.notation" version="0.0.0"/>
       <unit id="org.eclipse.emf.cdo.server.ocl" version="0.0.0"/>
       <unit id="org.eclipse.emf.cdo.ui.admin" version="0.0.0"/>
-      <repository id="cdo" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/cdo/drops/S20210308-1312"/>
+      <repository id="cdo" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/cdo/drops/R20210308-1312/"/>
     </location>
   </locations>
 </target>

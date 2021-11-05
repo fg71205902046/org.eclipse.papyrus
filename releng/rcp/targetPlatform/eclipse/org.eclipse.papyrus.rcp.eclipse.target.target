@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
-<target name="Papyrus RCP" sequenceNumber="1615974662">
+<target name="Papyrus RCP" sequenceNumber="1636103678">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.nebula.widgets.richtext.feature.feature.group" version="1.2.0.201703081533"/>
@@ -91,6 +91,16 @@
       <repository id="gef" location="file:/home/data/httpd/download.eclipse.org/tools/gef/updates/legacy/releases/4.0.0_gef-master_1952"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.sirius.aql.feature.group" version="6.4.2.202103091337"/>
+      <unit id="org.eclipse.sirius.interpreter.feature.feature.group" version="6.4.2.202103091337"/>
+      <unit id="org.eclipse.sirius.properties.feature.feature.group" version="6.4.2.202103091337"/>
+      <unit id="org.eclipse.sirius.runtime.feature.group" version="6.4.2.202103091337"/>
+      <unit id="org.eclipse.sirius.runtime.ide.ui.feature.group" version="6.4.2.202103091337"/>
+      <unit id="org.eclipse.sirius.runtime.ide.xtext.feature.group" version="6.4.2.202103091337"/>
+      <unit id="org.eclipse.sirius.runtime.ocl.feature.group" version="6.4.2.202103091337"/>
+      <repository id="sirius" location="file:/home/data/httpd/download.eclipse.org/sirius/updates/releases/6.4.2/2020-09/"/>
+    </location>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.egit.feature.group" version="5.11.0.202103091610-r"/>
       <repository id="egit" location="file:/home/data/httpd/download.eclipse.org/egit/updates-5.11"/>
     </location>
@@ -122,7 +132,7 @@
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.cdo.epp.feature.group" version="4.13.0.v20210308-1811"/>
-      <repository id="cdo" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/cdo/drops/S20210308-1312"/>
+      <repository id="cdo" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/cdo/drops/R20210308-1312/"/>
     </location>
   </locations>
 </target>

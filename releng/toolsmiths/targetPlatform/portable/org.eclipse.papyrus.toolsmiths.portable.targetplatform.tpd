@@ -68,15 +68,15 @@ location sirius "https://download.eclipse.org/sirius/updates/releases/6.4.2/2020
 	org.eclipse.sirius.doc.feature.feature.group
 	org.eclipse.sirius.runtime.acceleo.feature.group //required ?
 	org.eclipse.sirius.runtime.ide.ui.acceleo.feature.group 
-	org.eclipse.sirius.runtime.ide.ui.feature.group
 	org.eclipse.sirius.specifier.ide.ui.acceleo.feature.group
+	org.eclipse.sirius.specifier.feature.group
 	org.eclipse.sirius.specifier.ide.ui.aql.feature.group
 	org.eclipse.sirius.specifier.ide.ui.feature.group
 	org.eclipse.sirius.specifier.properties.feature.feature.group
-	org.eclipse.sirius.tests.support.source.feature.group
+	org.eclipse.sirius.tests.support.feature.group //TODO check if it is necessary
 }
 
-location acceleo "https://download.eclipse.org/acceleo/updates/releases/3.7/R202002210922/" {//required to get org.eclipse.sirius.runtime.acceleo.feature.group
+location acceleo "https://download.eclipse.org/acceleo/updates/releases/3.7/R202102190929" {//required to get org.eclipse.sirius.runtime.acceleo.feature.group
 	org.eclipse.acceleo.feature.group
 }
 

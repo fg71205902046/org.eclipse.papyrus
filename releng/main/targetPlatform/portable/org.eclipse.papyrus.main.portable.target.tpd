@@ -147,7 +147,6 @@ location sirius "https://download.eclipse.org/sirius/updates/releases/6.4.2/2020
 	org.eclipse.sirius.aql.feature.group
 	org.eclipse.sirius.interpreter.feature.feature.group
 	org.eclipse.sirius.properties.feature.feature.group
-	org.eclipse.sirius.properties.feature.feature.group
 	org.eclipse.sirius.runtime.feature.group
 	org.eclipse.sirius.runtime.ide.ui.feature.group
 	org.eclipse.sirius.runtime.ide.xtext.feature.group
