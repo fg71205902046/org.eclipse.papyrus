@@ -102,7 +102,8 @@ public class CoreComposedActionBarContributor extends ComposedActionBarContribut
 	}
 
 	/**
-	 * Load default actions (undo/redo/delete)
+	 * @see org.eclipse.gef.ui.actions.ActionBarContributor#buildActions()
+	 *      Load default actions (undo/redo/delete)
 	 */
 	protected void buildActions() {
 		// getActionBars().getToolBarManager().add(new UndoRetargetAction());

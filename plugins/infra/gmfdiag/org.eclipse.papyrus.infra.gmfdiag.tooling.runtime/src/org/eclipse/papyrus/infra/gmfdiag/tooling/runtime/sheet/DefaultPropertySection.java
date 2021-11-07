@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2007, 2009 Borland Software Corporation
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,9 +10,9 @@
  *
  * Contributors:
  *    Artem Tikhomirov (Borland) - initial API and implementation
- *    Michael Golubev (Montages) - [407242] - common code extracted to gmft.runtime 
+ *    Michael Golubev (Montages) - [407242] - common code extracted to gmft.runtime
  */
-package  org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.sheet;
+package org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.sheet;
 
 import java.util.ArrayList;
 
@@ -33,6 +33,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.sirius.diagram.DDiagramElement;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.views.properties.IPropertySource;
@@ -40,6 +41,7 @@ import org.eclipse.ui.views.properties.IPropertySourceProvider;
 
 public class DefaultPropertySection extends AdvancedPropertySection implements IPropertySourceProvider {
 
+	@Override
 	public IPropertySource getPropertySource(Object object) {
 		if (object instanceof IPropertySource) {
 			return (IPropertySource) object;
@@ -52,7 +54,7 @@ public class DefaultPropertySection extends AdvancedPropertySection implements I
 			}
 		}
 		if (object instanceof IAdaptable) {
-			return (IPropertySource) ((IAdaptable) object).getAdapter(IPropertySource.class);
+			return ((IAdaptable) object).getAdapter(IPropertySource.class);
 		}
 		return null;
 	}
@@ -63,9 +65,10 @@ public class DefaultPropertySection extends AdvancedPropertySection implements I
 	}
 
 	/**
-	 * Default implementation does not transform anything. 
-	 * Subclass may override, e.g by calling alternative default implementation {@link DefaultPropertySection#transformSelectionToDomain(Object)} 
-	 * @return by default does not transform anything. 
+	 * Default implementation does not transform anything.
+	 * Subclass may override, e.g by calling alternative default implementation {@link DefaultPropertySection#transformSelectionToDomain(Object)}
+	 *
+	 * @return by default does not transform anything.
 	 */
 	protected Object transformSelection(Object selected) {
 		return selected;
@@ -78,7 +81,7 @@ public class DefaultPropertySection extends AdvancedPropertySection implements I
 			return;
 		}
 		final StructuredSelection structuredSelection = ((StructuredSelection) selection);
-		ArrayList<Object> transformedSelection = new ArrayList<Object>(structuredSelection.size());
+		ArrayList<Object> transformedSelection = new ArrayList<>(structuredSelection.size());
 		for (Object next : structuredSelection.toList()) {
 			Object r = transformSelection(next);
 			if (r != null) {
@@ -100,9 +103,13 @@ public class DefaultPropertySection extends AdvancedPropertySection implements I
 	}
 
 	/**
-	* Utility for subclasses, default modify/unwrap selection to semantic element
-	*/
+	 * Utility for subclasses, default modify/unwrap selection to semantic element
+	 */
 	protected Object transformSelectionToDomain(Object selected) {
+		if (selected instanceof DDiagramElement) {
+			Object model = ((DDiagramElement) selected).getTarget();
+			return model;
+		}
 		if (selected instanceof EditPart) {
 			Object model = ((EditPart) selected).getModel();
 			return model instanceof View ? ((View) model).getElement() : null;
@@ -111,7 +118,7 @@ public class DefaultPropertySection extends AdvancedPropertySection implements I
 			return ((View) selected).getElement();
 		}
 		if (selected instanceof IAdaptable) {
-			View view = (View) ((IAdaptable) selected).getAdapter(View.class);
+			View view = ((IAdaptable) selected).getAdapter(View.class);
 			if (view != null) {
 				return view.getElement();
 			}
@@ -120,8 +127,8 @@ public class DefaultPropertySection extends AdvancedPropertySection implements I
 	}
 
 	/**
-	 * Utility for subclasses to ensures the whole page is read-only. 
-	 * When needed, this method is expected to be called immediately after creation of the page controls. 
+	 * Utility for subclasses to ensures the whole page is read-only.
+	 * When needed, this method is expected to be called immediately after creation of the page controls.
 	 */
 	protected void forcePageReadOnly() {
 		ROEntry root = new ROEntry(OperationHistoryFactory.getOperationHistory());
