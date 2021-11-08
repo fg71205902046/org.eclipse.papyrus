@@ -45,15 +45,14 @@ public class CreatePapyrusSiriusClassDiagramEditorCommand extends AbstractCreate
 	/**
 	 *
 	 * @param prototype
-	 *            the ViewPrototype
+	 *                            the ViewPrototype
 	 * @param semanticContext
-	 *            the semantic context for the created DSemanticDiagram
+	 *                            the semantic context for the created DSemanticDiagram
 	 * @return
 	 *         the default name to use
 	 */
 	private String getDefaultName(final ViewPrototype prototype, final EObject semanticContext) {
-		final StringBuilder nameBuilder = new StringBuilder("New"); //$NON-NLS-1$
-		nameBuilder.append(prototype.getLabel().replaceAll(" ", "")); //$NON-NLS-1$ //$NON-NLS-2$
+		final StringBuilder nameBuilder = new StringBuilder(prototype.getLabel().replaceAll(" ", "")); //$NON-NLS-1$ //$NON-NLS-2$
 		final String nameWithIncrement = EditorNameInitializer.getNameWithIncrement(DiagramPackage.eINSTANCE.getDDiagram(), ViewpointPackage.eINSTANCE.getDRepresentationDescriptor_Name(), nameBuilder.toString(),
 				semanticContext);
 		return nameWithIncrement;

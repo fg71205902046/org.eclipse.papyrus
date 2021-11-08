@@ -3,8 +3,7 @@
   <ownedViewpoints name="ClassDiagram" modelFileExtension="uml">
     <ownedRepresentations xsi:type="description_1:DiagramDescription" dropDescriptions="//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Enumeration'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.2/@ownedTools[name='PrimitiveType'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.2/@ownedTools[name='DataType'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Attributes%20or%20Operations'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Package%20from%20Model'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Interface%20from%20Model'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.2/@ownedTools[name='InstanceSpecification%20from%20Model'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.2/@ownedTools[name='InformationItem%20from%20Model'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Constraint%20from%20Model'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Comment%20from%20Model'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Observation%20from%20Model'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Signal%20from%20Model'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Class%20Primitive%20from%20Model'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Class%20Enumeration%20from%20Model'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Class%20DataType%20from%20Model'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Interface%20DataType%20from%20Model'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Interface%20Enumeration%20from%20Model'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Interface%20Primitive%20from%20Model'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Class%20from%20Model'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.2/@ownedTools[name='to%20Package%20%26%26%20Diagram'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Model%20from%20Model'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@additionalLayers[name='Common']/@toolSections.0/@ownedTools[name='AddHyperlinkView']" documentation="Representation to edit class diagrams" name="ClassDiagram" titleExpression="aql:self.name +' Class Diagram'" domainClass="uml.Model" preconditionExpression="" enablePopupBars="true">
       <metamodel href="platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#/"/>
-      <filters xsi:type="filter:CompositeFilterDescription" name="Show qualified name"/>
-      <filters xsi:type="filter:CompositeFilterDescription" name="Show stereotypes"/>
+      <filters xsi:type="filter:CompositeFilterDescription" name="Show Stereotypes"/>
       <filters xsi:type="filter:CompositeFilterDescription" name="Show Bendpoint"/>
       <defaultLayer name="Class">
         <nodeMappings name="CD_BrokenAssociation" deletionDescription="//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@additionalLayers[name='Common']/@toolSections.0/@ownedTools[name='PapyrusDelete']" semanticCandidatesExpression="service:getBrokenAssociations" semanticElements="service:getSemanticElements" synchronizationLock="true" domainClass="uml.Association">
@@ -14,8 +13,14 @@
             <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
         </nodeMappings>
+        <nodeMappings name="CD_Constraint" deletionDescription="//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@additionalLayers[name='Common']/@toolSections.0/@ownedTools[name='PapyrusDelete']" labelDirectEdit="//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.2/@ownedTools[name='ConstraintEdit']" semanticCandidatesExpression="feature:ownedRule" createElements="false" domainClass="uml.Constraint">
+          <style xsi:type="style:NoteDescription" labelSize="9" labelExpression="service:getConstraintLabel()" labelPosition="node" resizeKind="NSEW" color="//@userColorsPalettes[name=null]/@entries[name='CustomGreen']">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          </style>
+        </nodeMappings>
         <nodeMappings name="CD_InformationItem" deletionDescription="//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@additionalLayers[name='Common']/@toolSections.0/@ownedTools[name='PapyrusDelete']" labelDirectEdit="//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Element%20Name']" semanticCandidatesExpression="aql:self.packagedElement" createElements="false" semanticElements="service:getSemanticElements" domainClass="uml.InformationItem">
-          <style xsi:type="style:SquareDescription" borderSizeComputationExpression="1" labelSize="9" labelExpression="service:buildLabel()" iconPath="/org.eclipse.papyrus.uml.sirius.clazz.diagram/icons/InformationItem.gif" sizeComputationExpression="" labelPosition="node" resizeKind="NSEW" width="16" height="5" color="//@userColorsPalettes[name=null]/@entries[name='CustomGris']">
+          <style xsi:type="style:SquareDescription" borderSizeComputationExpression="1" labelSize="9" labelExpression="service:buildLabel" iconPath="/org.eclipse.papyrus.uml.sirius.clazz.diagram/icons/InformationItem.gif" sizeComputationExpression="" labelPosition="node" resizeKind="NSEW" width="16" height="5" color="//@userColorsPalettes[name=null]/@entries[name='CustomGris']">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           </style>
@@ -333,7 +338,7 @@
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
           <conditionnalStyles predicateExpression="aql:self.oclIsKindOf(uml::Component)">
-            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="9" labelExpression="service:buildLabel()" backgroundStyle="GradientTopToBottom" foregroundColor="//@userColorsPalettes[name=null]/@entries[name='CustomGris']">
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="9" labelExpression="service:buildLabel" backgroundStyle="GradientTopToBottom" foregroundColor="//@userColorsPalettes[name=null]/@entries[name='CustomGris']">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
@@ -401,21 +406,21 @@
               <labelBorderStyle href="environment:/viewpoint#//@labelBorderStyles/@labelBorderStyleDescriptions.2"/>
             </style>
           </subContainerMappings>
-          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="9" labelExpression="service:buildLabel()" tooltipExpression="service:computeTooltip" widthComputationExpression="service:defaultWidth" heightComputationExpression="service:defaultHeight" backgroundStyle="GradientTopToBottom" foregroundColor="//@userColorsPalettes[name=null]/@entries[name='CustomGris']">
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="9" labelExpression="service:buildLabel" tooltipExpression="service:computeTooltip" widthComputationExpression="service:defaultWidth" heightComputationExpression="service:defaultHeight" backgroundStyle="GradientTopToBottom" foregroundColor="//@userColorsPalettes[name=null]/@entries[name='CustomGris']">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
         </containerMappings>
         <containerMappings name="CD_DataType" deletionDescription="//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@additionalLayers[name='Common']/@toolSections.0/@ownedTools[name='PapyrusDelete']" labelDirectEdit="//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Element%20Name']" semanticCandidatesExpression="feature:eAllContents" createElements="false" semanticElements="service:getSemanticElements" doubleClickDescription="//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@additionalLayers[name='Common']/@toolSections.0/@ownedTools[name='Open%20Hyperlink']" domainClass="uml.DataType" reusedNodeMappings="//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='CD_Class']/@subContainerMappings[name='CD_Attribute']/@subNodeMappings[name='CD_ClassProperty'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='CD_Class']/@subContainerMappings[name='CD_Operation']/@subNodeMappings[name='CD_ClassOperation']" reusedContainerMappings="//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='CD_Class']/@subContainerMappings[name='CD_Attribute'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='CD_Class']/@subContainerMappings[name='CD_Operation']" childrenPresentation="List">
-          <style xsi:type="style:FlatContainerStyleDescription" arcWidth="5" arcHeight="5" borderSizeComputationExpression="1" labelSize="9" labelExpression="service:buildLabel()" tooltipExpression="service:computeTooltip" roundedCorner="true" widthComputationExpression="service:defaultWidth" heightComputationExpression="service:defaultHeight" backgroundStyle="GradientTopToBottom" foregroundColor="//@userColorsPalettes[name=null]/@entries[name='CustomGris']">
+          <style xsi:type="style:FlatContainerStyleDescription" arcWidth="5" arcHeight="5" borderSizeComputationExpression="1" labelSize="9" labelExpression="service:buildLabel" tooltipExpression="service:computeTooltip" roundedCorner="true" widthComputationExpression="service:defaultWidth" heightComputationExpression="service:defaultHeight" backgroundStyle="GradientTopToBottom" foregroundColor="//@userColorsPalettes[name=null]/@entries[name='CustomGris']">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
         </containerMappings>
         <containerMappings name="CD_PrimitiveType" deletionDescription="//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@additionalLayers[name='Common']/@toolSections.0/@ownedTools[name='PapyrusDelete']" labelDirectEdit="//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Element%20Name']" createElements="false" semanticElements="service:getSemanticElements" doubleClickDescription="//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@additionalLayers[name='Common']/@toolSections.0/@ownedTools[name='Open%20Hyperlink']" domainClass="uml.PrimitiveType" reusedNodeMappings="//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='CD_Class']/@subContainerMappings[name='CD_Attribute']/@subNodeMappings[name='CD_ClassProperty'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='CD_Class']/@subContainerMappings[name='CD_Operation']/@subNodeMappings[name='CD_ClassOperation']" reusedContainerMappings="//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='CD_Class']/@subContainerMappings[name='CD_Attribute'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='CD_Class']/@subContainerMappings[name='CD_Operation']" childrenPresentation="List">
-          <style xsi:type="style:FlatContainerStyleDescription" arcWidth="5" arcHeight="5" borderSizeComputationExpression="1" labelSize="9" labelExpression="service:buildLabel()" tooltipExpression="service:computeTooltip" roundedCorner="true" widthComputationExpression="service:defaultWidth" heightComputationExpression="service:defaultHeight" backgroundStyle="GradientTopToBottom" foregroundColor="//@userColorsPalettes[name=null]/@entries[name='CustomGris']">
+          <style xsi:type="style:FlatContainerStyleDescription" arcWidth="5" arcHeight="5" borderSizeComputationExpression="1" labelSize="9" labelExpression="service:buildLabel" tooltipExpression="service:computeTooltip" roundedCorner="true" widthComputationExpression="service:defaultWidth" heightComputationExpression="service:defaultHeight" backgroundStyle="GradientTopToBottom" foregroundColor="//@userColorsPalettes[name=null]/@entries[name='CustomGris']">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
@@ -428,7 +433,7 @@
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </style>
           </subNodeMappings>
-          <style xsi:type="style:FlatContainerStyleDescription" arcWidth="5" arcHeight="5" borderSizeComputationExpression="1" labelSize="9" labelExpression="service:buildLabel()" tooltipExpression="service:computeTooltip" roundedCorner="true" widthComputationExpression="service:defaultWidth" heightComputationExpression="service:defaultHeight" backgroundStyle="GradientTopToBottom" foregroundColor="//@userColorsPalettes[name=null]/@entries[name='CustomGris']">
+          <style xsi:type="style:FlatContainerStyleDescription" arcWidth="5" arcHeight="5" borderSizeComputationExpression="1" labelSize="9" labelExpression="service:buildLabel" tooltipExpression="service:computeTooltip" roundedCorner="true" widthComputationExpression="service:defaultWidth" heightComputationExpression="service:defaultHeight" backgroundStyle="GradientTopToBottom" foregroundColor="//@userColorsPalettes[name=null]/@entries[name='CustomGris']">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
@@ -497,7 +502,7 @@
           </style>
         </containerMappings>
         <containerMappings name="CD_Signal" deletionDescription="//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@additionalLayers[name='Common']/@toolSections.0/@ownedTools[name='PapyrusDelete']" labelDirectEdit="//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Element%20Name']" createElements="false" semanticElements="service:getSemanticElements" doubleClickDescription="//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@additionalLayers[name='Common']/@toolSections.0/@ownedTools[name='Open%20Hyperlink']" domainClass="uml.Signal" dropDescriptions="//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Attributes%20or%20Operations'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Attributes%20or%20Operations%20from%20Model']" reusedNodeMappings="//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='CD_Class']/@subContainerMappings[name='CD_Attribute']/@subNodeMappings[name='CD_ClassProperty']" childrenPresentation="List">
-          <style xsi:type="style:FlatContainerStyleDescription" arcWidth="5" arcHeight="5" borderSizeComputationExpression="1" labelSize="9" labelExpression="service:buildLabel()" tooltipExpression="service:computeTooltip" roundedCorner="true" widthComputationExpression="service:defaultWidth" heightComputationExpression="service:defaultHeight" backgroundStyle="GradientTopToBottom" foregroundColor="//@userColorsPalettes[name=null]/@entries[name='CustomGris']">
+          <style xsi:type="style:FlatContainerStyleDescription" arcWidth="5" arcHeight="5" borderSizeComputationExpression="1" labelSize="9" labelExpression="service:buildLabel" tooltipExpression="service:computeTooltip" roundedCorner="true" widthComputationExpression="service:defaultWidth" heightComputationExpression="service:defaultHeight" backgroundStyle="GradientTopToBottom" foregroundColor="//@userColorsPalettes[name=null]/@entries[name='CustomGris']">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
@@ -505,7 +510,7 @@
         </containerMappings>
         <containerMappings name="CD_Observation" deletionDescription="//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@additionalLayers[name='Common']/@toolSections.0/@ownedTools[name='PapyrusDelete']" labelDirectEdit="//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Element%20Name']" createElements="false" doubleClickDescription="//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@additionalLayers[name='Common']/@toolSections.0/@ownedTools[name='Open%20Hyperlink']" domainClass="uml.Observation">
           <conditionnalStyles predicateExpression="aql:self.oclIsKindOf(uml::TimeObservation)">
-            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="9" showIcon="false" labelExpression="service:computeUmlLabel()" labelAlignment="LEFT" backgroundStyle="GradientTopToBottom" foregroundColor="//@userColorsPalettes[name=null]/@entries[name='CustomGris']">
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="9" showIcon="false" labelExpression="service:computeUmlLabel" labelAlignment="LEFT" backgroundStyle="GradientTopToBottom" foregroundColor="//@userColorsPalettes[name=null]/@entries[name='CustomGris']">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
@@ -664,14 +669,14 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:ToolDescription" name="Primitive Type" iconPath="/org.eclipse.papyrus.uml.profile/resources/icons/PrimitiveType.gif">
+          <ownedTools xsi:type="tool:ToolDescription" name="PrimitiveType" iconPath="/org.eclipse.papyrus.uml.profile/resources/icons/PrimitiveType.gif">
             <element name="element"/>
             <elementView name="elementView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:elementView">
                 <subModelOperations xsi:type="tool:If" conditionExpression="aql:self.isDDiagram()">
                   <subModelOperations xsi:type="tool:ChangeContext" browseExpression="var:element">
-                    <subModelOperations xsi:type="tool:CreateInstance" typeName="uml.DataType" referenceName="ownedType">
+                    <subModelOperations xsi:type="tool:CreateInstance" typeName="uml.PrimitiveType" referenceName="ownedType">
                       <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="service:computeDefaultName"/>
                       <subModelOperations xsi:type="tool:SetValue" featureName="visibility" valueExpression="aql:uml::VisibilityKind::public"/>
                       <subModelOperations xsi:type="tool_1:CreateView" mapping="//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='CD_DataType']" containerViewExpression="aql:elementView"/>
@@ -680,7 +685,7 @@
                 </subModelOperations>
                 <subModelOperations xsi:type="tool:If" conditionExpression="aql:self.isClassNodeContainer()">
                   <subModelOperations xsi:type="tool:ChangeContext" browseExpression="var:element">
-                    <subModelOperations xsi:type="tool:CreateInstance" typeName="uml.DataType" referenceName="nestedClassifier">
+                    <subModelOperations xsi:type="tool:CreateInstance" typeName="uml.PrimitiveType" referenceName="nestedClassifier">
                       <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="service:computeDefaultName"/>
                       <subModelOperations xsi:type="tool:SetValue" featureName="visibility" valueExpression="aql:uml::VisibilityKind::public"/>
                       <subModelOperations xsi:type="tool_1:CreateView" mapping="//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='CD_Class']/@subContainerMappings[name='CD_ClassDataTypes']" containerViewExpression="aql:elementView"/>
@@ -763,7 +768,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool_1:NodeCreationDescription" documentation="Create a new literal" name="Constraint" iconPath="/org.eclipse.papyrus.uml.diagram.common/icons/obj16/Comment.gif">
+          <ownedTools xsi:type="tool_1:NodeCreationDescription" documentation="Create a new literal" name="Constraint" nodeMappings="//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@nodeMappings[name='CD_Constraint']" iconPath="/org.eclipse.papyrus.uml.diagram.common/icons/obj16/Comment.gif">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -838,9 +843,7 @@
           <ownedTools xsi:type="tool:ToolDescription" name="Classifier Template Parameter" iconPath="/org.eclipse.papyrus.uml.diagram.common/icons/obj16/ClassifierTemplateParameter.gif">
             <element name="element"/>
             <elementView name="elementView"/>
-            <initialOperation>
-              <firstModelOperations xsi:type="tool:ExternalJavaAction"/>
-            </initialOperation>
+            <initialOperation/>
           </ownedTools>
           <ownedTools xsi:type="tool:ToolDescription" name="Operation Template Parameter" iconPath="/org.eclipse.papyrus.uml.diagram.common/icons/obj16/OperationTemplateParameter.gif">
             <element name="element"/>
@@ -1151,6 +1154,11 @@
                     <subModelOperations xsi:type="tool_1:CreateView" mapping="//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='CD_Class']/@subContainerMappings[name='CD_Operation']/@subNodeMappings[name='CD_ClassOperation']" containerViewExpression="aql:newContainerView"/>
                   </subModelOperations>
                 </subModelOperations>
+                <subModelOperations xsi:type="tool:If" conditionExpression="aql:self.oclIsTypeOf(uml::Attribute)">
+                  <subModelOperations xsi:type="tool:ChangeContext" browseExpression="var:element">
+                    <subModelOperations xsi:type="tool_1:CreateView" mapping="//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@nodeMappings[name='CD_Property']" containerViewExpression="aql:newContainerView"/>
+                  </subModelOperations>
+                </subModelOperations>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
@@ -1221,15 +1229,13 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool_1:ContainerDropDescription" name="to Package &amp;&amp; Diagram" mappings="//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='CD_Class'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='CD_Interface'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='CD_Package'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@additionalLayers[name='Comment']/@nodeMappings[name='CD_Comment'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='CD_Enumeration'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='CD_InstanceSpecification'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@nodeMappings[name='CD_InformationItem'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='CD_PrimitiveType'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='CD_Model'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='CD_Signal'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='CD_Observation']">
+          <ownedTools xsi:type="tool_1:ContainerDropDescription" name="to Package &amp;&amp; Diagram" forceRefresh="true" inverseSelectionOrder="true" mappings="//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='CD_Class'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='CD_Interface'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='CD_Package'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@additionalLayers[name='Comment']/@nodeMappings[name='CD_Comment'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='CD_Enumeration'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='CD_InstanceSpecification'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@nodeMappings[name='CD_InformationItem'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='CD_PrimitiveType'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='CD_Model'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='CD_Signal'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='CD_Observation']">
             <oldContainer name="oldSemanticContainer"/>
             <newContainer name="newSemanticContainer"/>
             <element name="element"/>
             <newViewContainer name="newContainerView"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:element">
-                <subModelOperations xsi:type="tool:MoveElement" newContainerExpression="var:newSemanticContainer" featureName="service:getFeatureName()"/>
-              </firstModelOperations>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="aql:element.dndElement(newContainerView)"/>
             </initialOperation>
           </ownedTools>
           <ownedTools xsi:type="tool_1:ContainerDropDescription" name="Comment from Model" precondition="service:isValidContainer(newViewContainer)" mappings="//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@additionalLayers[name='Comment']/@nodeMappings[name='CD_Comment']" dragSource="PROJECT_EXPLORER">
@@ -1348,9 +1354,7 @@
             <element name="element"/>
             <newViewContainer name="newContainerView"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:element">
-                <subModelOperations xsi:type="tool:MoveElement" newContainerExpression="var:newSemanticContainer" featureName="service:getTypeTarget(newSemanticContainer)"/>
-              </firstModelOperations>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="aql:element.dndElement(newContainerView)"/>
             </initialOperation>
           </ownedTools>
           <ownedTools xsi:type="tool_1:ContainerDropDescription" name="Enumeration" forceRefresh="true" mappings="//@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='CD_Enumeration'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='CD_Class']/@subContainerMappings[name='CD_ClassDataTypes']/@subNodeMappings[name='CD_ClassEnumerationNode'] //@ownedViewpoints[name='ClassDiagram']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='CD_Interface']/@subContainerMappings[name='CD_InterfaceDataTypes']/@subNodeMappings[name='CD_InterfaceEnumerationNode']">

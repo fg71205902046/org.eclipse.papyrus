@@ -39,6 +39,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.geometry.LineSeg;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
+import org.eclipse.papyrus.uml.sirius.common.diagram.core.services.DisplayLabelSwitch;
+import org.eclipse.papyrus.uml.sirius.common.diagram.core.services.FilterService;
 import org.eclipse.papyrus.uml.sirius.common.diagram.services.DiagramServices;
 import org.eclipse.sirius.business.api.session.Session;
 import org.eclipse.sirius.business.api.session.SessionManager;
@@ -58,7 +60,6 @@ import org.eclipse.sirius.diagram.business.internal.sync.DNodeCandidate;
 import org.eclipse.sirius.diagram.description.DiagramDescription;
 import org.eclipse.sirius.diagram.description.DiagramElementMapping;
 import org.eclipse.sirius.diagram.description.NodeMapping;
-import org.eclipse.sirius.diagram.description.filter.FilterDescription;
 import org.eclipse.sirius.diagram.ui.business.api.view.SiriusGMFHelper;
 import org.eclipse.sirius.diagram.ui.business.api.view.SiriusLayoutDataManager;
 import org.eclipse.sirius.diagram.ui.business.internal.view.RootLayoutData;
@@ -82,7 +83,7 @@ public class CommonDiagramRefreshExtension implements IRefreshExtension {
 	 */
 	@Override
 	public void beforeRefresh(DDiagram diagram) {
-//	System.out.println(diagram.toString());
+		DisplayLabelSwitch.setStereotypeFilter(FilterService.INSTANCE.isStereotypeFilterActivated(diagram));
 	}
 
 	/**
@@ -91,27 +92,20 @@ public class CommonDiagramRefreshExtension implements IRefreshExtension {
 	@Override
 	public void postRefresh(DDiagram diagram) {
 
-		if (isFilterActivated(diagram)){
-		Collection<Point> bendpointsToDraw = getCommonBenpointsToDraw(diagram);
-		Diagram gmfDiagram = SiriusGMFHelper.getGmfDiagram(diagram);
-		Option<GraphicalEditPart> gef = GMFHelper.getGraphicalEditPart(gmfDiagram);
-		if (gef.some()) {
-			if (bendpointsToDraw.size() > 0) {
-				drawCommonBendpoints((DSemanticDiagram) diagram, (IGraphicalEditPart) gef.get(), bendpointsToDraw);
+		List<EObject> list = new ArrayList<>();
+		diagram.eAllContents().forEachRemaining(list::add);
+//		ResetStyleHelper.resetStyle(list);
+		if (FilterService.INSTANCE.isBenpointFilterActivated(diagram)) {
+			Collection<Point> bendpointsToDraw = getCommonBenpointsToDraw(diagram);
+			Diagram gmfDiagram = SiriusGMFHelper.getGmfDiagram(diagram);
+			Option<GraphicalEditPart> gef = GMFHelper.getGraphicalEditPart(gmfDiagram);
+			if (gef.some()) {
+				if (bendpointsToDraw.size() > 0) {
+					drawCommonBendpoints((DSemanticDiagram) diagram, (IGraphicalEditPart) gef.get(), bendpointsToDraw);
+				}
 			}
-		}
 		}
 //		Not this one : DiagramHelper.refresh(gmfDiagram.get,true);
-//		ResetStyleHelper.resetStyle(Collections.singleton(gmfDiagram));
-	}
-
-	private boolean isFilterActivated(DDiagram diagram) {
-		for (FilterDescription filter : diagram.getActivatedFilters()) {
-			if (filter.getName().equals("Show Bendpoint")) {
-				return true;
-			}
-		}
-		return false;
 	}
 
 	/**

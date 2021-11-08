@@ -119,6 +119,7 @@ public class DisplayLabelSwitch extends UMLSwitch<String> implements ILabelConst
      */
     public static final String SPACE = " "; //$NON-NLS-1$
 
+    private static boolean showStereotypeFilter = true;
     /**
      * Compute the {@link Stereotype} label part for the given {@link Element}.
      *
@@ -127,32 +128,36 @@ public class DisplayLabelSwitch extends UMLSwitch<String> implements ILabelConst
      * @return the {@link Stereotype} label.
      */
     public static String computeStereotypes(Element element) {
-        final Iterator<Stereotype> it = element.getAppliedStereotypes().iterator();
+    	
+		if (showStereotypeFilter) {
+			final Iterator<Stereotype> it = element.getAppliedStereotypes().iterator();
 
-        if (!it.hasNext()) {
-            return ""; //$NON-NLS-1$
-        }
+			if (!it.hasNext()) {
+				return ""; //$NON-NLS-1$
+			}
 
-        final StringBuffer stereotypeLabel = new StringBuffer();
-        stereotypeLabel.append(OPEN_QUOTE_MARK);
-        for (;;) {
-            final Stereotype appliedStereotype = it.next();
+			final StringBuffer stereotypeLabel = new StringBuffer();
+			stereotypeLabel.append(OPEN_QUOTE_MARK);
+			for (;;) {
+				final Stereotype appliedStereotype = it.next();
 
-            stereotypeLabel.append(appliedStereotype.getName());
-            if (it.hasNext()) {
-                stereotypeLabel.append(", "); //$NON-NLS-1$
-            } else {
-                break;
-            }
-        }
-        stereotypeLabel.append(CLOSE_QUOTE_MARK);
-        if (element instanceof Feature) {
-            stereotypeLabel.append(" "); //$NON-NLS-1$
-        } else {
-            stereotypeLabel.append(NL);
-        }
+				stereotypeLabel.append(appliedStereotype.getName());
+				if (it.hasNext()) {
+					stereotypeLabel.append(", "); //$NON-NLS-1$
+				} else {
+					break;
+				}
+			}
+			stereotypeLabel.append(CLOSE_QUOTE_MARK);
+			if (element instanceof Feature) {
+				stereotypeLabel.append(" "); //$NON-NLS-1$
+			} else {
+				stereotypeLabel.append(NL);
+			}
 
-        return stereotypeLabel.toString();
+			return stereotypeLabel.toString();
+		}
+    	return "";
     }
 
     /**
@@ -1091,4 +1096,7 @@ public class DisplayLabelSwitch extends UMLSwitch<String> implements ILabelConst
                 && lifeline.getClientDependencies().get(0).getSuppliers().size() > 0;
     }
 
+    public static void setStereotypeFilter(boolean filterValue) {
+    	showStereotypeFilter = filterValue;
+    }
 }

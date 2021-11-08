@@ -87,7 +87,7 @@ public class Node_CombinedFragment_CreationTest {
 		Point cfStartPosition = lifeLine.getProperLogicalBounds().getTopLeft().translate(0,15);
 		
 		// create the combined fragment
-		fixture.applyNodeCreationToolFromPalette("CR_CombinedFragment", diagramRespresentation, diagramRespresentation, cfStartPosition, new Dimension(120,80));
+		fixture.applyNodeCreationToolFromPalette("CombinedFragment", diagramRespresentation, diagramRespresentation, cfStartPosition, new Dimension(120,80));
 		fixture.flushDisplayEvents();
 		
 		Assert.assertEquals("The diagram contains one additional element after creating a CombinedFragment node", nbDiagramChild + 1, diagram.getChildren().size());

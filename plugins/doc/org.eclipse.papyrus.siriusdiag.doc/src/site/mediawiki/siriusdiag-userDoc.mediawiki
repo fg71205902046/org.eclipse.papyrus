@@ -40,7 +40,6 @@ This was used to replace Benpoints preference and to customize the displayed lab
 
 [[File:../../../image/user/4_Filters.png]]
 
-
 === Layers ===
 
 Layers can be defined to hide or show several mapping and/or several tools in the palette in a diagram.
@@ -55,7 +54,6 @@ This functionality is only used for comment at that moment.
 Palette tools is divided in two categories, one for the creation of element represented has nodes and the other for the creation of edge elements.
 
 [[File:../../../image/user/5_Palette.png]]
-
 
 == Drag and drop from explorer ==
 
@@ -93,7 +91,13 @@ Shortcuts can be created by drag and dropping representations. Once added in the
 
 [[File:../../../image/user/1_HyperlinkShortcut.png]]
 
-== Sequence diagram specificity ==
+== Xtext ==
+
+Xtext autocompletion is available when renaming an element using direct edition with F2 shortcut. When using Ctrl + Space key, the auto completion tool propose a list of label to use.
+
+[[File:../../../image/user/10_Xtext.png]]
+
+= Sequence diagram specificity =
 
 Sequence diagram have some specificity, like the kind of element that can be represented.
 See https://www.eclipse.org/sirius/doc/user/sequences/Sequence%20Diagrams.html
@@ -103,9 +107,4 @@ See https://www.eclipse.org/sirius/doc/user/sequences/Sequence%20Diagrams.html
 To have a better view and simplify the correction of problems in sequence diagrams, it is possible to make observation points visible.
 
 [[File:../../../image/user/8_ObservationPoint.png]]
-
-=== Connect to start/end ===
-
-
-[[File:../../../image/user/8_Connect.png]]
 

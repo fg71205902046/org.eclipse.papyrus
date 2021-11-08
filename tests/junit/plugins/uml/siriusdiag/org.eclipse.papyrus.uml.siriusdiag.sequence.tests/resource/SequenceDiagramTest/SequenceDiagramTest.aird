@@ -1,44 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:description_2="http://www.eclipse.org/sirius/diagram/sequence/description/2.0.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:sequence="http://www.eclipse.org/sirius/diagram/sequence/2.0.0" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/diagram/sequence/description/2.0.0 http://www.eclipse.org/sirius/diagram/sequence/2.0.0#//description">
-  <viewpoint:DAnalysis uid="_aYAbgCanEeyyjbsFhgAvSg" selectedViews="_0Qs30CanEey6bs8WuzH1wg _0WA1oCanEey6bs8WuzH1wg _0W1VACanEey6bs8WuzH1wg" version="14.3.1.202003261200">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/sequence/description/2.0.0" xmlns:description_2="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:sequence="http://www.eclipse.org/sirius/diagram/sequence/2.0.0" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/sequence/description/2.0.0 http://www.eclipse.org/sirius/diagram/sequence/2.0.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description">
+  <viewpoint:DAnalysis uid="_y--EoEidEeyfd_ylVWYGzQ" selectedViews="_zCZMEEidEeyfd_ylVWYGzQ _zCy0sEidEeyfd_ylVWYGzQ _zDMdUEidEeyfd_ylVWYGzQ" version="14.3.1.202003261200">
+    <semanticResources>pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml</semanticResources>
+    <semanticResources>pathmap://UML_PROFILES/Ecore.profile.uml</semanticResources>
     <semanticResources>pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml</semanticResources>
     <semanticResources>pathmap://UML_PROFILES/Standard.profile.uml</semanticResources>
     <semanticResources>pathmap://UML_METAMODELS/UML.metamodel.uml</semanticResources>
     <semanticResources>pathmap://UML_METAMODELS/Ecore.metamodel.uml</semanticResources>
-    <semanticResources>pathmap://UML_PROFILES/Ecore.profile.uml</semanticResources>
-    <semanticResources>pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml</semanticResources>
+    <semanticResources>SequenceDiagramTest.notation</semanticResources>
+    <semanticResources>SequenceDiagramTest.di</semanticResources>
     <semanticResources>SequenceDiagramTest.uml</semanticResources>
+    <semanticResources>papyrus.welcome:dynamic</semanticResources>
+    <semanticResources>environment:/viewpoint</semanticResources>
+    <semanticResources>platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore</semanticResources>
     <semanticResources>platform:/plugin/org.eclipse.uml2.types/model/Types.ecore</semanticResources>
     <semanticResources>platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore</semanticResources>
-    <ownedViews xmi:type="viewpoint:DView" uid="_0Qs30CanEey6bs8WuzH1wg">
-      <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.clazz.diagram/description/papyrus_class.odesign#//@ownedViewpoints[name='ClassDiagram']"/>
-    </ownedViews>
-    <ownedViews xmi:type="viewpoint:DView" uid="_0WA1oCanEey6bs8WuzH1wg">
+    <semanticResources>environment:/diagram</semanticResources>
+    <ownedViews xmi:type="viewpoint:DView" uid="_zCZMEEidEeyfd_ylVWYGzQ">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.statemachine.diagram/description/papyrus_statemachine.odesign#//@ownedViewpoints[name='StateMachineDiagram']"/>
     </ownedViews>
-    <ownedViews xmi:type="viewpoint:DView" uid="_0W1VACanEey6bs8WuzH1wg">
+    <ownedViews xmi:type="viewpoint:DView" uid="_zCy0sEidEeyfd_ylVWYGzQ">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.sequence.diagram/description/papyrus_sequence.odesign#//@ownedViewpoints[name='SequenceDiagram']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_0b6CQCanEey6bs8WuzH1wg" name="SequenceDiagram0" repPath="#_0acCoCanEey6bs8WuzH1wg" changeId="787db0f9-92f7-439c-8b2f-05555719eb28">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_zE0N8EidEeyfd_ylVWYGzQ" name="SequenceDiagram0" repPath="#_zEdooEidEeyfd_ylVWYGzQ" changeId="32560d6b-cc15-4c52-aa97-d967713b7afe">
         <description xmi:type="description_1:SequenceDiagramDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.sequence.diagram/description/papyrus_sequence.odesign#//@ownedViewpoints[name='SequenceDiagram']/@ownedRepresentations[name='SequenceDiagram']"/>
-        <target xmi:type="uml:Interaction" href="SequenceDiagramTest.uml#_zzxrQCanEey6bs8WuzH1wg"/>
+        <target xmi:type="uml:Interaction" href="SequenceDiagramTest.uml#_y-06sEidEeyfd_ylVWYGzQ"/>
       </ownedRepresentationDescriptors>
     </ownedViews>
+    <ownedViews xmi:type="viewpoint:DView" uid="_zDMdUEidEeyfd_ylVWYGzQ">
+      <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.clazz.diagram/description/papyrus_class.odesign#//@ownedViewpoints[name='ClassDiagram']"/>
+    </ownedViews>
   </viewpoint:DAnalysis>
-  <sequence:SequenceDDiagram uid="_0acCoCanEey6bs8WuzH1wg">
-    <eAnnotations xmi:type="description:DAnnotation" uid="_C71GgDWxEeytuKnbGXgvTQ" source="Papyrus-SiriusDiagram">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_C71GgTWxEeytuKnbGXgvTQ" key="Papyrus-SiriusDiagram-ImplementationId" value="org.eclipse.papyrus.infra.siriusdiag.sequence"/>
+  <sequence:SequenceDDiagram uid="_zEdooEidEeyfd_ylVWYGzQ">
+    <eAnnotations xmi:type="description:DAnnotation" uid="_zH-PoEidEeyfd_ylVWYGzQ" source="Papyrus-SiriusDiagram">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_zH-PoUidEeyfd_ylVWYGzQ" key="Papyrus-SiriusDiagram-ImplementationId" value="org.eclipse.papyrus.infra.siriusdiag.sequence"/>
     </eAnnotations>
-    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_0drj4CanEey6bs8WuzH1wg" source="GMF_DIAGRAMS">
-      <data xmi:type="notation:Diagram" xmi:id="_0drj4SanEey6bs8WuzH1wg" type="Sirius" element="_0acCoCanEey6bs8WuzH1wg" measurementUnit="Pixel">
-        <styles xmi:type="notation:DiagramStyle" xmi:id="_0drj4ianEey6bs8WuzH1wg"/>
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_zF2vwEidEeyfd_ylVWYGzQ" source="GMF_DIAGRAMS">
+      <data xmi:type="notation:Diagram" xmi:id="_zF2vwUidEeyfd_ylVWYGzQ" type="Sirius" element="_zEdooEidEeyfd_ylVWYGzQ" measurementUnit="Pixel">
+        <styles xmi:type="notation:DiagramStyle" xmi:id="_zF2vwkidEeyfd_ylVWYGzQ"/>
       </data>
     </ownedAnnotationEntries>
-    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_0lAT4CanEey6bs8WuzH1wg" source="DANNOTATION_CUSTOMIZATION_KEY">
-      <data xmi:type="diagram:ComputedStyleDescriptionRegistry" uid="_0lA68CanEey6bs8WuzH1wg"/>
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_zHknAEidEeyfd_ylVWYGzQ" source="DANNOTATION_CUSTOMIZATION_KEY">
+      <data xmi:type="diagram:ComputedStyleDescriptionRegistry" uid="_zHknAUidEeyfd_ylVWYGzQ"/>
     </ownedAnnotationEntries>
     <description xmi:type="description_1:SequenceDiagramDescription" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.sequence.diagram/description/papyrus_sequence.odesign#//@ownedViewpoints[name='SequenceDiagram']/@ownedRepresentations[name='SequenceDiagram']"/>
-    <filterVariableHistory xmi:type="diagram:FilterVariableHistory" uid="_0awLsCanEey6bs8WuzH1wg"/>
+    <filterVariableHistory xmi:type="diagram:FilterVariableHistory" uid="_zEnZoEidEeyfd_ylVWYGzQ"/>
     <activatedLayers xmi:type="description_2:Layer" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.sequence.diagram/description/papyrus_sequence.odesign#//@ownedViewpoints[name='SequenceDiagram']/@ownedRepresentations[name='SequenceDiagram']/@defaultLayer"/>
-    <target xmi:type="uml:Interaction" href="SequenceDiagramTest.uml#_zzxrQCanEey6bs8WuzH1wg"/>
+    <target xmi:type="uml:Interaction" href="SequenceDiagramTest.uml#_y-06sEidEeyfd_ylVWYGzQ"/>
   </sequence:SequenceDDiagram>
 </xmi:XMI>

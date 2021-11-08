@@ -56,13 +56,13 @@ import org.eclipse.papyrus.uml.sirius.common.diagram.core.services.UIServices;
 import org.eclipse.sirius.diagram.DDiagram;
 import org.eclipse.sirius.diagram.DDiagramElement;
 import org.eclipse.sirius.diagram.DEdge;
-import org.eclipse.sirius.diagram.DNodeContainer;
 import org.eclipse.sirius.diagram.DNodeList;
 import org.eclipse.sirius.diagram.DSemanticDiagram;
 import org.eclipse.sirius.diagram.EdgeTarget;
 import org.eclipse.sirius.diagram.business.internal.metamodel.spec.DNodeContainerSpec;
 import org.eclipse.sirius.diagram.business.internal.metamodel.spec.DNodeListSpec;
 import org.eclipse.sirius.diagram.business.internal.metamodel.spec.DSemanticDiagramSpec;
+import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import org.eclipse.sirius.viewpoint.FontFormat;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.dialogs.ListDialog;
@@ -109,7 +109,6 @@ import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.Usage;
 import org.eclipse.uml2.uml.ValueSpecification;
-import org.eclipse.uml2.uml.internal.impl.ModelImpl;
 
 import com.google.common.collect.Lists;
 
@@ -169,6 +168,26 @@ public class ClassDiagramServices {
 
 	/** Association type for a new created InstanceSpecification */
 	private String _selectedAssosType = "";
+
+	/**
+	 * Move the given Element
+	 */
+	public EObject dndElement(EObject semanticObjectToDrop, EObject targetContainerView) {
+		if ((targetContainerView instanceof DSemanticDecorator) && (semanticObjectToDrop instanceof PackageableElement)) {
+			Element element = (PackageableElement) semanticObjectToDrop;
+			EObject target = ((DSemanticDecorator) targetContainerView).getTarget();
+
+			Model targetModel = null;
+			if (target instanceof Model) {
+				targetModel = (Model) target;
+			}
+			if (targetModel != null) {
+				targetModel.getPackagedElements().add((PackageableElement)element);
+			}
+
+		}
+		return semanticObjectToDrop;
+	}
 
 	/**
 	 * Create a new Abstraction Link.
@@ -869,7 +888,7 @@ public class ClassDiagramServices {
 	 * @return true if the edge could be reconnected
 	 */
 	public boolean reconnectContainmentLinkPrecondition(Element context, Element target) {
-		return (target instanceof Class || target instanceof Interface || target instanceof ModelImpl
+		return (target instanceof Class || target instanceof Interface || target instanceof Model
 				|| target instanceof Package || target instanceof DataType);
 	}
 
@@ -2218,6 +2237,7 @@ public class ClassDiagramServices {
 //		AppliedStereotypePropertyLabelProvider labelProvider = new AppliedStereotypePropertyLabelProvider();
 //		return labelProvider.getText(element);
 //	}
+
 	/**
 	 * Compute the label of the given association.
 	 *
@@ -3122,25 +3142,6 @@ public class ClassDiagramServices {
 //			}
 //		}
 //	}
-
-	/**
-	 * Open type selection dialog.
-	 *
-	 * @param element Element
-	 * @return Selected element
-	 */
-	/*
-	 * public Element openSelectTypeDialog(Element element) { final
-	 * ModelElementSelectionDialog dlg = new ModelElementSelectionDialog();
-	 * dlg.setTitle("New typed property selection"); //$NON-NLS-1$
-	 * dlg.setMessage("Please select a type for the new property :"); //$NON-NLS-1$
-	 * dlg.setSelectablePredicate(new Predicate<Object>() { public boolean
-	 * apply(Object input) { return !(input instanceof Stereotype) && (input
-	 * instanceof Class || input instanceof Interface || input instanceof DataType);
-	 * } }); final int status = dlg.open(); if (status == Window.OK) { final
-	 * Object[] results = dlg.getResult(); if (results != null && results.length >
-	 * 0) { return (Element)results[0]; } } return null; }
-	 */
 
 	/**
 	 * Check is an association source is composite.

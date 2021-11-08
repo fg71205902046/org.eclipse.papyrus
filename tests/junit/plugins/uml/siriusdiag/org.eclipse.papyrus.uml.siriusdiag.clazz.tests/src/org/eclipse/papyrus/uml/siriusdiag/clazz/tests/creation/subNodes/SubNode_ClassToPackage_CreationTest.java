@@ -64,7 +64,7 @@ public class SubNode_ClassToPackage_CreationTest extends AbstractPapyrusTest {
 		DDiagram diagramRespresentation = (DDiagram) diagram.getElement();
 		Object packageElement = diagram.getChildren().get(0);
 		EObject packageRepresentation = ((View) packageElement).getElement();
-		fixture.applyContainerCreationTool("Class", diagramRespresentation, packageRepresentation);
+		fixture.applyGenericTool("Class", diagramRespresentation, packageRepresentation);
 		fixture.flushDisplayEvents();
 
 		EList<DDiagramElement> packageSubNodes = ((DNodeContainerSpec) packageRepresentation).getOwnedDiagramElements();

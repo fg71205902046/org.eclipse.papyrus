@@ -11,16 +11,15 @@
  * Contributors:
  *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Initial API and others
  *****************************************************************************/
-package org.eclipse.papyrus.uml.sirius.common.diagram.hyperlink;
+package org.eclipse.papyrus.uml.sirius.common.diagram;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.impl.NodeImpl;
-import org.eclipse.sirius.diagram.DNode;
+import org.eclipse.sirius.diagram.DragAndDropTarget;
 import org.eclipse.sirius.diagram.ui.graphical.edit.policies.SiriusContainerDropPolicy;
 import org.eclipse.sirius.diagram.ui.internal.edit.policies.AbstractCreateEditPolicyProvider;
-import org.eclipse.uml2.uml.Element;
 
 /**
  * The Class MyCreateEditPolicyProvider.
@@ -28,7 +27,7 @@ import org.eclipse.uml2.uml.Element;
  * @author Aurélien Didier (Artal Technologies)
  */
 @SuppressWarnings("restriction")
-public class NavigationEditPolicyProvider extends AbstractCreateEditPolicyProvider {
+public class SiriusEditPolicyProvider extends AbstractCreateEditPolicyProvider {
 
 	/**
 	 * Creates the edit policies.
@@ -39,8 +38,7 @@ public class NavigationEditPolicyProvider extends AbstractCreateEditPolicyProvid
 
 	@Override
 	public void createEditPolicies(EditPart editpart) {
-
-		editpart.installEditPolicy(EditPolicyRoles.OPEN_ROLE, new NavigationEditPolicy());
+		editpart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new SiriusContainerDropPolicy());
 	}
 
 	/**
@@ -57,11 +55,8 @@ public class NavigationEditPolicyProvider extends AbstractCreateEditPolicyProvid
 		Object model = editPart.getModel();
 		if (model instanceof NodeImpl) {
 			EObject element = ((NodeImpl) model).getElement();
-			if (element instanceof DNode) {
-				EObject target = ((DNode) element).getTarget();
-				if (!(target instanceof Element)) {
-					return true;
-				}
+			if (element instanceof DragAndDropTarget) {
+				return true;
 			}
 		}
 		return false;

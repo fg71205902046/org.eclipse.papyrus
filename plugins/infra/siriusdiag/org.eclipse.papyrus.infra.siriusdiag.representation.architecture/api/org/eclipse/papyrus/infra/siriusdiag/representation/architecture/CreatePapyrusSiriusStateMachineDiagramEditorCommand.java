@@ -81,8 +81,7 @@ public class CreatePapyrusSiriusStateMachineDiagramEditorCommand extends Abstrac
 	 *         the default name to use
 	 */
 	private String getDefaultName(final ViewPrototype prototype, final EObject semanticContext) {
-		final StringBuilder nameBuilder = new StringBuilder("New"); //$NON-NLS-1$
-		nameBuilder.append(prototype.getLabel().replaceAll(" ", "")); //$NON-NLS-1$ //$NON-NLS-2$
+		final StringBuilder nameBuilder = new StringBuilder(prototype.getLabel().replaceAll(" ", "")); //$NON-NLS-1$ //$NON-NLS-2$
 		final String nameWithIncrement = EditorNameInitializer.getNameWithIncrement(DiagramPackage.eINSTANCE.getDDiagram(), ViewpointPackage.eINSTANCE.getDRepresentationDescriptor_Name(), nameBuilder.toString(),
 				semanticContext);
 		return nameWithIncrement;
@@ -280,15 +279,15 @@ public class CreatePapyrusSiriusStateMachineDiagramEditorCommand extends Abstrac
 
 		}
 		if (region != null) {
-			DNodeContainer compratment = (DNodeContainer) diagram.getOwnedDiagramElements().get(0);
+			DNodeContainer compartment = (DNodeContainer) diagram.getOwnedDiagramElements().get(0);
 			final DNodeContainer newNode = DiagramFactory.eINSTANCE.createDNodeContainer();
 			HideFilterHelper.INSTANCE.hideLabel(newNode);
 			newNode.setTarget(region);
 			final var selector = regionMapping;
-			final var anyMatch = compratment.getActualMapping().getSubContainerMappings().stream().filter(m -> selector.equals(m.getName())).findFirst();
+			final var anyMatch = compartment.getActualMapping().getReusedContainerMappings().stream().filter(m -> selector.equals(m.getName())).findFirst();
 			newNode.setActualMapping(anyMatch.get());
 			newNode.setChildrenPresentation(ContainerLayout.FREE_FORM);
-			SiriusDiagramHelper.addNodeInContainer(compratment, false, newNode);
+			SiriusDiagramHelper.addNodeInContainer(compartment, false, newNode);
 		}
 	}
 

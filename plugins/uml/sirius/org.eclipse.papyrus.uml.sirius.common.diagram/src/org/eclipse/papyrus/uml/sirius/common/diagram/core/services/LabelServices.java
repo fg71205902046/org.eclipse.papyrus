@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.sirius.common.diagram.core.services;
 
-import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.event.ChangeEvent;
@@ -30,7 +29,6 @@ import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.DataStoreNode;
 import org.eclipse.uml2.uml.DecisionNode;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.ElementImport;
 import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.Event;
 import org.eclipse.uml2.uml.FinalState;
@@ -42,16 +40,13 @@ import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.JoinNode;
 import org.eclipse.uml2.uml.MergeNode;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.OpaqueAction;
 import org.eclipse.uml2.uml.ParameterableElement;
 import org.eclipse.uml2.uml.Port;
-import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Pseudostate;
 import org.eclipse.uml2.uml.SignalEvent;
 import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.StateMachine;
-import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.TemplateParameter;
 import org.eclipse.uml2.uml.TemplateSignature;
 import org.eclipse.uml2.uml.TemplateableElement;
@@ -151,7 +146,7 @@ public class LabelServices {
      *         'ElementType'+total of existing elements of the same type.
      */
     public String computeDefaultName(final EObject element) {
-        if (element instanceof NamedElement) {
+    	if (element instanceof NamedElement) {
             if (((NamedElement) element).getName() != null) {
                 return ((NamedElement) element).getName();
             }

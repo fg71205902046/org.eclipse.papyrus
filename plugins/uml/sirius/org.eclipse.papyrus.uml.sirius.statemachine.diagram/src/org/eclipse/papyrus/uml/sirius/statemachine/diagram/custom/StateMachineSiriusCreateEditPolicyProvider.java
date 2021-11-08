@@ -47,7 +47,6 @@ public class StateMachineSiriusCreateEditPolicyProvider extends AbstractCreateEd
 		EditPolicy regionCreationPolicy = new StateMachineRegionPolicy();
 
 		editpart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, regionCreationPolicy);
-		editpart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new SiriusContainerDropPolicy());
 	}
 
 	/**

@@ -47,7 +47,7 @@ public class PseudostateCreationTest extends AbstractStatemachineTopNodeCreation
 	}
 
 	@Test
-	@ActiveDiagram(STATE_SUB_NODE_TAB) // open the diagra
+	@ActiveDiagram(STATE_SUB_NODE_TAB) // open the diagram
 	public void test_create_state_subnode_choice() {
 		final var subStateContainer = checkAndGetEmptyStateNodeRegion();
 		createAndCheckStateNode("Choice", DNode.class, Pseudostate.class, subStateContainer);

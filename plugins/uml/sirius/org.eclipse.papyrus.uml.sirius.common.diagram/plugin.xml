@@ -13,6 +13,16 @@
            class="org.eclipse.papyrus.uml.sirius.common.diagram.PapyrusSiriusTabbarContributor">
      </tabbarContributor>
   </extension>
+      <extension
+        point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+     <editpolicyProvider
+           class="org.eclipse.papyrus.uml.sirius.common.diagram.SiriusEditPolicyProvider">
+        <Priority
+              name="High">
+        </Priority>
+     </editpolicyProvider>
+  </extension>
+  
   <!--
     <extension
         point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">

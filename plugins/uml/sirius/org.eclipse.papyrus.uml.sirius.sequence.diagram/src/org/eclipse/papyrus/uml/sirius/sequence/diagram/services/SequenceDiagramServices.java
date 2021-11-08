@@ -823,6 +823,19 @@ public class SequenceDiagramServices extends AbstractDiagramServices {
 
 	}
 
+	/**
+	 * Reorder new lifeline.
+	 *
+	 * @param object
+	 *            the object
+	 * @param newInstance
+	 *            the newInstance to create
+	 * @param predecessor
+	 *            the lifeline predecessor
+	 */
+	public void reorderNewLifeline(EObject container, EObject newInstance, EObject predecessor) {
+		reorderService.reorderNewLifeline(container, newInstance, predecessor);
+	}
 
 	/**
 	 * Reorder new fragments.

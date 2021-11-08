@@ -47,16 +47,15 @@ import org.eclipse.uml2.uml.StateInvariant;
  * The Class ReorderService.
  *
  * @author Yann Binot (Artal Technologies) <yann.binot@artal.fr>
+ * @author Aurélien Didier (Artal Technologies)
  */
 public class ReorderService {
-
 
 	/** The fragment service. */
 	private final FragmentsService fragmentService = FragmentsService.getInstance();
 
 	/** The service. */
 	static private ReorderService service = null;
-
 
 	/**
 	 * Instantiates a new fragments service.
@@ -77,69 +76,56 @@ public class ReorderService {
 		return service;
 	}
 
-
-
-
 	/**
 	 * Reorder new fragments.
 	 *
-	 * @param object
-	 *            the object
-	 * @param startingEndPredecessor
-	 *            the starting end predecessor
-	 * @param finishingEndPredecessor
-	 *            the finishing end predecessor
+	 * @param object                  the object
+	 * @param startingEndPredecessor  the starting end predecessor
+	 * @param finishingEndPredecessor the finishing end predecessor
 	 */
 	public void reorderNewFragments(EObject object, EObject startingEndPredecessor, EObject finishingEndPredecessor) {
 		if (object instanceof ExecutionSpecification) {
 			OccurrenceSpecification start = ((ExecutionSpecification) object).getStart();
 			OccurrenceSpecification finish = ((ExecutionSpecification) object).getFinish();
 			Interaction interaction = ((ExecutionSpecification) object).getEnclosingInteraction();
-			reorderNewFragments(interaction, (SingleEventEnd) startingEndPredecessor, (SingleEventEnd) finishingEndPredecessor, (InteractionFragment) start, (InteractionFragment) finish, object);
+			reorderNewFragments(interaction, (SingleEventEnd) startingEndPredecessor,
+					(SingleEventEnd) finishingEndPredecessor, (InteractionFragment) start, (InteractionFragment) finish,
+					object);
 		}
 
-
-	}
-
-
-	/**
-	 * Reorder new fragments.
-	 *
-	 * @param object
-	 *            the object
-	 * @param startingEndPredecessor
-	 *            the starting end predecessor
-	 * @param finishingEndPredecessor
-	 *            the finishing end predecessor
-	 * @param instance
-	 *            the instance
-	 */
-	public void reorderNewFragments(EObject object, EObject startingEndPredecessor, EObject finishingEndPredecessor, EObject instance) {
-		reorderNewFragments(object, (EventEnd) startingEndPredecessor, (EventEnd) finishingEndPredecessor, null, null, instance);
 	}
 
 	/**
 	 * Reorder new fragments.
 	 *
-	 * @param object
-	 *            the object
-	 * @param startingEndPredecessor
-	 *            the starting end predecessor
-	 * @param finishingEndPredecessor
-	 *            the finishing end predecessor
-	 * @param start
-	 *            the start
-	 * @param finish
-	 *            the finish
-	 * @param instance
-	 *            the instance
+	 * @param object                  the object
+	 * @param startingEndPredecessor  the starting end predecessor
+	 * @param finishingEndPredecessor the finishing end predecessor
+	 * @param instance                the instance
 	 */
-	public void reorderNewFragments(EObject object, EventEnd startingEndPredecessor, EventEnd finishingEndPredecessor, EObject start, EObject finish, EObject instance) {
+	public void reorderNewFragments(EObject object, EObject startingEndPredecessor, EObject finishingEndPredecessor,
+			EObject instance) {
+		reorderNewFragments(object, (EventEnd) startingEndPredecessor, (EventEnd) finishingEndPredecessor, null, null,
+				instance);
+	}
+
+	/**
+	 * Reorder new fragments.
+	 *
+	 * @param object                  the object
+	 * @param startingEndPredecessor  the starting end predecessor
+	 * @param finishingEndPredecessor the finishing end predecessor
+	 * @param start                   the start
+	 * @param finish                  the finish
+	 * @param instance                the instance
+	 */
+	public void reorderNewFragments(EObject object, EventEnd startingEndPredecessor, EventEnd finishingEndPredecessor,
+			EObject start, EObject finish, EObject instance) {
 		if (object instanceof Interaction) {
 
 			EObject startSemanticEnd = startingEndPredecessor != null ? startingEndPredecessor.getSemanticEnd() : null;
-			EObject finishSemanticEnd = finishingEndPredecessor != null ? finishingEndPredecessor.getSemanticEnd() : null;
-
+			EObject finishSemanticEnd = finishingEndPredecessor != null ? finishingEndPredecessor.getSemanticEnd()
+					: null;
 
 			List<EObject> fragmentsource = fragmentService.getEnclosingFragments(instance);
 			List<EObject> fragments = null;
@@ -160,10 +146,10 @@ public class ReorderService {
 				fragments.add(((ExecutionSpecification) instance).getFinish());
 			}
 
-
-
 			// add new Execution case
-			if ((startSemanticEnd == null && finishSemanticEnd == null) || ((startSemanticEnd != null && finishSemanticEnd != null) && (startSemanticEnd.equals(finishSemanticEnd)))) {
+			if ((startSemanticEnd == null && finishSemanticEnd == null)
+					|| ((startSemanticEnd != null && finishSemanticEnd != null)
+							&& (startSemanticEnd.equals(finishSemanticEnd)))) {
 				int indexOf = fragments.indexOf(startSemanticEnd);
 				if (indexOf < fragments.size()) {
 					int index = 0;
@@ -197,7 +183,8 @@ public class ReorderService {
 					}
 				}
 			}
-			fragmentService.updateFragmentList(parentInteraction != null ? parentInteraction : startSemanticEnd, fragments);
+			fragmentService.updateFragmentList(parentInteraction != null ? parentInteraction : startSemanticEnd,
+					fragments);
 		}
 
 	}
@@ -205,26 +192,26 @@ public class ReorderService {
 	/**
 	 * Reorder.
 	 *
-	 * @param associedElements
-	 *            the associed elements
-	 * @param startingEndPredecessorAfterSemanticEnd
-	 *            the starting end predecessor after semantic end
-	 * @param finishingEndPredecessorAfterSemanticEnd
-	 *            the finishing end predecessor after semantic end
+	 * @param associedElements                        the associed elements
+	 * @param startingEndPredecessorAfterSemanticEnd  the starting end predecessor
+	 *                                                after semantic end
+	 * @param finishingEndPredecessorAfterSemanticEnd the finishing end predecessor
+	 *                                                after semantic end
 	 */
-	public void reorder(List<Element> associedElements, EObject startingEndPredecessorAfterSemanticEnd, EObject finishingEndPredecessorAfterSemanticEnd) {
+	public void reorder(List<Element> associedElements, EObject startingEndPredecessorAfterSemanticEnd,
+			EObject finishingEndPredecessorAfterSemanticEnd) {
 		Element element = associedElements.get(0);
 		Interaction interaction = null;
 		List<EObject> fragments = null;
 		if (element instanceof Message) {
 			interaction = ((Message) element).getInteraction();
-			fragments = fragmentService.computeFragments(((Message) element).getSendEvent(), startingEndPredecessorAfterSemanticEnd, interaction);
+			fragments = fragmentService.computeFragments(((Message) element).getSendEvent(),
+					startingEndPredecessorAfterSemanticEnd, interaction);
 		}
 		if (element instanceof InteractionFragment) {
 			interaction = fragmentService.getParentInteraction((InteractionFragment) element);
 			fragments = fragmentService.computeFragments(element, startingEndPredecessorAfterSemanticEnd, interaction);
 		}
-
 
 		Map<Element, Integer> map = new HashMap<>();
 
@@ -258,22 +245,21 @@ public class ReorderService {
 
 		fragments.addAll(indexOfStart + 1, values);
 
-		fragmentService.updateFragmentList(startingEndPredecessorAfterSemanticEnd != null ? startingEndPredecessorAfterSemanticEnd : interaction, fragments);
+		fragmentService.updateFragmentList(
+				startingEndPredecessorAfterSemanticEnd != null ? startingEndPredecessorAfterSemanticEnd : interaction,
+				fragments);
 	}
 
 	/**
 	 * Reorder new combined fragment.
 	 *
-	 * @param object
-	 *            the object
-	 * @param startingEndPredecessor
-	 *            the starting end predecessor
-	 * @param finishingEndPredecessor
-	 *            the finishing end predecessor
-	 * @param instance
-	 *            the instance
+	 * @param object                  the object
+	 * @param startingEndPredecessor  the starting end predecessor
+	 * @param finishingEndPredecessor the finishing end predecessor
+	 * @param instance                the instance
 	 */
-	public void reorderNewCombinedFragment(EObject object, SingleEventEnd startingEndPredecessor, SingleEventEnd finishingEndPredecessor, EObject instance/* , EObject ocStart, EObject oc */) {
+	public void reorderNewCombinedFragment(EObject object, SingleEventEnd startingEndPredecessor,
+			SingleEventEnd finishingEndPredecessor, EObject instance/* , EObject ocStart, EObject oc */) {
 		if (object instanceof Interaction) {
 			Interaction interaction = (Interaction) object;
 			List<EObject> fragments = fragmentService.getFragmentsAndAnnotation(interaction);
@@ -295,19 +281,56 @@ public class ReorderService {
 		}
 
 	}
+	
+	/**
+	 * 
+	 * @param container   the InstanceRole
+	 * @param newLifeline the lifeline to create
+	 * @param predecessor the lifeline that is right after the one we are adding
+	 */
+	public void reorderNewLifeline(EObject self,EObject variable,Object op) {
+		if (self instanceof Interaction) {
+			final Interaction ownedInteraction = (Interaction) self;
+			final EList<Lifeline> lifelines = ownedInteraction.getLifelines();
+			if (op == null) {
+				lifelines.move(0, (Lifeline) variable);
+			} else {
+				int pos = lifelines.indexOf(op);
+				lifelines.move(pos + 1, (Lifeline) variable);
+			}
+		}
+	}
+	
+	/**
+	 * 
+	 * @param container   the InstanceRole
+	 * @param newLifeline the lifeline to create
+	 * @param predecessor the lifeline that is right after the one we are adding
+	 */
+	public void reorderNewLifeline(EObject self,Lifeline variable,Object op) {
+		if (op instanceof Lifeline) {
+			if (self instanceof Interaction) {
+				final Interaction ownedInteraction = (Interaction) self;
+				final EList<Lifeline> lifelines = ownedInteraction.getLifelines();
+				if (op == null) {
+					lifelines.add(0, (Lifeline) variable);
+				} else {
+					int pos = lifelines.indexOf(op);
+					lifelines.add(pos + 1, (Lifeline) variable);
+				}
+			}
+		}
+	}
 
+	
 	/**
 	 * Reorder lifeline horizontally.
 	 *
-	 * @param movedLifeline
-	 *            moved lifeline
-	 * @param predecessorBefore
-	 *            lifeline predecessor before
-	 * @param predecessorAfter
-	 *            lifeline predecessor after
+	 * @param movedLifeline     moved lifeline
+	 * @param predecessorBefore lifeline predecessor before
+	 * @param predecessorAfter  lifeline predecessor after
 	 */
-	public void reorderLifeline(Lifeline movedLifeline, Lifeline predecessorBefore,
-			Lifeline predecessorAfter) {
+	public void reorderLifeline(Lifeline movedLifeline, Lifeline predecessorBefore, Lifeline predecessorAfter) {
 		final Interaction ownedInteraction = movedLifeline.getInteraction();
 		final EList<Lifeline> lifelines = ownedInteraction.getLifelines();
 		final int movedLifelineIndex = lifelines.indexOf(movedLifeline);
@@ -332,19 +355,17 @@ public class ReorderService {
 	/**
 	 * Reorder fragment.
 	 *
-	 * @param fragment            Fragment
-	 * @param startingEndPredecessorAfter            Starting end predecessor after reorder
-	 * @param finishingEndPredecessorAfter            Finishing end predecessor after reorder
+	 * @param fragment                     Fragment
+	 * @param startingEndPredecessorAfter  Starting end predecessor after reorder
+	 * @param finishingEndPredecessorAfter Finishing end predecessor after reorder
 	 */
 	public void reorderFragment(Element fragment, EventEnd startingEndPredecessorAfter,
 			EventEnd finishingEndPredecessorAfter) {
 
 		final EObject startingEndPredecessorAfterSemanticEnd = startingEndPredecessorAfter == null ? null
-				: (EObject) startingEndPredecessorAfter
-						.getSemanticEnd();
+				: (EObject) startingEndPredecessorAfter.getSemanticEnd();
 		final EObject finishingEndPredecessorAfterSemanticEnd = finishingEndPredecessorAfter == null ? null
-				: (EObject) finishingEndPredecessorAfter
-						.getSemanticEnd();
+				: (EObject) finishingEndPredecessorAfter.getSemanticEnd();
 		if (fragment instanceof CombinedFragment) {
 			reorder((CombinedFragment) fragment, startingEndPredecessorAfterSemanticEnd,
 					finishingEndPredecessorAfterSemanticEnd);
@@ -360,20 +381,15 @@ public class ReorderService {
 		}
 	}
 
-
-
-
-
-
 	///////// Reorder private method
 
 	/**
 	 * Reconnect.
 	 *
-	 * @param context            the context
-	 * @param edgeView            the edge view
-	 * @param source the source
-	 * @param view            the view
+	 * @param context  the context
+	 * @param edgeView the edge view
+	 * @param source   the source
+	 * @param view     the view
 	 */
 	public void connectToEvent(EObject context, EObject edgeView, EObject source, EObject view) {
 
@@ -401,20 +417,16 @@ public class ReorderService {
 		}
 	}
 
-
-
-
-
-
 	/**
 	 * Reorder combined fragment.
 	 *
-	 * @param combinedFragment
-	 *            Moved combined fragment
-	 * @param startingEndPredecessorAfter
-	 *            Fragment preceding moved combined fragment start before the beginning of reorder operation
-	 * @param finishingEndPredecessorAfter
-	 *            Fragment preceding moved combined fragment finish before the beginning of reorder operation
+	 * @param combinedFragment             Moved combined fragment
+	 * @param startingEndPredecessorAfter  Fragment preceding moved combined
+	 *                                     fragment start before the beginning of
+	 *                                     reorder operation
+	 * @param finishingEndPredecessorAfter Fragment preceding moved combined
+	 *                                     fragment finish before the beginning of
+	 *                                     reorder operation
 	 */
 	private void reorder(CombinedFragment combinedFragment, EObject startingEndPredecessorAfter,
 			EObject finishingEndPredecessorAfter) {
@@ -444,11 +456,13 @@ public class ReorderService {
 			fragments.remove(endOc);
 			if (isStartOfExecution(startingEndPredecessorAfter, fragments)) {
 				fragments.add(fragmentService.getFragmentIndex(startingEndPredecessorAfter, fragments) + 2, startOc);
-				fragments.add(fragmentService.getFragmentIndex(startingEndPredecessorAfter, fragments) + 3, combinedFragment);
+				fragments.add(fragmentService.getFragmentIndex(startingEndPredecessorAfter, fragments) + 3,
+						combinedFragment);
 				fragments.add(fragmentService.getFragmentIndex(startingEndPredecessorAfter, fragments) + 4, endOc);
 			} else {
 				fragments.add(fragmentService.getFragmentIndex(startingEndPredecessorAfter, fragments) + 1, startOc);
-				fragments.add(fragmentService.getFragmentIndex(startingEndPredecessorAfter, fragments) + 2, combinedFragment);
+				fragments.add(fragmentService.getFragmentIndex(startingEndPredecessorAfter, fragments) + 2,
+						combinedFragment);
 				fragments.add(fragmentService.getFragmentIndex(startingEndPredecessorAfter, fragments) + 3, endOc);
 			}
 		}
@@ -458,12 +472,9 @@ public class ReorderService {
 	/**
 	 * Reorder.
 	 *
-	 * @param combinedFragment
-	 *            the combined fragment
-	 * @param startingEndPredecessorAfter
-	 *            the starting end predecessor after
-	 * @param finishingEndPredecessorAfter
-	 *            the finishing end predecessor after
+	 * @param combinedFragment             the combined fragment
+	 * @param startingEndPredecessorAfter  the starting end predecessor after
+	 * @param finishingEndPredecessorAfter the finishing end predecessor after
 	 */
 	private void reorder(StateInvariant combinedFragment, EObject startingEndPredecessorAfter,
 			EObject finishingEndPredecessorAfter) {
@@ -471,15 +482,17 @@ public class ReorderService {
 		final Interaction interaction = combinedFragment.getEnclosingInteraction();
 		final List<EObject> fragments = fragmentService.getFragmentsAndAnnotation(interaction);
 
-		final boolean combinedFragmentStartPredecessorChanged = stateInvariantStartPredecessorChanged(
-				combinedFragment, startingEndPredecessorAfter);
+		final boolean combinedFragmentStartPredecessorChanged = stateInvariantStartPredecessorChanged(combinedFragment,
+				startingEndPredecessorAfter);
 
 		if (combinedFragmentStartPredecessorChanged) {
 			fragments.remove(combinedFragment);
 			if (isStartOfExecution(startingEndPredecessorAfter, fragments)) {
-				fragments.add(fragmentService.getFragmentIndex(startingEndPredecessorAfter, fragments) + 2, combinedFragment);
+				fragments.add(fragmentService.getFragmentIndex(startingEndPredecessorAfter, fragments) + 2,
+						combinedFragment);
 			} else {
-				fragments.add(fragmentService.getFragmentIndex(startingEndPredecessorAfter, fragments) + 1, combinedFragment);
+				fragments.add(fragmentService.getFragmentIndex(startingEndPredecessorAfter, fragments) + 1,
+						combinedFragment);
 			}
 		}
 		fragmentService.updateFragmentList(interaction, fragments);
@@ -488,17 +501,17 @@ public class ReorderService {
 	/**
 	 * Reorder execution.
 	 *
-	 * @param execution
-	 *            Moved execution
-	 * @param startingEndPredecessorAfter
-	 *            Fragment preceding moved execution start before the beginning of reorder operation
-	 * @param finishingEndPredecessorAfter
-	 *            Fragment preceding moved execution finish before the beginning of reorder operation
+	 * @param execution                    Moved execution
+	 * @param startingEndPredecessorAfter  Fragment preceding moved execution start
+	 *                                     before the beginning of reorder operation
+	 * @param finishingEndPredecessorAfter Fragment preceding moved execution finish
+	 *                                     before the beginning of reorder operation
 	 */
 	private void reorder(ExecutionSpecification execution, EObject startingEndPredecessorAfter,
 			EObject finishingEndPredecessorAfter) {
 		Interaction parentInteraction = fragmentService.getParentInteraction(execution);
-		List<EObject> fragments = fragmentService.computeFragments(execution, startingEndPredecessorAfter, parentInteraction);
+		List<EObject> fragments = fragmentService.computeFragments(execution, startingEndPredecessorAfter,
+				parentInteraction);
 
 		final boolean executionFinishPredecessorChanged = executionFinishPredecessorChanged(execution,
 				finishingEndPredecessorAfter);
@@ -507,9 +520,6 @@ public class ReorderService {
 
 		OccurrenceSpecification start = execution.getStart();
 		OccurrenceSpecification finish = execution.getFinish();
-
-
-
 
 		if (executionStartPredecessorChanged) {
 			if (start instanceof MessageOccurrenceSpecification) {
@@ -543,32 +553,31 @@ public class ReorderService {
 			addFragments(finishingEndPredecessorAfter, fragments, finish);
 
 		}
-		fragmentService.updateFragmentList(startingEndPredecessorAfter != null ? startingEndPredecessorAfter : parentInteraction, fragments);
+		fragmentService.updateFragmentList(
+				startingEndPredecessorAfter != null ? startingEndPredecessorAfter : parentInteraction, fragments);
 	}
 
 	/**
 	 * Replace message occ by exec occ.
 	 *
-	 * @param parentInteraction
-	 *            the parent interaction
-	 * @param fragments
-	 *            the fragments
-	 * @param occ
-	 *            the occ
-	 * @param isStart
-	 *            the is start
+	 * @param parentInteraction the parent interaction
+	 * @param fragments         the fragments
+	 * @param occ               the occ
+	 * @param isStart           the is start
 	 */
-	private void replaceMessageOccByExecOcc(Interaction parentInteraction, List<EObject> fragments, OccurrenceSpecification occ, boolean isStart) {
+	private void replaceMessageOccByExecOcc(Interaction parentInteraction, List<EObject> fragments,
+			OccurrenceSpecification occ, boolean isStart) {
 		// 1. get the opposite messageOcc
-		// MessageOccurrenceSpecification oppStart = getMessageOccOpposite((MessageOccurrenceSpecification) occ);
+		// MessageOccurrenceSpecification oppStart =
+		// getMessageOccOpposite((MessageOccurrenceSpecification) occ);
 		// 1.1 check if opposite mesageOcc is linked at Execution
 		ExecutionSpecification assExec = getExecutionFromMessageOccurence((MessageOccurrenceSpecification) occ);
-
 
 		if (assExec != null) {
 			// 1.2 create the ExectionOcc
 			boolean isStartOcc = assExec.getStart().equals(occ);
-			ExecutionOccurrenceSpecification newExecOcc = ExecutionService.getInstance().createExecutionOccurrenceSpecification(assExec, isStartOcc);
+			ExecutionOccurrenceSpecification newExecOcc = ExecutionService.getInstance()
+					.createExecutionOccurrenceSpecification(assExec, isStartOcc);
 			ReorderSequenceRegistry.getInstance().put(occ, newExecOcc);
 			parentInteraction.getFragments().add(newExecOcc);
 			newExecOcc.setName(computeDefaultName(newExecOcc));
@@ -597,61 +606,59 @@ public class ReorderService {
 	/**
 	 * Adds the fragments.
 	 *
-	 * @param endPredecessorAfter
-	 *            the end predecessor after
-	 * @param fragments
-	 *            the fragments
-	 * @param occ
-	 *            the occ
+	 * @param endPredecessorAfter the end predecessor after
+	 * @param fragments           the fragments
+	 * @param occ                 the occ
 	 */
 	private void addFragments(EObject endPredecessorAfter, List<EObject> fragments, OccurrenceSpecification occ) {
 		if (isStartOfExecution(endPredecessorAfter, fragments)) {
-			fragments.add(fragmentService.getFragmentIndex(endPredecessorAfter, fragments) + 2,
-					occ);
+			fragments.add(fragmentService.getFragmentIndex(endPredecessorAfter, fragments) + 2, occ);
 		} else {
-			fragments.add(endPredecessorAfter == null ? 0 : fragmentService.getFragmentIndex(endPredecessorAfter, fragments) + 1,
-					occ);
+			fragments.add(endPredecessorAfter == null ? 0
+					: fragmentService.getFragmentIndex(endPredecessorAfter, fragments) + 1, occ);
 		}
 	}
 
 	/**
 	 * Reorder message.
 	 *
-	 * @param message
-	 *            Moved message
-	 * @param startingEndPredecessorAfter
-	 *            Fragment preceding moved execution start before the beginning of reorder operation
-	 * @param finishingEndPredecessorAfter
-	 *            Fragment preceding moved execution finish before the beginning of reorder operation
+	 * @param message                      Moved message
+	 * @param startingEndPredecessorAfter  Fragment preceding moved execution start
+	 *                                     before the beginning of reorder operation
+	 * @param finishingEndPredecessorAfter Fragment preceding moved execution finish
+	 *                                     before the beginning of reorder operation
 	 */
-	private void reorder(Message message, EObject startingEndPredecessorAfter,
-			EObject finishingEndPredecessorAfter) {
+	private void reorder(Message message, EObject startingEndPredecessorAfter, EObject finishingEndPredecessorAfter) {
 		if (isMoveAuthorized(message)) {
 			final Interaction interaction = message.getInteraction();
 
 			MessageEnd sendEvent = message.getSendEvent();
 			MessageEnd receiveEvent = message.getReceiveEvent();
 
-			final List<EObject> fragments = fragmentService.computeFragments(sendEvent, startingEndPredecessorAfter, interaction);
+			final List<EObject> fragments = fragmentService.computeFragments(sendEvent, startingEndPredecessorAfter,
+					interaction);
 
 			final boolean messageStartPredecessorChanged = messageStartPredecessorChanged(message,
 					startingEndPredecessorAfter);
 
 			if (ReorderSequenceRegistry.getInstance().containsKey(sendEvent)) {
-				ExecutionOccurrenceSpecification execOcc1 = (ExecutionOccurrenceSpecification) ReorderSequenceRegistry.getInstance().get(sendEvent);
+				ExecutionOccurrenceSpecification execOcc1 = (ExecutionOccurrenceSpecification) ReorderSequenceRegistry
+						.getInstance().get(sendEvent);
 				fragments.remove(sendEvent);
 				replaceExecByMessage(sendEvent, fragments, execOcc1);
 
-
 				if (ReorderSequenceRegistry.getInstance().containsKey(receiveEvent)) {
-					ExecutionOccurrenceSpecification execOcc2 = (ExecutionOccurrenceSpecification) ReorderSequenceRegistry.getInstance().get(receiveEvent);
+					ExecutionOccurrenceSpecification execOcc2 = (ExecutionOccurrenceSpecification) ReorderSequenceRegistry
+							.getInstance().get(receiveEvent);
 					replaceExecByMessage(receiveEvent, fragments, execOcc2);
 				} else {
 
-					ExecutionSpecification executionFromMessageOccurence = getExecutionFromMessageOccurence((MessageOccurrenceSpecification) receiveEvent);
+					ExecutionSpecification executionFromMessageOccurence = getExecutionFromMessageOccurence(
+							(MessageOccurrenceSpecification) receiveEvent);
 					if (executionFromMessageOccurence != null) {
 						boolean isStart = executionFromMessageOccurence.getStart().equals(receiveEvent);
-						replaceMessageOccByExecOcc(interaction, fragments, (MessageOccurrenceSpecification) receiveEvent, isStart);
+						replaceMessageOccByExecOcc(interaction, fragments,
+								(MessageOccurrenceSpecification) receiveEvent, isStart);
 						int indexOfSendEvent = fragments.indexOf(sendEvent);
 						fragments.remove(receiveEvent);
 						if (indexOfSendEvent >= fragments.size() - 1) {
@@ -661,20 +668,20 @@ public class ReorderService {
 						}
 					}
 
-
-
 				}
 
-
 			} else if (ReorderSequenceRegistry.getInstance().containsKey(receiveEvent)) {
-				ExecutionOccurrenceSpecification execOcc1 = (ExecutionOccurrenceSpecification) ReorderSequenceRegistry.getInstance().get(receiveEvent);
+				ExecutionOccurrenceSpecification execOcc1 = (ExecutionOccurrenceSpecification) ReorderSequenceRegistry
+						.getInstance().get(receiveEvent);
 				fragments.remove(receiveEvent);
 				replaceExecByMessage(receiveEvent, fragments, execOcc1);
 
-				ExecutionSpecification executionFromMessageOccurence = getExecutionFromMessageOccurence((MessageOccurrenceSpecification) sendEvent);
+				ExecutionSpecification executionFromMessageOccurence = getExecutionFromMessageOccurence(
+						(MessageOccurrenceSpecification) sendEvent);
 				if (executionFromMessageOccurence != null) {
 					boolean isStart = executionFromMessageOccurence.getStart().equals(sendEvent);
-					replaceMessageOccByExecOcc(interaction, fragments, (MessageOccurrenceSpecification) sendEvent, isStart);
+					replaceMessageOccByExecOcc(interaction, fragments, (MessageOccurrenceSpecification) sendEvent,
+							isStart);
 					int indexOfSendEvent = fragments.indexOf(receiveEvent);
 					fragments.remove(sendEvent);
 					if (indexOfSendEvent >= fragments.size() - 1) {
@@ -684,10 +691,7 @@ public class ReorderService {
 					}
 				}
 
-
-
 			}
-
 
 			else {
 				if (messageStartPredecessorChanged) {
@@ -705,17 +709,12 @@ public class ReorderService {
 					fragments.remove(receiveEvent);
 
 					if (startOfExecution) {
-						fragments.add(fragmentIndex + 2,
-								sendEvent);
+						fragments.add(fragmentIndex + 2, sendEvent);
 					} else {
-						fragments.add(fragmentIndex + 1,
-								sendEvent);
+						fragments.add(fragmentIndex + 1, sendEvent);
 					}
 
-					fragments.add(
-							fragmentService.getFragmentIndex(sendEvent, fragments)
-									+ 1,
-							receiveEvent);
+					fragments.add(fragmentService.getFragmentIndex(sendEvent, fragments) + 1, receiveEvent);
 				}
 			}
 
@@ -726,26 +725,20 @@ public class ReorderService {
 					fragments.remove(replyMessage.getSendEvent());
 					fragments.remove(replyMessage.getReceiveEvent());
 
-					if (isStartOfExecution(receiveEvent,
-							fragments)) {
-						fragments.add(
-								fragmentService.getFragmentIndex(receiveEvent,
-										fragments) + 2,
+					if (isStartOfExecution(receiveEvent, fragments)) {
+						fragments.add(fragmentService.getFragmentIndex(receiveEvent, fragments) + 2,
 								replyMessage.getSendEvent());
 					} else {
-						fragments.add(
-								fragmentService.getFragmentIndex(receiveEvent,
-										fragments) + 1,
+						fragments.add(fragmentService.getFragmentIndex(receiveEvent, fragments) + 1,
 								replyMessage.getSendEvent());
 					}
 
-					fragments.add(
-							fragmentService.getFragmentIndex(replyMessage.getSendEvent(),
-									fragments) + 1,
+					fragments.add(fragmentService.getFragmentIndex(replyMessage.getSendEvent(), fragments) + 1,
 							replyMessage.getReceiveEvent());
 				}
 			}
-			fragmentService.updateFragmentList(startingEndPredecessorAfter != null ? startingEndPredecessorAfter : interaction, fragments);
+			fragmentService.updateFragmentList(
+					startingEndPredecessorAfter != null ? startingEndPredecessorAfter : interaction, fragments);
 		}
 
 	}
@@ -753,14 +746,12 @@ public class ReorderService {
 	/**
 	 * Replace exec by message.
 	 *
-	 * @param sendEvent
-	 *            the send event
-	 * @param fragments
-	 *            the fragments
-	 * @param execOcc1
-	 *            the exec occ 1
+	 * @param sendEvent the send event
+	 * @param fragments the fragments
+	 * @param execOcc1  the exec occ 1
 	 */
-	public void replaceExecByMessage(MessageEnd sendEvent, final List<EObject> fragments, ExecutionOccurrenceSpecification execOcc1) {
+	public void replaceExecByMessage(MessageEnd sendEvent, final List<EObject> fragments,
+			ExecutionOccurrenceSpecification execOcc1) {
 		int indexOfExec1 = fragments.indexOf(execOcc1);
 		ExecutionSpecification execution1 = execOcc1.getExecution();
 		if (execution1.getStart().equals(execOcc1)) {
@@ -775,14 +766,13 @@ public class ReorderService {
 	/**
 	 * Replace exec by message.
 	 *
-	 * @param sendEvent
-	 *            the send event
-	 * @param fragments
-	 *            the fragments
-	 * @param execOcc1
-	 *            the exec occ 1
+	 * @param sendEvent the send event
+	 * @param fragments the fragments
+	 * @param execOcc1  the exec occ 1
 	 */
-	public void replaceExecByMessage(MessageEnd sendEvent, final EList<InteractionFragment> fragments, ExecutionOccurrenceSpecification execOcc1) {
+	
+	public void replaceExecByMessage(MessageEnd sendEvent, final EList<InteractionFragment> fragments,
+			ExecutionOccurrenceSpecification execOcc1) {
 		int indexOfExec1 = fragments.indexOf(execOcc1);
 		ExecutionSpecification execution1 = execOcc1.getExecution();
 		if (execution1.getStart().equals(execOcc1)) {
@@ -797,8 +787,7 @@ public class ReorderService {
 	/**
 	 * Gets the parent interaction.
 	 *
-	 * @param fragment
-	 *            the fragment
+	 * @param fragment the fragment
 	 * @return the parent interaction
 	 */
 	private Interaction getParentInteraction(EObject fragment) {
@@ -808,24 +797,20 @@ public class ReorderService {
 		return null;
 	}
 
-
-
-
 	/**
 	 * Gets the execution from message occurence.
 	 *
-	 * @param messageOcc
-	 *            the message occ
+	 * @param messageOcc the message occ
 	 * @return the execution from message occurence
 	 */
 	public ExecutionSpecification getExecutionFromMessageOccurence(MessageOccurrenceSpecification messageOcc) {
 
 		List<EObject> enclosingFragments = fragmentService.getEnclosingFragments(messageOcc);
-		for (EObject eObject : enclosingFragments) {
-			if (eObject instanceof ExecutionSpecification) {
-				if (((ExecutionSpecification) eObject).getStart().equals(messageOcc)
-						|| ((ExecutionSpecification) eObject).getFinish().equals(messageOcc)) {
-					return (ExecutionSpecification) eObject;
+		for (EObject eEObject : enclosingFragments) {
+			if (eEObject instanceof ExecutionSpecification) {
+				if (((ExecutionSpecification) eEObject).getStart().equals(messageOcc)
+						|| ((ExecutionSpecification) eEObject).getFinish().equals(messageOcc)) {
+					return (ExecutionSpecification) eEObject;
 				}
 			}
 		}
@@ -833,19 +818,14 @@ public class ReorderService {
 		return null;
 	}
 
-
-
 	/**
 	 * Checks if is start of execution.
 	 *
-	 * @param startingEndPredecessorAfter
-	 *            the starting end predecessor after
-	 * @param fragments
-	 *            the fragments
+	 * @param startingEndPredecessorAfter the starting end predecessor after
+	 * @param fragments                   the fragments
 	 * @return true, if is start of execution
 	 */
-	public boolean isStartOfExecution(EObject startingEndPredecessorAfter,
-			List<EObject> fragments) {
+	public boolean isStartOfExecution(EObject startingEndPredecessorAfter, List<EObject> fragments) {
 
 		if (startingEndPredecessorAfter instanceof ExecutionOccurrenceSpecification) {
 			final ExecutionOccurrenceSpecification executionStart = (ExecutionOccurrenceSpecification) startingEndPredecessorAfter;
@@ -856,8 +836,7 @@ public class ReorderService {
 
 		if (startingEndPredecessorAfter instanceof MessageOccurrenceSpecification) {
 			if (fragments.indexOf(startingEndPredecessorAfter) + 1 < fragments.size()) {
-				final EObject candidate = fragments
-						.get(fragments.indexOf(startingEndPredecessorAfter) + 1);
+				final EObject candidate = fragments.get(fragments.indexOf(startingEndPredecessorAfter) + 1);
 				if (candidate instanceof ExecutionSpecification) {
 					final ExecutionSpecification behaviorExecution = (ExecutionSpecification) candidate;
 					if (behaviorExecution.getStart().equals(startingEndPredecessorAfter)) {
@@ -873,8 +852,7 @@ public class ReorderService {
 	/**
 	 * Checks if is move authorized.
 	 *
-	 * @param message
-	 *            the message
+	 * @param message the message
 	 * @return true, if is move authorized
 	 */
 	private boolean isMoveAuthorized(Message message) {
@@ -887,10 +865,8 @@ public class ReorderService {
 	/**
 	 * Combined fragment start predecessor changed.
 	 *
-	 * @param combinedFragment
-	 *            the combined fragment
-	 * @param startingEndPredecessorAfter
-	 *            the starting end predecessor after
+	 * @param combinedFragment            the combined fragment
+	 * @param startingEndPredecessorAfter the starting end predecessor after
 	 * @return true, if successful
 	 */
 	private boolean combinedFragmentStartPredecessorChanged(CombinedFragment combinedFragment,
@@ -905,10 +881,8 @@ public class ReorderService {
 	/**
 	 * State invariant start predecessor changed.
 	 *
-	 * @param stateInvariant
-	 *            the state invariant
-	 * @param startingEndPredecessorAfter
-	 *            the starting end predecessor after
+	 * @param stateInvariant              the state invariant
+	 * @param startingEndPredecessorAfter the starting end predecessor after
 	 * @return true, if successful
 	 */
 	private boolean stateInvariantStartPredecessorChanged(StateInvariant stateInvariant,
@@ -927,10 +901,8 @@ public class ReorderService {
 	/**
 	 * Execution start predecessor changed.
 	 *
-	 * @param execution
-	 *            the execution
-	 * @param startingEndPredecessorAfter
-	 *            the starting end predecessor after
+	 * @param execution                   the execution
+	 * @param startingEndPredecessorAfter the starting end predecessor after
 	 * @return true, if successful
 	 */
 	private boolean executionStartPredecessorChanged(ExecutionSpecification execution,
@@ -941,10 +913,8 @@ public class ReorderService {
 	/**
 	 * Execution finish predecessor changed.
 	 *
-	 * @param execution
-	 *            the execution
-	 * @param finishingEndPredecessorAfter
-	 *            the finishing end predecessor after
+	 * @param execution                    the execution
+	 * @param finishingEndPredecessorAfter the finishing end predecessor after
 	 * @return true, if successful
 	 */
 	private boolean executionFinishPredecessorChanged(ExecutionSpecification execution,
@@ -954,35 +924,26 @@ public class ReorderService {
 		if (index == 0) {
 			return false;
 		}
-		final EObject initialPredecessor = fragments
-				.get(index - 1);
+		final EObject initialPredecessor = fragments.get(index - 1);
 
 		return !initialPredecessor.equals(finishingEndPredecessorAfter);
 	}
 
-
-
-
-
 	/**
 	 * Message start predecessor changed.
 	 *
-	 * @param message
-	 *            the message
-	 * @param startingEndPredecessorAfter
-	 *            the starting end predecessor after
+	 * @param message                     the message
+	 * @param startingEndPredecessorAfter the starting end predecessor after
 	 * @return true, if successful
 	 */
-	private boolean messageStartPredecessorChanged(Message message,
-			EObject startingEndPredecessorAfter) {
+	private boolean messageStartPredecessorChanged(Message message, EObject startingEndPredecessorAfter) {
 		final InteractionFragment interaction = fragmentService.getEnclosingFragment(message.getSendEvent());
 		final List<EObject> fragments = fragmentService.getFragmentsAndAnnotation(interaction);
 		int index = fragments.indexOf(message.getSendEvent()) - 1;
 		if (index == -1) {
 			return true;
 		}
-		final EObject initialPredecessor = fragments
-				.get(index);
+		final EObject initialPredecessor = fragments.get(index);
 
 		return !initialPredecessor.equals(startingEndPredecessorAfter);
 
@@ -991,10 +952,9 @@ public class ReorderService {
 	/**
 	 * Compute default name.
 	 *
-	 * @param element
-	 *            New element
-	 * @return Name for the new element, he name will looks like
-	 *         'ElementType'+total of existing elements of the same type.
+	 * @param element New element
+	 * @return Name for the new element, he name will looks like 'ElementType'+total
+	 *         of existing elements of the same type.
 	 */
 	private String computeDefaultName(final EObject element) {
 		return LabelServices.INSTANCE.computeDefaultName(element);

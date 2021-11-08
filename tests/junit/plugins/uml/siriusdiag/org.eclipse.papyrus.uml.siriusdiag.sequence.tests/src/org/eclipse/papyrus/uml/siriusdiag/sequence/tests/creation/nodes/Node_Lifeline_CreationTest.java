@@ -58,7 +58,7 @@ public class Node_Lifeline_CreationTest {
 
 		// Create a lifeline  
 		DDiagram diagramRespresentation = (DDiagram) diagram.getElement();
-		fixture.applyNodeCreationToolFromPalette("CR_Lifeline", diagramRespresentation, diagramRespresentation, new Point(100, 100), null);
+		fixture.applyNodeCreationToolFromPalette("Lifeline", diagramRespresentation, diagramRespresentation, new Point(100, 100), null);
 		fixture.flushDisplayEvents();
 		
 		// Lifeline is created and it is a GMF view notation.node

@@ -73,7 +73,7 @@ public class Node_Comment_CreationTest {
 		Lifeline lifeLine = ISequenceElementAccessor.getLifeline(lifeLines.get(0)).get();
 		EdgeTarget lifelineDRep = (EdgeTarget)lifeLine.getNotationNode().getElement();
 		IGraphicalEditPart lifelineEditPart = (IGraphicalEditPart) fixture.findEditPart(lifelineDRep);
-    	Point commentPosition = lifelineEditPart.getFigure().getBounds().getTop().translate(5, 15);
+    	Point commentPosition = lifelineEditPart.getFigure().getBounds().getTop().translate(75, 115);
 		
 		// Create the Comment 
 		fixture.applyNodeCreationToolFromPalette("Comment", diagramRespresentation, diagramRespresentation, commentPosition, new Dimension(80,50));

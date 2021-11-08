@@ -69,13 +69,13 @@ public class DummyTest {
 		// Create a lifeline from odesign tool -/org.eclipse.papyrus.uml.sirius.sequence.diagram/description/papyrus_sequence.odesign -  (id) 
 		DDiagram diagramRespresentation = (DDiagram) diagram.getElement();
 		// we need the sirius diagram representation
-		fixture.applyNodeCreationToolFromPalette("CR_Lifeline", diagramRespresentation, diagramRespresentation, new Point(100, 100), null);
+		fixture.applyNodeCreationToolFromPalette("Lifeline", diagramRespresentation, diagramRespresentation, new Point(100, 100), null);
 		fixture.flushDisplayEvents();// it is required ?
 		// lifeline is created and it is a GMF view notation.node
 		Assert.assertEquals("The diagram must contain one element after creating a top node", 1, diagram.getChildren().size());
 
 		// create a second lifeline to be able to create message 
-		fixture.applyNodeCreationToolFromPalette("CR_Lifeline", diagramRespresentation, diagramRespresentation, new Point(400, 100), null);
+		fixture.applyNodeCreationToolFromPalette("Lifeline", diagramRespresentation, diagramRespresentation, new Point(400, 100), null);
 		fixture.flushDisplayEvents();// it is required ?
 		// A second lifeline is created and it is a GMF view notation.node
 		// - But we can navigate via Sequence digram API if necessary
@@ -127,7 +127,7 @@ public class DummyTest {
 		Point combinedFStart = lifeLine1.getProperLogicalBounds().getTopLeft();
 		Point combinedEnd = endOfExecution.getBottomRight();
 		Dimension cfSize = new Dimension(combinedEnd.x - combinedFStart.x , combinedEnd.y - combinedFStart.y);
-		fixture.applyNodeCreationToolFromPalette("CR_CombinedFragment", diagramRespresentation, diagramRespresentation, combinedFStart, cfSize);
+		fixture.applyNodeCreationToolFromPalette("CombinedFragment", diagramRespresentation, diagramRespresentation, combinedFStart, cfSize);
 		fixture.flushDisplayEvents();// it is required ?
 
 		fixture.save();
