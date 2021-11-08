@@ -1069,7 +1069,6 @@ public class SequenceDiagramServices extends AbstractDiagramServices {
 	 * @return true, if successful
 	 */
 	public boolean log(EObject container) {
-		System.out.println();
 		return true;
 	}
 

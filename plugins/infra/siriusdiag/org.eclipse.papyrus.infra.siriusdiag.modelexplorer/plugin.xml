@@ -142,7 +142,7 @@
             point="org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.DirectEditor">
          <DirectEditor
                contributor="Eclipse Modeling Project"
-               language="DSemanticDiagram Direct Editor"
+               language="Sirius Diagram Direct Editor"
                objectToEdit="org.eclipse.sirius.diagram.DSemanticDiagram"
                superType="true">
             <popupeditor

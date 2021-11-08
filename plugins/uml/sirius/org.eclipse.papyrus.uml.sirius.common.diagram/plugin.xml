@@ -13,6 +13,7 @@
            class="org.eclipse.papyrus.uml.sirius.common.diagram.PapyrusSiriusTabbarContributor">
      </tabbarContributor>
   </extension>
+  <!--
     <extension
         point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
      <editpolicyProvider
@@ -22,7 +23,7 @@
         </Priority>
      </editpolicyProvider>
   </extension>
-  
+  -->
   	<extension
         point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
      <editpartProvider

@@ -6,11 +6,11 @@
       <metamodel href="http://www.eclipse.org/sirius/diagram/1.1.0#/"/>
       <metamodel href="http://www.eclipse.org/sirius/1.1.0#/"/>
       <metamodel href="http://www.eclipse.org/emf/2002/Ecore#/"/>
-      <filters xsi:type="filter:CompositeFilterDescription" name="Filter">
+      <filters xsi:type="filter:CompositeFilterDescription" name="Hide Observation Point">
         <filters xsi:type="filter:MappingFilter" mappings="//@ownedViewpoints[name='SequenceDiagram']/@ownedRepresentations[name='SequenceDiagram']/@defaultLayer/@nodeMappings[name='Observation']"/>
       </filters>
       <concerns>
-        <ownedConcernDescriptions name="DefaultFilter" filters="//@ownedViewpoints[name='SequenceDiagram']/@ownedRepresentations[name='SequenceDiagram']/@filters[name='Filter']"/>
+        <ownedConcernDescriptions name="DefaultFilter" filters="//@ownedViewpoints[name='SequenceDiagram']/@ownedRepresentations[name='SequenceDiagram']/@filters[name='Hide%20Observation%20Point']"/>
       </concerns>
       <defaultLayer name="Sequence">
         <nodeMappings xsi:type="description_1:InstanceRoleMapping" name="SD_LifelineRole" deletionDescription="//@ownedViewpoints[name='SequenceDiagram']/@ownedRepresentations[name='SequenceDiagram']/@defaultLayer/@toolSections.0/@subSections[name='edit']/@ownedTools[name='DEL_Lifeline']" semanticCandidatesExpression="feature:lifeline" synchronizationLock="true" documentation="@generated" domainClass="uml.Lifeline">
@@ -82,7 +82,7 @@
           </style>
         </nodeMappings>
         <nodeMappings xsi:type="description_1:ObservationPointMapping" name="Observation" semanticCandidatesExpression="service:makeUnion()" synchronizationLock="true" domainClass="InteractionFragment">
-          <style xsi:type="style:WorkspaceImageDescription" labelSize="12" showIcon="false" labelExpression="" sizeComputationExpression="1" workspacePath="/org.eclipse.papyrus.uml.sirius.sequence.diagram/icons/observation.svg">
+          <style xsi:type="style:WorkspaceImageDescription" labelSize="12" showIcon="false" labelExpression="" sizeComputationExpression="1" workspacePath="/org.eclipse.papyrus.uml.sirius.sequence.diagram/icons/observation_opaque.svg">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           </style>

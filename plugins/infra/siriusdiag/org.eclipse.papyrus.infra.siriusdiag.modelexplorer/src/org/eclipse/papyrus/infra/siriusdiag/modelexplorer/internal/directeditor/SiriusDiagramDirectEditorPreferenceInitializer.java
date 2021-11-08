@@ -32,7 +32,7 @@ public class SiriusDiagramDirectEditorPreferenceInitializer extends AbstractPref
 	/**
 	 * The Value for the objects 'Papyrus Sirius Diagram'.
 	 */
-	private static final String EDITOR_NAME = "Papuris Sirius Diagram (DSemanticDiagram) Direct Editor"; //$NON-NLS-1$
+	private static final String EDITOR_NAME = "Papyrus Sirius Diagram (DSemanticDiagram) Direct Editor"; //$NON-NLS-1$
 
 	/**
 	 * Constructor.
