@@ -19,9 +19,9 @@
       %license
    </license>
 
-   <includes
-         id="org.eclipse.papyrus.sdk.feature"
-         version="0.0.0"/>
+   <requires>
+      <import feature="org.eclipse.papyrus.sdk.feature" version="6.0.0" match="compatible"/>
+   </requires>
 
    <plugin
          id="org.eclipse.papyrus.infra.textedit"
