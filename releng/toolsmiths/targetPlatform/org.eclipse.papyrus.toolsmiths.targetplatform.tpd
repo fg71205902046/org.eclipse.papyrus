@@ -23,7 +23,7 @@ location cbiAggregator "https://download.eclipse.org/cbi/updates/aggregator/ide/
 
 //updateFrom("Oomph",0) 
 
-location oomph "https://download.eclipse.org/oomph/drops/milestone/S20211007-012153-1.23.0-M1a" {
+location oomph "https://download.eclipse.org/oomph/drops/milestone/S20211116-084220-1.23.0-M3" {
 	org.eclipse.oomph.version.feature.group
 	org.eclipse.oomph.setup.workingsets.feature.group
 	org.eclipse.oomph.projectconfig.feature.group
@@ -44,7 +44,7 @@ location oomph "https://download.eclipse.org/oomph/drops/milestone/S20211007-012
 
 //updateFrom("EGit",0) 
 
-location egit "https://download.eclipse.org/egit/staging/v6.0.0.202110060947-m1" // oomph
+location egit "https://download.eclipse.org/egit/staging/v6.0.0.202110270955-m2" // oomph
 
 //updateFrom("m2e",0)
 
