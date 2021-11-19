@@ -27,6 +27,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		AllEdgesCreationTests.class,
 		AllTopNodesDropTests.class,
 		AllSubNodesDropTests.class,
+		AllDeleteTests.class,
 })
 public class AllClassDiagramTests {
 }

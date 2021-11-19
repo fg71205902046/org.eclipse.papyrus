@@ -46,7 +46,7 @@ public class Edge_Abstraction_DeleteViewTest extends AbstractPapyrusTest {
 
 	private static final String VIEW_TO_DELETE_ELEMENT_NAME = "EdgeToDelete";
 
-	private static final String CLASS_DIAGRAM_NAME = "Edge_Abstraction_Delete_ClassDiagram";
+	private static final String CLASS_DIAGRAM_NAME = "Edge_GeneralizationSet_ClassDiagram";
 
 	@Rule
 	public final SiriusDiagramEditorFixture fixture = new SiriusDiagramEditorFixture(/* Collections.singletonList("aird") */);

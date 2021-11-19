@@ -40,7 +40,7 @@ public class Edge_Abstraction_DeleteSemanticTest extends AbstractPapyrusTest {
 
 	private static final String ELEMENT_TO_DESTROY_NAME = "EdgeToDelete";
 
-	private static final String CLASS_DIAGRAM_NAME = "Edge_Abstraction_Delete_ClassDiagram";
+	private static final String CLASS_DIAGRAM_NAME = "Edge_GeneralizationSet_ClassDiagram";
 
 	@Rule
 	public final SiriusDiagramEditorFixture fixture = new SiriusDiagramEditorFixture(/* Collections.singletonList("aird") */);

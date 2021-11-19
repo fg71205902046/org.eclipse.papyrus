@@ -40,7 +40,7 @@ public class TopNode_DurationObservation_DeleteSemanticTest extends AbstractPapy
 
 	private static final String ELEMENT_TO_DESTROY_NAME = "DurationObservationToDelete";
 
-	private static final String CLASS_DIAGRAM_NAME = "TopNode_DurationObservation_Delete_ClassDiagram";
+	private static final String CLASS_DIAGRAM_NAME = "TopNode_DurationObservation_ClassDiagram";
 
 	@Rule
 	public final SiriusDiagramEditorFixture fixture = new SiriusDiagramEditorFixture(/* Collections.singletonList("aird") */);

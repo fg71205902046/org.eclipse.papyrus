@@ -38,7 +38,7 @@ import org.junit.runner.RunWith;
 @RunWith(ClassificationRunner.class)
 public class TopNode_Comment_DeleteSemanticTest extends AbstractPapyrusTest {
 
-	private static final String CLASS_DIAGRAM_NAME = "TopNode_Comment_Delete_ClassDiagram";
+	private static final String CLASS_DIAGRAM_NAME = "TopNode_Comment_DeleteSemanticTest";
 
 	@Rule
 	public final SiriusDiagramEditorFixture fixture = new SiriusDiagramEditorFixture(/* Collections.singletonList("aird") */);
