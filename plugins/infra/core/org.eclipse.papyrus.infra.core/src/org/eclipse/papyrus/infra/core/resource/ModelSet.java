@@ -153,6 +153,10 @@ public class ModelSet extends ResourceSetImpl {
 		this.eAdapters.add(new ResourceAddRemoveTracker());
 	}
 
+	public boolean isShardingSupported() {
+		return true;
+	}
+
 	/**
 	 * Register the specified model under its associated key. The key is defined
 	 * in the model itself. It is usually the model type from
@@ -858,7 +862,7 @@ public class ModelSet extends ResourceSetImpl {
 
 	/**
 	 * This allows to delete a resource from the uri.
-	 * 
+	 *
 	 * @param uri
 	 *            The uri of the resource to delete.
 	 * @return <code>true</code> if the resource is deleted, <code>false</code> otherwise.
@@ -1310,10 +1314,10 @@ public class ModelSet extends ResourceSetImpl {
 
 	/**
 	 * Obtains the model that should persist an {@code object}.
-	 * 
+	 *
 	 * @param object
 	 *            an object to be persisted as a new root of a managed EMF {@code Resource}
-	 * 
+	 *
 	 * @return the model that is best suited to persist the {@code object}, or {@code null} if none
 	 * @since 2.0
 	 */

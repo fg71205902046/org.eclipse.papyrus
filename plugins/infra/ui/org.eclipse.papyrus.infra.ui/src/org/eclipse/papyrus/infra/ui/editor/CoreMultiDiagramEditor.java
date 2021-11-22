@@ -639,12 +639,14 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 			resourceSet = servicesRegistry.getService(ModelSet.class);
 
-			// Install shard resource handling
-			new ShardResourceLocator(resourceSet);
+			if (resourceSet.isShardingSupported()) {
+				// Install shard resource handling
+				new ShardResourceLocator(resourceSet);
 
-			// Resolve a possible shard URI
-			uri = EditorUtils.resolveShardRoot(
-					ICrossReferenceIndex.getInstance(resourceSet), uri);
+				// Resolve a possible shard URI
+				uri = EditorUtils.resolveShardRoot(
+						ICrossReferenceIndex.getInstance(resourceSet), uri);
+			}
 
 			// Load it up
 			resourceSet.loadModels(uri);
