@@ -23,7 +23,7 @@ location nattable "http://download.eclipse.org/nattable/releases/1.5.0/repositor
 
 //manualUpdate
 
-location orbit "https://download.eclipse.org/tools/orbit/downloads/drops/S20211108222137/repository/" {
+location orbit "https://download.eclipse.org/tools/orbit/downloads/drops/R20211122181901/repository/" {
 	com.google.guava [21.0.0,31.0.0) // emf.compare still needs guava 21.0.0
 	com.google.guava.source [21.0.0,31.0.0)
  	com.google.gson [2.7.0,2.8.0)
@@ -48,7 +48,7 @@ location xwt "https://download.eclipse.org/xwt/milestones-1.7.0/1.7.0-S/" {
 
 //updateFrom("QVT Operational for 2021-12",0)
 
-location qvto "https://download.eclipse.org/mmt/qvto/updates/milestones/3.10.5/S202110261849" {
+location qvto "https://download.eclipse.org/mmt/qvto/updates/milestones/3.10.5/S202111230543" {
 	org.eclipse.m2m.qvt.oml.sdk.feature.group
 }
 
@@ -67,7 +67,7 @@ location uml "https://download.eclipse.org/modeling/mdt/uml2/updates/5.5" {
 
 //updateFrom("Eclipse",0)
 
-location platform "https://download.eclipse.org/eclipse/updates/4.22-I-builds/I20211111-0910/" {
+location platform "https://download.eclipse.org/eclipse/updates/4.22-I-builds/I20211117-1830/" {
 	org.eclipse.sdk.feature.group
 }
 
@@ -96,7 +96,7 @@ location mwe "https://download.eclipse.org/modeling/emft/mwe/updates/releases/2.
 
 //updateFrom("Web Tools Platform 3.24 for SimRel 2021-12",0) 
 
-location webtools "https://download.eclipse.org/webtools/downloads/drops/R3.24.0/S-3.24.0.M3-20211111203433/repository/" {
+location webtools "https://download.eclipse.org/webtools/downloads/drops/R3.24.0/S-3.24.0.RC1-20211122101137/repository/" {
 	org.eclipse.wst.xml_ui.feature.feature.group lazy 
 }
 
