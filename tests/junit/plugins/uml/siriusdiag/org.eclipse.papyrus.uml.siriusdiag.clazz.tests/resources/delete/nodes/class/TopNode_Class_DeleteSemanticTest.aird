@@ -7,15 +7,8 @@
     <semanticResources>pathmap://UML_PROFILES/Standard.profile.uml</semanticResources>
     <semanticResources>pathmap://UML_METAMODELS/UML.metamodel.uml</semanticResources>
     <semanticResources>pathmap://UML_METAMODELS/Ecore.metamodel.uml</semanticResources>
-    <semanticResources>TopNode_Class_DeleteSemanticTest.notation</semanticResources>
-    <semanticResources>TopNode_Class_DeleteSemanticTest.di</semanticResources>
-    <semanticResources>papyrus.welcome:dynamic</semanticResources>
     <semanticResources>TopNode_Class_DeleteSemanticTest.uml</semanticResources>
-    <semanticResources>environment:/viewpoint</semanticResources>
     <semanticResources>platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore</semanticResources>
-    <semanticResources>platform:/plugin/org.eclipse.uml2.types/model/Types.ecore</semanticResources>
-    <semanticResources>platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore</semanticResources>
-    <semanticResources>environment:/diagram</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_BmlacDcoEey1v5ZgfkSlPg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.clazz.diagram/description/papyrus_class.odesign#//@ownedViewpoints[name='ClassDiagram']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_Bn4a8DcoEey1v5ZgfkSlPg" name="TopNode_Class_Delete_ClassDiagram" repPath="#_Bn3M0DcoEey1v5ZgfkSlPg" changeId="7711cb25-ea56-4172-95c7-2c36c42bd237">
