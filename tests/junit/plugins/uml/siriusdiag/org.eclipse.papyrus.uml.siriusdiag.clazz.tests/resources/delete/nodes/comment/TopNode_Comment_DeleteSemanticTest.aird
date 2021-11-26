@@ -7,8 +7,15 @@
     <semanticResources>pathmap://UML_PROFILES/Standard.profile.uml</semanticResources>
     <semanticResources>pathmap://UML_METAMODELS/UML.metamodel.uml</semanticResources>
     <semanticResources>pathmap://UML_METAMODELS/Ecore.metamodel.uml</semanticResources>
+    <semanticResources>TopNode_Comment_DeleteSemanticTest.notation</semanticResources>
+    <semanticResources>TopNode_Comment_DeleteSemanticTest.di</semanticResources>
     <semanticResources>TopNode_Comment_DeleteSemanticTest.uml</semanticResources>
+    <semanticResources>papyrus.welcome:dynamic</semanticResources>
+    <semanticResources>environment:/viewpoint</semanticResources>
     <semanticResources>platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore</semanticResources>
+    <semanticResources>platform:/plugin/org.eclipse.uml2.types/model/Types.ecore</semanticResources>
+    <semanticResources>platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore</semanticResources>
+    <semanticResources>environment:/diagram</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_u8PEAEkWEeyHOvMI38kLoA">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.sequence.diagram/description/papyrus_sequence.odesign#//@ownedViewpoints[name='SequenceDiagram']"/>
     </ownedViews>
