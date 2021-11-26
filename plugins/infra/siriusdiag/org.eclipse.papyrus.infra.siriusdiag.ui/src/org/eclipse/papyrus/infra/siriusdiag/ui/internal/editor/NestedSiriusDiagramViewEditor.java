@@ -72,7 +72,6 @@ import org.eclipse.papyrus.infra.siriusdiag.ui.internal.sessions.SessionPrinter;
 import org.eclipse.papyrus.infra.ui.lifecycleevents.ISaveAndDirtyService;
 import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
 import org.eclipse.papyrus.infra.widgets.util.NavigationTarget;
-import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.sirius.business.api.dialect.command.RefreshRepresentationsCommand;
 import org.eclipse.sirius.business.api.query.FileQuery;
 import org.eclipse.sirius.business.api.session.Session;
@@ -134,9 +133,9 @@ public class NestedSiriusDiagramViewEditor extends DDiagramEditorImpl implements
 	 * Constructor.
 	 *
 	 * @param servicesRegistry
-	 *            the Papyrus service registry, it can't be <code>null</code>
+	 *                             the Papyrus service registry, it can't be <code>null</code>
 	 * @param prototype
-	 *            the edited element, it can't be <code>null</code>
+	 *                             the edited element, it can't be <code>null</code>
 	 */
 	public NestedSiriusDiagramViewEditor(ServicesRegistry servicesRegistry, DSemanticDiagram diagram) {
 		super();
@@ -315,9 +314,11 @@ public class NestedSiriusDiagramViewEditor extends DDiagramEditorImpl implements
 				uiSession.open();
 
 				// TODO : done in another place
-				UmlModel uml = (UmlModel) modelSet.getModel(UmlModel.MODEL_ID);
-				this.session.addSemanticResource(uml.getResourceURI(), new NullProgressMonitor());
-
+				// UmlModel uml = (UmlModel) modelSet.getModel(UmlModel.MODEL_ID);
+				// this.session.addSemanticResource(uml.getResourceURI(), new NullProgressMonitor());
+				for (Resource resource : modelSet.getResources()) {
+					this.session.addSemanticResource(resource.getURI(), new NullProgressMonitor());
+				}
 				this.diagram.getTarget().eAdapters().add(new SessionTransientAttachment(session));
 				modelSet.getResources().add(session.getSessionResource());
 			}
@@ -393,8 +394,24 @@ public class NestedSiriusDiagramViewEditor extends DDiagramEditorImpl implements
 			// PapyrusSessionFactory.INSTANCE.setServiceRegistry(serviceRegistry);
 			// PapyrusSessionManager.INSTANCE.add(session);
 			// TODO : VL : we must find a way to remove a UML dependency in this plugin...
-			UmlModel uml = (UmlModel) modelSet.getModel(UmlModel.MODEL_ID);
-			this.session.addSemanticResource(uml.getResourceURI(), new NullProgressMonitor());
+
+			ted.getCommandStack().execute(new RecordingCommand(ted) {
+
+				@Override
+				protected void doExecute() {
+					List<Resource> resources = new ArrayList(modelSet.getResources());
+					for (Resource resource : resources) {
+						if (resource.isLoaded()) {
+							FileQuery fileQuery = new FileQuery(resource.getURI().fileExtension());
+							// Some resources are not needed in the session and can cause problems
+							// but we still need others to handle hyperlink nodes.
+							if (!(fileQuery.isSessionResourceFile() || fileQuery.isSrmFile() || fileQuery.isVSMFile() || resource instanceof DiResourceImpl)) {
+								session.addSemanticResource(resource.getURI(), new NullProgressMonitor());
+							}
+						}
+					}
+				}
+			});
 
 			this.diagram.getTarget().eAdapters().add(new SessionTransientAttachment(session));
 			modelSet.getResources().add(session.getSessionResource());

@@ -89,7 +89,7 @@ public class SessionService implements ISiriusSessionService, ISiriusSessionView
 	 * @see org.eclipse.papyrus.infra.core.services.IService#init(org.eclipse.papyrus.infra.core.services.ServicesRegistry)
 	 *
 	 * @param servicesRegistry
-	 *            the service registry associated to the current model
+	 *                             the service registry associated to the current model
 	 * @throws ServiceException
 	 */
 	@Override
@@ -178,16 +178,21 @@ public class SessionService implements ISiriusSessionService, ISiriusSessionView
 		/* Papyrus */SessionManager.INSTANCE.add(createdSession);
 		/* Papyrus */SessionManager.INSTANCE.openSession(siriusFileResource, new NullProgressMonitor(), null);// check parameters
 
-		URI umlURI = modelSet.getURIWithoutExtension().appendFileExtension("uml");//// $NON-NLS-1 //TODO uml as string is not very nice inside an infra plugin
-		this.createdSession.addSemanticResource(umlURI, new NullProgressMonitor());
-		this.createdSession.save(new NullProgressMonitor());
+		List<Resource> resources = new ArrayList(modelSet.getResources());
+
+		for (Resource resource : resources) {
+			if (resource.isLoaded()) {
+				FileQuery fileQuery = new FileQuery(resource.getURI().fileExtension());
+				if (!(fileQuery.isSessionResourceFile() || fileQuery.isSrmFile() || fileQuery.isVSMFile() || resource.getURI().scheme().equals("file"))) {
+					this.createdSession.addSemanticResource(resource.getURI(), new NullProgressMonitor());
+				}
+			}
+		}
 
 		// 4. update applied sirius viewpoints
 		updateAppliedSiriusViewpoints();
 
-		// VL : not sure if we need to save before or after the sirius viewpoint application.
-		//initially we applied the sirius viewpoint AFTER the save
-		// this.createdSession.save(new NullProgressMonitor());
+		this.createdSession.save(new NullProgressMonitor());
 
 
 	}
@@ -224,7 +229,7 @@ public class SessionService implements ISiriusSessionService, ISiriusSessionView
 	 * This method calls ModelSet.save() to save the notation file if it doesn't yet exist
 	 *
 	 * @param modelSet
-	 *            the current modelSet
+	 *                     the current modelSet
 	 */
 	private final void saveNotationFile(final ModelSet modelSet) {
 		// this action is required to avoid a crash when we create a new sirius diagram from the Papyrus "create model wizard"
@@ -246,7 +251,7 @@ public class SessionService implements ISiriusSessionService, ISiriusSessionView
 	/**
 	 *
 	 * @param siriusResourceURI
-	 *            the resource uri to use to create the Session
+	 *                              the resource uri to use to create the Session
 	 * @return
 	 *         the Session or <code>null</code>
 	 */
