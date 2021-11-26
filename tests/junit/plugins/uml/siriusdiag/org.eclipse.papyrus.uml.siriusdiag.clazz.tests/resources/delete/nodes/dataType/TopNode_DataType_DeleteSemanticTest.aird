@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style">
   <viewpoint:DAnalysis uid="_CCNKADcpEey1v5ZgfkSlPg" selectedViews="_CEtrcDcpEey1v5ZgfkSlPg _CFnDUDcpEey1v5ZgfkSlPg _CFzQkDcpEey1v5ZgfkSlPg" version="14.3.1.202003261200">
+    <semanticResources>TopNode_DataType_DeleteSemanticTest.uml</semanticResources>
     <semanticResources>pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml</semanticResources>
     <semanticResources>pathmap://UML_PROFILES/Ecore.profile.uml</semanticResources>
     <semanticResources>pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml</semanticResources>
     <semanticResources>pathmap://UML_PROFILES/Standard.profile.uml</semanticResources>
     <semanticResources>pathmap://UML_METAMODELS/UML.metamodel.uml</semanticResources>
     <semanticResources>pathmap://UML_METAMODELS/Ecore.metamodel.uml</semanticResources>
-    <semanticResources>TopNode_DataType_DeleteSemanticTest.notation</semanticResources>
-    <semanticResources>TopNode_DataType_DeleteSemanticTest.di</semanticResources>
-    <semanticResources>papyrus.welcome:dynamic</semanticResources>
-    <semanticResources>TopNode_DataType_DeleteSemanticTest.uml</semanticResources>
-    <semanticResources>environment:/viewpoint</semanticResources>
-    <semanticResources>platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore</semanticResources>
-    <semanticResources>platform:/plugin/org.eclipse.uml2.types/model/Types.ecore</semanticResources>
-    <semanticResources>platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore</semanticResources>
-    <semanticResources>environment:/diagram</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_CEtrcDcpEey1v5ZgfkSlPg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.papyrus.uml.sirius.clazz.diagram/description/papyrus_class.odesign#//@ownedViewpoints[name='ClassDiagram']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_CF9BkDcpEey1v5ZgfkSlPg" name="TopNode_DataType_ClassDiagram" repPath="#_CF7zcDcpEey1v5ZgfkSlPg" changeId="4424ce39-aa6c-4a3d-b49f-1cd218dba75a">
