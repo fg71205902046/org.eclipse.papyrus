@@ -281,6 +281,7 @@ public class ElementServices {
      *            the URI of the library to load.
      */
     public void importPrimitiveTypes(NamedElement element, String libraryUri) {
+    	//VL : not sure this step is required. but keeping it shouldn't break the Papyrus behavior
         final Namespace namespace = getNamespace(element);
         final ResourceSet resourceSet = namespace.eResource().getResourceSet();
         final Resource resource = resourceSet.getResource(URI.createURI(libraryUri), true);
