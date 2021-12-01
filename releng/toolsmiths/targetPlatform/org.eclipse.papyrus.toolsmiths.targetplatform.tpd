@@ -23,7 +23,7 @@ location cbiAggregator "https://download.eclipse.org/cbi/updates/aggregator/ide/
 
 //updateFrom("Oomph",0) 
 
-location oomph "https://download.eclipse.org/oomph/drops/milestone/S20211123-102414-1.23.0-RC1" {
+location oomph "https://download.eclipse.org/oomph/drops/release/1.23.0" {
 	org.eclipse.oomph.version.feature.group
 	org.eclipse.oomph.setup.workingsets.feature.group
 	org.eclipse.oomph.projectconfig.feature.group
@@ -44,7 +44,7 @@ location oomph "https://download.eclipse.org/oomph/drops/milestone/S20211123-102
 
 //updateFrom("EGit",0) 
 
-location egit "https://download.eclipse.org/egit/staging/v6.0.0.202111161950-m3" // oomph
+location egit "https://download.eclipse.org/egit/updates-6.0" // oomph
 
 //updateFrom("m2e",0)
 
@@ -56,7 +56,7 @@ location mylyn "https://download.eclipse.org/mylyn/drops/3.25.2/v20200831-1956" 
 
 //updateFrom("EMF Compare",0)
 
-location emfCompare "https://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S202110070928" {
+location emfCompare "https://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S202111290942" {
 	org.eclipse.emf.compare.ide.ui.feature.group lazy
 	org.eclipse.emf.compare.source.feature.group
 }

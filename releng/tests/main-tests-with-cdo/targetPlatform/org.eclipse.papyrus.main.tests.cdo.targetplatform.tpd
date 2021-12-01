@@ -7,7 +7,7 @@ include "../../main-tests/targetPlatform/org.eclipse.papyrus.main.tests.targetpl
 
 //updateFrom("EMF CDO",0) 
 
-location cdo "https://download.eclipse.org/modeling/emf/cdo/drops/S20211117-1222" {
+location cdo "https://download.eclipse.org/modeling/emf/cdo/drops/S20211124-0725" {
  org.eclipse.emf.cdo.admin lazy
  org.eclipse.emf.cdo.dawn lazy
  org.eclipse.emf.cdo.dawn.gmf lazy
