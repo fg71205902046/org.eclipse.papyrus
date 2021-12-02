@@ -56,6 +56,7 @@ import org.eclipse.papyrus.uml.sirius.common.diagram.core.services.UIServices;
 import org.eclipse.sirius.diagram.DDiagram;
 import org.eclipse.sirius.diagram.DDiagramElement;
 import org.eclipse.sirius.diagram.DEdge;
+import org.eclipse.sirius.diagram.DNodeContainer;
 import org.eclipse.sirius.diagram.DNodeList;
 import org.eclipse.sirius.diagram.DSemanticDiagram;
 import org.eclipse.sirius.diagram.EdgeTarget;
@@ -235,7 +236,7 @@ public class ClassDiagramServices {
 		return self instanceof DDiagram;
 	}
 
-	public boolean isClassNodeContainer(EObject self) {
+	public boolean isClassNodeListContainer(EObject self) {
 		if (self instanceof DNodeList) {
 			DNodeList node = (DNodeList) self;
 			return node.getTarget() instanceof Class;
@@ -243,6 +244,16 @@ public class ClassDiagramServices {
 			return false;
 		}
 	}
+	
+	public boolean isClassNodeContainer(EObject self) {
+		if (self instanceof DNodeContainer) {
+			DNodeContainer node = (DNodeContainer) self;
+			return node.getTarget() instanceof Package;
+		} else {
+			return false;
+		}
+	}
+
 
 	/**
 	 * Get the target element for the containment link.
