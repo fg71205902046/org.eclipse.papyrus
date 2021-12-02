@@ -47,7 +47,6 @@ This product includes software developed by other open source projects including
       </win>
    </launcher>
 
-
    <vm>
    </vm>
 
@@ -188,6 +187,7 @@ Java and all Java-based trademarks are trademarks of Oracle Corporation in the U
       <feature id="org.eclipse.equinox.p2.user.ui"/>
       <feature id="org.eclipse.rcp.configuration"/>
       <feature id="org.eclipse.papyrus.rcp.feature"/>
+      <feature id="org.eclipse.epp.mpc"/>
       <feature id="org.eclipse.papyrus.sdk.feature.source" installMode="root"/>
    </features>
 
@@ -208,8 +208,8 @@ Java and all Java-based trademarks are trademarks of Oracle Corporation in the U
    <repositories>
       <repository location="https://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/master/" enabled="true" />
       <repository location="https://download.eclipse.org/releases/latest/" enabled="true" />
-      <repository location="https://download.eclipse.org/releases/2021-09/" enabled="true" />
-      <repository location="https://download.eclipse.org/eclipse/updates/4.21/" enabled="true" />
+      <repository location="https://download.eclipse.org/releases/2021-12/" enabled="true" />
+      <repository location="https://download.eclipse.org/eclipse/updates/4.22/" enabled="true" />
    </repositories>
 
    <preferencesInfo>
