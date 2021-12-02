@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+
+<extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+    <decoratorProvider class="org.eclipse.papyrus.uml.sirius.common.diagram.validation.SiriusValidationDecoratorProvider">
+         <Priority name="Lowest"/>
+	         <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
+	         <context decoratorTargets="PRIMARY_VIEW"/>
+	</decoratorProvider>
+</extension>
+
    <extension
          point="org.eclipse.sirius.refreshExtensionProvider">
       <refreshExtensionProvider
