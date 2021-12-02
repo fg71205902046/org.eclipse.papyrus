@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
-<target name="Papyrus RCP" sequenceNumber="1638970862">
+<target name="Papyrus RCP" sequenceNumber="1639066631">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.nebula.widgets.richtext.feature.feature.group" version="1.2.0.201703081533"/>
@@ -124,6 +124,14 @@
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.cdo.epp.feature.group" version="4.16.0.v20211202-1357"/>
       <repository id="cdo" location="https://download.eclipse.org/modeling/emf/cdo/drops/R20211202-0900"/>
+    </location>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.epp.mpc.feature.group" version="1.9.2.v20210826-0851"/>
+      <repository id="marketPlace" location="https://download.eclipse.org/mpc/drops/1.9.2/v20210826-0851"/>
+    </location>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.userstorage.feature.group" version="1.2.0.v20210517-0327"/>
+      <repository id="userstorage" location="https://download.eclipse.org/usssdk/drops/release/1.2.2/"/>
     </location>
   </locations>
 </target>
