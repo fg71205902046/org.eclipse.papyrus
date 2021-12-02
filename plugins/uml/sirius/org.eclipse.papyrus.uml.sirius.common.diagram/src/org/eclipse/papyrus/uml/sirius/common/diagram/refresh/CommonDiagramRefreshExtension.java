@@ -84,6 +84,7 @@ public class CommonDiagramRefreshExtension implements IRefreshExtension {
 	@Override
 	public void beforeRefresh(DDiagram diagram) {
 		DisplayLabelSwitch.setStereotypeFilter(FilterService.INSTANCE.isStereotypeFilterActivated(diagram));
+		DisplayLabelSwitch.setQualifiedNameFilter(FilterService.INSTANCE.isQualifiedNameFilterActivated(diagram));
 	}
 
 	/**
