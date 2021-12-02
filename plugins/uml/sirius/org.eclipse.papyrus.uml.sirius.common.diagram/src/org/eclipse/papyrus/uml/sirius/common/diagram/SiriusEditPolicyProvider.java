@@ -9,22 +9,23 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *    Aurelien Didier (ARTAL) - aurelien.didier51@gmail.com - Initial API and others
+ *    Aurélien Didier (ARTAL) - aurelien.didier51@gmail.com - Initial API and implementation
  *****************************************************************************/
 package org.eclipse.papyrus.uml.sirius.common.diagram;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.impl.NodeImpl;
 import org.eclipse.sirius.diagram.DragAndDropTarget;
 import org.eclipse.sirius.diagram.ui.graphical.edit.policies.SiriusContainerDropPolicy;
 import org.eclipse.sirius.diagram.ui.internal.edit.policies.AbstractCreateEditPolicyProvider;
 
 /**
- * The Class MyCreateEditPolicyProvider.
+ * The Class SiriusEditPolicyProvider.
  *
- * @author Aur�lien Didier (Artal Technologies)
+ * @author Aurélien Didier (Artal Technologies)
  */
 @SuppressWarnings("restriction")
 public class SiriusEditPolicyProvider extends AbstractCreateEditPolicyProvider {
@@ -32,7 +33,8 @@ public class SiriusEditPolicyProvider extends AbstractCreateEditPolicyProvider {
 	/**
 	 * Creates the edit policies.
 	 *
-	 * @param arg0 the arg 0
+	 * @param editpart
+	 *            the editpart
 	 * @see org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider#createEditPolicies(org.eclipse.gef.EditPart)
 	 */
 
@@ -44,14 +46,14 @@ public class SiriusEditPolicyProvider extends AbstractCreateEditPolicyProvider {
 	/**
 	 * Checks if is valid edit part.
 	 *
-	 * @param editPart the edit part
+	 * @param editPart
+	 *            the edit part
 	 * @return true, if is valid edit part
 	 * @see org.eclipse.sirius.diagram.ui.internal.edit.policies.AbstractCreateEditPolicyProvider#isValidEditPart(org.eclipse.gef.EditPart)
 	 */
 
 	@Override
 	protected boolean isValidEditPart(EditPart editPart) {
-
 		Object model = editPart.getModel();
 		if (model instanceof NodeImpl) {
 			EObject element = ((NodeImpl) model).getElement();
@@ -59,6 +61,13 @@ public class SiriusEditPolicyProvider extends AbstractCreateEditPolicyProvider {
 				return true;
 			}
 		}
+		if (model instanceof Diagram) {
+			EObject element = ((Diagram) model).getElement();
+			if (element instanceof DragAndDropTarget) {
+				return true;
+			}
+		}
+
 		return false;
 	}
 

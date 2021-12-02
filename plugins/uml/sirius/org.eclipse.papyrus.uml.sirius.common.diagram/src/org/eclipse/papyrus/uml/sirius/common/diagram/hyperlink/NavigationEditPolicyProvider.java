@@ -18,7 +18,6 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.impl.NodeImpl;
 import org.eclipse.sirius.diagram.DNode;
-import org.eclipse.sirius.diagram.ui.graphical.edit.policies.SiriusContainerDropPolicy;
 import org.eclipse.sirius.diagram.ui.internal.edit.policies.AbstractCreateEditPolicyProvider;
 import org.eclipse.uml2.uml.Element;
 
