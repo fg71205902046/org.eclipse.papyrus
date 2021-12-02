@@ -2,6 +2,11 @@ target "Papyrus RCP" with requirements source
 
 include "../../main/targetPlatform/org.eclipse.papyrus.main.targetplatform.tpd"
 
+//manualUpdate
+
+location "https://download.eclipse.org/justj/jres/11/updates/release" justj {
+	org.eclipse.justj.openjdk.hotspot.jre.full.feature.group lazy
+}
 
 /*** Updates from the Simrel repository ***/
 
