@@ -25,8 +25,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.uml.tools.utils;bundle-version="[4.1.0,5.0.0)",
  org.eclipse.papyrus.uml.internationalization.utils;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.editor;bundle-version="[3.0.0,4.0.0)",
- org.eclipse.papyrus.infra.ui;bundle-version="[3.1.100,4.0.0)",
- org.eclipse.papyrus.infra.gmfdiag.dnd
+ org.eclipse.papyrus.infra.ui;bundle-version="[3.1.100,4.0.0)"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Bundle-Vendor: %providerName

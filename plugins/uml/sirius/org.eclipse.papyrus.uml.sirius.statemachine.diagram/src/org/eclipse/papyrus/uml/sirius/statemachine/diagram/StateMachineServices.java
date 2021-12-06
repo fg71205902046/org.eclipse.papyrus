@@ -37,6 +37,7 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.parsers.Messages;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.parsers.OpaqueBehaviorViewUtil;
@@ -565,9 +566,10 @@ public class StateMachineServices {
 	private Rectangle getFreeformViewport(View element) {
 
 		IEditorPart editor = EclipseUIUtil.getActiveEditor();
-		if (editor instanceof DiagramEditor) {
+		if (editor instanceof PapyrusMultiDiagramEditor) {
+			IEditorPart activeEditor = ((PapyrusMultiDiagramEditor) editor).getActiveEditor();
 
-			final Map<?, ?> editPartRegistry = ((DiagramEditor) editor).getDiagramGraphicalViewer().getEditPartRegistry();
+			final Map<?, ?> editPartRegistry = ((DiagramEditor) activeEditor).getDiagramGraphicalViewer().getEditPartRegistry();
 			final Object editPart = editPartRegistry.get(element);
 			if (editPart instanceof IGraphicalEditPart) {
 
