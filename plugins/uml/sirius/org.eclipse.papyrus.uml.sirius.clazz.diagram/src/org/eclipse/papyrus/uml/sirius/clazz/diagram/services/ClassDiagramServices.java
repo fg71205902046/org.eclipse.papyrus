@@ -172,6 +172,9 @@ public class ClassDiagramServices {
 
 	/**
 	 * Move the given Element
+	 * @param semanticObjectToDrop semantic element to drop
+	 * @param targetContainerView the target container view
+	 * @return the element
 	 */
 	public EObject dndElement(EObject semanticObjectToDrop, EObject targetContainerView) {
 		if ((targetContainerView instanceof DSemanticDecorator) && (semanticObjectToDrop instanceof PackageableElement)) {
@@ -191,7 +194,12 @@ public class ClassDiagramServices {
 	}
 
 	/**
-	 * Create a new Abstraction Link.
+	 * Create a new Abstraction Link between the source and the target.
+	 * @param context, the current context
+	 * @param sourceview, the source view
+	 * @param source, the semantic source element
+	 * @param target, the semantic target element
+	 * @return nothing
 	 */
 	public static void createAbstractionLink(EObject context, EObject sourceView, Element source, Element target) {
 		if (sourceView instanceof DDiagramElement) {
@@ -208,6 +216,8 @@ public class ClassDiagramServices {
 
 	/**
 	 * Get diagram root.
+	 * @param context the current context (view)
+	 * @return the root diagram owning the element
 	 */
 	private static EObject getDiagramRoot(EObject sourceView) {
 		DDiagramElement diagramElement = (DDiagramElement) sourceView;
@@ -217,7 +227,11 @@ public class ClassDiagramServices {
 	}
 
 	/**
-	 * Create a new Containment Link.
+	 * Create a new Containment Link between the source and the target
+	 * @param context the current context
+	 * @param source, the source element
+	 * @param target, the target element
+	 * @return nothing
 	 */
 	public static void createContainmentLink(EObject context, Element source, Element target) {
 		if (source instanceof Class) {
@@ -232,10 +246,20 @@ public class ClassDiagramServices {
 
 	}
 
+	/**
+	 * Precondition test if sirius diagram or not.
+	 * @param context the current context
+	 * @return true if context is a DDiagram
+	 */
 	public boolean isDDiagram(EObject self) {
 		return self instanceof DDiagram;
 	}
 
+	/**
+	 * Test if element is ClassNodeList.
+	 * @param context the current context
+	 * @return true if class node list mapping
+	 */
 	public boolean isClassNodeListContainer(EObject self) {
 		if (self instanceof DNodeList) {
 			DNodeList node = (DNodeList) self;
@@ -245,6 +269,11 @@ public class ClassDiagramServices {
 		}
 	}
 	
+	/**
+	 * Test if element is ClassNodeContainer.
+	 * @param context the current context
+	 * @return true if class node container mapping
+	 */
 	public boolean isClassNodeContainer(EObject self) {
 		if (self instanceof DNodeContainer) {
 			DNodeContainer node = (DNodeContainer) self;
@@ -257,6 +286,8 @@ public class ClassDiagramServices {
 
 	/**
 	 * Get the target element for the containment link.
+	 * @param context the current context
+	 * @return containment link lists
 	 */
 	public static EList<?> getContainmentLinkTarget(Element source) {
 		if (source instanceof Class) {
@@ -270,6 +301,11 @@ public class ClassDiagramServices {
 		return null;
 	}
 
+	/**
+	 * Get the feature which will contain the element.
+	 * @param context the current context
+	 * @return the name of the feature
+	 */
 	public String getFeatureName(EObject context) {
 		if (context instanceof Constraint) {
 			return "ownedRule";
@@ -279,15 +315,20 @@ public class ClassDiagramServices {
 		return "packagedElement";
 	}
 
+	/**
+	 * Precondition check is data type.
+	 * @param context the current context
+	 * @return true is DataType and not enumeration or PrimitiveType
+	 */
 	public boolean isDataType(EObject context) {
 		return !(context instanceof Enumeration || context instanceof PrimitiveType);
 	}
 
 	/**
-	 * Get the target for the added DataType/PrimitiveType/Enumeration
+	 * Get the feature to contain the element
 	 * 
 	 * @param context the current context
-	 * @return the target name
+	 * @return the target feature
 	 */
 	public String getTypeTarget(EObject context) {
 		if (context instanceof Class || context instanceof Interface) {
@@ -298,10 +339,11 @@ public class ClassDiagramServices {
 	}
 
 	/**
-	 * Get the target for the added Datatype
+	 * Check if the oldcontainer was a class.
 	 * 
 	 * @param context the current context
-	 * @return the target name
+	 * @param oldContainer the current context
+	 * @return true if the source is a class or an interface
 	 */
 	public boolean ifSourceIsClass(EObject context, EObject oldContainer) {
 		if (oldContainer instanceof Class || oldContainer instanceof Interface) {
@@ -312,9 +354,10 @@ public class ClassDiagramServices {
 	}
 
 	/**
-	 * Get the target for the added Datatype
+	 * Get the feature to contain the element
 	 * 
 	 * @param context the current context
+	 * @param newContainerView the new container view
 	 * @return the target name
 	 */
 	public String getTypeTarget(EObject context, EObject newContainerView) {
@@ -325,6 +368,13 @@ public class ClassDiagramServices {
 		return "packagedElement";
 	}
 
+	/**
+	 * Check if the container is valid or not
+	 * 
+	 * @param context the current context
+	 * @param newContainerView the new container view
+	 * @return true if the container can contain the element to create
+	 */
 	public boolean isValidContainer(EObject context, EObject newContainerView) {
 		if (newContainerView instanceof DSemanticDiagramSpec) {
 			return context.eContainer().equals(((DSemanticDiagramSpec) newContainerView).getTarget());
@@ -338,8 +388,16 @@ public class ClassDiagramServices {
 		return false;
 	}
 
+
 	/**
-	 * Get the target element of the Link link.
+	 * Check if the source and target are valid
+	 * 
+	 * @param context the current context
+	 * @param sourceView the source view
+	 * @param targetView the target  view
+	 * @param source the semantic source element
+	 * @param target the semantic target element
+	 * @return true if the source and target are valid
 	 */
 	public boolean isValidSourecAndTarget(EObject context, EObject sourceView, EObject targetView, Element source,
 			Element target) {
@@ -348,6 +406,9 @@ public class ClassDiagramServices {
 
 	/**
 	 * Create a new Dependency Link.
+	 * @param sourceView the source view
+	 * @param target the semantic target element
+	 * @param targetView the target  view
 	 */
 	public void createDependencyLink(EObject context, EObject sourceView, Element source, Element target) {
 		if (sourceView instanceof DDiagramElement) {
@@ -369,6 +430,9 @@ public class ClassDiagramServices {
 
 	/**
 	 * Create a new Association Class Link.
+	 * @param sourceView the source view
+	 * @param target the semantic target element
+	 * @param targetView the target  view
 	 */
 	public AssociationClass createAssociationClassLink(EObject context, EObject sourceView, Element source,
 			Element target) {
@@ -401,6 +465,9 @@ public class ClassDiagramServices {
 
 	/**
 	 * Create a new Element Import Link.
+	 * @param sourceView the source view
+	 * @param target the semantic target element
+	 * @param targetView the target  view
 	 */
 	public void createElementImportLink(EObject context, EObject sourceView, Element source, Element target) {
 		if (sourceView instanceof DDiagramElement) {
@@ -417,6 +484,9 @@ public class ClassDiagramServices {
 
 	/**
 	 * Create a new Generalization Link.
+	 * @param sourceView the source view
+	 * @param target the semantic target element
+	 * @param targetView the target  view
 	 */
 	public void createGeneralizationLink(EObject context, EObject sourceView, Element source, Element target) {
 		if (sourceView instanceof DDiagramElement) {
@@ -433,6 +503,9 @@ public class ClassDiagramServices {
 
 	/**
 	 * Create a new Information Flow Link.
+	 * @param sourceView the source view
+	 * @param target the semantic target element
+	 * @param targetView the target  view
 	 */
 	public void createInformationFlowLink(EObject context, EObject sourceView, Element source, Element target) {
 		if (sourceView instanceof DDiagramElement) {
@@ -461,6 +534,9 @@ public class ClassDiagramServices {
 
 	/**
 	 * Create a new Interface Realization Link.
+	 * @param sourceView the source view
+	 * @param target the semantic target element
+	 * @param targetView the target  view
 	 */
 	public InterfaceRealization createInterfaceRealizationLink(EObject context, EObject sourceView, Element source,
 			Element target) {
@@ -491,6 +567,9 @@ public class ClassDiagramServices {
 
 	/**
 	 * Create a new Realization link.
+	 * @param sourceView the source view
+	 * @param target the semantic target element
+	 * @param targetView the target  view
 	 */
 	public void createRealizationLink(EObject context, EObject sourceView, Element source, Element target) {
 		if (sourceView instanceof DDiagramElement) {
@@ -512,6 +591,9 @@ public class ClassDiagramServices {
 
 	/**
 	 * Create a new Substitution link.
+	 * @param sourceView the source view
+	 * @param target the semantic target element
+	 * @param targetView the target  view
 	 */
 	public void createSubstitutionLink(EObject context, EObject sourceView, Element source, Element target) {
 		if (sourceView instanceof DDiagramElement) {
@@ -530,6 +612,9 @@ public class ClassDiagramServices {
 
 	/**
 	 * Create a new Package Import link.
+	 * @param sourceView the source view
+	 * @param target the semantic target element
+	 * @param targetView the target  view
 	 */
 	public void createPackageImportLink(EObject context, EObject sourceView, Element source, Element target) {
 		if (sourceView instanceof DDiagramElement) {
@@ -547,6 +632,9 @@ public class ClassDiagramServices {
 
 	/**
 	 * Create a new Package Merge link.
+	 * @param sourceView the source view
+	 * @param target the semantic target element
+	 * @param targetView the target  view
 	 */
 	public void createPackageMergeLink(EObject context, EObject sourceView, Element source, Element target) {
 		if (sourceView instanceof DDiagramElement) {
@@ -564,6 +652,9 @@ public class ClassDiagramServices {
 
 	/**
 	 * Create a new Usage link.
+	 * @param sourceView the source view
+	 * @param target the semantic target element
+	 * @param targetView the target  view
 	 */
 	public void createUsageLink(EObject context, EObject sourceView, Element source, Element target) {
 		if (sourceView instanceof DDiagramElement) {
@@ -588,6 +679,9 @@ public class ClassDiagramServices {
 
 	/**
 	 * Create a new Generalization Set link.
+	 * @param sourceView the source view
+	 * @param target the semantic target element
+	 * @param targetView the target  view
 	 */
 	public void createGeneralizationSetLink(EObject context, EObject sourceView, Element source, Element target) {
 		if (sourceView instanceof DDiagramElement) {
@@ -639,6 +733,9 @@ public class ClassDiagramServices {
 
 	/**
 	 * Create a new Link link.
+	 * @param sourceView the source view
+	 * @param source the semantic source element
+	 * @param target the semantic target element
 	 */
 	public void createLink(EObject context, EObject sourceView, Element source, Element target) {
 		if (source instanceof Comment) {
@@ -679,6 +776,8 @@ public class ClassDiagramServices {
 
 	/**
 	 * Get the target element of the Link link.
+	 * @param source the semantic source element
+	 * @param target the semantic target element
 	 */
 	public boolean isNotObservationSourceWithCommentTarget(EObject context, Element source, Element target) {
 		if ((source instanceof TimeObservation || source instanceof DurationObservation) && target instanceof Comment) {
@@ -729,6 +828,10 @@ public class ClassDiagramServices {
 		return constLabel.toString();
 	}
 
+
+	/**
+	 * Get the Constraint text body.
+	 */
 	public String getBody(EObject elem) {
 		Constraint constraint = ((Constraint) elem);
 		ValueSpecification valueSpec = constraint.getSpecification();
@@ -766,6 +869,13 @@ public class ClassDiagramServices {
 		return name;
 	}
 
+	/**
+	 * Get the symbol path for decorator
+	 * 
+	 * @param elem the current  element
+	 * @return the path of symbol to use
+	 */
+
 	public String GetSymbolPath(Element elem) {
 		if (elem instanceof TimeObservation) {
 			return TIME_OBSERVATION_SYMBOL_PATH;
@@ -775,7 +885,7 @@ public class ClassDiagramServices {
 	}
 
 	/**
-	 * Get the Constraint body.
+	 * Set the Constraint body.
 	 */
 	public void setConstraintBody(Element elem, String bodyValue) {
 		if (elem instanceof Constraint) {
@@ -793,6 +903,11 @@ public class ClassDiagramServices {
 
 	/**
 	 * Create a new Instance Specification link.
+	 * @param context the context element
+	 * @param sourceView the source view
+	 * @param source the semantic source element
+	 * @param target the semantic target element
+	 * @return the instance specification to create
 	 */
 	public InstanceSpecification createInstanceSpecification(EObject context, EObject sourceView, Element source,
 			Element target) {
@@ -892,8 +1007,6 @@ public class ClassDiagramServices {
 	 * reconnected to an element.
 	 *
 	 * @param context Element attached to the existing edge
-	 * @param source  Represents the semantic element pointed by the edge before
-	 *                reconnecting
 	 * @param target  Represents the semantic element pointed by the edge after
 	 *                reconnecting
 	 * @return true if the edge could be reconnected
@@ -908,8 +1021,6 @@ public class ClassDiagramServices {
 	 * reconnected to an element.
 	 *
 	 * @param context Element attached to the existing edge
-	 * @param source  Represents the semantic element pointed by the edge before
-	 *                reconnecting
 	 * @param target  Represents the semantic element pointed by the edge after
 	 *                reconnecting
 	 * @return true if the edge could be reconnected
@@ -924,8 +1035,6 @@ public class ClassDiagramServices {
 	 * reconnected to an element.
 	 *
 	 * @param context Element attached to the existing edge
-	 * @param source  Represents the semantic element pointed by the edge before
-	 *                reconnecting
 	 * @param target  Represents the semantic element pointed by the edge after
 	 *                reconnecting
 	 * @return true if the edge could be reconnected
@@ -940,8 +1049,6 @@ public class ClassDiagramServices {
 	 * reconnected to an element.
 	 *
 	 * @param context Element attached to the existing edge
-	 * @param source  Represents the semantic element pointed by the edge before
-	 *                reconnecting
 	 * @param target  Represents the semantic element pointed by the edge after
 	 *                reconnecting
 	 * @return true if the edge could be reconnected
@@ -956,8 +1063,6 @@ public class ClassDiagramServices {
 	 * be reconnected to an element.
 	 *
 	 * @param context Element attached to the existing edge
-	 * @param source  Represents the semantic element pointed by the edge before
-	 *                reconnecting
 	 * @param target  Represents the semantic element pointed by the edge after
 	 *                reconnecting
 	 * @return true if the edge could be reconnected
@@ -971,8 +1076,6 @@ public class ClassDiagramServices {
 	 * be reconnected to an element.
 	 *
 	 * @param context Element attached to the existing edge
-	 * @param source  Represents the semantic element pointed by the edge before
-	 *                reconnecting
 	 * @param target  Represents the semantic element pointed by the edge after
 	 *                reconnecting
 	 * @return true if the edge could be reconnected
@@ -987,8 +1090,6 @@ public class ClassDiagramServices {
 	 * could be reconnected to an element.
 	 *
 	 * @param context Element attached to the existing edge
-	 * @param source  Represents the semantic element pointed by the edge before
-	 *                reconnecting
 	 * @param target  Represents the semantic element pointed by the edge after
 	 *                reconnecting
 	 * @return true if the edge could be reconnected
@@ -1002,9 +1103,7 @@ public class ClassDiagramServices {
 	 * source could be reconnected to an element.
 	 *
 	 * @param context Element attached to the existing edge
-	 * @param source  Represents the semantic element pointed by the edge before
-	 *                reconnecting
-	 * @param target  Represents the semantic element pointed by the edge after
+	 * @param newSource  Represents the source element pointed by the edge after
 	 *                reconnecting
 	 * @return true if the edge could be reconnected
 	 */
@@ -1017,9 +1116,7 @@ public class ClassDiagramServices {
 	 * reconnected to an element.
 	 *
 	 * @param context Element attached to the existing edge
-	 * @param source  Represents the semantic element pointed by the edge before
-	 *                reconnecting
-	 * @param target  Represents the semantic element pointed by the edge after
+	 * @param newSource  Represents the source element pointed by the edge after
 	 *                reconnecting
 	 * @return true if the edge could be reconnected
 	 */
@@ -1034,9 +1131,7 @@ public class ClassDiagramServices {
 	 * reconnected to an element.
 	 *
 	 * @param context Element attached to the existing edge
-	 * @param source  Represents the semantic element pointed by the edge before
-	 *                reconnecting
-	 * @param target  Represents the semantic element pointed by the edge after
+	 * @param newSource  Represents the source element pointed by the edge after
 	 *                reconnecting
 	 * @return true if the edge could be reconnected
 	 */
@@ -1050,9 +1145,7 @@ public class ClassDiagramServices {
 	 * could be reconnected to an element.
 	 *
 	 * @param context Element attached to the existing edge
-	 * @param source  Represents the semantic element pointed by the edge before
-	 *                reconnecting
-	 * @param target  Represents the semantic element pointed by the edge after
+	 * @param newSource  Represents the source element pointed by the edge after
 	 *                reconnecting
 	 * @return true if the edge could be reconnected
 	 */
@@ -1065,9 +1158,7 @@ public class ClassDiagramServices {
 	 * could be reconnected to an element.
 	 *
 	 * @param context Element attached to the existing edge
-	 * @param source  Represents the semantic element pointed by the edge before
-	 *                reconnecting
-	 * @param target  Represents the semantic element pointed by the edge after
+	 * @param newTarget  Represents the target element pointed by the edge after
 	 *                reconnecting
 	 * @return true if the edge could be reconnected
 	 */
@@ -1080,9 +1171,7 @@ public class ClassDiagramServices {
 	 * reconnected to an element.
 	 *
 	 * @param context Element attached to the existing edge
-	 * @param source  Represents the semantic element pointed by the edge before
-	 *                reconnecting
-	 * @param target  Represents the semantic element pointed by the edge after
+	 * @param newSource  Represents the source element pointed by the edge after
 	 *                reconnecting
 	 * @return true if the edge could be reconnected
 	 */
@@ -1096,9 +1185,7 @@ public class ClassDiagramServices {
 	 * reconnected to an element.
 	 *
 	 * @param context Element attached to the existing edge
-	 * @param source  Represents the semantic element pointed by the edge before
-	 *                reconnecting
-	 * @param target  Represents the semantic element pointed by the edge after
+	 * @param newSource  Represents the source element pointed by the edge after
 	 *                reconnecting
 	 * @return true if the edge could be reconnected
 	 */
@@ -1111,9 +1198,7 @@ public class ClassDiagramServices {
 	 * reconnected to an element.
 	 *
 	 * @param context Element attached to the existing edge
-	 * @param source  Represents the semantic element pointed by the edge before
-	 *                reconnecting
-	 * @param target  Represents the semantic element pointed by the edge after
+	 * @param newSource  Represents the source element pointed by the edge after
 	 *                reconnecting
 	 * @return true if the edge could be reconnected
 	 */
@@ -1128,9 +1213,7 @@ public class ClassDiagramServices {
 	 * target could be reconnected to an element.
 	 *
 	 * @param context Element attached to the existing edge
-	 * @param source  Represents the semantic element pointed by the edge before
-	 *                reconnecting
-	 * @param target  Represents the semantic element pointed by the edge after
+	 * @param newTarget  Represents the target element pointed by the edge after
 	 *                reconnecting
 	 * @return true if the edge could be reconnected
 	 */
@@ -1143,8 +1226,6 @@ public class ClassDiagramServices {
 	 * could be reconnected to an element.
 	 *
 	 * @param context Element attached to the existing edge
-	 * @param source  Represents the semantic element pointed by the edge before
-	 *                reconnecting
 	 * @param target  Represents the semantic element pointed by the edge after
 	 *                reconnecting
 	 * @return true if the edge could be reconnected
@@ -1159,8 +1240,6 @@ public class ClassDiagramServices {
 	 * could be reconnected to an element.
 	 *
 	 * @param context Element attached to the existing edge
-	 * @param source  Represents the semantic element pointed by the edge before
-	 *                reconnecting
 	 * @param target  Represents the semantic element pointed by the edge after
 	 *                reconnecting
 	 * @return true if the edge could be reconnected
@@ -1179,9 +1258,9 @@ public class ClassDiagramServices {
 	 *                   reconnecting
 	 * @param targetView Represents the graphical element pointed by the edge after
 	 *                   reconnecting
-	 * @param source     Represents the semantic element pointed by the edge before
+	 * @param oldSource  Represents the semantic element pointed by the edge before
 	 *                   reconnecting
-	 * @param target     Represents the semantic element pointed by the edge after
+	 * @param newSource  Represents the semantic element pointed by the edge after
 	 *                   reconnecting
 	 * @return the Element attached to the edge once it has been modified
 	 */
@@ -1223,9 +1302,9 @@ public class ClassDiagramServices {
 	 *                   reconnecting
 	 * @param targetView Represents the graphical element pointed by the edge after
 	 *                   reconnecting
-	 * @param source     Represents the semantic element pointed by the edge before
+	 * @param oldTarget  Represents the semantic element pointed by the edge before
 	 *                   reconnecting
-	 * @param target     Represents the semantic element pointed by the edge after
+	 * @param newTarget  Represents the semantic element pointed by the edge after
 	 *                   reconnecting
 	 * @return the Element attached to the edge once it has been modified
 	 */
@@ -1273,14 +1352,9 @@ public class ClassDiagramServices {
 	 * Service used to reconnect a Dependency edge source.
 	 *
 	 * @param context    Element attached to the existing edge
-	 * @param edgeView   Represents the graphical new edge
-	 * @param sourceView Represents the graphical element pointed by the edge before
+	 * @param oldSource  Represents the semantic element pointed by the edge before
 	 *                   reconnecting
-	 * @param targetView Represents the graphical element pointed by the edge after
-	 *                   reconnecting
-	 * @param source     Represents the semantic element pointed by the edge before
-	 *                   reconnecting
-	 * @param target     Represents the semantic element pointed by the edge after
+	 * @param newSource  Represents the semantic element pointed by the edge after
 	 *                   reconnecting
 	 * @return the Element attached to the edge once it has been modified
 	 */
@@ -1353,12 +1427,6 @@ public class ClassDiagramServices {
 	 * Service used to reconnect an ElementImport edge target.
 	 *
 	 * @param context    Element attached to the existing edge
-	 * @param edgeView   Represents the graphical new edge
-	 * @param sourceView Represents the graphical element pointed by the edge before
-	 *                   reconnecting
-	 * @param targetView Represents the graphical element pointed by the edge after
-	 *                   reconnecting
-	 * @param source     Represents the semantic element pointed by the edge before
 	 *                   reconnecting
 	 * @param target     Represents the semantic element pointed by the edge after
 	 *                   reconnecting
@@ -1373,11 +1441,6 @@ public class ClassDiagramServices {
 	 * Service used to reconnect a Generalization edge source.
 	 *
 	 * @param context    Element attached to the existing edge
-	 * @param edgeView   Represents the graphical new edge
-	 * @param sourceView Represents the graphical element pointed by the edge before
-	 *                   reconnecting
-	 * @param targetView Represents the graphical element pointed by the edge after
-	 *                   reconnecting
 	 * @param source     Represents the semantic element pointed by the edge before
 	 *                   reconnecting
 	 * @param target     Represents the semantic element pointed by the edge after
@@ -1394,11 +1457,6 @@ public class ClassDiagramServices {
 	 * Service used to reconnect a Generalization edge source.
 	 *
 	 * @param context    Element attached to the existing edge
-	 * @param edgeView   Represents the graphical new edge
-	 * @param sourceView Represents the graphical element pointed by the edge before
-	 *                   reconnecting
-	 * @param targetView Represents the graphical element pointed by the edge after
-	 *                   reconnecting
 	 * @param source     Represents the semantic element pointed by the edge before
 	 *                   reconnecting
 	 * @param target     Represents the semantic element pointed by the edge after
@@ -1414,14 +1472,9 @@ public class ClassDiagramServices {
 	 * Service used to reconnect a GeneralizationSet edge source.
 	 *
 	 * @param context    Element attached to the existing edge
-	 * @param edgeView   Represents the graphical new edge
-	 * @param sourceView Represents the graphical element pointed by the edge before
+	 * @param oldSource  Represents the semantic element pointed by the edge before
 	 *                   reconnecting
-	 * @param targetView Represents the graphical element pointed by the edge after
-	 *                   reconnecting
-	 * @param source     Represents the semantic element pointed by the edge before
-	 *                   reconnecting
-	 * @param target     Represents the semantic element pointed by the edge after
+	 * @param newSource  Represents the semantic element pointed by the edge after
 	 *                   reconnecting
 	 * @return the Element attached to the edge once it has been modified
 	 */
@@ -1448,14 +1501,9 @@ public class ClassDiagramServices {
 	 * Service used to reconnect a GeneralizationSet edge target.
 	 *
 	 * @param context    Element attached to the existing edge
-	 * @param edgeView   Represents the graphical new edge
-	 * @param sourceView Represents the graphical element pointed by the edge before
+	 * @param oldTarget  Represents the semantic element pointed by the edge before
 	 *                   reconnecting
-	 * @param targetView Represents the graphical element pointed by the edge after
-	 *                   reconnecting
-	 * @param source     Represents the semantic element pointed by the edge before
-	 *                   reconnecting
-	 * @param target     Represents the semantic element pointed by the edge after
+	 * @param newTarget  Represents the semantic element pointed by the edge after
 	 *                   reconnecting
 	 * @return the Element attached to the edge once it has been modified
 	 */
@@ -1479,14 +1527,9 @@ public class ClassDiagramServices {
 	 * Service used to reconnect an InformationFlow edge source.
 	 *
 	 * @param context    Element attached to the existing edge
-	 * @param edgeView   Represents the graphical new edge
-	 * @param sourceView Represents the graphical element pointed by the edge before
+	 * @param oldSource  Represents the semantic element pointed by the edge before
 	 *                   reconnecting
-	 * @param targetView Represents the graphical element pointed by the edge after
-	 *                   reconnecting
-	 * @param source     Represents the semantic element pointed by the edge before
-	 *                   reconnecting
-	 * @param target     Represents the semantic element pointed by the edge after
+	 * @param newSource  Represents the semantic element pointed by the edge after
 	 *                   reconnecting
 	 * @return the Element attached to the edge once it has been modified
 	 */
@@ -1514,14 +1557,9 @@ public class ClassDiagramServices {
 	 * Service used to reconnect an informationFlow edge target.
 	 *
 	 * @param context    Element attached to the existing edge
-	 * @param edgeView   Represents the graphical new edge
-	 * @param sourceView Represents the graphical element pointed by the edge before
+	 * @param oldTarget  Represents the semantic element pointed by the edge before
 	 *                   reconnecting
-	 * @param targetView Represents the graphical element pointed by the edge after
-	 *                   reconnecting
-	 * @param source     Represents the semantic element pointed by the edge before
-	 *                   reconnecting
-	 * @param target     Represents the semantic element pointed by the edge after
+	 * @param newTarget  Represents the semantic element pointed by the edge after
 	 *                   reconnecting
 	 * @return the Element attached to the edge once it has been modified
 	 */
@@ -1535,14 +1573,9 @@ public class ClassDiagramServices {
 	 * Service used to reconnect an InstanceSpecifictaion edge source/target.
 	 *
 	 * @param context    Element attached to the existing edge
-	 * @param edgeView   Represents the graphical new edge
-	 * @param sourceView Represents the graphical element pointed by the edge before
+	 * @param oldSource  Represents the semantic element pointed by the edge before
 	 *                   reconnecting
-	 * @param targetView Represents the graphical element pointed by the edge after
-	 *                   reconnecting
-	 * @param source     Represents the semantic element pointed by the edge before
-	 *                   reconnecting
-	 * @param target     Represents the semantic element pointed by the edge after
+	 * @param newSource  Represents the semantic element pointed by the edge after
 	 *                   reconnecting
 	 * @return the Element attached to the edge once it has been modified
 	 */
@@ -1557,14 +1590,9 @@ public class ClassDiagramServices {
 	 * Service used to reconnect an PacakgeImport edge source.
 	 *
 	 * @param context    Element attached to the existing edge
-	 * @param edgeView   Represents the graphical new edge
-	 * @param sourceView Represents the graphical element pointed by the edge before
+	 * @param oldSource  Represents the semantic element pointed by the edge before
 	 *                   reconnecting
-	 * @param targetView Represents the graphical element pointed by the edge after
-	 *                   reconnecting
-	 * @param source     Represents the semantic element pointed by the edge before
-	 *                   reconnecting
-	 * @param target     Represents the semantic element pointed by the edge after
+	 * @param newSource  Represents the semantic element pointed by the edge after
 	 *                   reconnecting
 	 * @return the Element attached to the edge once it has been modified
 	 */
@@ -1578,14 +1606,9 @@ public class ClassDiagramServices {
 	 * Service used to reconnect a PacakgeImport edge target.
 	 *
 	 * @param context    Element attached to the existing edge
-	 * @param edgeView   Represents the graphical new edge
-	 * @param sourceView Represents the graphical element pointed by the edge before
+	 * @param oldTarget  Represents the semantic element pointed by the edge before
 	 *                   reconnecting
-	 * @param targetView Represents the graphical element pointed by the edge after
-	 *                   reconnecting
-	 * @param source     Represents the semantic element pointed by the edge before
-	 *                   reconnecting
-	 * @param target     Represents the semantic element pointed by the edge after
+	 * @param newTarget  Represents the semantic element pointed by the edge after
 	 *                   reconnecting
 	 * @return the Element attached to the edge once it has been modified
 	 */
@@ -1598,14 +1621,9 @@ public class ClassDiagramServices {
 	 * Service used to reconnect a PackageMerge edge source.
 	 *
 	 * @param context    Element attached to the existing edge
-	 * @param edgeView   Represents the graphical new edge
-	 * @param sourceView Represents the graphical element pointed by the edge before
+	 * @param oldSource  Represents the semantic element pointed by the edge before
 	 *                   reconnecting
-	 * @param targetView Represents the graphical element pointed by the edge after
-	 *                   reconnecting
-	 * @param source     Represents the semantic element pointed by the edge before
-	 *                   reconnecting
-	 * @param target     Represents the semantic element pointed by the edge after
+	 * @param newSource  Represents the semantic element pointed by the edge after
 	 *                   reconnecting
 	 * @return the Element attached to the edge once it has been modified
 	 */
@@ -1619,14 +1637,9 @@ public class ClassDiagramServices {
 	 * Service used to reconnect a PackageMerge edge target.
 	 *
 	 * @param context    Element attached to the existing edge
-	 * @param edgeView   Represents the graphical new edge
-	 * @param sourceView Represents the graphical element pointed by the edge before
+	 * @param oldTarget  Represents the semantic element pointed by the edge before
 	 *                   reconnecting
-	 * @param targetView Represents the graphical element pointed by the edge after
-	 *                   reconnecting
-	 * @param source     Represents the semantic element pointed by the edge before
-	 *                   reconnecting
-	 * @param target     Represents the semantic element pointed by the edge after
+	 * @param newTarget  Represents the semantic element pointed by the edge after
 	 *                   reconnecting
 	 * @return the Element attached to the edge once it has been modified
 	 */
@@ -1639,14 +1652,9 @@ public class ClassDiagramServices {
 	 * Service used to reconnect a Realization edge source.
 	 *
 	 * @param context    Element attached to the existing edge
-	 * @param edgeView   Represents the graphical new edge
-	 * @param sourceView Represents the graphical element pointed by the edge before
+	 * @param oldSource  Represents the semantic element pointed by the edge before
 	 *                   reconnecting
-	 * @param targetView Represents the graphical element pointed by the edge after
-	 *                   reconnecting
-	 * @param source     Represents the semantic element pointed by the edge before
-	 *                   reconnecting
-	 * @param target     Represents the semantic element pointed by the edge after
+	 * @param newSource  Represents the semantic element pointed by the edge after
 	 *                   reconnecting
 	 * @return the Element attached to the edge once it has been modified
 	 */
@@ -1674,14 +1682,9 @@ public class ClassDiagramServices {
 	 * Service used to reconnect a Realization edge target.
 	 *
 	 * @param context    Element attached to the existing edge
-	 * @param edgeView   Represents the graphical new edge
-	 * @param sourceView Represents the graphical element pointed by the edge before
+	 * @param oldSource  Represents the semantic element pointed by the edge before
 	 *                   reconnecting
-	 * @param targetView Represents the graphical element pointed by the edge after
-	 *                   reconnecting
-	 * @param source     Represents the semantic element pointed by the edge before
-	 *                   reconnecting
-	 * @param target     Represents the semantic element pointed by the edge after
+	 * @param newSource  Represents the semantic element pointed by the edge after
 	 *                   reconnecting
 	 * @return the Element attached to the edge once it has been modified
 	 */
@@ -1695,14 +1698,9 @@ public class ClassDiagramServices {
 	 * Service used to reconnect a Substitution edge source.
 	 *
 	 * @param context    Element attached to the existing edge
-	 * @param edgeView   Represents the graphical new edge
-	 * @param sourceView Represents the graphical element pointed by the edge before
+	 * @param oldSource  Represents the semantic element pointed by the edge before
 	 *                   reconnecting
-	 * @param targetView Represents the graphical element pointed by the edge after
-	 *                   reconnecting
-	 * @param source     Represents the semantic element pointed by the edge before
-	 *                   reconnecting
-	 * @param target     Represents the semantic element pointed by the edge after
+	 * @param newSource  Represents the semantic element pointed by the edge after
 	 *                   reconnecting
 	 * @return the Element attached to the edge once it has been modified
 	 */
@@ -1719,14 +1717,9 @@ public class ClassDiagramServices {
 	 * Service used to reconnect a Substitution edge target.
 	 *
 	 * @param context    Element attached to the existing edge
-	 * @param edgeView   Represents the graphical new edge
-	 * @param sourceView Represents the graphical element pointed by the edge before
+	 * @param oldTarget  Represents the semantic element pointed by the edge before
 	 *                   reconnecting
-	 * @param targetView Represents the graphical element pointed by the edge after
-	 *                   reconnecting
-	 * @param source     Represents the semantic element pointed by the edge before
-	 *                   reconnecting
-	 * @param target     Represents the semantic element pointed by the edge after
+	 * @param newTarget  Represents the semantic element pointed by the edge after
 	 *                   reconnecting
 	 * @return the Element attached to the edge once it has been modified
 	 */
@@ -1741,14 +1734,9 @@ public class ClassDiagramServices {
 	 * Service used to reconnect a InterfaceRealization edge source.
 	 *
 	 * @param context    Element attached to the existing edge
-	 * @param edgeView   Represents the graphical new edge
-	 * @param sourceView Represents the graphical element pointed by the edge before
+	 * @param oldSource  Represents the semantic element pointed by the edge before
 	 *                   reconnecting
-	 * @param targetView Represents the graphical element pointed by the edge after
-	 *                   reconnecting
-	 * @param source     Represents the semantic element pointed by the edge before
-	 *                   reconnecting
-	 * @param target     Represents the semantic element pointed by the edge after
+	 * @param newSource  Represents the semantic element pointed by the edge after
 	 *                   reconnecting
 	 * @return the Element attached to the edge once it has been modified
 	 */
@@ -1765,14 +1753,9 @@ public class ClassDiagramServices {
 	 * Service used to reconnect a InterfaceRealization edge target.
 	 *
 	 * @param context    Element attached to the existing edge
-	 * @param edgeView   Represents the graphical new edge
-	 * @param sourceView Represents the graphical element pointed by the edge before
+	 * @param oldTarget  Represents the semantic element pointed by the edge before
 	 *                   reconnecting
-	 * @param targetView Represents the graphical element pointed by the edge after
-	 *                   reconnecting
-	 * @param source     Represents the semantic element pointed by the edge before
-	 *                   reconnecting
-	 * @param target     Represents the semantic element pointed by the edge after
+	 * @param newTarget  Represents the semantic element pointed by the edge after
 	 *                   reconnecting
 	 * @return the Element attached to the edge once it has been modified
 	 */
@@ -1787,14 +1770,9 @@ public class ClassDiagramServices {
 	 * Service used to reconnect a Usage edge source.
 	 *
 	 * @param context    Element attached to the existing edge
-	 * @param edgeView   Represents the graphical new edge
-	 * @param sourceView Represents the graphical element pointed by the edge before
+	 * @param oldSource  Represents the semantic element pointed by the edge before
 	 *                   reconnecting
-	 * @param targetView Represents the graphical element pointed by the edge after
-	 *                   reconnecting
-	 * @param source     Represents the semantic element pointed by the edge before
-	 *                   reconnecting
-	 * @param target     Represents the semantic element pointed by the edge after
+	 * @param newSource  Represents the semantic element pointed by the edge after
 	 *                   reconnecting
 	 * @return the Element attached to the edge once it has been modified
 	 */
@@ -1821,11 +1799,6 @@ public class ClassDiagramServices {
 	 * Service used to reconnect a Usage edge target.
 	 *
 	 * @param context    Element attached to the existing edge
-	 * @param edgeView   Represents the graphical new edge
-	 * @param sourceView Represents the graphical element pointed by the edge before
-	 *                   reconnecting
-	 * @param targetView Represents the graphical element pointed by the edge after
-	 *                   reconnecting
 	 * @param source     Represents the semantic element pointed by the edge before
 	 *                   reconnecting
 	 * @param target     Represents the semantic element pointed by the edge after
@@ -1843,13 +1816,9 @@ public class ClassDiagramServices {
 	 *
 	 * @param context    Element attached to the existing edge
 	 * @param edgeView   Represents the graphical new edge
-	 * @param sourceView Represents the graphical element pointed by the edge before
+	 * @param oldsource  Represents the semantic element pointed by the edge before
 	 *                   reconnecting
-	 * @param targetView Represents the graphical element pointed by the edge after
-	 *                   reconnecting
-	 * @param source     Represents the semantic element pointed by the edge before
-	 *                   reconnecting
-	 * @param target     Represents the semantic element pointed by the edge after
+	 * @param newSource  Represents the semantic element pointed by the edge after
 	 *                   reconnecting
 	 * @return the Element attached to the edge once it has been modified
 	 */
@@ -1884,13 +1853,9 @@ public class ClassDiagramServices {
 	 *
 	 * @param context    Element attached to the existing edge
 	 * @param edgeView   Represents the graphical new edge
-	 * @param sourceView Represents the graphical element pointed by the edge before
+	 * @param oldTarget  Represents the semantic element pointed by the edge before
 	 *                   reconnecting
-	 * @param targetView Represents the graphical element pointed by the edge after
-	 *                   reconnecting
-	 * @param source     Represents the semantic element pointed by the edge before
-	 *                   reconnecting
-	 * @param target     Represents the semantic element pointed by the edge after
+	 * @param newTarget  Represents the semantic element pointed by the edge after
 	 *                   reconnecting
 	 * @return the Element attached to the edge once it has been modified
 	 */
@@ -1915,14 +1880,9 @@ public class ClassDiagramServices {
 	 * Service used to reconnect a Abstraction edge source.
 	 *
 	 * @param context    Element attached to the existing edge
-	 * @param edgeView   Represents the graphical new edge
-	 * @param sourceView Represents the graphical element pointed by the edge before
+	 * @param oldSource  Represents the semantic element pointed by the edge before
 	 *                   reconnecting
-	 * @param targetView Represents the graphical element pointed by the edge after
-	 *                   reconnecting
-	 * @param source     Represents the semantic element pointed by the edge before
-	 *                   reconnecting
-	 * @param target     Represents the semantic element pointed by the edge after
+	 * @param newSource  Represents the semantic element pointed by the edge after
 	 *                   reconnecting
 	 * @return the Element attached to the edge once it has been modified
 	 */
@@ -1936,14 +1896,9 @@ public class ClassDiagramServices {
 	 * Service used to reconnect a Abstraction edge target.
 	 *
 	 * @param context    Element attached to the existing edge
-	 * @param edgeView   Represents the graphical new edge
-	 * @param sourceView Represents the graphical element pointed by the edge before
+	 * @param oldTarget  Represents the semantic element pointed by the edge before
 	 *                   reconnecting
-	 * @param targetView Represents the graphical element pointed by the edge after
-	 *                   reconnecting
-	 * @param source     Represents the semantic element pointed by the edge before
-	 *                   reconnecting
-	 * @param target     Represents the semantic element pointed by the edge after
+	 * @param newTarget  Represents the semantic element pointed by the edge after
 	 *                   reconnecting
 	 * @return the Element attached to the edge once it has been modified
 	 */
@@ -1958,13 +1913,9 @@ public class ClassDiagramServices {
 	 *
 	 * @param context    Element attached to the existing edge
 	 * @param edgeView   Represents the graphical new edge
-	 * @param sourceView Represents the graphical element pointed by the edge before
+	 * @param oldSource  Represents the semantic element pointed by the edge before
 	 *                   reconnecting
-	 * @param targetView Represents the graphical element pointed by the edge after
-	 *                   reconnecting
-	 * @param source     Represents the semantic element pointed by the edge before
-	 *                   reconnecting
-	 * @param target     Represents the semantic element pointed by the edge after
+	 * @param newSource  Represents the semantic element pointed by the edge after
 	 *                   reconnecting
 	 * @return the Element attached to the edge once it has been modified
 	 */
@@ -2047,13 +1998,9 @@ public class ClassDiagramServices {
 	 *
 	 * @param context    Element attached to the existing edge
 	 * @param edgeView   Represents the graphical new edge
-	 * @param sourceView Represents the graphical element pointed by the edge before
+	 * @param oldTarget  Represents the semantic element pointed by the edge before
 	 *                   reconnecting
-	 * @param targetView Represents the graphical element pointed by the edge after
-	 *                   reconnecting
-	 * @param source     Represents the semantic element pointed by the edge before
-	 *                   reconnecting
-	 * @param target     Represents the semantic element pointed by the edge after
+	 * @param newTarget  Represents the semantic element pointed by the edge after
 	 *                   reconnecting
 	 * @return the Element attached to the edge once it has been modified
 	 */
@@ -2225,29 +2172,6 @@ public class ClassDiagramServices {
 				.get(1);
 		return target.getName();
 	}
-
-//	public String buildNameWithStereoType(Element element)
-//	{
-//		StringBuilder nameBuilder = new StringBuilder();
-//		String stereoTypes = getStereoTypeLabels(element);
-//		String elemName = LabelServices.INSTANCE.computeUmlLabel(element);
-//		// if applied stereo types found
-//		if (!stereoTypes.equals(elemName))
-//		{
-//			stereoTypes = stereoTypes.substring(stereoTypes.length());
-//			nameBuilder.append(stereoTypes);
-//			nameBuilder.append(System.getProperty("line.separator"));
-//			nameBuilder.append(elemName);
-//			return nameBuilder.toString();
-//		}
-//		return elemName;
-//	}
-//	
-//	public String getStereoTypeLabels(Object element)
-//	{
-//		AppliedStereotypePropertyLabelProvider labelProvider = new AppliedStereotypePropertyLabelProvider();
-//		return labelProvider.getText(element);
-//	}
 
 	/**
 	 * Compute the label of the given association.
@@ -3094,65 +3018,6 @@ public class ClassDiagramServices {
 
 		return true;
 	}
-
-	/**
-	 * Open the select existing element dialog.
-	 *
-	 * @param source              Selected element
-	 * @param target              Selected element
-	 * @param sourceContainerView Source container view
-	 */
-//	public void openSelectNaryAssociationEndsDialog(final EObject source, final EObject target,
-//			DSemanticDecorator sourceContainerView) {
-//
-//		DDiagram diagram = null;
-//		EObject parent = sourceContainerView.eContainer();
-//		while (diagram == null && parent != null) {
-//			if (parent instanceof DDiagram) {
-//				diagram = (DDiagram)parent;
-//			}
-//			parent = parent.eContainer();
-//		}
-//
-//		Model model = null;
-//		if (source instanceof Element) {
-//			model = ((Element)source).getModel();
-//		}
-//
-//		final ModelElementsSelectionDialog dlg = new ModelElementsSelectionDialog("Create N-ary Association", //$NON-NLS-1$
-//				"Select additional elements to add to the association." + System.lineSeparator() //$NON-NLS-1$
-//				+ " At least one element have to be selected, else n-Ary association will not be created " //$NON-NLS-1$
-//				+ System.lineSeparator());
-//
-//		dlg.setGrayedPredicate(new Predicate<EObject>() {
-//
-//			public boolean apply(EObject input) {
-//				if (input.equals(source) || input.equals(target)) {
-//					return true;
-//				} else if (input instanceof Class || input instanceof AssociationClass
-//						|| input instanceof Interface || input instanceof Enumeration
-//						|| input instanceof DataType || input instanceof PrimitiveType) {
-//					return false;
-//				}
-//				return true;
-//			}
-//		});
-//
-//		@SuppressWarnings("rawtypes")
-//		final List elementsToAdd = dlg.open(PlatformUI.getWorkbench().getDisplay().getActiveShell(), model,
-//				diagram, true);
-//		if (elementsToAdd.size() > 0) {
-//			final Association association = createAssociation((Element)source, (Element)target);
-//			for (final Object element : elementsToAdd) {
-//				if (element instanceof Type) {
-//					final Property end = AssociationServices.INSTANCE.createAssociationEnd((Type)element);
-//					association.getOwnedEnds().add(end);
-//					association.getMemberEnds().add(end);
-//					association.getNavigableOwnedEnds().add(end);
-//				}
-//			}
-//		}
-//	}
 
 	/**
 	 * Check is an association source is composite.
