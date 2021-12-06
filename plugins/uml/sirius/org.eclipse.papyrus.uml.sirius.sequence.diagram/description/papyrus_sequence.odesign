@@ -264,10 +264,9 @@
               <containerView name="containerView"/>
               <initialOperation>
                 <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:self">
-                  <subModelOperations xsi:type="tool_1:If" conditionExpression="service:element.isNotReply">
-                    <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:element">
-                      <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="service:delete"/>
-                    </subModelOperations>
+                  <subModelOperations xsi:type="tool_1:If" conditionExpression="service:element.isNotReply"/>
+                  <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:element">
+                    <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="service:delete"/>
                   </subModelOperations>
                 </firstModelOperations>
               </initialOperation>

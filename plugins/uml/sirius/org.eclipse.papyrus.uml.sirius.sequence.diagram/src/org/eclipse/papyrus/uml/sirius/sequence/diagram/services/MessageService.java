@@ -1060,12 +1060,12 @@ public class MessageService {
 				.getReceiveEvent();
 		if (receiveMessage != null) {
 			// If message is a synchronous message delete also the reply message
-			if (MessageSort.SYNCH_CALL_LITERAL.equals(message.getMessageSort())) {
-				final Message reply = getReplyMessage(message);
-				if (reply != null) {
-					delete(reply);
-				}
-			}
+//			if (MessageSort.SYNCH_CALL_LITERAL.equals(message.getMessageSort())) {
+//				final Message reply = getReplyMessage(message);
+//				if (reply != null) {
+//					delete(reply);
+//				}
+//			}
 
 			final BehaviorExecutionSpecification execution = ExecutionService.getInstance().getExecution(receiveMessage);
 			if (execution != null) {
