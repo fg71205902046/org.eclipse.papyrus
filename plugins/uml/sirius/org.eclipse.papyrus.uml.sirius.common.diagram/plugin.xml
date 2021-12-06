@@ -4,7 +4,7 @@
 
 <extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
     <decoratorProvider class="org.eclipse.papyrus.uml.sirius.common.diagram.validation.SiriusValidationDecoratorProvider">
-         <Priority name="Lowest"/>
+         <Priority name="Highest"/>
 	         <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
 	         <context decoratorTargets="PRIMARY_VIEW"/>
 	</decoratorProvider>

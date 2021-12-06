@@ -69,12 +69,9 @@ public class AddElementToDiagramServices {
 	/**
 	 * Get mappings available for a semantic element and a given diagram.
 	 *
-	 * @param semanticElement
-	 *            Semantic element
-	 * @param diagram
-	 *            Container view
-	 * @param session
-	 *            Session
+	 * @param semanticElement Semantic element
+	 * @param diagram         Container view
+	 * @param session         Session
 	 * @return List of mappings which could not be null
 	 */
 	public List<DiagramElementMapping> getValidMappingsForDiagram(final EObject semanticElement,
@@ -88,13 +85,13 @@ public class AddElementToDiagramServices {
 		final ModelAccessor modelAccessor = session.getModelAccessor();
 
 		for (final DiagramElementMapping mapping : diagram.getDescription().getContainerMappings()) {
-			final String domainClass = ((AbstractNodeMapping)mapping).getDomainClass();
+			final String domainClass = ((AbstractNodeMapping) mapping).getDomainClass();
 			if (modelAccessor.eInstanceOf(semanticElement, domainClass) && !mapping.isCreateElements()) {
 				mappings.add(mapping);
 			}
 		}
 		for (final DiagramElementMapping mapping : diagram.getDescription().getNodeMappings()) {
-			final String domainClass = ((AbstractNodeMapping)mapping).getDomainClass();
+			final String domainClass = ((AbstractNodeMapping) mapping).getDomainClass();
 			if (modelAccessor.eInstanceOf(semanticElement, domainClass) && !mapping.isCreateElements()) {
 				mappings.add(mapping);
 			}
@@ -108,147 +105,29 @@ public class AddElementToDiagramServices {
 
 			public boolean apply(Object input) {
 				return input instanceof Package || input instanceof Interface || input instanceof DataType
-						|| "Class".equals(((EObject)input).eClass().getName()) //$NON-NLS-1$
-						|| "Component".equals(((EObject)input).eClass().getName()); //$NON-NLS-1$
+						|| "Class".equals(((EObject) input).eClass().getName()) //$NON-NLS-1$
+						|| "Component".equals(((EObject) input).eClass().getName()); //$NON-NLS-1$
 			}
 		};
 		return validForClassDiagram;
 	}
 
-	private Predicate<Object> getValidsForComponentDiagram() {
-		final Predicate<Object> validForComponentDiagram = new Predicate<Object>() {
-
-			public boolean apply(Object input) {
-				return input instanceof Package || input instanceof Interface
-						|| "Class".equals(((EObject)input).eClass().getName()) //$NON-NLS-1$
-						|| "Component".equals(((EObject)input).eClass().getName()); //$NON-NLS-1$
-			}
-		};
-		return validForComponentDiagram;
-	}
-
-	private Predicate<Object> getValidsForCompositeDiagram() {
-		final Predicate<Object> validForCompositeDiagram = new Predicate<Object>() {
-
-			public boolean apply(Object input) {
-				if (input instanceof StructuredClassifier) {
-					return !(input instanceof Interaction || input instanceof StateMachine
-							|| input instanceof Activity);
-				}
-				return input instanceof Package || input instanceof Interface
-						|| "Port".equals(((EObject)input).eClass().getName()) //$NON-NLS-1$
-						|| "Property".equals(((EObject)input).eClass().getName()); //$NON-NLS-1$
-
-			}
-		};
-		return validForCompositeDiagram;
-	}
-
-	private Predicate<Object> getValidsForCompositeStructureDiagram(final DDiagram diagram,
-			final EObject container) {
-		final Predicate<Object> validForCompositeDiagram = new Predicate<Object>() {
-
-			public boolean apply(Object input) {
-				final EObject containerDiagram = ((DSemanticDiagram)diagram).getTarget();
-				if (input instanceof StructuredClassifier && containerDiagram instanceof StructuredClassifier
-						|| input instanceof Property && !(input instanceof Port)
-						&& container.equals(((EObject)input).eContainer())) {
-					return EcoreUtil.isAncestor(containerDiagram, (EObject)input);
-				}
-				if (input instanceof Interface && isInterfacesLayerActive(diagram)) {
-					return true;
-				}
-				return input instanceof StructuredClassifier;
-			}
-		};
-		return validForCompositeDiagram;
-	}
-
-	private Predicate<Object> getValidsForDeploymentDiagram() {
-		final Predicate<Object> validForDeploymentDiagram = new Predicate<Object>() {
-
-			public boolean apply(Object input) {
-				return input instanceof Package && !(input instanceof Profile)
-						|| input instanceof ExecutionEnvironment || input instanceof Node
-						|| input instanceof Artifact || input instanceof Device || input instanceof Component;
-			}
-		};
-		return validForDeploymentDiagram;
-	}
 
 	/**
 	 * Get valid elements for a diagram.
 	 *
-	 * @param cur
-	 *            Element
-	 * @return List of valid elements for the current representation
-	 */
-	private Predicate<Object> getValidsForPackageDiagram() {
-		final Predicate<Object> validForPackageDiagram = new Predicate<Object>() {
-
-			public boolean apply(Object input) {
-				return input instanceof Package;
-			}
-		};
-		return validForPackageDiagram;
-	}
-
-	private Predicate<Object> getValidsForUseCaseDiagram() {
-		final Predicate<Object> validForUseCaseDiagram = new Predicate<Object>() {
-
-			public boolean apply(Object input) {
-				return input instanceof Package || input instanceof Class || input instanceof Component
-						|| input instanceof Artifact || input instanceof DataType
-						|| input instanceof Interface || input instanceof Collaboration
-						|| input instanceof UseCase || input instanceof Actor;
-			}
-		};
-		return validForUseCaseDiagram;
-	}
-
-	/**
-	 * Is the interfaces layer active. Diagram element
-	 *
-	 * @return True if the layer named "Interfaces" is active otherwise false
-	 */
-	private boolean isInterfacesLayerActive(DDiagram diagram) {
-		for (final Layer activeLayer : diagram.getActivatedLayers()) {
-			if ("Interfaces".equals(activeLayer.getName())) { //$NON-NLS-1$
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * Get valid elements for a diagram.
-	 *
-	 * @param diagram
-	 *            diagram
-	 * @param container
-	 *            selected container
+	 * @param diagram   diagram
+	 * @param container selected container
 	 * @return List of valid elements for the current representation
 	 */
 	public Predicate<Object> isValidForDiagram(DDiagram diagram, EObject container) {
 		Predicate<Object> results = Predicates.alwaysTrue();
 		if (diagram instanceof DSemanticDiagram) {
-			final DiagramDescription description = ((DSemanticDiagram)diagram).getDescription();
+			final DiagramDescription description = ((DSemanticDiagram) diagram).getDescription();
 
 			if ("Class Diagram".equals(description.getName()) //$NON-NLS-1$
 					|| "Profile Diagram".equals(description.getName())) { //$NON-NLS-1$
 				results = getValidsForClassDiagram();
-			} else if ("Component Diagram".equals(description.getName())) { //$NON-NLS-1$
-				results = getValidsForComponentDiagram();
-			} else if ("Composite Diagram".equals(description.getName())) { //$NON-NLS-1$
-				results = getValidsForCompositeDiagram();
-			} else if ("Composite Structure Diagram".equals(description.getName())) { //$NON-NLS-1$
-				results = getValidsForCompositeStructureDiagram(diagram, container);
-			} else if ("Deployment Diagram".equals(description.getName())) { //$NON-NLS-1$
-				results = getValidsForDeploymentDiagram();
-			} else if ("Package Hierarchy".equals(description.getName())) { //$NON-NLS-1$
-				results = getValidsForPackageDiagram();
-			} else if ("Use Case Diagram".equals(description.getName())) { //$NON-NLS-1$
-				results = getValidsForUseCaseDiagram();
 			}
 		}
 

@@ -20,13 +20,9 @@ import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternat
 import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLQualifiedNameUtils;
 //import org.eclipse.ui.navigator.ICommonLabelProvider;
 import org.eclipse.uml2.uml.Activity;
-import org.eclipse.uml2.uml.ActivityEdge;
-import org.eclipse.uml2.uml.ActivityPartition;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.BehaviorExecutionSpecification;
-import org.eclipse.uml2.uml.CallBehaviorAction;
-import org.eclipse.uml2.uml.CallOperationAction;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Constraint;
@@ -39,10 +35,8 @@ import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Expression;
 import org.eclipse.uml2.uml.Feature;
-import org.eclipse.uml2.uml.FunctionBehavior;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.InstanceValue;
-import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Interval;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.LiteralBoolean;
@@ -51,14 +45,11 @@ import org.eclipse.uml2.uml.LiteralNull;
 import org.eclipse.uml2.uml.LiteralReal;
 import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.LiteralUnlimitedNatural;
-import org.eclipse.uml2.uml.Manifestation;
-import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MultiplicityElement;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.OpaqueAction;
-import org.eclipse.uml2.uml.OpaqueBehavior;
 import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.PackageMerge;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.ParameterableElement;
@@ -71,6 +62,7 @@ import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.StructuralFeature;
+import org.eclipse.uml2.uml.Substitution;
 import org.eclipse.uml2.uml.TemplateBinding;
 import org.eclipse.uml2.uml.TemplateParameterSubstitution;
 import org.eclipse.uml2.uml.TemplateableElement;
@@ -165,10 +157,6 @@ public class DisplayLabelSwitch extends UMLSwitch<String> implements ILabelConst
 		return "";
 	}
 
-	/**
-	 * Label provider.
-	 */
-//    ICommonLabelProvider labelProvider = UMLDesignerCorePlugin.getDefault().getLabelProvider();
 
 	/**
 	 * {@inheritDoc}
@@ -178,101 +166,6 @@ public class DisplayLabelSwitch extends UMLSwitch<String> implements ILabelConst
 		return OPEN_QUOTE_MARK + "Activity" + CLOSE_QUOTE_MARK + caseBehavior(object); //$NON-NLS-1$
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public String caseActivityEdge(ActivityEdge object) {
-		final ValueSpecification value = object.getGuard();
-
-		if (value instanceof OpaqueExpression) {
-			final String expr = ((OpaqueExpression) value).getBodies().get(0);
-			if (expr != null && !"".equalsIgnoreCase(expr) && !"true".equalsIgnoreCase(expr) //$NON-NLS-1$ //$NON-NLS-2$
-					&& !"1".equalsIgnoreCase(expr)) { //$NON-NLS-1$
-				return OPENING_BRACE + expr + CLOSING_BRACE;
-			}
-		}
-
-		return ""; //$NON-NLS-1$
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public String caseActivityPartition(ActivityPartition object) {
-		if (object.getRepresents() instanceof NamedElement) {
-			return caseNamedElement(object) + SPACED_COLUMN + ((NamedElement) object.getRepresents()).getName();
-		}
-
-		return null;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	/*
-	 * @Override public String caseAssociation(Association object) { String
-	 * labelToDisplay = labelProvider.getText(object); labelToDisplay =
-	 * labelToDisplay.replace("<Association> ", ""); //$NON-NLS-1$ //$NON-NLS-2$
-	 * return labelToDisplay; }
-	 */
-	@Override
-	public String caseBehavior(Behavior object) {
-		return object.getName();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public String caseCallBehaviorAction(CallBehaviorAction object) {
-		// A CallBehaviorAction shall be notated as an Action with the name of
-		// the invoked Behavior placed
-		// inside the Action symbol. If the name of the Action is non-empty and
-		// different than the Behavior
-		// name, then the Action name shall appear in the symbol instead.
-		final String actionName = object.getName();
-
-		if (object.getBehavior() != null) {
-			final String behaviorName = object.getBehavior().getName();
-
-			if (actionName != null && actionName.length() > 0 && !actionName.equals(behaviorName)) {
-				return actionName;
-			}
-			return behaviorName;
-		}
-
-		return null;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public String caseCallOperationAction(CallOperationAction object) {
-		// A CallOperationAction is notated as an Action with the name of the
-		// invoked Operation placed inside
-		// the Action symbol. If the name of the Action is non-empty and
-		// different than the Operation name,
-		// then the Action name shall appear in the symbol instead. The name of
-		// the owner of the Operation may
-		// optionally appear below the name of the Operation, in parentheses
-		// post fixed by double colon. If
-		// the Action name is shown instead of the Operation name, then the
-		// Operation name may be shown after
-		// the double colon.
-		if (object.getOperation() != null) {
-			final String callOperationName = caseNamedElement(object);
-			final String operationName = object.getOperation().getName();
-			if (callOperationName != null && callOperationName.equals(operationName)) {
-				return callOperationName;
-			}
-			return caseNamedElement(object) + SPACED_COLUMN + object.getOperation().getName();
-		}
-
-		return null;
-	}
 
 	/**
 	 * {@inheritDoc}
@@ -287,7 +180,7 @@ public class DisplayLabelSwitch extends UMLSwitch<String> implements ILabelConst
 	 */
 	@Override
 	public String caseComponentRealization(org.eclipse.uml2.uml.ComponentRealization object) {
-		return ""; //$NON-NLS-1$
+		return computeStereotypes(object);
 	}
 
 	/**
@@ -317,15 +210,6 @@ public class DisplayLabelSwitch extends UMLSwitch<String> implements ILabelConst
 	/**
 	 * {@inheritDoc}
 	 */
-	/*
-	 * @Override public String caseControlFlow(org.eclipse.uml2.uml.ControlFlow
-	 * object) { String labelToDisplay = labelProvider.getText(object);
-	 * labelToDisplay = labelToDisplay.replace("<Control Flow>", ""); //$NON-NLS-1$
-	 * //$NON-NLS-2$ return labelToDisplay; }
-	 */
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public String caseDataStoreNode(DataStoreNode object) {
 		final StringBuffer buffer = new StringBuffer();
@@ -342,7 +226,7 @@ public class DisplayLabelSwitch extends UMLSwitch<String> implements ILabelConst
 	 */
 	@Override
 	public String caseDependency(Dependency object) {
-		return ""; //$NON-NLS-1$
+		return computeStereotypes(object);
 	}
 
 	/**
@@ -350,7 +234,7 @@ public class DisplayLabelSwitch extends UMLSwitch<String> implements ILabelConst
 	 */
 	@Override
 	public String caseDeployment(org.eclipse.uml2.uml.Deployment object) {
-		return "<<deploy>>"; //$NON-NLS-1$
+		return computeStereotypes(object) + "<<deploy>>";
 	}
 
 	/**
@@ -366,7 +250,7 @@ public class DisplayLabelSwitch extends UMLSwitch<String> implements ILabelConst
 	 */
 	@Override
 	public String caseElementImport(ElementImport object) {
-		return object.getName();
+		return computeStereotypes(object) + "<<import>>";
 	}
 
 	/**
@@ -402,29 +286,28 @@ public class DisplayLabelSwitch extends UMLSwitch<String> implements ILabelConst
 
 	/**
 	 * {@inheritDoc}
-	 *//*
-		 * @Override public String caseExtend(org.eclipse.uml2.uml.Extend object) {
-		 * String labelToDisplay = labelProvider.getText(object); labelToDisplay =
-		 * labelToDisplay.replace("<Extend> ", ""); //$NON-NLS-1$ //$NON-NLS-2$ return
-		 * labelToDisplay; }
-		 */
-
+	 */
+	@Override
+	public String casePackageMerge(PackageMerge object) {
+		return computeStereotypes(object) + "<<merge>>";
+	}
+	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public String caseFunctionBehavior(FunctionBehavior object) {
-		return object.getName();
+	public String caseElement(Element object) {
+		return computeStereotypes(object);
 	}
-
+	
+	
 	/**
 	 * {@inheritDoc}
-	 *//*
-		 * @Override public String caseInclude(org.eclipse.uml2.uml.Include object) {
-		 * String labelToDisplay = labelProvider.getText(object); labelToDisplay =
-		 * labelToDisplay.replace("<Include> ", ""); //$NON-NLS-1$ //$NON-NLS-2$ return
-		 * labelToDisplay; }
-		 */
+	 */
+	@Override
+	public String caseSubstitution(Substitution object) {
+		return computeStereotypes(object) + "<<substitue>>";
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -459,16 +342,8 @@ public class DisplayLabelSwitch extends UMLSwitch<String> implements ILabelConst
 	 * {@inheritDoc}
 	 */
 	@Override
-	public String caseInteraction(Interaction object) {
-		return object.getName();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
 	public String caseInterfaceRealization(org.eclipse.uml2.uml.InterfaceRealization object) {
-		return ""; //$NON-NLS-1$
+		return computeStereotypes(object);
 	}
 
 	/**
@@ -562,22 +437,6 @@ public class DisplayLabelSwitch extends UMLSwitch<String> implements ILabelConst
 	 * {@inheritDoc}
 	 */
 	@Override
-	public String caseManifestation(Manifestation object) {
-		return "<<manifest>>"; //$NON-NLS-1$
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public String caseMessage(Message message) {
-		return message.getName();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
 	public String caseMultiplicityElement(MultiplicityElement object) {
 		return getMultiplicity(object.getLower(), object.getUpper());
 	}
@@ -598,31 +457,6 @@ public class DisplayLabelSwitch extends UMLSwitch<String> implements ILabelConst
 
 	protected boolean shouldTranslate() {
 		return UMLEditPlugin.INSTANCE.shouldTranslate();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 *//*
-		 * @Override public String caseObjectFlow(org.eclipse.uml2.uml.ObjectFlow
-		 * object) { String labelToDisplay = labelProvider.getText(object);
-		 * labelToDisplay = labelToDisplay.replace("<Object Flow>", ""); //$NON-NLS-1$
-		 * //$NON-NLS-2$ return labelToDisplay; }
-		 */
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public String caseOpaqueAction(OpaqueAction object) {
-		return object.getName();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public String caseOpaqueBehavior(OpaqueBehavior object) {
-		return object.getName();
 	}
 
 	/**
@@ -689,6 +523,7 @@ public class DisplayLabelSwitch extends UMLSwitch<String> implements ILabelConst
 			label.append("{" + operProperties + "}"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 		return label.toString();
+
 	}
 
 	@Override
@@ -805,7 +640,7 @@ public class DisplayLabelSwitch extends UMLSwitch<String> implements ILabelConst
 	 */
 	@Override
 	public String caseStateMachine(StateMachine object) {
-		return OPEN_QUOTE_MARK + "StateMachine" + CLOSE_QUOTE_MARK + caseBehavior(object); //$NON-NLS-1$
+		return computeStereotypes(object) + OPEN_QUOTE_MARK + "StateMachine" + CLOSE_QUOTE_MARK + caseBehavior(object); //$NON-NLS-1$
 	}
 
 	/**
@@ -860,7 +695,7 @@ public class DisplayLabelSwitch extends UMLSwitch<String> implements ILabelConst
 				}
 			}
 		}
-		return binding.toString();
+		return computeStereotypes(object) + binding.toString();
 	}
 
 	/**
@@ -924,7 +759,7 @@ public class DisplayLabelSwitch extends UMLSwitch<String> implements ILabelConst
 			transitionLabel.append(effectLabel);
 		}
 
-		return transitionLabel.toString();
+		return computeStereotypes(object) + transitionLabel.toString();
 	}
 
 	/**
@@ -943,9 +778,9 @@ public class DisplayLabelSwitch extends UMLSwitch<String> implements ILabelConst
 	 */
 	@Override
 	public String caseUsage(org.eclipse.uml2.uml.Usage object) {
-		return "<<use>>"; //$NON-NLS-1$
+		return computeStereotypes(object) + "<<use>>"; //$NON-NLS-1$
 	}
-
+	
 	/**
 	 * Compute label for a property.
 	 *

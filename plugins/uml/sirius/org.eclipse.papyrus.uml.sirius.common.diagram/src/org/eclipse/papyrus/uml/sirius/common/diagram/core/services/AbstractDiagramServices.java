@@ -197,7 +197,7 @@ public abstract class AbstractDiagramServices {
      * @return The default height.
      */
     public int defaultHeight(EObject any) {
-        return 8/*UIServices.INSTANCE.defaultHeight()*/;
+        return 10/*UIServices.INSTANCE.defaultHeight()*/;
     }
 
     /**
@@ -208,7 +208,7 @@ public abstract class AbstractDiagramServices {
      * @return The default width.
      */
     public int defaultWidth(EObject any) {
-        return 8/*UIServices.INSTANCE.defaultWidth()*/;
+        return 10/*UIServices.INSTANCE.defaultWidth()*/;
     }
 
     /**
