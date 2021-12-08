@@ -37,7 +37,7 @@ public class ReduceGrowAction extends AbstractGraphicalParametricAction {
 	 * Default expand reduce speed
 	 */
 	public static final int DEFAULT_SPEED = 2;
-	
+
 	/**
 	 *
 	 * Constructor.
@@ -59,9 +59,9 @@ public class ReduceGrowAction extends AbstractGraphicalParametricAction {
 	protected Command getBuildedCommand() {
 		CompoundCommand command = new CompoundCommand("Reduce/Grow Command"); //$NON-NLS-1$
 
-		ChangeBoundsRequest request = createRequest(); 
 		for (Iterator<IGraphicalEditPart> iter = getSelection().iterator(); iter.hasNext();) {
 			EditPart element = iter.next();
+			ChangeBoundsRequest request = createRequest(element);
 			Command cmd = element.getCommand(request);
 			if (cmd != null && cmd.canExecute()) {
 				command.add(cmd);
@@ -72,28 +72,30 @@ public class ReduceGrowAction extends AbstractGraphicalParametricAction {
 
 	/**
 	 * Create the request corresponding to the chosen parameter
+	 *
 	 * @return
 	 */
-	protected ChangeBoundsRequest createRequest() {
+	protected ChangeBoundsRequest createRequest(EditPart element) {
 		ChangeBoundsRequest request = new ChangeBoundsRequest();
+		request.setEditParts(element);
 		request.setType(org.eclipse.gef.RequestConstants.REQ_RESIZE);
 		switch (getParameter()) {
 		case LayoutUtils.LEFT:
 			request.setSizeDelta(new Dimension(-2 * DEFAULT_SPEED, 0));
-			request.setMoveDelta(new Point(DEFAULT_SPEED, 0));			
+			request.setMoveDelta(new Point(DEFAULT_SPEED, 0));
 			break;
 		case LayoutUtils.RIGHT:
 			request.setSizeDelta(new Dimension(2 * DEFAULT_SPEED, 0));
-			request.setMoveDelta(new Point(-DEFAULT_SPEED, 0));			
+			request.setMoveDelta(new Point(-DEFAULT_SPEED, 0));
 			break;
 		case LayoutUtils.TOP:
 			request.setSizeDelta(new Dimension(0, 2 * DEFAULT_SPEED));
-			request.setMoveDelta(new Point(0,-DEFAULT_SPEED));	
+			request.setMoveDelta(new Point(0, -DEFAULT_SPEED));
 			break;
 		case LayoutUtils.BOTTOM:
 			request.setSizeDelta(new Dimension(0, -2 * DEFAULT_SPEED));
-			request.setMoveDelta(new Point(0,DEFAULT_SPEED));			
-			break;			
+			request.setMoveDelta(new Point(0, DEFAULT_SPEED));
+			break;
 		default:
 			break;
 		}
@@ -107,9 +109,9 @@ public class ReduceGrowAction extends AbstractGraphicalParametricAction {
 	 * @return
 	 */
 	@Override
-	public boolean isEnabled() { 
+	public boolean isEnabled() {
 		if (LayoutUtils.LEFT.equals(getParameter()) || LayoutUtils.RIGHT.equals(getParameter())
-			||LayoutUtils.TOP.equals(getParameter()) || LayoutUtils.BOTTOM.equals(getParameter())) {
+				|| LayoutUtils.TOP.equals(getParameter()) || LayoutUtils.BOTTOM.equals(getParameter())) {
 			return true;
 		}
 		return super.isEnabled();

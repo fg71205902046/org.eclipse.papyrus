@@ -34,7 +34,7 @@ public class GMFUMLElementProvider implements IPapyrusElementProvider {
 
 	@Override
 	public Element getElement(Object element, CSSEngine engine) {
-
+		System.out.println("GMFUMLElementProvider" + element + engine);
 		if (!(element instanceof View)) {
 			throw new IllegalArgumentException("Unknown element : " + element);
 		}
