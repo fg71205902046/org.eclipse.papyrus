@@ -23,7 +23,7 @@
             id="org.eclipse.papyrus.infra.gmfdiag.assistant.presentation.AssistantModelWizardID"
             name="%_UI_AssistantModelWizard_label"
             class="org.eclipse.papyrus.infra.gmfdiag.assistant.presentation.AssistantModelWizard"
-            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.addons.category"
+            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.custo.category/org.eclipse.papyrus.wizards.custo.editors.category"
             icon="icons/full/obj16/AssistantModelFile.gif">
          <description>%_UI_AssistantModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>

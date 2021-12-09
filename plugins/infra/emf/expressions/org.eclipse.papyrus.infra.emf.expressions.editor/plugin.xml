@@ -26,7 +26,7 @@
             id="org.eclipse.papyrus.infra.emf.expressions.presentation.ExpressionsModelWizardID"
             name="%_UI_ExpressionsModelWizard_label"
             class="org.eclipse.papyrus.infra.emf.expressions.presentation.ExpressionsModelWizard"
-            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.addons.category"
+            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.dev.category/org.eclipse.papyrus.wizards.dev.framework.category"
             icon="icons/full/obj16/ExpressionsModelFile.gif">
          <description>%_UI_ExpressionsModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>

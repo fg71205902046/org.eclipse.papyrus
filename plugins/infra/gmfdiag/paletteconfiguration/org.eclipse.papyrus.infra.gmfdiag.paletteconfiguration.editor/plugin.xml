@@ -16,7 +16,7 @@
             id="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.presentation.PaletteconfigurationModelWizardID"
             name="%_UI_PaletteconfigurationModelWizard_label"
             class="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.presentation.CustomPaletteconfigurationModelWizard"
-            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.addons.category"
+            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.custo.category/org.eclipse.papyrus.wizards.custo.editors.category"
             icon="icons/full/obj16/PaletteconfigurationModelFile.gif">
          <description>%_UI_PaletteconfigurationModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>

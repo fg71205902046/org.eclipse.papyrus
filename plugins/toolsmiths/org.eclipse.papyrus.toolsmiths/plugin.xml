@@ -21,7 +21,7 @@
          point="org.eclipse.ui.newWizards">
          <!-- @generated NOT -->
       <wizard
-            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.toolsmiths.category"
+            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.dev.category/org.eclipse.papyrus.wizards.dev.framework.category"
             class="org.eclipse.papyrus.toolsmiths.wizard.CreateNewCustomizationPluginWizard"
             icon="icons/16-config.png"
             id="org.eclipse.papyrus.toolsmiths.wizard"

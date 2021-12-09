@@ -564,8 +564,37 @@
     		name="%wizardCategoryPapyrus">
 		</category>
 		<category 
-			id="org.eclipse.papyrus.wizards.addons.category"
-    		name="%wizardCategoryAddons" parentCategory="org.eclipse.papyrus.wizards.category">
+			id="org.eclipse.papyrus.wizards.custo.category"
+    		name="%wizardCategoryCustomization" parentCategory="org.eclipse.papyrus.wizards.category">
+		</category>
+		<category 
+			id="org.eclipse.papyrus.wizards.custo.framework.category"
+    		name="%wizardCategoryCustoFramework" parentCategory="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.custo.category">
+		</category>
+		<category 
+			id="org.eclipse.papyrus.wizards.custo.modelexplorer.category"
+    		name="%wizardCategoryCustoModelExplorer" parentCategory="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.custo.category">
+		</category>
+		<category 
+			id="org.eclipse.papyrus.wizards.custo.editors.category"
+    		name="%wizardCategoryCustoEditors" parentCategory="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.custo.category">
+		</category>
+		<category 
+			id="org.eclipse.papyrus.wizards.custo.properties.category"
+    		name="%wizardCategoryCustoPropertyView" parentCategory="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.custo.category">
+		</category>
+
+		<category 
+			id="org.eclipse.papyrus.wizards.dev.category"
+    		name="%wizardCategoryDeveloppers" parentCategory="org.eclipse.papyrus.wizards.category">
+		</category>
+		<category 
+			id="org.eclipse.papyrus.wizards.dev.framework.category"
+    		name="%wizardCategoryDevFramework" parentCategory="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.dev.category">
+		</category>
+		<category 
+			id="org.eclipse.papyrus.wizards.dev.editors.category"
+    		name="%wizardCategoryDevEditors" parentCategory="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.dev.category">
 		</category>
 		<category 
 			id="org.eclipse.papyrus.wizards.components.category"
@@ -574,10 +603,6 @@
 		<category 
 			id="org.eclipse.papyrus.wizards.table.category"
     		name="%wizardCategoryTable" parentCategory="org.eclipse.papyrus.wizards.category">
-		</category>
-		<category 
-			id="org.eclipse.papyrus.wizards.toolsmiths.category"
-    		name="%wizardCategoryToolsmiths" parentCategory="org.eclipse.papyrus.wizards.category">
 		</category>
 		<category
 			id="org.eclipse.papyrus.examples"

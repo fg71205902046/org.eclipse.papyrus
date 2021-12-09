@@ -26,7 +26,7 @@
             id="org.eclipse.papyrus.infra.types.presentation.ElementTypesConfigurationsModelWizardID"
             name="%_UI_ElementTypesConfigurationsModelWizard_label"
             class="org.eclipse.papyrus.infra.types.presentation.ElementTypesConfigurationsModelWizard"
-            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.addons.category"
+            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.custo.category/org.eclipse.papyrus.wizards.custo.framework.category"
             icon="icons/full/obj16/ElementTypesConfigurationsModelFile.gif">
          <description>%_UI_ElementTypesConfigurationsModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>

@@ -45,7 +45,7 @@
    <extension
          point="org.eclipse.ui.newWizards">
       <wizard
-            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.toolsmiths.category"
+            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.dev.category/org.eclipse.papyrus.wizards.dev.editors.category"
             class="org.eclipse.papyrus.customization.nattableconfiguration.wizards.CreateNattableConfigurationProjectWizard"
             hasPages="true"
             icon="icons/wizard_icon.png"
@@ -55,7 +55,7 @@
             project="true">
       </wizard>
       <wizard
-            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.toolsmiths.category"
+            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.dev.category/org.eclipse.papyrus.wizards.dev.editors.category"
             class="org.eclipse.papyrus.customization.nattableconfiguration.wizards.CreateAndEditTableConfigurationWizard"
             hasPages="true"
             icon="icons/wizard_icon.png"

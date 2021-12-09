@@ -11,7 +11,7 @@
             id="org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.presentation.ExpansionModelModelWizardID"
             name="%_UI_ExpansionModelModelWizard_label"
             class="org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.presentation.ExpansionModelModelWizard"
-            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.addons.category"
+            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.dev.category/org.eclipse.papyrus.wizards.dev.editors.category"
             icon="icons/full/obj16/ExpansionModelModelFile.gif">
          <description>%_UI_ExpansionModelModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>

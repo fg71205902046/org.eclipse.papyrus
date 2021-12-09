@@ -16,7 +16,7 @@
             id="org.eclipse.papyrus.infra.properties.environment.presentation.EnvironmentModelWizardID"
             name="%_UI_EnvironmentModelWizard_label"
             class="org.eclipse.papyrus.infra.properties.environment.presentation.EnvironmentModelWizard"
-            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.addons.category"
+            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.custo.category/org.eclipse.papyrus.wizards.custo.properties.category"
             icon="icons/full/obj16/EnvironmentModelFile.gif">
          <description>%_UI_EnvironmentModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
@@ -40,7 +40,7 @@
             id="org.eclipse.papyrus.infra.properties.contexts.presentation.ContextsModelWizardID"
             name="%_UI_ContextsModelWizard_label"
             class="org.eclipse.papyrus.infra.properties.contexts.presentation.ContextsModelWizard"
-            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.addons.category"
+            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.dev.category/org.eclipse.papyrus.wizards.dev.framework.category"
             icon="icons/full/obj16/ContextsModelFile.gif">
          <description>%_UI_ContextsModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
@@ -64,7 +64,7 @@
             id="org.eclipse.papyrus.infra.properties.ui.presentation.UiModelWizardID"
             name="%_UI_UiModelWizard_label"
             class="org.eclipse.papyrus.infra.properties.ui.presentation.UiModelWizard"
-            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.addons.category"
+            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.dev.category/org.eclipse.papyrus.wizards.dev.framework.category"
             icon="icons/full/obj16/UiModelFile.gif">
          <description>%_UI_UiModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>

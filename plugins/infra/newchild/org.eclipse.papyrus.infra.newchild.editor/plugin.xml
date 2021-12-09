@@ -24,7 +24,7 @@
             id="org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.presentation.ElementCreationMenuModelModelWizardID"
             name="%_UI_ElementCreationMenuModelModelWizard_label"
             class="org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.presentation.ElementCreationMenuModelModelWizard"
-            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.addons.category"
+            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.custo.category/org.eclipse.papyrus.wizards.custo.modelexplorer.category"
             icon="icons/full/obj16/ElementCreationMenuModelModelFile.gif">
          <description>%_UI_ElementCreationMenuModelModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>

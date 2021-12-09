@@ -58,7 +58,7 @@
             id="org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.presentation.NattableconfigurationModelWizardID"
             name="%_UI_NattableconfigurationModelWizard_label"
             class="org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.presentation.NattableconfigurationModelWizard"
-            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.addons.category"
+            category="org.eclipse.papyrus.wizards.category/org.eclipse.papyrus.wizards.custo.category/org.eclipse.papyrus.wizards.custo.editors.category"
             icon="icons/full/obj16/NattableconfigurationModelFile.gif">
          <description>%_UI_NattableconfigurationModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
