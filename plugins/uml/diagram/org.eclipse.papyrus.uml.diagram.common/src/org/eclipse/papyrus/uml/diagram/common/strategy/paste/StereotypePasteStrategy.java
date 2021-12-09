@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
- * 
+ * Copyright (c) 2014, 2021 CEA LIST.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial API and implementation
+ *  Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr - bug 573807
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.strategy.paste;
 
@@ -70,7 +71,7 @@ public class StereotypePasteStrategy extends AbstractPasteStrategy implements IP
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.strategy.paste.IPasteStrategy#getLabel()
 	 */
 	public String getLabel() {
@@ -79,7 +80,7 @@ public class StereotypePasteStrategy extends AbstractPasteStrategy implements IP
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.strategy.paste.IPasteStrategy#getID()
 	 */
 	public String getID() {
@@ -88,7 +89,7 @@ public class StereotypePasteStrategy extends AbstractPasteStrategy implements IP
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.strategy.paste.IPasteStrategy#getDescription()
 	 */
 	public String getDescription() {
@@ -97,7 +98,7 @@ public class StereotypePasteStrategy extends AbstractPasteStrategy implements IP
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.strategy.paste.IPasteStrategy#dependsOn()
 	 */
 	@Override
@@ -107,7 +108,7 @@ public class StereotypePasteStrategy extends AbstractPasteStrategy implements IP
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.strategy.paste.IPasteStrategy#getSemanticCommand(org.eclipse.emf.edit.domain.EditingDomain,
 	 * org.eclipse.emf.ecore.EObject, org.eclipse.papyrus.infra.core.clipboard.PapyrusClipboard)
 	 */
@@ -122,7 +123,7 @@ public class StereotypePasteStrategy extends AbstractPasteStrategy implements IP
 
 			// 1. init all ApplyStereotypeCommand
 			for (Iterator<Object> iterator = papyrusClipboard.iterator(); iterator.hasNext();) {
-				Object object = (Object) iterator.next();
+				Object object = iterator.next();
 				// get target Element
 				EObject target = papyrusClipboard.getTragetCopyFromInternalClipboardCopy(object);
 				if (target != null && target instanceof Element) {
@@ -136,19 +137,22 @@ public class StereotypePasteStrategy extends AbstractPasteStrategy implements IP
 							DuplicateStereotypeCommand applyStereotypeCommand = new DuplicateStereotypeCommand((TransactionalEditingDomain) domain, (Element) target, (Element) targetOwner, stereotypeApplication);
 
 							Stereotype stereotypeInTargetContext = applyStereotypeCommand.getStereotypeInTargetContext();
-							Profile profile = stereotypeInTargetContext.getProfile();
+							// might be null, if copied model element does no longer exist (since editor is closed)
+							if (stereotypeInTargetContext != null) {
+								Profile profile = stereotypeInTargetContext.getProfile();
 
-							if (isProfileAppliedRecursive(targetPackage, profile)) {
-								compoundCommand.append(applyStereotypeCommand);
-							} else { // Profile is missing
-								Activator.getDefault().logInfo(profile.getName() + " is missing", null);
-								List<DuplicateStereotypeCommand> stereotypeListMissingProfiles = missingProfiles.get(profile);
-								if (stereotypeListMissingProfiles != null && !stereotypeListMissingProfiles.isEmpty()) {
-									stereotypeListMissingProfiles.add(applyStereotypeCommand);
-								} else {
-									stereotypeListMissingProfiles = new ArrayList<DuplicateStereotypeCommand>();
-									stereotypeListMissingProfiles.add(applyStereotypeCommand);
-									missingProfiles.put(profile, stereotypeListMissingProfiles);
+								if (isProfileAppliedRecursive(targetPackage, profile)) {
+									compoundCommand.append(applyStereotypeCommand);
+								} else { // Profile is missing
+									Activator.getDefault().logInfo(profile.getName() + " is missing", null);
+									List<DuplicateStereotypeCommand> stereotypeListMissingProfiles = missingProfiles.get(profile);
+									if (stereotypeListMissingProfiles != null && !stereotypeListMissingProfiles.isEmpty()) {
+										stereotypeListMissingProfiles.add(applyStereotypeCommand);
+									} else {
+										stereotypeListMissingProfiles = new ArrayList<DuplicateStereotypeCommand>();
+										stereotypeListMissingProfiles.add(applyStereotypeCommand);
+										missingProfiles.put(profile, stereotypeListMissingProfiles);
+									}
 								}
 							}
 						}
@@ -255,7 +259,7 @@ public class StereotypePasteStrategy extends AbstractPasteStrategy implements IP
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.strategy.paste.IPasteStrategy#prepare(org.eclipse.papyrus.infra.core.clipboard.PapyrusClipboard)
 	 */
 	@Override

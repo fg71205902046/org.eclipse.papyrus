@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2021 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,7 +11,7 @@
  *
  * Contributors:
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial API and implementation
- *
+ *  Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr - bug 573807
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.menu.handlers;
 
@@ -82,7 +82,7 @@ public class PasteInDiagramHandler extends AbstractGraphicalCommandHandler {
 				Control focusControl = null;
 				if (activeShell instanceof Shell) {
 					Shell shell = (Shell) activeShell;
-					Display display = shell.getDisplay();
+					Display display = !shell.isDisposed() ? shell.getDisplay() : null;
 					if (display != null) {
 						focusControl = display.getFocusControl();
 					}

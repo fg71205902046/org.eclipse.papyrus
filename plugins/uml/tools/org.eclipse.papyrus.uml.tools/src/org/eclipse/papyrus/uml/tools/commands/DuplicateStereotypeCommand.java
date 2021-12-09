@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2017, 2019 CEA LIST.
+ * Copyright (c) 2014, 2017, 2019, 2021 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,7 +12,7 @@
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial API and implementation
  *  Gaabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - bug 438511
  *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - bug 511045
- *  Ansgar Radermacher (CEA LIST), ansgar.radermacher@cea.fr - bug 521279 (copy/paste between models)
+ *  Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr - bug 521279 (copy/paste between models), bug 573807
  *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - bug 552410
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.commands;
@@ -81,8 +81,11 @@ public class DuplicateStereotypeCommand extends RecordingCommand {
 		// reload the stereotype in the new Context-ResourceSet (Required because in org.eclipse.uml2.uml.internal.operations.PackageOperations
 		// L960 in getProfileApplication the test is using == instead of equals)
 		Stereotype stereotype = UMLUtil.getStereotype(stereotypeApplication);
-		Stereotype stereotypeInTargetContext = EMFHelper.reloadIntoContext(stereotype, targetContainer);
-		this.stereotypeInTargetContext = stereotypeInTargetContext;
+		// might be null, if copied model element does no longer exist (since editor is closed)
+		if (stereotype != null) {
+			Stereotype stereotypeInTargetContext = EMFHelper.reloadIntoContext(stereotype, targetContainer);
+			this.stereotypeInTargetContext = stereotypeInTargetContext;
+		}
 	}
 
 	public Stereotype getStereotypeInTargetContext() {
