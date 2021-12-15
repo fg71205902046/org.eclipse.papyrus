@@ -74,7 +74,7 @@ public class SizeAction {
 	/** the selected elements */
 	public List<IGraphicalEditPart> selectedElements;
 
-
+	
 	/**
 	 *
 	 * Constructor.
@@ -194,8 +194,6 @@ public class SizeAction {
 
 					bRequest.setSizeDelta(delta);
 					bRequest.setType(org.eclipse.gef.RequestConstants.REQ_RESIZE);
-					bRequest.setEditParts(editPart);
-
 					Command resizeCommand = editPart.getCommand(bRequest);
 					command.add(resizeCommand);
 
@@ -205,8 +203,6 @@ public class SizeAction {
 					bRequest.setResizeDirection(PositionConstants.BOTTOM);
 
 					bRequest.setType(RequestConstants.REQ_AUTOSIZE);
-					bRequest.setEditParts(editPart);
-
 					Command resizeCommand = editPart.getCommand(bRequest);
 					command.add(resizeCommand);
 				}
@@ -268,15 +264,15 @@ public class SizeAction {
 	 * @return the int
 	 */
 	private int findIndex(double currentZoomLevel, double[] zoomLevel) {
-		for (int i = 0; i < zoomLevel.length; i++) {
-			if (zoomLevel[i] == currentZoomLevel) {
+		for(int i = 0; i < zoomLevel.length; i++) {
+			if(zoomLevel[i] == currentZoomLevel) {
 				return i;
 			}
 		}
 
 		return -1; // element not found
 	}
-
+	
 	/**
 	 * Return the command for the Same Height and Width Action
 	 *
@@ -286,7 +282,7 @@ public class SizeAction {
 	protected Command getBothCommand() {
 		return new SameBothSizeAction(selectedElements).getCommand();
 	}
-
+	
 	/**
 	 * Return the command for the Same Height Action
 	 *
@@ -296,7 +292,7 @@ public class SizeAction {
 	protected Command getHeightCommand() {
 		return new SameHeightSizeAction(selectedElements).getCommand();
 	}
-
+	
 	/**
 	 * Return the command for the Same Width Action
 	 *
@@ -306,36 +302,36 @@ public class SizeAction {
 	protected Command getWidthCommand() {
 		return new SameWidthSizeAction(selectedElements).getCommand();
 	}
-
+	
 	/**
-	 * Base group editParts resize action
+	 * Base group editParts resize action 
 	 */
 	protected static abstract class SameSizeAction {
 
 		public final List<IGraphicalEditPart> mySelectedElements;
-
+		
 		public SameSizeAction(List<IGraphicalEditPart> selectedElements) {
 			mySelectedElements = selectedElements;
 		}
-
+		
 		/**
 		 * Will to be resized width
 		 * Default set to false;
 		 */
 		protected abstract boolean needResizeHeight();
-
+		
 		/**
 		 * Will to be resized height
 		 * Default set to false;
 		 */
 		protected abstract boolean needResizeWidth();
-
+		
 		/**
 		 * Direction to expand selected figures.
-		 * Return some of {@link PositionConstants}.
+		 * Return some of {@link PositionConstants}. 
 		 */
 		protected abstract int getResizeDirection();
-
+		
 		public Command getCommand() {
 			if (!(this.mySelectedElements.size() > 1)) {
 				return UnexecutableCommand.INSTANCE;
@@ -360,22 +356,22 @@ public class SizeAction {
 
 				// Calculate delta resize
 				Dimension delta = calculateDelta(epToResize, primarySize);
-
-				// translateToAbsolute translate considering zoom
+				
+				//translateToAbsolute translate considering zoom
 				primary.getFigure().translateToAbsolute(delta);
-
-				Command resizeCommand = epToResize.getCommand(createResizeRequest(epToResize, delta));
+				
+				Command resizeCommand = epToResize.getCommand(createResizeRequest(delta));
 				// Previous implementation (following line) forced bounds on view instead of using resize command provided by the edit part.
 				//
 				// doResizeCmd.add(new ICommandProxy(new SetBoundsCommand(toResize.getEditingDomain(), "", new EObjectAdapter(resizeView), primarySize))); //$NON-NLS-1$
 				//
-
+				
 				doResizeCmd.add(resizeCommand);
 			}
 
 			return doResizeCmd.unwrap();
 		}
-
+		
 		protected Dimension calculateEdiPartSize(IGraphicalEditPart ep) {
 			View primaryView = (View) ep.getModel();
 			Integer width = (Integer) ViewUtil.getStructuralFeatureValue(primaryView, NotationPackage.eINSTANCE.getSize_Width());
@@ -389,22 +385,21 @@ public class SizeAction {
 			}
 			return epSize;
 		}
-
+		
 		protected Dimension calculateDelta(IGraphicalEditPart toResize, Dimension newSize) {
 			Dimension editPartSize = calculateEdiPartSize(toResize);
-
+			
 			int deltaWidth = needResizeWidth() ? deltaWidth = newSize.width - editPartSize.width : 0;
 			int deltaHeight = needResizeHeight() ? newSize.height - editPartSize.height : 0;
-
+			
 			return new Dimension(deltaWidth, deltaHeight);
 		}
-
-		protected ChangeBoundsRequest createResizeRequest(IGraphicalEditPart epToResize, Dimension delta) {
+		
+		protected ChangeBoundsRequest createResizeRequest(Dimension delta) {
 			ChangeBoundsRequest request = new ChangeBoundsRequest();
 			request.setResizeDirection(getResizeDirection());
 			request.setSizeDelta(delta);
 			request.setType(org.eclipse.gef.RequestConstants.REQ_RESIZE);
-			request.setEditParts(epToResize);
 			return request;
 		}
 	}
@@ -472,7 +467,7 @@ public class SizeAction {
 		protected boolean needResizeHeight() {
 			return true;
 		}
-
+		
 		@Override
 		protected boolean needResizeWidth() {
 			return false;
