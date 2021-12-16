@@ -1,5 +1,5 @@
 /**
- *  Copyright (c) 2011 Atos, Christian W. Damus, and others.
+ *  Copyright (c) 2011, 2022 Atos, Christian W. Damus, and others.
  *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License 2.0
@@ -11,7 +11,7 @@
  *  Contributors:
  *    Atos - Initial API and implementation
  *    Christian W. Damus - bug 485220
- *
+ *    Vincent Lorenzo (CEA LIST) - vincent.lorenzo@cea.fr - Bug 577843
  */
 package org.eclipse.papyrus.infra.gmfdiag.modelexplorer.queries;
 
@@ -32,12 +32,13 @@ public class IsDiagramContainer implements IJavaQuery2<EObject, Boolean> {
 	/**
 	 * Return true if the element is a Diagram Container
 	 */
+	@Override
 	public Boolean evaluate(EObject source, IParameterValueList2 parameterValues, IFacetManager facetManager) throws DerivedTypedElementException {
 		Collection<Setting> settings = EMFHelper.getUsages(source);
 		if (settings != null) {
 			for (Setting setting : settings) {
 				Diagram diagram = NotationUtils.getOwnedDiagram(setting.getEObject(), source);
-				if (diagram != null) {
+				if (diagram != null && diagram.eContainer() == null) {// diagram.eContainer()!=null for Sirius Diagram
 					return true;
 				}
 			}
