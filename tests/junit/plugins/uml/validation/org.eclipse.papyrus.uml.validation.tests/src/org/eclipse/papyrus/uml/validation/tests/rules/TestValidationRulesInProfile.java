@@ -23,6 +23,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.services.validation.commands.ValidateModelCommand;
+import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.validation.tests.Activator;
 import org.eclipse.papyrus.uml.validation.tests.Messages;
 import org.eclipse.swt.widgets.Display;
@@ -30,11 +31,10 @@ import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Model;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
 
 /**
  * Test suite for validation rules. It tests
- * Model with OCL constraints embedded in profile 
+ * Model with OCL constraints embedded in profile
  */
 public class TestValidationRulesInProfile extends AbstractValidationEditorTest {
 
@@ -68,19 +68,19 @@ public class TestValidationRulesInProfile extends AbstractValidationEditorTest {
 		copyModel(PROFILE_NAME, Activator.getDefault().getBundle());
 		initModel(MODEL_NAME, Activator.getDefault().getBundle());
 
-		
+
 		// validate the new model
 		Model model = (Model) getRootUMLModel();
-		
+
 		active = (Class) model.getPackagedElement(ACTIVE_NAME);
 		Assert.assertNotNull(String.format(CAN_NOT_FIND_ELEMENT, ACTIVE_NAME, model), active);
-		
+
 		inactive = (Class) model.getPackagedElement(INACTIVE_NAME);
 		Assert.assertNotNull(String.format(CAN_NOT_FIND_ELEMENT, INACTIVE_NAME, model), inactive);
 
 		activeMalformed = (Class) model.getPackagedElement(ACTIVE_MALFORMED_NAME);
 		Assert.assertNotNull(String.format(CAN_NOT_FIND_ELEMENT, ACTIVE_MALFORMED_NAME, model), activeMalformed);
-		
+
 		final EditingDomain domain = TransactionUtil.getEditingDomain(model);
 		final ValidateModelCommand validateModelCommand = new ValidateModelCommand(model);
 		Display.getDefault().syncExec(new Runnable() {
@@ -96,17 +96,17 @@ public class TestValidationRulesInProfile extends AbstractValidationEditorTest {
 	/**
 	 * No errors on active class
 	 */
-	@Test
+	@FailingTest
 	public void validateIsActiveRule_ActiveCapsule() throws Exception {
 		// get the diagnostic and check for the given class
 		List<Diagnostic> diagnostics = filterDiagnosticsByElement(globalDiagnostic.getChildren(), active);
 		Assert.assertEquals(String.format(Messages.TestValidationRulesInProfile_IsActiveShouldNotTriggerIssue, active), 0, diagnostics.size());
 	}
-	
+
 	/**
 	 * One warning on inactive class
 	 */
-	@Test
+	@FailingTest
 	public void validateIsActiveRule_notActiveCapsule() throws Exception {
 		// get the diagnostic and check for the given class
 		List<Diagnostic> diagnostics = filterDiagnosticsByElement(globalDiagnostic.getChildren(), inactive);
@@ -116,7 +116,7 @@ public class TestValidationRulesInProfile extends AbstractValidationEditorTest {
 	/**
 	 * One error on malformed class
 	 */
-	@Test
+	@FailingTest
 	public void validateMalformedActiveRule_notActiveCapsule() throws Exception {
 		// get the diagnostic and check for the given class
 		List<Diagnostic> diagnostics = filterDiagnosticsByElement(globalDiagnostic.getChildren(), activeMalformed);

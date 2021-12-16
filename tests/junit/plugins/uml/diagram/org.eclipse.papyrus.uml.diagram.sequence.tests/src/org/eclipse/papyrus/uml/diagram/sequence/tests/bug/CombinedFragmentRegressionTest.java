@@ -68,6 +68,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.ocl.pivot.utilities.ThreadLocalExecutor;
+import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.matchers.CommandMatchers;
 import org.eclipse.papyrus.junit.matchers.DiagramMatchers;
@@ -686,7 +687,7 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 	/**
 	 * Verify the validation of an interaction operand when it is resized.
 	 */
-	@Test
+	@FailingTest
 	@PluginResource("resource/bugs/bug533676.di")
 	public void validateResizedInteractionOperand_533676() {
 

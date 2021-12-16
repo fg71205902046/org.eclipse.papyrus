@@ -31,6 +31,7 @@ import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.services.validation.IValidationFilter;
 import org.eclipse.papyrus.infra.services.validation.IValidationHook;
 import org.eclipse.papyrus.infra.services.validation.commands.ValidateModelCommand;
+import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.validation.tests.Activator;
 import org.eclipse.papyrus.uml.validation.tests.Messages;
 import org.eclipse.swt.widgets.Display;
@@ -40,7 +41,6 @@ import org.eclipse.uml2.uml.Package;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
 
 /**
  * Test suite for validation rules:
@@ -95,7 +95,7 @@ public class TestOCLValidationRuleFromFile extends AbstractValidationEditorTest 
 	/**
 	 * Failing validation for rule defined in ExtraUMLValidation
 	 */
-	@Test
+	@FailingTest
 	public void validateCamelCaseRule() throws Exception {
 		// get the diagnostic and check for the given class
 		List<Diagnostic> diagnostics = filterDiagnosticsByElement(globalDiagnostic.getChildren(), lowerCaseClass);

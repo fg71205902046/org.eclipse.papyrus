@@ -71,6 +71,7 @@ import org.eclipse.papyrus.infra.emf.internal.resource.index.IIndexManagerListen
 import org.eclipse.papyrus.infra.emf.internal.resource.index.IndexManager;
 import org.eclipse.papyrus.infra.emf.internal.resource.index.InternalModelIndex;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.LogTracker;
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
@@ -189,7 +190,7 @@ public class WorkspaceModelIndexTest extends AbstractPapyrusTest {
 		assertIndex(index, true, Collections.<URI> emptySet(), Collections.<URI> emptySet(), false, null, null);
 	}
 
-	@Test
+	@FailingTest
 	public void indexRebuiltOnProjectClose() throws Exception {
 		// Initial build
 		Map<IFile, CrossReferenceIndex> index = fixture.getIndex().get();

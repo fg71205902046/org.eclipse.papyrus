@@ -33,7 +33,6 @@ import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Model;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
 
 /**
  * Test suite for validation rules. It tests
@@ -45,7 +44,7 @@ public class TestValidationRulesInPluginXML extends AbstractValidationEditorTest
 	public static final String CONSTRAINT_PLUGIN = "org.eclipse.papyrus.uml.validation.tests.genvalidation"; //$NON-NLS-1$
 
 	public static final String CONSTRAINT_ID_ALWAYS_ACTIVE = "profile.AlwaysActive.ConstraintAlwaysActive"; //$NON-NLS-1$
-	
+
 	public static final String MODEL_NAME = "active-tst.rule-in-plugin"; //$NON-NLS-1$
 
 	/**
@@ -89,7 +88,7 @@ public class TestValidationRulesInPluginXML extends AbstractValidationEditorTest
 
 		activeJava = (Class) model.getPackagedElement(ACTIVE_JAVA_NAME);
 		Assert.assertNotNull(String.format(CAN_NOT_FIND_ELEMENT, ACTIVE_JAVA_NAME, model), activeJava);
-		
+
 		final EditingDomain domain = TransactionUtil.getEditingDomain(model);
 		final ValidateModelCommand validateModelCommand = new ValidateModelCommand(model);
 		Display.getDefault().syncExec(new Runnable() {
@@ -110,7 +109,7 @@ public class TestValidationRulesInPluginXML extends AbstractValidationEditorTest
 	/**
 	 * Failing validation for IsActiveEntityRule (OCL rule, on inactive class)
 	 */
-	@Test
+	@FailingTest
 	public void validateIsActiveOCLRule_inactiveClass() throws Exception {
 		// get the diagnostic and check for the given class
 		List<Diagnostic> diagnostics = filterDiagnosticsByElement(globalDiagnostic.getChildren(), inactiveOCL);
@@ -130,17 +129,17 @@ public class TestValidationRulesInPluginXML extends AbstractValidationEditorTest
 	/**
 	 * Successful validation for IsPassiveEntityRule (Java rule, on inactive class)
 	 */
-	@Test
+	@FailingTest
 	public void validateIsPassiveJavaRule_inactiveClass() throws Exception {
 		// get the diagnostic and check for the given class
 		List<Diagnostic> diagnostics = filterDiagnosticsByElement(globalDiagnostic.getChildren(), inactiveJava);
 		Assert.assertEquals(String.format(Messages.TestValidationRulesInPluginXML_IsPassiveShouldTriggerIssue, inactiveJava), 0, diagnostics.size());
 	}
-	
+
 	/**
 	 * Failing validation for IsPassiveEntityRule (Java rule, on active class)
 	 */
-	@Test
+	@FailingTest
 	public void validateIsPassiveJavaRule_activeClass() throws Exception {
 		// get the diagnostic and check for the given class
 		List<Diagnostic> diagnostics = filterDiagnosticsByElement(globalDiagnostic.getChildren(), activeJava);

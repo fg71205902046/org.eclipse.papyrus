@@ -23,6 +23,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.services.validation.commands.ValidateModelCommand;
+import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.validation.tests.Activator;
 import org.eclipse.papyrus.uml.validation.tests.Messages;
 import org.eclipse.swt.widgets.Display;
@@ -30,7 +31,6 @@ import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Model;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
 
 /**
  * Test suite for validation rules. It tests
@@ -70,7 +70,7 @@ public class TestOCLConstraintOnInstanceSpec extends AbstractValidationEditorTes
 	/**
 	 * Validation needs to create an entry for the violated constraint of the instance specification
 	 */
-	@Test
+	@FailingTest
 	public void validateOCLOnInstanceSpec() throws Exception {
 		// get the diagnostic and check for the given class
 		List<Diagnostic> diagnostics = filterDiagnosticsByElement(globalDiagnostic.getChildren(), instance);

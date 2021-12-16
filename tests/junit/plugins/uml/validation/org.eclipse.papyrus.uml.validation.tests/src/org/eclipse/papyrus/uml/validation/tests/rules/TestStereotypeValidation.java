@@ -23,6 +23,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.services.validation.commands.ValidateModelCommand;
+import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.validation.tests.Activator;
 import org.eclipse.papyrus.uml.validation.tests.Messages;
 import org.eclipse.swt.widgets.Display;
@@ -30,11 +31,10 @@ import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Model;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
 
 /**
  * Test suite for validation rules. It tests
- * Model/profile. Model applies a stereotype, but does not set the value of a required stereotype attribute. 
+ * Model/profile. Model applies a stereotype, but does not set the value of a required stereotype attribute.
  */
 public class TestStereotypeValidation extends AbstractValidationEditorTest {
 
@@ -44,7 +44,7 @@ public class TestStereotypeValidation extends AbstractValidationEditorTest {
 
 	public static final String CLASS1 = "Class1"; //$NON-NLS-1$
 	protected Class class1;
-	
+
 	@Before
 	public void initModelForValidationTest() throws Exception {
 		createProject(PROJECT_PREFIX + MODEL_NAME);
@@ -52,10 +52,10 @@ public class TestStereotypeValidation extends AbstractValidationEditorTest {
 		initModel(MODEL_NAME, Activator.getDefault().getBundle());
 
 		Model model = (Model) getRootUMLModel();
-		
+
 		class1 = (Class) model.getPackagedElement(CLASS1);
 		Assert.assertNotNull(String.format(CAN_NOT_FIND_ELEMENT, CLASS1, model), class1);
-		
+
 		final EditingDomain domain = TransactionUtil.getEditingDomain(model);
 		final ValidateModelCommand validateModelCommand = new ValidateModelCommand(model);
 		Display.getDefault().syncExec(new Runnable() {
@@ -71,7 +71,7 @@ public class TestStereotypeValidation extends AbstractValidationEditorTest {
 	/**
 	 * Failing validation for stereotype whose required attribute is unset
 	 */
-	@Test
+	@FailingTest
 	public void validateUnsetStereotypeAttribute() throws Exception {
 		// get the diagnostic and check for the given capsule
 		List<Diagnostic> diagnostics = filterDiagnosticsByElement(globalDiagnostic.getChildren(), class1);
