@@ -26,6 +26,7 @@ import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
 import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 
 public class IsDiagramContainer implements IJavaQuery2<EObject, Boolean> {
 
@@ -38,7 +39,7 @@ public class IsDiagramContainer implements IJavaQuery2<EObject, Boolean> {
 		if (settings != null) {
 			for (Setting setting : settings) {
 				Diagram diagram = NotationUtils.getOwnedDiagram(setting.getEObject(), source);
-				if (diagram != null && diagram.eContainer() == null) {// diagram.eContainer()!=null for Sirius Diagram
+				if (diagram != null && DiagramUtils.isPapyrusGMFDiagram(diagram)) {
 					return true;
 				}
 			}

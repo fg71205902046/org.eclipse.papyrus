@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2017, 2019, 2020 CEA LIST and others.
+ * Copyright (c) 2013, 2017, 2019, 2020, 2022 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -15,8 +15,7 @@
  *  Christian W. Damus - bug 527580
  *  Ansgar Radermacher - bug 539754
  *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 550568
- *  Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Bug 560644
- *
+ *  Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Bug 560644, 577845
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.utils;
 
@@ -410,6 +409,19 @@ public class DiagramUtils {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 *
+	 * @param diagram
+	 *            a diagram, can't be <code>null</code>
+	 * @return
+	 *         <code>true</code> if the view probably concerns the Papyrus GMF Diagram (diagram.eContainer()==null)
+	 *         <code>false</code> the view probably concerns a Papyrus Sirius Diagram (diagram.eContainer()!=null)
+	 * @since 4.3
+	 */
+	public static final boolean isPapyrusGMFDiagram(final Diagram diagram) {
+		return diagram.eContainer() == null; // diagram.eContainer()!=null for papyrus sirius diagram
 	}
 
 }

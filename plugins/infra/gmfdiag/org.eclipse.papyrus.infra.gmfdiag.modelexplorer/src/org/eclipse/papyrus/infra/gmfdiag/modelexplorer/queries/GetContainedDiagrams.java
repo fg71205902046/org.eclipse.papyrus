@@ -28,6 +28,7 @@ import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
 import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 
 /** Get the collection of all contained diagrams */
 public class GetContainedDiagrams implements IJavaQuery2<EObject, Collection<org.eclipse.gmf.runtime.notation.Diagram>> {
@@ -41,7 +42,7 @@ public class GetContainedDiagrams implements IJavaQuery2<EObject, Collection<org
 		if (settings != null) {
 			for (Setting setting : settings) {
 				Diagram diagram = NotationUtils.getOwnedDiagram(setting.getEObject(), source);
-				if (diagram != null && diagram.eContainer() == null) {// diagram.eContainer()!=null for Sirius Diagram
+				if (diagram != null && DiagramUtils.isPapyrusGMFDiagram(diagram)) {
 					result.add(diagram);
 				}
 			}
