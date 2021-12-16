@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2018 EclipseSource and others.
+ * Copyright (c) 2018, 2021 EclipseSource and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,13 +10,14 @@
  *
  * Contributors:
  *   EclipseSource - Initial API and implementation (Bug 533701)
- *
+ *   Vincent Lorenzo (CEA LIST) - vincent.lorenzo@cea.fr - Bug 577845
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.service;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.core.providers.IViewProvider;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
@@ -32,6 +33,44 @@ import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 public class ProviderServiceUtil {
 
 	/**
+	 *
+	 * @param editPart
+	 *            an edit part
+	 * @return
+	 *         <code>true</code> if the edit probably concerns the Papyrus GMF Diagram
+	 *         <code>false</code> the edit part probably concerns a Papyrus Sirius Dirgam
+	 *
+	 */
+	private static final boolean isPapyrusGMFPart(final EditPart editPart) {
+		if (editPart != null) {
+			final Object model = editPart.getModel();
+			if (model instanceof View) {
+				return isPapyrusGMFView((View) model);
+			}
+		}
+		return true;
+	}
+
+	/**
+	 *
+	 * @param view
+	 *            a view
+	 * @return
+	 *         <code>true</code> if the view probably concerns the Papyrus GMF Diagram
+	 *         <code>false</code> the view probably concerns a Papyrus Sirius Dirgam
+	 *
+	 */
+	private static final boolean isPapyrusGMFView(final View view) {
+		if (view != null) {
+			final Diagram d = view.getDiagram();
+			if (d != null && d.eContainer() != null) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
 	 * <p>
 	 * Tests if the given edit part is a Papyrus Edit Part, by testing if a Papyrus {@link ServicesRegistry}
 	 * is present.
@@ -43,6 +82,9 @@ public class ProviderServiceUtil {
 	 *         <code>true</code> if this edit part is part of a Papyrus environment (Using a Papyrus {@link ServicesRegistry}), <code>false</code> otherwise
 	 */
 	public static boolean isPapyrusPart(EditPart editPart) {
+		if (!isPapyrusGMFPart(editPart)) {
+			return false;
+		}
 		try {
 			return ServiceUtilsForEditPart.getInstance().getServiceRegistry(editPart) != null;
 		} catch (Exception ex) {
@@ -63,6 +105,9 @@ public class ProviderServiceUtil {
 	 *         <code>true</code> if this view is part of a Papyrus environment (Using a Papyrus {@link ServicesRegistry}), <code>false</code> otherwise
 	 */
 	public static boolean isPapyrusView(View view) {
+		if (!isPapyrusGMFView(view)) {
+			return false;
+		}
 		try {
 			return ServiceUtilsForEObject.getInstance().getServiceRegistry(view) != null;
 		} catch (Exception ex) {
