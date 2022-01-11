@@ -24,10 +24,10 @@
    <feature url="features/org.eclipse.papyrus.debug.feature.source_1.0.0.qualifier.jar" id="org.eclipse.papyrus.debug.feature.source" version="1.0.0.qualifier">
       <category name="org.eclipse.papyrus.toolsmiths.category"/>
    </feature>
-   <feature url="features/org.eclipse.papyrus.junit.feature_1.0.0.qualifier.jar" id="org.eclipse.papyrus.junit.feature" version="1.0.0.qualifier">
+   <feature url="features/org.eclipse.papyrus.junit.feature_1.1.0.qualifier.jar" id="org.eclipse.papyrus.junit.feature" version="1.1.0.qualifier">
       <category name="org.eclipse.papyrus.toolsmiths.category"/>
    </feature>
-   <feature url="features/org.eclipse.papyrus.junit.feature.source_1.0.0.qualifier.jar" id="org.eclipse.papyrus.junit.feature.source" version="1.0.0.qualifier">
+   <feature url="features/org.eclipse.papyrus.junit.feature.source_1.1.0.qualifier.jar" id="org.eclipse.papyrus.junit.feature.source" version="1.1.0.qualifier">
       <category name="org.eclipse.papyrus.toolsmiths.category"/>
    </feature>
    <feature url="features/org.eclipse.papyrus.releng.feature_1.0.0.qualifier.jar" id="org.eclipse.papyrus.releng.feature" version="1.0.0.qualifier">

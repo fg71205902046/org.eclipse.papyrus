@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.junit.feature"
-      version="1.0.0.qualifier"
+      version="1.1.0.qualifier"
       label="%featureName"
       provider-name="%providerName"
       license-feature="org.eclipse.license"

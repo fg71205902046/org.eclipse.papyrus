@@ -7,9 +7,9 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.18.0,4.0.0)",
  org.eclipse.emf.edit;bundle-version="[2.16.0,3.0.0)",
  org.eclipse.papyrus.infra.tools;bundle-version="[4.0.0,5.0.0)",
  org.eclipse.ui;bundle-version="[3.117.0,4.0.0)",
- org.junit;bundle-version="[4.13.0,5.0.0)"
+ org.junit;bundle-version="[4.12.0,5.0.0)"
 Bundle-Vendor: Eclipse Modeling Project
-Bundle-Version: 2.1.0.qualifier
+Bundle-Version: 2.2.0.qualifier
 Bundle-Name: Conditional Junit Annotations
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.junit.framework;singleton:=true

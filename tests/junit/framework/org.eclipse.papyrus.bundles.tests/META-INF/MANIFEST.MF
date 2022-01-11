@@ -8,11 +8,11 @@ Require-Bundle: org.eclipse.emf.edit.ui;bundle-version="[2.18.0,3.0.0)",
  org.eclipse.pde.api.tools;bundle-version="[1.1.0,2.0.0)",
  org.eclipse.pde.core;bundle-version="[3.13.0,4.0.0)",
  org.eclipse.ui.views.properties.tabbed;bundle-version="[3.8.0,4.0.0)",
- org.junit;bundle-version="[4.13.0,5.0.0)"
+ org.junit;bundle-version="[4.12.0,5.0.0)"
 Export-Package: org.eclipse.papyrus.bundles.tests
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 2.0.0.qualifier
+Bundle-Version: 2.1.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.bundles.tests.Activator
