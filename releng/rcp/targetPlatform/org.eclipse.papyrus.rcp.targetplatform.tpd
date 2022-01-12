@@ -18,7 +18,7 @@ location egit "https://download.eclipse.org/egit/updates-6.0" {
 
 //updateFrom("Eclipse",0)
 
-location platform "https://download.eclipse.org/eclipse/updates/4.22/R-4.22-202111241800/" {
+location platform "https://download.eclipse.org/eclipse/updates/4.23-I-builds/I20220105-1800/" {
 	org.eclipse.e4.core.tools.feature.feature.group 
 	org.eclipse.rcp.configuration.feature.group
 	org.eclipse.equinox.executable.feature.group
@@ -44,7 +44,7 @@ location emfCompare "https://download.eclipse.org/modeling/emf/compare/updates/m
 
 //updateFrom("EMF (Core)",0)
 
-location emf "https://download.eclipse.org/modeling/emf/emf/builds/release/2.28" {
+location emf "https://download.eclipse.org/modeling/emf/emf/builds/milestone/S202201030439" {
 	org.eclipse.xsd.sdk.feature.group
 }
 
@@ -56,7 +56,7 @@ location cdo "https://download.eclipse.org/modeling/emf/cdo/drops/R20211202-0900
 
 //updateFrom("EPP Marketplace Client",0)
 
-location marketPlace "https://download.eclipse.org/mpc/drops/1.9.2/v20210826-0851" {
+location marketPlace "https://download.eclipse.org/mpc/drops/1.9.2/v20210826-0851/" {
 	org.eclipse.epp.mpc.feature.group
 }
 
