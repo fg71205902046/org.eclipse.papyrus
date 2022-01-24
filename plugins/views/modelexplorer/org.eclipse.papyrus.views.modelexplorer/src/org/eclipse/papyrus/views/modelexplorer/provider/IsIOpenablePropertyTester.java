@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2021 CEA LIST and others.
+ * Copyright (c) 2021, 2022 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 578357
  *****************************************************************************/
 
 package org.eclipse.papyrus.views.modelexplorer.provider;
@@ -56,11 +56,13 @@ public class IsIOpenablePropertyTester extends org.eclipse.core.expressions.Prop
 				// /!\ Here we don't use the "selection" variable because it is updated too late to be used by enablement of org.eclipse.ui.navigator.navigatorContent#actionProvider
 				final ISelectionProvider selectionProvider = wp.getSite().getSelectionProvider();
 				final ISelection selection = selectionProvider.getSelection();
-				if (selection instanceof IStructuredSelection) {
+				if (selection instanceof IStructuredSelection && !selection.isEmpty()) {
 					final EObject current = EMFHelper.getEObject(((IStructuredSelection) selection).getFirstElement());
-					IAdapterManager adapterManager = Platform.getAdapterManager();
-					IOpenable adapter = adapterManager.getAdapter(current, IOpenable.class);
-					return Boolean.valueOf(adapter != null).equals(expectedValue);
+					if (current != null) {
+						IAdapterManager adapterManager = Platform.getAdapterManager();
+						IOpenable adapter = adapterManager.getAdapter(current, IOpenable.class);
+						return Boolean.valueOf(adapter != null).equals(expectedValue);
+					}
 				}
 			}
 		}
