@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.eclipse.papyrus.uml.export;singleton:=true
 Bundle-Version: 2.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Require-Bundle: com.google.gson;bundle-version="[2.7.0,2.8.0)",
- org.apache.batik.dom.svg;bundle-version="1.14.0",
+ org.apache.batik.dom.svg;bundle-version="[1.6.0,1.7.0)",
  org.eclipse.emf.databinding;bundle-version="[1.5.0,2.0.0)",
  org.eclipse.emf.edit.ui;bundle-version="[2.18.0,3.0.0)",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="[1.9.0,2.0.0)",
@@ -20,8 +20,7 @@ Require-Bundle: com.google.gson;bundle-version="[2.7.0,2.8.0)",
  org.eclipse.papyrus.infra.gmfdiag.export;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.papyrus.infra.gmfdiag.style;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.papyrus.infra.ui;bundle-version="[3.0.0,4.0.0)",
- org.eclipse.uml2.uml;bundle-version="[5.5.0,6.0.0)",
- org.apache.batik.anim
+ org.eclipse.uml2.uml;bundle-version="[5.5.0,6.0.0)"
 Bundle-Activator: org.eclipse.papyrus.uml.export.Activator
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %providerName

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
-<target name="Papyrus Main" sequenceNumber="1643019127">
+<target name="Papyrus Main" sequenceNumber="1641977667">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.nebula.widgets.richtext.feature.feature.group" version="1.2.0.201703081533"/>
@@ -27,10 +27,6 @@
       <unit id="org.objectweb.asm" version="5.0.1.v201404251740"/>
       <unit id="org.objectweb.asm.source" version="5.0.1.v201404251740"/>
       <unit id="com.google.inject" version="3.0.0.v201605172100"/>
-      <unit id="org.apache.batik.anim" version="1.14.0.v20210324-0332"/>
-      <unit id="org.apache.batik.dom" version="1.14.0.v20210324-0332"/>
-      <unit id="org.apache.batik.dom.svg" version="1.14.0.v20210324-0332"/>
-      <unit id="org.apache.batik.xml" version="1.14.0.v20210324-0332"/>
       <repository id="orbit" location="https://download.eclipse.org/tools/orbit/downloads/drops/R20211213173813/repository/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">

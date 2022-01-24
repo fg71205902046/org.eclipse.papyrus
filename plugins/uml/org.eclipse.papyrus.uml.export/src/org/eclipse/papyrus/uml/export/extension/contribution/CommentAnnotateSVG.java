@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.export.extension.contribution;
 
-import org.apache.batik.anim.dom.SVGDOMImplementation;
+import org.apache.batik.dom.svg.SVGDOMImplementation;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.draw2d.ui.render.awt.internal.svg.export.GraphicsSVG;
@@ -48,7 +48,7 @@ public class CommentAnnotateSVG implements AnnotateSVG {
 		EObject eObject = view.getElement();
 		if (eObject instanceof NamedElement) {
 			NamedElement namedElement = (NamedElement) eObject;
-			EList<Comment> ownedComments = namedElement.getOwnedComments();
+			EList<Comment> ownedComments = namedElement.getOwnedComments(); 
 			if (!ownedComments.isEmpty()) {
 				rectangle.setAttributeNS(null, ATTRIBUTE_TITLE, ownedComments.get(0).getBody());
 				Element title = svgG.getDocument().createElementNS(SVGDOMImplementation.SVG_NAMESPACE_URI, ATTRIBUTE_TITLE);

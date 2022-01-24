@@ -50,7 +50,7 @@ location emf "https://download.eclipse.org/modeling/emf/emf/builds/milestone/S20
 
 //updateFrom("EMF CDO",0) 
 
-location cdo "https://download.eclipse.org/modeling/emf/cdo/drops/R20220116-1034" {
+location cdo "https://download.eclipse.org/modeling/emf/cdo/drops/R20211202-0900" {
 	org.eclipse.emf.cdo.epp.feature.group
 }
 

@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.WeakHashMap;
 
-import org.apache.batik.anim.dom.SAXSVGDocumentFactory;
+import org.apache.batik.dom.svg.SAXSVGDocumentFactory;
 import org.apache.batik.dom.util.DOMUtilities;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.draw2d.PositionConstants;
