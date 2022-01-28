@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2016 Atos Origin Integration, Christian W. Damus, and others.
+ * Copyright (c) 2011, 2016, 2022 Atos Origin Integration, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,11 +12,14 @@
  *  Tristan Faure (Atos Origin Integration) tristan.faure@atosorigin.com - Initial API and implementation
  *  Christian W. Damus - bug 485220
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 578434
  *****************************************************************************/
 package org.eclipse.papyrus.infra.onefile.utils;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
@@ -59,7 +62,7 @@ public class OneFileUtils {
 			return null;
 		}
 		final String substring = getFileNameForDi(fileName, parent);
-		IFile file = parent.getFile(new Path(substring + "." + DiModel.DI_FILE_EXTENSION));
+		IFile file = parent.getFile(new Path(substring + "." + DiModel.DI_FILE_EXTENSION)); //$NON-NLS-1$
 		if (file.exists()) {
 			return file;
 		}
@@ -138,6 +141,24 @@ public class OneFileUtils {
 	}
 
 	/**
+	 * @param resources
+	 *            a list of {@link IResource}
+	 * @return <code>true</code> if the list contains a di file
+	 * @since 3.1
+	 */
+	public static boolean containsDi(final Collection<IResource> resources) {
+		final Iterator<IResource> iter = resources.iterator();
+		while (iter.hasNext()) {
+			final IResource current = iter.next();
+			if (isDi(current)) {
+				return true;
+			}
+		}
+		return false;
+
+	}
+
+	/**
 	 * Returns the name without the extension of the file
 	 *
 	 * @param res
@@ -180,7 +201,7 @@ public class OneFileUtils {
 	}
 
 	public static IFile[] getAssociatedFiles(IPapyrusFile papyrusFile) {
-		ArrayList<IFile> files = new ArrayList<IFile>();
+		List<IFile> files = new ArrayList<>();
 		for (IResource res : papyrusFile.getAssociatedResources()) {
 			if (res instanceof IFile) {
 				files.add((IFile) res);

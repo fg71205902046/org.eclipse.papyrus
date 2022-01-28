@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 Atos Origin Integration - CEA LIST.
+ * Copyright (c) 2011, 2022 Atos Origin Integration - CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,6 +12,7 @@
  *  Tristan Faure (Atos Origin Integration) tristan.faure@atosorigin.com - Initial API and implementation
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Add copy Action
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 578434
  *****************************************************************************/
 package org.eclipse.papyrus.infra.onefile.internal.ui.providers;
 
@@ -157,7 +158,7 @@ public class PapyrusModelActionProvider extends CommonActionProvider {
 				if (getIFile() != null) {
 					try {
 						IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-						page.openEditor(new FileEditorInput(getIFile()), "org.eclipse.papyrus.infra.core.papyrusEditor", true, IWorkbenchPage.MATCH_ID | IWorkbenchPage.MATCH_INPUT);
+						page.openEditor(new FileEditorInput(getIFile()), "org.eclipse.papyrus.infra.core.papyrusEditor", true, IWorkbenchPage.MATCH_ID | IWorkbenchPage.MATCH_INPUT); //$NON-NLS-1$
 					} catch (WorkbenchException e) {
 						Activator.log.error(e);
 					}
@@ -183,8 +184,7 @@ public class PapyrusModelActionProvider extends CommonActionProvider {
 
 			@Override
 			public boolean isEnabled() {
-				return getSelectedResources() != null && getSelectedResources().size() > 0 && OneFileUtils.isDi((IResource) getSelectedResources().get(0));
-
+				return getSelectedResources() != null && getSelectedResources().size() > 0 && OneFileUtils.containsDi(getSelectedResources());
 			}
 
 			@Override
@@ -193,7 +193,7 @@ public class PapyrusModelActionProvider extends CommonActionProvider {
 			}
 
 			@Override
-			protected List getSelectedResources() {
+			protected List<IResource> getSelectedResources() {
 				return helper.getSelectedResources(getContext());
 			}
 		};
@@ -206,7 +206,7 @@ public class PapyrusModelActionProvider extends CommonActionProvider {
 			}
 
 			@Override
-			protected List getSelectedResources() {
+			protected List<IResource> getSelectedResources() {
 				return helper.getSelectedResources(getContext());
 			}
 		};
@@ -219,7 +219,7 @@ public class PapyrusModelActionProvider extends CommonActionProvider {
 			}
 
 			@Override
-			protected List getSelectedResources() {
+			protected List<IResource> getSelectedResources() {
 				return helper.getSelectedResources(getContext());
 			}
 
@@ -326,6 +326,7 @@ public class PapyrusModelActionProvider extends CommonActionProvider {
 			 *
 			 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
 			 */
+			@Override
 			public void createControl(Composite parent) {
 				Composite composite = new Composite(parent, SWT.NONE);
 				composite.setLayout(new GridLayout(2, false));
@@ -342,6 +343,7 @@ public class PapyrusModelActionProvider extends CommonActionProvider {
 				fNameField.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false));
 				fNameField.addModifyListener(new ModifyListener() {
 
+					@Override
 					public void modifyText(ModifyEvent e) {
 						validatePage();
 					}
@@ -361,7 +363,7 @@ public class PapyrusModelActionProvider extends CommonActionProvider {
 			}
 
 			protected final void validatePage() {
-				String text = fNameField.getText() + ".di";
+				String text = fNameField.getText() + ".di"; //$NON-NLS-1$
 				RefactoringStatus status = fRefactoringProcessor.validateNewElementName(text);
 				setPageComplete(status);
 			}
@@ -394,7 +396,7 @@ public class PapyrusModelActionProvider extends CommonActionProvider {
 			}
 
 			private void initializeRefactoring() {
-				fRefactoringProcessor.setNewResourceName(fNameField.getText() + ".di");
+				fRefactoringProcessor.setNewResourceName(fNameField.getText() + ".di"); //$NON-NLS-1$
 			}
 		}
 	}
@@ -446,12 +448,12 @@ public class PapyrusModelActionProvider extends CommonActionProvider {
 			return null;
 		}
 
-		protected List getSelectedResources(ActionContext context) {
+		protected List<IResource> getSelectedResources(ActionContext context) {
 			ISelection selec = context.getSelection();
-			List<IResource> resources = new ArrayList<IResource>();
+			List<IResource> resources = new ArrayList<>();
 			if (selec instanceof IStructuredSelection) {
 				IStructuredSelection struc = (IStructuredSelection) selec;
-				for (Iterator<Object> i = struc.iterator(); i.hasNext();) {
+				for (Iterator<?> i = struc.iterator(); i.hasNext();) {
 					Object o = i.next();
 					if (o instanceof IPapyrusFile) {
 						IPapyrusFile papy = (IPapyrusFile) o;
