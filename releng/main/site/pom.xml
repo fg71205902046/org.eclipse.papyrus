@@ -53,7 +53,7 @@
 							<!-- p2 update site transitive dependencies repositories -->
 							<associateSites>
 								<!-- Oxygen orbit bundles for batik 1.6.0 -->
-								<site>https://download.eclipse.org/tools/orbit/downloads/drops/R20180206163158/repository/</site>
+								<site>https://download.eclipse.org/tools/orbit/downloads/drops/R20211213173813/repository/</site>
 								<!-- XWT 1.7.0-S updatesite, remove when train has been rewired -->
 								<site>https://download.eclipse.org/xwt/milestones-1.7.0/1.7.0-S/</site>
 							</associateSites>

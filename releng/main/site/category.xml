@@ -22,6 +22,6 @@
          Papyrus User Examples offers a set of plugins dedicated to gather examples of Papyrus usage.
       </description>
    </category-def>
-   <repository-reference location="https://download.eclipse.org/tools/orbit/downloads/drops/R20180206163158/repository/" enabled="true" />
+   <repository-reference location="https://download.eclipse.org/tools/orbit/downloads/drops/R20211213173813/repository/" enabled="true" />
    <repository-reference location="https://download.eclipse.org/xwt/milestones-1.7.0/1.7.0-S/" enabled="true" />
 </site>
