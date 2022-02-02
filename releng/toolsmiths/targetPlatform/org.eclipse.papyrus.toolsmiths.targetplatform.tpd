@@ -23,7 +23,7 @@ location cbiAggregator "https://download.eclipse.org/cbi/updates/aggregator/ide/
 
 //updateFrom("Oomph",0) 
 
-location oomph "https://download.eclipse.org/oomph/drops/milestone/S20220112-041204-1.24.0-M1" {
+location oomph "https://download.eclipse.org/oomph/drops/milestone/S20220201-035351-1.24.0-M2" {
 	org.eclipse.oomph.version.feature.group
 	org.eclipse.oomph.setup.workingsets.feature.group
 	org.eclipse.oomph.projectconfig.feature.group

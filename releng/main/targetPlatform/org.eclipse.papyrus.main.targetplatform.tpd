@@ -71,7 +71,7 @@ location uml "https://download.eclipse.org/modeling/mdt/uml2/updates/5.5" {
 
 //updateFrom("Eclipse",0)
 
-location platform "https://download.eclipse.org/eclipse/updates/4.23-I-builds/I20220105-1800/" {
+location platform "https://download.eclipse.org/eclipse/updates/4.23-I-builds/I20220126-1800/" {
 	org.eclipse.sdk.feature.group
 }
 
@@ -84,7 +84,7 @@ location ocl "https://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6
 
 //updateFrom("Xtext, Xtend",0)
 
-location xtext "https://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.25.0" {
+location xtext "https://download.eclipse.org/modeling/tmf/xtext/updates/milestones/S202201241425/" {
 	org.eclipse.xtext.sdk.feature.group
 	org.eclipse.xtend.sdk.feature.group
 	org.eclipse.xtext.redist.feature.group
@@ -92,31 +92,33 @@ location xtext "https://download.eclipse.org/modeling/tmf/xtext/updates/releases
     org.eclipse.xtext.ui.feature.group
 }
 
-//updateFrom("EMFT MWE for 2021-03",0)
+//updateFrom("EMFT MWE for 2022-03",0)
 
-location mwe "https://download.eclipse.org/modeling/emft/mwe/updates/releases/2.12.1/" {
+location mwe "https://download.eclipse.org/modeling/emft/mwe/updates/releases/2.12.2/" {
 	org.eclipse.emf.mwe2.language.sdk.feature.group
 }
 
 //updateFrom("Web Tools Platform 3.25 for SimRel 2022-03",0) 
 
-location webtools "https://download.eclipse.org/webtools/downloads/drops/R3.25.0/S-3.25.0.M1-20220106092734/repository/" {
+location webtools "https://download.eclipse.org/webtools/downloads/drops/R3.25.0/S-3.25.0.M2-20220127093153/repository/" {
 	org.eclipse.wst.xml_ui.feature.feature.group lazy 
 }
 
-//manualUpdate("GMF Runtime 1.13.1 for SimRel 2021-09",0)  // revert to udpateFrom when the change has been pushed to simrel              
-location gmfRuntime "https://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S202201251416/" {
+//updateFrom("GMF Runtime 1.14.1 for SimRel 2022-03",0)
+
+location gmfRuntime "https://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S202202011016/" {
 	org.eclipse.gmf.runtime.sdk.feature.group
 }
 
-//updateFrom("GMF Runtime 1.13.1 for SimRel 2021-09",1)
+//updateFrom("GMF Runtime 1.14.1 for SimRel 2022-03",1)
+
 location gmfNotation "https://download.eclipse.org/modeling/gmp/gmf-notation/updates/releases/R202004160913" {
 	org.eclipse.gmf.runtime.notation.sdk.feature.group
 }
 
 //updateFrom("EMF (Core)",0)
 
-location emf "https://download.eclipse.org/modeling/emf/emf/builds/milestone/S202201030439" {
+location emf "https://download.eclipse.org/modeling/emf/emf/builds/milestone/S202201250746" {
 	org.eclipse.emf.sdk.feature.group
 }
 
